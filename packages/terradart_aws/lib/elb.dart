@@ -17,11 +17,11 @@ export 'src/elb/aws_alb.dart'
         AlbLoadBalancerType,
         AlbMinimumLoadBalancerCapacity,
         AlbName,
-        AlbNameName,
-        AlbNameNamePrefix,
+        AlbNameChoice,
+        AlbNamePrefix,
         AlbSubnet,
         AlbSubnetMapping,
-        AlbSubnetSubnetMapping,
+        AlbSubnetMappingChoice,
         AlbSubnetSubnets,
         AlbXffHeaderProcessingMode,
         AwsAlb;
@@ -94,8 +94,8 @@ export 'src/elb/aws_alb_target_group.dart'
         AlbTargetGroupLoadBalancingAnomalyMitigation,
         AlbTargetGroupLoadBalancingCrossZoneEnabled,
         AlbTargetGroupName,
-        AlbTargetGroupNameName,
-        AlbTargetGroupNameNamePrefix,
+        AlbTargetGroupNameChoice,
+        AlbTargetGroupNamePrefix,
         AlbTargetGroupProtocol,
         AlbTargetGroupProtocolVersion,
         AlbTargetGroupStickiness,
@@ -121,8 +121,8 @@ export 'src/elb/aws_elb.dart'
         ElbHealthCheck,
         ElbListener,
         ElbName,
-        ElbNameName,
-        ElbNameNamePrefix;
+        ElbNameChoice,
+        ElbNamePrefix;
 export 'src/elb/aws_elb_attachment.dart' show AwsElbAttachment;
 export 'src/elb/aws_lb.dart'
     show
@@ -139,11 +139,11 @@ export 'src/elb/aws_lb.dart'
         LbLoadBalancerType,
         LbMinimumLoadBalancerCapacity,
         LbName,
-        LbNameName,
-        LbNameNamePrefix,
+        LbNameChoice,
+        LbNamePrefix,
         LbSubnet,
         LbSubnetMapping,
-        LbSubnetSubnetMapping,
+        LbSubnetMappingChoice,
         LbSubnetSubnets,
         LbXffHeaderProcessingMode;
 export 'src/elb/aws_lb_cookie_stickiness_policy.dart'
@@ -219,8 +219,8 @@ export 'src/elb/aws_lb_target_group.dart'
         LbTargetGroupLoadBalancingAnomalyMitigation,
         LbTargetGroupLoadBalancingCrossZoneEnabled,
         LbTargetGroupName,
-        LbTargetGroupNameName,
-        LbTargetGroupNameNamePrefix,
+        LbTargetGroupNameChoice,
+        LbTargetGroupNamePrefix,
         LbTargetGroupProtocol,
         LbTargetGroupProtocolVersion,
         LbTargetGroupStickiness,
@@ -239,8 +239,8 @@ export 'src/elb/aws_lb_trust_store.dart'
     show
         AwsLbTrustStore,
         LbTrustStoreName,
-        LbTrustStoreNameName,
-        LbTrustStoreNameNamePrefix;
+        LbTrustStoreNameChoice,
+        LbTrustStoreNamePrefix;
 export 'src/elb/aws_lb_trust_store_revocation.dart'
     show AwsLbTrustStoreRevocation;
 export 'src/elb/aws_load_balancer_backend_server_policy.dart'

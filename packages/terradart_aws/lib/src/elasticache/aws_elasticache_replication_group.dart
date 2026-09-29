@@ -100,12 +100,12 @@ sealed class ElasticacheReplicationGroupAuth {
   /// Sets `auth_token`.
   const factory ElasticacheReplicationGroupAuth.authToken(
     TfArg<String> authToken,
-  ) = ElasticacheReplicationGroupAuthAuthToken;
+  ) = ElasticacheReplicationGroupAuthToken;
 
   /// Sets `auth_token_wo`.
   const factory ElasticacheReplicationGroupAuth.authTokenWo(
     TfArg<String> authTokenWo,
-  ) = ElasticacheReplicationGroupAuthAuthTokenWo;
+  ) = ElasticacheReplicationGroupAuthTokenWo;
 
   /// Sets `user_group_ids`.
   const factory ElasticacheReplicationGroupAuth.userGroupIds(
@@ -123,9 +123,9 @@ sealed class ElasticacheReplicationGroupAuth {
 }
 
 /// The [ElasticacheReplicationGroupAuth.authToken] choice: sets `auth_token`.
-final class ElasticacheReplicationGroupAuthAuthToken
+final class ElasticacheReplicationGroupAuthToken
     extends ElasticacheReplicationGroupAuth {
-  const ElasticacheReplicationGroupAuthAuthToken(this.authToken);
+  const ElasticacheReplicationGroupAuthToken(this.authToken);
 
   final TfArg<String> authToken;
 
@@ -140,9 +140,9 @@ final class ElasticacheReplicationGroupAuthAuthToken
 }
 
 /// The [ElasticacheReplicationGroupAuth.authTokenWo] choice: sets `auth_token_wo`.
-final class ElasticacheReplicationGroupAuthAuthTokenWo
+final class ElasticacheReplicationGroupAuthTokenWo
     extends ElasticacheReplicationGroupAuth {
-  const ElasticacheReplicationGroupAuthAuthTokenWo(this.authTokenWo);
+  const ElasticacheReplicationGroupAuthTokenWo(this.authTokenWo);
 
   final TfArg<String> authTokenWo;
 

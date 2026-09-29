@@ -6,5 +6,5 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "cost_filter, filter_expression": filter
+  "cost_filter, filter_expression": scope
   "cost_types, metrics": measure

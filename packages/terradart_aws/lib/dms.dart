@@ -6,9 +6,9 @@ library;
 export 'src/dms/aws_dms_certificate.dart'
     show
         AwsDmsCertificate,
-        DmsCertificateCertificate,
-        DmsCertificateCertificateCertificatePem,
-        DmsCertificateCertificateCertificateWallet;
+        DmsCertificateContent,
+        DmsCertificateContentCertificatePem,
+        DmsCertificateContentCertificateWallet;
 export 'src/dms/aws_dms_data_provider.dart'
     show
         AwsDmsDataProvider,
@@ -86,8 +86,8 @@ export 'src/dms/aws_dms_replication_task.dart'
     show
         AwsDmsReplicationTask,
         DmsReplicationTaskCdcStart,
-        DmsReplicationTaskCdcStartCdcStartPosition,
-        DmsReplicationTaskCdcStartCdcStartTime,
+        DmsReplicationTaskCdcStartPosition,
+        DmsReplicationTaskCdcStartTime,
         DmsReplicationTaskMigrationType;
 export 'src/dms/aws_dms_s3_endpoint.dart'
     show

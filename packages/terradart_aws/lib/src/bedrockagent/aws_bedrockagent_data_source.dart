@@ -1063,7 +1063,7 @@ final class BedrockagentDataSourceVectorIngestionConfiguration {
 final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration {
   const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration({
     required this.chunkingStrategy,
-    this.chunkingConfiguration,
+    this.strategy,
   });
 
   final TfArg<
@@ -1071,12 +1071,12 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
   >
   chunkingStrategy;
 
-  final BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration?
-  chunkingConfiguration;
+  final BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy?
+  strategy;
 
   Map<String, Object?> encode() => {
     'chunking_strategy': chunkingStrategy.toTfJson(),
-    ...?chunkingConfiguration?.encode(),
+    ...?strategy?.encode(),
   };
 }
 
@@ -1085,32 +1085,32 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.fixedSizeChunkingConfiguration(...)`.
-sealed class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration();
+sealed class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy {
+  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy();
 
   /// Sets `fixed_size_chunking_configuration`.
-  const factory BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration.fixedSizeChunkingConfiguration(
+  const factory BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.fixedSizeChunkingConfiguration(
     List<
       BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfiguration
     >
     fixedSizeChunkingConfiguration,
-  ) = BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfigurationFixedSizeChunkingConfiguration;
+  ) = BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyFixedSizeChunkingConfiguration;
 
   /// Sets `hierarchical_chunking_configuration`.
-  const factory BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration.hierarchicalChunkingConfiguration(
+  const factory BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.hierarchicalChunkingConfiguration(
     List<
       BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfiguration
     >
     hierarchicalChunkingConfiguration,
-  ) = BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfigurationHierarchicalChunkingConfiguration;
+  ) = BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyHierarchicalChunkingConfiguration;
 
   /// Sets `semantic_chunking_configuration`.
-  const factory BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration.semanticChunkingConfiguration(
+  const factory BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.semanticChunkingConfiguration(
     List<
       BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfiguration
     >
     semanticChunkingConfiguration,
-  ) = BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfigurationSemanticChunkingConfiguration;
+  ) = BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategySemanticChunkingConfiguration;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1118,11 +1118,11 @@ sealed class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigura
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration.fixedSizeChunkingConfiguration] choice: sets `fixed_size_chunking_configuration`.
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfigurationFixedSizeChunkingConfiguration
+/// The [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.fixedSizeChunkingConfiguration] choice: sets `fixed_size_chunking_configuration`.
+final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyFixedSizeChunkingConfiguration
     extends
-        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfigurationFixedSizeChunkingConfiguration(
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy {
+  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyFixedSizeChunkingConfiguration(
     this.fixedSizeChunkingConfiguration,
   );
 
@@ -1142,11 +1142,11 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
   };
 }
 
-/// The [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration.hierarchicalChunkingConfiguration] choice: sets `hierarchical_chunking_configuration`.
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfigurationHierarchicalChunkingConfiguration
+/// The [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.hierarchicalChunkingConfiguration] choice: sets `hierarchical_chunking_configuration`.
+final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyHierarchicalChunkingConfiguration
     extends
-        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfigurationHierarchicalChunkingConfiguration(
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy {
+  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyHierarchicalChunkingConfiguration(
     this.hierarchicalChunkingConfiguration,
   );
 
@@ -1166,11 +1166,11 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
   };
 }
 
-/// The [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration.semanticChunkingConfiguration] choice: sets `semantic_chunking_configuration`.
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfigurationSemanticChunkingConfiguration
+/// The [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.semanticChunkingConfiguration] choice: sets `semantic_chunking_configuration`.
+final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategySemanticChunkingConfiguration
     extends
-        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfigurationSemanticChunkingConfiguration(
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy {
+  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategySemanticChunkingConfiguration(
     this.semanticChunkingConfiguration,
   );
 

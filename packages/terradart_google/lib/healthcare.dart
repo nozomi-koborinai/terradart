@@ -64,12 +64,12 @@ export 'src/healthcare/google_healthcare_pipeline_job.dart'
         HealthcarePipelineJobMappingPipelineJobFhirStreamingSource,
         HealthcarePipelineJobMappingPipelineJobMappingConfig,
         HealthcarePipelineJobMappingPipelineJobMappingConfigWhistleConfigSource,
-        HealthcarePipelineJobPipelineJob,
-        HealthcarePipelineJobPipelineJobBackfillPipelineJob,
-        HealthcarePipelineJobPipelineJobMappingPipelineJob,
-        HealthcarePipelineJobPipelineJobReconciliationPipelineJob,
         HealthcarePipelineJobReconciliationPipelineJob,
         HealthcarePipelineJobReconciliationPipelineJobMergeConfig,
-        HealthcarePipelineJobReconciliationPipelineJobMergeConfigWhistleConfigSource;
+        HealthcarePipelineJobReconciliationPipelineJobMergeConfigWhistleConfigSource,
+        HealthcarePipelineJobTask,
+        HealthcarePipelineJobTaskBackfillPipelineJob,
+        HealthcarePipelineJobTaskMappingPipelineJob,
+        HealthcarePipelineJobTaskReconciliationPipelineJob;
 export 'src/healthcare/google_healthcare_workspace.dart'
     show GoogleHealthcareWorkspace, HealthcareWorkspaceSettings;

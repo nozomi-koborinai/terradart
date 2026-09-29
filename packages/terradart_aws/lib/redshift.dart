@@ -10,12 +10,12 @@ export 'src/redshift/aws_redshift_cluster.dart'
         AwsRedshiftCluster,
         RedshiftClusterAquaConfigurationStatus,
         RedshiftClusterMasterPassword,
+        RedshiftClusterMasterPasswordChoice,
         RedshiftClusterMasterPasswordManageMasterPassword,
-        RedshiftClusterMasterPasswordMasterPassword,
-        RedshiftClusterMasterPasswordMasterPasswordWo,
+        RedshiftClusterMasterPasswordWo,
         RedshiftClusterSnapshot,
-        RedshiftClusterSnapshotSnapshotArn,
-        RedshiftClusterSnapshotSnapshotIdentifier;
+        RedshiftClusterSnapshotArn,
+        RedshiftClusterSnapshotIdentifier;
 export 'src/redshift/aws_redshift_cluster_iam_roles.dart'
     show AwsRedshiftClusterIamRoles;
 export 'src/redshift/aws_redshift_cluster_snapshot.dart'
@@ -26,9 +26,9 @@ export 'src/redshift/aws_redshift_data_share_consumer_association.dart'
     show
         AwsRedshiftDataShareConsumerAssociation,
         RedshiftDataShareConsumerAssociationConsumer,
+        RedshiftDataShareConsumerAssociationConsumerArn,
         RedshiftDataShareConsumerAssociationConsumerAssociateEntireAccount,
-        RedshiftDataShareConsumerAssociationConsumerConsumerArn,
-        RedshiftDataShareConsumerAssociationConsumerConsumerRegion;
+        RedshiftDataShareConsumerAssociationConsumerRegion;
 export 'src/redshift/aws_redshift_endpoint_access.dart'
     show AwsRedshiftEndpointAccess;
 export 'src/redshift/aws_redshift_endpoint_authorization.dart'
@@ -75,13 +75,12 @@ export 'src/redshift/aws_redshift_scheduled_action.dart'
     show
         AwsRedshiftScheduledAction,
         RedshiftScheduledActionTargetAction,
-        RedshiftScheduledActionTargetActionAction,
-        RedshiftScheduledActionTargetActionActionPauseCluster,
-        RedshiftScheduledActionTargetActionActionResizeCluster,
-        RedshiftScheduledActionTargetActionActionResumeCluster,
         RedshiftScheduledActionTargetActionPauseCluster,
+        RedshiftScheduledActionTargetActionPauseClusterChoice,
         RedshiftScheduledActionTargetActionResizeCluster,
-        RedshiftScheduledActionTargetActionResumeCluster;
+        RedshiftScheduledActionTargetActionResizeClusterChoice,
+        RedshiftScheduledActionTargetActionResumeCluster,
+        RedshiftScheduledActionTargetActionResumeClusterChoice;
 export 'src/redshift/aws_redshift_snapshot_copy.dart'
     show AwsRedshiftSnapshotCopy;
 export 'src/redshift/aws_redshift_snapshot_copy_grant.dart'
@@ -90,8 +89,8 @@ export 'src/redshift/aws_redshift_snapshot_schedule.dart'
     show
         AwsRedshiftSnapshotSchedule,
         RedshiftSnapshotScheduleIdentifier,
-        RedshiftSnapshotScheduleIdentifierIdentifier,
-        RedshiftSnapshotScheduleIdentifierIdentifierPrefix;
+        RedshiftSnapshotScheduleIdentifierChoice,
+        RedshiftSnapshotScheduleIdentifierPrefix;
 export 'src/redshift/aws_redshift_snapshot_schedule_association.dart'
     show AwsRedshiftSnapshotScheduleAssociation;
 export 'src/redshift/aws_redshift_subnet_group.dart'

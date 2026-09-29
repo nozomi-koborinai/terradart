@@ -21,16 +21,16 @@ sealed class CloudwatchEventTargetInput {
 
   /// Sets `input`.
   const factory CloudwatchEventTargetInput.input(TfArg<String> input) =
-      CloudwatchEventTargetInputInput;
+      CloudwatchEventTargetInputChoice;
 
   /// Sets `input_path`.
   const factory CloudwatchEventTargetInput.inputPath(TfArg<String> inputPath) =
-      CloudwatchEventTargetInputInputPath;
+      CloudwatchEventTargetInputPath;
 
   /// Sets `input_transformer`.
   const factory CloudwatchEventTargetInput.inputTransformer(
     CloudwatchEventTargetInputTransformer inputTransformer,
-  ) = CloudwatchEventTargetInputInputTransformer;
+  ) = CloudwatchEventTargetInputTransformerChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,8 +43,9 @@ sealed class CloudwatchEventTargetInput {
 }
 
 /// The [CloudwatchEventTargetInput.input] choice: sets `input`.
-final class CloudwatchEventTargetInputInput extends CloudwatchEventTargetInput {
-  const CloudwatchEventTargetInputInput(this.input);
+final class CloudwatchEventTargetInputChoice
+    extends CloudwatchEventTargetInput {
+  const CloudwatchEventTargetInputChoice(this.input);
 
   final TfArg<String> input;
 
@@ -59,9 +60,8 @@ final class CloudwatchEventTargetInputInput extends CloudwatchEventTargetInput {
 }
 
 /// The [CloudwatchEventTargetInput.inputPath] choice: sets `input_path`.
-final class CloudwatchEventTargetInputInputPath
-    extends CloudwatchEventTargetInput {
-  const CloudwatchEventTargetInputInputPath(this.inputPath);
+final class CloudwatchEventTargetInputPath extends CloudwatchEventTargetInput {
+  const CloudwatchEventTargetInputPath(this.inputPath);
 
   final TfArg<String> inputPath;
 
@@ -76,9 +76,9 @@ final class CloudwatchEventTargetInputInputPath
 }
 
 /// The [CloudwatchEventTargetInput.inputTransformer] choice: sets `input_transformer`.
-final class CloudwatchEventTargetInputInputTransformer
+final class CloudwatchEventTargetInputTransformerChoice
     extends CloudwatchEventTargetInput {
-  const CloudwatchEventTargetInputInputTransformer(this.inputTransformer);
+  const CloudwatchEventTargetInputTransformerChoice(this.inputTransformer);
 
   final CloudwatchEventTargetInputTransformer inputTransformer;
 

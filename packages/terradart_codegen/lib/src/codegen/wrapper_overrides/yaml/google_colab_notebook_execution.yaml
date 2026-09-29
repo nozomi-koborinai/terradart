@@ -216,11 +216,11 @@ prelude: |
 
     const factory ColabNotebookExecutionIdentity.executionUser(
       TfArg<String> executionUser,
-    ) = ColabNotebookExecutionExecutionUser;
+    ) = ColabNotebookExecutionIdentityExecutionUser;
 
     const factory ColabNotebookExecutionIdentity.serviceAccount(
       TfArg<String> serviceAccount,
-    ) = ColabNotebookExecutionServiceAccount;
+    ) = ColabNotebookExecutionIdentityServiceAccount;
 
     String get blockKey;
 
@@ -231,9 +231,9 @@ prelude: |
 
   /// `execution_user` variant.
   @immutable
-  final class ColabNotebookExecutionExecutionUser
+  final class ColabNotebookExecutionIdentityExecutionUser
       extends ColabNotebookExecutionIdentity {
-    const ColabNotebookExecutionExecutionUser(this.value);
+    const ColabNotebookExecutionIdentityExecutionUser(this.value);
 
     @override
     final TfArg<String> value;
@@ -244,9 +244,9 @@ prelude: |
 
   /// `service_account` variant.
   @immutable
-  final class ColabNotebookExecutionServiceAccount
+  final class ColabNotebookExecutionIdentityServiceAccount
       extends ColabNotebookExecutionIdentity {
-    const ColabNotebookExecutionServiceAccount(this.value);
+    const ColabNotebookExecutionIdentityServiceAccount(this.value);
 
     @override
     final TfArg<String> value;
@@ -275,4 +275,4 @@ extraGetters: |2
     TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 
 sealedNames:
-  "workbench_runtime.vm_image.family, workbench_runtime.vm_image.name": image
+  "workbench_runtime.vm_image.family, workbench_runtime.vm_image.name": selector

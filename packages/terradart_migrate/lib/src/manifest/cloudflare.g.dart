@@ -8037,7 +8037,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'content': 'DnsRecordContentContent',
+            'content': 'DnsRecordContentChoice',
             'data': 'DnsRecordContentData',
           },
         ),
@@ -27939,8 +27939,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'content': 'WorkersScriptContentContent',
-            'content_file': 'WorkersScriptContentContentFile',
+            'content': 'WorkersScriptContentChoice',
+            'content_file': 'WorkersScriptContentFile',
           },
         ),
         MigrateSlot(
@@ -45635,8 +45635,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DnsRecordContentContent': MigrateHelper(
-      className: 'DnsRecordContentContent',
+    'DnsRecordContentChoice': MigrateHelper(
+      className: 'DnsRecordContentChoice',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content',
@@ -52299,10 +52299,15 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'query_string',
           dartName: 'queryString',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'RulesetRulesActionParametersCacheKeyCustomKeyQueryString',
+          variants: <String, String>{
+            'include':
+                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeChoice',
+            'exclude':
+                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'user',
@@ -52378,65 +52383,47 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'RulesetRulesActionParametersCacheKeyCustomKeyQueryString': MigrateHelper(
-      className: 'RulesetRulesActionParametersCacheKeyCustomKeyQueryString',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: '',
-          dartName: 'queryString',
-          kind: MigrateSlotKind.sealed,
-          required: false,
-          wrapped: false,
-          merged: true,
-          variants: <String, String>{
-            'include':
-                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringInclude',
-            'exclude':
-                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringExclude',
-          },
+    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeAll':
+        MigrateHelper(
+          className:
+              'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeAll',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'all',
+              dartName: 'all',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'bool',
+            ),
+          ],
+          shorthand: 'all',
         ),
-      ],
-    ),
-    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude': MigrateHelper(
+    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeChoice': MigrateHelper(
       className:
-          'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude',
+          'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeChoice',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: '',
+          tfName: 'exclude',
           dartName: 'exclude',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          merged: true,
+          positional: true,
           variants: <String, String>{
             'list':
-                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeList',
+                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeList',
             'all':
-                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeAll',
+                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeAll',
           },
         ),
       ],
+      shorthand: 'exclude',
     ),
-    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeAll':
+    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeList':
         MigrateHelper(
           className:
-              'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeAll',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'all',
-              dartName: 'all',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'all',
-        ),
-    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeList':
-        MigrateHelper(
-          className:
-              'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeList',
+              'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeList',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'list',
@@ -52449,46 +52436,47 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           ],
           shorthand: 'list',
         ),
-    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude': MigrateHelper(
+    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeAll':
+        MigrateHelper(
+          className:
+              'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeAll',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'all',
+              dartName: 'all',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'bool',
+            ),
+          ],
+          shorthand: 'all',
+        ),
+    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeChoice': MigrateHelper(
       className:
-          'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude',
+          'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeChoice',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: '',
+          tfName: 'include',
           dartName: 'include',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          merged: true,
+          positional: true,
           variants: <String, String>{
             'list':
-                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeList',
+                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeList',
             'all':
-                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeAll',
+                'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeAll',
           },
         ),
       ],
+      shorthand: 'include',
     ),
-    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeAll':
+    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeList':
         MigrateHelper(
           className:
-              'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeAll',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'all',
-              dartName: 'all',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'all',
-        ),
-    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeList':
-        MigrateHelper(
-          className:
-              'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeList',
+              'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeList',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'list',
@@ -52500,42 +52488,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
             ),
           ],
           shorthand: 'list',
-        ),
-    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringExclude':
-        MigrateHelper(
-          className:
-              'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringExclude',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'exclude',
-              dartName: 'exclude',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude',
-            ),
-          ],
-          shorthand: 'exclude',
-        ),
-    'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringInclude':
-        MigrateHelper(
-          className:
-              'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringInclude',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'include',
-              dartName: 'include',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude',
-            ),
-          ],
-          shorthand: 'include',
         ),
     'RulesetRulesActionParametersCacheKeyCustomKeyUser': MigrateHelper(
       className: 'RulesetRulesActionParametersCacheKeyCustomKeyUser',
@@ -52627,16 +52579,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'statusCode',
+          dartName: 'match',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'status_code_range':
-                'RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCodeRange',
+                'RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCodeRange',
             'status_code':
-                'RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCode',
+                'RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCode',
           },
         ),
         MigrateSlot(
@@ -52648,6 +52600,40 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCode':
+        MigrateHelper(
+          className:
+              'RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCode',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'status_code',
+              dartName: 'statusCode',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'num',
+            ),
+          ],
+          shorthand: 'statusCode',
+        ),
+    'RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCodeRange':
+        MigrateHelper(
+          className:
+              'RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCodeRange',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'status_code_range',
+              dartName: 'statusCodeRange',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange',
+            ),
+          ],
+          shorthand: 'statusCodeRange',
+        ),
     'RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange':
         MigrateHelper(
           className:
@@ -52668,40 +52654,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
               dartType: 'num',
             ),
           ],
-        ),
-    'RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCode':
-        MigrateHelper(
-          className:
-              'RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCode',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'status_code',
-              dartName: 'statusCode',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'num',
-            ),
-          ],
-          shorthand: 'statusCode',
-        ),
-    'RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCodeRange':
-        MigrateHelper(
-          className:
-              'RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCodeRange',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'status_code_range',
-              dartName: 'statusCodeRange',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange',
-            ),
-          ],
-          shorthand: 'statusCodeRange',
         ),
     'RulesetRulesActionParametersFromList': MigrateHelper(
       className: 'RulesetRulesActionParametersFromList',
@@ -52742,64 +52694,45 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target_url',
           dartName: 'targetUrl',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          helper: 'RulesetRulesActionParametersFromValueTargetUrl',
-        ),
-      ],
-    ),
-    'RulesetRulesActionParametersFromValueTargetUrl': MigrateHelper(
-      className: 'RulesetRulesActionParametersFromValueTargetUrl',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: '',
-          dartName: 'targetUrl',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          merged: true,
           variants: <String, String>{
-            'value':
-                'RulesetRulesActionParametersFromValueTargetUrlTargetUrlValue',
+            'value': 'RulesetRulesActionParametersFromValueTargetUrlValue',
             'expression':
-                'RulesetRulesActionParametersFromValueTargetUrlTargetUrlExpression',
+                'RulesetRulesActionParametersFromValueTargetUrlExpression',
           },
         ),
       ],
     ),
-    'RulesetRulesActionParametersFromValueTargetUrlTargetUrlExpression':
-        MigrateHelper(
-          className:
-              'RulesetRulesActionParametersFromValueTargetUrlTargetUrlExpression',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'expression',
-              dartName: 'expression',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'expression',
+    'RulesetRulesActionParametersFromValueTargetUrlExpression': MigrateHelper(
+      className: 'RulesetRulesActionParametersFromValueTargetUrlExpression',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'expression',
+          dartName: 'expression',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'RulesetRulesActionParametersFromValueTargetUrlTargetUrlValue':
-        MigrateHelper(
-          className:
-              'RulesetRulesActionParametersFromValueTargetUrlTargetUrlValue',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'value',
-              dartName: 'value',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'value',
+      ],
+      shorthand: 'expression',
+    ),
+    'RulesetRulesActionParametersFromValueTargetUrlValue': MigrateHelper(
+      className: 'RulesetRulesActionParametersFromValueTargetUrlValue',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'value',
+    ),
     'RulesetRulesActionParametersHeaders': MigrateHelper(
       className: 'RulesetRulesActionParametersHeaders',
       slots: <MigrateSlot>[
@@ -52811,7 +52744,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'value': 'RulesetRulesActionParametersHeadersValueValue',
+            'value': 'RulesetRulesActionParametersHeadersValueChoice',
             'expression': 'RulesetRulesActionParametersHeadersValueExpression',
           },
         ),
@@ -52823,6 +52756,20 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'RulesetRulesActionParametersHeadersOperation',
         ),
       ],
+    ),
+    'RulesetRulesActionParametersHeadersValueChoice': MigrateHelper(
+      className: 'RulesetRulesActionParametersHeadersValueChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'value',
     ),
     'RulesetRulesActionParametersHeadersValueExpression': MigrateHelper(
       className: 'RulesetRulesActionParametersHeadersValueExpression',
@@ -52837,20 +52784,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'expression',
-    ),
-    'RulesetRulesActionParametersHeadersValueValue': MigrateHelper(
-      className: 'RulesetRulesActionParametersHeadersValueValue',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'value',
-          dartName: 'value',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'value',
     ),
     'RulesetRulesActionParametersImmutable': MigrateHelper(
       className: 'RulesetRulesActionParametersImmutable',
@@ -53451,40 +53384,29 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'path',
           dartName: 'path',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'RulesetRulesActionParametersUriPath',
+          variants: <String, String>{
+            'value': 'RulesetRulesActionParametersUriPathValue',
+            'expression': 'RulesetRulesActionParametersUriPathExpression',
+          },
         ),
         MigrateSlot(
           tfName: 'query',
           dartName: 'query',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'RulesetRulesActionParametersUriQuery',
-        ),
-      ],
-    ),
-    'RulesetRulesActionParametersUriPath': MigrateHelper(
-      className: 'RulesetRulesActionParametersUriPath',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: '',
-          dartName: 'path',
-          kind: MigrateSlotKind.sealed,
-          required: true,
-          wrapped: false,
-          merged: true,
           variants: <String, String>{
-            'value': 'RulesetRulesActionParametersUriPathPathValue',
-            'expression': 'RulesetRulesActionParametersUriPathPathExpression',
+            'value': 'RulesetRulesActionParametersUriQueryValue',
+            'expression': 'RulesetRulesActionParametersUriQueryExpression',
           },
         ),
       ],
     ),
-    'RulesetRulesActionParametersUriPathPathExpression': MigrateHelper(
-      className: 'RulesetRulesActionParametersUriPathPathExpression',
+    'RulesetRulesActionParametersUriPathExpression': MigrateHelper(
+      className: 'RulesetRulesActionParametersUriPathExpression',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'expression',
@@ -53497,8 +53419,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       shorthand: 'expression',
     ),
-    'RulesetRulesActionParametersUriPathPathValue': MigrateHelper(
-      className: 'RulesetRulesActionParametersUriPathPathValue',
+    'RulesetRulesActionParametersUriPathValue': MigrateHelper(
+      className: 'RulesetRulesActionParametersUriPathValue',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'value',
@@ -53511,25 +53433,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       shorthand: 'value',
     ),
-    'RulesetRulesActionParametersUriQuery': MigrateHelper(
-      className: 'RulesetRulesActionParametersUriQuery',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: '',
-          dartName: 'query',
-          kind: MigrateSlotKind.sealed,
-          required: true,
-          wrapped: false,
-          merged: true,
-          variants: <String, String>{
-            'value': 'RulesetRulesActionParametersUriQueryQueryValue',
-            'expression': 'RulesetRulesActionParametersUriQueryQueryExpression',
-          },
-        ),
-      ],
-    ),
-    'RulesetRulesActionParametersUriQueryQueryExpression': MigrateHelper(
-      className: 'RulesetRulesActionParametersUriQueryQueryExpression',
+    'RulesetRulesActionParametersUriQueryExpression': MigrateHelper(
+      className: 'RulesetRulesActionParametersUriQueryExpression',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'expression',
@@ -53542,8 +53447,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       shorthand: 'expression',
     ),
-    'RulesetRulesActionParametersUriQueryQueryValue': MigrateHelper(
-      className: 'RulesetRulesActionParametersUriQueryQueryValue',
+    'RulesetRulesActionParametersUriQueryValue': MigrateHelper(
+      className: 'RulesetRulesActionParametersUriQueryValue',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'value',
@@ -55685,8 +55590,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'content_base64': 'WorkerVersionModulesContentContentBase64',
-            'content_file': 'WorkerVersionModulesContentContentFile',
+            'content_base64': 'WorkerVersionModulesContentBase64',
+            'content_file': 'WorkerVersionModulesContentFile',
           },
         ),
         MigrateSlot(
@@ -55705,8 +55610,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'WorkerVersionModulesContentContentBase64': MigrateHelper(
-      className: 'WorkerVersionModulesContentContentBase64',
+    'WorkerVersionModulesContentBase64': MigrateHelper(
+      className: 'WorkerVersionModulesContentBase64',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content_base64',
@@ -55719,8 +55624,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       shorthand: 'contentBase64',
     ),
-    'WorkerVersionModulesContentContentFile': MigrateHelper(
-      className: 'WorkerVersionModulesContentContentFile',
+    'WorkerVersionModulesContentFile': MigrateHelper(
+      className: 'WorkerVersionModulesContentFile',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content_file',
@@ -56389,8 +56294,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'WorkersScriptContentContent': MigrateHelper(
-      className: 'WorkersScriptContentContent',
+    'WorkersScriptContentChoice': MigrateHelper(
+      className: 'WorkersScriptContentChoice',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content',
@@ -56403,8 +56308,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       shorthand: 'content',
     ),
-    'WorkersScriptContentContentFile': MigrateHelper(
-      className: 'WorkersScriptContentContentFile',
+    'WorkersScriptContentFile': MigrateHelper(
+      className: 'WorkersScriptContentFile',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content_file',
@@ -56460,8 +56365,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'content_base64': 'WorkersScriptFilesContentContentBase64',
-            'content_file': 'WorkersScriptFilesContentContentFile',
+            'content_base64': 'WorkersScriptFilesContentBase64',
+            'content_file': 'WorkersScriptFilesContentFile',
           },
         ),
         MigrateSlot(
@@ -56473,8 +56378,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'WorkersScriptFilesContentContentBase64': MigrateHelper(
-      className: 'WorkersScriptFilesContentContentBase64',
+    'WorkersScriptFilesContentBase64': MigrateHelper(
+      className: 'WorkersScriptFilesContentBase64',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content_base64',
@@ -56487,8 +56392,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       shorthand: 'contentBase64',
     ),
-    'WorkersScriptFilesContentContentFile': MigrateHelper(
-      className: 'WorkersScriptFilesContentContentFile',
+    'WorkersScriptFilesContentFile': MigrateHelper(
+      className: 'WorkersScriptFilesContentFile',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content_file',
@@ -57156,16 +57061,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'headers',
+          dartName: 'requestHeaders',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'allow_all_headers':
-                'ZeroTrustAccessApplicationCorsHeadersHeadersAllowAllHeaders',
+                'ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowAllHeaders',
             'allowed_headers':
-                'ZeroTrustAccessApplicationCorsHeadersHeadersAllowedHeaders',
+                'ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowedHeaders',
           },
         ),
         MigrateSlot(
@@ -57211,36 +57116,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-    ),
-    'ZeroTrustAccessApplicationCorsHeadersHeadersAllowAllHeaders':
-        MigrateHelper(
-          className:
-              'ZeroTrustAccessApplicationCorsHeadersHeadersAllowAllHeaders',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'allow_all_headers',
-              dartName: 'allowAllHeaders',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'allowAllHeaders',
-        ),
-    'ZeroTrustAccessApplicationCorsHeadersHeadersAllowedHeaders': MigrateHelper(
-      className: 'ZeroTrustAccessApplicationCorsHeadersHeadersAllowedHeaders',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'allowed_headers',
-          dartName: 'allowedHeaders',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'List<Object?>',
-        ),
-      ],
-      shorthand: 'allowedHeaders',
     ),
     'ZeroTrustAccessApplicationCorsHeadersMethodsAllowAllMethods':
         MigrateHelper(
@@ -57303,6 +57178,38 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       shorthand: 'allowedOrigins',
     ),
+    'ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowAllHeaders':
+        MigrateHelper(
+          className:
+              'ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowAllHeaders',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'allow_all_headers',
+              dartName: 'allowAllHeaders',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'bool',
+            ),
+          ],
+          shorthand: 'allowAllHeaders',
+        ),
+    'ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowedHeaders':
+        MigrateHelper(
+          className:
+              'ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowedHeaders',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'allowed_headers',
+              dartName: 'allowedHeaders',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+          shorthand: 'allowedHeaders',
+        ),
     'ZeroTrustAccessApplicationDestinations': MigrateHelper(
       className: 'ZeroTrustAccessApplicationDestinations',
       slots: <MigrateSlot>[

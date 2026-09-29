@@ -38,12 +38,12 @@ sealed class ImagebuilderContainerRecipeDockerfileTemplate {
   /// Sets `dockerfile_template_data`.
   const factory ImagebuilderContainerRecipeDockerfileTemplate.dockerfileTemplateData(
     TfArg<String> dockerfileTemplateData,
-  ) = ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateData;
+  ) = ImagebuilderContainerRecipeDockerfileTemplateData;
 
   /// Sets `dockerfile_template_uri`.
   const factory ImagebuilderContainerRecipeDockerfileTemplate.dockerfileTemplateUri(
     TfArg<String> dockerfileTemplateUri,
-  ) = ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateUri;
+  ) = ImagebuilderContainerRecipeDockerfileTemplateUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -56,9 +56,9 @@ sealed class ImagebuilderContainerRecipeDockerfileTemplate {
 }
 
 /// The [ImagebuilderContainerRecipeDockerfileTemplate.dockerfileTemplateData] choice: sets `dockerfile_template_data`.
-final class ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateData
+final class ImagebuilderContainerRecipeDockerfileTemplateData
     extends ImagebuilderContainerRecipeDockerfileTemplate {
-  const ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateData(
+  const ImagebuilderContainerRecipeDockerfileTemplateData(
     this.dockerfileTemplateData,
   );
 
@@ -79,9 +79,9 @@ final class ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateData
 }
 
 /// The [ImagebuilderContainerRecipeDockerfileTemplate.dockerfileTemplateUri] choice: sets `dockerfile_template_uri`.
-final class ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateUri
+final class ImagebuilderContainerRecipeDockerfileTemplateUri
     extends ImagebuilderContainerRecipeDockerfileTemplate {
-  const ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateUri(
+  const ImagebuilderContainerRecipeDockerfileTemplateUri(
     this.dockerfileTemplateUri,
   );
 

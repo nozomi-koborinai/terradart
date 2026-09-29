@@ -62,34 +62,23 @@ final class RekognitionStreamProcessorNotificationChannel {
   };
 }
 
-/// Typed helper for the `output` block of
-/// `aws_rekognition_stream_processor` (derived from provider schema).
-@immutable
-final class RekognitionStreamProcessorOutput {
-  const RekognitionStreamProcessorOutput({this.output});
-
-  final RekognitionStreamProcessorOutputOutput? output;
-
-  Map<String, Object?> encode() => {...?output?.encode()};
-}
-
 /// At most one of `kinesis_data_stream`, `s3_destination` on the `output` block of `aws_rekognition_stream_processor`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.kinesisDataStream(...)`.
-sealed class RekognitionStreamProcessorOutputOutput {
-  const RekognitionStreamProcessorOutputOutput();
+sealed class RekognitionStreamProcessorOutput {
+  const RekognitionStreamProcessorOutput();
 
   /// Sets `kinesis_data_stream`.
-  const factory RekognitionStreamProcessorOutputOutput.kinesisDataStream(
+  const factory RekognitionStreamProcessorOutput.kinesisDataStream(
     List<RekognitionStreamProcessorOutputKinesisDataStream> kinesisDataStream,
-  ) = RekognitionStreamProcessorOutputOutputKinesisDataStream;
+  ) = RekognitionStreamProcessorOutputKinesisDataStreamChoice;
 
   /// Sets `s3_destination`.
-  const factory RekognitionStreamProcessorOutputOutput.s3Destination(
+  const factory RekognitionStreamProcessorOutput.s3Destination(
     List<RekognitionStreamProcessorOutputS3Destination> s3Destination,
-  ) = RekognitionStreamProcessorOutputOutputS3Destination;
+  ) = RekognitionStreamProcessorOutputS3DestinationChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -97,10 +86,10 @@ sealed class RekognitionStreamProcessorOutputOutput {
   Map<String, Object?> encode();
 }
 
-/// The [RekognitionStreamProcessorOutputOutput.kinesisDataStream] choice: sets `kinesis_data_stream`.
-final class RekognitionStreamProcessorOutputOutputKinesisDataStream
-    extends RekognitionStreamProcessorOutputOutput {
-  const RekognitionStreamProcessorOutputOutputKinesisDataStream(
+/// The [RekognitionStreamProcessorOutput.kinesisDataStream] choice: sets `kinesis_data_stream`.
+final class RekognitionStreamProcessorOutputKinesisDataStreamChoice
+    extends RekognitionStreamProcessorOutput {
+  const RekognitionStreamProcessorOutputKinesisDataStreamChoice(
     this.kinesisDataStream,
   );
 
@@ -116,10 +105,10 @@ final class RekognitionStreamProcessorOutputOutputKinesisDataStream
   };
 }
 
-/// The [RekognitionStreamProcessorOutputOutput.s3Destination] choice: sets `s3_destination`.
-final class RekognitionStreamProcessorOutputOutputS3Destination
-    extends RekognitionStreamProcessorOutputOutput {
-  const RekognitionStreamProcessorOutputOutputS3Destination(this.s3Destination);
+/// The [RekognitionStreamProcessorOutput.s3Destination] choice: sets `s3_destination`.
+final class RekognitionStreamProcessorOutputS3DestinationChoice
+    extends RekognitionStreamProcessorOutput {
+  const RekognitionStreamProcessorOutputS3DestinationChoice(this.s3Destination);
 
   final List<RekognitionStreamProcessorOutputS3Destination> s3Destination;
 
@@ -162,35 +151,23 @@ final class RekognitionStreamProcessorOutputS3Destination {
   };
 }
 
-/// Typed helper for the `regions_of_interest` block of
-/// `aws_rekognition_stream_processor` (derived from provider schema).
-@immutable
-final class RekognitionStreamProcessorRegionsOfInterest {
-  const RekognitionStreamProcessorRegionsOfInterest({this.regionsOfInterest});
-
-  final RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest?
-  regionsOfInterest;
-
-  Map<String, Object?> encode() => {...?regionsOfInterest?.encode()};
-}
-
 /// At most one of `bounding_box`, `polygon` on the `regions_of_interest` block of `aws_rekognition_stream_processor`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.boundingBox(...)`.
-sealed class RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest {
-  const RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest();
+sealed class RekognitionStreamProcessorRegionsOfInterest {
+  const RekognitionStreamProcessorRegionsOfInterest();
 
   /// Sets `bounding_box`.
-  const factory RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest.boundingBox(
+  const factory RekognitionStreamProcessorRegionsOfInterest.boundingBox(
     List<RekognitionStreamProcessorRegionsOfInterestBoundingBox> boundingBox,
-  ) = RekognitionStreamProcessorRegionsOfInterestRegionsOfInterestBoundingBox;
+  ) = RekognitionStreamProcessorRegionsOfInterestBoundingBoxChoice;
 
   /// Sets `polygon`.
-  const factory RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest.polygon(
+  const factory RekognitionStreamProcessorRegionsOfInterest.polygon(
     List<RekognitionStreamProcessorRegionsOfInterestPolygon> polygon,
-  ) = RekognitionStreamProcessorRegionsOfInterestRegionsOfInterestPolygon;
+  ) = RekognitionStreamProcessorRegionsOfInterestPolygonChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -198,10 +175,10 @@ sealed class RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest {
   Map<String, Object?> encode();
 }
 
-/// The [RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest.boundingBox] choice: sets `bounding_box`.
-final class RekognitionStreamProcessorRegionsOfInterestRegionsOfInterestBoundingBox
-    extends RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest {
-  const RekognitionStreamProcessorRegionsOfInterestRegionsOfInterestBoundingBox(
+/// The [RekognitionStreamProcessorRegionsOfInterest.boundingBox] choice: sets `bounding_box`.
+final class RekognitionStreamProcessorRegionsOfInterestBoundingBoxChoice
+    extends RekognitionStreamProcessorRegionsOfInterest {
+  const RekognitionStreamProcessorRegionsOfInterestBoundingBoxChoice(
     this.boundingBox,
   );
 
@@ -217,12 +194,10 @@ final class RekognitionStreamProcessorRegionsOfInterestRegionsOfInterestBounding
   };
 }
 
-/// The [RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest.polygon] choice: sets `polygon`.
-final class RekognitionStreamProcessorRegionsOfInterestRegionsOfInterestPolygon
-    extends RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest {
-  const RekognitionStreamProcessorRegionsOfInterestRegionsOfInterestPolygon(
-    this.polygon,
-  );
+/// The [RekognitionStreamProcessorRegionsOfInterest.polygon] choice: sets `polygon`.
+final class RekognitionStreamProcessorRegionsOfInterestPolygonChoice
+    extends RekognitionStreamProcessorRegionsOfInterest {
+  const RekognitionStreamProcessorRegionsOfInterestPolygonChoice(this.polygon);
 
   final List<RekognitionStreamProcessorRegionsOfInterestPolygon> polygon;
 
@@ -275,34 +250,23 @@ final class RekognitionStreamProcessorRegionsOfInterestPolygon {
   Map<String, Object?> encode() => {'x': ?x?.toTfJson(), 'y': ?y?.toTfJson()};
 }
 
-/// Typed helper for the `settings` block of
-/// `aws_rekognition_stream_processor` (derived from provider schema).
-@immutable
-final class RekognitionStreamProcessorSettings {
-  const RekognitionStreamProcessorSettings({this.settings});
-
-  final RekognitionStreamProcessorSettingsSettings? settings;
-
-  Map<String, Object?> encode() => {...?settings?.encode()};
-}
-
 /// At most one of `connected_home`, `face_search` on the `settings` block of `aws_rekognition_stream_processor`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.connectedHome(...)`.
-sealed class RekognitionStreamProcessorSettingsSettings {
-  const RekognitionStreamProcessorSettingsSettings();
+sealed class RekognitionStreamProcessorSettings {
+  const RekognitionStreamProcessorSettings();
 
   /// Sets `connected_home`.
-  const factory RekognitionStreamProcessorSettingsSettings.connectedHome(
+  const factory RekognitionStreamProcessorSettings.connectedHome(
     List<RekognitionStreamProcessorSettingsConnectedHome> connectedHome,
-  ) = RekognitionStreamProcessorSettingsSettingsConnectedHome;
+  ) = RekognitionStreamProcessorSettingsConnectedHomeChoice;
 
   /// Sets `face_search`.
-  const factory RekognitionStreamProcessorSettingsSettings.faceSearch(
+  const factory RekognitionStreamProcessorSettings.faceSearch(
     List<RekognitionStreamProcessorSettingsFaceSearch> faceSearch,
-  ) = RekognitionStreamProcessorSettingsSettingsFaceSearch;
+  ) = RekognitionStreamProcessorSettingsFaceSearchChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -310,10 +274,10 @@ sealed class RekognitionStreamProcessorSettingsSettings {
   Map<String, Object?> encode();
 }
 
-/// The [RekognitionStreamProcessorSettingsSettings.connectedHome] choice: sets `connected_home`.
-final class RekognitionStreamProcessorSettingsSettingsConnectedHome
-    extends RekognitionStreamProcessorSettingsSettings {
-  const RekognitionStreamProcessorSettingsSettingsConnectedHome(
+/// The [RekognitionStreamProcessorSettings.connectedHome] choice: sets `connected_home`.
+final class RekognitionStreamProcessorSettingsConnectedHomeChoice
+    extends RekognitionStreamProcessorSettings {
+  const RekognitionStreamProcessorSettingsConnectedHomeChoice(
     this.connectedHome,
   );
 
@@ -328,10 +292,10 @@ final class RekognitionStreamProcessorSettingsSettingsConnectedHome
   };
 }
 
-/// The [RekognitionStreamProcessorSettingsSettings.faceSearch] choice: sets `face_search`.
-final class RekognitionStreamProcessorSettingsSettingsFaceSearch
-    extends RekognitionStreamProcessorSettingsSettings {
-  const RekognitionStreamProcessorSettingsSettingsFaceSearch(this.faceSearch);
+/// The [RekognitionStreamProcessorSettings.faceSearch] choice: sets `face_search`.
+final class RekognitionStreamProcessorSettingsFaceSearchChoice
+    extends RekognitionStreamProcessorSettings {
+  const RekognitionStreamProcessorSettingsFaceSearchChoice(this.faceSearch);
 
   final List<RekognitionStreamProcessorSettingsFaceSearch> faceSearch;
 

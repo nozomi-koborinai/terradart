@@ -112,12 +112,12 @@ sealed class ImagebuilderInfrastructureConfigurationPlacementHost {
   /// Sets `host_id`.
   const factory ImagebuilderInfrastructureConfigurationPlacementHost.hostId(
     TfArg<String> hostId,
-  ) = ImagebuilderInfrastructureConfigurationPlacementHostHostId;
+  ) = ImagebuilderInfrastructureConfigurationPlacementHostId;
 
   /// Sets `host_resource_group_arn`.
   const factory ImagebuilderInfrastructureConfigurationPlacementHost.hostResourceGroupArn(
     TfArg<String> hostResourceGroupArn,
-  ) = ImagebuilderInfrastructureConfigurationPlacementHostHostResourceGroupArn;
+  ) = ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -126,9 +126,9 @@ sealed class ImagebuilderInfrastructureConfigurationPlacementHost {
 }
 
 /// The [ImagebuilderInfrastructureConfigurationPlacementHost.hostId] choice: sets `host_id`.
-final class ImagebuilderInfrastructureConfigurationPlacementHostHostId
+final class ImagebuilderInfrastructureConfigurationPlacementHostId
     extends ImagebuilderInfrastructureConfigurationPlacementHost {
-  const ImagebuilderInfrastructureConfigurationPlacementHostHostId(this.hostId);
+  const ImagebuilderInfrastructureConfigurationPlacementHostId(this.hostId);
 
   final TfArg<String> hostId;
 
@@ -140,9 +140,9 @@ final class ImagebuilderInfrastructureConfigurationPlacementHostHostId
 }
 
 /// The [ImagebuilderInfrastructureConfigurationPlacementHost.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
-final class ImagebuilderInfrastructureConfigurationPlacementHostHostResourceGroupArn
+final class ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArn
     extends ImagebuilderInfrastructureConfigurationPlacementHost {
-  const ImagebuilderInfrastructureConfigurationPlacementHostHostResourceGroupArn(
+  const ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArn(
     this.hostResourceGroupArn,
   );
 

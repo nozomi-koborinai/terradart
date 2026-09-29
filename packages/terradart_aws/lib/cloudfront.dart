@@ -198,8 +198,8 @@ export 'src/cloudfront/aws_cloudfront_public_key.dart'
     show
         AwsCloudfrontPublicKey,
         CloudfrontPublicKeyName,
-        CloudfrontPublicKeyNameName,
-        CloudfrontPublicKeyNameNamePrefix;
+        CloudfrontPublicKeyNameChoice,
+        CloudfrontPublicKeyNamePrefix;
 export 'src/cloudfront/aws_cloudfront_realtime_log_config.dart'
     show
         AwsCloudfrontRealtimeLogConfig,

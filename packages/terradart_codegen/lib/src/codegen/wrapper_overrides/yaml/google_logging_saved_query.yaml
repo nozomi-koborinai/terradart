@@ -74,3 +74,6 @@ customSlots:
   ops_analytics_query:
     paramDeclaration: 'LoggingSavedQueryOpsAnalyticsQuery? opsAnalyticsQuery'
     argMapEntry: "if (opsAnalyticsQuery != null) 'ops_analytics_query': TfArg.literal([opsAnalyticsQuery.toArgMap()]),"
+
+sealedNames:
+  "logging_query, ops_analytics_query": definition

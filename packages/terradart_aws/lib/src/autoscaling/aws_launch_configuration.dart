@@ -19,11 +19,11 @@ sealed class LaunchConfigurationName {
 
   /// Sets `name`.
   const factory LaunchConfigurationName.name(TfArg<String> name) =
-      LaunchConfigurationNameName;
+      LaunchConfigurationNameChoice;
 
   /// Sets `name_prefix`.
   const factory LaunchConfigurationName.namePrefix(TfArg<String> namePrefix) =
-      LaunchConfigurationNameNamePrefix;
+      LaunchConfigurationNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,8 +36,8 @@ sealed class LaunchConfigurationName {
 }
 
 /// The [LaunchConfigurationName.name] choice: sets `name`.
-final class LaunchConfigurationNameName extends LaunchConfigurationName {
-  const LaunchConfigurationNameName(this.name);
+final class LaunchConfigurationNameChoice extends LaunchConfigurationName {
+  const LaunchConfigurationNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -52,8 +52,8 @@ final class LaunchConfigurationNameName extends LaunchConfigurationName {
 }
 
 /// The [LaunchConfigurationName.namePrefix] choice: sets `name_prefix`.
-final class LaunchConfigurationNameNamePrefix extends LaunchConfigurationName {
-  const LaunchConfigurationNameNamePrefix(this.namePrefix);
+final class LaunchConfigurationNamePrefix extends LaunchConfigurationName {
+  const LaunchConfigurationNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -77,12 +77,12 @@ sealed class LaunchConfigurationUserData {
 
   /// Sets `user_data`.
   const factory LaunchConfigurationUserData.userData(TfArg<String> userData) =
-      LaunchConfigurationUserDataUserData;
+      LaunchConfigurationUserDataChoice;
 
   /// Sets `user_data_base64`.
   const factory LaunchConfigurationUserData.userDataBase64(
     TfArg<String> userDataBase64,
-  ) = LaunchConfigurationUserDataUserDataBase64;
+  ) = LaunchConfigurationUserDataBase64;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -95,9 +95,9 @@ sealed class LaunchConfigurationUserData {
 }
 
 /// The [LaunchConfigurationUserData.userData] choice: sets `user_data`.
-final class LaunchConfigurationUserDataUserData
+final class LaunchConfigurationUserDataChoice
     extends LaunchConfigurationUserData {
-  const LaunchConfigurationUserDataUserData(this.userData);
+  const LaunchConfigurationUserDataChoice(this.userData);
 
   final TfArg<String> userData;
 
@@ -112,9 +112,9 @@ final class LaunchConfigurationUserDataUserData
 }
 
 /// The [LaunchConfigurationUserData.userDataBase64] choice: sets `user_data_base64`.
-final class LaunchConfigurationUserDataUserDataBase64
+final class LaunchConfigurationUserDataBase64
     extends LaunchConfigurationUserData {
-  const LaunchConfigurationUserDataUserDataBase64(this.userDataBase64);
+  const LaunchConfigurationUserDataBase64(this.userDataBase64);
 
   final TfArg<String> userDataBase64;
 

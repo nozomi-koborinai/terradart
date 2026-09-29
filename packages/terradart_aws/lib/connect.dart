@@ -9,14 +9,14 @@ export 'src/connect/aws_connect_contact_flow.dart'
     show
         AwsConnectContactFlow,
         ConnectContactFlowContent,
-        ConnectContactFlowContentContent,
+        ConnectContactFlowContentChoice,
         ConnectContactFlowContentFilename,
         ConnectContactFlowType;
 export 'src/connect/aws_connect_contact_flow_module.dart'
     show
         AwsConnectContactFlowModule,
         ConnectContactFlowModuleContent,
-        ConnectContactFlowModuleContentContent,
+        ConnectContactFlowModuleContentChoice,
         ConnectContactFlowModuleContentFilename;
 export 'src/connect/aws_connect_hours_of_operation.dart'
     show

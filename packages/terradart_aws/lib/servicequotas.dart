@@ -15,6 +15,6 @@ export 'src/servicequotas/aws_servicequotas_template.dart'
         AwsServicequotasTemplate,
         ServicequotasTemplateRegion,
         ServicequotasTemplateRegionAwsRegion,
-        ServicequotasTemplateRegionRegion;
+        ServicequotasTemplateRegionChoice;
 export 'src/servicequotas/aws_servicequotas_template_association.dart'
     show AwsServicequotasTemplateAssociation;

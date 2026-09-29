@@ -624,16 +624,16 @@ final class DatastreamStreamBackfillNone {
 final class DatastreamStreamDestinationConfig {
   const DatastreamStreamDestinationConfig({
     required this.destinationConnectionProfile,
-    required this.destinationConfig,
+    required this.system,
   });
 
   final TfArg<String> destinationConnectionProfile;
 
-  final DatastreamStreamDestinationConfigDestinationConfig destinationConfig;
+  final DatastreamStreamDestinationConfigSystem system;
 
   Map<String, Object?> encode() => {
     'destination_connection_profile': destinationConnectionProfile.toTfJson(),
-    ...destinationConfig.encode(),
+    ...system.encode(),
   };
 }
 
@@ -641,19 +641,19 @@ final class DatastreamStreamDestinationConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.gcsDestinationConfig(...)`.
-sealed class DatastreamStreamDestinationConfigDestinationConfig {
-  const DatastreamStreamDestinationConfigDestinationConfig();
+sealed class DatastreamStreamDestinationConfigSystem {
+  const DatastreamStreamDestinationConfigSystem();
 
   /// Sets `gcs_destination_config`.
-  const factory DatastreamStreamDestinationConfigDestinationConfig.gcsDestinationConfig(
+  const factory DatastreamStreamDestinationConfigSystem.gcsDestinationConfig(
     DatastreamStreamDestinationConfigGcsDestinationConfig gcsDestinationConfig,
-  ) = DatastreamStreamDestinationConfigDestinationConfigGcsDestinationConfig;
+  ) = DatastreamStreamDestinationConfigSystemGcsDestinationConfig;
 
   /// Sets `bigquery_destination_config`.
-  const factory DatastreamStreamDestinationConfigDestinationConfig.bigqueryDestinationConfig(
+  const factory DatastreamStreamDestinationConfigSystem.bigqueryDestinationConfig(
     DatastreamStreamDestinationConfigBigqueryDestinationConfig
     bigqueryDestinationConfig,
-  ) = DatastreamStreamDestinationConfigDestinationConfigBigqueryDestinationConfig;
+  ) = DatastreamStreamDestinationConfigSystemBigqueryDestinationConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -661,10 +661,10 @@ sealed class DatastreamStreamDestinationConfigDestinationConfig {
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamStreamDestinationConfigDestinationConfig.gcsDestinationConfig] choice: sets `gcs_destination_config`.
-final class DatastreamStreamDestinationConfigDestinationConfigGcsDestinationConfig
-    extends DatastreamStreamDestinationConfigDestinationConfig {
-  const DatastreamStreamDestinationConfigDestinationConfigGcsDestinationConfig(
+/// The [DatastreamStreamDestinationConfigSystem.gcsDestinationConfig] choice: sets `gcs_destination_config`.
+final class DatastreamStreamDestinationConfigSystemGcsDestinationConfig
+    extends DatastreamStreamDestinationConfigSystem {
+  const DatastreamStreamDestinationConfigSystemGcsDestinationConfig(
     this.gcsDestinationConfig,
   );
 
@@ -680,10 +680,10 @@ final class DatastreamStreamDestinationConfigDestinationConfigGcsDestinationConf
   };
 }
 
-/// The [DatastreamStreamDestinationConfigDestinationConfig.bigqueryDestinationConfig] choice: sets `bigquery_destination_config`.
-final class DatastreamStreamDestinationConfigDestinationConfigBigqueryDestinationConfig
-    extends DatastreamStreamDestinationConfigDestinationConfig {
-  const DatastreamStreamDestinationConfigDestinationConfigBigqueryDestinationConfig(
+/// The [DatastreamStreamDestinationConfigSystem.bigqueryDestinationConfig] choice: sets `bigquery_destination_config`.
+final class DatastreamStreamDestinationConfigSystemBigqueryDestinationConfig
+    extends DatastreamStreamDestinationConfigSystem {
+  const DatastreamStreamDestinationConfigSystemBigqueryDestinationConfig(
     this.bigqueryDestinationConfig,
   );
 
@@ -1489,16 +1489,16 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSqlServerI
 final class DatastreamStreamSourceConfig {
   const DatastreamStreamSourceConfig({
     required this.sourceConnectionProfile,
-    required this.sourceConfig,
+    required this.system,
   });
 
   final TfArg<String> sourceConnectionProfile;
 
-  final DatastreamStreamSourceConfigSourceConfig sourceConfig;
+  final DatastreamStreamSourceConfigSystem system;
 
   Map<String, Object?> encode() => {
     'source_connection_profile': sourceConnectionProfile.toTfJson(),
-    ...sourceConfig.encode(),
+    ...system.encode(),
   };
 }
 
@@ -1506,43 +1506,43 @@ final class DatastreamStreamSourceConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.mysqlSourceConfig(...)`.
-sealed class DatastreamStreamSourceConfigSourceConfig {
-  const DatastreamStreamSourceConfigSourceConfig();
+sealed class DatastreamStreamSourceConfigSystem {
+  const DatastreamStreamSourceConfigSystem();
 
   /// Sets `mysql_source_config`.
-  const factory DatastreamStreamSourceConfigSourceConfig.mysqlSourceConfig(
+  const factory DatastreamStreamSourceConfigSystem.mysqlSourceConfig(
     DatastreamStreamSourceConfigMysqlSourceConfig mysqlSourceConfig,
-  ) = DatastreamStreamSourceConfigSourceConfigMysqlSourceConfig;
+  ) = DatastreamStreamSourceConfigSystemMysqlSourceConfig;
 
   /// Sets `oracle_source_config`.
-  const factory DatastreamStreamSourceConfigSourceConfig.oracleSourceConfig(
+  const factory DatastreamStreamSourceConfigSystem.oracleSourceConfig(
     DatastreamStreamSourceConfigOracleSourceConfig oracleSourceConfig,
-  ) = DatastreamStreamSourceConfigSourceConfigOracleSourceConfig;
+  ) = DatastreamStreamSourceConfigSystemOracleSourceConfig;
 
   /// Sets `postgresql_source_config`.
-  const factory DatastreamStreamSourceConfigSourceConfig.postgresqlSourceConfig(
+  const factory DatastreamStreamSourceConfigSystem.postgresqlSourceConfig(
     DatastreamStreamSourceConfigPostgresqlSourceConfig postgresqlSourceConfig,
-  ) = DatastreamStreamSourceConfigSourceConfigPostgresqlSourceConfig;
+  ) = DatastreamStreamSourceConfigSystemPostgresqlSourceConfig;
 
   /// Sets `sql_server_source_config`.
-  const factory DatastreamStreamSourceConfigSourceConfig.sqlServerSourceConfig(
+  const factory DatastreamStreamSourceConfigSystem.sqlServerSourceConfig(
     DatastreamStreamSourceConfigSqlServerSourceConfig sqlServerSourceConfig,
-  ) = DatastreamStreamSourceConfigSourceConfigSqlServerSourceConfig;
+  ) = DatastreamStreamSourceConfigSystemSqlServerSourceConfig;
 
   /// Sets `salesforce_source_config`.
-  const factory DatastreamStreamSourceConfigSourceConfig.salesforceSourceConfig(
+  const factory DatastreamStreamSourceConfigSystem.salesforceSourceConfig(
     DatastreamStreamSourceConfigSalesforceSourceConfig salesforceSourceConfig,
-  ) = DatastreamStreamSourceConfigSourceConfigSalesforceSourceConfig;
+  ) = DatastreamStreamSourceConfigSystemSalesforceSourceConfig;
 
   /// Sets `spanner_source_config`.
-  const factory DatastreamStreamSourceConfigSourceConfig.spannerSourceConfig(
+  const factory DatastreamStreamSourceConfigSystem.spannerSourceConfig(
     DatastreamStreamSourceConfigSpannerSourceConfig spannerSourceConfig,
-  ) = DatastreamStreamSourceConfigSourceConfigSpannerSourceConfig;
+  ) = DatastreamStreamSourceConfigSystemSpannerSourceConfig;
 
   /// Sets `mongodb_source_config`.
-  const factory DatastreamStreamSourceConfigSourceConfig.mongodbSourceConfig(
+  const factory DatastreamStreamSourceConfigSystem.mongodbSourceConfig(
     DatastreamStreamSourceConfigMongodbSourceConfig mongodbSourceConfig,
-  ) = DatastreamStreamSourceConfigSourceConfigMongodbSourceConfig;
+  ) = DatastreamStreamSourceConfigSystemMongodbSourceConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1550,10 +1550,10 @@ sealed class DatastreamStreamSourceConfigSourceConfig {
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamStreamSourceConfigSourceConfig.mysqlSourceConfig] choice: sets `mysql_source_config`.
-final class DatastreamStreamSourceConfigSourceConfigMysqlSourceConfig
-    extends DatastreamStreamSourceConfigSourceConfig {
-  const DatastreamStreamSourceConfigSourceConfigMysqlSourceConfig(
+/// The [DatastreamStreamSourceConfigSystem.mysqlSourceConfig] choice: sets `mysql_source_config`.
+final class DatastreamStreamSourceConfigSystemMysqlSourceConfig
+    extends DatastreamStreamSourceConfigSystem {
+  const DatastreamStreamSourceConfigSystemMysqlSourceConfig(
     this.mysqlSourceConfig,
   );
 
@@ -1568,10 +1568,10 @@ final class DatastreamStreamSourceConfigSourceConfigMysqlSourceConfig
   };
 }
 
-/// The [DatastreamStreamSourceConfigSourceConfig.oracleSourceConfig] choice: sets `oracle_source_config`.
-final class DatastreamStreamSourceConfigSourceConfigOracleSourceConfig
-    extends DatastreamStreamSourceConfigSourceConfig {
-  const DatastreamStreamSourceConfigSourceConfigOracleSourceConfig(
+/// The [DatastreamStreamSourceConfigSystem.oracleSourceConfig] choice: sets `oracle_source_config`.
+final class DatastreamStreamSourceConfigSystemOracleSourceConfig
+    extends DatastreamStreamSourceConfigSystem {
+  const DatastreamStreamSourceConfigSystemOracleSourceConfig(
     this.oracleSourceConfig,
   );
 
@@ -1586,10 +1586,10 @@ final class DatastreamStreamSourceConfigSourceConfigOracleSourceConfig
   };
 }
 
-/// The [DatastreamStreamSourceConfigSourceConfig.postgresqlSourceConfig] choice: sets `postgresql_source_config`.
-final class DatastreamStreamSourceConfigSourceConfigPostgresqlSourceConfig
-    extends DatastreamStreamSourceConfigSourceConfig {
-  const DatastreamStreamSourceConfigSourceConfigPostgresqlSourceConfig(
+/// The [DatastreamStreamSourceConfigSystem.postgresqlSourceConfig] choice: sets `postgresql_source_config`.
+final class DatastreamStreamSourceConfigSystemPostgresqlSourceConfig
+    extends DatastreamStreamSourceConfigSystem {
+  const DatastreamStreamSourceConfigSystemPostgresqlSourceConfig(
     this.postgresqlSourceConfig,
   );
 
@@ -1605,10 +1605,10 @@ final class DatastreamStreamSourceConfigSourceConfigPostgresqlSourceConfig
   };
 }
 
-/// The [DatastreamStreamSourceConfigSourceConfig.sqlServerSourceConfig] choice: sets `sql_server_source_config`.
-final class DatastreamStreamSourceConfigSourceConfigSqlServerSourceConfig
-    extends DatastreamStreamSourceConfigSourceConfig {
-  const DatastreamStreamSourceConfigSourceConfigSqlServerSourceConfig(
+/// The [DatastreamStreamSourceConfigSystem.sqlServerSourceConfig] choice: sets `sql_server_source_config`.
+final class DatastreamStreamSourceConfigSystemSqlServerSourceConfig
+    extends DatastreamStreamSourceConfigSystem {
+  const DatastreamStreamSourceConfigSystemSqlServerSourceConfig(
     this.sqlServerSourceConfig,
   );
 
@@ -1623,10 +1623,10 @@ final class DatastreamStreamSourceConfigSourceConfigSqlServerSourceConfig
   };
 }
 
-/// The [DatastreamStreamSourceConfigSourceConfig.salesforceSourceConfig] choice: sets `salesforce_source_config`.
-final class DatastreamStreamSourceConfigSourceConfigSalesforceSourceConfig
-    extends DatastreamStreamSourceConfigSourceConfig {
-  const DatastreamStreamSourceConfigSourceConfigSalesforceSourceConfig(
+/// The [DatastreamStreamSourceConfigSystem.salesforceSourceConfig] choice: sets `salesforce_source_config`.
+final class DatastreamStreamSourceConfigSystemSalesforceSourceConfig
+    extends DatastreamStreamSourceConfigSystem {
+  const DatastreamStreamSourceConfigSystemSalesforceSourceConfig(
     this.salesforceSourceConfig,
   );
 
@@ -1642,10 +1642,10 @@ final class DatastreamStreamSourceConfigSourceConfigSalesforceSourceConfig
   };
 }
 
-/// The [DatastreamStreamSourceConfigSourceConfig.spannerSourceConfig] choice: sets `spanner_source_config`.
-final class DatastreamStreamSourceConfigSourceConfigSpannerSourceConfig
-    extends DatastreamStreamSourceConfigSourceConfig {
-  const DatastreamStreamSourceConfigSourceConfigSpannerSourceConfig(
+/// The [DatastreamStreamSourceConfigSystem.spannerSourceConfig] choice: sets `spanner_source_config`.
+final class DatastreamStreamSourceConfigSystemSpannerSourceConfig
+    extends DatastreamStreamSourceConfigSystem {
+  const DatastreamStreamSourceConfigSystemSpannerSourceConfig(
     this.spannerSourceConfig,
   );
 
@@ -1660,10 +1660,10 @@ final class DatastreamStreamSourceConfigSourceConfigSpannerSourceConfig
   };
 }
 
-/// The [DatastreamStreamSourceConfigSourceConfig.mongodbSourceConfig] choice: sets `mongodb_source_config`.
-final class DatastreamStreamSourceConfigSourceConfigMongodbSourceConfig
-    extends DatastreamStreamSourceConfigSourceConfig {
-  const DatastreamStreamSourceConfigSourceConfigMongodbSourceConfig(
+/// The [DatastreamStreamSourceConfigSystem.mongodbSourceConfig] choice: sets `mongodb_source_config`.
+final class DatastreamStreamSourceConfigSystemMongodbSourceConfig
+    extends DatastreamStreamSourceConfigSystem {
+  const DatastreamStreamSourceConfigSystemMongodbSourceConfig(
     this.mongodbSourceConfig,
   );
 

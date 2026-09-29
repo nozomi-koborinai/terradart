@@ -19,13 +19,13 @@ sealed class BackupRestoreTestingSelectionProtectedResource {
   /// Sets `protected_resource_arns`.
   const factory BackupRestoreTestingSelectionProtectedResource.protectedResourceArns(
     TfArg<List<String>> protectedResourceArns,
-  ) = BackupRestoreTestingSelectionProtectedResourceProtectedResourceArns;
+  ) = BackupRestoreTestingSelectionProtectedResourceArns;
 
   /// Sets `protected_resource_conditions`.
   const factory BackupRestoreTestingSelectionProtectedResource.protectedResourceConditions(
     List<BackupRestoreTestingSelectionProtectedResourceConditions>
     protectedResourceConditions,
-  ) = BackupRestoreTestingSelectionProtectedResourceProtectedResourceConditions;
+  ) = BackupRestoreTestingSelectionProtectedResourceConditionsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -38,9 +38,9 @@ sealed class BackupRestoreTestingSelectionProtectedResource {
 }
 
 /// The [BackupRestoreTestingSelectionProtectedResource.protectedResourceArns] choice: sets `protected_resource_arns`.
-final class BackupRestoreTestingSelectionProtectedResourceProtectedResourceArns
+final class BackupRestoreTestingSelectionProtectedResourceArns
     extends BackupRestoreTestingSelectionProtectedResource {
-  const BackupRestoreTestingSelectionProtectedResourceProtectedResourceArns(
+  const BackupRestoreTestingSelectionProtectedResourceArns(
     this.protectedResourceArns,
   );
 
@@ -61,9 +61,9 @@ final class BackupRestoreTestingSelectionProtectedResourceProtectedResourceArns
 }
 
 /// The [BackupRestoreTestingSelectionProtectedResource.protectedResourceConditions] choice: sets `protected_resource_conditions`.
-final class BackupRestoreTestingSelectionProtectedResourceProtectedResourceConditions
+final class BackupRestoreTestingSelectionProtectedResourceConditionsChoice
     extends BackupRestoreTestingSelectionProtectedResource {
-  const BackupRestoreTestingSelectionProtectedResourceProtectedResourceConditions(
+  const BackupRestoreTestingSelectionProtectedResourceConditionsChoice(
     this.protectedResourceConditions,
   );
 

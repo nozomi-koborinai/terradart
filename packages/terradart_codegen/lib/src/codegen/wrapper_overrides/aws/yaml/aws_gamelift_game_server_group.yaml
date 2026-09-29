@@ -6,4 +6,4 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "launch_template.id, launch_template.name": template
+  "launch_template.id, launch_template.name": identifier

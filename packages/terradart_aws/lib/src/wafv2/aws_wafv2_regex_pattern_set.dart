@@ -27,11 +27,11 @@ sealed class Wafv2RegexPatternSetName {
 
   /// Sets `name`.
   const factory Wafv2RegexPatternSetName.name(TfArg<String> name) =
-      Wafv2RegexPatternSetNameName;
+      Wafv2RegexPatternSetNameChoice;
 
   /// Sets `name_prefix`.
   const factory Wafv2RegexPatternSetName.namePrefix(TfArg<String> namePrefix) =
-      Wafv2RegexPatternSetNameNamePrefix;
+      Wafv2RegexPatternSetNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,8 +44,8 @@ sealed class Wafv2RegexPatternSetName {
 }
 
 /// The [Wafv2RegexPatternSetName.name] choice: sets `name`.
-final class Wafv2RegexPatternSetNameName extends Wafv2RegexPatternSetName {
-  const Wafv2RegexPatternSetNameName(this.name);
+final class Wafv2RegexPatternSetNameChoice extends Wafv2RegexPatternSetName {
+  const Wafv2RegexPatternSetNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -60,9 +60,8 @@ final class Wafv2RegexPatternSetNameName extends Wafv2RegexPatternSetName {
 }
 
 /// The [Wafv2RegexPatternSetName.namePrefix] choice: sets `name_prefix`.
-final class Wafv2RegexPatternSetNameNamePrefix
-    extends Wafv2RegexPatternSetName {
-  const Wafv2RegexPatternSetNameNamePrefix(this.namePrefix);
+final class Wafv2RegexPatternSetNamePrefix extends Wafv2RegexPatternSetName {
+  const Wafv2RegexPatternSetNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

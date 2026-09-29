@@ -214,10 +214,10 @@ export 'src/compute/google_compute_https_health_check.dart'
     show GoogleComputeHttpsHealthCheck;
 export 'src/compute/google_compute_image.dart'
     show
-        ComputeImageDiskSource,
-        ComputeImageImageSource,
-        ComputeImageSnapshotSource,
         ComputeImageSource,
+        ComputeImageSourceDisk,
+        ComputeImageSourceImage,
+        ComputeImageSourceSnapshot,
         GoogleComputeImage;
 export 'src/compute/google_compute_image_iam_binding.dart'
     show GoogleComputeImageIamBinding;
@@ -443,9 +443,9 @@ export 'src/compute/google_compute_node_template.dart'
         ComputeNodeTemplateCpuOvercommitType,
         ComputeNodeTemplateDisks,
         ComputeNodeTemplateNodeType,
+        ComputeNodeTemplateNodeTypeChoice,
         ComputeNodeTemplateNodeTypeFlexibility,
-        ComputeNodeTemplateNodeTypeNodeType,
-        ComputeNodeTemplateNodeTypeNodeTypeFlexibility,
+        ComputeNodeTemplateNodeTypeFlexibilityChoice,
         ComputeNodeTemplateServerBinding,
         ComputeNodeTemplateServerBindingType,
         GoogleComputeNodeTemplate;
@@ -600,14 +600,14 @@ export 'src/compute/google_compute_region_health_aggregation_policy.dart'
         GoogleComputeRegionHealthAggregationPolicy;
 export 'src/compute/google_compute_region_health_check.dart'
     show
+        ComputeRegionHealthCheckGrpcHealthCheckConfig,
+        ComputeRegionHealthCheckHttp2HealthCheckConfig,
+        ComputeRegionHealthCheckHttpHealthCheckConfig,
+        ComputeRegionHealthCheckHttpsHealthCheckConfig,
         ComputeRegionHealthCheckProtocol,
-        ComputeRegionHealthCheckRegionHealthCheckGrpcConfig,
-        ComputeRegionHealthCheckRegionHealthCheckHttp2Config,
-        ComputeRegionHealthCheckRegionHealthCheckHttpConfig,
-        ComputeRegionHealthCheckRegionHealthCheckHttpsConfig,
         ComputeRegionHealthCheckRegionHealthCheckLogConfig,
-        ComputeRegionHealthCheckRegionHealthCheckSslConfig,
-        ComputeRegionHealthCheckRegionHealthCheckTcpConfig,
+        ComputeRegionHealthCheckSslHealthCheckConfig,
+        ComputeRegionHealthCheckTcpHealthCheckConfig,
         GoogleComputeRegionHealthCheck,
         RegionHealthCheckPortSpecification,
         RegionHealthCheckProxyHeader,
@@ -1031,8 +1031,8 @@ export 'src/compute/google_compute_vpn_gateway.dart'
 export 'src/compute/google_compute_vpn_tunnel.dart'
     show
         ComputeVpnTunnelPeer,
-        ComputeVpnTunnelPeerPeerExternalGateway,
-        ComputeVpnTunnelPeerPeerGcpGateway,
+        ComputeVpnTunnelPeerExternalGateway,
+        ComputeVpnTunnelPeerGcpGateway,
         GoogleComputeVpnTunnel;
 export 'src/compute/google_compute_wire_group.dart'
     show

@@ -182,8 +182,14 @@ class WrapperEmitter {
     // `package:terradart_annotations` import (package deleted). Only
     // `package:terradart_core` + override-supplied `extraImports`.
     final extraImports = override?.extraImports ?? const <String>[];
+    final nestedTypes = nestedTypeSpecs.isEmpty
+        ? ''
+        : renderNestedTypes(
+            nestedTypeSpecs,
+            resourceTerraformType: def.terraformType,
+          );
     final needsMeta =
-        nestedTypeSpecs.isNotEmpty &&
+        nestedTypes.contains('@immutable') &&
         !extraImports.any((i) => i.contains('package:meta/meta.dart'));
     if (needsMeta) {
       buf.writeln("import 'package:meta/meta.dart';");
@@ -270,13 +276,8 @@ class WrapperEmitter {
       buf.writeln();
     }
 
-    if (nestedTypeSpecs.isNotEmpty) {
-      buf.write(
-        renderNestedTypes(
-          nestedTypeSpecs,
-          resourceTerraformType: def.terraformType,
-        ),
-      );
+    if (nestedTypes.isNotEmpty) {
+      buf.write(nestedTypes);
       buf.writeln();
     }
 

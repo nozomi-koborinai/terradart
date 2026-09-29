@@ -25,16 +25,16 @@ sealed class ComputeImageSource {
 
   /// Create the image from a Persistent Disk (name or self-link).
   const factory ComputeImageSource.disk({required TfArg<String> sourceDisk}) =
-      ComputeImageDiskSource;
+      ComputeImageSourceDisk;
 
   /// Create the image from another Image (name or self-link).
   const factory ComputeImageSource.image({required TfArg<String> sourceImage}) =
-      ComputeImageImageSource;
+      ComputeImageSourceImage;
 
   /// Create the image from a Persistent Disk Snapshot (name or self-link).
   const factory ComputeImageSource.snapshot({
     required TfArg<String> sourceSnapshot,
-  }) = ComputeImageSnapshotSource;
+  }) = ComputeImageSourceSnapshot;
 
   /// Terraform attribute name (`source_disk`, `source_image`, or
   /// `source_snapshot`).
@@ -48,8 +48,8 @@ sealed class ComputeImageSource {
 
 /// Create the image from a Persistent Disk (name or self-link).
 @immutable
-final class ComputeImageDiskSource extends ComputeImageSource {
-  const ComputeImageDiskSource({required this.sourceDisk});
+final class ComputeImageSourceDisk extends ComputeImageSource {
+  const ComputeImageSourceDisk({required this.sourceDisk});
 
   final TfArg<String> sourceDisk;
 
@@ -62,8 +62,8 @@ final class ComputeImageDiskSource extends ComputeImageSource {
 
 /// Create the image from another Image (name or self-link).
 @immutable
-final class ComputeImageImageSource extends ComputeImageSource {
-  const ComputeImageImageSource({required this.sourceImage});
+final class ComputeImageSourceImage extends ComputeImageSource {
+  const ComputeImageSourceImage({required this.sourceImage});
 
   final TfArg<String> sourceImage;
 
@@ -76,8 +76,8 @@ final class ComputeImageImageSource extends ComputeImageSource {
 
 /// Create the image from a Persistent Disk Snapshot (name or self-link).
 @immutable
-final class ComputeImageSnapshotSource extends ComputeImageSource {
-  const ComputeImageSnapshotSource({required this.sourceSnapshot});
+final class ComputeImageSourceSnapshot extends ComputeImageSource {
+  const ComputeImageSourceSnapshot({required this.sourceSnapshot});
 
   final TfArg<String> sourceSnapshot;
 
@@ -108,14 +108,14 @@ final class ComputeImageSnapshotSource extends ComputeImageSource {
 /// instance.
 ///
 /// An Image must have exactly one [ComputeImageSource]:
-/// [ComputeImageDiskSource], [ComputeImageImageSource], or
-/// [ComputeImageSnapshotSource].
+/// [ComputeImageSourceDisk], [ComputeImageSourceImage], or
+/// [ComputeImageSourceSnapshot].
 ///
 /// GCS `raw_disk` import is not modeled yet — use the Terraform provider
 /// directly (or request curation) when importing a tarball from Cloud Storage.
 ///
-/// Prefer [ComputeImageSnapshotSource] when promoting a PD Snapshot into a
-/// reusable image; use [ComputeImageDiskSource] for a live disk.
+/// Prefer [ComputeImageSourceSnapshot] when promoting a PD Snapshot into a
+/// reusable image; use [ComputeImageSourceDisk] for a live disk.
 final class GoogleComputeImage extends Resource {
   static const String tfType = 'google_compute_image';
 

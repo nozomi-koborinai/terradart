@@ -21,34 +21,23 @@ enum AccessanalyzerAnalyzerType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Typed helper for the `configuration` block of
-/// `aws_accessanalyzer_analyzer` (derived from provider schema).
-@immutable
-final class AccessanalyzerAnalyzerConfiguration {
-  const AccessanalyzerAnalyzerConfiguration({this.access});
-
-  final AccessanalyzerAnalyzerConfigurationAccess? access;
-
-  Map<String, Object?> encode() => {...?access?.encode()};
-}
-
 /// At most one of `internal_access`, `unused_access` on the `configuration` block of `aws_accessanalyzer_analyzer`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.internalAccess(...)`.
-sealed class AccessanalyzerAnalyzerConfigurationAccess {
-  const AccessanalyzerAnalyzerConfigurationAccess();
+sealed class AccessanalyzerAnalyzerConfiguration {
+  const AccessanalyzerAnalyzerConfiguration();
 
   /// Sets `internal_access`.
-  const factory AccessanalyzerAnalyzerConfigurationAccess.internalAccess(
+  const factory AccessanalyzerAnalyzerConfiguration.internalAccess(
     AccessanalyzerAnalyzerConfigurationInternalAccess internalAccess,
-  ) = AccessanalyzerAnalyzerConfigurationAccessInternalAccess;
+  ) = AccessanalyzerAnalyzerConfigurationInternalAccessChoice;
 
   /// Sets `unused_access`.
-  const factory AccessanalyzerAnalyzerConfigurationAccess.unusedAccess(
+  const factory AccessanalyzerAnalyzerConfiguration.unusedAccess(
     AccessanalyzerAnalyzerConfigurationUnusedAccess unusedAccess,
-  ) = AccessanalyzerAnalyzerConfigurationAccessUnusedAccess;
+  ) = AccessanalyzerAnalyzerConfigurationUnusedAccessChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -56,10 +45,10 @@ sealed class AccessanalyzerAnalyzerConfigurationAccess {
   Map<String, Object?> encode();
 }
 
-/// The [AccessanalyzerAnalyzerConfigurationAccess.internalAccess] choice: sets `internal_access`.
-final class AccessanalyzerAnalyzerConfigurationAccessInternalAccess
-    extends AccessanalyzerAnalyzerConfigurationAccess {
-  const AccessanalyzerAnalyzerConfigurationAccessInternalAccess(
+/// The [AccessanalyzerAnalyzerConfiguration.internalAccess] choice: sets `internal_access`.
+final class AccessanalyzerAnalyzerConfigurationInternalAccessChoice
+    extends AccessanalyzerAnalyzerConfiguration {
+  const AccessanalyzerAnalyzerConfigurationInternalAccessChoice(
     this.internalAccess,
   );
 
@@ -72,10 +61,10 @@ final class AccessanalyzerAnalyzerConfigurationAccessInternalAccess
   Map<String, Object?> encode() => {'internal_access': internalAccess.encode()};
 }
 
-/// The [AccessanalyzerAnalyzerConfigurationAccess.unusedAccess] choice: sets `unused_access`.
-final class AccessanalyzerAnalyzerConfigurationAccessUnusedAccess
-    extends AccessanalyzerAnalyzerConfigurationAccess {
-  const AccessanalyzerAnalyzerConfigurationAccessUnusedAccess(
+/// The [AccessanalyzerAnalyzerConfiguration.unusedAccess] choice: sets `unused_access`.
+final class AccessanalyzerAnalyzerConfigurationUnusedAccessChoice
+    extends AccessanalyzerAnalyzerConfiguration {
+  const AccessanalyzerAnalyzerConfigurationUnusedAccessChoice(
     this.unusedAccess,
   );
 

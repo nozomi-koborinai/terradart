@@ -57,11 +57,11 @@ sealed class FsxOntapVolumeSize {
 
   /// Sets `size_in_bytes`.
   const factory FsxOntapVolumeSize.sizeInBytes(TfArg<String> sizeInBytes) =
-      FsxOntapVolumeSizeSizeInBytes;
+      FsxOntapVolumeSizeInBytes;
 
   /// Sets `size_in_megabytes`.
   const factory FsxOntapVolumeSize.sizeInMegabytes(TfArg<num> sizeInMegabytes) =
-      FsxOntapVolumeSizeSizeInMegabytes;
+      FsxOntapVolumeSizeInMegabytes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -74,8 +74,8 @@ sealed class FsxOntapVolumeSize {
 }
 
 /// The [FsxOntapVolumeSize.sizeInBytes] choice: sets `size_in_bytes`.
-final class FsxOntapVolumeSizeSizeInBytes extends FsxOntapVolumeSize {
-  const FsxOntapVolumeSizeSizeInBytes(this.sizeInBytes);
+final class FsxOntapVolumeSizeInBytes extends FsxOntapVolumeSize {
+  const FsxOntapVolumeSizeInBytes(this.sizeInBytes);
 
   final TfArg<String> sizeInBytes;
 
@@ -90,8 +90,8 @@ final class FsxOntapVolumeSizeSizeInBytes extends FsxOntapVolumeSize {
 }
 
 /// The [FsxOntapVolumeSize.sizeInMegabytes] choice: sets `size_in_megabytes`.
-final class FsxOntapVolumeSizeSizeInMegabytes extends FsxOntapVolumeSize {
-  const FsxOntapVolumeSizeSizeInMegabytes(this.sizeInMegabytes);
+final class FsxOntapVolumeSizeInMegabytes extends FsxOntapVolumeSize {
+  const FsxOntapVolumeSizeInMegabytes(this.sizeInMegabytes);
 
   final TfArg<num> sizeInMegabytes;
 

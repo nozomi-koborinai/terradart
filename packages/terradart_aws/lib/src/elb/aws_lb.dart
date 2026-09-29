@@ -98,7 +98,7 @@ sealed class LbSubnet {
 
   /// Sets `subnet_mapping`.
   const factory LbSubnet.subnetMapping(List<LbSubnetMapping> subnetMapping) =
-      LbSubnetSubnetMapping;
+      LbSubnetMappingChoice;
 
   /// Sets `subnets`.
   const factory LbSubnet.subnets(TfArg<List<RefTo<AwsSubnet>>> subnets) =
@@ -115,8 +115,8 @@ sealed class LbSubnet {
 }
 
 /// The [LbSubnet.subnetMapping] choice: sets `subnet_mapping`.
-final class LbSubnetSubnetMapping extends LbSubnet {
-  const LbSubnetSubnetMapping(this.subnetMapping);
+final class LbSubnetMappingChoice extends LbSubnet {
+  const LbSubnetMappingChoice(this.subnetMapping);
 
   final List<LbSubnetMapping> subnetMapping;
 
@@ -163,10 +163,10 @@ sealed class LbName {
   const LbName();
 
   /// Sets `name`.
-  const factory LbName.name(TfArg<String> name) = LbNameName;
+  const factory LbName.name(TfArg<String> name) = LbNameChoice;
 
   /// Sets `name_prefix`.
-  const factory LbName.namePrefix(TfArg<String> namePrefix) = LbNameNamePrefix;
+  const factory LbName.namePrefix(TfArg<String> namePrefix) = LbNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -179,8 +179,8 @@ sealed class LbName {
 }
 
 /// The [LbName.name] choice: sets `name`.
-final class LbNameName extends LbName {
-  const LbNameName(this.name);
+final class LbNameChoice extends LbName {
+  const LbNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -195,8 +195,8 @@ final class LbNameName extends LbName {
 }
 
 /// The [LbName.namePrefix] choice: sets `name_prefix`.
-final class LbNameNamePrefix extends LbName {
-  const LbNameNamePrefix(this.namePrefix);
+final class LbNamePrefix extends LbName {
+  const LbNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

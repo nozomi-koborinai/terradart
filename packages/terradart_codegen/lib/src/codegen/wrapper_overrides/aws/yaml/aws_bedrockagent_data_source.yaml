@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "vector_ingestion_configuration.chunking_configuration.fixed_size_chunking_configuration, vector_ingestion_configuration.chunking_configuration.hierarchical_chunking_configuration, vector_ingestion_configuration.chunking_configuration.semantic_chunking_configuration": strategy

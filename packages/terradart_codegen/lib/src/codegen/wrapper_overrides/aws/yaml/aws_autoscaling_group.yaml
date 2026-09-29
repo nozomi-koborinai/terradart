@@ -7,5 +7,5 @@ deriveExactlyOne: true
 
 sealedNames:
   "availability_zones, vpc_zone_identifier": placement
-  "launch_configuration, launch_template, mixed_instances_policy": launch
-  "launch_template.id, launch_template.name": template
+  "launch_configuration, launch_template, mixed_instances_policy": instance_source
+  "launch_template.id, launch_template.name": identifier

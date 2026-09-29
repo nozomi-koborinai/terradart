@@ -20,11 +20,11 @@ sealed class AppstreamImageBuilderImage {
 
   /// Sets `image_arn`.
   const factory AppstreamImageBuilderImage.imageArn(TfArg<String> imageArn) =
-      AppstreamImageBuilderImageImageArn;
+      AppstreamImageBuilderImageArn;
 
   /// Sets `image_name`.
   const factory AppstreamImageBuilderImage.imageName(TfArg<String> imageName) =
-      AppstreamImageBuilderImageImageName;
+      AppstreamImageBuilderImageName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -37,9 +37,8 @@ sealed class AppstreamImageBuilderImage {
 }
 
 /// The [AppstreamImageBuilderImage.imageArn] choice: sets `image_arn`.
-final class AppstreamImageBuilderImageImageArn
-    extends AppstreamImageBuilderImage {
-  const AppstreamImageBuilderImageImageArn(this.imageArn);
+final class AppstreamImageBuilderImageArn extends AppstreamImageBuilderImage {
+  const AppstreamImageBuilderImageArn(this.imageArn);
 
   final TfArg<String> imageArn;
 
@@ -54,9 +53,8 @@ final class AppstreamImageBuilderImageImageArn
 }
 
 /// The [AppstreamImageBuilderImage.imageName] choice: sets `image_name`.
-final class AppstreamImageBuilderImageImageName
-    extends AppstreamImageBuilderImage {
-  const AppstreamImageBuilderImageImageName(this.imageName);
+final class AppstreamImageBuilderImageName extends AppstreamImageBuilderImage {
+  const AppstreamImageBuilderImageName(this.imageName);
 
   final TfArg<String> imageName;
 

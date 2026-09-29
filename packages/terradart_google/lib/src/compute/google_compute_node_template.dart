@@ -27,12 +27,12 @@ sealed class ComputeNodeTemplateNodeType {
 
   /// Sets `node_type`.
   const factory ComputeNodeTemplateNodeType.nodeType(TfArg<String> nodeType) =
-      ComputeNodeTemplateNodeTypeNodeType;
+      ComputeNodeTemplateNodeTypeChoice;
 
   /// Sets `node_type_flexibility`.
   const factory ComputeNodeTemplateNodeType.nodeTypeFlexibility(
     ComputeNodeTemplateNodeTypeFlexibility nodeTypeFlexibility,
-  ) = ComputeNodeTemplateNodeTypeNodeTypeFlexibility;
+  ) = ComputeNodeTemplateNodeTypeFlexibilityChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,9 +45,9 @@ sealed class ComputeNodeTemplateNodeType {
 }
 
 /// The [ComputeNodeTemplateNodeType.nodeType] choice: sets `node_type`.
-final class ComputeNodeTemplateNodeTypeNodeType
+final class ComputeNodeTemplateNodeTypeChoice
     extends ComputeNodeTemplateNodeType {
-  const ComputeNodeTemplateNodeTypeNodeType(this.nodeType);
+  const ComputeNodeTemplateNodeTypeChoice(this.nodeType);
 
   final TfArg<String> nodeType;
 
@@ -62,11 +62,9 @@ final class ComputeNodeTemplateNodeTypeNodeType
 }
 
 /// The [ComputeNodeTemplateNodeType.nodeTypeFlexibility] choice: sets `node_type_flexibility`.
-final class ComputeNodeTemplateNodeTypeNodeTypeFlexibility
+final class ComputeNodeTemplateNodeTypeFlexibilityChoice
     extends ComputeNodeTemplateNodeType {
-  const ComputeNodeTemplateNodeTypeNodeTypeFlexibility(
-    this.nodeTypeFlexibility,
-  );
+  const ComputeNodeTemplateNodeTypeFlexibilityChoice(this.nodeTypeFlexibility);
 
   final ComputeNodeTemplateNodeTypeFlexibility nodeTypeFlexibility;
 

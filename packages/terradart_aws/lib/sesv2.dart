@@ -38,17 +38,17 @@ export 'src/sesv2/aws_sesv2_configuration_set_event_destination.dart'
         Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination,
         Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfiguration,
         Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource,
-        Sesv2ConfigurationSetEventDestinationEventDestinationDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationDestinationCloudWatchDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationDestinationEventBridgeDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationDestinationKinesisFirehoseDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationDestinationPinpointDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationDestinationSnsDestination,
         Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestination,
         Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestination,
         Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes,
         Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination;
+        Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination,
+        Sesv2ConfigurationSetEventDestinationEventDestinationTarget,
+        Sesv2ConfigurationSetEventDestinationEventDestinationTargetCloudWatchDestination,
+        Sesv2ConfigurationSetEventDestinationEventDestinationTargetEventBridgeDestination,
+        Sesv2ConfigurationSetEventDestinationEventDestinationTargetKinesisFirehoseDestination,
+        Sesv2ConfigurationSetEventDestinationEventDestinationTargetPinpointDestination,
+        Sesv2ConfigurationSetEventDestinationEventDestinationTargetSnsDestination;
 export 'src/sesv2/aws_sesv2_contact_list.dart'
     show
         AwsSesv2ContactList,

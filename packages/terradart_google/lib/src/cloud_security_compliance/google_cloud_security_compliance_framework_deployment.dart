@@ -201,37 +201,23 @@ final class CloudSecurityComplianceFrameworkDeploymentFramework {
   };
 }
 
-/// Typed helper for the `target_resource_config` block of
-/// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
-@immutable
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig({
-    required this.targetResourceConfig,
-  });
-
-  final CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfig
-  targetResourceConfig;
-
-  Map<String, Object?> encode() => {...targetResourceConfig.encode()};
-}
-
 /// Exactly one of `existing_target_resource`, `target_resource_creation_config` on the `target_resource_config` block of `google_cloud_security_compliance_framework_deployment`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.existingTargetResource(...)`.
-sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfig();
+sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig {
+  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig();
 
   /// Sets `existing_target_resource`.
-  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfig.existingTargetResource(
+  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig.existingTargetResource(
     TfArg<String> existingTargetResource,
-  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfigExistingTargetResource;
+  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExistingTargetResource;
 
   /// Sets `target_resource_creation_config`.
-  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfig.targetResourceCreationConfig(
+  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig.targetResourceCreationConfig(
     CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig
     targetResourceCreationConfig,
-  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfigTargetResourceCreationConfig;
+  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -239,11 +225,10 @@ sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarge
   Map<String, Object?> encode();
 }
 
-/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfig.existingTargetResource] choice: sets `existing_target_resource`.
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfigExistingTargetResource
-    extends
-        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfigExistingTargetResource(
+/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig.existingTargetResource] choice: sets `existing_target_resource`.
+final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExistingTargetResource
+    extends CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig {
+  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExistingTargetResource(
     this.existingTargetResource,
   );
 
@@ -258,11 +243,10 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarget
   };
 }
 
-/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfig.targetResourceCreationConfig] choice: sets `target_resource_creation_config`.
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfigTargetResourceCreationConfig
-    extends
-        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfigTargetResourceCreationConfig(
+/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig.targetResourceCreationConfig] choice: sets `target_resource_creation_config`.
+final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigChoice
+    extends CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig {
+  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigChoice(
     this.targetResourceCreationConfig,
   );
 
@@ -278,38 +262,24 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarget
   };
 }
 
-/// Typed helper for the `target_resource_config.target_resource_creation_config` block of
-/// `google_cloud_security_compliance_framework_deployment` (derived from provider schema).
-@immutable
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig({
-    required this.creationConfig,
-  });
-
-  final CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfig
-  creationConfig;
-
-  Map<String, Object?> encode() => {...creationConfig.encode()};
-}
-
 /// Exactly one of `folder_creation_config`, `project_creation_config` on the `target_resource_config.target_resource_creation_config` block of `google_cloud_security_compliance_framework_deployment`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.folderCreationConfig(...)`.
-sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfig();
+sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig {
+  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig();
 
   /// Sets `folder_creation_config`.
-  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfig.folderCreationConfig(
+  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig.folderCreationConfig(
     CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfig
     folderCreationConfig,
-  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfigFolderCreationConfig;
+  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigChoice;
 
   /// Sets `project_creation_config`.
-  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfig.projectCreationConfig(
+  const factory CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig.projectCreationConfig(
     CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfig
     projectCreationConfig,
-  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfigProjectCreationConfig;
+  ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -317,11 +287,11 @@ sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarge
   Map<String, Object?> encode();
 }
 
-/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfig.folderCreationConfig] choice: sets `folder_creation_config`.
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfigFolderCreationConfig
+/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig.folderCreationConfig] choice: sets `folder_creation_config`.
+final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigChoice
     extends
-        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfigFolderCreationConfig(
+        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig {
+  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigChoice(
     this.folderCreationConfig,
   );
 
@@ -337,11 +307,11 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarget
   };
 }
 
-/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfig.projectCreationConfig] choice: sets `project_creation_config`.
-final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfigProjectCreationConfig
+/// The [CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig.projectCreationConfig] choice: sets `project_creation_config`.
+final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfigChoice
     extends
-        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfig {
-  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfigProjectCreationConfig(
+        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig {
+  const CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfigChoice(
     this.projectCreationConfig,
   );
 

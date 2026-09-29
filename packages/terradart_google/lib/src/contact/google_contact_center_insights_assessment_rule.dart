@@ -15,19 +15,19 @@ final class ContactCenterInsightsAssessmentRuleSampleRule {
   const ContactCenterInsightsAssessmentRuleSampleRule({
     this.conversationFilter,
     this.dimension,
-    this.sample,
+    this.amount,
   });
 
   final TfArg<String>? conversationFilter;
 
   final TfArg<String>? dimension;
 
-  final ContactCenterInsightsAssessmentRuleSampleRuleSample? sample;
+  final ContactCenterInsightsAssessmentRuleSampleRuleAmount? amount;
 
   Map<String, Object?> encode() => {
     'conversation_filter': ?conversationFilter?.toTfJson(),
     'dimension': ?dimension?.toTfJson(),
-    ...?sample?.encode(),
+    ...?amount?.encode(),
   };
 }
 
@@ -36,18 +36,18 @@ final class ContactCenterInsightsAssessmentRuleSampleRule {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.samplePercentage(...)`.
-sealed class ContactCenterInsightsAssessmentRuleSampleRuleSample {
-  const ContactCenterInsightsAssessmentRuleSampleRuleSample();
+sealed class ContactCenterInsightsAssessmentRuleSampleRuleAmount {
+  const ContactCenterInsightsAssessmentRuleSampleRuleAmount();
 
   /// Sets `sample_percentage`.
-  const factory ContactCenterInsightsAssessmentRuleSampleRuleSample.samplePercentage(
+  const factory ContactCenterInsightsAssessmentRuleSampleRuleAmount.samplePercentage(
     TfArg<num> samplePercentage,
-  ) = ContactCenterInsightsAssessmentRuleSampleRuleSampleSamplePercentage;
+  ) = ContactCenterInsightsAssessmentRuleSampleRuleAmountSamplePercentage;
 
   /// Sets `sample_row`.
-  const factory ContactCenterInsightsAssessmentRuleSampleRuleSample.sampleRow(
+  const factory ContactCenterInsightsAssessmentRuleSampleRuleAmount.sampleRow(
     TfArg<num> sampleRow,
-  ) = ContactCenterInsightsAssessmentRuleSampleRuleSampleSampleRow;
+  ) = ContactCenterInsightsAssessmentRuleSampleRuleAmountSampleRow;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -55,10 +55,10 @@ sealed class ContactCenterInsightsAssessmentRuleSampleRuleSample {
   Map<String, Object?> encode();
 }
 
-/// The [ContactCenterInsightsAssessmentRuleSampleRuleSample.samplePercentage] choice: sets `sample_percentage`.
-final class ContactCenterInsightsAssessmentRuleSampleRuleSampleSamplePercentage
-    extends ContactCenterInsightsAssessmentRuleSampleRuleSample {
-  const ContactCenterInsightsAssessmentRuleSampleRuleSampleSamplePercentage(
+/// The [ContactCenterInsightsAssessmentRuleSampleRuleAmount.samplePercentage] choice: sets `sample_percentage`.
+final class ContactCenterInsightsAssessmentRuleSampleRuleAmountSamplePercentage
+    extends ContactCenterInsightsAssessmentRuleSampleRuleAmount {
+  const ContactCenterInsightsAssessmentRuleSampleRuleAmountSamplePercentage(
     this.samplePercentage,
   );
 
@@ -73,10 +73,10 @@ final class ContactCenterInsightsAssessmentRuleSampleRuleSampleSamplePercentage
   };
 }
 
-/// The [ContactCenterInsightsAssessmentRuleSampleRuleSample.sampleRow] choice: sets `sample_row`.
-final class ContactCenterInsightsAssessmentRuleSampleRuleSampleSampleRow
-    extends ContactCenterInsightsAssessmentRuleSampleRuleSample {
-  const ContactCenterInsightsAssessmentRuleSampleRuleSampleSampleRow(
+/// The [ContactCenterInsightsAssessmentRuleSampleRuleAmount.sampleRow] choice: sets `sample_row`.
+final class ContactCenterInsightsAssessmentRuleSampleRuleAmountSampleRow
+    extends ContactCenterInsightsAssessmentRuleSampleRuleAmount {
+  const ContactCenterInsightsAssessmentRuleSampleRuleAmountSampleRow(
     this.sampleRow,
   );
 

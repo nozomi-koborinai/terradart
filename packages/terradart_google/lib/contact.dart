@@ -8,9 +8,9 @@ export 'src/contact/google_contact_center_insights_analysis_rule.dart'
 export 'src/contact/google_contact_center_insights_assessment_rule.dart'
     show
         ContactCenterInsightsAssessmentRuleSampleRule,
-        ContactCenterInsightsAssessmentRuleSampleRuleSample,
-        ContactCenterInsightsAssessmentRuleSampleRuleSampleSamplePercentage,
-        ContactCenterInsightsAssessmentRuleSampleRuleSampleSampleRow,
+        ContactCenterInsightsAssessmentRuleSampleRuleAmount,
+        ContactCenterInsightsAssessmentRuleSampleRuleAmountSamplePercentage,
+        ContactCenterInsightsAssessmentRuleSampleRuleAmountSampleRow,
         ContactCenterInsightsAssessmentRuleScheduleInfo,
         GoogleContactCenterInsightsAssessmentRule;
 export 'src/contact/google_contact_center_insights_auto_labeling_rule.dart'

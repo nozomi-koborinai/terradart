@@ -6,11 +6,11 @@ library;
 export 'src/neptune/aws_neptune_cluster.dart'
     show
         AwsNeptuneCluster,
-        NeptuneClusterClusterIdentifier,
-        NeptuneClusterClusterIdentifierClusterIdentifier,
-        NeptuneClusterClusterIdentifierClusterIdentifierPrefix,
         NeptuneClusterEnableCloudwatchLogsExports,
         NeptuneClusterEngine,
+        NeptuneClusterIdentifier,
+        NeptuneClusterIdentifierChoice,
+        NeptuneClusterIdentifierPrefix,
         NeptuneClusterServerlessV2ScalingConfiguration,
         NeptuneClusterStorageType;
 export 'src/neptune/aws_neptune_cluster_endpoint.dart'
@@ -20,14 +20,14 @@ export 'src/neptune/aws_neptune_cluster_instance.dart'
         AwsNeptuneClusterInstance,
         NeptuneClusterInstanceEngine,
         NeptuneClusterInstanceIdentifier,
-        NeptuneClusterInstanceIdentifierIdentifier,
-        NeptuneClusterInstanceIdentifierIdentifierPrefix;
+        NeptuneClusterInstanceIdentifierChoice,
+        NeptuneClusterInstanceIdentifierPrefix;
 export 'src/neptune/aws_neptune_cluster_parameter_group.dart'
     show
         AwsNeptuneClusterParameterGroup,
         NeptuneClusterParameterGroupName,
-        NeptuneClusterParameterGroupNameName,
-        NeptuneClusterParameterGroupNameNamePrefix,
+        NeptuneClusterParameterGroupNameChoice,
+        NeptuneClusterParameterGroupNamePrefix,
         NeptuneClusterParameterGroupParameter,
         NeptuneClusterParameterGroupParameterApplyMethod;
 export 'src/neptune/aws_neptune_cluster_snapshot.dart'
@@ -36,26 +36,26 @@ export 'src/neptune/aws_neptune_event_subscription.dart'
     show
         AwsNeptuneEventSubscription,
         NeptuneEventSubscriptionName,
-        NeptuneEventSubscriptionNameName,
-        NeptuneEventSubscriptionNameNamePrefix;
+        NeptuneEventSubscriptionNameChoice,
+        NeptuneEventSubscriptionNamePrefix;
 export 'src/neptune/aws_neptune_global_cluster.dart'
     show
         AwsNeptuneGlobalCluster,
         NeptuneGlobalClusterEngine,
         NeptuneGlobalClusterSource,
-        NeptuneGlobalClusterSourceEngine,
-        NeptuneGlobalClusterSourceSourceDbClusterIdentifier;
+        NeptuneGlobalClusterSourceDbClusterIdentifier,
+        NeptuneGlobalClusterSourceEngine;
 export 'src/neptune/aws_neptune_parameter_group.dart'
     show
         AwsNeptuneParameterGroup,
         NeptuneParameterGroupName,
-        NeptuneParameterGroupNameName,
-        NeptuneParameterGroupNameNamePrefix,
+        NeptuneParameterGroupNameChoice,
+        NeptuneParameterGroupNamePrefix,
         NeptuneParameterGroupParameter,
         NeptuneParameterGroupParameterApplyMethod;
 export 'src/neptune/aws_neptune_subnet_group.dart'
     show
         AwsNeptuneSubnetGroup,
         NeptuneSubnetGroupName,
-        NeptuneSubnetGroupNameName,
-        NeptuneSubnetGroupNameNamePrefix;
+        NeptuneSubnetGroupNameChoice,
+        NeptuneSubnetGroupNamePrefix;

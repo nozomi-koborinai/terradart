@@ -35,12 +35,12 @@ sealed class ComprehendEntityRecognizerVersionName {
   /// Sets `version_name`.
   const factory ComprehendEntityRecognizerVersionName.versionName(
     TfArg<String> versionName,
-  ) = ComprehendEntityRecognizerVersionNameVersionName;
+  ) = ComprehendEntityRecognizerVersionNameChoice;
 
   /// Sets `version_name_prefix`.
   const factory ComprehendEntityRecognizerVersionName.versionNamePrefix(
     TfArg<String> versionNamePrefix,
-  ) = ComprehendEntityRecognizerVersionNameVersionNamePrefix;
+  ) = ComprehendEntityRecognizerVersionNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,9 +53,9 @@ sealed class ComprehendEntityRecognizerVersionName {
 }
 
 /// The [ComprehendEntityRecognizerVersionName.versionName] choice: sets `version_name`.
-final class ComprehendEntityRecognizerVersionNameVersionName
+final class ComprehendEntityRecognizerVersionNameChoice
     extends ComprehendEntityRecognizerVersionName {
-  const ComprehendEntityRecognizerVersionNameVersionName(this.versionName);
+  const ComprehendEntityRecognizerVersionNameChoice(this.versionName);
 
   final TfArg<String> versionName;
 
@@ -70,11 +70,9 @@ final class ComprehendEntityRecognizerVersionNameVersionName
 }
 
 /// The [ComprehendEntityRecognizerVersionName.versionNamePrefix] choice: sets `version_name_prefix`.
-final class ComprehendEntityRecognizerVersionNameVersionNamePrefix
+final class ComprehendEntityRecognizerVersionNamePrefix
     extends ComprehendEntityRecognizerVersionName {
-  const ComprehendEntityRecognizerVersionNameVersionNamePrefix(
-    this.versionNamePrefix,
-  );
+  const ComprehendEntityRecognizerVersionNamePrefix(this.versionNamePrefix);
 
   final TfArg<String> versionNamePrefix;
 

@@ -159,11 +159,11 @@ sealed class ColabNotebookExecutionIdentity {
 
   const factory ColabNotebookExecutionIdentity.executionUser(
     TfArg<String> executionUser,
-  ) = ColabNotebookExecutionExecutionUser;
+  ) = ColabNotebookExecutionIdentityExecutionUser;
 
   const factory ColabNotebookExecutionIdentity.serviceAccount(
     TfArg<String> serviceAccount,
-  ) = ColabNotebookExecutionServiceAccount;
+  ) = ColabNotebookExecutionIdentityServiceAccount;
 
   String get blockKey;
 
@@ -174,9 +174,9 @@ sealed class ColabNotebookExecutionIdentity {
 
 /// `execution_user` variant.
 @immutable
-final class ColabNotebookExecutionExecutionUser
+final class ColabNotebookExecutionIdentityExecutionUser
     extends ColabNotebookExecutionIdentity {
-  const ColabNotebookExecutionExecutionUser(this.value);
+  const ColabNotebookExecutionIdentityExecutionUser(this.value);
 
   @override
   final TfArg<String> value;
@@ -187,9 +187,9 @@ final class ColabNotebookExecutionExecutionUser
 
 /// `service_account` variant.
 @immutable
-final class ColabNotebookExecutionServiceAccount
+final class ColabNotebookExecutionIdentityServiceAccount
     extends ColabNotebookExecutionIdentity {
-  const ColabNotebookExecutionServiceAccount(this.value);
+  const ColabNotebookExecutionIdentityServiceAccount(this.value);
 
   @override
   final TfArg<String> value;
@@ -214,16 +214,16 @@ final class ColabNotebookExecutionWorkbenchRuntime {
 @immutable
 final class ColabNotebookExecutionWorkbenchRuntimeVmImage {
   const ColabNotebookExecutionWorkbenchRuntimeVmImage({
-    required this.image,
+    required this.selector,
     this.project,
   });
 
-  final ColabNotebookExecutionWorkbenchRuntimeVmImageImage image;
+  final ColabNotebookExecutionWorkbenchRuntimeVmImageSelector selector;
 
   final TfArg<String>? project;
 
   Map<String, Object?> encode() => {
-    ...image.encode(),
+    ...selector.encode(),
     'project': ?project?.toTfJson(),
   };
 }
@@ -232,18 +232,18 @@ final class ColabNotebookExecutionWorkbenchRuntimeVmImage {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.family(...)`.
-sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageImage {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageImage();
+sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageSelector {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageSelector();
 
   /// Sets `family`.
-  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageImage.family(
+  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageSelector.family(
     TfArg<String> family,
-  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily;
+  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorFamily;
 
   /// Sets `name`.
-  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageImage.name(
+  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageSelector.name(
     TfArg<String> name,
-  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageImageName;
+  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -251,10 +251,12 @@ sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageImage {
   Map<String, Object?> encode();
 }
 
-/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageImage.family] choice: sets `family`.
-final class ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily
-    extends ColabNotebookExecutionWorkbenchRuntimeVmImageImage {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily(this.family);
+/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageSelector.family] choice: sets `family`.
+final class ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorFamily
+    extends ColabNotebookExecutionWorkbenchRuntimeVmImageSelector {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorFamily(
+    this.family,
+  );
 
   final TfArg<String> family;
 
@@ -265,10 +267,10 @@ final class ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily
   Map<String, Object?> encode() => {'family': family.toTfJson()};
 }
 
-/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageImage.name] choice: sets `name`.
-final class ColabNotebookExecutionWorkbenchRuntimeVmImageImageName
-    extends ColabNotebookExecutionWorkbenchRuntimeVmImageImage {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageImageName(this.name);
+/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageSelector.name] choice: sets `name`.
+final class ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorName
+    extends ColabNotebookExecutionWorkbenchRuntimeVmImageSelector {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorName(this.name);
 
   final TfArg<String> name;
 

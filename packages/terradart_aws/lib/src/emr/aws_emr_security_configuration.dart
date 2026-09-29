@@ -16,12 +16,12 @@ sealed class EmrSecurityConfigurationName {
 
   /// Sets `name`.
   const factory EmrSecurityConfigurationName.name(TfArg<String> name) =
-      EmrSecurityConfigurationNameName;
+      EmrSecurityConfigurationNameChoice;
 
   /// Sets `name_prefix`.
   const factory EmrSecurityConfigurationName.namePrefix(
     TfArg<String> namePrefix,
-  ) = EmrSecurityConfigurationNameNamePrefix;
+  ) = EmrSecurityConfigurationNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,9 +34,9 @@ sealed class EmrSecurityConfigurationName {
 }
 
 /// The [EmrSecurityConfigurationName.name] choice: sets `name`.
-final class EmrSecurityConfigurationNameName
+final class EmrSecurityConfigurationNameChoice
     extends EmrSecurityConfigurationName {
-  const EmrSecurityConfigurationNameName(this.name);
+  const EmrSecurityConfigurationNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -51,9 +51,9 @@ final class EmrSecurityConfigurationNameName
 }
 
 /// The [EmrSecurityConfigurationName.namePrefix] choice: sets `name_prefix`.
-final class EmrSecurityConfigurationNameNamePrefix
+final class EmrSecurityConfigurationNamePrefix
     extends EmrSecurityConfigurationName {
-  const EmrSecurityConfigurationNameNamePrefix(this.namePrefix);
+  const EmrSecurityConfigurationNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

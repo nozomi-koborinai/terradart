@@ -34,8 +34,8 @@ export 'src/ec2/aws_customer_gateway.dart'
     show
         AwsCustomerGateway,
         CustomerGatewayBgpAsn,
-        CustomerGatewayBgpAsnBgpAsn,
-        CustomerGatewayBgpAsnBgpAsnExtended,
+        CustomerGatewayBgpAsnChoice,
+        CustomerGatewayBgpAsnExtended,
         CustomerGatewayType;
 export 'src/ec2/aws_default_network_acl.dart'
     show
@@ -112,8 +112,8 @@ export 'src/ec2/aws_ec2_client_vpn_endpoint.dart'
         Ec2ClientVpnEndpointTrafficIpAddressType,
         Ec2ClientVpnEndpointTransitGatewayConfiguration,
         Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone,
-        Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneAvailabilityZoneIds,
         Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneAvailabilityZones,
+        Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIds,
         Ec2ClientVpnEndpointTransportProtocol;
 export 'src/ec2/aws_ec2_client_vpn_network_association.dart'
     show AwsEc2ClientVpnNetworkAssociation;
@@ -168,8 +168,8 @@ export 'src/ec2/aws_ec2_host.dart'
         Ec2HostAutoPlacement,
         Ec2HostHostRecovery,
         Ec2HostInstance,
-        Ec2HostInstanceInstanceFamily,
-        Ec2HostInstanceInstanceType;
+        Ec2HostInstanceFamily,
+        Ec2HostInstanceType;
 export 'src/ec2/aws_ec2_image_block_public_access.dart'
     show AwsEc2ImageBlockPublicAccess, Ec2ImageBlockPublicAccessState;
 export 'src/ec2/aws_ec2_instance_connect_endpoint.dart'
@@ -229,8 +229,8 @@ export 'src/ec2/aws_ec2_secondary_subnet.dart'
     show
         AwsEc2SecondarySubnet,
         Ec2SecondarySubnetAvailabilityZone,
-        Ec2SecondarySubnetAvailabilityZoneAvailabilityZone,
-        Ec2SecondarySubnetAvailabilityZoneAvailabilityZoneId;
+        Ec2SecondarySubnetAvailabilityZoneChoice,
+        Ec2SecondarySubnetAvailabilityZoneId;
 export 'src/ec2/aws_ec2_serial_console_access.dart'
     show AwsEc2SerialConsoleAccess;
 export 'src/ec2/aws_ec2_subnet_cidr_reservation.dart'
@@ -250,10 +250,10 @@ export 'src/ec2/aws_ec2_traffic_mirror_session.dart'
 export 'src/ec2/aws_ec2_traffic_mirror_target.dart'
     show
         AwsEc2TrafficMirrorTarget,
-        Ec2TrafficMirrorTargetTarget,
-        Ec2TrafficMirrorTargetTargetGatewayLoadBalancerEndpointId,
-        Ec2TrafficMirrorTargetTargetNetworkInterfaceId,
-        Ec2TrafficMirrorTargetTargetNetworkLoadBalancerArn;
+        Ec2TrafficMirrorTargetDestination,
+        Ec2TrafficMirrorTargetDestinationGatewayLoadBalancerEndpointId,
+        Ec2TrafficMirrorTargetDestinationNetworkInterfaceId,
+        Ec2TrafficMirrorTargetDestinationNetworkLoadBalancerArn;
 export 'src/ec2/aws_ec2_transit_gateway.dart'
     show
         AwsEc2TransitGateway,
@@ -358,14 +358,12 @@ export 'src/ec2/aws_instance.dart'
     show
         AwsInstance,
         InstanceCapacityReservationSpecification,
-        InstanceCapacityReservationSpecificationCapacityReservation,
-        InstanceCapacityReservationSpecificationCapacityReservationCapacityReservationPreference,
-        InstanceCapacityReservationSpecificationCapacityReservationCapacityReservationTarget,
         InstanceCapacityReservationSpecificationCapacityReservationPreference,
+        InstanceCapacityReservationSpecificationCapacityReservationPreferenceChoice,
         InstanceCapacityReservationSpecificationCapacityReservationTarget,
-        InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation,
-        InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationId,
-        InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArn,
+        InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationId,
+        InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArn,
+        InstanceCapacityReservationSpecificationCapacityReservationTargetChoice,
         InstanceCpuOptions,
         InstanceCpuOptionsAmdSevSnp,
         InstanceCreditSpecification,
@@ -380,9 +378,9 @@ export 'src/ec2/aws_instance.dart'
         InstanceInstanceMarketOptionsSpotOptionsInstanceInterruptionBehavior,
         InstanceInstanceMarketOptionsSpotOptionsSpotInstanceType,
         InstanceLaunchTemplate,
-        InstanceLaunchTemplateTemplate,
-        InstanceLaunchTemplateTemplateId,
-        InstanceLaunchTemplateTemplateName,
+        InstanceLaunchTemplateIdentifier,
+        InstanceLaunchTemplateIdentifierId,
+        InstanceLaunchTemplateIdentifierName,
         InstanceMaintenanceOptions,
         InstanceMaintenanceOptionsAutoRecovery,
         InstanceMetadataOptions,
@@ -392,8 +390,8 @@ export 'src/ec2/aws_instance.dart'
         InstanceMetadataOptionsInstanceMetadataTags,
         InstanceNetworkInterface,
         InstancePlacement,
+        InstancePlacementGroup,
         InstancePlacementHostResourceGroupArn,
-        InstancePlacementPlacementGroup,
         InstancePrimaryNetworkInterface,
         InstancePrivateDnsNameOptions,
         InstancePrivateDnsNameOptionsHostnameType,
@@ -402,17 +400,13 @@ export 'src/ec2/aws_instance.dart'
         InstanceSecondaryNetworkInterface,
         InstanceTenancy,
         InstanceUserData,
-        InstanceUserDataUserData,
-        InstanceUserDataUserDataBase64;
+        InstanceUserDataBase64,
+        InstanceUserDataChoice;
 export 'src/ec2/aws_internet_gateway.dart' show AwsInternetGateway;
 export 'src/ec2/aws_internet_gateway_attachment.dart'
     show AwsInternetGatewayAttachment;
 export 'src/ec2/aws_key_pair.dart'
-    show
-        AwsKeyPair,
-        KeyPairKeyName,
-        KeyPairKeyNameKeyName,
-        KeyPairKeyNameKeyNamePrefix;
+    show AwsKeyPair, KeyPairKeyName, KeyPairKeyNameChoice, KeyPairKeyNamePrefix;
 export 'src/ec2/aws_launch_template.dart'
     show
         AwsLaunchTemplate,
@@ -422,27 +416,23 @@ export 'src/ec2/aws_launch_template.dart'
         LaunchTemplateCapacityReservationSpecification,
         LaunchTemplateCapacityReservationSpecificationCapacityReservationPreference,
         LaunchTemplateCapacityReservationSpecificationCapacityReservationTarget,
-        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation,
-        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationId,
-        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArn,
+        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationId,
+        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArn,
         LaunchTemplateCpuOptions,
         LaunchTemplateCpuOptionsAmdSevSnp,
         LaunchTemplateCpuOptionsNestedVirtualization,
         LaunchTemplateCreditSpecification,
         LaunchTemplateCreditSpecificationCpuCredits,
         LaunchTemplateDefaultVersion,
-        LaunchTemplateDefaultVersionDefaultVersion,
+        LaunchTemplateDefaultVersionChoice,
         LaunchTemplateDefaultVersionUpdateDefaultVersion,
         LaunchTemplateEnclaveOptions,
         LaunchTemplateHibernationOptions,
         LaunchTemplateIamInstanceProfile,
-        LaunchTemplateIamInstanceProfileIamInstanceProfile,
-        LaunchTemplateIamInstanceProfileIamInstanceProfileArn,
-        LaunchTemplateIamInstanceProfileIamInstanceProfileName,
+        LaunchTemplateIamInstanceProfileArn,
+        LaunchTemplateIamInstanceProfileName,
         LaunchTemplateInstance,
         LaunchTemplateInstanceInitiatedShutdownBehavior,
-        LaunchTemplateInstanceInstanceRequirements,
-        LaunchTemplateInstanceInstanceType,
         LaunchTemplateInstanceMarketOptions,
         LaunchTemplateInstanceMarketOptionsMarketType,
         LaunchTemplateInstanceMarketOptionsSpotOptions,
@@ -457,6 +447,7 @@ export 'src/ec2/aws_launch_template.dart'
         LaunchTemplateInstanceRequirementsBareMetal,
         LaunchTemplateInstanceRequirementsBaselineEbsBandwidthMbps,
         LaunchTemplateInstanceRequirementsBurstablePerformance,
+        LaunchTemplateInstanceRequirementsChoice,
         LaunchTemplateInstanceRequirementsCpuManufacturers,
         LaunchTemplateInstanceRequirementsInstanceGenerations,
         LaunchTemplateInstanceRequirementsInstanceTypes,
@@ -473,6 +464,7 @@ export 'src/ec2/aws_launch_template.dart'
         LaunchTemplateInstanceRequirementsPriceSpotMaxPricePercentageOverLowestPrice,
         LaunchTemplateInstanceRequirementsTotalLocalStorageGb,
         LaunchTemplateInstanceRequirementsVcpuCount,
+        LaunchTemplateInstanceType,
         LaunchTemplateLicenseSpecification,
         LaunchTemplateMaintenanceOptions,
         LaunchTemplateMaintenanceOptionsAutoRecovery,
@@ -483,8 +475,8 @@ export 'src/ec2/aws_launch_template.dart'
         LaunchTemplateMetadataOptionsInstanceMetadataTags,
         LaunchTemplateMonitoring,
         LaunchTemplateName,
-        LaunchTemplateNameName,
-        LaunchTemplateNameNamePrefix,
+        LaunchTemplateNameChoice,
+        LaunchTemplateNamePrefix,
         LaunchTemplateNetworkInterfaces,
         LaunchTemplateNetworkInterfacesConnectionTrackingSpecification,
         LaunchTemplateNetworkInterfacesEnaSrdSpecification,
@@ -494,11 +486,11 @@ export 'src/ec2/aws_launch_template.dart'
         LaunchTemplateNetworkPerformanceOptionsBandwidthWeighting,
         LaunchTemplatePlacement,
         LaunchTemplatePlacementGroup,
-        LaunchTemplatePlacementGroupGroupId,
-        LaunchTemplatePlacementGroupGroupName,
+        LaunchTemplatePlacementGroupId,
+        LaunchTemplatePlacementGroupName,
         LaunchTemplatePlacementHost,
-        LaunchTemplatePlacementHostHostId,
-        LaunchTemplatePlacementHostHostResourceGroupArn,
+        LaunchTemplatePlacementHostId,
+        LaunchTemplatePlacementHostResourceGroupArn,
         LaunchTemplatePlacementTenancy,
         LaunchTemplatePrivateDnsNameOptions,
         LaunchTemplatePrivateDnsNameOptionsHostnameType,
@@ -518,7 +510,7 @@ export 'src/ec2/aws_nat_gateway.dart'
         NatGatewayAvailabilityZoneAddress,
         NatGatewayConnectivityType,
         NatGatewaySecondaryPrivateIpAddress,
-        NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddressCount,
+        NatGatewaySecondaryPrivateIpAddressCount,
         NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddresses;
 export 'src/ec2/aws_nat_gateway_eip_association.dart'
     show AwsNatGatewayEipAssociation;
@@ -528,7 +520,7 @@ export 'src/ec2/aws_network_acl_rule.dart'
     show
         AwsNetworkAclRule,
         NetworkAclRuleCidr,
-        NetworkAclRuleCidrCidrBlock,
+        NetworkAclRuleCidrBlock,
         NetworkAclRuleCidrIpv6CidrBlock,
         NetworkAclRuleRuleAction;
 export 'src/ec2/aws_network_interface.dart'
@@ -539,14 +531,14 @@ export 'src/ec2/aws_network_interface.dart'
         NetworkInterfaceEnaSrdSpecificationEnaSrdUdpSpecification,
         NetworkInterfaceInterfaceType,
         NetworkInterfaceIpv4Prefix,
-        NetworkInterfaceIpv4PrefixIpv4PrefixCount,
+        NetworkInterfaceIpv4PrefixCount,
         NetworkInterfaceIpv4PrefixIpv4Prefixes,
         NetworkInterfaceIpv6Address,
-        NetworkInterfaceIpv6AddressIpv6AddressCount,
-        NetworkInterfaceIpv6AddressIpv6AddressList,
+        NetworkInterfaceIpv6AddressCount,
         NetworkInterfaceIpv6AddressIpv6Addresses,
+        NetworkInterfaceIpv6AddressList,
         NetworkInterfaceIpv6Prefix,
-        NetworkInterfaceIpv6PrefixIpv6PrefixCount,
+        NetworkInterfaceIpv6PrefixCount,
         NetworkInterfaceIpv6PrefixIpv6Prefixes;
 export 'src/ec2/aws_network_interface_attachment.dart'
     show AwsNetworkInterfaceAttachment;
@@ -564,7 +556,7 @@ export 'src/ec2/aws_route.dart'
         RouteCarrierIpv6DestinationIpv6CidrBlock,
         RouteIpv4Egress,
         RouteIpv4EgressDestinationCidrBlock,
-        RouteIpv4EgressEgressOnlyGatewayId,
+        RouteIpv4EgressOnlyGatewayId,
         RoutePrefixListEndpoint,
         RoutePrefixListEndpointDestinationPrefixListId,
         RoutePrefixListEndpointVpcEndpointId;
@@ -579,8 +571,8 @@ export 'src/ec2/aws_security_group.dart'
     show
         AwsSecurityGroup,
         SecurityGroupName,
-        SecurityGroupNameName,
-        SecurityGroupNameNamePrefix;
+        SecurityGroupNameChoice,
+        SecurityGroupNamePrefix;
 export 'src/ec2/aws_security_group_rule.dart'
     show AwsSecurityGroupRule, SecurityGroupRuleType;
 export 'src/ec2/aws_snapshot_create_volume_permission.dart'
@@ -595,9 +587,8 @@ export 'src/ec2/aws_spot_fleet_request.dart'
         SpotFleetRequestFleetType,
         SpotFleetRequestInstanceInterruptionBehaviour,
         SpotFleetRequestLaunch,
-        SpotFleetRequestLaunchLaunchSpecification,
-        SpotFleetRequestLaunchLaunchTemplateConfig,
         SpotFleetRequestLaunchSpecification,
+        SpotFleetRequestLaunchSpecificationChoice,
         SpotFleetRequestLaunchSpecificationEbsBlockDevice,
         SpotFleetRequestLaunchSpecificationEbsBlockDeviceVolumeType,
         SpotFleetRequestLaunchSpecificationEphemeralBlockDevice,
@@ -605,6 +596,7 @@ export 'src/ec2/aws_spot_fleet_request.dart'
         SpotFleetRequestLaunchSpecificationRootBlockDevice,
         SpotFleetRequestLaunchSpecificationRootBlockDeviceVolumeType,
         SpotFleetRequestLaunchTemplateConfig,
+        SpotFleetRequestLaunchTemplateConfigChoice,
         SpotFleetRequestLaunchTemplateConfigLaunchTemplateSpecification,
         SpotFleetRequestLaunchTemplateConfigOverrides,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements,
@@ -635,14 +627,12 @@ export 'src/ec2/aws_spot_instance_request.dart'
     show
         AwsSpotInstanceRequest,
         SpotInstanceRequestCapacityReservationSpecification,
-        SpotInstanceRequestCapacityReservationSpecificationCapacityReservation,
-        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationCapacityReservationPreference,
-        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationCapacityReservationTarget,
         SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference,
+        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceChoice,
         SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget,
-        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservation,
-        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationId,
-        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArn,
+        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationId,
+        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArn,
+        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetChoice,
         SpotInstanceRequestCpuOptions,
         SpotInstanceRequestCpuOptionsAmdSevSnp,
         SpotInstanceRequestCpuOptionsNestedVirtualization,
@@ -653,9 +643,9 @@ export 'src/ec2/aws_spot_instance_request.dart'
         SpotInstanceRequestEnclaveOptions,
         SpotInstanceRequestEphemeralBlockDevice,
         SpotInstanceRequestLaunchTemplate,
-        SpotInstanceRequestLaunchTemplateTemplate,
-        SpotInstanceRequestLaunchTemplateTemplateId,
-        SpotInstanceRequestLaunchTemplateTemplateName,
+        SpotInstanceRequestLaunchTemplateIdentifier,
+        SpotInstanceRequestLaunchTemplateIdentifierId,
+        SpotInstanceRequestLaunchTemplateIdentifierName,
         SpotInstanceRequestMaintenanceOptions,
         SpotInstanceRequestMaintenanceOptionsAutoRecovery,
         SpotInstanceRequestMetadataOptions,
@@ -665,9 +655,9 @@ export 'src/ec2/aws_spot_instance_request.dart'
         SpotInstanceRequestMetadataOptionsInstanceMetadataTags,
         SpotInstanceRequestNetworkInterface,
         SpotInstanceRequestPlacement,
+        SpotInstanceRequestPlacementGroup,
+        SpotInstanceRequestPlacementGroupId,
         SpotInstanceRequestPlacementHostResourceGroupArn,
-        SpotInstanceRequestPlacementPlacementGroup,
-        SpotInstanceRequestPlacementPlacementGroupId,
         SpotInstanceRequestPrivateDnsNameOptions,
         SpotInstanceRequestPrivateDnsNameOptionsHostnameType,
         SpotInstanceRequestRootBlockDevice,
@@ -676,17 +666,17 @@ export 'src/ec2/aws_spot_instance_request.dart'
         SpotInstanceRequestSecondaryNetworkInterfaceInterfaceType,
         SpotInstanceRequestTenancy,
         SpotInstanceRequestUserData,
-        SpotInstanceRequestUserDataUserData,
-        SpotInstanceRequestUserDataUserDataBase64;
+        SpotInstanceRequestUserDataBase64,
+        SpotInstanceRequestUserDataChoice;
 export 'src/ec2/aws_subnet.dart'
     show
         AwsSubnet,
         SubnetAvailabilityZone,
-        SubnetAvailabilityZoneAvailabilityZone,
-        SubnetAvailabilityZoneAvailabilityZoneId,
+        SubnetAvailabilityZoneChoice,
+        SubnetAvailabilityZoneId,
         SubnetIpv6,
-        SubnetIpv6Ipv6CidrBlock,
-        SubnetIpv6Ipv6NetmaskLength,
+        SubnetIpv6CidrBlock,
+        SubnetIpv6NetmaskLength,
         SubnetPrivateDnsHostnameTypeOnLaunch;
 export 'src/ec2/aws_volume_attachment.dart' show AwsVolumeAttachment;
 export 'src/ec2/aws_vpc.dart'
@@ -694,7 +684,7 @@ export 'src/ec2/aws_vpc.dart'
         AwsVpc,
         VpcInstanceTenancy,
         VpcIpv4Cidr,
-        VpcIpv4CidrCidrBlock,
+        VpcIpv4CidrBlock,
         VpcIpv4CidrIpv4NetmaskLength;
 export 'src/ec2/aws_vpc_block_public_access_exclusion.dart'
     show
@@ -720,9 +710,9 @@ export 'src/ec2/aws_vpc_endpoint.dart'
         VpcEndpointDnsOptionsPrivateDnsPreference,
         VpcEndpointIpAddressType,
         VpcEndpointService,
+        VpcEndpointServiceName,
+        VpcEndpointServiceNetworkArn,
         VpcEndpointServiceResourceConfigurationArn,
-        VpcEndpointServiceServiceName,
-        VpcEndpointServiceServiceNetworkArn,
         VpcEndpointSubnetConfiguration,
         VpcEndpointVpcEndpointType;
 export 'src/ec2/aws_vpc_endpoint_connection_accepter.dart'
@@ -731,8 +721,8 @@ export 'src/ec2/aws_vpc_endpoint_connection_notification.dart'
     show
         AwsVpcEndpointConnectionNotification,
         VpcEndpointConnectionNotificationVpcEndpoint,
-        VpcEndpointConnectionNotificationVpcEndpointVpcEndpointId,
-        VpcEndpointConnectionNotificationVpcEndpointVpcEndpointServiceId;
+        VpcEndpointConnectionNotificationVpcEndpointId,
+        VpcEndpointConnectionNotificationVpcEndpointServiceId;
 export 'src/ec2/aws_vpc_endpoint_policy.dart' show AwsVpcEndpointPolicy;
 export 'src/ec2/aws_vpc_endpoint_private_dns.dart'
     show AwsVpcEndpointPrivateDns;
@@ -767,15 +757,15 @@ export 'src/ec2/aws_vpc_ipam_pool.dart'
 export 'src/ec2/aws_vpc_ipam_pool_cidr.dart'
     show
         AwsVpcIpamPoolCidr,
-        VpcIpamPoolCidrCidr,
         VpcIpamPoolCidrCidrAuthorizationContext,
-        VpcIpamPoolCidrCidrCidr,
-        VpcIpamPoolCidrCidrNetmaskLength;
+        VpcIpamPoolCidrRange,
+        VpcIpamPoolCidrRangeCidr,
+        VpcIpamPoolCidrRangeNetmaskLength;
 export 'src/ec2/aws_vpc_ipam_pool_cidr_allocation.dart'
     show
         AwsVpcIpamPoolCidrAllocation,
         VpcIpamPoolCidrAllocationCidr,
-        VpcIpamPoolCidrAllocationCidrCidr,
+        VpcIpamPoolCidrAllocationCidrChoice,
         VpcIpamPoolCidrAllocationCidrNetmaskLength;
 export 'src/ec2/aws_vpc_ipam_preview_next_cidr.dart'
     show AwsVpcIpamPreviewNextCidr;

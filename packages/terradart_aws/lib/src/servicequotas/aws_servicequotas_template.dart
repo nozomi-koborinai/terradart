@@ -19,7 +19,7 @@ sealed class ServicequotasTemplateRegion {
 
   /// Sets `region`.
   const factory ServicequotasTemplateRegion.region(TfArg<String> region) =
-      ServicequotasTemplateRegionRegion;
+      ServicequotasTemplateRegionChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -49,9 +49,9 @@ final class ServicequotasTemplateRegionAwsRegion
 }
 
 /// The [ServicequotasTemplateRegion.region] choice: sets `region`.
-final class ServicequotasTemplateRegionRegion
+final class ServicequotasTemplateRegionChoice
     extends ServicequotasTemplateRegion {
-  const ServicequotasTemplateRegionRegion(this.region);
+  const ServicequotasTemplateRegionChoice(this.region);
 
   final TfArg<String> region;
 

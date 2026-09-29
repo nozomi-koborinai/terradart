@@ -182,10 +182,10 @@ export 'src/ecs/aws_ecs_task_definition.dart'
 export 'src/ecs/aws_ecs_task_set.dart'
     show
         AwsEcsTaskSet,
-        EcsTaskSetCapacity,
-        EcsTaskSetCapacityCapacityProviderStrategy,
-        EcsTaskSetCapacityLaunchType,
         EcsTaskSetCapacityProviderStrategy,
+        EcsTaskSetCompute,
+        EcsTaskSetComputeCapacityProviderStrategy,
+        EcsTaskSetComputeLaunchType,
         EcsTaskSetLaunchType,
         EcsTaskSetLoadBalancer,
         EcsTaskSetNetworkConfiguration,

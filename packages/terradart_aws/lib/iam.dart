@@ -16,8 +16,8 @@ export 'src/iam/aws_iam_group_policy.dart'
     show
         AwsIamGroupPolicy,
         IamGroupPolicyName,
-        IamGroupPolicyNameName,
-        IamGroupPolicyNameNamePrefix;
+        IamGroupPolicyNameChoice,
+        IamGroupPolicyNamePrefix;
 export 'src/iam/aws_iam_group_policy_attachment.dart'
     show AwsIamGroupPolicyAttachment;
 export 'src/iam/aws_iam_group_policy_attachments_exclusive.dart'
@@ -26,8 +26,8 @@ export 'src/iam/aws_iam_instance_profile.dart'
     show
         AwsIamInstanceProfile,
         IamInstanceProfileName,
-        IamInstanceProfileNameName,
-        IamInstanceProfileNameNamePrefix;
+        IamInstanceProfileNameChoice,
+        IamInstanceProfileNamePrefix;
 export 'src/iam/aws_iam_openid_connect_provider.dart'
     show AwsIamOpenidConnectProvider;
 export 'src/iam/aws_iam_organizations_features.dart'
@@ -35,27 +35,23 @@ export 'src/iam/aws_iam_organizations_features.dart'
 export 'src/iam/aws_iam_outbound_web_identity_federation.dart'
     show AwsIamOutboundWebIdentityFederation;
 export 'src/iam/aws_iam_policy.dart'
-    show
-        AwsIamPolicy,
-        IamPolicyName,
-        IamPolicyNameName,
-        IamPolicyNameNamePrefix;
+    show AwsIamPolicy, IamPolicyName, IamPolicyNameChoice, IamPolicyNamePrefix;
 export 'src/iam/aws_iam_policy_attachment.dart' show AwsIamPolicyAttachment;
 export 'src/iam/aws_iam_role.dart'
     show
         AwsIamRole,
         IamRoleInlinePolicy,
         IamRoleName,
-        IamRoleNameName,
-        IamRoleNameNamePrefix;
+        IamRoleNameChoice,
+        IamRoleNamePrefix;
 export 'src/iam/aws_iam_role_policies_exclusive.dart'
     show AwsIamRolePoliciesExclusive;
 export 'src/iam/aws_iam_role_policy.dart'
     show
         AwsIamRolePolicy,
         IamRolePolicyName,
-        IamRolePolicyNameName,
-        IamRolePolicyNameNamePrefix;
+        IamRolePolicyNameChoice,
+        IamRolePolicyNamePrefix;
 export 'src/iam/aws_iam_role_policy_attachment.dart'
     show AwsIamRolePolicyAttachment;
 export 'src/iam/aws_iam_role_policy_attachments_exclusive.dart'
@@ -69,8 +65,8 @@ export 'src/iam/aws_iam_server_certificate.dart'
     show
         AwsIamServerCertificate,
         IamServerCertificateName,
-        IamServerCertificateNameName,
-        IamServerCertificateNameNamePrefix;
+        IamServerCertificateNameChoice,
+        IamServerCertificateNamePrefix;
 export 'src/iam/aws_iam_service_linked_role.dart' show AwsIamServiceLinkedRole;
 export 'src/iam/aws_iam_service_specific_credential.dart'
     show AwsIamServiceSpecificCredential, IamServiceSpecificCredentialStatus;
@@ -86,8 +82,8 @@ export 'src/iam/aws_iam_user_policy.dart'
     show
         AwsIamUserPolicy,
         IamUserPolicyName,
-        IamUserPolicyNameName,
-        IamUserPolicyNameNamePrefix;
+        IamUserPolicyNameChoice,
+        IamUserPolicyNamePrefix;
 export 'src/iam/aws_iam_user_policy_attachment.dart'
     show AwsIamUserPolicyAttachment;
 export 'src/iam/aws_iam_user_policy_attachments_exclusive.dart'
