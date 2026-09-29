@@ -52,6 +52,97 @@ enum DatabaseMigrationServiceMigrationJobType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `static_ip_connectivity`, `reverse_ssh_connectivity`, `vpc_peering_connectivity` on `google_database_migration_service_migration_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity {
+  const DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `static_ip_connectivity` (one of the [DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity] choices).
+final class DatabaseMigrationServiceMigrationJobStaticIpConnectivityOption
+    extends
+        DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity {
+  const DatabaseMigrationServiceMigrationJobStaticIpConnectivityOption({
+    required this.staticIpConnectivity,
+  });
+
+  final DatabaseMigrationServiceMigrationJobStaticIpConnectivity
+  staticIpConnectivity;
+
+  @override
+  String get blockKey => 'static_ip_connectivity';
+
+  @override
+  Map<String, Object?> encode() => {
+    'static_ip_connectivity': staticIpConnectivity.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'static_ip_connectivity': TfArg.literal(staticIpConnectivity.encode()),
+  };
+}
+
+/// Sets `reverse_ssh_connectivity` (one of the [DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity] choices).
+final class DatabaseMigrationServiceMigrationJobReverseSshConnectivityOption
+    extends
+        DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity {
+  const DatabaseMigrationServiceMigrationJobReverseSshConnectivityOption({
+    required this.reverseSshConnectivity,
+  });
+
+  final DatabaseMigrationServiceMigrationJobReverseSshConnectivity
+  reverseSshConnectivity;
+
+  @override
+  String get blockKey => 'reverse_ssh_connectivity';
+
+  @override
+  Map<String, Object?> encode() => {
+    'reverse_ssh_connectivity': reverseSshConnectivity.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'reverse_ssh_connectivity': TfArg.literal(reverseSshConnectivity.encode()),
+  };
+}
+
+/// Sets `vpc_peering_connectivity` (one of the [DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity] choices).
+final class DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityOption
+    extends
+        DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity {
+  const DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityOption({
+    required this.vpcPeeringConnectivity,
+  });
+
+  final DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity
+  vpcPeeringConnectivity;
+
+  @override
+  String get blockKey => 'vpc_peering_connectivity';
+
+  @override
+  Map<String, Object?> encode() => {
+    'vpc_peering_connectivity': vpcPeeringConnectivity.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc_peering_connectivity': TfArg.literal(vpcPeeringConnectivity.encode()),
+  };
+}
+
 /// Typed helper for the `dump_flags` block of
 /// `google_database_migration_service_migration_job` (derived from provider schema).
 @immutable
@@ -337,12 +428,8 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
     DatabaseMigrationServiceMigrationJobPerformanceConfig? performanceConfig,
     DatabaseMigrationServiceMigrationJobPostgresHomogeneousConfig?
     postgresHomogeneousConfig,
-    DatabaseMigrationServiceMigrationJobReverseSshConnectivity?
-    reverseSshConnectivity,
-    DatabaseMigrationServiceMigrationJobStaticIpConnectivity?
-    staticIpConnectivity,
-    DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity?
-    vpcPeeringConnectivity,
+    DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity?
+    staticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -373,18 +460,8 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
              'postgres_homogeneous_config': TfArg.literal(
                postgresHomogeneousConfig.encode(),
              ),
-           if (reverseSshConnectivity != null)
-             'reverse_ssh_connectivity': TfArg.literal(
-               reverseSshConnectivity.encode(),
-             ),
-           if (staticIpConnectivity != null)
-             'static_ip_connectivity': TfArg.literal(
-               staticIpConnectivity.encode(),
-             ),
-           if (vpcPeeringConnectivity != null)
-             'vpc_peering_connectivity': TfArg.literal(
-               vpcPeeringConnectivity.encode(),
-             ),
+           ...?staticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity
+               ?.argMap,
          },
        );
 

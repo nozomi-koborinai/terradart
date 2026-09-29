@@ -1,5 +1,6 @@
 outputDir: storage_control
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 

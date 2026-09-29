@@ -1,6 +1,8 @@
 outputDir: storage_control
 
 deriveClassDoc: true
+deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 # MM ProjectIntelligenceConfig.yaml documents editionConfig as String with
 # "Valid values are INHERIT, TRIAL, DISABLED and STANDARD" (no enum_values),

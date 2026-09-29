@@ -1607,19 +1607,64 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
 @immutable
 final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters {
   const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters({
-    this.namespacedTagKey,
-    this.namespacedTagValue,
+    this.namespacedTagValueOrNamespacedTagKey,
   });
 
-  final TfArg<String>? namespacedTagKey;
-
-  final TfArg<String>? namespacedTagValue;
+  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey?
+  namespacedTagValueOrNamespacedTagKey;
 
   Map<String, Object?> encode() => {
-    if (namespacedTagKey != null)
-      'namespaced_tag_key': namespacedTagKey!.toTfJson(),
-    if (namespacedTagValue != null)
-      'namespaced_tag_value': namespacedTagValue!.toTfJson(),
+    ...?namespacedTagValueOrNamespacedTagKey?.encode(),
+  };
+}
+
+/// At most one of `namespaced_tag_value`, `namespaced_tag_key` on the `targets.cloud_storage_target.filter.collection.include_tags.tag_filters` block of `google_data_loss_prevention_discovery_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey {
+  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `namespaced_tag_value` (one of the [DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey] choices).
+final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOption
+    extends
+        DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey {
+  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOption({
+    required this.namespacedTagValue,
+  });
+
+  final TfArg<String> namespacedTagValue;
+
+  @override
+  String get blockKey => 'namespaced_tag_value';
+
+  @override
+  Map<String, Object?> encode() => {
+    'namespaced_tag_value': namespacedTagValue.toTfJson(),
+  };
+}
+
+/// Sets `namespaced_tag_key` (one of the [DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey] choices).
+final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagKeyOption
+    extends
+        DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey {
+  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagKeyOption({
+    required this.namespacedTagKey,
+  });
+
+  final TfArg<String> namespacedTagKey;
+
+  @override
+  String get blockKey => 'namespaced_tag_key';
+
+  @override
+  Map<String, Object?> encode() => {
+    'namespaced_tag_key': namespacedTagKey.toTfJson(),
   };
 }
 

@@ -51,22 +51,63 @@ final class SpannerBackupScheduleIncrementalBackupSpec
 final class SpannerBackupScheduleEncryptionConfig {
   const SpannerBackupScheduleEncryptionConfig({
     required this.encryptionType,
-    this.kmsKeyName,
-    this.kmsKeyNames,
+    this.kmsKeyNameOrKmsKeyNames,
   });
 
   final TfArg<SpannerBackupScheduleEncryptionConfigEncryptionType>
   encryptionType;
 
-  final TfArg<String>? kmsKeyName;
-
-  final TfArg<List<Object?>>? kmsKeyNames;
+  final SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames?
+  kmsKeyNameOrKmsKeyNames;
 
   Map<String, Object?> encode() => {
     'encryption_type': encryptionType.toTfJson(),
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
-    if (kmsKeyNames != null) 'kms_key_names': kmsKeyNames!.toTfJson(),
+    ...?kmsKeyNameOrKmsKeyNames?.encode(),
   };
+}
+
+/// At most one of `kms_key_name`, `kms_key_names` on the `encryption_config` block of `google_spanner_backup_schedule`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames {
+  const SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `kms_key_name` (one of the [SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames] choices).
+final class SpannerBackupScheduleEncryptionConfigKmsKeyNameOption
+    extends SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames {
+  const SpannerBackupScheduleEncryptionConfigKmsKeyNameOption({
+    required this.kmsKeyName,
+  });
+
+  final TfArg<String> kmsKeyName;
+
+  @override
+  String get blockKey => 'kms_key_name';
+
+  @override
+  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+}
+
+/// Sets `kms_key_names` (one of the [SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames] choices).
+final class SpannerBackupScheduleEncryptionConfigKmsKeyNamesOption
+    extends SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames {
+  const SpannerBackupScheduleEncryptionConfigKmsKeyNamesOption({
+    required this.kmsKeyNames,
+  });
+
+  final TfArg<List<Object?>> kmsKeyNames;
+
+  @override
+  String get blockKey => 'kms_key_names';
+
+  @override
+  Map<String, Object?> encode() => {'kms_key_names': kmsKeyNames.toTfJson()};
 }
 
 /// `encryption_type` — derived from the provider schema description.

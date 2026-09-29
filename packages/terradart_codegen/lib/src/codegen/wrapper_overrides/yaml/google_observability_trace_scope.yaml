@@ -1,5 +1,6 @@
 outputDir: observability
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 paramOrder:

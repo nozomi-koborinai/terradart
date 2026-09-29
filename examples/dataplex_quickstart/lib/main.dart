@@ -533,13 +533,18 @@ final class DataplexCatalogStack extends Stack {
         location: TfArg.literal('us-central1'),
         scanSpec: const DataplexDatascanDataDiscoverySpec(),
         data: DataplexDatascanData(
-          resource: TfArg.literal(
-            '//storage.googleapis.com/projects/$projectId/buckets/terradart-dataplex-lake-data',
+          entityOrResource: DataplexDatascanDataResourceOption(
+            resource: TfArg.literal(
+              '//storage.googleapis.com/projects/$projectId/buckets/terradart-dataplex-lake-data',
+            ),
           ),
         ),
         executionSpec: DataplexDatascanExecutionSpec(
           trigger: const DataplexDatascanExecutionSpecTrigger(
-            onDemand: DataplexDatascanExecutionSpecTriggerOnDemand(),
+            onDemandOrScheduleOrOneTime:
+                DataplexDatascanExecutionSpecTriggerOnDemandOption(
+                  onDemand: DataplexDatascanExecutionSpecTriggerOnDemand(),
+                ),
           ),
         ),
         displayName: TfArg.literal('Lake data discovery scan'),

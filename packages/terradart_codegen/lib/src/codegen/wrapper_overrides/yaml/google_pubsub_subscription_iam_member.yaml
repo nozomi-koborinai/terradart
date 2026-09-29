@@ -1,5 +1,6 @@
 outputDir: pubsub
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

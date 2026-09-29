@@ -135,7 +135,9 @@ final class LatencyAlertStack extends Stack {
         service: TfArg.ref(apiService.serviceIdRef),
         goal: TfArg.literal(0.99),
         displayName: TfArg.literal('API availability'),
-        rollingPeriodDays: TfArg.literal(30),
+        rollingPeriodDaysOrCalendarPeriod: MonitoringSloRollingPeriodDaysOption(
+          rollingPeriodDays: TfArg.literal(30),
+        ),
         sli: MonitoringSloRequestBasedSli(
           goodTotalRatio: MonitoringSloGoodTotalRatio(
             goodServiceFilter: TfArg.literal(

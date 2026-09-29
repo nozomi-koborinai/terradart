@@ -7,6 +7,97 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_healthcare_pipeline_job`.
 const Set<String> _googleHealthcarePipelineJobSensitive = <String>{};
 
+/// At most one of `mapping_pipeline_job`, `reconciliation_pipeline_job`, `backfill_pipeline_job` on `google_healthcare_pipeline_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob {
+  const HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `mapping_pipeline_job` (one of the [HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob] choices).
+final class HealthcarePipelineJobMappingPipelineJobOption
+    extends
+        HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob {
+  const HealthcarePipelineJobMappingPipelineJobOption({
+    required this.mappingPipelineJob,
+  });
+
+  final HealthcarePipelineJobMappingPipelineJob mappingPipelineJob;
+
+  @override
+  String get blockKey => 'mapping_pipeline_job';
+
+  @override
+  Map<String, Object?> encode() => {
+    'mapping_pipeline_job': mappingPipelineJob.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'mapping_pipeline_job': TfArg.literal(mappingPipelineJob.encode()),
+  };
+}
+
+/// Sets `reconciliation_pipeline_job` (one of the [HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob] choices).
+final class HealthcarePipelineJobReconciliationPipelineJobOption
+    extends
+        HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob {
+  const HealthcarePipelineJobReconciliationPipelineJobOption({
+    required this.reconciliationPipelineJob,
+  });
+
+  final HealthcarePipelineJobReconciliationPipelineJob
+  reconciliationPipelineJob;
+
+  @override
+  String get blockKey => 'reconciliation_pipeline_job';
+
+  @override
+  Map<String, Object?> encode() => {
+    'reconciliation_pipeline_job': reconciliationPipelineJob.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'reconciliation_pipeline_job': TfArg.literal(
+      reconciliationPipelineJob.encode(),
+    ),
+  };
+}
+
+/// Sets `backfill_pipeline_job` (one of the [HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob] choices).
+final class HealthcarePipelineJobBackfillPipelineJobOption
+    extends
+        HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob {
+  const HealthcarePipelineJobBackfillPipelineJobOption({
+    required this.backfillPipelineJob,
+  });
+
+  final HealthcarePipelineJobBackfillPipelineJob backfillPipelineJob;
+
+  @override
+  String get blockKey => 'backfill_pipeline_job';
+
+  @override
+  Map<String, Object?> encode() => {
+    'backfill_pipeline_job': backfillPipelineJob.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'backfill_pipeline_job': TfArg.literal(backfillPipelineJob.encode()),
+  };
+}
+
 /// Typed helper for the `backfill_pipeline_job` block of
 /// `google_healthcare_pipeline_job` (derived from provider schema).
 @immutable
@@ -26,15 +117,13 @@ final class HealthcarePipelineJobBackfillPipelineJob {
 @immutable
 final class HealthcarePipelineJobMappingPipelineJob {
   const HealthcarePipelineJobMappingPipelineJob({
-    this.fhirStoreDestination,
-    this.reconciliationDestination,
+    this.fhirStoreDestinationOrReconciliationDestination,
     this.fhirStreamingSource,
     required this.mappingConfig,
   });
 
-  final TfArg<String>? fhirStoreDestination;
-
-  final TfArg<bool>? reconciliationDestination;
+  final HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination?
+  fhirStoreDestinationOrReconciliationDestination;
 
   final HealthcarePipelineJobMappingPipelineJobFhirStreamingSource?
   fhirStreamingSource;
@@ -42,13 +131,60 @@ final class HealthcarePipelineJobMappingPipelineJob {
   final HealthcarePipelineJobMappingPipelineJobMappingConfig mappingConfig;
 
   Map<String, Object?> encode() => {
-    if (fhirStoreDestination != null)
-      'fhir_store_destination': fhirStoreDestination!.toTfJson(),
-    if (reconciliationDestination != null)
-      'reconciliation_destination': reconciliationDestination!.toTfJson(),
+    ...?fhirStoreDestinationOrReconciliationDestination?.encode(),
     if (fhirStreamingSource != null)
       'fhir_streaming_source': fhirStreamingSource!.encode(),
     'mapping_config': mappingConfig.encode(),
+  };
+}
+
+/// At most one of `fhir_store_destination`, `reconciliation_destination` on the `mapping_pipeline_job` block of `google_healthcare_pipeline_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination {
+  const HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `fhir_store_destination` (one of the [HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination] choices).
+final class HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOption
+    extends
+        HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination {
+  const HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOption({
+    required this.fhirStoreDestination,
+  });
+
+  final TfArg<String> fhirStoreDestination;
+
+  @override
+  String get blockKey => 'fhir_store_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'fhir_store_destination': fhirStoreDestination.toTfJson(),
+  };
+}
+
+/// Sets `reconciliation_destination` (one of the [HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination] choices).
+final class HealthcarePipelineJobMappingPipelineJobReconciliationDestinationOption
+    extends
+        HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination {
+  const HealthcarePipelineJobMappingPipelineJobReconciliationDestinationOption({
+    required this.reconciliationDestination,
+  });
+
+  final TfArg<bool> reconciliationDestination;
+
+  @override
+  String get blockKey => 'reconciliation_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'reconciliation_destination': reconciliationDestination.toTfJson(),
   };
 }
 
@@ -196,9 +332,8 @@ final class GoogleHealthcarePipelineJob extends Resource {
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
     required TfArg<String> name,
-    HealthcarePipelineJobBackfillPipelineJob? backfillPipelineJob,
-    HealthcarePipelineJobMappingPipelineJob? mappingPipelineJob,
-    HealthcarePipelineJobReconciliationPipelineJob? reconciliationPipelineJob,
+    HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob?
+    mappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -212,16 +347,8 @@ final class GoogleHealthcarePipelineJob extends Resource {
            if (labels != null) 'labels': labels,
            'location': location,
            'name': name,
-           if (backfillPipelineJob != null)
-             'backfill_pipeline_job': TfArg.literal(
-               backfillPipelineJob.encode(),
-             ),
-           if (mappingPipelineJob != null)
-             'mapping_pipeline_job': TfArg.literal(mappingPipelineJob.encode()),
-           if (reconciliationPipelineJob != null)
-             'reconciliation_pipeline_job': TfArg.literal(
-               reconciliationPipelineJob.encode(),
-             ),
+           ...?mappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob
+               ?.argMap,
          },
        );
 

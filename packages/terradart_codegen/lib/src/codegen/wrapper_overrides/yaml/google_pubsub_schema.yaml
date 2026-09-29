@@ -2,6 +2,7 @@ outputDir: pubsub
 deriveEnums: true
 deriveOutputGetters: true
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Two payload shapes are supported via [type]:

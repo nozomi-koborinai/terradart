@@ -1,6 +1,7 @@
 outputDir: data_fusion
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 paramOrder:

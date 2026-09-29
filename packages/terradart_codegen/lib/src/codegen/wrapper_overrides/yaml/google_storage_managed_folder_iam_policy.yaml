@@ -1,5 +1,6 @@
 outputDir: storage
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

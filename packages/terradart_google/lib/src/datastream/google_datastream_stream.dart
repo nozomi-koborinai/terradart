@@ -631,24 +631,68 @@ final class DatastreamStreamBackfillNone {
 final class DatastreamStreamDestinationConfig {
   const DatastreamStreamDestinationConfig({
     required this.destinationConnectionProfile,
-    this.bigqueryDestinationConfig,
-    this.gcsDestinationConfig,
+    required this.gcsDestinationConfigOrBigqueryDestinationConfig,
   });
 
   final TfArg<String> destinationConnectionProfile;
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfig?
-  bigqueryDestinationConfig;
-
-  final DatastreamStreamDestinationConfigGcsDestinationConfig?
-  gcsDestinationConfig;
+  final DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig
+  gcsDestinationConfigOrBigqueryDestinationConfig;
 
   Map<String, Object?> encode() => {
     'destination_connection_profile': destinationConnectionProfile.toTfJson(),
-    if (bigqueryDestinationConfig != null)
-      'bigquery_destination_config': bigqueryDestinationConfig!.encode(),
-    if (gcsDestinationConfig != null)
-      'gcs_destination_config': gcsDestinationConfig!.encode(),
+    ...gcsDestinationConfigOrBigqueryDestinationConfig.encode(),
+  };
+}
+
+/// Exactly one of `gcs_destination_config`, `bigquery_destination_config` on the `destination_config` block of `google_datastream_stream`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig {
+  const DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `gcs_destination_config` (one of the [DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig] choices).
+final class DatastreamStreamDestinationConfigGcsDestinationConfigOption
+    extends
+        DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig {
+  const DatastreamStreamDestinationConfigGcsDestinationConfigOption({
+    required this.gcsDestinationConfig,
+  });
+
+  final DatastreamStreamDestinationConfigGcsDestinationConfig
+  gcsDestinationConfig;
+
+  @override
+  String get blockKey => 'gcs_destination_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'gcs_destination_config': gcsDestinationConfig.encode(),
+  };
+}
+
+/// Sets `bigquery_destination_config` (one of the [DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig] choices).
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigOption
+    extends
+        DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig {
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigOption({
+    required this.bigqueryDestinationConfig,
+  });
+
+  final DatastreamStreamDestinationConfigBigqueryDestinationConfig
+  bigqueryDestinationConfig;
+
+  @override
+  String get blockKey => 'bigquery_destination_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'bigquery_destination_config': bigqueryDestinationConfig.encode(),
   };
 }
 
@@ -658,39 +702,126 @@ final class DatastreamStreamDestinationConfig {
 final class DatastreamStreamDestinationConfigBigqueryDestinationConfig {
   const DatastreamStreamDestinationConfigBigqueryDestinationConfig({
     this.dataFreshness,
-    this.appendOnly,
+    this.mergeOrAppendOnly,
     this.blmtConfig,
-    this.merge,
-    this.singleTargetDataset,
-    this.sourceHierarchyDatasets,
+    required this.singleTargetDatasetOrSourceHierarchyDatasets,
   });
 
   final TfArg<String>? dataFreshness;
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly?
-  appendOnly;
+  final DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly?
+  mergeOrAppendOnly;
 
   final DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig?
   blmtConfig;
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge? merge;
-
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset?
-  singleTargetDataset;
-
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasets?
-  sourceHierarchyDatasets;
+  final DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets
+  singleTargetDatasetOrSourceHierarchyDatasets;
 
   Map<String, Object?> encode() => {
     if (dataFreshness != null) 'data_freshness': dataFreshness!.toTfJson(),
-    if (appendOnly != null) 'append_only': appendOnly!.encode(),
+    ...?mergeOrAppendOnly?.encode(),
     if (blmtConfig != null) 'blmt_config': blmtConfig!.encode(),
-    if (merge != null) 'merge': merge!.encode(),
-    if (singleTargetDataset != null)
-      'single_target_dataset': singleTargetDataset!.encode(),
-    if (sourceHierarchyDatasets != null)
-      'source_hierarchy_datasets': sourceHierarchyDatasets!.encode(),
+    ...singleTargetDatasetOrSourceHierarchyDatasets.encode(),
   };
+}
+
+/// Exactly one of `single_target_dataset`, `source_hierarchy_datasets` on the `destination_config.bigquery_destination_config` block of `google_datastream_stream`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets {
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `single_target_dataset` (one of the [DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets] choices).
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOption
+    extends
+        DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets {
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOption({
+    required this.singleTargetDataset,
+  });
+
+  final DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset
+  singleTargetDataset;
+
+  @override
+  String get blockKey => 'single_target_dataset';
+
+  @override
+  Map<String, Object?> encode() => {
+    'single_target_dataset': singleTargetDataset.encode(),
+  };
+}
+
+/// Sets `source_hierarchy_datasets` (one of the [DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets] choices).
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasetsOption
+    extends
+        DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets {
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasetsOption({
+    required this.sourceHierarchyDatasets,
+  });
+
+  final DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasets
+  sourceHierarchyDatasets;
+
+  @override
+  String get blockKey => 'source_hierarchy_datasets';
+
+  @override
+  Map<String, Object?> encode() => {
+    'source_hierarchy_datasets': sourceHierarchyDatasets.encode(),
+  };
+}
+
+/// At most one of `merge`, `append_only` on the `destination_config.bigquery_destination_config` block of `google_datastream_stream`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly {
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `merge` (one of the [DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly] choices).
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOption
+    extends
+        DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly {
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOption({
+    required this.merge,
+  });
+
+  final DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge merge;
+
+  @override
+  String get blockKey => 'merge';
+
+  @override
+  Map<String, Object?> encode() => {'merge': merge.encode()};
+}
+
+/// Sets `append_only` (one of the [DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly] choices).
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnlyOption
+    extends
+        DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly {
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnlyOption({
+    required this.appendOnly,
+  });
+
+  final DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly
+  appendOnly;
+
+  @override
+  String get blockKey => 'append_only';
+
+  @override
+  Map<String, Object?> encode() => {'append_only': appendOnly.encode()};
 }
 
 /// Typed helper for the `destination_config.bigquery_destination_config.append_only` block of
@@ -807,8 +938,7 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfig {
     this.fileRotationInterval,
     this.fileRotationMb,
     this.path,
-    this.avroFileFormat,
-    this.jsonFileFormat,
+    required this.avroFileFormatOrJsonFileFormat,
   });
 
   final TfArg<String>? fileRotationInterval;
@@ -817,19 +947,66 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfig {
 
   final TfArg<String>? path;
 
-  final DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat?
-  avroFileFormat;
-
-  final DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat?
-  jsonFileFormat;
+  final DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat
+  avroFileFormatOrJsonFileFormat;
 
   Map<String, Object?> encode() => {
     if (fileRotationInterval != null)
       'file_rotation_interval': fileRotationInterval!.toTfJson(),
     if (fileRotationMb != null) 'file_rotation_mb': fileRotationMb!.toTfJson(),
     if (path != null) 'path': path!.toTfJson(),
-    if (avroFileFormat != null) 'avro_file_format': avroFileFormat!.encode(),
-    if (jsonFileFormat != null) 'json_file_format': jsonFileFormat!.encode(),
+    ...avroFileFormatOrJsonFileFormat.encode(),
+  };
+}
+
+/// Exactly one of `avro_file_format`, `json_file_format` on the `destination_config.gcs_destination_config` block of `google_datastream_stream`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat {
+  const DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `avro_file_format` (one of the [DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat] choices).
+final class DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOption
+    extends
+        DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat {
+  const DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOption({
+    required this.avroFileFormat,
+  });
+
+  final DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat
+  avroFileFormat;
+
+  @override
+  String get blockKey => 'avro_file_format';
+
+  @override
+  Map<String, Object?> encode() => {
+    'avro_file_format': avroFileFormat.encode(),
+  };
+}
+
+/// Sets `json_file_format` (one of the [DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat] choices).
+final class DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatOption
+    extends
+        DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat {
+  const DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatOption({
+    required this.jsonFileFormat,
+  });
+
+  final DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat
+  jsonFileFormat;
+
+  @override
+  String get blockKey => 'json_file_format';
+
+  @override
+  Map<String, Object?> encode() => {
+    'json_file_format': jsonFileFormat.encode(),
   };
 }
 
@@ -1288,50 +1465,164 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSqlServerI
 final class DatastreamStreamSourceConfig {
   const DatastreamStreamSourceConfig({
     required this.sourceConnectionProfile,
-    this.mongodbSourceConfig,
-    this.mysqlSourceConfig,
-    this.oracleSourceConfig,
-    this.postgresqlSourceConfig,
-    this.salesforceSourceConfig,
-    this.spannerSourceConfig,
-    this.sqlServerSourceConfig,
+    required this.mysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig,
   });
 
   final TfArg<String> sourceConnectionProfile;
 
-  final DatastreamStreamSourceConfigMongodbSourceConfig? mongodbSourceConfig;
-
-  final DatastreamStreamSourceConfigMysqlSourceConfig? mysqlSourceConfig;
-
-  final DatastreamStreamSourceConfigOracleSourceConfig? oracleSourceConfig;
-
-  final DatastreamStreamSourceConfigPostgresqlSourceConfig?
-  postgresqlSourceConfig;
-
-  final DatastreamStreamSourceConfigSalesforceSourceConfig?
-  salesforceSourceConfig;
-
-  final DatastreamStreamSourceConfigSpannerSourceConfig? spannerSourceConfig;
-
-  final DatastreamStreamSourceConfigSqlServerSourceConfig?
-  sqlServerSourceConfig;
+  final DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig
+  mysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig;
 
   Map<String, Object?> encode() => {
     'source_connection_profile': sourceConnectionProfile.toTfJson(),
-    if (mongodbSourceConfig != null)
-      'mongodb_source_config': mongodbSourceConfig!.encode(),
-    if (mysqlSourceConfig != null)
-      'mysql_source_config': mysqlSourceConfig!.encode(),
-    if (oracleSourceConfig != null)
-      'oracle_source_config': oracleSourceConfig!.encode(),
-    if (postgresqlSourceConfig != null)
-      'postgresql_source_config': postgresqlSourceConfig!.encode(),
-    if (salesforceSourceConfig != null)
-      'salesforce_source_config': salesforceSourceConfig!.encode(),
-    if (spannerSourceConfig != null)
-      'spanner_source_config': spannerSourceConfig!.encode(),
-    if (sqlServerSourceConfig != null)
-      'sql_server_source_config': sqlServerSourceConfig!.encode(),
+    ...mysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig
+        .encode(),
+  };
+}
+
+/// Exactly one of `mysql_source_config`, `oracle_source_config`, `postgresql_source_config`, `sql_server_source_config`, `salesforce_source_config`, `spanner_source_config`, `mongodb_source_config` on the `source_config` block of `google_datastream_stream`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
+  const DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `mysql_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
+final class DatastreamStreamSourceConfigMysqlSourceConfigOption
+    extends
+        DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
+  const DatastreamStreamSourceConfigMysqlSourceConfigOption({
+    required this.mysqlSourceConfig,
+  });
+
+  final DatastreamStreamSourceConfigMysqlSourceConfig mysqlSourceConfig;
+
+  @override
+  String get blockKey => 'mysql_source_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'mysql_source_config': mysqlSourceConfig.encode(),
+  };
+}
+
+/// Sets `oracle_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
+final class DatastreamStreamSourceConfigOracleSourceConfigOption
+    extends
+        DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
+  const DatastreamStreamSourceConfigOracleSourceConfigOption({
+    required this.oracleSourceConfig,
+  });
+
+  final DatastreamStreamSourceConfigOracleSourceConfig oracleSourceConfig;
+
+  @override
+  String get blockKey => 'oracle_source_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'oracle_source_config': oracleSourceConfig.encode(),
+  };
+}
+
+/// Sets `postgresql_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
+final class DatastreamStreamSourceConfigPostgresqlSourceConfigOption
+    extends
+        DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
+  const DatastreamStreamSourceConfigPostgresqlSourceConfigOption({
+    required this.postgresqlSourceConfig,
+  });
+
+  final DatastreamStreamSourceConfigPostgresqlSourceConfig
+  postgresqlSourceConfig;
+
+  @override
+  String get blockKey => 'postgresql_source_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'postgresql_source_config': postgresqlSourceConfig.encode(),
+  };
+}
+
+/// Sets `sql_server_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
+final class DatastreamStreamSourceConfigSqlServerSourceConfigOption
+    extends
+        DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
+  const DatastreamStreamSourceConfigSqlServerSourceConfigOption({
+    required this.sqlServerSourceConfig,
+  });
+
+  final DatastreamStreamSourceConfigSqlServerSourceConfig sqlServerSourceConfig;
+
+  @override
+  String get blockKey => 'sql_server_source_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'sql_server_source_config': sqlServerSourceConfig.encode(),
+  };
+}
+
+/// Sets `salesforce_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
+final class DatastreamStreamSourceConfigSalesforceSourceConfigOption
+    extends
+        DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
+  const DatastreamStreamSourceConfigSalesforceSourceConfigOption({
+    required this.salesforceSourceConfig,
+  });
+
+  final DatastreamStreamSourceConfigSalesforceSourceConfig
+  salesforceSourceConfig;
+
+  @override
+  String get blockKey => 'salesforce_source_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'salesforce_source_config': salesforceSourceConfig.encode(),
+  };
+}
+
+/// Sets `spanner_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
+final class DatastreamStreamSourceConfigSpannerSourceConfigOption
+    extends
+        DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
+  const DatastreamStreamSourceConfigSpannerSourceConfigOption({
+    required this.spannerSourceConfig,
+  });
+
+  final DatastreamStreamSourceConfigSpannerSourceConfig spannerSourceConfig;
+
+  @override
+  String get blockKey => 'spanner_source_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'spanner_source_config': spannerSourceConfig.encode(),
+  };
+}
+
+/// Sets `mongodb_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
+final class DatastreamStreamSourceConfigMongodbSourceConfigOption
+    extends
+        DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
+  const DatastreamStreamSourceConfigMongodbSourceConfigOption({
+    required this.mongodbSourceConfig,
+  });
+
+  final DatastreamStreamSourceConfigMongodbSourceConfig mongodbSourceConfig;
+
+  @override
+  String get blockKey => 'mongodb_source_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'mongodb_source_config': mongodbSourceConfig.encode(),
   };
 }
 
@@ -1526,9 +1817,8 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
   const DatastreamStreamSourceConfigMysqlSourceConfig({
     this.maxConcurrentBackfillTasks,
     this.maxConcurrentCdcTasks,
-    this.binaryLogPosition,
+    this.binaryLogPositionOrGtid,
     this.excludeObjects,
-    this.gtid,
     this.includeObjects,
   });
 
@@ -1536,13 +1826,11 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
 
   final TfArg<num>? maxConcurrentCdcTasks;
 
-  final DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition?
-  binaryLogPosition;
+  final DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid?
+  binaryLogPositionOrGtid;
 
   final DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjects?
   excludeObjects;
-
-  final DatastreamStreamSourceConfigMysqlSourceConfigGtid? gtid;
 
   final DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjects?
   includeObjects;
@@ -1552,12 +1840,59 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
       'max_concurrent_backfill_tasks': maxConcurrentBackfillTasks!.toTfJson(),
     if (maxConcurrentCdcTasks != null)
       'max_concurrent_cdc_tasks': maxConcurrentCdcTasks!.toTfJson(),
-    if (binaryLogPosition != null)
-      'binary_log_position': binaryLogPosition!.encode(),
+    ...?binaryLogPositionOrGtid?.encode(),
     if (excludeObjects != null) 'exclude_objects': excludeObjects!.encode(),
-    if (gtid != null) 'gtid': gtid!.encode(),
     if (includeObjects != null) 'include_objects': includeObjects!.encode(),
   };
+}
+
+/// At most one of `binary_log_position`, `gtid` on the `source_config.mysql_source_config` block of `google_datastream_stream`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid {
+  const DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `binary_log_position` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid] choices).
+final class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOption
+    extends
+        DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid {
+  const DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOption({
+    required this.binaryLogPosition,
+  });
+
+  final DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition
+  binaryLogPosition;
+
+  @override
+  String get blockKey => 'binary_log_position';
+
+  @override
+  Map<String, Object?> encode() => {
+    'binary_log_position': binaryLogPosition.encode(),
+  };
+}
+
+/// Sets `gtid` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid] choices).
+final class DatastreamStreamSourceConfigMysqlSourceConfigGtidOption
+    extends
+        DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid {
+  const DatastreamStreamSourceConfigMysqlSourceConfigGtidOption({
+    required this.gtid,
+  });
+
+  final DatastreamStreamSourceConfigMysqlSourceConfigGtid gtid;
+
+  @override
+  String get blockKey => 'gtid';
+
+  @override
+  Map<String, Object?> encode() => {'gtid': gtid.encode()};
 }
 
 /// Typed helper for the `source_config.mysql_source_config.binary_log_position` block of

@@ -117,6 +117,171 @@ class BigqueryDatasetAccessAuthorizedRoutine {
   };
 }
 
+/// Exactly one of `user_by_email`, `group_by_email`, `domain`, `special_group`, `iam_member`, `view`, `dataset`, `routine` on `google_bigquery_dataset_access`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
+  const BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `user_by_email` (one of the [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine] choices).
+final class BigqueryDatasetAccessUserByEmailOption
+    extends
+        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
+  const BigqueryDatasetAccessUserByEmailOption({required this.userByEmail});
+
+  final TfArg<String> userByEmail;
+
+  @override
+  String get blockKey => 'user_by_email';
+
+  @override
+  Map<String, Object?> encode() => {'user_by_email': userByEmail.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'user_by_email': userByEmail};
+}
+
+/// Sets `group_by_email` (one of the [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine] choices).
+final class BigqueryDatasetAccessGroupByEmailOption
+    extends
+        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
+  const BigqueryDatasetAccessGroupByEmailOption({required this.groupByEmail});
+
+  final TfArg<String> groupByEmail;
+
+  @override
+  String get blockKey => 'group_by_email';
+
+  @override
+  Map<String, Object?> encode() => {'group_by_email': groupByEmail.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'group_by_email': groupByEmail};
+}
+
+/// Sets `domain` (one of the [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine] choices).
+final class BigqueryDatasetAccessDomainOption
+    extends
+        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
+  const BigqueryDatasetAccessDomainOption({required this.domain});
+
+  final TfArg<String> domain;
+
+  @override
+  String get blockKey => 'domain';
+
+  @override
+  Map<String, Object?> encode() => {'domain': domain.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'domain': domain};
+}
+
+/// Sets `special_group` (one of the [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine] choices).
+final class BigqueryDatasetAccessSpecialGroupOption
+    extends
+        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
+  const BigqueryDatasetAccessSpecialGroupOption({required this.specialGroup});
+
+  final TfArg<BigqueryDatasetAccessPredefinedGroup> specialGroup;
+
+  @override
+  String get blockKey => 'special_group';
+
+  @override
+  Map<String, Object?> encode() => {'special_group': specialGroup.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'special_group': specialGroup};
+}
+
+/// Sets `iam_member` (one of the [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine] choices).
+final class BigqueryDatasetAccessIamMemberOption
+    extends
+        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
+  const BigqueryDatasetAccessIamMemberOption({required this.iamMember});
+
+  final TfArg<String> iamMember;
+
+  @override
+  String get blockKey => 'iam_member';
+
+  @override
+  Map<String, Object?> encode() => {'iam_member': iamMember.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'iam_member': iamMember};
+}
+
+/// Sets `view` (one of the [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine] choices).
+final class BigqueryDatasetAccessViewOption
+    extends
+        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
+  const BigqueryDatasetAccessViewOption({required this.view});
+
+  final BigqueryDatasetAccessAuthorizedView view;
+
+  @override
+  String get blockKey => 'view';
+
+  @override
+  Map<String, Object?> encode() => {'view': view.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'view': TfArg.literal(view.encode()),
+  };
+}
+
+/// Sets `dataset` (one of the [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine] choices).
+final class BigqueryDatasetAccessDatasetOption
+    extends
+        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
+  const BigqueryDatasetAccessDatasetOption({required this.authorizedDataset});
+
+  final BigqueryDatasetAccessAuthorizedDataset authorizedDataset;
+
+  @override
+  String get blockKey => 'dataset';
+
+  @override
+  Map<String, Object?> encode() => {'dataset': authorizedDataset.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'dataset': TfArg.literal(authorizedDataset.encode()),
+  };
+}
+
+/// Sets `routine` (one of the [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine] choices).
+final class BigqueryDatasetAccessRoutineOption
+    extends
+        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
+  const BigqueryDatasetAccessRoutineOption({required this.routine});
+
+  final BigqueryDatasetAccessAuthorizedRoutine routine;
+
+  @override
+  String get blockKey => 'routine';
+
+  @override
+  Map<String, Object?> encode() => {'routine': routine.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'routine': TfArg.literal(routine.encode()),
+  };
+}
+
 /// Factory wrapper for `google_bigquery_dataset_access`.
 ///
 /// Gives dataset access for a single entity. This resource is intended to be
@@ -155,14 +320,8 @@ final class GoogleBigqueryDatasetAccess extends Resource {
     required super.localName,
     required TfArg<String> datasetId,
     TfArg<String>? role,
-    TfArg<String>? userByEmail,
-    TfArg<String>? groupByEmail,
-    TfArg<String>? domain,
-    TfArg<BigqueryDatasetAccessPredefinedGroup>? specialGroup,
-    TfArg<String>? iamMember,
-    BigqueryDatasetAccessAuthorizedView? view,
-    BigqueryDatasetAccessAuthorizedRoutine? routine,
-    BigqueryDatasetAccessAuthorizedDataset? authorizedDataset,
+    required BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine
+    userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -174,15 +333,8 @@ final class GoogleBigqueryDatasetAccess extends Resource {
          argMap: {
            'dataset_id': datasetId,
            if (role != null) 'role': role,
-           if (userByEmail != null) 'user_by_email': userByEmail,
-           if (groupByEmail != null) 'group_by_email': groupByEmail,
-           if (domain != null) 'domain': domain,
-           if (specialGroup != null) 'special_group': specialGroup,
-           if (iamMember != null) 'iam_member': iamMember,
-           if (view != null) 'view': TfArg.literal(view.encode()),
-           if (routine != null) 'routine': TfArg.literal(routine.encode()),
-           if (authorizedDataset != null)
-             'dataset': TfArg.literal(authorizedDataset.encode()),
+           ...userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine
+               .argMap,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,
          },
