@@ -633,11 +633,7 @@ final class ValueEmitter {
   /// of `C` (pinned when it reads another attribute than the argument
   /// emits), else the value wrapped as it is — the migrated Stack
   /// synthesizes what the source said either way.
-  String _referenceValue(
-    MigrateSlot slot,
-    Expr value, {
-    required String path,
-  }) {
+  String _referenceValue(MigrateSlot slot, Expr value, {required String path}) {
     final className = slot.dartType!;
     final ref = singleReference(value);
     if (ref != null) {
