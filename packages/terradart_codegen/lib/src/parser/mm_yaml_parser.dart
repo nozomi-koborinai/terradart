@@ -85,10 +85,19 @@ class MmYamlParser {
         _walkProperty(p as YamlMap, '', overrides, groups, paths, enums);
       }
     }
+    List<List<String>> inputsOnly(List<List<String>> groups) => [
+      for (final g in groups)
+        if (g.where((m) => !paths.outputs.contains(m)).toList() case final kept
+            when kept.toSet().length >= 2)
+          kept,
+    ];
     final combined = exclusiveGroups(
-      exactlyOne: paths.exactlyOne,
-      atLeastOne: paths.atLeastOne,
-      conflicts: paths.conflicts,
+      exactlyOne: inputsOnly(paths.exactlyOne),
+      atLeastOne: inputsOnly(paths.atLeastOne),
+      conflicts: [
+        for (final c in paths.conflicts)
+          if (!paths.outputs.contains(c.$1) && !paths.outputs.contains(c.$2)) c,
+      ],
     );
     return MmResourceOverrides(
       fieldOverrides: overrides,
@@ -172,10 +181,16 @@ class MmYamlParser {
     }
     if (c.enumValues case final values?) enumSink[fullKey] = values;
 
-    // Per-property exactly_one_of (siblings of this property's nested kids).
-    final propGroup = _readExactlyOneOf(prop, prefix: fullKey);
-    if (propGroup != null) groupSink?.add(propGroup);
-    _addRelations(prop, prefix, fullKey, pathSink);
+    // An output-only property is never set, so the rules it declares
+    // constrain nothing (upstream sometimes lists its enum values there).
+    if (prop['output'] == true || pathSink.outputs.contains(prefix)) {
+      pathSink.outputs.add(fullKey);
+    } else {
+      // Per-property exactly_one_of (siblings of this property's nested kids).
+      final propGroup = _readExactlyOneOf(prop, prefix: fullKey);
+      if (propGroup != null) groupSink?.add(propGroup);
+      _addRelations(prop, prefix, fullKey, pathSink);
+    }
 
     final nested = prop['properties'];
     if (nested is YamlList) {
@@ -243,4 +258,7 @@ final class _Relations {
   final exactlyOne = <List<String>>[];
   final atLeastOne = <List<String>>[];
   final conflicts = <(String, String)>[];
+
+  /// Paths of `output: true` properties.
+  final outputs = <String>{};
 }

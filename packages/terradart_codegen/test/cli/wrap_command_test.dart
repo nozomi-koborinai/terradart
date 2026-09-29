@@ -414,6 +414,48 @@ hashicorp/google:
         }
       },
     );
+
+    test(
+      'reports a matched input a hand-written helper keeps a string',
+      () async {
+        final tmpOut = await Directory.systemTemp.createTemp('refs_untyped_');
+        try {
+          File(p.join(_libSrcOut(tmpOut), 'iam', 'google_service_account.dart'))
+            ..createSync(recursive: true)
+            ..writeAsStringSync(generatedOrphan);
+          final ledger = File(p.join(tmpOut.path, 'refs.yaml'))
+            ..writeAsStringSync('''
+hashicorp/google:
+  - target: google_service_account
+    attribute: email
+    slots: '(^|\\.)service_account_email\$'
+''');
+          final err = StringBuffer();
+          final code = await IOOverrides.runZoned(
+            () => buildCliRunner().run(
+              wrapArgs(tmpOut, [
+                '--only',
+                'google_pubsub_subscription',
+                '--reference-targets',
+                ledger.path,
+                '--typed-references',
+              ]),
+            ),
+            stderr: () => _BufferSink(err),
+          );
+          expect(code, 0);
+          expect(
+            err.toString(),
+            contains(
+              'reference input not typed: google_pubsub_subscription'
+              '.push_config.oidc_token.service_account_email',
+            ),
+          );
+        } finally {
+          await tmpOut.delete(recursive: true);
+        }
+      },
+    );
   });
 
   group('WrapCommand --force', () {

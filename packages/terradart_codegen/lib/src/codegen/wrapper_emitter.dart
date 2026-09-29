@@ -69,6 +69,11 @@ class WrapperEmitter {
   /// reference.
   final List<String> typedReferences = [];
 
+  /// Every top-level block the last [emit] derived a helper for that no
+  /// constructor input or sealed variant takes, so no caller can reach it.
+  /// Its references are not counted in [typedReferences].
+  final List<String> unreachableHelpers = [];
+
   final Map<String, WrapperOverride> overrides;
 
   /// When set (e.g. `google-beta`), every emitted wrapper pins its
@@ -162,14 +167,21 @@ class WrapperEmitter {
       }
     }
 
+    final preludeSource = override?.prelude ?? '';
+    unreachableHelpers.clear();
     for (final spec in nestedTypeSpecs) {
       collectNestedRefs(spec, [spec.tfName]);
+      if (!paramOrder.contains(spec.tfName) &&
+          !preludeSource.contains(spec.className)) {
+        unreachableHelpers.add(spec.tfName);
+      }
     }
     typedReferences
       ..clear()
       ..addAll([
         for (final path in [...topLevelRefs.keys, ...nestedRefs.keys])
-          '${def.terraformType}.$path',
+          if (!unreachableHelpers.contains(path.split('.').first))
+            '${def.terraformType}.$path',
       ]);
 
     // Imports. `extraImports` is emitted FIRST so that `package:meta` (the

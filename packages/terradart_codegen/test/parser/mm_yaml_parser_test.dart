@@ -157,6 +157,32 @@ properties:
 ''');
       expect(result.exactlyOneOfPaths, isEmpty);
     });
+
+    test('ignores rules on output-only properties and their members', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: state
+    output: true
+    exactly_one_of:
+      - STATE_UNSPECIFIED
+      - CREATING
+  - name: status
+    output: true
+    properties:
+      - name: code
+        exactly_one_of:
+          - status.0.code
+          - status.0.message
+  - name: source
+    exactly_one_of:
+      - source
+      - state
+      - image
+''');
+      expect(result.exactlyOneOfPaths, [
+        ['source', 'image'],
+      ]);
+    });
   });
 
   group('atMostOneOfPaths', () {

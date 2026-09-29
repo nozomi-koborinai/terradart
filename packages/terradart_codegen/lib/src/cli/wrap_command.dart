@@ -554,6 +554,20 @@ class WrapCommand extends Command<int> {
         extraSensitiveFields: entry.value.extraSensitiveFields,
       );
       typedReferenceCount += resourceEmitter.typedReferences.length;
+      for (final block in resourceEmitter.unreachableHelpers) {
+        stderr.writeln(
+          'terradart wrap: nested helper not reachable from the '
+          'constructor: ${entry.key}.$block',
+        );
+      }
+      final typed = resourceEmitter.typedReferences.toSet();
+      for (final path in (references[entry.key] ?? const {}).keys) {
+        if (!typed.contains('${entry.key}.$path')) {
+          stderr.writeln(
+            'terradart wrap: reference input not typed: ${entry.key}.$path',
+          );
+        }
+      }
       final dartSrc = generatedFileHeader + formatter.format(raw);
       buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = dartSrc;
       catalogEntries.add(
