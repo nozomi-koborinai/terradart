@@ -135,6 +135,8 @@ providers:
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml
     resourceProvider: google-beta
     migrateManifest: packages/terradart_migrate/lib/src/manifest/google_beta.g.dart
+    references: typed
+    referencesFrom: google
   appwrite:
     source: appwrite/appwrite
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_appwrite

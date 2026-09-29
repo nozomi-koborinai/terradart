@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_active_directory_peering`.
 const Set<String> _googleActiveDirectoryPeeringSensitive = <String>{};
 
@@ -14,7 +17,7 @@ final class GoogleActiveDirectoryPeering extends Resource {
 
   GoogleActiveDirectoryPeering({
     required super.localName,
-    required TfArg<String> authorizedNetwork,
+    required RefTo<GoogleComputeNetwork> authorizedNetwork,
     TfArg<String>? deletionPolicy,
     required TfArg<String> domainResource,
     TfArg<Map<String, String>>? labels,
@@ -30,7 +33,7 @@ final class GoogleActiveDirectoryPeering extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'authorized_network': authorizedNetwork,
+           'authorized_network': authorizedNetwork.encodeAs('id'),
            'deletion_policy': ?deletionPolicy,
            'domain_resource': domainResource,
            'labels': ?labels,

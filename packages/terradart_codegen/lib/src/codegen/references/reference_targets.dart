@@ -16,6 +16,7 @@ final class ReferenceRule {
     this.types,
     this.attributes = const {},
     this.exclude = const {},
+    this.inherited = false,
   });
 
   /// Terraform type the inputs reference (`google_compute_network`).
@@ -42,6 +43,11 @@ final class ReferenceRule {
   /// else (an Ethereum network, a bare contact email), for the resource and
   /// its data source; `data.<type>.<path>` for a data source input alone.
   final Set<String> exclude;
+
+  /// Loaded through another section's `inherit:`. The rule may match none
+  /// of this lane's inputs, and its [attributes] / [exclude] are shared by
+  /// every inherited rule, so they are checked across all of them.
+  final bool inherited;
 }
 
 /// Loads the rules of [providerSource] (`hashicorp/google`) from the ledger
@@ -62,8 +68,66 @@ List<ReferenceRule> loadReferenceRules(String path, String providerSource) {
   }
   return [
     for (final (i, raw) in section.indexed)
-      _parseRule(raw, context: '$path: $providerSource[$i]'),
+      if (raw is YamlMap && raw.containsKey('inherit'))
+        ..._inheritRules(doc, raw, context: '$path: $providerSource[$i]')
+      else
+        _parseRule(raw, context: '$path: $providerSource[$i]'),
   ];
+}
+
+/// `- inherit: <provider source>`: that section's rules, targeting the
+/// other lane's resources, with this entry's `attributes` / `exclude` in
+/// place of theirs (which name the other lane's inputs).
+List<ReferenceRule> _inheritRules(
+  YamlMap doc,
+  YamlMap raw, {
+  required String context,
+}) {
+  for (final key in raw.keys) {
+    if (!const {'inherit', 'attributes', 'exclude'}.contains(key)) {
+      throw FormatException('$context: unknown key "$key" beside inherit');
+    }
+  }
+  final source = raw['inherit'];
+  final section = doc[source];
+  if (source is! String || section is! YamlList) {
+    throw FormatException('$context: inherit names no section: $source');
+  }
+  final (:attributes, :exclude) = _exceptions(raw, context: context);
+  return [
+    for (final (i, rule) in section.indexed)
+      if (rule is YamlMap && rule.containsKey('inherit'))
+        throw FormatException('$context: $source[$i] inherits in turn')
+      else
+        _parseRule(
+          rule,
+          context: '$context -> $source[$i]',
+        ).inherit(attributes: attributes, exclude: exclude),
+  ];
+}
+
+({Map<String, String> attributes, Set<String> exclude}) _exceptions(
+  YamlMap raw, {
+  required String context,
+}) {
+  final attributes = raw['attributes'];
+  if (attributes != null && attributes is! YamlMap) {
+    throw FormatException('$context: "attributes" must be a map');
+  }
+  final exclude = raw['exclude'];
+  if (exclude != null && exclude is! YamlList) {
+    throw FormatException('$context: "exclude" must be a list');
+  }
+  return (
+    attributes: {
+      if (attributes is YamlMap)
+        for (final e in attributes.entries) '${e.key}': '${e.value}',
+    },
+    exclude: {
+      if (exclude is YamlList)
+        for (final e in exclude) '$e',
+    },
+  );
 }
 
 ReferenceRule _parseRule(Object? raw, {required String context}) {
@@ -90,29 +154,43 @@ ReferenceRule _parseRule(Object? raw, {required String context}) {
   }
 
   final target = requireString('target');
-  final attributes = raw['attributes'];
-  if (attributes != null && attributes is! YamlMap) {
-    throw FormatException('$context ($target): "attributes" must be a map');
-  }
-  final exclude = raw['exclude'];
-  if (exclude != null && exclude is! YamlList) {
-    throw FormatException('$context ($target): "exclude" must be a list');
-  }
+  final (:attributes, :exclude) = _exceptions(
+    raw,
+    context: '$context ($target)',
+  );
   return ReferenceRule(
     target: target,
     attribute: requireString('attribute'),
     slots: RegExp(requireString('slots')),
     types: raw.containsKey('types') ? RegExp(requireString('types')) : null,
-    attributes: {
-      if (attributes is YamlMap)
-        for (final e in attributes.entries) '${e.key}': '${e.value}',
-    },
-    exclude: {
-      if (exclude is YamlList)
-        for (final e in exclude) '$e',
-    },
+    attributes: attributes,
+    exclude: exclude,
   );
 }
+
+extension on ReferenceRule {
+  ReferenceRule inherit({
+    required Map<String, String> attributes,
+    required Set<String> exclude,
+  }) => ReferenceRule(
+    target: target,
+    attribute: attribute,
+    slots: slots,
+    types: types,
+    attributes: attributes,
+    exclude: exclude,
+    inherited: true,
+  );
+}
+
+/// Another lane's resources that inherited rules target: its schema blocks,
+/// its wrappers' directories under `lib/src/`, and its package name.
+typedef ExternalTargets = ({
+  Map<String, Map<String, dynamic>> resourceSchemas,
+  Map<String, Map<String, dynamic>> dataSourceSchemas,
+  Map<String, String> dirs,
+  String package,
+});
 
 /// A resource input typed `RefTo<className>`.
 final class ResolvedReference {
@@ -122,10 +200,15 @@ final class ResolvedReference {
     required this.outputDir,
     required this.attribute,
     required this.list,
+    this.package,
   });
 
   final String target;
   final String className;
+
+  /// The package the target wrapper lives in, when it is not the lane's own
+  /// (a google-beta input naming a `terradart_google` network).
+  final String? package;
 
   /// The target wrapper's directory under `lib/src/`, for the import.
   final String outputDir;
@@ -142,6 +225,27 @@ final class ResolvedReference {
 
   /// The import that brings [className] into a wrapper under `lib/src/`.
   String get import => "import '../$outputDir/$target.dart' show $className;";
+}
+
+/// The imports that bring [refs]' classes into a wrapper under `lib/src/`:
+/// one `show` list per other package, then the lane's own files, sorted
+/// (`directives_ordering`).
+List<String> referenceImports(Iterable<ResolvedReference> refs) {
+  final byPackage = <String, Set<String>>{};
+  final local = <String>{};
+  for (final ref in refs) {
+    if (ref.package case final package?) {
+      (byPackage[package] ??= {}).add(ref.className);
+    } else {
+      local.add(ref.import);
+    }
+  }
+  return [
+    for (final package in byPackage.keys.toList()..sort())
+      "import 'package:$package/$package.dart' "
+          "show ${(byPackage[package]!.toList()..sort()).join(', ')};",
+    ...local.toList()..sort(),
+  ];
 }
 
 /// The ledger applied to one lane: every curated resource's and data
@@ -183,6 +287,7 @@ ReferenceResolution resolveReferences({
   required Iterable<String> curated,
   required Map<String, String> targetDirs,
   Map<String, Map<String, dynamic>> dataSourceSchemas = const {},
+  ExternalTargets? external,
   bool complete = true,
 }) {
   final errors = <String>[];
@@ -197,17 +302,26 @@ ReferenceResolution resolveReferences({
   };
   final claimedBy = <String, String>{};
 
+  final inheritedMatched = <String>{};
   for (final rule in rules) {
-    final targetDir = targetDirs[rule.target];
-    final targetBlock = resourceSchemas[rule.target];
+    var targetDir = targetDirs[rule.target];
+    var targetBlock = resourceSchemas[rule.target];
+    var targetData = dataSourceSchemas[rule.target];
+    String? package;
+    if ((targetDir == null || targetBlock == null) && external != null) {
+      targetDir = external.dirs[rule.target];
+      targetBlock = external.resourceSchemas[rule.target];
+      targetData = external.dataSourceSchemas[rule.target];
+      package = external.package;
+    }
     if (targetDir == null || targetBlock == null) {
       errors.add('${rule.target}: target is not a curated resource');
       continue;
     }
     final targetAttributes = _attributeNames(targetBlock);
-    final dataAttributes = dataSourceSchemas[rule.target] == null
+    final dataAttributes = targetData == null
         ? null
-        : _attributeNames(dataSourceSchemas[rule.target]!);
+        : _attributeNames(targetData);
     void checkAttribute(String attribute, String where) {
       if (!targetAttributes.contains(attribute)) {
         errors.add(
@@ -248,11 +362,20 @@ ReferenceResolution resolveReferences({
           target: rule.target,
           className: snakeToPascal(rule.target),
           outputDir: targetDir,
+          package: package,
           attribute:
               rule.attributes[key] ?? rule.attributes[twin] ?? rule.attribute,
           list: list,
         );
       }
+    }
+    if (rule.inherited) {
+      inheritedMatched.addAll(matched);
+      for (final MapEntry(key: key, value: attribute)
+          in rule.attributes.entries) {
+        if (matched.contains(key)) checkAttribute(attribute, '"$key"');
+      }
+      continue;
     }
     if (complete && matched.isEmpty) {
       errors.add('${rule.target}: the rule matches no curated input');
@@ -275,6 +398,27 @@ ReferenceResolution resolveReferences({
       if (complete && !matched.contains(key)) {
         errors.add(
           '${rule.target}: exclude entry "$key" is not an input the rule '
+          'matches',
+        );
+      }
+    }
+  }
+  if (rules.where((r) => r.inherited).firstOrNull case final rule?
+      when complete) {
+    for (final key in rule.attributes.keys) {
+      if (!inheritedMatched.contains(key)) {
+        errors.add(
+          'inherit: attributes entry "$key" is not an input an inherited rule '
+          'matches',
+        );
+      } else if (rule.exclude.contains(key)) {
+        errors.add('inherit: "$key" is both excluded and overridden');
+      }
+    }
+    for (final key in rule.exclude) {
+      if (!inheritedMatched.contains(key)) {
+        errors.add(
+          'inherit: exclude entry "$key" is not an input an inherited rule '
           'matches',
         );
       }
