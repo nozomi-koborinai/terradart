@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_vertex_ai_featurestore_iam_member`.
 const Set<String> _googleVertexAiFeaturestoreIamMemberSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_vertex_ai_featurestore_iam_member` (derived from provider schema).
+@immutable
+final class VertexAiFeaturestoreIamMemberCondition {
+  const VertexAiFeaturestoreIamMemberCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    if (description != null) 'description': description!.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_vertex_ai_featurestore_iam_member`.
 final class GoogleVertexAiFeaturestoreIamMember extends Resource {
@@ -17,7 +41,7 @@ final class GoogleVertexAiFeaturestoreIamMember extends Resource {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> role,
-    TfArg<Map<String, dynamic>>? condition,
+    VertexAiFeaturestoreIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -31,11 +55,18 @@ final class GoogleVertexAiFeaturestoreIamMember extends Resource {
            if (project != null) 'project': project,
            if (region != null) 'region': region,
            'role': role,
-           if (condition != null) 'condition': condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 
   @override
   Set<String> get sensitiveFields =>
       _googleVertexAiFeaturestoreIamMemberSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

@@ -1,19 +1,76 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_kms_organization_kaj_policy_config`.
 const Set<String> _googleKmsOrganizationKajPolicyConfigSensitive = <String>{};
 
+/// Typed helper for the `default_key_access_justification_policy` block of
+/// `google_kms_organization_kaj_policy_config` (derived from provider schema).
+@immutable
+final class KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy {
+  const KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy({
+    this.allowedAccessReasons,
+  });
+
+  final List<
+    TfArg<
+      KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons
+    >
+  >?
+  allowedAccessReasons;
+
+  Map<String, Object?> encode() => {
+    if (allowedAccessReasons != null)
+      'allowed_access_reasons': [
+        for (final e in allowedAccessReasons!) e.toTfJson(),
+      ],
+  };
+}
+
+/// `allowed_access_reasons` — derived from the provider schema description.
+enum KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons
+    implements TerraformEnum {
+  customerInitiatedSupport('CUSTOMER_INITIATED_SUPPORT'),
+  googleInitiatedService('GOOGLE_INITIATED_SERVICE'),
+  thirdPartyDataRequest('THIRD_PARTY_DATA_REQUEST'),
+  googleInitiatedReview('GOOGLE_INITIATED_REVIEW'),
+  customerInitiatedAccess('CUSTOMER_INITIATED_ACCESS'),
+  googleInitiatedSystemOperation('GOOGLE_INITIATED_SYSTEM_OPERATION'),
+  reasonNotExpected('REASON_NOT_EXPECTED'),
+  modifiedCustomerInitiatedAccess('MODIFIED_CUSTOMER_INITIATED_ACCESS'),
+  modifiedGoogleInitiatedSystemOperation(
+    'MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION',
+  ),
+  googleResponseToProductionAlert('GOOGLE_RESPONSE_TO_PRODUCTION_ALERT'),
+  customerAuthorizedWorkflowServicing('CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING');
+
+  const KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_kms_organization_kaj_policy_config`.
+///
+/// `OrganizationKajPolicyConfig` is a organization-level singleton resource
+/// used to configure the default KAJ policy of newly created key.
+///
+/// ~> **Note:** OrganizationKajPolicyConfig cannot be deleted from Google Cloud
+/// Platform. Destroying a Terraform-managed OrganizationKajPolicyConfig will
+/// remove it from state but *will not delete the resource from Google Cloud
+/// Platform.*
 final class GoogleKmsOrganizationKajPolicyConfig extends Resource {
   static const String tfType = 'google_kms_organization_kaj_policy_config';
 
   GoogleKmsOrganizationKajPolicyConfig({
     required super.localName,
     required TfArg<String> organization,
-    TfArg<Map<String, dynamic>>? defaultKeyAccessJustificationPolicy,
+    KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy?
+    defaultKeyAccessJustificationPolicy,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -24,12 +81,16 @@ final class GoogleKmsOrganizationKajPolicyConfig extends Resource {
          argMap: {
            'organization': organization,
            if (defaultKeyAccessJustificationPolicy != null)
-             'default_key_access_justification_policy':
-                 defaultKeyAccessJustificationPolicy,
+             'default_key_access_justification_policy': TfArg.literal(
+               defaultKeyAccessJustificationPolicy.encode(),
+             ),
          },
        );
 
   @override
   Set<String> get sensitiveFields =>
       _googleKmsOrganizationKajPolicyConfigSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

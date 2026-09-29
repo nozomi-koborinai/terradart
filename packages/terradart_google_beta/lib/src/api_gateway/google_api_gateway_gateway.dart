@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApiGatewayGatewaySensitive = <String>{};
 
 /// Factory wrapper for `google_api_gateway_gateway`.
+///
+/// A consumable API that can be used by multiple Gateways.
 final class GoogleApiGatewayGateway extends Resource {
   static const String tfType = 'google_api_gateway_gateway';
 
@@ -39,4 +41,22 @@ final class GoogleApiGatewayGateway extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleApiGatewayGatewaySensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `default_hostname` attribute.
+  TfRef<String> get defaultHostname =>
+      TfRef.attribute<String>(this, 'default_hostname');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 }

@@ -4,4 +4,28 @@
 library;
 
 export 'src/privileged_access_manager/google_privileged_access_manager_settings.dart'
-    show GooglePrivilegedAccessManagerSettings;
+    show
+        GooglePrivilegedAccessManagerSettings,
+        PrivilegedAccessManagerSettingsEmailNotificationSettings,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotifications,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantActivated,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantActivationFailed,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantEnded,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantExternallyModified,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotifications,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotificationsPendingApproval,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorOption,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotifications,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsEntitlementAssigned,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivated,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivationFailed,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantDenied,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantEnded,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExpired,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExternallyModified,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantRevoked,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOption,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior,
+        PrivilegedAccessManagerSettingsServiceAccountApproverSettings;

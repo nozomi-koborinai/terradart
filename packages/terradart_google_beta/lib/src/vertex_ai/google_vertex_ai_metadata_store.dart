@@ -1,12 +1,29 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_vertex_ai_metadata_store`.
 const Set<String> _googleVertexAiMetadataStoreSensitive = <String>{};
 
+/// Typed helper for the `encryption_spec` block of
+/// `google_vertex_ai_metadata_store` (derived from provider schema).
+@immutable
+final class VertexAiMetadataStoreEncryptionSpec {
+  const VertexAiMetadataStoreEncryptionSpec({this.kmsKeyName});
+
+  final TfArg<String>? kmsKeyName;
+
+  Map<String, Object?> encode() => {
+    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_vertex_ai_metadata_store`.
+///
+/// Instance of a metadata store. Contains a set of metadata that can be
+/// queried.
 final class GoogleVertexAiMetadataStore extends Resource {
   static const String tfType = 'google_vertex_ai_metadata_store';
 
@@ -17,7 +34,7 @@ final class GoogleVertexAiMetadataStore extends Resource {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? region,
-    TfArg<Map<String, dynamic>>? encryptionSpec,
+    VertexAiMetadataStoreEncryptionSpec? encryptionSpec,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -31,10 +48,27 @@ final class GoogleVertexAiMetadataStore extends Resource {
            if (name != null) 'name': name,
            if (project != null) 'project': project,
            if (region != null) 'region': region,
-           if (encryptionSpec != null) 'encryption_spec': encryptionSpec,
+           if (encryptionSpec != null)
+             'encryption_spec': TfArg.literal(encryptionSpec.encode()),
          },
        );
 
   @override
   Set<String> get sensitiveFields => _googleVertexAiMetadataStoreSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `state` attribute.
+  TfRef<List<Map<String, Object?>>> get state =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'state');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

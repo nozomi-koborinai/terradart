@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseAiLogicPromptTemplateSensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_ai_logic_prompt_template`.
+///
+/// The PromptTemplate resource for Firebase AI Logic.
 final class GoogleFirebaseAiLogicPromptTemplate extends Resource {
   static const String tfType = 'google_firebase_ai_logic_prompt_template';
 
@@ -41,4 +43,26 @@ final class GoogleFirebaseAiLogicPromptTemplate extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleFirebaseAiLogicPromptTemplateSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `locked` attribute.
+  TfRef<bool> get locked => TfRef.attribute<bool>(this, 'locked');
+
+  /// Reference to `model` attribute.
+  TfRef<String> get model => TfRef.attribute<String>(this, 'model');
+
+  /// Reference to `state_change_time` attribute.
+  TfRef<String> get stateChangeTime =>
+      TfRef.attribute<String>(this, 'state_change_time');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

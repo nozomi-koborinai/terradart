@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleChronicleSoarDomainSensitive = <String>{};
 
 /// Factory wrapper for `google_chronicle_soar_domain`.
+///
+/// A SOAR domain designate a domain as internal, ensuring that entities
+/// associated with it are treated as organizational assets rather than external
+/// threats during ingestion.
 final class GoogleChronicleSoarDomain extends Resource {
   static const String tfType = 'google_chronicle_soar_domain';
 
@@ -37,4 +41,14 @@ final class GoogleChronicleSoarDomain extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleChronicleSoarDomainSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `soar_domain_id` attribute.
+  TfRef<String> get soarDomainId =>
+      TfRef.attribute<String>(this, 'soar_domain_id');
 }

@@ -4,4 +4,7 @@
 library;
 
 export 'src/container/google_gke_hub_membership_rbac_role_binding.dart'
-    show GoogleGkeHubMembershipRbacRoleBinding;
+    show
+        GkeHubMembershipRbacRoleBindingRole,
+        GkeHubMembershipRbacRoleBindingRolePredefinedRole,
+        GoogleGkeHubMembershipRbacRoleBinding;

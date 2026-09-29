@@ -22,7 +22,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_active_directory_peering`.',
+    docComment:
+        'Factory wrapper for `google_active_directory_peering`.\n\nCreates a Peering for Managed AD instance.',
   ),
   CatalogEntry(
     tfType: 'google_api_gateway_api',
@@ -41,7 +42,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_api_gateway_api`.',
+    docComment:
+        'Factory wrapper for `google_api_gateway_api`.\n\nA consumable API that can be used by multiple Gateways.',
   ),
   CatalogEntry(
     tfType: 'google_api_gateway_api_config',
@@ -59,13 +61,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'labels',
       'project',
       'gatewayConfig',
-      'grpcServices',
+      'openapiDocumentsOrGrpcServices',
       'managedServiceConfigs',
-      'openapiDocuments',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices',
+      'ApiGatewayApiConfigOpenapiDocumentsOption',
+      'ApiGatewayApiConfigGrpcServicesOption',
+      'ApiGatewayApiConfigGatewayConfig',
+      'ApiGatewayApiConfigGatewayConfigBackendConfig',
+      'ApiGatewayApiConfigGrpcServices',
+      'ApiGatewayApiConfigGrpcServicesFileDescriptorSet',
+      'ApiGatewayApiConfigGrpcServicesSource',
+      'ApiGatewayApiConfigManagedServiceConfigs',
+      'ApiGatewayApiConfigOpenapiDocuments',
+      'ApiGatewayApiConfigOpenapiDocumentsDocument',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_api_gateway_api_config`.',
+    docComment:
+        'Factory wrapper for `google_api_gateway_api_config`.\n\nAn API Configuration is an association of an API Controller Config and a\nGateway Config',
   ),
   CatalogEntry(
     tfType: 'google_api_gateway_api_config_iam_binding',
@@ -82,7 +96,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ApiGatewayApiConfigIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_api_gateway_api_config_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a API Gateway API Config.\n\nReplaces the entire member list for that role. Prefer\n[GoogleApiGatewayApiConfigIamMember] for additive grants.',
@@ -102,7 +116,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ApiGatewayApiConfigIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_api_gateway_api_config_iam_member`.',
@@ -139,7 +153,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ApiGatewayApiIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_api_gateway_api_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a API Gateway API.\n\nReplaces the entire member list for that role. Prefer\n[GoogleApiGatewayApiIamMember] for additive grants.',
@@ -158,7 +172,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ApiGatewayApiIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_api_gateway_api_iam_member`.',
   ),
@@ -192,7 +206,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_api_gateway_gateway`.',
+    docComment:
+        'Factory wrapper for `google_api_gateway_gateway`.\n\nA consumable API that can be used by multiple Gateways.',
   ),
   CatalogEntry(
     tfType: 'google_api_gateway_gateway_iam_binding',
@@ -209,7 +224,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ApiGatewayGatewayIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_api_gateway_gateway_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a API Gateway Gateway.\n\nReplaces the entire member list for that role. Prefer\n[GoogleApiGatewayGatewayIamMember] for additive grants.',
@@ -229,7 +244,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ApiGatewayGatewayIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_api_gateway_gateway_iam_member`.',
   ),
@@ -263,9 +278,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'vpcscPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ArtifactRegistryVpcscConfigVpcscPolicy'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_artifact_registry_vpcsc_config`.',
+    docComment:
+        'Factory wrapper for `google_artifact_registry_vpcsc_config`.\n\nThe Artifact Registry VPC SC config that applies to a Project.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_analytics_hub_data_exchange_subscription',
@@ -287,10 +303,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'subscriptionId',
       'destinationDataset',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy',
+      'BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDataset',
+      'BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDatasetDatasetReference',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_subscription`.',
+        'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_subscription`.\n\nA Bigquery Analytics Hub Data Exchange subscription',
   ),
   CatalogEntry(
     tfType: 'google_ces_evaluation',
@@ -311,9 +331,57 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'golden',
       'scenario',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'CesEvaluationGolden',
+      'CesEvaluationGoldenTurns',
+      'CesEvaluationGoldenTurnsSteps',
+      'CesEvaluationGoldenTurnsStepsAgentTransfer',
+      'CesEvaluationGoldenTurnsStepsExpectation',
+      'CesEvaluationGoldenTurnsStepsExpectationAgentResponse',
+      'CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunks',
+      'CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksAgentTransfer',
+      'CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksBlob',
+      'CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksImage',
+      'CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCall',
+      'CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCallToolsetTool',
+      'CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolResponse',
+      'CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolResponseToolsetTool',
+      'CesEvaluationGoldenTurnsStepsExpectationAgentTransfer',
+      'CesEvaluationGoldenTurnsStepsExpectationMockToolResponse',
+      'CesEvaluationGoldenTurnsStepsExpectationMockToolResponseToolsetTool',
+      'CesEvaluationGoldenTurnsStepsExpectationToolCall',
+      'CesEvaluationGoldenTurnsStepsExpectationToolCallToolsetTool',
+      'CesEvaluationGoldenTurnsStepsExpectationToolResponse',
+      'CesEvaluationGoldenTurnsStepsExpectationToolResponseToolsetTool',
+      'CesEvaluationGoldenTurnsStepsExpectationUpdatedVariables',
+      'CesEvaluationGoldenTurnsStepsUserInput',
+      'CesEvaluationGoldenTurnsStepsUserInputBlob',
+      'CesEvaluationGoldenTurnsStepsUserInputEvent',
+      'CesEvaluationGoldenTurnsStepsUserInputImage',
+      'CesEvaluationGoldenTurnsStepsUserInputToolResponses',
+      'CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponses',
+      'CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponsesToolsetTool',
+      'CesEvaluationScenario',
+      'CesEvaluationScenarioScenarioExpectations',
+      'CesEvaluationScenarioScenarioExpectationsAgentResponse',
+      'CesEvaluationScenarioScenarioExpectationsAgentResponseChunks',
+      'CesEvaluationScenarioScenarioExpectationsAgentResponseChunksAgentTransfer',
+      'CesEvaluationScenarioScenarioExpectationsAgentResponseChunksBlob',
+      'CesEvaluationScenarioScenarioExpectationsAgentResponseChunksImage',
+      'CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolCall',
+      'CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolCallToolsetTool',
+      'CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolResponse',
+      'CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolResponseToolsetTool',
+      'CesEvaluationScenarioScenarioExpectationsToolExpectation',
+      'CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedToolCall',
+      'CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedToolCallToolsetTool',
+      'CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResponse',
+      'CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResponseToolsetTool',
+      'CesEvaluationScenarioUserFacts',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_ces_evaluation`.',
+    docComment:
+        'Factory wrapper for `google_ces_evaluation`.\n\nCustomer Engagement Suite Evaluation',
   ),
   CatalogEntry(
     tfType: 'google_ces_security_settings',
@@ -327,9 +395,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'endpointControlPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'CesSecuritySettingsEndpointControlPolicy',
+      'CesSecuritySettingsEndpointControlPolicyEnforcementScope',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_ces_security_settings`.',
+    docComment:
+        'Factory wrapper for `google_ces_security_settings`.\n\nSecurity settings for a location in Customer Engagement Suite.',
   ),
   CatalogEntry(
     tfType: 'google_chronicle_soar_domain',
@@ -348,7 +420,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_chronicle_soar_domain`.',
+    docComment:
+        'Factory wrapper for `google_chronicle_soar_domain`.\n\nA SOAR domain designate a domain as internal, ensuring that entities\nassociated with it are treated as organizational assets rather than external\nthreats during ingestion.',
   ),
   CatalogEntry(
     tfType: 'google_cloud_identity_policy',
@@ -363,9 +436,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'policyQuery',
       'setting',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'CloudIdentityPolicyPolicyQuery',
+      'CloudIdentityPolicySetting',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_cloud_identity_policy`.',
+    docComment:
+        'Factory wrapper for `google_cloud_identity_policy`.\n\nA Cloud Identity Policy binds a Setting to a PolicyQuery for a Google\nWorkspace / Cloud Identity customer.',
   ),
   CatalogEntry(
     tfType: 'google_compute_backend_bucket_iam_binding',
@@ -381,7 +458,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeBackendBucketIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_backend_bucket_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Backend Bucket.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeBackendBucketIamMember] for additive grants.',
@@ -400,7 +477,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeBackendBucketIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_backend_bucket_iam_member`.',
@@ -432,7 +509,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeBackendServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_backend_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Backend Service.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeBackendServiceIamMember] for additive grants.',
@@ -451,7 +528,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeBackendServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_backend_service_iam_member`.',
@@ -498,9 +575,36 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'specificSkuProperties',
       'timeWindow',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ComputeFutureReservationDeploymentType',
+      'ComputeFutureReservationPlanningStatus',
+      'ComputeFutureReservationReservationMode',
+      'ComputeFutureReservationSchedulingType',
+      'ComputeFutureReservationAggregateReservation',
+      'ComputeFutureReservationAggregateReservationVmFamily',
+      'ComputeFutureReservationAggregateReservationWorkloadType',
+      'ComputeFutureReservationAggregateReservationReservedResources',
+      'ComputeFutureReservationAggregateReservationReservedResourcesAccelerator',
+      'ComputeFutureReservationAutoCreatedReservationsDuration',
+      'ComputeFutureReservationCommitmentInfo',
+      'ComputeFutureReservationCommitmentInfoCommitmentPlan',
+      'ComputeFutureReservationCommitmentInfoPreviousCommitmentTerms',
+      'ComputeFutureReservationParams',
+      'ComputeFutureReservationShareSettings',
+      'ComputeFutureReservationShareSettingsShareType',
+      'ComputeFutureReservationShareSettingsProjectMap',
+      'ComputeFutureReservationSpecificSkuProperties',
+      'ComputeFutureReservationSpecificSkuPropertiesInstanceProperties',
+      'ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesMaintenanceInterval',
+      'ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesGuestAccelerators',
+      'ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesLocalSsds',
+      'ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesLocalSsdsInterface',
+      'ComputeFutureReservationTimeWindow',
+      'ComputeFutureReservationTimeWindowDuration',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_future_reservation`.',
+    docComment:
+        'Factory wrapper for `google_compute_future_reservation`.\n\nRepresents a future reservation resource in Compute Engine. Future\nreservations allow users to reserve capacity for a specified time window,\nensuring that resources are available when needed.\n\nReservations apply only to Compute Engine, Cloud Dataproc, and Google\nKubernetes Engine VM usage.Reservations do not apply to `f1-micro` or\n`g1-small` machine types, preemptible VMs, sole tenant nodes, or other\nservices not listed above like Cloud SQL and Dataflow.',
   ),
   CatalogEntry(
     tfType: 'google_compute_instance_from_machine_image',
@@ -547,7 +651,35 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'sourceMachineImageEncryptionKey',
       'workloadIdentityConfig',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ComputeInstanceFromMachineImageAdvancedMachineFeatures',
+      'ComputeInstanceFromMachineImageConfidentialInstanceConfig',
+      'ComputeInstanceFromMachineImageGuestAccelerator',
+      'ComputeInstanceFromMachineImageInstanceEncryptionKey',
+      'ComputeInstanceFromMachineImageNetworkInterface',
+      'ComputeInstanceFromMachineImageNetworkInterfaceNicType',
+      'ComputeInstanceFromMachineImageNetworkInterfaceAccessConfig',
+      'ComputeInstanceFromMachineImageNetworkInterfaceAliasIpRange',
+      'ComputeInstanceFromMachineImageNetworkInterfaceAliasIpv6Range',
+      'ComputeInstanceFromMachineImageNetworkInterfaceIpv6AccessConfig',
+      'ComputeInstanceFromMachineImageNetworkPerformanceConfig',
+      'ComputeInstanceFromMachineImageNetworkPerformanceConfigTotalEgressBandwidthTier',
+      'ComputeInstanceFromMachineImageParams',
+      'ComputeInstanceFromMachineImageReservationAffinity',
+      'ComputeInstanceFromMachineImageReservationAffinitySpecificReservation',
+      'ComputeInstanceFromMachineImageScheduling',
+      'ComputeInstanceFromMachineImageSchedulingGracefulShutdown',
+      'ComputeInstanceFromMachineImageSchedulingGracefulShutdownMaxDuration',
+      'ComputeInstanceFromMachineImageSchedulingLocalSsdRecoveryTimeout',
+      'ComputeInstanceFromMachineImageSchedulingMaxRunDuration',
+      'ComputeInstanceFromMachineImageSchedulingNodeAffinities',
+      'ComputeInstanceFromMachineImageSchedulingOnInstanceStopAction',
+      'ComputeInstanceFromMachineImageSchedulingPreemptionNoticeDuration',
+      'ComputeInstanceFromMachineImageServiceAccount',
+      'ComputeInstanceFromMachineImageShieldedInstanceConfig',
+      'ComputeInstanceFromMachineImageSourceMachineImageEncryptionKey',
+      'ComputeInstanceFromMachineImageWorkloadIdentityConfig',
+    ],
     sensitiveFields: <String>[
       'source_machine_image_encryption_key.raw_key',
       'source_machine_image_encryption_key.rsa_encrypted_key',
@@ -572,9 +704,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'machineImageEncryptionKey',
       'params',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ComputeMachineImageMachineImageEncryptionKey',
+      'ComputeMachineImageParams',
+    ],
     sensitiveFields: <String>['machine_image_encryption_key.raw_key'],
-    docComment: 'Factory wrapper for `google_compute_machine_image`.',
+    docComment:
+        'Factory wrapper for `google_compute_machine_image`.\n\nRepresents a Machine Image resource. Machine images store all the\nconfiguration, metadata, permissions, and data from one or more disks\nrequired to create a Virtual machine (VM) instance.',
   ),
   CatalogEntry(
     tfType: 'google_compute_machine_image_iam_binding',
@@ -590,7 +726,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeMachineImageIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_machine_image_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Machine Image.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeMachineImageIamMember] for additive grants.',
@@ -609,7 +745,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeMachineImageIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_machine_image_iam_member`.',
@@ -654,10 +790,15 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'match',
       'targetSecureTags',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ComputeNetworkFirewallPolicyPacketMirroringRuleDirection',
+      'ComputeNetworkFirewallPolicyPacketMirroringRuleMatch',
+      'ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs',
+      'ComputeNetworkFirewallPolicyPacketMirroringRuleTargetSecureTags',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_network_firewall_policy_packet_mirroring_rule`.',
+        'Factory wrapper for `google_compute_network_firewall_policy_packet_mirroring_rule`.\n\nRepresents a packet mirroring rule that describes one or more match\nconditions along with the action to be taken when traffic matches this\ncondition (mirror or do_not_mirror).',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_backend_bucket',
@@ -675,9 +816,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'region',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeRegionBackendBucketLoadBalancingScheme'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_region_backend_bucket`.',
+    docComment:
+        'Factory wrapper for `google_compute_region_backend_bucket`.\n\nRegional backend buckets allow you to use Google Cloud Storage buckets with\nregional HTTP(S) load balancing.\n\nA regional HTTP(S) load balancer can direct traffic to specified URLs to a\nbackend bucket rather than a backend service. It can send requests for\nstatic content to a Cloud Storage bucket and requests for dynamic content to\na virtual machine instance.\n\nRegional backend buckets are used with: - Regional internal Application Load\nBalancers - Regional external Application Load Balancers\n\n~> **Note:** Regional backend buckets have important limitations: - Cloud\nCDN cannot be enabled - Only public buckets are supported (private bucket\naccess is not available) - Only GET requests are supported - The bucket must\nbe in the same region as the load balancer - Single-region buckets only\n(multi-region and dual-region buckets are not supported)',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_backend_bucket_iam_binding',
@@ -695,7 +837,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeRegionBackendBucketIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_backend_bucket_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Region Backend Bucket.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeRegionBackendBucketIamMember] for additive grants.',
@@ -716,7 +858,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeRegionBackendBucketIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_backend_bucket_iam_member`.',
@@ -756,7 +898,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeRegionBackendServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_backend_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Region Backend Service.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeRegionBackendServiceIamMember] for additive grants.',
@@ -777,7 +919,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeRegionBackendServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_backend_service_iam_member`.',
@@ -817,7 +959,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_region_network_policy`.',
+    docComment:
+        'Factory wrapper for `google_compute_region_network_policy`.\n\nThe Compute NetworkFirewallPolicy resource',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_network_policy_traffic_classification_rule',
@@ -841,10 +984,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'match',
       'targetSecureTags',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ComputeRegionNetworkPolicyTrafficClassificationRuleAction',
+      'ComputeRegionNetworkPolicyTrafficClassificationRuleActionDscpMode',
+      'ComputeRegionNetworkPolicyTrafficClassificationRuleActionTrafficClass',
+      'ComputeRegionNetworkPolicyTrafficClassificationRuleActionType',
+      'ComputeRegionNetworkPolicyTrafficClassificationRuleMatch',
+      'ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs',
+      'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_region_network_policy_traffic_classification_rule`.',
+        'Factory wrapper for `google_compute_region_network_policy_traffic_classification_rule`.\n\nRepresents a traffic classification rule that describes one or more match\nconditions along with the action to be taken when traffic matches this\ncondition.',
   ),
   CatalogEntry(
     tfType: 'google_dataflow_flex_template_job',
@@ -900,7 +1051,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dataform_config`.',
+    docComment:
+        'Factory wrapper for `google_dataform_config`.\n\nConfig is a singleton resource used to configure the default Dataform\nsettings for a specified location.',
   ),
   CatalogEntry(
     tfType: 'google_dataform_repository_release_config',
@@ -921,10 +1073,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'timeZone',
       'codeCompilationConfig',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataformRepositoryReleaseConfigCodeCompilationConfig',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_dataform_repository_release_config`.',
+        'Factory wrapper for `google_dataform_repository_release_config`.\n\nA resource represents a Dataform release configuration',
   ),
   CatalogEntry(
     tfType: 'google_dataform_repository_workflow_config',
@@ -946,10 +1100,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'timeZone',
       'invocationConfig',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataformRepositoryWorkflowConfigInvocationConfig',
+      'DataformRepositoryWorkflowConfigInvocationConfigIncludedTargets',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_dataform_repository_workflow_config`.',
+        'Factory wrapper for `google_dataform_repository_workflow_config`.\n\nA resource represents a Dataform workflow configuration',
   ),
   CatalogEntry(
     tfType: 'google_dataplex_data_asset',
@@ -968,9 +1125,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'resource',
       'accessGroupConfigs',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexDataAssetAccessGroupConfigs'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dataplex_data_asset`.',
+    docComment:
+        'Factory wrapper for `google_dataplex_data_asset`.\n\nA data asset resource that can be packaged and shared via a data product.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_ai_logic_config',
@@ -987,9 +1145,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'telemetryConfig',
       'trafficFilter',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'FirebaseAiLogicConfigGenerativeLanguageConfig',
+      'FirebaseAiLogicConfigTelemetryConfig',
+      'FirebaseAiLogicConfigTrafficFilter',
+    ],
     sensitiveFields: <String>['generative_language_config.api_key'],
-    docComment: 'Factory wrapper for `google_firebase_ai_logic_config`.',
+    docComment:
+        'Factory wrapper for `google_firebase_ai_logic_config`.\n\nConfiguration for Firebase AI Logic.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_ai_logic_prompt_template',
@@ -1010,7 +1173,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_firebase_ai_logic_prompt_template`.',
+        'Factory wrapper for `google_firebase_ai_logic_prompt_template`.\n\nThe PromptTemplate resource for Firebase AI Logic.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_ai_logic_prompt_template_lock',
@@ -1030,7 +1193,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_firebase_ai_logic_prompt_template_lock`.',
+        'Factory wrapper for `google_firebase_ai_logic_prompt_template_lock`.\n\nA resource that manages the lock state of a PromptTemplate. When this\nresource is created, the template is locked. When this resource is deleted,\nthe template is unlocked.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_android_app',
@@ -1050,7 +1213,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_android_app`.',
+    docComment:
+        'Factory wrapper for `google_firebase_android_app`.\n\nA Google Cloud Firebase Android application instance',
   ),
   CatalogEntry(
     tfType: 'google_firebase_apple_app',
@@ -1070,7 +1234,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_apple_app`.',
+    docComment:
+        'Factory wrapper for `google_firebase_apple_app`.\n\nA Google Cloud Firebase Apple application instance',
   ),
   CatalogEntry(
     tfType: 'google_firebase_database_instance',
@@ -1087,9 +1252,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'type',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'FirebaseDatabaseInstanceDesiredState',
+      'FirebaseDatabaseInstanceState',
+      'FirebaseDatabaseInstanceType',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_database_instance`.',
+    docComment:
+        'Factory wrapper for `google_firebase_database_instance`.\n\nA Firebase Realtime Database instance.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_extensions_instance',
@@ -1104,9 +1274,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'config',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'FirebaseExtensionsInstanceState',
+      'FirebaseExtensionsInstanceConfig',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_extensions_instance`.',
+    docComment:
+        'Factory wrapper for `google_firebase_extensions_instance`.\n\nAn Instance is an installation of an Extension into a user\'s project.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_hosting_channel',
@@ -1126,7 +1300,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_hosting_channel`.',
+    docComment:
+        'Factory wrapper for `google_firebase_hosting_channel`.\n\nA `Channel` represents a stream of releases for a site. All sites have a\ndefault `live` channel that serves content to the Firebase-provided\nsubdomains and any connected custom domains.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_hosting_custom_domain',
@@ -1144,9 +1319,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'siteId',
       'waitDnsVerification',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'FirebaseHostingCustomDomainCertPreference',
+      'FirebaseHostingCustomDomainOwnershipState',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_hosting_custom_domain`.',
+    docComment:
+        'Factory wrapper for `google_firebase_hosting_custom_domain`.\n\nManages Custom Domains for Firebase Hosting. Custom Domains link your domain\nnames with Firebase Hosting sites, allowing Hosting to serve content on\nthose domain names.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_hosting_release',
@@ -1162,9 +1341,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'type',
       'versionName',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['FirebaseHostingReleaseType'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_hosting_release`.',
+    docComment:
+        'Factory wrapper for `google_firebase_hosting_release`.\n\nA Release is a particular collection of configurations that is set to be\npublic at a particular time.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_hosting_site',
@@ -1181,7 +1361,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_hosting_site`.',
+    docComment:
+        'Factory wrapper for `google_firebase_hosting_site`.\n\nA `Site` represents a Firebase Hosting site.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_hosting_version',
@@ -1190,9 +1371,16 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_firebase_hosting_version`.',
     constructorParams: <String>['localName', 'siteId', 'config'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'FirebaseHostingVersionConfig',
+      'FirebaseHostingVersionConfigHeaders',
+      'FirebaseHostingVersionConfigRedirects',
+      'FirebaseHostingVersionConfigRewrites',
+      'FirebaseHostingVersionConfigRewritesRun',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_hosting_version`.',
+    docComment:
+        'Factory wrapper for `google_firebase_hosting_version`.\n\nA `Version` is a configuration which determine how a site is displayed.\nStatic files are not supported at the moment.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_project',
@@ -1203,7 +1391,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>['localName', 'project'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_project`.',
+    docComment:
+        'Factory wrapper for `google_firebase_project`.\n\nA Google Cloud Firebase instance. This enables Firebase resources on a given\nGoogle Project. Since a FirebaseProject is actually also a GCP Project, a\nFirebaseProject uses underlying GCP identifiers (most importantly, the\nprojectId) as its own for easy interop with GCP APIs. Once Firebase has been\nadded to a Google Project it cannot be removed.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_storage_bucket',
@@ -1219,7 +1408,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_storage_bucket`.',
+    docComment:
+        'Factory wrapper for `google_firebase_storage_bucket`.\n\nAn association between a Firebase project and a Google Cloud Storage bucket.\nThis association enables integration of Cloud Storage buckets with Firebase\nsuch as Firebase SDKS, Authentication, and Security Rules.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_storage_default_bucket',
@@ -1235,7 +1425,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_storage_default_bucket`.',
+    docComment:
+        'Factory wrapper for `google_firebase_storage_default_bucket`.\n\nA resource that manages the creation of the default Google Cloud Storage\nbucket for a Firebase project.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_web_app',
@@ -1252,7 +1443,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_firebase_web_app`.',
+    docComment:
+        'Factory wrapper for `google_firebase_web_app`.\n\nA Google Cloud Firebase web application instance',
   ),
   CatalogEntry(
     tfType: 'google_folder_service_identity',
@@ -1283,10 +1475,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'user',
       'role',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'GkeHubMembershipRbacRoleBindingRole',
+      'GkeHubMembershipRbacRoleBindingRolePredefinedRole',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_gke_hub_membership_rbac_role_binding`.',
+        'Factory wrapper for `google_gke_hub_membership_rbac_role_binding`.\n\nRBACRoleBinding represents a rbacrolebinding across the Fleet.',
   ),
   CatalogEntry(
     tfType: 'google_kms_folder_kaj_policy_config',
@@ -1299,9 +1494,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'folder',
       'defaultKeyAccessJustificationPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy',
+      'KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_kms_folder_kaj_policy_config`.',
+    docComment:
+        'Factory wrapper for `google_kms_folder_kaj_policy_config`.\n\n`FolderKajPolicyConfigs` is a folder-level singleton resource used to\nconfigure the default KAJ policy of newly created key.\n\n~> **Note:** FolderKajPolicyConfigs cannot be deleted from Google Cloud\nPlatform. Destroying a Terraform-managed FolderKajPolicyConfigs will remove\nit from state but *will not delete the resource from Google Cloud Platform.*',
   ),
   CatalogEntry(
     tfType: 'google_kms_organization_kaj_policy_config',
@@ -1314,10 +1513,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'organization',
       'defaultKeyAccessJustificationPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy',
+      'KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_kms_organization_kaj_policy_config`.',
+        'Factory wrapper for `google_kms_organization_kaj_policy_config`.\n\n`OrganizationKajPolicyConfig` is a organization-level singleton resource\nused to configure the default KAJ policy of newly created key.\n\n~> **Note:** OrganizationKajPolicyConfig cannot be deleted from Google Cloud\nPlatform. Destroying a Terraform-managed OrganizationKajPolicyConfig will\nremove it from state but *will not delete the resource from Google Cloud\nPlatform.*',
   ),
   CatalogEntry(
     tfType: 'google_kms_project_kaj_policy_config',
@@ -1330,9 +1532,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'defaultKeyAccessJustificationPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'KmsProjectKajPolicyConfigDefaultKeyAccessJustificationPolicy',
+      'KmsProjectKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_kms_project_kaj_policy_config`.',
+    docComment:
+        'Factory wrapper for `google_kms_project_kaj_policy_config`.\n\n`ProjectKajPolicyConfig` is a project-level singleton resource used to\nconfigure the default KAJ policy of newly created key.\n\n~> **Note:** ProjectKajPolicyConfig cannot be deleted from Google Cloud\nPlatform. Destroying a Terraform-managed ProjectKajPolicyConfig will remove\nit from state but *will not delete the resource from Google Cloud Platform.*',
   ),
   CatalogEntry(
     tfType: 'google_network_security_authorization_policy',
@@ -1352,10 +1558,16 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'rules',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'NetworkSecurityAuthorizationPolicyAction',
+      'NetworkSecurityAuthorizationPolicyRules',
+      'NetworkSecurityAuthorizationPolicyRulesDestinations',
+      'NetworkSecurityAuthorizationPolicyRulesDestinationsHttpHeaderMatch',
+      'NetworkSecurityAuthorizationPolicyRulesSources',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_network_security_authorization_policy`.',
+        'Factory wrapper for `google_network_security_authorization_policy`.\n\nAuthorizationPolicy is a resource that specifies how a server should\nauthorize incoming connections. This resource in itself does not change the\nconfiguration unless it\'s attached to a target https proxy or endpoint\nconfig selector resource.',
   ),
   CatalogEntry(
     tfType: 'google_network_security_sac_attachment',
@@ -1376,9 +1588,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'timeZone',
       'symantecOptions',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'NetworkSecuritySacAttachmentState',
+      'NetworkSecuritySacAttachmentSymantecOptions',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_network_security_sac_attachment`.',
+    docComment:
+        'Factory wrapper for `google_network_security_sac_attachment`.\n\nRepresents a Secure Access Connect (SAC) attachment resource',
   ),
   CatalogEntry(
     tfType: 'google_network_security_sac_realm',
@@ -1395,9 +1611,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'securityService',
       'symantecOptions',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'NetworkSecuritySacRealmSecurityService',
+      'NetworkSecuritySacRealmState',
+      'NetworkSecuritySacRealmSymantecOptions',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_network_security_sac_realm`.',
+    docComment:
+        'Factory wrapper for `google_network_security_sac_realm`.\n\nSecure Access Connect Realm resource',
   ),
   CatalogEntry(
     tfType: 'google_network_services_service_lb_policies',
@@ -1419,10 +1640,17 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'failoverConfig',
       'isolationConfig',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm',
+      'NetworkServicesServiceLbPoliciesAutoCapacityDrain',
+      'NetworkServicesServiceLbPoliciesFailoverConfig',
+      'NetworkServicesServiceLbPoliciesIsolationConfig',
+      'NetworkServicesServiceLbPoliciesIsolationConfigIsolationGranularity',
+      'NetworkServicesServiceLbPoliciesIsolationConfigIsolationMode',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_network_services_service_lb_policies`.',
+        'Factory wrapper for `google_network_services_service_lb_policies`.\n\nServiceLbPolicy holds global load balancing and traffic distribution\nconfiguration that can be applied to a BackendService.',
   ),
   CatalogEntry(
     tfType: 'google_organization_service_identity',
@@ -1454,9 +1682,48 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'packages',
       'recipes',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'OsConfigGuestPoliciesAssignment',
+      'OsConfigGuestPoliciesAssignmentGroupLabels',
+      'OsConfigGuestPoliciesAssignmentOsTypes',
+      'OsConfigGuestPoliciesPackageRepositories',
+      'OsConfigGuestPoliciesPackageRepositoriesApt',
+      'OsConfigGuestPoliciesPackageRepositoriesAptArchiveType',
+      'OsConfigGuestPoliciesPackageRepositoriesGoo',
+      'OsConfigGuestPoliciesPackageRepositoriesYum',
+      'OsConfigGuestPoliciesPackageRepositoriesZypper',
+      'OsConfigGuestPoliciesPackages',
+      'OsConfigGuestPoliciesPackagesDesiredState',
+      'OsConfigGuestPoliciesPackagesManager',
+      'OsConfigGuestPoliciesRecipes',
+      'OsConfigGuestPoliciesRecipesDesiredState',
+      'OsConfigGuestPoliciesRecipesArtifacts',
+      'OsConfigGuestPoliciesRecipesArtifactsGcs',
+      'OsConfigGuestPoliciesRecipesArtifactsRemote',
+      'OsConfigGuestPoliciesRecipesInstallSteps',
+      'OsConfigGuestPoliciesRecipesInstallStepsArchiveExtraction',
+      'OsConfigGuestPoliciesRecipesInstallStepsArchiveExtractionType',
+      'OsConfigGuestPoliciesRecipesInstallStepsDpkgInstallation',
+      'OsConfigGuestPoliciesRecipesInstallStepsFileCopy',
+      'OsConfigGuestPoliciesRecipesInstallStepsFileExec',
+      'OsConfigGuestPoliciesRecipesInstallStepsMsiInstallation',
+      'OsConfigGuestPoliciesRecipesInstallStepsRpmInstallation',
+      'OsConfigGuestPoliciesRecipesInstallStepsScriptRun',
+      'OsConfigGuestPoliciesRecipesInstallStepsScriptRunInterpreter',
+      'OsConfigGuestPoliciesRecipesUpdateSteps',
+      'OsConfigGuestPoliciesRecipesUpdateStepsArchiveExtraction',
+      'OsConfigGuestPoliciesRecipesUpdateStepsArchiveExtractionType',
+      'OsConfigGuestPoliciesRecipesUpdateStepsDpkgInstallation',
+      'OsConfigGuestPoliciesRecipesUpdateStepsFileCopy',
+      'OsConfigGuestPoliciesRecipesUpdateStepsFileExec',
+      'OsConfigGuestPoliciesRecipesUpdateStepsMsiInstallation',
+      'OsConfigGuestPoliciesRecipesUpdateStepsRpmInstallation',
+      'OsConfigGuestPoliciesRecipesUpdateStepsScriptRun',
+      'OsConfigGuestPoliciesRecipesUpdateStepsScriptRunInterpreter',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_os_config_guest_policies`.',
+    docComment:
+        'Factory wrapper for `google_os_config_guest_policies`.\n\nAn OS Config resource representing a guest configuration policy. These\npolicies represent the desired state for VM instance guest environments\nincluding packages to install or remove, package repository configurations,\nand software to install.',
   ),
   CatalogEntry(
     tfType: 'google_privileged_access_manager_settings',
@@ -1471,10 +1738,34 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'emailNotificationSettings',
       'serviceAccountApproverSettings',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'PrivilegedAccessManagerSettingsEmailNotificationSettings',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOption',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorOption',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotifications',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantActivated',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantActivationFailed',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantEnded',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantExternallyModified',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotifications',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotificationsPendingApproval',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotifications',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsEntitlementAssigned',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivated',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivationFailed',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantDenied',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantEnded',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExpired',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExternallyModified',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantRevoked',
+      'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications',
+      'PrivilegedAccessManagerSettingsServiceAccountApproverSettings',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_privileged_access_manager_settings`.',
+        'Factory wrapper for `google_privileged_access_manager_settings`.\n\nSettings resource defines the properties, applied directly to the resource\nor inherited through the hierarchy, to enable consistent, federated use of\nPAM.',
   ),
   CatalogEntry(
     tfType: 'google_project_service_identity',
@@ -1519,7 +1810,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['RuntimeconfigConfigIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_runtimeconfig_config_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Runtimeconfig Config.\n\nReplaces the entire member list for that role. Prefer\n[GoogleRuntimeconfigConfigIamMember] for additive grants.',
@@ -1538,7 +1829,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['RuntimeconfigConfigIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_runtimeconfig_config_iam_member`.',
   ),
@@ -1592,9 +1883,15 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'inputVariableDefaults',
       'releaseRequirements',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'SaasRuntimeReleaseBlueprint',
+      'SaasRuntimeReleaseInputVariableDefaults',
+      'SaasRuntimeReleaseInputVariableDefaultsType',
+      'SaasRuntimeReleaseReleaseRequirements',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_saas_runtime_release`.',
+    docComment:
+        'Factory wrapper for `google_saas_runtime_release`.\n\nA version to be propagated and deployed to Units. It points to a specific\nversion of a Blueprint that can be applied to Units, for example, via a\nRollout.',
   ),
   CatalogEntry(
     tfType: 'google_saas_runtime_rollout_kind',
@@ -1616,9 +1913,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'updateUnitKindStrategy',
       'errorBudget',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'SaasRuntimeRolloutKindUpdateUnitKindStrategy',
+      'SaasRuntimeRolloutKindErrorBudget',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_saas_runtime_rollout_kind`.',
+    docComment:
+        'Factory wrapper for `google_saas_runtime_rollout_kind`.\n\nA RolloutKind is a reusable configuration resource that defines the\npolicies, strategies, and targeting for Rollout operations. It acts as a\ntemplate for repeatable Rollouts, providing guardrails and ensuring that\nupdates are executed in a consistent manner across a fleet of Units.',
   ),
   CatalogEntry(
     tfType: 'google_saas_runtime_saas',
@@ -1636,9 +1937,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'saasId',
       'locations',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SaasRuntimeSaasLocations'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_saas_runtime_saas`.',
+    docComment:
+        'Factory wrapper for `google_saas_runtime_saas`.\n\nA Saas resource is the top-level representation of a SaaS service managed by\na producer. It contains a list of locations where the service is available,\nwhich is used by the Rollout system to generate a rollout plan.',
   ),
   CatalogEntry(
     tfType: 'google_saas_runtime_tenant',
@@ -1659,7 +1961,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_saas_runtime_tenant`.',
+    docComment:
+        'Factory wrapper for `google_saas_runtime_tenant`.\n\nThe Tenant resource represents the service producer\'s view of a service\ninstance created for a consumer. It enables the association between the\nservice producer\'s managed resources and the end consumer.',
   ),
   CatalogEntry(
     tfType: 'google_saas_runtime_unit',
@@ -1680,9 +1983,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'unitKind',
       'maintenance',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SaasRuntimeUnitMaintenance'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_saas_runtime_unit`.',
+    docComment:
+        'Factory wrapper for `google_saas_runtime_unit`.\n\nA Unit is the fundamental structural building block of a SaaS offering. Each\nUnit is an instance of a UnitKind. It is a versioned, manageable component\nof a service that has its own lifecycle, representing elements like\ninfrastructure, workloads, or an entire application stack that a service\nproducer intends to manage as a single entity.',
   ),
   CatalogEntry(
     tfType: 'google_saas_runtime_unit_kind',
@@ -1704,9 +2008,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'inputVariableMappings',
       'outputVariableMappings',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'SaasRuntimeUnitKindDependencies',
+      'SaasRuntimeUnitKindInputVariableMappings',
+      'SaasRuntimeUnitKindInputVariableMappingsFrom',
+      'SaasRuntimeUnitKindInputVariableMappingsTo',
+      'SaasRuntimeUnitKindOutputVariableMappings',
+      'SaasRuntimeUnitKindOutputVariableMappingsFrom',
+      'SaasRuntimeUnitKindOutputVariableMappingsTo',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_saas_runtime_unit_kind`.',
+    docComment:
+        'Factory wrapper for `google_saas_runtime_unit_kind`.\n\nA UnitKind serves as a template or type definition for a group of Units.\nUnits that belong to the same UnitKind are managed together, follow the same\nrelease model, and are typically updated together through rollouts.',
   ),
   CatalogEntry(
     tfType: 'google_saas_runtime_unit_operation',
@@ -1728,9 +2041,16 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'provision',
       'upgrade',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'SaasRuntimeUnitOperationDeprovision',
+      'SaasRuntimeUnitOperationProvision',
+      'SaasRuntimeUnitOperationProvisionInputVariables',
+      'SaasRuntimeUnitOperationUpgrade',
+      'SaasRuntimeUnitOperationUpgradeInputVariables',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_saas_runtime_unit_operation`.',
+    docComment:
+        'Factory wrapper for `google_saas_runtime_unit_operation`.\n\nA UnitOperation encapsulates the intent to change or interact with a Unit.\nOperations such as provisioning, upgrading, or deprovisioning a Unit are\ntriggered by creating a UnitOperation resource.',
   ),
   CatalogEntry(
     tfType: 'google_security_scanner_scan_config',
@@ -1754,12 +2074,21 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'authentication',
       'schedule',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'SecurityScannerScanConfigExportToSecurityCommandCenter',
+      'SecurityScannerScanConfigTargetPlatforms',
+      'SecurityScannerScanConfigUserAgent',
+      'SecurityScannerScanConfigAuthentication',
+      'SecurityScannerScanConfigAuthenticationCustomAccount',
+      'SecurityScannerScanConfigAuthenticationGoogleAccount',
+      'SecurityScannerScanConfigSchedule',
+    ],
     sensitiveFields: <String>[
       'authentication.custom_account.password',
       'authentication.google_account.password',
     ],
-    docComment: 'Factory wrapper for `google_security_scanner_scan_config`.',
+    docComment:
+        'Factory wrapper for `google_security_scanner_scan_config`.\n\nA ScanConfig resource contains the configurations to launch a scan.',
   ),
   CatalogEntry(
     tfType: 'google_service_usage_consumer_quota_override',
@@ -1782,7 +2111,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_service_usage_consumer_quota_override`.',
+        'Factory wrapper for `google_service_usage_consumer_quota_override`.\n\nA consumer override is applied to the consumer on its own authority to limit\nits own quota usage. Consumer overrides cannot be used to grant more quota\nthan would be allowed by admin overrides, producer overrides, or the default\nlimit of the service.',
   ),
   CatalogEntry(
     tfType: 'google_tags_tag_binding_collection',
@@ -1814,9 +2143,15 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'tpu',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'TpuV2QueuedResourceTpu',
+      'TpuV2QueuedResourceTpuNodeSpec',
+      'TpuV2QueuedResourceTpuNodeSpecNode',
+      'TpuV2QueuedResourceTpuNodeSpecNodeNetworkConfig',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_tpu_v2_queued_resource`.',
+    docComment:
+        'Factory wrapper for `google_tpu_v2_queued_resource`.\n\nA Cloud TPU Queued Resource.',
   ),
   CatalogEntry(
     tfType: 'google_tpu_v2_vm',
@@ -1845,9 +2180,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'serviceAccount',
       'shieldedInstanceConfig',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'TpuV2VmAcceleratorConfig',
+      'TpuV2VmDataDisks',
+      'TpuV2VmDataDisksMode',
+      'TpuV2VmNetworkConfig',
+      'TpuV2VmNetworkConfigs',
+      'TpuV2VmSchedulingConfig',
+      'TpuV2VmServiceAccount',
+      'TpuV2VmShieldedInstanceConfig',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_tpu_v2_vm`.',
+    docComment:
+        'Factory wrapper for `google_tpu_v2_vm`.\n\nA Cloud TPU VM instance.',
   ),
   CatalogEntry(
     tfType: 'google_vertex_ai_endpoint_iam_binding',
@@ -1864,7 +2209,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiEndpointIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_endpoint_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex Ai Endpoint.\n\nReplaces the entire member list for that role. Prefer\n[GoogleVertexAiEndpointIamMember] for additive grants.',
@@ -1884,7 +2229,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiEndpointIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_vertex_ai_endpoint_iam_member`.',
   ),
@@ -1922,7 +2267,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiFeatureGroupIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_feature_group_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex Ai Feature Group.\n\nReplaces the entire member list for that role. Prefer\n[GoogleVertexAiFeatureGroupIamMember] for additive grants.',
@@ -1942,7 +2287,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiFeatureGroupIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_feature_group_iam_member`.',
@@ -1982,7 +2327,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'VertexAiFeatureOnlineStoreFeatureviewIamBindingCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_feature_online_store_featureview_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex Ai Feature Online Store Featureview.\n\nReplaces the entire member list for that role. Prefer\n[GoogleVertexAiFeatureOnlineStoreFeatureviewIamMember] for additive grants.',
@@ -2004,7 +2351,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'VertexAiFeatureOnlineStoreFeatureviewIamMemberCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_feature_online_store_featureview_iam_member`.',
@@ -2045,7 +2394,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiFeatureOnlineStoreIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_feature_online_store_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex Ai Feature Online Store.\n\nReplaces the entire member list for that role. Prefer\n[GoogleVertexAiFeatureOnlineStoreIamMember] for additive grants.',
@@ -2066,7 +2415,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiFeatureOnlineStoreIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_feature_online_store_iam_member`.',
@@ -2105,7 +2454,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiFeaturestoreEntitytypeIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_featurestore_entitytype_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex Ai Featurestore Entitytype.\n\nReplaces the entire member list for that role. Prefer\n[GoogleVertexAiFeaturestoreEntitytypeIamMember] for additive grants.',
@@ -2125,7 +2474,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiFeaturestoreEntitytypeIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_featurestore_entitytype_iam_member`.',
@@ -2163,7 +2512,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiFeaturestoreIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_featurestore_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex Ai Featurestore.\n\nReplaces the entire member list for that role. Prefer\n[GoogleVertexAiFeaturestoreIamMember] for additive grants.',
@@ -2183,7 +2532,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiFeaturestoreIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_featurestore_iam_member`.',
@@ -2221,9 +2570,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'encryptionSpec',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiMetadataStoreEncryptionSpec'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_vertex_ai_metadata_store`.',
+    docComment:
+        'Factory wrapper for `google_vertex_ai_metadata_store`.\n\nInstance of a metadata store. Contains a set of metadata that can be\nqueried.',
   ),
   CatalogEntry(
     tfType: 'google_vertex_ai_model_garden_enable_model',
@@ -2233,9 +2583,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary:
         'Factory wrapper for `google_vertex_ai_model_garden_enable_model`.',
     constructorParams: <String>['localName', 'project', 'publisherModelName'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['VertexAiModelGardenEnableModelEnablementState'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_vertex_ai_model_garden_enable_model`.',
+        'Factory wrapper for `google_vertex_ai_model_garden_enable_model`.\n\nEnables a Model Garden publisher model for a project so that it can be\ndeployed. This calls the synchronous `ModelGardenService.EnableModel`\nmethod, which checks that the prerequisites for the model are met (for\nexample, a completed questionnaire and accepted consents, or an active\nPrivate Offer) before enabling it.\n\n~> **Note:** The underlying API does not provide a way to disable a model\nonce it has been enabled, so destroying this resource only removes it from\nTerraform state and does not affect the project\'s enablement status.',
   ),
 ];

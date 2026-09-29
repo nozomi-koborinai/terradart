@@ -4,6 +4,10 @@
 outputDir: runtimeconfig
 
 deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Authoritative IAM policy for a Runtimeconfig Config.

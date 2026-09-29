@@ -7,6 +7,9 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDataformConfigSensitive = <String>{};
 
 /// Factory wrapper for `google_dataform_config`.
+///
+/// Config is a singleton resource used to configure the default Dataform
+/// settings for a specified location.
 final class GoogleDataformConfig extends Resource {
   static const String tfType = 'google_dataform_config';
 
@@ -32,4 +35,7 @@ final class GoogleDataformConfig extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleDataformConfigSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

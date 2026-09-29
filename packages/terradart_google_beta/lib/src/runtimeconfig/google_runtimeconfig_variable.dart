@@ -40,4 +40,13 @@ final class GoogleRuntimeconfigVariable extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleRuntimeconfigVariableSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

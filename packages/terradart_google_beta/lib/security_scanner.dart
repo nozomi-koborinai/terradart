@@ -4,4 +4,12 @@
 library;
 
 export 'src/security_scanner/google_security_scanner_scan_config.dart'
-    show GoogleSecurityScannerScanConfig;
+    show
+        GoogleSecurityScannerScanConfig,
+        SecurityScannerScanConfigAuthentication,
+        SecurityScannerScanConfigAuthenticationCustomAccount,
+        SecurityScannerScanConfigAuthenticationGoogleAccount,
+        SecurityScannerScanConfigExportToSecurityCommandCenter,
+        SecurityScannerScanConfigSchedule,
+        SecurityScannerScanConfigTargetPlatforms,
+        SecurityScannerScanConfigUserAgent;
