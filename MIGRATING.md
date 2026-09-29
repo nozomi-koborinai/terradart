@@ -1159,6 +1159,11 @@ bucket, topic) on `RefTo<R>`.
   | `GoogleAlloydbCluster` | `restore`; backup policy `retention` | `restoreBackupSource`, `restoreContinuousBackupSource`; `timeBasedRetention`, `quantityBasedRetention` |
   | `GoogleSpannerInstance` autoscaling limits | `min`, `max` | node / processing-unit counts |
 
+- `BigqueryDataTransferConfigSensitiveParams` is derived too: the
+  `BigqueryDataTransferConfigSecretAccessKey` sealed type and its
+  `WriteOnly` / `Plaintext` variants are gone, and the key is set with the
+  `secretAccessKeyWo` / `secretAccessKeyWoVersion` (or deprecated
+  `secretAccessKey`) fields directly.
 - `GoogleBigqueryDataset` and `GoogleBigqueryDatasetAccess` keep their
   hand-written `access` grantee types; the `datasetId` of their view,
   dataset and routine references takes `RefTo<GoogleBigqueryDataset>`.
