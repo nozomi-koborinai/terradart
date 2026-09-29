@@ -2,6 +2,7 @@ outputDir: tablesdb
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveExactlyOne: true
 
 # `default` and `required` are Dart reserved / contextual keywords — virtual
 # slots keep the constructor parseable (`defaultValue`, `columnRequired`).
