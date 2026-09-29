@@ -263,7 +263,10 @@ final class WrapperOverride {
   /// set of inputs the provider requires exactly one of becomes one
   /// required sealed slot (a top-level group) or sealed helper field (a
   /// group inside a [deriveNestedTypes] block) whose variants each carry
-  /// one member (`exactly_one_derivation.dart`). Defaults to `false`.
+  /// one member (`exactly_one_derivation.dart`). The same gate seals the
+  /// hints' `at_most_one_of_groups` — mutually exclusive inputs the provider
+  /// also accepts none of — into nullable sealed slots and fields. Defaults
+  /// to `false`.
   final bool deriveExactlyOne;
 
   /// Snake-case slot name → custom constructor / argMap snippets.

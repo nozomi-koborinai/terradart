@@ -10,8 +10,10 @@ import 'wrapper_overrides/wrapper_override.dart';
 
 /// The `deriveExactlyOne` gate for a resource's own arguments: every
 /// sealable top-level group in the `--provider-enums` hints becomes one
-/// required custom slot typed with a sealed class (declared in the
-/// prelude), and its members leave the constructor.
+/// custom slot typed with a sealed class (declared in the prelude), and its
+/// members leave the constructor. An exactly-one group's slot is required;
+/// an at-most-one group's (mutually exclusive inputs the provider also
+/// accepts none of) is nullable and spreads nothing when null.
 ///
 /// Rewriting the override (instead of teaching the emitter a new slot kind)
 /// keeps the wrapper emitter and the migration manifest builder on the same
@@ -22,24 +24,34 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// A group is sealable when every member is an optional constructor input
 /// no custom slot owns and no earlier group took, and none is a keyed
 /// (`nesting_mode: map`) block, which the migration manifest has no shape
-/// for; the others are returned in `skipped` with a reason and keep their
-/// plain slots.
-({Map<String, WrapperOverride> overrides, List<String> skipped})
-    deriveExactlyOneSlots(
+/// for; the others are returned in `skipped` (exactly-one) or
+/// `skippedAtMostOne` with a reason and keep their plain slots. Exactly-one
+/// groups claim their members first.
+({
+  Map<String, WrapperOverride> overrides,
+  List<String> skipped,
+  List<String> skippedAtMostOne,
+}) deriveExactlyOneSlots(
   Map<String, WrapperOverride> overrides,
   Map<String, ResourceDef> defs, {
   required ProviderEnums providerEnums,
   required Map<String, Map<String, dynamic>> rawSchemas,
 }) {
   final skipped = <String>[];
+  final skippedAtMostOne = <String>[];
   final out = <String, WrapperOverride>{};
   for (final MapEntry(key: type, value: o) in overrides.entries) {
     final def = defs[type];
     final groups = providerEnums.exactlyOneGroupsByBlock(type)[''];
+    final optionalGroups = providerEnums.atMostOneGroupsByBlock(type)[''];
     final nested = providerEnums.nestedExactlyOneGroups(type, o);
+    final nestedOptional = providerEnums.nestedAtMostOneGroups(type, o);
     if (!o.deriveExactlyOne ||
         def == null ||
-        (groups == null && nested.isEmpty)) {
+        (groups == null &&
+            optionalGroups == null &&
+            nested.isEmpty &&
+            nestedOptional.isEmpty)) {
       out[type] = o;
       continue;
     }
@@ -52,25 +64,50 @@ import 'wrapper_overrides/wrapper_override.dart';
             shareIdenticalShapes: o.dedupeNestedTypes,
             enumValues: providerEnums.resolver(type),
             exactlyOneGroups: nested,
+            atMostOneGroups: nestedOptional,
           )
         : const <NestedBlockSpec>[];
-    out[type] =
-        groups == null ? o : _derive(type, o, def, groups, specs, skipped);
+    out[type] = groups == null && optionalGroups == null
+        ? o
+        : _derive(
+            type,
+            o,
+            def,
+            [
+              for (final g in groups ?? const <List<String>>[])
+                (members: g, optional: false),
+              for (final g in optionalGroups ?? const <List<String>>[])
+                (members: g, optional: true),
+            ],
+            specs,
+            skipped: skipped,
+            skippedAtMostOne: skippedAtMostOne,
+          );
     skipped.addAll([
       for (final s in unsealedNestedGroups(specs, nested)) '$type $s',
     ]);
+    skippedAtMostOne.addAll([
+      for (final s
+          in unsealedNestedGroups(specs, nestedOptional, optional: true))
+        '$type $s',
+    ]);
   }
-  return (overrides: out, skipped: skipped);
+  return (
+    overrides: out,
+    skipped: skipped,
+    skippedAtMostOne: skippedAtMostOne,
+  );
 }
 
 WrapperOverride _derive(
   String type,
   WrapperOverride o,
   ResourceDef def,
-  List<List<String>> groups,
-  List<NestedBlockSpec> nestedSpecs,
-  List<String> skipped,
-) {
+  List<({List<String> members, bool optional})> groups,
+  List<NestedBlockSpec> nestedSpecs, {
+  required List<String> skipped,
+  required List<String> skippedAtMostOne,
+}) {
   final prefix = shortResourcePascal(type);
   final order = orderedConstructorParams(def, o.paramOrder);
   final slots = {...?o.customSlots};
@@ -129,7 +166,8 @@ WrapperOverride _derive(
   final taken = <String>{};
   final declarations = StringBuffer();
   var paramOrder = order;
-  for (final group in groups) {
+  for (final (:members, :optional) in groups) {
+    final group = members;
     final label = '$type [${group.join(', ')}]';
     final slot = exactlyOneSlotName(group);
     String? reason;
@@ -159,16 +197,21 @@ WrapperOverride _derive(
       }
     }
     if (reason != null) {
-      skipped.add('$label: $reason');
+      (optional ? skippedAtMostOne : skipped).add('$label: $reason');
       continue;
     }
     taken.addAll(group);
     final sealed = exactlyOneSealedName(prefix, group);
     final ident = snakeToDartIdent(slot);
-    slots[slot] = CustomSlot(
-      paramDeclaration: 'required $sealed $ident',
-      argMapEntry: '...$ident.argMap,',
-    );
+    slots[slot] = optional
+        ? CustomSlot(
+            paramDeclaration: '$sealed? $ident',
+            argMapEntry: '...?$ident?.argMap,',
+          )
+        : CustomSlot(
+            paramDeclaration: 'required $sealed $ident',
+            argMapEntry: '...$ident.argMap,',
+          );
     final first = paramOrder.indexWhere(group.contains);
     paramOrder = [
       for (var i = 0; i < paramOrder.length; i++)
@@ -184,6 +227,7 @@ WrapperOverride _derive(
         members: group,
         where: '`$type`',
         variants: variants,
+        optional: optional,
       ));
   }
   if (taken.isEmpty) return o;

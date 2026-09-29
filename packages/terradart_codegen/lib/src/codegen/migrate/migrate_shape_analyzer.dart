@@ -252,9 +252,10 @@ final class CustomSlotShape {
   /// True when the argMap entry uses `<slot>.blockKey:` (a sealed choice).
   final bool dynamicKey;
 
-  /// True when the argMap entry is `...<slot>.argMap,`: a sealed choice
-  /// whose variant writes one or more keys straight into the resource's
-  /// arguments (`secret_data_wo` + `secret_data_wo_version`).
+  /// True when the argMap entry is `...<slot>.argMap,` (or, for a nullable
+  /// at-most-one slot, `...?<slot>?.argMap,`): a sealed choice whose
+  /// variant writes one or more keys straight into the resource's arguments
+  /// (`secret_data_wo` + `secret_data_wo_version`).
   final bool spread;
 
   /// The value lands in the enclosing block's arguments rather than under
@@ -282,8 +283,9 @@ CustomSlotShape parseCustomSlot(CustomSlot slot) {
   final typeSource = decl.substring(0, decl.length - dartName.length).trim();
   final entry = slot.argMapEntry;
   final dynamicKey = RegExp(r'\b\w+\.blockKey\s*:').hasMatch(entry);
+  final name = RegExp.escape(dartName);
   final spread =
-      RegExp(r'^\s*\.\.\.' + RegExp.escape(dartName) + r'\.argMap\s*,?\s*$')
+      RegExp(r'^\s*\.\.\.(?:' + name + r'|\?' + name + r'\?)\.argMap\s*,?\s*$')
           .hasMatch(entry);
   final tfKey = RegExp(r"'([a-z0-9_]+)'\s*:").firstMatch(entry)?.group(1);
   return CustomSlotShape(

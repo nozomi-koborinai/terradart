@@ -1273,6 +1273,119 @@ paramOrder: [name, mode, kind, regions, grants, settings]
     });
   });
 
+  group('WrapCommand at-most-one groups', () {
+    late Directory tmp;
+    late String source;
+    late String overrides;
+
+    setUp(() {
+      tmp = Directory.systemTemp.createTempSync('wrap_at_most_one_');
+      source = p.join(tmp.path, 'source');
+      overrides = p.join(tmp.path, 'overrides');
+      Directory(p.join(source, 'hints')).createSync(recursive: true);
+      Directory(overrides).createSync();
+      File(p.join(source, 'provider_version.txt')).writeAsStringSync('1.0.0\n');
+      Map<String, dynamic> optional() => {'type': 'string', 'optional': true};
+      File(p.join(source, 'schema.json')).writeAsStringSync(jsonEncode({
+        'format_version': '1.0',
+        'provider_schemas': {
+          'registry.terraform.io/example/x': {
+            'resource_schemas': {
+              'x_thing': {
+                'version': 0,
+                'block': {
+                  'attributes': {
+                    'id': {'type': 'string', 'computed': true},
+                    'name': {'type': 'string', 'required': true},
+                    'content': optional(),
+                    'data': optional(),
+                    'settings': {
+                      'optional': true,
+                      'nested_type': {
+                        'nesting_mode': 'single',
+                        'attributes': {'a': optional(), 'b': optional()},
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      }));
+      File(p.join(source, 'hints', 'x_thing.yaml')).writeAsStringSync('''
+provider_version: "1.0.0"
+at_most_one_of_groups:
+  - ["content", "data"]
+  - ["settings.a", "settings.b"]
+''');
+      File(p.join(overrides, 'x_thing.yaml')).writeAsStringSync('''
+outputDir: thing
+deriveNestedTypes: true
+deriveExactlyOne: true
+''');
+    });
+    tearDown(() => tmp.deleteSync(recursive: true));
+
+    test('seal into nullable slots the migration manifest records', () async {
+      final manifestPath = p.join(tmp.path, 'manifest.g.dart');
+      final barrels = File(p.join(tmp.path, 'barrels.yaml'))
+        ..writeAsStringSync('''
+umbrellaFile: terradart_x
+umbrellaDoc: |-
+  /// x umbrella.
+umbrellaExtraExports: []
+barrels:
+  thing:
+    doc: |-
+      /// Things.
+''');
+      final code = await buildCliRunner().run([
+        'wrap',
+        '--provider',
+        'example/x',
+        '--source',
+        source,
+        '--output',
+        _libSrcOut(tmp),
+        '--overrides-root',
+        overrides,
+        '--barrels-manifest',
+        barrels.path,
+        '--provider-enums',
+        '--migrate-manifest',
+        manifestPath,
+        '--migrate-package',
+        'terradart_x',
+      ]);
+      expect(code, CliExitCodes.success);
+      final src = File(p.join(_libSrcOut(tmp), 'thing', 'x_thing.dart'))
+          .readAsStringSync();
+      expect(src, contains('XThingContentOrData? contentOrData'));
+      expect(src, contains('...?contentOrData?.argMap,'));
+      expect(src, isNot(contains('TfArg<String>? content,')));
+      expect(src, contains('final XThingSettingsAOrB? aOrB;'));
+      expect(src, contains('...?aOrB?.encode()'));
+      expect(src, contains('/// At most one of `content`, `data`'));
+
+      final manifest = File(manifestPath).readAsStringSync();
+      expect(
+        manifest,
+        matches(RegExp(
+          r"dartName: 'contentOrData',\s+kind: MigrateSlotKind\.sealed,\s+"
+          r'required: false,\s+wrapped: false,\s+merged: true,',
+        )),
+      );
+      expect(
+        manifest,
+        matches(RegExp(
+          r"dartName: 'aOrB',\s+kind: MigrateSlotKind\.sealed,\s+"
+          r'required: false,\s+wrapped: false,\s+merged: true,',
+        )),
+      );
+    });
+  });
+
   group('WrapCommand --mm-hints', () {
     late Directory tmp;
     late String source;
