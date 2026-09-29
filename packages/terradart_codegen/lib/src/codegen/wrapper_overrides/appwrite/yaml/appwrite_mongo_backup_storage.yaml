@@ -2,6 +2,7 @@ outputDir: mongo
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Custom MongoDB backup destination. The API has no read route, so

@@ -2,3 +2,4 @@ outputDir: messaging
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveExactlyOne: true

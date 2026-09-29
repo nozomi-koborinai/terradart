@@ -2,6 +2,7 @@ outputDir: storage
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Appwrite **storage bucket** — file storage with per-bucket security,
