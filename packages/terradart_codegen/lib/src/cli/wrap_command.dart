@@ -417,6 +417,7 @@ class WrapCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
     var references = const <String, Map<String, ResolvedReference>>{};
+    var dataReferences = const <String, Map<String, ResolvedReference>>{};
     if (referenceLedger != null) {
       final List<ReferenceRule> rules;
       try {
@@ -451,7 +452,10 @@ class WrapCommand extends Command<int> {
         }
         return CliExitCodes.dataError;
       }
-      if (typedReferences) references = resolution.byResource;
+      if (typedReferences) {
+        references = resolution.byResource;
+        dataReferences = resolution.byDataSource;
+      }
     }
     // `deriveExactlyOne`: the hints' top-level exactly-one and at-most-one
     // groups become sealed custom slots before anything reads the overrides.
@@ -529,6 +533,7 @@ class WrapCommand extends Command<int> {
       resourceDirs: {
         for (final e in resourceOverrides.entries) e.key: e.value.outputDir,
       },
+      references: dataReferences,
     );
     // Layer 2 emit output is unformatted; match the WrapperEmitter /
     // DataSourceWrapperEmitter Level A test convention (dart_style 3.x with
@@ -589,24 +594,6 @@ class WrapCommand extends Command<int> {
         );
       }
     }
-    if (typedReferences) {
-      stdout.writeln(
-        'terradart wrap: ${typedReferenceKeys.length} inputs typed as '
-        'references.',
-      );
-      // An input the ledger matches but whose slot an override types by
-      // hand, or whose block has no derived helper, stays a string.
-      for (final MapEntry(key: type, value: slots) in references.entries) {
-        for (final path in slots.keys) {
-          if (!typedReferenceKeys.contains('$type.$path')) {
-            stderr.writeln(
-              'terradart wrap: reference input not typed: '
-              '$type.$path',
-            );
-          }
-        }
-      }
-    }
 
     for (final entry in loaded.dataSources.entries) {
       final def = ir.dataSources[entry.key];
@@ -619,6 +606,7 @@ class WrapCommand extends Command<int> {
       // Layer 2 wrapper: `<outputDir>/<terraformType>.dart` (outputDir is
       // validated to be `'data'` for data sources at YAML load time).
       final raw = dataSourceEmitter.emit(def, providerSource: provider);
+      typedReferenceKeys.addAll(dataSourceEmitter.typedReferences);
       final layer2 = generatedFileHeader + formatter.format(raw);
       buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = layer2;
       catalogEntries.add(
@@ -640,8 +628,30 @@ class WrapCommand extends Command<int> {
             emittedSource: layer2,
             rawSchemaBlock: rawDataSourceSchemas[entry.key],
             enumValues: providerEnums.resolver(null),
+            references: dataReferences[entry.key] ?? const {},
           ),
         );
+      }
+    }
+    if (typedReferences) {
+      stdout.writeln(
+        'terradart wrap: ${typedReferenceKeys.length} inputs typed as '
+        'references.',
+      );
+      // An input the ledger matches but whose slot an override types by
+      // hand, or whose block has no derived helper, stays a string.
+      for (final (prefix, byType) in [
+        ('', references),
+        ('data.', dataReferences),
+      ]) {
+        for (final MapEntry(key: type, value: slots) in byType.entries) {
+          for (final path in slots.keys) {
+            final key = '$prefix$type.$path';
+            if (!typedReferenceKeys.contains(key)) {
+              stderr.writeln('terradart wrap: reference input not typed: $key');
+            }
+          }
+        }
       }
     }
 
