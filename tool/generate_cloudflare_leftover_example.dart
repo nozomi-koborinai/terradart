@@ -227,13 +227,21 @@ Set<String> _parseSensitiveLeaves(String src) {
   return out;
 }
 
+/// Every sealed exactly-one type the package declares: name → its variant
+/// classes in declaration order.
+final _sealedVariants = <String, List<String>>{};
+
 _ParsedFile _parseFile(File file) {
   final src = file.readAsStringSync();
   final classes = <String, _ClassInfo>{};
-  final classRe = RegExp(r'final class (\w+)(?:\s+extends (\w+))?');
+  for (final m in RegExp(r'sealed class (\w+)').allMatches(src)) {
+    _sealedVariants[m.group(1)!] = [];
+  }
+  final classRe = RegExp(r'final class (\w+)(?:\s+extends\s+(\w+))?');
   for (final m in classRe.allMatches(src)) {
     final name = m.group(1)!;
     final ext = m.group(2);
+    _sealedVariants[ext]?.add(name);
     final brace = src.indexOf('{', m.end);
     if (brace < 0) continue;
     final end = _matchBrace(src, brace);
@@ -330,8 +338,40 @@ class _Extra {
   final String value;
 }
 
+/// The member a sealed exactly-one slot sets, where the first variant is
+/// not the one the dummy configuration needs.
+const _sealedMember = <String, String>{
+  'RulesetAccountIdOrZoneId': 'zoneId',
+};
+
+/// The variant of sealed type [sealed] to construct: the one setting its
+/// `_sealedMember` entry, else the first.
+String _sealedChoice(
+  String sealed,
+  Map<String, _ClassInfo> helpers, {
+  required int depth,
+  required Set<String> sensitive,
+}) {
+  final variants = [
+    for (final v in _sealedVariants[sealed]!)
+      (v, helpers[v]!.requiredParams.single),
+  ];
+  if (variants.isEmpty) throw StateError('$sealed declares no variants');
+  final (variant, member) = variants.firstWhere(
+    (v) => v.$2.name == _sealedMember[sealed],
+    orElse: () => variants.first,
+  );
+  final value = _dummy(
+    member,
+    helpers,
+    depth: depth + 1,
+    sensitive: sensitive,
+    owner: variant,
+  );
+  return '$variant(${member.name}: $value,)';
+}
+
 const _preferZoneId = {
-  'CloudflareRuleset',
   'DataCloudflareRuleset',
   'DataCloudflareRulesets',
 };
@@ -563,6 +603,9 @@ String _dummyForType(
   }
   if (t.startsWith('Map<') || t == 'Map') {
     return "{'k': leftover}";
+  }
+  if (_sealedVariants.containsKey(t)) {
+    return _sealedChoice(t, helpers, depth: depth, sensitive: sensitive);
   }
   if (helpers.containsKey(t)) {
     return _constructHelper(t, helpers, depth: depth + 1, sensitive: sensitive);
