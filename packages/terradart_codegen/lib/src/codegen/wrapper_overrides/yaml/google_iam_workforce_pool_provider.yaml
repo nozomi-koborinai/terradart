@@ -27,6 +27,21 @@ curatedDoc: |-
   /// );
   /// ```
 
+prelude: |
+  /// `scim_usage` — whether authorization checks use SCIM-managed groups
+  /// instead of the `google.groups` attribute mapping.
+  enum IamWorkforcePoolProviderScimUsage implements TerraformEnum {
+    scimUsageUnspecified('SCIM_USAGE_UNSPECIFIED'),
+    enabledForGroups('ENABLED_FOR_GROUPS');
+
+    const IamWorkforcePoolProviderScimUsage(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  scim_usage: IamWorkforcePoolProviderScimUsage
+
 sealedNames:
   "oidc, saml": trust_source
 

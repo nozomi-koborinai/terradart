@@ -83160,9 +83160,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scim_usage',
           dartName: 'scimUsage',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'IamWorkforcePoolProviderScimUsage',
         ),
       ],
       getters: <MigrateGetter>[
@@ -287329,6 +287329,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'IamWorkforcePoolProviderOidcWebSsoConfigResponseType': MigrateEnum(
       name: 'IamWorkforcePoolProviderOidcWebSsoConfigResponseType',
       members: <String, String>{'CODE': 'code', 'ID_TOKEN': 'idToken'},
+    ),
+    'IamWorkforcePoolProviderScimUsage': MigrateEnum(
+      name: 'IamWorkforcePoolProviderScimUsage',
+      members: <String, String>{
+        'SCIM_USAGE_UNSPECIFIED': 'scimUsageUnspecified',
+        'ENABLED_FOR_GROUPS': 'enabledForGroups',
+      },
     ),
     'IamWorkloadIdentityPoolInlineCertificateIssuanceConfigKeyAlgorithm':
         MigrateEnum(

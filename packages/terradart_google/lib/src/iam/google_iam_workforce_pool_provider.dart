@@ -11,6 +11,17 @@ const Set<String> _googleIamWorkforcePoolProviderSensitive = <String>{
   'oidc.client_secret.value.plain_text',
 };
 
+/// `scim_usage` — whether authorization checks use SCIM-managed groups
+/// instead of the `google.groups` attribute mapping.
+enum IamWorkforcePoolProviderScimUsage implements TerraformEnum {
+  scimUsageUnspecified('SCIM_USAGE_UNSPECIFIED'),
+  enabledForGroups('ENABLED_FOR_GROUPS');
+
+  const IamWorkforcePoolProviderScimUsage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Exactly one of `saml`, `oidc` on `google_iam_workforce_pool_provider`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -591,7 +602,7 @@ final class GoogleIamWorkforcePoolProvider extends Resource {
     IamWorkforcePoolProviderExtraAttributesOauth2Client?
     extraAttributesOauth2Client,
     TfArg<bool>? detailedAuditLogging,
-    TfArg<String>? scimUsage,
+    TfArg<IamWorkforcePoolProviderScimUsage>? scimUsage,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -84,6 +84,7 @@ export 'src/iam/google_iam_workforce_pool_provider.dart'
         IamWorkforcePoolProviderOidcWebSsoConfigAssertionClaimsBehavior,
         IamWorkforcePoolProviderOidcWebSsoConfigResponseType,
         IamWorkforcePoolProviderSaml,
+        IamWorkforcePoolProviderScimUsage,
         IamWorkforcePoolProviderTrustSource,
         IamWorkforcePoolProviderTrustSourceOidc,
         IamWorkforcePoolProviderTrustSourceSaml;

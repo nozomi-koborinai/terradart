@@ -27912,6 +27912,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'scimUsage',
     ],
     nestedTypes: <String>[
+      'IamWorkforcePoolProviderScimUsage',
       'IamWorkforcePoolProviderTrustSource',
       'IamWorkforcePoolProviderTrustSourceSaml',
       'IamWorkforcePoolProviderTrustSourceOidc',
