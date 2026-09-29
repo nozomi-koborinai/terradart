@@ -19,6 +19,62 @@ output are the same. Raising your package's language version also switches
 `dart format` to the tall style, so expect a one-time reformat of your own
 code.
 
+### Arguments that name another resource take `RefTo<R>`
+
+**Breaking (`terradart_google`, `terradart_aws`, `terradart_cloudflare`)** —
+an argument that names another resource (`network`, `subnetwork`,
+`service_account`, `topic`, `bucket`, `role`, `vpc_id`, `security_group_ids`,
+`zone_id`, ...) takes a `RefTo<Target>` (a list of them for list arguments)
+instead of a `TfArg<String>`. Pass the target's `ref` getter: the argument
+picks the attribute it emits, so passing a subnetwork where a network is
+expected, or an `arn` where a `name` is expected, no longer compiles. The
+types covered, and the attribute each argument emits, are listed in
+[`tool/reference_targets.yaml`](tool/reference_targets.yaml): network,
+subnetwork, service account, KMS crypto key, bucket, Pub/Sub topic and
+BigQuery dataset on google; IAM role, KMS key, S3 bucket, subnet, security
+group, VPC, CloudWatch log group, SNS topic and Lambda function on aws;
+account and zone on cloudflare.
+
+| Before | After |
+|--------|-------|
+| `network: TfArg.ref(vpc.selfLink)` | `network: vpc.ref` |
+| `topic: TfArg.ref(topic.nameRef)` | `topic: topic.ref` |
+| `role: TfArg.ref(role.arn)` | `role: role.ref` |
+| `zoneId: TfArg.ref(zone.id)` | `zoneId: zone.ref` |
+| `network: TfArg.literal('default')` | `network: .literal('default')` |
+| `subnetIds: TfArg.literal([TfArg.ref(a.id), TfArg.ref(b.id)])` | `subnetIds: .literal([a.ref, b.ref])` |
+| `datasetId: TfArg.ref(ds.datasetIdRef)` (data source) | `datasetId: ds.ref` — a data source that reads the type has the same getter |
+| `bucket: TfArg.variable('bucket')` | `bucket: .variable('bucket')` |
+| `bucket: TfArg.ref(TfRef.attribute(module, 'bucket'))` (module output, another Stack) | `bucket: .arg(.ref(TfRef.attribute(module, 'bucket')))` |
+
+`RefTo.literal`, `RefTo.variable` and `RefTo.expression` (written `.literal`,
+`.variable`, `.expression` where the argument type is known) cover values
+that are not a block of the Stack, and `RefTo.arg(TfArg<String>)` takes any
+string argument unchecked. To keep emitting the attribute you passed before,
+pin it: `vpc.ref.pinned('self_link')`.
+
+**Synth output changes** where the old code passed a different attribute
+than the argument now emits. Every value below is one the provider accepts
+for that argument; `terraform plan` shows an in-place update (or none, where
+the provider normalizes the value) — pin the old attribute if you want no
+diff at all:
+
+- google `network` / `subnetwork` arguments emit `id`
+  (`projects/p/global/networks/n`) instead of `self_link` or `name`
+  (Compute, Cloud SQL, service networking, GKE, Oracle Database,
+  Network Connectivity, ...);
+- `topic` on `google_pubsub_subscription`, `google_pubsub_topic_iam_*` and
+  Cloud Asset feeds emits `id` instead of `name`;
+- `service_account` on `google_cloudbuild_trigger` emits `name` instead of
+  `id` (the same `projects/p/serviceAccounts/email` value);
+- `function_name` on `aws_lambda_permission` emits `function_name` instead
+  of `arn`.
+
+`terradart-migrate` writes `x.ref` for a reference to a migrated block,
+`x.ref.pinned('attr')` when the source reads another attribute, and
+`.literal` / `.variable` / `.expression` otherwise, so migrated stacks keep
+their synth output.
+
 ### Sealed arguments are built with dot shorthands
 
 **Breaking (`terradart_aws`, every package with a derived sealed type)** —

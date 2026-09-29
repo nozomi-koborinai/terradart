@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-- Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource will take. Additive.
+- Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource take.
+- **Breaking** — 292 arguments that name another resource (account and zone) take a `RefTo<Target>` instead of a `TfArg<String>`: `CloudflareDnsRecord(zoneId: zone.ref)`. The argument picks the attribute it emits; `.literal(...)`, `.variable(...)`, `.expression(...)` and `.arg(...)` take a value outside the Stack, and `.pinned('attr')` keeps emitting another attribute. See `MIGRATING.md`.
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). The generated wrappers were already formatted in the Dart 3.7+ tall style, so the constraint now matches them (pub.dev static analysis no longer reports a formatter mismatch).
 - **Breaking:** inputs the provider requires exactly one of are sealed types — 13 groups on 5 resources take one required argument (or helper field) whose variants each set one member (e.g. `CloudflareRuleset(scope: .zoneId(...))`, `CloudflareAccountMember(access: .roles(...))`). Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md).
 - **Breaking:** mutually exclusive inputs the provider also accepts none of are nullable sealed types — 14 groups on 8 resources (5 on resource arguments, 9 in nested blocks) take one optional argument (or helper field) whose variants each set one member (e.g. `CloudflareDnsRecord(content: .content(...))`, `CloudflareWorkersScript(content: .contentFile(...))`). Leave it out to set none. Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md).

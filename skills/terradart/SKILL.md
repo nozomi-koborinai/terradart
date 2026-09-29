@@ -59,7 +59,7 @@ rg -l "GooglePubsubTopic\(" examples/*/lib/main.dart
 
 ## 4. Write the stack
 
-- Pass values with `.literal(...)` and reference other resources with `.ref(other.someRef)`, so Terraform sees the dependency. These are dot shorthands for `TfArg.literal` / `TfArg.ref` (Dart 3.10): every argument is typed `TfArg<T>`, so write `type: .literal(.cname)`, not `TfArg.literal(DnsRecordType.cname)`. Spell out `TfArg.` only where there is no context type (`final x = TfArg.literal('a');`).
+- Pass values with `.literal(...)` and reference other resources with `.ref(other.someRef)`, so Terraform sees the dependency. These are dot shorthands for `TfArg.literal` / `TfArg.ref` (Dart 3.10): every argument is typed `TfArg<T>`, so write `type: .literal(.cname)`, not `TfArg.literal(DnsRecordType.cname)`. Spell out `TfArg.` only where there is no context type (`final x = TfArg.literal('a');`). An argument typed `RefTo<Target>` takes `target.ref` (or `.literal('...')` for a value outside the stack).
 - Do not declare Terraform variables. Use Dart values (constructor parameters, environment variables read in `bin/infra.dart`), not `${var.x}`.
 - Do not put credentials in the stack. The provider classes leave them out on purpose; `terraform apply` reads them from the environment.
 
