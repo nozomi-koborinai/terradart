@@ -2,6 +2,9 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../postgresql/appwrite_postgresql_database.dart'
+    show AppwritePostgresqlDatabase;
+import '../project/appwrite_project.dart' show AppwriteProject;
 
 /// Sensitive field paths for `appwrite_postgresql_backups`.
 const Set<String> _appwritePostgresqlBackupsSensitive = <String>{};
@@ -16,16 +19,16 @@ final class DataAppwritePostgresqlBackups extends Data {
 
   DataAppwritePostgresqlBackups({
     required super.localName,
-    required TfArg<String> databaseId,
-    TfArg<String>? projectId,
+    required RefTo<AppwritePostgresqlDatabase> databaseId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? queries,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'database_id': databaseId,
-           'project_id': ?projectId,
+           'database_id': databaseId.encodeAs('id'),
+           'project_id': ?projectId?.encodeAs('id'),
            'queries': ?queries,
          },
        );

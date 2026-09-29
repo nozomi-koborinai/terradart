@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+import '../tablesdb/appwrite_tablesdb.dart' show AppwriteTablesdb;
+import '../tablesdb/appwrite_tablesdb_table.dart' show AppwriteTablesdbTable;
+
 /// Sensitive field paths for `appwrite_tablesdb_column`.
 const Set<String> _appwriteTablesdbColumnSensitive = <String>{};
 
@@ -40,8 +44,8 @@ final class AppwriteTablesdbColumn extends Resource {
 
   AppwriteTablesdbColumn({
     required super.localName,
-    required TfArg<String> databaseId,
-    required TfArg<String> tableId,
+    required RefTo<AppwriteTablesdb> databaseId,
+    required RefTo<AppwriteTablesdbTable> tableId,
     required TfArg<TablesdbColumnType> type,
     TfArg<String>? key,
     TfArg<bool>? columnRequired,
@@ -55,11 +59,11 @@ final class AppwriteTablesdbColumn extends Resource {
     TfArg<num>? max,
     TfArg<num>? min,
     TfArg<String>? onDelete,
-    TfArg<String>? relatedTableId,
+    RefTo<AppwriteTablesdbTable>? relatedTableId,
     TfArg<String>? relationshipType,
     TfArg<bool>? twoWay,
     TfArg<String>? twoWayKey,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -67,8 +71,8 @@ final class AppwriteTablesdbColumn extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'database_id': databaseId,
-           'table_id': tableId,
+           'database_id': databaseId.encodeAs('id'),
+           'table_id': tableId.encodeAs('id'),
            'type': type,
            'key': ?key,
            if (columnRequired != null) 'required': columnRequired,
@@ -82,11 +86,11 @@ final class AppwriteTablesdbColumn extends Resource {
            'max': ?max,
            'min': ?min,
            'on_delete': ?onDelete,
-           'related_table_id': ?relatedTableId,
+           'related_table_id': ?relatedTableId?.encodeAs('id'),
            'relationship_type': ?relationshipType,
            'two_way': ?twoWay,
            'two_way_key': ?twoWayKey,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
          },
        );
 
