@@ -10,6 +10,7 @@ The GA `hashicorp/google` catalog is **filled** (alpha). The curation push is ov
 |------|---------|--------------------|
 | Schema bump, one job + PR per lane: google (+ google-beta ride-along), aws, cloudflare | Weekly, staggered: google Sundays, aws Mondays, cloudflare Tuesdays, 22:00 UTC ([`schema-bump.yml`](.github/workflows/schema-bump.yml), crons in `tool/providers.yaml` `bump:`) | the workflow opens the PR and enables auto-merge (squash) when the drift report finds nothing for a human; cloudflare (`bump.mode: pr-only`) and any other bump wait for the maintainer |
 | Wave shipping | On demand, when [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml) has entries | the maintainer, or a cloud agent asked to follow [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md) → an ordinary PR the maintainer merges |
+| Ledger paydown | Every release preparation (`dart tool/release_ledger_check.dart`, run by `tool/bump_version.sh`) | the release author pays down or accepts the schema-bump ledgers in the release PR ([`RELEASE.md`](RELEASE.md)) |
 
 Human / maintainer focus in this phase:
 
@@ -79,6 +80,7 @@ When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer 
 - `schema-bump.yml` is the only scheduled producer of PRs (`chore/schema-bump-*`), and the only one that enables auto-merge. Every other change, Waves included, comes from an ad-hoc session on a descriptive branch; the platform opens the PR and it is never auto-merged.
 - Emergency publish fixes still get a PR (can merge immediately after CI green); do not bypass review habit.
 - Release tags and GitHub release bodies follow [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md).
+- **Release preparation pays down the ledgers the schema bump fills.** No scheduled agent pays them down. `dart tool/release_ledger_check.dart`, which `tool/bump_version.sh` runs first, fails while [`tool/sealed_name_debt.yaml`](tool/sealed_name_debt.yaml) has an entry, because a temporary `Or` name must not ship. It also reports the `awaiting-example:` lines and [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml) entries, marking the ones new since the last tag. The release author pays those down or accepts them explicitly by putting the report in the release PR body ([`RELEASE.md`](RELEASE.md)). Normal PR CI never fails on a non-empty ledger.
 
 ## Override lint coverage (`exactly_one_of`)
 
