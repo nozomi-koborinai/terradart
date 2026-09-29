@@ -48,12 +48,11 @@ import 'naming.dart';
 String emitFilePrivateSensitiveSet(
   ResourceDef def, {
   List<String>? extraSensitiveFields,
-}) =>
-    _emit(
-      def,
-      constName: filePrivateSensitiveConstName(def.terraformType),
-      extraSensitiveFields: extraSensitiveFields,
-    );
+}) => _emit(
+  def,
+  constName: filePrivateSensitiveConstName(def.terraformType),
+  extraSensitiveFields: extraSensitiveFields,
+);
 
 /// Pre-Plan-5.X public-const form. Returned source is identical in
 /// structure to [emitFilePrivateSensitiveSet] but the const name has no
@@ -62,12 +61,11 @@ String emitFilePrivateSensitiveSet(
 String emitSensitiveStaticSet(
   ResourceDef def, {
   List<String>? extraSensitiveFields,
-}) =>
-    _emit(
-      def,
-      constName: sensitiveConstName(def.terraformType),
-      extraSensitiveFields: extraSensitiveFields,
-    );
+}) => _emit(
+  def,
+  constName: sensitiveConstName(def.terraformType),
+  extraSensitiveFields: extraSensitiveFields,
+);
 
 /// Returns the sorted, deduped list of sensitive field paths for [def].
 ///

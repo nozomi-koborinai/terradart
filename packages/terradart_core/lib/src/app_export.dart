@@ -104,8 +104,8 @@ final class ResourceIdExport extends AppExport {
     bool emitTerraformOutput = false,
     String? terraformOutputName,
     this.sensitive = false,
-  })  : _emitTerraformOutput = emitTerraformOutput,
-        _terraformOutputName = terraformOutputName;
+  }) : _emitTerraformOutput = emitTerraformOutput,
+       _terraformOutputName = terraformOutputName;
 
   final TfRef<String> ref;
 
@@ -152,8 +152,8 @@ final class ResourceAttributeExport<T> extends AppExport {
     bool emitTerraformOutput = false,
     String? terraformOutputName,
     this.sensitive = false,
-  })  : _emitTerraformOutput = emitTerraformOutput,
-        _terraformOutputName = terraformOutputName;
+  }) : _emitTerraformOutput = emitTerraformOutput,
+       _terraformOutputName = terraformOutputName;
 
   final TfRef<T> ref;
 
@@ -208,11 +208,7 @@ final class EnvBackedExport extends AppExport {
     this.description,
   }) {
     if (envVarName.isEmpty) {
-      throw ArgumentError.value(
-        envVarName,
-        'envVarName',
-        'must not be empty',
-      );
+      throw ArgumentError.value(envVarName, 'envVarName', 'must not be empty');
     }
     if (_unsafeInLiteral.hasMatch(envVarName)) {
       throw ArgumentError.value(

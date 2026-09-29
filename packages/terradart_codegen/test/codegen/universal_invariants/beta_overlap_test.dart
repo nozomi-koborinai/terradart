@@ -3,16 +3,15 @@ import 'package:terradart_codegen/src/codegen/universal_invariants/beta_overlap.
 import 'package:test/test.dart';
 
 Map<String, dynamic> schemaWith(String providerName, List<String> types) => {
-      'format_version': '1.0',
-      'provider_schemas': {
-        'registry.terraform.io/hashicorp/$providerName': {
-          'resource_schemas': {
-            for (final t in types)
-              t: {'version': 0, 'block': <String, dynamic>{}},
-          },
-        },
+  'format_version': '1.0',
+  'provider_schemas': {
+    'registry.terraform.io/hashicorp/$providerName': {
+      'resource_schemas': {
+        for (final t in types) t: {'version': 0, 'block': <String, dynamic>{}},
       },
-    };
+    },
+  },
+};
 
 void main() {
   test('disjoint schemas produce no overlap', () {
@@ -36,10 +35,7 @@ void main() {
   });
 
   test('empty or malformed schemas mean no overlap', () {
-    expect(
-      overlappingResourceTypes(gaSchema: {}, betaSchema: {}),
-      isEmpty,
-    );
+    expect(overlappingResourceTypes(gaSchema: {}, betaSchema: {}), isEmpty);
     expect(
       overlappingResourceTypes(
         gaSchema: {'provider_schemas': <String, dynamic>{}},

@@ -6,7 +6,7 @@ Parameter *versions* (which hold the payload) are tracked in `tool/example_debt.
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with credentials configured (`gcloud auth application-default login`). The Parameter Manager API is enabled by the stack.
 

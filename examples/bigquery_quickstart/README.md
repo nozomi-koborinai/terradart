@@ -8,7 +8,7 @@ The data policy and Analytics Hub resources need a project that belongs to an or
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the BigQuery API enabled and credentials configured (`gcloud auth application-default login`).
 

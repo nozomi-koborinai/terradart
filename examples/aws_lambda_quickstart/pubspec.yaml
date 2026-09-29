@@ -3,7 +3,7 @@ description: Smallest terradart_aws example -- a Dart AOT binary on the Lambda p
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

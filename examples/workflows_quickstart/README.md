@@ -4,7 +4,7 @@ End-to-end terradart example for Workflows. Enables the Workflows API and provis
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with credentials configured (`gcloud auth application-default login`). The Workflows API is enabled by the stack.
 

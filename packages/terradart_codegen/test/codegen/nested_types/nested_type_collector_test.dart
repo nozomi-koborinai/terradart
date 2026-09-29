@@ -14,14 +14,14 @@ const _schemaPath = 'test/fixtures/wrap/source/schema.json';
 Map<String, dynamic> _blockOf(String terraformType) {
   final decoded =
       jsonDecode(File(_schemaPath).readAsStringSync()) as Map<String, dynamic>;
-  final providerSchemas =
-      (decoded['provider_schemas'] as Map).cast<String, dynamic>();
-  final providerBody =
-      (providerSchemas.values.single as Map).cast<String, dynamic>();
-  final resourceSchemas =
-      (providerBody['resource_schemas'] as Map).cast<String, dynamic>();
-  final resource =
-      (resourceSchemas[terraformType] as Map).cast<String, dynamic>();
+  final providerSchemas = (decoded['provider_schemas'] as Map)
+      .cast<String, dynamic>();
+  final providerBody = (providerSchemas.values.single as Map)
+      .cast<String, dynamic>();
+  final resourceSchemas = (providerBody['resource_schemas'] as Map)
+      .cast<String, dynamic>();
+  final resource = (resourceSchemas[terraformType] as Map)
+      .cast<String, dynamic>();
   return (resource['block'] as Map).cast<String, dynamic>();
 }
 
@@ -40,8 +40,7 @@ String _resourcePrefixOf(String terraformType) {
 }
 
 void main() {
-  test(
-      'google_app_engine_domain_mapping: ssl_settings becomes the only '
+  test('google_app_engine_domain_mapping: ssl_settings becomes the only '
       'nested spec (timeouts filtered, computed-only attr dropped, enum '
       'detected)', () {
     const terraformType = 'google_app_engine_domain_mapping';
@@ -66,8 +65,9 @@ void main() {
     expect(sslSettings.children, isEmpty);
     expect(sslSettings.excludedChildren, isEmpty);
 
-    final sslManagementType =
-        sslSettings.attrs.firstWhere((a) => a.tfName == 'ssl_management_type');
+    final sslManagementType = sslSettings.attrs.firstWhere(
+      (a) => a.tfName == 'ssl_management_type',
+    );
     expect(sslManagementType.dartName, 'sslManagementType');
     expect(sslManagementType.required, isTrue);
     expect(sslManagementType.enumValues, ['AUTOMATIC', 'MANUAL']);
@@ -76,8 +76,9 @@ void main() {
       'AppEngineDomainMappingSslSettingsSslManagementType',
     );
 
-    final certificateId =
-        sslSettings.attrs.firstWhere((a) => a.tfName == 'certificate_id');
+    final certificateId = sslSettings.attrs.firstWhere(
+      (a) => a.tfName == 'certificate_id',
+    );
     expect(certificateId.dartName, 'certificateId');
     // optional + computed -> kept, not required.
     expect(certificateId.required, isFalse);
@@ -87,14 +88,14 @@ void main() {
     // pending_managed_certificate_id is computed-only (computed, neither
     // optional nor required) and must be dropped entirely.
     expect(
-      sslSettings.attrs
-          .any((a) => a.tfName == 'pending_managed_certificate_id'),
+      sslSettings.attrs.any(
+        (a) => a.tfName == 'pending_managed_certificate_id',
+      ),
       isFalse,
     );
   });
 
-  test(
-      'google_access_context_manager_access_level: excludedPaths records '
+  test('google_access_context_manager_access_level: excludedPaths records '
       'the child by name without descending, customSlot keys hide the '
       'whole subtree, and a max_items-less list block is repeated', () {
     const terraformType = 'google_access_context_manager_access_level';
@@ -130,8 +131,9 @@ void main() {
       customSlotKeys: const {},
       excludedPaths: const {},
     );
-    final unrestrictedBasic =
-        unrestricted.firstWhere((s) => s.tfName == 'basic');
+    final unrestrictedBasic = unrestricted.firstWhere(
+      (s) => s.tfName == 'basic',
+    );
     // `basic` carries both its own attribute (combining_function) AND a
     // nested block (conditions) — the recursion must produce both from the
     // same block map, not just one or the other.
@@ -139,8 +141,9 @@ void main() {
       unrestrictedBasic.attrs.any((a) => a.tfName == 'combining_function'),
       isTrue,
     );
-    final conditions =
-        unrestrictedBasic.children.firstWhere((c) => c.tfName == 'conditions');
+    final conditions = unrestrictedBasic.children.firstWhere(
+      (c) => c.tfName == 'conditions',
+    );
     expect(conditions.repeated, isTrue);
     expect(conditions.required, isTrue);
 
@@ -167,11 +170,13 @@ void main() {
       customSlotKeys: const {'conditions'},
       excludedPaths: const {},
     );
-    final basicWithNestedCustomSlot =
-        withNestedCustomSlot.firstWhere((s) => s.tfName == 'basic');
+    final basicWithNestedCustomSlot = withNestedCustomSlot.firstWhere(
+      (s) => s.tfName == 'basic',
+    );
     expect(
-      basicWithNestedCustomSlot.attrs
-          .any((a) => a.tfName == 'combining_function'),
+      basicWithNestedCustomSlot.attrs.any(
+        (a) => a.tfName == 'combining_function',
+      ),
       isTrue,
     );
     expect(
@@ -181,8 +186,7 @@ void main() {
     expect(basicWithNestedCustomSlot.excludedChildren, isEmpty);
   });
 
-  test(
-      'google_os_config_patch_deployment: a list(string) attr with an enum '
+  test('google_os_config_patch_deployment: a list(string) attr with an enum '
       'description becomes a first-class repeated enum, not a scalar one', () {
     const terraformType = 'google_os_config_patch_deployment';
     final specs = collectNestedTypes(
@@ -193,8 +197,9 @@ void main() {
     );
 
     final patchConfig = specs.firstWhere((s) => s.tfName == 'patch_config');
-    final windowsUpdate =
-        patchConfig.children.firstWhere((c) => c.tfName == 'windows_update');
+    final windowsUpdate = patchConfig.children.firstWhere(
+      (c) => c.tfName == 'windows_update',
+    );
     expect(windowsUpdate.path, ['patch_config', 'windows_update']);
     expect(
       windowsUpdate.className,
@@ -205,8 +210,9 @@ void main() {
     // [...]" description — schema type AND description agree it's a
     // repeated enum, so it must render as one (not a self-contradictory
     // scalar enum dartType on a list-typed field).
-    final classifications =
-        windowsUpdate.attrs.firstWhere((a) => a.tfName == 'classifications');
+    final classifications = windowsUpdate.attrs.firstWhere(
+      (a) => a.tfName == 'classifications',
+    );
     expect(classifications.dartName, 'classifications');
     expect(classifications.required, isFalse);
     expect(classifications.repeated, isTrue);
@@ -227,8 +233,7 @@ void main() {
     );
   });
 
-  test(
-      'google_access_context_manager_access_level: both device_policy '
+  test('google_access_context_manager_access_level: both device_policy '
       'allow-lists become repeated enums when the conditions subtree is '
       'not excluded', () {
     const terraformType = 'google_access_context_manager_access_level';
@@ -240,17 +245,20 @@ void main() {
     );
 
     final basic = specs.firstWhere((s) => s.tfName == 'basic');
-    final conditions =
-        basic.children.firstWhere((c) => c.tfName == 'conditions');
-    final devicePolicy =
-        conditions.children.firstWhere((c) => c.tfName == 'device_policy');
+    final conditions = basic.children.firstWhere(
+      (c) => c.tfName == 'conditions',
+    );
+    final devicePolicy = conditions.children.firstWhere(
+      (c) => c.tfName == 'device_policy',
+    );
     expect(
       devicePolicy.className,
       'AccessContextManagerAccessLevelBasicConditionsDevicePolicy',
     );
 
-    final managementLevels = devicePolicy.attrs
-        .firstWhere((a) => a.tfName == 'allowed_device_management_levels');
+    final managementLevels = devicePolicy.attrs.firstWhere(
+      (a) => a.tfName == 'allowed_device_management_levels',
+    );
     expect(managementLevels.repeated, isTrue);
     expect(managementLevels.enumValues, [
       'MANAGEMENT_UNSPECIFIED',
@@ -264,8 +272,9 @@ void main() {
       'AllowedDeviceManagementLevels',
     );
 
-    final encryptionStatuses = devicePolicy.attrs
-        .firstWhere((a) => a.tfName == 'allowed_encryption_statuses');
+    final encryptionStatuses = devicePolicy.attrs.firstWhere(
+      (a) => a.tfName == 'allowed_encryption_statuses',
+    );
     expect(encryptionStatuses.repeated, isTrue);
     expect(encryptionStatuses.enumValues, [
       'ENCRYPTION_UNSPECIFIED',
@@ -282,15 +291,15 @@ void main() {
     // A plain list(string) with NO enum description must still fall back
     // to the conservative shape, not be swept up by the new repeated-enum
     // branch.
-    final ipSubnetworks =
-        conditions.attrs.firstWhere((a) => a.tfName == 'ip_subnetworks');
+    final ipSubnetworks = conditions.attrs.firstWhere(
+      (a) => a.tfName == 'ip_subnetworks',
+    );
     expect(ipSubnetworks.repeated, isFalse);
     expect(ipSubnetworks.enumValues, isNull);
     expect(ipSubnetworks.dartType, 'List<Object?>');
   });
 
-  test(
-      'google_os_config_os_policy_assignment: an excluded child that is '
+  test('google_os_config_os_policy_assignment: an excluded child that is '
       'itself required-and-repeated keeps that cardinality (Task 5 flip — '
       'the real nestedTypeExcludes target)', () {
     const terraformType = 'google_os_config_os_policy_assignment';
@@ -302,8 +311,9 @@ void main() {
     );
 
     final osPolicies = specs.firstWhere((s) => s.tfName == 'os_policies');
-    final resourceGroups =
-        osPolicies.children.firstWhere((c) => c.tfName == 'resource_groups');
+    final resourceGroups = osPolicies.children.firstWhere(
+      (c) => c.tfName == 'resource_groups',
+    );
     // `resources` is NOT descended into...
     expect(
       resourceGroups.children.any((c) => c.tfName == 'resources'),
@@ -314,14 +324,14 @@ void main() {
     // repeated. Forcing this to a scalar-optional passthrough (the pre-fix
     // behavior) would make the opaque field unable to hold more than one
     // resource per group, silently narrowing what the API allows.
-    final excludedResources = resourceGroups.excludedChildren
-        .firstWhere((c) => c.tfName == 'resources');
+    final excludedResources = resourceGroups.excludedChildren.firstWhere(
+      (c) => c.tfName == 'resources',
+    );
     expect(excludedResources.repeated, isTrue);
     expect(excludedResources.required, isTrue);
   });
 
-  test(
-      'plugin-framework nested_type objects become specs; computed-only '
+  test('plugin-framework nested_type objects become specs; computed-only '
       'objects are skipped (Cloudflare zone/dns shape)', () {
     const zoneBlock = {
       'attributes': {
@@ -379,7 +389,7 @@ void main() {
               'flatten_cname': {
                 'type': 'bool',
                 'optional': true,
-                'computed': true
+                'computed': true,
               },
             },
             'nesting_mode': 'single',
@@ -395,8 +405,10 @@ void main() {
       customSlotKeys: const {},
       excludedPaths: const {},
     );
-    expect(
-        dnsSpecs.map((s) => s.tfName).toList()..sort(), ['data', 'settings']);
+    expect(dnsSpecs.map((s) => s.tfName).toList()..sort(), [
+      'data',
+      'settings',
+    ]);
   });
 
   test('a nesting_mode map nested_type is keyed, never repeated', () {
@@ -439,10 +451,7 @@ void main() {
     final excluded = collectNestedTypes(
       resourceBlock: const {
         'block_types': {
-          'outer': {
-            'nesting_mode': 'single',
-            'block': block,
-          },
+          'outer': {'nesting_mode': 'single', 'block': block},
         },
       },
       resourcePrefix: 'X',
@@ -496,8 +505,10 @@ void main() {
       );
       final source = renderNestedTypes(specs, resourceTerraformType: 'res');
       return [
-        for (final m in RegExp(r'^final class (\w+)', multiLine: true)
-            .allMatches(source))
+        for (final m in RegExp(
+          r'^final class (\w+)',
+          multiLine: true,
+        ).allMatches(source))
           m.group(1)!,
       ];
     }

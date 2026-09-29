@@ -46,17 +46,11 @@ void main() {
           'terraform': {
             'required_version': '>= 1.11.0',
             'required_providers': {
-              'google': {
-                'source': 'hashicorp/google',
-                'version': '~> 7.0',
-              },
+              'google': {'source': 'hashicorp/google', 'version': '~> 7.0'},
             },
           },
           'provider': {
-            'google': {
-              'project': 'orders-prod-1234',
-              'region': 'us-central1',
-            },
+            'google': {'project': 'orders-prod-1234', 'region': 'us-central1'},
           },
           'resource': {
             'google_pubsub_topic': {
@@ -111,45 +105,47 @@ abstract final class OrdersExports {
       );
     });
 
-    test('computed-ref ResourceIdExport -> Terraform output, no Dart const',
-        () {
-      final stack = TestStack(
-        providers: const [
-          FakeStackProvider(
-            providerName: 'google',
-            source: 'hashicorp/google',
-            versionConstraint: '~> 7.0',
+    test(
+      'computed-ref ResourceIdExport -> Terraform output, no Dart const',
+      () {
+        final stack = TestStack(
+          providers: const [
+            FakeStackProvider(
+              providerName: 'google',
+              source: 'hashicorp/google',
+              versionConstraint: '~> 7.0',
+            ),
+          ],
+        );
+        final topic = stack.add(
+          FakePubsubTopic(
+            localName: 'orders',
+            argMap: const {'name': TfArgLiteral<String>('orders-prod')},
           ),
-        ],
-      );
-      final topic = stack.add(
-        FakePubsubTopic(
-          localName: 'orders',
-          argMap: const {'name': TfArgLiteral<String>('orders-prod')},
-        ),
-      );
-      stack.addExport(
-        'ordersTopicId',
-        ResourceIdExport(
-          TfRef.attribute<String>(topic, 'id'),
-          emitTerraformOutput: true,
-          description: 'Computed topic id.',
-        ),
-      );
+        );
+        stack.addExport(
+          'ordersTopicId',
+          ResourceIdExport(
+            TfRef.attribute<String>(topic, 'id'),
+            emitTerraformOutput: true,
+            description: 'Computed topic id.',
+          ),
+        );
 
-      final result = StackSynth.synth(stack);
+        final result = StackSynth.synth(stack);
 
-      expect(result.dartConstants, isNull);
-      expect(
-        result.tfJson['output'],
-        equals({
-          'ordersTopicId': {
-            'value': r'${google_pubsub_topic.orders.id}',
-            'description': 'Computed topic id.',
-          },
-        }),
-      );
-    });
+        expect(result.dartConstants, isNull);
+        expect(
+          result.tfJson['output'],
+          equals({
+            'ordersTopicId': {
+              'value': r'${google_pubsub_topic.orders.id}',
+              'description': 'Computed topic id.',
+            },
+          }),
+        );
+      },
+    );
 
     test('sensitive ResourceIdExport -> sensitive output only', () {
       final stack = TestStack(
@@ -222,18 +218,16 @@ abstract final class OrdersExports {
 
       final result = StackSynth.synth(stack);
 
-      final auditBlock = (result.tfJson['resource']
-              as Map<String, dynamic>)['google_pubsub_topic']['audit']
-          as Map<String, dynamic>;
+      final auditBlock =
+          (result.tfJson['resource']
+                  as Map<String, dynamic>)['google_pubsub_topic']['audit']
+              as Map<String, dynamic>;
       final lifecycle = auditBlock['lifecycle'] as Map<String, dynamic>;
       expect(
         lifecycle['replace_triggered_by'],
         equals(['google_pubsub_topic.orders.id']),
       );
-      expect(
-        auditBlock['depends_on'],
-        equals(['google_pubsub_topic.orders']),
-      );
+      expect(auditBlock['depends_on'], equals(['google_pubsub_topic.orders']));
       // Critical: NEITHER value is wrapped in ${}.
       final replace = lifecycle['replace_triggered_by']! as List<dynamic>;
       expect(replace[0], isNot(startsWith(r'${')));
@@ -254,9 +248,7 @@ abstract final class OrdersExports {
       stack.addData(
         FakeProjectData(
           localName: 'this',
-          argMap: const {
-            'project_id': TfArgLiteral<String>('orders-prod'),
-          },
+          argMap: const {'project_id': TfArgLiteral<String>('orders-prod')},
         ),
       );
       stack.add(
@@ -357,13 +349,12 @@ abstract final class OrdersExports {
       );
 
       final result = StackSynth.synth(stack);
-      final resourceTopic = ((result.tfJson['resource']
-              as Map<String, dynamic>)['google_pubsub_topic']
-          as Map<String, dynamic>)['orders'] as Map<String, dynamic>;
-      expect(
-        resourceTopic['message_retention_duration'],
-        equals('604800s'),
-      );
+      final resourceTopic =
+          ((result.tfJson['resource']
+                      as Map<String, dynamic>)['google_pubsub_topic']
+                  as Map<String, dynamic>)['orders']
+              as Map<String, dynamic>;
+      expect(resourceTopic['message_retention_duration'], equals('604800s'));
     });
 
     test('synth output is JSON-encodable', () {
@@ -410,9 +401,7 @@ abstract final class OrdersExports {
           localName: 'worker',
           argMap: {
             'name': const TfArgLiteral<String>('orders-worker-prod'),
-            'topic': TfArgRef<String>(
-              TfRef.attribute<String>(topic, 'id'),
-            ),
+            'topic': TfArgRef<String>(TfRef.attribute<String>(topic, 'id')),
           },
         ),
       );
@@ -466,9 +455,7 @@ abstract final class OrdersExports {
       expect(
         result.tfJson['output'],
         equals({
-          'ordersTopicName': {
-            'value': r'${google_pubsub_topic.orders.name}',
-          },
+          'ordersTopicName': {'value': r'${google_pubsub_topic.orders.name}'},
         }),
       );
     });
@@ -502,10 +489,7 @@ abstract final class OrdersExports {
         const JsonEncoder.withIndent('  ').convert(r.tfJson),
       );
       expect(await tfFile.exists(), isTrue);
-      expect(
-        jsonDecode(await tfFile.readAsString()),
-        equals(r.tfJson),
-      );
+      expect(jsonDecode(await tfFile.readAsString()), equals(r.tfJson));
 
       if (r.dartConstants != null && r.dartConstantsPath != null) {
         final dartFile = File(r.dartConstantsPath!);

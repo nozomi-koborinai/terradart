@@ -52,8 +52,8 @@ String nestedParamType(NestedBlockSpec s) => '${_bareNestedType(s)}?';
 String _bareNestedType(NestedBlockSpec s) => s.repeated
     ? 'List<${s.className}>'
     : s.keyed
-        ? 'Map<String, ${s.className}>'
-        : s.className;
+    ? 'Map<String, ${s.className}>'
+    : s.className;
 
 /// Constructor-param + argMap-entry snippets for a TOP-LEVEL derived nested
 /// slot on a resource or data-source wrapper.
@@ -69,13 +69,14 @@ String _bareNestedType(NestedBlockSpec s) => s.repeated
   final dartName = snakeToDartIdent(spec.tfName);
   final nullableType = nestedParamType(spec);
   final bareType = nullableType.substring(0, nullableType.length - 1);
-  final param =
-      isRequired ? 'required $bareType $dartName' : '$nullableType $dartName';
+  final param = isRequired
+      ? 'required $bareType $dartName'
+      : '$nullableType $dartName';
   final encodeExpr = spec.repeated
       ? '[for (final e in $dartName) e.encode()]'
       : spec.keyed
-          ? '{for (final e in $dartName.entries) e.key: e.value.encode()}'
-          : '$dartName.encode()';
+      ? '{for (final e in $dartName.entries) e.key: e.value.encode()}'
+      : '$dartName.encode()';
   final entry = "'${spec.tfName}': TfArg.literal($encodeExpr),";
   final argMapEntry = isRequired ? entry : 'if ($dartName != null) $entry';
   return (param: param, argMapEntry: argMapEntry);
@@ -99,13 +100,16 @@ String _renderBlockTree(
   for (final group in layout.sealed) {
     buf
       ..writeln()
-      ..write(renderExactlyOneTypes(
-        prefix: spec.className,
-        members: group.members,
-        where: 'the `${spec.path.join('.')}` block of `$resourceTerraformType`',
-        variants: group.variants,
-        optional: group.optional,
-      ));
+      ..write(
+        renderExactlyOneTypes(
+          prefix: spec.className,
+          members: group.members,
+          where:
+              'the `${spec.path.join('.')}` block of `$resourceTerraformType`',
+          variants: group.variants,
+          optional: group.optional,
+        ),
+      );
   }
 
   final enumAttrs = _byTfName(
@@ -118,8 +122,10 @@ String _renderBlockTree(
       ..write(_renderEnum(attr));
   }
 
-  for (final child
-      in _byTfName(spec.children, (NestedBlockSpec s) => s.tfName)) {
+  for (final child in _byTfName(
+    spec.children,
+    (NestedBlockSpec s) => s.tfName,
+  )) {
     final tree = _renderBlockTree(child, resourceTerraformType, rendered);
     if (tree.isEmpty) continue;
     buf
@@ -194,12 +200,15 @@ String _renderEnum(NestedAttrSpec attr) {
   final members = enumMemberNames(values);
   final buf = StringBuffer()
     ..writeln(
-        '/// `${attr.tfName}` — derived from the provider schema description.')
+      '/// `${attr.tfName}` — derived from the provider schema description.',
+    )
     ..writeln('enum ${attr.dartType} implements TerraformEnum {');
   for (var i = 0; i < values.length; i++) {
     final isLast = i == values.length - 1;
-    buf.writeln("  ${members[i]}('${dartSingleQuotedBody(values[i])}')"
-        "${isLast ? ';' : ','}");
+    buf.writeln(
+      "  ${members[i]}('${dartSingleQuotedBody(values[i])}')"
+      "${isLast ? ';' : ','}",
+    );
   }
   buf
     ..writeln()
@@ -295,7 +304,8 @@ typedef _SealedGroup = ({
   List<_SealedGroup> sealed,
   List<String> skipped,
   List<String> skippedAtMostOne,
-}) _layout(NestedBlockSpec spec) {
+})
+_layout(NestedBlockSpec spec) {
   final members = _members(spec);
   final byName = {for (final m in members) m.tfName: m};
   final taken = <String>{};
@@ -324,8 +334,9 @@ typedef _SealedGroup = ({
       if (reason != null) break;
     }
     if (reason != null) {
-      (optional ? skippedAtMostOne : skipped)
-          .add('${spec.path.join('.')} [${group.join(', ')}]: $reason');
+      (optional ? skippedAtMostOne : skipped).add(
+        '${spec.path.join('.')} [${group.join(', ')}]: $reason',
+      );
       continue;
     }
     taken.addAll(group);
@@ -341,21 +352,23 @@ typedef _SealedGroup = ({
   for (final m in members) {
     final g = firstOf[m.tfName];
     if (g != null) {
-      final ident = safeDartIdentifier(snakeToCamel(
-        exactlyOneSlotName(g.members),
-      ));
+      final ident = safeDartIdentifier(
+        snakeToCamel(exactlyOneSlotName(g.members)),
+      );
       final type = exactlyOneSealedName(spec.className, g.members);
-      plans.add(g.optional
-          ? (
-              ctorParam: 'this.$ident,',
-              fieldDecl: 'final $type? $ident;',
-              encodeEntry: '...?$ident?.encode(),',
-            )
-          : (
-              ctorParam: 'required this.$ident,',
-              fieldDecl: 'final $type $ident;',
-              encodeEntry: '...$ident.encode(),',
-            ));
+      plans.add(
+        g.optional
+            ? (
+                ctorParam: 'this.$ident,',
+                fieldDecl: 'final $type? $ident;',
+                encodeEntry: '...?$ident?.encode(),',
+              )
+            : (
+                ctorParam: 'required this.$ident,',
+                fieldDecl: 'final $type $ident;',
+                encodeEntry: '...$ident.encode(),',
+              ),
+      );
     } else if (!taken.contains(m.tfName)) {
       plans.add(m.plan);
     }
@@ -420,34 +433,35 @@ ExactlyOneVariant _variant({
     tfName: tfName,
     ident: ident,
     fieldType: repeated ? 'List<$elementDartType>' : elementDartType,
-    encodeExpr:
-        repeated ? '[for (final e in $ident) e$accessor]' : '$ident$accessor',
+    encodeExpr: repeated
+        ? '[for (final e in $ident) e$accessor]'
+        : '$ident$accessor',
     argMapExpr: null,
     deprecation: null,
   );
 }
 
 _FieldPlan _planAttr(NestedAttrSpec attr) => _plan(
-      dartName: attr.dartName,
-      tfName: attr.tfName,
-      elementType: attr.dartType,
-      required: attr.required,
-      repeated: attr.repeated,
-      keyed: false,
-      wrapInTfArg: true,
-    );
+  dartName: attr.dartName,
+  tfName: attr.tfName,
+  elementType: attr.dartType,
+  required: attr.required,
+  repeated: attr.repeated,
+  keyed: false,
+  wrapInTfArg: true,
+);
 
 /// A derived nested child renders as a bare (non-`TfArg`) class reference —
 /// see [nestedParamType] — and encodes via its own `.encode()`.
 _FieldPlan _planChild(NestedBlockSpec child) => _plan(
-      dartName: snakeToCamel(child.tfName),
-      tfName: child.tfName,
-      elementType: child.className,
-      required: child.required,
-      repeated: child.repeated,
-      keyed: child.keyed,
-      wrapInTfArg: false,
-    );
+  dartName: snakeToCamel(child.tfName),
+  tfName: child.tfName,
+  elementType: child.className,
+  required: child.required,
+  repeated: child.repeated,
+  keyed: child.keyed,
+  wrapInTfArg: false,
+);
 
 /// An excluded child (its subtree wasn't collected — see
 /// [NestedBlockSpec.excludedChildren]) renders as an opaque `TfArg`
@@ -467,18 +481,22 @@ _FieldPlan _planChild(NestedBlockSpec child) => _plan(
 /// `TfArg.literal([{...}, {...}])`), not the latter.
 _FieldPlan _planExcludedChild(ExcludedNestedBlock excluded) {
   final dartName = safeDartIdentifier(snakeToCamel(excluded.tfName));
-  final innerType =
-      excluded.repeated ? 'List<Map<String, dynamic>>' : 'Map<String, dynamic>';
-  final fieldType =
-      excluded.required ? 'TfArg<$innerType>' : 'TfArg<$innerType>?';
-  final ctorParam =
-      excluded.required ? 'required this.$dartName,' : 'this.$dartName,';
+  final innerType = excluded.repeated
+      ? 'List<Map<String, dynamic>>'
+      : 'Map<String, dynamic>';
+  final fieldType = excluded.required
+      ? 'TfArg<$innerType>'
+      : 'TfArg<$innerType>?';
+  final ctorParam = excluded.required
+      ? 'required this.$dartName,'
+      : 'this.$dartName,';
   final fieldDecl = 'final $fieldType $dartName;';
 
   final accessExpr = excluded.required ? dartName : '$dartName!';
   final entry = "'${excluded.tfName}': $accessExpr.toTfJson(),";
-  final encodeEntry =
-      excluded.required ? entry : 'if ($dartName != null) $entry';
+  final encodeEntry = excluded.required
+      ? entry
+      : 'if ($dartName != null) $entry';
 
   return (ctorParam: ctorParam, fieldDecl: fieldDecl, encodeEntry: encodeEntry);
 }
@@ -507,8 +525,8 @@ _FieldPlan _plan({
   final bareFieldType = repeated
       ? 'List<$elementDartType>'
       : keyed
-          ? 'Map<String, $elementDartType>'
-          : elementDartType;
+      ? 'Map<String, $elementDartType>'
+      : elementDartType;
   final fieldType = required ? bareFieldType : '$bareFieldType?';
 
   final ctorParam = required ? 'required this.$ident,' : 'this.$ident,';

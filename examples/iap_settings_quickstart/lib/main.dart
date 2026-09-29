@@ -16,10 +16,7 @@ import 'package:terradart_google/iap.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -33,11 +30,9 @@ String _iamPolicyDataJson({
 /// IAP settings stack: project-level web settings + location-web IAM.
 final class IapSettingsStack extends Stack {
   IapSettingsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiIap = add(
       GoogleProjectService(
         localName: 'api_iap',
@@ -77,10 +72,7 @@ final class IapSettingsStack extends Stack {
         location: TfArg.literal('us-central1'),
         role: TfArg.literal('roles/iap.httpsResourceAccessor'),
         members: TfArg.literal([webInvoker.iamMember.interpolation]),
-        dependsOn: [
-          ResourceDependency(apiIap),
-          ResourceDependency(webInvoker),
-        ],
+        dependsOn: [ResourceDependency(apiIap), ResourceDependency(webInvoker)],
       ),
     );
 

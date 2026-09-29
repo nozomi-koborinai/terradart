@@ -28,7 +28,7 @@ Workload identity pools and providers are soft-deleted for 30 days, so applying 
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with Pub/Sub, Cloud Tasks, Secret Manager, and IAM APIs enabled.
 

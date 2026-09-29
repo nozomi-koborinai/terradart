@@ -74,8 +74,9 @@ void main() {
         port: TfArg.literal(8080),
       ),
     );
-    final protocolKeys =
-        hc.argMap.keys.where((k) => k.endsWith('_health_check')).toList();
+    final protocolKeys = hc.argMap.keys
+        .where((k) => k.endsWith('_health_check'))
+        .toList();
     expect(protocolKeys, equals(['http_health_check']));
     expect(
       hc.argMap['http_health_check']!.toTfJson(),

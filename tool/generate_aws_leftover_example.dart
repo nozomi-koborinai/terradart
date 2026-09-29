@@ -1,4 +1,5 @@
 #!/usr/bin/env dart
+
 // Generates examples/aws_leftover_quickstart/lib/main.dart: one constructor
 // call per AWS factory (resource or data source) that no other example
 // covers. Dummy values satisfy the Dart types and the provider's
@@ -53,17 +54,18 @@ const _secretVarRef = "TfArg.variable('$_secretVar')";
 
 void main() {
   final catalogued = catalogClassNames(_srcRoot);
-  final files = Directory(_srcRoot)
-      .listSync(recursive: true)
-      .whereType<File>()
-      .where(
-        (f) =>
-            f.path.endsWith('.dart') &&
-            !f.path.endsWith('_catalog.g.dart') &&
-            !f.path.endsWith('catalog_entry.dart'),
-      )
-      .toList()
-    ..sort((a, b) => a.path.compareTo(b.path));
+  final files =
+      Directory(_srcRoot)
+          .listSync(recursive: true)
+          .whereType<File>()
+          .where(
+            (f) =>
+                f.path.endsWith('.dart') &&
+                !f.path.endsWith('_catalog.g.dart') &&
+                !f.path.endsWith('catalog_entry.dart'),
+          )
+          .toList()
+        ..sort((a, b) => a.path.compareTo(b.path));
 
   final parsedFiles = <String, _ParsedFile>{};
   for (final file in files) {
@@ -108,9 +110,7 @@ void main() {
 
   final usedLocals = <String>{};
   final buf = StringBuffer()
-    ..writeln(
-      '// GENERATED — dart run tool/generate_aws_leftover_example.dart',
-    )
+    ..writeln('// GENERATED — dart run tool/generate_aws_leftover_example.dart')
     ..writeln('// ignore_for_file: unused_element')
     ..writeln()
     ..writeln(
@@ -120,9 +120,7 @@ void main() {
     ..writeln('/// Never apply.')
     ..writeln('library;')
     ..writeln()
-    ..writeln(
-      "import 'package:terradart_aws/terradart_aws.dart';",
-    )
+    ..writeln("import 'package:terradart_aws/terradart_aws.dart';")
     ..writeln("import 'package:terradart_core/terradart_core.dart';")
     ..writeln()
     ..writeln('final class AwsLeftoverStack extends Stack {')
@@ -177,11 +175,12 @@ void main() {
     ..._literalByKey.keys,
     ..._extraParams.keys,
     ..._listCounts.keys,
-  }.difference(_usedKeys).toList()
-    ..sort();
+  }.difference(_usedKeys).toList()..sort();
   if (stale.isNotEmpty) {
-    stderr.writeln('Unused _literalByKey / _extraParams / _listCounts keys:\n  '
-        '${stale.join('\n  ')}');
+    stderr.writeln(
+      'Unused _literalByKey / _extraParams / _listCounts keys:\n  '
+      '${stale.join('\n  ')}',
+    );
     exit(1);
   }
 
@@ -892,14 +891,13 @@ bool _isSealedMember(
   List<_Param> params,
   String name,
   Map<String, _ClassInfo> helpers,
-) =>
-    params.any(
-      (p) =>
-          _sealedVariants[p.type.replaceFirst(RegExp(r'\?$'), '')]?.any(
-            (v) => helpers[v]!.requiredParams.single.name == name,
-          ) ??
-          false,
-    );
+) => params.any(
+  (p) =>
+      _sealedVariants[p.type.replaceFirst(RegExp(r'\?$'), '')]?.any(
+        (v) => helpers[v]!.requiredParams.single.name == name,
+      ) ??
+      false,
+);
 
 /// The optional parameters [extras] names on [owner]: the parameter
 /// itself, or the optional sealed parameter one of whose variants sets it.
@@ -918,7 +916,8 @@ List<_Param> _extraSlots(
     if (required.any((p) => p.name == name)) {
       throw StateError('$owner.$name is not an optional parameter');
     }
-    final slot = optional.where((p) => p.name == name).firstOrNull ??
+    final slot =
+        optional.where((p) => p.name == name).firstOrNull ??
         optional
             .where((p) => _isSealedMember([p], name, helpers))
             .firstOrNull ??
@@ -988,8 +987,9 @@ int _matchBrace(String src, int open) {
 }
 
 String _uniqueLocal(String tfType, _Kind kind, Set<String> used) {
-  var name =
-      tfType.startsWith('aws_') ? tfType.substring('aws_'.length) : tfType;
+  var name = tfType.startsWith('aws_')
+      ? tfType.substring('aws_'.length)
+      : tfType;
   if (kind == _Kind.data) name = 'd_$name';
   if (name.length > 48) name = name.substring(0, 48);
   name = name.replaceAll(RegExp(r'[^A-Za-z0-9_]'), '_');

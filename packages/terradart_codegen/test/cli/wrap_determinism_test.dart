@@ -23,30 +23,30 @@ void main() {
       final tmpB = await Directory.systemTemp.createTemp('phase4_det_b_');
       try {
         List<String> args(String out) => [
-              'wrap',
-              '--provider',
-              'hashicorp/google',
-              '--source',
-              p.join('test', 'fixtures', 'wrap', 'source'),
-              '--output',
-              out,
-            ];
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          out,
+        ];
 
         final codeA = await buildCliRunner().run(args(tmpA.path));
         expect(codeA, 0, reason: 'first wrap run failed (exit $codeA)');
         final codeB = await buildCliRunner().run(args(tmpB.path));
         expect(codeB, 0, reason: 'second wrap run failed (exit $codeB)');
 
-        final filesA = Directory(tmpA.path)
-            .listSync(recursive: true)
-            .whereType<File>()
-            .toList()
-          ..sort((a, b) => a.path.compareTo(b.path));
-        final filesB = Directory(tmpB.path)
-            .listSync(recursive: true)
-            .whereType<File>()
-            .toList()
-          ..sort((a, b) => a.path.compareTo(b.path));
+        final filesA =
+            Directory(
+                tmpA.path,
+              ).listSync(recursive: true).whereType<File>().toList()
+              ..sort((a, b) => a.path.compareTo(b.path));
+        final filesB =
+            Directory(
+                tmpB.path,
+              ).listSync(recursive: true).whereType<File>().toList()
+              ..sort((a, b) => a.path.compareTo(b.path));
 
         expect(
           filesB.length,

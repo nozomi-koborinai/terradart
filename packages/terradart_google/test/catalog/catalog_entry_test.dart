@@ -12,7 +12,8 @@ void main() {
       constructorParams: ['localName', 'name', 'kmsKeyName'],
       nestedTypes: ['PubsubTopicMessageStoragePolicy'],
       sensitiveFields: <String>[],
-      docComment: 'A named resource to which messages are published.\n\nExample...',
+      docComment:
+          'A named resource to which messages are published.\n\nExample...',
     );
 
     expect(entry.tfType, 'google_pubsub_topic');

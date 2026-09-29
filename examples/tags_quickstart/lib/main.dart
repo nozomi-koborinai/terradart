@@ -19,10 +19,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/tags.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -37,11 +34,9 @@ String _iamPolicyDataJson({
 /// tag-level IAM member / binding / policy adjuncts.
 final class TagsStack extends Stack {
   TagsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final current = addData(GoogleProject(localName: 'current'));
 
     // Tag-level IAM members validate that the principal exists, so provision
@@ -97,10 +92,7 @@ final class TagsStack extends Stack {
         tagKey: TfArg.ref(envKey.id),
         role: TfArg.literal('roles/resourcemanager.tagViewer'),
         member: TfArg.ref(tagger.iamMember),
-        dependsOn: [
-          ResourceDependency(envKey),
-          ResourceDependency(tagger),
-        ],
+        dependsOn: [ResourceDependency(envKey), ResourceDependency(tagger)],
       ),
     );
 
@@ -110,10 +102,7 @@ final class TagsStack extends Stack {
         tagKey: TfArg.ref(envKey.id),
         role: TfArg.literal('roles/resourcemanager.tagViewer'),
         members: TfArg.literal([tagger.iamMember.interpolation]),
-        dependsOn: [
-          ResourceDependency(envKey),
-          ResourceDependency(envViewer),
-        ],
+        dependsOn: [ResourceDependency(envKey), ResourceDependency(envViewer)],
       ),
     );
 
@@ -142,10 +131,7 @@ final class TagsStack extends Stack {
         tagValue: TfArg.ref(prodValue.id),
         role: TfArg.literal('roles/resourcemanager.tagUser'),
         member: TfArg.ref(tagger.iamMember),
-        dependsOn: [
-          ResourceDependency(prodValue),
-          ResourceDependency(tagger),
-        ],
+        dependsOn: [ResourceDependency(prodValue), ResourceDependency(tagger)],
       ),
     );
 

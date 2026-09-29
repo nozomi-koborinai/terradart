@@ -18,12 +18,7 @@ export 'src/_provider_meta.dart' show kBetaProviderSource;
 /// [project] / [region] / [zone] as the sibling `GoogleProvider`.
 @immutable
 final class GoogleBetaProvider implements StackProvider {
-  const GoogleBetaProvider({
-    this.alias,
-    this.project,
-    this.region,
-    this.zone,
-  });
+  const GoogleBetaProvider({this.alias, this.project, this.region, this.zone});
 
   /// Provider alias (`provider "google-beta" { alias = "eu" }`), or `null` for
   /// the default configuration. Select it on a resource with
@@ -51,10 +46,10 @@ final class GoogleBetaProvider implements StackProvider {
 
   @override
   Map<String, Object?> get configArgs => {
-        if (project != null) 'project': project,
-        if (region != null) 'region': region,
-        if (zone != null) 'zone': zone,
-      };
+    if (project != null) 'project': project,
+    if (region != null) 'region': region,
+    if (zone != null) 'zone': zone,
+  };
 }
 
 /// Hand-written wrapper for `google_project_service_identity`
@@ -84,13 +79,10 @@ final class GoogleProjectServiceIdentity extends Resource {
     super.dependsOn,
     super.lifecycle,
   }) : super(
-          terraformType: tfType,
-          provider: 'google-beta',
-          argMap: {
-            'service': service,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: tfType,
+         provider: 'google-beta',
+         argMap: {'service': service, if (project != null) 'project': project},
+       );
 
   @override
   Set<String> get sensitiveFields => const {};

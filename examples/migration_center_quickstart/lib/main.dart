@@ -11,12 +11,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class MigrationCenterStack extends Stack {
   MigrationCenterStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     const location = 'us-central1';
     const importJobId = 'terradart-import';
     const reportConfigId = 'terradart-report-config';
@@ -101,9 +101,7 @@ final class MigrationCenterStack extends Stack {
         location: TfArg.literal(location),
         importJob: TfArg.literal(importJobId),
         importDataFileId: TfArg.literal('terradart-import-file'),
-        format: TfArg.literal(
-          MigrationCenterImportDataFileFormat.rvtoolsXlsx,
-        ),
+        format: TfArg.literal(MigrationCenterImportDataFileFormat.rvtoolsXlsx),
         displayName: TfArg.literal('TerraDart import payload'),
         dependsOn: [...apiDeps, ResourceDependency(importJob)],
       ),

@@ -19,21 +19,15 @@ import 'package:terradart_google/spanner.dart';
 
 final class AuditPipelineStack extends Stack {
   AuditPipelineStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
-    addVariable(
-      'ops_folder_id',
-      const TfVariable(type: 'string'),
-    );
-    addVariable(
-      'ops_organization_id',
-      const TfVariable(type: 'string'),
-    );
+    addVariable('ops_folder_id', const TfVariable(type: 'string'));
+    addVariable('ops_organization_id', const TfVariable(type: 'string'));
 
     const bucketId = 'audit-logs';
     const viewName = 'audit-only';
@@ -68,8 +62,9 @@ final class AuditPipelineStack extends Stack {
       datasetId: TfArg.literal('audit_logs'),
       location: TfArg.literal('asia-northeast1'),
       friendlyName: TfArg.literal('Cloud Audit Logs sink'),
-      description:
-          TfArg.literal('Sink destination for cloudaudit.googleapis.com.'),
+      description: TfArg.literal(
+        'Sink destination for cloudaudit.googleapis.com.',
+      ),
       dependsOn: [ResourceDependency(apiBigquery)],
     );
     add(dataset);

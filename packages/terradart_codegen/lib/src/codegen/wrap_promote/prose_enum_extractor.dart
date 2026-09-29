@@ -29,8 +29,9 @@ class ProseEnumExtractor {
   /// Each extracted token must look enum-like: alpha + digits + underscore
   /// only, 1-40 chars. Rejects URL fragments, dotted addresses, anything
   /// containing whitespace.
-  static final RegExp _enumTokenPattern =
-      RegExp(r'^[A-Za-z][A-Za-z0-9_]{0,39}$');
+  static final RegExp _enumTokenPattern = RegExp(
+    r'^[A-Za-z][A-Za-z0-9_]{0,39}$',
+  );
 
   /// Returns a map from dotted field path to the extracted enum value
   /// list, for every attribute whose description matches the prose
@@ -68,8 +69,11 @@ class ProseEnumExtractor {
     final match = _possibleValuesPattern.firstMatch(desc);
     if (match == null) return null;
     final raw = match.group(1) ?? '';
-    final tokens =
-        raw.split(',').map((s) => s.trim()).where((s) => s.isNotEmpty).toList();
+    final tokens = raw
+        .split(',')
+        .map((s) => s.trim())
+        .where((s) => s.isNotEmpty)
+        .toList();
     if (tokens.length < 2) return null;
     for (final t in tokens) {
       if (!_enumTokenPattern.hasMatch(t)) return null;

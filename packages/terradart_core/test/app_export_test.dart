@@ -66,17 +66,11 @@ void main() {
     });
 
     test('rejects values containing newlines (would break raw string)', () {
-      expect(
-        () => StringExport('line1\nline2'),
-        throwsA(isA<ArgumentError>()),
-      );
+      expect(() => StringExport('line1\nline2'), throwsA(isA<ArgumentError>()));
     });
 
     test('rejects values containing carriage returns', () {
-      expect(
-        () => StringExport('line1\rline2'),
-        throwsA(isA<ArgumentError>()),
-      );
+      expect(() => StringExport('line1\rline2'), throwsA(isA<ArgumentError>()));
     });
 
     test('description is preserved', () {

@@ -25,12 +25,12 @@ import 'package:terradart_time/terradart_time.dart';
 /// Treasury analyst stack: BigQuery grounding data + the analyst persona.
 final class AnalystPersonaStack extends Stack {
   AnalystPersonaStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.agentic, Barrels.bigquery],
@@ -105,12 +105,13 @@ final class AnalystPersonaStack extends Stack {
             ),
             bigqueryResource:
                 AgenticApplicationsAnalystAgentPersonaResourcesBigqueryResource(
-              bigqueryDataset: TfArg.literal(datasetPath),
-              bigqueryTable: TfArg.literal(tablePath),
-              columnDescriptions: TfArg.literal({
-                'closing_balance': 'Closing balance in the account currency.',
-              }),
-            ),
+                  bigqueryDataset: TfArg.literal(datasetPath),
+                  bigqueryTable: TfArg.literal(tablePath),
+                  columnDescriptions: TfArg.literal({
+                    'closing_balance':
+                        'Closing balance in the account currency.',
+                  }),
+                ),
           ),
           AgenticApplicationsAnalystAgentPersonaResources(
             displayLabel: TfArg.literal('Liquidity policy'),
@@ -120,14 +121,14 @@ final class AnalystPersonaStack extends Stack {
             useRag: TfArg.literal(true),
             rawFileResource:
                 AgenticApplicationsAnalystAgentPersonaResourcesRawFileResource(
-              fileTitle: TfArg.literal('liquidity_policy.md'),
-              mimeType: TfArg.literal('text/markdown'),
-              fileContent: TfArg.literal(
-                '# Liquidity policy\n\n'
-                'Flag any account whose closing balance covers less than '
-                '30 days of operating expenses.\n',
-              ),
-            ),
+                  fileTitle: TfArg.literal('liquidity_policy.md'),
+                  mimeType: TfArg.literal('text/markdown'),
+                  fileContent: TfArg.literal(
+                    '# Liquidity policy\n\n'
+                    'Flag any account whose closing balance covers less than '
+                    '30 days of operating expenses.\n',
+                  ),
+                ),
           ),
         ],
         // Schema overrides give the model column semantics the BigQuery
@@ -187,20 +188,20 @@ final class AnalystPersonaStack extends Stack {
           AgenticApplicationsAnalystAgentPersonaArtifactExamples(
             resource:
                 AgenticApplicationsAnalystAgentPersonaArtifactExamplesResource(
-              displayLabel: TfArg.literal('Weekly liquidity brief'),
-              modelDescription: TfArg.literal(
-                'Shape of the weekly brief the analyst produces.',
-              ),
-              rawFileResource:
-                  AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceRawFileResource(
-                fileTitle: TfArg.literal('weekly_brief_example.md'),
-                mimeType: TfArg.literal('text/markdown'),
-                fileContent: TfArg.literal(
-                  '# Weekly liquidity brief\n\n'
-                  '## Position by currency\n\n## Accounts to watch\n',
+                  displayLabel: TfArg.literal('Weekly liquidity brief'),
+                  modelDescription: TfArg.literal(
+                    'Shape of the weekly brief the analyst produces.',
+                  ),
+                  rawFileResource:
+                      AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceRawFileResource(
+                        fileTitle: TfArg.literal('weekly_brief_example.md'),
+                        mimeType: TfArg.literal('text/markdown'),
+                        fileContent: TfArg.literal(
+                          '# Weekly liquidity brief\n\n'
+                          '## Position by currency\n\n## Accounts to watch\n',
+                        ),
+                      ),
                 ),
-              ),
-            ),
           ),
         ],
         // Document export accepts PDF, DOCX or GOOGLE_DOCS; the schema types
@@ -208,8 +209,8 @@ final class AnalystPersonaStack extends Stack {
         artifactsConfig: AgenticApplicationsAnalystAgentPersonaArtifactsConfig(
           documentGenerationOptions:
               AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptions(
-            exportFormat: TfArg.literal('PDF'),
-          ),
+                exportFormat: TfArg.literal('PDF'),
+              ),
         ),
         dependsOn: [...apiDeps, ResourceDependency(positions)],
       ),

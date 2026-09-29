@@ -42,8 +42,10 @@ class MinItemsAssertEmitter {
     }
     if (hints.isEmpty) return '';
     final buf = StringBuffer()
-      ..writeln('# Assert hints (curator: integrate into helper class '
-          'constructors):')
+      ..writeln(
+        '# Assert hints (curator: integrate into helper class '
+        'constructors):',
+      )
       ..writeln('# ');
     for (final hint in hints) {
       buf.write(hint);

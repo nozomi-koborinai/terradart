@@ -23,10 +23,9 @@ List<String>? parseEnumValuesFromDescription(String? description) {
   );
   final vm = validAre.firstMatch(description);
   if (vm != null) {
-    final quoted = RegExp(r'"([^"]+)"')
-        .allMatches(vm.group(1)!)
-        .map((m) => m.group(1)!)
-        .toList();
+    final quoted = RegExp(
+      r'"([^"]+)"',
+    ).allMatches(vm.group(1)!).map((m) => m.group(1)!).toList();
     if (quoted.length >= 2) return quoted;
   }
 

@@ -37,7 +37,9 @@ import '../ir/resource_def.dart';
 /// - Nested blocks are excluded if: `name == 'timeouts'` (Terraform-internal
 ///   SDK metadata, not a user-facing input).
 List<String> orderedConstructorParams(
-    ResourceDef def, List<String>? paramOrder) {
+  ResourceDef def,
+  List<String>? paramOrder,
+) {
   // Defensive copy: callers (e.g. the catalog emitter) must not be able to
   // mutate the override's stored `paramOrder` list through the return value.
   if (paramOrder != null) return List<String>.of(paramOrder);
@@ -127,7 +129,7 @@ bool skipNestedBlock(NestedBlockDef block) {
 /// (`Map<String, dynamic>`) rather than a list of them: a `single` / `group`
 /// block, a `list` capped at one item, or a `map` of blocks keyed by name.
 bool nestedBlockIsObject(NestedBlockDef block) => switch (block.nesting) {
-      NestingMode.single || NestingMode.group || NestingMode.map => true,
-      NestingMode.list => block.maxItems == 1,
-      NestingMode.set => false,
-    };
+  NestingMode.single || NestingMode.group || NestingMode.map => true,
+  NestingMode.list => block.maxItems == 1,
+  NestingMode.set => false,
+};

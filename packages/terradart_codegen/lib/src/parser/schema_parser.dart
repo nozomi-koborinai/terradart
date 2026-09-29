@@ -38,14 +38,15 @@ class SchemaJsonParser {
 
     final resSchemas =
         (providerBody['resource_schemas'] as Map?)?.cast<String, Object?>() ??
-            const {};
+        const {};
     for (final entry in resSchemas.entries) {
       resources[entry.key] = _parseResource(
         entry.key,
         (entry.value as Map).cast<String, Object?>(),
       );
     }
-    final dataSchemas = (providerBody['data_source_schemas'] as Map?)
+    final dataSchemas =
+        (providerBody['data_source_schemas'] as Map?)
             ?.cast<String, Object?>() ??
         const {};
     for (final entry in dataSchemas.entries) {
@@ -121,10 +122,12 @@ class SchemaJsonParser {
     final blockMap =
         (block['block_types'] as Map?)?.cast<String, Object?>() ?? const {};
     for (final entry in blockMap.entries) {
-      nested.add(_parseNestedBlock(
-        entry.key,
-        (entry.value as Map).cast<String, Object?>(),
-      ));
+      nested.add(
+        _parseNestedBlock(
+          entry.key,
+          (entry.value as Map).cast<String, Object?>(),
+        ),
+      );
     }
     return BlockDef(
       attributes: attrs,
@@ -177,15 +180,15 @@ class SchemaJsonParser {
   }
 
   NestingMode _decodeNestingMode(Object? raw, String name) => switch (raw) {
-        'single' => NestingMode.single,
-        'list' => NestingMode.list,
-        'set' => NestingMode.set,
-        'map' => NestingMode.map,
-        'group' => NestingMode.group,
-        final other => throw FormatException(
-            'Unknown nesting_mode: $other for nested block $name',
-          ),
-      };
+    'single' => NestingMode.single,
+    'list' => NestingMode.list,
+    'set' => NestingMode.set,
+    'map' => NestingMode.map,
+    'group' => NestingMode.group,
+    final other => throw FormatException(
+      'Unknown nesting_mode: $other for nested block $name',
+    ),
+  };
 
   NestedBlockDef _parseNestedBlock(String name, Map<String, Object?> body) {
     return NestedBlockDef(

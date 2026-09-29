@@ -3,7 +3,7 @@ description: terradart example -- Secret Manager with write-only secret_data_wo 
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

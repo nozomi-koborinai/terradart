@@ -3,7 +3,7 @@ description: Gemini Enterprise analyst agent persona grounded on an in-stack Big
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

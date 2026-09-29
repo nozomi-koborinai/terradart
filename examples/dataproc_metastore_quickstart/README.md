@@ -17,7 +17,7 @@ The DEVELOPER-tier Metastore service bills hourly while it exists. Destroy it wh
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with Dataproc Metastore API enabled
 

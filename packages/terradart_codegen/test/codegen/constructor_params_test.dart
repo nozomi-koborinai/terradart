@@ -11,11 +11,10 @@ void main() {
   ResourceDef makeResource({
     List<Attribute> attrs = const [],
     List<NestedBlockDef> blocks = const [],
-  }) =>
-      ResourceDef(
-        terraformType: 'google_test_resource',
-        root: BlockDef(attributes: attrs, nestedBlocks: blocks),
-      );
+  }) => ResourceDef(
+    terraformType: 'google_test_resource',
+    root: BlockDef(attributes: attrs, nestedBlocks: blocks),
+  );
 
   group('orderedConstructorParams – IR-natural order (no override)', () {
     test('returns empty list for resource with no eligible slots', () {
@@ -50,90 +49,94 @@ void main() {
     });
 
     test(
-        'attributes appear before nested blocks, both in IR (alphabetical) order',
-        () {
-      // IR order from JSON parser is alphabetical; we mimic that by listing
-      // attrs in alphabetical order here. The helper preserves that order.
-      final def = makeResource(
-        attrs: [
-          const Attribute(
-            name: 'alpha',
-            type: StringType(),
-            constraints: Constraints(required: true),
-          ),
-          const Attribute(
-            name: 'beta',
-            type: StringType(),
-            constraints: Constraints(optional: true),
-          ),
-        ],
-        blocks: [
-          const NestedBlockDef(
-            name: 'config',
-            nesting: NestingMode.single,
-            block: BlockDef(),
-            constraints: Constraints(optional: true),
-          ),
-        ],
-      );
-      final result = orderedConstructorParams(def, null);
-      expect(result, ['alpha', 'beta', 'config']);
-    });
+      'attributes appear before nested blocks, both in IR (alphabetical) order',
+      () {
+        // IR order from JSON parser is alphabetical; we mimic that by listing
+        // attrs in alphabetical order here. The helper preserves that order.
+        final def = makeResource(
+          attrs: [
+            const Attribute(
+              name: 'alpha',
+              type: StringType(),
+              constraints: Constraints(required: true),
+            ),
+            const Attribute(
+              name: 'beta',
+              type: StringType(),
+              constraints: Constraints(optional: true),
+            ),
+          ],
+          blocks: [
+            const NestedBlockDef(
+              name: 'config',
+              nesting: NestingMode.single,
+              block: BlockDef(),
+              constraints: Constraints(optional: true),
+            ),
+          ],
+        );
+        final result = orderedConstructorParams(def, null);
+        expect(result, ['alpha', 'beta', 'config']);
+      },
+    );
 
     test(
-        'computed-only attributes are excluded (required/optional flag present = included)',
-        () {
-      final def = makeResource(
-        attrs: [
-          // computed AND optional → eligible (not computed-only)
-          const Attribute(
-            name: 'project',
-            type: StringType(),
-            constraints: Constraints(optional: true, computed: true),
-          ),
-          // computed-only → excluded
-          const Attribute(
-            name: 'terraform_labels',
-            type: MapType(StringType()),
-            constraints: Constraints(computed: true),
-          ),
-          // required → eligible
-          const Attribute(
-            name: 'name',
-            type: StringType(),
-            constraints: Constraints(required: true),
-          ),
-        ],
-      );
-      final result = orderedConstructorParams(def, null);
-      // Only 'project' and 'name' are eligible (id is not in the list).
-      expect(result, containsAll(['project', 'name']));
-      expect(result, isNot(contains('terraform_labels')));
-    });
+      'computed-only attributes are excluded (required/optional flag present = included)',
+      () {
+        final def = makeResource(
+          attrs: [
+            // computed AND optional → eligible (not computed-only)
+            const Attribute(
+              name: 'project',
+              type: StringType(),
+              constraints: Constraints(optional: true, computed: true),
+            ),
+            // computed-only → excluded
+            const Attribute(
+              name: 'terraform_labels',
+              type: MapType(StringType()),
+              constraints: Constraints(computed: true),
+            ),
+            // required → eligible
+            const Attribute(
+              name: 'name',
+              type: StringType(),
+              constraints: Constraints(required: true),
+            ),
+          ],
+        );
+        final result = orderedConstructorParams(def, null);
+        // Only 'project' and 'name' are eligible (id is not in the list).
+        expect(result, containsAll(['project', 'name']));
+        expect(result, isNot(contains('terraform_labels')));
+      },
+    );
 
-    test('optional/computed id is excluded by name (not just computed-only)',
-        () {
-      // `id` is given `optional + computed` constraints so it would NOT be
-      // caught by the computed-only branch — this isolates the synthetic-id
-      // exclusion. A required `id` is a create-time input and stays in.
-      final def = makeResource(
-        attrs: [
-          const Attribute(
-            name: 'id',
-            type: StringType(),
-            constraints: Constraints(optional: true, computed: true),
-          ),
-          const Attribute(
-            name: 'name',
-            type: StringType(),
-            constraints: Constraints(required: true),
-          ),
-        ],
-      );
-      final result = orderedConstructorParams(def, null);
-      expect(result, ['name']);
-      expect(result, isNot(contains('id')));
-    });
+    test(
+      'optional/computed id is excluded by name (not just computed-only)',
+      () {
+        // `id` is given `optional + computed` constraints so it would NOT be
+        // caught by the computed-only branch — this isolates the synthetic-id
+        // exclusion. A required `id` is a create-time input and stays in.
+        final def = makeResource(
+          attrs: [
+            const Attribute(
+              name: 'id',
+              type: StringType(),
+              constraints: Constraints(optional: true, computed: true),
+            ),
+            const Attribute(
+              name: 'name',
+              type: StringType(),
+              constraints: Constraints(required: true),
+            ),
+          ],
+        );
+        final result = orderedConstructorParams(def, null);
+        expect(result, ['name']);
+        expect(result, isNot(contains('id')));
+      },
+    );
 
     test('AWS tags_all is excluded while tags stays an input', () {
       final def = makeResource(
@@ -307,10 +310,10 @@ void main() {
           ),
         ],
       );
-      expect(
-        orderedDataSourceConstructorParams(def, null),
-        ['id', 'project_id'],
-      );
+      expect(orderedDataSourceConstructorParams(def, null), [
+        'id',
+        'project_id',
+      ]);
       // Required `id` is also a resource constructor input.
       expect(orderedConstructorParams(def, null), ['id', 'project_id']);
     });

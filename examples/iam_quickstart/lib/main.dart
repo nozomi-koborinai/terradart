@@ -47,13 +47,10 @@ import 'package:terradart_google/secret_manager.dart';
 
 /// IAM showcase Stack.
 final class IamShowcaseStack extends Stack {
-  IamShowcaseStack({
-    required String projectId,
-  }) : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+  IamShowcaseStack({required String projectId})
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     // ---- Workload Identity Federation pool + provider --------------------
     //
     // Pool namespace plus GitHub Actions OIDC trust binding (sealed
@@ -114,10 +111,7 @@ final class IamShowcaseStack extends Stack {
         workloadIdentityPoolId: TfArg.ref(wifPool.nameRef),
         role: TfArg.literal('roles/iam.workloadIdentityPoolViewer'),
         member: saMember,
-        dependsOn: [
-          ResourceDependency(wifPool),
-          ResourceDependency(sa),
-        ],
+        dependsOn: [ResourceDependency(wifPool), ResourceDependency(sa)],
       ),
     );
 
@@ -421,10 +415,7 @@ final class IamShowcaseStack extends Stack {
           'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMlTZg5RNgdRr0tVBEkKHZOi3VCrR2eoC7e5stONs4Uw terradart-dummy',
         ),
         deletionPolicy: TfArg.literal('DELETE'),
-        dependsOn: [
-          ResourceDependency(sa),
-          ResourceDependency(apiOsLogin),
-        ],
+        dependsOn: [ResourceDependency(sa), ResourceDependency(apiOsLogin)],
       ),
     );
 
@@ -492,10 +483,7 @@ final class IamShowcaseStack extends Stack {
         location: TfArg.literal('global'),
         role: TfArg.literal('roles/iam.workforcePoolViewer'),
         member: saMember,
-        dependsOn: [
-          ResourceDependency(workforce),
-          ResourceDependency(sa),
-        ],
+        dependsOn: [ResourceDependency(workforce), ResourceDependency(sa)],
       ),
     );
 

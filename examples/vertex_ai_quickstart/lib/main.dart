@@ -25,11 +25,9 @@ import 'package:terradart_google/vertex_ai.dart';
 /// Vertex AI Stack: a BigQuery-backed feature group.
 final class FeatureStack extends Stack {
   FeatureStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiVertex = add(
       GoogleProjectService(
         localName: 'api_aiplatform',
@@ -86,10 +84,7 @@ final class FeatureStack extends Stack {
           },
           'entity_id_columns': ['entity_id'],
         }),
-        dependsOn: [
-          ResourceDependency(apiVertex),
-          ResourceDependency(table),
-        ],
+        dependsOn: [ResourceDependency(apiVertex), ResourceDependency(table)],
       ),
     );
 

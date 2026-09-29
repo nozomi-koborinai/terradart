@@ -61,11 +61,13 @@ Future<bool> runMigrateRoundtripGates(
 }) async {
   final repoRoot = Directory.current.path;
   final ledger = _loadLedger(File(_ledgerPath));
-  final slugs =
-      _quickstartSlugs().where((s) => only == null || only.contains(s));
+  final slugs = _quickstartSlugs().where(
+    (s) => only == null || only.contains(s),
+  );
 
-  final temp =
-      Directory.systemTemp.createTempSync('terradart_migrate_roundtrip_');
+  final temp = Directory.systemTemp.createTempSync(
+    'terradart_migrate_roundtrip_',
+  );
   final originals = <String, Map<String, dynamic>>{};
   final stackClasses = <String, String>{};
   final stackFiles = <String, String>{};
@@ -137,8 +139,9 @@ Future<bool> runMigrateRoundtripGates(
         );
       }
     }
-    migratedResources +=
-        result.report.migrated.where((m) => _isBlockAddress(m.address)).length;
+    migratedResources += result.report.migrated
+        .where((m) => _isBlockAddress(m.address))
+        .length;
   }
   for (final slug in ledger.keys) {
     if (!originals.containsKey(slug) && (only == null || only.contains(slug))) {
@@ -174,7 +177,7 @@ Future<bool> runMigrateRoundtripGates(
 name: terradart_migrate_roundtrip
 publish_to: none
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 dependencies:
 $deps
 dependency_overrides:
@@ -217,24 +220,28 @@ analyzer:
     ..createSync(recursive: true)
     ..writeAsStringSync(synthAll.toString());
 
-  var pubGet = await Process.run(
-    'dart',
-    ['pub', 'get', '--offline'],
-    workingDirectory: temp.path,
-  );
+  var pubGet = await Process.run('dart', [
+    'pub',
+    'get',
+    '--offline',
+  ], workingDirectory: temp.path);
   if (pubGet.exitCode != 0) {
-    pubGet =
-        await Process.run('dart', ['pub', 'get'], workingDirectory: temp.path);
+    pubGet = await Process.run('dart', [
+      'pub',
+      'get',
+    ], workingDirectory: temp.path);
   }
   if (pubGet.exitCode != 0) {
     errors.add('dart pub get failed in ${temp.path}:\n${pubGet.stderr}');
     return false;
   }
-  final analyze = await Process.run(
-    'dart',
-    ['analyze', '--fatal-infos', '--fatal-warnings', 'lib', 'bin'],
-    workingDirectory: temp.path,
-  );
+  final analyze = await Process.run('dart', [
+    'analyze',
+    '--fatal-infos',
+    '--fatal-warnings',
+    'lib',
+    'bin',
+  ], workingDirectory: temp.path);
   if (analyze.exitCode != 0) {
     errors.add(
       'dart analyze of the migrated Stacks failed (package kept at '
@@ -242,11 +249,10 @@ analyzer:
     );
     return false;
   }
-  final run = await Process.run(
-    'dart',
-    ['run', 'bin/synth_all.dart'],
-    workingDirectory: temp.path,
-  );
+  final run = await Process.run('dart', [
+    'run',
+    'bin/synth_all.dart',
+  ], workingDirectory: temp.path);
   if (run.exitCode != 0) {
     errors.add(
       'synthesizing the migrated Stacks failed (package kept at '
@@ -264,10 +270,13 @@ analyzer:
       );
       continue;
     }
-    final actual =
-        jsonDecode(File('${temp.path}/out/$slug.json').readAsStringSync());
-    final expected =
-        _withoutKept(originals[slug]!, ledger[slug]?.keys ?? const []);
+    final actual = jsonDecode(
+      File('${temp.path}/out/$slug.json').readAsStringSync(),
+    );
+    final expected = _withoutKept(
+      originals[slug]!,
+      ledger[slug]?.keys ?? const [],
+    );
     final diffs = <String>[];
     _diff(expected, actual, r'$', diffs);
     if (diffs.isEmpty) {

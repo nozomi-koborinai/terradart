@@ -22,11 +22,11 @@ final class LunchStack extends Stack {
     required String imageUri,
     required String invokerEmail,
   }) : super(
-          providers: [
-            GoogleProvider(project: projectId, region: region),
-            const TimeProvider(),
-          ],
-        ) {
+         providers: [
+           GoogleProvider(project: projectId, region: region),
+           const TimeProvider(),
+         ],
+       ) {
     final apis = addApisAndRepository(this);
     final network = addNetwork(this, apis.apiDeps);
     final identity = addRuntimeIdentity(
@@ -51,10 +51,6 @@ final class LunchStack extends Stack {
       database: database,
       identity: identity,
     );
-    addLunchExports(
-      stack: this,
-      projectId: projectId,
-      database: database,
-    );
+    addLunchExports(stack: this, projectId: projectId, database: database);
   }
 }

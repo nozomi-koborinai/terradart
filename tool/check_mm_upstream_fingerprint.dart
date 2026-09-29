@@ -109,20 +109,26 @@ bool _hasFingerprint(Map<String, dynamic> resourceSchema) {
 void main() {
   final manifestFile = File('tool/mm_yaml_sources.yaml');
   if (!manifestFile.existsSync()) {
-    stderr.writeln('check_mm_upstream_fingerprint: tool/mm_yaml_sources.yaml '
-        'not found (run from repo root)');
+    stderr.writeln(
+      'check_mm_upstream_fingerprint: tool/mm_yaml_sources.yaml '
+      'not found (run from repo root)',
+    );
     exit(2);
   }
   final manifest = loadYaml(manifestFile.readAsStringSync()) as YamlMap;
   final files = manifest['files'] as YamlMap;
 
-  final schema = jsonDecode(
-    File('packages/terradart_codegen/test/fixtures/wrap/source/schema.json')
-        .readAsStringSync(),
-  ) as Map<String, dynamic>;
+  final schema =
+      jsonDecode(
+            File(
+              'packages/terradart_codegen/test/fixtures/wrap/source/schema.json',
+            ).readAsStringSync(),
+          )
+          as Map<String, dynamic>;
   final providerSchemas = schema['provider_schemas'] as Map<String, dynamic>;
-  final resourceSchemas = (providerSchemas.values.first
-      as Map<String, dynamic>)['resource_schemas'] as Map<String, dynamic>;
+  final resourceSchemas =
+      (providerSchemas.values.first as Map<String, dynamic>)['resource_schemas']
+          as Map<String, dynamic>;
 
   final violations = <String>[];
   var nullCount = 0;

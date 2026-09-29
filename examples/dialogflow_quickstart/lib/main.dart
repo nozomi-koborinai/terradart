@@ -16,12 +16,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class DialogflowSipTrunkStack extends Stack {
   DialogflowSipTrunkStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'europe-west3'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'europe-west3'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.dialogflow],
@@ -74,9 +74,7 @@ final class DialogflowSipTrunkStack extends Stack {
         localName: 'demo_summarizer',
         location: TfArg.literal('global'),
         description: TfArg.literal('terradart summarization generator'),
-        triggerEvent: TfArg.literal(
-          DialogflowGeneratorTriggerEvent.manualCall,
-        ),
+        triggerEvent: TfArg.literal(DialogflowGeneratorTriggerEvent.manualCall),
         summarizationContext: DialogflowGeneratorSummarizationContext(
           version: TfArg.literal('4.0'),
           outputLanguageCode: TfArg.literal('en'),

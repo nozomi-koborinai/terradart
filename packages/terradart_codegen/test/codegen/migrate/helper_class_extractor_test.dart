@@ -103,10 +103,10 @@ final class HttpTarget extends Target {
       expect(x.sealedClasses, {'Target'});
       expect(x.helpers.keys, ['PubsubTarget', 'HttpTarget']);
       expect(x.helpers['PubsubTarget']!.parent, 'Target');
-      expect(
-        x.variantsOf('Target'),
-        {'pubsub_target': 'PubsubTarget', 'http_target': 'HttpTarget'},
-      );
+      expect(x.variantsOf('Target'), {
+        'pubsub_target': 'PubsubTarget',
+        'http_target': 'HttpTarget',
+      });
       expect(x.variantsOf('Nope'), isNull);
     });
 
@@ -146,10 +146,10 @@ class Visualization {
 ''';
       final h = _one(src, 'Visualization');
       expect(h.isIrregular, isFalse, reason: h.irregularReason);
-      expect(
-        h.fields.map((f) => f.tfKey),
-        ['google_maps_config.plot_mode', 'google_maps_config.point_size_type'],
-      );
+      expect(h.fields.map((f) => f.tfKey), [
+        'google_maps_config.plot_mode',
+        'google_maps_config.point_size_type',
+      ]);
     });
 
     test('bare blockKey / other getter keys resolve through the class', () {
@@ -407,9 +407,10 @@ class Dual {
       expect(h.irregularReason, isNot(contains('`other`')));
     });
 
-    test('a value variant with a parameter the key cannot carry is irregular',
-        () {
-      const src = '''
+    test(
+      'a value variant with a parameter the key cannot carry is irregular',
+      () {
+        const src = '''
 final class TaggedValue extends Choice {
   const TaggedValue({required this.value, this.tag});
   final TfArg<String> value;
@@ -418,10 +419,11 @@ final class TaggedValue extends Choice {
   String get blockKey => 'tagged';
 }
 ''';
-      final h = _one(src, 'TaggedValue');
-      expect(h.irregularReason, contains('field `tag` has no encode entry'));
-      expect(h.fields.firstWhere((f) => f.name == 'value').tfKey, 'tagged');
-    });
+        final h = _one(src, 'TaggedValue');
+        expect(h.irregularReason, contains('field `tag` has no encode entry'));
+        expect(h.fields.firstWhere((f) => f.name == 'value').tfKey, 'tagged');
+      },
+    );
 
     test('skips Resource / Data subclasses', () {
       const src = '''

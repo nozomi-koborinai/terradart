@@ -25,11 +25,9 @@ import 'package:terradart_google/provider.dart';
 /// Cloud Healthcare Stack: a dataset with DICOM / consent / HL7v2 / FHIR stores.
 final class HealthcareStack extends Stack {
   HealthcareStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiHealthcare = add(
       GoogleProjectService(
         localName: 'api_healthcare',
@@ -109,10 +107,7 @@ final class HealthcareStack extends Stack {
         datasetId: TfArg.ref(dataset.id),
         role: TfArg.literal('roles/healthcare.datasetViewer'),
         member: TfArg.ref(analyst.iamMember),
-        dependsOn: [
-          ResourceDependency(dataset),
-          ResourceDependency(analyst),
-        ],
+        dependsOn: [ResourceDependency(dataset), ResourceDependency(analyst)],
       ),
     );
 

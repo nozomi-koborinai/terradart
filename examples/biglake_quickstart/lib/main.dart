@@ -25,11 +25,9 @@ import 'package:terradart_google/storage.dart';
 /// BigLake Metastore Stack: Hive + Iceberg catalog trees.
 final class MetastoreStack extends Stack {
   MetastoreStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final warehouse = 'gs://$projectId-terradart-biglake';
     // Globally unique GCS bucket name (= Iceberg catalog name).
     final icebergBucketName = '$projectId-terradart-iceberg';
@@ -148,22 +146,13 @@ final class MetastoreStack extends Stack {
               'required': true,
               'doc': 'The ID of the record',
             },
-            {
-              'id': 2,
-              'name': 'name',
-              'type': 'string',
-              'required': false,
-            },
+            {'id': 2, 'name': 'name', 'type': 'string', 'required': false},
           ],
           'identifier_field_ids': [1],
         }),
         partitionSpec: TfArg.literal(<String, Object?>{
           'fields': [
-            {
-              'name': 'id_partition',
-              'source_id': 1,
-              'transform': 'identity',
-            },
+            {'name': 'id_partition', 'source_id': 1, 'transform': 'identity'},
           ],
         }),
         dependsOn: [ResourceDependency(icebergNamespace)],

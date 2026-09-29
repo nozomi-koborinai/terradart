@@ -7,10 +7,7 @@ import '../helpers/fake_resources.dart';
 
 final class _CapableResource extends Resource {
   _CapableResource({required super.localName, required TfArg<String> name})
-      : super(
-          terraformType: 'fake_protected_thing',
-          argMap: {'name': name},
-        );
+    : super(terraformType: 'fake_protected_thing', argMap: {'name': name});
 
   @override
   Set<String> get sensitiveFields => const {};
@@ -25,12 +22,9 @@ final class _CapableResourceWithExplicitDP extends Resource {
     required TfArg<String> name,
     required TfArg<bool> deletionProtection,
   }) : super(
-          terraformType: 'fake_protected_thing',
-          argMap: {
-            'name': name,
-            'deletion_protection': deletionProtection,
-          },
-        );
+         terraformType: 'fake_protected_thing',
+         argMap: {'name': name, 'deletion_protection': deletionProtection},
+       );
 
   @override
   Set<String> get sensitiveFields => const {};
@@ -41,31 +35,30 @@ final class _CapableResourceWithExplicitDP extends Resource {
 
 void main() {
   group('TfJsonEncoder devMode injection', () {
-    test('devMode=true + capable resource + no explicit DP → injects false',
-        () {
-      final stack = TestStack(
-        providers: const [
-          FakeStackProvider(
-            providerName: 'google',
-            source: 'hashicorp/google',
-            versionConstraint: '~> 7.0',
-          ),
-        ],
-        devMode: true,
-      );
-      stack.add(
-        _CapableResource(
-          localName: 'r',
-          name: const TfArgLiteral('x'),
-        ),
-      );
+    test(
+      'devMode=true + capable resource + no explicit DP → injects false',
+      () {
+        final stack = TestStack(
+          providers: const [
+            FakeStackProvider(
+              providerName: 'google',
+              source: 'hashicorp/google',
+              versionConstraint: '~> 7.0',
+            ),
+          ],
+          devMode: true,
+        );
+        stack.add(
+          _CapableResource(localName: 'r', name: const TfArgLiteral('x')),
+        );
 
-      final group = TfJsonEncoder.resourcesGroup(stack);
-      expect(group, isNotNull);
-      final block =
-          group!['fake_protected_thing']!['r'] as Map<String, dynamic>;
-      expect(block['deletion_protection'], equals(false));
-    });
+        final group = TfJsonEncoder.resourcesGroup(stack);
+        expect(group, isNotNull);
+        final block =
+            group!['fake_protected_thing']!['r'] as Map<String, dynamic>;
+        expect(block['deletion_protection'], equals(false));
+      },
+    );
 
     test('devMode=true + capable + explicit DP=true → consumer wins', () {
       final stack = TestStack(
@@ -103,10 +96,7 @@ void main() {
         ],
       ); // devMode default false
       stack.add(
-        _CapableResource(
-          localName: 'r',
-          name: const TfArgLiteral('x'),
-        ),
+        _CapableResource(localName: 'r', name: const TfArgLiteral('x')),
       );
 
       final group = TfJsonEncoder.resourcesGroup(stack);
@@ -126,12 +116,7 @@ void main() {
         ],
         devMode: true,
       );
-      stack.add(
-        FakeResource(
-          localName: 'r',
-          name: const TfArgLiteral('x'),
-        ),
-      );
+      stack.add(FakeResource(localName: 'r', name: const TfArgLiteral('x')));
 
       final group = TfJsonEncoder.resourcesGroup(stack);
       final block = group!['fake_thing']!['r'] as Map<String, dynamic>;

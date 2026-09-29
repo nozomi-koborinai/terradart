@@ -20,11 +20,11 @@ import 'package:terradart_google/provider.dart';
 
 final class FirestoreDocumentQuickstart extends Stack {
   FirestoreDocumentQuickstart({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     final apiFirestore = add(
       GoogleProjectService(
         localName: 'api_firestore',

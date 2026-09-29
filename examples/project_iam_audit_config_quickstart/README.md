@@ -13,7 +13,7 @@ Cloud Logging ingestion volume. The deny rule does **not** target
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with credentials configured (`gcloud auth application-default login`).
 - The caller needs `iam.googleapis.com/denypolicies.create` (for example

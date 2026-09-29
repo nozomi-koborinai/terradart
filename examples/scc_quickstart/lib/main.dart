@@ -15,12 +15,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class SccLeftoverStack extends Stack {
   SccLeftoverStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     const org = '123456789';
     const folder = '123456789';
     final apiDeps = Apis.enable(
@@ -229,15 +229,16 @@ final class SccLeftoverStack extends Stack {
             SccOrganizationCustomModuleCustomConfigSeverity.low,
           ),
           predicate: SccOrganizationCustomModuleCustomConfigPredicate(
-            expression:
-                TfArg.literal('resource.rotationPeriod > duration("365d")'),
+            expression: TfArg.literal(
+              'resource.rotationPeriod > duration("365d")',
+            ),
           ),
           resourceSelector:
               SccOrganizationCustomModuleCustomConfigResourceSelector(
-            resourceTypes: TfArg.literal(
-              ['cloudkms.googleapis.com/CryptoKey'],
-            ),
-          ),
+                resourceTypes: TfArg.literal([
+                  'cloudkms.googleapis.com/CryptoKey',
+                ]),
+              ),
         ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,
@@ -257,13 +258,12 @@ final class SccLeftoverStack extends Stack {
             SccFolderCustomModuleCustomConfigSeverity.low,
           ),
           predicate: SccFolderCustomModuleCustomConfigPredicate(
-            expression:
-                TfArg.literal('resource.rotationPeriod > duration("365d")'),
+            expression: TfArg.literal(
+              'resource.rotationPeriod > duration("365d")',
+            ),
           ),
           resourceSelector: SccFolderCustomModuleCustomConfigResourceSelector(
-            resourceTypes: TfArg.literal(
-              ['cloudkms.googleapis.com/CryptoKey'],
-            ),
+            resourceTypes: TfArg.literal(['cloudkms.googleapis.com/CryptoKey']),
           ),
         ),
         deletionPolicy: TfArg.literal('DELETE'),
@@ -283,13 +283,12 @@ final class SccLeftoverStack extends Stack {
             SccProjectCustomModuleCustomConfigSeverity.low,
           ),
           predicate: SccProjectCustomModuleCustomConfigPredicate(
-            expression:
-                TfArg.literal('resource.rotationPeriod > duration("365d")'),
+            expression: TfArg.literal(
+              'resource.rotationPeriod > duration("365d")',
+            ),
           ),
           resourceSelector: SccProjectCustomModuleCustomConfigResourceSelector(
-            resourceTypes: TfArg.literal(
-              ['cloudkms.googleapis.com/CryptoKey'],
-            ),
+            resourceTypes: TfArg.literal(['cloudkms.googleapis.com/CryptoKey']),
           ),
         ),
         deletionPolicy: TfArg.literal('DELETE'),

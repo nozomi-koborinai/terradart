@@ -3,7 +3,7 @@ description: Cloud Deploy end-to-end example -- a Cloud Run delivery target, a d
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

@@ -50,11 +50,7 @@ final class MachinePanel extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 22),
-          MachineField(
-            controller: areaController,
-            label: 'どのあたり？',
-            hint: '渋谷',
-          ),
+          MachineField(controller: areaController, label: 'どのあたり？', hint: '渋谷'),
           const SizedBox(height: 14),
           MachineField(
             controller: moodController,
@@ -111,7 +107,10 @@ final class MachinePanel extends StatelessWidget {
                     maxLines: 6,
                     overflow: TextOverflow.ellipsis,
                     style: monoTextStyle(
-                        size: 11, color: Colors.white70, height: 1.5),
+                      size: 11,
+                      color: Colors.white70,
+                      height: 1.5,
+                    ),
                   ),
                 ],
               ),

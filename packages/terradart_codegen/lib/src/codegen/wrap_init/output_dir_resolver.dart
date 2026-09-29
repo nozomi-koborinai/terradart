@@ -11,10 +11,7 @@ import '../wrapper_overrides/wrapper_override.dart';
 /// The alias map is provider-specific. As of Phase 4.4 the resolver itself is
 /// universal; the map ships from `ProviderRules.outputDirAliases`.
 class OutputDirResolver {
-  const OutputDirResolver({
-    required this.aliases,
-    this.typePrefix = 'google_',
-  });
+  const OutputDirResolver({required this.aliases, this.typePrefix = 'google_'});
 
   /// Both step-1 MM-product aliases and step-2/3 prefix/segment overrides.
   final Map<String, String> aliases;
@@ -40,8 +37,8 @@ class OutputDirResolver {
 
     final stripped =
         typePrefix.isNotEmpty && terraformType.startsWith(typePrefix)
-            ? terraformType.substring(typePrefix.length)
-            : terraformType;
+        ? terraformType.substring(typePrefix.length)
+        : terraformType;
 
     // Step 2: longest-prefix match against alias keys.
     final segments = stripped.split('_');

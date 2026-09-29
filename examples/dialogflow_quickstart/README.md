@@ -12,7 +12,7 @@ The SIP trunk needs a real carrier TLS peer certificate whose hostname matches `
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Dialogflow API enabled
 

@@ -69,11 +69,10 @@ final class AppwriteProvider implements StackProvider {
 
   @override
   Map<String, Object?> get configArgs => {
-        if (endpoint != null) 'endpoint': endpoint,
-        if (projectId != null) 'project_id': projectId,
-        if (organizationId != null) 'organization_id': organizationId,
-        if (selfSigned != null) 'self_signed': selfSigned,
-        if (httpTimeoutSeconds != null)
-          'http_timeout_seconds': httpTimeoutSeconds,
-      };
+    if (endpoint != null) 'endpoint': endpoint,
+    if (projectId != null) 'project_id': projectId,
+    if (organizationId != null) 'organization_id': organizationId,
+    if (selfSigned != null) 'self_signed': selfSigned,
+    if (httpTimeoutSeconds != null) 'http_timeout_seconds': httpTimeoutSeconds,
+  };
 }

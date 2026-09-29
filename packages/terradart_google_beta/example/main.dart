@@ -7,11 +7,11 @@ import 'package:terradart_google_beta/terradart_google_beta.dart';
 /// beta-only resource), synthesized to Terraform JSON.
 final class HelloBetaStack extends Stack {
   HelloBetaStack({required String projectId})
-      : super(
-          providers: [
-            GoogleBetaProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleBetaProvider(project: projectId, region: 'us-central1'),
+        ],
+      ) {
     add(
       GoogleFirebaseProject(
         localName: 'firebase',

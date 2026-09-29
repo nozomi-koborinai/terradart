@@ -147,8 +147,10 @@ ResourceDef _loadGooglePubsubSubscriptionV7() {
 /// the Task 5 `deriveNestedTypes` targets have one).
 ResourceDef _loadFromWrapFixture(String terraformType) {
   final json = File('test/fixtures/wrap/source/schema.json').readAsStringSync();
-  final ir =
-      const SchemaJsonParser().parseString(json, providerVersion: '7.31.0');
+  final ir = const SchemaJsonParser().parseString(
+    json,
+    providerVersion: '7.31.0',
+  );
   return ir.resources[terraformType]!;
 }
 
@@ -157,13 +159,15 @@ ResourceDef _loadFromWrapFixture(String terraformType) {
 /// `WrapperEmitter.rawResourceSchemas` needs once an override sets
 /// `deriveNestedTypes: true`.
 Map<String, Map<String, dynamic>> _rawResourceBlocksFromWrapFixture() {
-  final root = jsonDecode(
-    File('test/fixtures/wrap/source/schema.json').readAsStringSync(),
-  ) as Map<String, dynamic>;
+  final root =
+      jsonDecode(
+            File('test/fixtures/wrap/source/schema.json').readAsStringSync(),
+          )
+          as Map<String, dynamic>;
   final schemas = (root['provider_schemas'] as Map).cast<String, dynamic>();
   final providerBody = (schemas.values.single as Map).cast<String, dynamic>();
-  final resourceSchemas =
-      (providerBody['resource_schemas'] as Map).cast<String, dynamic>();
+  final resourceSchemas = (providerBody['resource_schemas'] as Map)
+      .cast<String, dynamic>();
   return {
     for (final entry in resourceSchemas.entries)
       entry.key: ((entry.value as Map)['block'] as Map).cast<String, dynamic>(),
@@ -208,8 +212,10 @@ void main() {
       final emitter = WrapperEmitter(overrides: overrides);
       final def = _loadGooglePubsubTopicV7();
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
-      expect(out,
-          contains("import 'package:terradart_core/terradart_core.dart';"));
+      expect(
+        out,
+        contains("import 'package:terradart_core/terradart_core.dart';"),
+      );
       expect(out, isNot(contains("'package:terradart_google/src/generated/")));
       expect(out, isNot(contains("'package:terradart_annotations/")));
     });
@@ -221,10 +227,7 @@ void main() {
 
       // Header — post Plan 5.X, the wrapper class extends a flat `Resource`
       // (no `<S>` generic since the schemantic schema field is gone).
-      expect(
-        out,
-        contains('final class GooglePubsubTopic extends Resource {'),
-      );
+      expect(out, contains('final class GooglePubsubTopic extends Resource {'));
 
       // v0.11.0 (ADR-0016): `tfType` carries the Terraform type string.
       // The pre-v0.11 dollar-prefixed sigil and its `// ignore:
@@ -251,9 +254,7 @@ void main() {
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
       expect(
         out,
-        contains(
-          'final class GoogleEmitterTestResource extends Resource {',
-        ),
+        contains('final class GoogleEmitterTestResource extends Resource {'),
       );
       expect(
         out,
@@ -286,10 +287,7 @@ void main() {
         // Map<String, String>.
         expect(out, contains('    TfArg<String>? kmsKeyName,'));
         expect(out, contains('    TfArg<Map<String, String>>? labels,'));
-        expect(
-          out,
-          contains('    TfArg<String>? messageRetentionDuration,'),
-        );
+        expect(out, contains('    TfArg<String>? messageRetentionDuration,'));
         expect(out, contains('    TfArg<String>? project,'));
         expect(out, contains('    TfArg<Map<String, String>>? tags,'));
 
@@ -298,7 +296,8 @@ void main() {
         expect(
           out,
           contains(
-              '    PubsubTopicIngestionDataSourceSettings? ingestionDataSourceSettings,'),
+            '    PubsubTopicIngestionDataSourceSettings? ingestionDataSourceSettings,',
+          ),
         );
         expect(
           out,
@@ -306,9 +305,7 @@ void main() {
         );
         expect(
           out,
-          contains(
-            '    TfArg<List<Map<String, dynamic>>>? messageTransforms,',
-          ),
+          contains('    TfArg<List<Map<String, dynamic>>>? messageTransforms,'),
         );
         expect(out, contains('    PubsubTopicSchemaSettings? schemaSettings,'));
 
@@ -400,7 +397,8 @@ void main() {
       final emitter = WrapperEmitter(overrides: overrides);
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-      const expected = '  @override\n'
+      const expected =
+          '  @override\n'
           '  Set<String> get sensitiveFields => _googlePubsubTopicSensitive;\n';
       expect(out, contains(expected));
       expect(out, isNot(contains('// ignore: non_constant_identifier_names')));
@@ -508,235 +506,246 @@ void main() {
     });
 
     test(
-        'Level A: google_project_service formatted emit matches hand-written golden',
-        () {
-      final def = _loadGoogleProjectServiceV7();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_project_service.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_project_service formatted emit matches hand-written golden',
+      () {
+        final def = _loadGoogleProjectServiceV7();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_project_service.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
-        'Level A: google_pubsub_topic_iam_member formatted emit matches hand-written golden',
-        () {
-      final def = _loadGooglePubsubTopicIamMemberV7();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_pubsub_topic_iam_member.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_pubsub_topic_iam_member formatted emit matches hand-written golden',
+      () {
+        final def = _loadGooglePubsubTopicIamMemberV7();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_pubsub_topic_iam_member.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
-        'Level A: google_pubsub_subscription_iam_member formatted emit matches hand-written golden',
-        () {
-      final def = _loadGooglePubsubSubscriptionIamMemberV7();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_pubsub_subscription_iam_member.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_pubsub_subscription_iam_member formatted emit matches hand-written golden',
+      () {
+        final def = _loadGooglePubsubSubscriptionIamMemberV7();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_pubsub_subscription_iam_member.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
-        'Level A: google_secret_manager_secret_iam_member formatted emit matches hand-written golden',
-        () {
-      final def = _loadGoogleSecretManagerSecretIamMemberV7();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_secret_manager_secret_iam_member.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_secret_manager_secret_iam_member formatted emit matches hand-written golden',
+      () {
+        final def = _loadGoogleSecretManagerSecretIamMemberV7();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_secret_manager_secret_iam_member.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
-        'Level A: google_cloud_tasks_queue_iam_member formatted emit matches hand-written golden',
-        () {
-      final def = _loadGoogleCloudTasksQueueIamMemberV7();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_cloud_tasks_queue_iam_member.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_cloud_tasks_queue_iam_member formatted emit matches hand-written golden',
+      () {
+        final def = _loadGoogleCloudTasksQueueIamMemberV7();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_cloud_tasks_queue_iam_member.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
-        'Level A: google_service_account formatted emit matches hand-written golden',
-        () {
-      final def = _loadGoogleServiceAccountV7();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_service_account.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_service_account formatted emit matches hand-written golden',
+      () {
+        final def = _loadGoogleServiceAccountV7();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_service_account.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
-        'Level A: google_secret_manager_secret_version formatted emit matches hand-written golden',
-        () {
-      final def = _loadGoogleSecretManagerSecretVersionV8();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_secret_manager_secret_version.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_secret_manager_secret_version formatted emit matches hand-written golden',
+      () {
+        final def = _loadGoogleSecretManagerSecretVersionV8();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_secret_manager_secret_version.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
-        'Level A: google_cloud_scheduler_job formatted emit matches hand-written golden',
-        () {
-      final def = _loadGoogleCloudSchedulerJobV7();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_cloud_scheduler_job.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_cloud_scheduler_job formatted emit matches hand-written golden',
+      () {
+        final def = _loadGoogleCloudSchedulerJobV7();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_cloud_scheduler_job.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
-        'Level A: google_secret_manager_secret formatted emit matches hand-written golden',
-        () {
-      final def = _loadGoogleSecretManagerSecretV7();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_secret_manager_secret.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_secret_manager_secret formatted emit matches hand-written golden',
+      () {
+        final def = _loadGoogleSecretManagerSecretV7();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_secret_manager_secret.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
-        'Level A: google_pubsub_subscription formatted emit matches hand-written golden',
-        () {
-      final def = _loadGooglePubsubSubscriptionV7();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_pubsub_subscription.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_pubsub_subscription formatted emit matches hand-written golden',
+      () {
+        final def = _loadGooglePubsubSubscriptionV7();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_pubsub_subscription.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
-        'Level A: google_cloud_tasks_queue formatted emit matches hand-written golden',
-        () {
-      final def = _loadGoogleCloudTasksQueueV7();
-      final emitter = WrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
-      }
-      final expected = File(
-        'test/golden/google_cloud_tasks_queue.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(formatted, equals(expected));
-    });
+      'Level A: google_cloud_tasks_queue formatted emit matches hand-written golden',
+      () {
+        final def = _loadGoogleCloudTasksQueueV7();
+        final emitter = WrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        final expected = File(
+          'test/golden/google_cloud_tasks_queue.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(formatted, equals(expected));
+      },
+    );
 
     test(
       'emit supportsDeletionProtection override present when schema has deletion_protection',
@@ -759,7 +768,8 @@ void main() {
           ),
         );
         final out = emitter.emit(def, providerSource: 'hashicorp/google');
-        const expected = '  @override\n'
+        const expected =
+            '  @override\n'
             '  bool get supportsDeletionProtection => true;\n';
         expect(out, contains(expected));
         // Compose the deprecated identifier without writing it literally so
@@ -791,46 +801,47 @@ void main() {
       },
     );
 
-    test(
-      'emit constructor excludes computed-only, id, and timeouts',
-      () {
-        // computed-only attributes (effective_labels, terraform_labels) and
-        // the synthetic `id` identity field must not appear as constructor
-        // params — they are exposed through TfRef getters in Task 9 (only
-        // `id` is curated for this resource). The Terraform internal
-        // `timeouts` block is filtered out at the emitter level because it
-        // is not a user-facing input.
-        final def = _loadGooglePubsubTopicV7();
-        final emitter = WrapperEmitter(overrides: overrides);
-        final out = emitter.emit(def, providerSource: 'hashicorp/google');
+    test('emit constructor excludes computed-only, id, and timeouts', () {
+      // computed-only attributes (effective_labels, terraform_labels) and
+      // the synthetic `id` identity field must not appear as constructor
+      // params — they are exposed through TfRef getters in Task 9 (only
+      // `id` is curated for this resource). The Terraform internal
+      // `timeouts` block is filtered out at the emitter level because it
+      // is not a user-facing input.
+      final def = _loadGooglePubsubTopicV7();
+      final emitter = WrapperEmitter(overrides: overrides);
+      final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-        // Sanity: assert the constructor actually got emitted before checking
-        // negative cases. Without this, the `isNot(contains(...))` checks
-        // would pass vacuously when the emitter still has no constructor.
-        expect(
-          out,
-          contains('  GooglePubsubTopic({'),
-          reason:
-              'constructor must be emitted; otherwise exclusion checks pass vacuously',
-        );
+      // Sanity: assert the constructor actually got emitted before checking
+      // negative cases. Without this, the `isNot(contains(...))` checks
+      // would pass vacuously when the emitter still has no constructor.
+      expect(
+        out,
+        contains('  GooglePubsubTopic({'),
+        reason:
+            'constructor must be emitted; otherwise exclusion checks pass vacuously',
+      );
 
-        // effectiveLabels / terraformLabels MUST NOT appear as constructor
-        // params (computed-only, emitted as TfRef getters, not inputs).
-        // Match the param-slot shapes; the getter declarations are fine.
-        expect(out,
-            isNot(contains('TfArg<Map<String, String>>? effectiveLabels,')));
-        expect(out,
-            isNot(contains('TfArg<Map<String, String>>? terraformLabels,')));
-        // `id` cannot be matched as a bare substring — it appears inside
-        // `localName`, comments, etc. Match the constructor-param shape.
-        expect(out, isNot(contains('TfArg<String>? id,')));
-        expect(out, isNot(contains('TfArg<String> id,')));
-        // `timeouts` block: the snake-case Dart name would be `timeouts`,
-        // unique enough as a constructor-param token to assert directly.
-        expect(out, isNot(contains('? timeouts,')));
-        expect(out, isNot(contains(' timeouts,')));
-      },
-    );
+      // effectiveLabels / terraformLabels MUST NOT appear as constructor
+      // params (computed-only, emitted as TfRef getters, not inputs).
+      // Match the param-slot shapes; the getter declarations are fine.
+      expect(
+        out,
+        isNot(contains('TfArg<Map<String, String>>? effectiveLabels,')),
+      );
+      expect(
+        out,
+        isNot(contains('TfArg<Map<String, String>>? terraformLabels,')),
+      );
+      // `id` cannot be matched as a bare substring — it appears inside
+      // `localName`, comments, etc. Match the constructor-param shape.
+      expect(out, isNot(contains('TfArg<String>? id,')));
+      expect(out, isNot(contains('TfArg<String> id,')));
+      // `timeouts` block: the snake-case Dart name would be `timeouts`,
+      // unique enough as a constructor-param token to assert directly.
+      expect(out, isNot(contains('? timeouts,')));
+      expect(out, isNot(contains(' timeouts,')));
+    });
 
     group('deriveNestedTypes top-level slot rendering (Task 5 flip)', () {
       // The real yaml overrides now flip `deriveNestedTypes: true` for 19
@@ -844,8 +855,7 @@ void main() {
         rawResourceSchemas = _rawResourceBlocksFromWrapFixture();
       });
 
-      test(
-          'an optional, scalar top-level slot has no `!` (parameter '
+      test('an optional, scalar top-level slot has no `!` (parameter '
           'promotion makes it unnecessary — google_app_engine_domain_mapping.'
           'ssl_settings)', () {
         const terraformType = 'google_app_engine_domain_mapping';
@@ -856,10 +866,7 @@ void main() {
         );
         final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-        expect(
-          out,
-          contains('AppEngineDomainMappingSslSettings? sslSettings'),
-        );
+        expect(out, contains('AppEngineDomainMappingSslSettings? sslSettings'));
         expect(
           out,
           contains(
@@ -870,8 +877,7 @@ void main() {
         expect(out, isNot(contains('sslSettings!')));
       });
 
-      test(
-          'an optional, repeated top-level slot has no `!` on the iterable '
+      test('an optional, repeated top-level slot has no `!` on the iterable '
           '(google_dataplex_entry_link.aspects)', () {
         const terraformType = 'google_dataplex_entry_link';
         final def = _loadFromWrapFixture(terraformType);
@@ -892,8 +898,7 @@ void main() {
         expect(out, isNot(contains('aspects!')));
       });
 
-      test(
-          'a required, repeated top-level slot has no `!` and no `if` guard '
+      test('a required, repeated top-level slot has no `!` and no `if` guard '
           '(google_os_config_os_policy_assignment.os_policies)', () {
         const terraformType = 'google_os_config_os_policy_assignment';
         final def = _loadFromWrapFixture(terraformType);
@@ -906,7 +911,8 @@ void main() {
         expect(
           out,
           contains(
-              'required List<OsConfigOsPolicyAssignmentOsPolicies> osPolicies'),
+            'required List<OsConfigOsPolicyAssignmentOsPolicies> osPolicies',
+          ),
         );
         expect(
           out,
@@ -923,9 +929,7 @@ void main() {
         // `ExcludedNestedBlock`.
         expect(
           out,
-          contains(
-            'final TfArg<List<Map<String, dynamic>>> resources;',
-          ),
+          contains('final TfArg<List<Map<String, dynamic>>> resources;'),
         );
       });
     });

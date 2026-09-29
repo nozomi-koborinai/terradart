@@ -3,7 +3,7 @@ description: Gemini for Google Cloud example -- project enablement, logging, and
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

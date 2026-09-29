@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). Source is formatted in the Dart 3.7+ tall style.
 - Dartdoc on `TfAddressed.tfAddress` and `Resource.tfAddress`, which every factory inherits. No API changes.
 
 ## 0.30.0 - 2026-09-28

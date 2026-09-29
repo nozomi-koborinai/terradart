@@ -18,8 +18,10 @@ void main() {
         providerVersion: '7.2.0',
       );
       expect(result, hasLength(2));
-      expect(result.map((e) => e['resource']).toList(),
-          ['google_bar', 'google_foo']);
+      expect(result.map((e) => e['resource']).toList(), [
+        'google_bar',
+        'google_foo',
+      ]);
       expect(result.first['provider_version'], '7.2.0');
     });
 
@@ -38,9 +40,11 @@ void main() {
         providerVersion: '6.1.0',
       );
       expect(
-        result.map((e) => e.entries.first.key == 'resource'
-            ? 'r:${e['resource']}'
-            : 'd:${e['data_source']}'),
+        result.map(
+          (e) => e.entries.first.key == 'resource'
+              ? 'r:${e['resource']}'
+              : 'd:${e['data_source']}',
+        ),
         ['d:aws_a', 'd:aws_b', 'r:aws_b', 'r:aws_c'],
       );
       final yaml = formatBacklogYaml(header: '# h', entries: result);

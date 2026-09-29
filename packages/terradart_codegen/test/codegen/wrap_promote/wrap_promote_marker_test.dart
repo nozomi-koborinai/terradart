@@ -30,10 +30,10 @@ prelude: |
       expect(stripped, contains('outputDir: pubsub'));
     });
 
-    test('wrapWithMarkers then stripMarkerSection is identity (round-trip)',
-        () {
+    test('wrapWithMarkers then stripMarkerSection is identity (round-trip)', () {
       const original = 'outputDir: pubsub\n';
-      final wrapped = original +
+      final wrapped =
+          original +
           WrapPromoteMarker.wrapWithMarkers(
             'prelude: |\n  sealed class FooChoice {}\n',
             DateTime.utc(2026, 1, 1),

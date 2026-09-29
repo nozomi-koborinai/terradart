@@ -3,7 +3,7 @@ description: Customer Engagement Suite app, agent, guardrail, tool, and version.
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

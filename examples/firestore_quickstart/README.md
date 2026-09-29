@@ -4,7 +4,7 @@ End-to-end terradart example for a Cloud Firestore Native-mode database with poi
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Firestore API enabled, and credentials configured (`gcloud auth application-default login`).
 - The project must NOT already have a `(default)` Firestore database in a different mode -- type is forced-replace.

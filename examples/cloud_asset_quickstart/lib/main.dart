@@ -21,13 +21,13 @@ import 'package:terradart_time/terradart_time.dart';
 /// Cloud Asset stack: Pub/Sub topic + project feed.
 final class CloudAssetStack extends Stack {
   CloudAssetStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            GoogleBetaProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          GoogleBetaProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.cloudAsset, Barrels.pubsub],
@@ -59,10 +59,7 @@ final class CloudAssetStack extends Stack {
         topic: TfArg.ref(topic.nameRef),
         role: TfArg.literal('roles/pubsub.publisher'),
         member: TfArg.ref(assetSa.member),
-        dependsOn: [
-          ResourceDependency(topic),
-          ResourceDependency(assetSa),
-        ],
+        dependsOn: [ResourceDependency(topic), ResourceDependency(assetSa)],
       ),
     );
 
@@ -86,8 +83,8 @@ final class CloudAssetStack extends Stack {
         feedOutputConfig: CloudAssetProjectFeedFeedOutputConfig(
           pubsubDestination:
               CloudAssetProjectFeedFeedOutputConfigPubsubDestination(
-            topic: TfArg.ref(topic.id),
-          ),
+                topic: TfArg.ref(topic.id),
+              ),
         ),
         dependsOn: [ResourceDependency(feedIamReady)],
       ),

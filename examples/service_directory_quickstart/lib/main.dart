@@ -19,10 +19,7 @@ import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/service_directory.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -37,11 +34,9 @@ String _iamPolicyDataJson({
 /// IAM member / binding / policy adjuncts.
 final class RegistryStack extends Stack {
   RegistryStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiServiceDirectory = add(
       GoogleProjectService(
         localName: 'api_servicedirectory',
@@ -144,10 +139,7 @@ final class RegistryStack extends Stack {
         name: TfArg.ref(service.id),
         role: TfArg.literal('roles/servicedirectory.editor'),
         member: TfArg.ref(consumer.iamMember),
-        dependsOn: [
-          ResourceDependency(service),
-          ResourceDependency(consumer),
-        ],
+        dependsOn: [ResourceDependency(service), ResourceDependency(consumer)],
       ),
     );
 

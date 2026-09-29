@@ -6,7 +6,7 @@ Nested config blocks are passed as structured maps (`TfArg<Map<String, dynamic>>
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with credentials configured (`gcloud auth application-default login`). The Cloud Deploy API is enabled by the stack.
 

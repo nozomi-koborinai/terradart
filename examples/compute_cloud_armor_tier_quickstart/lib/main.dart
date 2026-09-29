@@ -17,11 +17,9 @@ import 'package:terradart_google/provider.dart';
 /// Cloud Armor tier Stack: project CA_STANDARD singleton.
 final class ComputeCloudArmorTierStack extends Stack {
   ComputeCloudArmorTierStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
@@ -33,9 +31,7 @@ final class ComputeCloudArmorTierStack extends Stack {
     add(
       GoogleComputeProjectCloudArmorTier(
         localName: 'armor_tier',
-        cloudArmorTier: TfArg.literal(
-          ComputeProjectCloudArmorTier.caStandard,
-        ),
+        cloudArmorTier: TfArg.literal(ComputeProjectCloudArmorTier.caStandard),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );

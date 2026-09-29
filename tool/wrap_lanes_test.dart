@@ -174,24 +174,26 @@ providers:
     test('hintsRepo is the bump repo', () {
       expect(parseWrapLanes(lane).single.hintsRepo, isNull);
       expect(
-        parseWrapLanes('$lane    bump:\n      repo: acme/terraform-x\n')
-            .single
-            .hintsRepo,
+        parseWrapLanes(
+          '$lane    bump:\n      repo: acme/terraform-x\n',
+        ).single.hintsRepo,
         'acme/terraform-x',
       );
     });
 
     test('the committed cloudflare lane re-extracts hints from its repo', () {
-      final cloudflare = parseWrapLanes(File(providersPath).readAsStringSync())
-          .singleWhere((l) => l.name == 'cloudflare');
+      final cloudflare = parseWrapLanes(
+        File(providersPath).readAsStringSync(),
+      ).singleWhere((l) => l.name == 'cloudflare');
       expect(cloudflare.providerEnums, isTrue);
       expect(cloudflare.hintsRepo, 'cloudflare/terraform-provider-cloudflare');
       expect(staleHints(cloudflare.schemaDir), isEmpty);
     });
 
     test('the committed appwrite lane types enums from current hints', () {
-      final appwrite = parseWrapLanes(File(providersPath).readAsStringSync())
-          .singleWhere((l) => l.name == 'appwrite');
+      final appwrite = parseWrapLanes(
+        File(providersPath).readAsStringSync(),
+      ).singleWhere((l) => l.name == 'appwrite');
       expect(appwrite.providerEnums, isTrue);
       expect(staleHints(appwrite.schemaDir), isEmpty);
     });
@@ -206,9 +208,8 @@ providers:
 
     test('rejects mmHints beside providerEnums', () {
       expect(
-        () => parseWrapLanes(
-          '$lane    mmHints: true\n    providerEnums: true\n',
-        ),
+        () =>
+            parseWrapLanes('$lane    mmHints: true\n    providerEnums: true\n'),
         throwsA(
           isA<FormatException>().having(
             (e) => e.message,
@@ -224,10 +225,10 @@ providers:
         '$lane    mmSync:\n      providerRepo: acme/terraform-x\n'
         '      servicesDir: x/services\n',
       ).single;
-      expect(
-        x.mmSync,
-        (providerRepo: 'acme/terraform-x', servicesDir: 'x/services'),
-      );
+      expect(x.mmSync, (
+        providerRepo: 'acme/terraform-x',
+        servicesDir: 'x/services',
+      ));
       expect(parseWrapLanes(lane).single.mmSync, isNull);
       expect(
         () => parseWrapLanes(
@@ -244,8 +245,9 @@ providers:
     });
 
     test('the committed google-beta lane syncs current MM YAML', () {
-      final beta = parseWrapLanes(File(providersPath).readAsStringSync())
-          .singleWhere((l) => l.name == 'google-beta');
+      final beta = parseWrapLanes(
+        File(providersPath).readAsStringSync(),
+      ).singleWhere((l) => l.name == 'google-beta');
       expect(beta.mmHints, isTrue);
       expect(
         beta.mmSync?.providerRepo,
@@ -255,8 +257,9 @@ providers:
     });
 
     test('the committed aws lane re-extracts hints from its repo', () {
-      final aws = parseWrapLanes(File(providersPath).readAsStringSync())
-          .singleWhere((l) => l.name == 'aws');
+      final aws = parseWrapLanes(
+        File(providersPath).readAsStringSync(),
+      ).singleWhere((l) => l.name == 'aws');
       expect(aws.providerEnums, isTrue);
       expect(aws.hintsRepo, 'hashicorp/terraform-provider-aws');
       expect(staleHints(aws.schemaDir), isEmpty);
@@ -279,8 +282,9 @@ providers:
     });
 
     test('names each hints file extracted at another version', () {
-      File(p.join(dir.path, 'provider_version.txt'))
-          .writeAsStringSync('5.2.0\n');
+      File(
+        p.join(dir.path, 'provider_version.txt'),
+      ).writeAsStringSync('5.2.0\n');
       hint('b.yaml', '5.1.0');
       hint('a.yaml', '5.2.0');
       hint('c.yaml', '5.0.0');
@@ -293,8 +297,9 @@ providers:
     late Directory dir;
     setUp(() {
       dir = Directory.systemTemp.createTempSync('mm_sync_');
-      File(p.join(dir.path, 'provider_version.txt'))
-          .writeAsStringSync('8.4.0\n');
+      File(
+        p.join(dir.path, 'provider_version.txt'),
+      ).writeAsStringSync('8.4.0\n');
       File(p.join(dir.path, 'schema.json')).writeAsStringSync(
         '{"provider_schemas": {"registry.terraform.io/hashicorp/x": '
         '{"resource_schemas": {"x_a": {}, "x_b": {}}}}}',
@@ -330,11 +335,14 @@ providers:
   test('every resource override of a providerEnums lane derives its hints', () {
     for (final lane in parseWrapLanes(File(providersPath).readAsStringSync())) {
       if (!lane.providerEnums) continue;
-      final files =
-          Directory(lane.overridesRoot).listSync().whereType<File>().where((f) {
-        final name = p.basename(f.path);
-        return name.endsWith('.yaml') && !name.startsWith('data_');
-      }).toList();
+      final files = Directory(lane.overridesRoot)
+          .listSync()
+          .whereType<File>()
+          .where((f) {
+            final name = p.basename(f.path);
+            return name.endsWith('.yaml') && !name.startsWith('data_');
+          })
+          .toList();
       expect(files, isNotEmpty, reason: 'lane ${lane.name}');
       for (final f in files) {
         final lines = f.readAsLinesSync();
@@ -389,16 +397,19 @@ providers:
 
   group('ledgerOwnershipFailures', () {
     late Directory root;
-    const overrides = 'packages/terradart_codegen/lib/src/codegen/'
+    const overrides =
+        'packages/terradart_codegen/lib/src/codegen/'
         'wrapper_overrides';
 
     setUp(() {
       root = Directory.systemTemp.createTempSync('wrap_lanes_ledger_');
       for (final (lane, override) in [('a', 'a_one'), ('b', 'b_two')]) {
-        Directory(p.join(root.path, overrides, lane, 'yaml'))
-            .createSync(recursive: true);
-        File(p.join(root.path, overrides, lane, 'yaml', '$override.yaml'))
-            .writeAsStringSync('outputDir: x\n');
+        Directory(
+          p.join(root.path, overrides, lane, 'yaml'),
+        ).createSync(recursive: true);
+        File(
+          p.join(root.path, overrides, lane, 'yaml', '$override.yaml'),
+        ).writeAsStringSync('outputDir: x\n');
       }
       Directory(p.join(root.path, 'tool')).createSync();
     });
@@ -420,10 +431,12 @@ providers:
     }
 
     test('an entry owned by another lane passes; one owned by none fails', () {
-      File(p.join(root.path, 'tool', 'exactly_one_lint_debt.yaml'))
-          .writeAsStringSync('b_two: lane b owns it\nghost: owned by none\n');
-      File(p.join(root.path, 'tool', 'migrate_manifest_debt.yaml'))
-          .writeAsStringSync('a_one: lane a owns it\n');
+      File(
+        p.join(root.path, 'tool', 'exactly_one_lint_debt.yaml'),
+      ).writeAsStringSync('b_two: lane b owns it\nghost: owned by none\n');
+      File(
+        p.join(root.path, 'tool', 'migrate_manifest_debt.yaml'),
+      ).writeAsStringSync('a_one: lane a owns it\n');
       expect(
         ledgerOwnershipFailures(
           lanes({'a': '$overrides/a/yaml', 'b': '$overrides/b/yaml'}),
@@ -458,8 +471,9 @@ providers:
     tearDown(() => root.deleteSync(recursive: true));
 
     test('names each absent path and skips the ones that exist', () {
-      Directory(p.join(root.path, 'fixtures/source_x'))
-          .createSync(recursive: true);
+      Directory(
+        p.join(root.path, 'fixtures/source_x'),
+      ).createSync(recursive: true);
       File(p.join(root.path, 'barrels_x.yaml')).createSync();
       final lanes = parseWrapLanes('''
 providers:

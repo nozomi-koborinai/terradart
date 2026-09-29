@@ -44,8 +44,11 @@ final class RolloutPolicy extends TrafficChoice {
 
       final extracted = const SealedClassExtractor().extract(prelude);
 
-      expect(extracted, hasLength(1),
-          reason: 'one sealed class expected in this prelude fragment');
+      expect(
+        extracted,
+        hasLength(1),
+        reason: 'one sealed class expected in this prelude fragment',
+      );
       final sealed = extracted.single;
       expect(sealed.name, 'TrafficChoice');
       expect(sealed.members, hasLength(2));
@@ -82,8 +85,9 @@ final class RolloutPolicy extends TrafficChoice {
         extracted.map((s) => s.name),
         contains('CloudSchedulerJobSchedulerTarget'),
       );
-      final scheduler = extracted
-          .singleWhere((s) => s.name == 'CloudSchedulerJobSchedulerTarget');
+      final scheduler = extracted.singleWhere(
+        (s) => s.name == 'CloudSchedulerJobSchedulerTarget',
+      );
       // CloudSchedulerJobSchedulerTarget has 3 known members (v1.0 naming).
       expect(
         scheduler.members.map((m) => m.name),

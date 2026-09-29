@@ -119,8 +119,9 @@ List<String> catalogConstructorParams(
 /// Shared with the migration-manifest shape analyzer so both derive the
 /// same Dart name from the same declaration.
 String paramIdentifier(String paramDeclaration) {
-  final matches =
-      RegExp(r'[A-Za-z_$][A-Za-z0-9_$]*').allMatches(paramDeclaration).toList();
+  final matches = RegExp(
+    r'[A-Za-z_$][A-Za-z0-9_$]*',
+  ).allMatches(paramDeclaration).toList();
   return matches.isEmpty ? paramDeclaration.trim() : matches.last.group(0)!;
 }
 

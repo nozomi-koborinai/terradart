@@ -7,11 +7,7 @@
 /// records and prefixed names would be a wrapper-emitter bug, and
 /// [parseDartType] rejects them with a [FormatException].
 final class DartTypeShape {
-  const DartTypeShape(
-    this.name, {
-    this.args = const [],
-    this.nullable = false,
-  });
+  const DartTypeShape(this.name, {this.args = const [], this.nullable = false});
 
   final String name;
   final List<DartTypeShape> args;
@@ -23,8 +19,9 @@ final class DartTypeShape {
 
   /// Canonical source text: one space after each comma, no other whitespace.
   String render() {
-    final generic =
-        args.isEmpty ? '' : '<${args.map((a) => a.render()).join(', ')}>';
+    final generic = args.isEmpty
+        ? ''
+        : '<${args.map((a) => a.render()).join(', ')}>';
     return '$name$generic${nullable ? '?' : ''}';
   }
 

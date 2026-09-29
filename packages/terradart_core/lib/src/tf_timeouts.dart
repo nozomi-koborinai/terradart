@@ -29,13 +29,12 @@ final class TfTimeouts {
     Duration? read,
     Duration? update,
     Duration? delete,
-  }) =>
-      TfTimeouts(
-        create: _seconds(create, 'create'),
-        read: _seconds(read, 'read'),
-        update: _seconds(update, 'update'),
-        delete: _seconds(delete, 'delete'),
-      );
+  }) => TfTimeouts(
+    create: _seconds(create, 'create'),
+    read: _seconds(read, 'read'),
+    update: _seconds(update, 'update'),
+    delete: _seconds(delete, 'delete'),
+  );
 
   /// `create = "30m"` — the create operation's timeout.
   final String? create;
@@ -89,11 +88,7 @@ final class TfTimeouts {
   static String? _seconds(Duration? d, String name) {
     if (d == null) return null;
     if (d.isNegative || d.inSeconds == 0) {
-      throw ArgumentError.value(
-        d,
-        name,
-        'must be at least one second',
-      );
+      throw ArgumentError.value(d, name, 'must be at least one second');
     }
     return '${d.inSeconds}s';
   }

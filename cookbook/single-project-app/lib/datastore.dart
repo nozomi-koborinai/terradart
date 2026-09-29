@@ -10,25 +10,24 @@ import 'package:terradart_google/service_networking.dart';
 GoogleSqlDatabaseInstance buildSqlInstance({
   required GoogleComputeNetwork vpc,
   required GoogleServiceNetworkingConnection psaConnection,
-}) =>
-    GoogleSqlDatabaseInstance(
-      localName: 'coffee_sql',
-      name: TfArg.literal('coffee-shop-sql'),
-      databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
-      region: TfArg.literal('asia-northeast1'),
-      deletionProtection: TfArg.literal(false),
-      settings: SqlDatabaseInstanceSettings(
-        tier: TfArg.literal('db-f1-micro'),
-        ipConfiguration: SqlDatabaseInstanceIpConfiguration(
-          ipv4Enabled: TfArg.literal(false),
-          privateNetwork: TfArg.ref(vpc.selfLink),
-        ),
-      ),
-      // SQL instance requires PSA peering active; declared via the typed
-      // ResourceDependency builder (terradart_core exposes a first-class
-      // `dependsOn: List<DependencyTarget>?` parameter).
-      dependsOn: [ResourceDependency(psaConnection)],
-    );
+}) => GoogleSqlDatabaseInstance(
+  localName: 'coffee_sql',
+  name: TfArg.literal('coffee-shop-sql'),
+  databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
+  region: TfArg.literal('asia-northeast1'),
+  deletionProtection: TfArg.literal(false),
+  settings: SqlDatabaseInstanceSettings(
+    tier: TfArg.literal('db-f1-micro'),
+    ipConfiguration: SqlDatabaseInstanceIpConfiguration(
+      ipv4Enabled: TfArg.literal(false),
+      privateNetwork: TfArg.ref(vpc.selfLink),
+    ),
+  ),
+  // SQL instance requires PSA peering active; declared via the typed
+  // ResourceDependency builder (terradart_core exposes a first-class
+  // `dependsOn: List<DependencyTarget>?` parameter).
+  dependsOn: [ResourceDependency(psaConnection)],
+);
 
 GoogleSqlDatabase buildSqlDatabase(GoogleSqlDatabaseInstance sqlInstance) =>
     GoogleSqlDatabase(
@@ -38,30 +37,30 @@ GoogleSqlDatabase buildSqlDatabase(GoogleSqlDatabaseInstance sqlInstance) =>
     );
 
 GoogleSqlUser buildSqlUser(
-        GoogleSqlDatabaseInstance sqlInstance, String dbPassword) =>
-    GoogleSqlUser(
-      localName: 'coffee_user',
-      name: TfArg.literal('coffee_app'),
-      instance: TfArg.ref(sqlInstance.nameRef),
-      passwordWo: TfArg.literal(dbPassword),
-      passwordWoVersion: TfArg.literal(1),
-    );
+  GoogleSqlDatabaseInstance sqlInstance,
+  String dbPassword,
+) => GoogleSqlUser(
+  localName: 'coffee_user',
+  name: TfArg.literal('coffee_app'),
+  instance: TfArg.ref(sqlInstance.nameRef),
+  passwordWo: TfArg.literal(dbPassword),
+  passwordWoVersion: TfArg.literal(1),
+);
 
 GoogleSecretManagerSecret buildDbPasswordSecret() => GoogleSecretManagerSecret(
-      localName: 'db_password',
-      secretId: TfArg.literal('coffee-shop-db-password'),
-      replication: SecretManagerSecretReplication.auto(),
-    );
+  localName: 'db_password',
+  secretId: TfArg.literal('coffee-shop-db-password'),
+  replication: SecretManagerSecretReplication.auto(),
+);
 
 GoogleSecretManagerSecretVersion buildDbPasswordSecretVersion(
   GoogleSecretManagerSecret secret,
   String dbPassword,
-) =>
-    GoogleSecretManagerSecretVersion(
-      localName: 'db_password_v1',
-      secret: TfArg.ref(secret.id),
-      payload: SecretManagerSecretVersionWriteOnlyPayload(
-        secretDataWo: TfArg.literal(dbPassword),
-        secretDataWoVersion: TfArg.literal('1'),
-      ),
-    );
+) => GoogleSecretManagerSecretVersion(
+  localName: 'db_password_v1',
+  secret: TfArg.ref(secret.id),
+  payload: SecretManagerSecretVersionWriteOnlyPayload(
+    secretDataWo: TfArg.literal(dbPassword),
+    secretDataWoVersion: TfArg.literal('1'),
+  ),
+);

@@ -46,22 +46,22 @@ List<CoverageRow> buildRows({
   required List<CatalogItem> catalog,
   required Map<String, List<String>> tfTypeToExamples,
 }) {
-  final rows = [
-    for (final item in catalog)
-      (
-        tfType: item.tfType,
-        className: item.className,
-        barrel: item.barrel,
-        kind: item.kind,
-        examples: ([...?tfTypeToExamples[_coverageKey(item.kind, item.tfType)]]
-          ..sort()),
-      ),
-  ]..sort(
-      (a, b) {
+  final rows =
+      [
+        for (final item in catalog)
+          (
+            tfType: item.tfType,
+            className: item.className,
+            barrel: item.barrel,
+            kind: item.kind,
+            examples: ([
+              ...?tfTypeToExamples[_coverageKey(item.kind, item.tfType)],
+            ]..sort()),
+          ),
+      ]..sort((a, b) {
         final byBarrel = a.barrel.compareTo(b.barrel);
         return byBarrel != 0 ? byBarrel : a.tfType.compareTo(b.tfType);
-      },
-    );
+      });
   return rows;
 }
 
@@ -146,9 +146,7 @@ String renderCoveragePage({
 Map<String, List<String>> _walkTfOuts() {
   final map = <String, Set<String>>{};
   final dirs = Directory('examples').listSync().whereType<Directory>().toList()
-    ..sort(
-      (a, b) => a.path.compareTo(b.path),
-    );
+    ..sort((a, b) => a.path.compareTo(b.path));
   var seen = 0;
   var quickstarts = 0;
   final missing = <String>[];

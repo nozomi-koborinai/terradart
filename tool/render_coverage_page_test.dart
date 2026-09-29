@@ -25,35 +25,34 @@ void main() {
   ];
 
   test(
-      'buildRows joins example back-references and sorts by barrel then tfType',
-      () {
-    final rows = buildRows(
-      catalog: catalog,
-      tfTypeToExamples: {
-        'resource:google_pubsub_topic': [
-          'pubsub_quickstart',
-          'eventarc_quickstart',
-        ],
-        'resource:google_dns_policy': ['dns_quickstart'],
-      },
-    );
-    expect(rows.first.barrel, 'dns');
-    expect(rows.first.tfType, 'google_dns_policy');
-    expect(rows.first.examples, ['dns_quickstart']);
-    expect(
-      rows[1].examples,
-      isEmpty,
-      reason: 'record_set appears in no tf-out',
-    );
-    expect(
-      rows.last.examples,
-      ['eventarc_quickstart', 'pubsub_quickstart'],
-      reason: 'example lists are sorted',
-    );
-  });
+    'buildRows joins example back-references and sorts by barrel then tfType',
+    () {
+      final rows = buildRows(
+        catalog: catalog,
+        tfTypeToExamples: {
+          'resource:google_pubsub_topic': [
+            'pubsub_quickstart',
+            'eventarc_quickstart',
+          ],
+          'resource:google_dns_policy': ['dns_quickstart'],
+        },
+      );
+      expect(rows.first.barrel, 'dns');
+      expect(rows.first.tfType, 'google_dns_policy');
+      expect(rows.first.examples, ['dns_quickstart']);
+      expect(
+        rows[1].examples,
+        isEmpty,
+        reason: 'record_set appears in no tf-out',
+      );
+      expect(rows.last.examples, [
+        'eventarc_quickstart',
+        'pubsub_quickstart',
+      ], reason: 'example lists are sorted');
+    },
+  );
 
-  test(
-      'renderCoveragePage emits marker, frontmatter, counts phrase, '
+  test('renderCoveragePage emits marker, frontmatter, counts phrase, '
       'barrel anchors, and rows', () {
     final md = renderCoveragePage(
       rows: buildRows(catalog: catalog, tfTypeToExamples: const {}),

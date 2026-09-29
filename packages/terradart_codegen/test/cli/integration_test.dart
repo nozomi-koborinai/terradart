@@ -26,19 +26,22 @@ void main() {
     });
 
     test('version subcommand prints version and exits 0', () async {
-      final result = await Process.run(
-        Platform.resolvedExecutable,
-        ['run', entry, 'version'],
-      );
+      final result = await Process.run(Platform.resolvedExecutable, [
+        'run',
+        entry,
+        'version',
+      ]);
       expect(result.exitCode, 0, reason: result.stderr.toString());
       expect((result.stdout as String).trim(), terradartCliVersion);
     });
 
     test('wrap --help lists maintainer flags', () async {
-      final result = await Process.run(
-        Platform.resolvedExecutable,
-        ['run', entry, 'wrap', '--help'],
-      );
+      final result = await Process.run(Platform.resolvedExecutable, [
+        'run',
+        entry,
+        'wrap',
+        '--help',
+      ]);
       expect(result.exitCode, 0, reason: result.stderr.toString());
       final out = result.stdout as String;
       expect(out, contains('--provider'));
@@ -48,45 +51,43 @@ void main() {
     });
 
     test('unknown subcommand exits 64 (usage error)', () async {
-      final result = await Process.run(
-        Platform.resolvedExecutable,
-        ['run', entry, 'no-such-command'],
-      );
+      final result = await Process.run(Platform.resolvedExecutable, [
+        'run',
+        entry,
+        'no-such-command',
+      ]);
       expect(result.exitCode, 64);
     });
 
     test('wrap without --provider exits 64 (usage error)', () async {
-      final result = await Process.run(
-        Platform.resolvedExecutable,
-        ['run', entry, 'wrap'],
-      );
+      final result = await Process.run(Platform.resolvedExecutable, [
+        'run',
+        entry,
+        'wrap',
+      ]);
       expect(result.exitCode, 64);
     });
 
-    test(
-      'dart compile exe produces a runnable binary',
-      () async {
-        final tmpExe = p.join(
-          Directory.systemTemp.createTempSync('tdc_').path,
-          'terradart',
-        );
-        final compile = await Process.run(Platform.resolvedExecutable, [
-          'compile',
-          'exe',
-          entry,
-          '-o',
-          tmpExe,
-        ]);
-        expect(
-          compile.exitCode,
-          0,
-          reason: '${compile.stdout}\n${compile.stderr}',
-        );
-        final run = await Process.run(tmpExe, ['--version']);
-        expect(run.exitCode, 0);
-        expect((run.stdout as String).trim(), terradartCliVersion);
-      },
-      skip: Platform.environment['TERRADART_RUN_AOT_TESTS'] != '1',
-    );
+    test('dart compile exe produces a runnable binary', () async {
+      final tmpExe = p.join(
+        Directory.systemTemp.createTempSync('tdc_').path,
+        'terradart',
+      );
+      final compile = await Process.run(Platform.resolvedExecutable, [
+        'compile',
+        'exe',
+        entry,
+        '-o',
+        tmpExe,
+      ]);
+      expect(
+        compile.exitCode,
+        0,
+        reason: '${compile.stdout}\n${compile.stderr}',
+      );
+      final run = await Process.run(tmpExe, ['--version']);
+      expect(run.exitCode, 0);
+      expect((run.stdout as String).trim(), terradartCliVersion);
+    }, skip: Platform.environment['TERRADART_RUN_AOT_TESTS'] != '1');
   });
 }

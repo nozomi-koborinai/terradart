@@ -52,43 +52,39 @@ List<String> dependentExamples(String repoRoot, String package) {
 bool _dependsOn(String pubspecYaml, String package) {
   final doc = loadYaml(pubspecYaml);
   if (doc is! YamlMap) return false;
-  return [doc['dependencies'], doc['dev_dependencies']]
-      .any((deps) => deps is YamlMap && deps.containsKey(package));
+  return [
+    doc['dependencies'],
+    doc['dev_dependencies'],
+  ].any((deps) => deps is YamlMap && deps.containsKey(package));
 }
 
 @visibleForTesting
-List<LaneGate> laneGates(
-  WrapLane lane, {
-  List<String> examples = const [],
-}) =>
+List<LaneGate> laneGates(WrapLane lane, {List<String> examples = const []}) =>
     switch (lane.name) {
       'google' || 'google-beta' => const [
-          LaneGate('universal QA gates', codegenDir, [
-            'test',
-            'test/codegen/universal_invariants_test.dart',
-            '-r',
-            'expanded',
-          ]),
-        ],
+        LaneGate('universal QA gates', codegenDir, [
+          'test',
+          'test/codegen/universal_invariants_test.dart',
+          '-r',
+          'expanded',
+        ]),
+      ],
       _ => [
-          LaneGate(
-            '${p.basename(lane.outputPackage)} tests',
-            lane.outputPackage,
-            const ['test', '-r', 'expanded'],
-          ),
-          LaneGate('terradart lint-override', '.', [
-            'tool/wrap_lanes.dart',
-            '--lane',
-            lane.name,
-            '--gate',
-            'lint',
-          ]),
-          if (examples.isNotEmpty)
-            LaneGate('dependent examples analyze', '.', [
-              'analyze',
-              ...examples,
-            ]),
-        ],
+        LaneGate(
+          '${p.basename(lane.outputPackage)} tests',
+          lane.outputPackage,
+          const ['test', '-r', 'expanded'],
+        ),
+        LaneGate('terradart lint-override', '.', [
+          'tool/wrap_lanes.dart',
+          '--lane',
+          lane.name,
+          '--gate',
+          'lint',
+        ]),
+        if (examples.isNotEmpty)
+          LaneGate('dependent examples analyze', '.', ['analyze', ...examples]),
+      ],
     };
 
 Future<void> main(List<String> args) async {
@@ -98,23 +94,23 @@ Future<void> main(List<String> args) async {
     exit(64);
   }
   final name = args[laneIndex + 1];
-  final repoRoot =
-      p.normalize(p.join(p.dirname(Platform.script.toFilePath()), '..'));
+  final repoRoot = p.normalize(
+    p.join(p.dirname(Platform.script.toFilePath()), '..'),
+  );
   final lanes = parseWrapLanes(
     File(p.join(repoRoot, providersPath)).readAsStringSync(),
   );
   final lane = lanes.where((l) => l.name == name).firstOrNull;
   if (lane == null) {
-    print('bump_lane_gates: unknown lane $name '
-        '(known: ${lanes.map((l) => l.name).join(', ')})');
+    print(
+      'bump_lane_gates: unknown lane $name '
+      '(known: ${lanes.map((l) => l.name).join(', ')})',
+    );
     exit(64);
   }
 
   final failed = <String>[];
-  final examples = dependentExamples(
-    repoRoot,
-    p.basename(lane.outputPackage),
-  );
+  final examples = dependentExamples(repoRoot, p.basename(lane.outputPackage));
   for (final gate in laneGates(lane, examples: examples)) {
     print('>> $gate');
     final process = await Process.start(

@@ -16,7 +16,7 @@ Needs an Oracle Database@Google Cloud entitlement for the zone and live Exascale
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with `oracledatabase.googleapis.com` and `compute.googleapis.com` enabled
 

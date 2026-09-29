@@ -14,8 +14,9 @@ Future<void> main() async {
   final invocations = Uri.parse('http://$api/2018-06-01/runtime/invocation/');
   final client = HttpClient();
   while (true) {
-    final next =
-        await (await client.getUrl(invocations.resolve('next'))).close();
+    final next = await (await client.getUrl(
+      invocations.resolve('next'),
+    )).close();
     final requestId = next.headers.value('lambda-runtime-aws-request-id')!;
     await next.drain<void>();
     final reply = await client.postUrl(

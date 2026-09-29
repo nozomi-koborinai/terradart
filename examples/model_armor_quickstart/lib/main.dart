@@ -16,11 +16,9 @@ import 'package:terradart_google/provider.dart';
 /// Model Armor stack: empty filter_config template.
 final class ModelArmorStack extends Stack {
   ModelArmorStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiModelArmor = add(
       GoogleProjectService(
         localName: 'api_modelarmor',

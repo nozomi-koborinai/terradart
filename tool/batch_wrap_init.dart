@@ -126,11 +126,7 @@ Future<void> main(List<String> args) async {
   }
 
   stdout.writeln(
-    jsonEncode({
-      'created': created,
-      'skipped': skipped,
-      'failed': failed,
-    }),
+    jsonEncode({'created': created, 'skipped': skipped, 'failed': failed}),
   );
 
   if (failed.isNotEmpty) {
@@ -227,10 +223,12 @@ List<String> resolveResources({
   final schema =
       jsonDecode(schemaFile.readAsStringSync()) as Map<String, dynamic>;
   final provider = schema['provider_schemas'] as Map<String, dynamic>;
-  final google = provider['registry.terraform.io/hashicorp/google']
-      as Map<String, dynamic>;
-  final resourceSchemas =
-      (google['resource_schemas'] as Map<String, dynamic>).keys.cast<String>();
+  final google =
+      provider['registry.terraform.io/hashicorp/google']
+          as Map<String, dynamic>;
+  final resourceSchemas = (google['resource_schemas'] as Map<String, dynamic>)
+      .keys
+      .cast<String>();
 
   final matches = resourceSchemas.where((k) => k.startsWith(prefix!)).toList()
     ..sort();

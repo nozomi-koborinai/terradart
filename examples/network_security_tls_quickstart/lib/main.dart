@@ -15,11 +15,9 @@ import 'package:terradart_google/provider.dart';
 /// Network Security TLS stack: client + server policy metadata.
 final class NetworkSecurityTlsStack extends Stack {
   NetworkSecurityTlsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         localName: 'api_networksecurity',

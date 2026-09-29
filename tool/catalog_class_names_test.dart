@@ -31,9 +31,9 @@ const terradartCatalog = [
   test('covers every entry of the committed google and aws catalogs', () {
     for (final pkg in ['terradart_google', 'terradart_aws']) {
       final src = 'packages/$pkg/lib/src';
-      final entries = RegExp(r'className:')
-          .allMatches(File('$src/_catalog.g.dart').readAsStringSync())
-          .length;
+      final entries = RegExp(
+        r'className:',
+      ).allMatches(File('$src/_catalog.g.dart').readAsStringSync()).length;
       expect(catalogClassNames(src), hasLength(entries), reason: pkg);
     }
   });

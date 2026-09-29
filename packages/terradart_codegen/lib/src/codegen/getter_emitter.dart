@@ -78,7 +78,10 @@ String emitDerivedOutputGetters(
     if (emitted.contains(attr.name)) continue;
     if (!attr.constraints.computedOnly) continue;
     writeGetter(
-        attr.name, snakeToDartIdent(attr.name), writeDartType(attr.type));
+      attr.name,
+      snakeToDartIdent(attr.name),
+      writeDartType(attr.type),
+    );
   }
 
   return buf.toString();

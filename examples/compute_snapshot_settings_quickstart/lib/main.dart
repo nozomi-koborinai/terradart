@@ -15,11 +15,9 @@ import 'package:terradart_google/provider.dart';
 /// Compute snapshot settings Stack: project default snapshot location policy.
 final class ComputeSnapshotSettingsStack extends Stack {
   ComputeSnapshotSettingsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',

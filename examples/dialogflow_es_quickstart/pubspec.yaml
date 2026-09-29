@@ -3,7 +3,7 @@ description: Dialogflow ES agent plus intent, entity type, fulfillment, version,
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

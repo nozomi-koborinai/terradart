@@ -8,7 +8,7 @@ repo (`google_tags_location_tag_binding`). Enables
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with credentials configured (`gcloud auth application-default login`). The Artifact Registry API is enabled by the stack.
 

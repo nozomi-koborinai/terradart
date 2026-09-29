@@ -10,12 +10,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class OracleAutonomousDatabaseStack extends Stack {
   OracleAutonomousDatabaseStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-east4'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-east4'),
+          const TimeProvider(),
+        ],
+      ) {
     const location = 'us-east4';
     const odbNetworkId = 'terradart-odbnet';
     const odbSubnetId = 'terradart-odbsub';
@@ -68,7 +68,8 @@ final class OracleAutonomousDatabaseStack extends Stack {
           'db_workload':
               OracleDatabaseAutonomousDatabaseDbWorkload.oltp.terraformValue,
           'license_type': OracleDatabaseAutonomousDatabaseLicenseType
-              .licenseIncluded.terraformValue,
+              .licenseIncluded
+              .terraformValue,
         }),
         dependsOn: [...apiDeps, ResourceDependency(odbSubnet)],
       ),

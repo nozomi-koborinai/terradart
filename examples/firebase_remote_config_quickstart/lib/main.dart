@@ -23,12 +23,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class RemoteConfigStack extends Stack {
   RemoteConfigStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     // Enable the Firebase Remote Config API and wait for propagation before
     // the template applies.
     final apiDeps = Apis.enable(
@@ -40,10 +40,10 @@ final class RemoteConfigStack extends Stack {
     // A condition that fires for users in Japan.
     final japanCondition =
         FirebaseRemoteConfigRemoteConfigRemoteConfigCondition(
-      name: TfArg.literal('is_japan'),
-      expression: TfArg.literal("device.country in ['JP']"),
-      tagColor: RemoteConfigTagColor.blue,
-    );
+          name: TfArg.literal('is_japan'),
+          expression: TfArg.literal("device.country in ['JP']"),
+          tagColor: RemoteConfigTagColor.blue,
+        );
 
     add(
       GoogleFirebaseRemoteConfigRemoteConfig(
@@ -56,8 +56,8 @@ final class RemoteConfigStack extends Stack {
             valueType: RemoteConfigValueType.boolean,
             defaultValue:
                 FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
-              value: TfArg.literal('false'),
-            ),
+                  value: TfArg.literal('false'),
+                ),
             conditionalValues: [
               // Enable for Japan before global rollout.
               FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue(
@@ -72,8 +72,8 @@ final class RemoteConfigStack extends Stack {
             valueType: RemoteConfigValueType.string,
             defaultValue:
                 FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
-              value: TfArg.literal('Welcome!'),
-            ),
+                  value: TfArg.literal('Welcome!'),
+                ),
             conditionalValues: [
               FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue(
                 conditionName: TfArg.literal('is_japan'),
@@ -93,8 +93,8 @@ final class RemoteConfigStack extends Stack {
                 valueType: RemoteConfigValueType.boolean,
                 defaultValue:
                     FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
-                  value: TfArg.literal('false'),
-                ),
+                      value: TfArg.literal('false'),
+                    ),
               ),
             ],
           ),

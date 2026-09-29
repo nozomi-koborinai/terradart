@@ -63,33 +63,34 @@ void main() {
     });
 
     test(
-        '--provider hashicorp/azurerm → usage error with registry-driven message',
-        () {
-      final runner = buildCliRunner();
-      expect(
-        () => runner.run([
-          'wrap-init',
-          'google_pubsub_topic',
-          '--provider',
-          'hashicorp/azurerm',
-          '--source',
-          '/tmp',
-          '--output',
-          '/tmp',
-        ]),
-        throwsA(
-          isA<UsageException>().having(
-            (e) => e.message,
-            'message',
-            allOf(
-              contains('hashicorp/azurerm'),
-              contains('not supported'),
-              contains('Available: hashicorp/google'),
+      '--provider hashicorp/azurerm → usage error with registry-driven message',
+      () {
+        final runner = buildCliRunner();
+        expect(
+          () => runner.run([
+            'wrap-init',
+            'google_pubsub_topic',
+            '--provider',
+            'hashicorp/azurerm',
+            '--source',
+            '/tmp',
+            '--output',
+            '/tmp',
+          ]),
+          throwsA(
+            isA<UsageException>().having(
+              (e) => e.message,
+              'message',
+              allOf(
+                contains('hashicorp/azurerm'),
+                contains('not supported'),
+                contains('Available: hashicorp/google'),
+              ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   });
 
   group('WrapInitCommand happy + overwrite', () {
@@ -118,53 +119,59 @@ void main() {
     });
 
     test(
-        'twin without --kind is a usage error; --kind data_source writes data_',
-        () async {
-      final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_init_');
-      try {
-        expect(
-          () => buildCliRunner().run([
+      'twin without --kind is a usage error; --kind data_source writes data_',
+      () async {
+        final tmpOut = await Directory.systemTemp.createTemp(
+          'phase4_wrap_init_',
+        );
+        try {
+          expect(
+            () => buildCliRunner().run([
+              'wrap-init',
+              'google_compute_network',
+              '--source',
+              p.join('test', 'fixtures', 'wrap', 'source'),
+              '--output',
+              tmpOut.path,
+            ]),
+            throwsA(
+              isA<UsageException>().having(
+                (e) => e.message,
+                'message',
+                contains('--kind'),
+              ),
+            ),
+          );
+
+          final code = await buildCliRunner().run([
             'wrap-init',
             'google_compute_network',
+            '--kind',
+            'data_source',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
             tmpOut.path,
-          ]),
-          throwsA(
-            isA<UsageException>().having(
-              (e) => e.message,
-              'message',
-              contains('--kind'),
-            ),
-          ),
-        );
-
-        final code = await buildCliRunner().run([
-          'wrap-init',
-          'google_compute_network',
-          '--kind',
-          'data_source',
-          '--source',
-          p.join('test', 'fixtures', 'wrap', 'source'),
-          '--output',
-          tmpOut.path,
-        ]);
-        expect(code, 0);
-        final out =
-            File(p.join(tmpOut.path, 'data_google_compute_network.yaml'));
-        expect(out.existsSync(), isTrue);
-        final body = out.readAsStringSync();
-        expect(body, contains('kind: data_source'));
-        expect(body, contains('outputDir: data'));
-        expect(
-          File(p.join(tmpOut.path, 'google_compute_network.yaml')).existsSync(),
-          isFalse,
-        );
-      } finally {
-        await tmpOut.delete(recursive: true);
-      }
-    });
+          ]);
+          expect(code, 0);
+          final out = File(
+            p.join(tmpOut.path, 'data_google_compute_network.yaml'),
+          );
+          expect(out.existsSync(), isTrue);
+          final body = out.readAsStringSync();
+          expect(body, contains('kind: data_source'));
+          expect(body, contains('outputDir: data'));
+          expect(
+            File(
+              p.join(tmpOut.path, 'google_compute_network.yaml'),
+            ).existsSync(),
+            isFalse,
+          );
+        } finally {
+          await tmpOut.delete(recursive: true);
+        }
+      },
+    );
 
     test('resource not in schema returns dataError', () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_init_');
@@ -184,41 +191,47 @@ void main() {
       }
     });
 
-    test('existing yaml without --force returns E402; --force overwrites',
-        () async {
-      final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_init_');
-      try {
-        final yamlPath = File(p.join(tmpOut.path, 'google_pubsub_topic.yaml'));
-        const originalBytes = '# hand-edited, do not clobber\n';
-        yamlPath.writeAsStringSync(originalBytes);
+    test(
+      'existing yaml without --force returns E402; --force overwrites',
+      () async {
+        final tmpOut = await Directory.systemTemp.createTemp(
+          'phase4_wrap_init_',
+        );
+        try {
+          final yamlPath = File(
+            p.join(tmpOut.path, 'google_pubsub_topic.yaml'),
+          );
+          const originalBytes = '# hand-edited, do not clobber\n';
+          yamlPath.writeAsStringSync(originalBytes);
 
-        // Without --force: refuse.
-        final code1 = await buildCliRunner().run([
-          'wrap-init',
-          'google_pubsub_topic',
-          '--source',
-          p.join('test', 'fixtures'),
-          '--output',
-          tmpOut.path,
-        ]);
-        expect(code1, CliExitCodes.dataError);
-        expect(yamlPath.readAsStringSync(), originalBytes);
+          // Without --force: refuse.
+          final code1 = await buildCliRunner().run([
+            'wrap-init',
+            'google_pubsub_topic',
+            '--source',
+            p.join('test', 'fixtures'),
+            '--output',
+            tmpOut.path,
+          ]);
+          expect(code1, CliExitCodes.dataError);
+          expect(yamlPath.readAsStringSync(), originalBytes);
 
-        // With --force: overwrite.
-        final code2 = await buildCliRunner().run([
-          'wrap-init',
-          'google_pubsub_topic',
-          '--source',
-          p.join('test', 'fixtures'),
-          '--output',
-          tmpOut.path,
-          '--force',
-        ]);
-        expect(code2, 0);
-        expect(yamlPath.readAsStringSync(), isNot(originalBytes));
-      } finally {
-        await tmpOut.delete(recursive: true);
-      }
-    });
+          // With --force: overwrite.
+          final code2 = await buildCliRunner().run([
+            'wrap-init',
+            'google_pubsub_topic',
+            '--source',
+            p.join('test', 'fixtures'),
+            '--output',
+            tmpOut.path,
+            '--force',
+          ]);
+          expect(code2, 0);
+          expect(yamlPath.readAsStringSync(), isNot(originalBytes));
+        } finally {
+          await tmpOut.delete(recursive: true);
+        }
+      },
+    );
   });
 }

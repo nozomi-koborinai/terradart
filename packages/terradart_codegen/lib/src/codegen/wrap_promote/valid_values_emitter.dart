@@ -29,7 +29,8 @@ class ValidValuesEmitter {
     final buf = StringBuffer();
     buf.writeln('  # --- validValues: $leaf ---');
     buf.writeln(
-        '  # TODO(wrap-promote): rename `$enumName` to a domain-appropriate name.');
+      '  # TODO(wrap-promote): rename `$enumName` to a domain-appropriate name.',
+    );
     buf.writeln('  enum $enumName implements TerraformEnum {');
     for (var i = 0; i < enumValues.length; i++) {
       final camel = camelByValue[enumValues[i]]!;

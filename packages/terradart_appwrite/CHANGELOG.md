@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). The generated wrappers were already formatted in the Dart 3.7+ tall style, so the constraint now matches them (pub.dev static analysis no longer reports a formatter mismatch).
+
 ## 0.30.0 - 2026-09-28
 
 - **Breaking:** inputs with a fixed value set are enums — 23 string slots on 17 resources (e.g. `AppwriteMessagingProvider.type` → `MessagingProviderType`, `AppwriteStorageBucket.compression` → `StorageBucketCompression`). Synth output is unchanged. See `MIGRATING.md`.

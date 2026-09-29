@@ -17,10 +17,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/secret_manager.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -38,10 +35,8 @@ final class DbCredentialsStack extends Stack {
     required String dbPasswordCleartext,
     int secretVersion = 1,
   }) : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+       ) {
     // 1. The secret resource itself (auto-replicated).
     final secret = add(
       GoogleSecretManagerSecret(
@@ -102,10 +97,7 @@ final class DbCredentialsStack extends Stack {
         secretId: TfArg.ref(secret.secretIdRef),
         role: TfArg.literal('roles/secretmanager.secretAccessor'),
         members: TfArg.literal([appSa.iamMember.interpolation]),
-        dependsOn: [
-          ResourceDependency(secret),
-          ResourceDependency(appSa),
-        ],
+        dependsOn: [ResourceDependency(secret), ResourceDependency(appSa)],
       ),
     );
 

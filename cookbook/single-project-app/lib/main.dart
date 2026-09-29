@@ -26,12 +26,12 @@ final class SingleProjectAppStack extends Stack {
     required this.dbPassword,
     required this.alertEmail,
   }) : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-          backend: const LocalBackend(),
-          devMode: true,
-        ) {
+         providers: [
+           GoogleProvider(project: projectId, region: 'asia-northeast1'),
+         ],
+         backend: const LocalBackend(),
+         devMode: true,
+       ) {
     // ===== Tier 1 — API enablement (8 services) ===========================
     for (final api in buildProjectServices()) {
       add(api);
@@ -43,10 +43,9 @@ final class SingleProjectAppStack extends Stack {
     final psaConnection = add(buildPsaConnection(vpc));
 
     // ===== Tier 3 — Datastore (Cloud SQL + Secret Manager) ================
-    final sqlInstance = add(buildSqlInstance(
-      vpc: vpc,
-      psaConnection: psaConnection,
-    ));
+    final sqlInstance = add(
+      buildSqlInstance(vpc: vpc, psaConnection: psaConnection),
+    );
     final sqlDatabase = add(buildSqlDatabase(sqlInstance));
     add(buildSqlUser(sqlInstance, dbPassword));
     final dbPasswordSecret = add(buildDbPasswordSecret());
@@ -63,21 +62,25 @@ final class SingleProjectAppStack extends Stack {
     add(buildSecretIamMember(dbPasswordSecret, runSa));
 
     // ===== Tier 5 — Cloud Run v2 service ==================================
-    final coffeeService = add(buildCloudRunService(
-      runSa: runSa,
-      sqlInstance: sqlInstance,
-      sqlDatabase: sqlDatabase,
-      dbPasswordSecret: dbPasswordSecret,
-    ));
+    final coffeeService = add(
+      buildCloudRunService(
+        runSa: runSa,
+        sqlInstance: sqlInstance,
+        sqlDatabase: sqlDatabase,
+        dbPasswordSecret: dbPasswordSecret,
+      ),
+    );
     add(buildCloudRunInvoker(coffeeService));
 
     // ===== Tier 6 — Pub/Sub + Monitoring ==================================
     final orderTopic = add(buildOrderTopic());
-    add(buildOrderSubscription(
-      orderTopic: orderTopic,
-      coffeeService: coffeeService,
-      runSa: runSa,
-    ));
+    add(
+      buildOrderSubscription(
+        orderTopic: orderTopic,
+        coffeeService: coffeeService,
+        runSa: runSa,
+      ),
+    );
     final emailChannel = add(buildEmailChannel(alertEmail));
     add(buildUptimeCheck(coffeeService));
     add(buildDownAlert(emailChannel));

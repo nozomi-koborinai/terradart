@@ -10,12 +10,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class OracleGoldengateStack extends Stack {
   OracleGoldengateStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-east4'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-east4'),
+          const TimeProvider(),
+        ],
+      ) {
     const location = 'us-east4';
     const odbNetworkId = 'terradart-odbnet';
     const odbSubnetId = 'terradart-odbsub';

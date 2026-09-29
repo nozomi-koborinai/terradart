@@ -3,7 +3,7 @@ description: Storage Transfer jobs, inventory reports, and authoritative ACLs.
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

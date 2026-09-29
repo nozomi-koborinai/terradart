@@ -12,7 +12,7 @@ KMS key rings, keys, and import jobs can never be deleted. Applying leaves them 
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Cloud KMS API enabled and credentials configured (`gcloud auth application-default login`).
 

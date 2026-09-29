@@ -3,7 +3,7 @@ description: Vector Search 2.0 collection quickstart (schema-only).
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

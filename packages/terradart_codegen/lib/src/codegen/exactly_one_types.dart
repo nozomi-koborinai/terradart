@@ -60,7 +60,8 @@ String renderExactlyOneTypes({
     buf
       ..writeln('/// Exactly one of $list on $where: the provider rejects')
       ..writeln(
-          '/// none and more than one, so each variant sets one of them.');
+        '/// none and more than one, so each variant sets one of them.',
+      );
   }
   buf
     ..writeln('sealed class $sealed {')
@@ -74,7 +75,8 @@ String renderExactlyOneTypes({
     buf
       ..writeln()
       ..writeln(
-          '  /// The resource arguments behind [encode], as the caller\'s')
+        '  /// The resource arguments behind [encode], as the caller\'s',
+      )
       ..writeln('  /// [TfArg]s.')
       ..writeln('  Map<String, TfArg<Object?>> get argMap;');
   }

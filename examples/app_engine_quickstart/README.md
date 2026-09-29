@@ -8,7 +8,7 @@ Stage `app.zip` in the deploy bucket and use a domain you can verify for the dom
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with credentials configured (`gcloud auth application-default login`). App Engine APIs are enabled by the stack.
 

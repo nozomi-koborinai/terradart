@@ -8,11 +8,11 @@ import 'package:test/test.dart';
 /// package-URI resolution are covered end-to-end.
 void main() {
   test('lint-override exits 0 on the clean committed registry', () {
-    final result = Process.runSync(
-      'dart',
-      ['run', 'bin/terradart.dart', 'lint-override'],
-      workingDirectory: Directory.current.path,
-    );
+    final result = Process.runSync('dart', [
+      'run',
+      'bin/terradart.dart',
+      'lint-override',
+    ], workingDirectory: Directory.current.path);
     expect(
       result.exitCode,
       0,
@@ -22,11 +22,11 @@ void main() {
   });
 
   test('lint-override is a registered subcommand in --help', () {
-    final result = Process.runSync(
-      'dart',
-      ['run', 'bin/terradart.dart', '--help'],
-      workingDirectory: Directory.current.path,
-    );
+    final result = Process.runSync('dart', [
+      'run',
+      'bin/terradart.dart',
+      '--help',
+    ], workingDirectory: Directory.current.path);
     expect('${result.stdout}${result.stderr}', contains('lint-override'));
   });
 
@@ -36,11 +36,13 @@ void main() {
     File('${dir.path}/google_bad.yaml').writeAsStringSync(
       'outputDir: x\ncuratedDoc: |-\n  /// dead (deriveClassDoc is off)\n',
     );
-    final result = Process.runSync(
-      'dart',
-      ['run', 'bin/terradart.dart', 'lint-override', '--dir', dir.path],
-      workingDirectory: Directory.current.path,
-    );
+    final result = Process.runSync('dart', [
+      'run',
+      'bin/terradart.dart',
+      'lint-override',
+      '--dir',
+      dir.path,
+    ], workingDirectory: Directory.current.path);
     expect(
       result.exitCode,
       65,
@@ -51,11 +53,13 @@ void main() {
 
   test('lint-override exits 65 with a clean message on a missing --dir', () {
     final missing = '${Directory.systemTemp.path}/a5-does-not-exist-xyz';
-    final result = Process.runSync(
-      'dart',
-      ['run', 'bin/terradart.dart', 'lint-override', '--dir', missing],
-      workingDirectory: Directory.current.path,
-    );
+    final result = Process.runSync('dart', [
+      'run',
+      'bin/terradart.dart',
+      'lint-override',
+      '--dir',
+      missing,
+    ], workingDirectory: Directory.current.path);
     expect(
       result.exitCode,
       65,
@@ -80,11 +84,13 @@ prelude: |
     ];
   }
 ''');
-    final result = Process.runSync(
-      'dart',
-      ['run', 'bin/terradart.dart', 'lint-override', '--dir', dir.path],
-      workingDirectory: Directory.current.path,
-    );
+    final result = Process.runSync('dart', [
+      'run',
+      'bin/terradart.dart',
+      'lint-override',
+      '--dir',
+      dir.path,
+    ], workingDirectory: Directory.current.path);
     expect(
       result.exitCode,
       65,
@@ -95,7 +101,8 @@ prelude: |
   });
 
   test('migrate ledger resolves beside the exactly-one ledger', () {
-    const root = '/repo/packages/terradart_codegen/lib/src/codegen/'
+    const root =
+        '/repo/packages/terradart_codegen/lib/src/codegen/'
         'wrapper_overrides/yaml';
     expect(
       migrateManifestDebtPathForOverrideRoot(root),
@@ -108,7 +115,8 @@ prelude: |
   });
 
   test('a lane directory resolves the same shared ledgers', () {
-    const lane = '/repo/packages/terradart_codegen/lib/src/codegen/'
+    const lane =
+        '/repo/packages/terradart_codegen/lib/src/codegen/'
         'wrapper_overrides/cloudflare/yaml';
     expect(lintDebtToolDirForOverrideRoot(lane), '/repo/tool');
     expect(
@@ -122,16 +130,18 @@ prelude: |
     expect(exactlyOneLintDebtPathForOverrideRoot('/tmp/overrides'), isNull);
   });
 
-  test('laneLedgerEntries keeps only the entries naming the lane overrides',
-      () {
-    expect(
-      laneLedgerEntries(
-        {'aws_thing': 'a', 'google_other': 'b'},
-        ['aws_thing', 'aws_else'],
-      ),
-      {'aws_thing': 'a'},
-    );
-  });
+  test(
+    'laneLedgerEntries keeps only the entries naming the lane overrides',
+    () {
+      expect(
+        laneLedgerEntries(
+          {'aws_thing': 'a', 'google_other': 'b'},
+          ['aws_thing', 'aws_else'],
+        ),
+        {'aws_thing': 'a'},
+      );
+    },
+  );
 
   group('a lane reads the shared ledgers', () {
     late Directory repo;
@@ -139,7 +149,8 @@ prelude: |
 
     setUp(() {
       repo = Directory.systemTemp.createTempSync('lint_lane_ledger');
-      laneDir = '${repo.path}/packages/terradart_codegen/lib/src/codegen/'
+      laneDir =
+          '${repo.path}/packages/terradart_codegen/lib/src/codegen/'
           'wrapper_overrides/aws/yaml';
       Directory(laneDir).createSync(recursive: true);
       File('$laneDir/aws_thing.yaml').writeAsStringSync('outputDir: x\n');
@@ -147,19 +158,22 @@ prelude: |
     });
     tearDown(() => repo.deleteSync(recursive: true));
 
-    ProcessResult lint() => Process.runSync(
-          'dart',
-          ['run', 'bin/terradart.dart', 'lint-override', '--dir', laneDir],
-          workingDirectory: Directory.current.path,
-        );
+    ProcessResult lint() => Process.runSync('dart', [
+      'run',
+      'bin/terradart.dart',
+      'lint-override',
+      '--dir',
+      laneDir,
+    ], workingDirectory: Directory.current.path);
 
     for (final (ledger, rule) in [
       ('exactly_one_lint_debt.yaml', 'exactly-one-optional-fanout'),
       ('migrate_manifest_debt.yaml', 'migrate-shape-underivable'),
     ]) {
       test('a planted $ledger entry for a clean lane override is stale', () {
-        File('${repo.path}/tool/$ledger')
-            .writeAsStringSync('aws_thing: planted\n');
+        File(
+          '${repo.path}/tool/$ledger',
+        ).writeAsStringSync('aws_thing: planted\n');
         final result = lint();
         expect(
           result.exitCode,
@@ -176,8 +190,9 @@ prelude: |
 
     test('entries naming another lane are left to wrap_lanes', () {
       for (final ledger in lintDebtLedgerFileNames) {
-        File('${repo.path}/tool/$ledger')
-            .writeAsStringSync('google_elsewhere: owned by another lane\n');
+        File(
+          '${repo.path}/tool/$ledger',
+        ).writeAsStringSync('google_elsewhere: owned by another lane\n');
       }
       final result = lint();
       expect(
@@ -189,29 +204,33 @@ prelude: |
     });
   });
 
-  test('loadLintDebtLedger parses name: reason lines and rejects bare names',
-      () {
-    final dir = Directory.systemTemp.createTempSync('a5lint_ledger');
-    addTearDown(() => dir.deleteSync(recursive: true));
-    final file = File('${dir.path}/migrate_manifest_debt.yaml')
-      ..writeAsStringSync(
-        '# comment\n\ngoogle_a: reason a\ngoogle_b:   reason b  \n',
-      );
-    expect(
-      loadLintDebtLedger(file.path),
-      {'google_a': 'reason a', 'google_b': 'reason b'},
-    );
-    expect(loadLintDebtLedger('${dir.path}/missing.yaml'), isEmpty);
-    file.writeAsStringSync('google_c:\n');
-    expect(
-      () => loadLintDebtLedger(file.path),
-      throwsA(
-        isA<FormatException>().having(
-          (e) => e.message,
-          'message',
-          contains('tool/migrate_manifest_debt.yaml: google_c needs a reason'),
+  test(
+    'loadLintDebtLedger parses name: reason lines and rejects bare names',
+    () {
+      final dir = Directory.systemTemp.createTempSync('a5lint_ledger');
+      addTearDown(() => dir.deleteSync(recursive: true));
+      final file = File('${dir.path}/migrate_manifest_debt.yaml')
+        ..writeAsStringSync(
+          '# comment\n\ngoogle_a: reason a\ngoogle_b:   reason b  \n',
+        );
+      expect(loadLintDebtLedger(file.path), {
+        'google_a': 'reason a',
+        'google_b': 'reason b',
+      });
+      expect(loadLintDebtLedger('${dir.path}/missing.yaml'), isEmpty);
+      file.writeAsStringSync('google_c:\n');
+      expect(
+        () => loadLintDebtLedger(file.path),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            contains(
+              'tool/migrate_manifest_debt.yaml: google_c needs a reason',
+            ),
+          ),
         ),
-      ),
-    );
-  });
+      );
+    },
+  );
 }

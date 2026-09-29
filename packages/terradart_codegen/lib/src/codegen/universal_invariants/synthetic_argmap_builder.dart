@@ -42,8 +42,9 @@ class SyntheticArgMapBuilder {
     if (remainingSegments.length == 1) {
       return <String, dynamic>{remainingSegments.first: leafValue};
     }
-    final head =
-        remainingSegments.first == '*' ? 'entry' : remainingSegments.first;
+    final head = remainingSegments.first == '*'
+        ? 'entry'
+        : remainingSegments.first;
     final rest = _buildNested(remainingSegments.sublist(1), leafValue);
     return <String, dynamic>{
       head: <dynamic>[rest],

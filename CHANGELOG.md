@@ -18,6 +18,14 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **Minimum Dart SDK is 3.10** (**breaking**) — every package, example,
+  and cookbook stack declares `sdk: ^3.10.0` (was `^3.6.0`;
+  `terradart_hcl` and `terradart_migrate` already required 3.10). The
+  generated provider wrappers are formatted in the Dart 3.7+ tall style,
+  which the old constraint contradicted: pub.dev's formatter check cost
+  each provider package 10 points. Hand-written code is reformatted in the
+  tall style, and `terradart-migrate` writes `sdk: ^3.10.0` into the
+  packages it generates. See `MIGRATING.md`.
 - **`terradart_aws` at-most-one groups are nullable sealed types**
   (**breaking**) — 229 groups on 160 resources (169 on resource arguments,
   60 in nested blocks; 59 are `name` / `name_prefix`), e.g.

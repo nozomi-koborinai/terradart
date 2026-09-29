@@ -14,12 +14,12 @@ import 'package:terradart_codegen/src/ir/type_def.dart';
 import 'package:test/test.dart';
 
 Attribute _attr(String name, {bool required = false}) => Attribute(
-      name: name,
-      type: const StringType(),
-      constraints: required
-          ? const Constraints(required: true)
-          : const Constraints(optional: true),
-    );
+  name: name,
+  type: const StringType(),
+  constraints: required
+      ? const Constraints(required: true)
+      : const Constraints(optional: true),
+);
 
 const _groups = ProviderEnums.on(
   exactlyOneGroups: {
@@ -71,15 +71,16 @@ void main() {
     });
     tearDown(() => dir.deleteSync(recursive: true));
 
-    void write(String body) =>
-        File(p.join(dir.path, 'hints', 'aws_thing.yaml')).writeAsStringSync(
-          'provider_version: 1.0.0\n$body',
-        );
+    void write(String body) => File(
+      p.join(dir.path, 'hints', 'aws_thing.yaml'),
+    ).writeAsStringSync('provider_version: 1.0.0\n$body');
 
     test('reads exactly_one_of_groups', () {
-      write('exactly_one_of_groups:\n'
-          '  - ["a", "b"]\n'
-          '  - ["settings.x", "settings.y"]\n');
+      write(
+        'exactly_one_of_groups:\n'
+        '  - ["a", "b"]\n'
+        '  - ["settings.x", "settings.y"]\n',
+      );
       final enums = ProviderEnums.load(dir.path, providerVersion: '1.0.0');
       expect(enums.exactlyOneGroups, {
         'aws_thing': [
@@ -90,8 +91,10 @@ void main() {
     });
 
     test('reads at_most_one_of_groups', () {
-      write('at_most_one_of_groups:\n'
-          '  - ["content", "data"]\n');
+      write(
+        'at_most_one_of_groups:\n'
+        '  - ["content", "data"]\n',
+      );
       final enums = ProviderEnums.load(dir.path, providerVersion: '1.0.0');
       expect(enums.exactlyOneGroups, isEmpty);
       expect(enums.atMostOneGroups, {
@@ -148,7 +151,9 @@ void main() {
     ]);
     final o = derived.overrides['aws_thing']!;
     expect(
-        o.customSlots!['a_or_b']!.paramDeclaration, 'required ThingAOrB aOrB');
+      o.customSlots!['a_or_b']!.paramDeclaration,
+      'required ThingAOrB aOrB',
+    );
     expect(o.customSlots!['a_or_b']!.argMapEntry, '...aOrB.argMap,');
     expect(o.paramOrder, isNot(contains('a')));
     expect(o.paramOrder, isNot(contains('b')));
@@ -243,15 +248,15 @@ void main() {
 
   test('unsealedNestedGroups follows shared helpers to every copy', () {
     Map<String, dynamic> settings() => {
-          'nesting_mode': 'list',
-          'max_items': 1,
-          'block': {
-            'attributes': {
-              'x': {'type': 'string', 'optional': true},
-              'y': {'type': 'string', 'optional': true},
-            },
-          },
-        };
+      'nesting_mode': 'list',
+      'max_items': 1,
+      'block': {
+        'attributes': {
+          'x': {'type': 'string', 'optional': true},
+          'y': {'type': 'string', 'optional': true},
+        },
+      },
+    };
     const groups = {
       'one': [
         ['x', 'y'],
@@ -317,45 +322,42 @@ void main() {
     expect(src, contains('final Map<String, ThingSettingsM>? m;'));
   });
 
-  test('deriveExactlyOneSlots reports nested groups without a typed helper',
-      () {
-    final derived = deriveExactlyOneSlots(
-      {
-        'aws_thing': const WrapperOverride(
-          outputDir: 'thing',
-          deriveExactlyOne: true,
-        ),
-      },
-      {
-        'aws_thing': ResourceDef(
-          terraformType: 'aws_thing',
-          root: BlockDef(attributes: [_attr('a'), _attr('b')]),
-        ),
-      },
-      providerEnums: const ProviderEnums.on(
-        exactlyOneGroups: {
-          'aws_thing': [
-            ['settings.x', 'settings.y'],
-          ],
+  test(
+    'deriveExactlyOneSlots reports nested groups without a typed helper',
+    () {
+      final derived = deriveExactlyOneSlots(
+        {
+          'aws_thing': const WrapperOverride(
+            outputDir: 'thing',
+            deriveExactlyOne: true,
+          ),
         },
-      ),
-      rawSchemas: const {},
-    );
-    expect(derived.skipped, [
-      'aws_thing settings [x, y]: the block has no typed helper',
-    ]);
-  });
+        {
+          'aws_thing': ResourceDef(
+            terraformType: 'aws_thing',
+            root: BlockDef(attributes: [_attr('a'), _attr('b')]),
+          ),
+        },
+        providerEnums: const ProviderEnums.on(
+          exactlyOneGroups: {
+            'aws_thing': [
+              ['settings.x', 'settings.y'],
+            ],
+          },
+        ),
+        rawSchemas: const {},
+      );
+      expect(derived.skipped, [
+        'aws_thing settings [x, y]: the block has no typed helper',
+      ]);
+    },
+  );
 
   test('an at-most-one group becomes a nullable sealed slot', () {
     final def = ResourceDef(
       terraformType: 'aws_thing',
       root: BlockDef(
-        attributes: [
-          _attr('a'),
-          _attr('b'),
-          _attr('c'),
-          _attr('d'),
-        ],
+        attributes: [_attr('a'), _attr('b'), _attr('c'), _attr('d')],
       ),
     );
     final derived = deriveExactlyOneSlots(
@@ -387,7 +389,9 @@ void main() {
     ]);
     final o = derived.overrides['aws_thing']!;
     expect(
-        o.customSlots!['a_or_b']!.paramDeclaration, 'required ThingAOrB aOrB');
+      o.customSlots!['a_or_b']!.paramDeclaration,
+      'required ThingAOrB aOrB',
+    );
     expect(o.customSlots!['c_or_d']!.paramDeclaration, 'ThingCOrD? cOrD');
     expect(o.customSlots!['c_or_d']!.argMapEntry, '...?cOrD?.argMap,');
     expect(o.paramOrder, ['a_or_b', 'c_or_d']);

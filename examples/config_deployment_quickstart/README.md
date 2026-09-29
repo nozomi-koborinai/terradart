@@ -8,7 +8,7 @@ Applying actuates a real Terraform blueprint (the terraform-google-network VPC m
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Config API enabled
 

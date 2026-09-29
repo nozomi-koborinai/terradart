@@ -14,11 +14,11 @@ import 'package:terradart_google/provider.dart';
 /// KMS Autokey stack: project Autokey config in DISABLED mode.
 final class KmsAutokeyStack extends Stack {
   KmsAutokeyStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     final apiKms = add(
       GoogleProjectService(
         localName: 'api_cloudkms',

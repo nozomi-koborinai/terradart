@@ -17,11 +17,9 @@ import 'package:terradart_google/provider.dart';
 /// VPC Flow Logs stack: empty network + flow logs config.
 final class VpcFlowLogsStack extends Stack {
   VpcFlowLogsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final current = addData(GoogleProject(localName: 'current'));
 
     final apiCompute = add(

@@ -151,11 +151,14 @@ void main() {
     });
 
     test('rejects merged scalars and enums', () {
-      expect(mergedShape(classifyDartType('TfArg<String>', _ctx)).isManual,
-          isTrue);
       expect(
-        mergedShape(resolveEnumPayload(classifyDartType('Color', _ctx), _ctx))
-            .isManual,
+        mergedShape(classifyDartType('TfArg<String>', _ctx)).isManual,
+        isTrue,
+      );
+      expect(
+        mergedShape(
+          resolveEnumPayload(classifyDartType('Color', _ctx), _ctx),
+        ).isManual,
         isTrue,
       );
     });
@@ -176,8 +179,7 @@ void main() {
       expect(parsed.dynamicKey, isFalse);
     });
 
-    test('strips annotations and default values, detects blockKey dispatch',
-        () {
+    test('strips annotations and default values, detects blockKey dispatch', () {
       const slot = CustomSlot(
         paramDeclaration:
             "@Deprecated('x') Target target = const PubsubTarget(topicName: TfArg.literal('t'))",
@@ -267,8 +269,10 @@ void main() {
       );
       expect(
         customSlotShape(
-                dynamicNonSealed, parseCustomSlot(dynamicNonSealed), _ctx)
-            .reason,
+          dynamicNonSealed,
+          parseCustomSlot(dynamicNonSealed),
+          _ctx,
+        ).reason,
         contains('not a sealed class'),
       );
       const spreadNonSealed = CustomSlot(
@@ -276,8 +280,11 @@ void main() {
         argMapEntry: '...h.argMap,',
       );
       expect(
-        customSlotShape(spreadNonSealed, parseCustomSlot(spreadNonSealed), _ctx)
-            .reason,
+        customSlotShape(
+          spreadNonSealed,
+          parseCustomSlot(spreadNonSealed),
+          _ctx,
+        ).reason,
         contains('spreads the slot but the type is not a sealed class'),
       );
       const noKey = CustomSlot(
@@ -293,7 +300,8 @@ void main() {
     test('a helper map is keyed only when it encodes as a keyed map', () {
       const keyed = CustomSlot(
         paramDeclaration: 'required Map<String, Helper> hs',
-        argMapEntry: "'hs': TfArg.literal({for (final e in hs.entries) "
+        argMapEntry:
+            "'hs': TfArg.literal({for (final e in hs.entries) "
             'e.key: e.value.encode()}),',
       );
       final shape = customSlotShape(keyed, parseCustomSlot(keyed), _ctx);
@@ -302,7 +310,8 @@ void main() {
 
       const named = CustomSlot(
         paramDeclaration: 'Map<String, Helper>? hs',
-        argMapEntry: "if (hs != null) 'hs': TfArg.literal(hs!.entries"
+        argMapEntry:
+            "if (hs != null) 'hs': TfArg.literal(hs!.entries"
             ".map((e) => {'name': e.key, ...e.value.encode()}).toList()),",
       );
       expect(

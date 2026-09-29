@@ -14,11 +14,9 @@ import 'package:terradart_google/provider.dart';
 /// Data Lineage Stack: project config enabling Dataproc lineage ingestion.
 final class DataLineageStack extends Stack {
   DataLineageStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiLineage = add(
       GoogleProjectService(
         localName: 'api_datalineage',
@@ -37,15 +35,15 @@ final class DataLineageStack extends Stack {
             DataLineageConfigIngestionRule(
               integrationSelector:
                   DataLineageConfigIngestionRuleIntegrationSelector(
-                integration: TfArg.literal(
-                  DataLineageConfigIngestionRuleIntegrationSelectorIntegration
-                      .dataproc,
-                ),
-              ),
+                    integration: TfArg.literal(
+                      DataLineageConfigIngestionRuleIntegrationSelectorIntegration
+                          .dataproc,
+                    ),
+                  ),
               lineageEnablement:
                   DataLineageConfigIngestionRuleLineageEnablement(
-                enabled: TfArg.literal(true),
-              ),
+                    enabled: TfArg.literal(true),
+                  ),
             ),
           ],
         ),

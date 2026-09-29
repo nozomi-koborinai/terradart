@@ -9,19 +9,16 @@ import 'schema_resource_diff.dart';
 Map<String, dynamic> schema({
   List<String> resources = const [],
   List<String> dataSources = const [],
-}) =>
-    {
-      'provider_schemas': {
-        'registry.terraform.io/hashicorp/aws': {
-          'resource_schemas': {
-            for (final r in resources) r: <String, dynamic>{},
-          },
-          'data_source_schemas': {
-            for (final d in dataSources) d: <String, dynamic>{},
-          },
-        },
+}) => {
+  'provider_schemas': {
+    'registry.terraform.io/hashicorp/aws': {
+      'resource_schemas': {for (final r in resources) r: <String, dynamic>{}},
+      'data_source_schemas': {
+        for (final d in dataSources) d: <String, dynamic>{},
       },
-    };
+    },
+  },
+};
 
 const catalog = '''
 const List<CatalogEntry> terradartCatalog = <CatalogEntry>[

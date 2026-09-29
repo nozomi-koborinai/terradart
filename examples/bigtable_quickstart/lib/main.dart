@@ -18,12 +18,12 @@ import 'package:terradart_time/terradart_time.dart';
 /// Cloud Bigtable stack for the applyable Wave 73 surface (schema bundle deferred).
 final class EventsStack extends Stack {
   EventsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.bigtable],
@@ -53,9 +53,7 @@ final class EventsStack extends Stack {
         localName: 'events',
         instanceName: TfArg.ref(instance.nameRef),
         name: TfArg.literal('events'),
-        columnFamily: [
-          BigtableTableColumnFamily(family: TfArg.literal('cf1')),
-        ],
+        columnFamily: [BigtableTableColumnFamily(family: TfArg.literal('cf1'))],
         dependsOn: [ResourceDependency(instance)],
       ),
     );

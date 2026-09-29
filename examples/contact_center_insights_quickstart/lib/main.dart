@@ -22,11 +22,9 @@ import 'package:terradart_google/provider.dart';
 /// and auto-labeling.
 final class ContactCenterInsightsStack extends Stack {
   ContactCenterInsightsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiInsights = add(
       GoogleProjectService(
         localName: 'api_contactcenterinsights',

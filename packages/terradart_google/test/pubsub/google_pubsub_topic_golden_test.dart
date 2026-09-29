@@ -22,9 +22,11 @@ void main() {
       );
 
     final actual = stack.synth().tfJson;
-    final expected = jsonDecode(
-      await File('test/golden/pubsub_topic.tf.json').readAsString(),
-    ) as Map<String, dynamic>;
+    final expected =
+        jsonDecode(
+              await File('test/golden/pubsub_topic.tf.json').readAsString(),
+            )
+            as Map<String, dynamic>;
     expect(actual, equals(expected));
   });
 }

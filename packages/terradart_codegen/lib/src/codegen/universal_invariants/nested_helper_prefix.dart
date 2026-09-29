@@ -38,8 +38,9 @@ class NestedHelperPrefix {
         // should start with `<expectedPrefix>`.
         if (name == 'Google$expectedPrefix') continue;
         if (name.startsWith(expectedPrefix)) continue;
-        violations
-            .add('$filename: class $name (expected prefix $expectedPrefix)');
+        violations.add(
+          '$filename: class $name (expected prefix $expectedPrefix)',
+        );
       }
     }
 

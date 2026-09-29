@@ -3,7 +3,7 @@ description: Dataproc Metastore end-to-end example — developer-tier service, f
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

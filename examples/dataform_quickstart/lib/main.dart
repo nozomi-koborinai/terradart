@@ -21,12 +21,12 @@ import 'package:terradart_time/terradart_time.dart';
 /// Dataform stack: team folder + nested folder + repository with IAM.
 final class DataformStack extends Stack {
   DataformStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.dataform],
@@ -88,10 +88,7 @@ final class DataformStack extends Stack {
         role: TfArg.literal('roles/dataform.editor'),
         member: TfArg.ref(runner.iamMember),
         region: TfArg.literal('us-central1'),
-        dependsOn: [
-          ResourceDependency(repository),
-          ResourceDependency(runner),
-        ],
+        dependsOn: [ResourceDependency(repository), ResourceDependency(runner)],
       ),
     );
   }

@@ -3,7 +3,7 @@ description: Firebase Data Connect quickstart -- serverless GraphQL backend serv
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

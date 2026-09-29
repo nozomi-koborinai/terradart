@@ -3,7 +3,7 @@ description: Phase 4.5 Wave 1 quickstart -- GCS bucket + bucket_object with type
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

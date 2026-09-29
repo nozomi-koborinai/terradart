@@ -19,10 +19,7 @@ const _overrideRoot = 'lib/src/codegen/wrapper_overrides/yaml';
 const _schemaPath = 'test/fixtures/wrap/source/schema.json';
 const _mmDir = 'test/fixtures/wrap/source/mm';
 
-typedef _Setup = ({
-  Map<String, ResourceDef> resources,
-  LoadedOverrides loaded,
-});
+typedef _Setup = ({Map<String, ResourceDef> resources, LoadedOverrides loaded});
 
 _Setup _setup() {
   final schemaSrc = File(_schemaPath).readAsStringSync();
@@ -32,15 +29,16 @@ _Setup _setup() {
   final mmDirRef = Directory(_mmDir);
   if (mmDirRef.existsSync()) {
     for (final file in mmDirRef.listSync().whereType<File>().where(
-          (f) => f.path.endsWith('.yaml'),
-        )) {
+      (f) => f.path.endsWith('.yaml'),
+    )) {
       final key = p.basenameWithoutExtension(file.path);
       mm[key] = const MmYamlParser().parseString(file.readAsStringSync());
     }
   }
 
-  final ir =
-      mm.isEmpty ? baseIr : const IrMerger().merge(base: baseIr, overrides: mm);
+  final ir = mm.isEmpty
+      ? baseIr
+      : const IrMerger().merge(base: baseIr, overrides: mm);
   final loaded = loadWrapperOverrides(rootDir: _overrideRoot);
   return (resources: ir.resources, loaded: loaded);
 }
@@ -60,20 +58,19 @@ _Setup _setup() {
 /// classifies the drifted hand-written enum as curated-only — the conservative
 /// answer (it does not get auto-dropped on a name guess).
 Set<String> derivableEnumNames(ResourceDef def) => {
-      for (final a in def.root.attributes)
-        if ((a.constraints.enumValues ?? const <String>[]).isNotEmpty)
-          enumName(
-            resourceType: def.terraformType,
-            fieldPath: a.name,
-            members: a.constraints.enumValues!,
-          ).dartName,
-    };
+  for (final a in def.root.attributes)
+    if ((a.constraints.enumValues ?? const <String>[]).isNotEmpty)
+      enumName(
+        resourceType: def.terraformType,
+        fieldPath: a.name,
+        members: a.constraints.enumValues!,
+      ).dartName,
+};
 
 /// Getter names derivable from the IR for [def] (via [emitDerivedOutputGetters]).
-Set<String> derivableGetterNames(ResourceDef def) => RegExp(r'\bget (\w+)')
-    .allMatches(emitDerivedOutputGetters(def))
-    .map((m) => m.group(1)!)
-    .toSet();
+Set<String> derivableGetterNames(ResourceDef def) => RegExp(
+  r'\bget (\w+)',
+).allMatches(emitDerivedOutputGetters(def)).map((m) => m.group(1)!).toSet();
 
 /// Enum names hand-written in the [prelude] block of an override.
 ///
@@ -87,10 +84,9 @@ Set<String> derivableGetterNames(ResourceDef def) => RegExp(r'\bget (\w+)')
 /// so anchoring on `implements`/`{` is a safe, lossless tightening.
 Set<String> handwrittenEnumNames(String? prelude) => prelude == null
     ? <String>{}
-    : RegExp(r'\benum (\w+)\s*(?:implements\b|\{)')
-        .allMatches(prelude)
-        .map((m) => m.group(1)!)
-        .toSet();
+    : RegExp(
+        r'\benum (\w+)\s*(?:implements\b|\{)',
+      ).allMatches(prelude).map((m) => m.group(1)!).toSet();
 
 /// Getter names hand-written in the [extra] getters block of an override.
 Set<String> handwrittenGetterNames(String? extra) => extra == null
@@ -117,10 +113,16 @@ void main() {
   // -------------------------------------------------------------------------
   test('discovery harness loads overrides and IR', () {
     final result = _setup();
-    expect(result.loaded.resources, isNotEmpty,
-        reason: 'loadWrapperOverrides must return at least one resource entry');
-    expect(result.resources, isNotEmpty,
-        reason: 'merged IR must contain at least one resource');
+    expect(
+      result.loaded.resources,
+      isNotEmpty,
+      reason: 'loadWrapperOverrides must return at least one resource entry',
+    );
+    expect(
+      result.resources,
+      isNotEmpty,
+      reason: 'merged IR must contain at least one resource',
+    );
   });
 
   // -------------------------------------------------------------------------
@@ -135,34 +137,53 @@ void main() {
     // curated-only; none are derivable from the schema.
     const capacityType = 'google_bigquery_capacity_commitment';
     final capacityDef = result.resources[capacityType];
-    expect(capacityDef, isNotNull,
-        reason: '$capacityType must exist in fixture schema');
+    expect(
+      capacityDef,
+      isNotNull,
+      reason: '$capacityType must exist in fixture schema',
+    );
     final capacityOverride = result.loaded.resources[capacityType];
-    expect(capacityOverride, isNotNull,
-        reason: '$capacityType override must be loaded');
+    expect(
+      capacityOverride,
+      isNotNull,
+      reason: '$capacityType override must be loaded',
+    );
 
     final capacityHandwritten = handwrittenEnumNames(capacityOverride!.prelude);
-    expect(capacityHandwritten, hasLength(3),
-        reason: 'expected 3 hand-written prelude enums');
+    expect(
+      capacityHandwritten,
+      hasLength(3),
+      reason: 'expected 3 hand-written prelude enums',
+    );
 
     final capacityDerivable = derivableEnumNames(capacityDef!);
-    final capacityCuratedOnly =
-        capacityHandwritten.difference(capacityDerivable);
-    expect(capacityCuratedOnly, equals(capacityHandwritten),
-        reason: 'all 3 capacity_commitment enums must be curated-only '
-            '(no schema enumValues for plan/renewal_plan/edition)');
+    final capacityCuratedOnly = capacityHandwritten.difference(
+      capacityDerivable,
+    );
+    expect(
+      capacityCuratedOnly,
+      equals(capacityHandwritten),
+      reason:
+          'all 3 capacity_commitment enums must be curated-only '
+          '(no schema enumValues for plan/renewal_plan/edition)',
+    );
 
     // --- google_pubsub_topic ---
     // nameRef and id are derivable from the IR (name + id attributes exist).
     const pubsubTopicType = 'google_pubsub_topic';
     final pubsubTopicDef = result.resources[pubsubTopicType];
-    expect(pubsubTopicDef, isNotNull,
-        reason: '$pubsubTopicType must exist in fixture schema');
+    expect(
+      pubsubTopicDef,
+      isNotNull,
+      reason: '$pubsubTopicType must exist in fixture schema',
+    );
 
     final topicDerivable = derivableGetterNames(pubsubTopicDef!);
-    expect(topicDerivable.intersection({'nameRef', 'id'}),
-        equals({'nameRef', 'id'}),
-        reason: 'nameRef and id must be derivable for google_pubsub_topic');
+    expect(
+      topicDerivable.intersection({'nameRef', 'id'}),
+      equals({'nameRef', 'id'}),
+      reason: 'nameRef and id must be derivable for google_pubsub_topic',
+    );
   });
 
   test('classifyDoc keys on derive gates, not null classDocComment', () {
@@ -173,9 +194,11 @@ void main() {
     expect(schema, isNotNull, reason: 'pubsub schema override must load');
     expect(schema!.deriveClassDoc, isTrue, reason: 'pubsub schema is migrated');
     expect(schema.curatedDoc, isNotNull);
-    expect(classifyDoc(schema), 'derived+frozen',
-        reason:
-            'migrated + curatedDoc must classify as derived+frozen, not none');
+    expect(
+      classifyDoc(schema),
+      'derived+frozen',
+      reason: 'migrated + curatedDoc must classify as derived+frozen, not none',
+    );
 
     // The classDocComment axis is fully retired (the 2026-07 doc wave
     // migrated the last 18 overrides — firebase_app_check, app_hosting, and
@@ -203,15 +226,17 @@ void main() {
     var skipped = 0;
 
     // TSV header
-    rows.add([
-      'type',
-      'outputDir',
-      'enumsCoveredOfTotal',
-      'curatedOnlyEnums',
-      'gettersCoveredOfTotal',
-      'renameKeepGetters',
-      'doc',
-    ].join('\t'));
+    rows.add(
+      [
+        'type',
+        'outputDir',
+        'enumsCoveredOfTotal',
+        'curatedOnlyEnums',
+        'gettersCoveredOfTotal',
+        'renameKeepGetters',
+        'doc',
+      ].join('\t'),
+    );
 
     for (final entry in result.loaded.entries) {
       final type = entry.key;
@@ -242,19 +267,21 @@ void main() {
       // as 'none'. See [classifyDoc] for the full decision tree.
       final docClass = classifyDoc(override);
 
-      rows.add([
-        type,
-        override.outputDir,
-        '${coveredEnums.length}/${hwEnums.length}',
-        curatedOnlyEnums.isEmpty
-            ? '-'
-            : (curatedOnlyEnums.toList()..sort()).join(';'),
-        '${coveredGetters.length}/${hwGetters.length}',
-        renameKeepGetters.isEmpty
-            ? '-'
-            : (renameKeepGetters.toList()..sort()).join(';'),
-        docClass,
-      ].join('\t'));
+      rows.add(
+        [
+          type,
+          override.outputDir,
+          '${coveredEnums.length}/${hwEnums.length}',
+          curatedOnlyEnums.isEmpty
+              ? '-'
+              : (curatedOnlyEnums.toList()..sort()).join(';'),
+          '${coveredGetters.length}/${hwGetters.length}',
+          renameKeepGetters.isEmpty
+              ? '-'
+              : (renameKeepGetters.toList()..sort()).join(';'),
+          docClass,
+        ].join('\t'),
+      );
     }
 
     final tsvPath = p.join(Directory.systemTemp.path, 'defatten_discovery.tsv');

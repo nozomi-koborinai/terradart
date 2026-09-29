@@ -20,18 +20,21 @@ properties:
 ''';
       final result = const MmYamlParser().parseString(yaml);
       final field = result.fieldOverrides['sample_field'];
-      expect(field, isNotNull,
-          reason: 'parser should expose the field override entry');
+      expect(
+        field,
+        isNotNull,
+        reason: 'parser should expose the field override entry',
+      );
       expect(
         field!.deprecationMessage,
         'Use new_field instead.',
-        reason: 'MM YAML deprecation_message should populate '
+        reason:
+            'MM YAML deprecation_message should populate '
             'Constraints.deprecationMessage',
       );
     });
 
-    test(
-        'property with no meaningful constraints is excluded from '
+    test('property with no meaningful constraints is excluded from '
         'fieldOverrides (regression guard for _isMeaningful)', () {
       // A property with only `name` + `type` — no immutable, no validation, no
       // enum_values, no deprecation_message. _isMeaningful must return false,
@@ -80,9 +83,7 @@ properties:
       final overrides = <String, MmResourceOverrides>{
         'test_resource': const MmResourceOverrides(
           fieldOverrides: {
-            'foo': Constraints(
-              deprecationMessage: 'Use the new API.',
-            ),
+            'foo': Constraints(deprecationMessage: 'Use the new API.'),
           },
         ),
       };
@@ -91,14 +92,19 @@ properties:
 
       final attr = merged.resources['test_resource']!.root.attributes
           .singleWhere((a) => a.name == 'foo');
-      expect(attr.constraints.required, isTrue,
-          reason: 'schema-side required flag must survive');
-      expect(attr.constraints.deprecationMessage, 'Use the new API.',
-          reason: 'MM-only deprecation must survive when schema has none');
+      expect(
+        attr.constraints.required,
+        isTrue,
+        reason: 'schema-side required flag must survive',
+      );
+      expect(
+        attr.constraints.deprecationMessage,
+        'Use the new API.',
+        reason: 'MM-only deprecation must survive when schema has none',
+      );
     });
 
-    test('MM YAML deprecation overrides schema-json Deprecated. placeholder',
-        () {
+    test('MM YAML deprecation overrides schema-json Deprecated. placeholder', () {
       const base = ProviderSchemaIR(
         providerName: 'test',
         providerSource: 'test/test',
@@ -111,9 +117,7 @@ properties:
                 Attribute(
                   name: 'foo',
                   type: StringType(),
-                  constraints: Constraints(
-                    deprecationMessage: 'Deprecated.',
-                  ),
+                  constraints: Constraints(deprecationMessage: 'Deprecated.'),
                 ),
               ],
             ),

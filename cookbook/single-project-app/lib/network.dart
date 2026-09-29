@@ -6,10 +6,10 @@ import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/service_networking.dart';
 
 GoogleComputeNetwork buildVpc() => GoogleComputeNetwork(
-      localName: 'coffee_vpc',
-      name: TfArg.literal('coffee-shop-vpc'),
-      autoCreateSubnetworks: TfArg.literal(false),
-    );
+  localName: 'coffee_vpc',
+  name: TfArg.literal('coffee-shop-vpc'),
+  autoCreateSubnetworks: TfArg.literal(false),
+);
 
 GoogleComputeGlobalAddress buildPsaRange(GoogleComputeNetwork vpc) =>
     GoogleComputeGlobalAddress(
@@ -22,12 +22,12 @@ GoogleComputeGlobalAddress buildPsaRange(GoogleComputeNetwork vpc) =>
     );
 
 GoogleServiceNetworkingConnection buildPsaConnection(
-        GoogleComputeNetwork vpc) =>
-    GoogleServiceNetworkingConnection(
-      localName: 'psa',
-      network: TfArg.ref(vpc.selfLink),
-      service: TfArg.literal('servicenetworking.googleapis.com'),
-      reservedPeeringRanges: TfArg.literal([
-        '\${google_compute_global_address.psa_range.name}',
-      ]),
-    );
+  GoogleComputeNetwork vpc,
+) => GoogleServiceNetworkingConnection(
+  localName: 'psa',
+  network: TfArg.ref(vpc.selfLink),
+  service: TfArg.literal('servicenetworking.googleapis.com'),
+  reservedPeeringRanges: TfArg.literal([
+    '\${google_compute_global_address.psa_range.name}',
+  ]),
+);

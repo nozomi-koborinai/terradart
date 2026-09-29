@@ -27,14 +27,14 @@ const _functionName = 'terradart-hello';
 /// Lambda demo stack: role, log group, function, and function URL.
 final class AwsLambdaStack extends Stack {
   AwsLambdaStack()
-      : super(
-          providers: [
-            AwsProvider(
-              region: Platform.environment['AWS_REGION'] ?? 'us-east-1',
-              defaultTags: const {'app': 'terradart-lambda-quickstart'},
-            ),
-          ],
-        ) {
+    : super(
+        providers: [
+          AwsProvider(
+            region: Platform.environment['AWS_REGION'] ?? 'us-east-1',
+            defaultTags: const {'app': 'terradart-lambda-quickstart'},
+          ),
+        ],
+      ) {
     final account = DataAwsCallerIdentity(localName: 'current');
     addData(account);
 
@@ -64,9 +64,7 @@ final class AwsLambdaStack extends Stack {
 
     final role = AwsIamRole(
       localName: 'hello',
-      nameOrNamePrefix: IamRoleNameOption(
-        name: TfArg.literal(_functionName),
-      ),
+      nameOrNamePrefix: IamRoleNameOption(name: TfArg.literal(_functionName)),
       assumeRolePolicy: TfArg.ref(trust.json),
     );
     add(role);
@@ -111,8 +109,9 @@ final class AwsLambdaStack extends Stack {
       AwsLambdaFunctionUrl(
         localName: 'hello',
         functionName: TfArg.ref(fn.arn),
-        authorizationType:
-            TfArg.literal(LambdaFunctionUrlAuthorizationType.none),
+        authorizationType: TfArg.literal(
+          LambdaFunctionUrlAuthorizationType.none,
+        ),
       ),
     );
   }

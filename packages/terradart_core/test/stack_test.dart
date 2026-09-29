@@ -6,10 +6,7 @@ import 'package:test/test.dart';
 
 final class _FakeResource extends Resource {
   _FakeResource({required super.localName, required TfArg<String> name})
-      : super(
-          terraformType: 'fake_thing',
-          argMap: {'name': name},
-        );
+    : super(terraformType: 'fake_thing', argMap: {'name': name});
 
   @override
   Set<String> get sensitiveFields => const {};
@@ -17,10 +14,7 @@ final class _FakeResource extends Resource {
 
 final class _FakeData extends Data {
   _FakeData({required super.localName, required TfArg<String> name})
-      : super(
-          terraformType: 'fake_thing',
-          argMap: {'name': name},
-        );
+    : super(terraformType: 'fake_thing', argMap: {'name': name});
 
   @override
   Set<String> get sensitiveFields => const {};
@@ -34,20 +28,14 @@ void main() {
   group('Stack.add', () {
     test('returns the same instance', () {
       final stack = _TestStack();
-      final r = _FakeResource(
-        localName: 'a',
-        name: const TfArgLiteral('x'),
-      );
+      final r = _FakeResource(localName: 'a', name: const TfArgLiteral('x'));
       final added = stack.add(r);
       expect(identical(added, r), isTrue);
     });
 
     test('appears in resources list', () {
       final stack = _TestStack();
-      final r = _FakeResource(
-        localName: 'a',
-        name: const TfArgLiteral('x'),
-      );
+      final r = _FakeResource(localName: 'a', name: const TfArgLiteral('x'));
       stack.add(r);
       expect(stack.resources, hasLength(1));
       expect(stack.resources.first.tfAddress, 'fake_thing.a');
@@ -57,10 +45,7 @@ void main() {
   group('Stack.addData', () {
     test('appears in dataSources list, not resources', () {
       final stack = _TestStack();
-      final d = _FakeData(
-        localName: 'current',
-        name: const TfArgLiteral('x'),
-      );
+      final d = _FakeData(localName: 'current', name: const TfArgLiteral('x'));
       stack.addData(d);
       expect(stack.dataSources, hasLength(1));
       expect(stack.resources, isEmpty);
@@ -71,32 +56,20 @@ void main() {
   group('add() rejects Data', () {
     test('Data passed to add throws ArgumentError', () {
       final stack = _TestStack();
-      final d = _FakeData(
-        localName: 'a',
-        name: const TfArgLiteral('x'),
-      );
-      expect(
-        () => stack.add(d),
-        throwsArgumentError,
-      );
+      final d = _FakeData(localName: 'a', name: const TfArgLiteral('x'));
+      expect(() => stack.add(d), throwsArgumentError);
     });
   });
 
   group('addData() rejects non-Data', () {
-    test(
-      'Resource passed to addData via dynamic cast throws TypeError',
-      () {
-        final stack = _TestStack();
-        final r = _FakeResource(
-          localName: 'a',
-          name: const TfArgLiteral('x'),
-        );
-        expect(
-          // ignore: avoid_dynamic_calls
-          () => (stack as dynamic).addData(r),
-          throwsA(isA<TypeError>()),
-        );
-      },
-    );
+    test('Resource passed to addData via dynamic cast throws TypeError', () {
+      final stack = _TestStack();
+      final r = _FakeResource(localName: 'a', name: const TfArgLiteral('x'));
+      expect(
+        // ignore: avoid_dynamic_calls
+        () => (stack as dynamic).addData(r),
+        throwsA(isA<TypeError>()),
+      );
+    });
   });
 }

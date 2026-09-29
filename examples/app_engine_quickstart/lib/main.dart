@@ -20,11 +20,9 @@ import 'package:terradart_google/storage.dart';
 /// App Engine Stack: application + standard/flex versions + routing controls.
 final class AppEngineStack extends Stack {
   AppEngineStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiAppEngine = add(
       GoogleProjectService(
         localName: 'api_appengine',
@@ -84,10 +82,7 @@ final class AppEngineStack extends Stack {
           shell: TfArg.literal('gunicorn -b :\$PORT main:app'),
         ),
         deleteServiceOnDestroy: TfArg.literal(true),
-        dependsOn: [
-          ResourceDependency(app),
-          ResourceDependency(deployBucket),
-        ],
+        dependsOn: [ResourceDependency(app), ResourceDependency(deployBucket)],
       ),
     );
 
@@ -120,8 +115,9 @@ final class AppEngineStack extends Stack {
         priority: TfArg.literal(1000),
         action: TfArg.literal(AppEngineFirewallRuleAction.allow),
         sourceRange: TfArg.literal('*'),
-        description:
-            TfArg.literal('terradart demo — allow all (replace in prod)'),
+        description: TfArg.literal(
+          'terradart demo — allow all (replace in prod)',
+        ),
         dependsOn: [ResourceDependency(app)],
       ),
     );
@@ -130,11 +126,7 @@ final class AppEngineStack extends Stack {
       GoogleAppEngineApplicationUrlDispatchRules(
         localName: 'dispatch',
         dispatchRules: TfArg.literal(<Map<String, dynamic>>[
-          <String, dynamic>{
-            'domain': '*',
-            'path': '/*',
-            'service': 'default',
-          },
+          <String, dynamic>{'domain': '*', 'path': '/*', 'service': 'default'},
         ]),
         dependsOn: [ResourceDependency(app)],
       ),

@@ -27,10 +27,7 @@ void main() {
         equals({
           'required_version': '>= 1.11.0',
           'required_providers': {
-            'google': {
-              'source': 'hashicorp/google',
-              'version': '~> 7.0',
-            },
+            'google': {'source': 'hashicorp/google', 'version': '~> 7.0'},
           },
         }),
       );
@@ -68,10 +65,7 @@ void main() {
       expect(
         block['backend'],
         equals({
-          'gcs': {
-            'bucket': 'tfstate-orders',
-            'prefix': 'envs/prod',
-          },
+          'gcs': {'bucket': 'tfstate-orders', 'prefix': 'envs/prod'},
         }),
       );
     });
@@ -178,10 +172,7 @@ void main() {
       expect(
         block,
         equals({
-          'google': {
-            'project': 'orders-prod-1234',
-            'region': 'us-central1',
-          },
+          'google': {'project': 'orders-prod-1234', 'region': 'us-central1'},
         }),
       );
     });
@@ -252,7 +243,8 @@ void main() {
     });
 
     test('a resource selects an alias with provider: name.alias', () {
-      TestStack stackWith(String? provider) => TestStack(
+      TestStack stackWith(String? provider) =>
+          TestStack(
             providers: const [
               FakeStackProvider(
                 providerName: 'google',
@@ -267,12 +259,12 @@ void main() {
               ),
             ],
           )..add(
-              FakePubsubTopic.withMeta(
-                localName: 'orders',
-                argMap: {'name': const TfArgLiteral<String>('orders')},
-                provider: provider,
-              ),
-            );
+            FakePubsubTopic.withMeta(
+              localName: 'orders',
+              argMap: {'name': const TfArgLiteral<String>('orders')},
+              provider: provider,
+            ),
+          );
       final json = stackWith('google.eu').synth().tfJson;
       expect(
         (json['resource'] as Map)['google_pubsub_topic']['orders']['provider'],
@@ -292,15 +284,15 @@ void main() {
         equals({'provider': 'google.eu'}),
       );
       expect(
-        () => (TestStack(providers: stackWith(null).providers)
-              ..addData(
-                FakeProjectData(
-                  localName: 'current',
-                  argMap: const {},
-                  provider: 'google.us',
-                ),
-              ))
-            .synth(),
+        () =>
+            (TestStack(providers: stackWith(null).providers)..addData(
+                  FakeProjectData(
+                    localName: 'current',
+                    argMap: const {},
+                    provider: 'google.us',
+                  ),
+                ))
+                .synth(),
         throwsA(
           isA<StateError>().having(
             (e) => e.message,
@@ -335,9 +327,12 @@ void main() {
         versionConstraint: '~> 7.0',
       );
       Matcher throwsWith(String fragment) => throwsA(
-            isA<StateError>()
-                .having((e) => e.message, 'message', contains(fragment)),
-          );
+        isA<StateError>().having(
+          (e) => e.message,
+          'message',
+          contains(fragment),
+        ),
+      );
       expect(
         () => TfJsonEncoder.validateProviders(
           TestStack(providers: const [base, base]),
@@ -419,14 +414,8 @@ void main() {
         TfJsonEncoder.encodeArg(const TfArgLiteral<String>('orders-prod')),
         equals('orders-prod'),
       );
-      expect(
-        TfJsonEncoder.encodeArg(const TfArgLiteral<int>(7)),
-        equals(7),
-      );
-      expect(
-        TfJsonEncoder.encodeArg(const TfArgLiteral<bool>(true)),
-        isTrue,
-      );
+      expect(TfJsonEncoder.encodeArg(const TfArgLiteral<int>(7)), equals(7));
+      expect(TfJsonEncoder.encodeArg(const TfArgLiteral<bool>(true)), isTrue);
     });
 
     test('TfArgExpression -> its template, verbatim', () {
@@ -540,10 +529,7 @@ void main() {
         sensitiveFields: const {'secret_data'},
         resourceAddress: 'google_secret_manager_secret_version.legacy',
       );
-      expect(
-        out,
-        equals({'secret_data': r'${data.external.vault.value}'}),
-      );
+      expect(out, equals({'secret_data': r'${data.external.vault.value}'}));
     });
 
     test('TG-5: nested-path sensitive preserves ref interpolation at leaf', () {
@@ -577,11 +563,11 @@ void main() {
 
     test('a * segment checks every entry of a map of blocks', () {
       Map<String, TfArg<dynamic>?> envVars(Object? secret) => {
-            'env_vars': TfArgLiteral<Map<String, dynamic>>({
-              'PUBLIC': {'type': 'plain_text', 'value': r'${var.public}'},
-              'API_KEY': {'type': 'secret_text', 'value': secret},
-            }),
-          };
+        'env_vars': TfArgLiteral<Map<String, dynamic>>({
+          'PUBLIC': {'type': 'plain_text', 'value': r'${var.public}'},
+          'API_KEY': {'type': 'secret_text', 'value': secret},
+        }),
+      };
       const paths = {'env_vars.*.value'};
       expect(
         () => TfJsonEncoder.encodeArgMapWithSensitive(
@@ -669,16 +655,11 @@ void main() {
     test('emits bare addresses for ResourceDependency', () {
       final deps = <DependencyTarget>[
         const ResourceDependency(AddressStub('google_pubsub_topic.orders')),
-        const ResourceDependency(
-          AddressStub('google_storage_bucket.archive'),
-        ),
+        const ResourceDependency(AddressStub('google_storage_bucket.archive')),
       ];
       expect(
         TfJsonEncoder.dependsOn(deps),
-        equals([
-          'google_pubsub_topic.orders',
-          'google_storage_bucket.archive',
-        ]),
+        equals(['google_pubsub_topic.orders', 'google_storage_bucket.archive']),
       );
     });
 
@@ -734,13 +715,7 @@ void main() {
         provider: 'google-beta',
       );
       final out = TfJsonEncoder.resourceBlock(r);
-      expect(
-        out,
-        equals({
-          'name': 'orders-prod',
-          'provider': 'google-beta',
-        }),
-      );
+      expect(out, equals({'name': 'orders-prod', 'provider': 'google-beta'}));
     });
 
     test('sensitiveFields metadata throws on literal', () {
@@ -760,9 +735,9 @@ void main() {
 
   group('TfJsonEncoder.movedBlock', () {
     FakePubsubTopic topic(String name) => FakePubsubTopic(
-          localName: name,
-          argMap: {'name': TfArgLiteral<String>(name)},
-        );
+      localName: name,
+      argMap: {'name': TfArgLiteral<String>(name)},
+    );
 
     test('returns null when the stack recorded no moved entry', () {
       expect(TfJsonEncoder.movedBlock(TestStack()..add(topic('a'))), isNull);
@@ -804,20 +779,21 @@ void main() {
     });
 
     test('synth places the moved list between data and output', () {
-      final stack = TestStack(
-        providers: const [
-          FakeStackProvider(
-            providerName: 'google',
-            source: 'hashicorp/google',
-            versionConstraint: '~> 7.0',
-          ),
-        ],
-      )
-        ..add(topic('orders_0'))
-        ..addMoved(
-          'google_pubsub_topic.orders[0]',
-          'google_pubsub_topic.orders_0',
-        );
+      final stack =
+          TestStack(
+              providers: const [
+                FakeStackProvider(
+                  providerName: 'google',
+                  source: 'hashicorp/google',
+                  versionConstraint: '~> 7.0',
+                ),
+              ],
+            )
+            ..add(topic('orders_0'))
+            ..addMoved(
+              'google_pubsub_topic.orders[0]',
+              'google_pubsub_topic.orders_0',
+            );
       final json = stack.synth().tfJson;
       expect(
         json['moved'],
@@ -828,10 +804,7 @@ void main() {
           },
         ]),
       );
-      expect(
-        json.keys.toList(),
-        equals(['terraform', 'resource', 'moved']),
-      );
+      expect(json.keys.toList(), equals(['terraform', 'resource', 'moved']));
     });
 
     test('a target that is not a registered resource is refused', () {
@@ -894,9 +867,7 @@ void main() {
       stack.addData(
         FakeProjectData(
           localName: 'this',
-          argMap: const {
-            'project_id': TfArgLiteral<String>('orders-prod'),
-          },
+          argMap: const {'project_id': TfArgLiteral<String>('orders-prod')},
         ),
       );
       final group = TfJsonEncoder.dataGroup(stack);
@@ -919,9 +890,7 @@ void main() {
       stack.addData(
         FakeProjectData(
           localName: 'eu',
-          argMap: const {
-            'project_id': TfArgLiteral<String>('orders-prod'),
-          },
+          argMap: const {'project_id': TfArgLiteral<String>('orders-prod')},
           provider: 'google.eu',
         ),
       );
@@ -952,9 +921,7 @@ void main() {
       expect(
         out,
         equals({
-          'topicName': {
-            'value': r'${google_pubsub_topic.orders.name}',
-          },
+          'topicName': {'value': r'${google_pubsub_topic.orders.name}'},
         }),
       );
     });
@@ -994,10 +961,7 @@ void main() {
         backend: const LocalBackend(),
       );
       final block = TfJsonEncoder.terraformBlock(stack);
-      expect(
-        block['backend'],
-        equals({'local': <String, Object?>{}}),
-      );
+      expect(block['backend'], equals({'local': <String, Object?>{}}));
     });
 
     test('LocalBackend(path:) emits {"local": {"path": "..."}}', () {
@@ -1034,13 +998,7 @@ void main() {
         'name': const TfArgLiteral<String>('alice'),
       };
       final out = TfJsonEncoder.encodeArgMap(argMap);
-      expect(
-        out,
-        equals({
-          'password': r'${var.db_password}',
-          'name': 'alice',
-        }),
-      );
+      expect(out, equals({'password': r'${var.db_password}', 'name': 'alice'}));
     });
   });
 
@@ -1102,9 +1060,7 @@ void main() {
         'customer_encryption': TfArg.literal<List<dynamic>>([
           {
             'encryption_algorithm': 'AES256',
-            'encryption_key': TfArg.expression<String>(
-              r'key-${var.suffix}',
-            ),
+            'encryption_key': TfArg.expression<String>(r'key-${var.suffix}'),
           },
         ]),
       };
@@ -1156,8 +1112,7 @@ void main() {
   });
 
   group('TfJsonEncoder sensitive throw (top-level)', () {
-    test(
-        'throws SensitiveLiteralError on TfArgLiteral assigned to '
+    test('throws SensitiveLiteralError on TfArgLiteral assigned to '
         'sensitive top-level field', () {
       final argMap = <String, TfArg<dynamic>?>{
         'name': const TfArgLiteral<String>('orders-secret'),
@@ -1200,9 +1155,7 @@ void main() {
 
     test('TfArgExpression on sensitive top-level passes through', () {
       final argMap = <String, TfArg<dynamic>?>{
-        'secret_data': TfArg.expression<String>(
-          r'${base64decode(var.blob)}',
-        ),
+        'secret_data': TfArg.expression<String>(r'${base64decode(var.blob)}'),
       };
       final out = TfJsonEncoder.encodeArgMapWithSensitive(
         argMap: argMap,
@@ -1232,8 +1185,7 @@ void main() {
       versionConstraint: '~> 7.0',
     );
 
-    test(
-        'an explicit provider replaces the implied prefix provider '
+    test('an explicit provider replaces the implied prefix provider '
         '(beta packages share the google_* type prefix)', () {
       final stack = TestStack(providers: const [betaProvider]);
       stack.add(
@@ -1261,19 +1213,18 @@ void main() {
       );
     });
 
-    test('without an explicit provider the implied prefix is still required',
-        () {
-      final stack = TestStack(providers: const [betaProvider]);
-      stack.add(
-        FakePubsubTopic(
-          localName: 't',
-          argMap: {'name': TfArg.literal('x')},
-        ),
-      );
-      expect(
-        () => TfJsonEncoder.terraformBlock(stack),
-        throwsA(isA<StateError>()),
-      );
-    });
+    test(
+      'without an explicit provider the implied prefix is still required',
+      () {
+        final stack = TestStack(providers: const [betaProvider]);
+        stack.add(
+          FakePubsubTopic(localName: 't', argMap: {'name': TfArg.literal('x')}),
+        );
+        expect(
+          () => TfJsonEncoder.terraformBlock(stack),
+          throwsA(isA<StateError>()),
+        );
+      },
+    );
   });
 }

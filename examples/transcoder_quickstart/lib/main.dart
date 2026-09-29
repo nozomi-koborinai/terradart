@@ -17,11 +17,9 @@ import 'package:terradart_google/transcoder.dart';
 /// Transcoder stack: job template metadata (no job / no media).
 final class TranscoderStack extends Stack {
   TranscoderStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiTranscoder = add(
       GoogleProjectService(
         localName: 'api_transcoder',
@@ -37,9 +35,7 @@ final class TranscoderStack extends Stack {
         location: TfArg.literal('us-central1'),
         config: TranscoderJobTemplateConfig(
           inputs: [
-            TranscoderJobTemplateConfigInputs(
-              key: TfArg.literal('input0'),
-            ),
+            TranscoderJobTemplateConfigInputs(key: TfArg.literal('input0')),
           ],
           editList: [
             TranscoderJobTemplateConfigEditList(
@@ -51,24 +47,23 @@ final class TranscoderStack extends Stack {
           elementaryStreams: [
             TranscoderJobTemplateConfigElementaryStreams(
               key: TfArg.literal('video-stream0'),
-              videoStream:
-                  TranscoderJobTemplateConfigElementaryStreamsVideoStream(
+              videoStream: TranscoderJobTemplateConfigElementaryStreamsVideoStream(
                 h264:
                     TranscoderJobTemplateConfigElementaryStreamsVideoStreamH264(
-                  widthPixels: TfArg.literal(640),
-                  heightPixels: TfArg.literal(360),
-                  bitrateBps: TfArg.literal(550000),
-                  frameRate: TfArg.literal(60),
-                ),
+                      widthPixels: TfArg.literal(640),
+                      heightPixels: TfArg.literal(360),
+                      bitrateBps: TfArg.literal(550000),
+                      frameRate: TfArg.literal(60),
+                    ),
               ),
             ),
             TranscoderJobTemplateConfigElementaryStreams(
               key: TfArg.literal('audio-stream0'),
               audioStream:
                   TranscoderJobTemplateConfigElementaryStreamsAudioStream(
-                codec: TfArg.literal('aac'),
-                bitrateBps: TfArg.literal(64000),
-              ),
+                    codec: TfArg.literal('aac'),
+                    bitrateBps: TfArg.literal(64000),
+                  ),
             ),
           ],
           muxStreams: [

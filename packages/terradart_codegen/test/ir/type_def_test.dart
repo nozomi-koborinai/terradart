@@ -12,11 +12,13 @@ void main() {
       expect(t.element, isA<StringType>());
     });
 
-    test('MapType uses value-typed element (Terraform map<string>=>string)',
-        () {
-      const t = MapType(StringType());
-      expect(t.value, isA<StringType>());
-    });
+    test(
+      'MapType uses value-typed element (Terraform map<string>=>string)',
+      () {
+        const t = MapType(StringType());
+        expect(t.value, isA<StringType>());
+      },
+    );
 
     test('SetType is preserved in IR but downgrades happen at emit time', () {
       const t = SetType(StringType());
@@ -31,17 +33,17 @@ void main() {
 
     test('switch expression covers all variants exhaustively', () {
       String describe(TypeDef t) => switch (t) {
-            StringType() => 'string',
-            NumberType() => 'number',
-            IntType() => 'int',
-            BoolType() => 'bool',
-            DynamicType() => 'dynamic',
-            ListType() => 'list',
-            SetType() => 'set',
-            MapType() => 'map',
-            ObjectType() => 'object',
-            TupleType() => 'tuple',
-          };
+        StringType() => 'string',
+        NumberType() => 'number',
+        IntType() => 'int',
+        BoolType() => 'bool',
+        DynamicType() => 'dynamic',
+        ListType() => 'list',
+        SetType() => 'set',
+        MapType() => 'map',
+        ObjectType() => 'object',
+        TupleType() => 'tuple',
+      };
       expect(describe(const StringType()), 'string');
       expect(describe(const ListType(IntType())), 'list');
     });

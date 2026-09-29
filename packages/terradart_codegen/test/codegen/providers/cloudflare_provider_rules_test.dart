@@ -7,8 +7,10 @@ void main() {
     const rules = CloudflareProviderRules();
 
     test('is registered under its provider id', () {
-      expect(providerRulesById['cloudflare/cloudflare'],
-          isA<CloudflareProviderRules>());
+      expect(
+        providerRulesById['cloudflare/cloudflare'],
+        isA<CloudflareProviderRules>(),
+      );
     });
 
     test('scaffolds typed nested blocks, provider enums and sealed groups', () {

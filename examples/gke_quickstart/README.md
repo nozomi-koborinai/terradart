@@ -8,7 +8,7 @@ The GKE control plane fee and the node VMs bill hourly while the cluster exists.
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with billing enabled and credentials configured (`gcloud auth application-default login`).
 

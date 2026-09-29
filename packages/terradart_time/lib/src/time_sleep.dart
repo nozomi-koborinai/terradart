@@ -36,13 +36,13 @@ final class TimeSleep extends Resource {
     super.dependsOn,
     super.lifecycle,
   }) : super(
-          terraformType: 'time_sleep',
-          argMap: {
-            'create_duration': createDuration,
-            if (destroyDuration != null) 'destroy_duration': destroyDuration,
-            if (triggers != null) 'triggers': triggers,
-          },
-        );
+         terraformType: 'time_sleep',
+         argMap: {
+           'create_duration': createDuration,
+           'destroy_duration': ?destroyDuration,
+           'triggers': ?triggers,
+         },
+       );
 
   @override
   Set<String> get sensitiveFields => const {};

@@ -4,21 +4,24 @@ import 'package:test/test.dart';
 
 void main() {
   group('CloudSchedulerJobSchedulerTarget — sealed', () {
-    test('CloudSchedulerJobPubsubTarget.topicName MUST be topic.id (full path)', () {
-      final topic = GooglePubsubTopic(
-        localName: 'orders',
-        name: TfArg.literal('orders'),
-      );
-      final target = CloudSchedulerJobPubsubTarget(
-        topicName: TfArg.ref(topic.id),
-        data: TfArg.literal('dGVzdA=='),
-      );
-      expect(target.blockKey, equals('pubsub_target'));
-      expect(
-        target.encode()['topic_name'],
-        equals(r'${google_pubsub_topic.orders.id}'),
-      );
-    });
+    test(
+      'CloudSchedulerJobPubsubTarget.topicName MUST be topic.id (full path)',
+      () {
+        final topic = GooglePubsubTopic(
+          localName: 'orders',
+          name: TfArg.literal('orders'),
+        );
+        final target = CloudSchedulerJobPubsubTarget(
+          topicName: TfArg.ref(topic.id),
+          data: TfArg.literal('dGVzdA=='),
+        );
+        expect(target.blockKey, equals('pubsub_target'));
+        expect(
+          target.encode()['topic_name'],
+          equals(r'${google_pubsub_topic.orders.id}'),
+        );
+      },
+    );
 
     test('CloudSchedulerJobHttpTarget with oidc_token', () {
       const t = CloudSchedulerJobHttpTarget(

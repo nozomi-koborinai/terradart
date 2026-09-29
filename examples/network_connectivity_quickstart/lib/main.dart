@@ -10,12 +10,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class NetworkConnectivityStack extends Stack {
   NetworkConnectivityStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-east4'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-east4'),
+          const TimeProvider(),
+        ],
+      ) {
     const region = 'us-east4';
 
     final apiDeps = Apis.enable(

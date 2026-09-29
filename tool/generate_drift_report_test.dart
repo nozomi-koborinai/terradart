@@ -19,30 +19,26 @@ ReportInputs inputs({
     'changed': <String>[],
     'failed': <String>[],
   },
-}) =>
-    ReportInputs(
-      state: {
-        'bump_date': '2026-08-24',
-        'current': '7.44.0',
-        'latest': '7.46.0',
-        'bump_needed': true,
-        'major': 7,
-        'new_major_available': false,
-      },
-      wrapCheckStdout: 'clean',
-      wrapCheckExitCode: wrapCheckExitCode,
-      gatesStdout: 'ok',
-      gatesExitCode: 0,
-      mmYamlSync: mmYamlSync,
-      schemaDiff: {
-        'added_resources': added,
-        'removed_resources': <String>[],
-      },
-      betaBump: betaBump,
-      apiDiff: apiDiff,
-      newFactories: newFactories,
-      scaffold: scaffold,
-    );
+}) => ReportInputs(
+  state: {
+    'bump_date': '2026-08-24',
+    'current': '7.44.0',
+    'latest': '7.46.0',
+    'bump_needed': true,
+    'major': 7,
+    'new_major_available': false,
+  },
+  wrapCheckStdout: 'clean',
+  wrapCheckExitCode: wrapCheckExitCode,
+  gatesStdout: 'ok',
+  gatesExitCode: 0,
+  mmYamlSync: mmYamlSync,
+  schemaDiff: {'added_resources': added, 'removed_resources': <String>[]},
+  betaBump: betaBump,
+  apiDiff: apiDiff,
+  newFactories: newFactories,
+  scaffold: scaffold,
+);
 
 void main() {
   test('MM YAML section names the pinned magic-modules commit', () {
@@ -50,11 +46,7 @@ void main() {
     expect(
       buildMmYamlSection(
         inputs(
-          mmYamlSync: {
-            'ref': sha,
-            'changed': <String>[],
-            'failed': <String>[],
-          },
+          mmYamlSync: {'ref': sha, 'changed': <String>[], 'failed': <String>[]},
         ),
       ),
       contains('Read at magic-modules `$sha`.'),

@@ -3,7 +3,7 @@ description: Compute networking extras example -- a custom-mode VPC, a static ro
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

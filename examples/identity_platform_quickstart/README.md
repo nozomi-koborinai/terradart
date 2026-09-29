@@ -19,7 +19,7 @@ Tenants need Identity Platform multi-tenancy on a project linked to Firebase Aut
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with Identity Toolkit API enabled (and Identity Platform on)
 
