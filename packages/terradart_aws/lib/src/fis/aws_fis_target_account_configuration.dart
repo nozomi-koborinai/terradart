@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_fis_target_account_configuration`.
 const Set<String> _awsFisTargetAccountConfigurationSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class AwsFisTargetAccountConfiguration extends Resource {
     TfArg<String>? description,
     required TfArg<String> experimentTemplateId,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,7 +30,7 @@ final class AwsFisTargetAccountConfiguration extends Resource {
            if (description != null) 'description': description,
            'experiment_template_id': experimentTemplateId,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
          },
        );
 

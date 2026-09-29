@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+
 /// Sensitive field paths for `aws_directory_service_log_subscription`.
 const Set<String> _awsDirectoryServiceLogSubscriptionSensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsDirectoryServiceLogSubscription extends Resource {
   AwsDirectoryServiceLogSubscription({
     required super.localName,
     required TfArg<String> directoryId,
-    required TfArg<String> logGroupName,
+    required RefTo<AwsCloudwatchLogGroup> logGroupName,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
@@ -23,7 +25,7 @@ final class AwsDirectoryServiceLogSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            'directory_id': directoryId,
-           'log_group_name': logGroupName,
+           'log_group_name': logGroupName.encodeAs('name'),
            if (region != null) 'region': region,
          },
        );

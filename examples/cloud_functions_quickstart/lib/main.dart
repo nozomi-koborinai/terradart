@@ -36,7 +36,7 @@ final class HttpFunctionStack extends Stack {
 
     final sourceObject = GoogleStorageBucketObject(
       localName: 'fn_source_zip',
-      bucket: .ref(sourceBucket.nameRef),
+      bucket: sourceBucket.ref,
       name: .literal('hello-http.zip'),
       body: .source(source: .literal('./hello-http.zip')),
     );

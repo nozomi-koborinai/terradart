@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_precursor`.
 const Set<String> _cloudflarePrecursorSensitive = <String>{};
 
@@ -62,7 +64,7 @@ final class CloudflarePrecursor extends Resource {
   CloudflarePrecursor({
     required super.localName,
     TfArg<PrecursorDefaultMode>? defaultMode,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     List<PrecursorEnforcementRules>? enforcementRules,
     super.lifecycle,
     super.dependsOn,
@@ -72,7 +74,7 @@ final class CloudflarePrecursor extends Resource {
          terraformType: tfType,
          argMap: {
            if (defaultMode != null) 'default_mode': defaultMode,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (enforcementRules != null)
              'enforcement_rules': TfArg.literal([
                for (final e in enforcementRules) e.encode(),

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_oracle_database_odb_network`.
 const Set<String> _googleOracleDatabaseOdbNetworkSensitive = <String>{};
 
@@ -33,7 +35,7 @@ final class GoogleOracleDatabaseOdbNetwork extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> odbNetworkId,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? gcpOracleZone,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseOdbNetworkDeletionPolicy>? deletionPolicy,
@@ -48,7 +50,7 @@ final class GoogleOracleDatabaseOdbNetwork extends Resource {
          argMap: {
            'location': location,
            'odb_network_id': odbNetworkId,
-           'network': network,
+           'network': network.encodeAs('id'),
            if (gcpOracleZone != null) 'gcp_oracle_zone': gcpOracleZone,
            if (labels != null) 'labels': labels,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

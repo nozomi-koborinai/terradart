@@ -4,6 +4,12 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_domain`.
 const Set<String> _awsSagemakerDomainSensitive = <String>{};
 
@@ -64,7 +70,7 @@ final class SagemakerDomainDefaultSpaceSettings {
 
   final TfArg<String> executionRole;
 
-  final TfArg<List<Object?>>? securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
   final List<SagemakerDomainDefaultSpaceSettingsCustomFileSystemConfig>?
   customFileSystemConfig;
@@ -86,7 +92,8 @@ final class SagemakerDomainDefaultSpaceSettings {
 
   Map<String, Object?> encode() => {
     'execution_role': executionRole.toTfJson(),
-    if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
+    if (securityGroups != null)
+      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
     if (customFileSystemConfig != null)
       'custom_file_system_config': [
         for (final e in customFileSystemConfig!) e.encode(),
@@ -1174,7 +1181,7 @@ final class SagemakerDomainDefaultUserSettings {
 
   final TfArg<String> executionRole;
 
-  final TfArg<List<Object?>>? securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
   final TfArg<SagemakerDomainDefaultUserSettingsStudioWebPortal>?
   studioWebPortal;
@@ -1222,7 +1229,8 @@ final class SagemakerDomainDefaultUserSettings {
     if (defaultLandingUri != null)
       'default_landing_uri': defaultLandingUri!.toTfJson(),
     'execution_role': executionRole.toTfJson(),
-    if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
+    if (securityGroups != null)
+      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
     if (studioWebPortal != null)
       'studio_web_portal': studioWebPortal!.toTfJson(),
     if (canvasAppSettings != null)
@@ -1381,7 +1389,7 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettingsEmrServerlessSett
     this.status,
   });
 
-  final TfArg<String>? executionRoleArn;
+  final RefTo<AwsIamRole>? executionRoleArn;
 
   final TfArg<
     SagemakerDomainDefaultUserSettingsCanvasAppSettingsEmrServerlessSettingsStatus
@@ -1390,7 +1398,7 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettingsEmrServerlessSett
 
   Map<String, Object?> encode() => {
     if (executionRoleArn != null)
-      'execution_role_arn': executionRoleArn!.toTfJson(),
+      'execution_role_arn': executionRoleArn!.encodeAs('arn').toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
 }
@@ -3897,7 +3905,7 @@ final class SagemakerDomainDomainSettings {
   final TfArg<SagemakerDomainDomainSettingsExecutionRoleIdentityConfig>?
   executionRoleIdentityConfig;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
   final SagemakerDomainDomainSettingsDockerSettings? dockerSettings;
 
@@ -3911,7 +3919,7 @@ final class SagemakerDomainDomainSettings {
     if (executionRoleIdentityConfig != null)
       'execution_role_identity_config': executionRoleIdentityConfig!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
     if (dockerSettings != null) 'docker_settings': dockerSettings!.encode(),
     if (rStudioServerProDomainSettings != null)
       'r_studio_server_pro_domain_settings': rStudioServerProDomainSettings!
@@ -4291,12 +4299,12 @@ final class AwsSagemakerDomain extends Resource {
     appSecurityGroupManagement,
     required TfArg<SagemakerDomainAuthMode> authMode,
     required TfArg<String> domainName,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<SagemakerDomainTagPropagation>? tagPropagation,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     SagemakerDomainDefaultSpaceSettings? defaultSpaceSettings,
     required SagemakerDomainDefaultUserSettings defaultUserSettings,
     SagemakerDomainDomainSettings? domainSettings,
@@ -4314,12 +4322,12 @@ final class AwsSagemakerDomain extends Resource {
              'app_security_group_management': appSecurityGroupManagement,
            'auth_mode': authMode,
            'domain_name': domainName,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (region != null) 'region': region,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tagPropagation != null) 'tag_propagation': tagPropagation,
            if (tags != null) 'tags': tags,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
            if (defaultSpaceSettings != null)
              'default_space_settings': TfArg.literal(
                defaultSpaceSettings.encode(),

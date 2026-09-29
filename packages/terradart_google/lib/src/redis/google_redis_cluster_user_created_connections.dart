@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_redis_cluster_user_created_connections`.
 const Set<String> _googleRedisClusterUserCreatedConnectionsSensitive =
     <String>{};
@@ -56,7 +58,7 @@ final class RedisClusterUserCreatedConnectionsClusterEndpointsConnectionsPscConn
 
   final TfArg<String> forwardingRule;
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
   final TfArg<String>? projectId;
 
@@ -67,7 +69,7 @@ final class RedisClusterUserCreatedConnectionsClusterEndpointsConnectionsPscConn
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'forwarding_rule': forwardingRule.toTfJson(),
-    'network': network.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
     if (projectId != null) 'project_id': projectId!.toTfJson(),
     'psc_connection_id': pscConnectionId.toTfJson(),
     'service_attachment': serviceAttachment.toTfJson(),

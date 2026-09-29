@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_redis_cluster`.
 const Set<String> _googleRedisClusterSensitive = <String>{};
 
@@ -398,9 +401,11 @@ enum RedisClusterPersistenceConfigRdbConfigRdbSnapshotPeriod
 final class RedisClusterPscConfigs {
   const RedisClusterPscConfigs({required this.network});
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
-  Map<String, Object?> encode() => {'network': network.toTfJson()};
+  Map<String, Object?> encode() => {
+    'network': network.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `zone_distribution_config` block of
@@ -479,7 +484,7 @@ final class GoogleRedisCluster extends Resource {
     RedisClusterZoneDistributionConfig? zoneDistributionConfig,
     RedisClusterMaintenancePolicy? maintenancePolicy,
     RedisClusterAutomatedBackupConfig? automatedBackupConfig,
-    TfArg<String>? kmsKey,
+    RefTo<GoogleKmsCryptoKey>? kmsKey,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? deletionPolicy,
@@ -517,7 +522,7 @@ final class GoogleRedisCluster extends Resource {
              'automated_backup_config': TfArg.literal(
                automatedBackupConfig.encode(),
              ),
-           if (kmsKey != null) 'kms_key': kmsKey,
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
            if (labels != null) 'labels': labels,
            if (deletionProtectionEnabled != null)
              'deletion_protection_enabled': deletionProtectionEnabled,

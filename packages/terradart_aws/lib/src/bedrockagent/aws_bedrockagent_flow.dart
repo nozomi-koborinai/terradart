@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_bedrockagent_flow`.
 const Set<String> _awsBedrockagentFlowSensitive = <String>{};
 
@@ -741,9 +745,11 @@ final class BedrockagentFlowDefinitionNodeConfigurationLambdaFunction {
     required this.lambdaArn,
   });
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
-  Map<String, Object?> encode() => {'lambda_arn': lambdaArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `definition.node.configuration.lex` block of
@@ -1787,9 +1793,11 @@ final class BedrockagentFlowDefinitionNodeConfigurationRetrievalServiceConfigura
     required this.bucketName,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
-  Map<String, Object?> encode() => {'bucket_name': bucketName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `definition.node.configuration.storage` block of
@@ -1839,9 +1847,11 @@ final class BedrockagentFlowDefinitionNodeConfigurationStorageServiceConfigurati
     required this.bucketName,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
-  Map<String, Object?> encode() => {'bucket_name': bucketName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `definition.node.input` block of
@@ -1935,7 +1945,7 @@ final class AwsBedrockagentFlow extends Resource {
     required super.localName,
     TfArg<String>? customerEncryptionKeyArn,
     TfArg<String>? description,
-    required TfArg<String> executionRoleArn,
+    required RefTo<AwsIamRole> executionRoleArn,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -1950,7 +1960,7 @@ final class AwsBedrockagentFlow extends Resource {
            if (customerEncryptionKeyArn != null)
              'customer_encryption_key_arn': customerEncryptionKeyArn,
            if (description != null) 'description': description,
-           'execution_role_arn': executionRoleArn,
+           'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

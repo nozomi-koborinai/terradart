@@ -4,6 +4,13 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_pipes_pipe`.
 const Set<String> _awsPipesPipeSensitive = <String>{};
 
@@ -187,9 +194,11 @@ final class PipesPipeLogConfigurationCloudwatchLogsLogDestination {
     required this.logGroupArn,
   });
 
-  final TfArg<String> logGroupArn;
+  final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
-  Map<String, Object?> encode() => {'log_group_arn': logGroupArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `log_configuration.firehose_log_destination` block of
@@ -218,7 +227,7 @@ final class PipesPipeLogConfigurationS3LogDestination {
     this.prefix,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String> bucketOwner;
 
@@ -228,7 +237,7 @@ final class PipesPipeLogConfigurationS3LogDestination {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_owner': bucketOwner.toTfJson(),
     if (outputFormat != null) 'output_format': outputFormat!.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
@@ -941,13 +950,14 @@ final class PipesPipeSourceParametersSelfManagedKafkaParametersVpc {
     this.subnets,
   });
 
-  final TfArg<List<Object?>>? securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
-  final TfArg<List<Object?>>? subnets;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnets;
 
   Map<String, Object?> encode() => {
-    if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
-    if (subnets != null) 'subnets': subnets!.toTfJson(),
+    if (securityGroups != null)
+      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    if (subnets != null) 'subnets': subnets!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -1643,14 +1653,15 @@ final class PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpc
   >?
   assignPublicIp;
 
-  final TfArg<List<Object?>>? securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
-  final TfArg<List<Object?>>? subnets;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnets;
 
   Map<String, Object?> encode() => {
     if (assignPublicIp != null) 'assign_public_ip': assignPublicIp!.toTfJson(),
-    if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
-    if (subnets != null) 'subnets': subnets!.toTfJson(),
+    if (securityGroups != null)
+      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    if (subnets != null) 'subnets': subnets!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -1683,11 +1694,11 @@ final class PipesPipeTargetParametersEcsTaskParametersOverrides {
 
   final TfArg<String>? cpu;
 
-  final TfArg<String>? executionRoleArn;
+  final RefTo<AwsIamRole>? executionRoleArn;
 
   final TfArg<String>? memory;
 
-  final TfArg<String>? taskRoleArn;
+  final RefTo<AwsIamRole>? taskRoleArn;
 
   final List<
     PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
@@ -1705,9 +1716,10 @@ final class PipesPipeTargetParametersEcsTaskParametersOverrides {
   Map<String, Object?> encode() => {
     if (cpu != null) 'cpu': cpu!.toTfJson(),
     if (executionRoleArn != null)
-      'execution_role_arn': executionRoleArn!.toTfJson(),
+      'execution_role_arn': executionRoleArn!.encodeAs('arn').toTfJson(),
     if (memory != null) 'memory': memory!.toTfJson(),
-    if (taskRoleArn != null) 'task_role_arn': taskRoleArn!.toTfJson(),
+    if (taskRoleArn != null)
+      'task_role_arn': taskRoleArn!.encodeAs('arn').toTfJson(),
     if (containerOverride != null)
       'container_override': [for (final e in containerOverride!) e.encode()],
     if (ephemeralStorage != null)
@@ -2199,10 +2211,10 @@ final class AwsPipesPipe extends Resource {
     TfArg<String>? description,
     TfArg<PipesPipeDesiredState>? desiredState,
     TfArg<String>? enrichment,
-    TfArg<String>? kmsKeyIdentifier,
+    RefTo<AwsKmsKey>? kmsKeyIdentifier,
     PipesPipeName? name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     required TfArg<String> source,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> target,
@@ -2220,10 +2232,11 @@ final class AwsPipesPipe extends Resource {
            if (description != null) 'description': description,
            if (desiredState != null) 'desired_state': desiredState,
            if (enrichment != null) 'enrichment': enrichment,
-           if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
+           if (kmsKeyIdentifier != null)
+             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
            ...?name?.argMap,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            'source': source,
            if (tags != null) 'tags': tags,
            'target': target,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_auditmanager_assessment`.
 const Set<String> _awsAuditmanagerAssessmentSensitive = <String>{};
 
@@ -48,12 +50,12 @@ final class AuditmanagerAssessmentRoles {
     required this.roleType,
   });
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<AuditmanagerAssessmentRolesRoleType> roleType;
 
   Map<String, Object?> encode() => {
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'role_type': roleType.toTfJson(),
   };
 }

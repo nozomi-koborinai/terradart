@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_memorystore_instance_desired_user_created_endpoints`.
 const Set<String>
 _googleMemorystoreInstanceDesiredUserCreatedEndpointsSensitive = <String>{};
@@ -60,7 +62,7 @@ final class MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndp
 
   final TfArg<String> ipAddress;
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
   final TfArg<String>? projectId;
 
@@ -71,7 +73,7 @@ final class MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndp
   Map<String, Object?> encode() => {
     'forwarding_rule': forwardingRule.toTfJson(),
     'ip_address': ipAddress.toTfJson(),
-    'network': network.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
     if (projectId != null) 'project_id': projectId!.toTfJson(),
     'psc_connection_id': pscConnectionId.toTfJson(),
     'service_attachment': serviceAttachment.toTfJson(),

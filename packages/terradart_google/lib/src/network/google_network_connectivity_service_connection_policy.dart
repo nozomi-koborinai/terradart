@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_network_connectivity_service_connection_policy`.
 const Set<String> _googleNetworkConnectivityServiceConnectionPolicySensitive =
     <String>{};
@@ -80,7 +82,7 @@ final class GoogleNetworkConnectivityServiceConnectionPolicy extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     required TfArg<String> serviceClass,
     NetworkConnectivityServiceConnectionPolicyPscConfig? pscConfig,
     TfArg<String>? description,
@@ -96,7 +98,7 @@ final class GoogleNetworkConnectivityServiceConnectionPolicy extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'network': network,
+           'network': network.encodeAs('id'),
            'service_class': serviceClass,
            if (pscConfig != null)
              'psc_config': TfArg.literal(pscConfig.encode()),

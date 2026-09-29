@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_router_interface`.
 const Set<String> _googleComputeRouterInterfaceSensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleComputeRouterInterface extends Resource {
     TfArg<String>? region,
     TfArg<String>? ipRange,
     TfArg<String>? ipVersion,
-    TfArg<String>? subnetwork,
+    RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<String>? interconnectAttachment,
     TfArg<String>? vpnTunnel,
     TfArg<String>? privateIpAddress,
@@ -36,7 +38,7 @@ final class GoogleComputeRouterInterface extends Resource {
            if (region != null) 'region': region,
            if (ipRange != null) 'ip_range': ipRange,
            if (ipVersion != null) 'ip_version': ipVersion,
-           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
            if (interconnectAttachment != null)
              'interconnect_attachment': interconnectAttachment,
            if (vpnTunnel != null) 'vpn_tunnel': vpnTunnel,

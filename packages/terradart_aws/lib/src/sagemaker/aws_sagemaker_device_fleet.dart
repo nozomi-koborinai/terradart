@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_device_fleet`.
 const Set<String> _awsSagemakerDeviceFleetSensitive = <String>{};
 
@@ -16,12 +19,12 @@ final class SagemakerDeviceFleetOutputConfig {
     required this.s3OutputLocation,
   });
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String> s3OutputLocation;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     's3_output_location': s3OutputLocation.toTfJson(),
   };
 }
@@ -36,7 +39,7 @@ final class AwsSagemakerDeviceFleet extends Resource {
     required TfArg<String> deviceFleetName,
     TfArg<bool>? enableIotRoleAlias,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required SagemakerDeviceFleetOutputConfig outputConfig,
     super.lifecycle,
@@ -51,7 +54,7 @@ final class AwsSagemakerDeviceFleet extends Resource {
            if (enableIotRoleAlias != null)
              'enable_iot_role_alias': enableIotRoleAlias,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            'output_config': TfArg.literal(outputConfig.encode()),
          },

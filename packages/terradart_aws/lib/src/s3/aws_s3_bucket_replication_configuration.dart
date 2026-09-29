@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_replication_configuration`.
 const Set<String> _awsS3BucketReplicationConfigurationSensitive = <String>{
   'token',
@@ -115,7 +118,7 @@ final class S3BucketReplicationConfigurationRuleDestination {
 
   final TfArg<String>? account;
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<S3BucketReplicationConfigurationRuleDestinationStorageClass>?
   storageClass;
@@ -133,7 +136,7 @@ final class S3BucketReplicationConfigurationRuleDestination {
 
   Map<String, Object?> encode() => {
     if (account != null) 'account': account!.toTfJson(),
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('arn').toTfJson(),
     if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
     if (accessControlTranslation != null)
       'access_control_translation': accessControlTranslation!.encode(),
@@ -482,9 +485,9 @@ final class AwsS3BucketReplicationConfiguration extends Resource {
 
   AwsS3BucketReplicationConfiguration({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? region,
-    required TfArg<String> role,
+    required RefTo<AwsIamRole> role,
     TfArg<String>? token,
     required List<S3BucketReplicationConfigurationRule> rule,
     super.lifecycle,
@@ -494,9 +497,9 @@ final class AwsS3BucketReplicationConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (region != null) 'region': region,
-           'role': role,
+           'role': role.encodeAs('arn'),
            if (token != null) 'token': token,
            'rule': TfArg.literal([for (final e in rule) e.encode()]),
          },

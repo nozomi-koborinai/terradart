@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_magic_wan_ipsec_tunnel`.
 const Set<String> _cloudflareMagicWanIpsecTunnelSensitive = <String>{'psk'};
 
@@ -132,7 +134,7 @@ final class CloudflareMagicWanIpsecTunnel extends Resource {
 
   CloudflareMagicWanIpsecTunnel({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? automaticReturnRouting,
     required TfArg<String> cloudflareEndpoint,
     TfArg<String>? customerEndpoint,
@@ -152,7 +154,7 @@ final class CloudflareMagicWanIpsecTunnel extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (automaticReturnRouting != null)
              'automatic_return_routing': automaticReturnRouting,
            'cloudflare_endpoint': cloudflareEndpoint,

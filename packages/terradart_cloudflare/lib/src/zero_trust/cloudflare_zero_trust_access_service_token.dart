@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_service_token`.
 const Set<String> _cloudflareZeroTrustAccessServiceTokenSensitive = <String>{
   'client_secret',
@@ -18,13 +21,13 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
 
   CloudflareZeroTrustAccessServiceToken({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<num>? clientSecretVersion,
     TfArg<String>? duration,
     TfArg<bool>? enabled,
     required TfArg<String> name,
     TfArg<String>? previousClientSecretExpiresAt,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -32,7 +35,7 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
            if (clientSecretVersion != null)
              'client_secret_version': clientSecretVersion,
            if (duration != null) 'duration': duration,
@@ -40,7 +43,7 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
            'name': name,
            if (previousClientSecretExpiresAt != null)
              'previous_client_secret_expires_at': previousClientSecretExpiresAt,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
          },
        );
 

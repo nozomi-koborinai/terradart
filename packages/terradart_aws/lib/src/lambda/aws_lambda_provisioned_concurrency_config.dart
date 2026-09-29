@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_lambda_provisioned_concurrency_config`.
 const Set<String> _awsLambdaProvisionedConcurrencyConfigSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsLambdaProvisionedConcurrencyConfig extends Resource {
 
   AwsLambdaProvisionedConcurrencyConfig({
     required super.localName,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     required TfArg<num> provisionedConcurrentExecutions,
     required TfArg<String> qualifier,
     TfArg<String>? region,
@@ -24,7 +26,7 @@ final class AwsLambdaProvisionedConcurrencyConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            'provisioned_concurrent_executions': provisionedConcurrentExecutions,
            'qualifier': qualifier,
            if (region != null) 'region': region,

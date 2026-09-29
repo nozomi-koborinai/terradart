@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_config_deployment`.
 const Set<String> _googleConfigDeploymentSensitive = <String>{};
 
@@ -165,7 +167,7 @@ final class GoogleConfigDeployment extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> name,
-    required TfArg<String> serviceAccount,
+    required RefTo<GoogleServiceAccount> serviceAccount,
     required ConfigDeploymentTerraformBlueprint terraformBlueprint,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? annotations,
@@ -186,7 +188,7 @@ final class GoogleConfigDeployment extends Resource {
          argMap: {
            'location': location,
            'name': name,
-           'service_account': serviceAccount,
+           'service_account': serviceAccount.encodeAs('name'),
            'terraform_blueprint': TfArg.literal([
              terraformBlueprint.toArgMap(),
            ]),

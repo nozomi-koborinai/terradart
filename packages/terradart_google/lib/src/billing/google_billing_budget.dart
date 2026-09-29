@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_billing_budget`.
 const Set<String> _googleBillingBudgetSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class BillingBudgetAllUpdatesRule {
 
   final TfArg<List<Object?>>? monitoringNotificationChannels;
 
-  final TfArg<String>? pubsubTopic;
+  final RefTo<GooglePubsubTopic>? pubsubTopic;
 
   final TfArg<String>? schemaVersion;
 
@@ -49,7 +51,8 @@ final class BillingBudgetAllUpdatesRule {
     if (monitoringNotificationChannels != null)
       'monitoring_notification_channels': monitoringNotificationChannels!
           .toTfJson(),
-    if (pubsubTopic != null) 'pubsub_topic': pubsubTopic!.toTfJson(),
+    if (pubsubTopic != null)
+      'pubsub_topic': pubsubTopic!.encodeAs('id').toTfJson(),
     if (schemaVersion != null) 'schema_version': schemaVersion!.toTfJson(),
   };
 }

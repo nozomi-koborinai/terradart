@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_vertex_ai_featurestore`.
 const Set<String> _googleVertexAiFeaturestoreSensitive = <String>{};
 
@@ -13,9 +15,11 @@ const Set<String> _googleVertexAiFeaturestoreSensitive = <String>{};
 final class VertexAiFeaturestoreEncryptionSpec {
   const VertexAiFeaturestoreEncryptionSpec({required this.kmsKeyName});
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Exactly one of `fixed_node_count`, `scaling` on the `online_serving_config` block of `google_vertex_ai_featurestore`: the provider rejects

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_nel_setting`.
 const Set<String> _cloudflareNelSettingSensitive = <String>{};
 
@@ -28,7 +30,7 @@ final class CloudflareNelSetting extends Resource {
 
   CloudflareNelSetting({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required NelSettingValue value,
     super.lifecycle,
     super.dependsOn,
@@ -36,7 +38,10 @@ final class CloudflareNelSetting extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'zone_id': zoneId, 'value': TfArg.literal(value.encode())},
+         argMap: {
+           'zone_id': zoneId.encodeAs('id'),
+           'value': TfArg.literal(value.encode()),
+         },
        );
 
   @override

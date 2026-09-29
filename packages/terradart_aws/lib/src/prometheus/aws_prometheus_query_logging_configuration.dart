@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+
 /// Sensitive field paths for `aws_prometheus_query_logging_configuration`.
 const Set<String> _awsPrometheusQueryLoggingConfigurationSensitive = <String>{};
 
@@ -36,9 +38,11 @@ final class PrometheusQueryLoggingConfigurationDestinationCloudwatchLogs {
     required this.logGroupArn,
   });
 
-  final TfArg<String> logGroupArn;
+  final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
-  Map<String, Object?> encode() => {'log_group_arn': logGroupArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `destination.filters` block of

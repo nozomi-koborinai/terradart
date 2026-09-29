@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_stream_watermark`.
 const Set<String> _cloudflareStreamWatermarkSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareStreamWatermark extends Resource {
 
   CloudflareStreamWatermark({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? identifier,
     TfArg<String>? name,
     TfArg<num>? opacity,
@@ -31,7 +33,7 @@ final class CloudflareStreamWatermark extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (identifier != null) 'identifier': identifier,
            if (name != null) 'name': name,
            if (opacity != null) 'opacity': opacity,

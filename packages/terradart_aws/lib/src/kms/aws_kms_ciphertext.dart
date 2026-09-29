@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_kms_ciphertext`.
 const Set<String> _awsKmsCiphertextSensitive = <String>{
   'plaintext',
@@ -73,7 +75,7 @@ final class AwsKmsCiphertext extends Resource {
   AwsKmsCiphertext({
     required super.localName,
     TfArg<Map<String, String>>? context,
-    required TfArg<String> keyId,
+    required RefTo<AwsKmsKey> keyId,
     required KmsCiphertextPlaintext plaintext,
     TfArg<String>? plaintextWoVersion,
     TfArg<String>? region,
@@ -85,7 +87,7 @@ final class AwsKmsCiphertext extends Resource {
          terraformType: tfType,
          argMap: {
            if (context != null) 'context': context,
-           'key_id': keyId,
+           'key_id': keyId.encodeAs('key_id'),
            ...plaintext.argMap,
            if (plaintextWoVersion != null)
              'plaintext_wo_version': plaintextWoVersion,

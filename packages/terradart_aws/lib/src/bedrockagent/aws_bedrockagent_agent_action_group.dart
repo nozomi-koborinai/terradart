@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_bedrockagent_agent_action_group`.
 const Set<String> _awsBedrockagentAgentActionGroupSensitive = <String>{};
 
@@ -198,12 +200,13 @@ final class BedrockagentAgentActionGroupApiSchemaS3 {
     this.s3ObjectKey,
   });
 
-  final TfArg<String>? s3BucketName;
+  final RefTo<AwsS3Bucket>? s3BucketName;
 
   final TfArg<String>? s3ObjectKey;
 
   Map<String, Object?> encode() => {
-    if (s3BucketName != null) 's3_bucket_name': s3BucketName!.toTfJson(),
+    if (s3BucketName != null)
+      's3_bucket_name': s3BucketName!.encodeAs('id').toTfJson(),
     if (s3ObjectKey != null) 's3_object_key': s3ObjectKey!.toTfJson(),
   };
 }

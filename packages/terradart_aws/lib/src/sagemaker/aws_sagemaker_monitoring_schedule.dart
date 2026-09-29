@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_monitoring_schedule`.
 const Set<String> _awsSagemakerMonitoringScheduleSensitive = <String>{};
 
@@ -72,7 +77,7 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   final TfArg<Map<String, String>>? environment;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionBaseline?
   baseline;
@@ -99,7 +104,7 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   Map<String, Object?> encode() => {
     if (environment != null) 'environment': environment!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (baseline != null) 'baseline': baseline!.encode(),
     'monitoring_app_specification': monitoringAppSpecification.encode(),
     'monitoring_inputs': monitoringInputs.encode(),
@@ -480,13 +485,13 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
     required this.monitoringOutputs,
   });
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputs
   monitoringOutputs;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     'monitoring_outputs': monitoringOutputs.encode(),
   };
 }
@@ -621,13 +626,13 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
     required this.subnets,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 

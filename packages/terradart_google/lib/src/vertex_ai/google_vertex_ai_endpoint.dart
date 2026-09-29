@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_vertex_ai_endpoint`.
 const Set<String> _googleVertexAiEndpointSensitive = <String>{};
 
@@ -13,9 +16,11 @@ const Set<String> _googleVertexAiEndpointSensitive = <String>{};
 final class VertexAiEndpointEncryptionSpec {
   const VertexAiEndpointEncryptionSpec({required this.kmsKeyName});
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `predict_request_response_logging_config` block of
@@ -95,12 +100,12 @@ final class VertexAiEndpointPrivateServiceConnectConfigPscAutomationConfigs {
     required this.projectId,
   });
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
   final TfArg<String> projectId;
 
   Map<String, Object?> encode() => {
-    'network': network.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
     'project_id': projectId.toTfJson(),
   };
 }
@@ -144,7 +149,7 @@ final class GoogleVertexAiEndpoint extends Resource {
     required TfArg<String> location,
     TfArg<String>? region,
     TfArg<String>? description,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     TfArg<bool>? dedicatedEndpointEnabled,
     TfArg<String>? trafficSplit,
     VertexAiEndpointEncryptionSpec? encryptionSpec,
@@ -166,7 +171,7 @@ final class GoogleVertexAiEndpoint extends Resource {
            'location': location,
            if (region != null) 'region': region,
            if (description != null) 'description': description,
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            if (dedicatedEndpointEnabled != null)
              'dedicated_endpoint_enabled': dedicatedEndpointEnabled,
            if (trafficSplit != null) 'traffic_split': trafficSplit,

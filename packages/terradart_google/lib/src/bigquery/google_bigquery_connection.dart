@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_bigquery_connection`.
 const Set<String> _googleBigqueryConnectionSensitive = <String>{
   'cloud_sql.credential.password',
@@ -699,7 +701,7 @@ final class GoogleBigqueryConnection extends Resource {
     TfArg<String>? location,
     TfArg<String>? friendlyName,
     TfArg<String>? description,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required BigqueryConnectionBackend backend,
     TfArg<String>? project,
     super.lifecycle,
@@ -713,7 +715,7 @@ final class GoogleBigqueryConnection extends Resource {
            if (location != null) 'location': location,
            if (friendlyName != null) 'friendly_name': friendlyName,
            if (description != null) 'description': description,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            if (project != null) 'project': project,
            backend.blockKey: TfArg.literal(backend.encode()),
          },

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_turnstile_widget`.
 const Set<String> _cloudflareTurnstileWidgetSensitive = <String>{'secret'};
 
@@ -73,7 +75,7 @@ final class CloudflareTurnstileWidget extends Resource {
 
   CloudflareTurnstileWidget({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? botFightMode,
     TfArg<TurnstileWidgetClearanceLevel>? clearanceLevel,
     TfArg<TurnstileWidgetDirection>? direction,
@@ -94,7 +96,7 @@ final class CloudflareTurnstileWidget extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (botFightMode != null) 'bot_fight_mode': botFightMode,
            if (clearanceLevel != null) 'clearance_level': clearanceLevel,
            if (direction != null) 'direction': direction,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_backup_restore_testing_selection`.
 const Set<String> _awsBackupRestoreTestingSelectionSensitive = <String>{};
 
@@ -157,7 +159,7 @@ final class AwsBackupRestoreTestingSelection extends Resource {
 
   AwsBackupRestoreTestingSelection({
     required super.localName,
-    required TfArg<String> iamRoleArn,
+    required RefTo<AwsIamRole> iamRoleArn,
     required TfArg<String> name,
     required BackupRestoreTestingSelectionProtectedResource protectedResource,
     required TfArg<String> protectedResourceType,
@@ -172,7 +174,7 @@ final class AwsBackupRestoreTestingSelection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'iam_role_arn': iamRoleArn,
+           'iam_role_arn': iamRoleArn.encodeAs('arn'),
            'name': name,
            ...protectedResource.argMap,
            'protected_resource_type': protectedResourceType,

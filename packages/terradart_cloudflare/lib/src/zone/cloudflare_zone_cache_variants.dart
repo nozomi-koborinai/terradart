@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_cache_variants`.
 const Set<String> _cloudflareZoneCacheVariantsSensitive = <String>{};
 
@@ -72,7 +74,7 @@ final class CloudflareZoneCacheVariants extends Resource {
 
   CloudflareZoneCacheVariants({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required ZoneCacheVariantsValue value,
     super.lifecycle,
     super.dependsOn,
@@ -80,7 +82,10 @@ final class CloudflareZoneCacheVariants extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'zone_id': zoneId, 'value': TfArg.literal(value.encode())},
+         argMap: {
+           'zone_id': zoneId.encodeAs('id'),
+           'value': TfArg.literal(value.encode()),
+         },
        );
 
   @override

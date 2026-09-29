@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_vpc_route_server_endpoint`.
 const Set<String> _awsVpcRouteServerEndpointSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsVpcRouteServerEndpoint extends Resource {
     required super.localName,
     TfArg<String>? region,
     required TfArg<String> routeServerId,
-    required TfArg<String> subnetId,
+    required RefTo<AwsSubnet> subnetId,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +27,7 @@ final class AwsVpcRouteServerEndpoint extends Resource {
          argMap: {
            if (region != null) 'region': region,
            'route_server_id': routeServerId,
-           'subnet_id': subnetId,
+           'subnet_id': subnetId.encodeAs('id'),
            if (tags != null) 'tags': tags,
          },
        );

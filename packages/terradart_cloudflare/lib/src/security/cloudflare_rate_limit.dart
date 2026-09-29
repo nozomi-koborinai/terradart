@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_rate_limit`.
 const Set<String> _cloudflareRateLimitSensitive = <String>{};
 
@@ -163,7 +165,7 @@ final class CloudflareRateLimit extends Resource {
     required TfArg<num> period,
     TfArg<String>? rateLimitId,
     required TfArg<num> threshold,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required RateLimitAction action,
     required RateLimitMatch match,
     super.lifecycle,
@@ -176,7 +178,7 @@ final class CloudflareRateLimit extends Resource {
            'period': period,
            if (rateLimitId != null) 'rate_limit_id': rateLimitId,
            'threshold': threshold,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'action': TfArg.literal(action.encode()),
            'match': TfArg.literal(match.encode()),
          },

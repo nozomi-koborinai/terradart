@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_inventory`.
 const Set<String> _awsS3BucketInventorySensitive = <String>{};
 
@@ -68,7 +71,7 @@ final class S3BucketInventoryDestinationBucket {
 
   final TfArg<String>? accountId;
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<S3BucketInventoryDestinationBucketFormat> format;
 
@@ -78,7 +81,7 @@ final class S3BucketInventoryDestinationBucket {
 
   Map<String, Object?> encode() => {
     if (accountId != null) 'account_id': accountId!.toTfJson(),
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'format': format.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
     if (encryption != null) 'encryption': encryption!.encode(),
@@ -156,9 +159,9 @@ final class S3BucketInventoryDestinationBucketEncryptionSseKms {
     required this.keyId,
   });
 
-  final TfArg<String> keyId;
+  final RefTo<AwsKmsKey> keyId;
 
-  Map<String, Object?> encode() => {'key_id': keyId.toTfJson()};
+  Map<String, Object?> encode() => {'key_id': keyId.encodeAs('arn').toTfJson()};
 }
 
 /// Typed helper for the `destination.bucket.encryption.sse_s3` block of
@@ -210,7 +213,7 @@ final class AwsS3BucketInventory extends Resource {
 
   AwsS3BucketInventory({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? enabled,
     required TfArg<S3BucketInventoryIncludedObjectVersions>
     includedObjectVersions,
@@ -227,7 +230,7 @@ final class AwsS3BucketInventory extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (enabled != null) 'enabled': enabled,
            'included_object_versions': includedObjectVersions,
            'name': name,

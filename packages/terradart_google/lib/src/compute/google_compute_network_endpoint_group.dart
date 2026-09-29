@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_network_endpoint_group`.
 const Set<String> _googleComputeNetworkEndpointGroupSensitive = <String>{};
 
@@ -92,8 +95,8 @@ final class GoogleComputeNetworkEndpointGroup extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? zone,
-    required TfArg<String> network,
-    TfArg<String>? subnetwork,
+    required RefTo<GoogleComputeNetwork> network,
+    RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<NetworkEndpointGroupType>? networkEndpointType,
     TfArg<num>? defaultPort,
     TfArg<String>? description,
@@ -107,8 +110,8 @@ final class GoogleComputeNetworkEndpointGroup extends Resource {
          argMap: {
            'name': name,
            if (zone != null) 'zone': zone,
-           'network': network,
-           if (subnetwork != null) 'subnetwork': subnetwork,
+           'network': network.encodeAs('id'),
+           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
            if (networkEndpointType != null)
              'network_endpoint_type': networkEndpointType,
            if (defaultPort != null) 'default_port': defaultPort,

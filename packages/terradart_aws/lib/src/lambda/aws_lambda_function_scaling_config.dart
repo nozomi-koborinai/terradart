@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_lambda_function_scaling_config`.
 const Set<String> _awsLambdaFunctionScalingConfigSensitive = <String>{};
 
@@ -34,7 +36,7 @@ final class AwsLambdaFunctionScalingConfig extends Resource {
 
   AwsLambdaFunctionScalingConfig({
     required super.localName,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> qualifier,
     TfArg<String>? region,
     List<LambdaFunctionScalingConfigFunctionScalingConfig>?
@@ -46,7 +48,7 @@ final class AwsLambdaFunctionScalingConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            'qualifier': qualifier,
            if (region != null) 'region': region,
            if (functionScalingConfig != null)

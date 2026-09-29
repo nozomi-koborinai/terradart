@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+
 /// Sensitive field paths for `google_bigquery_table`.
 const Set<String> _googleBigqueryTableSensitive = <String>{};
 
@@ -663,7 +665,7 @@ final class GoogleBigqueryTable extends Resource {
 
   GoogleBigqueryTable({
     required super.localName,
-    required TfArg<String> datasetId,
+    required RefTo<GoogleBigqueryDataset> datasetId,
     required TfArg<String> tableId,
     TfArg<String>? friendlyName,
     TfArg<String>? description,
@@ -695,7 +697,7 @@ final class GoogleBigqueryTable extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId,
+           'dataset_id': datasetId.encodeAs('dataset_id'),
            'table_id': tableId,
            if (friendlyName != null) 'friendly_name': friendlyName,
            if (description != null) 'description': description,

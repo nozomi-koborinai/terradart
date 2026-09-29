@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_eventarc_google_channel_config`.
 const Set<String> _googleEventarcGoogleChannelConfigSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class GoogleEventarcGoogleChannelConfig extends Resource {
 
   GoogleEventarcGoogleChannelConfig({
     required super.localName,
-    TfArg<String>? cryptoKeyName,
+    RefTo<GoogleKmsCryptoKey>? cryptoKeyName,
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,
@@ -25,7 +27,8 @@ final class GoogleEventarcGoogleChannelConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cryptoKeyName != null) 'crypto_key_name': cryptoKeyName,
+           if (cryptoKeyName != null)
+             'crypto_key_name': cryptoKeyName.encodeAs('id'),
            'location': location,
            'name': name,
            if (project != null) 'project': project,

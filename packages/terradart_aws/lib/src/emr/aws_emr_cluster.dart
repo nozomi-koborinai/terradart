@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_emr_cluster`.
 const Set<String> _awsEmrClusterSensitive = <String>{
   'kerberos_attributes.ad_domain_join_password',
@@ -778,7 +780,7 @@ final class AwsEmrCluster extends Resource {
     required TfArg<String> releaseLabel,
     TfArg<EmrClusterScaleDownBehavior>? scaleDownBehavior,
     TfArg<String>? securityConfiguration,
-    required TfArg<String> serviceRole,
+    required RefTo<AwsIamRole> serviceRole,
     TfArg<List<Map<String, Object?>>>? step,
     TfArg<num>? stepConcurrencyLevel,
     TfArg<Map<String, String>>? tags,
@@ -826,7 +828,7 @@ final class AwsEmrCluster extends Resource {
              'scale_down_behavior': scaleDownBehavior,
            if (securityConfiguration != null)
              'security_configuration': securityConfiguration,
-           'service_role': serviceRole,
+           'service_role': serviceRole.encodeAs('arn'),
            if (step != null) 'step': step,
            if (stepConcurrencyLevel != null)
              'step_concurrency_level': stepConcurrencyLevel,

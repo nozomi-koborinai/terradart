@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_lambdamicrovms_microvm`.
 const Set<String> _awsLambdamicrovmsMicrovmSensitive = <String>{};
 
@@ -53,12 +56,12 @@ final class LambdamicrovmsMicrovmLogging {
 final class LambdamicrovmsMicrovmLoggingCloudwatch {
   const LambdamicrovmsMicrovmLoggingCloudwatch({this.logGroup, this.logStream});
 
-  final TfArg<String>? logGroup;
+  final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
   final TfArg<String>? logStream;
 
   Map<String, Object?> encode() => {
-    if (logGroup != null) 'log_group': logGroup!.toTfJson(),
+    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
     if (logStream != null) 'log_stream': logStream!.toTfJson(),
   };
 }
@@ -79,7 +82,7 @@ final class AwsLambdamicrovmsMicrovm extends Resource {
   AwsLambdamicrovmsMicrovm({
     required super.localName,
     TfArg<List<String>>? egressNetworkConnectors,
-    TfArg<String>? executionRoleArn,
+    RefTo<AwsIamRole>? executionRoleArn,
     required TfArg<String> imageArn,
     TfArg<String>? imageVersion,
     TfArg<List<String>>? ingressNetworkConnectors,
@@ -97,7 +100,8 @@ final class AwsLambdamicrovmsMicrovm extends Resource {
          argMap: {
            if (egressNetworkConnectors != null)
              'egress_network_connectors': egressNetworkConnectors,
-           if (executionRoleArn != null) 'execution_role_arn': executionRoleArn,
+           if (executionRoleArn != null)
+             'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'image_arn': imageArn,
            if (imageVersion != null) 'image_version': imageVersion,
            if (ingressNetworkConnectors != null)

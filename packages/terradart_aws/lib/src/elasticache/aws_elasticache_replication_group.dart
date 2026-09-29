@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_elasticache_replication_group`.
 const Set<String> _awsElasticacheReplicationGroupSensitive = <String>{
   'auth_token',
@@ -387,7 +390,7 @@ final class AwsElasticacheReplicationGroup extends Resource {
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalReplicationGroupId,
     TfArg<ElasticacheReplicationGroupIpDiscovery>? ipDiscovery,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? maintenanceWindow,
     TfArg<bool>? multiAzEnabled,
     TfArg<ElasticacheReplicationGroupNetworkType>? networkType,
@@ -401,7 +404,7 @@ final class AwsElasticacheReplicationGroup extends Resource {
     TfArg<String>? region,
     TfArg<num>? replicasPerNodeGroup,
     required TfArg<String> replicationGroupId,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<List<String>>? securityGroupNames,
     TfArg<List<String>>? snapshotArns,
     TfArg<String>? snapshotName,
@@ -445,7 +448,7 @@ final class AwsElasticacheReplicationGroup extends Resource {
            if (globalReplicationGroupId != null)
              'global_replication_group_id': globalReplicationGroupId,
            if (ipDiscovery != null) 'ip_discovery': ipDiscovery,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (maintenanceWindow != null)
              'maintenance_window': maintenanceWindow,
            if (multiAzEnabled != null) 'multi_az_enabled': multiAzEnabled,
@@ -463,7 +466,8 @@ final class AwsElasticacheReplicationGroup extends Resource {
            if (replicasPerNodeGroup != null)
              'replicas_per_node_group': replicasPerNodeGroup,
            'replication_group_id': replicationGroupId,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            if (securityGroupNames != null)
              'security_group_names': securityGroupNames,
            if (snapshotArns != null) 'snapshot_arns': snapshotArns,

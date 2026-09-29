@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+
 /// Sensitive field paths for `google_bigquery_routine_iam_member`.
 const Set<String> _googleBigqueryRoutineIamMemberSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class GoogleBigqueryRoutineIamMember extends Resource {
 
   GoogleBigqueryRoutineIamMember({
     required super.localName,
-    required TfArg<String> datasetId,
+    required RefTo<GoogleBigqueryDataset> datasetId,
     required TfArg<String> routineId,
     required TfArg<String> role,
     required TfArg<String> member,
@@ -25,7 +27,7 @@ final class GoogleBigqueryRoutineIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId,
+           'dataset_id': datasetId.encodeAs('dataset_id'),
            'routine_id': routineId,
            'role': role,
            'member': member,

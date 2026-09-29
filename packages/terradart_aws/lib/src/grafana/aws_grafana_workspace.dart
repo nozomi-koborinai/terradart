@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_grafana_workspace`.
 const Set<String> _awsGrafanaWorkspaceSensitive = <String>{};
 
@@ -91,13 +96,13 @@ final class GrafanaWorkspaceVpcConfiguration {
     required this.subnetIds,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -114,7 +119,7 @@ final class AwsGrafanaWorkspace extends Resource {
     List<TfArg<GrafanaWorkspaceDataSources>>? dataSources,
     TfArg<String>? description,
     TfArg<String>? grafanaVersion,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? name,
     List<TfArg<GrafanaWorkspaceNotificationDestinations>>?
     notificationDestinations,
@@ -122,7 +127,7 @@ final class AwsGrafanaWorkspace extends Resource {
     TfArg<List<String>>? organizationalUnits,
     required TfArg<GrafanaWorkspacePermissionType> permissionType,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     TfArg<String>? stackSetName,
     TfArg<Map<String, String>>? tags,
     GrafanaWorkspaceNetworkAccessControl? networkAccessControl,
@@ -145,7 +150,7 @@ final class AwsGrafanaWorkspace extends Resource {
              ]),
            if (description != null) 'description': description,
            if (grafanaVersion != null) 'grafana_version': grafanaVersion,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (name != null) 'name': name,
            if (notificationDestinations != null)
              'notification_destinations': TfArg.literal([
@@ -157,7 +162,7 @@ final class AwsGrafanaWorkspace extends Resource {
              'organizational_units': organizationalUnits,
            'permission_type': permissionType,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            if (stackSetName != null) 'stack_set_name': stackSetName,
            if (tags != null) 'tags': tags,
            if (networkAccessControl != null)

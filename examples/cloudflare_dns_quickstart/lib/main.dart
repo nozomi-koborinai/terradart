@@ -31,7 +31,7 @@ final class CloudflareDnsStack extends Stack {
     add(
       CloudflareDnsRecord(
         localName: 'api',
-        zoneId: .ref(zone.id),
+        zoneId: zone.ref,
         name: .literal('api.terradart-demo.example'),
         type: .literal(.cname),
         ttl: .literal(1),

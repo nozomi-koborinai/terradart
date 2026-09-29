@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_rds_cluster`.
 const Set<String> _awsRdsClusterSensitive = <String>{
   'master_password',
@@ -405,7 +409,7 @@ final class RdsClusterS3Import {
     required this.sourceEngineVersion,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? bucketPrefix;
 
@@ -416,7 +420,7 @@ final class RdsClusterS3Import {
   final TfArg<String> sourceEngineVersion;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     'ingestion_role': ingestionRole.toTfJson(),
     'source_engine': sourceEngine.toTfJson(),
@@ -538,7 +542,7 @@ final class AwsRdsCluster extends Resource {
     TfArg<bool>? iamDatabaseAuthenticationEnabled,
     TfArg<List<String>>? iamRoles,
     TfArg<num>? iops,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     RdsClusterMasterPassword? masterPassword,
     TfArg<num>? masterPasswordWoVersion,
     TfArg<String>? masterUserSecretKmsKeyId,
@@ -547,7 +551,7 @@ final class AwsRdsCluster extends Resource {
     TfArg<String>? monitoringRoleArn,
     TfArg<RdsClusterNetworkType>? networkType,
     TfArg<bool>? performanceInsightsEnabled,
-    TfArg<String>? performanceInsightsKmsKeyId,
+    RefTo<AwsKmsKey>? performanceInsightsKmsKeyId,
     TfArg<num>? performanceInsightsRetentionPeriod,
     TfArg<num>? port,
     TfArg<String>? preferredBackupWindow,
@@ -560,7 +564,7 @@ final class AwsRdsCluster extends Resource {
     TfArg<bool>? storageEncrypted,
     TfArg<String>? storageType,
     TfArg<Map<String, String>>? tags,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     TfArg<List<String>>? warningEventCategories,
     RdsClusterRestoreToPointInTime? restoreToPointInTime,
     RdsClusterS3Import? s3Import,
@@ -636,7 +640,7 @@ final class AwsRdsCluster extends Resource {
                  iamDatabaseAuthenticationEnabled,
            if (iamRoles != null) 'iam_roles': iamRoles,
            if (iops != null) 'iops': iops,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            ...?masterPassword?.argMap,
            if (masterPasswordWoVersion != null)
              'master_password_wo_version': masterPasswordWoVersion,
@@ -651,7 +655,8 @@ final class AwsRdsCluster extends Resource {
            if (performanceInsightsEnabled != null)
              'performance_insights_enabled': performanceInsightsEnabled,
            if (performanceInsightsKmsKeyId != null)
-             'performance_insights_kms_key_id': performanceInsightsKmsKeyId,
+             'performance_insights_kms_key_id': performanceInsightsKmsKeyId
+                 .encodeAs('arn'),
            if (performanceInsightsRetentionPeriod != null)
              'performance_insights_retention_period':
                  performanceInsightsRetentionPeriod,
@@ -672,7 +677,7 @@ final class AwsRdsCluster extends Resource {
            if (storageType != null) 'storage_type': storageType,
            if (tags != null) 'tags': tags,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
            if (warningEventCategories != null)
              'warning_event_categories': warningEventCategories,
            if (restoreToPointInTime != null)

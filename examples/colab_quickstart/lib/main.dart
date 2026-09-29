@@ -66,7 +66,7 @@ final class ColabStack extends Stack {
         localName: 'colab_subnet',
         name: .literal('terradart-colab-subnet'),
         region: .literal(location),
-        network: .ref(network.id),
+        network: network.ref,
         ipCidrRange: .literal('10.40.0.0/24'),
         privateIpGoogleAccess: .literal(true),
         dependsOn: [ResourceDependency(network)],
@@ -127,7 +127,7 @@ final class ColabStack extends Stack {
     final notebook = add(
       GoogleStorageBucketObject(
         localName: 'hello_ipynb',
-        bucket: .ref(bucket.nameRef),
+        bucket: bucket.ref,
         name: .literal('hello_world.ipynb'),
         body: .source(source: .literal('../hello_world.ipynb')),
         contentType: .literal('application/json'),

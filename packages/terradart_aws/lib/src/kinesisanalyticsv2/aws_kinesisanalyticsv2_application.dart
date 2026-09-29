@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_kinesisanalyticsv2_application`.
 const Set<String> _awsKinesisanalyticsv2ApplicationSensitive = <String>{};
 
@@ -208,14 +213,14 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCode
     this.objectVersion,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<String> fileKey;
 
   final TfArg<String>? objectVersion;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'file_key': fileKey.toTfJson(),
     if (objectVersion != null) 'object_version': objectVersion!.toTfJson(),
   };
@@ -230,7 +235,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncr
     required this.keyType,
   });
 
-  final TfArg<String>? keyId;
+  final RefTo<AwsKmsKey>? keyId;
 
   final TfArg<
     Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionConfigurationKeyType
@@ -238,7 +243,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncr
   keyType;
 
   Map<String, Object?> encode() => {
-    if (keyId != null) 'key_id': keyId!.toTfJson(),
+    if (keyId != null) 'key_id': keyId!.encodeAs('arn').toTfJson(),
     'key_type': keyType.toTfJson(),
   };
 }
@@ -1335,12 +1340,12 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
     required this.fileKey,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<String> fileKey;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'file_key': fileKey.toTfJson(),
   };
 }
@@ -1354,13 +1359,13 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationVpcConfiguratio
     required this.subnetIds,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 

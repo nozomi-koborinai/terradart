@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_spot_fleet_request`.
 const Set<String> _awsSpotFleetRequestSensitive = <String>{};
 
@@ -200,13 +204,13 @@ final class SpotFleetRequestLaunchSpecification {
 
   final TfArg<String>? spotPrice;
 
-  final TfArg<String>? subnetId;
+  final RefTo<AwsSubnet>? subnetId;
 
   final TfArg<Map<String, String>>? tags;
 
   final TfArg<String>? userData;
 
-  final TfArg<List<Object?>>? vpcSecurityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds;
 
   final TfArg<String>? weightedCapacity;
 
@@ -236,11 +240,11 @@ final class SpotFleetRequestLaunchSpecification {
     if (placementTenancy != null)
       'placement_tenancy': placementTenancy!.toTfJson(),
     if (spotPrice != null) 'spot_price': spotPrice!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.toTfJson(),
+    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     if (userData != null) 'user_data': userData!.toTfJson(),
     if (vpcSecurityGroupIds != null)
-      'vpc_security_group_ids': vpcSecurityGroupIds!.toTfJson(),
+      'vpc_security_group_ids': vpcSecurityGroupIds!.encodeAs('id').toTfJson(),
     if (weightedCapacity != null)
       'weighted_capacity': weightedCapacity!.toTfJson(),
     if (ebsBlockDevice != null)
@@ -292,7 +296,7 @@ final class SpotFleetRequestLaunchSpecificationEbsBlockDevice {
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? snapshotId;
 
@@ -309,7 +313,7 @@ final class SpotFleetRequestLaunchSpecificationEbsBlockDevice {
     'device_name': deviceName.toTfJson(),
     if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
     if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
     if (throughput != null) 'throughput': throughput!.toTfJson(),
     if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
@@ -374,7 +378,7 @@ final class SpotFleetRequestLaunchSpecificationRootBlockDevice {
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<num>? throughput;
 
@@ -388,7 +392,7 @@ final class SpotFleetRequestLaunchSpecificationRootBlockDevice {
       'delete_on_termination': deleteOnTermination!.toTfJson(),
     if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
     if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (throughput != null) 'throughput': throughput!.toTfJson(),
     if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
     if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
@@ -479,7 +483,7 @@ final class SpotFleetRequestLaunchTemplateConfigOverrides {
 
   final TfArg<String>? spotPrice;
 
-  final TfArg<String>? subnetId;
+  final RefTo<AwsSubnet>? subnetId;
 
   final TfArg<num>? weightedCapacity;
 
@@ -492,7 +496,7 @@ final class SpotFleetRequestLaunchTemplateConfigOverrides {
     if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
     if (priority != null) 'priority': priority!.toTfJson(),
     if (spotPrice != null) 'spot_price': spotPrice!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.toTfJson(),
+    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
     if (weightedCapacity != null)
       'weighted_capacity': weightedCapacity!.toTfJson(),
     if (instanceRequirements != null)

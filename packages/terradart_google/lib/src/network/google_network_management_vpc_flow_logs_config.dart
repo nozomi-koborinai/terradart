@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_network_management_vpc_flow_logs_config`.
 const Set<String> _googleNetworkManagementVpcFlowLogsConfigSensitive =
     <String>{};
@@ -83,8 +86,8 @@ final class GoogleNetworkManagementVpcFlowLogsConfig extends Resource {
     required super.localName,
     required TfArg<String> vpcFlowLogsConfigId,
     required TfArg<String> location,
-    TfArg<String>? network,
-    TfArg<String>? subnet,
+    RefTo<GoogleComputeNetwork>? network,
+    RefTo<GoogleComputeSubnetwork>? subnet,
     TfArg<String>? vpnTunnel,
     TfArg<String>? interconnectAttachment,
     TfArg<String>? description,
@@ -107,8 +110,8 @@ final class GoogleNetworkManagementVpcFlowLogsConfig extends Resource {
          argMap: {
            'vpc_flow_logs_config_id': vpcFlowLogsConfigId,
            'location': location,
-           if (network != null) 'network': network,
-           if (subnet != null) 'subnet': subnet,
+           if (network != null) 'network': network.encodeAs('id'),
+           if (subnet != null) 'subnet': subnet.encodeAs('id'),
            if (vpnTunnel != null) 'vpn_tunnel': vpnTunnel,
            if (interconnectAttachment != null)
              'interconnect_attachment': interconnectAttachment,

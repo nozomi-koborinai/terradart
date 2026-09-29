@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_device_deployment_groups`.
 const Set<String> _cloudflareZeroTrustDeviceDeploymentGroupsSensitive =
     <String>{};
@@ -33,7 +35,7 @@ final class CloudflareZeroTrustDeviceDeploymentGroups extends Resource {
 
   CloudflareZeroTrustDeviceDeploymentGroups({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     TfArg<List<String>>? policyIds,
     required List<ZeroTrustDeviceDeploymentGroupsVersionConfig> versionConfig,
@@ -44,7 +46,7 @@ final class CloudflareZeroTrustDeviceDeploymentGroups extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'name': name,
            if (policyIds != null) 'policy_ids': policyIds,
            'version_config': TfArg.literal([

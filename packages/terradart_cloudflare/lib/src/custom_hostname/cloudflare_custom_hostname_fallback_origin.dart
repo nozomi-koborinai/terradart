@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_custom_hostname_fallback_origin`.
 const Set<String> _cloudflareCustomHostnameFallbackOriginSensitive = <String>{};
 
@@ -17,14 +19,14 @@ final class CloudflareCustomHostnameFallbackOrigin extends Resource {
   CloudflareCustomHostnameFallbackOrigin({
     required super.localName,
     required TfArg<String> origin,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'origin': origin, 'zone_id': zoneId},
+         argMap: {'origin': origin, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

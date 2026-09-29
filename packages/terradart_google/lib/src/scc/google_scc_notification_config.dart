@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_scc_notification_config`.
 const Set<String> _googleSccNotificationConfigSensitive = <String>{};
 
@@ -42,7 +44,7 @@ final class GoogleSccNotificationConfig extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> organization,
-    required TfArg<String> pubsubTopic,
+    required RefTo<GooglePubsubTopic> pubsubTopic,
     required SccNotificationConfigStreamingConfig streamingConfig,
     super.lifecycle,
     super.dependsOn,
@@ -55,7 +57,7 @@ final class GoogleSccNotificationConfig extends Resource {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (description != null) 'description': description,
            'organization': organization,
-           'pubsub_topic': pubsubTopic,
+           'pubsub_topic': pubsubTopic.encodeAs('id'),
            'streaming_config': TfArg.literal(streamingConfig.encode()),
          },
        );

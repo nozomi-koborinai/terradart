@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_eks_capability`.
 const Set<String> _awsEksCapabilitySensitive = <String>{};
 
@@ -177,7 +179,7 @@ final class AwsEksCapability extends Resource {
     required TfArg<EksCapabilityDeletePropagationPolicy>
     deletePropagationPolicy,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required TfArg<EksCapabilityType> type,
     List<EksCapabilityConfiguration>? configuration,
@@ -192,7 +194,7 @@ final class AwsEksCapability extends Resource {
            'cluster_name': clusterName,
            'delete_propagation_policy': deletePropagationPolicy,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            'type': type,
            if (configuration != null)

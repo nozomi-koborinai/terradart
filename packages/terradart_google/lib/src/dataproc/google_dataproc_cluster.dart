@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_dataproc_cluster`.
 const Set<String> _googleDataprocClusterSensitive = <String>{};
 
@@ -298,9 +303,11 @@ final class DataprocClusterClusterConfigEncryptionConfig {
     required this.kmsKeyName,
   });
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `cluster_config.endpoint_config` block of
@@ -342,15 +349,15 @@ final class DataprocClusterClusterConfigGceClusterConfig {
 
   final TfArg<Map<String, String>>? metadata;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final TfArg<List<Object?>>? serviceAccountScopes;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   final TfArg<List<Object?>>? tags;
 
@@ -371,13 +378,14 @@ final class DataprocClusterClusterConfigGceClusterConfig {
   Map<String, Object?> encode() => {
     if (internalIpOnly != null) 'internal_ip_only': internalIpOnly!.toTfJson(),
     if (metadata != null) 'metadata': metadata!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
     if (resourceManagerTags != null)
       'resource_manager_tags': resourceManagerTags!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
     if (serviceAccountScopes != null)
       'service_account_scopes': serviceAccountScopes!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     if (zone != null) 'zone': zone!.toTfJson(),
     if (confidentialInstanceConfig != null)

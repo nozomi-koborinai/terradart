@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_bedrock_custom_model`.
 const Set<String> _awsBedrockCustomModelSensitive = <String>{};
 
@@ -76,13 +80,13 @@ final class BedrockCustomModelVpcConfig {
     required this.subnetIds,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -99,7 +103,7 @@ final class AwsBedrockCustomModel extends Resource {
     required TfArg<Map<String, String>> hyperparameters,
     required TfArg<String> jobName,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     List<BedrockCustomModelOutputDataConfig>? outputDataConfig,
     List<BedrockCustomModelTrainingDataConfig>? trainingDataConfig,
@@ -121,7 +125,7 @@ final class AwsBedrockCustomModel extends Resource {
            'hyperparameters': hyperparameters,
            'job_name': jobName,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (outputDataConfig != null)
              'output_data_config': TfArg.literal([

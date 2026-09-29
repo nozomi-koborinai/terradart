@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_lambda_function_url`.
 const Set<String> _awsLambdaFunctionUrlSensitive = <String>{};
 
@@ -77,7 +79,7 @@ final class AwsLambdaFunctionUrl extends Resource {
   AwsLambdaFunctionUrl({
     required super.localName,
     required TfArg<LambdaFunctionUrlAuthorizationType> authorizationType,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     TfArg<LambdaFunctionUrlInvokeMode>? invokeMode,
     TfArg<String>? qualifier,
     TfArg<String>? region,
@@ -90,7 +92,7 @@ final class AwsLambdaFunctionUrl extends Resource {
          terraformType: tfType,
          argMap: {
            'authorization_type': authorizationType,
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            if (invokeMode != null) 'invoke_mode': invokeMode,
            if (qualifier != null) 'qualifier': qualifier,
            if (region != null) 'region': region,

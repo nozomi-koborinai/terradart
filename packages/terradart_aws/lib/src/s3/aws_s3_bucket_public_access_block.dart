@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_public_access_block`.
 const Set<String> _awsS3BucketPublicAccessBlockSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsS3BucketPublicAccessBlock extends Resource {
     required super.localName,
     TfArg<bool>? blockPublicAcls,
     TfArg<bool>? blockPublicPolicy,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? ignorePublicAcls,
     TfArg<String>? region,
     TfArg<bool>? restrictPublicBuckets,
@@ -29,7 +31,7 @@ final class AwsS3BucketPublicAccessBlock extends Resource {
            if (blockPublicAcls != null) 'block_public_acls': blockPublicAcls,
            if (blockPublicPolicy != null)
              'block_public_policy': blockPublicPolicy,
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (ignorePublicAcls != null) 'ignore_public_acls': ignorePublicAcls,
            if (region != null) 'region': region,
            if (restrictPublicBuckets != null)

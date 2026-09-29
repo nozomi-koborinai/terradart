@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_redshift_snapshot_copy_grant`.
 const Set<String> _awsRedshiftSnapshotCopyGrantSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsRedshiftSnapshotCopyGrant extends Resource {
 
   AwsRedshiftSnapshotCopyGrant({
     required super.localName,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,
     required TfArg<String> snapshotCopyGrantName,
     TfArg<Map<String, String>>? tags,
@@ -23,7 +25,7 @@ final class AwsRedshiftSnapshotCopyGrant extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (region != null) 'region': region,
            'snapshot_copy_grant_name': snapshotCopyGrantName,
            if (tags != null) 'tags': tags,

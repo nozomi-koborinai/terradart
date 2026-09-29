@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_glue_job`.
 const Set<String> _awsGlueJobSensitive = <String>{
   'source_control_details.auth_token',
@@ -190,7 +192,7 @@ final class AwsGlueJob extends Resource {
     TfArg<Map<String, String>>? nonOverridableArguments,
     TfArg<num>? numberOfWorkers,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<String>? securityConfiguration,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? timeout,
@@ -223,7 +225,7 @@ final class AwsGlueJob extends Resource {
              'non_overridable_arguments': nonOverridableArguments,
            if (numberOfWorkers != null) 'number_of_workers': numberOfWorkers,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (securityConfiguration != null)
              'security_configuration': securityConfiguration,
            if (tags != null) 'tags': tags,

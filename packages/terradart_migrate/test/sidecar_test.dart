@@ -120,7 +120,7 @@ output "label" {
         allOf(
           contains(
             "GooglePubsubSubscription(localName: r'many_0', "
-            "name: .literal(r's-0'), topic: .ref(t.nameRef))",
+            "name: .literal(r's-0'), topic: t.ref.pinned(r'name'))",
           ),
           contains(
             "addMoved(r'google_pubsub_subscription.many[1]', "

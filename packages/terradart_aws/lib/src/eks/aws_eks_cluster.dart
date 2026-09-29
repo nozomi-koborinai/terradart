@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_eks_cluster`.
 const Set<String> _awsEksClusterSensitive = <String>{};
 
@@ -145,9 +150,11 @@ enum EksClusterEncryptionConfigResources implements TerraformEnum {
 final class EksClusterEncryptionConfigProvider {
   const EksClusterEncryptionConfigProvider({required this.keyArn});
 
-  final TfArg<String> keyArn;
+  final RefTo<AwsKmsKey> keyArn;
 
-  Map<String, Object?> encode() => {'key_arn': keyArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'key_arn': keyArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `kube_api_server_config` block of
@@ -585,9 +592,9 @@ final class EksClusterVpcConfig {
 
   final TfArg<List<Object?>>? publicAccessCidrs;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
     if (controlPlaneEgressMode != null)
@@ -599,8 +606,8 @@ final class EksClusterVpcConfig {
     if (publicAccessCidrs != null)
       'public_access_cidrs': publicAccessCidrs!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -640,7 +647,7 @@ final class AwsEksCluster extends Resource {
     TfArg<bool>? forceUpdateVersion,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? version,
     EksClusterAccessConfig? accessConfig,
@@ -676,7 +683,7 @@ final class AwsEksCluster extends Resource {
              'force_update_version': forceUpdateVersion,
            'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (version != null) 'version': version,
            if (accessConfig != null)

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_location_geofence_collection`.
 const Set<String> _awsLocationGeofenceCollectionSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsLocationGeofenceCollection extends Resource {
     required super.localName,
     required TfArg<String> collectionName,
     TfArg<String>? description,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -26,7 +28,7 @@ final class AwsLocationGeofenceCollection extends Resource {
          argMap: {
            'collection_name': collectionName,
            if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

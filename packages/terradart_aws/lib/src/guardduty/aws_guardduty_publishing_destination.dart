@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_guardduty_publishing_destination`.
 const Set<String> _awsGuarddutyPublishingDestinationSensitive = <String>{};
 
@@ -24,7 +26,7 @@ final class AwsGuarddutyPublishingDestination extends Resource {
     required TfArg<String> destinationArn,
     TfArg<GuarddutyPublishingDestinationDestinationType>? destinationType,
     required TfArg<String> detectorId,
-    required TfArg<String> kmsKeyArn,
+    required RefTo<AwsKmsKey> kmsKeyArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -37,7 +39,7 @@ final class AwsGuarddutyPublishingDestination extends Resource {
            'destination_arn': destinationArn,
            if (destinationType != null) 'destination_type': destinationType,
            'detector_id': detectorId,
-           'kms_key_arn': kmsKeyArn,
+           'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

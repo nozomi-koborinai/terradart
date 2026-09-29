@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_networkfirewall_rule_group`.
 const Set<String> _awsNetworkfirewallRuleGroupSensitive = <String>{};
 
@@ -27,12 +29,12 @@ final class NetworkfirewallRuleGroupEncryptionConfiguration {
     required this.type,
   });
 
-  final TfArg<String>? keyId;
+  final RefTo<AwsKmsKey>? keyId;
 
   final TfArg<NetworkfirewallRuleGroupEncryptionConfigurationType> type;
 
   Map<String, Object?> encode() => {
-    if (keyId != null) 'key_id': keyId!.toTfJson(),
+    if (keyId != null) 'key_id': keyId!.encodeAs('arn').toTfJson(),
     'type': type.toTfJson(),
   };
 }

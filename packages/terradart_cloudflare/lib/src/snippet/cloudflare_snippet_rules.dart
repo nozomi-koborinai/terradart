@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_snippet_rules`.
 const Set<String> _cloudflareSnippetRulesSensitive = <String>{};
 
@@ -44,7 +46,7 @@ final class CloudflareSnippetRules extends Resource {
 
   CloudflareSnippetRules({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required List<SnippetRulesRules> rules,
     super.lifecycle,
     super.dependsOn,
@@ -53,7 +55,7 @@ final class CloudflareSnippetRules extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },
        );

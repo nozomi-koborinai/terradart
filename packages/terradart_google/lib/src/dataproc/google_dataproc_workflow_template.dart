@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_dataproc_workflow_template`.
 const Set<String> _googleDataprocWorkflowTemplateSensitive = <String>{};
 
@@ -13,10 +18,10 @@ const Set<String> _googleDataprocWorkflowTemplateSensitive = <String>{};
 final class DataprocWorkflowTemplateEncryptionConfig {
   const DataprocWorkflowTemplateEncryptionConfig({this.kmsKey});
 
-  final TfArg<String>? kmsKey;
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -858,18 +863,18 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
 
   final TfArg<Map<String, String>>? metadata;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<
     DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigPrivateIpv6GoogleAccess
   >?
   privateIpv6GoogleAccess;
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final TfArg<List<Object?>>? serviceAccountScopes;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   final TfArg<List<Object?>>? tags;
 
@@ -887,13 +892,14 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
   Map<String, Object?> encode() => {
     if (internalIpOnly != null) 'internal_ip_only': internalIpOnly!.toTfJson(),
     if (metadata != null) 'metadata': metadata!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
     if (privateIpv6GoogleAccess != null)
       'private_ipv6_google_access': privateIpv6GoogleAccess!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
     if (serviceAccountScopes != null)
       'service_account_scopes': serviceAccountScopes!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     if (zone != null) 'zone': zone!.toTfJson(),
     if (nodeGroupAffinity != null)
@@ -1697,7 +1703,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfigK
 
   final TfArg<String>? keystorePassword;
 
-  final TfArg<String>? kmsKey;
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   final TfArg<String>? realm;
 
@@ -1725,7 +1731,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfigK
     if (keystore != null) 'keystore': keystore!.toTfJson(),
     if (keystorePassword != null)
       'keystore_password': keystorePassword!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
     if (realm != null) 'realm': realm!.toTfJson(),
     if (rootPrincipalPassword != null)
       'root_principal_password': rootPrincipalPassword!.toTfJson(),

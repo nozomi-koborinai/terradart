@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_redshift_idc_application`.
 const Set<String> _awsRedshiftIdcApplicationSensitive = <String>{};
 
@@ -210,7 +212,7 @@ final class AwsRedshiftIdcApplication extends Resource {
   AwsRedshiftIdcApplication({
     required super.localName,
     TfArg<RedshiftIdcApplicationApplicationType>? applicationType,
-    required TfArg<String> iamRoleArn,
+    required RefTo<AwsIamRole> iamRoleArn,
     required TfArg<String> idcDisplayName,
     required TfArg<String> idcInstanceArn,
     TfArg<String>? identityNamespace,
@@ -227,7 +229,7 @@ final class AwsRedshiftIdcApplication extends Resource {
          terraformType: tfType,
          argMap: {
            if (applicationType != null) 'application_type': applicationType,
-           'iam_role_arn': iamRoleArn,
+           'iam_role_arn': iamRoleArn.encodeAs('arn'),
            'idc_display_name': idcDisplayName,
            'idc_instance_arn': idcInstanceArn,
            if (identityNamespace != null)

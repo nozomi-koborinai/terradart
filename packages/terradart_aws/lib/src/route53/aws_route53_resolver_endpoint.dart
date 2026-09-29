@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_route53_resolver_endpoint`.
 const Set<String> _awsRoute53ResolverEndpointSensitive = <String>{};
 
@@ -54,12 +57,12 @@ final class Route53ResolverEndpointIpAddress {
 
   final TfArg<String>? ipv6;
 
-  final TfArg<String> subnetId;
+  final RefTo<AwsSubnet> subnetId;
 
   Map<String, Object?> encode() => {
     if (ip != null) 'ip': ip!.toTfJson(),
     if (ipv6 != null) 'ipv6': ipv6!.toTfJson(),
-    'subnet_id': subnetId.toTfJson(),
+    'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 }
 
@@ -75,7 +78,7 @@ final class AwsRoute53ResolverEndpoint extends Resource {
     TfArg<String>? region,
     TfArg<Route53ResolverEndpointResolverEndpointType>? resolverEndpointType,
     TfArg<bool>? rniEnhancedMetricsEnabled,
-    required TfArg<List<String>> securityGroupIds,
+    required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? targetNameServerMetricsEnabled,
     required List<Route53ResolverEndpointIpAddress> ipAddress,
@@ -97,7 +100,7 @@ final class AwsRoute53ResolverEndpoint extends Resource {
              'resolver_endpoint_type': resolverEndpointType,
            if (rniEnhancedMetricsEnabled != null)
              'rni_enhanced_metrics_enabled': rniEnhancedMetricsEnabled,
-           'security_group_ids': securityGroupIds,
+           'security_group_ids': securityGroupIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (targetNameServerMetricsEnabled != null)
              'target_name_server_metrics_enabled':

@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_rekognition_stream_processor`.
 const Set<String> _awsRekognitionStreamProcessorSensitive = <String>{};
 
@@ -50,10 +55,11 @@ final class RekognitionStreamProcessorInputKinesisVideoStream {
 final class RekognitionStreamProcessorNotificationChannel {
   const RekognitionStreamProcessorNotificationChannel({this.snsTopicArn});
 
-  final TfArg<String>? snsTopicArn;
+  final RefTo<AwsSnsTopic>? snsTopicArn;
 
   Map<String, Object?> encode() => {
-    if (snsTopicArn != null) 'sns_topic_arn': snsTopicArn!.toTfJson(),
+    if (snsTopicArn != null)
+      'sns_topic_arn': snsTopicArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -136,12 +142,12 @@ final class RekognitionStreamProcessorOutputS3Destination {
     this.keyPrefix,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<String>? keyPrefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
   };
 }
@@ -367,10 +373,10 @@ final class AwsRekognitionStreamProcessor extends Resource {
 
   AwsRekognitionStreamProcessor({
     required super.localName,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     List<RekognitionStreamProcessorDataSharingPreference>?
     dataSharingPreference,
@@ -386,10 +392,10 @@ final class AwsRekognitionStreamProcessor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (dataSharingPreference != null)
              'data_sharing_preference': TfArg.literal([

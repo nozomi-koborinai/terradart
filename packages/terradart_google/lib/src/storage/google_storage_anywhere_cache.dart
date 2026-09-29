@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_anywhere_cache`.
 const Set<String> _googleStorageAnywhereCacheSensitive = <String>{};
 
@@ -44,7 +46,7 @@ final class GoogleStorageAnywhereCache extends Resource {
 
   GoogleStorageAnywhereCache({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> zone,
     TfArg<String>? ttl,
     @Deprecated(
@@ -60,7 +62,7 @@ final class GoogleStorageAnywhereCache extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('name'),
            'zone': zone,
            if (ttl != null) 'ttl': ttl,
            if (admissionPolicy != null) 'admission_policy': admissionPolicy,

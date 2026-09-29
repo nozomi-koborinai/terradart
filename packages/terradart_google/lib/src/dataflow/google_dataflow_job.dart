@@ -3,6 +3,11 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_dataflow_job`.
 const Set<String> _googleDataflowJobSensitive = <String>{};
 
@@ -32,11 +37,11 @@ final class GoogleDataflowJob extends Resource {
     TfArg<String>? zone,
     TfArg<num>? maxWorkers,
     TfArg<String>? machineType,
-    TfArg<String>? network,
-    TfArg<String>? subnetwork,
+    RefTo<GoogleComputeNetwork>? network,
+    RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<String>? ipConfiguration,
-    TfArg<String>? serviceAccountEmail,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleServiceAccount>? serviceAccountEmail,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<bool>? enableStreamingEngine,
     TfArg<Map<String, String>>? parameters,
     TfArg<Map<String, String>>? transformNameMapping,
@@ -60,12 +65,13 @@ final class GoogleDataflowJob extends Resource {
            if (zone != null) 'zone': zone,
            if (maxWorkers != null) 'max_workers': maxWorkers,
            if (machineType != null) 'machine_type': machineType,
-           if (network != null) 'network': network,
-           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (network != null) 'network': network.encodeAs('name'),
+           if (subnetwork != null)
+             'subnetwork': subnetwork.encodeAs('self_link'),
            if (ipConfiguration != null) 'ip_configuration': ipConfiguration,
            if (serviceAccountEmail != null)
-             'service_account_email': serviceAccountEmail,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+             'service_account_email': serviceAccountEmail.encodeAs('email'),
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            if (enableStreamingEngine != null)
              'enable_streaming_engine': enableStreamingEngine,
            if (parameters != null) 'parameters': parameters,

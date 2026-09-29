@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_securityhub_connector_v2`.
 const Set<String> _awsSecurityhubConnectorV2Sensitive = <String>{};
 
@@ -103,7 +105,7 @@ final class AwsSecurityhubConnectorV2 extends Resource {
   AwsSecurityhubConnectorV2({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -116,7 +118,7 @@ final class AwsSecurityhubConnectorV2 extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

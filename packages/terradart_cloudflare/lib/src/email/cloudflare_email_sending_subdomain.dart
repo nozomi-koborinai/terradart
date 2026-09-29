@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_email_sending_subdomain`.
 const Set<String> _cloudflareEmailSendingSubdomainSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class CloudflareEmailSendingSubdomain extends Resource {
     TfArg<bool>? dropSuppressedRecipients,
     required TfArg<String> name,
     TfArg<bool>? previewEnabled,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -27,7 +29,7 @@ final class CloudflareEmailSendingSubdomain extends Resource {
              'drop_suppressed_recipients': dropSuppressedRecipients,
            'name': name,
            if (previewEnabled != null) 'preview_enabled': previewEnabled,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

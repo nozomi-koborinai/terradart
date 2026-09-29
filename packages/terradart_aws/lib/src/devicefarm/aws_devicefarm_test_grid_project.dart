@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_devicefarm_test_grid_project`.
 const Set<String> _awsDevicefarmTestGridProjectSensitive = <String>{};
 
@@ -17,16 +21,16 @@ final class DevicefarmTestGridProjectVpcConfig {
     required this.vpcId,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
-  final TfArg<String> vpcId;
+  final RefTo<AwsVpc> vpcId;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
-    'vpc_id': vpcId.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
+    'vpc_id': vpcId.encodeAs('id').toTfJson(),
   };
 }
 

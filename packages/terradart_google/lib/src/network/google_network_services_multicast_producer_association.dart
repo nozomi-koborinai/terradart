@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_network_services_multicast_producer_association`.
 const Set<String> _googleNetworkServicesMulticastProducerAssociationSensitive =
     <String>{};
@@ -32,7 +34,7 @@ final class GoogleNetworkServicesMulticastProducerAssociation extends Resource {
     required TfArg<String> location,
     required TfArg<String> multicastProducerAssociationId,
     required TfArg<String> multicastDomainActivation,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
@@ -47,7 +49,7 @@ final class GoogleNetworkServicesMulticastProducerAssociation extends Resource {
            'location': location,
            'multicast_producer_association_id': multicastProducerAssociationId,
            'multicast_domain_activation': multicastDomainActivation,
-           'network': network,
+           'network': network.encodeAs('id'),
            if (description != null) 'description': description,
            if (labels != null) 'labels': labels,
            if (project != null) 'project': project,

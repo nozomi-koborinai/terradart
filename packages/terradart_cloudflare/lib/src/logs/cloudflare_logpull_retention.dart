@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_logpull_retention`.
 const Set<String> _cloudflareLogpullRetentionSensitive = <String>{};
 
@@ -17,14 +19,17 @@ final class CloudflareLogpullRetention extends Resource {
   CloudflareLogpullRetention({
     required super.localName,
     TfArg<bool>? flag,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (flag != null) 'flag': flag, 'zone_id': zoneId},
+         argMap: {
+           if (flag != null) 'flag': flag,
+           'zone_id': zoneId.encodeAs('id'),
+         },
        );
 
   @override

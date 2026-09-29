@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_tracing_rules`.
 const Set<String> _cloudflareZoneTracingRulesSensitive = <String>{};
 
@@ -64,7 +66,7 @@ final class CloudflareZoneTracingRules extends Resource {
 
   CloudflareZoneTracingRules({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required List<ZoneTracingRulesRules> rules,
     super.lifecycle,
     super.dependsOn,
@@ -73,7 +75,7 @@ final class CloudflareZoneTracingRules extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },
        );

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_codedeploy_deployment_group`.
 const Set<String> _awsCodedeployDeploymentGroupSensitive = <String>{};
 
@@ -558,7 +560,7 @@ final class AwsCodedeployDeploymentGroup extends Resource {
     TfArg<CodedeployDeploymentGroupOutdatedInstancesStrategy>?
     outdatedInstancesStrategy,
     TfArg<String>? region,
-    required TfArg<String> serviceRoleArn,
+    required RefTo<AwsIamRole> serviceRoleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? terminationHookEnabled,
     CodedeployDeploymentGroupAlarmConfiguration? alarmConfiguration,
@@ -590,7 +592,7 @@ final class AwsCodedeployDeploymentGroup extends Resource {
            if (outdatedInstancesStrategy != null)
              'outdated_instances_strategy': outdatedInstancesStrategy,
            if (region != null) 'region': region,
-           'service_role_arn': serviceRoleArn,
+           'service_role_arn': serviceRoleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (terminationHookEnabled != null)
              'termination_hook_enabled': terminationHookEnabled,

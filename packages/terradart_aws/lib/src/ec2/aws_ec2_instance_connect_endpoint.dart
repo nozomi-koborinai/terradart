@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_ec2_instance_connect_endpoint`.
 const Set<String> _awsEc2InstanceConnectEndpointSensitive = <String>{};
 
@@ -26,8 +29,8 @@ final class AwsEc2InstanceConnectEndpoint extends Resource {
     TfArg<Ec2InstanceConnectEndpointIpAddressType>? ipAddressType,
     TfArg<bool>? preserveClientIp,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
-    required TfArg<String> subnetId,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
+    required RefTo<AwsSubnet> subnetId,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -39,8 +42,9 @@ final class AwsEc2InstanceConnectEndpoint extends Resource {
            if (ipAddressType != null) 'ip_address_type': ipAddressType,
            if (preserveClientIp != null) 'preserve_client_ip': preserveClientIp,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
-           'subnet_id': subnetId,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
+           'subnet_id': subnetId.encodeAs('id'),
            if (tags != null) 'tags': tags,
          },
        );

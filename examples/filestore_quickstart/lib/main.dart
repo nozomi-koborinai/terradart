@@ -42,7 +42,7 @@ final class FilestoreSnapshotStack extends Stack {
         localName: 'nfs_subnet',
         name: .literal('nfs-subnet'),
         region: .literal('us-central1'),
-        network: .ref(nfsVpc.id),
+        network: nfsVpc.ref,
         ipCidrRange: .literal('10.20.0.0/24'),
         dependsOn: apiDeps,
       ),

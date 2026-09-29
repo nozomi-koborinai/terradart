@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cloudcontrolapi_resource`.
 const Set<String> _awsCloudcontrolapiResourceSensitive = <String>{'schema'};
 
@@ -14,7 +16,7 @@ final class AwsCloudcontrolapiResource extends Resource {
     required super.localName,
     required TfArg<String> desiredState,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     TfArg<String>? schema,
     required TfArg<String> typeName,
     TfArg<String>? typeVersionId,
@@ -27,7 +29,7 @@ final class AwsCloudcontrolapiResource extends Resource {
          argMap: {
            'desired_state': desiredState,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            if (schema != null) 'schema': schema,
            'type_name': typeName,
            if (typeVersionId != null) 'type_version_id': typeVersionId,

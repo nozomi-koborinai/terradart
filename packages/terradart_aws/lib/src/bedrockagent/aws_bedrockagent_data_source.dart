@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_bedrockagent_data_source`.
 const Set<String> _awsBedrockagentDataSourceSensitive = <String>{};
 
@@ -495,14 +499,14 @@ final class BedrockagentDataSourceDataSourceConfigurationS3Configuration {
     this.inclusionPrefixes,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<String>? bucketOwnerAccountId;
 
   final TfArg<List<Object?>>? inclusionPrefixes;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bucketOwnerAccountId != null)
       'bucket_owner_account_id': bucketOwnerAccountId!.toTfJson(),
     if (inclusionPrefixes != null)
@@ -1017,10 +1021,10 @@ final class BedrockagentDataSourceServerSideEncryptionConfiguration {
     this.kmsKeyArn,
   });
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1421,9 +1425,11 @@ final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformati
     required this.lambdaArn,
   });
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
-  Map<String, Object?> encode() => {'lambda_arn': lambdaArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration` block of

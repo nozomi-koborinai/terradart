@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_artifact_registry_repository`.
 const Set<String> _googleArtifactRegistryRepositorySensitive = <String>{};
 
@@ -798,7 +800,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
     TfArg<ArtifactRegistryMode>? mode,
     TfArg<String>? description,
     TfArg<String>? location,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<Map<String, String>>? labels,
     ArtifactRegistryRepositoryArtifactRegistryDockerConfig? dockerConfig,
     ArtifactRegistryRepositoryArtifactRegistryMavenConfig? mavenConfig,
@@ -821,7 +823,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
            if (mode != null) 'mode': mode,
            if (description != null) 'description': description,
            if (location != null) 'location': location,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            if (labels != null) 'labels': labels,
            if (dockerConfig != null)
              'docker_config': TfArg.literal([dockerConfig.toArgMap()]),

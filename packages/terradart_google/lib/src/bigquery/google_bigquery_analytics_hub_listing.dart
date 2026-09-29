@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_bigquery_analytics_hub_listing`.
 const Set<String> _googleBigqueryAnalyticsHubListingSensitive = <String>{};
 
@@ -213,12 +215,12 @@ final class BigqueryAnalyticsHubListingPubsubTopic {
 
   final TfArg<List<Object?>>? dataAffinityRegions;
 
-  final TfArg<String> topic;
+  final RefTo<GooglePubsubTopic> topic;
 
   Map<String, Object?> encode() => {
     if (dataAffinityRegions != null)
       'data_affinity_regions': dataAffinityRegions!.toTfJson(),
-    'topic': topic.toTfJson(),
+    'topic': topic.encodeAs('id').toTfJson(),
   };
 }
 

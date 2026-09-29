@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_os_config_patch_deployment`.
 const Set<String> _googleOsConfigPatchDeploymentSensitive = <String>{};
 
@@ -476,14 +478,14 @@ final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObje
     required this.object,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String> generationNumber;
 
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     'generation_number': generationNumber.toTfJson(),
     'object': object.toTfJson(),
   };
@@ -599,14 +601,14 @@ final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsOb
     required this.object,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String> generationNumber;
 
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     'generation_number': generationNumber.toTfJson(),
     'object': object.toTfJson(),
   };
@@ -743,14 +745,14 @@ final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjec
     required this.object,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String> generationNumber;
 
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     'generation_number': generationNumber.toTfJson(),
     'object': object.toTfJson(),
   };
@@ -866,14 +868,14 @@ final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObj
     required this.object,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String> generationNumber;
 
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     'generation_number': generationNumber.toTfJson(),
     'object': object.toTfJson(),
   };

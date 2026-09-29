@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_iot_role_alias`.
 const Set<String> _awsIotRoleAliasSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsIotRoleAlias extends Resource {
     required TfArg<String> alias,
     TfArg<num>? credentialDuration,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -28,7 +30,7 @@ final class AwsIotRoleAlias extends Resource {
            if (credentialDuration != null)
              'credential_duration': credentialDuration,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
          },
        );

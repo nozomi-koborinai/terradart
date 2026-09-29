@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_kinesis_stream`.
 const Set<String> _awsKinesisStreamSensitive = <String>{};
 
@@ -127,7 +129,7 @@ final class AwsKinesisStream extends Resource {
     TfArg<String>? arn,
     TfArg<KinesisStreamEncryptionType>? encryptionType,
     TfArg<bool>? enforceConsumerDeletion,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<num>? maxRecordSizeInKib,
     required TfArg<String> name,
     TfArg<String>? region,
@@ -147,7 +149,7 @@ final class AwsKinesisStream extends Resource {
            if (encryptionType != null) 'encryption_type': encryptionType,
            if (enforceConsumerDeletion != null)
              'enforce_consumer_deletion': enforceConsumerDeletion,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (maxRecordSizeInKib != null)
              'max_record_size_in_kib': maxRecordSizeInKib,
            'name': name,

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_ecs_task_set`.
 const Set<String> _awsEcsTaskSetSensitive = <String>{};
 
@@ -153,14 +156,15 @@ final class EcsTaskSetNetworkConfiguration {
 
   final TfArg<bool>? assignPublicIp;
 
-  final TfArg<List<Object?>>? securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
     if (assignPublicIp != null) 'assign_public_ip': assignPublicIp!.toTfJson(),
-    if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    if (securityGroups != null)
+      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 

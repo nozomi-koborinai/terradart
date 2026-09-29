@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_device_settings`.
 const Set<String> _cloudflareZeroTrustDeviceSettingsSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareZeroTrustDeviceSettings extends Resource {
 
   CloudflareZeroTrustDeviceSettings({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<num>? disableForTime,
     TfArg<bool>? externalEmergencySignalEnabled,
     TfArg<String>? externalEmergencySignalFingerprint,
@@ -33,7 +35,7 @@ final class CloudflareZeroTrustDeviceSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (disableForTime != null) 'disable_for_time': disableForTime,
            if (externalEmergencySignalEnabled != null)
              'external_emergency_signal_enabled':

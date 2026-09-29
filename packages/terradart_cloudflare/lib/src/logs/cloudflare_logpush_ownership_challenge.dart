@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_logpush_ownership_challenge`.
 const Set<String> _cloudflareLogpushOwnershipChallengeSensitive = <String>{
   'destination_conf',
@@ -18,9 +21,9 @@ final class CloudflareLogpushOwnershipChallenge extends Resource {
 
   CloudflareLogpushOwnershipChallenge({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> destinationConf,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,9 +31,9 @@ final class CloudflareLogpushOwnershipChallenge extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
            'destination_conf': destinationConf,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
          },
        );
 

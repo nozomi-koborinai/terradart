@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_ai_controls_mcp_portal`.
 const Set<String> _cloudflareZeroTrustAccessAiControlsMcpPortalSensitive =
     <String>{};
@@ -121,7 +123,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
 
   CloudflareZeroTrustAccessAiControlsMcpPortal({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? allowCodeMode,
     TfArg<ZeroTrustAccessAiControlsMcpPortalCodeMode>? codeMode,
     TfArg<String>? description,
@@ -137,7 +139,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (allowCodeMode != null) 'allow_code_mode': allowCodeMode,
            if (codeMode != null) 'code_mode': codeMode,
            if (description != null) 'description': description,

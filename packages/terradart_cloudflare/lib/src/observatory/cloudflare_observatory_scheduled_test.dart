@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_observatory_scheduled_test`.
 const Set<String> _cloudflareObservatoryScheduledTestSensitive = <String>{};
 
@@ -58,7 +60,7 @@ final class CloudflareObservatoryScheduledTest extends Resource {
     TfArg<ObservatoryScheduledTestFrequency>? frequency,
     TfArg<ObservatoryScheduledTestRegion>? region,
     required TfArg<String> url,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -69,7 +71,7 @@ final class CloudflareObservatoryScheduledTest extends Resource {
            if (frequency != null) 'frequency': frequency,
            if (region != null) 'region': region,
            'url': url,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

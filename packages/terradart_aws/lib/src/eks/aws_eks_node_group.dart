@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_eks_node_group`.
 const Set<String> _awsEksNodeGroupSensitive = <String>{};
 
@@ -595,7 +597,7 @@ final class AwsEksNodeGroup extends Resource {
     required TfArg<String> nodeRoleArn,
     TfArg<String>? region,
     TfArg<String>? releaseVersion,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? version,
     EksNodeGroupLaunchTemplate? launchTemplate,
@@ -624,7 +626,7 @@ final class AwsEksNodeGroup extends Resource {
            'node_role_arn': nodeRoleArn,
            if (region != null) 'region': region,
            if (releaseVersion != null) 'release_version': releaseVersion,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (version != null) 'version': version,
            if (launchTemplate != null)

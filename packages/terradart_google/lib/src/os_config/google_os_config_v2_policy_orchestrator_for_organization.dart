@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_os_config_v2_policy_orchestrator_for_organization`.
 const Set<String> _googleOsConfigV2PolicyOrchestratorForOrganizationSensitive =
     <String>{};
@@ -364,14 +366,14 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
     required this.object,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String>? generation;
 
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     if (generation != null) 'generation': generation!.toTfJson(),
     'object': object.toTfJson(),
   };
@@ -467,14 +469,14 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
     required this.object,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String>? generation;
 
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     if (generation != null) 'generation': generation!.toTfJson(),
     'object': object.toTfJson(),
   };
@@ -570,14 +572,14 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
     required this.object,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String>? generation;
 
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     if (generation != null) 'generation': generation!.toTfJson(),
     'object': object.toTfJson(),
   };
@@ -724,14 +726,14 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
     required this.object,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String>? generation;
 
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     if (generation != null) 'generation': generation!.toTfJson(),
     'object': object.toTfJson(),
   };
@@ -828,14 +830,14 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
     required this.object,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String>? generation;
 
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     if (generation != null) 'generation': generation!.toTfJson(),
     'object': object.toTfJson(),
   };
@@ -919,14 +921,14 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResourceOsPol
     required this.object,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String>? generation;
 
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     if (generation != null) 'generation': generation!.toTfJson(),
     'object': object.toTfJson(),
   };

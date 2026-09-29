@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_gamelift_game_server_group`.
 const Set<String> _awsGameliftGameServerGroupSensitive = <String>{};
 
@@ -264,7 +266,7 @@ final class AwsGameliftGameServerGroup extends Resource {
     required TfArg<num> maxSize,
     required TfArg<num> minSize,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? vpcSubnets,
     GameliftGameServerGroupAutoScalingPolicy? autoScalingPolicy,
@@ -285,7 +287,7 @@ final class AwsGameliftGameServerGroup extends Resource {
            'max_size': maxSize,
            'min_size': minSize,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (vpcSubnets != null) 'vpc_subnets': vpcSubnets,
            if (autoScalingPolicy != null)

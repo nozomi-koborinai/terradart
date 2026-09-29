@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_cloudfront_distribution`.
 const Set<String> _awsCloudfrontDistributionSensitive = <String>{};
 
@@ -338,12 +341,12 @@ final class CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation 
 
   final TfArg<bool>? includeBody;
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     if (includeBody != null) 'include_body': includeBody!.toTfJson(),
-    'lambda_arn': lambdaArn.toTfJson(),
+    'lambda_arn': lambdaArn.encodeAs('qualified_arn').toTfJson(),
   };
 }
 
@@ -372,14 +375,15 @@ final class CloudfrontDistributionLoggingConfig {
     this.prefix,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<bool>? includeCookies;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null)
+      'bucket': bucket!.encodeAs('bucket_domain_name').toTfJson(),
     if (includeCookies != null) 'include_cookies': includeCookies!.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
@@ -645,12 +649,12 @@ final class CloudfrontDistributionOrderedCacheBehaviorLambdaFunctionAssociation 
 
   final TfArg<bool>? includeBody;
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     if (includeBody != null) 'include_body': includeBody!.toTfJson(),
-    'lambda_arn': lambdaArn.toTfJson(),
+    'lambda_arn': lambdaArn.encodeAs('qualified_arn').toTfJson(),
   };
 }
 

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_s3control_object_lambda_access_point`.
 const Set<String> _awsS3controlObjectLambdaAccessPointSensitive = <String>{};
 
@@ -122,12 +124,12 @@ final class S3controlObjectLambdaAccessPointConfigurationTransformationConfigura
     this.functionPayload,
   });
 
-  final TfArg<String> functionArn;
+  final RefTo<AwsLambdaFunction> functionArn;
 
   final TfArg<String>? functionPayload;
 
   Map<String, Object?> encode() => {
-    'function_arn': functionArn.toTfJson(),
+    'function_arn': functionArn.encodeAs('arn').toTfJson(),
     if (functionPayload != null)
       'function_payload': functionPayload!.toTfJson(),
   };

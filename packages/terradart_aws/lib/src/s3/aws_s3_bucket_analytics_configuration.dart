@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_analytics_configuration`.
 const Set<String> _awsS3BucketAnalyticsConfigurationSensitive = <String>{};
 
@@ -101,7 +103,7 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinat
 
   final TfArg<String>? bucketAccountId;
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<
     S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestinationFormat
@@ -113,7 +115,7 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinat
   Map<String, Object?> encode() => {
     if (bucketAccountId != null)
       'bucket_account_id': bucketAccountId!.toTfJson(),
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (format != null) 'format': format!.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
@@ -137,7 +139,7 @@ final class AwsS3BucketAnalyticsConfiguration extends Resource {
 
   AwsS3BucketAnalyticsConfiguration({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     required TfArg<String> name,
     TfArg<String>? region,
     S3BucketAnalyticsConfigurationFilter? filter,
@@ -149,7 +151,7 @@ final class AwsS3BucketAnalyticsConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            'name': name,
            if (region != null) 'region': region,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_compute_region_backend_service`.
 const Set<String> _googleComputeRegionBackendServiceSensitive = <String>{
   'iap.oauth2_client_secret',
@@ -1166,7 +1168,7 @@ final class GoogleComputeRegionBackendService extends Resource {
     TfArg<bool>? enableCdn,
     TfArg<RegionBackendServiceIpAddressSelectionPolicy>?
     ipAddressSelectionPolicy,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     TfArg<List<String>>? healthChecks,
     TfArg<String>? securityPolicy,
     List<ComputeRegionBackendServiceRegionBackendServiceBackend>? backends,
@@ -1217,7 +1219,7 @@ final class GoogleComputeRegionBackendService extends Resource {
            if (enableCdn != null) 'enable_cdn': enableCdn,
            if (ipAddressSelectionPolicy != null)
              'ip_address_selection_policy': ipAddressSelectionPolicy,
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            if (healthChecks != null) 'health_checks': healthChecks,
            if (securityPolicy != null) 'security_policy': securityPolicy,
            if (backends != null)

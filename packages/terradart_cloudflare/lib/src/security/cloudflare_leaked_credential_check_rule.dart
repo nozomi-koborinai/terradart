@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_leaked_credential_check_rule`.
 const Set<String> _cloudflareLeakedCredentialCheckRuleSensitive = <String>{};
 
@@ -19,7 +21,7 @@ final class CloudflareLeakedCredentialCheckRule extends Resource {
     required super.localName,
     TfArg<String>? password,
     TfArg<String>? username,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -29,7 +31,7 @@ final class CloudflareLeakedCredentialCheckRule extends Resource {
          argMap: {
            if (password != null) 'password': password,
            if (username != null) 'username': username,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

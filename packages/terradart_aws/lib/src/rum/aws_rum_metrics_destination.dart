@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_rum_metrics_destination`.
 const Set<String> _awsRumMetricsDestinationSensitive = <String>{};
 
@@ -25,7 +27,7 @@ final class AwsRumMetricsDestination extends Resource {
     required TfArg<String> appMonitorName,
     required TfArg<RumMetricsDestinationDestination> destination,
     TfArg<String>? destinationArn,
-    TfArg<String>? iamRoleArn,
+    RefTo<AwsIamRole>? iamRoleArn,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
@@ -37,7 +39,7 @@ final class AwsRumMetricsDestination extends Resource {
            'app_monitor_name': appMonitorName,
            'destination': destination,
            if (destinationArn != null) 'destination_arn': destinationArn,
-           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn,
+           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn.encodeAs('arn'),
            if (region != null) 'region': region,
          },
        );

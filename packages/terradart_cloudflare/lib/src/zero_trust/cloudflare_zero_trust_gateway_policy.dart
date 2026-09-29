@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_gateway_policy`.
 const Set<String> _cloudflareZeroTrustGatewayPolicySensitive = <String>{};
 
@@ -748,7 +750,7 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
 
   CloudflareZeroTrustGatewayPolicy({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<ZeroTrustGatewayPolicyAction> action,
     TfArg<String>? description,
     TfArg<String>? devicePosture,
@@ -768,7 +770,7 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'action': action,
            if (description != null) 'description': description,
            if (devicePosture != null) 'device_posture': devicePosture,

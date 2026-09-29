@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_neptune_cluster`.
 const Set<String> _awsNeptuneClusterSensitive = <String>{};
 
@@ -144,7 +147,7 @@ final class AwsNeptuneCluster extends Resource {
     TfArg<String>? globalClusterIdentifier,
     TfArg<bool>? iamDatabaseAuthenticationEnabled,
     TfArg<List<String>>? iamRoles,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<String>? neptuneClusterParameterGroupName,
     TfArg<String>? neptuneInstanceParameterGroupName,
     TfArg<String>? neptuneSubnetGroupName,
@@ -158,7 +161,7 @@ final class AwsNeptuneCluster extends Resource {
     TfArg<bool>? storageEncrypted,
     TfArg<NeptuneClusterStorageType>? storageType,
     TfArg<Map<String, String>>? tags,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     NeptuneClusterServerlessV2ScalingConfiguration?
     serverlessV2ScalingConfiguration,
     super.lifecycle,
@@ -194,7 +197,7 @@ final class AwsNeptuneCluster extends Resource {
              'iam_database_authentication_enabled':
                  iamDatabaseAuthenticationEnabled,
            if (iamRoles != null) 'iam_roles': iamRoles,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (neptuneClusterParameterGroupName != null)
              'neptune_cluster_parameter_group_name':
                  neptuneClusterParameterGroupName,
@@ -219,7 +222,7 @@ final class AwsNeptuneCluster extends Resource {
            if (storageType != null) 'storage_type': storageType,
            if (tags != null) 'tags': tags,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
            if (serverlessV2ScalingConfiguration != null)
              'serverless_v2_scaling_configuration': TfArg.literal(
                serverlessV2ScalingConfiguration.encode(),

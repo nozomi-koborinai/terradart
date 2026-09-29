@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_r2_bucket_lock`.
 const Set<String> _cloudflareR2BucketLockSensitive = <String>{};
 
@@ -85,7 +87,7 @@ final class CloudflareR2BucketLock extends Resource {
 
   CloudflareR2BucketLock({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     TfArg<R2BucketLockJurisdiction>? jurisdiction,
     List<R2BucketLockRules>? rules,
@@ -96,7 +98,7 @@ final class CloudflareR2BucketLock extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
            if (jurisdiction != null) 'jurisdiction': jurisdiction,
            if (rules != null)

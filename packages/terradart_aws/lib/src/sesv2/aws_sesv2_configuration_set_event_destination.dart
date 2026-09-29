@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_sesv2_configuration_set_event_destination`.
 const Set<String> _awsSesv2ConfigurationSetEventDestinationSensitive =
     <String>{};
@@ -277,11 +280,11 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehose
 
   final TfArg<String> deliveryStreamArn;
 
-  final TfArg<String> iamRoleArn;
+  final RefTo<AwsIamRole> iamRoleArn;
 
   Map<String, Object?> encode() => {
     'delivery_stream_arn': deliveryStreamArn.toTfJson(),
-    'iam_role_arn': iamRoleArn.toTfJson(),
+    'iam_role_arn': iamRoleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -308,9 +311,11 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination 
     required this.topicArn,
   });
 
-  final TfArg<String> topicArn;
+  final RefTo<AwsSnsTopic> topicArn;
 
-  Map<String, Object?> encode() => {'topic_arn': topicArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'topic_arn': topicArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_sesv2_configuration_set_event_destination`.

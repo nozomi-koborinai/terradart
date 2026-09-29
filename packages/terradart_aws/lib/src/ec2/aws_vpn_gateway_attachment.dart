@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_vpn_gateway_attachment`.
 const Set<String> _awsVpnGatewayAttachmentSensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsVpnGatewayAttachment extends Resource {
   AwsVpnGatewayAttachment({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     required TfArg<String> vpnGatewayId,
     super.lifecycle,
     super.dependsOn,
@@ -23,7 +25,7 @@ final class AwsVpnGatewayAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            if (region != null) 'region': region,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
            'vpn_gateway_id': vpnGatewayId,
          },
        );

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cognito_managed_user_pool_client`.
 const Set<String> _awsCognitoManagedUserPoolClientSensitive = <String>{
   'client_secret',
@@ -127,14 +129,14 @@ final class CognitoManagedUserPoolClientAnalyticsConfiguration {
 
   final TfArg<String>? externalId;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<bool>? userDataShared;
 
   Map<String, Object?> encode() => {
     ...application.encode(),
     if (externalId != null) 'external_id': externalId!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (userDataShared != null) 'user_data_shared': userDataShared!.toTfJson(),
   };
 }

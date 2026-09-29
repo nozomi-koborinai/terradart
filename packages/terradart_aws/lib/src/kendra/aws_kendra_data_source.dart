@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_kendra_data_source`.
 const Set<String> _awsKendraDataSourceSensitive = <String>{};
 
@@ -74,7 +78,7 @@ final class KendraDataSourceConfigurationS3Configuration {
     this.documentsMetadataConfiguration,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<List<Object?>>? exclusionPatterns;
 
@@ -89,7 +93,7 @@ final class KendraDataSourceConfigurationS3Configuration {
   documentsMetadataConfiguration;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (exclusionPatterns != null)
       'exclusion_patterns': exclusionPatterns!.toTfJson(),
     if (inclusionPatterns != null)
@@ -355,7 +359,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfiguration {
     this.preExtractionHookConfiguration,
   });
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final List<
     KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurations
@@ -369,7 +373,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfiguration {
   preExtractionHookConfiguration;
 
   Map<String, Object?> encode() => {
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (inlineConfigurations != null)
       'inline_configurations': [
         for (final e in inlineConfigurations!) e.encode(),
@@ -529,16 +533,16 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionH
     this.invocationCondition,
   });
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
-  final TfArg<String> s3Bucket;
+  final RefTo<AwsS3Bucket> s3Bucket;
 
   final KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfigurationInvocationCondition?
   invocationCondition;
 
   Map<String, Object?> encode() => {
-    'lambda_arn': lambdaArn.toTfJson(),
-    's3_bucket': s3Bucket.toTfJson(),
+    'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
+    's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     if (invocationCondition != null)
       'invocation_condition': invocationCondition!.encode(),
   };
@@ -608,16 +612,16 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHo
     this.invocationCondition,
   });
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
-  final TfArg<String> s3Bucket;
+  final RefTo<AwsS3Bucket> s3Bucket;
 
   final KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfigurationInvocationCondition?
   invocationCondition;
 
   Map<String, Object?> encode() => {
-    'lambda_arn': lambdaArn.toTfJson(),
-    's3_bucket': s3Bucket.toTfJson(),
+    'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
+    's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     if (invocationCondition != null)
       'invocation_condition': invocationCondition!.encode(),
   };
@@ -688,7 +692,7 @@ final class AwsKendraDataSource extends Resource {
     TfArg<String>? languageCode,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     TfArg<String>? schedule,
     TfArg<Map<String, String>>? tags,
     required TfArg<KendraDataSourceType> type,
@@ -707,7 +711,7 @@ final class AwsKendraDataSource extends Resource {
            if (languageCode != null) 'language_code': languageCode,
            'name': name,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            if (schedule != null) 'schedule': schedule,
            if (tags != null) 'tags': tags,
            'type': type,

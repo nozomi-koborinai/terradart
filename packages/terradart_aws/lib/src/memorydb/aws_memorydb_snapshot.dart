@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_memorydb_snapshot`.
 const Set<String> _awsMemorydbSnapshotSensitive = <String>{};
 
@@ -71,7 +73,7 @@ final class AwsMemorydbSnapshot extends Resource {
   AwsMemorydbSnapshot({
     required super.localName,
     required TfArg<String> clusterName,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     MemorydbSnapshotName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -83,7 +85,7 @@ final class AwsMemorydbSnapshot extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_name': clusterName,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

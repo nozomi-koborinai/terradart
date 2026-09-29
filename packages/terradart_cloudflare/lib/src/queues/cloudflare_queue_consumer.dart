@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_queue_consumer`.
 const Set<String> _cloudflareQueueConsumerSensitive = <String>{};
 
@@ -111,7 +113,7 @@ final class CloudflareQueueConsumer extends Resource {
 
   CloudflareQueueConsumer({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? deadLetterQueue,
     required TfArg<String> queueId,
     TfArg<String>? scriptName,
@@ -124,7 +126,7 @@ final class CloudflareQueueConsumer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (deadLetterQueue != null) 'dead_letter_queue': deadLetterQueue,
            'queue_id': queueId,
            if (scriptName != null) 'script_name': scriptName,

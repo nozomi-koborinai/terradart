@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_magic_network_monitoring_configuration`.
 const Set<String> _cloudflareMagicNetworkMonitoringConfigurationSensitive =
     <String>{};
@@ -43,7 +45,7 @@ final class CloudflareMagicNetworkMonitoringConfiguration extends Resource {
 
   CloudflareMagicNetworkMonitoringConfiguration({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<num>? defaultSampling,
     required TfArg<String> name,
     TfArg<List<String>>? routerIps,
@@ -55,7 +57,7 @@ final class CloudflareMagicNetworkMonitoringConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (defaultSampling != null) 'default_sampling': defaultSampling,
            'name': name,
            if (routerIps != null) 'router_ips': routerIps,

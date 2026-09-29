@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_r2_managed_domain`.
 const Set<String> _cloudflareR2ManagedDomainSensitive = <String>{};
 
@@ -23,7 +25,7 @@ final class CloudflareR2ManagedDomain extends Resource {
 
   CloudflareR2ManagedDomain({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     required TfArg<bool> enabled,
     TfArg<R2ManagedDomainJurisdiction>? jurisdiction,
@@ -34,7 +36,7 @@ final class CloudflareR2ManagedDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
            'enabled': enabled,
            if (jurisdiction != null) 'jurisdiction': jurisdiction,

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_docdb_cluster_instance`.
 const Set<String> _awsDocdbClusterInstanceSensitive = <String>{};
 
@@ -98,7 +100,7 @@ final class AwsDocdbClusterInstance extends Resource {
     TfArg<DocdbClusterInstanceEngine>? engine,
     DocdbClusterInstanceIdentifier? identifier,
     required TfArg<String> instanceClass,
-    TfArg<String>? performanceInsightsKmsKeyId,
+    RefTo<AwsKmsKey>? performanceInsightsKmsKeyId,
     TfArg<String>? preferredMaintenanceWindow,
     TfArg<num>? promotionTier,
     TfArg<String>? region,
@@ -126,7 +128,8 @@ final class AwsDocdbClusterInstance extends Resource {
            ...?identifier?.argMap,
            'instance_class': instanceClass,
            if (performanceInsightsKmsKeyId != null)
-             'performance_insights_kms_key_id': performanceInsightsKmsKeyId,
+             'performance_insights_kms_key_id': performanceInsightsKmsKeyId
+                 .encodeAs('arn'),
            if (preferredMaintenanceWindow != null)
              'preferred_maintenance_window': preferredMaintenanceWindow,
            if (promotionTier != null) 'promotion_tier': promotionTier,

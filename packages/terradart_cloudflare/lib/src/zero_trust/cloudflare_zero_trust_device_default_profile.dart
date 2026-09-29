@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_device_default_profile`.
 const Set<String> _cloudflareZeroTrustDeviceDefaultProfileSensitive =
     <String>{};
@@ -215,7 +217,7 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
 
   CloudflareZeroTrustDeviceDefaultProfile({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? allowModeSwitch,
     TfArg<bool>? allowUpdates,
     TfArg<bool>? allowedToLeave,
@@ -243,7 +245,7 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (allowModeSwitch != null) 'allow_mode_switch': allowModeSwitch,
            if (allowUpdates != null) 'allow_updates': allowUpdates,
            if (allowedToLeave != null) 'allowed_to_leave': allowedToLeave,

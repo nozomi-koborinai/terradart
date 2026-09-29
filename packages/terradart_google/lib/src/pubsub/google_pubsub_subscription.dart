@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_pubsub_subscription`.
 const Set<String> _googlePubsubSubscriptionSensitive = <String>{};
 
@@ -303,7 +305,7 @@ final class GooglePubsubSubscription extends Resource {
   GooglePubsubSubscription({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> topic,
+    required RefTo<GooglePubsubTopic> topic,
     TfArg<Map<String, String>>? labels,
     PubsubSubscriptionDelivery? delivery,
     TfArg<int>? ackDeadlineSeconds,
@@ -326,7 +328,7 @@ final class GooglePubsubSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'topic': topic,
+           'topic': topic.encodeAs('id'),
            if (labels != null) 'labels': labels,
            ...?delivery?.argMap,
            if (ackDeadlineSeconds != null)

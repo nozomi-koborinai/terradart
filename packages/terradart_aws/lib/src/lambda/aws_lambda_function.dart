@@ -4,6 +4,12 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_lambda_function`.
 const Set<String> _awsLambdaFunctionSensitive = <String>{};
 
@@ -330,7 +336,7 @@ final class LambdaFunctionLoggingConfig {
 
   final TfArg<LambdaFunctionLoggingConfigLogFormat> logFormat;
 
-  final TfArg<String>? logGroup;
+  final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
   final TfArg<LambdaFunctionLoggingConfigSystemLogLevel>? systemLogLevel;
 
@@ -338,7 +344,7 @@ final class LambdaFunctionLoggingConfig {
     if (applicationLogLevel != null)
       'application_log_level': applicationLogLevel!.toTfJson(),
     'log_format': logFormat.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.toTfJson(),
+    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
     if (systemLogLevel != null) 'system_log_level': systemLogLevel!.toTfJson(),
   };
 }
@@ -455,15 +461,15 @@ final class LambdaFunctionVpcConfig {
 
   final TfArg<bool>? ipv6AllowedForDualStack;
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
     if (ipv6AllowedForDualStack != null)
       'ipv6_allowed_for_dual_stack': ipv6AllowedForDualStack!.toTfJson(),
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -490,7 +496,7 @@ final class AwsLambdaFunction extends Resource {
     required LambdaFunctionCode code,
     required TfArg<String> functionName,
     TfArg<String>? handler,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<List<String>>? layers,
     TfArg<num>? memorySize,
     TfArg<LambdaFunctionPackageType>? packageType,
@@ -500,7 +506,7 @@ final class AwsLambdaFunction extends Resource {
     TfArg<bool>? replaceSecurityGroupsOnDestroy,
     TfArg<List<String>>? replacementSecurityGroupIds,
     TfArg<num>? reservedConcurrentExecutions,
-    required TfArg<String> role,
+    required RefTo<AwsIamRole> role,
     TfArg<LambdaFunctionRuntime>? runtime,
     TfArg<String>? s3Key,
     TfArg<String>? s3ObjectVersion,
@@ -540,7 +546,7 @@ final class AwsLambdaFunction extends Resource {
            ...code.argMap,
            'function_name': functionName,
            if (handler != null) 'handler': handler,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (layers != null) 'layers': layers,
            if (memorySize != null) 'memory_size': memorySize,
            if (packageType != null) 'package_type': packageType,
@@ -554,7 +560,7 @@ final class AwsLambdaFunction extends Resource {
              'replacement_security_group_ids': replacementSecurityGroupIds,
            if (reservedConcurrentExecutions != null)
              'reserved_concurrent_executions': reservedConcurrentExecutions,
-           'role': role,
+           'role': role.encodeAs('arn'),
            if (runtime != null) 'runtime': runtime,
            if (s3Key != null) 's3_key': s3Key,
            if (s3ObjectVersion != null) 's3_object_version': s3ObjectVersion,

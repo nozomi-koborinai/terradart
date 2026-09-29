@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_bedrockagentcore_oauth2_credential_provider`.
 const Set<String>
 _awsBedrockagentcoreOauth2CredentialProviderSensitive = <String>{
@@ -565,9 +569,9 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -577,8 +581,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -686,9 +690,9 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -698,8 +702,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -813,9 +817,11 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     required this.kmsKeyArn,
   });
 
-  final TfArg<String> kmsKeyArn;
+  final RefTo<AwsKmsKey> kmsKeyArn;
 
-  Map<String, Object?> encode() => {'kms_key_arn': kmsKeyArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `oauth2_provider_config.github_oauth2_provider_config` block of

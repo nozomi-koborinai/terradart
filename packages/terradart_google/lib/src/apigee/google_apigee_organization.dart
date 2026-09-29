@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_apigee_organization`.
 const Set<String> _googleApigeeOrganizationSensitive = <String>{};
 
@@ -94,7 +96,7 @@ final class GoogleApigeeOrganization extends Resource {
     required super.localName,
     required TfArg<String> projectId,
     TfArg<String>? analyticsRegion,
-    TfArg<String>? authorizedNetwork,
+    RefTo<GoogleComputeNetwork>? authorizedNetwork,
     TfArg<ApigeeOrganizationRuntimeType>? runtimeType,
     TfArg<String>? billingType,
     TfArg<String>? displayName,
@@ -117,7 +119,7 @@ final class GoogleApigeeOrganization extends Resource {
            'project_id': projectId,
            if (analyticsRegion != null) 'analytics_region': analyticsRegion,
            if (authorizedNetwork != null)
-             'authorized_network': authorizedNetwork,
+             'authorized_network': authorizedNetwork.encodeAs('id'),
            if (runtimeType != null) 'runtime_type': runtimeType,
            if (billingType != null) 'billing_type': billingType,
            if (displayName != null) 'display_name': displayName,

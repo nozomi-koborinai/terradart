@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_service_networking_vpc_service_controls`.
 const Set<String> _googleServiceNetworkingVpcServiceControlsSensitive =
     <String>{};
@@ -42,7 +44,7 @@ final class GoogleServiceNetworkingVpcServiceControls extends Resource {
   GoogleServiceNetworkingVpcServiceControls({
     required super.localName,
     required TfArg<bool> enabled,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? project,
     required TfArg<String> service,
     super.lifecycle,
@@ -53,7 +55,7 @@ final class GoogleServiceNetworkingVpcServiceControls extends Resource {
          terraformType: tfType,
          argMap: {
            'enabled': enabled,
-           'network': network,
+           'network': network.encodeAs('name'),
            if (project != null) 'project': project,
            'service': service,
          },

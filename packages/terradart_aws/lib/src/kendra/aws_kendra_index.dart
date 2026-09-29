@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_kendra_index`.
 const Set<String> _awsKendraIndexSensitive = <String>{};
 
@@ -172,10 +175,10 @@ final class KendraIndexDocumentMetadataConfigurationUpdatesSearch {
 final class KendraIndexServerSideEncryptionConfiguration {
   const KendraIndexServerSideEncryptionConfiguration({this.kmsKeyId});
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -320,7 +323,7 @@ final class AwsKendraIndex extends Resource {
     TfArg<KendraIndexEdition>? edition,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<KendraIndexUserContextPolicy>? userContextPolicy,
     KendraIndexCapacityUnits? capacityUnits,
@@ -342,7 +345,7 @@ final class AwsKendraIndex extends Resource {
            if (edition != null) 'edition': edition,
            'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (userContextPolicy != null)
              'user_context_policy': userContextPolicy,

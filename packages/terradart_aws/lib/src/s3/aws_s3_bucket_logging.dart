@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_logging`.
 const Set<String> _awsS3BucketLoggingSensitive = <String>{};
 
@@ -178,10 +180,10 @@ final class AwsS3BucketLogging extends Resource {
 
   AwsS3BucketLogging({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
-    required TfArg<String> targetBucket,
+    required RefTo<AwsS3Bucket> targetBucket,
     required TfArg<String> targetPrefix,
     List<S3BucketLoggingTargetGrant>? targetGrant,
     S3BucketLoggingTargetObjectKeyFormat? targetObjectKeyFormat,
@@ -192,11 +194,11 @@ final class AwsS3BucketLogging extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (expectedBucketOwner != null)
              'expected_bucket_owner': expectedBucketOwner,
            if (region != null) 'region': region,
-           'target_bucket': targetBucket,
+           'target_bucket': targetBucket.encodeAs('id'),
            'target_prefix': targetPrefix,
            if (targetGrant != null)
              'target_grant': TfArg.literal([

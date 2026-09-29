@@ -43,7 +43,7 @@ final class HelloStack extends Stack {
       AwsLambdaFunction(
         localName: 'hello',
         functionName: .literal('hello-dart'),
-        role: .ref(role.arn),
+        role: role.ref,
         runtime: .literal(.providedAl2023),
         handler: .literal('bootstrap'),
         code: .filename(.literal('build/bootstrap.zip')),

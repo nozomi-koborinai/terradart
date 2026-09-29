@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_moq_relay`.
 const Set<String> _cloudflareMoqRelaySensitive = <String>{
   'token_publish_subscribe',
@@ -77,7 +79,7 @@ final class CloudflareMoqRelay extends Resource {
 
   CloudflareMoqRelay({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     MoqRelayConfig? config,
     super.lifecycle,
@@ -87,7 +89,7 @@ final class CloudflareMoqRelay extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'name': name,
            if (config != null) 'config': TfArg.literal(config.encode()),
          },

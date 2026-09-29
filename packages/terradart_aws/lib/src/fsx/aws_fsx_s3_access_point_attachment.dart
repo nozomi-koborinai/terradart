@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_fsx_s3_access_point_attachment`.
 const Set<String> _awsFsxS3AccessPointAttachmentSensitive = <String>{};
 
@@ -126,10 +128,10 @@ final class FsxS3AccessPointAttachmentS3AccessPoint {
 final class FsxS3AccessPointAttachmentS3AccessPointVpcConfiguration {
   const FsxS3AccessPointAttachmentS3AccessPointVpcConfiguration({this.vpcId});
 
-  final TfArg<String>? vpcId;
+  final RefTo<AwsVpc>? vpcId;
 
   Map<String, Object?> encode() => {
-    if (vpcId != null) 'vpc_id': vpcId!.toTfJson(),
+    if (vpcId != null) 'vpc_id': vpcId!.encodeAs('id').toTfJson(),
   };
 }
 

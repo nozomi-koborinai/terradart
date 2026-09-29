@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_list_item`.
 const Set<String> _cloudflareListItemSensitive = <String>{};
 
@@ -80,7 +82,7 @@ final class CloudflareListItem extends Resource {
 
   CloudflareListItem({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<num>? asn,
     TfArg<String>? comment,
     TfArg<String>? ip,
@@ -94,7 +96,7 @@ final class CloudflareListItem extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (asn != null) 'asn': asn,
            if (comment != null) 'comment': comment,
            if (ip != null) 'ip': ip,

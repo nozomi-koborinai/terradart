@@ -3,6 +3,11 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_emr_studio`.
 const Set<String> _awsEmrStudioSensitive = <String>{};
 
@@ -25,17 +30,17 @@ final class AwsEmrStudio extends Resource {
     required TfArg<EmrStudioAuthMode> authMode,
     required TfArg<String> defaultS3Location,
     TfArg<String>? description,
-    TfArg<String>? encryptionKeyArn,
+    RefTo<AwsKmsKey>? encryptionKeyArn,
     required TfArg<String> engineSecurityGroupId,
     TfArg<String>? idpAuthUrl,
     TfArg<String>? idpRelayStateParameterName,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> serviceRole,
-    required TfArg<List<String>> subnetIds,
+    required RefTo<AwsIamRole> serviceRole,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? userRole,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     required TfArg<String> workspaceSecurityGroupId,
     super.lifecycle,
     super.dependsOn,
@@ -47,18 +52,19 @@ final class AwsEmrStudio extends Resource {
            'auth_mode': authMode,
            'default_s3_location': defaultS3Location,
            if (description != null) 'description': description,
-           if (encryptionKeyArn != null) 'encryption_key_arn': encryptionKeyArn,
+           if (encryptionKeyArn != null)
+             'encryption_key_arn': encryptionKeyArn.encodeAs('arn'),
            'engine_security_group_id': engineSecurityGroupId,
            if (idpAuthUrl != null) 'idp_auth_url': idpAuthUrl,
            if (idpRelayStateParameterName != null)
              'idp_relay_state_parameter_name': idpRelayStateParameterName,
            'name': name,
            if (region != null) 'region': region,
-           'service_role': serviceRole,
-           'subnet_ids': subnetIds,
+           'service_role': serviceRole.encodeAs('arn'),
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (userRole != null) 'user_role': userRole,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
            'workspace_security_group_id': workspaceSecurityGroupId,
          },
        );

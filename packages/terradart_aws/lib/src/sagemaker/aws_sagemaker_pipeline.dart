@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_sagemaker_pipeline`.
 const Set<String> _awsSagemakerPipelineSensitive = <String>{};
 
@@ -106,14 +109,14 @@ final class SagemakerPipelinePipelineDefinitionS3Location {
     this.versionId,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> objectKey;
 
   final TfArg<String>? versionId;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'object_key': objectKey.toTfJson(),
     if (versionId != null) 'version_id': versionId!.toTfJson(),
   };
@@ -130,7 +133,7 @@ final class AwsSagemakerPipeline extends Resource {
     required TfArg<String> pipelineDisplayName,
     required TfArg<String> pipelineName,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     TfArg<Map<String, String>>? tags,
     SagemakerPipelineParallelismConfiguration? parallelismConfiguration,
     super.lifecycle,
@@ -146,7 +149,7 @@ final class AwsSagemakerPipeline extends Resource {
            'pipeline_display_name': pipelineDisplayName,
            'pipeline_name': pipelineName,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (parallelismConfiguration != null)
              'parallelism_configuration': TfArg.literal(

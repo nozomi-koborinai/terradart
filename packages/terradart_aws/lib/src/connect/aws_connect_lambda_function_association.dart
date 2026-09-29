@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_connect_lambda_function_association`.
 const Set<String> _awsConnectLambdaFunctionAssociationSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsConnectLambdaFunctionAssociation extends Resource {
 
   AwsConnectLambdaFunctionAssociation({
     required super.localName,
-    required TfArg<String> functionArn,
+    required RefTo<AwsLambdaFunction> functionArn,
     required TfArg<String> instanceId,
     TfArg<String>? region,
     super.lifecycle,
@@ -22,7 +24,7 @@ final class AwsConnectLambdaFunctionAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_arn': functionArn,
+           'function_arn': functionArn.encodeAs('arn'),
            'instance_id': instanceId,
            if (region != null) 'region': region,
          },

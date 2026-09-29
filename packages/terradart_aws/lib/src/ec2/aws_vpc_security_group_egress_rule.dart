@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+
 /// Sensitive field paths for `aws_vpc_security_group_egress_rule`.
 const Set<String> _awsVpcSecurityGroupEgressRuleSensitive = <String>{};
 
@@ -18,9 +20,9 @@ final class AwsVpcSecurityGroupEgressRule extends Resource {
     TfArg<num>? fromPort,
     required TfArg<String> ipProtocol,
     TfArg<String>? prefixListId,
-    TfArg<String>? referencedSecurityGroupId,
+    RefTo<AwsSecurityGroup>? referencedSecurityGroupId,
     TfArg<String>? region,
-    required TfArg<String> securityGroupId,
+    required RefTo<AwsSecurityGroup> securityGroupId,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? toPort,
     super.lifecycle,
@@ -37,9 +39,11 @@ final class AwsVpcSecurityGroupEgressRule extends Resource {
            'ip_protocol': ipProtocol,
            if (prefixListId != null) 'prefix_list_id': prefixListId,
            if (referencedSecurityGroupId != null)
-             'referenced_security_group_id': referencedSecurityGroupId,
+             'referenced_security_group_id': referencedSecurityGroupId.encodeAs(
+               'id',
+             ),
            if (region != null) 'region': region,
-           'security_group_id': securityGroupId,
+           'security_group_id': securityGroupId.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (toPort != null) 'to_port': toPort,
          },

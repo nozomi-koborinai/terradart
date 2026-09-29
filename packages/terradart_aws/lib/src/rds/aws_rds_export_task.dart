@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_rds_export_task`.
 const Set<String> _awsRdsExportTaskSensitive = <String>{};
 
@@ -14,10 +18,10 @@ final class AwsRdsExportTask extends Resource {
     required super.localName,
     TfArg<List<String>>? exportOnly,
     required TfArg<String> exportTaskIdentifier,
-    required TfArg<String> iamRoleArn,
-    required TfArg<String> kmsKeyId,
+    required RefTo<AwsIamRole> iamRoleArn,
+    required RefTo<AwsKmsKey> kmsKeyId,
     TfArg<String>? region,
-    required TfArg<String> s3BucketName,
+    required RefTo<AwsS3Bucket> s3BucketName,
     TfArg<String>? s3Prefix,
     required TfArg<String> sourceArn,
     super.lifecycle,
@@ -29,10 +33,10 @@ final class AwsRdsExportTask extends Resource {
          argMap: {
            if (exportOnly != null) 'export_only': exportOnly,
            'export_task_identifier': exportTaskIdentifier,
-           'iam_role_arn': iamRoleArn,
-           'kms_key_id': kmsKeyId,
+           'iam_role_arn': iamRoleArn.encodeAs('arn'),
+           'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (region != null) 'region': region,
-           's3_bucket_name': s3BucketName,
+           's3_bucket_name': s3BucketName.encodeAs('id'),
            if (s3Prefix != null) 's3_prefix': s3Prefix,
            'source_arn': sourceArn,
          },

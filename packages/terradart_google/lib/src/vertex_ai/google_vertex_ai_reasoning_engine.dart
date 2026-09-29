@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_vertex_ai_reasoning_engine`.
 const Set<String> _googleVertexAiReasoningEngineSensitive = <String>{};
 
@@ -907,9 +910,11 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularT
 final class VertexAiReasoningEngineEncryptionSpec {
   const VertexAiReasoningEngineEncryptionSpec({required this.kmsKeyName});
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `spec` block of
@@ -933,7 +938,7 @@ final class VertexAiReasoningEngineSpec {
 
   final TfArg<VertexAiReasoningEngineSpecIdentityType>? identityType;
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final VertexAiReasoningEngineSpecBuildSpec? buildSpec;
 
@@ -947,7 +952,8 @@ final class VertexAiReasoningEngineSpec {
     if (agentFramework != null) 'agent_framework': agentFramework!.toTfJson(),
     if (classMethods != null) 'class_methods': classMethods!.toTfJson(),
     if (identityType != null) 'identity_type': identityType!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
     if (buildSpec != null) 'build_spec': buildSpec!.encode(),
     ...?deployment?.encode(),
     if (deploymentSpec != null) 'deployment_spec': deploymentSpec!.encode(),
@@ -1030,12 +1036,13 @@ final class VertexAiReasoningEngineSpecBuildSpec {
     this.workerPool,
   });
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final TfArg<String>? workerPool;
 
   Map<String, Object?> encode() => {
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
     if (workerPool != null) 'worker_pool': workerPool!.toTfJson(),
   };
 }

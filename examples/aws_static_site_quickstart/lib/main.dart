@@ -54,7 +54,7 @@ final class AwsStaticSiteStack extends Stack {
     add(
       AwsS3BucketPublicAccessBlock(
         localName: 'site',
-        bucket: .ref(bucket.id),
+        bucket: bucket.ref,
         blockPublicAcls: .literal(true),
         blockPublicPolicy: .literal(true),
         ignorePublicAcls: .literal(true),
@@ -189,7 +189,7 @@ final class AwsStaticSiteStack extends Stack {
     add(
       AwsS3BucketPolicy(
         localName: 'site',
-        bucket: .ref(bucket.id),
+        bucket: bucket.ref,
         policy: .ref(readFromCloudFront.json),
       ),
     );

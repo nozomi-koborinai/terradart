@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_casb_webhook`.
 const Set<String> _cloudflareZeroTrustCasbWebhookSensitive = <String>{
   'headers.value',
@@ -59,7 +61,7 @@ final class CloudflareZeroTrustCasbWebhook extends Resource {
 
   CloudflareZeroTrustCasbWebhook({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<ZeroTrustCasbWebhookAuthenticationType> authenticationType,
     required TfArg<String> destinationUrl,
     required TfArg<String> label,
@@ -73,7 +75,7 @@ final class CloudflareZeroTrustCasbWebhook extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'authentication_type': authenticationType,
            'destination_url': destinationUrl,
            'label': label,

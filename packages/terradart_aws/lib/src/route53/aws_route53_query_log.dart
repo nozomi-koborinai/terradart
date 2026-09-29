@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+
 /// Sensitive field paths for `aws_route53_query_log`.
 const Set<String> _awsRoute53QueryLogSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsRoute53QueryLog extends Resource {
 
   AwsRoute53QueryLog({
     required super.localName,
-    required TfArg<String> cloudwatchLogGroupArn,
+    required RefTo<AwsCloudwatchLogGroup> cloudwatchLogGroupArn,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
@@ -21,7 +23,7 @@ final class AwsRoute53QueryLog extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cloudwatch_log_group_arn': cloudwatchLogGroupArn,
+           'cloudwatch_log_group_arn': cloudwatchLogGroupArn.encodeAs('arn'),
            'zone_id': zoneId,
          },
        );

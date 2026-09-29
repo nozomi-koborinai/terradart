@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_bedrock_model_invocation_job`.
 const Set<String> _awsBedrockModelInvocationJobSensitive = <String>{};
 
@@ -110,13 +114,13 @@ final class BedrockModelInvocationJobVpcConfig {
     required this.subnetIds,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -129,7 +133,7 @@ final class AwsBedrockModelInvocationJob extends Resource {
     required TfArg<String> jobName,
     required TfArg<String> modelId,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<bool>? skipDestroy,
     TfArg<num>? timeoutDurationInHours,
     List<BedrockModelInvocationJobInputDataConfig>? inputDataConfig,
@@ -145,7 +149,7 @@ final class AwsBedrockModelInvocationJob extends Resource {
            'job_name': jobName,
            'model_id': modelId,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (skipDestroy != null) 'skip_destroy': skipDestroy,
            if (timeoutDurationInHours != null)
              'timeout_duration_in_hours': timeoutDurationInHours,

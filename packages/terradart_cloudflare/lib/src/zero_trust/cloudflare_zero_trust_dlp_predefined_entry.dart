@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_predefined_entry`.
 const Set<String> _cloudflareZeroTrustDlpPredefinedEntrySensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareZeroTrustDlpPredefinedEntry extends Resource {
 
   CloudflareZeroTrustDlpPredefinedEntry({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<bool> enabled,
     required TfArg<String> entryId,
     TfArg<String>? profileId,
@@ -27,7 +29,7 @@ final class CloudflareZeroTrustDlpPredefinedEntry extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'enabled': enabled,
            'entry_id': entryId,
            if (profileId != null) 'profile_id': profileId,

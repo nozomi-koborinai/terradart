@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_docdbelastic_cluster`.
 const Set<String> _awsDocdbelasticClusterSensitive = <String>{
   'admin_user_password',
@@ -28,7 +32,7 @@ final class AwsDocdbelasticCluster extends Resource {
     required TfArg<String> adminUserPassword,
     required TfArg<DocdbelasticClusterAuthType> authType,
     TfArg<num>? backupRetentionPeriod,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? preferredBackupWindow,
     TfArg<String>? preferredMaintenanceWindow,
@@ -36,9 +40,9 @@ final class AwsDocdbelasticCluster extends Resource {
     required TfArg<num> shardCapacity,
     required TfArg<num> shardCount,
     TfArg<num>? shardInstanceCount,
-    TfArg<List<String>>? subnetIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -51,7 +55,7 @@ final class AwsDocdbelasticCluster extends Resource {
            'auth_type': authType,
            if (backupRetentionPeriod != null)
              'backup_retention_period': backupRetentionPeriod,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            if (preferredBackupWindow != null)
              'preferred_backup_window': preferredBackupWindow,
@@ -62,10 +66,10 @@ final class AwsDocdbelasticCluster extends Resource {
            'shard_count': shardCount,
            if (shardInstanceCount != null)
              'shard_instance_count': shardInstanceCount,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
          },
        );
 

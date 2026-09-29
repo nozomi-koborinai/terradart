@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_calls_turn_app`.
 const Set<String> _cloudflareCallsTurnAppSensitive = <String>{'key'};
 
@@ -16,7 +18,7 @@ final class CloudflareCallsTurnApp extends Resource {
 
   CloudflareCallsTurnApp({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? keyId,
     TfArg<String>? name,
     super.lifecycle,
@@ -26,7 +28,7 @@ final class CloudflareCallsTurnApp extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (keyId != null) 'key_id': keyId,
            if (name != null) 'name': name,
          },

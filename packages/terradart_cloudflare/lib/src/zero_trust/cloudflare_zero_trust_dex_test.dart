@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_dex_test`.
 const Set<String> _cloudflareZeroTrustDexTestSensitive = <String>{};
 
@@ -48,7 +50,7 @@ final class CloudflareZeroTrustDexTest extends Resource {
 
   CloudflareZeroTrustDexTest({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<bool> enabled,
     required TfArg<String> interval,
@@ -62,7 +64,7 @@ final class CloudflareZeroTrustDexTest extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (description != null) 'description': description,
            'enabled': enabled,
            'interval': interval,

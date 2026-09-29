@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_vpc_endpoint`.
 const Set<String> _awsVpcEndpointSensitive = <String>{};
 
@@ -188,12 +192,12 @@ final class VpcEndpointSubnetConfiguration {
 
   final TfArg<String>? ipv6;
 
-  final TfArg<String>? subnetId;
+  final RefTo<AwsSubnet>? subnetId;
 
   Map<String, Object?> encode() => {
     if (ipv4 != null) 'ipv4': ipv4!.toTfJson(),
     if (ipv6 != null) 'ipv6': ipv6!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.toTfJson(),
+    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -210,12 +214,12 @@ final class AwsVpcEndpoint extends Resource {
     TfArg<String>? region,
     VpcEndpointService? service,
     TfArg<List<String>>? routeTableIds,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<String>? serviceRegion,
-    TfArg<List<String>>? subnetIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<VpcEndpointVpcEndpointType>? vpcEndpointType,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     VpcEndpointDnsOptions? dnsOptions,
     List<VpcEndpointSubnetConfiguration>? subnetConfiguration,
     super.lifecycle,
@@ -233,12 +237,13 @@ final class AwsVpcEndpoint extends Resource {
            if (region != null) 'region': region,
            ...?service?.argMap,
            if (routeTableIds != null) 'route_table_ids': routeTableIds,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            if (serviceRegion != null) 'service_region': serviceRegion,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (vpcEndpointType != null) 'vpc_endpoint_type': vpcEndpointType,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
            if (dnsOptions != null)
              'dns_options': TfArg.literal(dnsOptions.encode()),
            if (subnetConfiguration != null)

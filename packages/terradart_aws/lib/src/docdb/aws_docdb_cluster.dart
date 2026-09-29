@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_docdb_cluster`.
 const Set<String> _awsDocdbClusterSensitive = <String>{'master_password'};
 
@@ -412,7 +415,7 @@ final class AwsDocdbCluster extends Resource {
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalClusterIdentifier,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     DocdbClusterMasterPassword? masterPassword,
     TfArg<num>? masterPasswordWoVersion,
     TfArg<String>? masterUsername,
@@ -426,7 +429,7 @@ final class AwsDocdbCluster extends Resource {
     TfArg<bool>? storageEncrypted,
     TfArg<DocdbClusterStorageType>? storageType,
     TfArg<Map<String, String>>? tags,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     DocdbClusterServerlessV2ScalingConfiguration?
     serverlessV2ScalingConfiguration,
     super.lifecycle,
@@ -461,7 +464,7 @@ final class AwsDocdbCluster extends Resource {
              'final_snapshot_identifier': finalSnapshotIdentifier,
            if (globalClusterIdentifier != null)
              'global_cluster_identifier': globalClusterIdentifier,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            ...?masterPassword?.argMap,
            if (masterPasswordWoVersion != null)
              'master_password_wo_version': masterPasswordWoVersion,
@@ -480,7 +483,7 @@ final class AwsDocdbCluster extends Resource {
            if (storageType != null) 'storage_type': storageType,
            if (tags != null) 'tags': tags,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
            if (serverlessV2ScalingConfiguration != null)
              'serverless_v2_scaling_configuration': TfArg.literal(
                serverlessV2ScalingConfiguration.encode(),

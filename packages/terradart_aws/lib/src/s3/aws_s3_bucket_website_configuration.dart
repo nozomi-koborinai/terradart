@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_website_configuration`.
 const Set<String> _awsS3BucketWebsiteConfigurationSensitive = <String>{};
 
@@ -156,7 +158,7 @@ final class AwsS3BucketWebsiteConfiguration extends Resource {
 
   AwsS3BucketWebsiteConfiguration({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
     TfArg<String>? routingRules,
@@ -171,7 +173,7 @@ final class AwsS3BucketWebsiteConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (expectedBucketOwner != null)
              'expected_bucket_owner': expectedBucketOwner,
            if (region != null) 'region': region,

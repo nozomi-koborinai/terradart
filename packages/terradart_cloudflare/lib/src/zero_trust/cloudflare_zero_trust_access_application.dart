@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_application`.
 const Set<String> _cloudflareZeroTrustAccessApplicationSensitive = <String>{
   'saas_app.client_secret',
@@ -2785,7 +2788,7 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
 
   CloudflareZeroTrustAccessApplication({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<bool>? allowAuthenticateViaWarp,
     TfArg<bool>? allowIframe,
     TfArg<List<String>>? allowedIdps,
@@ -2814,7 +2817,7 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
     TfArg<bool>? skipInterstitial,
     TfArg<List<String>>? tags,
     TfArg<ZeroTrustAccessApplicationType>? type,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     ZeroTrustAccessApplicationCorsHeaders? corsHeaders,
     List<ZeroTrustAccessApplicationFooterLinks>? footerLinks,
     ZeroTrustAccessApplicationLandingPageDesign? landingPageDesign,
@@ -2831,7 +2834,7 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
            if (allowAuthenticateViaWarp != null)
              'allow_authenticate_via_warp': allowAuthenticateViaWarp,
            if (allowIframe != null) 'allow_iframe': allowIframe,
@@ -2874,7 +2877,7 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
            if (skipInterstitial != null) 'skip_interstitial': skipInterstitial,
            if (tags != null) 'tags': tags,
            if (type != null) 'type': type,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
            if (corsHeaders != null)
              'cors_headers': TfArg.literal(corsHeaders.encode()),
            if (footerLinks != null)

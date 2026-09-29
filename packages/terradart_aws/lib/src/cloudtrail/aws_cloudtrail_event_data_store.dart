@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_cloudtrail_event_data_store`.
 const Set<String> _awsCloudtrailEventDataStoreSensitive = <String>{};
 
@@ -107,7 +109,7 @@ final class AwsCloudtrailEventDataStore extends Resource {
   AwsCloudtrailEventDataStore({
     required super.localName,
     TfArg<CloudtrailEventDataStoreBillingMode>? billingMode,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<bool>? multiRegionEnabled,
     required TfArg<String> name,
     TfArg<bool>? organizationEnabled,
@@ -125,7 +127,7 @@ final class AwsCloudtrailEventDataStore extends Resource {
          terraformType: tfType,
          argMap: {
            if (billingMode != null) 'billing_mode': billingMode,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (multiRegionEnabled != null)
              'multi_region_enabled': multiRegionEnabled,
            'name': name,

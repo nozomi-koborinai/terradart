@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_backup_dr_management_server`.
 const Set<String> _googleBackupDrManagementServerSensitive = <String>{};
 
@@ -25,12 +27,12 @@ final class BackupDrManagementServerNetworks {
     this.peeringMode,
   });
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
   final TfArg<String>? peeringMode;
 
   Map<String, Object?> encode() => {
-    'network': network.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
     if (peeringMode != null) 'peering_mode': peeringMode!.toTfJson(),
   };
 }

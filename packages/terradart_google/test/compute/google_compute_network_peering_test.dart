@@ -7,8 +7,8 @@ void main() {
     final peering = GoogleComputeNetworkPeering(
       localName: 'peer',
       name: TfArg.literal('peer'),
-      network: TfArg.literal('net-a'),
-      peerNetwork: TfArg.literal('net-b'),
+      network: .literal('net-a'),
+      peerNetwork: .literal('net-b'),
       stackType: TfArg.literal(ComputeNetworkPeeringStackType.ipv4Ipv6),
       updateStrategy: TfArg.literal(
         ComputeNetworkPeeringUpdateStrategy.consensus,

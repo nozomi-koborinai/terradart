@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_dataplex_datascan`.
 const Set<String> _googleDataplexDatascanSensitive = <String>{};
 
@@ -324,9 +326,11 @@ final class DataplexDatascanExecutionIdentityDataplexServiceAgent {
 final class DataplexDatascanExecutionIdentityServiceAccount {
   const DataplexDatascanExecutionIdentityServiceAccount({required this.email});
 
-  final TfArg<String> email;
+  final RefTo<GoogleServiceAccount> email;
 
-  Map<String, Object?> encode() => {'email': email.toTfJson()};
+  Map<String, Object?> encode() => {
+    'email': email.encodeAs('email').toTfJson(),
+  };
 }
 
 /// Typed helper for the `execution_identity.user_credential` block of

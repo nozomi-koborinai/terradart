@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_appautoscaling_target`.
 const Set<String> _awsAppautoscalingTargetSensitive = <String>{};
 
@@ -43,7 +45,7 @@ final class AwsAppautoscalingTarget extends Resource {
     required TfArg<num> minCapacity,
     TfArg<String>? region,
     required TfArg<String> resourceId,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     required TfArg<String> scalableDimension,
     required TfArg<String> serviceNamespace,
     TfArg<Map<String, String>>? tags,
@@ -59,7 +61,7 @@ final class AwsAppautoscalingTarget extends Resource {
            'min_capacity': minCapacity,
            if (region != null) 'region': region,
            'resource_id': resourceId,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            'scalable_dimension': scalableDimension,
            'service_namespace': serviceNamespace,
            if (tags != null) 'tags': tags,

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_device_ip_profile`.
 const Set<String> _cloudflareZeroTrustDeviceIpProfileSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareZeroTrustDeviceIpProfile extends Resource {
 
   CloudflareZeroTrustDeviceIpProfile({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     TfArg<bool>? enabled,
     required TfArg<String> match,
@@ -30,7 +32,7 @@ final class CloudflareZeroTrustDeviceIpProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (description != null) 'description': description,
            if (enabled != null) 'enabled': enabled,
            'match': match,

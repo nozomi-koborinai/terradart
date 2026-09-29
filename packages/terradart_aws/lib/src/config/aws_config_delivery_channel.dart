@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_config_delivery_channel`.
 const Set<String> _awsConfigDeliveryChannelSensitive = <String>{};
 
@@ -48,10 +51,10 @@ final class AwsConfigDeliveryChannel extends Resource {
     required super.localName,
     TfArg<String>? name,
     TfArg<String>? region,
-    required TfArg<String> s3BucketName,
+    required RefTo<AwsS3Bucket> s3BucketName,
     TfArg<String>? s3KeyPrefix,
     TfArg<String>? s3KmsKeyArn,
-    TfArg<String>? snsTopicArn,
+    RefTo<AwsSnsTopic>? snsTopicArn,
     ConfigDeliveryChannelSnapshotDeliveryProperties? snapshotDeliveryProperties,
     super.lifecycle,
     super.dependsOn,
@@ -62,10 +65,11 @@ final class AwsConfigDeliveryChannel extends Resource {
          argMap: {
            if (name != null) 'name': name,
            if (region != null) 'region': region,
-           's3_bucket_name': s3BucketName,
+           's3_bucket_name': s3BucketName.encodeAs('id'),
            if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix,
            if (s3KmsKeyArn != null) 's3_kms_key_arn': s3KmsKeyArn,
-           if (snsTopicArn != null) 'sns_topic_arn': snsTopicArn,
+           if (snsTopicArn != null)
+             'sns_topic_arn': snsTopicArn.encodeAs('arn'),
            if (snapshotDeliveryProperties != null)
              'snapshot_delivery_properties': TfArg.literal(
                snapshotDeliveryProperties.encode(),

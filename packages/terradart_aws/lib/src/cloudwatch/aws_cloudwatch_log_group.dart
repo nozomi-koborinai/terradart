@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_cloudwatch_log_group`.
 const Set<String> _awsCloudwatchLogGroupSensitive = <String>{};
 
@@ -87,7 +89,7 @@ final class AwsCloudwatchLogGroup extends Resource {
   AwsCloudwatchLogGroup({
     required super.localName,
     TfArg<bool>? deletionProtectionEnabled,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<CloudwatchLogGroupLogGroupClass>? logGroupClass,
     CloudwatchLogGroupName? name,
     TfArg<String>? region,
@@ -103,7 +105,7 @@ final class AwsCloudwatchLogGroup extends Resource {
          argMap: {
            if (deletionProtectionEnabled != null)
              'deletion_protection_enabled': deletionProtectionEnabled,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (logGroupClass != null) 'log_group_class': logGroupClass,
            ...?name?.argMap,
            if (region != null) 'region': region,

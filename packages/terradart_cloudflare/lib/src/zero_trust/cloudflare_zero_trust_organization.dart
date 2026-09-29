@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zero_trust_organization`.
 const Set<String> _cloudflareZeroTrustOrganizationSensitive = <String>{};
 
@@ -229,7 +232,7 @@ final class CloudflareZeroTrustOrganization extends Resource {
 
   CloudflareZeroTrustOrganization({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<bool>? allowAuthenticateViaWarp,
     TfArg<String>? authDomain,
     TfArg<bool>? autoRedirectToIdentity,
@@ -244,7 +247,7 @@ final class CloudflareZeroTrustOrganization extends Resource {
     TfArg<String>? userSeatExpirationInactiveTime,
     TfArg<bool>? warpAuthNonBrowser401,
     TfArg<String>? warpAuthSessionDuration,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     ZeroTrustOrganizationCustomPages? customPages,
     ZeroTrustOrganizationLoginDesign? loginDesign,
     ZeroTrustOrganizationMfaConfig? mfaConfig,
@@ -257,7 +260,7 @@ final class CloudflareZeroTrustOrganization extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
            if (allowAuthenticateViaWarp != null)
              'allow_authenticate_via_warp': allowAuthenticateViaWarp,
            if (authDomain != null) 'auth_domain': authDomain,
@@ -284,7 +287,7 @@ final class CloudflareZeroTrustOrganization extends Resource {
              'warp_auth_non_browser_401': warpAuthNonBrowser401,
            if (warpAuthSessionDuration != null)
              'warp_auth_session_duration': warpAuthSessionDuration,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
            if (customPages != null)
              'custom_pages': TfArg.literal(customPages.encode()),
            if (loginDesign != null)

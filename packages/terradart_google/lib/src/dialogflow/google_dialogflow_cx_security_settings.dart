@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_dialogflow_cx_security_settings`.
 const Set<String> _googleDialogflowCxSecuritySettingsSensitive = <String>{};
 
@@ -126,7 +128,7 @@ final class DialogflowCxSecuritySettingsAudioExportSettings {
 
   final TfArg<bool>? enableAudioRedaction;
 
-  final TfArg<String>? gcsBucket;
+  final RefTo<GoogleStorageBucket>? gcsBucket;
 
   Map<String, Object?> encode() => {
     if (audioExportPattern != null)
@@ -134,7 +136,7 @@ final class DialogflowCxSecuritySettingsAudioExportSettings {
     if (audioFormat != null) 'audio_format': audioFormat!.toTfJson(),
     if (enableAudioRedaction != null)
       'enable_audio_redaction': enableAudioRedaction!.toTfJson(),
-    if (gcsBucket != null) 'gcs_bucket': gcsBucket!.toTfJson(),
+    if (gcsBucket != null) 'gcs_bucket': gcsBucket!.encodeAs('name').toTfJson(),
   };
 }
 

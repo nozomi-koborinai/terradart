@@ -52,7 +52,7 @@ final class UsageExportStack extends Stack {
     add(
       GoogleProjectUsageExportBucket(
         localName: 'usage_export',
-        bucketName: .ref(reports.nameRef),
+        bucketName: reports.ref,
         prefix: .literal('gce-usage'),
         dependsOn: [
           ResourceDependency(apiCompute),

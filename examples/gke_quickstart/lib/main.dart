@@ -61,7 +61,7 @@ final class GkeQuickstartStack extends Stack {
         localName: 'gke',
         name: .literal('gke-subnet'),
         region: .literal(region),
-        network: .ref(vpc.id),
+        network: vpc.ref,
         ipCidrRange: .literal('10.20.0.0/20'),
       ),
     );
@@ -73,8 +73,8 @@ final class GkeQuickstartStack extends Stack {
         location: .literal(region),
         initialNodeCount: .literal(1),
         removeDefaultNodePool: .literal(true),
-        network: .ref(vpc.nameRef),
-        subnetwork: .ref(subnet.nameRef),
+        network: vpc.ref,
+        subnetwork: subnet.ref,
         // GKE clusters default `deletion_protection = true`, which makes
         // `terraform destroy` refuse to delete the cluster. This is a
         // short-lived smoke example, so opt out to keep teardown clean.

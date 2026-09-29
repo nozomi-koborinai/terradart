@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_worker_version`.
 const Set<String> _cloudflareWorkerVersionSensitive = <String>{
   'assets.jwt',
@@ -960,7 +962,7 @@ final class CloudflareWorkerVersion extends Resource {
 
   CloudflareWorkerVersion({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? compatibilityDate,
     TfArg<List<String>>? compatibilityFlags,
     TfArg<bool>? deploy,
@@ -986,7 +988,7 @@ final class CloudflareWorkerVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (compatibilityDate != null)
              'compatibility_date': compatibilityDate,
            if (compatibilityFlags != null)

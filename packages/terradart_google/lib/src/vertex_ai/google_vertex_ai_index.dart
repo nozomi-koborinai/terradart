@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_vertex_ai_index`.
 const Set<String> _googleVertexAiIndexSensitive = <String>{};
 
@@ -13,9 +15,11 @@ const Set<String> _googleVertexAiIndexSensitive = <String>{};
 final class VertexAiIndexEncryptionSpec {
   const VertexAiIndexEncryptionSpec({required this.kmsKeyName});
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `metadata` block of

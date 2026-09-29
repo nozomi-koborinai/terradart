@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_ai_controls_mcp_server`.
 const Set<String> _cloudflareZeroTrustAccessAiControlsMcpServerSensitive =
     <String>{'auth_credentials', 'client_secret'};
@@ -84,7 +86,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
 
   CloudflareZeroTrustAccessAiControlsMcpServer({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? authCredentials,
     required TfArg<ZeroTrustAccessAiControlsMcpServerAuthType> authType,
     TfArg<String>? clientSecret,
@@ -103,7 +105,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (authCredentials != null) 'auth_credentials': authCredentials,
            'auth_type': authType,
            if (clientSecret != null) 'client_secret': clientSecret,

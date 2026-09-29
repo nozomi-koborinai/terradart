@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_db_proxy`.
 const Set<String> _awsDbProxySensitive = <String>{};
 
@@ -132,10 +135,10 @@ final class AwsDbProxy extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<bool>? requireTls,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<DbProxyTargetConnectionNetworkType>? targetConnectionNetworkType,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     required TfArg<List<String>> vpcSubnetIds,
     List<DbProxyAuth>? auth,
     super.lifecycle,
@@ -156,12 +159,12 @@ final class AwsDbProxy extends Resource {
            'name': name,
            if (region != null) 'region': region,
            if (requireTls != null) 'require_tls': requireTls,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (targetConnectionNetworkType != null)
              'target_connection_network_type': targetConnectionNetworkType,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
            'vpc_subnet_ids': vpcSubnetIds,
            if (auth != null)
              'auth': TfArg.literal([for (final e in auth) e.encode()]),

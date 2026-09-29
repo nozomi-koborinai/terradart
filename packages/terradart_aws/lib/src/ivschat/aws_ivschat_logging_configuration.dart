@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_ivschat_logging_configuration`.
 const Set<String> _awsIvschatLoggingConfigurationSensitive = <String>{};
 
@@ -91,9 +94,11 @@ final class IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs {
     required this.logGroupName,
   });
 
-  final TfArg<String> logGroupName;
+  final RefTo<AwsCloudwatchLogGroup> logGroupName;
 
-  Map<String, Object?> encode() => {'log_group_name': logGroupName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'log_group_name': logGroupName.encodeAs('name').toTfJson(),
+  };
 }
 
 /// Typed helper for the `destination_configuration.firehose` block of
@@ -119,9 +124,11 @@ final class IvschatLoggingConfigurationDestinationConfigurationS3 {
     required this.bucketName,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
-  Map<String, Object?> encode() => {'bucket_name': bucketName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_ivschat_logging_configuration`.

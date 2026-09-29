@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_m2_environment`.
 const Set<String> _awsM2EnvironmentSensitive = <String>{};
 
@@ -135,13 +139,13 @@ final class AwsM2Environment extends Resource {
     TfArg<String>? engineVersion,
     TfArg<bool>? forceUpdate,
     required TfArg<String> instanceType,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? preferredMaintenanceWindow,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
-    TfArg<List<String>>? subnetIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     List<M2EnvironmentHighAvailabilityConfig>? highAvailabilityConfig,
     List<M2EnvironmentStorageConfiguration>? storageConfiguration,
@@ -160,15 +164,16 @@ final class AwsM2Environment extends Resource {
            if (engineVersion != null) 'engine_version': engineVersion,
            if (forceUpdate != null) 'force_update': forceUpdate,
            'instance_type': instanceType,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            if (preferredMaintenanceWindow != null)
              'preferred_maintenance_window': preferredMaintenanceWindow,
            if (publiclyAccessible != null)
              'publicly_accessible': publiclyAccessible,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (highAvailabilityConfig != null)
              'high_availability_config': TfArg.literal([

@@ -54,7 +54,7 @@ final class AnalystPersonaStack extends Stack {
     final positions = add(
       GoogleBigqueryTable(
         localName: 'cash_positions',
-        datasetId: .ref(dataset.datasetIdRef),
+        datasetId: dataset.ref,
         tableId: .literal('cash_positions'),
         description: .literal('Daily closing cash balance per account.'),
         deletionProtection: .literal(false),

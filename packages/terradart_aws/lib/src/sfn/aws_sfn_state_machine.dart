@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sfn_state_machine`.
 const Set<String> _awsSfnStateMachineSensitive = <String>{};
 
@@ -87,7 +90,7 @@ final class SfnStateMachineEncryptionConfiguration {
 
   final TfArg<num>? kmsDataKeyReusePeriodSeconds;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<SfnStateMachineEncryptionConfigurationType>? type;
 
@@ -95,7 +98,7 @@ final class SfnStateMachineEncryptionConfiguration {
     if (kmsDataKeyReusePeriodSeconds != null)
       'kms_data_key_reuse_period_seconds': kmsDataKeyReusePeriodSeconds!
           .toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
 }
@@ -169,7 +172,7 @@ final class AwsSfnStateMachine extends Resource {
     SfnStateMachineName? name,
     TfArg<bool>? publish,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<SfnStateMachineType>? type,
     SfnStateMachineEncryptionConfiguration? encryptionConfiguration,
@@ -186,7 +189,7 @@ final class AwsSfnStateMachine extends Resource {
            ...?name?.argMap,
            if (publish != null) 'publish': publish,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (type != null) 'type': type,
            if (encryptionConfiguration != null)

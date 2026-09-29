@@ -7,7 +7,7 @@ void main() {
     final gw = GoogleComputeHaVpnGateway(
       localName: 'gw',
       name: TfArg.literal('gw'),
-      network: TfArg.literal('net'),
+      network: .literal('net'),
       gatewayIpVersion: TfArg.literal(ComputeHaVpnGatewayGatewayIpVersion.ipv6),
       stackType: TfArg.literal(ComputeHaVpnGatewayStackType.ipv4Ipv6),
     );

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_device_default_profile_local_domain_fallback`.
 const Set<String>
 _cloudflareZeroTrustDeviceDefaultProfileLocalDomainFallbackSensitive =
@@ -44,7 +46,7 @@ final class CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback
 
   CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required List<ZeroTrustDeviceDefaultProfileLocalDomainFallbackDomains>
     domains,
     super.lifecycle,
@@ -54,7 +56,7 @@ final class CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'domains': TfArg.literal([for (final e in domains) e.encode()]),
          },
        );

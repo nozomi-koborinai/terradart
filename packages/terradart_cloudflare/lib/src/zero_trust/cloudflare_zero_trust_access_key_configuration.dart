@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_key_configuration`.
 const Set<String> _cloudflareZeroTrustAccessKeyConfigurationSensitive =
     <String>{};
@@ -18,7 +20,7 @@ final class CloudflareZeroTrustAccessKeyConfiguration extends Resource {
 
   CloudflareZeroTrustAccessKeyConfiguration({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<num> keyRotationIntervalDays,
     super.lifecycle,
     super.dependsOn,
@@ -27,7 +29,7 @@ final class CloudflareZeroTrustAccessKeyConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'key_rotation_interval_days': keyRotationIntervalDays,
          },
        );

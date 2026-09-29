@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_google_tag_gateway`.
 const Set<String> _cloudflareGoogleTagGatewaySensitive = <String>{};
 
@@ -21,7 +23,7 @@ final class CloudflareGoogleTagGateway extends Resource {
     required TfArg<bool> hideOriginalIp,
     required TfArg<String> measurementId,
     TfArg<bool>? setUpTag,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -34,7 +36,7 @@ final class CloudflareGoogleTagGateway extends Resource {
            'hide_original_ip': hideOriginalIp,
            'measurement_id': measurementId,
            if (setUpTag != null) 'set_up_tag': setUpTag,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

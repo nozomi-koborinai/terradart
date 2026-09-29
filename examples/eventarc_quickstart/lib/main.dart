@@ -139,7 +139,7 @@ final class EventarcStack extends Stack {
         localName: 'pubsub_to_http',
         name: .literal('pubsub-to-http'),
         location: .literal(location),
-        serviceAccount: .ref(triggerSa.email),
+        serviceAccount: triggerSa.ref,
         matchingCriteria: [
           EventarcTriggerMatchingCriteria(
             attribute: .literal('type'),

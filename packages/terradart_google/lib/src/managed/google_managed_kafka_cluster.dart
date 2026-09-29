@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_managed_kafka_cluster`.
 const Set<String> _googleManagedKafkaClusterSensitive = <String>{};
 
@@ -45,12 +48,12 @@ final class ManagedKafkaClusterCapacityConfig {
 final class ManagedKafkaClusterGcpConfig {
   const ManagedKafkaClusterGcpConfig({this.kmsKey, required this.accessConfig});
 
-  final TfArg<String>? kmsKey;
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   final ManagedKafkaClusterGcpConfigAccessConfig accessConfig;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
     'access_config': accessConfig.encode(),
   };
 }
@@ -85,9 +88,9 @@ final class ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs {
     required this.subnet,
   });
 
-  final TfArg<String> subnet;
+  final RefTo<GoogleComputeSubnetwork> subnet;
 
-  Map<String, Object?> encode() => {'subnet': subnet.toTfJson()};
+  Map<String, Object?> encode() => {'subnet': subnet.encodeAs('id').toTfJson()};
 }
 
 /// Typed helper for the `gcp_config.access_config.public_cluster_config` block of

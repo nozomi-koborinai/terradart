@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_lambda_runtime_management_config`.
 const Set<String> _awsLambdaRuntimeManagementConfigSensitive = <String>{};
 
@@ -23,7 +25,7 @@ final class AwsLambdaRuntimeManagementConfig extends Resource {
 
   AwsLambdaRuntimeManagementConfig({
     required super.localName,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     TfArg<String>? qualifier,
     TfArg<String>? region,
     TfArg<String>? runtimeVersionArn,
@@ -35,7 +37,7 @@ final class AwsLambdaRuntimeManagementConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            if (qualifier != null) 'qualifier': qualifier,
            if (region != null) 'region': region,
            if (runtimeVersionArn != null)

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_user_group`.
 const Set<String> _cloudflareUserGroupSensitive = <String>{};
 
@@ -72,7 +74,7 @@ final class CloudflareUserGroup extends Resource {
 
   CloudflareUserGroup({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     List<UserGroupPolicies>? policies,
     super.lifecycle,
@@ -82,7 +84,7 @@ final class CloudflareUserGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'name': name,
            if (policies != null)
              'policies': TfArg.literal([for (final e in policies) e.encode()]),

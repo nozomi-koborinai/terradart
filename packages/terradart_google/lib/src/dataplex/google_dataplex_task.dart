@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_dataplex_task`.
 const Set<String> _googleDataplexTaskSensitive = <String>{};
 
@@ -119,21 +122,21 @@ final class DataplexTaskExecutionSpec {
 
   final TfArg<Map<String, String>>? args;
 
-  final TfArg<String>? kmsKey;
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   final TfArg<String>? maxJobExecutionLifetime;
 
   final TfArg<String>? project;
 
-  final TfArg<String> serviceAccount;
+  final RefTo<GoogleServiceAccount> serviceAccount;
 
   Map<String, Object?> encode() => {
     if (args != null) 'args': args!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
     if (maxJobExecutionLifetime != null)
       'max_job_execution_lifetime': maxJobExecutionLifetime!.toTfJson(),
     if (project != null) 'project': project!.toTfJson(),
-    'service_account': serviceAccount.toTfJson(),
+    'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
 

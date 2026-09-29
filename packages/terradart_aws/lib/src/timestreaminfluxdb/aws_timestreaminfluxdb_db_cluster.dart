@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_timestreaminfluxdb_db_cluster`.
 const Set<String> _awsTimestreaminfluxdbDbClusterSensitive = <String>{
   'password',
@@ -94,12 +97,12 @@ final class TimestreaminfluxdbDbClusterLogDeliveryConfigurationS3Configuration {
     required this.enabled,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<bool> enabled;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
   };
 }
@@ -145,7 +148,7 @@ final class AwsTimestreaminfluxdbDbCluster extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? username,
-    required TfArg<List<String>> vpcSecurityGroupIds,
+    required TfArg<List<RefTo<AwsSecurityGroup>>> vpcSecurityGroupIds,
     required TfArg<List<String>> vpcSubnetIds,
     List<TimestreaminfluxdbDbClusterLogDeliveryConfiguration>?
     logDeliveryConfiguration,
@@ -175,7 +178,7 @@ final class AwsTimestreaminfluxdbDbCluster extends Resource {
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (username != null) 'username': username,
-           'vpc_security_group_ids': vpcSecurityGroupIds,
+           'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
            'vpc_subnet_ids': vpcSubnetIds,
            if (logDeliveryConfiguration != null)
              'log_delivery_configuration': TfArg.literal([

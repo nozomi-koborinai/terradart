@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_token_validation_config`.
 const Set<String> _cloudflareTokenValidationConfigSensitive = <String>{};
 
@@ -131,7 +133,7 @@ final class CloudflareTokenValidationConfig extends Resource {
     required TfArg<String> title,
     required TfArg<List<String>> tokenSources,
     required TfArg<TokenValidationConfigTokenType> tokenType,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required TokenValidationConfigCredentials credentials,
     super.lifecycle,
     super.dependsOn,
@@ -144,7 +146,7 @@ final class CloudflareTokenValidationConfig extends Resource {
            'title': title,
            'token_sources': tokenSources,
            'token_type': tokenType,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'credentials': TfArg.literal(credentials.encode()),
          },
        );

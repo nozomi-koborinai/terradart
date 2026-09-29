@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_parameter_manager_regional_parameter`.
 const Set<String> _googleParameterManagerRegionalParameterSensitive =
     <String>{};
@@ -32,7 +34,7 @@ final class GoogleParameterManagerRegionalParameter extends Resource {
     required TfArg<String> parameterId,
     required TfArg<String> location,
     TfArg<ParameterManagerRegionalParameterFormat>? format,
-    TfArg<String>? kmsKey,
+    RefTo<GoogleKmsCryptoKey>? kmsKey,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -46,7 +48,7 @@ final class GoogleParameterManagerRegionalParameter extends Resource {
            'parameter_id': parameterId,
            'location': location,
            if (format != null) 'format': format,
-           if (kmsKey != null) 'kms_key': kmsKey,
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
            if (labels != null) 'labels': labels,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_casb_policy`.
 const Set<String> _cloudflareZeroTrustCasbPolicySensitive = <String>{};
 
@@ -68,7 +70,7 @@ final class CloudflareZeroTrustCasbPolicy extends Resource {
 
   CloudflareZeroTrustCasbPolicy({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<bool> appliesToAllIntegrations,
     TfArg<String>? description,
     required TfArg<String> displayName,
@@ -83,7 +85,7 @@ final class CloudflareZeroTrustCasbPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'applies_to_all_integrations': appliesToAllIntegrations,
            if (description != null) 'description': description,
            'display_name': displayName,

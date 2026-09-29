@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+
 /// Sensitive field paths for `aws_storagegateway_gateway`.
 const Set<String> _awsStoragegatewayGatewaySensitive = <String>{
   'smb_active_directory_settings.password',
@@ -195,7 +197,7 @@ final class AwsStoragegatewayGateway extends Resource {
     required StoragegatewayGatewayActivation activation,
     TfArg<num>? averageDownloadRateLimitInBitsPerSec,
     TfArg<num>? averageUploadRateLimitInBitsPerSec,
-    TfArg<String>? cloudwatchLogGroupArn,
+    RefTo<AwsCloudwatchLogGroup>? cloudwatchLogGroupArn,
     required TfArg<String> gatewayName,
     required TfArg<String> gatewayTimezone,
     TfArg<StoragegatewayGatewayGatewayType>? gatewayType,
@@ -224,7 +226,7 @@ final class AwsStoragegatewayGateway extends Resource {
              'average_upload_rate_limit_in_bits_per_sec':
                  averageUploadRateLimitInBitsPerSec,
            if (cloudwatchLogGroupArn != null)
-             'cloudwatch_log_group_arn': cloudwatchLogGroupArn,
+             'cloudwatch_log_group_arn': cloudwatchLogGroupArn.encodeAs('arn'),
            'gateway_name': gatewayName,
            'gateway_timezone': gatewayTimezone,
            if (gatewayType != null) 'gateway_type': gatewayType,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_securitylake_data_lake`.
 const Set<String> _awsSecuritylakeDataLakeSensitive = <String>{};
 
@@ -109,11 +111,11 @@ final class SecuritylakeDataLakeConfigurationReplicationConfiguration {
 
   final TfArg<List<Object?>>? regions;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   Map<String, Object?> encode() => {
     if (regions != null) 'regions': regions!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
   };
 }
 

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_custom_origin_trust_store`.
 const Set<String> _cloudflareCustomOriginTrustStoreSensitive = <String>{};
 
@@ -17,14 +19,14 @@ final class CloudflareCustomOriginTrustStore extends Resource {
   CloudflareCustomOriginTrustStore({
     required super.localName,
     required TfArg<String> certificate,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'certificate': certificate, 'zone_id': zoneId},
+         argMap: {'certificate': certificate, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_managed_folder_iam_member`.
 const Set<String> _googleStorageManagedFolderIamMemberSensitive = <String>{};
 
@@ -26,7 +28,7 @@ final class GoogleStorageManagedFolderIamMember extends Resource {
 
   GoogleStorageManagedFolderIamMember({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> managedFolder,
     required TfArg<String> role,
     required TfArg<String> member,
@@ -38,7 +40,7 @@ final class GoogleStorageManagedFolderIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('name'),
            'managed_folder': managedFolder,
            'role': role,
            'member': member,

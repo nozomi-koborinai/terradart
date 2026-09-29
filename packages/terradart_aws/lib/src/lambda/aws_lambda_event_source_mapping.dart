@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_lambda_event_source_mapping`.
 const Set<String> _awsLambdaEventSourceMappingSensitive = <String>{};
 
@@ -684,10 +687,10 @@ final class AwsLambdaEventSourceMapping extends Resource {
     TfArg<bool>? bisectBatchOnFunctionError,
     TfArg<bool>? enabled,
     required LambdaEventSourceMappingEventSource eventSource,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     List<TfArg<LambdaEventSourceMappingFunctionResponseTypes>>?
     functionResponseTypes,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<num>? maximumBatchingWindowInSeconds,
     TfArg<num>? maximumRecordAgeInSeconds,
     TfArg<num>? maximumRetryAttempts,
@@ -723,12 +726,12 @@ final class AwsLambdaEventSourceMapping extends Resource {
              'bisect_batch_on_function_error': bisectBatchOnFunctionError,
            if (enabled != null) 'enabled': enabled,
            ...eventSource.argMap,
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            if (functionResponseTypes != null)
              'function_response_types': TfArg.literal([
                for (final e in functionResponseTypes) e.toTfJson(),
              ]),
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (maximumBatchingWindowInSeconds != null)
              'maximum_batching_window_in_seconds':
                  maximumBatchingWindowInSeconds,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_eventarc_message_bus`.
 const Set<String> _googleEventarcMessageBusSensitive = <String>{};
 
@@ -47,7 +49,7 @@ final class GoogleEventarcMessageBus extends Resource {
   GoogleEventarcMessageBus({
     required super.localName,
     TfArg<Map<String, String>>? annotations,
-    TfArg<String>? cryptoKeyName,
+    RefTo<GoogleKmsCryptoKey>? cryptoKeyName,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
@@ -62,7 +64,8 @@ final class GoogleEventarcMessageBus extends Resource {
          terraformType: tfType,
          argMap: {
            if (annotations != null) 'annotations': annotations,
-           if (cryptoKeyName != null) 'crypto_key_name': cryptoKeyName,
+           if (cryptoKeyName != null)
+             'crypto_key_name': cryptoKeyName.encodeAs('id'),
            if (displayName != null) 'display_name': displayName,
            if (labels != null) 'labels': labels,
            'location': location,

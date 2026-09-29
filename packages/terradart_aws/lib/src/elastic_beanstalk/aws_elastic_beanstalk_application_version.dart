@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_elastic_beanstalk_application_version`.
 const Set<String> _awsElasticBeanstalkApplicationVersionSensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsElasticBeanstalkApplicationVersion extends Resource {
   AwsElasticBeanstalkApplicationVersion({
     required super.localName,
     required TfArg<String> application,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? description,
     TfArg<bool>? forceDelete,
     required TfArg<String> key,
@@ -29,7 +31,7 @@ final class AwsElasticBeanstalkApplicationVersion extends Resource {
          terraformType: tfType,
          argMap: {
            'application': application,
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (description != null) 'description': description,
            if (forceDelete != null) 'force_delete': forceDelete,
            'key': key,

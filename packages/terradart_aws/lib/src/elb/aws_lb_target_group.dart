@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_lb_target_group`.
 const Set<String> _awsLbTargetGroupSensitive = <String>{};
 
@@ -387,7 +389,7 @@ final class AwsLbTargetGroup extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<num>? targetControlPort,
     TfArg<LbTargetGroupTargetType>? targetType,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     LbTargetGroupHealthCheck? healthCheck,
     LbTargetGroupStickiness? stickiness,
     List<LbTargetGroupTargetFailover>? targetFailover,
@@ -427,7 +429,7 @@ final class AwsLbTargetGroup extends Resource {
            if (targetControlPort != null)
              'target_control_port': targetControlPort,
            if (targetType != null) 'target_type': targetType,
-           if (vpcId != null) 'vpc_id': vpcId,
+           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
            if (healthCheck != null)
              'health_check': TfArg.literal(healthCheck.encode()),
            if (stickiness != null)

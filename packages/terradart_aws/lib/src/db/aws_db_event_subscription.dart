@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_db_event_subscription`.
 const Set<String> _awsDbEventSubscriptionSensitive = <String>{};
 
@@ -93,7 +95,7 @@ final class AwsDbEventSubscription extends Resource {
     TfArg<List<String>>? eventCategories,
     DbEventSubscriptionName? name,
     TfArg<String>? region,
-    required TfArg<String> snsTopic,
+    required RefTo<AwsSnsTopic> snsTopic,
     TfArg<List<String>>? sourceIds,
     TfArg<DbEventSubscriptionSourceType>? sourceType,
     TfArg<Map<String, String>>? tags,
@@ -108,7 +110,7 @@ final class AwsDbEventSubscription extends Resource {
            if (eventCategories != null) 'event_categories': eventCategories,
            ...?name?.argMap,
            if (region != null) 'region': region,
-           'sns_topic': snsTopic,
+           'sns_topic': snsTopic.encodeAs('arn'),
            if (sourceIds != null) 'source_ids': sourceIds,
            if (sourceType != null) 'source_type': sourceType,
            if (tags != null) 'tags': tags,

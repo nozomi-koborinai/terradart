@@ -17,14 +17,12 @@ Per-package changelogs live alongside each package and are the system of record 
   weekly bump keeps it current; `--typed-references` types what it
   matches. The migration manifest gains a `reference` slot kind, and the
   migrator writes `x.ref`, `x.ref.pinned('id')`, `.literal(...)` or
-  `.variable(...)` for it. No lane types references yet, so generated
-  output is unchanged.
+  `.variable(...)` for it.
 - **Typed resource references, part 1** (`terradart_core`, `terradart_codegen`,
   every provider package) — `RefTo<R>`, a compile-time-only reference to a
   resource of type `R`. Every generated resource has a `ref` getter
   (`vpc.ref` is a `RefTo<GoogleComputeNetwork>`), and so does every data
-  source that reads a resource of the same package. Nothing takes a `RefTo`
-  yet; arguments that name another resource switch to it in a later change.
+  source that reads a resource of the same package.
 - **At-most-one sealed arguments** (`terradart_codegen`,
   `terradart_migrate`) — the shape for mutually exclusive inputs the
   provider also accepts none of: `deriveExactlyOne` seals a hints file's
@@ -51,11 +49,22 @@ Per-package changelogs live alongside each package and are the system of record 
 
 - **`terradart-migrate` writes dot shorthands** (`terradart_migrate`) —
   wherever the argument has a static type, a migrated Stack reads like the
-  examples: `name: .literal('orders')`, `topic: .ref(orders.id)`,
+  examples: `name: .literal('orders')`, `instance: .ref(db.nameRef)`,
   `databaseVersion: .literal(.postgres15)`, `network: .variable('network')`,
   `name: .workspace()`, and `.member` for an `Env` field typed as an enum.
   A bare `ModuleCall`'s `inputs` map is `Object?`-valued, so its values keep
   `TfArg.literal(...)`. Synth output is unchanged.
+
+- **Arguments that name another resource take `RefTo<R>`** (**breaking**;
+  `terradart_google`, `terradart_aws`, `terradart_cloudflare`) — the google,
+  aws and cloudflare lanes type every input `tool/reference_targets.yaml`
+  matches (318 google, 1,140 aws, 292 cloudflare): pass `vpc.ref`, or
+  `.literal(...)` / `.variable(...)` / `.expression(...)` / `.arg(...)` for a
+  value outside the Stack. Synth output changes where an example passed
+  another attribute than the argument emits (`self_link` → `id` on google
+  networks, `name` → `id` on Pub/Sub topic IAM, ...); `.pinned('attr')` keeps
+  the old one. See `MIGRATING.md`. A type a later provider pin adds is typed
+  by the weekly bump when its inputs match the ledger.
 
 - **Sealed variants are factory constructors** (**breaking**;
   `terradart_codegen`, `terradart_migrate`, every provider package) — a

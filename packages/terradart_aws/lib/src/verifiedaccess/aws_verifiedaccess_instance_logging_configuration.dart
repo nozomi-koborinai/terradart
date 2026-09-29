@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_verifiedaccess_instance_logging_configuration`.
 const Set<String> _awsVerifiedaccessInstanceLoggingConfigurationSensitive =
     <String>{};
@@ -54,11 +57,11 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogsCloudwatchLogs {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? logGroup;
+  final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.toTfJson(),
+    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
   };
 }
 
@@ -92,7 +95,7 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogsS3 {
     this.prefix,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketOwner;
 
@@ -101,7 +104,8 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogsS3 {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketOwner != null) 'bucket_owner': bucketOwner!.toTfJson(),
     'enabled': enabled.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),

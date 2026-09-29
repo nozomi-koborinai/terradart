@@ -76,7 +76,7 @@ final class NccHubStack extends Stack {
         name: .literal('terradart-ncc-spoke-subnet'),
         ipCidrRange: .literal('10.20.0.0/24'),
         region: .literal(region),
-        network: .ref(vpc.id),
+        network: vpc.ref,
         privateIpGoogleAccess: .literal(true),
         dependsOn: [...apiDeps, ResourceDependency(vpc)],
       ),
@@ -103,7 +103,7 @@ final class NccHubStack extends Stack {
       GoogleNetworkConnectivityInternalRange(
         localName: 'reserved',
         name: .literal('terradart-ncc-ir'),
-        network: .ref(vpc.id),
+        network: vpc.ref,
         usage: .literal(.forVpc),
         peering: .literal(.forSelf),
         ipCidrRange: .literal('10.9.0.0/24'),
@@ -119,8 +119,8 @@ final class NccHubStack extends Stack {
         location: .literal(region),
         targetGoogleApi: .literal('storage.us-central1.rep.googleapis.com'),
         accessType: .literal(.regional),
-        network: .ref(vpc.id),
-        subnetwork: .ref(subnet.id),
+        network: vpc.ref,
+        subnetwork: subnet.ref,
         dependsOn: [
           ...apiDeps,
           ResourceDependency(vpc),
@@ -133,7 +133,7 @@ final class NccHubStack extends Stack {
       GoogleNetworkConnectivityPolicyBasedRoute(
         localName: 'default_pbr',
         name: .literal('terradart-ncc-pbr'),
-        network: .ref(vpc.id),
+        network: vpc.ref,
         filter: NetworkConnectivityPolicyBasedRouteFilter(
           protocolVersion: .literal(.ipv4),
         ),

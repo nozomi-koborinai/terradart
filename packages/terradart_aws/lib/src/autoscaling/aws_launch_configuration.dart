@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+
 /// Sensitive field paths for `aws_launch_configuration`.
 const Set<String> _awsLaunchConfigurationSensitive = <String>{};
 
@@ -297,7 +299,7 @@ final class AwsLaunchConfiguration extends Resource {
     LaunchConfigurationName? name,
     TfArg<String>? placementTenancy,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroups,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
     TfArg<String>? spotPrice,
     LaunchConfigurationUserData? userData,
     List<LaunchConfigurationEbsBlockDevice>? ebsBlockDevice,
@@ -323,7 +325,8 @@ final class AwsLaunchConfiguration extends Resource {
            ...?name?.argMap,
            if (placementTenancy != null) 'placement_tenancy': placementTenancy,
            if (region != null) 'region': region,
-           if (securityGroups != null) 'security_groups': securityGroups,
+           if (securityGroups != null)
+             'security_groups': securityGroups.encodeAs('id'),
            if (spotPrice != null) 'spot_price': spotPrice,
            ...?userData?.argMap,
            if (ebsBlockDevice != null)

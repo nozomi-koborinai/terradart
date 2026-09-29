@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_network_services_gateway`.
 const Set<String> _googleNetworkServicesGatewaySensitive = <String>{};
 
@@ -134,8 +137,8 @@ final class GoogleNetworkServicesGateway extends Resource {
     required TfArg<NetworkServicesGatewayType> type,
     TfArg<String>? location,
     TfArg<String>? description,
-    TfArg<String>? network,
-    TfArg<String>? subnetwork,
+    RefTo<GoogleComputeNetwork>? network,
+    RefTo<GoogleComputeSubnetwork>? subnetwork,
     NetworkServicesGatewayPorts? ports,
     TfArg<List<String>>? certificateUrls,
     TfArg<String>? gatewaySecurityPolicy,
@@ -159,8 +162,8 @@ final class GoogleNetworkServicesGateway extends Resource {
            'type': type,
            if (location != null) 'location': location,
            if (description != null) 'description': description,
-           if (network != null) 'network': network,
-           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (network != null) 'network': network.encodeAs('id'),
+           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
            ...?ports?.argMap,
            if (certificateUrls != null) 'certificate_urls': certificateUrls,
            if (gatewaySecurityPolicy != null)

@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_mailmanager_rule_set`.
 const Set<String> _awsMailmanagerRuleSetSensitive = <String>{};
 
@@ -178,7 +183,7 @@ final class MailmanagerRuleSetRuleActionBounce {
 
   final TfArg<String>? message;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> sender;
 
@@ -191,7 +196,7 @@ final class MailmanagerRuleSetRuleActionBounce {
       'action_failure_policy': actionFailurePolicy!.toTfJson(),
     'diagnostic_message': diagnosticMessage.toTfJson(),
     if (message != null) 'message': message!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'sender': sender.toTfJson(),
     'smtp_reply_code': smtpReplyCode.toTfJson(),
     'status_code': statusCode.toTfJson(),
@@ -226,13 +231,13 @@ final class MailmanagerRuleSetRuleActionDeliverToMailbox {
 
   final TfArg<String> mailboxArn;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (actionFailurePolicy != null)
       'action_failure_policy': actionFailurePolicy!.toTfJson(),
     'mailbox_arn': mailboxArn.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -269,14 +274,14 @@ final class MailmanagerRuleSetRuleActionDeliverToQBusiness {
 
   final TfArg<String> indexId;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (actionFailurePolicy != null)
       'action_failure_policy': actionFailurePolicy!.toTfJson(),
     'application_id': applicationId.toTfJson(),
     'index_id': indexId.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -317,23 +322,23 @@ final class MailmanagerRuleSetRuleActionInvokeLambda {
   final TfArg<MailmanagerRuleSetRuleActionInvokeLambdaActionFailurePolicy>?
   actionFailurePolicy;
 
-  final TfArg<String> functionArn;
+  final RefTo<AwsLambdaFunction> functionArn;
 
   final TfArg<MailmanagerRuleSetRuleActionInvokeLambdaInvocationType>
   invocationType;
 
   final TfArg<num>? retryTimeMinutes;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (actionFailurePolicy != null)
       'action_failure_policy': actionFailurePolicy!.toTfJson(),
-    'function_arn': functionArn.toTfJson(),
+    'function_arn': functionArn.encodeAs('arn').toTfJson(),
     'invocation_type': invocationType.toTfJson(),
     if (retryTimeMinutes != null)
       'retry_time_minutes': retryTimeMinutes!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -382,17 +387,17 @@ final class MailmanagerRuleSetRuleActionPublishToSns {
 
   final TfArg<MailmanagerRuleSetRuleActionPublishToSnsPayloadType>? payloadType;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<String> topicArn;
+  final RefTo<AwsSnsTopic> topicArn;
 
   Map<String, Object?> encode() => {
     if (actionFailurePolicy != null)
       'action_failure_policy': actionFailurePolicy!.toTfJson(),
     if (encoding != null) 'encoding': encoding!.toTfJson(),
     if (payloadType != null) 'payload_type': payloadType!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
-    'topic_arn': topicArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
+    'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -505,12 +510,12 @@ final class MailmanagerRuleSetRuleActionSend {
   final TfArg<MailmanagerRuleSetRuleActionSendActionFailurePolicy>?
   actionFailurePolicy;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (actionFailurePolicy != null)
       'action_failure_policy': actionFailurePolicy!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -542,9 +547,9 @@ final class MailmanagerRuleSetRuleActionWriteToS3 {
   final TfArg<MailmanagerRuleSetRuleActionWriteToS3ActionFailurePolicy>?
   actionFailurePolicy;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<String> s3Bucket;
+  final RefTo<AwsS3Bucket> s3Bucket;
 
   final TfArg<String>? s3Prefix;
 
@@ -553,8 +558,8 @@ final class MailmanagerRuleSetRuleActionWriteToS3 {
   Map<String, Object?> encode() => {
     if (actionFailurePolicy != null)
       'action_failure_policy': actionFailurePolicy!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
-    's3_bucket': s3Bucket.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
+    's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     if (s3Prefix != null) 's3_prefix': s3Prefix!.toTfJson(),
     if (s3SseKmsKeyId != null) 's3_sse_kms_key_id': s3SseKmsKeyId!.toTfJson(),
   };

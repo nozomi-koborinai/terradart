@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_finspace_kx_environment`.
 const Set<String> _awsFinspaceKxEnvironmentSensitive = <String>{};
 
@@ -153,7 +155,7 @@ final class AwsFinspaceKxEnvironment extends Resource {
   AwsFinspaceKxEnvironment({
     required super.localName,
     TfArg<String>? description,
-    required TfArg<String> kmsKeyId,
+    required RefTo<AwsKmsKey> kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -168,7 +170,7 @@ final class AwsFinspaceKxEnvironment extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           'kms_key_id': kmsKeyId,
+           'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

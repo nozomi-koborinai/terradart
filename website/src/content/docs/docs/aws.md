@@ -70,7 +70,7 @@ final class HelloLambdaStack extends Stack {
     add(role);
     add(AwsIamRolePolicyAttachment(
       localName: 'hello_logs',
-      role: .ref(role.nameRef),
+      role: role.ref,
       policyArn: .literal(
         'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole',
       ),
@@ -86,19 +86,19 @@ final class HelloLambdaStack extends Stack {
     final fn = AwsLambdaFunction(
       localName: 'hello',
       functionName: .literal('hello-dart'),
-      role: .ref(role.arn),
+      role: role.ref,
       runtime: .literal('provided.al2023'),
       handler: .literal('bootstrap'),
       filename: .literal('../build/bootstrap.zip'),
       loggingConfig: LambdaFunctionLoggingConfig(
         logFormat: .literal('Text'),
-        logGroup: .ref(logs.nameRef),
+        logGroup: logs.ref,
       ),
     );
     add(fn);
     add(AwsLambdaFunctionUrl(
       localName: 'hello',
-      functionName: .ref(fn.arn),
+      functionName: fn.ref,
       authorizationType: .literal('NONE'),
     ));
   }
@@ -154,7 +154,7 @@ final class DartServerStack extends Stack {
       add(role);
       add(AwsIamRolePolicyAttachment(
         localName: name,
-        role: .ref(role.nameRef),
+        role: role.ref,
         policyArn: .literal(policyArn),
       ));
       return role;
@@ -182,7 +182,7 @@ final class DartServerStack extends Stack {
       localName: 'server',
       serviceName: .literal('dart-server'),
       cluster: .ref(cluster.nameRef),
-      executionRoleArn: .ref(execution.arn),
+      executionRoleArn: execution.ref,
       infrastructureRoleArn: .ref(infrastructure.arn),
       cpu: .literal('256'),
       memory: .literal('512'),

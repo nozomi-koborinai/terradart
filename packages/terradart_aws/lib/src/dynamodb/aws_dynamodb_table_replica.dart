@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_dynamodb_table_replica`.
 const Set<String> _awsDynamodbTableReplicaSensitive = <String>{};
 
@@ -24,7 +26,7 @@ final class AwsDynamodbTableReplica extends Resource {
     required super.localName,
     TfArg<bool>? deletionProtectionEnabled,
     required TfArg<String> globalTableArn,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<bool>? pointInTimeRecovery,
     TfArg<String>? region,
     TfArg<DynamodbTableReplicaTableClassOverride>? tableClassOverride,
@@ -39,7 +41,7 @@ final class AwsDynamodbTableReplica extends Resource {
            if (deletionProtectionEnabled != null)
              'deletion_protection_enabled': deletionProtectionEnabled,
            'global_table_arn': globalTableArn,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (pointInTimeRecovery != null)
              'point_in_time_recovery': pointInTimeRecovery,
            if (region != null) 'region': region,

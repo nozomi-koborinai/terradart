@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_service_account_iam_binding`.
 const Set<String> _googleServiceAccountIamBindingSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class GoogleServiceAccountIamBinding extends Resource {
 
   GoogleServiceAccountIamBinding({
     required super.localName,
-    required TfArg<String> serviceAccountId,
+    required RefTo<GoogleServiceAccount> serviceAccountId,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<Map<String, dynamic>>? condition,
@@ -29,7 +31,7 @@ final class GoogleServiceAccountIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service_account_id': serviceAccountId,
+           'service_account_id': serviceAccountId.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null) 'condition': condition,

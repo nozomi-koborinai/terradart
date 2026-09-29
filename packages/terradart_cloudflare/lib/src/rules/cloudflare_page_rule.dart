@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_page_rule`.
 const Set<String> _cloudflarePageRuleSensitive = <String>{};
 
@@ -558,7 +560,7 @@ final class CloudflarePageRule extends Resource {
     TfArg<num>? priority,
     TfArg<PageRuleStatus>? status,
     required TfArg<String> target,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required PageRuleActions actions,
     super.lifecycle,
     super.dependsOn,
@@ -570,7 +572,7 @@ final class CloudflarePageRule extends Resource {
            if (priority != null) 'priority': priority,
            if (status != null) 'status': status,
            'target': target,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'actions': TfArg.literal(actions.encode()),
          },
        );

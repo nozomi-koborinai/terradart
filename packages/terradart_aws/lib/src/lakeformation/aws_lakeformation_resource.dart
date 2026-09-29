@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_lakeformation_resource`.
 const Set<String> _awsLakeformationResourceSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsLakeformationResource extends Resource {
     required TfArg<String> arn,
     TfArg<bool>? hybridAccessEnabled,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     TfArg<bool>? useServiceLinkedRole,
     TfArg<bool>? withFederation,
     TfArg<bool>? withPrivilegedAccess,
@@ -30,7 +32,7 @@ final class AwsLakeformationResource extends Resource {
            if (hybridAccessEnabled != null)
              'hybrid_access_enabled': hybridAccessEnabled,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            if (useServiceLinkedRole != null)
              'use_service_linked_role': useServiceLinkedRole,
            if (withFederation != null) 'with_federation': withFederation,

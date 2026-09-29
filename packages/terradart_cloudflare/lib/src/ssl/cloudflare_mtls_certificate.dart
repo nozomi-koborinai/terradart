@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_mtls_certificate`.
 const Set<String> _cloudflareMtlsCertificateSensitive = <String>{'private_key'};
 
@@ -12,7 +14,7 @@ final class CloudflareMtlsCertificate extends Resource {
 
   CloudflareMtlsCertificate({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<bool> ca,
     required TfArg<String> certificates,
     TfArg<String>? name,
@@ -24,7 +26,7 @@ final class CloudflareMtlsCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'ca': ca,
            'certificates': certificates,
            if (name != null) 'name': name,

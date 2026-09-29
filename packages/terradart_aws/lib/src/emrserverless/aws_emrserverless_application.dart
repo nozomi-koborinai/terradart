@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_emrserverless_application`.
 const Set<String> _awsEmrserverlessApplicationSensitive = <String>{};
 
@@ -236,9 +241,9 @@ final class EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConf
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? encryptionKeyArn;
+  final RefTo<AwsKmsKey>? encryptionKeyArn;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamNamePrefix;
 
@@ -250,8 +255,9 @@ final class EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConf
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     if (encryptionKeyArn != null)
-      'encryption_key_arn': encryptionKeyArn!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+      'encryption_key_arn': encryptionKeyArn!.encodeAs('arn').toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamNamePrefix != null)
       'log_stream_name_prefix': logStreamNamePrefix!.toTfJson(),
     if (logTypes != null) 'log_types': [for (final e in logTypes!) e.encode()],
@@ -288,12 +294,12 @@ final class EmrserverlessApplicationMonitoringConfigurationManagedPersistenceMon
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? encryptionKeyArn;
+  final RefTo<AwsKmsKey>? encryptionKeyArn;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (encryptionKeyArn != null)
-      'encryption_key_arn': encryptionKeyArn!.toTfJson(),
+      'encryption_key_arn': encryptionKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -321,13 +327,13 @@ final class EmrserverlessApplicationMonitoringConfigurationS3MonitoringConfigura
     this.logUri,
   });
 
-  final TfArg<String>? encryptionKeyArn;
+  final RefTo<AwsKmsKey>? encryptionKeyArn;
 
   final TfArg<String>? logUri;
 
   Map<String, Object?> encode() => {
     if (encryptionKeyArn != null)
-      'encryption_key_arn': encryptionKeyArn!.toTfJson(),
+      'encryption_key_arn': encryptionKeyArn!.encodeAs('arn').toTfJson(),
     if (logUri != null) 'log_uri': logUri!.toTfJson(),
   };
 }
@@ -341,14 +347,14 @@ final class EmrserverlessApplicationNetworkConfiguration {
     this.subnetIds,
   });
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>>? subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
   };
 }
 

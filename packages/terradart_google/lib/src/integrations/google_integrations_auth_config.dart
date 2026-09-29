@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_integrations_auth_config`.
 const Set<String> _googleIntegrationsAuthConfigSensitive = <String>{};
 
@@ -505,12 +507,14 @@ final class IntegrationsAuthConfigDecryptedCredentialOidcToken {
 
   final TfArg<String>? audience;
 
-  final TfArg<String>? serviceAccountEmail;
+  final RefTo<GoogleServiceAccount>? serviceAccountEmail;
 
   Map<String, Object?> encode() => {
     if (audience != null) 'audience': audience!.toTfJson(),
     if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!.toTfJson(),
+      'service_account_email': serviceAccountEmail!
+          .encodeAs('email')
+          .toTfJson(),
   };
 }
 
@@ -525,11 +529,12 @@ final class IntegrationsAuthConfigDecryptedCredentialServiceAccountCredentials {
 
   final TfArg<String>? scope;
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   Map<String, Object?> encode() => {
     if (scope != null) 'scope': scope!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
   };
 }
 

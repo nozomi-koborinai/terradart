@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_emrcontainers_job_template`.
 const Set<String> _awsEmrcontainersJobTemplateSensitive = <String>{};
 
@@ -19,7 +23,7 @@ final class EmrcontainersJobTemplateJobTemplateData {
     required this.jobDriver,
   });
 
-  final TfArg<String> executionRoleArn;
+  final RefTo<AwsIamRole> executionRoleArn;
 
   final TfArg<Map<String, String>>? jobTags;
 
@@ -31,7 +35,7 @@ final class EmrcontainersJobTemplateJobTemplateData {
   final EmrcontainersJobTemplateJobTemplateDataJobDriver jobDriver;
 
   Map<String, Object?> encode() => {
-    'execution_role_arn': executionRoleArn.toTfJson(),
+    'execution_role_arn': executionRoleArn.encodeAs('arn').toTfJson(),
     if (jobTags != null) 'job_tags': jobTags!.toTfJson(),
     'release_label': releaseLabel.toTfJson(),
     if (configurationOverrides != null)
@@ -167,12 +171,12 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitor
     this.logStreamNamePrefix,
   });
 
-  final TfArg<String> logGroupName;
+  final RefTo<AwsCloudwatchLogGroup> logGroupName;
 
   final TfArg<String>? logStreamNamePrefix;
 
   Map<String, Object?> encode() => {
-    'log_group_name': logGroupName.toTfJson(),
+    'log_group_name': logGroupName.encodeAs('name').toTfJson(),
     if (logStreamNamePrefix != null)
       'log_stream_name_prefix': logStreamNamePrefix!.toTfJson(),
   };
@@ -305,7 +309,7 @@ final class AwsEmrcontainersJobTemplate extends Resource {
 
   AwsEmrcontainersJobTemplate({
     required super.localName,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -317,7 +321,7 @@ final class AwsEmrcontainersJobTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

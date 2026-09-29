@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_fsx_lustre_file_system`.
 const Set<String> _awsFsxLustreFileSystemSensitive = <String>{};
 
@@ -189,14 +193,14 @@ final class AwsFsxLustreFileSystem extends Resource {
     TfArg<Map<String, String>>? finalBackupTags,
     TfArg<String>? importPath,
     TfArg<num>? importedFileChunkSize,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<num>? perUnitStorageThroughput,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<bool>? skipFinalBackup,
     TfArg<num>? storageCapacity,
     TfArg<FsxLustreFileSystemStorageType>? storageType,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? throughputCapacity,
     TfArg<String>? weeklyMaintenanceStartTime,
@@ -231,15 +235,16 @@ final class AwsFsxLustreFileSystem extends Resource {
            if (importPath != null) 'import_path': importPath,
            if (importedFileChunkSize != null)
              'imported_file_chunk_size': importedFileChunkSize,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (perUnitStorageThroughput != null)
              'per_unit_storage_throughput': perUnitStorageThroughput,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            if (skipFinalBackup != null) 'skip_final_backup': skipFinalBackup,
            if (storageCapacity != null) 'storage_capacity': storageCapacity,
            if (storageType != null) 'storage_type': storageType,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (throughputCapacity != null)
              'throughput_capacity': throughputCapacity,

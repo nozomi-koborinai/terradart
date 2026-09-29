@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_sagemaker_mlflow_app`.
 const Set<String> _awsSagemakerMlflowAppSensitive = <String>{};
 
@@ -38,7 +40,7 @@ final class AwsSagemakerMlflowApp extends Resource {
     TfArg<SagemakerMlflowAppModelRegistrationMode>? modelRegistrationMode,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? weeklyMaintenanceWindowStart,
     super.lifecycle,
@@ -57,7 +59,7 @@ final class AwsSagemakerMlflowApp extends Resource {
              'model_registration_mode': modelRegistrationMode,
            'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (weeklyMaintenanceWindowStart != null)
              'weekly_maintenance_window_start': weeklyMaintenanceWindowStart,

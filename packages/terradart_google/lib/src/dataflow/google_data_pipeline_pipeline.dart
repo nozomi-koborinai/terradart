@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_data_pipeline_pipeline`.
 const Set<String> _googleDataPipelinePipelineSensitive = <String>{};
 
@@ -181,19 +186,19 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParamet
   >?
   ipConfiguration;
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<String>? machineType;
 
   final TfArg<num>? maxWorkers;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<num>? numWorkers;
 
-  final TfArg<String>? serviceAccountEmail;
+  final RefTo<GoogleServiceAccount>? serviceAccountEmail;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   final TfArg<String>? tempLocation;
 
@@ -213,14 +218,18 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParamet
     if (flexrsGoal != null) 'flexrs_goal': flexrsGoal!.toTfJson(),
     if (ipConfiguration != null)
       'ip_configuration': ipConfiguration!.toTfJson(),
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     if (machineType != null) 'machine_type': machineType!.toTfJson(),
     if (maxWorkers != null) 'max_workers': maxWorkers!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('name').toTfJson(),
     if (numWorkers != null) 'num_workers': numWorkers!.toTfJson(),
     if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+      'service_account_email': serviceAccountEmail!
+          .encodeAs('email')
+          .toTfJson(),
+    if (subnetwork != null)
+      'subnetwork': subnetwork!.encodeAs('self_link').toTfJson(),
     if (tempLocation != null) 'temp_location': tempLocation!.toTfJson(),
     if (workerRegion != null) 'worker_region': workerRegion!.toTfJson(),
     if (workerZone != null) 'worker_zone': workerZone!.toTfJson(),
@@ -358,19 +367,19 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParam
   >?
   ipConfiguration;
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<String>? machineType;
 
   final TfArg<num>? maxWorkers;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<num>? numWorkers;
 
-  final TfArg<String>? serviceAccountEmail;
+  final RefTo<GoogleServiceAccount>? serviceAccountEmail;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   final TfArg<String>? tempLocation;
 
@@ -391,14 +400,18 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParam
       'enable_streaming_engine': enableStreamingEngine!.toTfJson(),
     if (ipConfiguration != null)
       'ip_configuration': ipConfiguration!.toTfJson(),
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     if (machineType != null) 'machine_type': machineType!.toTfJson(),
     if (maxWorkers != null) 'max_workers': maxWorkers!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('name').toTfJson(),
     if (numWorkers != null) 'num_workers': numWorkers!.toTfJson(),
     if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+      'service_account_email': serviceAccountEmail!
+          .encodeAs('email')
+          .toTfJson(),
+    if (subnetwork != null)
+      'subnetwork': subnetwork!.encodeAs('self_link').toTfJson(),
     if (tempLocation != null) 'temp_location': tempLocation!.toTfJson(),
     if (workerRegion != null) 'worker_region': workerRegion!.toTfJson(),
     if (workerZone != null) 'worker_zone': workerZone!.toTfJson(),

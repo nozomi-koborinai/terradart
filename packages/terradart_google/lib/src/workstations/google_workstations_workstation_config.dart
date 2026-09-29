@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_workstations_workstation_config`.
 const Set<String> _googleWorkstationsWorkstationConfigSensitive = <String>{};
 
@@ -67,12 +70,12 @@ final class WorkstationsWorkstationConfigEncryptionKey {
     required this.kmsKeyServiceAccount,
   });
 
-  final TfArg<String> kmsKey;
+  final RefTo<GoogleKmsCryptoKey> kmsKey;
 
   final TfArg<String> kmsKeyServiceAccount;
 
   Map<String, Object?> encode() => {
-    'kms_key': kmsKey.toTfJson(),
+    'kms_key': kmsKey.encodeAs('id').toTfJson(),
     'kms_key_service_account': kmsKeyServiceAccount.toTfJson(),
   };
 }
@@ -172,7 +175,7 @@ final class WorkstationsWorkstationConfigHostGceInstance {
 
   final TfArg<num>? poolSize;
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final TfArg<List<Object?>>? serviceAccountScopes;
 
@@ -203,7 +206,8 @@ final class WorkstationsWorkstationConfigHostGceInstance {
       'instance_metadata': instanceMetadata!.toTfJson(),
     if (machineType != null) 'machine_type': machineType!.toTfJson(),
     if (poolSize != null) 'pool_size': poolSize!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
     if (serviceAccountScopes != null)
       'service_account_scopes': serviceAccountScopes!.toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),

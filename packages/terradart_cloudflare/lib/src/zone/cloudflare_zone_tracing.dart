@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_tracing`.
 const Set<String> _cloudflareZoneTracingSensitive = <String>{};
 
@@ -29,7 +31,7 @@ final class CloudflareZoneTracing extends Resource {
     TfArg<bool>? persist,
     TfArg<ZoneTracingPropagationPolicy>? propagationPolicy,
     TfArg<num>? samplingRatio,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -44,7 +46,7 @@ final class CloudflareZoneTracing extends Resource {
            if (propagationPolicy != null)
              'propagation_policy': propagationPolicy,
            if (samplingRatio != null) 'sampling_ratio': samplingRatio,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

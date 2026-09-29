@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_bedrockagentcore_evaluator`.
 const Set<String> _awsBedrockagentcoreEvaluatorSensitive = <String>{
   'evaluator_config.llm_as_a_judge.instructions',
@@ -101,12 +104,12 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedLambdaConfig {
     this.lambdaTimeoutInSeconds,
   });
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
   final TfArg<num>? lambdaTimeoutInSeconds;
 
   Map<String, Object?> encode() => {
-    'lambda_arn': lambdaArn.toTfJson(),
+    'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     if (lambdaTimeoutInSeconds != null)
       'lambda_timeout_in_seconds': lambdaTimeoutInSeconds!.toTfJson(),
   };
@@ -337,7 +340,7 @@ final class AwsBedrockagentcoreEvaluator extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> evaluatorName,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<BedrockagentcoreEvaluatorLevel> level,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -351,7 +354,7 @@ final class AwsBedrockagentcoreEvaluator extends Resource {
          argMap: {
            if (description != null) 'description': description,
            'evaluator_name': evaluatorName,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'level': level,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

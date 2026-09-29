@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_rds_custom_db_engine_version`.
 const Set<String> _awsRdsCustomDbEngineVersionSensitive = <String>{};
 
@@ -91,7 +93,7 @@ final class AwsRdsCustomDbEngineVersion extends Resource {
     required TfArg<String> engine,
     required TfArg<String> engineVersion,
     RdsCustomDbEngineVersionManifest? manifest,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? manifestHash,
     TfArg<String>? region,
     TfArg<String>? sourceImageId,
@@ -114,7 +116,7 @@ final class AwsRdsCustomDbEngineVersion extends Resource {
            'engine': engine,
            'engine_version': engineVersion,
            ...?manifest?.argMap,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (manifestHash != null) 'manifest_hash': manifestHash,
            if (region != null) 'region': region,
            if (sourceImageId != null) 'source_image_id': sourceImageId,

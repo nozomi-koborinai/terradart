@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_ses_event_destination`.
 const Set<String> _awsSesEventDestinationSensitive = <String>{};
 
@@ -169,12 +172,12 @@ final class SesEventDestinationKinesisDestination {
     required this.streamArn,
   });
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> streamArn;
 
   Map<String, Object?> encode() => {
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'stream_arn': streamArn.toTfJson(),
   };
 }
@@ -185,9 +188,11 @@ final class SesEventDestinationKinesisDestination {
 final class SesEventDestinationSnsDestination {
   const SesEventDestinationSnsDestination({required this.topicArn});
 
-  final TfArg<String> topicArn;
+  final RefTo<AwsSnsTopic> topicArn;
 
-  Map<String, Object?> encode() => {'topic_arn': topicArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'topic_arn': topicArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_ses_event_destination`.

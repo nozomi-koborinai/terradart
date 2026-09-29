@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_insights_report_config`.
 const Set<String> _googleStorageInsightsReportConfigSensitive = <String>{};
 
@@ -187,12 +189,12 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestina
     this.destinationPath,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String>? destinationPath;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     if (destinationPath != null)
       'destination_path': destinationPath!.toTfJson(),
   };
@@ -206,10 +208,10 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters
     this.bucket,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<GoogleStorageBucket>? bucket;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('name').toTfJson(),
   };
 }
 

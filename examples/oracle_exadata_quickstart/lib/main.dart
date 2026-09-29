@@ -51,7 +51,7 @@ final class OracleExadataStack extends Stack {
       localName: 'odb_net',
       location: .literal(location),
       odbNetworkId: .literal(odbNetworkId),
-      network: .ref(vpc.selfLink),
+      network: vpc.ref,
       dependsOn: [...apiDeps, ResourceDependency(vpc)],
     );
     add(odbNetwork);

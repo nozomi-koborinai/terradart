@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_compute_network_peering`.
 const Set<String> _googleComputeNetworkPeeringSensitive = <String>{};
 
@@ -35,8 +37,8 @@ final class GoogleComputeNetworkPeering extends Resource {
   GoogleComputeNetworkPeering({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> network,
-    required TfArg<String> peerNetwork,
+    required RefTo<GoogleComputeNetwork> network,
+    required RefTo<GoogleComputeNetwork> peerNetwork,
     TfArg<bool>? exportCustomRoutes,
     TfArg<bool>? importCustomRoutes,
     TfArg<bool>? exportSubnetRoutesWithPublicIp,
@@ -52,8 +54,8 @@ final class GoogleComputeNetworkPeering extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'network': network,
-           'peer_network': peerNetwork,
+           'network': network.encodeAs('id'),
+           'peer_network': peerNetwork.encodeAs('id'),
            if (exportCustomRoutes != null)
              'export_custom_routes': exportCustomRoutes,
            if (importCustomRoutes != null)

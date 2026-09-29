@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_redshift_logging`.
 const Set<String> _awsRedshiftLoggingSensitive = <String>{};
 
@@ -34,7 +36,7 @@ final class AwsRedshiftLogging extends Resource {
 
   AwsRedshiftLogging({
     required super.localName,
-    TfArg<String>? bucketName,
+    RefTo<AwsS3Bucket>? bucketName,
     required TfArg<String> clusterIdentifier,
     TfArg<RedshiftLoggingLogDestinationType>? logDestinationType,
     List<TfArg<RedshiftLoggingLogExports>>? logExports,
@@ -47,7 +49,7 @@ final class AwsRedshiftLogging extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bucketName != null) 'bucket_name': bucketName,
+           if (bucketName != null) 'bucket_name': bucketName.encodeAs('id'),
            'cluster_identifier': clusterIdentifier,
            if (logDestinationType != null)
              'log_destination_type': logDestinationType,

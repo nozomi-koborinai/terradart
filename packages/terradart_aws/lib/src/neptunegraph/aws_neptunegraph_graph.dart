@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_neptunegraph_graph`.
 const Set<String> _awsNeptunegraphGraphSensitive = <String>{};
 
@@ -94,7 +96,7 @@ final class AwsNeptunegraphGraph extends Resource {
     required super.localName,
     TfArg<bool>? deletionProtection,
     NeptunegraphGraphName? graphName,
-    TfArg<String>? kmsKeyIdentifier,
+    RefTo<AwsKmsKey>? kmsKeyIdentifier,
     required TfArg<num> provisionedMemory,
     TfArg<bool>? publicConnectivity,
     TfArg<String>? region,
@@ -111,7 +113,8 @@ final class AwsNeptunegraphGraph extends Resource {
            if (deletionProtection != null)
              'deletion_protection': deletionProtection,
            ...?graphName?.argMap,
-           if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
+           if (kmsKeyIdentifier != null)
+             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
            'provisioned_memory': provisionedMemory,
            if (publicConnectivity != null)
              'public_connectivity': publicConnectivity,

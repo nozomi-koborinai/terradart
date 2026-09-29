@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_autoscaling_notification`.
 const Set<String> _awsAutoscalingNotificationSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsAutoscalingNotification extends Resource {
     required TfArg<List<String>> groupNames,
     required TfArg<List<String>> notifications,
     TfArg<String>? region,
-    required TfArg<String> topicArn,
+    required RefTo<AwsSnsTopic> topicArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,7 +28,7 @@ final class AwsAutoscalingNotification extends Resource {
            'group_names': groupNames,
            'notifications': notifications,
            if (region != null) 'region': region,
-           'topic_arn': topicArn,
+           'topic_arn': topicArn.encodeAs('arn'),
          },
        );
 

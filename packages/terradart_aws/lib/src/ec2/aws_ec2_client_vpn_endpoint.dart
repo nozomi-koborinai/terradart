@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_ec2_client_vpn_endpoint`.
 const Set<String> _awsEc2ClientVpnEndpointSensitive = <String>{};
 
@@ -106,12 +110,12 @@ final class Ec2ClientVpnEndpointClientConnectOptions {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? lambdaFunctionArn;
+  final RefTo<AwsLambdaFunction>? lambdaFunctionArn;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (lambdaFunctionArn != null)
-      'lambda_function_arn': lambdaFunctionArn!.toTfJson(),
+      'lambda_function_arn': lambdaFunctionArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -265,7 +269,7 @@ final class AwsEc2ClientVpnEndpoint extends Resource {
     TfArg<List<String>>? dnsServers,
     TfArg<Ec2ClientVpnEndpointEndpointIpAddressType>? endpointIpAddressType,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<Ec2ClientVpnEndpointSelfServicePortal>? selfServicePortal,
     required TfArg<String> serverCertificateArn,
     TfArg<num>? sessionTimeoutHours,
@@ -273,7 +277,7 @@ final class AwsEc2ClientVpnEndpoint extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<Ec2ClientVpnEndpointTrafficIpAddressType>? trafficIpAddressType,
     TfArg<Ec2ClientVpnEndpointTransportProtocol>? transportProtocol,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     TfArg<num>? vpnPort,
     required List<Ec2ClientVpnEndpointAuthenticationOptions>
     authenticationOptions,
@@ -299,7 +303,8 @@ final class AwsEc2ClientVpnEndpoint extends Resource {
            if (endpointIpAddressType != null)
              'endpoint_ip_address_type': endpointIpAddressType,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            if (selfServicePortal != null)
              'self_service_portal': selfServicePortal,
            'server_certificate_arn': serverCertificateArn,
@@ -311,7 +316,7 @@ final class AwsEc2ClientVpnEndpoint extends Resource {
              'traffic_ip_address_type': trafficIpAddressType,
            if (transportProtocol != null)
              'transport_protocol': transportProtocol,
-           if (vpcId != null) 'vpc_id': vpcId,
+           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
            if (vpnPort != null) 'vpn_port': vpnPort,
            'authentication_options': TfArg.literal([
              for (final e in authenticationOptions) e.encode(),

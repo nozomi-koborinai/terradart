@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_sagemaker_model`.
 const Set<String> _awsSagemakerModelSensitive = <String>{};
 
@@ -706,13 +710,13 @@ final class SagemakerModelVpcConfig {
     required this.subnets,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
@@ -723,7 +727,7 @@ final class AwsSagemakerModel extends Resource {
   AwsSagemakerModel({
     required super.localName,
     TfArg<bool>? enableNetworkIsolation,
-    required TfArg<String> executionRoleArn,
+    required RefTo<AwsIamRole> executionRoleArn,
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -740,7 +744,7 @@ final class AwsSagemakerModel extends Resource {
          argMap: {
            if (enableNetworkIsolation != null)
              'enable_network_isolation': enableNetworkIsolation,
-           'execution_role_arn': executionRoleArn,
+           'execution_role_arn': executionRoleArn.encodeAs('arn'),
            if (name != null) 'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

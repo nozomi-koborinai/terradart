@@ -80,7 +80,7 @@ final class _TestStack extends Stack {
       AwsLambdaFunction(
         localName: 'hello',
         functionName: TfArg.literal('hello-dart'),
-        role: TfArg.ref(role.arn),
+        role: role.ref,
         runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023),
         handler: TfArg.literal('bootstrap'),
         code: .filename(TfArg.literal('build/bootstrap.zip')),

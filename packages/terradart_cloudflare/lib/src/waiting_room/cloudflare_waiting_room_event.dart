@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_waiting_room_event`.
 const Set<String> _cloudflareWaitingRoomEventSensitive = <String>{};
 
@@ -54,7 +56,7 @@ final class CloudflareWaitingRoomEvent extends Resource {
     TfArg<WaitingRoomEventTurnstileAction>? turnstileAction,
     TfArg<WaitingRoomEventTurnstileMode>? turnstileMode,
     required TfArg<String> waitingRoomId,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -82,7 +84,7 @@ final class CloudflareWaitingRoomEvent extends Resource {
            if (turnstileAction != null) 'turnstile_action': turnstileAction,
            if (turnstileMode != null) 'turnstile_mode': turnstileMode,
            'waiting_room_id': waitingRoomId,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_finspace_kx_cluster`.
 const Set<String> _awsFinspaceKxClusterSensitive = <String>{};
 
@@ -126,14 +131,14 @@ final class FinspaceKxClusterCode {
     this.s3ObjectVersion,
   });
 
-  final TfArg<String> s3Bucket;
+  final RefTo<AwsS3Bucket> s3Bucket;
 
   final TfArg<String> s3Key;
 
   final TfArg<String>? s3ObjectVersion;
 
   Map<String, Object?> encode() => {
-    's3_bucket': s3Bucket.toTfJson(),
+    's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     's3_key': s3Key.toTfJson(),
     if (s3ObjectVersion != null)
       's3_object_version': s3ObjectVersion!.toTfJson(),
@@ -281,17 +286,17 @@ final class FinspaceKxClusterVpcConfiguration {
 
   final TfArg<FinspaceKxClusterVpcConfigurationIpAddressType> ipAddressType;
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
-  final TfArg<String> vpcId;
+  final RefTo<AwsVpc> vpcId;
 
   Map<String, Object?> encode() => {
     'ip_address_type': ipAddressType.toTfJson(),
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
-    'vpc_id': vpcId.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
+    'vpc_id': vpcId.encodeAs('id').toTfJson(),
   };
 }
 

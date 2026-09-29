@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_iam_instance_profile`.
 const Set<String> _awsIamInstanceProfileSensitive = <String>{};
 
@@ -72,7 +74,7 @@ final class AwsIamInstanceProfile extends Resource {
     required super.localName,
     IamInstanceProfileName? name,
     TfArg<String>? path,
-    TfArg<String>? role,
+    RefTo<AwsIamRole>? role,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -83,7 +85,7 @@ final class AwsIamInstanceProfile extends Resource {
          argMap: {
            ...?name?.argMap,
            if (path != null) 'path': path,
-           if (role != null) 'role': role,
+           if (role != null) 'role': role.encodeAs('name'),
            if (tags != null) 'tags': tags,
          },
        );

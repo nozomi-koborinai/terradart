@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_load_balancer_monitor_group`.
 const Set<String> _cloudflareLoadBalancerMonitorGroupSensitive = <String>{};
 
@@ -40,7 +42,7 @@ final class CloudflareLoadBalancerMonitorGroup extends Resource {
 
   CloudflareLoadBalancerMonitorGroup({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> description,
     required List<LoadBalancerMonitorGroupMembers> members,
     super.lifecycle,
@@ -50,7 +52,7 @@ final class CloudflareLoadBalancerMonitorGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'description': description,
            'members': TfArg.literal([for (final e in members) e.encode()]),
          },

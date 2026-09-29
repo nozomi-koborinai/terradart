@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_compute_route`.
 const Set<String> _googleComputeRouteSensitive = <String>{};
 
@@ -152,7 +154,7 @@ final class GoogleComputeRoute extends Resource {
   GoogleComputeRoute({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     required TfArg<String> destRange,
     required ComputeRouteNextHop nextHop,
     TfArg<String>? description,
@@ -168,7 +170,7 @@ final class GoogleComputeRoute extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'network': network,
+           'network': network.encodeAs('id'),
            'dest_range': destRange,
            if (description != null) 'description': description,
            if (priority != null) 'priority': priority,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_user_agent_blocking_rule`.
 const Set<String> _cloudflareUserAgentBlockingRuleSensitive = <String>{};
 
@@ -58,7 +60,7 @@ final class CloudflareUserAgentBlockingRule extends Resource {
     TfArg<String>? description,
     required TfArg<UserAgentBlockingRuleMode> mode,
     TfArg<bool>? paused,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required UserAgentBlockingRuleConfiguration configuration,
     super.lifecycle,
     super.dependsOn,
@@ -70,7 +72,7 @@ final class CloudflareUserAgentBlockingRule extends Resource {
            if (description != null) 'description': description,
            'mode': mode,
            if (paused != null) 'paused': paused,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'configuration': TfArg.literal(configuration.encode()),
          },
        );

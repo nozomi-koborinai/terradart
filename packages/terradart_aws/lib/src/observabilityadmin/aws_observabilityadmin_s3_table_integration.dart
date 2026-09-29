@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_observabilityadmin_s3_table_integration`.
 const Set<String> _awsObservabilityadminS3TableIntegrationSensitive =
     <String>{};
@@ -17,13 +20,13 @@ final class ObservabilityadminS3TableIntegrationEncryption {
     required this.sseAlgorithm,
   });
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<ObservabilityadminS3TableIntegrationEncryptionSseAlgorithm>
   sseAlgorithm;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),
   };
 }
@@ -48,7 +51,7 @@ final class AwsObservabilityadminS3TableIntegration extends Resource {
   AwsObservabilityadminS3TableIntegration({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     List<ObservabilityadminS3TableIntegrationEncryption>? encryption,
     super.lifecycle,
@@ -59,7 +62,7 @@ final class AwsObservabilityadminS3TableIntegration extends Resource {
          terraformType: tfType,
          argMap: {
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (encryption != null)
              'encryption': TfArg.literal([

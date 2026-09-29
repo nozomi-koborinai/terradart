@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_fsx_ontap_file_system`.
 const Set<String> _awsFsxOntapFileSystemSensitive = <String>{
   'fsx_admin_password',
@@ -151,15 +155,15 @@ final class AwsFsxOntapFileSystem extends Resource {
     TfArg<String>? endpointIpAddressRange,
     TfArg<String>? fsxAdminPassword,
     TfArg<num>? haPairs,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<FsxOntapFileSystemNetworkType>? networkType,
     required TfArg<String> preferredSubnetId,
     TfArg<String>? region,
     TfArg<List<String>>? routeTableIds,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     required TfArg<num> storageCapacity,
     TfArg<FsxOntapFileSystemStorageType>? storageType,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     required FsxOntapFileSystemThroughputCapacity throughputCapacity,
     TfArg<String>? weeklyMaintenanceStartTime,
@@ -180,15 +184,16 @@ final class AwsFsxOntapFileSystem extends Resource {
              'endpoint_ip_address_range': endpointIpAddressRange,
            if (fsxAdminPassword != null) 'fsx_admin_password': fsxAdminPassword,
            if (haPairs != null) 'ha_pairs': haPairs,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (networkType != null) 'network_type': networkType,
            'preferred_subnet_id': preferredSubnetId,
            if (region != null) 'region': region,
            if (routeTableIds != null) 'route_table_ids': routeTableIds,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            'storage_capacity': storageCapacity,
            if (storageType != null) 'storage_type': storageType,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            ...throughputCapacity.argMap,
            if (weeklyMaintenanceStartTime != null)

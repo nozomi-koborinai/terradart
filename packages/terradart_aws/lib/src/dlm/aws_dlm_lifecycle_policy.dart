@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_dlm_lifecycle_policy`.
 const Set<String> _awsDlmLifecyclePolicySensitive = <String>{};
 
@@ -924,7 +926,7 @@ final class AwsDlmLifecyclePolicy extends Resource {
     required super.localName,
     TfArg<DlmLifecyclePolicyDefaultPolicy>? defaultPolicy,
     required TfArg<String> description,
-    required TfArg<String> executionRoleArn,
+    required RefTo<AwsIamRole> executionRoleArn,
     TfArg<String>? region,
     TfArg<DlmLifecyclePolicyState>? state,
     TfArg<Map<String, String>>? tags,
@@ -938,7 +940,7 @@ final class AwsDlmLifecyclePolicy extends Resource {
          argMap: {
            if (defaultPolicy != null) 'default_policy': defaultPolicy,
            'description': description,
-           'execution_role_arn': executionRoleArn,
+           'execution_role_arn': executionRoleArn.encodeAs('arn'),
            if (region != null) 'region': region,
            if (state != null) 'state': state,
            if (tags != null) 'tags': tags,

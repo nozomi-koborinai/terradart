@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_sql_database_instance`.
 const Set<String> _googleSqlDatabaseInstanceSensitive = <String>{
   'replica_configuration.password',
@@ -748,7 +750,7 @@ final class GoogleSqlDatabaseInstance extends Resource {
     TfArg<String>? instanceType,
     TfArg<num>? nodeCount,
     TfArg<String>? maintenanceVersion,
-    TfArg<String>? encryptionKeyName,
+    RefTo<GoogleKmsCryptoKey>? encryptionKeyName,
     TfArg<List<String>>? replicaNames,
     TfArg<String>? finalBackupDescription,
     TfArg<String>? backupdrBackup,
@@ -782,7 +784,7 @@ final class GoogleSqlDatabaseInstance extends Resource {
            if (maintenanceVersion != null)
              'maintenance_version': maintenanceVersion,
            if (encryptionKeyName != null)
-             'encryption_key_name': encryptionKeyName,
+             'encryption_key_name': encryptionKeyName.encodeAs('id'),
            if (replicaNames != null) 'replica_names': replicaNames,
            if (finalBackupDescription != null)
              'final_backup_description': finalBackupDescription,

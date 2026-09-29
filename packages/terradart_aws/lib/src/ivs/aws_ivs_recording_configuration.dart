@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_ivs_recording_configuration`.
 const Set<String> _awsIvsRecordingConfigurationSensitive = <String>{};
 
@@ -26,9 +28,11 @@ final class IvsRecordingConfigurationDestinationConfigurationS3 {
     required this.bucketName,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
-  Map<String, Object?> encode() => {'bucket_name': bucketName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `thumbnail_configuration` block of

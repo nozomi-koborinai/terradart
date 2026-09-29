@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_autoscaling_group`.
 const Set<String> _awsAutoscalingGroupSensitive = <String>{};
 
@@ -408,7 +410,7 @@ final class AutoscalingGroupInitialLifecycleHook {
 
   final TfArg<String>? notificationTargetArn;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   Map<String, Object?> encode() => {
     if (defaultResult != null) 'default_result': defaultResult!.toTfJson(),
@@ -420,7 +422,7 @@ final class AutoscalingGroupInitialLifecycleHook {
       'notification_metadata': notificationMetadata!.toTfJson(),
     if (notificationTargetArn != null)
       'notification_target_arn': notificationTargetArn!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
   };
 }
 

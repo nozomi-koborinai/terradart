@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_region_network_endpoint_group`.
 const Set<String> _googleComputeRegionNetworkEndpointGroupSensitive =
     <String>{};
@@ -241,8 +244,8 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
     ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine?
     appEngine,
     TfArg<String>? pscTargetService,
-    TfArg<String>? network,
-    TfArg<String>? subnetwork,
+    RefTo<GoogleComputeNetwork>? network,
+    RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<String>? description,
     TfArg<String>? project,
     super.lifecycle,
@@ -263,8 +266,8 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
            if (appEngine != null)
              'app_engine': TfArg.literal([appEngine.toArgMap()]),
            if (pscTargetService != null) 'psc_target_service': pscTargetService,
-           if (network != null) 'network': network,
-           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (network != null) 'network': network.encodeAs('id'),
+           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
            if (description != null) 'description': description,
            if (project != null) 'project': project,
          },

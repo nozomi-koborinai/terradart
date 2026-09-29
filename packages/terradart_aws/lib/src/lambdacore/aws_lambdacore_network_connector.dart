@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_lambdacore_network_connector`.
 const Set<String> _awsLambdacoreNetworkConnectorSensitive = <String>{};
 
@@ -47,9 +50,9 @@ final class LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration {
   >?
   networkProtocol;
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
     'associated_compute_resource_types': [
@@ -57,8 +60,8 @@ final class LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration {
     ],
     if (networkProtocol != null)
       'network_protocol': networkProtocol!.toTfJson(),
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 

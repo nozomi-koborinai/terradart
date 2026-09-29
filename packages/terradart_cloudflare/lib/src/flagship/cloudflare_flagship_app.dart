@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_flagship_app`.
 const Set<String> _cloudflareFlagshipAppSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareFlagshipApp extends Resource {
 
   CloudflareFlagshipApp({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     super.lifecycle,
     super.dependsOn,
@@ -24,7 +26,7 @@ final class CloudflareFlagshipApp extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'name': name},
+         argMap: {'account_id': accountId.encodeAs('id'), 'name': name},
        );
 
   @override

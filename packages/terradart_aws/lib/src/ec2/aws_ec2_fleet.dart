@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_ec2_fleet`.
 const Set<String> _awsEc2FleetSensitive = <String>{};
 
@@ -123,7 +125,7 @@ final class Ec2FleetLaunchTemplateConfigOverride {
 
   final TfArg<num>? priority;
 
-  final TfArg<String>? subnetId;
+  final RefTo<AwsSubnet>? subnetId;
 
   final TfArg<num>? weightedCapacity;
 
@@ -136,7 +138,7 @@ final class Ec2FleetLaunchTemplateConfigOverride {
     if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
     if (maxPrice != null) 'max_price': maxPrice!.toTfJson(),
     if (priority != null) 'priority': priority!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.toTfJson(),
+    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
     if (weightedCapacity != null)
       'weighted_capacity': weightedCapacity!.toTfJson(),
     if (instanceRequirements != null)

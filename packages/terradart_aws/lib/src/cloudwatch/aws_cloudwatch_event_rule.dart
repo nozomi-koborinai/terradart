@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cloudwatch_event_rule`.
 const Set<String> _awsCloudwatchEventRuleSensitive = <String>{};
 
@@ -150,7 +152,7 @@ final class AwsCloudwatchEventRule extends Resource {
     CloudwatchEventRuleStatus? status,
     CloudwatchEventRuleName? name,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     TfArg<String>? scheduleExpression,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -167,7 +169,7 @@ final class AwsCloudwatchEventRule extends Resource {
            ...?status?.argMap,
            ...?name?.argMap,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            if (scheduleExpression != null)
              'schedule_expression': scheduleExpression,
            if (tags != null) 'tags': tags,

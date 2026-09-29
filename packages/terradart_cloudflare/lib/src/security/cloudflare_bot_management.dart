@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_bot_management`.
 const Set<String> _cloudflareBotManagementSensitive = <String>{};
 
@@ -144,7 +146,7 @@ final class CloudflareBotManagement extends Resource {
     TfArg<bool>? sbfmStaticResourceProtection,
     TfArg<BotManagementSbfmVerifiedBots>? sbfmVerifiedBots,
     TfArg<bool>? suppressSessionScore,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -184,7 +186,7 @@ final class CloudflareBotManagement extends Resource {
            if (sbfmVerifiedBots != null) 'sbfm_verified_bots': sbfmVerifiedBots,
            if (suppressSessionScore != null)
              'suppress_session_score': suppressSessionScore,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

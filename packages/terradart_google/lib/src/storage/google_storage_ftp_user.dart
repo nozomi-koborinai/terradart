@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_ftp_user`.
 const Set<String> _googleStorageFtpUserSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class StorageFtpUserStorageDirectoryMappings {
     this.permission,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<GoogleStorageBucket>? bucket;
 
   final TfArg<String>? bucketPrefix;
 
@@ -27,7 +29,7 @@ final class StorageFtpUserStorageDirectoryMappings {
   final TfArg<StorageFtpUserStorageDirectoryMappingsPermission>? permission;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('name').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (directory != null) 'directory': directory!.toTfJson(),
     if (permission != null) 'permission': permission!.toTfJson(),

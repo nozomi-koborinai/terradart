@@ -4,6 +4,12 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_composer_environment`.
 const Set<String> _googleComposerEnvironmentSensitive = <String>{};
 
@@ -187,9 +193,11 @@ final class ComposerEnvironmentConfigDatabaseConfig {
 final class ComposerEnvironmentConfigEncryptionConfig {
   const ComposerEnvironmentConfigEncryptionConfig({required this.kmsKeyName});
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `config.maintenance_window` block of
@@ -284,13 +292,13 @@ final class ComposerEnvironmentConfigNodeConfig {
 
   final TfArg<String>? machineType;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<List<Object?>>? oauthScopes;
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   final TfArg<List<Object?>>? tags;
 
@@ -309,10 +317,11 @@ final class ComposerEnvironmentConfigNodeConfig {
     if (enableIpMasqAgent != null)
       'enable_ip_masq_agent': enableIpMasqAgent!.toTfJson(),
     if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
     if (oauthScopes != null) 'oauth_scopes': oauthScopes!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
+    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     if (zone != null) 'zone': zone!.toTfJson(),
     if (ipAllocationPolicy != null)
@@ -731,9 +740,11 @@ final class ComposerEnvironmentConfigWorkloadsConfigWorker {
 final class ComposerEnvironmentStorageConfig {
   const ComposerEnvironmentStorageConfig({required this.bucket});
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
-  Map<String, Object?> encode() => {'bucket': bucket.toTfJson()};
+  Map<String, Object?> encode() => {
+    'bucket': bucket.encodeAs('name').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_composer_environment`.

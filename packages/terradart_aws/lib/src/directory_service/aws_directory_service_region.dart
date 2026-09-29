@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_directory_service_region`.
 const Set<String> _awsDirectoryServiceRegionSensitive = <String>{};
 
@@ -16,13 +19,13 @@ final class DirectoryServiceRegionVpcSettings {
     required this.vpcId,
   });
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
-  final TfArg<String> vpcId;
+  final RefTo<AwsVpc> vpcId;
 
   Map<String, Object?> encode() => {
-    'subnet_ids': subnetIds.toTfJson(),
-    'vpc_id': vpcId.toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
+    'vpc_id': vpcId.encodeAs('id').toTfJson(),
   };
 }
 

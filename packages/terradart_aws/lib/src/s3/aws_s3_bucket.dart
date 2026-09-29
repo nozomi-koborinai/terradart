@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_s3_bucket`.
 const Set<String> _awsS3BucketSensitive = <String>{};
 
@@ -407,12 +409,12 @@ enum S3BucketLifecycleRuleTransitionStorageClass implements TerraformEnum {
 final class S3BucketLogging {
   const S3BucketLogging({required this.targetBucket, this.targetPrefix});
 
-  final TfArg<String> targetBucket;
+  final RefTo<AwsS3Bucket> targetBucket;
 
   final TfArg<String>? targetPrefix;
 
   Map<String, Object?> encode() => {
-    'target_bucket': targetBucket.toTfJson(),
+    'target_bucket': targetBucket.encodeAs('id').toTfJson(),
     if (targetPrefix != null) 'target_prefix': targetPrefix!.toTfJson(),
   };
 }
@@ -426,12 +428,12 @@ final class S3BucketReplicationConfiguration {
     required this.rules,
   });
 
-  final TfArg<String> role;
+  final RefTo<AwsIamRole> role;
 
   final List<S3BucketReplicationConfigurationRules> rules;
 
   Map<String, Object?> encode() => {
-    'role': role.toTfJson(),
+    'role': role.encodeAs('arn').toTfJson(),
     'rules': [for (final e in rules) e.encode()],
   };
 }
@@ -524,7 +526,7 @@ final class S3BucketReplicationConfigurationRulesDestination {
 
   final TfArg<String>? accountId;
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String>? replicaKmsKeyId;
 
@@ -541,7 +543,7 @@ final class S3BucketReplicationConfigurationRulesDestination {
 
   Map<String, Object?> encode() => {
     if (accountId != null) 'account_id': accountId!.toTfJson(),
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('arn').toTfJson(),
     if (replicaKmsKeyId != null)
       'replica_kms_key_id': replicaKmsKeyId!.toTfJson(),
     if (storageClass != null) 'storage_class': storageClass!.toTfJson(),

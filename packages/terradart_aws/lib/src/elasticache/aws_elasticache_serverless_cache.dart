@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_elasticache_serverless_cache`.
 const Set<String> _awsElasticacheServerlessCacheSensitive = <String>{};
 
@@ -104,15 +108,15 @@ final class AwsElasticacheServerlessCache extends Resource {
     TfArg<String>? dailySnapshotTime,
     TfArg<String>? description,
     required TfArg<String> engine,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? majorEngineVersion,
     required TfArg<String> name,
     TfArg<ElasticacheServerlessCacheNetworkType>? networkType,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<List<String>>? snapshotArnsToRestore,
     TfArg<num>? snapshotRetentionLimit,
-    TfArg<List<String>>? subnetIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? userGroupId,
     List<ElasticacheServerlessCacheCacheUsageLimits>? cacheUsageLimits,
@@ -127,18 +131,19 @@ final class AwsElasticacheServerlessCache extends Resource {
              'daily_snapshot_time': dailySnapshotTime,
            if (description != null) 'description': description,
            'engine': engine,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (majorEngineVersion != null)
              'major_engine_version': majorEngineVersion,
            'name': name,
            if (networkType != null) 'network_type': networkType,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            if (snapshotArnsToRestore != null)
              'snapshot_arns_to_restore': snapshotArnsToRestore,
            if (snapshotRetentionLimit != null)
              'snapshot_retention_limit': snapshotRetentionLimit,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (userGroupId != null) 'user_group_id': userGroupId,
            if (cacheUsageLimits != null)

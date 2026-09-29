@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_datasync_location_s3`.
 const Set<String> _awsDatasyncLocationS3Sensitive = <String>{};
 
@@ -44,7 +46,7 @@ final class AwsDatasyncLocationS3 extends Resource {
     required super.localName,
     TfArg<List<String>>? agentArns,
     TfArg<String>? region,
-    required TfArg<String> s3BucketArn,
+    required RefTo<AwsS3Bucket> s3BucketArn,
     TfArg<DatasyncLocationS3S3StorageClass>? s3StorageClass,
     required TfArg<String> subdirectory,
     TfArg<Map<String, String>>? tags,
@@ -58,7 +60,7 @@ final class AwsDatasyncLocationS3 extends Resource {
          argMap: {
            if (agentArns != null) 'agent_arns': agentArns,
            if (region != null) 'region': region,
-           's3_bucket_arn': s3BucketArn,
+           's3_bucket_arn': s3BucketArn.encodeAs('arn'),
            if (s3StorageClass != null) 's3_storage_class': s3StorageClass,
            'subdirectory': subdirectory,
            if (tags != null) 'tags': tags,

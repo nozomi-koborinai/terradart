@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_pipeline_stream`.
 const Set<String> _cloudflarePipelineStreamSensitive = <String>{};
 
@@ -225,7 +227,7 @@ final class CloudflarePipelineStream extends Resource {
 
   CloudflarePipelineStream({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     PipelineStreamFormat? format,
     PipelineStreamHttp? http,
@@ -238,7 +240,7 @@ final class CloudflarePipelineStream extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'name': name,
            if (format != null) 'format': TfArg.literal(format.encode()),
            if (http != null) 'http': TfArg.literal(http.encode()),

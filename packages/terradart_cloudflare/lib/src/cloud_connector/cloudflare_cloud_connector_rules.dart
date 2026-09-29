@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_cloud_connector_rules`.
 const Set<String> _cloudflareCloudConnectorRulesSensitive = <String>{};
 
@@ -77,7 +79,7 @@ final class CloudflareCloudConnectorRules extends Resource {
 
   CloudflareCloudConnectorRules({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     List<CloudConnectorRulesRules>? rules,
     super.lifecycle,
     super.dependsOn,
@@ -86,7 +88,7 @@ final class CloudflareCloudConnectorRules extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (rules != null)
              'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },

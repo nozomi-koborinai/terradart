@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_iot_topic_rule`.
 const Set<String> _awsIotTopicRuleSensitive = <String>{};
 
@@ -20,7 +25,7 @@ final class IotTopicRuleCloudwatchAlarm {
 
   final TfArg<String> alarmName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> stateReason;
 
@@ -28,7 +33,7 @@ final class IotTopicRuleCloudwatchAlarm {
 
   Map<String, Object?> encode() => {
     'alarm_name': alarmName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'state_reason': stateReason.toTfJson(),
     'state_value': stateValue.toTfJson(),
   };
@@ -46,14 +51,14 @@ final class IotTopicRuleCloudwatchLogs {
 
   final TfArg<bool>? batchMode;
 
-  final TfArg<String> logGroupName;
+  final RefTo<AwsCloudwatchLogGroup> logGroupName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
-    'log_group_name': logGroupName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'log_group_name': logGroupName.encodeAs('name').toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -80,7 +85,7 @@ final class IotTopicRuleCloudwatchMetric {
 
   final TfArg<String> metricValue;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
@@ -89,7 +94,7 @@ final class IotTopicRuleCloudwatchMetric {
       'metric_timestamp': metricTimestamp!.toTfJson(),
     'metric_unit': metricUnit.toTfJson(),
     'metric_value': metricValue.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -126,7 +131,7 @@ final class IotTopicRuleDynamodb {
 
   final TfArg<String>? rangeKeyValue;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> tableName;
 
@@ -139,7 +144,7 @@ final class IotTopicRuleDynamodb {
     if (rangeKeyField != null) 'range_key_field': rangeKeyField!.toTfJson(),
     if (rangeKeyType != null) 'range_key_type': rangeKeyType!.toTfJson(),
     if (rangeKeyValue != null) 'range_key_value': rangeKeyValue!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_name': tableName.toTfJson(),
   };
 }
@@ -161,12 +166,12 @@ enum IotTopicRuleDynamodbOperation implements TerraformEnum {
 final class IotTopicRuleDynamodbv2 {
   const IotTopicRuleDynamodbv2({required this.roleArn, this.putItem});
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final IotTopicRuleDynamodbv2PutItem? putItem;
 
   Map<String, Object?> encode() => {
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (putItem != null) 'put_item': putItem!.encode(),
   };
 }
@@ -200,7 +205,7 @@ final class IotTopicRuleElasticsearch {
 
   final TfArg<String> index;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> type;
 
@@ -208,7 +213,7 @@ final class IotTopicRuleElasticsearch {
     'endpoint': endpoint.toTfJson(),
     'id': id.toTfJson(),
     'index': index.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -314,7 +319,7 @@ final class IotTopicRuleErrorActionCloudwatchAlarm {
 
   final TfArg<String> alarmName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> stateReason;
 
@@ -322,7 +327,7 @@ final class IotTopicRuleErrorActionCloudwatchAlarm {
 
   Map<String, Object?> encode() => {
     'alarm_name': alarmName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'state_reason': stateReason.toTfJson(),
     'state_value': stateValue.toTfJson(),
   };
@@ -340,14 +345,14 @@ final class IotTopicRuleErrorActionCloudwatchLogs {
 
   final TfArg<bool>? batchMode;
 
-  final TfArg<String> logGroupName;
+  final RefTo<AwsCloudwatchLogGroup> logGroupName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
-    'log_group_name': logGroupName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'log_group_name': logGroupName.encodeAs('name').toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -374,7 +379,7 @@ final class IotTopicRuleErrorActionCloudwatchMetric {
 
   final TfArg<String> metricValue;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
@@ -383,7 +388,7 @@ final class IotTopicRuleErrorActionCloudwatchMetric {
       'metric_timestamp': metricTimestamp!.toTfJson(),
     'metric_unit': metricUnit.toTfJson(),
     'metric_value': metricValue.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -420,7 +425,7 @@ final class IotTopicRuleErrorActionDynamodb {
 
   final TfArg<String>? rangeKeyValue;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> tableName;
 
@@ -433,7 +438,7 @@ final class IotTopicRuleErrorActionDynamodb {
     if (rangeKeyField != null) 'range_key_field': rangeKeyField!.toTfJson(),
     if (rangeKeyType != null) 'range_key_type': rangeKeyType!.toTfJson(),
     if (rangeKeyValue != null) 'range_key_value': rangeKeyValue!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_name': tableName.toTfJson(),
   };
 }
@@ -458,12 +463,12 @@ final class IotTopicRuleErrorActionDynamodbv2 {
     this.putItem,
   });
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final IotTopicRuleErrorActionDynamodbv2PutItem? putItem;
 
   Map<String, Object?> encode() => {
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (putItem != null) 'put_item': putItem!.encode(),
   };
 }
@@ -497,7 +502,7 @@ final class IotTopicRuleErrorActionElasticsearch {
 
   final TfArg<String> index;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> type;
 
@@ -505,7 +510,7 @@ final class IotTopicRuleErrorActionElasticsearch {
     'endpoint': endpoint.toTfJson(),
     'id': id.toTfJson(),
     'index': index.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -525,14 +530,14 @@ final class IotTopicRuleErrorActionFirehose {
 
   final TfArg<String> deliveryStreamName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String>? separator;
 
   Map<String, Object?> encode() => {
     if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
     'delivery_stream_name': deliveryStreamName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (separator != null) 'separator': separator!.toTfJson(),
   };
 }
@@ -595,12 +600,12 @@ final class IotTopicRuleErrorActionIotAnalytics {
 
   final TfArg<String> channelName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
     'channel_name': channelName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -621,13 +626,13 @@ final class IotTopicRuleErrorActionIotEvents {
 
   final TfArg<String>? messageId;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
     'input_name': inputName.toTfJson(),
     if (messageId != null) 'message_id': messageId!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -697,13 +702,13 @@ final class IotTopicRuleErrorActionKinesis {
 
   final TfArg<String>? partitionKey;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> streamName;
 
   Map<String, Object?> encode() => {
     if (partitionKey != null) 'partition_key': partitionKey!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'stream_name': streamName.toTfJson(),
   };
 }
@@ -714,9 +719,11 @@ final class IotTopicRuleErrorActionKinesis {
 final class IotTopicRuleErrorActionLambda {
   const IotTopicRuleErrorActionLambda({required this.functionArn});
 
-  final TfArg<String> functionArn;
+  final RefTo<AwsLambdaFunction> functionArn;
 
-  Map<String, Object?> encode() => {'function_arn': functionArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'function_arn': functionArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `error_action.republish` block of
@@ -731,13 +738,13 @@ final class IotTopicRuleErrorActionRepublish {
 
   final TfArg<num>? qos;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> topic;
 
   Map<String, Object?> encode() => {
     if (qos != null) 'qos': qos!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'topic': topic.toTfJson(),
   };
 }
@@ -753,19 +760,19 @@ final class IotTopicRuleErrorActionS3 {
     required this.roleArn,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<IotTopicRuleErrorActionS3CannedAcl>? cannedAcl;
 
   final TfArg<String> key;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (cannedAcl != null) 'canned_acl': cannedAcl!.toTfJson(),
     'key': key.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -797,13 +804,13 @@ final class IotTopicRuleErrorActionSns {
 
   final TfArg<String>? messageFormat;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> targetArn;
 
   Map<String, Object?> encode() => {
     if (messageFormat != null) 'message_format': messageFormat!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'target_arn': targetArn.toTfJson(),
   };
 }
@@ -820,13 +827,13 @@ final class IotTopicRuleErrorActionSqs {
 
   final TfArg<String> queueUrl;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<bool> useBase64;
 
   Map<String, Object?> encode() => {
     'queue_url': queueUrl.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'use_base64': useBase64.toTfJson(),
   };
 }
@@ -843,14 +850,14 @@ final class IotTopicRuleErrorActionStepFunctions {
 
   final TfArg<String>? executionNamePrefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> stateMachineName;
 
   Map<String, Object?> encode() => {
     if (executionNamePrefix != null)
       'execution_name_prefix': executionNamePrefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'state_machine_name': stateMachineName.toTfJson(),
   };
 }
@@ -869,7 +876,7 @@ final class IotTopicRuleErrorActionTimestream {
 
   final TfArg<String> databaseName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> tableName;
 
@@ -879,7 +886,7 @@ final class IotTopicRuleErrorActionTimestream {
 
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_name': tableName.toTfJson(),
     'dimension': [for (final e in dimension) e.encode()],
     if (timestamp != null) 'timestamp': timestamp!.encode(),
@@ -951,14 +958,14 @@ final class IotTopicRuleFirehose {
 
   final TfArg<String> deliveryStreamName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String>? separator;
 
   Map<String, Object?> encode() => {
     if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
     'delivery_stream_name': deliveryStreamName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (separator != null) 'separator': separator!.toTfJson(),
   };
 }
@@ -1018,12 +1025,12 @@ final class IotTopicRuleIotAnalytics {
 
   final TfArg<String> channelName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
     'channel_name': channelName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1044,13 +1051,13 @@ final class IotTopicRuleIotEvents {
 
   final TfArg<String>? messageId;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
     'input_name': inputName.toTfJson(),
     if (messageId != null) 'message_id': messageId!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1117,13 +1124,13 @@ final class IotTopicRuleKinesis {
 
   final TfArg<String>? partitionKey;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> streamName;
 
   Map<String, Object?> encode() => {
     if (partitionKey != null) 'partition_key': partitionKey!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'stream_name': streamName.toTfJson(),
   };
 }
@@ -1134,9 +1141,11 @@ final class IotTopicRuleKinesis {
 final class IotTopicRuleLambda {
   const IotTopicRuleLambda({required this.functionArn});
 
-  final TfArg<String> functionArn;
+  final RefTo<AwsLambdaFunction> functionArn;
 
-  Map<String, Object?> encode() => {'function_arn': functionArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'function_arn': functionArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `republish` block of
@@ -1151,13 +1160,13 @@ final class IotTopicRuleRepublish {
 
   final TfArg<num>? qos;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> topic;
 
   Map<String, Object?> encode() => {
     if (qos != null) 'qos': qos!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'topic': topic.toTfJson(),
   };
 }
@@ -1173,19 +1182,19 @@ final class IotTopicRuleS3 {
     required this.roleArn,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<IotTopicRuleS3CannedAcl>? cannedAcl;
 
   final TfArg<String> key;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (cannedAcl != null) 'canned_acl': cannedAcl!.toTfJson(),
     'key': key.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1217,13 +1226,13 @@ final class IotTopicRuleSns {
 
   final TfArg<String>? messageFormat;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> targetArn;
 
   Map<String, Object?> encode() => {
     if (messageFormat != null) 'message_format': messageFormat!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'target_arn': targetArn.toTfJson(),
   };
 }
@@ -1240,13 +1249,13 @@ final class IotTopicRuleSqs {
 
   final TfArg<String> queueUrl;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<bool> useBase64;
 
   Map<String, Object?> encode() => {
     'queue_url': queueUrl.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'use_base64': useBase64.toTfJson(),
   };
 }
@@ -1263,14 +1272,14 @@ final class IotTopicRuleStepFunctions {
 
   final TfArg<String>? executionNamePrefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> stateMachineName;
 
   Map<String, Object?> encode() => {
     if (executionNamePrefix != null)
       'execution_name_prefix': executionNamePrefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'state_machine_name': stateMachineName.toTfJson(),
   };
 }
@@ -1289,7 +1298,7 @@ final class IotTopicRuleTimestream {
 
   final TfArg<String> databaseName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> tableName;
 
@@ -1299,7 +1308,7 @@ final class IotTopicRuleTimestream {
 
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_name': tableName.toTfJson(),
     'dimension': [for (final e in dimension) e.encode()],
     if (timestamp != null) 'timestamp': timestamp!.encode(),

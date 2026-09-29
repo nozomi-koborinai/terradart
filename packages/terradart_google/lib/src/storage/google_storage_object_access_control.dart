@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_object_access_control`.
 const Set<String> _googleStorageObjectAccessControlSensitive = <String>{};
 
@@ -48,7 +50,7 @@ final class GoogleStorageObjectAccessControl extends Resource {
 
   GoogleStorageObjectAccessControl({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> object,
     required TfArg<String> entity,
     required TfArg<StorageObjectAccessControlRole> role,
@@ -60,7 +62,7 @@ final class GoogleStorageObjectAccessControl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('name'),
            'object': object,
            'entity': entity,
            'role': role,

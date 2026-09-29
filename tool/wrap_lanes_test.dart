@@ -33,6 +33,7 @@ void main() {
         '--barrels-manifest lib/src/codegen/barrels/barrels.yaml '
         '--mm-groups '
         '--reference-targets ../../tool/reference_targets.yaml '
+        '--typed-references '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart '
         '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
         '--check',
@@ -75,6 +76,7 @@ void main() {
         '--barrels-manifest lib/src/codegen/barrels/barrels_cloudflare.yaml '
         '--provider-enums '
         '--reference-targets ../../tool/reference_targets.yaml '
+        '--typed-references '
         '--migrate-manifest '
         '../terradart_migrate/lib/src/manifest/cloudflare.g.dart '
         '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
@@ -92,6 +94,7 @@ void main() {
         '--barrels-manifest lib/src/codegen/barrels/barrels_aws.yaml '
         '--provider-enums '
         '--reference-targets ../../tool/reference_targets.yaml '
+        '--typed-references '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/aws.g.dart '
         '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
         '--check',

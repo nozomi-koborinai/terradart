@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_cloudforce_one_request_message`.
 const Set<String> _cloudflareCloudforceOneRequestMessageSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareCloudforceOneRequestMessage extends Resource {
 
   CloudflareCloudforceOneRequestMessage({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? content,
     required TfArg<String> requestId,
     super.lifecycle,
@@ -26,7 +28,7 @@ final class CloudflareCloudforceOneRequestMessage extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (content != null) 'content': content,
            'request_id': requestId,
          },

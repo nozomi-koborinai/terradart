@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_appconfig_deployment`.
 const Set<String> _awsAppconfigDeploymentSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class AwsAppconfigDeployment extends Resource {
     required TfArg<String> deploymentStrategyId,
     TfArg<String>? description,
     required TfArg<String> environmentId,
-    TfArg<String>? kmsKeyIdentifier,
+    RefTo<AwsKmsKey>? kmsKeyIdentifier,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -34,7 +36,8 @@ final class AwsAppconfigDeployment extends Resource {
            'deployment_strategy_id': deploymentStrategyId,
            if (description != null) 'description': description,
            'environment_id': environmentId,
-           if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
+           if (kmsKeyIdentifier != null)
+             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

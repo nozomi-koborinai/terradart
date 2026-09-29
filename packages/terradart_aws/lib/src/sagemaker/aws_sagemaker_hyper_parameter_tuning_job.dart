@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_hyper_parameter_tuning_job`.
 const Set<String> _awsSagemakerHyperParameterTuningJobSensitive = <String>{};
 
@@ -506,7 +511,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
 
   final TfArg<List<Object?>>? retryStrategy;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<Map<String, String>>? staticHyperParameters;
 
@@ -562,7 +567,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
       'enable_network_isolation': enableNetworkIsolation!.toTfJson(),
     if (environment != null) 'environment': environment!.toTfJson(),
     if (retryStrategy != null) 'retry_strategy': retryStrategy!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (staticHyperParameters != null)
       'static_hyper_parameters': staticHyperParameters!.toTfJson(),
     if (algorithmSpecification != null)
@@ -1712,14 +1717,14 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionOutputDataConfi
   >?
   compressionType;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String> s3OutputPath;
 
   Map<String, Object?> encode() => {
     if (compressionType != null)
       'compression_type': compressionType!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
 }
@@ -2260,13 +2265,13 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionVpcConfig {
     required this.subnets,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
@@ -2306,7 +2311,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
 
   final TfArg<List<Object?>>? retryStrategy;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<Map<String, String>>? staticHyperParameters;
 
@@ -2362,7 +2367,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
       'enable_network_isolation': enableNetworkIsolation!.toTfJson(),
     if (environment != null) 'environment': environment!.toTfJson(),
     if (retryStrategy != null) 'retry_strategy': retryStrategy!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (staticHyperParameters != null)
       'static_hyper_parameters': staticHyperParameters!.toTfJson(),
     if (algorithmSpecification != null)
@@ -3512,14 +3517,14 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsOutputDataConf
   >?
   compressionType;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String> s3OutputPath;
 
   Map<String, Object?> encode() => {
     if (compressionType != null)
       'compression_type': compressionType!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
 }
@@ -4060,13 +4065,13 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsVpcConfig {
     required this.subnets,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
