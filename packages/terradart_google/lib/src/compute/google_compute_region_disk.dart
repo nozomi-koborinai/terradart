@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_compute_region_disk`.
 const Set<String> _googleComputeRegionDiskSensitive = <String>{
   'disk_encryption_key.raw_key',
@@ -44,6 +46,78 @@ class ComputeRegionDiskGuestOsFeature {
   Map<String, Object?> toArgMap() => {'type': type.terraformValue};
 }
 
+/// Typed helper for the `async_primary_disk` block of
+/// `google_compute_region_disk` (derived from provider schema).
+@immutable
+final class ComputeRegionDiskAsyncPrimaryDisk {
+  const ComputeRegionDiskAsyncPrimaryDisk({required this.disk});
+
+  final TfArg<String> disk;
+
+  Map<String, Object?> encode() => {'disk': disk.toTfJson()};
+}
+
+/// Typed helper for the `disk_encryption_key` block of
+/// `google_compute_region_disk` (derived from provider schema).
+@immutable
+final class ComputeRegionDiskDiskEncryptionKey {
+  const ComputeRegionDiskDiskEncryptionKey({
+    this.kmsKeyName,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `source_image_encryption_key` block of
+/// `google_compute_region_disk` (derived from provider schema).
+@immutable
+final class ComputeRegionDiskSourceImageEncryptionKey {
+  const ComputeRegionDiskSourceImageEncryptionKey({
+    this.kmsKeyName,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `source_snapshot_encryption_key` block of
+/// `google_compute_region_disk` (derived from provider schema).
+@immutable
+final class ComputeRegionDiskSourceSnapshotEncryptionKey {
+  const ComputeRegionDiskSourceSnapshotEncryptionKey({this.rawKey});
+
+  final TfArg<String>? rawKey;
+
+  Map<String, Object?> encode() => {'raw_key': ?rawKey?.toTfJson()};
+}
+
 /// Factory wrapper for `google_compute_region_disk`.
 ///
 /// Persistent disks are durable storage devices that function similarly to the
@@ -76,6 +150,10 @@ final class GoogleComputeRegionDisk extends Resource {
     List<ComputeRegionDiskGuestOsFeature>? guestOsFeatures,
     TfArg<String>? region,
     TfArg<String>? project,
+    ComputeRegionDiskDiskEncryptionKey? diskEncryptionKey,
+    ComputeRegionDiskSourceImageEncryptionKey? sourceImageEncryptionKey,
+    ComputeRegionDiskSourceSnapshotEncryptionKey? sourceSnapshotEncryptionKey,
+    ComputeRegionDiskAsyncPrimaryDisk? asyncPrimaryDisk,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -96,6 +174,18 @@ final class GoogleComputeRegionDisk extends Resource {
              ),
            'region': ?region,
            'project': ?project,
+           if (diskEncryptionKey != null)
+             'disk_encryption_key': TfArg.literal(diskEncryptionKey.encode()),
+           if (sourceImageEncryptionKey != null)
+             'source_image_encryption_key': TfArg.literal(
+               sourceImageEncryptionKey.encode(),
+             ),
+           if (sourceSnapshotEncryptionKey != null)
+             'source_snapshot_encryption_key': TfArg.literal(
+               sourceSnapshotEncryptionKey.encode(),
+             ),
+           if (asyncPrimaryDisk != null)
+             'async_primary_disk': TfArg.literal(asyncPrimaryDisk.encode()),
          },
        );
 

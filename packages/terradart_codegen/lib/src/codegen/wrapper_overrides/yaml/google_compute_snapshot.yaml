@@ -4,6 +4,7 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
 
 curatedDoc: |-
   /// A Snapshot must have exactly one [ComputeSnapshotSource]:
@@ -80,6 +81,9 @@ paramOrder:
   - deletion_policy
   - zone
   - project
+  - snapshot_encryption_key
+  - source_disk_encryption_key
+  - params
 
 argMapOrder:
   - name
@@ -92,6 +96,9 @@ argMapOrder:
   - zone
   - project
   - source
+  - snapshot_encryption_key
+  - source_disk_encryption_key
+  - params
 
 customSlots:
   source:

@@ -6,21 +6,6 @@ deriveOutputGetters: true
 deriveEnums: true
 deriveNestedTypes: true
 
-# Thin curation: keep nested override blocks as TfArg maps for now (mirror
-# google_compute_instance_from_template). Typed helpers can land in a follow-up.
-nestedTypeExcludes:
-  - advanced_machine_features
-  - confidential_instance_config
-  - disk
-  - guest_accelerator
-  - network_interface
-  - network_performance_config
-  - reservation_affinity
-  - scheduling
-  - service_account
-  - shielded_instance_config
-  - workload_identity_config
-
 curatedDoc: |-
   /// Regional instance template (region-scoped sibling of
   /// `google_compute_instance_template`). Required: [machineType] and at
