@@ -1,10 +1,26 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_alloydb_backup`.
 const Set<String> _googleAlloydbBackupSensitive = <String>{};
+
+/// Typed helper for the `encryption_config` block of
+/// `google_alloydb_backup` (derived from provider schema).
+@immutable
+final class AlloydbBackupEncryptionConfig {
+  const AlloydbBackupEncryptionConfig({this.kmsKeyName});
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
+
+  Map<String, Object?> encode() => {
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_alloydb_backup`.
 ///
@@ -36,6 +52,12 @@ final class GoogleAlloydbBackup extends Resource {
     required TfArg<String> clusterName,
     required TfArg<String> location,
     TfArg<Map<String, String>>? labels,
+    TfArg<Map<String, String>>? annotations,
+    TfArg<String>? description,
+    TfArg<String>? displayName,
+    TfArg<String>? project,
+    TfArg<String>? type,
+    AlloydbBackupEncryptionConfig? encryptionConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -47,6 +69,13 @@ final class GoogleAlloydbBackup extends Resource {
            'cluster_name': clusterName,
            'location': location,
            'labels': ?labels,
+           'annotations': ?annotations,
+           'description': ?description,
+           'display_name': ?displayName,
+           'project': ?project,
+           'type': ?type,
+           if (encryptionConfig != null)
+             'encryption_config': TfArg.literal(encryptionConfig.encode()),
          },
        );
 

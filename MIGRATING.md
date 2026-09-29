@@ -1102,6 +1102,107 @@ Synth output changes in two ways, both accepted by the provider: a
 and a network / subnetwork reference emits `id` where the examples passed
 `self_link`.
 
+### Data and storage nested blocks use derived helper types
+
+**Breaking (`terradart_google`)** — the AlloyDB, BigQuery, Bigtable, Cloud
+SQL, Data Catalog, Dataplex, Dataproc Metastore, Filestore, Firestore,
+Healthcare and Cloud Storage factories below no longer carry hand-written
+helper classes or `TfArg<Map>` blocks; their nested blocks are derived
+from the provider schema like the rest of the catalog. That puts every
+Magic Modules exactly-one / at-most-one group inside them in a sealed type
+and every input that names another resource (network, KMS key, dataset,
+bucket, topic) on `RefTo<R>`.
+
+- Helper classes are named `<Resource><BlockPath>`:
+  `SqlDatabaseInstanceIpConfiguration` →
+  `SqlDatabaseInstanceSettingsIpConfiguration` (likewise
+  `BackupConfiguration`, `LocationPreference`, `MaintenanceWindow`;
+  `SqlDatabaseInstanceDatabaseFlag` →
+  `SqlDatabaseInstanceSettingsDatabaseFlags`),
+  `StorageBucketBucketCors` / `BucketLogging` / `BucketWebsite` →
+  `StorageBucketCors` / `Logging` / `Website`,
+  `StorageBucketLifecycleAction` / `Condition` →
+  `StorageBucketLifecycleRuleAction` / `Condition`,
+  `BigqueryTableTableView` → `BigqueryTableView`, the
+  `BigqueryTable*Options` classes → `BigqueryTableExternalDataConfiguration*Options`,
+  `BigqueryTablePrimaryKey` / `ForeignKey` →
+  `BigqueryTableTableConstraintsPrimaryKey` / `ForeignKeys`,
+  `FilestoreInstanceFileShare` / `Network` →
+  `FilestoreInstanceFileShares` / `Networks`,
+  `FirestoreFieldSingleFieldIndex` → `FirestoreFieldIndexConfigIndexes`,
+  `AlloydbClusterMaintenanceWindow` →
+  `AlloydbClusterMaintenanceUpdatePolicyMaintenanceWindows`. Each helper's
+  doc names the block it models.
+- Helper fields are `TfArg<T>` (`TfArg<Enum>` for enums), so they take dot
+  shorthands: `writeDisposition: .literal(.writeTruncate)`. A list block
+  with `max_items = 1` takes one helper, not a list
+  (`StorageBatchOperationsJobBucketList.buckets`).
+- New sealed arguments (the variant is the member name):
+
+  | Factory | Argument | Members |
+  |---------|----------|---------|
+  | `GoogleBigqueryJob` | `configuration` (was `jobConfiguration`) | `query`, `load`, `copy`, `extract` |
+  | `GoogleBigqueryAnalyticsHubListingSubscription` | `destination` | `destinationDataset` |
+  | `GoogleBigqueryDatapolicyDataPolicy` | `dataMaskingPolicy` (the block is the sealed type) | `predefinedExpression`, `routine` |
+  | `GoogleDatabaseMigrationServiceConnectionProfile` | `engine` | `alloydb`, `cloudsql`, `mysql`, `oracle`, `postgresql` |
+  | `GoogleDataformRepository` git remote settings | `authentication` | `authenticationTokenSecretVersion`, `sshAuthenticationConfig`, `gitRepositoryLink` |
+  | `GoogleDataplexTask` | `workload` | `spark`, `notebook` (a spark task's `driver`: `mainClass`, `mainJarFileUri`, `pythonScriptFile`, `sqlScript`, `sqlScriptFile`) |
+  | `GoogleDataprocGdcSparkApplication` | `workload` (was `sparkApplicationConfig`) | `sparkApplicationConfig`, `pysparkApplicationConfig`, `sparkRApplicationConfig`, `sparkSqlApplicationConfig` |
+  | `GoogleDataprocMetastoreService` | `capacity` (was `tier`) | `tier`, `scalingConfig` (itself sealed: `instanceSize`, `scalingFactor`, `autoscalingConfig`) |
+  | `GoogleDatastreamConnectionProfile` | `endpoint` (was `gcsProfile` etc.) | the seven `*Profile` blocks |
+  | `GoogleDatastreamPrivateConnection` | `connectivity` (was `vpcPeeringConfig`) | `vpcPeeringConfig`, `pscInterfaceConfig` |
+  | `GoogleDatastreamStream` | `backfill` (was `backfillNone`) | `backfillNone`, `backfillAll` |
+  | `GoogleFilestoreInstance` | `performanceConfig` (the block is the sealed type) | `fixedIops`, `iopsPerTb` |
+  | `GoogleFirestoreField` index | `mode` | `order`, `arrayConfig` |
+  | `GoogleStorageBatchOperationsJob` | `operation`; a bucket's `objects` | `putMetadata`, `putObjectHold`, `rewriteObject`, `deleteObject`; `prefixList`, `manifest` |
+  | `GoogleStorageInsightsDatasetConfig` | `cloudStorageBuckets`, `cloudStorageLocations` (was `includeCloudStorageBuckets`) | include / exclude |
+  | `GoogleAlloydbCluster` | `restore`; backup policy `retention` | `restoreBackupSource`, `restoreContinuousBackupSource`; `timeBasedRetention`, `quantityBasedRetention` |
+  | `GoogleSpannerInstance` autoscaling limits | `min`, `max` | node / processing-unit counts |
+
+- `BigqueryDataTransferConfigSensitiveParams` is derived too: the
+  `BigqueryDataTransferConfigSecretAccessKey` sealed type and its
+  `WriteOnly` / `Plaintext` variants are gone, and the key is set with the
+  `secretAccessKeyWo` / `secretAccessKeyWoVersion` (or deprecated
+  `secretAccessKey`) fields directly.
+- `GoogleBigqueryDataset` and `GoogleBigqueryDatasetAccess` keep their
+  hand-written `access` grantee types; the `datasetId` of their view,
+  dataset and routine references takes `RefTo<GoogleBigqueryDataset>`.
+- Newly exposed inputs, among them: `GoogleAlloydbCluster`
+  `continuousBackupConfig`, `encryptionConfig`, `pscConfig`, `restore`,
+  `secondaryConfig`; `GoogleAlloydbInstance` `networkConfig`,
+  `readPoolConfig`, `queryInsightsConfig`; `GoogleFilestoreInstance`
+  `kmsKeyName`, `performanceConfig`, `directoryServices`, `protocol`;
+  `GoogleDataprocMetastoreService` `encryptionConfig`, `networkConfig`,
+  `scheduledBackup`; `GoogleHealthcareFhirStore` `notificationConfigs`,
+  `streamConfigs`; `GoogleLookerInstance` `pscConfig`; `GoogleNetappVolume`
+  `blockDevices`, `tieringPolicy`; `GoogleRedisCluster` `aclPolicy`,
+  `crossClusterReplicationConfig`; `GoogleSqlDatabaseInstance` `clone`,
+  `restoreBackupContext`; `GoogleStorageTransferJob` `eventStream`,
+  `replicationSpec`; `GoogleSpannerInstance` `autoscalingConfig`.
+- `GoogleDataFusionInstance`, `GoogleBigqueryBiReservation`,
+  `GoogleOracleDatabaseCloudVmCluster` and
+  `GoogleOracleDatabaseGoldengateConnection` take typed helpers instead of
+  `TfArg<Map>` / `TfArg<List<Map>>` blocks.
+
+| Before | After |
+|--------|-------|
+| `GoogleBigqueryJob(jobConfiguration: .query(query: ..., destinationTable: BigqueryJobDestinationTable(datasetId: .ref(dataset.datasetIdRef), ...), writeDisposition: BigqueryJobWriteDisposition.writeTruncate))` | `GoogleBigqueryJob(configuration: .query(BigqueryJobQuery(query: ..., destinationTable: BigqueryJobQueryDestinationTable(datasetId: dataset.ref, ...), writeDisposition: .literal(.writeTruncate))))` |
+| `SqlDatabaseInstanceSettings(ipConfiguration: SqlDatabaseInstanceIpConfiguration(...))` | `SqlDatabaseInstanceSettings(ipConfiguration: SqlDatabaseInstanceSettingsIpConfiguration(...))` |
+| `StorageBucketLifecycleAction(type: LifecycleActionType.setStorageClass, storageClass: BucketStorageClass.archive)` | `StorageBucketLifecycleRuleAction(type: .literal(.setStorageClass), storageClass: .literal(.archive))` |
+| `GoogleFilestoreInstance(fileShares: FilestoreInstanceFileShare(...), networks: [FilestoreInstanceNetwork(network: .ref(vpc.id), modes: const [FilestoreInstanceNetworkMode.modeIpv4])])` | `GoogleFilestoreInstance(fileShares: FilestoreInstanceFileShares(...), networks: [FilestoreInstanceNetworks(network: vpc.ref, modes: [.literal(.modeIpv4)])])` |
+| `GoogleDataplexTask(workload: .spark(sqlScript: ...))` | `GoogleDataplexTask(workload: .spark(DataplexTaskSpark(driver: .sqlScript(...))))` |
+| `GoogleDataprocMetastoreService(tier: .literal(.developer))` | `GoogleDataprocMetastoreService(capacity: .tier(.literal(.developer)))` |
+| `GoogleStorageBatchOperationsJob(bucketList: StorageBatchOperationsJobBucketList(buckets: [StorageBatchOperationsJobBuckets(bucket: .ref(bucket.nameRef), prefixList: ...)]), operation: .putMetadata(customMetadata: ...))` | `GoogleStorageBatchOperationsJob(bucketList: StorageBatchOperationsJobBucketList(buckets: StorageBatchOperationsJobBucketListBuckets(bucket: bucket.ref, objects: .prefixList(...))), operation: .putMetadata(StorageBatchOperationsJobPutMetadata(customMetadata: ...)))` |
+
+Synth output changes in two ways, both accepted by the provider: a
+`max_items = 1` block the hand helpers emitted as a one-element list
+(`settings`, `ip_configuration`, `versioning`, `lifecycle_rule.action`,
+`query`, `file_shares`, ...) is an object, and a reference emits the
+attribute the reference ledger names — `GoogleAlloydbCluster`
+`network_config.network` emits `id` where the examples passed `self_link`,
+and `GoogleFilestoreInstance` `networks.network` emits the network `name`,
+which is what the Filestore API reads.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it

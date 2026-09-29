@@ -66,11 +66,11 @@ final class AssetsStack extends Stack {
       timeouts: const TfTimeouts(create: '10m', read: '5m', update: '10m'),
       lifecycleRule: [
         StorageBucketLifecycleRule(
-          action: StorageBucketLifecycleAction(
-            type: LifecycleActionType.setStorageClass,
-            storageClass: BucketStorageClass.archive,
+          action: StorageBucketLifecycleRuleAction(
+            type: .literal(.setStorageClass),
+            storageClass: .literal(.archive),
           ),
-          condition: StorageBucketLifecycleCondition(age: .literal(365)),
+          condition: StorageBucketLifecycleRuleCondition(age: .literal(365)),
         ),
       ],
     );
@@ -199,17 +199,19 @@ final class AssetsStack extends Stack {
         jobId: .literal('stamp-config-meta'),
         deleteProtection: .literal(false),
         bucketList: StorageBatchOperationsJobBucketList(
-          buckets: [
-            StorageBatchOperationsJobBuckets(
-              bucket: .ref(assets.nameRef),
-              prefixList: StorageBatchOperationsJobPrefixList(
+          buckets: StorageBatchOperationsJobBucketListBuckets(
+            bucket: assets.ref,
+            objects: .prefixList(
+              StorageBatchOperationsJobBucketListBucketsPrefixList(
                 includedObjectPrefixes: .literal(['config/']),
               ),
             ),
-          ],
+          ),
         ),
         operation: .putMetadata(
-          customMetadata: .literal({'managed-by': 'terradart'}),
+          StorageBatchOperationsJobPutMetadata(
+            customMetadata: .literal({'managed-by': 'terradart'}),
+          ),
         ),
         dependsOn: [ResourceDependency(assets)],
       ),

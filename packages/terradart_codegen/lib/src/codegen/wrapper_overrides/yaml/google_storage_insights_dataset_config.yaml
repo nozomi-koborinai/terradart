@@ -56,6 +56,10 @@ paramOrder:
   - link_dataset
   - deletion_policy
   - project
+  - activity_data_retention_period_days
+  - exclude_cloud_storage_buckets
+  - exclude_cloud_storage_locations
+  - include_cloud_storage_locations
 
 argMapOrder:
   - location
@@ -69,6 +73,10 @@ argMapOrder:
   - deletion_policy
   - project
   - source
+  - activity_data_retention_period_days
+  - exclude_cloud_storage_buckets
+  - exclude_cloud_storage_locations
+  - include_cloud_storage_locations
 
 prelude: |
   /// Exactly one dataset source scope (MM `exactly_one_of`:

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_bigquery_dataset`.
 const Set<String> _googleBigqueryDatasetSensitive = <String>{};
 
@@ -267,12 +269,12 @@ class BigqueryDatasetDatasetView {
   });
 
   final TfArg<String> projectId;
-  final TfArg<String> datasetId;
+  final RefTo<GoogleBigqueryDataset> datasetId;
   final TfArg<String> tableId;
 
   Map<String, Object?> encode() => {
     'project_id': projectId.toTfJson(),
-    'dataset_id': datasetId.toTfJson(),
+    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'table_id': tableId.toTfJson(),
   };
 }
@@ -304,11 +306,11 @@ class BigqueryDatasetDatasetReference {
   });
 
   final TfArg<String> projectId;
-  final TfArg<String> datasetId;
+  final RefTo<GoogleBigqueryDataset> datasetId;
 
   Map<String, Object?> encode() => {
     'project_id': projectId.toTfJson(),
-    'dataset_id': datasetId.toTfJson(),
+    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
   };
 }
 
@@ -322,12 +324,12 @@ class BigqueryDatasetDatasetRoutineRef {
   });
 
   final TfArg<String> projectId;
-  final TfArg<String> datasetId;
+  final RefTo<GoogleBigqueryDataset> datasetId;
   final TfArg<String> routineId;
 
   Map<String, Object?> encode() => {
     'project_id': projectId.toTfJson(),
-    'dataset_id': datasetId.toTfJson(),
+    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'routine_id': routineId.toTfJson(),
   };
 }
@@ -361,59 +363,62 @@ class BigqueryDatasetAccessCondition {
 // Top-level nested-block helpers
 // ===========================================================================
 
-/// `default_encryption_configuration` block — CMEK key for tables that
-/// do not specify their own encryption.
+// ===========================================================================
+// Factory
+// ===========================================================================
+
+/// Typed helper for the `default_encryption_configuration` block of
+/// `google_bigquery_dataset` (derived from provider schema).
 @immutable
-class BigqueryDatasetDefaultEncryptionConfiguration {
+final class BigqueryDatasetDefaultEncryptionConfiguration {
   const BigqueryDatasetDefaultEncryptionConfiguration({
     required this.kmsKeyName,
   });
 
-  final TfArg<String> kmsKeyName;
-
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
-}
-
-/// `external_dataset_reference` block — points the dataset at an
-/// externally-managed source (e.g. AWS Glue) via [connection].
-@immutable
-class BigqueryDatasetExternalDatasetReference {
-  const BigqueryDatasetExternalDatasetReference({
-    required this.externalSource,
-    required this.connection,
-  });
-
-  final TfArg<String> externalSource;
-  final TfArg<String> connection;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
   Map<String, Object?> encode() => {
-    'external_source': externalSource.toTfJson(),
-    'connection': connection.toTfJson(),
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
 }
 
-/// `external_catalog_dataset_options` block — open-source catalog metadata
-/// for datasets bridged from Iceberg / Hive Metastore-compatible sources.
+/// Typed helper for the `external_catalog_dataset_options` block of
+/// `google_bigquery_dataset` (derived from provider schema).
 @immutable
-class BigqueryDatasetExternalCatalogDatasetOptions {
+final class BigqueryDatasetExternalCatalogDatasetOptions {
   const BigqueryDatasetExternalCatalogDatasetOptions({
     this.defaultStorageLocationUri,
     this.parameters,
   });
 
   final TfArg<String>? defaultStorageLocationUri;
+
   final TfArg<Map<String, String>>? parameters;
 
   Map<String, Object?> encode() => {
-    if (defaultStorageLocationUri != null)
-      'default_storage_location_uri': defaultStorageLocationUri!.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
+    'default_storage_location_uri': ?defaultStorageLocationUri?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
   };
 }
 
-// ===========================================================================
-// Factory
-// ===========================================================================
+/// Typed helper for the `external_dataset_reference` block of
+/// `google_bigquery_dataset` (derived from provider schema).
+@immutable
+final class BigqueryDatasetExternalDatasetReference {
+  const BigqueryDatasetExternalDatasetReference({
+    required this.connection,
+    required this.externalSource,
+  });
+
+  final TfArg<String> connection;
+
+  final TfArg<String> externalSource;
+
+  Map<String, Object?> encode() => {
+    'connection': connection.toTfJson(),
+    'external_source': externalSource.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_bigquery_dataset`.
 ///
@@ -500,17 +505,17 @@ final class GoogleBigqueryDataset extends Resource {
            if (access != null)
              'access': TfArg.literal(access.map((a) => a.encode()).toList()),
            if (defaultEncryptionConfiguration != null)
-             'default_encryption_configuration': TfArg.literal([
+             'default_encryption_configuration': TfArg.literal(
                defaultEncryptionConfiguration.encode(),
-             ]),
+             ),
            if (externalDatasetReference != null)
-             'external_dataset_reference': TfArg.literal([
+             'external_dataset_reference': TfArg.literal(
                externalDatasetReference.encode(),
-             ]),
+             ),
            if (externalCatalogDatasetOptions != null)
-             'external_catalog_dataset_options': TfArg.literal([
+             'external_catalog_dataset_options': TfArg.literal(
                externalCatalogDatasetOptions.encode(),
-             ]),
+             ),
            'project': ?project,
          },
        );

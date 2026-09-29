@@ -4,120 +4,260 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_batch_operations_job`.
 const Set<String> _googleStorageBatchOperationsJobSensitive = <String>{};
 
-// ===========================================================================
-// bucket_list helpers
-// ===========================================================================
+/// Exactly one of `delete_object`, `put_metadata`, `rewrite_object`, `put_object_hold` on `google_storage_batch_operations_job`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.deleteObject(...)`.
+sealed class StorageBatchOperationsJobOperation {
+  const StorageBatchOperationsJobOperation();
 
-/// `prefix_list` — include objects by prefix under the target bucket.
-@immutable
-final class StorageBatchOperationsJobPrefixList {
-  const StorageBatchOperationsJobPrefixList({
-    required this.includedObjectPrefixes,
-  });
+  /// Sets `delete_object`.
+  const factory StorageBatchOperationsJobOperation.deleteObject(
+    StorageBatchOperationsJobDeleteObject deleteObject,
+  ) = StorageBatchOperationsJobOperationDeleteObject;
 
-  final TfArg<List<String>> includedObjectPrefixes;
+  /// Sets `put_metadata`.
+  const factory StorageBatchOperationsJobOperation.putMetadata(
+    StorageBatchOperationsJobPutMetadata putMetadata,
+  ) = StorageBatchOperationsJobOperationPutMetadata;
 
-  Map<String, Object?> encode() => {
-    'included_object_prefixes': includedObjectPrefixes.toTfJson(),
+  /// Sets `rewrite_object`.
+  const factory StorageBatchOperationsJobOperation.rewriteObject(
+    StorageBatchOperationsJobRewriteObject rewriteObject,
+  ) = StorageBatchOperationsJobOperationRewriteObject;
+
+  /// Sets `put_object_hold`.
+  const factory StorageBatchOperationsJobOperation.putObjectHold(
+    StorageBatchOperationsJobPutObjectHold putObjectHold,
+  ) = StorageBatchOperationsJobOperationPutObjectHold;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [StorageBatchOperationsJobOperation.deleteObject] choice: sets `delete_object`.
+final class StorageBatchOperationsJobOperationDeleteObject
+    extends StorageBatchOperationsJobOperation {
+  const StorageBatchOperationsJobOperationDeleteObject(this.deleteObject);
+
+  final StorageBatchOperationsJobDeleteObject deleteObject;
+
+  @override
+  String get blockKey => 'delete_object';
+
+  @override
+  Map<String, Object?> encode() => {'delete_object': deleteObject.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'delete_object': TfArg.literal(deleteObject.encode()),
   };
 }
 
-/// `manifest` — include objects listed in a manifest object.
-@immutable
-final class StorageBatchOperationsJobManifest {
-  const StorageBatchOperationsJobManifest({required this.manifestLocation});
+/// The [StorageBatchOperationsJobOperation.putMetadata] choice: sets `put_metadata`.
+final class StorageBatchOperationsJobOperationPutMetadata
+    extends StorageBatchOperationsJobOperation {
+  const StorageBatchOperationsJobOperationPutMetadata(this.putMetadata);
 
-  final TfArg<String> manifestLocation;
+  final StorageBatchOperationsJobPutMetadata putMetadata;
 
-  Map<String, Object?> encode() => {
-    'manifest_location': manifestLocation.toTfJson(),
+  @override
+  String get blockKey => 'put_metadata';
+
+  @override
+  Map<String, Object?> encode() => {'put_metadata': putMetadata.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'put_metadata': TfArg.literal(putMetadata.encode()),
   };
 }
 
-/// One bucket (+ object selector) inside [StorageBatchOperationsJobBucketList].
-@immutable
-final class StorageBatchOperationsJobBuckets {
-  const StorageBatchOperationsJobBuckets({
-    required this.bucket,
-    this.prefixList,
-    this.manifest,
-  });
+/// The [StorageBatchOperationsJobOperation.rewriteObject] choice: sets `rewrite_object`.
+final class StorageBatchOperationsJobOperationRewriteObject
+    extends StorageBatchOperationsJobOperation {
+  const StorageBatchOperationsJobOperationRewriteObject(this.rewriteObject);
 
-  final TfArg<String> bucket;
-  final StorageBatchOperationsJobPrefixList? prefixList;
-  final StorageBatchOperationsJobManifest? manifest;
+  final StorageBatchOperationsJobRewriteObject rewriteObject;
 
-  Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
-    if (prefixList != null) 'prefix_list': [prefixList!.encode()],
-    if (manifest != null) 'manifest': [manifest!.encode()],
+  @override
+  String get blockKey => 'rewrite_object';
+
+  @override
+  Map<String, Object?> encode() => {'rewrite_object': rewriteObject.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'rewrite_object': TfArg.literal(rewriteObject.encode()),
   };
 }
 
-/// `bucket_list` — currently one bucket configuration (provider max 1).
+/// The [StorageBatchOperationsJobOperation.putObjectHold] choice: sets `put_object_hold`.
+final class StorageBatchOperationsJobOperationPutObjectHold
+    extends StorageBatchOperationsJobOperation {
+  const StorageBatchOperationsJobOperationPutObjectHold(this.putObjectHold);
+
+  final StorageBatchOperationsJobPutObjectHold putObjectHold;
+
+  @override
+  String get blockKey => 'put_object_hold';
+
+  @override
+  Map<String, Object?> encode() => {'put_object_hold': putObjectHold.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'put_object_hold': TfArg.literal(putObjectHold.encode()),
+  };
+}
+
+/// Typed helper for the `bucket_list` block of
+/// `google_storage_batch_operations_job` (derived from provider schema).
 @immutable
 final class StorageBatchOperationsJobBucketList {
   const StorageBatchOperationsJobBucketList({required this.buckets});
 
-  final List<StorageBatchOperationsJobBuckets> buckets;
+  final StorageBatchOperationsJobBucketListBuckets buckets;
 
-  List<Map<String, Object?>> encode() => [
-    {
-      'buckets': [for (final b in buckets) b.encode()],
-    },
-  ];
+  Map<String, Object?> encode() => {'buckets': buckets.encode()};
 }
 
-// ===========================================================================
-// StorageBatchOperationsJobOperation — sealed action (exactly one)
-// ===========================================================================
+/// Typed helper for the `bucket_list.buckets` block of
+/// `google_storage_batch_operations_job` (derived from provider schema).
+@immutable
+final class StorageBatchOperationsJobBucketListBuckets {
+  const StorageBatchOperationsJobBucketListBuckets({
+    required this.bucket,
+    required this.objects,
+  });
 
-/// Batch action to run. Sealed so callers pick exactly one of
-/// `put_metadata` / `put_object_hold` / `rewrite_object` / `delete_object`.
-sealed class StorageBatchOperationsJobOperation {
-  const StorageBatchOperationsJobOperation();
+  final RefTo<GoogleStorageBucket> bucket;
 
-  /// `put_metadata` — update object metadata fields / custom metadata.
-  const factory StorageBatchOperationsJobOperation.putMetadata({
-    TfArg<String>? cacheControl,
-    TfArg<String>? contentDisposition,
-    TfArg<String>? contentEncoding,
-    TfArg<String>? contentLanguage,
-    TfArg<String>? contentType,
-    TfArg<Map<String, String>>? customMetadata,
-    TfArg<String>? customTime,
-  }) = StorageBatchOperationsJobPutMetadata;
+  final StorageBatchOperationsJobBucketListBucketsObjects objects;
 
-  /// `put_object_hold` — set temporary / event-based holds.
-  const factory StorageBatchOperationsJobOperation.putObjectHold({
-    TfArg<String>? eventBasedHold,
-    TfArg<String>? temporaryHold,
-  }) = StorageBatchOperationsJobPutObjectHold;
+  Map<String, Object?> encode() => {
+    'bucket': bucket.encodeAs('name').toTfJson(),
+    ...objects.encode(),
+  };
+}
 
-  /// `rewrite_object` — rewrite objects under a KMS key.
-  const factory StorageBatchOperationsJobOperation.rewriteObject({
-    required TfArg<String> kmsKey,
-  }) = StorageBatchOperationsJobRewriteObject;
+/// Exactly one of `prefix_list`, `manifest` on the `bucket_list.buckets` block of `google_storage_batch_operations_job`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.prefixList(...)`.
+sealed class StorageBatchOperationsJobBucketListBucketsObjects {
+  const StorageBatchOperationsJobBucketListBucketsObjects();
 
-  /// `delete_object` — delete matching objects (optionally all versions).
-  const factory StorageBatchOperationsJobOperation.deleteObject({
-    required TfArg<bool> permanentObjectDeletionEnabled,
-  }) = StorageBatchOperationsJobDeleteObject;
+  /// Sets `prefix_list`.
+  const factory StorageBatchOperationsJobBucketListBucketsObjects.prefixList(
+    StorageBatchOperationsJobBucketListBucketsPrefixList prefixList,
+  ) = StorageBatchOperationsJobBucketListBucketsObjectsPrefixList;
 
-  /// argMap key for this action block.
+  /// Sets `manifest`.
+  const factory StorageBatchOperationsJobBucketListBucketsObjects.manifest(
+    StorageBatchOperationsJobBucketListBucketsManifest manifest,
+  ) = StorageBatchOperationsJobBucketListBucketsObjectsManifest;
+
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
-  /// JSON fragment for the block value (`nesting_mode: list, max_items: 1`).
-  List<Map<String, Object?>> encode();
+  Map<String, Object?> encode();
 }
 
-/// `put_metadata` — update object metadata fields / custom metadata.
+/// The [StorageBatchOperationsJobBucketListBucketsObjects.prefixList] choice: sets `prefix_list`.
+final class StorageBatchOperationsJobBucketListBucketsObjectsPrefixList
+    extends StorageBatchOperationsJobBucketListBucketsObjects {
+  const StorageBatchOperationsJobBucketListBucketsObjectsPrefixList(
+    this.prefixList,
+  );
+
+  final StorageBatchOperationsJobBucketListBucketsPrefixList prefixList;
+
+  @override
+  String get blockKey => 'prefix_list';
+
+  @override
+  Map<String, Object?> encode() => {'prefix_list': prefixList.encode()};
+}
+
+/// The [StorageBatchOperationsJobBucketListBucketsObjects.manifest] choice: sets `manifest`.
+final class StorageBatchOperationsJobBucketListBucketsObjectsManifest
+    extends StorageBatchOperationsJobBucketListBucketsObjects {
+  const StorageBatchOperationsJobBucketListBucketsObjectsManifest(
+    this.manifest,
+  );
+
+  final StorageBatchOperationsJobBucketListBucketsManifest manifest;
+
+  @override
+  String get blockKey => 'manifest';
+
+  @override
+  Map<String, Object?> encode() => {'manifest': manifest.encode()};
+}
+
+/// Typed helper for the `bucket_list.buckets.manifest` block of
+/// `google_storage_batch_operations_job` (derived from provider schema).
 @immutable
-final class StorageBatchOperationsJobPutMetadata
-    extends StorageBatchOperationsJobOperation {
+final class StorageBatchOperationsJobBucketListBucketsManifest {
+  const StorageBatchOperationsJobBucketListBucketsManifest({
+    this.manifestLocation,
+  });
+
+  final TfArg<String>? manifestLocation;
+
+  Map<String, Object?> encode() => {
+    'manifest_location': ?manifestLocation?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `bucket_list.buckets.prefix_list` block of
+/// `google_storage_batch_operations_job` (derived from provider schema).
+@immutable
+final class StorageBatchOperationsJobBucketListBucketsPrefixList {
+  const StorageBatchOperationsJobBucketListBucketsPrefixList({
+    this.includedObjectPrefixes,
+  });
+
+  final TfArg<List<Object?>>? includedObjectPrefixes;
+
+  Map<String, Object?> encode() => {
+    'included_object_prefixes': ?includedObjectPrefixes?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `delete_object` block of
+/// `google_storage_batch_operations_job` (derived from provider schema).
+@immutable
+final class StorageBatchOperationsJobDeleteObject {
+  const StorageBatchOperationsJobDeleteObject({
+    required this.permanentObjectDeletionEnabled,
+  });
+
+  final TfArg<bool> permanentObjectDeletionEnabled;
+
+  Map<String, Object?> encode() => {
+    'permanent_object_deletion_enabled': permanentObjectDeletionEnabled
+        .toTfJson(),
+  };
+}
+
+/// Typed helper for the `put_metadata` block of
+/// `google_storage_batch_operations_job` (derived from provider schema).
+@immutable
+final class StorageBatchOperationsJobPutMetadata {
   const StorageBatchOperationsJobPutMetadata({
     this.cacheControl,
     this.contentDisposition,
@@ -129,95 +269,60 @@ final class StorageBatchOperationsJobPutMetadata
   });
 
   final TfArg<String>? cacheControl;
+
   final TfArg<String>? contentDisposition;
+
   final TfArg<String>? contentEncoding;
+
   final TfArg<String>? contentLanguage;
+
   final TfArg<String>? contentType;
+
   final TfArg<Map<String, String>>? customMetadata;
+
   final TfArg<String>? customTime;
 
-  @override
-  String get blockKey => 'put_metadata';
-
-  @override
-  List<Map<String, Object?>> encode() => [
-    {
-      if (cacheControl != null) 'cache_control': cacheControl!.toTfJson(),
-      if (contentDisposition != null)
-        'content_disposition': contentDisposition!.toTfJson(),
-      if (contentEncoding != null)
-        'content_encoding': contentEncoding!.toTfJson(),
-      if (contentLanguage != null)
-        'content_language': contentLanguage!.toTfJson(),
-      if (contentType != null) 'content_type': contentType!.toTfJson(),
-      if (customMetadata != null) 'custom_metadata': customMetadata!.toTfJson(),
-      if (customTime != null) 'custom_time': customTime!.toTfJson(),
-    },
-  ];
+  Map<String, Object?> encode() => {
+    'cache_control': ?cacheControl?.toTfJson(),
+    'content_disposition': ?contentDisposition?.toTfJson(),
+    'content_encoding': ?contentEncoding?.toTfJson(),
+    'content_language': ?contentLanguage?.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
+    'custom_metadata': ?customMetadata?.toTfJson(),
+    'custom_time': ?customTime?.toTfJson(),
+  };
 }
 
-/// `put_object_hold` — set temporary / event-based holds.
+/// Typed helper for the `put_object_hold` block of
+/// `google_storage_batch_operations_job` (derived from provider schema).
 @immutable
-final class StorageBatchOperationsJobPutObjectHold
-    extends StorageBatchOperationsJobOperation {
+final class StorageBatchOperationsJobPutObjectHold {
   const StorageBatchOperationsJobPutObjectHold({
     this.eventBasedHold,
     this.temporaryHold,
   });
 
   final TfArg<String>? eventBasedHold;
+
   final TfArg<String>? temporaryHold;
 
-  @override
-  String get blockKey => 'put_object_hold';
-
-  @override
-  List<Map<String, Object?>> encode() => [
-    {
-      if (eventBasedHold != null)
-        'event_based_hold': eventBasedHold!.toTfJson(),
-      if (temporaryHold != null) 'temporary_hold': temporaryHold!.toTfJson(),
-    },
-  ];
+  Map<String, Object?> encode() => {
+    'event_based_hold': ?eventBasedHold?.toTfJson(),
+    'temporary_hold': ?temporaryHold?.toTfJson(),
+  };
 }
 
-/// `rewrite_object` — rewrite objects under a KMS key.
+/// Typed helper for the `rewrite_object` block of
+/// `google_storage_batch_operations_job` (derived from provider schema).
 @immutable
-final class StorageBatchOperationsJobRewriteObject
-    extends StorageBatchOperationsJobOperation {
+final class StorageBatchOperationsJobRewriteObject {
   const StorageBatchOperationsJobRewriteObject({required this.kmsKey});
 
-  final TfArg<String> kmsKey;
+  final RefTo<GoogleKmsCryptoKey> kmsKey;
 
-  @override
-  String get blockKey => 'rewrite_object';
-
-  @override
-  List<Map<String, Object?>> encode() => [
-    {'kms_key': kmsKey.toTfJson()},
-  ];
-}
-
-/// `delete_object` — delete matching objects (optionally all versions).
-@immutable
-final class StorageBatchOperationsJobDeleteObject
-    extends StorageBatchOperationsJobOperation {
-  const StorageBatchOperationsJobDeleteObject({
-    required this.permanentObjectDeletionEnabled,
-  });
-
-  final TfArg<bool> permanentObjectDeletionEnabled;
-
-  @override
-  String get blockKey => 'delete_object';
-
-  @override
-  List<Map<String, Object?>> encode() => [
-    {
-      'permanent_object_deletion_enabled': permanentObjectDeletionEnabled
-          .toTfJson(),
-    },
-  ];
+  Map<String, Object?> encode() => {
+    'kms_key': kmsKey.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_storage_batch_operations_job`.
@@ -238,20 +343,22 @@ final class StorageBatchOperationsJobDeleteObject
 /// ```dart
 /// GoogleStorageBatchOperationsJob(
 ///   localName: 'stamp_meta',
-///   jobId: TfArg.literal('stamp-meta'),
-///   deleteProtection: TfArg.literal(false),
+///   jobId: .literal('stamp-meta'),
+///   deleteProtection: .literal(false),
 ///   bucketList: StorageBatchOperationsJobBucketList(
-///     buckets: [
-///       StorageBatchOperationsJobBuckets(
-///         bucket: TfArg.ref(assets.nameRef),
-///         prefixList: StorageBatchOperationsJobPrefixList(
-///           includedObjectPrefixes: TfArg.literal(['config/']),
+///     buckets: StorageBatchOperationsJobBucketListBuckets(
+///       bucket: assets.ref,
+///       objects: .prefixList(
+///         StorageBatchOperationsJobBucketListBucketsPrefixList(
+///           includedObjectPrefixes: .literal(['config/']),
 ///         ),
 ///       ),
-///     ],
+///     ),
 ///   ),
-///   operation: StorageBatchOperationsJobPutMetadata(
-///     customMetadata: TfArg.literal({'managed-by': 'terradart'}),
+///   operation: .putMetadata(
+///     StorageBatchOperationsJobPutMetadata(
+///       customMetadata: .literal({'managed-by': 'terradart'}),
+///     ),
 ///   ),
 /// );
 /// ```
@@ -280,7 +387,7 @@ final class GoogleStorageBatchOperationsJob extends Resource {
            'delete_protection': ?deleteProtection,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
-           operation.blockKey: TfArg.literal(operation.encode()),
+           ...operation.argMap,
          },
        );
 

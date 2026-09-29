@@ -4,107 +4,71 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_dataplex_task`.
 const Set<String> _googleDataplexTaskSensitive = <String>{};
 
-/// Spark or Notebook workload block. Exactly one of the provider blocks.
+/// Exactly one of `spark`, `notebook` on `google_dataplex_task`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.spark(...)`.
 sealed class DataplexTaskWorkload {
   const DataplexTaskWorkload();
 
-  /// `spark` — Dataproc Serverless Spark, Python, or SQL workload.
-  const factory DataplexTaskWorkload.spark({
-    TfArg<String>? pythonScriptFile,
-    TfArg<String>? mainJarFileUri,
-    TfArg<String>? mainClass,
-    TfArg<String>? sqlScript,
-    TfArg<String>? sqlScriptFile,
-    TfArg<List<String>>? fileUris,
-    TfArg<List<String>>? archiveUris,
-    TfArg<Map<String, Object?>>? infrastructureSpec,
-  }) = DataplexTaskSparkWorkload;
+  /// Sets `spark`.
+  const factory DataplexTaskWorkload.spark(DataplexTaskSpark spark) =
+      DataplexTaskWorkloadSpark;
 
-  /// `notebook` — Vertex AI Workbench or Colab notebook execution.
-  const factory DataplexTaskWorkload.notebook({
-    required TfArg<String> notebook,
-    TfArg<List<String>>? fileUris,
-    TfArg<List<String>>? archiveUris,
-    TfArg<Map<String, Object?>>? infrastructureSpec,
-  }) = DataplexTaskNotebookWorkload;
+  /// Sets `notebook`.
+  const factory DataplexTaskWorkload.notebook(DataplexTaskNotebook notebook) =
+      DataplexTaskWorkloadNotebook;
 
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
   Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `spark` — Dataproc Serverless Spark, Python, or SQL workload.
-@immutable
-final class DataplexTaskSparkWorkload extends DataplexTaskWorkload {
-  const DataplexTaskSparkWorkload({
-    this.pythonScriptFile,
-    this.mainJarFileUri,
-    this.mainClass,
-    this.sqlScript,
-    this.sqlScriptFile,
-    this.fileUris,
-    this.archiveUris,
-    this.infrastructureSpec,
-  });
+/// The [DataplexTaskWorkload.spark] choice: sets `spark`.
+final class DataplexTaskWorkloadSpark extends DataplexTaskWorkload {
+  const DataplexTaskWorkloadSpark(this.spark);
 
-  final TfArg<String>? pythonScriptFile;
-  final TfArg<String>? mainJarFileUri;
-  final TfArg<String>? mainClass;
-  final TfArg<String>? sqlScript;
-  final TfArg<String>? sqlScriptFile;
-  final TfArg<List<String>>? fileUris;
-  final TfArg<List<String>>? archiveUris;
-  final TfArg<Map<String, Object?>>? infrastructureSpec;
+  final DataplexTaskSpark spark;
 
   @override
   String get blockKey => 'spark';
 
   @override
-  Map<String, Object?> encode() => {
-    if (pythonScriptFile != null)
-      'python_script_file': pythonScriptFile!.toTfJson(),
-    if (mainJarFileUri != null) 'main_jar_file_uri': mainJarFileUri!.toTfJson(),
-    if (mainClass != null) 'main_class': mainClass!.toTfJson(),
-    if (sqlScript != null) 'sql_script': sqlScript!.toTfJson(),
-    if (sqlScriptFile != null) 'sql_script_file': sqlScriptFile!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (infrastructureSpec != null)
-      'infrastructure_spec': infrastructureSpec!.toTfJson(),
+  Map<String, Object?> encode() => {'spark': spark.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'spark': TfArg.literal(spark.encode()),
   };
 }
 
-/// `notebook` — Vertex AI Workbench or Colab notebook execution.
-@immutable
-final class DataplexTaskNotebookWorkload extends DataplexTaskWorkload {
-  const DataplexTaskNotebookWorkload({
-    required this.notebook,
-    this.fileUris,
-    this.archiveUris,
-    this.infrastructureSpec,
-  });
+/// The [DataplexTaskWorkload.notebook] choice: sets `notebook`.
+final class DataplexTaskWorkloadNotebook extends DataplexTaskWorkload {
+  const DataplexTaskWorkloadNotebook(this.notebook);
 
-  final TfArg<String> notebook;
-  final TfArg<List<String>>? fileUris;
-  final TfArg<List<String>>? archiveUris;
-  final TfArg<Map<String, Object?>>? infrastructureSpec;
+  final DataplexTaskNotebook notebook;
 
   @override
   String get blockKey => 'notebook';
 
   @override
-  Map<String, Object?> encode() => {
-    'notebook': notebook.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (infrastructureSpec != null)
-      'infrastructure_spec': infrastructureSpec!.toTfJson(),
+  Map<String, Object?> encode() => {'notebook': notebook.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'notebook': TfArg.literal(notebook.encode()),
   };
 }
 
@@ -137,6 +101,460 @@ final class DataplexTaskExecutionSpec {
     'project': ?project?.toTfJson(),
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
+}
+
+/// Typed helper for the `notebook` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskNotebook {
+  const DataplexTaskNotebook({
+    this.archiveUris,
+    this.fileUris,
+    required this.notebook,
+    this.infrastructureSpec,
+  });
+
+  final TfArg<List<Object?>>? archiveUris;
+
+  final TfArg<List<Object?>>? fileUris;
+
+  final TfArg<String> notebook;
+
+  final DataplexTaskNotebookInfrastructureSpec? infrastructureSpec;
+
+  Map<String, Object?> encode() => {
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
+    'notebook': notebook.toTfJson(),
+    'infrastructure_spec': ?infrastructureSpec?.encode(),
+  };
+}
+
+/// Typed helper for the `notebook.infrastructure_spec` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskNotebookInfrastructureSpec {
+  const DataplexTaskNotebookInfrastructureSpec({
+    this.batch,
+    this.containerImage,
+    this.vpcNetwork,
+  });
+
+  final DataplexTaskNotebookInfrastructureSpecBatch? batch;
+
+  final DataplexTaskNotebookInfrastructureSpecContainerImage? containerImage;
+
+  final DataplexTaskNotebookInfrastructureSpecVpcNetwork? vpcNetwork;
+
+  Map<String, Object?> encode() => {
+    'batch': ?batch?.encode(),
+    'container_image': ?containerImage?.encode(),
+    'vpc_network': ?vpcNetwork?.encode(),
+  };
+}
+
+/// Typed helper for the `notebook.infrastructure_spec.batch` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskNotebookInfrastructureSpecBatch {
+  const DataplexTaskNotebookInfrastructureSpecBatch({
+    this.executorsCount,
+    this.maxExecutorsCount,
+  });
+
+  final TfArg<num>? executorsCount;
+
+  final TfArg<num>? maxExecutorsCount;
+
+  Map<String, Object?> encode() => {
+    'executors_count': ?executorsCount?.toTfJson(),
+    'max_executors_count': ?maxExecutorsCount?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `notebook.infrastructure_spec.container_image` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskNotebookInfrastructureSpecContainerImage {
+  const DataplexTaskNotebookInfrastructureSpecContainerImage({
+    this.image,
+    this.javaJars,
+    this.properties,
+    this.pythonPackages,
+  });
+
+  final TfArg<String>? image;
+
+  final TfArg<List<Object?>>? javaJars;
+
+  final TfArg<Map<String, String>>? properties;
+
+  final TfArg<List<Object?>>? pythonPackages;
+
+  Map<String, Object?> encode() => {
+    'image': ?image?.toTfJson(),
+    'java_jars': ?javaJars?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'python_packages': ?pythonPackages?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `notebook.infrastructure_spec.vpc_network` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskNotebookInfrastructureSpecVpcNetwork {
+  const DataplexTaskNotebookInfrastructureSpecVpcNetwork({
+    required this.target,
+    this.networkTags,
+  });
+
+  final DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget target;
+
+  final TfArg<List<Object?>>? networkTags;
+
+  Map<String, Object?> encode() => {
+    ...target.encode(),
+    'network_tags': ?networkTags?.toTfJson(),
+  };
+}
+
+/// Exactly one of `network`, `sub_network` on the `notebook.infrastructure_spec.vpc_network` block of `google_dataplex_task`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.network(...)`.
+sealed class DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget {
+  const DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget();
+
+  /// Sets `network`.
+  const factory DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget.network(
+    RefTo<GoogleComputeNetwork> network,
+  ) = DataplexTaskNotebookInfrastructureSpecVpcNetworkTargetNetwork;
+
+  /// Sets `sub_network`.
+  const factory DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget.subNetwork(
+    TfArg<String> subNetwork,
+  ) = DataplexTaskNotebookInfrastructureSpecVpcNetworkTargetSubNetwork;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget.network] choice: sets `network`.
+final class DataplexTaskNotebookInfrastructureSpecVpcNetworkTargetNetwork
+    extends DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget {
+  const DataplexTaskNotebookInfrastructureSpecVpcNetworkTargetNetwork(
+    this.network,
+  );
+
+  final RefTo<GoogleComputeNetwork> network;
+
+  @override
+  String get blockKey => 'network';
+
+  @override
+  Map<String, Object?> encode() => {
+    'network': network.encodeAs('id').toTfJson(),
+  };
+}
+
+/// The [DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget.subNetwork] choice: sets `sub_network`.
+final class DataplexTaskNotebookInfrastructureSpecVpcNetworkTargetSubNetwork
+    extends DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget {
+  const DataplexTaskNotebookInfrastructureSpecVpcNetworkTargetSubNetwork(
+    this.subNetwork,
+  );
+
+  final TfArg<String> subNetwork;
+
+  @override
+  String get blockKey => 'sub_network';
+
+  @override
+  Map<String, Object?> encode() => {'sub_network': subNetwork.toTfJson()};
+}
+
+/// Typed helper for the `spark` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskSpark {
+  const DataplexTaskSpark({
+    this.archiveUris,
+    this.fileUris,
+    required this.driver,
+    this.infrastructureSpec,
+  });
+
+  final TfArg<List<Object?>>? archiveUris;
+
+  final TfArg<List<Object?>>? fileUris;
+
+  final DataplexTaskSparkDriver driver;
+
+  final DataplexTaskSparkInfrastructureSpec? infrastructureSpec;
+
+  Map<String, Object?> encode() => {
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
+    ...driver.encode(),
+    'infrastructure_spec': ?infrastructureSpec?.encode(),
+  };
+}
+
+/// Exactly one of `main_jar_file_uri`, `main_class`, `python_script_file`, `sql_script_file`, `sql_script` on the `spark` block of `google_dataplex_task`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.mainJarFileUri(...)`.
+sealed class DataplexTaskSparkDriver {
+  const DataplexTaskSparkDriver();
+
+  /// Sets `main_jar_file_uri`.
+  const factory DataplexTaskSparkDriver.mainJarFileUri(
+    TfArg<String> mainJarFileUri,
+  ) = DataplexTaskSparkDriverMainJarFileUri;
+
+  /// Sets `main_class`.
+  const factory DataplexTaskSparkDriver.mainClass(TfArg<String> mainClass) =
+      DataplexTaskSparkDriverMainClass;
+
+  /// Sets `python_script_file`.
+  const factory DataplexTaskSparkDriver.pythonScriptFile(
+    TfArg<String> pythonScriptFile,
+  ) = DataplexTaskSparkDriverPythonScriptFile;
+
+  /// Sets `sql_script_file`.
+  const factory DataplexTaskSparkDriver.sqlScriptFile(
+    TfArg<String> sqlScriptFile,
+  ) = DataplexTaskSparkDriverSqlScriptFile;
+
+  /// Sets `sql_script`.
+  const factory DataplexTaskSparkDriver.sqlScript(TfArg<String> sqlScript) =
+      DataplexTaskSparkDriverSqlScript;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [DataplexTaskSparkDriver.mainJarFileUri] choice: sets `main_jar_file_uri`.
+final class DataplexTaskSparkDriverMainJarFileUri
+    extends DataplexTaskSparkDriver {
+  const DataplexTaskSparkDriverMainJarFileUri(this.mainJarFileUri);
+
+  final TfArg<String> mainJarFileUri;
+
+  @override
+  String get blockKey => 'main_jar_file_uri';
+
+  @override
+  Map<String, Object?> encode() => {
+    'main_jar_file_uri': mainJarFileUri.toTfJson(),
+  };
+}
+
+/// The [DataplexTaskSparkDriver.mainClass] choice: sets `main_class`.
+final class DataplexTaskSparkDriverMainClass extends DataplexTaskSparkDriver {
+  const DataplexTaskSparkDriverMainClass(this.mainClass);
+
+  final TfArg<String> mainClass;
+
+  @override
+  String get blockKey => 'main_class';
+
+  @override
+  Map<String, Object?> encode() => {'main_class': mainClass.toTfJson()};
+}
+
+/// The [DataplexTaskSparkDriver.pythonScriptFile] choice: sets `python_script_file`.
+final class DataplexTaskSparkDriverPythonScriptFile
+    extends DataplexTaskSparkDriver {
+  const DataplexTaskSparkDriverPythonScriptFile(this.pythonScriptFile);
+
+  final TfArg<String> pythonScriptFile;
+
+  @override
+  String get blockKey => 'python_script_file';
+
+  @override
+  Map<String, Object?> encode() => {
+    'python_script_file': pythonScriptFile.toTfJson(),
+  };
+}
+
+/// The [DataplexTaskSparkDriver.sqlScriptFile] choice: sets `sql_script_file`.
+final class DataplexTaskSparkDriverSqlScriptFile
+    extends DataplexTaskSparkDriver {
+  const DataplexTaskSparkDriverSqlScriptFile(this.sqlScriptFile);
+
+  final TfArg<String> sqlScriptFile;
+
+  @override
+  String get blockKey => 'sql_script_file';
+
+  @override
+  Map<String, Object?> encode() => {
+    'sql_script_file': sqlScriptFile.toTfJson(),
+  };
+}
+
+/// The [DataplexTaskSparkDriver.sqlScript] choice: sets `sql_script`.
+final class DataplexTaskSparkDriverSqlScript extends DataplexTaskSparkDriver {
+  const DataplexTaskSparkDriverSqlScript(this.sqlScript);
+
+  final TfArg<String> sqlScript;
+
+  @override
+  String get blockKey => 'sql_script';
+
+  @override
+  Map<String, Object?> encode() => {'sql_script': sqlScript.toTfJson()};
+}
+
+/// Typed helper for the `spark.infrastructure_spec` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskSparkInfrastructureSpec {
+  const DataplexTaskSparkInfrastructureSpec({
+    this.batch,
+    this.containerImage,
+    this.vpcNetwork,
+  });
+
+  final DataplexTaskSparkInfrastructureSpecBatch? batch;
+
+  final DataplexTaskSparkInfrastructureSpecContainerImage? containerImage;
+
+  final DataplexTaskSparkInfrastructureSpecVpcNetwork? vpcNetwork;
+
+  Map<String, Object?> encode() => {
+    'batch': ?batch?.encode(),
+    'container_image': ?containerImage?.encode(),
+    'vpc_network': ?vpcNetwork?.encode(),
+  };
+}
+
+/// Typed helper for the `spark.infrastructure_spec.batch` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskSparkInfrastructureSpecBatch {
+  const DataplexTaskSparkInfrastructureSpecBatch({
+    this.executorsCount,
+    this.maxExecutorsCount,
+  });
+
+  final TfArg<num>? executorsCount;
+
+  final TfArg<num>? maxExecutorsCount;
+
+  Map<String, Object?> encode() => {
+    'executors_count': ?executorsCount?.toTfJson(),
+    'max_executors_count': ?maxExecutorsCount?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `spark.infrastructure_spec.container_image` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskSparkInfrastructureSpecContainerImage {
+  const DataplexTaskSparkInfrastructureSpecContainerImage({
+    this.image,
+    this.javaJars,
+    this.properties,
+    this.pythonPackages,
+  });
+
+  final TfArg<String>? image;
+
+  final TfArg<List<Object?>>? javaJars;
+
+  final TfArg<Map<String, String>>? properties;
+
+  final TfArg<List<Object?>>? pythonPackages;
+
+  Map<String, Object?> encode() => {
+    'image': ?image?.toTfJson(),
+    'java_jars': ?javaJars?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'python_packages': ?pythonPackages?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `spark.infrastructure_spec.vpc_network` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskSparkInfrastructureSpecVpcNetwork {
+  const DataplexTaskSparkInfrastructureSpecVpcNetwork({
+    required this.target,
+    this.networkTags,
+  });
+
+  final DataplexTaskSparkInfrastructureSpecVpcNetworkTarget target;
+
+  final TfArg<List<Object?>>? networkTags;
+
+  Map<String, Object?> encode() => {
+    ...target.encode(),
+    'network_tags': ?networkTags?.toTfJson(),
+  };
+}
+
+/// Exactly one of `network`, `sub_network` on the `spark.infrastructure_spec.vpc_network` block of `google_dataplex_task`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.network(...)`.
+sealed class DataplexTaskSparkInfrastructureSpecVpcNetworkTarget {
+  const DataplexTaskSparkInfrastructureSpecVpcNetworkTarget();
+
+  /// Sets `network`.
+  const factory DataplexTaskSparkInfrastructureSpecVpcNetworkTarget.network(
+    RefTo<GoogleComputeNetwork> network,
+  ) = DataplexTaskSparkInfrastructureSpecVpcNetworkTargetNetwork;
+
+  /// Sets `sub_network`.
+  const factory DataplexTaskSparkInfrastructureSpecVpcNetworkTarget.subNetwork(
+    TfArg<String> subNetwork,
+  ) = DataplexTaskSparkInfrastructureSpecVpcNetworkTargetSubNetwork;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [DataplexTaskSparkInfrastructureSpecVpcNetworkTarget.network] choice: sets `network`.
+final class DataplexTaskSparkInfrastructureSpecVpcNetworkTargetNetwork
+    extends DataplexTaskSparkInfrastructureSpecVpcNetworkTarget {
+  const DataplexTaskSparkInfrastructureSpecVpcNetworkTargetNetwork(
+    this.network,
+  );
+
+  final RefTo<GoogleComputeNetwork> network;
+
+  @override
+  String get blockKey => 'network';
+
+  @override
+  Map<String, Object?> encode() => {
+    'network': network.encodeAs('id').toTfJson(),
+  };
+}
+
+/// The [DataplexTaskSparkInfrastructureSpecVpcNetworkTarget.subNetwork] choice: sets `sub_network`.
+final class DataplexTaskSparkInfrastructureSpecVpcNetworkTargetSubNetwork
+    extends DataplexTaskSparkInfrastructureSpecVpcNetworkTarget {
+  const DataplexTaskSparkInfrastructureSpecVpcNetworkTargetSubNetwork(
+    this.subNetwork,
+  );
+
+  final TfArg<String> subNetwork;
+
+  @override
+  String get blockKey => 'sub_network';
+
+  @override
+  Map<String, Object?> encode() => {'sub_network': subNetwork.toTfJson()};
 }
 
 /// Typed helper for the `trigger_spec` block of
@@ -223,7 +641,7 @@ final class GoogleDataplexTask extends Resource {
            'execution_spec': TfArg.literal(executionSpec.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
-           workload.blockKey: TfArg.literal(workload.encode()),
+           ...workload.argMap,
          },
        );
 

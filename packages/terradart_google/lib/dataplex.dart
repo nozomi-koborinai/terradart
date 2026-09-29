@@ -37,7 +37,11 @@ export 'src/dataplex/google_dataplex_asset_iam_member.dart'
 export 'src/dataplex/google_dataplex_asset_iam_policy.dart'
     show GoogleDataplexAssetIamPolicy;
 export 'src/dataplex/google_dataplex_data_product.dart'
-    show DataplexDataProductAccessApprovalConfig, GoogleDataplexDataProduct;
+    show
+        DataplexDataProductAccessApprovalConfig,
+        DataplexDataProductAccessGroups,
+        DataplexDataProductAccessGroupsPrincipal,
+        GoogleDataplexDataProduct;
 export 'src/dataplex/google_dataplex_data_product_data_asset.dart'
     show GoogleDataplexDataProductDataAsset;
 export 'src/dataplex/google_dataplex_data_product_iam_binding.dart'
@@ -130,11 +134,33 @@ export 'src/dataplex/google_dataplex_metadata_feed.dart'
 export 'src/dataplex/google_dataplex_task.dart'
     show
         DataplexTaskExecutionSpec,
-        DataplexTaskNotebookWorkload,
-        DataplexTaskSparkWorkload,
+        DataplexTaskNotebook,
+        DataplexTaskNotebookInfrastructureSpec,
+        DataplexTaskNotebookInfrastructureSpecBatch,
+        DataplexTaskNotebookInfrastructureSpecContainerImage,
+        DataplexTaskNotebookInfrastructureSpecVpcNetwork,
+        DataplexTaskNotebookInfrastructureSpecVpcNetworkTarget,
+        DataplexTaskNotebookInfrastructureSpecVpcNetworkTargetNetwork,
+        DataplexTaskNotebookInfrastructureSpecVpcNetworkTargetSubNetwork,
+        DataplexTaskSpark,
+        DataplexTaskSparkDriver,
+        DataplexTaskSparkDriverMainClass,
+        DataplexTaskSparkDriverMainJarFileUri,
+        DataplexTaskSparkDriverPythonScriptFile,
+        DataplexTaskSparkDriverSqlScript,
+        DataplexTaskSparkDriverSqlScriptFile,
+        DataplexTaskSparkInfrastructureSpec,
+        DataplexTaskSparkInfrastructureSpecBatch,
+        DataplexTaskSparkInfrastructureSpecContainerImage,
+        DataplexTaskSparkInfrastructureSpecVpcNetwork,
+        DataplexTaskSparkInfrastructureSpecVpcNetworkTarget,
+        DataplexTaskSparkInfrastructureSpecVpcNetworkTargetNetwork,
+        DataplexTaskSparkInfrastructureSpecVpcNetworkTargetSubNetwork,
         DataplexTaskTriggerSpec,
         DataplexTaskTriggerSpecType,
         DataplexTaskWorkload,
+        DataplexTaskWorkloadNotebook,
+        DataplexTaskWorkloadSpark,
         GoogleDataplexTask;
 export 'src/dataplex/google_dataplex_task_iam_binding.dart'
     show GoogleDataplexTaskIamBinding;

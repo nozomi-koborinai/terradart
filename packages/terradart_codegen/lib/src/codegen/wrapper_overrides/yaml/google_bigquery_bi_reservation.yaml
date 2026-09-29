@@ -2,6 +2,7 @@ outputDir: bigquery
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 paramOrder:
   - location

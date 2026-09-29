@@ -1,10 +1,26 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_healthcare_dataset`.
 const Set<String> _googleHealthcareDatasetSensitive = <String>{};
+
+/// Typed helper for the `encryption_spec` block of
+/// `google_healthcare_dataset` (derived from provider schema).
+@immutable
+final class HealthcareDatasetEncryptionSpec {
+  const HealthcareDatasetEncryptionSpec({this.kmsKeyName});
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
+
+  Map<String, Object?> encode() => {
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_healthcare_dataset`.
 ///
@@ -19,6 +35,7 @@ final class GoogleHealthcareDataset extends Resource {
     required TfArg<String> location,
     TfArg<String>? timeZone,
     TfArg<String>? project,
+    HealthcareDatasetEncryptionSpec? encryptionSpec,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -30,6 +47,8 @@ final class GoogleHealthcareDataset extends Resource {
            'location': location,
            'time_zone': ?timeZone,
            'project': ?project,
+           if (encryptionSpec != null)
+             'encryption_spec': TfArg.literal(encryptionSpec.encode()),
          },
        );
 

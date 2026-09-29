@@ -71,6 +71,124 @@ final class HealthcareFhirStoreNotificationConfigs {
   };
 }
 
+/// Typed helper for the `stream_configs` block of
+/// `google_healthcare_fhir_store` (derived from provider schema).
+@immutable
+final class HealthcareFhirStoreStreamConfigs {
+  const HealthcareFhirStoreStreamConfigs({
+    this.resourceTypes,
+    required this.bigqueryDestination,
+  });
+
+  final TfArg<List<Object?>>? resourceTypes;
+
+  final HealthcareFhirStoreStreamConfigsBigqueryDestination bigqueryDestination;
+
+  Map<String, Object?> encode() => {
+    'resource_types': ?resourceTypes?.toTfJson(),
+    'bigquery_destination': bigqueryDestination.encode(),
+  };
+}
+
+/// Typed helper for the `stream_configs.bigquery_destination` block of
+/// `google_healthcare_fhir_store` (derived from provider schema).
+@immutable
+final class HealthcareFhirStoreStreamConfigsBigqueryDestination {
+  const HealthcareFhirStoreStreamConfigsBigqueryDestination({
+    required this.datasetUri,
+    required this.schemaConfig,
+  });
+
+  final TfArg<String> datasetUri;
+
+  final HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfig
+  schemaConfig;
+
+  Map<String, Object?> encode() => {
+    'dataset_uri': datasetUri.toTfJson(),
+    'schema_config': schemaConfig.encode(),
+  };
+}
+
+/// Typed helper for the `stream_configs.bigquery_destination.schema_config` block of
+/// `google_healthcare_fhir_store` (derived from provider schema).
+@immutable
+final class HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfig {
+  const HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfig({
+    required this.recursiveStructureDepth,
+    this.schemaType,
+    this.lastUpdatedPartitionConfig,
+  });
+
+  final TfArg<num> recursiveStructureDepth;
+
+  final TfArg<
+    HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigSchemaType
+  >?
+  schemaType;
+
+  final HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfig?
+  lastUpdatedPartitionConfig;
+
+  Map<String, Object?> encode() => {
+    'recursive_structure_depth': recursiveStructureDepth.toTfJson(),
+    'schema_type': ?schemaType?.toTfJson(),
+    'last_updated_partition_config': ?lastUpdatedPartitionConfig?.encode(),
+  };
+}
+
+/// `schema_type` — derived from the provider schema description.
+enum HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigSchemaType
+    implements TerraformEnum {
+  analytics('ANALYTICS'),
+  analyticsV2('ANALYTICS_V2'),
+  lossless('LOSSLESS');
+
+  const HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigSchemaType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `stream_configs.bigquery_destination.schema_config.last_updated_partition_config` block of
+/// `google_healthcare_fhir_store` (derived from provider schema).
+@immutable
+final class HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfig {
+  const HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfig({
+    this.expirationMs,
+    required this.type,
+  });
+
+  final TfArg<String>? expirationMs;
+
+  final TfArg<
+    HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfigType
+  >
+  type;
+
+  Map<String, Object?> encode() => {
+    'expiration_ms': ?expirationMs?.toTfJson(),
+    'type': type.toTfJson(),
+  };
+}
+
+/// `type` — derived from the provider schema description.
+enum HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfigType
+    implements TerraformEnum {
+  partitionTypeUnspecified('PARTITION_TYPE_UNSPECIFIED'),
+  hour('HOUR'),
+  day('DAY'),
+  month('MONTH'),
+  year('YEAR');
+
+  const HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfigType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `validation_config` block of
 /// `google_healthcare_fhir_store` (derived from provider schema).
 @immutable
@@ -133,6 +251,13 @@ final class GoogleHealthcareFhirStore extends Resource {
     TfArg<bool>? disableResourceVersioning,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
+    TfArg<String>? complexDataTypeReferenceParsing,
+    TfArg<bool>? defaultSearchHandlingStrict,
+    TfArg<bool>? enableHistoryImport,
+    HealthcareFhirStoreNotificationConfig? notificationConfig,
+    List<HealthcareFhirStoreNotificationConfigs>? notificationConfigs,
+    List<HealthcareFhirStoreStreamConfigs>? streamConfigs,
+    HealthcareFhirStoreValidationConfig? validationConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -148,6 +273,22 @@ final class GoogleHealthcareFhirStore extends Resource {
            'disable_resource_versioning': ?disableResourceVersioning,
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
+           'complex_data_type_reference_parsing':
+               ?complexDataTypeReferenceParsing,
+           'default_search_handling_strict': ?defaultSearchHandlingStrict,
+           'enable_history_import': ?enableHistoryImport,
+           if (notificationConfig != null)
+             'notification_config': TfArg.literal(notificationConfig.encode()),
+           if (notificationConfigs != null)
+             'notification_configs': TfArg.literal([
+               for (final e in notificationConfigs) e.encode(),
+             ]),
+           if (streamConfigs != null)
+             'stream_configs': TfArg.literal([
+               for (final e in streamConfigs) e.encode(),
+             ]),
+           if (validationConfig != null)
+             'validation_config': TfArg.literal(validationConfig.encode()),
          },
        );
 

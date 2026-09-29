@@ -26,6 +26,13 @@ paramOrder:
   - forward_ssh_connectivity
   - gcs_profile
   - private_connectivity
+  - bigquery_profile
+  - mongodb_profile
+  - mysql_profile
+  - oracle_profile
+  - postgresql_profile
+  - sql_server_profile
 
 sealedNames:
+  "bigquery_profile, gcs_profile, mongodb_profile, mysql_profile, oracle_profile, postgresql_profile, sql_server_profile": endpoint
   "forward_ssh_connectivity.password, forward_ssh_connectivity.private_key": credential

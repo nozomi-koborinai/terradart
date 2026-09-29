@@ -64,6 +64,13 @@ paramOrder:
   - deletion_protection_enabled
   - deletion_policy
   - project
+  - acl_policy
+  - maintenance_version
+  - server_ca_mode
+  - server_ca_pool
+  - cross_cluster_replication_config
+  - gcs_source
+  - managed_backup_source
 
 extraGetters: |2
     /// Reference to `name` attribute.

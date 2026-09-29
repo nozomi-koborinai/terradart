@@ -7,6 +7,79 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_datastream_private_connection`.
 const Set<String> _googleDatastreamPrivateConnectionSensitive = <String>{};
 
+/// Exactly one of `vpc_peering_config`, `psc_interface_config` on `google_datastream_private_connection`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.vpcPeeringConfig(...)`.
+sealed class DatastreamPrivateConnectionConnectivity {
+  const DatastreamPrivateConnectionConnectivity();
+
+  /// Sets `vpc_peering_config`.
+  const factory DatastreamPrivateConnectionConnectivity.vpcPeeringConfig(
+    DatastreamPrivateConnectionVpcPeeringConfig vpcPeeringConfig,
+  ) = DatastreamPrivateConnectionConnectivityVpcPeeringConfig;
+
+  /// Sets `psc_interface_config`.
+  const factory DatastreamPrivateConnectionConnectivity.pscInterfaceConfig(
+    DatastreamPrivateConnectionPscInterfaceConfig pscInterfaceConfig,
+  ) = DatastreamPrivateConnectionConnectivityPscInterfaceConfig;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DatastreamPrivateConnectionConnectivity.vpcPeeringConfig] choice: sets `vpc_peering_config`.
+final class DatastreamPrivateConnectionConnectivityVpcPeeringConfig
+    extends DatastreamPrivateConnectionConnectivity {
+  const DatastreamPrivateConnectionConnectivityVpcPeeringConfig(
+    this.vpcPeeringConfig,
+  );
+
+  final DatastreamPrivateConnectionVpcPeeringConfig vpcPeeringConfig;
+
+  @override
+  String get blockKey => 'vpc_peering_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'vpc_peering_config': vpcPeeringConfig.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc_peering_config': TfArg.literal(vpcPeeringConfig.encode()),
+  };
+}
+
+/// The [DatastreamPrivateConnectionConnectivity.pscInterfaceConfig] choice: sets `psc_interface_config`.
+final class DatastreamPrivateConnectionConnectivityPscInterfaceConfig
+    extends DatastreamPrivateConnectionConnectivity {
+  const DatastreamPrivateConnectionConnectivityPscInterfaceConfig(
+    this.pscInterfaceConfig,
+  );
+
+  final DatastreamPrivateConnectionPscInterfaceConfig pscInterfaceConfig;
+
+  @override
+  String get blockKey => 'psc_interface_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'psc_interface_config': pscInterfaceConfig.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'psc_interface_config': TfArg.literal(pscInterfaceConfig.encode()),
+  };
+}
+
 /// Typed helper for the `psc_interface_config` block of
 /// `google_datastream_private_connection` (derived from provider schema).
 @immutable
@@ -64,7 +137,7 @@ final class GoogleDatastreamPrivateConnection extends Resource {
     required TfArg<String> location,
     required TfArg<String> privateConnectionId,
     TfArg<String>? project,
-    DatastreamPrivateConnectionVpcPeeringConfig? vpcPeeringConfig,
+    required DatastreamPrivateConnectionConnectivity connectivity,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -79,8 +152,7 @@ final class GoogleDatastreamPrivateConnection extends Resource {
            'location': location,
            'private_connection_id': privateConnectionId,
            'project': ?project,
-           if (vpcPeeringConfig != null)
-             'vpc_peering_config': TfArg.literal(vpcPeeringConfig.encode()),
+           ...connectivity.argMap,
          },
        );
 

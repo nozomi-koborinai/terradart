@@ -5,6 +5,18 @@ library;
 
 export 'src/data_fusion/google_data_fusion_instance.dart'
     show
+        DataFusionInstanceAccelerators,
+        DataFusionInstanceAcceleratorsAcceleratorType,
+        DataFusionInstanceAcceleratorsState,
+        DataFusionInstanceCryptoKeyConfig,
+        DataFusionInstanceEventPublishConfig,
+        DataFusionInstanceMaintenancePolicy,
+        DataFusionInstanceMaintenancePolicyMaintenanceWindow,
+        DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindow,
+        DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindowWindow,
+        DataFusionInstanceNetworkConfig,
+        DataFusionInstanceNetworkConfigConnectionType,
+        DataFusionInstanceNetworkConfigPrivateServiceConnectConfig,
         DataFusionInstanceState,
         DataFusionInstanceType,
         GoogleDataFusionInstance;

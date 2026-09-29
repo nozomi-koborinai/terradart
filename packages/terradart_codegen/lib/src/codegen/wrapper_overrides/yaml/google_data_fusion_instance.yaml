@@ -8,14 +8,6 @@ deriveEnums: true
 dartTypeOverrides:
   type: DataFusionInstanceType
 
-# Network / CMEK / event / accelerator / maintenance stay Map for this thin Wave.
-nestedTypeExcludes:
-  - network_config
-  - crypto_key_config
-  - event_publish_config
-  - accelerators
-  - maintenance_policy
-
 curatedDoc: |-
   /// Cloud Data Fusion **instance** — managed CDAP data integration
   /// (pipeline authoring + execution control plane).
@@ -53,6 +45,8 @@ paramOrder:
   - tags
   - deletion_policy
   - project
+  - dataproc_service_account
+  - patch_revision
 
 extraGetters: |2
     /// Reference to `name` attribute.

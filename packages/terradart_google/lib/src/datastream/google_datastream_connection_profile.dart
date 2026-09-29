@@ -28,6 +28,203 @@ const Set<String> _googleDatastreamConnectionProfileSensitive = <String>{
   'sql_server_profile.password',
 };
 
+/// Exactly one of `oracle_profile`, `gcs_profile`, `mysql_profile`, `bigquery_profile`, `postgresql_profile`, `sql_server_profile`, `mongodb_profile` on `google_datastream_connection_profile`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.oracleProfile(...)`.
+sealed class DatastreamConnectionProfileEndpoint {
+  const DatastreamConnectionProfileEndpoint();
+
+  /// Sets `oracle_profile`.
+  const factory DatastreamConnectionProfileEndpoint.oracleProfile(
+    DatastreamConnectionProfileOracleProfile oracleProfile,
+  ) = DatastreamConnectionProfileEndpointOracleProfile;
+
+  /// Sets `gcs_profile`.
+  const factory DatastreamConnectionProfileEndpoint.gcsProfile(
+    DatastreamConnectionProfileGcsProfile gcsProfile,
+  ) = DatastreamConnectionProfileEndpointGcsProfile;
+
+  /// Sets `mysql_profile`.
+  const factory DatastreamConnectionProfileEndpoint.mysqlProfile(
+    DatastreamConnectionProfileMysqlProfile mysqlProfile,
+  ) = DatastreamConnectionProfileEndpointMysqlProfile;
+
+  /// Sets `bigquery_profile`.
+  const factory DatastreamConnectionProfileEndpoint.bigqueryProfile(
+    DatastreamConnectionProfileBigqueryProfile bigqueryProfile,
+  ) = DatastreamConnectionProfileEndpointBigqueryProfile;
+
+  /// Sets `postgresql_profile`.
+  const factory DatastreamConnectionProfileEndpoint.postgresqlProfile(
+    DatastreamConnectionProfilePostgresqlProfile postgresqlProfile,
+  ) = DatastreamConnectionProfileEndpointPostgresqlProfile;
+
+  /// Sets `sql_server_profile`.
+  const factory DatastreamConnectionProfileEndpoint.sqlServerProfile(
+    DatastreamConnectionProfileSqlServerProfile sqlServerProfile,
+  ) = DatastreamConnectionProfileEndpointSqlServerProfile;
+
+  /// Sets `mongodb_profile`.
+  const factory DatastreamConnectionProfileEndpoint.mongodbProfile(
+    DatastreamConnectionProfileMongodbProfile mongodbProfile,
+  ) = DatastreamConnectionProfileEndpointMongodbProfile;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DatastreamConnectionProfileEndpoint.oracleProfile] choice: sets `oracle_profile`.
+final class DatastreamConnectionProfileEndpointOracleProfile
+    extends DatastreamConnectionProfileEndpoint {
+  const DatastreamConnectionProfileEndpointOracleProfile(this.oracleProfile);
+
+  final DatastreamConnectionProfileOracleProfile oracleProfile;
+
+  @override
+  String get blockKey => 'oracle_profile';
+
+  @override
+  Map<String, Object?> encode() => {'oracle_profile': oracleProfile.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'oracle_profile': TfArg.literal(oracleProfile.encode()),
+  };
+}
+
+/// The [DatastreamConnectionProfileEndpoint.gcsProfile] choice: sets `gcs_profile`.
+final class DatastreamConnectionProfileEndpointGcsProfile
+    extends DatastreamConnectionProfileEndpoint {
+  const DatastreamConnectionProfileEndpointGcsProfile(this.gcsProfile);
+
+  final DatastreamConnectionProfileGcsProfile gcsProfile;
+
+  @override
+  String get blockKey => 'gcs_profile';
+
+  @override
+  Map<String, Object?> encode() => {'gcs_profile': gcsProfile.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'gcs_profile': TfArg.literal(gcsProfile.encode()),
+  };
+}
+
+/// The [DatastreamConnectionProfileEndpoint.mysqlProfile] choice: sets `mysql_profile`.
+final class DatastreamConnectionProfileEndpointMysqlProfile
+    extends DatastreamConnectionProfileEndpoint {
+  const DatastreamConnectionProfileEndpointMysqlProfile(this.mysqlProfile);
+
+  final DatastreamConnectionProfileMysqlProfile mysqlProfile;
+
+  @override
+  String get blockKey => 'mysql_profile';
+
+  @override
+  Map<String, Object?> encode() => {'mysql_profile': mysqlProfile.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'mysql_profile': TfArg.literal(mysqlProfile.encode()),
+  };
+}
+
+/// The [DatastreamConnectionProfileEndpoint.bigqueryProfile] choice: sets `bigquery_profile`.
+final class DatastreamConnectionProfileEndpointBigqueryProfile
+    extends DatastreamConnectionProfileEndpoint {
+  const DatastreamConnectionProfileEndpointBigqueryProfile(
+    this.bigqueryProfile,
+  );
+
+  final DatastreamConnectionProfileBigqueryProfile bigqueryProfile;
+
+  @override
+  String get blockKey => 'bigquery_profile';
+
+  @override
+  Map<String, Object?> encode() => {
+    'bigquery_profile': bigqueryProfile.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'bigquery_profile': TfArg.literal(bigqueryProfile.encode()),
+  };
+}
+
+/// The [DatastreamConnectionProfileEndpoint.postgresqlProfile] choice: sets `postgresql_profile`.
+final class DatastreamConnectionProfileEndpointPostgresqlProfile
+    extends DatastreamConnectionProfileEndpoint {
+  const DatastreamConnectionProfileEndpointPostgresqlProfile(
+    this.postgresqlProfile,
+  );
+
+  final DatastreamConnectionProfilePostgresqlProfile postgresqlProfile;
+
+  @override
+  String get blockKey => 'postgresql_profile';
+
+  @override
+  Map<String, Object?> encode() => {
+    'postgresql_profile': postgresqlProfile.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'postgresql_profile': TfArg.literal(postgresqlProfile.encode()),
+  };
+}
+
+/// The [DatastreamConnectionProfileEndpoint.sqlServerProfile] choice: sets `sql_server_profile`.
+final class DatastreamConnectionProfileEndpointSqlServerProfile
+    extends DatastreamConnectionProfileEndpoint {
+  const DatastreamConnectionProfileEndpointSqlServerProfile(
+    this.sqlServerProfile,
+  );
+
+  final DatastreamConnectionProfileSqlServerProfile sqlServerProfile;
+
+  @override
+  String get blockKey => 'sql_server_profile';
+
+  @override
+  Map<String, Object?> encode() => {
+    'sql_server_profile': sqlServerProfile.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'sql_server_profile': TfArg.literal(sqlServerProfile.encode()),
+  };
+}
+
+/// The [DatastreamConnectionProfileEndpoint.mongodbProfile] choice: sets `mongodb_profile`.
+final class DatastreamConnectionProfileEndpointMongodbProfile
+    extends DatastreamConnectionProfileEndpoint {
+  const DatastreamConnectionProfileEndpointMongodbProfile(this.mongodbProfile);
+
+  final DatastreamConnectionProfileMongodbProfile mongodbProfile;
+
+  @override
+  String get blockKey => 'mongodb_profile';
+
+  @override
+  Map<String, Object?> encode() => {'mongodb_profile': mongodbProfile.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'mongodb_profile': TfArg.literal(mongodbProfile.encode()),
+  };
+}
+
 /// At most one of `forward_ssh_connectivity`, `private_connectivity` on `google_datastream_connection_profile`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -602,7 +799,7 @@ final class GoogleDatastreamConnectionProfile extends Resource {
     required TfArg<String> location,
     TfArg<String>? project,
     DatastreamConnectionProfileConnectivity? connectivity,
-    DatastreamConnectionProfileGcsProfile? gcsProfile,
+    required DatastreamConnectionProfileEndpoint endpoint,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -618,8 +815,7 @@ final class GoogleDatastreamConnectionProfile extends Resource {
            'location': location,
            'project': ?project,
            ...?connectivity?.argMap,
-           if (gcsProfile != null)
-             'gcs_profile': TfArg.literal(gcsProfile.encode()),
+           ...endpoint.argMap,
          },
        );
 

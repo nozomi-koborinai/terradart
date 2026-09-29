@@ -4,19 +4,71 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_dataplex_data_product`.
 const Set<String> _googleDataplexDataProductSensitive = <String>{};
 
-/// `access_approval_config` block (max=1). Lists approver emails for
-/// access requests on this data product.
+/// Typed helper for the `access_approval_config` block of
+/// `google_dataplex_data_product` (derived from provider schema).
 @immutable
-class DataplexDataProductAccessApprovalConfig {
+final class DataplexDataProductAccessApprovalConfig {
   const DataplexDataProductAccessApprovalConfig({this.approverEmails});
 
-  final List<String>? approverEmails;
+  final TfArg<List<Object?>>? approverEmails;
 
-  Map<String, Object?> toArgMap() => {
-    if (approverEmails != null) 'approver_emails': approverEmails,
+  Map<String, Object?> encode() => {
+    'approver_emails': ?approverEmails?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `access_groups` block of
+/// `google_dataplex_data_product` (derived from provider schema).
+@immutable
+final class DataplexDataProductAccessGroups {
+  const DataplexDataProductAccessGroups({
+    this.description,
+    required this.displayName,
+    required this.groupId,
+    required this.id,
+    required this.principal,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> displayName;
+
+  final TfArg<String> groupId;
+
+  final TfArg<String> id;
+
+  final DataplexDataProductAccessGroupsPrincipal principal;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'display_name': displayName.toTfJson(),
+    'group_id': groupId.toTfJson(),
+    'id': id.toTfJson(),
+    'principal': principal.encode(),
+  };
+}
+
+/// Typed helper for the `access_groups.principal` block of
+/// `google_dataplex_data_product` (derived from provider schema).
+@immutable
+final class DataplexDataProductAccessGroupsPrincipal {
+  const DataplexDataProductAccessGroupsPrincipal({
+    this.googleGroup,
+    this.serviceAccount,
+  });
+
+  final TfArg<String>? googleGroup;
+
+  final RefTo<GoogleServiceAccount>? serviceAccount;
+
+  Map<String, Object?> encode() => {
+    'google_group': ?googleGroup?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
   };
 }
 
@@ -37,6 +89,8 @@ final class GoogleDataplexDataProduct extends Resource {
     TfArg<Map<String, String>>? labels,
     DataplexDataProductAccessApprovalConfig? accessApprovalConfig,
     TfArg<String>? project,
+    TfArg<String>? icon,
+    List<DataplexDataProductAccessGroups>? accessGroups,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -51,10 +105,15 @@ final class GoogleDataplexDataProduct extends Resource {
            'description': ?description,
            'labels': ?labels,
            if (accessApprovalConfig != null)
-             'access_approval_config': TfArg.literal([
-               accessApprovalConfig.toArgMap(),
-             ]),
+             'access_approval_config': TfArg.literal(
+               accessApprovalConfig.encode(),
+             ),
            'project': ?project,
+           'icon': ?icon,
+           if (accessGroups != null)
+             'access_groups': TfArg.literal([
+               for (final e in accessGroups) e.encode(),
+             ]),
          },
        );
 

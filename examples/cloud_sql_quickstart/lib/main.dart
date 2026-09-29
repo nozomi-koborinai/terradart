@@ -104,7 +104,7 @@ final class CloudSqlStack extends Stack {
           edition: .literal(.enterprise),
           diskSize: .literal(20),
           diskType: .literal(.pdSsd),
-          ipConfiguration: SqlDatabaseInstanceIpConfiguration(
+          ipConfiguration: SqlDatabaseInstanceSettingsIpConfiguration(
             ipv4Enabled: .literal(false),
             privateNetwork: .ref(vpc.selfLink),
             // Pins the instance to the named PSA range; without this the
@@ -112,20 +112,12 @@ final class CloudSqlStack extends Stack {
             // VPC has multiple PSA peerings.
             allocatedIpRange: .ref(psaRange.nameRef),
           ),
-          // Query Insights is not a typed helper on the settings block; it
-          // rides through `advancedExtra`, the raw-map escape hatch keyed by
-          // the Terraform block name — which also keeps the migrator's
-          // passthrough emission under the round-trip gate.
-          advancedExtra: {
-            'insights_config': [
-              {
-                'query_insights_enabled': true,
-                'query_string_length': 1024,
-                'record_application_tags': true,
-                'record_client_address': false,
-              },
-            ],
-          },
+          insightsConfig: SqlDatabaseInstanceSettingsInsightsConfig(
+            queryInsightsEnabled: .literal(true),
+            queryStringLength: .literal(1024),
+            recordApplicationTags: .literal(true),
+            recordClientAddress: .literal(false),
+          ),
         ),
         dependsOn: [ResourceDependency(psaConnection)],
       ),
@@ -185,13 +177,13 @@ final class CloudSqlStack extends Stack {
         clusterId: .literal('app-alloydb'),
         location: .literal('asia-northeast1'),
         networkConfig: AlloydbClusterNetworkConfig(
-          network: .ref(vpc.selfLink),
+          network: vpc.ref,
           allocatedIpRange: .ref(psaRange.nameRef),
         ),
         initialUser: AlloydbClusterInitialUser(
           user: .literal('postgres'),
           passwordWo: .literal(dbPassword),
-          passwordWoVersion: .literal(1),
+          passwordWoVersion: .literal('1'),
         ),
         dependsOn: [ResourceDependency(psaConnection)],
       ),

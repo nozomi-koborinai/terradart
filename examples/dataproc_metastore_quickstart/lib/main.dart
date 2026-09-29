@@ -57,7 +57,7 @@ final class DataprocMetastoreStack extends Stack {
       localName: 'hive',
       serviceId: .literal(serviceId),
       location: .literal(location),
-      tier: .literal(.developer),
+      capacity: .tier(.literal(.developer)),
       hiveMetastoreConfig: DataprocMetastoreServiceHiveMetastoreConfig(
         version: .literal('3.1.2'),
       ),

@@ -888,6 +888,10 @@ final class GoogleStorageTransferJob extends Resource {
     TfArg<String>? name,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    StorageTransferJobEventStream? eventStream,
+    StorageTransferJobLoggingConfig? loggingConfig,
+    StorageTransferJobNotificationConfig? notificationConfig,
+    StorageTransferJobReplicationSpec? replicationSpec,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -904,6 +908,14 @@ final class GoogleStorageTransferJob extends Resource {
            'name': ?name,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (eventStream != null)
+             'event_stream': TfArg.literal(eventStream.encode()),
+           if (loggingConfig != null)
+             'logging_config': TfArg.literal(loggingConfig.encode()),
+           if (notificationConfig != null)
+             'notification_config': TfArg.literal(notificationConfig.encode()),
+           if (replicationSpec != null)
+             'replication_spec': TfArg.literal(replicationSpec.encode()),
          },
        );
 

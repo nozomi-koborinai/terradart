@@ -4,6 +4,13 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
+
+sealedNames:
+  "autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.max_nodes, autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.max_processing_units": max
+  "autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.min_nodes, autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.min_processing_units": min
+  "autoscaling_config.autoscaling_limits.max_nodes, autoscaling_config.autoscaling_limits.max_processing_units": max
+  "autoscaling_config.autoscaling_limits.min_nodes, autoscaling_config.autoscaling_limits.min_processing_units": min
 
 paramOrder:
   - config
@@ -12,6 +19,12 @@ paramOrder:
   - processing_units
   - edition
   - labels
+  - default_backup_schedule_type
+  - force_destroy
+  - instance_type
+  - name
+  - project
+  - autoscaling_config
 
 dartTypeOverrides:
   edition: SpannerInstanceEdition

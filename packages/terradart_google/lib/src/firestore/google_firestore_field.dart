@@ -11,7 +11,7 @@ const Set<String> _googleFirestoreFieldSensitive = <String>{};
 // Enums (sourced from schema "Possible values" prose)
 // ===========================================================================
 
-/// One [FirestoreFieldSingleFieldIndex.order] direction. `ASCENDING` / `DESCENDING`.
+/// One [FirestoreFieldIndexConfigIndexes.order] direction. `ASCENDING` / `DESCENDING`.
 enum FirestoreFieldOrder implements TerraformEnum {
   ascending('ASCENDING'),
   descending('DESCENDING');
@@ -37,76 +37,97 @@ enum FirestoreFieldQueryScope implements TerraformEnum {
 // Nested-block helpers
 // ===========================================================================
 
-/// `index_config` block (max_items=1). Overrides Firestore's automatic
-/// single-field indexing for the parent field. An empty [indexes] list
-/// disables all single-field indexes on the field; a populated list
-/// adds explicit per-field indexes (mix of ordered / array-contains).
+/// Typed helper for the `index_config` block of
+/// `google_firestore_field` (derived from provider schema).
 @immutable
-class FirestoreFieldIndexConfig {
-  const FirestoreFieldIndexConfig({required this.indexes});
+final class FirestoreFieldIndexConfig {
+  const FirestoreFieldIndexConfig({this.indexes});
 
-  /// Per-field indexes. Empty list is valid and means "no single-field
-  /// indexes on this field" -- the override mechanism is binary.
-  final List<FirestoreFieldSingleFieldIndex> indexes;
+  final List<FirestoreFieldIndexConfigIndexes>? indexes;
 
   Map<String, Object?> encode() => {
-    'indexes': indexes.map((i) => i.encode()).toList(),
+    if (indexes != null) 'indexes': [for (final e in indexes!) e.encode()],
   };
 }
 
-/// One entry in `index_config.indexes`. Pick exactly one of [order]
-/// (ranged / equality / ORDER BY) or [arrayContains] (array-contains
-/// queries) -- the schema marks them mutually exclusive ("Only one of
-/// 'order' and 'arrayConfig' can be specified"). [queryScope] is
-/// independent and defaults to `COLLECTION` server-side.
+/// Typed helper for the `index_config.indexes` block of
+/// `google_firestore_field` (derived from provider schema).
 @immutable
-class FirestoreFieldSingleFieldIndex {
-  const FirestoreFieldSingleFieldIndex({
-    this.order,
-    this.arrayContains = false,
-    this.queryScope,
-  }) : assert(
-         !(order != null && arrayContains),
-         'FirestoreFieldSingleFieldIndex: pass exactly one of `order` or '
-         '`arrayContains: true` -- the schema rejects both.',
-       ),
-       assert(
-         order != null || arrayContains,
-         'FirestoreFieldSingleFieldIndex: must specify either `order` or '
-         '`arrayContains: true`.',
-       );
+final class FirestoreFieldIndexConfigIndexes {
+  const FirestoreFieldIndexConfigIndexes({required this.mode, this.queryScope});
 
-  /// Index direction. Null when [arrayContains] is true.
-  final FirestoreFieldOrder? order;
+  final FirestoreFieldIndexConfigIndexesMode mode;
 
-  /// When true, encodes `array_config: "CONTAINS"`. Mutually exclusive
-  /// with [order]. Plain [bool] (not [TfArg]) — this is a Dart-side
-  /// discriminant, not a Terraform argument.
-  final bool arrayContains; // gate7-ok
-
-  /// Query scope for this index. Null falls through to the provider
-  /// default (`COLLECTION`).
-  final FirestoreFieldQueryScope? queryScope;
+  final TfArg<FirestoreFieldQueryScope>? queryScope;
 
   Map<String, Object?> encode() => {
-    if (order != null) 'order': order!.terraformValue,
-    // `CONTAINS` is the only valid value for `array_config` as of provider v7.31.0;
-    // hard-coded here to keep the encoded shape consistent with the schema.
-    if (arrayContains) 'array_config': 'CONTAINS',
-    if (queryScope != null) 'query_scope': queryScope!.terraformValue,
+    ...mode.encode(),
+    'query_scope': ?queryScope?.toTfJson(),
   };
 }
 
-/// `ttl_config` block (max_items=1). Presence alone enables the TTL
-/// policy on the parent field -- the schema's single attribute
-/// (`state`) is computed and read-only. Pass `const FirestoreFieldTtlConfig()` to
-/// enable; omit to disable.
-@immutable
-class FirestoreFieldTtlConfig {
-  const FirestoreFieldTtlConfig();
+/// Exactly one of `order`, `array_config` on the `index_config.indexes` block of `google_firestore_field`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.order(...)`.
+sealed class FirestoreFieldIndexConfigIndexesMode {
+  const FirestoreFieldIndexConfigIndexesMode();
 
-  /// Empty map -- the schema has no input attributes on this block.
-  Map<String, Object?> encode() => const <String, Object?>{};
+  /// Sets `order`.
+  const factory FirestoreFieldIndexConfigIndexesMode.order(
+    TfArg<FirestoreFieldOrder> order,
+  ) = FirestoreFieldIndexConfigIndexesModeOrder;
+
+  /// Sets `array_config`.
+  const factory FirestoreFieldIndexConfigIndexesMode.arrayConfig(
+    TfArg<String> arrayConfig,
+  ) = FirestoreFieldIndexConfigIndexesModeArrayConfig;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [FirestoreFieldIndexConfigIndexesMode.order] choice: sets `order`.
+final class FirestoreFieldIndexConfigIndexesModeOrder
+    extends FirestoreFieldIndexConfigIndexesMode {
+  const FirestoreFieldIndexConfigIndexesModeOrder(this.order);
+
+  final TfArg<FirestoreFieldOrder> order;
+
+  @override
+  String get blockKey => 'order';
+
+  @override
+  Map<String, Object?> encode() => {'order': order.toTfJson()};
+}
+
+/// The [FirestoreFieldIndexConfigIndexesMode.arrayConfig] choice: sets `array_config`.
+final class FirestoreFieldIndexConfigIndexesModeArrayConfig
+    extends FirestoreFieldIndexConfigIndexesMode {
+  const FirestoreFieldIndexConfigIndexesModeArrayConfig(this.arrayConfig);
+
+  final TfArg<String> arrayConfig;
+
+  @override
+  String get blockKey => 'array_config';
+
+  @override
+  Map<String, Object?> encode() => {'array_config': arrayConfig.toTfJson()};
+}
+
+/// Typed helper for the `ttl_config` block of
+/// `google_firestore_field` (derived from provider schema).
+@immutable
+final class FirestoreFieldTtlConfig {
+  const FirestoreFieldTtlConfig({this.expirationOffset});
+
+  final TfArg<String>? expirationOffset;
+
+  Map<String, Object?> encode() => {
+    'expiration_offset': ?expirationOffset?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_firestore_field`.
@@ -170,6 +191,7 @@ final class GoogleFirestoreField extends Resource {
     FirestoreFieldIndexConfig? indexConfig,
     FirestoreFieldTtlConfig? ttlConfig,
     TfArg<String>? project,
+    TfArg<bool>? skipWait,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -181,10 +203,11 @@ final class GoogleFirestoreField extends Resource {
            'field': field,
            'database': ?database,
            if (indexConfig != null)
-             'index_config': TfArg.literal([indexConfig.encode()]),
+             'index_config': TfArg.literal(indexConfig.encode()),
            if (ttlConfig != null)
-             'ttl_config': TfArg.literal([ttlConfig.encode()]),
+             'ttl_config': TfArg.literal(ttlConfig.encode()),
            'project': ?project,
+           'skip_wait': ?skipWait,
          },
        );
 

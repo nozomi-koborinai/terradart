@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_sql_database_instance`.
@@ -103,559 +104,937 @@ enum SqlDiskType implements TerraformEnum {
 // SqlDatabaseInstanceSettings + nested helpers
 // ===========================================================================
 
-/// `settings` block. Required in practice for any non-trivial instance —
-/// at minimum supply [tier]. The remaining knobs default to GCP's
-/// per-tier sensible values; override only the ones you need.
-///
-/// Rarely-touched sub-blocks (`active_directory_config`,
-/// `sql_server_audit_config`, `entraid_config`,
-/// `password_validation_policy`, `connection_pool_config`,
-/// `read_pool_auto_scale_config`, `data_cache_config`,
-/// `advanced_machine_features`, `deny_maintenance_period`,
-/// `final_backup_config`, `insights_config`) are not modeled as typed
-/// helpers; pass a raw `Map<String, Object?>` via [advancedExtra] keyed
-/// by the Terraform block name when you need them.
+// ===========================================================================
+// replica_configuration (top-level, separate from settings)
+// ===========================================================================
+
+/// Typed helper for the `clone` block of
+/// `google_sql_database_instance` (derived from provider schema).
 @immutable
-class SqlDatabaseInstanceSettings {
-  const SqlDatabaseInstanceSettings({
-    this.tier,
-    this.availabilityType,
-    this.edition,
-    this.activationPolicy,
-    this.diskSize,
-    this.diskType,
-    this.diskAutoresize,
-    this.diskAutoresizeLimit,
-    this.userLabels,
-    this.collation,
-    this.timeZone,
-    this.connectorEnforcement,
-    this.dataApiAccess,
-    this.deletionProtectionEnabled,
-    this.retainBackupsOnDelete,
-    this.pricingPlan,
-    this.enableDataplexIntegration,
-    this.enableGoogleMlIntegration,
-    this.autoUpgradeEnabled,
-    this.ipConfiguration,
-    this.backupConfiguration,
-    this.locationPreference,
-    this.maintenanceWindow,
-    this.databaseFlags,
-    this.advancedExtra,
-  });
-
-  /// Machine type / instance shape. Examples: `'db-perf-optimized-N-2'`,
-  /// `'db-custom-2-7680'`, `'db-f1-micro'` (legacy shared-core, dev only).
-  final TfArg<String>? tier;
-
-  /// HA mode: `regional` (multi-zone failover) vs `zonal` (single-zone).
-  final TfArg<SqlAvailabilityType>? availabilityType;
-
-  /// Enterprise vs Enterprise Plus. ENTERPRISE_PLUS unlocks data cache,
-  /// HDR, and the read-pool instance type.
-  final TfArg<SqlEdition>? edition;
-
-  /// 24/7 vs stopped. Most instances stay on [SqlActivationPolicy.always].
-  final TfArg<SqlActivationPolicy>? activationPolicy;
-
-  /// Data disk size in GB. Existing instances cannot be shrunk.
-  final TfArg<int>? diskSize;
-
-  /// Disk type. Tier-dependent.
-  final TfArg<SqlDiskType>? diskType;
-
-  /// Whether storage automatically grows. Default `true`.
-  final TfArg<bool>? diskAutoresize;
-
-  /// Ceiling for auto-grow, in GB. `0` means "no limit (within quota)".
-  final TfArg<int>? diskAutoresizeLimit;
-
-  /// Free-form key/value labels.
-  final TfArg<Map<String, String>>? userLabels;
-
-  /// Server collation (SQL Server only).
-  final TfArg<String>? collation;
-
-  /// Database engine timezone (SQL Server only — Posix string).
-  final TfArg<String>? timeZone;
-
-  /// Cloud SQL Auth Proxy / connector enforcement
-  /// (`'REQUIRED'` / `'NOT_REQUIRED'`).
-  final TfArg<String>? connectorEnforcement;
-
-  /// `'EXECUTE_SQL_ENABLED'` to opt in to the ExecuteSql API.
-  final TfArg<String>? dataApiAccess;
-
-  /// API-level deletion protection. Separate from the top-level
-  /// [GoogleSqlDatabaseInstance.deletionProtection] (which is enforced
-  /// by Terraform).
-  final TfArg<bool>? deletionProtectionEnabled;
-
-  /// Retain backups when the instance is deleted.
-  final TfArg<bool>? retainBackupsOnDelete;
-
-  /// Pricing plan. The only currently supported value is `'PER_USE'`.
-  final TfArg<String>? pricingPlan;
-
-  /// Toggle Dataplex integration.
-  final TfArg<bool>? enableDataplexIntegration;
-
-  /// Toggle Vertex AI integration.
-  final TfArg<bool>? enableGoogleMlIntegration;
-
-  /// MySQL automatic version upgrade. Has no effect on Postgres /
-  /// SQL Server.
-  final TfArg<bool>? autoUpgradeEnabled;
-
-  /// IP connectivity configuration — `ipv4_enabled`, `private_network`,
-  /// `authorized_networks`, SSL mode. The private-IP cornerstone for
-  /// the Wave 5 chain.
-  final SqlDatabaseInstanceIpConfiguration? ipConfiguration;
-
-  /// Automatic backups + point-in-time recovery.
-  final SqlDatabaseInstanceBackupConfiguration? backupConfiguration;
-
-  /// Zone / failover-zone preferences. Typically auto-selected.
-  final SqlDatabaseInstanceLocationPreference? locationPreference;
-
-  /// Maintenance window (day / hour / track).
-  final SqlDatabaseInstanceMaintenanceWindow? maintenanceWindow;
-
-  /// Engine-level flags (e.g. `max_connections`, `log_min_duration`).
-  final List<SqlDatabaseInstanceDatabaseFlag>? databaseFlags;
-
-  /// Escape hatch for the less-curated sub-blocks listed in this class's
-  /// doc comment. Keys are Terraform block names; values are the block
-  /// payload (single block → `[{...}]`, set → list of maps).
-  final Map<String, Object?>? advancedExtra;
-
-  Map<String, Object?> toArgMap() => {
-    if (tier != null) 'tier': tier!.toTfJson(),
-    if (availabilityType != null)
-      'availability_type': availabilityType!.toTfJson(),
-    if (edition != null) 'edition': edition!.toTfJson(),
-    if (activationPolicy != null)
-      'activation_policy': activationPolicy!.toTfJson(),
-    if (diskSize != null) 'disk_size': diskSize!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (diskAutoresize != null) 'disk_autoresize': diskAutoresize!.toTfJson(),
-    if (diskAutoresizeLimit != null)
-      'disk_autoresize_limit': diskAutoresizeLimit!.toTfJson(),
-    if (userLabels != null) 'user_labels': userLabels!.toTfJson(),
-    if (collation != null) 'collation': collation!.toTfJson(),
-    if (timeZone != null) 'time_zone': timeZone!.toTfJson(),
-    if (connectorEnforcement != null)
-      'connector_enforcement': connectorEnforcement!.toTfJson(),
-    if (dataApiAccess != null) 'data_api_access': dataApiAccess!.toTfJson(),
-    if (deletionProtectionEnabled != null)
-      'deletion_protection_enabled': deletionProtectionEnabled!.toTfJson(),
-    if (retainBackupsOnDelete != null)
-      'retain_backups_on_delete': retainBackupsOnDelete!.toTfJson(),
-    if (pricingPlan != null) 'pricing_plan': pricingPlan!.toTfJson(),
-    if (enableDataplexIntegration != null)
-      'enable_dataplex_integration': enableDataplexIntegration!.toTfJson(),
-    if (enableGoogleMlIntegration != null)
-      'enable_google_ml_integration': enableGoogleMlIntegration!.toTfJson(),
-    if (autoUpgradeEnabled != null)
-      'auto_upgrade_enabled': autoUpgradeEnabled!.toTfJson(),
-    if (ipConfiguration != null)
-      'ip_configuration': [ipConfiguration!.toArgMap()],
-    if (backupConfiguration != null)
-      'backup_configuration': [backupConfiguration!.toArgMap()],
-    if (locationPreference != null)
-      'location_preference': [locationPreference!.toArgMap()],
-    if (maintenanceWindow != null)
-      'maintenance_window': [maintenanceWindow!.toArgMap()],
-    if (databaseFlags != null)
-      'database_flags': databaseFlags!.map((f) => f.toArgMap()).toList(),
-    if (advancedExtra != null) ...advancedExtra!,
-  };
-}
-
-/// `settings.ip_configuration` — controls how clients reach the
-/// instance. Two main shapes:
-///
-/// 1. Public IP: `ipv4Enabled: true`, optionally with
-///    `authorizedNetworks` for source IP allow-listing.
-/// 2. Private IP: `ipv4Enabled: false` + `privateNetwork` pointing at
-///    a VPC the user has already peered to
-///    `servicenetworking.googleapis.com` via a
-///    [GoogleServiceNetworkingConnection].
-///
-/// SSL mode names (`ssl_mode`) accepted by the API include
-/// `'ALLOW_UNENCRYPTED_AND_ENCRYPTED'`, `'ENCRYPTED_ONLY'`, and
-/// `'TRUSTED_CLIENT_CERTIFICATE_REQUIRED'`; passed through as a string
-/// rather than an enum because the schema does not declare the set
-/// (Gate 3 invariant).
-@immutable
-class SqlDatabaseInstanceIpConfiguration {
-  const SqlDatabaseInstanceIpConfiguration({
-    this.ipv4Enabled,
-    this.privateNetwork,
+final class SqlDatabaseInstanceClone {
+  const SqlDatabaseInstanceClone({
     this.allocatedIpRange,
-    this.enablePrivatePathForGoogleCloudServices,
-    this.sslMode,
-    this.serverCaMode,
-    this.serverCaPool,
-    this.serverCertificateRotationMode,
-    this.customSubjectAlternativeNames,
-    this.authorizedNetworks,
-    this.pscConfig,
+    this.databaseNames,
+    this.pointInTime,
+    this.preferredZone,
+    this.sourceInstanceDeletionTime,
+    required this.sourceInstanceName,
+    this.sourceProject,
   });
 
-  /// Whether the instance has a public IPv4 address. Set to `false` for
-  /// private-only instances.
-  final TfArg<bool>? ipv4Enabled;
-
-  /// VPC network the instance is reachable from on its private IP.
-  /// Typically `TfArg.ref(vpc.selfLink)`. The downstream
-  /// `service_networking_connection` must be applied first.
-  final TfArg<String>? privateNetwork;
-
-  /// Name of the allocated IP range for the private-IP instance (i.e.
-  /// the [GoogleComputeGlobalAddress.nameRef] consumed by
-  /// service_networking). When `null`, the API picks any matching range.
   final TfArg<String>? allocatedIpRange;
 
-  /// Allow Google managed services (BigQuery etc.) to reach the
-  /// instance over private IP.
-  final TfArg<bool>? enablePrivatePathForGoogleCloudServices;
+  final TfArg<List<Object?>>? databaseNames;
 
-  /// `'ALLOW_UNENCRYPTED_AND_ENCRYPTED'` (default), `'ENCRYPTED_ONLY'`,
-  /// or `'TRUSTED_CLIENT_CERTIFICATE_REQUIRED'`.
-  final TfArg<String>? sslMode;
+  final TfArg<String>? pointInTime;
 
-  /// CA hosting mode. `'GOOGLE_MANAGED_INTERNAL_CA'` (default),
-  /// `'GOOGLE_MANAGED_CAS_CA'`, or `'CUSTOMER_MANAGED_CAS_CA'`.
-  final TfArg<String>? serverCaMode;
+  final TfArg<String>? preferredZone;
 
-  /// CA pool resource path. Required when [serverCaMode] is the
-  /// customer-managed CAS option.
-  final TfArg<String>? serverCaPool;
+  final TfArg<String>? sourceInstanceDeletionTime;
 
-  /// `'NEW_CA_KEY'` or `'ROTATE_CA_CERT'`. Triggers CA rotation.
-  final TfArg<String>? serverCertificateRotationMode;
+  final TfArg<String> sourceInstanceName;
 
-  /// Subject alternative names baked into the server cert. Only
-  /// meaningful with customer-managed CAS.
-  final TfArg<List<String>>? customSubjectAlternativeNames;
+  final TfArg<String>? sourceProject;
 
-  /// IP allow-list for public-IP instances.
-  final List<SqlDatabaseInstanceAuthorizedNetwork>? authorizedNetworks;
-
-  /// Private Service Connect connectivity (replaces VPC peering on
-  /// PSC-enabled instances).
-  final SqlDatabaseInstancePscConfig? pscConfig;
-
-  Map<String, Object?> toArgMap() => {
-    if (ipv4Enabled != null) 'ipv4_enabled': ipv4Enabled!.toTfJson(),
-    if (privateNetwork != null) 'private_network': privateNetwork!.toTfJson(),
-    if (allocatedIpRange != null)
-      'allocated_ip_range': allocatedIpRange!.toTfJson(),
-    if (enablePrivatePathForGoogleCloudServices != null)
-      'enable_private_path_for_google_cloud_services':
-          enablePrivatePathForGoogleCloudServices!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
-    if (serverCaMode != null) 'server_ca_mode': serverCaMode!.toTfJson(),
-    if (serverCaPool != null) 'server_ca_pool': serverCaPool!.toTfJson(),
-    if (serverCertificateRotationMode != null)
-      'server_certificate_rotation_mode': serverCertificateRotationMode!
-          .toTfJson(),
-    if (customSubjectAlternativeNames != null)
-      'custom_subject_alternative_names': customSubjectAlternativeNames!
-          .toTfJson(),
-    if (authorizedNetworks != null)
-      'authorized_networks': authorizedNetworks!
-          .map((n) => n.toArgMap())
-          .toList(),
-    if (pscConfig != null) 'psc_config': [pscConfig!.toArgMap()],
+  Map<String, Object?> encode() => {
+    'allocated_ip_range': ?allocatedIpRange?.toTfJson(),
+    'database_names': ?databaseNames?.toTfJson(),
+    'point_in_time': ?pointInTime?.toTfJson(),
+    'preferred_zone': ?preferredZone?.toTfJson(),
+    'source_instance_deletion_time': ?sourceInstanceDeletionTime?.toTfJson(),
+    'source_instance_name': sourceInstanceName.toTfJson(),
+    'source_project': ?sourceProject?.toTfJson(),
   };
 }
 
-/// One entry in `ip_configuration.authorized_networks`. The `value`
-/// field is a CIDR (`'203.0.113.0/24'` or `'203.0.113.42/32'`).
+/// Typed helper for the `point_in_time_restore_context` block of
+/// `google_sql_database_instance` (derived from provider schema).
 @immutable
-class SqlDatabaseInstanceAuthorizedNetwork {
-  const SqlDatabaseInstanceAuthorizedNetwork({
-    required this.value,
-    this.name,
-    this.expirationTime,
+final class SqlDatabaseInstancePointInTimeRestoreContext {
+  const SqlDatabaseInstancePointInTimeRestoreContext({
+    this.allocatedIpRange,
+    required this.datasource,
+    this.pointInTime,
+    this.preferredZone,
+    this.region,
+    this.targetInstance,
   });
 
-  /// Source CIDR.
-  final TfArg<String> value;
+  final TfArg<String>? allocatedIpRange;
 
-  /// Human-readable label for the entry.
-  final TfArg<String>? name;
+  final TfArg<String> datasource;
 
-  /// RFC3339 timestamp after which the entry stops applying.
-  final TfArg<String>? expirationTime;
+  final TfArg<String>? pointInTime;
 
-  Map<String, Object?> toArgMap() => {
-    'value': value.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (expirationTime != null) 'expiration_time': expirationTime!.toTfJson(),
+  final TfArg<String>? preferredZone;
+
+  final TfArg<String>? region;
+
+  final TfArg<String>? targetInstance;
+
+  Map<String, Object?> encode() => {
+    'allocated_ip_range': ?allocatedIpRange?.toTfJson(),
+    'datasource': datasource.toTfJson(),
+    'point_in_time': ?pointInTime?.toTfJson(),
+    'preferred_zone': ?preferredZone?.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'target_instance': ?targetInstance?.toTfJson(),
   };
 }
 
-/// `ip_configuration.psc_config` — Private Service Connect. Mutually
-/// exclusive with VPC peering on the same instance.
+/// Typed helper for the `replica_configuration` block of
+/// `google_sql_database_instance` (derived from provider schema).
 @immutable
-class SqlDatabaseInstancePscConfig {
-  const SqlDatabaseInstancePscConfig({
-    this.pscEnabled,
-    this.allowedConsumerProjects,
-    this.networkAttachmentUri,
+final class SqlDatabaseInstanceReplicaConfiguration {
+  const SqlDatabaseInstanceReplicaConfiguration({
+    this.caCertificate,
+    this.cascadableReplica,
+    this.clientCertificate,
+    this.clientKey,
+    this.connectRetryInterval,
+    this.dumpFilePath,
+    this.failoverTarget,
+    this.masterHeartbeatPeriod,
+    this.password,
+    this.sslCipher,
+    this.username,
+    this.verifyServerCertificate,
   });
 
-  /// Master switch for PSC connectivity.
-  final TfArg<bool>? pscEnabled;
+  final TfArg<String>? caCertificate;
 
-  /// Projects allow-listed to connect via PSC.
-  final TfArg<List<String>>? allowedConsumerProjects;
+  final TfArg<bool>? cascadableReplica;
 
-  /// `projects/{p}/regions/{r}/networkAttachments/{n}` — producer
-  /// network attachment for the PSC connection.
-  final TfArg<String>? networkAttachmentUri;
+  final TfArg<String>? clientCertificate;
 
-  Map<String, Object?> toArgMap() => {
-    if (pscEnabled != null) 'psc_enabled': pscEnabled!.toTfJson(),
-    if (allowedConsumerProjects != null)
-      'allowed_consumer_projects': allowedConsumerProjects!.toTfJson(),
-    if (networkAttachmentUri != null)
-      'network_attachment_uri': networkAttachmentUri!.toTfJson(),
+  final TfArg<String>? clientKey;
+
+  final TfArg<num>? connectRetryInterval;
+
+  final TfArg<String>? dumpFilePath;
+
+  final TfArg<bool>? failoverTarget;
+
+  final TfArg<num>? masterHeartbeatPeriod;
+
+  final TfArg<String>? password;
+
+  final TfArg<String>? sslCipher;
+
+  final TfArg<String>? username;
+
+  final TfArg<bool>? verifyServerCertificate;
+
+  Map<String, Object?> encode() => {
+    'ca_certificate': ?caCertificate?.toTfJson(),
+    'cascadable_replica': ?cascadableReplica?.toTfJson(),
+    'client_certificate': ?clientCertificate?.toTfJson(),
+    'client_key': ?clientKey?.toTfJson(),
+    'connect_retry_interval': ?connectRetryInterval?.toTfJson(),
+    'dump_file_path': ?dumpFilePath?.toTfJson(),
+    'failover_target': ?failoverTarget?.toTfJson(),
+    'master_heartbeat_period': ?masterHeartbeatPeriod?.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'ssl_cipher': ?sslCipher?.toTfJson(),
+    'username': ?username?.toTfJson(),
+    'verify_server_certificate': ?verifyServerCertificate?.toTfJson(),
   };
 }
 
-/// `settings.backup_configuration`. Enabling backups is a prerequisite
-/// for HA (`availability_type: REGIONAL`) and point-in-time recovery
-/// on Postgres.
+/// Typed helper for the `replication_cluster` block of
+/// `google_sql_database_instance` (derived from provider schema).
 @immutable
-class SqlDatabaseInstanceBackupConfiguration {
-  const SqlDatabaseInstanceBackupConfiguration({
+final class SqlDatabaseInstanceReplicationCluster {
+  const SqlDatabaseInstanceReplicationCluster({
+    this.failoverDrReplicaName,
+    this.psaWriteEndpoint,
+  });
+
+  final TfArg<String>? failoverDrReplicaName;
+
+  final TfArg<String>? psaWriteEndpoint;
+
+  Map<String, Object?> encode() => {
+    'failover_dr_replica_name': ?failoverDrReplicaName?.toTfJson(),
+    'psa_write_endpoint': ?psaWriteEndpoint?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `restore_backup_context` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceRestoreBackupContext {
+  const SqlDatabaseInstanceRestoreBackupContext({
+    required this.backupRunId,
+    this.instanceId,
+    this.project,
+  });
+
+  final TfArg<num> backupRunId;
+
+  final TfArg<String>? instanceId;
+
+  final TfArg<String>? project;
+
+  Map<String, Object?> encode() => {
+    'backup_run_id': backupRunId.toTfJson(),
+    'instance_id': ?instanceId?.toTfJson(),
+    'project': ?project?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettings {
+  const SqlDatabaseInstanceSettings({
+    this.activationPolicy,
+    this.autoUpgradeEnabled,
+    this.availabilityType,
+    this.collation,
+    this.connectorEnforcement,
+    this.dataApiAccess,
+    this.dataDiskProvisionedIops,
+    this.dataDiskProvisionedThroughput,
+    this.deletionProtectionEnabled,
+    this.diskAutoresize,
+    this.diskAutoresizeLimit,
+    this.diskSize,
+    this.diskType,
+    this.edition,
+    this.enableDataplexIntegration,
+    this.enableGoogleMlIntegration,
+    this.pricingPlan,
+    this.replicationLagMaxSeconds,
+    this.retainBackupsOnDelete,
+    required this.tier,
+    this.timeZone,
+    this.userLabels,
+    this.activeDirectoryConfig,
+    this.advancedMachineFeatures,
+    this.backupConfiguration,
+    this.connectionPoolConfig,
+    this.dataCacheConfig,
+    this.databaseFlags,
+    this.denyMaintenancePeriod,
+    this.entraidConfig,
+    this.finalBackupConfig,
+    this.insightsConfig,
+    this.ipConfiguration,
+    this.locationPreference,
+    this.maintenanceWindow,
+    this.passwordValidationPolicy,
+    this.readPoolAutoScaleConfig,
+    this.sqlServerAuditConfig,
+  });
+
+  final TfArg<SqlActivationPolicy>? activationPolicy;
+
+  final TfArg<bool>? autoUpgradeEnabled;
+
+  final TfArg<SqlAvailabilityType>? availabilityType;
+
+  final TfArg<String>? collation;
+
+  final TfArg<String>? connectorEnforcement;
+
+  final TfArg<String>? dataApiAccess;
+
+  final TfArg<num>? dataDiskProvisionedIops;
+
+  final TfArg<num>? dataDiskProvisionedThroughput;
+
+  final TfArg<bool>? deletionProtectionEnabled;
+
+  final TfArg<bool>? diskAutoresize;
+
+  final TfArg<num>? diskAutoresizeLimit;
+
+  final TfArg<num>? diskSize;
+
+  final TfArg<SqlDiskType>? diskType;
+
+  final TfArg<SqlEdition>? edition;
+
+  final TfArg<bool>? enableDataplexIntegration;
+
+  final TfArg<bool>? enableGoogleMlIntegration;
+
+  final TfArg<String>? pricingPlan;
+
+  final TfArg<num>? replicationLagMaxSeconds;
+
+  final TfArg<bool>? retainBackupsOnDelete;
+
+  final TfArg<String> tier;
+
+  final TfArg<String>? timeZone;
+
+  final TfArg<Map<String, String>>? userLabels;
+
+  final SqlDatabaseInstanceSettingsActiveDirectoryConfig? activeDirectoryConfig;
+
+  final SqlDatabaseInstanceSettingsAdvancedMachineFeatures?
+  advancedMachineFeatures;
+
+  final SqlDatabaseInstanceSettingsBackupConfiguration? backupConfiguration;
+
+  final List<SqlDatabaseInstanceSettingsConnectionPoolConfig>?
+  connectionPoolConfig;
+
+  final SqlDatabaseInstanceSettingsDataCacheConfig? dataCacheConfig;
+
+  final List<SqlDatabaseInstanceSettingsDatabaseFlags>? databaseFlags;
+
+  final SqlDatabaseInstanceSettingsDenyMaintenancePeriod? denyMaintenancePeriod;
+
+  final SqlDatabaseInstanceSettingsEntraidConfig? entraidConfig;
+
+  final SqlDatabaseInstanceSettingsFinalBackupConfig? finalBackupConfig;
+
+  final SqlDatabaseInstanceSettingsInsightsConfig? insightsConfig;
+
+  final SqlDatabaseInstanceSettingsIpConfiguration? ipConfiguration;
+
+  final SqlDatabaseInstanceSettingsLocationPreference? locationPreference;
+
+  final SqlDatabaseInstanceSettingsMaintenanceWindow? maintenanceWindow;
+
+  final SqlDatabaseInstanceSettingsPasswordValidationPolicy?
+  passwordValidationPolicy;
+
+  final SqlDatabaseInstanceSettingsReadPoolAutoScaleConfig?
+  readPoolAutoScaleConfig;
+
+  final SqlDatabaseInstanceSettingsSqlServerAuditConfig? sqlServerAuditConfig;
+
+  Map<String, Object?> encode() => {
+    'activation_policy': ?activationPolicy?.toTfJson(),
+    'auto_upgrade_enabled': ?autoUpgradeEnabled?.toTfJson(),
+    'availability_type': ?availabilityType?.toTfJson(),
+    'collation': ?collation?.toTfJson(),
+    'connector_enforcement': ?connectorEnforcement?.toTfJson(),
+    'data_api_access': ?dataApiAccess?.toTfJson(),
+    'data_disk_provisioned_iops': ?dataDiskProvisionedIops?.toTfJson(),
+    'data_disk_provisioned_throughput': ?dataDiskProvisionedThroughput
+        ?.toTfJson(),
+    'deletion_protection_enabled': ?deletionProtectionEnabled?.toTfJson(),
+    'disk_autoresize': ?diskAutoresize?.toTfJson(),
+    'disk_autoresize_limit': ?diskAutoresizeLimit?.toTfJson(),
+    'disk_size': ?diskSize?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'edition': ?edition?.toTfJson(),
+    'enable_dataplex_integration': ?enableDataplexIntegration?.toTfJson(),
+    'enable_google_ml_integration': ?enableGoogleMlIntegration?.toTfJson(),
+    'pricing_plan': ?pricingPlan?.toTfJson(),
+    'replication_lag_max_seconds': ?replicationLagMaxSeconds?.toTfJson(),
+    'retain_backups_on_delete': ?retainBackupsOnDelete?.toTfJson(),
+    'tier': tier.toTfJson(),
+    'time_zone': ?timeZone?.toTfJson(),
+    'user_labels': ?userLabels?.toTfJson(),
+    'active_directory_config': ?activeDirectoryConfig?.encode(),
+    'advanced_machine_features': ?advancedMachineFeatures?.encode(),
+    'backup_configuration': ?backupConfiguration?.encode(),
+    if (connectionPoolConfig != null)
+      'connection_pool_config': [
+        for (final e in connectionPoolConfig!) e.encode(),
+      ],
+    'data_cache_config': ?dataCacheConfig?.encode(),
+    if (databaseFlags != null)
+      'database_flags': [for (final e in databaseFlags!) e.encode()],
+    'deny_maintenance_period': ?denyMaintenancePeriod?.encode(),
+    'entraid_config': ?entraidConfig?.encode(),
+    'final_backup_config': ?finalBackupConfig?.encode(),
+    'insights_config': ?insightsConfig?.encode(),
+    'ip_configuration': ?ipConfiguration?.encode(),
+    'location_preference': ?locationPreference?.encode(),
+    'maintenance_window': ?maintenanceWindow?.encode(),
+    'password_validation_policy': ?passwordValidationPolicy?.encode(),
+    'read_pool_auto_scale_config': ?readPoolAutoScaleConfig?.encode(),
+    'sql_server_audit_config': ?sqlServerAuditConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `settings.active_directory_config` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsActiveDirectoryConfig {
+  const SqlDatabaseInstanceSettingsActiveDirectoryConfig({
+    this.adminCredentialSecretName,
+    this.dnsServers,
+    required this.domain,
+    this.mode,
+    this.organizationalUnit,
+  });
+
+  final TfArg<String>? adminCredentialSecretName;
+
+  final TfArg<List<Object?>>? dnsServers;
+
+  final TfArg<String> domain;
+
+  final TfArg<String>? mode;
+
+  final TfArg<String>? organizationalUnit;
+
+  Map<String, Object?> encode() => {
+    'admin_credential_secret_name': ?adminCredentialSecretName?.toTfJson(),
+    'dns_servers': ?dnsServers?.toTfJson(),
+    'domain': domain.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'organizational_unit': ?organizationalUnit?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.advanced_machine_features` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsAdvancedMachineFeatures {
+  const SqlDatabaseInstanceSettingsAdvancedMachineFeatures({
+    this.threadsPerCore,
+  });
+
+  final TfArg<num>? threadsPerCore;
+
+  Map<String, Object?> encode() => {
+    'threads_per_core': ?threadsPerCore?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.backup_configuration` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsBackupConfiguration {
+  const SqlDatabaseInstanceSettingsBackupConfiguration({
+    this.binaryLogEnabled,
     this.enabled,
-    this.startTime,
     this.location,
     this.pointInTimeRecoveryEnabled,
-    this.binaryLogEnabled,
+    this.startTime,
     this.transactionLogRetentionDays,
     this.backupRetentionSettings,
   });
 
-  /// Toggle automatic backups.
-  final TfArg<bool>? enabled;
-
-  /// `HH:MM` 24h UTC. Backups run within a ~1h window starting here.
-  final TfArg<String>? startTime;
-
-  /// Multi-region or single-region location override (default:
-  /// instance's region).
-  final TfArg<String>? location;
-
-  /// PITR — required for Postgres minute-level rewind.
-  final TfArg<bool>? pointInTimeRecoveryEnabled;
-
-  /// Binary log retention — required for MySQL PITR.
   final TfArg<bool>? binaryLogEnabled;
 
-  /// 1-7 days. Number of days of transaction logs retained for PITR.
-  final TfArg<int>? transactionLogRetentionDays;
+  final TfArg<bool>? enabled;
 
-  /// How many backups to retain.
-  final SqlDatabaseInstanceBackupRetentionSettings? backupRetentionSettings;
+  final TfArg<String>? location;
 
-  Map<String, Object?> toArgMap() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (startTime != null) 'start_time': startTime!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (pointInTimeRecoveryEnabled != null)
-      'point_in_time_recovery_enabled': pointInTimeRecoveryEnabled!.toTfJson(),
-    if (binaryLogEnabled != null)
-      'binary_log_enabled': binaryLogEnabled!.toTfJson(),
-    if (transactionLogRetentionDays != null)
-      'transaction_log_retention_days': transactionLogRetentionDays!.toTfJson(),
-    if (backupRetentionSettings != null)
-      'backup_retention_settings': [backupRetentionSettings!.toArgMap()],
+  final TfArg<bool>? pointInTimeRecoveryEnabled;
+
+  final TfArg<String>? startTime;
+
+  final TfArg<num>? transactionLogRetentionDays;
+
+  final SqlDatabaseInstanceSettingsBackupConfigurationBackupRetentionSettings?
+  backupRetentionSettings;
+
+  Map<String, Object?> encode() => {
+    'binary_log_enabled': ?binaryLogEnabled?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'point_in_time_recovery_enabled': ?pointInTimeRecoveryEnabled?.toTfJson(),
+    'start_time': ?startTime?.toTfJson(),
+    'transaction_log_retention_days': ?transactionLogRetentionDays?.toTfJson(),
+    'backup_retention_settings': ?backupRetentionSettings?.encode(),
   };
 }
 
-/// `backup_configuration.backup_retention_settings`.
+/// Typed helper for the `settings.backup_configuration.backup_retention_settings` block of
+/// `google_sql_database_instance` (derived from provider schema).
 @immutable
-class SqlDatabaseInstanceBackupRetentionSettings {
-  const SqlDatabaseInstanceBackupRetentionSettings({
+final class SqlDatabaseInstanceSettingsBackupConfigurationBackupRetentionSettings {
+  const SqlDatabaseInstanceSettingsBackupConfigurationBackupRetentionSettings({
     required this.retainedBackups,
     this.retentionUnit,
   });
 
-  /// How many backups to keep.
-  final TfArg<int> retainedBackups;
+  final TfArg<num> retainedBackups;
 
-  /// Currently `'COUNT'` is the only value the API accepts.
   final TfArg<String>? retentionUnit;
 
-  Map<String, Object?> toArgMap() => {
+  Map<String, Object?> encode() => {
     'retained_backups': retainedBackups.toTfJson(),
-    if (retentionUnit != null) 'retention_unit': retentionUnit!.toTfJson(),
+    'retention_unit': ?retentionUnit?.toTfJson(),
   };
 }
 
-/// One `settings.database_flags` entry — engine-level flag. Both keys
-/// are simple strings on the wire (numeric flag values are stringified
-/// — `'1000'`, not `1000`).
+/// Typed helper for the `settings.connection_pool_config` block of
+/// `google_sql_database_instance` (derived from provider schema).
 @immutable
-class SqlDatabaseInstanceDatabaseFlag {
-  const SqlDatabaseInstanceDatabaseFlag({
+final class SqlDatabaseInstanceSettingsConnectionPoolConfig {
+  const SqlDatabaseInstanceSettingsConnectionPoolConfig({
+    this.connectionPoolingEnabled,
+    this.flags,
+  });
+
+  final TfArg<bool>? connectionPoolingEnabled;
+
+  final List<SqlDatabaseInstanceSettingsConnectionPoolConfigFlags>? flags;
+
+  Map<String, Object?> encode() => {
+    'connection_pooling_enabled': ?connectionPoolingEnabled?.toTfJson(),
+    if (flags != null) 'flags': [for (final e in flags!) e.encode()],
+  };
+}
+
+/// Typed helper for the `settings.connection_pool_config.flags` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsConnectionPoolConfigFlags {
+  const SqlDatabaseInstanceSettingsConnectionPoolConfigFlags({
     required this.name,
     required this.value,
   });
 
-  /// Engine flag name (e.g. `'max_connections'`).
   final TfArg<String> name;
 
-  /// Flag value.
   final TfArg<String> value;
 
-  Map<String, Object?> toArgMap() => {'name': name, 'value': value};
-}
-
-/// `settings.location_preference`. Optional — the API picks a zone
-/// when omitted. [followGaeApplication] is rarely set; leave `null`
-/// unless co-locating with an App Engine app.
-@immutable
-class SqlDatabaseInstanceLocationPreference {
-  const SqlDatabaseInstanceLocationPreference({
-    this.zone,
-    this.secondaryZone,
-    this.followGaeApplication,
-  });
-
-  /// Primary zone (e.g. `'asia-northeast1-a'`).
-  final TfArg<String>? zone;
-
-  /// Failover zone for HA. Must be in the same region as [zone].
-  final TfArg<String>? secondaryZone;
-
-  /// App Engine app ID to co-locate with.
-  final TfArg<String>? followGaeApplication;
-
-  Map<String, Object?> toArgMap() => {
-    if (zone != null) 'zone': zone!.toTfJson(),
-    if (secondaryZone != null) 'secondary_zone': secondaryZone!.toTfJson(),
-    if (followGaeApplication != null)
-      'follow_gae_application': followGaeApplication!.toTfJson(),
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'value': value.toTfJson(),
   };
 }
 
-/// `settings.maintenance_window`. Pin a weekly window when GCP can
-/// take the instance down for upgrades.
+/// Typed helper for the `settings.data_cache_config` block of
+/// `google_sql_database_instance` (derived from provider schema).
 @immutable
-class SqlDatabaseInstanceMaintenanceWindow {
-  const SqlDatabaseInstanceMaintenanceWindow({
+final class SqlDatabaseInstanceSettingsDataCacheConfig {
+  const SqlDatabaseInstanceSettingsDataCacheConfig({this.dataCacheEnabled});
+
+  final TfArg<bool>? dataCacheEnabled;
+
+  Map<String, Object?> encode() => {
+    'data_cache_enabled': ?dataCacheEnabled?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.database_flags` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsDatabaseFlags {
+  const SqlDatabaseInstanceSettingsDatabaseFlags({
+    required this.name,
+    required this.value,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<String> value;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.deny_maintenance_period` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsDenyMaintenancePeriod {
+  const SqlDatabaseInstanceSettingsDenyMaintenancePeriod({
+    required this.endDate,
+    required this.startDate,
+    required this.time,
+  });
+
+  final TfArg<String> endDate;
+
+  final TfArg<String> startDate;
+
+  final TfArg<String> time;
+
+  Map<String, Object?> encode() => {
+    'end_date': endDate.toTfJson(),
+    'start_date': startDate.toTfJson(),
+    'time': time.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.entraid_config` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsEntraidConfig {
+  const SqlDatabaseInstanceSettingsEntraidConfig({
+    this.applicationId,
+    this.tenantId,
+  });
+
+  final TfArg<String>? applicationId;
+
+  final TfArg<String>? tenantId;
+
+  Map<String, Object?> encode() => {
+    'application_id': ?applicationId?.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.final_backup_config` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsFinalBackupConfig {
+  const SqlDatabaseInstanceSettingsFinalBackupConfig({
+    this.enabled,
+    this.retentionDays,
+  });
+
+  final TfArg<bool>? enabled;
+
+  final TfArg<num>? retentionDays;
+
+  Map<String, Object?> encode() => {
+    'enabled': ?enabled?.toTfJson(),
+    'retention_days': ?retentionDays?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.insights_config` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsInsightsConfig {
+  const SqlDatabaseInstanceSettingsInsightsConfig({
+    this.enhancedQueryInsightsEnabled,
+    this.queryInsightsEnabled,
+    this.queryPlansPerMinute,
+    this.queryStringLength,
+    this.recordApplicationTags,
+    this.recordClientAddress,
+  });
+
+  final TfArg<bool>? enhancedQueryInsightsEnabled;
+
+  final TfArg<bool>? queryInsightsEnabled;
+
+  final TfArg<num>? queryPlansPerMinute;
+
+  final TfArg<num>? queryStringLength;
+
+  final TfArg<bool>? recordApplicationTags;
+
+  final TfArg<bool>? recordClientAddress;
+
+  Map<String, Object?> encode() => {
+    'enhanced_query_insights_enabled': ?enhancedQueryInsightsEnabled
+        ?.toTfJson(),
+    'query_insights_enabled': ?queryInsightsEnabled?.toTfJson(),
+    'query_plans_per_minute': ?queryPlansPerMinute?.toTfJson(),
+    'query_string_length': ?queryStringLength?.toTfJson(),
+    'record_application_tags': ?recordApplicationTags?.toTfJson(),
+    'record_client_address': ?recordClientAddress?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.ip_configuration` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsIpConfiguration {
+  const SqlDatabaseInstanceSettingsIpConfiguration({
+    this.allocatedIpRange,
+    this.customSubjectAlternativeNames,
+    this.enablePrivatePathForGoogleCloudServices,
+    this.ipv4Enabled,
+    this.privateNetwork,
+    this.serverCaMode,
+    this.serverCaPool,
+    this.serverCertificateRotationMode,
+    this.sslMode,
+    this.authorizedNetworks,
+    this.pscConfig,
+  });
+
+  final TfArg<String>? allocatedIpRange;
+
+  final TfArg<List<Object?>>? customSubjectAlternativeNames;
+
+  final TfArg<bool>? enablePrivatePathForGoogleCloudServices;
+
+  final TfArg<bool>? ipv4Enabled;
+
+  final TfArg<String>? privateNetwork;
+
+  final TfArg<String>? serverCaMode;
+
+  final TfArg<String>? serverCaPool;
+
+  final TfArg<String>? serverCertificateRotationMode;
+
+  final TfArg<String>? sslMode;
+
+  final List<SqlDatabaseInstanceSettingsIpConfigurationAuthorizedNetworks>?
+  authorizedNetworks;
+
+  final List<SqlDatabaseInstanceSettingsIpConfigurationPscConfig>? pscConfig;
+
+  Map<String, Object?> encode() => {
+    'allocated_ip_range': ?allocatedIpRange?.toTfJson(),
+    'custom_subject_alternative_names': ?customSubjectAlternativeNames
+        ?.toTfJson(),
+    'enable_private_path_for_google_cloud_services':
+        ?enablePrivatePathForGoogleCloudServices?.toTfJson(),
+    'ipv4_enabled': ?ipv4Enabled?.toTfJson(),
+    'private_network': ?privateNetwork?.toTfJson(),
+    'server_ca_mode': ?serverCaMode?.toTfJson(),
+    'server_ca_pool': ?serverCaPool?.toTfJson(),
+    'server_certificate_rotation_mode': ?serverCertificateRotationMode
+        ?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
+    if (authorizedNetworks != null)
+      'authorized_networks': [for (final e in authorizedNetworks!) e.encode()],
+    if (pscConfig != null)
+      'psc_config': [for (final e in pscConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `settings.ip_configuration.authorized_networks` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsIpConfigurationAuthorizedNetworks {
+  const SqlDatabaseInstanceSettingsIpConfigurationAuthorizedNetworks({
+    this.expirationTime,
+    this.name,
+    required this.value,
+  });
+
+  final TfArg<String>? expirationTime;
+
+  final TfArg<String>? name;
+
+  final TfArg<String> value;
+
+  Map<String, Object?> encode() => {
+    'expiration_time': ?expirationTime?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.ip_configuration.psc_config` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsIpConfigurationPscConfig {
+  const SqlDatabaseInstanceSettingsIpConfigurationPscConfig({
+    this.allowedConsumerProjects,
+    this.networkAttachmentUri,
+    this.pscAutoConnectionPolicyEnabled,
+    this.pscAutoDnsEnabled,
+    this.pscEnabled,
+    this.pscWriteEndpointDnsEnabled,
+    this.pscAutoConnections,
+  });
+
+  final TfArg<List<Object?>>? allowedConsumerProjects;
+
+  final TfArg<String>? networkAttachmentUri;
+
+  final TfArg<bool>? pscAutoConnectionPolicyEnabled;
+
+  final TfArg<bool>? pscAutoDnsEnabled;
+
+  final TfArg<bool>? pscEnabled;
+
+  final TfArg<bool>? pscWriteEndpointDnsEnabled;
+
+  final List<
+    SqlDatabaseInstanceSettingsIpConfigurationPscConfigPscAutoConnections
+  >?
+  pscAutoConnections;
+
+  Map<String, Object?> encode() => {
+    'allowed_consumer_projects': ?allowedConsumerProjects?.toTfJson(),
+    'network_attachment_uri': ?networkAttachmentUri?.toTfJson(),
+    'psc_auto_connection_policy_enabled': ?pscAutoConnectionPolicyEnabled
+        ?.toTfJson(),
+    'psc_auto_dns_enabled': ?pscAutoDnsEnabled?.toTfJson(),
+    'psc_enabled': ?pscEnabled?.toTfJson(),
+    'psc_write_endpoint_dns_enabled': ?pscWriteEndpointDnsEnabled?.toTfJson(),
+    if (pscAutoConnections != null)
+      'psc_auto_connections': [for (final e in pscAutoConnections!) e.encode()],
+  };
+}
+
+/// Typed helper for the `settings.ip_configuration.psc_config.psc_auto_connections` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsIpConfigurationPscConfigPscAutoConnections {
+  const SqlDatabaseInstanceSettingsIpConfigurationPscConfigPscAutoConnections({
+    required this.consumerNetwork,
+    this.consumerServiceProjectId,
+  });
+
+  final RefTo<GoogleComputeNetwork> consumerNetwork;
+
+  final TfArg<String>? consumerServiceProjectId;
+
+  Map<String, Object?> encode() => {
+    'consumer_network': consumerNetwork.encodeAs('id').toTfJson(),
+    'consumer_service_project_id': ?consumerServiceProjectId?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.location_preference` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsLocationPreference {
+  const SqlDatabaseInstanceSettingsLocationPreference({
+    this.followGaeApplication,
+    this.secondaryZone,
+    this.zone,
+  });
+
+  final TfArg<String>? followGaeApplication;
+
+  final TfArg<String>? secondaryZone;
+
+  final TfArg<String>? zone;
+
+  Map<String, Object?> encode() => {
+    'follow_gae_application': ?followGaeApplication?.toTfJson(),
+    'secondary_zone': ?secondaryZone?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.maintenance_window` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsMaintenanceWindow {
+  const SqlDatabaseInstanceSettingsMaintenanceWindow({
     this.day,
     this.hour,
     this.updateTrack,
   });
 
-  /// 1 = Monday, 7 = Sunday.
-  final TfArg<int>? day;
+  final TfArg<num>? day;
 
-  /// 0-23 (UTC).
-  final TfArg<int>? hour;
+  final TfArg<num>? hour;
 
-  /// `'canary'` (1-week lead), `'stable'` (2-week lead), or `'week5'`
-  /// (5-week lead).
   final TfArg<String>? updateTrack;
 
-  Map<String, Object?> toArgMap() => {
-    if (day != null) 'day': day!.toTfJson(),
-    if (hour != null) 'hour': hour!.toTfJson(),
-    if (updateTrack != null) 'update_track': updateTrack!.toTfJson(),
+  Map<String, Object?> encode() => {
+    'day': ?day?.toTfJson(),
+    'hour': ?hour?.toTfJson(),
+    'update_track': ?updateTrack?.toTfJson(),
   };
 }
 
-// ===========================================================================
-// replica_configuration (top-level, separate from settings)
-// ===========================================================================
-
-/// `replica_configuration` block. Only set on read-replica instances
-/// (i.e. when [GoogleSqlDatabaseInstance.masterInstanceName] is also
-/// set). The replica's [GoogleSqlDatabaseInstance.databaseVersion] must
-/// match the primary.
-///
-/// `password` here is also sensitive in the schema and round-trips
-/// through `sensitiveFields`.
+/// Typed helper for the `settings.password_validation_policy` block of
+/// `google_sql_database_instance` (derived from provider schema).
 @immutable
-class SqlDatabaseInstanceReplicaConfiguration {
-  const SqlDatabaseInstanceReplicaConfiguration({
-    this.failoverTarget,
-    this.cascadableReplica,
-    this.username,
-    this.password,
-    this.caCertificate,
-    this.clientCertificate,
-    this.clientKey,
-    this.connectRetryInterval,
-    this.dumpFilePath,
-    this.masterHeartbeatPeriod,
-    this.sslCipher,
-    this.verifyServerCertificate,
+final class SqlDatabaseInstanceSettingsPasswordValidationPolicy {
+  const SqlDatabaseInstanceSettingsPasswordValidationPolicy({
+    this.complexity,
+    this.disallowUsernameSubstring,
+    required this.enablePasswordPolicy,
+    this.minLength,
+    this.passwordChangeInterval,
+    this.reuseInterval,
   });
 
-  /// Promote this replica to primary on failover. MySQL only.
-  final TfArg<bool>? failoverTarget;
+  final TfArg<String>? complexity;
 
-  /// Cascadable replica (SQL Server only).
-  final TfArg<bool>? cascadableReplica;
+  final TfArg<bool>? disallowUsernameSubstring;
 
-  /// Replication username (MySQL).
-  final TfArg<String>? username;
+  final TfArg<bool> enablePasswordPolicy;
 
-  /// Replication password (MySQL). **Sensitive** — masked at synth.
-  final TfArg<String>? password;
+  final TfArg<num>? minLength;
 
-  /// PEM CA cert pinning the master's identity (MySQL external).
-  final TfArg<String>? caCertificate;
+  final TfArg<String>? passwordChangeInterval;
 
-  /// PEM client cert (MySQL external).
-  final TfArg<String>? clientCertificate;
+  final TfArg<num>? reuseInterval;
 
-  /// PEM client key (MySQL external).
-  final TfArg<String>? clientKey;
+  Map<String, Object?> encode() => {
+    'complexity': ?complexity?.toTfJson(),
+    'disallow_username_substring': ?disallowUsernameSubstring?.toTfJson(),
+    'enable_password_policy': enablePasswordPolicy.toTfJson(),
+    'min_length': ?minLength?.toTfJson(),
+    'password_change_interval': ?passwordChangeInterval?.toTfJson(),
+    'reuse_interval': ?reuseInterval?.toTfJson(),
+  };
+}
 
-  /// Seconds between reconnect attempts (MySQL).
-  final TfArg<int>? connectRetryInterval;
+/// Typed helper for the `settings.read_pool_auto_scale_config` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsReadPoolAutoScaleConfig {
+  const SqlDatabaseInstanceSettingsReadPoolAutoScaleConfig({
+    this.disableScaleIn,
+    this.enabled,
+    this.maxNodeCount,
+    this.minNodeCount,
+    this.scaleInCooldownSeconds,
+    this.scaleOutCooldownSeconds,
+    this.targetMetrics,
+  });
 
-  /// GCS path to a SQL dump for replica seed (MySQL external).
-  final TfArg<String>? dumpFilePath;
+  final TfArg<bool>? disableScaleIn;
 
-  /// Heartbeat period in ms (MySQL).
-  final TfArg<int>? masterHeartbeatPeriod;
+  final TfArg<bool>? enabled;
 
-  /// Permitted SSL ciphers (MySQL).
-  final TfArg<String>? sslCipher;
+  final TfArg<num>? maxNodeCount;
 
-  /// Validate master common name during SSL handshake (MySQL).
-  final TfArg<bool>? verifyServerCertificate;
+  final TfArg<num>? minNodeCount;
 
-  Map<String, Object?> toArgMap() => {
-    if (failoverTarget != null) 'failover_target': failoverTarget!.toTfJson(),
-    if (cascadableReplica != null)
-      'cascadable_replica': cascadableReplica!.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (caCertificate != null) 'ca_certificate': caCertificate!.toTfJson(),
-    if (clientCertificate != null)
-      'client_certificate': clientCertificate!.toTfJson(),
-    if (clientKey != null) 'client_key': clientKey!.toTfJson(),
-    if (connectRetryInterval != null)
-      'connect_retry_interval': connectRetryInterval!.toTfJson(),
-    if (dumpFilePath != null) 'dump_file_path': dumpFilePath!.toTfJson(),
-    if (masterHeartbeatPeriod != null)
-      'master_heartbeat_period': masterHeartbeatPeriod!.toTfJson(),
-    if (sslCipher != null) 'ssl_cipher': sslCipher!.toTfJson(),
-    if (verifyServerCertificate != null)
-      'verify_server_certificate': verifyServerCertificate!.toTfJson(),
+  final TfArg<num>? scaleInCooldownSeconds;
+
+  final TfArg<num>? scaleOutCooldownSeconds;
+
+  final List<SqlDatabaseInstanceSettingsReadPoolAutoScaleConfigTargetMetrics>?
+  targetMetrics;
+
+  Map<String, Object?> encode() => {
+    'disable_scale_in': ?disableScaleIn?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'max_node_count': ?maxNodeCount?.toTfJson(),
+    'min_node_count': ?minNodeCount?.toTfJson(),
+    'scale_in_cooldown_seconds': ?scaleInCooldownSeconds?.toTfJson(),
+    'scale_out_cooldown_seconds': ?scaleOutCooldownSeconds?.toTfJson(),
+    if (targetMetrics != null)
+      'target_metrics': [for (final e in targetMetrics!) e.encode()],
+  };
+}
+
+/// Typed helper for the `settings.read_pool_auto_scale_config.target_metrics` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsReadPoolAutoScaleConfigTargetMetrics {
+  const SqlDatabaseInstanceSettingsReadPoolAutoScaleConfigTargetMetrics({
+    this.metric,
+    this.targetValue,
+  });
+
+  final TfArg<String>? metric;
+
+  final TfArg<num>? targetValue;
+
+  Map<String, Object?> encode() => {
+    'metric': ?metric?.toTfJson(),
+    'target_value': ?targetValue?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `settings.sql_server_audit_config` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceSettingsSqlServerAuditConfig {
+  const SqlDatabaseInstanceSettingsSqlServerAuditConfig({
+    this.bucket,
+    this.retentionInterval,
+    this.uploadInterval,
+  });
+
+  final TfArg<String>? bucket;
+
+  final TfArg<String>? retentionInterval;
+
+  final TfArg<String>? uploadInterval;
+
+  Map<String, Object?> encode() => {
+    'bucket': ?bucket?.toTfJson(),
+    'retention_interval': ?retentionInterval?.toTfJson(),
+    'upload_interval': ?uploadInterval?.toTfJson(),
   };
 }
 
@@ -663,9 +1042,9 @@ class SqlDatabaseInstanceReplicaConfiguration {
 ///
 /// Manages a Cloud SQL instance — a managed MySQL, PostgreSQL, or SQL
 /// Server engine. The schema is large; this wrapper exposes the
-/// commonly-used fields as typed helpers ([SqlDatabaseInstanceSettings], [SqlDatabaseInstanceIpConfiguration],
-/// [SqlDatabaseInstanceBackupConfiguration], [SqlDatabaseInstanceDatabaseFlag], [SqlDatabaseInstanceLocationPreference],
-/// [SqlDatabaseInstanceMaintenanceWindow], [SqlDatabaseInstanceReplicaConfiguration]) and leaves the rarely-set
+/// commonly-used fields as typed helpers ([SqlDatabaseInstanceSettings], [SqlDatabaseInstanceSettingsIpConfiguration],
+/// [SqlDatabaseInstanceSettingsBackupConfiguration], [SqlDatabaseInstanceSettingsDatabaseFlags], [SqlDatabaseInstanceSettingsLocationPreference],
+/// [SqlDatabaseInstanceSettingsMaintenanceWindow], [SqlDatabaseInstanceReplicaConfiguration]) and leaves the rarely-set
 /// knobs (e.g. `active_directory_config`, `sql_server_audit_config`,
 /// `password_validation_policy`) on the
 /// [SqlDatabaseInstanceSettings.extra] / [SqlDatabaseInstanceSettings.advancedExtra] escape hatches so the
@@ -715,11 +1094,11 @@ class SqlDatabaseInstanceReplicaConfiguration {
 ///     edition: TfArg.literal(SqlEdition.enterprise),
 ///     diskSize: TfArg.literal(20),
 ///     diskType: TfArg.literal(SqlDiskType.pdSsd),
-///     ipConfiguration: SqlDatabaseInstanceIpConfiguration(
+///     ipConfiguration: SqlDatabaseInstanceSettingsIpConfiguration(
 ///       ipv4Enabled: TfArg.literal(false),
 ///       privateNetwork: TfArg.ref(vpc.selfLink),
 ///     ),
-///     backupConfiguration: const SqlDatabaseInstanceBackupConfiguration(
+///     backupConfiguration: const SqlDatabaseInstanceSettingsBackupConfiguration(
 ///       enabled: true,
 ///       pointInTimeRecoveryEnabled: true,
 ///       startTime: '03:00',
@@ -755,6 +1134,13 @@ final class GoogleSqlDatabaseInstance extends Resource {
     TfArg<String>? finalBackupDescription,
     TfArg<String>? backupdrBackup,
     TfArg<String>? project,
+    TfArg<bool>? enforceNewSqlNetworkArchitecture,
+    TfArg<bool>? includeReplicasForMajorVersionUpgrade,
+    TfArg<bool>? switchTransactionLogsToCloudStorageEnabled,
+    SqlDatabaseInstanceClone? clone,
+    SqlDatabaseInstancePointInTimeRestoreContext? pointInTimeRestoreContext,
+    SqlDatabaseInstanceReplicationCluster? replicationCluster,
+    SqlDatabaseInstanceRestoreBackupContext? restoreBackupContext,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -765,17 +1151,16 @@ final class GoogleSqlDatabaseInstance extends Resource {
            'database_version': databaseVersion,
            'name': ?name,
            'region': ?region,
-           if (settings != null)
-             'settings': TfArg.literal([settings.toArgMap()]),
+           if (settings != null) 'settings': TfArg.literal(settings.encode()),
            'root_password': ?rootPassword,
            'root_password_wo': ?rootPasswordWo,
            'root_password_wo_version': ?rootPasswordWoVersion,
            'deletion_protection': ?deletionProtection,
            'master_instance_name': ?masterInstanceName,
            if (replicaConfiguration != null)
-             'replica_configuration': TfArg.literal([
-               replicaConfiguration.toArgMap(),
-             ]),
+             'replica_configuration': TfArg.literal(
+               replicaConfiguration.encode(),
+             ),
            'instance_type': ?instanceType,
            'node_count': ?nodeCount,
            'maintenance_version': ?maintenanceVersion,
@@ -784,6 +1169,23 @@ final class GoogleSqlDatabaseInstance extends Resource {
            'final_backup_description': ?finalBackupDescription,
            'backupdr_backup': ?backupdrBackup,
            'project': ?project,
+           'enforce_new_sql_network_architecture':
+               ?enforceNewSqlNetworkArchitecture,
+           'include_replicas_for_major_version_upgrade':
+               ?includeReplicasForMajorVersionUpgrade,
+           'switch_transaction_logs_to_cloud_storage_enabled':
+               ?switchTransactionLogsToCloudStorageEnabled,
+           if (clone != null) 'clone': TfArg.literal(clone.encode()),
+           if (pointInTimeRestoreContext != null)
+             'point_in_time_restore_context': TfArg.literal(
+               pointInTimeRestoreContext.encode(),
+             ),
+           if (replicationCluster != null)
+             'replication_cluster': TfArg.literal(replicationCluster.encode()),
+           if (restoreBackupContext != null)
+             'restore_backup_context': TfArg.literal(
+               restoreBackupContext.encode(),
+             ),
          },
        );
 

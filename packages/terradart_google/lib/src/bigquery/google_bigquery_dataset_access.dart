@@ -47,11 +47,11 @@ class BigqueryDatasetAccessAuthDatasetReference {
     required this.projectId,
   });
 
-  final TfArg<String> datasetId;
+  final RefTo<GoogleBigqueryDataset> datasetId;
   final TfArg<String> projectId;
 
   Map<String, Object?> encode() => {
-    'dataset_id': datasetId.toTfJson(),
+    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
   };
 }
@@ -87,12 +87,12 @@ class BigqueryDatasetAccessAuthorizedView {
     required this.tableId,
   });
 
-  final TfArg<String> datasetId;
+  final RefTo<GoogleBigqueryDataset> datasetId;
   final TfArg<String> projectId;
   final TfArg<String> tableId;
 
   Map<String, Object?> encode() => {
-    'dataset_id': datasetId.toTfJson(),
+    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
     'table_id': tableId.toTfJson(),
   };
@@ -108,12 +108,12 @@ class BigqueryDatasetAccessAuthorizedRoutine {
     required this.routineId,
   });
 
-  final TfArg<String> datasetId;
+  final RefTo<GoogleBigqueryDataset> datasetId;
   final TfArg<String> projectId;
   final TfArg<String> routineId;
 
   Map<String, Object?> encode() => {
-    'dataset_id': datasetId.toTfJson(),
+    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
     'routine_id': routineId.toTfJson(),
   };
@@ -343,9 +343,9 @@ final class BigqueryDatasetAccessGranteeRoutine
 /// ```dart
 /// GoogleBigqueryDatasetAccess(
 ///   localName: 'analysts_reader',
-///   datasetId: TfArg.ref(dataset.datasetIdRef),
-///   role: TfArg.literal('READER'),
-///   groupByEmail: TfArg.literal('analysts@example.com'),
+///   datasetId: dataset.ref,
+///   role: .literal('READER'),
+///   groupByEmail: .literal('analysts@example.com'),
 /// );
 /// ```
 final class GoogleBigqueryDatasetAccess extends Resource {

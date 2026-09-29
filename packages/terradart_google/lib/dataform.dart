@@ -7,7 +7,15 @@ library;
 
 export 'src/dataform/google_dataform_folder.dart' show GoogleDataformFolder;
 export 'src/dataform/google_dataform_repository.dart'
-    show GoogleDataformRepository;
+    show
+        DataformRepositoryGitRemoteSettings,
+        DataformRepositoryGitRemoteSettingsAuthentication,
+        DataformRepositoryGitRemoteSettingsAuthenticationGitRepositoryLink,
+        DataformRepositoryGitRemoteSettingsAuthenticationSshAuthenticationConfig,
+        DataformRepositoryGitRemoteSettingsAuthenticationTokenSecretVersion,
+        DataformRepositoryGitRemoteSettingsSshAuthenticationConfig,
+        DataformRepositoryWorkspaceCompilationOverrides,
+        GoogleDataformRepository;
 export 'src/dataform/google_dataform_repository_iam_binding.dart'
     show GoogleDataformRepositoryIamBinding;
 export 'src/dataform/google_dataform_repository_iam_member.dart'

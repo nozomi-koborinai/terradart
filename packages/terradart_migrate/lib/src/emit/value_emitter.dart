@@ -960,8 +960,15 @@ final class ValueEmitter {
     var selfWrote =
         own.isNotEmpty &&
         own.every((s) => s.tfName == key || s.tfName.startsWith('$key.'));
+    // A variant holding the whole block as one helper (`query: BigqueryJobQuery`)
+    // wrote the key itself even when that block has a scalar of the same
+    // name: only a block under the key can fill the helper.
     if (selfWrote && under != null && own.every((s) => s.tfName == key)) {
-      if (under.containsKey(key)) selfWrote = false;
+      final inner = under[key];
+      final helperOnly = own.every((s) => s.kind == MigrateSlotKind.helper);
+      if (inner != null && !(helperOnly && objectMap(inner) == null)) {
+        selfWrote = false;
+      }
     }
     // A scalar under the key (`user_by_email = "x"`) can only be a field the
     // variant wrote at this level, whatever its other fields are called.

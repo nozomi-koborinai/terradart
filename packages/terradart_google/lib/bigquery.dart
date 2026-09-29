@@ -42,13 +42,30 @@ export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_member.dart'
 export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_policy.dart'
     show GoogleBigqueryAnalyticsHubListingIamPolicy;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_subscription.dart'
-    show GoogleBigqueryAnalyticsHubListingSubscription;
+    show
+        BigqueryAnalyticsHubListingSubscriptionDestination,
+        BigqueryAnalyticsHubListingSubscriptionDestinationDataset,
+        BigqueryAnalyticsHubListingSubscriptionDestinationDatasetChoice,
+        BigqueryAnalyticsHubListingSubscriptionDestinationDatasetDatasetReference,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionChoice,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscription,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionBigqueryConfig,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionCloudStorageConfig,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionCloudStorageConfigAvroConfig,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionDeadLetterPolicy,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionExpirationPolicy,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfig,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfigNoWrapper,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionPushConfigOidcToken,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionRetryPolicy,
+        GoogleBigqueryAnalyticsHubListingSubscription;
 export 'src/bigquery/google_bigquery_analytics_hub_query_template.dart'
     show
         BigqueryAnalyticsHubQueryTemplateRoutine,
         GoogleBigqueryAnalyticsHubQueryTemplate;
 export 'src/bigquery/google_bigquery_bi_reservation.dart'
-    show GoogleBigqueryBiReservation;
+    show BigqueryBiReservationPreferredTables, GoogleBigqueryBiReservation;
 export 'src/bigquery/google_bigquery_capacity_commitment.dart'
     show
         BigqueryCapacityCommitmentEdition,
@@ -88,17 +105,16 @@ export 'src/bigquery/google_bigquery_data_transfer_config.dart'
     show
         BigqueryDataTransferConfigEmailPreferences,
         BigqueryDataTransferConfigEncryptionConfiguration,
-        BigqueryDataTransferConfigPlaintextSecretAccessKey,
         BigqueryDataTransferConfigScheduleOptions,
-        BigqueryDataTransferConfigSecretAccessKey,
         BigqueryDataTransferConfigSensitiveParams,
-        BigqueryDataTransferConfigWriteOnlySecretAccessKey,
         GoogleBigqueryDataTransferConfig;
 export 'src/bigquery/google_bigquery_data_transfer_data_source_enrollment.dart'
     show GoogleBigqueryDataTransferDataSourceEnrollment;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
     show
         BigqueryDatapolicyDataPolicyDataMaskingPolicy,
+        BigqueryDatapolicyDataPolicyDataMaskingPolicyPredefinedExpression,
+        BigqueryDatapolicyDataPolicyDataMaskingPolicyRoutine,
         BigqueryDatapolicyDataPolicyPredefinedExpression,
         BigqueryDatapolicyDataPolicyType,
         GoogleBigqueryDatapolicyDataPolicy;
@@ -169,27 +185,44 @@ export 'src/bigquery/google_bigquery_dataset_iam_policy.dart'
 export 'src/bigquery/google_bigquery_job.dart'
     show
         BigqueryJobConfiguration,
+        BigqueryJobConfigurationCopy,
+        BigqueryJobConfigurationExtract,
+        BigqueryJobConfigurationLoad,
+        BigqueryJobConfigurationQuery,
         BigqueryJobCopy,
-        BigqueryJobCreateDisposition,
-        BigqueryJobDefaultDataset,
-        BigqueryJobDestinationTable,
-        BigqueryJobEncryptionConfiguration,
+        BigqueryJobCopyCreateDisposition,
+        BigqueryJobCopyDestinationEncryptionConfiguration,
+        BigqueryJobCopyDestinationTable,
+        BigqueryJobCopySourceTables,
+        BigqueryJobCopyWriteDisposition,
         BigqueryJobExtract,
         BigqueryJobExtractCompression,
         BigqueryJobExtractDestinationFormat,
+        BigqueryJobExtractSource,
+        BigqueryJobExtractSourceModel,
+        BigqueryJobExtractSourceModelChoice,
+        BigqueryJobExtractSourceTable,
+        BigqueryJobExtractSourceTableChoice,
         BigqueryJobLoad,
+        BigqueryJobLoadCreateDisposition,
+        BigqueryJobLoadDestinationEncryptionConfiguration,
+        BigqueryJobLoadDestinationTable,
+        BigqueryJobLoadParquetOptions,
         BigqueryJobLoadSourceFormat,
+        BigqueryJobLoadTimePartitioning,
+        BigqueryJobLoadWriteDisposition,
         BigqueryJobParameterMode,
-        BigqueryJobParquetOptions,
         BigqueryJobQuery,
-        BigqueryJobQueryConnectionProperty,
+        BigqueryJobQueryConnectionProperties,
+        BigqueryJobQueryCreateDisposition,
+        BigqueryJobQueryDefaultDataset,
+        BigqueryJobQueryDestinationEncryptionConfiguration,
+        BigqueryJobQueryDestinationTable,
         BigqueryJobQueryPriority,
-        BigqueryJobScriptKeyResultStatement,
-        BigqueryJobScriptOptions,
-        BigqueryJobSourceModel,
-        BigqueryJobTimePartitioning,
-        BigqueryJobUserDefinedFunctionResource,
-        BigqueryJobWriteDisposition,
+        BigqueryJobQueryScriptOptions,
+        BigqueryJobQueryScriptOptionsKeyResultStatement,
+        BigqueryJobQueryUserDefinedFunctionResources,
+        BigqueryJobQueryWriteDisposition,
         GoogleBigqueryJob;
 export 'src/bigquery/google_bigquery_reservation.dart'
     show
@@ -225,26 +258,33 @@ export 'src/bigquery/google_bigquery_row_access_policy.dart'
     show GoogleBigqueryRowAccessPolicy;
 export 'src/bigquery/google_bigquery_table.dart'
     show
-        BigqueryTableAvroOptions,
         BigqueryTableBiglakeConfiguration,
-        BigqueryTableColumnReferences,
-        BigqueryTableCsvOptions,
         BigqueryTableEncryptionConfiguration,
+        BigqueryTableExternalCatalogTableOptions,
+        BigqueryTableExternalCatalogTableOptionsStorageDescriptor,
+        BigqueryTableExternalCatalogTableOptionsStorageDescriptorSerdeInfo,
         BigqueryTableExternalDataConfiguration,
-        BigqueryTableForeignKey,
-        BigqueryTableGoogleSheetsOptions,
-        BigqueryTableHivePartitioningOptions,
-        BigqueryTableJsonOptions,
+        BigqueryTableExternalDataConfigurationAvroOptions,
+        BigqueryTableExternalDataConfigurationBigtableOptions,
+        BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamily,
+        BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamilyColumn,
+        BigqueryTableExternalDataConfigurationCsvOptions,
+        BigqueryTableExternalDataConfigurationGoogleSheetsOptions,
+        BigqueryTableExternalDataConfigurationHivePartitioningOptions,
+        BigqueryTableExternalDataConfigurationJsonOptions,
+        BigqueryTableExternalDataConfigurationParquetOptions,
         BigqueryTableMaterializedView,
-        BigqueryTableParquetOptions,
-        BigqueryTablePrimaryKey,
         BigqueryTableRangePartitioning,
         BigqueryTableRangePartitioningRange,
-        BigqueryTableReferencedTable,
+        BigqueryTableSchemaForeignTypeInfo,
         BigqueryTableTableConstraints,
+        BigqueryTableTableConstraintsForeignKeys,
+        BigqueryTableTableConstraintsForeignKeysColumnReferences,
+        BigqueryTableTableConstraintsForeignKeysReferencedTable,
+        BigqueryTableTableConstraintsPrimaryKey,
         BigqueryTableTableReplicationInfo,
-        BigqueryTableTableView,
         BigqueryTableTimePartitioning,
+        BigqueryTableView,
         ExternalDataCompression,
         ExternalDataSourceFormat,
         FileSetSpecType,

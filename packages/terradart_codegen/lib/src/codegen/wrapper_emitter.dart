@@ -198,10 +198,26 @@ class WrapperEmitter {
         unreachableHelpers.add(spec.tfName);
       }
     }
+    // A reference a sealed variant or a hand-written helper in the prelude
+    // declares as a `RefTo` field named after the input.
+    final preludeFieldRefs = <String, ResolvedReference>{
+      for (final MapEntry(key: path, value: ref) in refs.entries)
+        if (!topLevelRefs.containsKey(path) &&
+            !nestedRefs.containsKey(path) &&
+            RegExp(
+              'final ${RegExp.escape(ref.dartType)}\\?? '
+              '${snakeToDartIdent(path.split('.').last)};',
+            ).hasMatch(preludeSource))
+          path: ref,
+    };
     typedReferences
       ..clear()
       ..addAll([
-        for (final path in [...topLevelRefs.keys, ...nestedRefs.keys])
+        for (final path in [
+          ...topLevelRefs.keys,
+          ...preludeFieldRefs.keys,
+          ...nestedRefs.keys,
+        ])
           if (!unreachableHelpers.contains(path.split('.').first))
             '${def.terraformType}.$path',
       ]);
