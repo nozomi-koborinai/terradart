@@ -2,6 +2,7 @@ outputDir: mongo
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Dedicated MongoDB database (reserved compute, billed while it exists).

@@ -2,6 +2,7 @@ outputDir: functions
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Function environment variable. [value] is sensitive — pass

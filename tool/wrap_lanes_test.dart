@@ -327,6 +327,24 @@ providers:
     });
   });
 
+  test('every resource override of a providerEnums lane derives its hints', () {
+    for (final lane in parseWrapLanes(File(providersPath).readAsStringSync())) {
+      if (!lane.providerEnums) continue;
+      final files =
+          Directory(lane.overridesRoot).listSync().whereType<File>().where((f) {
+        final name = p.basename(f.path);
+        return name.endsWith('.yaml') && !name.startsWith('data_');
+      }).toList();
+      expect(files, isNotEmpty, reason: 'lane ${lane.name}');
+      for (final f in files) {
+        final lines = f.readAsLinesSync();
+        for (final flag in ['deriveEnums', 'deriveExactlyOne']) {
+          expect(lines, contains('$flag: true'), reason: '${f.path}: $flag');
+        }
+      }
+    }
+  });
+
   test('every committed lane resolves the shared lint ledgers under tool/', () {
     for (final lane in parseWrapLanes(File(providersPath).readAsStringSync())) {
       expect(
