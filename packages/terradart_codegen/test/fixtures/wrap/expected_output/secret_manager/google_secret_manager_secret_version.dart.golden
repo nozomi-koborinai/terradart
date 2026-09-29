@@ -15,6 +15,16 @@ const Set<String> _googleSecretManagerSecretVersionSensitive = <String>{
 sealed class SecretManagerSecretVersionPayload {
   const SecretManagerSecretVersionPayload();
 
+  /// Write-only secret data (Terraform 1.11+): the provider sends [secretDataWo] to Secret Manager but never stores it in state.
+  const factory SecretManagerSecretVersionPayload.writeOnly({
+    required TfArg<String> secretDataWo,
+    required TfArg<String> secretDataWoVersion,
+  }) = SecretManagerSecretVersionWriteOnlyPayload;
+
+  const factory SecretManagerSecretVersionPayload.plaintext({
+    required TfArg<String> secretData,
+  }) = SecretManagerSecretVersionPlaintextPayload;
+
   /// The key that tells the variants apart (`'secret_data_wo'` or
   /// `'secret_data'`).
   String get blockKey;
