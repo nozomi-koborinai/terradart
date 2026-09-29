@@ -657,6 +657,10 @@ export 'src/compute/google_compute_region_network_endpoint_group.dart'
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine,
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction,
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun,
+        ComputeRegionNetworkEndpointGroupServerless,
+        ComputeRegionNetworkEndpointGroupServerlessAppEngine,
+        ComputeRegionNetworkEndpointGroupServerlessCloudFunction,
+        ComputeRegionNetworkEndpointGroupServerlessCloudRun,
         GoogleComputeRegionNetworkEndpointGroup,
         RegionNetworkEndpointGroupType;
 export 'src/compute/google_compute_region_network_firewall_policy.dart'

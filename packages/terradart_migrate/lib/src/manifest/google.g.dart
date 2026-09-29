@@ -44028,31 +44028,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'RegionNetworkEndpointGroupType',
         ),
         MigrateSlot(
-          tfName: 'cloud_run',
-          dartName: 'cloudRun',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'serverless',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun',
-        ),
-        MigrateSlot(
-          tfName: 'cloud_function',
-          dartName: 'cloudFunction',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction',
-        ),
-        MigrateSlot(
-          tfName: 'app_engine',
-          dartName: 'appEngine',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine',
+          merged: true,
+          variants: <String, String>{
+            'cloud_run': 'ComputeRegionNetworkEndpointGroupServerlessCloudRun',
+            'cloud_function':
+                'ComputeRegionNetworkEndpointGroupServerlessCloudFunction',
+            'app_engine':
+                'ComputeRegionNetworkEndpointGroupServerlessAppEngine',
+          },
         ),
         MigrateSlot(
           tfName: 'psc_target_service',
@@ -172337,6 +172325,54 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'ComputeRegionNetworkEndpointGroupServerlessAppEngine': MigrateHelper(
+      className: 'ComputeRegionNetworkEndpointGroupServerlessAppEngine',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_engine',
+          dartName: 'appEngine',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper:
+              'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine',
+        ),
+      ],
+      shorthand: 'appEngine',
+    ),
+    'ComputeRegionNetworkEndpointGroupServerlessCloudFunction': MigrateHelper(
+      className: 'ComputeRegionNetworkEndpointGroupServerlessCloudFunction',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cloud_function',
+          dartName: 'cloudFunction',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper:
+              'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction',
+        ),
+      ],
+      shorthand: 'cloudFunction',
+    ),
+    'ComputeRegionNetworkEndpointGroupServerlessCloudRun': MigrateHelper(
+      className: 'ComputeRegionNetworkEndpointGroupServerlessCloudRun',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cloud_run',
+          dartName: 'cloudRun',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper:
+              'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun',
+        ),
+      ],
+      shorthand: 'cloudRun',
+    ),
     'ComputeRegionNetworkFirewallPolicyRuleMatch': MigrateHelper(
       className: 'ComputeRegionNetworkFirewallPolicyRuleMatch',
       slots: <MigrateSlot>[
