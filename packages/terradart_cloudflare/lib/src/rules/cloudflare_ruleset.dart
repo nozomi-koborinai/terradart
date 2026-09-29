@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_ruleset`.
 const Set<String> _cloudflareRulesetSensitive = <String>{};
 
@@ -59,11 +62,12 @@ sealed class RulesetScope {
   const RulesetScope();
 
   /// Sets `account_id`.
-  const factory RulesetScope.accountId(TfArg<String> accountId) =
+  const factory RulesetScope.accountId(RefTo<CloudflareAccount> accountId) =
       RulesetScopeAccountId;
 
   /// Sets `zone_id`.
-  const factory RulesetScope.zoneId(TfArg<String> zoneId) = RulesetScopeZoneId;
+  const factory RulesetScope.zoneId(RefTo<CloudflareZone> zoneId) =
+      RulesetScopeZoneId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -79,32 +83,38 @@ sealed class RulesetScope {
 final class RulesetScopeAccountId extends RulesetScope {
   const RulesetScopeAccountId(this.accountId);
 
-  final TfArg<String> accountId;
+  final RefTo<CloudflareAccount> accountId;
 
   @override
   String get blockKey => 'account_id';
 
   @override
-  Map<String, Object?> encode() => {'account_id': accountId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'account_id': accountId.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'account_id': accountId};
+  Map<String, TfArg<Object?>> get argMap => {
+    'account_id': accountId.encodeAs('id'),
+  };
 }
 
 /// The [RulesetScope.zoneId] choice: sets `zone_id`.
 final class RulesetScopeZoneId extends RulesetScope {
   const RulesetScopeZoneId(this.zoneId);
 
-  final TfArg<String> zoneId;
+  final RefTo<CloudflareZone> zoneId;
 
   @override
   String get blockKey => 'zone_id';
 
   @override
-  Map<String, Object?> encode() => {'zone_id': zoneId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'zone_id': zoneId.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'zone_id': zoneId};
+  Map<String, TfArg<Object?>> get argMap => {'zone_id': zoneId.encodeAs('id')};
 }
 
 /// Typed helper for the `rules` block of

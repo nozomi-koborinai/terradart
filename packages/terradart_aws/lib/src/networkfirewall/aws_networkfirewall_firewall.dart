@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
 import '../kms/aws_kms_key.dart' show AwsKmsKey;
 
 /// Sensitive field paths for `aws_networkfirewall_firewall`.
@@ -33,7 +34,7 @@ sealed class NetworkfirewallFirewallAttachment {
   ) = NetworkfirewallFirewallAttachmentTransitGatewayId;
 
   /// Sets `vpc_id`.
-  const factory NetworkfirewallFirewallAttachment.vpcId(TfArg<String> vpcId) =
+  const factory NetworkfirewallFirewallAttachment.vpcId(RefTo<AwsVpc> vpcId) =
       NetworkfirewallFirewallAttachmentVpcId;
 
   /// The Terraform argument this choice sets.
@@ -74,16 +75,16 @@ final class NetworkfirewallFirewallAttachmentVpcId
     extends NetworkfirewallFirewallAttachment {
   const NetworkfirewallFirewallAttachmentVpcId(this.vpcId);
 
-  final TfArg<String> vpcId;
+  final RefTo<AwsVpc> vpcId;
 
   @override
   String get blockKey => 'vpc_id';
 
   @override
-  Map<String, Object?> encode() => {'vpc_id': vpcId.toTfJson()};
+  Map<String, Object?> encode() => {'vpc_id': vpcId.encodeAs('id').toTfJson()};
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId};
+  Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId.encodeAs('id')};
 }
 
 /// Typed helper for the `availability_zone_mapping` block of

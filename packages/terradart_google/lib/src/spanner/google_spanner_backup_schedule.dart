@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_spanner_backup_schedule`.
 const Set<String> _googleSpannerBackupScheduleSensitive = <String>{};
 
@@ -83,7 +85,7 @@ sealed class SpannerBackupScheduleEncryptionConfigKmsKeyName {
 
   /// Sets `kms_key_name`.
   const factory SpannerBackupScheduleEncryptionConfigKmsKeyName.kmsKeyName(
-    TfArg<String> kmsKeyName,
+    RefTo<GoogleKmsCryptoKey> kmsKeyName,
   ) = SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyName;
 
   /// Sets `kms_key_names`.
@@ -104,13 +106,15 @@ final class SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyName
     this.kmsKeyName,
   );
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
   @override
   String get blockKey => 'kms_key_name';
 
   @override
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// The [SpannerBackupScheduleEncryptionConfigKmsKeyName.kmsKeyNames] choice: sets `kms_key_names`.

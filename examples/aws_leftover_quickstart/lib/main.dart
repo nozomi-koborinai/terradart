@@ -15940,7 +15940,7 @@ final class AwsLeftoverStack extends Stack {
           VpcBlockPublicAccessExclusionInternetGatewayExclusionMode
               .allowBidirectional,
         ),
-        target: .subnetId(TfArg.literal('subnet-0123456789abcdef0')),
+        target: .subnetId(RefTo.literal('subnet-0123456789abcdef0')),
       ),
     );
 
