@@ -762,12 +762,14 @@ class HelperClassExtractor {
   }
 
   /// Field names referenced in [expr] as bare identifiers (a `.member`
-  /// access does not count).
+  /// access or the text of a plain string literal, `encodeAs('arn')`, does
+  /// not count).
   static List<String> _fieldRefs(String expr, Set<String> fieldNames) {
+    final code = expr.replaceAll(RegExp(r"'[^'$\\]*'"), "''");
     final seen = <String>{};
     for (final m in RegExp(
       r'(?<![.\w$])([a-z_][A-Za-z0-9_]*)\b',
-    ).allMatches(expr)) {
+    ).allMatches(code)) {
       final id = m.group(1)!;
       if (fieldNames.contains(id)) seen.add(id);
     }
