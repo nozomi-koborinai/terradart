@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`).
 - pub.dev: add `example/main.dart` (a `TimeSleep` synthesized to Terraform JSON) and dartdoc on the `TimeProvider` and `TimeSleep` constructors. No API changes.
 
 ## 0.30.0 - 2026-09-28

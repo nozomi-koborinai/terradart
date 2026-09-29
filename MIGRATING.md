@@ -2,6 +2,23 @@
 
 ## 0.30.x → next release
 
+### Dart 3.10 is the minimum SDK
+
+**Breaking (every package)** — all `terradart_*` packages declare
+`sdk: ^3.10.0` (was `^3.6.0`). Upgrade the Dart SDK to 3.10 or later
+(`dart --version`), then raise the lower bound in your own stack's
+`pubspec.yaml`:
+
+```yaml
+environment:
+  sdk: ^3.10.0
+```
+
+and run `dart pub upgrade`. Nothing else changes: the Dart API and synth
+output are the same. Raising your package's language version also switches
+`dart format` to the tall style, so expect a one-time reformat of your own
+code.
+
 ### `terradart_cloudflare` exactly-one inputs are sealed types
 
 **Breaking (`terradart_cloudflare`)** — 13 input groups across 5 resources

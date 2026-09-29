@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). The generated wrappers were already formatted in the Dart 3.7+ tall style, so the constraint now matches them (pub.dev static analysis no longer reports a formatter mismatch).
 - **Breaking** — nested blocks take typed helper classes. The 114 inputs that were `TfArg<Map<String, dynamic>>` / `TfArg<List<Map<String, dynamic>>>` now take a generated helper (`ComputeFutureReservationTimeWindow`, `List<ApiGatewayApiConfigGrpcServices>`, ...), for every factory. See [MIGRATING.md](../../MIGRATING.md).
 - **Breaking** — inputs with a fixed value set are enums (67 generated enums, top level and inside helpers), read from the resource's Magic Modules YAML: `direction: TfArg.literal(ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.ingress)` instead of `TfArg.literal('INGRESS')`.
 - **Breaking** — Magic Modules `exactly_one_of` groups are sealed: `GoogleApiGatewayApiConfig` takes one required `openapiDocumentsOrGrpcServices` (`ApiGatewayApiConfigOpenapiDocumentsOption` / `ApiGatewayApiConfigGrpcServicesOption`), and `PrivilegedAccessManagerSettingsEmailNotificationSettings` one `disableAllNotificationsOrCustomNotificationBehavior`.

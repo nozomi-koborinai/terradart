@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). The generated wrappers were already formatted in the Dart 3.7+ tall style, so the constraint now matches them (pub.dev static analysis no longer reports a formatter mismatch).
+
 ## 0.30.0 - 2026-09-28
 
 - **Breaking** — targets `hashicorp/google` 8.x: the wrap fixture moves from `7.46.1` to `8.4.0` and `GoogleProvider` pins `~> 8.0`, so an existing root module needs `terraform init -upgrade`. The Dart API follows the provider (`secretDataWoVersion` / `secretAccessKeyWoVersion` are strings, `GoogleWorkflowsWorkflow.sourceContents` and `GoogleIamWorkforcePoolProviderScimTenant.claimMapping` are required, a handful of removed fields are gone). See [MIGRATING.md](../../MIGRATING.md) for the upgrade steps and the defaults 8.0 changes without a Dart signal.
