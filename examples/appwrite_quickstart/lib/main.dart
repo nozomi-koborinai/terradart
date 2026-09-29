@@ -76,7 +76,7 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteStorageFile(
         localName: 'seed',
-        bucketId: .ref(bucket.id),
+        bucketId: bucket.ref,
         filePath: .literal('seed.txt'),
         name: .literal('seed.txt'),
       ),
@@ -86,15 +86,15 @@ final class AppwriteDemoStack extends Stack {
     final table = add(
       AppwriteTablesdbTable(
         localName: 'users',
-        databaseId: .ref(db.id),
+        databaseId: db.ref,
         name: .literal('users'),
       ),
     );
     add(
       AppwriteTablesdbColumn(
         localName: 'name',
-        databaseId: .ref(db.id),
-        tableId: .ref(table.id),
+        databaseId: db.ref,
+        tableId: table.ref,
         type: .literal(.varchar),
         key: .literal('name'),
         size: .literal(255),
@@ -104,8 +104,8 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteTablesdbIndex(
         localName: 'name_idx',
-        databaseId: .ref(db.id),
-        tableId: .ref(table.id),
+        databaseId: db.ref,
+        tableId: table.ref,
         type: .literal('key'),
         columns: .literal(['name']),
         key: .literal('name_idx'),
@@ -114,8 +114,8 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteTablesdbRow(
         localName: 'seed',
-        databaseId: .ref(db.id),
-        tableId: .ref(table.id),
+        databaseId: db.ref,
+        tableId: table.ref,
         data: .literal('{"name":"demo"}'),
       ),
     );
@@ -129,7 +129,7 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwritePostgresqlBackupPolicy(
         localName: 'pg_nightly',
-        databaseId: .ref(pg.id),
+        databaseId: pg.ref,
         name: .literal('nightly'),
         retention: .literal(7),
         schedule: .literal('0 2 * * *'),
@@ -138,21 +138,19 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwritePostgresqlBackupStorage(
         localName: 'pg_offsite',
-        databaseId: .ref(pg.id),
+        databaseId: pg.ref,
         bucket: .literal('terradart-pg-backups'),
         storageProvider: .literal(.s3),
         accessKey: TfArg.variable('backup_access_key'),
         secretKey: TfArg.variable('backup_secret_key'),
       ),
     );
-    add(AppwritePostgresqlBranch(localName: 'pg_dev', databaseId: .ref(pg.id)));
-    add(
-      AppwritePostgresqlPooler(localName: 'pg_pool', databaseId: .ref(pg.id)),
-    );
+    add(AppwritePostgresqlBranch(localName: 'pg_dev', databaseId: pg.ref));
+    add(AppwritePostgresqlPooler(localName: 'pg_pool', databaseId: pg.ref));
     add(
       AppwritePostgresqlExtension(
         localName: 'pg_uuid',
-        databaseId: .ref(pg.id),
+        databaseId: pg.ref,
         name: .literal('uuid-ossp'),
       ),
     );
@@ -166,7 +164,7 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteMysqlBackupPolicy(
         localName: 'mysql_nightly',
-        databaseId: .ref(mysql.id),
+        databaseId: mysql.ref,
         name: .literal('nightly'),
         retention: .literal(7),
         schedule: .literal('0 2 * * *'),
@@ -175,19 +173,15 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteMysqlBackupStorage(
         localName: 'mysql_offsite',
-        databaseId: .ref(mysql.id),
+        databaseId: mysql.ref,
         bucket: .literal('terradart-mysql-backups'),
         storageProvider: .literal(.s3),
         accessKey: TfArg.variable('backup_access_key'),
         secretKey: TfArg.variable('backup_secret_key'),
       ),
     );
-    add(
-      AppwriteMysqlBranch(localName: 'mysql_dev', databaseId: .ref(mysql.id)),
-    );
-    add(
-      AppwriteMysqlPooler(localName: 'mysql_pool', databaseId: .ref(mysql.id)),
-    );
+    add(AppwriteMysqlBranch(localName: 'mysql_dev', databaseId: mysql.ref));
+    add(AppwriteMysqlPooler(localName: 'mysql_pool', databaseId: mysql.ref));
 
     final mongo = add(
       AppwriteMongoDatabase(
@@ -198,7 +192,7 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteMongoBackupPolicy(
         localName: 'mongo_nightly',
-        databaseId: .ref(mongo.id),
+        databaseId: mongo.ref,
         name: .literal('nightly'),
         retention: .literal(7),
         schedule: .literal('0 2 * * *'),
@@ -207,16 +201,14 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteMongoBackupStorage(
         localName: 'mongo_offsite',
-        databaseId: .ref(mongo.id),
+        databaseId: mongo.ref,
         bucket: .literal('terradart-mongo-backups'),
         storageProvider: .literal(.s3),
         accessKey: TfArg.variable('backup_access_key'),
         secretKey: TfArg.variable('backup_secret_key'),
       ),
     );
-    add(
-      AppwriteMongoBranch(localName: 'mongo_dev', databaseId: .ref(mongo.id)),
-    );
+    add(AppwriteMongoBranch(localName: 'mongo_dev', databaseId: mongo.ref));
 
     final team = add(
       AppwriteAuthTeam(localName: 'editors', name: .literal('editors')),
@@ -241,7 +233,7 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteFunctionVariable(
         localName: 'api_url',
-        functionId: .ref(fn.id),
+        functionId: fn.ref,
         key: .literal('API_URL'),
         value: TfArg.variable('function_api_url'),
       ),
@@ -249,7 +241,7 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteFunctionDeployment(
         localName: 'on_signup_src',
-        functionId: .ref(fn.id),
+        functionId: fn.ref,
         sourceType: .literal(.template),
         owner: .literal('appwrite'),
         repository: .literal('templates-for-sites'),
@@ -272,7 +264,7 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteSiteVariable(
         localName: 'public_api',
-        siteId: .ref(site.id),
+        siteId: site.ref,
         key: .literal('NEXT_PUBLIC_API_URL'),
         value: TfArg.variable('site_api_url'),
       ),
@@ -280,7 +272,7 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteSiteDeployment(
         localName: 'dashboard_src',
-        siteId: .ref(site.id),
+        siteId: site.ref,
         sourceType: .literal(.template),
         owner: .literal('appwrite'),
         repository: .literal('templates-for-sites'),
@@ -315,7 +307,7 @@ final class AppwriteDemoStack extends Stack {
     add(
       AppwriteMessagingSubscriber(
         localName: 'ops',
-        topicId: .ref(topic.id),
+        topicId: topic.ref,
         targetId: .literal('target-demo'),
       ),
     );
@@ -358,19 +350,19 @@ final class AppwriteDemoStack extends Stack {
     addData(
       DataAppwritePostgresqlDatabaseStatus(
         localName: 'pg_status',
-        databaseId: .ref(pg.id),
+        databaseId: pg.ref,
       ),
     );
     addData(
       DataAppwritePostgresqlBackups(
         localName: 'pg_backups',
-        databaseId: .ref(pg.id),
+        databaseId: pg.ref,
       ),
     );
     addData(
       DataAppwritePostgresqlExtensions(
         localName: 'pg_exts',
-        databaseId: .ref(pg.id),
+        databaseId: pg.ref,
       ),
     );
 
@@ -382,13 +374,13 @@ final class AppwriteDemoStack extends Stack {
     addData(
       DataAppwriteMysqlDatabaseStatus(
         localName: 'mysql_status',
-        databaseId: .ref(mysql.id),
+        databaseId: mysql.ref,
       ),
     );
     addData(
       DataAppwriteMysqlBackups(
         localName: 'mysql_backups',
-        databaseId: .ref(mysql.id),
+        databaseId: mysql.ref,
       ),
     );
 
@@ -400,13 +392,13 @@ final class AppwriteDemoStack extends Stack {
     addData(
       DataAppwriteMongoDatabaseStatus(
         localName: 'mongo_status',
-        databaseId: .ref(mongo.id),
+        databaseId: mongo.ref,
       ),
     );
     addData(
       DataAppwriteMongoBackups(
         localName: 'mongo_backups',
-        databaseId: .ref(mongo.id),
+        databaseId: mongo.ref,
       ),
     );
   }
