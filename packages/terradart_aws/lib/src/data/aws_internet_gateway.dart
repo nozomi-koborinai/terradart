@@ -39,10 +39,9 @@ final class DataAwsInternetGateway extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (internetGatewayId != null)
-             'internet_gateway_id': internetGatewayId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'internet_gateway_id': ?internetGatewayId,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

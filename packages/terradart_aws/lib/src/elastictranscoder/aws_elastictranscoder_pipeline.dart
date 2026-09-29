@@ -24,8 +24,8 @@ final class ElastictranscoderPipelineContentConfig {
   final TfArg<ElastictranscoderPipelineContentConfigStorageClass>? storageClass;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
-    if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
+    'storage_class': ?storageClass?.toTfJson(),
   };
 }
 
@@ -60,8 +60,8 @@ final class ElastictranscoderPipelineContentConfigPermissions {
 
   Map<String, Object?> encode() => {
     if (access != null) 'access': [for (final e in access!) e.toTfJson()],
-    if (grantee != null) 'grantee': grantee!.toTfJson(),
-    if (granteeType != null) 'grantee_type': granteeType!.toTfJson(),
+    'grantee': ?grantee?.toTfJson(),
+    'grantee_type': ?granteeType?.toTfJson(),
   };
 }
 
@@ -114,10 +114,10 @@ final class ElastictranscoderPipelineNotifications {
   final TfArg<String>? warning;
 
   Map<String, Object?> encode() => {
-    if (completed != null) 'completed': completed!.toTfJson(),
-    if (error != null) 'error': error!.toTfJson(),
-    if (progressing != null) 'progressing': progressing!.toTfJson(),
-    if (warning != null) 'warning': warning!.toTfJson(),
+    'completed': ?completed?.toTfJson(),
+    'error': ?error?.toTfJson(),
+    'progressing': ?progressing?.toTfJson(),
+    'warning': ?warning?.toTfJson(),
   };
 }
 
@@ -136,8 +136,8 @@ final class ElastictranscoderPipelineThumbnailConfig {
   storageClass;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
-    if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
+    'storage_class': ?storageClass?.toTfJson(),
   };
 }
 
@@ -174,8 +174,8 @@ final class ElastictranscoderPipelineThumbnailConfigPermissions {
 
   Map<String, Object?> encode() => {
     if (access != null) 'access': [for (final e in access!) e.toTfJson()],
-    if (grantee != null) 'grantee': grantee!.toTfJson(),
-    if (granteeType != null) 'grantee_type': granteeType!.toTfJson(),
+    'grantee': ?grantee?.toTfJson(),
+    'grantee_type': ?granteeType?.toTfJson(),
   };
 }
 
@@ -234,11 +234,11 @@ final class AwsElastictranscoderPipeline extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsKmsKeyArn != null) 'aws_kms_key_arn': awsKmsKeyArn,
+           'aws_kms_key_arn': ?awsKmsKeyArn,
            'input_bucket': inputBucket,
-           if (name != null) 'name': name,
-           if (outputBucket != null) 'output_bucket': outputBucket,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'output_bucket': ?outputBucket,
+           'region': ?region,
            'role': role.encodeAs('arn'),
            if (contentConfig != null)
              'content_config': TfArg.literal(contentConfig.encode()),

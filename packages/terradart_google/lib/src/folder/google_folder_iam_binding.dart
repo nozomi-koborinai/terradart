@@ -31,7 +31,7 @@ final class GoogleFolderIamBinding extends Resource {
            'folder': folder,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

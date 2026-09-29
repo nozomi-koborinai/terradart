@@ -29,8 +29,8 @@ final class DataGoogleDiscoveryEngineSearchEngineIamPolicy extends Data {
          argMap: {
            'collection_id': collectionId,
            'engine_id': engineId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

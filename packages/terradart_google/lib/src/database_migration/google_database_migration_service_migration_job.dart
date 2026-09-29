@@ -188,8 +188,8 @@ final class DatabaseMigrationServiceMigrationJobDumpFlagsDumpFlags {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -205,8 +205,7 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfig {
   sourceObjectsConfig;
 
   Map<String, Object?> encode() => {
-    if (sourceObjectsConfig != null)
-      'source_objects_config': sourceObjectsConfig!.encode(),
+    'source_objects_config': ?sourceObjectsConfig?.encode(),
   };
 }
 
@@ -230,8 +229,7 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfig
   objectConfigs;
 
   Map<String, Object?> encode() => {
-    if (objectsSelectionType != null)
-      'objects_selection_type': objectsSelectionType!.toTfJson(),
+    'objects_selection_type': ?objectsSelectionType?.toTfJson(),
     if (objectConfigs != null)
       'object_configs': [for (final e in objectConfigs!) e.encode()],
   };
@@ -262,8 +260,7 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfig
   objectIdentifier;
 
   Map<String, Object?> encode() => {
-    if (objectIdentifier != null)
-      'object_identifier': objectIdentifier!.encode(),
+    'object_identifier': ?objectIdentifier?.encode(),
   };
 }
 
@@ -290,9 +287,9 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfigSourceObjectsConfig
   type;
 
   Map<String, Object?> encode() => {
-    if (database != null) 'database': database!.toTfJson(),
-    if (schema != null) 'schema': schema!.toTfJson(),
-    if (table != null) 'table': table!.toTfJson(),
+    'database': ?database?.toTfJson(),
+    'schema': ?schema?.toTfJson(),
+    'table': ?table?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -325,8 +322,7 @@ final class DatabaseMigrationServiceMigrationJobPerformanceConfig {
   dumpParallelLevel;
 
   Map<String, Object?> encode() => {
-    if (dumpParallelLevel != null)
-      'dump_parallel_level': dumpParallelLevel!.toTfJson(),
+    'dump_parallel_level': ?dumpParallelLevel?.toTfJson(),
   };
 }
 
@@ -359,8 +355,7 @@ final class DatabaseMigrationServiceMigrationJobPostgresHomogeneousConfig {
 
   Map<String, Object?> encode() => {
     'is_native_logical': isNativeLogical.toTfJson(),
-    if (maxAdditionalSubscriptions != null)
-      'max_additional_subscriptions': maxAdditionalSubscriptions!.toTfJson(),
+    'max_additional_subscriptions': ?maxAdditionalSubscriptions?.toTfJson(),
   };
 }
 
@@ -384,10 +379,10 @@ final class DatabaseMigrationServiceMigrationJobReverseSshConnectivity {
   final TfArg<String>? vpc;
 
   Map<String, Object?> encode() => {
-    if (vm != null) 'vm': vm!.toTfJson(),
-    if (vmIp != null) 'vm_ip': vmIp!.toTfJson(),
-    if (vmPort != null) 'vm_port': vmPort!.toTfJson(),
-    if (vpc != null) 'vpc': vpc!.toTfJson(),
+    'vm': ?vm?.toTfJson(),
+    'vm_ip': ?vmIp?.toTfJson(),
+    'vm_port': ?vmPort?.toTfJson(),
+    'vpc': ?vpc?.toTfJson(),
   };
 }
 
@@ -408,7 +403,7 @@ final class DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity {
 
   final TfArg<String>? vpc;
 
-  Map<String, Object?> encode() => {if (vpc != null) 'vpc': vpc!.toTfJson()};
+  Map<String, Object?> encode() => {'vpc': ?vpc?.toTfJson()};
 }
 
 /// Factory wrapper for `google_database_migration_service_migration_job`.
@@ -453,18 +448,18 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (desiredState != null) 'desired_state': desiredState,
+           'deletion_policy': ?deletionPolicy,
+           'desired_state': ?desiredState,
            'destination': destination,
-           if (displayName != null) 'display_name': displayName,
-           if (dumpPath != null) 'dump_path': dumpPath,
-           if (dumpType != null) 'dump_type': dumpType,
-           if (labels != null) 'labels': labels,
-           if (location != null) 'location': location,
+           'display_name': ?displayName,
+           'dump_path': ?dumpPath,
+           'dump_type': ?dumpType,
+           'labels': ?labels,
+           'location': ?location,
            'migration_job_id': migrationJobId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'source': source,
-           if (stopOnWarnings != null) 'stop_on_warnings': stopOnWarnings,
+           'stop_on_warnings': ?stopOnWarnings,
            'type': type,
            if (dumpFlags != null)
              'dump_flags': TfArg.literal(dumpFlags.encode()),

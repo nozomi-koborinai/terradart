@@ -22,11 +22,7 @@ final class AwsRoute53recoverycontrolconfigControlPanel extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'cluster_arn': clusterArn,
-           'name': name,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'cluster_arn': clusterArn, 'name': name, 'tags': ?tags},
        );
 
   @override

@@ -33,8 +33,8 @@ final class GoogleIapAgentRegistryMcpServerIamPolicy extends Resource {
          argMap: {
            'mcp_server_id': mcpServerId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

@@ -237,34 +237,28 @@ final class GooglePubsubSubscription extends Resource {
          argMap: {
            'name': name,
            'topic': topic,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            if (bigqueryConfig != null)
              'bigquery_config': TfArg.literal(bigqueryConfig.encode()),
            if (cloudStorageConfig != null)
              'cloud_storage_config': TfArg.literal(cloudStorageConfig.encode()),
            if (pushConfig != null)
              'push_config': TfArg.literal(pushConfig.encode()),
-           if (ackDeadlineSeconds != null)
-             'ack_deadline_seconds': ackDeadlineSeconds,
-           if (messageRetentionDuration != null)
-             'message_retention_duration': messageRetentionDuration,
-           if (retainAckedMessages != null)
-             'retain_acked_messages': retainAckedMessages,
+           'ack_deadline_seconds': ?ackDeadlineSeconds,
+           'message_retention_duration': ?messageRetentionDuration,
+           'retain_acked_messages': ?retainAckedMessages,
            if (expirationPolicy != null)
              'expiration_policy': TfArg.literal(expirationPolicy.encode()),
-           if (filter != null) 'filter': filter,
+           'filter': ?filter,
            if (deadLetterPolicy != null)
              'dead_letter_policy': TfArg.literal(deadLetterPolicy.encode()),
            if (retryPolicy != null)
              'retry_policy': TfArg.literal(retryPolicy.encode()),
-           if (enableMessageOrdering != null)
-             'enable_message_ordering': enableMessageOrdering,
-           if (enableExactlyOnceDelivery != null)
-             'enable_exactly_once_delivery': enableExactlyOnceDelivery,
-           if (messageTransforms != null)
-             'message_transforms': messageTransforms,
-           if (tags != null) 'tags': tags,
-           if (project != null) 'project': project,
+           'enable_message_ordering': ?enableMessageOrdering,
+           'enable_exactly_once_delivery': ?enableExactlyOnceDelivery,
+           'message_transforms': ?messageTransforms,
+           'tags': ?tags,
+           'project': ?project,
          },
        );
 

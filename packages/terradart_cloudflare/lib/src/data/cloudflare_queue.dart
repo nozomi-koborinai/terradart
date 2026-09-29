@@ -24,10 +24,7 @@ final class DataCloudflareQueue extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'queue_id': queueId,
-         },
+         argMap: {'account_id': ?accountId, 'queue_id': queueId},
        );
 
   @override

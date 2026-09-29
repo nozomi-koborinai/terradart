@@ -23,11 +23,7 @@ final class DataGoogleIapAppEngineServiceIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'app_id': appId,
-           if (project != null) 'project': project,
-           'service': service,
-         },
+         argMap: {'app_id': appId, 'project': ?project, 'service': service},
        );
 
   @override

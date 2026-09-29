@@ -31,14 +31,12 @@ final class GoogleGkeHubRolloutSequence extends Resource {
          argMap: {
            'rollout_sequence_id': rolloutSequenceId,
            'stages': stages,
-           if (displayName != null) 'display_name': displayName,
-           if (autoUpgradeConfig != null)
-             'auto_upgrade_config': autoUpgradeConfig,
-           if (ignoredClustersSelector != null)
-             'ignored_clusters_selector': ignoredClustersSelector,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'auto_upgrade_config': ?autoUpgradeConfig,
+           'ignored_clusters_selector': ?ignoredClustersSelector,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

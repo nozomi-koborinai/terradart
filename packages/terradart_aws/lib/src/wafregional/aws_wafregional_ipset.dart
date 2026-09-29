@@ -43,7 +43,7 @@ final class AwsWafregionalIpset extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (ipSetDescriptor != null)
              'ip_set_descriptor': TfArg.literal([
                for (final e in ipSetDescriptor) e.encode(),

@@ -29,7 +29,7 @@ final class GoogleDnsManagedZoneIamPolicy extends Resource {
          argMap: {
            'managed_zone': managedZone,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -234,64 +234,46 @@ final class AwsRedshiftCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowVersionUpgrade != null)
-             'allow_version_upgrade': allowVersionUpgrade,
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (aquaConfigurationStatus != null)
-             'aqua_configuration_status': aquaConfigurationStatus,
-           if (automatedSnapshotRetentionPeriod != null)
-             'automated_snapshot_retention_period':
-                 automatedSnapshotRetentionPeriod,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (availabilityZoneRelocationEnabled != null)
-             'availability_zone_relocation_enabled':
-                 availabilityZoneRelocationEnabled,
+           'allow_version_upgrade': ?allowVersionUpgrade,
+           'apply_immediately': ?applyImmediately,
+           'aqua_configuration_status': ?aquaConfigurationStatus,
+           'automated_snapshot_retention_period':
+               ?automatedSnapshotRetentionPeriod,
+           'availability_zone': ?availabilityZone,
+           'availability_zone_relocation_enabled':
+               ?availabilityZoneRelocationEnabled,
            'cluster_identifier': clusterIdentifier,
-           if (clusterParameterGroupName != null)
-             'cluster_parameter_group_name': clusterParameterGroupName,
-           if (clusterSubnetGroupName != null)
-             'cluster_subnet_group_name': clusterSubnetGroupName,
-           if (clusterType != null) 'cluster_type': clusterType,
-           if (clusterVersion != null) 'cluster_version': clusterVersion,
-           if (databaseName != null) 'database_name': databaseName,
-           if (defaultIamRoleArn != null)
-             'default_iam_role_arn': defaultIamRoleArn,
-           if (elasticIp != null) 'elastic_ip': elasticIp,
-           if (encrypted != null) 'encrypted': encrypted,
-           if (enhancedVpcRouting != null)
-             'enhanced_vpc_routing': enhancedVpcRouting,
-           if (finalSnapshotIdentifier != null)
-             'final_snapshot_identifier': finalSnapshotIdentifier,
-           if (iamRoles != null) 'iam_roles': iamRoles,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (maintenanceTrackName != null)
-             'maintenance_track_name': maintenanceTrackName,
+           'cluster_parameter_group_name': ?clusterParameterGroupName,
+           'cluster_subnet_group_name': ?clusterSubnetGroupName,
+           'cluster_type': ?clusterType,
+           'cluster_version': ?clusterVersion,
+           'database_name': ?databaseName,
+           'default_iam_role_arn': ?defaultIamRoleArn,
+           'elastic_ip': ?elasticIp,
+           'encrypted': ?encrypted,
+           'enhanced_vpc_routing': ?enhancedVpcRouting,
+           'final_snapshot_identifier': ?finalSnapshotIdentifier,
+           'iam_roles': ?iamRoles,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'maintenance_track_name': ?maintenanceTrackName,
            ...?masterPassword?.argMap,
-           if (manualSnapshotRetentionPeriod != null)
-             'manual_snapshot_retention_period': manualSnapshotRetentionPeriod,
-           if (masterPasswordSecretKmsKeyId != null)
-             'master_password_secret_kms_key_id': masterPasswordSecretKmsKeyId,
-           if (masterPasswordWoVersion != null)
-             'master_password_wo_version': masterPasswordWoVersion,
-           if (masterUsername != null) 'master_username': masterUsername,
-           if (multiAz != null) 'multi_az': multiAz,
+           'manual_snapshot_retention_period': ?manualSnapshotRetentionPeriod,
+           'master_password_secret_kms_key_id': ?masterPasswordSecretKmsKeyId,
+           'master_password_wo_version': ?masterPasswordWoVersion,
+           'master_username': ?masterUsername,
+           'multi_az': ?multiAz,
            'node_type': nodeType,
-           if (numberOfNodes != null) 'number_of_nodes': numberOfNodes,
-           if (ownerAccount != null) 'owner_account': ownerAccount,
-           if (port != null) 'port': port,
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
-           if (skipFinalSnapshot != null)
-             'skip_final_snapshot': skipFinalSnapshot,
+           'number_of_nodes': ?numberOfNodes,
+           'owner_account': ?ownerAccount,
+           'port': ?port,
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
+           'skip_final_snapshot': ?skipFinalSnapshot,
            ...?snapshot?.argMap,
-           if (snapshotClusterIdentifier != null)
-             'snapshot_cluster_identifier': snapshotClusterIdentifier,
-           if (tags != null) 'tags': tags,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'snapshot_cluster_identifier': ?snapshotClusterIdentifier,
+           'tags': ?tags,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
          },
        );
 

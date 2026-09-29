@@ -36,12 +36,11 @@ final class AwsRdsClusterActivityStream extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (engineNativeAuditFieldsIncluded != null)
-             'engine_native_audit_fields_included':
-                 engineNativeAuditFieldsIncluded,
+           'engine_native_audit_fields_included':
+               ?engineNativeAuditFieldsIncluded,
            'kms_key_id': kmsKeyId.encodeAs('arn'),
            'mode': mode,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
          },
        );

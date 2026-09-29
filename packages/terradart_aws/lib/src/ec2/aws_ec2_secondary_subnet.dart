@@ -100,9 +100,9 @@ final class AwsEc2SecondarySubnet extends Resource {
          argMap: {
            ...?availabilityZone?.argMap,
            'ipv4_cidr_block': ipv4CidrBlock,
-           if (region != null) 'region': region,
+           'region': ?region,
            'secondary_network_id': secondaryNetworkId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

@@ -61,8 +61,8 @@ final class LambdamicrovmsMicrovmLoggingCloudwatch {
   final TfArg<String>? logStream;
 
   Map<String, Object?> encode() => {
-    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
-    if (logStream != null) 'log_stream': logStream!.toTfJson(),
+    'log_group': ?logGroup?.encodeAs('name').toTfJson(),
+    'log_stream': ?logStream?.toTfJson(),
   };
 }
 
@@ -98,18 +98,14 @@ final class AwsLambdamicrovmsMicrovm extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (egressNetworkConnectors != null)
-             'egress_network_connectors': egressNetworkConnectors,
-           if (executionRoleArn != null)
-             'execution_role_arn': executionRoleArn.encodeAs('arn'),
+           'egress_network_connectors': ?egressNetworkConnectors,
+           'execution_role_arn': ?executionRoleArn?.encodeAs('arn'),
            'image_arn': imageArn,
-           if (imageVersion != null) 'image_version': imageVersion,
-           if (ingressNetworkConnectors != null)
-             'ingress_network_connectors': ingressNetworkConnectors,
-           if (maximumDurationInSeconds != null)
-             'maximum_duration_in_seconds': maximumDurationInSeconds,
-           if (region != null) 'region': region,
-           if (runHookPayload != null) 'run_hook_payload': runHookPayload,
+           'image_version': ?imageVersion,
+           'ingress_network_connectors': ?ingressNetworkConnectors,
+           'maximum_duration_in_seconds': ?maximumDurationInSeconds,
+           'region': ?region,
+           'run_hook_payload': ?runHookPayload,
            if (idlePolicy != null)
              'idle_policy': TfArg.literal([
                for (final e in idlePolicy) e.encode(),

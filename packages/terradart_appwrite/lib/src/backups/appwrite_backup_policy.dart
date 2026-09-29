@@ -28,10 +28,10 @@ final class AppwriteBackupPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
-           if (name != null) 'name': name,
-           if (projectId != null) 'project_id': projectId,
-           if (resourceId != null) 'resource_id': resourceId,
+           'enabled': ?enabled,
+           'name': ?name,
+           'project_id': ?projectId,
+           'resource_id': ?resourceId,
            'retention': retention,
            'schedule': schedule,
            'services': services,

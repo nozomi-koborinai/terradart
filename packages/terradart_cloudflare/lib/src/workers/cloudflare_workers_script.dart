@@ -107,8 +107,8 @@ final class WorkersScriptAnnotations {
   final TfArg<String>? workersTag;
 
   Map<String, Object?> encode() => {
-    if (workersMessage != null) 'workers_message': workersMessage!.toTfJson(),
-    if (workersTag != null) 'workers_tag': workersTag!.toTfJson(),
+    'workers_message': ?workersMessage?.toTfJson(),
+    'workers_tag': ?workersTag?.toTfJson(),
   };
 }
 
@@ -124,7 +124,7 @@ final class WorkersScriptAssets {
 
   Map<String, Object?> encode() => {
     ...?source?.encode(),
-    if (config != null) 'config': config!.encode(),
+    'config': ?config?.encode(),
   };
 }
 
@@ -206,14 +206,13 @@ final class WorkersScriptAssetsConfig {
   final TfArg<bool>? serveDirectly;
 
   Map<String, Object?> encode() => {
-    if (basePath != null) 'base_path': basePath!.toTfJson(),
-    if (headers != null) 'headers': headers!.toTfJson(),
-    if (htmlHandling != null) 'html_handling': htmlHandling!.toTfJson(),
-    if (notFoundHandling != null)
-      'not_found_handling': notFoundHandling!.toTfJson(),
-    if (redirects != null) 'redirects': redirects!.toTfJson(),
-    if (runWorkerFirst != null) 'run_worker_first': runWorkerFirst!.toTfJson(),
-    if (serveDirectly != null) 'serve_directly': serveDirectly!.toTfJson(),
+    'base_path': ?basePath?.toTfJson(),
+    'headers': ?headers?.toTfJson(),
+    'html_handling': ?htmlHandling?.toTfJson(),
+    'not_found_handling': ?notFoundHandling?.toTfJson(),
+    'redirects': ?redirects?.toTfJson(),
+    'run_worker_first': ?runWorkerFirst?.toTfJson(),
+    'serve_directly': ?serveDirectly?.toTfJson(),
   };
 }
 
@@ -377,53 +376,49 @@ final class WorkersScriptBindings {
   final WorkersScriptBindingsSimple? simple;
 
   Map<String, Object?> encode() => {
-    if (algorithm != null) 'algorithm': algorithm!.toTfJson(),
-    if (allowedDestinationAddresses != null)
-      'allowed_destination_addresses': allowedDestinationAddresses!.toTfJson(),
-    if (allowedSenderAddresses != null)
-      'allowed_sender_addresses': allowedSenderAddresses!.toTfJson(),
-    if (appId != null) 'app_id': appId!.toTfJson(),
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
-    if (certificateId != null) 'certificate_id': certificateId!.toTfJson(),
-    if (className != null) 'class_name': className!.toTfJson(),
-    if (databaseId != null) 'database_id': databaseId!.toTfJson(),
-    if (dataset != null) 'dataset': dataset!.toTfJson(),
-    if (destinationAddress != null)
-      'destination_address': destinationAddress!.toTfJson(),
-    if (dispatchNamespace != null)
-      'dispatch_namespace': dispatchNamespace!.toTfJson(),
-    if (entrypoint != null) 'entrypoint': entrypoint!.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (format != null) 'format': format!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (indexName != null) 'index_name': indexName!.toTfJson(),
-    if (instanceName != null) 'instance_name': instanceName!.toTfJson(),
-    if (json != null) 'json': json!.toTfJson(),
-    if (jurisdiction != null) 'jurisdiction': jurisdiction!.toTfJson(),
-    if (keyBase64 != null) 'key_base64': keyBase64!.toTfJson(),
-    if (keyJwk != null) 'key_jwk': keyJwk!.toTfJson(),
+    'algorithm': ?algorithm?.toTfJson(),
+    'allowed_destination_addresses': ?allowedDestinationAddresses?.toTfJson(),
+    'allowed_sender_addresses': ?allowedSenderAddresses?.toTfJson(),
+    'app_id': ?appId?.toTfJson(),
+    'bucket_name': ?bucketName?.toTfJson(),
+    'certificate_id': ?certificateId?.toTfJson(),
+    'class_name': ?className?.toTfJson(),
+    'database_id': ?databaseId?.toTfJson(),
+    'dataset': ?dataset?.toTfJson(),
+    'destination_address': ?destinationAddress?.toTfJson(),
+    'dispatch_namespace': ?dispatchNamespace?.toTfJson(),
+    'entrypoint': ?entrypoint?.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'format': ?format?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'index_name': ?indexName?.toTfJson(),
+    'instance_name': ?instanceName?.toTfJson(),
+    'json': ?json?.toTfJson(),
+    'jurisdiction': ?jurisdiction?.toTfJson(),
+    'key_base64': ?keyBase64?.toTfJson(),
+    'key_jwk': ?keyJwk?.toTfJson(),
     'name': name.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-    if (namespaceId != null) 'namespace_id': namespaceId!.toTfJson(),
-    if (networkId != null) 'network_id': networkId!.toTfJson(),
-    if (oldName != null) 'old_name': oldName!.toTfJson(),
-    if (part != null) 'part': part!.toTfJson(),
-    if (pipeline != null) 'pipeline': pipeline!.toTfJson(),
-    if (queueName != null) 'queue_name': queueName!.toTfJson(),
-    if (scriptName != null) 'script_name': scriptName!.toTfJson(),
-    if (secretName != null) 'secret_name': secretName!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
-    if (serviceId != null) 'service_id': serviceId!.toTfJson(),
-    if (storeId != null) 'store_id': storeId!.toTfJson(),
-    if (stream != null) 'stream': stream!.toTfJson(),
-    if (text != null) 'text': text!.toTfJson(),
-    if (tunnelId != null) 'tunnel_id': tunnelId!.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
+    'namespace_id': ?namespaceId?.toTfJson(),
+    'network_id': ?networkId?.toTfJson(),
+    'old_name': ?oldName?.toTfJson(),
+    'part': ?part?.toTfJson(),
+    'pipeline': ?pipeline?.toTfJson(),
+    'queue_name': ?queueName?.toTfJson(),
+    'script_name': ?scriptName?.toTfJson(),
+    'secret_name': ?secretName?.toTfJson(),
+    'service': ?service?.toTfJson(),
+    'service_id': ?serviceId?.toTfJson(),
+    'store_id': ?storeId?.toTfJson(),
+    'stream': ?stream?.toTfJson(),
+    'text': ?text?.toTfJson(),
+    'tunnel_id': ?tunnelId?.toTfJson(),
     'type': type.toTfJson(),
     if (usages != null) 'usages': [for (final e in usages!) e.toTfJson()],
-    if (versionId != null) 'version_id': versionId!.toTfJson(),
-    if (workflowName != null) 'workflow_name': workflowName!.toTfJson(),
-    if (outbound != null) 'outbound': outbound!.encode(),
-    if (simple != null) 'simple': simple!.encode(),
+    'version_id': ?versionId?.toTfJson(),
+    'workflow_name': ?workflowName?.toTfJson(),
+    'outbound': ?outbound?.encode(),
+    'simple': ?simple?.encode(),
   };
 }
 
@@ -520,8 +515,8 @@ final class WorkersScriptBindingsOutbound {
   final WorkersScriptBindingsOutboundWorker? worker;
 
   Map<String, Object?> encode() => {
-    if (params != null) 'params': params!.toTfJson(),
-    if (worker != null) 'worker': worker!.encode(),
+    'params': ?params?.toTfJson(),
+    'worker': ?worker?.encode(),
   };
 }
 
@@ -536,8 +531,8 @@ final class WorkersScriptBindingsOutboundWorker {
   final TfArg<String>? service;
 
   Map<String, Object?> encode() => {
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'service': ?service?.toTfJson(),
   };
 }
 
@@ -559,8 +554,7 @@ final class WorkersScriptBindingsSimple {
 
   Map<String, Object?> encode() => {
     'limit': limit.toTfJson(),
-    if (mitigationTimeout != null)
-      'mitigation_timeout': mitigationTimeout!.toTfJson(),
+    'mitigation_timeout': ?mitigationTimeout?.toTfJson(),
     'period': period.toTfJson(),
   };
 }
@@ -576,9 +570,8 @@ final class WorkersScriptCacheOptions {
   final TfArg<bool>? enabled;
 
   Map<String, Object?> encode() => {
-    if (crossVersionCache != null)
-      'cross_version_cache': crossVersionCache!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'cross_version_cache': ?crossVersionCache?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
   };
 }
 
@@ -594,7 +587,7 @@ final class WorkersScriptExports {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (cache != null) 'cache': cache!.encode(),
+    'cache': ?cache?.encode(),
   };
 }
 
@@ -687,8 +680,8 @@ final class WorkersScriptLimits {
   final TfArg<num>? subrequests;
 
   Map<String, Object?> encode() => {
-    if (cpuMs != null) 'cpu_ms': cpuMs!.toTfJson(),
-    if (subrequests != null) 'subrequests': subrequests!.toTfJson(),
+    'cpu_ms': ?cpuMs?.toTfJson(),
+    'subrequests': ?subrequests?.toTfJson(),
   };
 }
 
@@ -724,12 +717,11 @@ final class WorkersScriptMigrations {
   final List<WorkersScriptMigrationsTransferredClasses>? transferredClasses;
 
   Map<String, Object?> encode() => {
-    if (deletedClasses != null) 'deleted_classes': deletedClasses!.toTfJson(),
-    if (newClasses != null) 'new_classes': newClasses!.toTfJson(),
-    if (newSqliteClasses != null)
-      'new_sqlite_classes': newSqliteClasses!.toTfJson(),
-    if (newTag != null) 'new_tag': newTag!.toTfJson(),
-    if (oldTag != null) 'old_tag': oldTag!.toTfJson(),
+    'deleted_classes': ?deletedClasses?.toTfJson(),
+    'new_classes': ?newClasses?.toTfJson(),
+    'new_sqlite_classes': ?newSqliteClasses?.toTfJson(),
+    'new_tag': ?newTag?.toTfJson(),
+    'old_tag': ?oldTag?.toTfJson(),
     if (renamedClasses != null)
       'renamed_classes': [for (final e in renamedClasses!) e.encode()],
     if (steps != null) 'steps': [for (final e in steps!) e.encode()],
@@ -749,8 +741,8 @@ final class WorkersScriptMigrationsRenamedClasses {
   final TfArg<String>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -778,10 +770,9 @@ final class WorkersScriptMigrationsSteps {
   transferredClasses;
 
   Map<String, Object?> encode() => {
-    if (deletedClasses != null) 'deleted_classes': deletedClasses!.toTfJson(),
-    if (newClasses != null) 'new_classes': newClasses!.toTfJson(),
-    if (newSqliteClasses != null)
-      'new_sqlite_classes': newSqliteClasses!.toTfJson(),
+    'deleted_classes': ?deletedClasses?.toTfJson(),
+    'new_classes': ?newClasses?.toTfJson(),
+    'new_sqlite_classes': ?newSqliteClasses?.toTfJson(),
     if (renamedClasses != null)
       'renamed_classes': [for (final e in renamedClasses!) e.encode()],
     if (transferredClasses != null)
@@ -800,8 +791,8 @@ final class WorkersScriptMigrationsStepsRenamedClasses {
   final TfArg<String>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -822,9 +813,9 @@ final class WorkersScriptMigrationsStepsTransferredClasses {
   final TfArg<String>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (fromScript != null) 'from_script': fromScript!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'from_script': ?fromScript?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -845,9 +836,9 @@ final class WorkersScriptMigrationsTransferredClasses {
   final TfArg<String>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (fromScript != null) 'from_script': fromScript!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'from_script': ?fromScript?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -875,11 +866,10 @@ final class WorkersScriptObservability {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (headSamplingRate != null)
-      'head_sampling_rate': headSamplingRate!.toTfJson(),
-    if (issues != null) 'issues': issues!.encode(),
-    if (logs != null) 'logs': logs!.encode(),
-    if (traces != null) 'traces': traces!.encode(),
+    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
+    'issues': ?issues?.encode(),
+    'logs': ?logs?.encode(),
+    'traces': ?traces?.encode(),
   };
 }
 
@@ -891,9 +881,7 @@ final class WorkersScriptObservabilityIssues {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `observability.logs` block of
@@ -919,12 +907,11 @@ final class WorkersScriptObservabilityLogs {
   final TfArg<bool>? persist;
 
   Map<String, Object?> encode() => {
-    if (destinations != null) 'destinations': destinations!.toTfJson(),
+    'destinations': ?destinations?.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (headSamplingRate != null)
-      'head_sampling_rate': headSamplingRate!.toTfJson(),
+    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
     'invocation_logs': invocationLogs.toTfJson(),
-    if (persist != null) 'persist': persist!.toTfJson(),
+    'persist': ?persist?.toTfJson(),
   };
 }
 
@@ -952,13 +939,11 @@ final class WorkersScriptObservabilityTraces {
   propagationPolicy;
 
   Map<String, Object?> encode() => {
-    if (destinations != null) 'destinations': destinations!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (headSamplingRate != null)
-      'head_sampling_rate': headSamplingRate!.toTfJson(),
-    if (persist != null) 'persist': persist!.toTfJson(),
-    if (propagationPolicy != null)
-      'propagation_policy': propagationPolicy!.toTfJson(),
+    'destinations': ?destinations?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
+    'persist': ?persist?.toTfJson(),
+    'propagation_policy': ?propagationPolicy?.toTfJson(),
   };
 }
 
@@ -1004,7 +989,7 @@ final class WorkersScriptPlacement {
 
   final TfArg<WorkersScriptPlacementMode>? mode;
 
-  Map<String, Object?> encode() => {if (mode != null) 'mode': mode!.toTfJson()};
+  Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
@@ -1034,8 +1019,8 @@ final class WorkersScriptTailConsumers {
   final TfArg<String> service;
 
   Map<String, Object?> encode() => {
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
     'service': service.toTfJson(),
   };
 }
@@ -1084,21 +1069,19 @@ final class CloudflareWorkersScript extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (bodyPart != null) 'body_part': bodyPart,
-           if (compatibilityDate != null)
-             'compatibility_date': compatibilityDate,
-           if (compatibilityFlags != null)
-             'compatibility_flags': compatibilityFlags,
+           'body_part': ?bodyPart,
+           'compatibility_date': ?compatibilityDate,
+           'compatibility_flags': ?compatibilityFlags,
            ...?content?.argMap,
-           if (contentSha256 != null) 'content_sha256': contentSha256,
-           if (contentType != null) 'content_type': contentType,
-           if (force != null) 'force': force,
-           if (keepAssets != null) 'keep_assets': keepAssets,
-           if (keepBindings != null) 'keep_bindings': keepBindings,
-           if (logpush != null) 'logpush': logpush,
-           if (mainModule != null) 'main_module': mainModule,
+           'content_sha256': ?contentSha256,
+           'content_type': ?contentType,
+           'force': ?force,
+           'keep_assets': ?keepAssets,
+           'keep_bindings': ?keepBindings,
+           'logpush': ?logpush,
+           'main_module': ?mainModule,
            'script_name': scriptName,
-           if (usageModel != null) 'usage_model': usageModel,
+           'usage_model': ?usageModel,
            if (annotations != null)
              'annotations': TfArg.literal(annotations.encode()),
            if (assets != null) 'assets': TfArg.literal(assets.encode()),

@@ -33,13 +33,12 @@ final class CloudflareImage extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (creator != null) 'creator': creator,
-           if (file != null) 'file': file,
+           'creator': ?creator,
+           'file': ?file,
            'id': id,
-           if (metadata != null) 'metadata': metadata,
-           if (requireSignedUrls != null)
-             'require_signed_urls': requireSignedUrls,
-           if (url != null) 'url': url,
+           'metadata': ?metadata,
+           'require_signed_urls': ?requireSignedUrls,
+           'url': ?url,
          },
        );
 

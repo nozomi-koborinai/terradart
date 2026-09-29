@@ -29,8 +29,8 @@ final class DataGoogleBigqueryAnalyticsHubListingIamPolicy extends Data {
          argMap: {
            'data_exchange_id': dataExchangeId,
            'listing_id': listingId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

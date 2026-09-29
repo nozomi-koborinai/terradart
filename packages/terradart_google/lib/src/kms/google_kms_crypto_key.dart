@@ -123,15 +123,13 @@ final class GoogleKmsCryptoKey extends Resource {
          argMap: {
            'name': name,
            'key_ring': keyRing,
-           if (purpose != null) 'purpose': purpose,
-           if (rotationPeriod != null) 'rotation_period': rotationPeriod,
-           if (labels != null) 'labels': labels,
-           if (skipInitialVersionCreation != null)
-             'skip_initial_version_creation': skipInitialVersionCreation,
-           if (destroyScheduledDuration != null)
-             'destroy_scheduled_duration': destroyScheduledDuration,
-           if (importOnly != null) 'import_only': importOnly,
-           if (cryptoKeyBackend != null) 'crypto_key_backend': cryptoKeyBackend,
+           'purpose': ?purpose,
+           'rotation_period': ?rotationPeriod,
+           'labels': ?labels,
+           'skip_initial_version_creation': ?skipInitialVersionCreation,
+           'destroy_scheduled_duration': ?destroyScheduledDuration,
+           'import_only': ?importOnly,
+           'crypto_key_backend': ?cryptoKeyBackend,
            if (versionTemplate != null)
              'version_template': TfArg.literal([versionTemplate.toArgMap()]),
          },

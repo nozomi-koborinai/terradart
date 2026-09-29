@@ -26,9 +26,9 @@ final class GoogleFirebaseStorageDefaultBucket extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

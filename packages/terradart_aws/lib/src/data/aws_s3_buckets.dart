@@ -21,10 +21,10 @@ final class DataAwsS3Buckets extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bucketRegion != null) 'bucket_region': bucketRegion,
-           if (maxBuckets != null) 'max_buckets': maxBuckets,
-           if (prefix != null) 'prefix': prefix,
-           if (region != null) 'region': region,
+           'bucket_region': ?bucketRegion,
+           'max_buckets': ?maxBuckets,
+           'prefix': ?prefix,
+           'region': ?region,
          },
        );
 

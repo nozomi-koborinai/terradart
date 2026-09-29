@@ -241,9 +241,7 @@ final class S3ObjectOverrideProvider {
 
   final S3ObjectOverrideProviderDefaultTags? defaultTags;
 
-  Map<String, Object?> encode() => {
-    if (defaultTags != null) 'default_tags': defaultTags!.encode(),
-  };
+  Map<String, Object?> encode() => {'default_tags': ?defaultTags?.encode()};
 }
 
 /// Typed helper for the `override_provider.default_tags` block of
@@ -254,7 +252,7 @@ final class S3ObjectOverrideProviderDefaultTags {
 
   final TfArg<Map<String, String>>? tags;
 
-  Map<String, Object?> encode() => {if (tags != null) 'tags': tags!.toTfJson()};
+  Map<String, Object?> encode() => {'tags': ?tags?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_s3_object`.
@@ -294,34 +292,29 @@ final class AwsS3Object extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acl != null) 'acl': acl,
+           'acl': ?acl,
            'bucket': bucket.encodeAs('id'),
-           if (bucketKeyEnabled != null) 'bucket_key_enabled': bucketKeyEnabled,
-           if (cacheControl != null) 'cache_control': cacheControl,
-           if (checksumAlgorithm != null)
-             'checksum_algorithm': checksumAlgorithm,
+           'bucket_key_enabled': ?bucketKeyEnabled,
+           'cache_control': ?cacheControl,
+           'checksum_algorithm': ?checksumAlgorithm,
            ...?body?.argMap,
-           if (contentDisposition != null)
-             'content_disposition': contentDisposition,
-           if (contentEncoding != null) 'content_encoding': contentEncoding,
-           if (contentLanguage != null) 'content_language': contentLanguage,
-           if (contentType != null) 'content_type': contentType,
+           'content_disposition': ?contentDisposition,
+           'content_encoding': ?contentEncoding,
+           'content_language': ?contentLanguage,
+           'content_type': ?contentType,
            ...?integrity?.argMap,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'force_destroy': ?forceDestroy,
            'key': key,
-           if (metadata != null) 'metadata': metadata,
-           if (objectLockLegalHoldStatus != null)
-             'object_lock_legal_hold_status': objectLockLegalHoldStatus,
-           if (objectLockMode != null) 'object_lock_mode': objectLockMode,
-           if (objectLockRetainUntilDate != null)
-             'object_lock_retain_until_date': objectLockRetainUntilDate,
-           if (region != null) 'region': region,
-           if (serverSideEncryption != null)
-             'server_side_encryption': serverSideEncryption,
-           if (sourceHash != null) 'source_hash': sourceHash,
-           if (storageClass != null) 'storage_class': storageClass,
-           if (tags != null) 'tags': tags,
-           if (websiteRedirect != null) 'website_redirect': websiteRedirect,
+           'metadata': ?metadata,
+           'object_lock_legal_hold_status': ?objectLockLegalHoldStatus,
+           'object_lock_mode': ?objectLockMode,
+           'object_lock_retain_until_date': ?objectLockRetainUntilDate,
+           'region': ?region,
+           'server_side_encryption': ?serverSideEncryption,
+           'source_hash': ?sourceHash,
+           'storage_class': ?storageClass,
+           'tags': ?tags,
+           'website_redirect': ?websiteRedirect,
            if (overrideProvider != null)
              'override_provider': TfArg.literal(overrideProvider.encode()),
          },

@@ -23,10 +23,7 @@ final class DataCloudflareZeroTrustDlpPredefinedEntry extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'entry_id': entryId,
-         },
+         argMap: {'account_id': ?accountId, 'entry_id': entryId},
        );
 
   @override

@@ -92,22 +92,16 @@ final class SagemakerDomainDefaultSpaceSettings {
 
   Map<String, Object?> encode() => {
     'execution_role': executionRole.toTfJson(),
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
     if (customFileSystemConfig != null)
       'custom_file_system_config': [
         for (final e in customFileSystemConfig!) e.encode(),
       ],
-    if (customPosixUserConfig != null)
-      'custom_posix_user_config': customPosixUserConfig!.encode(),
-    if (jupyterLabAppSettings != null)
-      'jupyter_lab_app_settings': jupyterLabAppSettings!.encode(),
-    if (jupyterServerAppSettings != null)
-      'jupyter_server_app_settings': jupyterServerAppSettings!.encode(),
-    if (kernelGatewayAppSettings != null)
-      'kernel_gateway_app_settings': kernelGatewayAppSettings!.encode(),
-    if (spaceStorageSettings != null)
-      'space_storage_settings': spaceStorageSettings!.encode(),
+    'custom_posix_user_config': ?customPosixUserConfig?.encode(),
+    'jupyter_lab_app_settings': ?jupyterLabAppSettings?.encode(),
+    'jupyter_server_app_settings': ?jupyterServerAppSettings?.encode(),
+    'kernel_gateway_app_settings': ?kernelGatewayAppSettings?.encode(),
+    'space_storage_settings': ?spaceStorageSettings?.encode(),
   };
 }
 
@@ -123,8 +117,7 @@ final class SagemakerDomainDefaultSpaceSettingsCustomFileSystemConfig {
   efsFileSystemConfig;
 
   Map<String, Object?> encode() => {
-    if (efsFileSystemConfig != null)
-      'efs_file_system_config': efsFileSystemConfig!.encode(),
+    'efs_file_system_config': ?efsFileSystemConfig?.encode(),
   };
 }
 
@@ -204,19 +197,15 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterLabAppSettings {
   emrSettings;
 
   Map<String, Object?> encode() => {
-    if (builtInLifecycleConfigArn != null)
-      'built_in_lifecycle_config_arn': builtInLifecycleConfigArn!.toTfJson(),
-    if (lifecycleConfigArns != null)
-      'lifecycle_config_arns': lifecycleConfigArns!.toTfJson(),
-    if (appLifecycleManagement != null)
-      'app_lifecycle_management': appLifecycleManagement!.encode(),
+    'built_in_lifecycle_config_arn': ?builtInLifecycleConfigArn?.toTfJson(),
+    'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
+    'app_lifecycle_management': ?appLifecycleManagement?.encode(),
     if (codeRepository != null)
       'code_repository': [for (final e in codeRepository!) e.encode()],
     if (customImage != null)
       'custom_image': [for (final e in customImage!) e.encode()],
-    if (defaultResourceSpec != null)
-      'default_resource_spec': defaultResourceSpec!.encode(),
-    if (emrSettings != null) 'emr_settings': emrSettings!.encode(),
+    'default_resource_spec': ?defaultResourceSpec?.encode(),
+    'emr_settings': ?emrSettings?.encode(),
   };
 }
 
@@ -231,9 +220,7 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterLabAppSettingsAppLifecycle
   final SagemakerDomainDefaultSpaceSettingsJupyterLabAppSettingsAppLifecycleManagementIdleSettings?
   idleSettings;
 
-  Map<String, Object?> encode() => {
-    if (idleSettings != null) 'idle_settings': idleSettings!.encode(),
-  };
+  Map<String, Object?> encode() => {'idle_settings': ?idleSettings?.encode()};
 }
 
 /// Typed helper for the `default_space_settings.jupyter_lab_app_settings.app_lifecycle_management.idle_settings` block of
@@ -259,14 +246,10 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterLabAppSettingsAppLifecycle
   final TfArg<num>? minIdleTimeoutInMinutes;
 
   Map<String, Object?> encode() => {
-    if (idleTimeoutInMinutes != null)
-      'idle_timeout_in_minutes': idleTimeoutInMinutes!.toTfJson(),
-    if (lifecycleManagement != null)
-      'lifecycle_management': lifecycleManagement!.toTfJson(),
-    if (maxIdleTimeoutInMinutes != null)
-      'max_idle_timeout_in_minutes': maxIdleTimeoutInMinutes!.toTfJson(),
-    if (minIdleTimeoutInMinutes != null)
-      'min_idle_timeout_in_minutes': minIdleTimeoutInMinutes!.toTfJson(),
+    'idle_timeout_in_minutes': ?idleTimeoutInMinutes?.toTfJson(),
+    'lifecycle_management': ?lifecycleManagement?.toTfJson(),
+    'max_idle_timeout_in_minutes': ?maxIdleTimeoutInMinutes?.toTfJson(),
+    'min_idle_timeout_in_minutes': ?minIdleTimeoutInMinutes?.toTfJson(),
   };
 }
 
@@ -315,8 +298,7 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterLabAppSettingsCustomImage 
   Map<String, Object?> encode() => {
     'app_image_config_name': appImageConfigName.toTfJson(),
     'image_name': imageName.toTfJson(),
-    if (imageVersionNumber != null)
-      'image_version_number': imageVersionNumber!.toTfJson(),
+    'image_version_number': ?imageVersionNumber?.toTfJson(),
   };
 }
 
@@ -346,15 +328,11 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterLabAppSettingsDefaultResou
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -559,10 +537,8 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterLabAppSettingsEmrSettings 
   final TfArg<List<Object?>>? executionRoleArns;
 
   Map<String, Object?> encode() => {
-    if (assumableRoleArns != null)
-      'assumable_role_arns': assumableRoleArns!.toTfJson(),
-    if (executionRoleArns != null)
-      'execution_role_arns': executionRoleArns!.toTfJson(),
+    'assumable_role_arns': ?assumableRoleArns?.toTfJson(),
+    'execution_role_arns': ?executionRoleArns?.toTfJson(),
   };
 }
 
@@ -587,12 +563,10 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterServerAppSettings {
   defaultResourceSpec;
 
   Map<String, Object?> encode() => {
-    if (lifecycleConfigArns != null)
-      'lifecycle_config_arns': lifecycleConfigArns!.toTfJson(),
+    'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
     if (codeRepository != null)
       'code_repository': [for (final e in codeRepository!) e.encode()],
-    if (defaultResourceSpec != null)
-      'default_resource_spec': defaultResourceSpec!.encode(),
+    'default_resource_spec': ?defaultResourceSpec?.encode(),
   };
 }
 
@@ -635,15 +609,11 @@ final class SagemakerDomainDefaultSpaceSettingsJupyterServerAppSettingsDefaultRe
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -855,12 +825,10 @@ final class SagemakerDomainDefaultSpaceSettingsKernelGatewayAppSettings {
   defaultResourceSpec;
 
   Map<String, Object?> encode() => {
-    if (lifecycleConfigArns != null)
-      'lifecycle_config_arns': lifecycleConfigArns!.toTfJson(),
+    'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
     if (customImage != null)
       'custom_image': [for (final e in customImage!) e.encode()],
-    if (defaultResourceSpec != null)
-      'default_resource_spec': defaultResourceSpec!.encode(),
+    'default_resource_spec': ?defaultResourceSpec?.encode(),
   };
 }
 
@@ -883,8 +851,7 @@ final class SagemakerDomainDefaultSpaceSettingsKernelGatewayAppSettingsCustomIma
   Map<String, Object?> encode() => {
     'app_image_config_name': appImageConfigName.toTfJson(),
     'image_name': imageName.toTfJson(),
-    if (imageVersionNumber != null)
-      'image_version_number': imageVersionNumber!.toTfJson(),
+    'image_version_number': ?imageVersionNumber?.toTfJson(),
   };
 }
 
@@ -914,15 +881,11 @@ final class SagemakerDomainDefaultSpaceSettingsKernelGatewayAppSettingsDefaultRe
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -1125,8 +1088,7 @@ final class SagemakerDomainDefaultSpaceSettingsSpaceStorageSettings {
   defaultEbsStorageSettings;
 
   Map<String, Object?> encode() => {
-    if (defaultEbsStorageSettings != null)
-      'default_ebs_storage_settings': defaultEbsStorageSettings!.encode(),
+    'default_ebs_storage_settings': ?defaultEbsStorageSettings?.encode(),
   };
 }
 
@@ -1224,42 +1186,27 @@ final class SagemakerDomainDefaultUserSettings {
   tensorBoardAppSettings;
 
   Map<String, Object?> encode() => {
-    if (autoMountHomeEfs != null)
-      'auto_mount_home_efs': autoMountHomeEfs!.toTfJson(),
-    if (defaultLandingUri != null)
-      'default_landing_uri': defaultLandingUri!.toTfJson(),
+    'auto_mount_home_efs': ?autoMountHomeEfs?.toTfJson(),
+    'default_landing_uri': ?defaultLandingUri?.toTfJson(),
     'execution_role': executionRole.toTfJson(),
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
-    if (studioWebPortal != null)
-      'studio_web_portal': studioWebPortal!.toTfJson(),
-    if (canvasAppSettings != null)
-      'canvas_app_settings': canvasAppSettings!.encode(),
-    if (codeEditorAppSettings != null)
-      'code_editor_app_settings': codeEditorAppSettings!.encode(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
+    'studio_web_portal': ?studioWebPortal?.toTfJson(),
+    'canvas_app_settings': ?canvasAppSettings?.encode(),
+    'code_editor_app_settings': ?codeEditorAppSettings?.encode(),
     if (customFileSystemConfig != null)
       'custom_file_system_config': [
         for (final e in customFileSystemConfig!) e.encode(),
       ],
-    if (customPosixUserConfig != null)
-      'custom_posix_user_config': customPosixUserConfig!.encode(),
-    if (jupyterLabAppSettings != null)
-      'jupyter_lab_app_settings': jupyterLabAppSettings!.encode(),
-    if (jupyterServerAppSettings != null)
-      'jupyter_server_app_settings': jupyterServerAppSettings!.encode(),
-    if (kernelGatewayAppSettings != null)
-      'kernel_gateway_app_settings': kernelGatewayAppSettings!.encode(),
-    if (rSessionAppSettings != null)
-      'r_session_app_settings': rSessionAppSettings!.encode(),
-    if (rStudioServerProAppSettings != null)
-      'r_studio_server_pro_app_settings': rStudioServerProAppSettings!.encode(),
-    if (sharingSettings != null) 'sharing_settings': sharingSettings!.encode(),
-    if (spaceStorageSettings != null)
-      'space_storage_settings': spaceStorageSettings!.encode(),
-    if (studioWebPortalSettings != null)
-      'studio_web_portal_settings': studioWebPortalSettings!.encode(),
-    if (tensorBoardAppSettings != null)
-      'tensor_board_app_settings': tensorBoardAppSettings!.encode(),
+    'custom_posix_user_config': ?customPosixUserConfig?.encode(),
+    'jupyter_lab_app_settings': ?jupyterLabAppSettings?.encode(),
+    'jupyter_server_app_settings': ?jupyterServerAppSettings?.encode(),
+    'kernel_gateway_app_settings': ?kernelGatewayAppSettings?.encode(),
+    'r_session_app_settings': ?rSessionAppSettings?.encode(),
+    'r_studio_server_pro_app_settings': ?rStudioServerProAppSettings?.encode(),
+    'sharing_settings': ?sharingSettings?.encode(),
+    'space_storage_settings': ?spaceStorageSettings?.encode(),
+    'studio_web_portal_settings': ?studioWebPortalSettings?.encode(),
+    'tensor_board_app_settings': ?tensorBoardAppSettings?.encode(),
   };
 }
 
@@ -1328,24 +1275,18 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettings {
   workspaceSettings;
 
   Map<String, Object?> encode() => {
-    if (directDeploySettings != null)
-      'direct_deploy_settings': directDeploySettings!.encode(),
-    if (emrServerlessSettings != null)
-      'emr_serverless_settings': emrServerlessSettings!.encode(),
-    if (generativeAiSettings != null)
-      'generative_ai_settings': generativeAiSettings!.encode(),
+    'direct_deploy_settings': ?directDeploySettings?.encode(),
+    'emr_serverless_settings': ?emrServerlessSettings?.encode(),
+    'generative_ai_settings': ?generativeAiSettings?.encode(),
     if (identityProviderOauthSettings != null)
       'identity_provider_oauth_settings': [
         for (final e in identityProviderOauthSettings!) e.encode(),
       ],
-    if (kendraSettings != null) 'kendra_settings': kendraSettings!.encode(),
-    if (modelRegisterSettings != null)
-      'model_register_settings': modelRegisterSettings!.encode(),
-    if (timeSeriesForecastingSettings != null)
-      'time_series_forecasting_settings': timeSeriesForecastingSettings!
-          .encode(),
-    if (workspaceSettings != null)
-      'workspace_settings': workspaceSettings!.encode(),
+    'kendra_settings': ?kendraSettings?.encode(),
+    'model_register_settings': ?modelRegisterSettings?.encode(),
+    'time_series_forecasting_settings': ?timeSeriesForecastingSettings
+        ?.encode(),
+    'workspace_settings': ?workspaceSettings?.encode(),
   };
 }
 
@@ -1362,9 +1303,7 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettingsDirectDeploySetti
   >?
   status;
 
-  Map<String, Object?> encode() => {
-    if (status != null) 'status': status!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
@@ -1397,9 +1336,8 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettingsEmrServerlessSett
   status;
 
   Map<String, Object?> encode() => {
-    if (executionRoleArn != null)
-      'execution_role_arn': executionRoleArn!.encodeAs('arn').toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'execution_role_arn': ?executionRoleArn?.encodeAs('arn').toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -1427,8 +1365,7 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettingsGenerativeAiSetti
   final TfArg<String>? amazonBedrockRoleArn;
 
   Map<String, Object?> encode() => {
-    if (amazonBedrockRoleArn != null)
-      'amazon_bedrock_role_arn': amazonBedrockRoleArn!.toTfJson(),
+    'amazon_bedrock_role_arn': ?amazonBedrockRoleArn?.toTfJson(),
   };
 }
 
@@ -1455,9 +1392,9 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettingsIdentityProviderO
   status;
 
   Map<String, Object?> encode() => {
-    if (dataSourceName != null) 'data_source_name': dataSourceName!.toTfJson(),
+    'data_source_name': ?dataSourceName?.toTfJson(),
     'secret_arn': secretArn.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -1500,9 +1437,7 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettingsKendraSettings {
   >?
   status;
 
-  Map<String, Object?> encode() => {
-    if (status != null) 'status': status!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
@@ -1535,10 +1470,9 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettingsModelRegisterSett
   status;
 
   Map<String, Object?> encode() => {
-    if (crossAccountModelRegisterRoleArn != null)
-      'cross_account_model_register_role_arn': crossAccountModelRegisterRoleArn!
-          .toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'cross_account_model_register_role_arn': ?crossAccountModelRegisterRoleArn
+        ?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -1572,9 +1506,8 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettingsTimeSeriesForecas
   status;
 
   Map<String, Object?> encode() => {
-    if (amazonForecastRoleArn != null)
-      'amazon_forecast_role_arn': amazonForecastRoleArn!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'amazon_forecast_role_arn': ?amazonForecastRoleArn?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -1605,8 +1538,8 @@ final class SagemakerDomainDefaultUserSettingsCanvasAppSettingsWorkspaceSettings
   final TfArg<String>? s3KmsKeyId;
 
   Map<String, Object?> encode() => {
-    if (s3ArtifactPath != null) 's3_artifact_path': s3ArtifactPath!.toTfJson(),
-    if (s3KmsKeyId != null) 's3_kms_key_id': s3KmsKeyId!.toTfJson(),
+    's3_artifact_path': ?s3ArtifactPath?.toTfJson(),
+    's3_kms_key_id': ?s3KmsKeyId?.toTfJson(),
   };
 }
 
@@ -1638,16 +1571,12 @@ final class SagemakerDomainDefaultUserSettingsCodeEditorAppSettings {
   defaultResourceSpec;
 
   Map<String, Object?> encode() => {
-    if (builtInLifecycleConfigArn != null)
-      'built_in_lifecycle_config_arn': builtInLifecycleConfigArn!.toTfJson(),
-    if (lifecycleConfigArns != null)
-      'lifecycle_config_arns': lifecycleConfigArns!.toTfJson(),
-    if (appLifecycleManagement != null)
-      'app_lifecycle_management': appLifecycleManagement!.encode(),
+    'built_in_lifecycle_config_arn': ?builtInLifecycleConfigArn?.toTfJson(),
+    'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
+    'app_lifecycle_management': ?appLifecycleManagement?.encode(),
     if (customImage != null)
       'custom_image': [for (final e in customImage!) e.encode()],
-    if (defaultResourceSpec != null)
-      'default_resource_spec': defaultResourceSpec!.encode(),
+    'default_resource_spec': ?defaultResourceSpec?.encode(),
   };
 }
 
@@ -1662,9 +1591,7 @@ final class SagemakerDomainDefaultUserSettingsCodeEditorAppSettingsAppLifecycleM
   final SagemakerDomainDefaultUserSettingsCodeEditorAppSettingsAppLifecycleManagementIdleSettings?
   idleSettings;
 
-  Map<String, Object?> encode() => {
-    if (idleSettings != null) 'idle_settings': idleSettings!.encode(),
-  };
+  Map<String, Object?> encode() => {'idle_settings': ?idleSettings?.encode()};
 }
 
 /// Typed helper for the `default_user_settings.code_editor_app_settings.app_lifecycle_management.idle_settings` block of
@@ -1690,14 +1617,10 @@ final class SagemakerDomainDefaultUserSettingsCodeEditorAppSettingsAppLifecycleM
   final TfArg<num>? minIdleTimeoutInMinutes;
 
   Map<String, Object?> encode() => {
-    if (idleTimeoutInMinutes != null)
-      'idle_timeout_in_minutes': idleTimeoutInMinutes!.toTfJson(),
-    if (lifecycleManagement != null)
-      'lifecycle_management': lifecycleManagement!.toTfJson(),
-    if (maxIdleTimeoutInMinutes != null)
-      'max_idle_timeout_in_minutes': maxIdleTimeoutInMinutes!.toTfJson(),
-    if (minIdleTimeoutInMinutes != null)
-      'min_idle_timeout_in_minutes': minIdleTimeoutInMinutes!.toTfJson(),
+    'idle_timeout_in_minutes': ?idleTimeoutInMinutes?.toTfJson(),
+    'lifecycle_management': ?lifecycleManagement?.toTfJson(),
+    'max_idle_timeout_in_minutes': ?maxIdleTimeoutInMinutes?.toTfJson(),
+    'min_idle_timeout_in_minutes': ?minIdleTimeoutInMinutes?.toTfJson(),
   };
 }
 
@@ -1733,8 +1656,7 @@ final class SagemakerDomainDefaultUserSettingsCodeEditorAppSettingsCustomImage {
   Map<String, Object?> encode() => {
     'app_image_config_name': appImageConfigName.toTfJson(),
     'image_name': imageName.toTfJson(),
-    if (imageVersionNumber != null)
-      'image_version_number': imageVersionNumber!.toTfJson(),
+    'image_version_number': ?imageVersionNumber?.toTfJson(),
   };
 }
 
@@ -1764,15 +1686,11 @@ final class SagemakerDomainDefaultUserSettingsCodeEditorAppSettingsDefaultResour
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -1975,8 +1893,7 @@ final class SagemakerDomainDefaultUserSettingsCustomFileSystemConfig {
   efsFileSystemConfig;
 
   Map<String, Object?> encode() => {
-    if (efsFileSystemConfig != null)
-      'efs_file_system_config': efsFileSystemConfig!.encode(),
+    'efs_file_system_config': ?efsFileSystemConfig?.encode(),
   };
 }
 
@@ -2056,19 +1973,15 @@ final class SagemakerDomainDefaultUserSettingsJupyterLabAppSettings {
   emrSettings;
 
   Map<String, Object?> encode() => {
-    if (builtInLifecycleConfigArn != null)
-      'built_in_lifecycle_config_arn': builtInLifecycleConfigArn!.toTfJson(),
-    if (lifecycleConfigArns != null)
-      'lifecycle_config_arns': lifecycleConfigArns!.toTfJson(),
-    if (appLifecycleManagement != null)
-      'app_lifecycle_management': appLifecycleManagement!.encode(),
+    'built_in_lifecycle_config_arn': ?builtInLifecycleConfigArn?.toTfJson(),
+    'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
+    'app_lifecycle_management': ?appLifecycleManagement?.encode(),
     if (codeRepository != null)
       'code_repository': [for (final e in codeRepository!) e.encode()],
     if (customImage != null)
       'custom_image': [for (final e in customImage!) e.encode()],
-    if (defaultResourceSpec != null)
-      'default_resource_spec': defaultResourceSpec!.encode(),
-    if (emrSettings != null) 'emr_settings': emrSettings!.encode(),
+    'default_resource_spec': ?defaultResourceSpec?.encode(),
+    'emr_settings': ?emrSettings?.encode(),
   };
 }
 
@@ -2083,9 +1996,7 @@ final class SagemakerDomainDefaultUserSettingsJupyterLabAppSettingsAppLifecycleM
   final SagemakerDomainDefaultUserSettingsJupyterLabAppSettingsAppLifecycleManagementIdleSettings?
   idleSettings;
 
-  Map<String, Object?> encode() => {
-    if (idleSettings != null) 'idle_settings': idleSettings!.encode(),
-  };
+  Map<String, Object?> encode() => {'idle_settings': ?idleSettings?.encode()};
 }
 
 /// Typed helper for the `default_user_settings.jupyter_lab_app_settings.app_lifecycle_management.idle_settings` block of
@@ -2111,14 +2022,10 @@ final class SagemakerDomainDefaultUserSettingsJupyterLabAppSettingsAppLifecycleM
   final TfArg<num>? minIdleTimeoutInMinutes;
 
   Map<String, Object?> encode() => {
-    if (idleTimeoutInMinutes != null)
-      'idle_timeout_in_minutes': idleTimeoutInMinutes!.toTfJson(),
-    if (lifecycleManagement != null)
-      'lifecycle_management': lifecycleManagement!.toTfJson(),
-    if (maxIdleTimeoutInMinutes != null)
-      'max_idle_timeout_in_minutes': maxIdleTimeoutInMinutes!.toTfJson(),
-    if (minIdleTimeoutInMinutes != null)
-      'min_idle_timeout_in_minutes': minIdleTimeoutInMinutes!.toTfJson(),
+    'idle_timeout_in_minutes': ?idleTimeoutInMinutes?.toTfJson(),
+    'lifecycle_management': ?lifecycleManagement?.toTfJson(),
+    'max_idle_timeout_in_minutes': ?maxIdleTimeoutInMinutes?.toTfJson(),
+    'min_idle_timeout_in_minutes': ?minIdleTimeoutInMinutes?.toTfJson(),
   };
 }
 
@@ -2167,8 +2074,7 @@ final class SagemakerDomainDefaultUserSettingsJupyterLabAppSettingsCustomImage {
   Map<String, Object?> encode() => {
     'app_image_config_name': appImageConfigName.toTfJson(),
     'image_name': imageName.toTfJson(),
-    if (imageVersionNumber != null)
-      'image_version_number': imageVersionNumber!.toTfJson(),
+    'image_version_number': ?imageVersionNumber?.toTfJson(),
   };
 }
 
@@ -2198,15 +2104,11 @@ final class SagemakerDomainDefaultUserSettingsJupyterLabAppSettingsDefaultResour
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -2411,10 +2313,8 @@ final class SagemakerDomainDefaultUserSettingsJupyterLabAppSettingsEmrSettings {
   final TfArg<List<Object?>>? executionRoleArns;
 
   Map<String, Object?> encode() => {
-    if (assumableRoleArns != null)
-      'assumable_role_arns': assumableRoleArns!.toTfJson(),
-    if (executionRoleArns != null)
-      'execution_role_arns': executionRoleArns!.toTfJson(),
+    'assumable_role_arns': ?assumableRoleArns?.toTfJson(),
+    'execution_role_arns': ?executionRoleArns?.toTfJson(),
   };
 }
 
@@ -2439,12 +2339,10 @@ final class SagemakerDomainDefaultUserSettingsJupyterServerAppSettings {
   defaultResourceSpec;
 
   Map<String, Object?> encode() => {
-    if (lifecycleConfigArns != null)
-      'lifecycle_config_arns': lifecycleConfigArns!.toTfJson(),
+    'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
     if (codeRepository != null)
       'code_repository': [for (final e in codeRepository!) e.encode()],
-    if (defaultResourceSpec != null)
-      'default_resource_spec': defaultResourceSpec!.encode(),
+    'default_resource_spec': ?defaultResourceSpec?.encode(),
   };
 }
 
@@ -2487,15 +2385,11 @@ final class SagemakerDomainDefaultUserSettingsJupyterServerAppSettingsDefaultRes
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -2707,12 +2601,10 @@ final class SagemakerDomainDefaultUserSettingsKernelGatewayAppSettings {
   defaultResourceSpec;
 
   Map<String, Object?> encode() => {
-    if (lifecycleConfigArns != null)
-      'lifecycle_config_arns': lifecycleConfigArns!.toTfJson(),
+    'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
     if (customImage != null)
       'custom_image': [for (final e in customImage!) e.encode()],
-    if (defaultResourceSpec != null)
-      'default_resource_spec': defaultResourceSpec!.encode(),
+    'default_resource_spec': ?defaultResourceSpec?.encode(),
   };
 }
 
@@ -2735,8 +2627,7 @@ final class SagemakerDomainDefaultUserSettingsKernelGatewayAppSettingsCustomImag
   Map<String, Object?> encode() => {
     'app_image_config_name': appImageConfigName.toTfJson(),
     'image_name': imageName.toTfJson(),
-    if (imageVersionNumber != null)
-      'image_version_number': imageVersionNumber!.toTfJson(),
+    'image_version_number': ?imageVersionNumber?.toTfJson(),
   };
 }
 
@@ -2766,15 +2657,11 @@ final class SagemakerDomainDefaultUserSettingsKernelGatewayAppSettingsDefaultRes
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -2983,8 +2870,7 @@ final class SagemakerDomainDefaultUserSettingsRSessionAppSettings {
   Map<String, Object?> encode() => {
     if (customImage != null)
       'custom_image': [for (final e in customImage!) e.encode()],
-    if (defaultResourceSpec != null)
-      'default_resource_spec': defaultResourceSpec!.encode(),
+    'default_resource_spec': ?defaultResourceSpec?.encode(),
   };
 }
 
@@ -3007,8 +2893,7 @@ final class SagemakerDomainDefaultUserSettingsRSessionAppSettingsCustomImage {
   Map<String, Object?> encode() => {
     'app_image_config_name': appImageConfigName.toTfJson(),
     'image_name': imageName.toTfJson(),
-    if (imageVersionNumber != null)
-      'image_version_number': imageVersionNumber!.toTfJson(),
+    'image_version_number': ?imageVersionNumber?.toTfJson(),
   };
 }
 
@@ -3038,15 +2923,11 @@ final class SagemakerDomainDefaultUserSettingsRSessionAppSettingsDefaultResource
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -3257,8 +3138,8 @@ final class SagemakerDomainDefaultUserSettingsRStudioServerProAppSettings {
   userGroup;
 
   Map<String, Object?> encode() => {
-    if (accessStatus != null) 'access_status': accessStatus!.toTfJson(),
-    if (userGroup != null) 'user_group': userGroup!.toTfJson(),
+    'access_status': ?accessStatus?.toTfJson(),
+    'user_group': ?userGroup?.toTfJson(),
   };
 }
 
@@ -3308,10 +3189,9 @@ final class SagemakerDomainDefaultUserSettingsSharingSettings {
   final TfArg<String>? s3OutputPath;
 
   Map<String, Object?> encode() => {
-    if (notebookOutputOption != null)
-      'notebook_output_option': notebookOutputOption!.toTfJson(),
-    if (s3KmsKeyId != null) 's3_kms_key_id': s3KmsKeyId!.toTfJson(),
-    if (s3OutputPath != null) 's3_output_path': s3OutputPath!.toTfJson(),
+    'notebook_output_option': ?notebookOutputOption?.toTfJson(),
+    's3_kms_key_id': ?s3KmsKeyId?.toTfJson(),
+    's3_output_path': ?s3OutputPath?.toTfJson(),
   };
 }
 
@@ -3340,8 +3220,7 @@ final class SagemakerDomainDefaultUserSettingsSpaceStorageSettings {
   defaultEbsStorageSettings;
 
   Map<String, Object?> encode() => {
-    if (defaultEbsStorageSettings != null)
-      'default_ebs_storage_settings': defaultEbsStorageSettings!.encode(),
+    'default_ebs_storage_settings': ?defaultEbsStorageSettings?.encode(),
   };
 }
 
@@ -3660,8 +3539,7 @@ final class SagemakerDomainDefaultUserSettingsTensorBoardAppSettings {
   defaultResourceSpec;
 
   Map<String, Object?> encode() => {
-    if (defaultResourceSpec != null)
-      'default_resource_spec': defaultResourceSpec!.encode(),
+    'default_resource_spec': ?defaultResourceSpec?.encode(),
   };
 }
 
@@ -3691,15 +3569,11 @@ final class SagemakerDomainDefaultUserSettingsTensorBoardAppSettingsDefaultResou
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -3916,17 +3790,13 @@ final class SagemakerDomainDomainSettings {
   trustedIdentityPropagationSettings;
 
   Map<String, Object?> encode() => {
-    if (executionRoleIdentityConfig != null)
-      'execution_role_identity_config': executionRoleIdentityConfig!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
-    if (dockerSettings != null) 'docker_settings': dockerSettings!.encode(),
-    if (rStudioServerProDomainSettings != null)
-      'r_studio_server_pro_domain_settings': rStudioServerProDomainSettings!
-          .encode(),
-    if (trustedIdentityPropagationSettings != null)
-      'trusted_identity_propagation_settings':
-          trustedIdentityPropagationSettings!.encode(),
+    'execution_role_identity_config': ?executionRoleIdentityConfig?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
+    'docker_settings': ?dockerSettings?.encode(),
+    'r_studio_server_pro_domain_settings': ?rStudioServerProDomainSettings
+        ?.encode(),
+    'trusted_identity_propagation_settings': ?trustedIdentityPropagationSettings
+        ?.encode(),
   };
 }
 
@@ -3958,10 +3828,8 @@ final class SagemakerDomainDomainSettingsDockerSettings {
   final TfArg<List<Object?>>? vpcOnlyTrustedAccounts;
 
   Map<String, Object?> encode() => {
-    if (enableDockerAccess != null)
-      'enable_docker_access': enableDockerAccess!.toTfJson(),
-    if (vpcOnlyTrustedAccounts != null)
-      'vpc_only_trusted_accounts': vpcOnlyTrustedAccounts!.toTfJson(),
+    'enable_docker_access': ?enableDockerAccess?.toTfJson(),
+    'vpc_only_trusted_accounts': ?vpcOnlyTrustedAccounts?.toTfJson(),
   };
 }
 
@@ -4000,12 +3868,9 @@ final class SagemakerDomainDomainSettingsRStudioServerProDomainSettings {
 
   Map<String, Object?> encode() => {
     'domain_execution_role_arn': domainExecutionRoleArn.toTfJson(),
-    if (rStudioConnectUrl != null)
-      'r_studio_connect_url': rStudioConnectUrl!.toTfJson(),
-    if (rStudioPackageManagerUrl != null)
-      'r_studio_package_manager_url': rStudioPackageManagerUrl!.toTfJson(),
-    if (defaultResourceSpec != null)
-      'default_resource_spec': defaultResourceSpec!.encode(),
+    'r_studio_connect_url': ?rStudioConnectUrl?.toTfJson(),
+    'r_studio_package_manager_url': ?rStudioPackageManagerUrl?.toTfJson(),
+    'default_resource_spec': ?defaultResourceSpec?.encode(),
   };
 }
 
@@ -4035,15 +3900,11 @@ final class SagemakerDomainDomainSettingsRStudioServerProDomainSettingsDefaultRe
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -4273,8 +4134,7 @@ final class SagemakerDomainRetentionPolicy {
   homeEfsFileSystem;
 
   Map<String, Object?> encode() => {
-    if (homeEfsFileSystem != null)
-      'home_efs_file_system': homeEfsFileSystem!.toTfJson(),
+    'home_efs_file_system': ?homeEfsFileSystem?.toTfJson(),
   };
 }
 
@@ -4316,17 +4176,15 @@ final class AwsSagemakerDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (appNetworkAccessType != null)
-             'app_network_access_type': appNetworkAccessType,
-           if (appSecurityGroupManagement != null)
-             'app_security_group_management': appSecurityGroupManagement,
+           'app_network_access_type': ?appNetworkAccessType,
+           'app_security_group_management': ?appSecurityGroupManagement,
            'auth_mode': authMode,
            'domain_name': domainName,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'region': ?region,
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tagPropagation != null) 'tag_propagation': tagPropagation,
-           if (tags != null) 'tags': tags,
+           'tag_propagation': ?tagPropagation,
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
            if (defaultSpaceSettings != null)
              'default_space_settings': TfArg.literal(

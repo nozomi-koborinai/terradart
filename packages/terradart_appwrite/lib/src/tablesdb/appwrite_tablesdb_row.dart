@@ -28,8 +28,8 @@ final class AppwriteTablesdbRow extends Resource {
          argMap: {
            'data': data,
            'database_id': databaseId,
-           if (permissions != null) 'permissions': permissions,
-           if (projectId != null) 'project_id': projectId,
+           'permissions': ?permissions,
+           'project_id': ?projectId,
            'table_id': tableId,
          },
        );

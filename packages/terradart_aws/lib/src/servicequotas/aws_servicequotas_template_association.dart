@@ -20,10 +20,7 @@ final class AwsServicequotasTemplateAssociation extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-         },
+         argMap: {'region': ?region, 'skip_destroy': ?skipDestroy},
        );
 
   @override

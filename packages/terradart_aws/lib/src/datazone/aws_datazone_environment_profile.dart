@@ -18,8 +18,8 @@ final class DatazoneEnvironmentProfileUserParameters {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -45,14 +45,14 @@ final class AwsDatazoneEnvironmentProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'aws_account_region': awsAccountRegion,
-           if (description != null) 'description': description,
+           'description': ?description,
            'domain_identifier': domainIdentifier,
            'environment_blueprint_identifier': environmentBlueprintIdentifier,
            'name': name,
            'project_identifier': projectIdentifier,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (userParameters != null)
              'user_parameters': TfArg.literal([
                for (final e in userParameters) e.encode(),

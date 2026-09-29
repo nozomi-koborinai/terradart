@@ -48,10 +48,10 @@ final class AwsCleanroomsConfiguredTable extends Resource {
          argMap: {
            'allowed_columns': allowedColumns,
            'analysis_method': analysisMethod,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'table_reference': TfArg.literal(tableReference.encode()),
          },
        );

@@ -28,7 +28,7 @@ final class AwsAppCookieStickinessPolicy extends Resource {
            'lb_port': lbPort,
            'load_balancer': loadBalancer,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

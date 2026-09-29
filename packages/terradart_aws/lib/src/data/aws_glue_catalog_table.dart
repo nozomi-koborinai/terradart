@@ -24,12 +24,12 @@ final class DataAwsGlueCatalogTable extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
+           'catalog_id': ?catalogId,
            'database_name': databaseName,
            'name': name,
-           if (queryAsOfTime != null) 'query_as_of_time': queryAsOfTime,
-           if (region != null) 'region': region,
-           if (transactionId != null) 'transaction_id': transactionId,
+           'query_as_of_time': ?queryAsOfTime,
+           'region': ?region,
+           'transaction_id': ?transactionId,
          },
        );
 

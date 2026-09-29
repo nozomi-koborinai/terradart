@@ -71,8 +71,8 @@ final class IotIndexingConfigurationThingGroupIndexingConfigurationCustomField {
   type;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -107,8 +107,8 @@ final class IotIndexingConfigurationThingGroupIndexingConfigurationManagedField 
   type;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -169,17 +169,14 @@ final class IotIndexingConfigurationThingIndexingConfiguration {
   managedField;
 
   Map<String, Object?> encode() => {
-    if (deviceDefenderIndexingMode != null)
-      'device_defender_indexing_mode': deviceDefenderIndexingMode!.toTfJson(),
-    if (namedShadowIndexingMode != null)
-      'named_shadow_indexing_mode': namedShadowIndexingMode!.toTfJson(),
-    if (thingConnectivityIndexingMode != null)
-      'thing_connectivity_indexing_mode': thingConnectivityIndexingMode!
-          .toTfJson(),
+    'device_defender_indexing_mode': ?deviceDefenderIndexingMode?.toTfJson(),
+    'named_shadow_indexing_mode': ?namedShadowIndexingMode?.toTfJson(),
+    'thing_connectivity_indexing_mode': ?thingConnectivityIndexingMode
+        ?.toTfJson(),
     'thing_indexing_mode': thingIndexingMode.toTfJson(),
     if (customField != null)
       'custom_field': [for (final e in customField!) e.encode()],
-    if (filter != null) 'filter': filter!.encode(),
+    'filter': ?filter?.encode(),
     if (managedField != null)
       'managed_field': [for (final e in managedField!) e.encode()],
   };
@@ -255,8 +252,8 @@ final class IotIndexingConfigurationThingIndexingConfigurationCustomField {
   type;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -285,8 +282,7 @@ final class IotIndexingConfigurationThingIndexingConfigurationFilter {
   final TfArg<List<Object?>>? namedShadowNames;
 
   Map<String, Object?> encode() => {
-    if (namedShadowNames != null)
-      'named_shadow_names': namedShadowNames!.toTfJson(),
+    'named_shadow_names': ?namedShadowNames?.toTfJson(),
   };
 }
 
@@ -307,8 +303,8 @@ final class IotIndexingConfigurationThingIndexingConfigurationManagedField {
   type;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -344,7 +340,7 @@ final class AwsIotIndexingConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (thingGroupIndexingConfiguration != null)
              'thing_group_indexing_configuration': TfArg.literal(
                thingGroupIndexingConfiguration.encode(),

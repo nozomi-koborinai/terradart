@@ -19,10 +19,7 @@ final class DataAwsEcsTaskDefinition extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'task_definition': taskDefinition,
-         },
+         argMap: {'region': ?region, 'task_definition': taskDefinition},
        );
 
   @override

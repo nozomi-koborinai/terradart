@@ -69,29 +69,23 @@ final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionProtectionEnabled != null)
-             'deletion_protection_enabled': deletionProtectionEnabled,
-           if (forceDisassociate != null)
-             'force_disassociate': forceDisassociate,
+           'deletion_protection_enabled': ?deletionProtectionEnabled,
+           'force_disassociate': ?forceDisassociate,
            'iso_country_code': isoCountryCode,
            'message_type': messageType,
            'number_capabilities': TfArg.literal([
              for (final e in numberCapabilities) e.toTfJson(),
            ]),
            'number_type': numberType,
-           if (optOutListName != null) 'opt_out_list_name': optOutListName,
-           if (region != null) 'region': region,
-           if (registrationId != null) 'registration_id': registrationId,
-           if (selfManagedOptOutsEnabled != null)
-             'self_managed_opt_outs_enabled': selfManagedOptOutsEnabled,
-           if (tags != null) 'tags': tags,
-           if (twoWayChannelArn != null)
-             'two_way_channel_arn': twoWayChannelArn,
-           if (twoWayChannelEnabled != null)
-             'two_way_channel_enabled': twoWayChannelEnabled,
-           if (twoWayChannelRole != null)
-             'two_way_channel_role': twoWayChannelRole,
-           if (waitForActive != null) 'wait_for_active': waitForActive,
+           'opt_out_list_name': ?optOutListName,
+           'region': ?region,
+           'registration_id': ?registrationId,
+           'self_managed_opt_outs_enabled': ?selfManagedOptOutsEnabled,
+           'tags': ?tags,
+           'two_way_channel_arn': ?twoWayChannelArn,
+           'two_way_channel_enabled': ?twoWayChannelEnabled,
+           'two_way_channel_role': ?twoWayChannelRole,
+           'wait_for_active': ?waitForActive,
          },
        );
 

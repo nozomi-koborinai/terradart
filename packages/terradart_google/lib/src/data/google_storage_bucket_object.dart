@@ -20,13 +20,7 @@ final class DataGoogleStorageBucketObject extends Data {
     TfArg<String>? name,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {
-           if (bucket != null) 'bucket': bucket,
-           if (name != null) 'name': name,
-         },
-       );
+  }) : super(terraformType: tfType, argMap: {'bucket': ?bucket, 'name': ?name});
 
   @override
   Set<String> get sensitiveFields => _googleStorageBucketObjectSensitive;

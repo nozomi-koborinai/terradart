@@ -29,9 +29,9 @@ final class GoogleIapTunnelDestGroupIamPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'dest_group': destGroup,
-           if (region != null) 'region': region,
+           'region': ?region,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

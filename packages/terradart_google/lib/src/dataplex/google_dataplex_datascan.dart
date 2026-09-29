@@ -375,7 +375,7 @@ final class DataplexDatascanExecutionSpec {
   final DataplexDatascanExecutionSpecTrigger trigger;
 
   Map<String, Object?> encode() => {
-    if (field != null) 'field': field!.toTfJson(),
+    'field': ?field?.toTfJson(),
     'trigger': trigger.encode(),
   };
 }
@@ -481,8 +481,7 @@ final class DataplexDatascanExecutionSpecTriggerOneTime {
   final TfArg<String>? ttlAfterScanCompletion;
 
   Map<String, Object?> encode() => {
-    if (ttlAfterScanCompletion != null)
-      'ttl_after_scan_completion': ttlAfterScanCompletion!.toTfJson(),
+    'ttl_after_scan_completion': ?ttlAfterScanCompletion?.toTfJson(),
   };
 }
 
@@ -532,15 +531,15 @@ final class GoogleDataplexDatascan extends Resource {
          argMap: {
            'data_scan_id': dataScanId,
            'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'display_name': ?displayName,
+           'description': ?description,
+           'labels': ?labels,
            'data': TfArg.literal(data.encode()),
            'execution_spec': TfArg.literal(executionSpec.encode()),
            if (executionIdentity != null)
              'execution_identity': TfArg.literal(executionIdentity.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            scanSpec.blockKey: TfArg.literal(scanSpec.encode()),
          },
        );

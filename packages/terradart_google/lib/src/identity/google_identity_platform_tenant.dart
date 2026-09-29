@@ -52,13 +52,11 @@ final class GoogleIdentityPlatformTenant extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (allowPasswordSignup != null)
-             'allow_password_signup': allowPasswordSignup,
-           if (enableEmailLinkSignin != null)
-             'enable_email_link_signin': enableEmailLinkSignin,
-           if (disableAuth != null) 'disable_auth': disableAuth,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'allow_password_signup': ?allowPasswordSignup,
+           'enable_email_link_signin': ?enableEmailLinkSignin,
+           'disable_auth': ?disableAuth,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

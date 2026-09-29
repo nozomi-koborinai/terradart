@@ -22,10 +22,7 @@ final class DataGoogleDnsManagedZoneIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'managed_zone': managedZone,
-           if (project != null) 'project': project,
-         },
+         argMap: {'managed_zone': managedZone, 'project': ?project},
        );
 
   @override

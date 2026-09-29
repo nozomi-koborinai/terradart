@@ -85,23 +85,15 @@ final class Kinesisanalyticsv2ApplicationApplicationConfiguration {
 
   Map<String, Object?> encode() => {
     'application_code_configuration': applicationCodeConfiguration.encode(),
-    if (applicationEncryptionConfiguration != null)
-      'application_encryption_configuration':
-          applicationEncryptionConfiguration!.encode(),
-    if (applicationSnapshotConfiguration != null)
-      'application_snapshot_configuration': applicationSnapshotConfiguration!
-          .encode(),
-    if (environmentProperties != null)
-      'environment_properties': environmentProperties!.encode(),
-    if (flinkApplicationConfiguration != null)
-      'flink_application_configuration': flinkApplicationConfiguration!
-          .encode(),
-    if (runConfiguration != null)
-      'run_configuration': runConfiguration!.encode(),
-    if (sqlApplicationConfiguration != null)
-      'sql_application_configuration': sqlApplicationConfiguration!.encode(),
-    if (vpcConfiguration != null)
-      'vpc_configuration': vpcConfiguration!.encode(),
+    'application_encryption_configuration': ?applicationEncryptionConfiguration
+        ?.encode(),
+    'application_snapshot_configuration': ?applicationSnapshotConfiguration
+        ?.encode(),
+    'environment_properties': ?environmentProperties?.encode(),
+    'flink_application_configuration': ?flinkApplicationConfiguration?.encode(),
+    'run_configuration': ?runConfiguration?.encode(),
+    'sql_application_configuration': ?sqlApplicationConfiguration?.encode(),
+    'vpc_configuration': ?vpcConfiguration?.encode(),
   };
 }
 
@@ -124,7 +116,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCode
 
   Map<String, Object?> encode() => {
     'code_content_type': codeContentType.toTfJson(),
-    if (codeContent != null) 'code_content': codeContent!.encode(),
+    'code_content': ?codeContent?.encode(),
   };
 }
 
@@ -236,7 +228,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCode
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'file_key': fileKey.toTfJson(),
-    if (objectVersion != null) 'object_version': objectVersion!.toTfJson(),
+    'object_version': ?objectVersion?.toTfJson(),
   };
 }
 
@@ -257,7 +249,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncr
   keyType;
 
   Map<String, Object?> encode() => {
-    if (keyId != null) 'key_id': keyId!.encodeAs('arn').toTfJson(),
+    'key_id': ?keyId?.encodeAs('arn').toTfJson(),
     'key_type': keyType.toTfJson(),
   };
 }
@@ -347,12 +339,9 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
   parallelismConfiguration;
 
   Map<String, Object?> encode() => {
-    if (checkpointConfiguration != null)
-      'checkpoint_configuration': checkpointConfiguration!.encode(),
-    if (monitoringConfiguration != null)
-      'monitoring_configuration': monitoringConfiguration!.encode(),
-    if (parallelismConfiguration != null)
-      'parallelism_configuration': parallelismConfiguration!.encode(),
+    'checkpoint_configuration': ?checkpointConfiguration?.encode(),
+    'monitoring_configuration': ?monitoringConfiguration?.encode(),
+    'parallelism_configuration': ?parallelismConfiguration?.encode(),
   };
 }
 
@@ -379,13 +368,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
   final TfArg<num>? minPauseBetweenCheckpoints;
 
   Map<String, Object?> encode() => {
-    if (checkpointInterval != null)
-      'checkpoint_interval': checkpointInterval!.toTfJson(),
-    if (checkpointingEnabled != null)
-      'checkpointing_enabled': checkpointingEnabled!.toTfJson(),
+    'checkpoint_interval': ?checkpointInterval?.toTfJson(),
+    'checkpointing_enabled': ?checkpointingEnabled?.toTfJson(),
     'configuration_type': configurationType.toTfJson(),
-    if (minPauseBetweenCheckpoints != null)
-      'min_pause_between_checkpoints': minPauseBetweenCheckpoints!.toTfJson(),
+    'min_pause_between_checkpoints': ?minPauseBetweenCheckpoints?.toTfJson(),
   };
 }
 
@@ -429,8 +415,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
 
   Map<String, Object?> encode() => {
     'configuration_type': configurationType.toTfJson(),
-    if (logLevel != null) 'log_level': logLevel!.toTfJson(),
-    if (metricsLevel != null) 'metrics_level': metricsLevel!.toTfJson(),
+    'log_level': ?logLevel?.toTfJson(),
+    'metrics_level': ?metricsLevel?.toTfJson(),
   };
 }
 
@@ -500,12 +486,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
   final TfArg<num>? parallelismPerKpu;
 
   Map<String, Object?> encode() => {
-    if (autoScalingEnabled != null)
-      'auto_scaling_enabled': autoScalingEnabled!.toTfJson(),
+    'auto_scaling_enabled': ?autoScalingEnabled?.toTfJson(),
     'configuration_type': configurationType.toTfJson(),
-    if (parallelism != null) 'parallelism': parallelism!.toTfJson(),
-    if (parallelismPerKpu != null)
-      'parallelism_per_kpu': parallelismPerKpu!.toTfJson(),
+    'parallelism': ?parallelism?.toTfJson(),
+    'parallelism_per_kpu': ?parallelismPerKpu?.toTfJson(),
   };
 }
 
@@ -538,11 +522,9 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguratio
   flinkRunConfiguration;
 
   Map<String, Object?> encode() => {
-    if (applicationRestoreConfiguration != null)
-      'application_restore_configuration': applicationRestoreConfiguration!
-          .encode(),
-    if (flinkRunConfiguration != null)
-      'flink_run_configuration': flinkRunConfiguration!.encode(),
+    'application_restore_configuration': ?applicationRestoreConfiguration
+        ?.encode(),
+    'flink_run_configuration': ?flinkRunConfiguration?.encode(),
   };
 }
 
@@ -563,9 +545,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguratio
   final TfArg<String>? snapshotName;
 
   Map<String, Object?> encode() => {
-    if (applicationRestoreType != null)
-      'application_restore_type': applicationRestoreType!.toTfJson(),
-    if (snapshotName != null) 'snapshot_name': snapshotName!.toTfJson(),
+    'application_restore_type': ?applicationRestoreType?.toTfJson(),
+    'snapshot_name': ?snapshotName?.toTfJson(),
   };
 }
 
@@ -594,8 +575,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguratio
   final TfArg<bool>? allowNonRestoredState;
 
   Map<String, Object?> encode() => {
-    if (allowNonRestoredState != null)
-      'allow_non_restored_state': allowNonRestoredState!.toTfJson(),
+    'allow_non_restored_state': ?allowNonRestoredState?.toTfJson(),
   };
 }
 
@@ -621,10 +601,9 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   referenceDataSource;
 
   Map<String, Object?> encode() => {
-    if (input != null) 'input': input!.encode(),
+    'input': ?input?.encode(),
     if (output != null) 'output': [for (final e in output!) e.encode()],
-    if (referenceDataSource != null)
-      'reference_data_source': referenceDataSource!.encode(),
+    'reference_data_source': ?referenceDataSource?.encode(),
   };
 }
 
@@ -662,10 +641,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
   Map<String, Object?> encode() => {
     'name_prefix': namePrefix.toTfJson(),
-    if (inputParallelism != null)
-      'input_parallelism': inputParallelism!.encode(),
-    if (inputProcessingConfiguration != null)
-      'input_processing_configuration': inputProcessingConfiguration!.encode(),
+    'input_parallelism': ?inputParallelism?.encode(),
+    'input_processing_configuration': ?inputProcessingConfiguration?.encode(),
     'input_schema': inputSchema.encode(),
     if (inputStartingPositionConfiguration != null)
       'input_starting_position_configuration': [
@@ -750,9 +727,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
 
   final TfArg<num>? count;
 
-  Map<String, Object?> encode() => {
-    if (count != null) 'count': count!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'count': ?count?.toTfJson()};
 }
 
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_processing_configuration` block of
@@ -805,7 +780,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   recordFormat;
 
   Map<String, Object?> encode() => {
-    if (recordEncoding != null) 'record_encoding': recordEncoding!.toTfJson(),
+    'record_encoding': ?recordEncoding?.toTfJson(),
     'record_column': [for (final e in recordColumn) e.encode()],
     'record_format': recordFormat.encode(),
   };
@@ -828,7 +803,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   final TfArg<String> sqlType;
 
   Map<String, Object?> encode() => {
-    if (mapping != null) 'mapping': mapping!.toTfJson(),
+    'mapping': ?mapping?.toTfJson(),
     'name': name.toTfJson(),
     'sql_type': sqlType.toTfJson(),
   };
@@ -997,8 +972,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   inputStartingPosition;
 
   Map<String, Object?> encode() => {
-    if (inputStartingPosition != null)
-      'input_starting_position': inputStartingPosition!.toTfJson(),
+    'input_starting_position': ?inputStartingPosition?.toTfJson(),
   };
 }
 
@@ -1071,11 +1045,9 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'destination_schema': destinationSchema.encode(),
-    if (kinesisFirehoseOutput != null)
-      'kinesis_firehose_output': kinesisFirehoseOutput!.encode(),
-    if (kinesisStreamsOutput != null)
-      'kinesis_streams_output': kinesisStreamsOutput!.encode(),
-    if (lambdaOutput != null) 'lambda_output': lambdaOutput!.encode(),
+    'kinesis_firehose_output': ?kinesisFirehoseOutput?.encode(),
+    'kinesis_streams_output': ?kinesisStreamsOutput?.encode(),
+    'lambda_output': ?lambdaOutput?.encode(),
   };
 }
 
@@ -1195,7 +1167,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   recordFormat;
 
   Map<String, Object?> encode() => {
-    if (recordEncoding != null) 'record_encoding': recordEncoding!.toTfJson(),
+    'record_encoding': ?recordEncoding?.toTfJson(),
     'record_column': [for (final e in recordColumn) e.encode()],
     'record_format': recordFormat.encode(),
   };
@@ -1218,7 +1190,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   final TfArg<String> sqlType;
 
   Map<String, Object?> encode() => {
-    if (mapping != null) 'mapping': mapping!.toTfJson(),
+    'mapping': ?mapping?.toTfJson(),
     'name': name.toTfJson(),
     'sql_type': sqlType.toTfJson(),
   };
@@ -1451,15 +1423,15 @@ final class AwsKinesisanalyticsv2Application extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applicationMode != null) 'application_mode': applicationMode,
-           if (description != null) 'description': description,
-           if (forceStop != null) 'force_stop': forceStop,
+           'application_mode': ?applicationMode,
+           'description': ?description,
+           'force_stop': ?forceStop,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'runtime_environment': runtimeEnvironment,
            'service_execution_role': serviceExecutionRole,
-           if (startApplication != null) 'start_application': startApplication,
-           if (tags != null) 'tags': tags,
+           'start_application': ?startApplication,
+           'tags': ?tags,
            if (applicationConfiguration != null)
              'application_configuration': TfArg.literal(
                applicationConfiguration.encode(),

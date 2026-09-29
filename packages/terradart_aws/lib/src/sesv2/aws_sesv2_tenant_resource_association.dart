@@ -22,7 +22,7 @@ final class AwsSesv2TenantResourceAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
            'tenant_name': tenantName,
          },

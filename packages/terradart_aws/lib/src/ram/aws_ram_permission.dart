@@ -26,9 +26,9 @@ final class AwsRamPermission extends Resource {
          argMap: {
            'name': name,
            'policy_template': policyTemplate,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_type': resourceType,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

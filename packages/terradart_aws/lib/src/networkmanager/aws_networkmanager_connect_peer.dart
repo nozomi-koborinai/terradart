@@ -15,9 +15,7 @@ final class NetworkmanagerConnectPeerBgpOptions {
 
   final TfArg<String>? peerAsn;
 
-  Map<String, Object?> encode() => {
-    if (peerAsn != null) 'peer_asn': peerAsn!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'peer_asn': ?peerAsn?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_networkmanager_connect_peer`.
@@ -41,12 +39,11 @@ final class AwsNetworkmanagerConnectPeer extends Resource {
          terraformType: tfType,
          argMap: {
            'connect_attachment_id': connectAttachmentId,
-           if (coreNetworkAddress != null)
-             'core_network_address': coreNetworkAddress,
-           if (insideCidrBlocks != null) 'inside_cidr_blocks': insideCidrBlocks,
+           'core_network_address': ?coreNetworkAddress,
+           'inside_cidr_blocks': ?insideCidrBlocks,
            'peer_address': peerAddress,
-           if (subnetArn != null) 'subnet_arn': subnetArn,
-           if (tags != null) 'tags': tags,
+           'subnet_arn': ?subnetArn,
+           'tags': ?tags,
            if (bgpOptions != null)
              'bgp_options': TfArg.literal(bgpOptions.encode()),
          },

@@ -31,7 +31,7 @@ final class GoogleOrganizationIamBinding extends Resource {
            'org_id': orgId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

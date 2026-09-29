@@ -42,9 +42,9 @@ final class DataAwsEc2ManagedPrefixList extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

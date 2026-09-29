@@ -18,8 +18,8 @@ final class DataZonesAccount {
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -46,13 +46,13 @@ final class DataCloudflareZones extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (direction != null) 'direction': direction,
-           if (match != null) 'match': match,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
-           if (order != null) 'order': order,
-           if (status != null) 'status': status,
-           if (type != null) 'type': type,
+           'direction': ?direction,
+           'match': ?match,
+           'max_items': ?maxItems,
+           'name': ?name,
+           'order': ?order,
+           'status': ?status,
+           'type': ?type,
            if (account != null) 'account': TfArg.literal(account.encode()),
          },
        );

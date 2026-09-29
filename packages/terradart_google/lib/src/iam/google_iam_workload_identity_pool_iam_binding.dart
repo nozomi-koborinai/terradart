@@ -33,8 +33,8 @@ final class GoogleIamWorkloadIdentityPoolIamBinding extends Resource {
            'workload_identity_pool_id': workloadIdentityPoolId,
            'role': role,
            'members': members,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

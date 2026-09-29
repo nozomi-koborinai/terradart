@@ -52,8 +52,7 @@ final class GlueCatalogCatalogProperties {
   icebergOptimizationProperties;
 
   Map<String, Object?> encode() => {
-    if (customProperties != null)
-      'custom_properties': customProperties!.toTfJson(),
+    'custom_properties': ?customProperties?.toTfJson(),
     if (dataLakeAccessProperties != null)
       'data_lake_access_properties': [
         for (final e in dataLakeAccessProperties!) e.encode(),
@@ -85,11 +84,10 @@ final class GlueCatalogCatalogPropertiesDataLakeAccessProperties {
   final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (catalogType != null) 'catalog_type': catalogType!.toTfJson(),
-    if (dataLakeAccess != null) 'data_lake_access': dataLakeAccess!.toTfJson(),
-    if (dataTransferRole != null)
-      'data_transfer_role': dataTransferRole!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
+    'catalog_type': ?catalogType?.toTfJson(),
+    'data_lake_access': ?dataLakeAccess?.toTfJson(),
+    'data_transfer_role': ?dataTransferRole?.toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -113,11 +111,10 @@ final class GlueCatalogCatalogPropertiesIcebergOptimizationProperties {
   final RefTo<AwsIamRole>? roleArn;
 
   Map<String, Object?> encode() => {
-    if (compaction != null) 'compaction': compaction!.toTfJson(),
-    if (orphanFileDeletion != null)
-      'orphan_file_deletion': orphanFileDeletion!.toTfJson(),
-    if (retention != null) 'retention': retention!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
+    'compaction': ?compaction?.toTfJson(),
+    'orphan_file_deletion': ?orphanFileDeletion?.toTfJson(),
+    'retention': ?retention?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -135,7 +132,7 @@ final class GlueCatalogCreateDatabaseDefaultPermissions {
   final List<GlueCatalogCreateDatabaseDefaultPermissionsPrincipal>? principal;
 
   Map<String, Object?> encode() => {
-    if (permissions != null) 'permissions': permissions!.toTfJson(),
+    'permissions': ?permissions?.toTfJson(),
     if (principal != null)
       'principal': [for (final e in principal!) e.encode()],
   };
@@ -152,8 +149,7 @@ final class GlueCatalogCreateDatabaseDefaultPermissionsPrincipal {
   final TfArg<String>? dataLakePrincipalIdentifier;
 
   Map<String, Object?> encode() => {
-    if (dataLakePrincipalIdentifier != null)
-      'data_lake_principal_identifier': dataLakePrincipalIdentifier!.toTfJson(),
+    'data_lake_principal_identifier': ?dataLakePrincipalIdentifier?.toTfJson(),
   };
 }
 
@@ -171,7 +167,7 @@ final class GlueCatalogCreateTableDefaultPermissions {
   final List<GlueCatalogCreateTableDefaultPermissionsPrincipal>? principal;
 
   Map<String, Object?> encode() => {
-    if (permissions != null) 'permissions': permissions!.toTfJson(),
+    'permissions': ?permissions?.toTfJson(),
     if (principal != null)
       'principal': [for (final e in principal!) e.encode()],
   };
@@ -188,8 +184,7 @@ final class GlueCatalogCreateTableDefaultPermissionsPrincipal {
   final TfArg<String>? dataLakePrincipalIdentifier;
 
   Map<String, Object?> encode() => {
-    if (dataLakePrincipalIdentifier != null)
-      'data_lake_principal_identifier': dataLakePrincipalIdentifier!.toTfJson(),
+    'data_lake_principal_identifier': ?dataLakePrincipalIdentifier?.toTfJson(),
   };
 }
 
@@ -210,9 +205,9 @@ final class GlueCatalogFederatedCatalog {
   final TfArg<String>? identifier;
 
   Map<String, Object?> encode() => {
-    if (connectionName != null) 'connection_name': connectionName!.toTfJson(),
-    if (connectionType != null) 'connection_type': connectionType!.toTfJson(),
-    if (identifier != null) 'identifier': identifier!.toTfJson(),
+    'connection_name': ?connectionName?.toTfJson(),
+    'connection_type': ?connectionType?.toTfJson(),
+    'identifier': ?identifier?.toTfJson(),
   };
 }
 
@@ -256,17 +251,15 @@ final class AwsGlueCatalog extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowFullTableExternalDataAccess != null)
-             'allow_full_table_external_data_access':
-                 allowFullTableExternalDataAccess,
-           if (description != null) 'description': description,
+           'allow_full_table_external_data_access':
+               ?allowFullTableExternalDataAccess,
+           'description': ?description,
            'name': name,
-           if (overwriteChildResourcePermissionsWithDefault != null)
-             'overwrite_child_resource_permissions_with_default':
-                 overwriteChildResourcePermissionsWithDefault,
-           if (parameters != null) 'parameters': parameters,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'overwrite_child_resource_permissions_with_default':
+               ?overwriteChildResourcePermissionsWithDefault,
+           'parameters': ?parameters,
+           'region': ?region,
+           'tags': ?tags,
            if (catalogProperties != null)
              'catalog_properties': TfArg.literal([
                for (final e in catalogProperties) e.encode(),

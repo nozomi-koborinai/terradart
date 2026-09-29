@@ -52,12 +52,11 @@ final class GoogleNetworkSecurityInterceptEndpointGroupAssociation
            'location': location,
            'intercept_endpoint_group': interceptEndpointGroup,
            'network': network.encodeAs('id'),
-           if (interceptEndpointGroupAssociationId != null)
-             'intercept_endpoint_group_association_id':
-                 interceptEndpointGroupAssociationId,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'intercept_endpoint_group_association_id':
+               ?interceptEndpointGroupAssociationId,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

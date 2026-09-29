@@ -25,8 +25,8 @@ final class DataOriginCaCertificateFilter {
   final TfArg<String> zoneId;
 
   Map<String, Object?> encode() => {
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (offset != null) 'offset': offset!.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'offset': ?offset?.toTfJson(),
     'zone_id': zoneId.toTfJson(),
   };
 }
@@ -44,7 +44,7 @@ final class DataCloudflareOriginCaCertificate extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (certificateId != null) 'certificate_id': certificateId,
+           'certificate_id': ?certificateId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

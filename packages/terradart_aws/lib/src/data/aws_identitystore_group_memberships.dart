@@ -22,7 +22,7 @@ final class DataAwsIdentitystoreGroupMemberships extends Data {
          argMap: {
            'group_id': groupId,
            'identity_store_id': identityStoreId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

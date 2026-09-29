@@ -24,7 +24,7 @@ final class ComputeMachineImageIamMemberCondition {
   final TfArg<String> title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
     'title': title.toTfJson(),
   };
@@ -51,7 +51,7 @@ final class GoogleComputeMachineImageIamMember extends Resource {
          argMap: {
            'machine_image': machineImage,
            'member': member,
-           if (project != null) 'project': project,
+           'project': ?project,
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

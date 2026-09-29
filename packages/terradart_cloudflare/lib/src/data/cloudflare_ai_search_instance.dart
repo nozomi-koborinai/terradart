@@ -28,11 +28,10 @@ final class DataAiSearchInstanceFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
-    if (orderByDirection != null)
-      'order_by_direction': orderByDirection!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
+    'order_by': ?orderBy?.toTfJson(),
+    'order_by_direction': ?orderByDirection?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -68,7 +67,7 @@ final class DataCloudflareAiSearchInstance extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

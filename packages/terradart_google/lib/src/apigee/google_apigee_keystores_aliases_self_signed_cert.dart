@@ -48,13 +48,13 @@ final class ApigeeKeystoresAliasesSelfSignedCertSubject {
   final TfArg<String>? state;
 
   Map<String, Object?> encode() => {
-    if (commonName != null) 'common_name': commonName!.toTfJson(),
-    if (countryCode != null) 'country_code': countryCode!.toTfJson(),
-    if (email != null) 'email': email!.toTfJson(),
-    if (locality != null) 'locality': locality!.toTfJson(),
-    if (org != null) 'org': org!.toTfJson(),
-    if (orgUnit != null) 'org_unit': orgUnit!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
+    'common_name': ?commonName?.toTfJson(),
+    'country_code': ?countryCode?.toTfJson(),
+    'email': ?email?.toTfJson(),
+    'locality': ?locality?.toTfJson(),
+    'org': ?org?.toTfJson(),
+    'org_unit': ?orgUnit?.toTfJson(),
+    'state': ?state?.toTfJson(),
   };
 }
 
@@ -69,8 +69,7 @@ final class ApigeeKeystoresAliasesSelfSignedCertSubjectAlternativeDnsNames {
   final TfArg<String>? subjectAlternativeName;
 
   Map<String, Object?> encode() => {
-    if (subjectAlternativeName != null)
-      'subject_alternative_name': subjectAlternativeName!.toTfJson(),
+    'subject_alternative_name': ?subjectAlternativeName?.toTfJson(),
   };
 }
 
@@ -115,15 +114,14 @@ final class GoogleApigeeKeystoresAliasesSelfSignedCert extends Resource {
            'environment': environment,
            'keystore': keystore,
            'sig_alg': sigAlg,
-           if (keySize != null) 'key_size': keySize,
-           if (certValidityInDays != null)
-             'cert_validity_in_days': certValidityInDays,
+           'key_size': ?keySize,
+           'cert_validity_in_days': ?certValidityInDays,
            'subject': TfArg.literal(subject.encode()),
            if (subjectAlternativeDnsNames != null)
              'subject_alternative_dns_names': TfArg.literal(
                subjectAlternativeDnsNames.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

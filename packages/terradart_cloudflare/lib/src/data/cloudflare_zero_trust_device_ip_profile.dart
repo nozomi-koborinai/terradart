@@ -16,9 +16,7 @@ final class DataZeroTrustDeviceIpProfileFilter {
 
   final TfArg<num>? perPage;
 
-  Map<String, Object?> encode() => {
-    if (perPage != null) 'per_page': perPage!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'per_page': ?perPage?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_device_ip_profile`.
@@ -39,8 +37,8 @@ final class DataCloudflareZeroTrustDeviceIpProfile extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (profileId != null) 'profile_id': profileId,
+           'account_id': ?accountId,
+           'profile_id': ?profileId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

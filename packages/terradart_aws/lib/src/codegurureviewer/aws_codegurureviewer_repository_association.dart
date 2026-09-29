@@ -28,9 +28,8 @@ final class CodegurureviewerRepositoryAssociationKmsKeyDetails {
   final RefTo<AwsKmsKey>? kmsKeyId;
 
   Map<String, Object?> encode() => {
-    if (encryptionOption != null)
-      'encryption_option': encryptionOption!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'encryption_option': ?encryptionOption?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -68,11 +67,10 @@ final class CodegurureviewerRepositoryAssociationRepository {
   final CodegurureviewerRepositoryAssociationRepositoryS3Bucket? s3Bucket;
 
   Map<String, Object?> encode() => {
-    if (bitbucket != null) 'bitbucket': bitbucket!.encode(),
-    if (codecommit != null) 'codecommit': codecommit!.encode(),
-    if (githubEnterpriseServer != null)
-      'github_enterprise_server': githubEnterpriseServer!.encode(),
-    if (s3Bucket != null) 's3_bucket': s3Bucket!.encode(),
+    'bitbucket': ?bitbucket?.encode(),
+    'codecommit': ?codecommit?.encode(),
+    'github_enterprise_server': ?githubEnterpriseServer?.encode(),
+    's3_bucket': ?s3Bucket?.encode(),
   };
 }
 
@@ -171,8 +169,8 @@ final class AwsCodegurureviewerRepositoryAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (kmsKeyDetails != null)
              'kms_key_details': TfArg.literal(kmsKeyDetails.encode()),
            'repository': TfArg.literal(repository.encode()),

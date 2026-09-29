@@ -26,10 +26,8 @@ final class EcsClusterConfiguration {
   managedStorageConfiguration;
 
   Map<String, Object?> encode() => {
-    if (executeCommandConfiguration != null)
-      'execute_command_configuration': executeCommandConfiguration!.encode(),
-    if (managedStorageConfiguration != null)
-      'managed_storage_configuration': managedStorageConfiguration!.encode(),
+    'execute_command_configuration': ?executeCommandConfiguration?.encode(),
+    'managed_storage_configuration': ?managedStorageConfiguration?.encode(),
   };
 }
 
@@ -52,10 +50,9 @@ final class EcsClusterConfigurationExecuteCommandConfiguration {
   logConfiguration;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (logging != null) 'logging': logging!.toTfJson(),
-    if (logConfiguration != null)
-      'log_configuration': logConfiguration!.encode(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'logging': ?logging?.toTfJson(),
+    'log_configuration': ?logConfiguration?.encode(),
   };
 }
 
@@ -96,15 +93,11 @@ final class EcsClusterConfigurationExecuteCommandConfigurationLogConfiguration {
   final TfArg<String>? s3KeyPrefix;
 
   Map<String, Object?> encode() => {
-    if (cloudWatchEncryptionEnabled != null)
-      'cloud_watch_encryption_enabled': cloudWatchEncryptionEnabled!.toTfJson(),
-    if (cloudWatchLogGroupName != null)
-      'cloud_watch_log_group_name': cloudWatchLogGroupName!.toTfJson(),
-    if (s3BucketEncryptionEnabled != null)
-      's3_bucket_encryption_enabled': s3BucketEncryptionEnabled!.toTfJson(),
-    if (s3BucketName != null)
-      's3_bucket_name': s3BucketName!.encodeAs('id').toTfJson(),
-    if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix!.toTfJson(),
+    'cloud_watch_encryption_enabled': ?cloudWatchEncryptionEnabled?.toTfJson(),
+    'cloud_watch_log_group_name': ?cloudWatchLogGroupName?.toTfJson(),
+    's3_bucket_encryption_enabled': ?s3BucketEncryptionEnabled?.toTfJson(),
+    's3_bucket_name': ?s3BucketName?.encodeAs('id').toTfJson(),
+    's3_key_prefix': ?s3KeyPrefix?.toTfJson(),
   };
 }
 
@@ -122,10 +115,9 @@ final class EcsClusterConfigurationManagedStorageConfiguration {
   final RefTo<AwsKmsKey>? kmsKeyId;
 
   Map<String, Object?> encode() => {
-    if (fargateEphemeralStorageKmsKeyId != null)
-      'fargate_ephemeral_storage_kms_key_id': fargateEphemeralStorageKmsKeyId!
-          .toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'fargate_ephemeral_storage_kms_key_id': ?fargateEphemeralStorageKmsKeyId
+        ?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -185,8 +177,8 @@ final class AwsEcsCluster extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),
            if (serviceConnectDefaults != null)

@@ -45,17 +45,15 @@ final class DataAwsAmi extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowUnsafeFilter != null)
-             'allow_unsafe_filter': allowUnsafeFilter,
-           if (executableUsers != null) 'executable_users': executableUsers,
-           if (includeDeprecated != null)
-             'include_deprecated': includeDeprecated,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (nameRegex != null) 'name_regex': nameRegex,
-           if (owners != null) 'owners': owners,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (uefiData != null) 'uefi_data': uefiData,
+           'allow_unsafe_filter': ?allowUnsafeFilter,
+           'executable_users': ?executableUsers,
+           'include_deprecated': ?includeDeprecated,
+           'most_recent': ?mostRecent,
+           'name_regex': ?nameRegex,
+           'owners': ?owners,
+           'region': ?region,
+           'tags': ?tags,
+           'uefi_data': ?uefiData,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

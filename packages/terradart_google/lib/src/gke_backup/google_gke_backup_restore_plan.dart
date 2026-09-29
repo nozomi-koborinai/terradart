@@ -164,11 +164,11 @@ final class GoogleGkeBackupRestorePlan extends Resource {
            'location': location,
            'backup_plan': backupPlan,
            'cluster': cluster,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'labels': ?labels,
            if (restoreConfig != null)
              'restore_config': TfArg.literal([restoreConfig.encode()]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

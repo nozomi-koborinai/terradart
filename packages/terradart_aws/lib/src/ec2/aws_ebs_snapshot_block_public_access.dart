@@ -31,7 +31,7 @@ final class AwsEbsSnapshotBlockPublicAccess extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (region != null) 'region': region, 'state': state},
+         argMap: {'region': ?region, 'state': state},
        );
 
   @override

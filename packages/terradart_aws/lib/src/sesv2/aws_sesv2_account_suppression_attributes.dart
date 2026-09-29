@@ -33,7 +33,7 @@ final class AwsSesv2AccountSuppressionAttributes extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'suppressed_reasons': TfArg.literal([
              for (final e in suppressedReasons) e.toTfJson(),
            ]),

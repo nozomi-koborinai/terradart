@@ -31,11 +31,7 @@ final class AwsRdsInstanceState extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'identifier': identifier,
-           if (region != null) 'region': region,
-           'state': state,
-         },
+         argMap: {'identifier': identifier, 'region': ?region, 'state': state},
        );
 
   @override

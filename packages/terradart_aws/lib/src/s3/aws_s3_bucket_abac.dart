@@ -38,9 +38,8 @@ final class AwsS3BucketAbac extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (region != null) 'region': region,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'region': ?region,
            if (abacStatus != null)
              'abac_status': TfArg.literal([
                for (final e in abacStatus) e.encode(),

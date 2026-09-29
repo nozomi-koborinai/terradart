@@ -35,18 +35,16 @@ final class GoogleComputeRouterInterface extends Resource {
          argMap: {
            'name': name,
            'router': router,
-           if (region != null) 'region': region,
-           if (ipRange != null) 'ip_range': ipRange,
-           if (ipVersion != null) 'ip_version': ipVersion,
-           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
-           if (interconnectAttachment != null)
-             'interconnect_attachment': interconnectAttachment,
-           if (vpnTunnel != null) 'vpn_tunnel': vpnTunnel,
-           if (privateIpAddress != null) 'private_ip_address': privateIpAddress,
-           if (redundantInterface != null)
-             'redundant_interface': redundantInterface,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'region': ?region,
+           'ip_range': ?ipRange,
+           'ip_version': ?ipVersion,
+           'subnetwork': ?subnetwork?.encodeAs('id'),
+           'interconnect_attachment': ?interconnectAttachment,
+           'vpn_tunnel': ?vpnTunnel,
+           'private_ip_address': ?privateIpAddress,
+           'redundant_interface': ?redundantInterface,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

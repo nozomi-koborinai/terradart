@@ -28,7 +28,7 @@ final class GoogleSccV2OrganizationSourceIamMember extends Resource {
            'organization': organization,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

@@ -26,8 +26,8 @@ final class AwsRdsClusterRoleAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'db_cluster_identifier': dbClusterIdentifier,
-           if (featureName != null) 'feature_name': featureName,
-           if (region != null) 'region': region,
+           'feature_name': ?featureName,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
          },
        );

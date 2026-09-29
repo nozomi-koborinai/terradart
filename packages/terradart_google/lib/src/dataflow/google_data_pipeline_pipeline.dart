@@ -48,8 +48,8 @@ final class DataPipelinePipelineScheduleInfo {
   final TfArg<String>? timeZone;
 
   Map<String, Object?> encode() => {
-    if (schedule != null) 'schedule': schedule!.toTfJson(),
-    if (timeZone != null) 'time_zone': timeZone!.toTfJson(),
+    'schedule': ?schedule?.toTfJson(),
+    'time_zone': ?timeZone?.toTfJson(),
   };
 }
 
@@ -69,11 +69,9 @@ final class DataPipelinePipelineWorkload {
   dataflowLaunchTemplateRequest;
 
   Map<String, Object?> encode() => {
-    if (dataflowFlexTemplateRequest != null)
-      'dataflow_flex_template_request': dataflowFlexTemplateRequest!.encode(),
-    if (dataflowLaunchTemplateRequest != null)
-      'dataflow_launch_template_request': dataflowLaunchTemplateRequest!
-          .encode(),
+    'dataflow_flex_template_request': ?dataflowFlexTemplateRequest?.encode(),
+    'dataflow_launch_template_request': ?dataflowLaunchTemplateRequest
+        ?.encode(),
   };
 }
 
@@ -100,7 +98,7 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequest {
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
     'project_id': projectId.toTfJson(),
-    if (validateOnly != null) 'validate_only': validateOnly!.toTfJson(),
+    'validate_only': ?validateOnly?.toTfJson(),
     'launch_parameter': launchParameter.encode(),
   };
 }
@@ -135,15 +133,13 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParamet
   environment;
 
   Map<String, Object?> encode() => {
-    if (containerSpecGcsPath != null)
-      'container_spec_gcs_path': containerSpecGcsPath!.toTfJson(),
+    'container_spec_gcs_path': ?containerSpecGcsPath?.toTfJson(),
     'job_name': jobName.toTfJson(),
-    if (launchOptions != null) 'launch_options': launchOptions!.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (transformNameMappings != null)
-      'transform_name_mappings': transformNameMappings!.toTfJson(),
-    if (update != null) 'update': update!.toTfJson(),
-    if (environment != null) 'environment': environment!.encode(),
+    'launch_options': ?launchOptions?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'transform_name_mappings': ?transformNameMappings?.toTfJson(),
+    'update': ?update?.toTfJson(),
+    'environment': ?environment?.encode(),
   };
 }
 
@@ -209,31 +205,22 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParamet
   final TfArg<String>? zone;
 
   Map<String, Object?> encode() => {
-    if (additionalExperiments != null)
-      'additional_experiments': additionalExperiments!.toTfJson(),
-    if (additionalUserLabels != null)
-      'additional_user_labels': additionalUserLabels!.toTfJson(),
-    if (enableStreamingEngine != null)
-      'enable_streaming_engine': enableStreamingEngine!.toTfJson(),
-    if (flexrsGoal != null) 'flexrs_goal': flexrsGoal!.toTfJson(),
-    if (ipConfiguration != null)
-      'ip_configuration': ipConfiguration!.toTfJson(),
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (maxWorkers != null) 'max_workers': maxWorkers!.toTfJson(),
-    if (network != null) 'network': network!.encodeAs('name').toTfJson(),
-    if (numWorkers != null) 'num_workers': numWorkers!.toTfJson(),
-    if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!
-          .encodeAs('email')
-          .toTfJson(),
-    if (subnetwork != null)
-      'subnetwork': subnetwork!.encodeAs('self_link').toTfJson(),
-    if (tempLocation != null) 'temp_location': tempLocation!.toTfJson(),
-    if (workerRegion != null) 'worker_region': workerRegion!.toTfJson(),
-    if (workerZone != null) 'worker_zone': workerZone!.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
+    'additional_experiments': ?additionalExperiments?.toTfJson(),
+    'additional_user_labels': ?additionalUserLabels?.toTfJson(),
+    'enable_streaming_engine': ?enableStreamingEngine?.toTfJson(),
+    'flexrs_goal': ?flexrsGoal?.toTfJson(),
+    'ip_configuration': ?ipConfiguration?.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'max_workers': ?maxWorkers?.toTfJson(),
+    'network': ?network?.encodeAs('name').toTfJson(),
+    'num_workers': ?numWorkers?.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('self_link').toTfJson(),
+    'temp_location': ?tempLocation?.toTfJson(),
+    'worker_region': ?workerRegion?.toTfJson(),
+    'worker_zone': ?workerZone?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
   };
 }
 
@@ -289,12 +276,11 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequest {
   launchParameters;
 
   Map<String, Object?> encode() => {
-    if (gcsPath != null) 'gcs_path': gcsPath!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
+    'gcs_path': ?gcsPath?.toTfJson(),
+    'location': ?location?.toTfJson(),
     'project_id': projectId.toTfJson(),
-    if (validateOnly != null) 'validate_only': validateOnly!.toTfJson(),
-    if (launchParameters != null)
-      'launch_parameters': launchParameters!.encode(),
+    'validate_only': ?validateOnly?.toTfJson(),
+    'launch_parameters': ?launchParameters?.encode(),
   };
 }
 
@@ -323,11 +309,10 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParam
 
   Map<String, Object?> encode() => {
     'job_name': jobName.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (transformNameMapping != null)
-      'transform_name_mapping': transformNameMapping!.toTfJson(),
-    if (update != null) 'update': update!.toTfJson(),
-    if (environment != null) 'environment': environment!.encode(),
+    'parameters': ?parameters?.toTfJson(),
+    'transform_name_mapping': ?transformNameMapping?.toTfJson(),
+    'update': ?update?.toTfJson(),
+    'environment': ?environment?.encode(),
   };
 }
 
@@ -390,32 +375,22 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParam
   final TfArg<String>? zone;
 
   Map<String, Object?> encode() => {
-    if (additionalExperiments != null)
-      'additional_experiments': additionalExperiments!.toTfJson(),
-    if (additionalUserLabels != null)
-      'additional_user_labels': additionalUserLabels!.toTfJson(),
-    if (bypassTempDirValidation != null)
-      'bypass_temp_dir_validation': bypassTempDirValidation!.toTfJson(),
-    if (enableStreamingEngine != null)
-      'enable_streaming_engine': enableStreamingEngine!.toTfJson(),
-    if (ipConfiguration != null)
-      'ip_configuration': ipConfiguration!.toTfJson(),
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (maxWorkers != null) 'max_workers': maxWorkers!.toTfJson(),
-    if (network != null) 'network': network!.encodeAs('name').toTfJson(),
-    if (numWorkers != null) 'num_workers': numWorkers!.toTfJson(),
-    if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!
-          .encodeAs('email')
-          .toTfJson(),
-    if (subnetwork != null)
-      'subnetwork': subnetwork!.encodeAs('self_link').toTfJson(),
-    if (tempLocation != null) 'temp_location': tempLocation!.toTfJson(),
-    if (workerRegion != null) 'worker_region': workerRegion!.toTfJson(),
-    if (workerZone != null) 'worker_zone': workerZone!.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
+    'additional_experiments': ?additionalExperiments?.toTfJson(),
+    'additional_user_labels': ?additionalUserLabels?.toTfJson(),
+    'bypass_temp_dir_validation': ?bypassTempDirValidation?.toTfJson(),
+    'enable_streaming_engine': ?enableStreamingEngine?.toTfJson(),
+    'ip_configuration': ?ipConfiguration?.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'max_workers': ?maxWorkers?.toTfJson(),
+    'network': ?network?.encodeAs('name').toTfJson(),
+    'num_workers': ?numWorkers?.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('self_link').toTfJson(),
+    'temp_location': ?tempLocation?.toTfJson(),
+    'worker_region': ?workerRegion?.toTfJson(),
+    'worker_zone': ?workerZone?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
   };
 }
 
@@ -467,14 +442,13 @@ final class GoogleDataPipelinePipeline extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
            'name': name,
-           if (pipelineSources != null) 'pipeline_sources': pipelineSources,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (schedulerServiceAccountEmail != null)
-             'scheduler_service_account_email': schedulerServiceAccountEmail,
+           'pipeline_sources': ?pipelineSources,
+           'project': ?project,
+           'region': ?region,
+           'scheduler_service_account_email': ?schedulerServiceAccountEmail,
            'state': state,
            'type': type,
            if (scheduleInfo != null)

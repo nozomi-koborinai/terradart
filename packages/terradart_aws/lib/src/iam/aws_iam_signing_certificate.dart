@@ -34,7 +34,7 @@ final class AwsIamSigningCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate_body': certificateBody,
-           if (status != null) 'status': status,
+           'status': ?status,
            'user_name': userName,
          },
        );

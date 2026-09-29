@@ -21,11 +21,7 @@ final class AwsResiliencehubv2Assertion extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'service_arn': serviceArn,
-           'text': text,
-         },
+         argMap: {'region': ?region, 'service_arn': serviceArn, 'text': text},
        );
 
   @override

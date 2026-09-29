@@ -36,7 +36,7 @@ final class DataCloudflareKeylessCertificate extends Data {
          terraformType: tfType,
          argMap: {
            'keyless_certificate_id': keylessCertificateId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'zone_id': ?zoneId,
          },
        );
 

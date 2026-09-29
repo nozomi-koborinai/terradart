@@ -46,11 +46,7 @@ final class GoogleFirestoreUserCreds extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           'database': database,
-           if (project != null) 'project': project,
-         },
+         argMap: {'name': name, 'database': database, 'project': ?project},
        );
 
   @override

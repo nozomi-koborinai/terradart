@@ -22,10 +22,7 @@ final class DataGoogleSourcerepoRepositoryIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (project != null) 'project': project,
-           'repository': repository,
-         },
+         argMap: {'project': ?project, 'repository': repository},
        );
 
   @override

@@ -34,8 +34,8 @@ final class GoogleBiglakeIcebergCatalogIamBinding extends Resource {
            'name': name,
            'role': role,
            'members': members,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

@@ -24,7 +24,7 @@ final class AwsMainRouteTableAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'route_table_id': routeTableId,
            'vpc_id': vpcId.encodeAs('id'),
          },

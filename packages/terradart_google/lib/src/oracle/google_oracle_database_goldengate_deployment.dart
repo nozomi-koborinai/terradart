@@ -54,12 +54,12 @@ final class GoogleOracleDatabaseGoldengateDeployment extends Resource {
            'goldengate_deployment_id': goldengateDeploymentId,
            'display_name': displayName,
            'odb_subnet': odbSubnet,
-           if (odbNetwork != null) 'odb_network': odbNetwork,
-           if (gcpOracleZone != null) 'gcp_oracle_zone': gcpOracleZone,
+           'odb_network': ?odbNetwork,
+           'gcp_oracle_zone': ?gcpOracleZone,
            'properties': properties,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

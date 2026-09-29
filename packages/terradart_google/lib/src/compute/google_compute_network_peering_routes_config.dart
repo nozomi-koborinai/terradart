@@ -33,13 +33,11 @@ final class GoogleComputeNetworkPeeringRoutesConfig extends Resource {
            'peering': peering,
            'import_custom_routes': importCustomRoutes,
            'export_custom_routes': exportCustomRoutes,
-           if (importSubnetRoutesWithPublicIp != null)
-             'import_subnet_routes_with_public_ip':
-                 importSubnetRoutesWithPublicIp,
-           if (exportSubnetRoutesWithPublicIp != null)
-             'export_subnet_routes_with_public_ip':
-                 exportSubnetRoutesWithPublicIp,
-           if (project != null) 'project': project,
+           'import_subnet_routes_with_public_ip':
+               ?importSubnetRoutesWithPublicIp,
+           'export_subnet_routes_with_public_ip':
+               ?exportSubnetRoutesWithPublicIp,
+           'project': ?project,
          },
        );
 

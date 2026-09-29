@@ -29,7 +29,7 @@ final class CloudflareZoneSetting extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'setting_id': settingId,
            'value': value,
            'zone_id': zoneId.encodeAs('id'),

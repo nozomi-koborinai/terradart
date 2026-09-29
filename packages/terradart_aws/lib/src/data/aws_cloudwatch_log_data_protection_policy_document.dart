@@ -67,7 +67,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatement {
 
   Map<String, Object?> encode() => {
     'data_identifiers': dataIdentifiers.toTfJson(),
-    if (sid != null) 'sid': sid!.toTfJson(),
+    'sid': ?sid?.toTfJson(),
     'operation': operation.encode(),
   };
 }
@@ -88,8 +88,8 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperation {
   deidentify;
 
   Map<String, Object?> encode() => {
-    if (audit != null) 'audit': audit!.encode(),
-    if (deidentify != null) 'deidentify': deidentify!.encode(),
+    'audit': ?audit?.encode(),
+    'deidentify': ?deidentify?.encode(),
   };
 }
 
@@ -129,9 +129,9 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit
   s3;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLogs != null) 'cloudwatch_logs': cloudwatchLogs!.encode(),
-    if (firehose != null) 'firehose': firehose!.encode(),
-    if (s3 != null) 's3': s3!.encode(),
+    'cloudwatch_logs': ?cloudwatchLogs?.encode(),
+    'firehose': ?firehose?.encode(),
+    's3': ?s3?.encode(),
   };
 }
 
@@ -217,9 +217,9 @@ final class DataAwsCloudwatchLogDataProtectionPolicyDocument extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (version != null) 'version': version,
+           'version': ?version,
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),
            'statement': TfArg.literal([for (final e in statement) e.encode()]),

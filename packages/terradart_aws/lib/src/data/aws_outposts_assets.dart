@@ -22,9 +22,9 @@ final class DataAwsOutpostsAssets extends Data {
          terraformType: tfType,
          argMap: {
            'arn': arn,
-           if (hostIdFilter != null) 'host_id_filter': hostIdFilter,
-           if (region != null) 'region': region,
-           if (statusIdFilter != null) 'status_id_filter': statusIdFilter,
+           'host_id_filter': ?hostIdFilter,
+           'region': ?region,
+           'status_id_filter': ?statusIdFilter,
          },
        );
 

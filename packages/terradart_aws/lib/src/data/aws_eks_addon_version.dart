@@ -23,8 +23,8 @@ final class DataAwsEksAddonVersion extends Data {
          argMap: {
            'addon_name': addonName,
            'kubernetes_version': kubernetesVersion,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (region != null) 'region': region,
+           'most_recent': ?mostRecent,
+           'region': ?region,
          },
        );
 

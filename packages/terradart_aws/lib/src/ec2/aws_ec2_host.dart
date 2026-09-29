@@ -106,14 +106,14 @@ final class AwsEc2Host extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (assetId != null) 'asset_id': assetId,
-           if (autoPlacement != null) 'auto_placement': autoPlacement,
+           'asset_id': ?assetId,
+           'auto_placement': ?autoPlacement,
            'availability_zone': availabilityZone,
-           if (hostRecovery != null) 'host_recovery': hostRecovery,
+           'host_recovery': ?hostRecovery,
            ...instance.argMap,
-           if (outpostArn != null) 'outpost_arn': outpostArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'outpost_arn': ?outpostArn,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

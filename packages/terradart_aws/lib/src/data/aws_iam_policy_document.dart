@@ -42,12 +42,12 @@ final class DataIamPolicyDocumentStatement {
   final List<DataIamPolicyDocumentStatementPrincipals>? principals;
 
   Map<String, Object?> encode() => {
-    if (actions != null) 'actions': actions!.toTfJson(),
-    if (effect != null) 'effect': effect!.toTfJson(),
-    if (notActions != null) 'not_actions': notActions!.toTfJson(),
-    if (notResources != null) 'not_resources': notResources!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
-    if (sid != null) 'sid': sid!.toTfJson(),
+    'actions': ?actions?.toTfJson(),
+    'effect': ?effect?.toTfJson(),
+    'not_actions': ?notActions?.toTfJson(),
+    'not_resources': ?notResources?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
+    'sid': ?sid?.toTfJson(),
     if (condition != null)
       'condition': [for (final e in condition!) e.encode()],
     if (notPrincipals != null)
@@ -143,14 +143,12 @@ final class DataAwsIamPolicyDocument extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (overrideJson != null) 'override_json': overrideJson,
-           if (overridePolicyDocuments != null)
-             'override_policy_documents': overridePolicyDocuments,
-           if (policyId != null) 'policy_id': policyId,
-           if (sourceJson != null) 'source_json': sourceJson,
-           if (sourcePolicyDocuments != null)
-             'source_policy_documents': sourcePolicyDocuments,
-           if (version != null) 'version': version,
+           'override_json': ?overrideJson,
+           'override_policy_documents': ?overridePolicyDocuments,
+           'policy_id': ?policyId,
+           'source_json': ?sourceJson,
+           'source_policy_documents': ?sourcePolicyDocuments,
+           'version': ?version,
            if (statement != null)
              'statement': TfArg.literal([
                for (final e in statement) e.encode(),

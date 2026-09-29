@@ -49,16 +49,15 @@ final class AwsRedshiftdataStatement extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clusterIdentifier != null)
-             'cluster_identifier': clusterIdentifier,
+           'cluster_identifier': ?clusterIdentifier,
            'database': database,
-           if (dbUser != null) 'db_user': dbUser,
-           if (region != null) 'region': region,
-           if (secretArn != null) 'secret_arn': secretArn,
+           'db_user': ?dbUser,
+           'region': ?region,
+           'secret_arn': ?secretArn,
            'sql': sql,
-           if (statementName != null) 'statement_name': statementName,
-           if (withEvent != null) 'with_event': withEvent,
-           if (workgroupName != null) 'workgroup_name': workgroupName,
+           'statement_name': ?statementName,
+           'with_event': ?withEvent,
+           'workgroup_name': ?workgroupName,
            if (parameters != null)
              'parameters': TfArg.literal([
                for (final e in parameters) e.encode(),

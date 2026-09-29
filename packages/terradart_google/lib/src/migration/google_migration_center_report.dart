@@ -62,11 +62,11 @@ final class GoogleMigrationCenterReport extends Resource {
            'location': location,
            'report_config': reportConfig,
            'report_id': reportId,
-           if (type != null) 'type': type,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'type': ?type,
+           'display_name': ?displayName,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

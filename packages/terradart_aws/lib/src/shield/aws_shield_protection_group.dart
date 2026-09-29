@@ -126,7 +126,7 @@ final class AwsShieldProtectionGroup extends Resource {
            ...?scope?.argMap,
            'pattern': pattern,
            'protection_group_id': protectionGroupId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

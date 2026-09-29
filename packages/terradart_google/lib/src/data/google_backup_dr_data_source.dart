@@ -27,7 +27,7 @@ final class DataGoogleBackupDrDataSource extends Data {
            'backup_vault_id': backupVaultId,
            'data_source_id': dataSourceId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

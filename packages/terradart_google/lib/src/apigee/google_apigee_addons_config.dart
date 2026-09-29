@@ -32,16 +32,11 @@ final class ApigeeAddonsConfigAddonsConfig {
   final ApigeeAddonsConfigAddonsConfigMonetizationConfig? monetizationConfig;
 
   Map<String, Object?> encode() => {
-    if (advancedApiOpsConfig != null)
-      'advanced_api_ops_config': advancedApiOpsConfig!.encode(),
-    if (apiSecurityConfig != null)
-      'api_security_config': apiSecurityConfig!.encode(),
-    if (connectorsPlatformConfig != null)
-      'connectors_platform_config': connectorsPlatformConfig!.encode(),
-    if (integrationConfig != null)
-      'integration_config': integrationConfig!.encode(),
-    if (monetizationConfig != null)
-      'monetization_config': monetizationConfig!.encode(),
+    'advanced_api_ops_config': ?advancedApiOpsConfig?.encode(),
+    'api_security_config': ?apiSecurityConfig?.encode(),
+    'connectors_platform_config': ?connectorsPlatformConfig?.encode(),
+    'integration_config': ?integrationConfig?.encode(),
+    'monetization_config': ?monetizationConfig?.encode(),
   };
 }
 
@@ -53,9 +48,7 @@ final class ApigeeAddonsConfigAddonsConfigAdvancedApiOpsConfig {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `addons_config.api_security_config` block of
@@ -66,9 +59,7 @@ final class ApigeeAddonsConfigAddonsConfigApiSecurityConfig {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `addons_config.connectors_platform_config` block of
@@ -79,9 +70,7 @@ final class ApigeeAddonsConfigAddonsConfigConnectorsPlatformConfig {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `addons_config.integration_config` block of
@@ -92,9 +81,7 @@ final class ApigeeAddonsConfigAddonsConfigIntegrationConfig {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `addons_config.monetization_config` block of
@@ -105,9 +92,7 @@ final class ApigeeAddonsConfigAddonsConfigMonetizationConfig {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `google_apigee_addons_config`.
@@ -141,7 +126,7 @@ final class GoogleApigeeAddonsConfig extends Resource {
            'org': org,
            if (addonsConfig != null)
              'addons_config': TfArg.literal(addonsConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

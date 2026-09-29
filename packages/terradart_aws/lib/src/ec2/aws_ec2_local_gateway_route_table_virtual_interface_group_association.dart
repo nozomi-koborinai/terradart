@@ -30,8 +30,8 @@ final class AwsEc2LocalGatewayRouteTableVirtualInterfaceGroupAssociation
            'local_gateway_route_table_id': localGatewayRouteTableId,
            'local_gateway_virtual_interface_group_id':
                localGatewayVirtualInterfaceGroupId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -25,8 +25,8 @@ final class AwsQuicksightTemplateAlias extends Resource {
          terraformType: tfType,
          argMap: {
            'alias_name': aliasName,
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
-           if (region != null) 'region': region,
+           'aws_account_id': ?awsAccountId,
+           'region': ?region,
            'template_id': templateId,
            'template_version_number': templateVersionNumber,
          },

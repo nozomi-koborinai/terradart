@@ -283,9 +283,9 @@ final class AwsSsmcontactsRotation extends Resource {
          argMap: {
            'contact_ids': contactIds,
            'name': name,
-           if (region != null) 'region': region,
-           if (startTime != null) 'start_time': startTime,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'start_time': ?startTime,
+           'tags': ?tags,
            'time_zone_id': timeZoneId,
            if (recurrence != null)
              'recurrence': TfArg.literal([

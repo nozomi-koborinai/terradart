@@ -34,8 +34,8 @@ final class GoogleBigtableTableIamBinding extends Resource {
            'table': table,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

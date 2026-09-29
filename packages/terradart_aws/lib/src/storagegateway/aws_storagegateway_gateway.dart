@@ -143,10 +143,10 @@ final class StoragegatewayGatewayMaintenanceStartTime {
   final TfArg<num>? minuteOfHour;
 
   Map<String, Object?> encode() => {
-    if (dayOfMonth != null) 'day_of_month': dayOfMonth!.toTfJson(),
-    if (dayOfWeek != null) 'day_of_week': dayOfWeek!.toTfJson(),
+    'day_of_month': ?dayOfMonth?.toTfJson(),
+    'day_of_week': ?dayOfWeek?.toTfJson(),
     'hour_of_day': hourOfDay.toTfJson(),
-    if (minuteOfHour != null) 'minute_of_hour': minuteOfHour!.toTfJson(),
+    'minute_of_hour': ?minuteOfHour?.toTfJson(),
   };
 }
 
@@ -176,14 +176,11 @@ final class StoragegatewayGatewaySmbActiveDirectorySettings {
   final TfArg<String> username;
 
   Map<String, Object?> encode() => {
-    if (domainControllers != null)
-      'domain_controllers': domainControllers!.toTfJson(),
+    'domain_controllers': ?domainControllers?.toTfJson(),
     'domain_name': domainName.toTfJson(),
-    if (organizationalUnit != null)
-      'organizational_unit': organizationalUnit!.toTfJson(),
+    'organizational_unit': ?organizationalUnit?.toTfJson(),
     'password': password.toTfJson(),
-    if (timeoutInSeconds != null)
-      'timeout_in_seconds': timeoutInSeconds!.toTfJson(),
+    'timeout_in_seconds': ?timeoutInSeconds?.toTfJson(),
     'username': username.toTfJson(),
   };
 }
@@ -219,29 +216,22 @@ final class AwsStoragegatewayGateway extends Resource {
          terraformType: tfType,
          argMap: {
            ...activation.argMap,
-           if (averageDownloadRateLimitInBitsPerSec != null)
-             'average_download_rate_limit_in_bits_per_sec':
-                 averageDownloadRateLimitInBitsPerSec,
-           if (averageUploadRateLimitInBitsPerSec != null)
-             'average_upload_rate_limit_in_bits_per_sec':
-                 averageUploadRateLimitInBitsPerSec,
-           if (cloudwatchLogGroupArn != null)
-             'cloudwatch_log_group_arn': cloudwatchLogGroupArn.encodeAs('arn'),
+           'average_download_rate_limit_in_bits_per_sec':
+               ?averageDownloadRateLimitInBitsPerSec,
+           'average_upload_rate_limit_in_bits_per_sec':
+               ?averageUploadRateLimitInBitsPerSec,
+           'cloudwatch_log_group_arn': ?cloudwatchLogGroupArn?.encodeAs('arn'),
            'gateway_name': gatewayName,
            'gateway_timezone': gatewayTimezone,
-           if (gatewayType != null) 'gateway_type': gatewayType,
-           if (gatewayVpcEndpoint != null)
-             'gateway_vpc_endpoint': gatewayVpcEndpoint,
-           if (mediumChangerType != null)
-             'medium_changer_type': mediumChangerType,
-           if (region != null) 'region': region,
-           if (smbFileShareVisibility != null)
-             'smb_file_share_visibility': smbFileShareVisibility,
-           if (smbGuestPassword != null) 'smb_guest_password': smbGuestPassword,
-           if (smbSecurityStrategy != null)
-             'smb_security_strategy': smbSecurityStrategy,
-           if (tags != null) 'tags': tags,
-           if (tapeDriveType != null) 'tape_drive_type': tapeDriveType,
+           'gateway_type': ?gatewayType,
+           'gateway_vpc_endpoint': ?gatewayVpcEndpoint,
+           'medium_changer_type': ?mediumChangerType,
+           'region': ?region,
+           'smb_file_share_visibility': ?smbFileShareVisibility,
+           'smb_guest_password': ?smbGuestPassword,
+           'smb_security_strategy': ?smbSecurityStrategy,
+           'tags': ?tags,
+           'tape_drive_type': ?tapeDriveType,
            if (maintenanceStartTime != null)
              'maintenance_start_time': TfArg.literal(
                maintenanceStartTime.encode(),

@@ -63,25 +63,21 @@ final class ZeroTrustGatewaySettingsSettings {
   final ZeroTrustGatewaySettingsSettingsTlsDecrypt? tlsDecrypt;
 
   Map<String, Object?> encode() => {
-    if (maxTtlSecs != null) 'max_ttl_secs': maxTtlSecs!.toTfJson(),
-    if (activityLog != null) 'activity_log': activityLog!.encode(),
-    if (antivirus != null) 'antivirus': antivirus!.encode(),
-    if (blockPage != null) 'block_page': blockPage!.encode(),
-    if (bodyScanning != null) 'body_scanning': bodyScanning!.encode(),
-    if (browserIsolation != null)
-      'browser_isolation': browserIsolation!.encode(),
-    if (certificate != null) 'certificate': certificate!.encode(),
-    if (customCertificate != null)
-      'custom_certificate': customCertificate!.encode(),
-    if (extendedEmailMatching != null)
-      'extended_email_matching': extendedEmailMatching!.encode(),
-    if (fips != null) 'fips': fips!.encode(),
-    if (hostSelector != null) 'host_selector': hostSelector!.encode(),
-    if (inspection != null) 'inspection': inspection!.encode(),
-    if (protocolDetection != null)
-      'protocol_detection': protocolDetection!.encode(),
-    if (sandbox != null) 'sandbox': sandbox!.encode(),
-    if (tlsDecrypt != null) 'tls_decrypt': tlsDecrypt!.encode(),
+    'max_ttl_secs': ?maxTtlSecs?.toTfJson(),
+    'activity_log': ?activityLog?.encode(),
+    'antivirus': ?antivirus?.encode(),
+    'block_page': ?blockPage?.encode(),
+    'body_scanning': ?bodyScanning?.encode(),
+    'browser_isolation': ?browserIsolation?.encode(),
+    'certificate': ?certificate?.encode(),
+    'custom_certificate': ?customCertificate?.encode(),
+    'extended_email_matching': ?extendedEmailMatching?.encode(),
+    'fips': ?fips?.encode(),
+    'host_selector': ?hostSelector?.encode(),
+    'inspection': ?inspection?.encode(),
+    'protocol_detection': ?protocolDetection?.encode(),
+    'sandbox': ?sandbox?.encode(),
+    'tls_decrypt': ?tlsDecrypt?.encode(),
   };
 }
 
@@ -93,9 +89,7 @@ final class ZeroTrustGatewaySettingsSettingsActivityLog {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `settings.antivirus` block of
@@ -119,13 +113,10 @@ final class ZeroTrustGatewaySettingsSettingsAntivirus {
   notificationSettings;
 
   Map<String, Object?> encode() => {
-    if (enabledDownloadPhase != null)
-      'enabled_download_phase': enabledDownloadPhase!.toTfJson(),
-    if (enabledUploadPhase != null)
-      'enabled_upload_phase': enabledUploadPhase!.toTfJson(),
-    if (failClosed != null) 'fail_closed': failClosed!.toTfJson(),
-    if (notificationSettings != null)
-      'notification_settings': notificationSettings!.encode(),
+    'enabled_download_phase': ?enabledDownloadPhase?.toTfJson(),
+    'enabled_upload_phase': ?enabledUploadPhase?.toTfJson(),
+    'fail_closed': ?failClosed?.toTfJson(),
+    'notification_settings': ?notificationSettings?.encode(),
   };
 }
 
@@ -149,10 +140,10 @@ final class ZeroTrustGatewaySettingsSettingsAntivirusNotificationSettings {
   final TfArg<String>? supportUrl;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (includeContext != null) 'include_context': includeContext!.toTfJson(),
-    if (msg != null) 'msg': msg!.toTfJson(),
-    if (supportUrl != null) 'support_url': supportUrl!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'include_context': ?includeContext?.toTfJson(),
+    'msg': ?msg?.toTfJson(),
+    'support_url': ?supportUrl?.toTfJson(),
   };
 }
 
@@ -209,22 +200,21 @@ final class ZeroTrustGatewaySettingsSettingsBlockPage {
   final TfArg<num>? version;
 
   Map<String, Object?> encode() => {
-    if (backgroundColor != null)
-      'background_color': backgroundColor!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (footerText != null) 'footer_text': footerText!.toTfJson(),
-    if (headerText != null) 'header_text': headerText!.toTfJson(),
-    if (includeContext != null) 'include_context': includeContext!.toTfJson(),
-    if (logoPath != null) 'logo_path': logoPath!.toTfJson(),
-    if (mailtoAddress != null) 'mailto_address': mailtoAddress!.toTfJson(),
-    if (mailtoSubject != null) 'mailto_subject': mailtoSubject!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-    if (sourceAccount != null) 'source_account': sourceAccount!.toTfJson(),
-    if (suppressFooter != null) 'suppress_footer': suppressFooter!.toTfJson(),
-    if (targetUri != null) 'target_uri': targetUri!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'background_color': ?backgroundColor?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'footer_text': ?footerText?.toTfJson(),
+    'header_text': ?headerText?.toTfJson(),
+    'include_context': ?includeContext?.toTfJson(),
+    'logo_path': ?logoPath?.toTfJson(),
+    'mailto_address': ?mailtoAddress?.toTfJson(),
+    'mailto_subject': ?mailtoSubject?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
+    'source_account': ?sourceAccount?.toTfJson(),
+    'suppress_footer': ?suppressFooter?.toTfJson(),
+    'target_uri': ?targetUri?.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -249,7 +239,7 @@ final class ZeroTrustGatewaySettingsSettingsBodyScanning {
   inspectionMode;
 
   Map<String, Object?> encode() => {
-    if (inspectionMode != null) 'inspection_mode': inspectionMode!.toTfJson(),
+    'inspection_mode': ?inspectionMode?.toTfJson(),
   };
 }
 
@@ -280,10 +270,8 @@ final class ZeroTrustGatewaySettingsSettingsBrowserIsolation {
   final TfArg<bool>? urlBrowserIsolationEnabled;
 
   Map<String, Object?> encode() => {
-    if (nonIdentityEnabled != null)
-      'non_identity_enabled': nonIdentityEnabled!.toTfJson(),
-    if (urlBrowserIsolationEnabled != null)
-      'url_browser_isolation_enabled': urlBrowserIsolationEnabled!.toTfJson(),
+    'non_identity_enabled': ?nonIdentityEnabled?.toTfJson(),
+    'url_browser_isolation_enabled': ?urlBrowserIsolationEnabled?.toTfJson(),
   };
 }
 
@@ -318,10 +306,10 @@ final class ZeroTrustGatewaySettingsSettingsCustomCertificate {
   final TfArg<String>? updatedAt;
 
   Map<String, Object?> encode() => {
-    if (bindingStatus != null) 'binding_status': bindingStatus!.toTfJson(),
+    'binding_status': ?bindingStatus?.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (updatedAt != null) 'updated_at': updatedAt!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'updated_at': ?updatedAt?.toTfJson(),
   };
 }
 
@@ -333,9 +321,7 @@ final class ZeroTrustGatewaySettingsSettingsExtendedEmailMatching {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `settings.fips` block of
@@ -346,7 +332,7 @@ final class ZeroTrustGatewaySettingsSettingsFips {
 
   final TfArg<bool>? tls;
 
-  Map<String, Object?> encode() => {if (tls != null) 'tls': tls!.toTfJson()};
+  Map<String, Object?> encode() => {'tls': ?tls?.toTfJson()};
 }
 
 /// Typed helper for the `settings.host_selector` block of
@@ -357,9 +343,7 @@ final class ZeroTrustGatewaySettingsSettingsHostSelector {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `settings.inspection` block of
@@ -370,7 +354,7 @@ final class ZeroTrustGatewaySettingsSettingsInspection {
 
   final TfArg<ZeroTrustGatewaySettingsSettingsInspectionMode>? mode;
 
-  Map<String, Object?> encode() => {if (mode != null) 'mode': mode!.toTfJson()};
+  Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
@@ -391,9 +375,7 @@ final class ZeroTrustGatewaySettingsSettingsProtocolDetection {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `settings.sandbox` block of
@@ -411,8 +393,8 @@ final class ZeroTrustGatewaySettingsSettingsSandbox {
   fallbackAction;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (fallbackAction != null) 'fallback_action': fallbackAction!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'fallback_action': ?fallbackAction?.toTfJson(),
   };
 }
 
@@ -437,9 +419,7 @@ final class ZeroTrustGatewaySettingsSettingsTlsDecrypt {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_gateway_settings`.

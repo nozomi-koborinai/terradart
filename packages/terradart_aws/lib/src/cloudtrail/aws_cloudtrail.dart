@@ -99,7 +99,7 @@ final class CloudtrailAdvancedEventSelector {
   final List<CloudtrailAdvancedEventSelectorFieldSelector> fieldSelector;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     'field_selector': [for (final e in fieldSelector) e.encode()],
   };
 }
@@ -133,13 +133,13 @@ final class CloudtrailAdvancedEventSelectorFieldSelector {
   final TfArg<List<Object?>>? startsWith;
 
   Map<String, Object?> encode() => {
-    if (endsWith != null) 'ends_with': endsWith!.toTfJson(),
-    if (equals != null) 'equals': equals!.toTfJson(),
+    'ends_with': ?endsWith?.toTfJson(),
+    'equals': ?equals?.toTfJson(),
     'field': field.toTfJson(),
-    if (notEndsWith != null) 'not_ends_with': notEndsWith!.toTfJson(),
-    if (notEquals != null) 'not_equals': notEquals!.toTfJson(),
-    if (notStartsWith != null) 'not_starts_with': notStartsWith!.toTfJson(),
-    if (startsWith != null) 'starts_with': startsWith!.toTfJson(),
+    'not_ends_with': ?notEndsWith?.toTfJson(),
+    'not_equals': ?notEquals?.toTfJson(),
+    'not_starts_with': ?notStartsWith?.toTfJson(),
+    'starts_with': ?startsWith?.toTfJson(),
   };
 }
 
@@ -183,12 +183,10 @@ final class CloudtrailEventSelector {
   final List<CloudtrailEventSelectorDataResource>? dataResource;
 
   Map<String, Object?> encode() => {
-    if (excludeManagementEventSources != null)
-      'exclude_management_event_sources': excludeManagementEventSources!
-          .toTfJson(),
-    if (includeManagementEvents != null)
-      'include_management_events': includeManagementEvents!.toTfJson(),
-    if (readWriteType != null) 'read_write_type': readWriteType!.toTfJson(),
+    'exclude_management_event_sources': ?excludeManagementEventSources
+        ?.toTfJson(),
+    'include_management_events': ?includeManagementEvents?.toTfJson(),
+    'read_write_type': ?readWriteType?.toTfJson(),
     if (dataResource != null)
       'data_resource': [for (final e in dataResource!) e.encode()],
   };
@@ -285,26 +283,20 @@ final class AwsCloudtrail extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cloudWatchLogsGroupArn != null)
-             'cloud_watch_logs_group_arn': cloudWatchLogsGroupArn,
-           if (cloudWatchLogsRoleArn != null)
-             'cloud_watch_logs_role_arn': cloudWatchLogsRoleArn,
-           if (enableLogFileValidation != null)
-             'enable_log_file_validation': enableLogFileValidation,
-           if (enableLogging != null) 'enable_logging': enableLogging,
-           if (includeGlobalServiceEvents != null)
-             'include_global_service_events': includeGlobalServiceEvents,
-           if (isMultiRegionTrail != null)
-             'is_multi_region_trail': isMultiRegionTrail,
-           if (isOrganizationTrail != null)
-             'is_organization_trail': isOrganizationTrail,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'cloud_watch_logs_group_arn': ?cloudWatchLogsGroupArn,
+           'cloud_watch_logs_role_arn': ?cloudWatchLogsRoleArn,
+           'enable_log_file_validation': ?enableLogFileValidation,
+           'enable_logging': ?enableLogging,
+           'include_global_service_events': ?includeGlobalServiceEvents,
+           'is_multi_region_trail': ?isMultiRegionTrail,
+           'is_organization_trail': ?isOrganizationTrail,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            's3_bucket_name': s3BucketName.encodeAs('id'),
-           if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix,
-           if (snsTopicName != null) 'sns_topic_name': snsTopicName,
-           if (tags != null) 'tags': tags,
+           's3_key_prefix': ?s3KeyPrefix,
+           'sns_topic_name': ?snsTopicName,
+           'tags': ?tags,
            ...?selectors?.argMap,
            if (insightSelector != null)
              'insight_selector': TfArg.literal([

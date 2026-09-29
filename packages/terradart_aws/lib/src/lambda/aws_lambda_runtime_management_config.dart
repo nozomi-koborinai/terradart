@@ -38,11 +38,10 @@ final class AwsLambdaRuntimeManagementConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'function_name': functionName.encodeAs('function_name'),
-           if (qualifier != null) 'qualifier': qualifier,
-           if (region != null) 'region': region,
-           if (runtimeVersionArn != null)
-             'runtime_version_arn': runtimeVersionArn,
-           if (updateRuntimeOn != null) 'update_runtime_on': updateRuntimeOn,
+           'qualifier': ?qualifier,
+           'region': ?region,
+           'runtime_version_arn': ?runtimeVersionArn,
+           'update_runtime_on': ?updateRuntimeOn,
          },
        );
 

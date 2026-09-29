@@ -28,10 +28,10 @@ final class GoogleDnsResponsePolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'response_policy_name': responsePolicyName,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
-           if (networks != null) 'networks': networks,
-           if (gkeClusters != null) 'gke_clusters': gkeClusters,
+           'description': ?description,
+           'project': ?project,
+           'networks': ?networks,
+           'gke_clusters': ?gkeClusters,
          },
        );
 

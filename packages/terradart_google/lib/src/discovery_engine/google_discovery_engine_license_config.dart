@@ -53,9 +53,9 @@ final class DiscoveryEngineLicenseConfigEndDate {
   final TfArg<num>? year;
 
   Map<String, Object?> encode() => {
-    if (day != null) 'day': day!.toTfJson(),
-    if (month != null) 'month': month!.toTfJson(),
-    if (year != null) 'year': year!.toTfJson(),
+    'day': ?day?.toTfJson(),
+    'month': ?month?.toTfJson(),
+    'year': ?year?.toTfJson(),
   };
 }
 
@@ -76,9 +76,9 @@ final class DiscoveryEngineLicenseConfigStartDate {
   final TfArg<num>? year;
 
   Map<String, Object?> encode() => {
-    if (day != null) 'day': day!.toTfJson(),
-    if (month != null) 'month': month!.toTfJson(),
-    if (year != null) 'year': year!.toTfJson(),
+    'day': ?day?.toTfJson(),
+    'month': ?month?.toTfJson(),
+    'year': ?year?.toTfJson(),
   };
 }
 
@@ -133,9 +133,9 @@ final class GoogleDiscoveryEngineLicenseConfig extends Resource {
            'subscription_term': subscriptionTerm,
            'start_date': TfArg.literal(startDate.encode()),
            if (endDate != null) 'end_date': TfArg.literal(endDate.encode()),
-           if (autoRenew != null) 'auto_renew': autoRenew,
-           if (freeTrial != null) 'free_trial': freeTrial,
-           if (project != null) 'project': project,
+           'auto_renew': ?autoRenew,
+           'free_trial': ?freeTrial,
+           'project': ?project,
          },
        );
 

@@ -274,38 +274,30 @@ final class GoogleComputeSubnetwork extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'network': network.encodeAs('id'),
-           if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange,
-           if (purpose != null) 'purpose': purpose,
-           if (role != null) 'role': role,
+           'ip_cidr_range': ?ipCidrRange,
+           'purpose': ?purpose,
+           'role': ?role,
            if (secondaryIpRange != null)
              'secondary_ip_range': TfArg.literal(
                secondaryIpRange.map((s) => s.toArgMap()).toList(),
              ),
-           if (privateIpGoogleAccess != null)
-             'private_ip_google_access': privateIpGoogleAccess,
-           if (privateIpv6GoogleAccess != null)
-             'private_ipv6_google_access': privateIpv6GoogleAccess,
+           'private_ip_google_access': ?privateIpGoogleAccess,
+           'private_ipv6_google_access': ?privateIpv6GoogleAccess,
            if (logConfig != null)
              'log_config': TfArg.literal([logConfig.toArgMap()]),
-           if (stackType != null) 'stack_type': stackType,
-           if (ipv6AccessType != null) 'ipv6_access_type': ipv6AccessType,
-           if (externalIpv6Prefix != null)
-             'external_ipv6_prefix': externalIpv6Prefix,
-           if (internalIpv6Prefix != null)
-             'internal_ipv6_prefix': internalIpv6Prefix,
-           if (ipCollection != null) 'ip_collection': ipCollection,
-           if (reservedInternalRange != null)
-             'reserved_internal_range': reservedInternalRange,
-           if (resolveSubnetMask != null)
-             'resolve_subnet_mask': resolveSubnetMask,
-           if (sendSecondaryIpRangeIfEmpty != null)
-             'send_secondary_ip_range_if_empty': sendSecondaryIpRangeIfEmpty,
-           if (allowSubnetCidrRoutesOverlap != null)
-             'allow_subnet_cidr_routes_overlap': allowSubnetCidrRoutesOverlap,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'stack_type': ?stackType,
+           'ipv6_access_type': ?ipv6AccessType,
+           'external_ipv6_prefix': ?externalIpv6Prefix,
+           'internal_ipv6_prefix': ?internalIpv6Prefix,
+           'ip_collection': ?ipCollection,
+           'reserved_internal_range': ?reservedInternalRange,
+           'resolve_subnet_mask': ?resolveSubnetMask,
+           'send_secondary_ip_range_if_empty': ?sendSecondaryIpRangeIfEmpty,
+           'allow_subnet_cidr_routes_overlap': ?allowSubnetCidrRoutesOverlap,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

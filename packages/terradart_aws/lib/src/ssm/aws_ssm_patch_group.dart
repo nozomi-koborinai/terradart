@@ -24,7 +24,7 @@ final class AwsSsmPatchGroup extends Resource {
          argMap: {
            'baseline_id': baselineId,
            'patch_group': patchGroup,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

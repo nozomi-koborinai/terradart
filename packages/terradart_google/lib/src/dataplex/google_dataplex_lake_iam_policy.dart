@@ -30,8 +30,8 @@ final class GoogleDataplexLakeIamPolicy extends Resource {
          argMap: {
            'lake': lake,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

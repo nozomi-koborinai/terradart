@@ -28,11 +28,11 @@ final class AppwriteTablesdbTable extends Resource {
          terraformType: tfType,
          argMap: {
            'database_id': databaseId,
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'name': name,
-           if (permissions != null) 'permissions': permissions,
-           if (projectId != null) 'project_id': projectId,
-           if (rowSecurity != null) 'row_security': rowSecurity,
+           'permissions': ?permissions,
+           'project_id': ?projectId,
+           'row_security': ?rowSecurity,
          },
        );
 

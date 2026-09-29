@@ -21,11 +21,7 @@ final class GoogleComputeProjectMetadataItem extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'key': key,
-           'value': value,
-           if (project != null) 'project': project,
-         },
+         argMap: {'key': key, 'value': value, 'project': ?project},
        );
 
   @override

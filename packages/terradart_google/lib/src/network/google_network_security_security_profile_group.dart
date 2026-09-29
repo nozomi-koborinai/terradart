@@ -47,19 +47,15 @@ final class GoogleNetworkSecuritySecurityProfileGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
-           if (parent != null) 'parent': parent,
-           if (description != null) 'description': description,
-           if (threatPreventionProfile != null)
-             'threat_prevention_profile': threatPreventionProfile,
-           if (urlFilteringProfile != null)
-             'url_filtering_profile': urlFilteringProfile,
-           if (customInterceptProfile != null)
-             'custom_intercept_profile': customInterceptProfile,
-           if (customMirroringProfile != null)
-             'custom_mirroring_profile': customMirroringProfile,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'location': ?location,
+           'parent': ?parent,
+           'description': ?description,
+           'threat_prevention_profile': ?threatPreventionProfile,
+           'url_filtering_profile': ?urlFilteringProfile,
+           'custom_intercept_profile': ?customInterceptProfile,
+           'custom_mirroring_profile': ?customMirroringProfile,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

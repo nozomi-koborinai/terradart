@@ -30,7 +30,7 @@ final class GoogleBiglakeDatabase extends Resource {
            'catalog': catalog,
            'type': type,
            'hive_options': hiveOptions,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

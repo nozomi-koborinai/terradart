@@ -41,11 +41,9 @@ final class EmrManagedScalingPolicyComputeLimits {
 
   Map<String, Object?> encode() => {
     'maximum_capacity_units': maximumCapacityUnits.toTfJson(),
-    if (maximumCoreCapacityUnits != null)
-      'maximum_core_capacity_units': maximumCoreCapacityUnits!.toTfJson(),
-    if (maximumOndemandCapacityUnits != null)
-      'maximum_ondemand_capacity_units': maximumOndemandCapacityUnits!
-          .toTfJson(),
+    'maximum_core_capacity_units': ?maximumCoreCapacityUnits?.toTfJson(),
+    'maximum_ondemand_capacity_units': ?maximumOndemandCapacityUnits
+        ?.toTfJson(),
     'minimum_capacity_units': minimumCapacityUnits.toTfJson(),
     'unit_type': unitType.toTfJson(),
   };
@@ -81,10 +79,9 @@ final class AwsEmrManagedScalingPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_id': clusterId,
-           if (region != null) 'region': region,
-           if (scalingStrategy != null) 'scaling_strategy': scalingStrategy,
-           if (utilizationPerformanceIndex != null)
-             'utilization_performance_index': utilizationPerformanceIndex,
+           'region': ?region,
+           'scaling_strategy': ?scalingStrategy,
+           'utilization_performance_index': ?utilizationPerformanceIndex,
            'compute_limits': TfArg.literal([
              for (final e in computeLimits) e.encode(),
            ]),

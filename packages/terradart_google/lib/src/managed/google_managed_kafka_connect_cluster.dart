@@ -70,9 +70,8 @@ final class ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs {
   final TfArg<String> primarySubnet;
 
   Map<String, Object?> encode() => {
-    if (additionalSubnets != null)
-      'additional_subnets': additionalSubnets!.toTfJson(),
-    if (dnsDomainNames != null) 'dns_domain_names': dnsDomainNames!.toTfJson(),
+    'additional_subnets': ?additionalSubnets?.toTfJson(),
+    'dns_domain_names': ?dnsDomainNames?.toTfJson(),
     'primary_subnet': primarySubnet.toTfJson(),
   };
 }
@@ -138,9 +137,9 @@ final class GoogleManagedKafkaConnectCluster extends Resource {
            'location': location,
            'capacity_config': TfArg.literal(capacityConfig.encode()),
            'gcp_config': TfArg.literal(gcpConfig.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

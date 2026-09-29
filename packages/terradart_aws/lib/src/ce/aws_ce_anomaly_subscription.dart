@@ -74,11 +74,11 @@ final class CeAnomalySubscriptionThresholdExpression {
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (not != null) 'not': not!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
-    if (tags != null) 'tags': tags!.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -99,9 +99,9 @@ final class CeAnomalySubscriptionThresholdExpressionAnd {
   final CeAnomalySubscriptionThresholdExpressionAndTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -122,9 +122,9 @@ final class CeAnomalySubscriptionThresholdExpressionAndCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -145,9 +145,9 @@ final class CeAnomalySubscriptionThresholdExpressionAndDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -168,9 +168,9 @@ final class CeAnomalySubscriptionThresholdExpressionAndTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -194,10 +194,10 @@ final class CeAnomalySubscriptionThresholdExpressionCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     if (matchOptions != null)
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -240,10 +240,10 @@ final class CeAnomalySubscriptionThresholdExpressionDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     if (matchOptions != null)
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -329,9 +329,9 @@ final class CeAnomalySubscriptionThresholdExpressionNot {
   final CeAnomalySubscriptionThresholdExpressionNotTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -352,9 +352,9 @@ final class CeAnomalySubscriptionThresholdExpressionNotCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -375,9 +375,9 @@ final class CeAnomalySubscriptionThresholdExpressionNotDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -398,9 +398,9 @@ final class CeAnomalySubscriptionThresholdExpressionNotTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -421,9 +421,9 @@ final class CeAnomalySubscriptionThresholdExpressionOr {
   final CeAnomalySubscriptionThresholdExpressionOrTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -444,9 +444,9 @@ final class CeAnomalySubscriptionThresholdExpressionOrCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -467,9 +467,9 @@ final class CeAnomalySubscriptionThresholdExpressionOrDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -490,9 +490,9 @@ final class CeAnomalySubscriptionThresholdExpressionOrTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -514,10 +514,10 @@ final class CeAnomalySubscriptionThresholdExpressionTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     if (matchOptions != null)
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -560,11 +560,11 @@ final class AwsCeAnomalySubscription extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'frequency': frequency,
            'monitor_arn_list': monitorArnList,
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'subscriber': TfArg.literal([
              for (final e in subscriber) e.encode(),
            ]),

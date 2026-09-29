@@ -35,7 +35,7 @@ final class GoogleApigeeInstanceAttachment extends Resource {
          argMap: {
            'instance_id': instanceId,
            'environment': environment,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

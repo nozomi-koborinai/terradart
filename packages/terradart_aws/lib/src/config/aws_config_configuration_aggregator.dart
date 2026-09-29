@@ -109,8 +109,8 @@ final class ConfigConfigurationAggregatorAccountAggregationSource {
 
   Map<String, Object?> encode() => {
     'account_ids': accountIds.toTfJson(),
-    if (allRegions != null) 'all_regions': allRegions!.toTfJson(),
-    if (regions != null) 'regions': regions!.toTfJson(),
+    'all_regions': ?allRegions?.toTfJson(),
+    'regions': ?regions?.toTfJson(),
   };
 }
 
@@ -131,8 +131,8 @@ final class ConfigConfigurationAggregatorOrganizationAggregationSource {
   final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    if (allRegions != null) 'all_regions': allRegions!.toTfJson(),
-    if (regions != null) 'regions': regions!.toTfJson(),
+    'all_regions': ?allRegions?.toTfJson(),
+    'regions': ?regions?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
@@ -155,8 +155,8 @@ final class AwsConfigConfigurationAggregator extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            ...?aggregationSource?.argMap,
          },
        );

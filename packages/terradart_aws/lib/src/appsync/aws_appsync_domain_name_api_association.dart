@@ -24,7 +24,7 @@ final class AwsAppsyncDomainNameApiAssociation extends Resource {
          argMap: {
            'api_id': apiId,
            'domain_name': domainName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

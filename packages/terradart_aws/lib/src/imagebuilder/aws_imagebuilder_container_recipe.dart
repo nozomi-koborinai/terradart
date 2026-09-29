@@ -157,7 +157,7 @@ final class ImagebuilderContainerRecipeInstanceConfiguration {
   blockDeviceMapping;
 
   Map<String, Object?> encode() => {
-    if (image != null) 'image': image!.toTfJson(),
+    'image': ?image?.toTfJson(),
     if (blockDeviceMapping != null)
       'block_device_mapping': [for (final e in blockDeviceMapping!) e.encode()],
   };
@@ -184,10 +184,10 @@ final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMapping {
   ebs;
 
   Map<String, Object?> encode() => {
-    if (deviceName != null) 'device_name': deviceName!.toTfJson(),
-    if (noDevice != null) 'no_device': noDevice!.toTfJson(),
-    if (virtualName != null) 'virtual_name': virtualName!.toTfJson(),
-    if (ebs != null) 'ebs': ebs!.encode(),
+    'device_name': ?deviceName?.toTfJson(),
+    'no_device': ?noDevice?.toTfJson(),
+    'virtual_name': ?virtualName?.toTfJson(),
+    'ebs': ?ebs?.encode(),
   };
 }
 
@@ -226,15 +226,14 @@ final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEb
   volumeType;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'snapshot_id': ?snapshotId?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -313,16 +312,16 @@ final class AwsImagebuilderContainerRecipe extends Resource {
          terraformType: tfType,
          argMap: {
            'container_type': containerType,
-           if (description != null) 'description': description,
+           'description': ?description,
            ...dockerfileTemplate.argMap,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
            'parent_image': parentImage,
-           if (platformOverride != null) 'platform_override': platformOverride,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'platform_override': ?platformOverride,
+           'region': ?region,
+           'tags': ?tags,
            'version': version,
-           if (workingDirectory != null) 'working_directory': workingDirectory,
+           'working_directory': ?workingDirectory,
            'component': TfArg.literal([for (final e in component) e.encode()]),
            if (instanceConfiguration != null)
              'instance_configuration': TfArg.literal(

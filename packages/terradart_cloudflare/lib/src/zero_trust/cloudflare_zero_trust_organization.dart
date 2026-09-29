@@ -21,8 +21,8 @@ final class ZeroTrustOrganizationCustomPages {
   final TfArg<String>? identityDenied;
 
   Map<String, Object?> encode() => {
-    if (forbidden != null) 'forbidden': forbidden!.toTfJson(),
-    if (identityDenied != null) 'identity_denied': identityDenied!.toTfJson(),
+    'forbidden': ?forbidden?.toTfJson(),
+    'identity_denied': ?identityDenied?.toTfJson(),
   };
 }
 
@@ -49,12 +49,11 @@ final class ZeroTrustOrganizationLoginDesign {
   final TfArg<String>? textColor;
 
   Map<String, Object?> encode() => {
-    if (backgroundColor != null)
-      'background_color': backgroundColor!.toTfJson(),
-    if (footerText != null) 'footer_text': footerText!.toTfJson(),
-    if (headerText != null) 'header_text': headerText!.toTfJson(),
-    if (logoPath != null) 'logo_path': logoPath!.toTfJson(),
-    if (textColor != null) 'text_color': textColor!.toTfJson(),
+    'background_color': ?backgroundColor?.toTfJson(),
+    'footer_text': ?footerText?.toTfJson(),
+    'header_text': ?headerText?.toTfJson(),
+    'logo_path': ?logoPath?.toTfJson(),
+    'text_color': ?textColor?.toTfJson(),
   };
 }
 
@@ -83,12 +82,9 @@ final class ZeroTrustOrganizationMfaConfig {
       'allowed_authenticators': [
         for (final e in allowedAuthenticators!) e.toTfJson(),
       ],
-    if (amrMatchingSessionDuration != null)
-      'amr_matching_session_duration': amrMatchingSessionDuration!.toTfJson(),
-    if (requiredAaguids != null)
-      'required_aaguids': requiredAaguids!.toTfJson(),
-    if (sessionDuration != null)
-      'session_duration': sessionDuration!.toTfJson(),
+    'amr_matching_session_duration': ?amrMatchingSessionDuration?.toTfJson(),
+    'required_aaguids': ?requiredAaguids?.toTfJson(),
+    'session_duration': ?sessionDuration?.toTfJson(),
   };
 }
 
@@ -134,13 +130,12 @@ final class ZeroTrustOrganizationMfaSshPivKeyRequirements {
   touchPolicy;
 
   Map<String, Object?> encode() => {
-    if (pinPolicy != null) 'pin_policy': pinPolicy!.toTfJson(),
-    if (requireFipsDevice != null)
-      'require_fips_device': requireFipsDevice!.toTfJson(),
-    if (sshKeySize != null) 'ssh_key_size': sshKeySize!.toTfJson(),
+    'pin_policy': ?pinPolicy?.toTfJson(),
+    'require_fips_device': ?requireFipsDevice?.toTfJson(),
+    'ssh_key_size': ?sshKeySize?.toTfJson(),
     if (sshKeyType != null)
       'ssh_key_type': [for (final e in sshKeyType!) e.toTfJson()],
-    if (touchPolicy != null) 'touch_policy': touchPolicy!.toTfJson(),
+    'touch_policy': ?touchPolicy?.toTfJson(),
   };
 }
 
@@ -260,34 +255,24 @@ final class CloudflareZeroTrustOrganization extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
-           if (allowAuthenticateViaWarp != null)
-             'allow_authenticate_via_warp': allowAuthenticateViaWarp,
-           if (authDomain != null) 'auth_domain': authDomain,
-           if (autoRedirectToIdentity != null)
-             'auto_redirect_to_identity': autoRedirectToIdentity,
-           if (denyUnmatchedRequests != null)
-             'deny_unmatched_requests': denyUnmatchedRequests,
-           if (denyUnmatchedRequestsExemptedZoneNames != null)
-             'deny_unmatched_requests_exempted_zone_names':
-                 denyUnmatchedRequestsExemptedZoneNames,
-           if (isUiReadOnly != null) 'is_ui_read_only': isUiReadOnly,
-           if (mfaConfigurationAllowed != null)
-             'mfa_configuration_allowed': mfaConfigurationAllowed,
-           if (mfaRequiredForAllApps != null)
-             'mfa_required_for_all_apps': mfaRequiredForAllApps,
-           if (name != null) 'name': name,
-           if (sessionDuration != null) 'session_duration': sessionDuration,
-           if (uiReadOnlyToggleReason != null)
-             'ui_read_only_toggle_reason': uiReadOnlyToggleReason,
-           if (userSeatExpirationInactiveTime != null)
-             'user_seat_expiration_inactive_time':
-                 userSeatExpirationInactiveTime,
-           if (warpAuthNonBrowser401 != null)
-             'warp_auth_non_browser_401': warpAuthNonBrowser401,
-           if (warpAuthSessionDuration != null)
-             'warp_auth_session_duration': warpAuthSessionDuration,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'account_id': ?accountId?.encodeAs('id'),
+           'allow_authenticate_via_warp': ?allowAuthenticateViaWarp,
+           'auth_domain': ?authDomain,
+           'auto_redirect_to_identity': ?autoRedirectToIdentity,
+           'deny_unmatched_requests': ?denyUnmatchedRequests,
+           'deny_unmatched_requests_exempted_zone_names':
+               ?denyUnmatchedRequestsExemptedZoneNames,
+           'is_ui_read_only': ?isUiReadOnly,
+           'mfa_configuration_allowed': ?mfaConfigurationAllowed,
+           'mfa_required_for_all_apps': ?mfaRequiredForAllApps,
+           'name': ?name,
+           'session_duration': ?sessionDuration,
+           'ui_read_only_toggle_reason': ?uiReadOnlyToggleReason,
+           'user_seat_expiration_inactive_time':
+               ?userSeatExpirationInactiveTime,
+           'warp_auth_non_browser_401': ?warpAuthNonBrowser401,
+           'warp_auth_session_duration': ?warpAuthSessionDuration,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (customPages != null)
              'custom_pages': TfArg.literal(customPages.encode()),
            if (loginDesign != null)

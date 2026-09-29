@@ -21,11 +21,7 @@ final class AwsRoute53profilesProfile extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'name': name, 'region': ?region, 'tags': ?tags},
        );
 
   @override

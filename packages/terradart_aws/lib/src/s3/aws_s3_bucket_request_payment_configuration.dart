@@ -36,10 +36,9 @@ final class AwsS3BucketRequestPaymentConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
+           'expected_bucket_owner': ?expectedBucketOwner,
            'payer': payer,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

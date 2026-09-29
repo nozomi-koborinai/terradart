@@ -69,17 +69,15 @@ final class ContainerAwsNodePoolConfig {
 
   Map<String, Object?> encode() => {
     'iam_instance_profile': iamInstanceProfile.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (autoscalingMetricsCollection != null)
-      'autoscaling_metrics_collection': autoscalingMetricsCollection!.encode(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'autoscaling_metrics_collection': ?autoscalingMetricsCollection?.encode(),
     'config_encryption': configEncryption.encode(),
-    if (proxyConfig != null) 'proxy_config': proxyConfig!.encode(),
-    if (rootVolume != null) 'root_volume': rootVolume!.encode(),
-    if (sshConfig != null) 'ssh_config': sshConfig!.encode(),
+    'proxy_config': ?proxyConfig?.encode(),
+    'root_volume': ?rootVolume?.encode(),
+    'ssh_config': ?sshConfig?.encode(),
     if (taints != null) 'taints': [for (final e in taints!) e.encode()],
   };
 }
@@ -99,7 +97,7 @@ final class ContainerAwsNodePoolConfigAutoscalingMetricsCollection {
 
   Map<String, Object?> encode() => {
     'granularity': granularity.toTfJson(),
-    if (metrics != null) 'metrics': metrics!.toTfJson(),
+    'metrics': ?metrics?.toTfJson(),
   };
 }
 
@@ -156,11 +154,11 @@ final class ContainerAwsNodePoolConfigRootVolume {
   final TfArg<ContainerAwsNodePoolConfigRootVolumeVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
-    if (sizeGib != null) 'size_gib': sizeGib!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.toTfJson(),
+    'size_gib': ?sizeGib?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -241,12 +239,10 @@ final class ContainerAwsNodePoolKubeletConfig {
   final TfArg<num>? podPidsLimit;
 
   Map<String, Object?> encode() => {
-    if (cpuCfsQuota != null) 'cpu_cfs_quota': cpuCfsQuota!.toTfJson(),
-    if (cpuCfsQuotaPeriod != null)
-      'cpu_cfs_quota_period': cpuCfsQuotaPeriod!.toTfJson(),
-    if (cpuManagerPolicy != null)
-      'cpu_manager_policy': cpuManagerPolicy!.toTfJson(),
-    if (podPidsLimit != null) 'pod_pids_limit': podPidsLimit!.toTfJson(),
+    'cpu_cfs_quota': ?cpuCfsQuota?.toTfJson(),
+    'cpu_cfs_quota_period': ?cpuCfsQuotaPeriod?.toTfJson(),
+    'cpu_manager_policy': ?cpuManagerPolicy?.toTfJson(),
+    'pod_pids_limit': ?podPidsLimit?.toTfJson(),
   };
 }
 
@@ -258,9 +254,7 @@ final class ContainerAwsNodePoolManagement {
 
   final TfArg<bool>? autoRepair;
 
-  Map<String, Object?> encode() => {
-    if (autoRepair != null) 'auto_repair': autoRepair!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'auto_repair': ?autoRepair?.toTfJson()};
 }
 
 /// Typed helper for the `max_pods_constraint` block of
@@ -284,9 +278,7 @@ final class ContainerAwsNodePoolUpdateSettings {
 
   final ContainerAwsNodePoolUpdateSettingsSurgeSettings? surgeSettings;
 
-  Map<String, Object?> encode() => {
-    if (surgeSettings != null) 'surge_settings': surgeSettings!.encode(),
-  };
+  Map<String, Object?> encode() => {'surge_settings': ?surgeSettings?.encode()};
 }
 
 /// Typed helper for the `update_settings.surge_settings` block of
@@ -303,8 +295,8 @@ final class ContainerAwsNodePoolUpdateSettingsSurgeSettings {
   final TfArg<num>? maxUnavailable;
 
   Map<String, Object?> encode() => {
-    if (maxSurge != null) 'max_surge': maxSurge!.toTfJson(),
-    if (maxUnavailable != null) 'max_unavailable': maxUnavailable!.toTfJson(),
+    'max_surge': ?maxSurge?.toTfJson(),
+    'max_unavailable': ?maxUnavailable?.toTfJson(),
   };
 }
 
@@ -356,8 +348,8 @@ final class GoogleContainerAwsNodePool extends Resource {
              'kubelet_config': TfArg.literal(kubeletConfig.encode()),
            if (updateSettings != null)
              'update_settings': TfArg.literal(updateSettings.encode()),
-           if (annotations != null) 'annotations': annotations,
-           if (project != null) 'project': project,
+           'annotations': ?annotations,
+           'project': ?project,
          },
        );
 

@@ -26,7 +26,7 @@ final class AwsS3tablesTablePolicy extends Resource {
          argMap: {
            'name': name,
            'namespace': namespace,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_policy': resourcePolicy,
            'table_bucket_arn': tableBucketArn,
          },

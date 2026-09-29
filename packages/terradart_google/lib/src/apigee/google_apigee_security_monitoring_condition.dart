@@ -70,7 +70,7 @@ final class GoogleApigeeSecurityMonitoringCondition extends Resource {
            'profile': profile,
            'scope': scope,
            'include_all_resources': TfArg.literal(includeAllResources.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

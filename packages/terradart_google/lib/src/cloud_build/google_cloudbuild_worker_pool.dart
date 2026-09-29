@@ -186,8 +186,8 @@ final class GoogleCloudbuildWorkerPool extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (annotations != null) 'annotations': annotations,
+           'display_name': ?displayName,
+           'annotations': ?annotations,
            if (workerConfig != null)
              'worker_config': TfArg.literal([workerConfig.toArgMap()]),
            if (networkConfig != null)
@@ -196,7 +196,7 @@ final class GoogleCloudbuildWorkerPool extends Resource {
              'private_service_connect': TfArg.literal([
                privateServiceConnect.toArgMap(),
              ]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

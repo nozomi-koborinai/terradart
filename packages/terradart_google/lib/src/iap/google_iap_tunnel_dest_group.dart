@@ -50,11 +50,11 @@ final class GoogleIapTunnelDestGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'group_name': groupName,
-           if (region != null) 'region': region,
-           if (cidrs != null) 'cidrs': cidrs,
-           if (fqdns != null) 'fqdns': fqdns,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'cidrs': ?cidrs,
+           'fqdns': ?fqdns,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

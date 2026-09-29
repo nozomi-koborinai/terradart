@@ -37,9 +37,9 @@ final class GoogleBigqueryDatapolicyv2DataPolicyIamBinding extends Resource {
            'data_policy_id': dataPolicyId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

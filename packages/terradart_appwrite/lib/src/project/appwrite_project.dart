@@ -33,8 +33,8 @@ final class AppwriteProject extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (organizationId != null) 'organization_id': organizationId,
-           if (region != null) 'region': region,
+           'organization_id': ?organizationId,
+           'region': ?region,
          },
        );
 

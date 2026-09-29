@@ -28,10 +28,10 @@ final class DataSecretsStoreSecretFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -78,7 +78,7 @@ final class DataCloudflareSecretsStoreSecret extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (secretId != null) 'secret_id': secretId,
+           'secret_id': ?secretId,
            'store_id': storeId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

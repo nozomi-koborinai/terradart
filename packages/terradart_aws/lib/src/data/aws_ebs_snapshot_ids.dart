@@ -38,10 +38,9 @@ final class DataAwsEbsSnapshotIds extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (owners != null) 'owners': owners,
-           if (region != null) 'region': region,
-           if (restorableByUserIds != null)
-             'restorable_by_user_ids': restorableByUserIds,
+           'owners': ?owners,
+           'region': ?region,
+           'restorable_by_user_ids': ?restorableByUserIds,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

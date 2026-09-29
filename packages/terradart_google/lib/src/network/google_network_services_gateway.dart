@@ -160,25 +160,23 @@ final class GoogleNetworkServicesGateway extends Resource {
          argMap: {
            'name': name,
            'type': type,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (network != null) 'network': network.encodeAs('id'),
-           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
+           'location': ?location,
+           'description': ?description,
+           'network': ?network?.encodeAs('id'),
+           'subnetwork': ?subnetwork?.encodeAs('id'),
            ...?ports?.argMap,
-           if (certificateUrls != null) 'certificate_urls': certificateUrls,
-           if (gatewaySecurityPolicy != null)
-             'gateway_security_policy': gatewaySecurityPolicy,
-           if (serverTlsPolicy != null) 'server_tls_policy': serverTlsPolicy,
-           if (scope != null) 'scope': scope,
-           if (routingMode != null) 'routing_mode': routingMode,
-           if (ipVersion != null) 'ip_version': ipVersion,
-           if (envoyHeaders != null) 'envoy_headers': envoyHeaders,
-           if (labels != null) 'labels': labels,
-           if (deleteSwgAutogenRouterOnDestroy != null)
-             'delete_swg_autogen_router_on_destroy':
-                 deleteSwgAutogenRouterOnDestroy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'certificate_urls': ?certificateUrls,
+           'gateway_security_policy': ?gatewaySecurityPolicy,
+           'server_tls_policy': ?serverTlsPolicy,
+           'scope': ?scope,
+           'routing_mode': ?routingMode,
+           'ip_version': ?ipVersion,
+           'envoy_headers': ?envoyHeaders,
+           'labels': ?labels,
+           'delete_swg_autogen_router_on_destroy':
+               ?deleteSwgAutogenRouterOnDestroy,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

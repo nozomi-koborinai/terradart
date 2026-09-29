@@ -27,10 +27,10 @@ final class GoogleBiglakeTable extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (database != null) 'database': database,
-           if (type != null) 'type': type,
-           if (hiveOptions != null) 'hive_options': hiveOptions,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'database': ?database,
+           'type': ?type,
+           'hive_options': ?hiveOptions,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -70,10 +70,10 @@ final class GoogleIdentityPlatformTenantOauthIdpConfig extends Resource {
            'display_name': displayName,
            'issuer': issuer,
            'client_id': clientId,
-           if (enabled != null) 'enabled': enabled,
-           if (clientSecret != null) 'client_secret': clientSecret,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'enabled': ?enabled,
+           'client_secret': ?clientSecret,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

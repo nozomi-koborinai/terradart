@@ -19,9 +19,8 @@ final class DataAwsOdbDbSystemShapes extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZoneId != null)
-             'availability_zone_id': availabilityZoneId,
-           if (region != null) 'region': region,
+           'availability_zone_id': ?availabilityZoneId,
+           'region': ?region,
          },
        );
 

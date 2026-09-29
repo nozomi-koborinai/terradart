@@ -26,7 +26,7 @@ final class DataGoogleBackupDrBackupVault extends Data {
          argMap: {
            'backup_vault_id': backupVaultId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

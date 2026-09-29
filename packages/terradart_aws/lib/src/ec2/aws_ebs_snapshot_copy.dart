@@ -32,19 +32,17 @@ final class AwsEbsSnapshotCopy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (completionDurationMinutes != null)
-             'completion_duration_minutes': completionDurationMinutes,
-           if (description != null) 'description': description,
-           if (encrypted != null) 'encrypted': encrypted,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (permanentRestore != null) 'permanent_restore': permanentRestore,
-           if (region != null) 'region': region,
+           'completion_duration_minutes': ?completionDurationMinutes,
+           'description': ?description,
+           'encrypted': ?encrypted,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'permanent_restore': ?permanentRestore,
+           'region': ?region,
            'source_region': sourceRegion,
            'source_snapshot_id': sourceSnapshotId,
-           if (storageTier != null) 'storage_tier': storageTier,
-           if (tags != null) 'tags': tags,
-           if (temporaryRestoreDays != null)
-             'temporary_restore_days': temporaryRestoreDays,
+           'storage_tier': ?storageTier,
+           'tags': ?tags,
+           'temporary_restore_days': ?temporaryRestoreDays,
          },
        );
 

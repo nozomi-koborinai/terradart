@@ -139,35 +139,28 @@ final class AwsRoute53HealthCheck extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (childHealthThreshold != null)
-             'child_health_threshold': childHealthThreshold,
-           if (childHealthchecks != null)
-             'child_healthchecks': childHealthchecks,
-           if (cloudwatchAlarmName != null)
-             'cloudwatch_alarm_name': cloudwatchAlarmName,
-           if (cloudwatchAlarmRegion != null)
-             'cloudwatch_alarm_region': cloudwatchAlarmRegion,
-           if (disabled != null) 'disabled': disabled,
-           if (enableSni != null) 'enable_sni': enableSni,
-           if (failureThreshold != null) 'failure_threshold': failureThreshold,
-           if (fqdn != null) 'fqdn': fqdn,
-           if (insufficientDataHealthStatus != null)
-             'insufficient_data_health_status': insufficientDataHealthStatus,
-           if (invertHealthcheck != null)
-             'invert_healthcheck': invertHealthcheck,
-           if (ipAddress != null) 'ip_address': ipAddress,
-           if (measureLatency != null) 'measure_latency': measureLatency,
-           if (port != null) 'port': port,
-           if (referenceName != null) 'reference_name': referenceName,
+           'child_health_threshold': ?childHealthThreshold,
+           'child_healthchecks': ?childHealthchecks,
+           'cloudwatch_alarm_name': ?cloudwatchAlarmName,
+           'cloudwatch_alarm_region': ?cloudwatchAlarmRegion,
+           'disabled': ?disabled,
+           'enable_sni': ?enableSni,
+           'failure_threshold': ?failureThreshold,
+           'fqdn': ?fqdn,
+           'insufficient_data_health_status': ?insufficientDataHealthStatus,
+           'invert_healthcheck': ?invertHealthcheck,
+           'ip_address': ?ipAddress,
+           'measure_latency': ?measureLatency,
+           'port': ?port,
+           'reference_name': ?referenceName,
            if (regions != null)
              'regions': TfArg.literal([for (final e in regions) e.toTfJson()]),
-           if (requestInterval != null) 'request_interval': requestInterval,
-           if (resourcePath != null) 'resource_path': resourcePath,
-           if (routingControlArn != null)
-             'routing_control_arn': routingControlArn,
-           if (searchString != null) 'search_string': searchString,
-           if (tags != null) 'tags': tags,
-           if (triggers != null) 'triggers': triggers,
+           'request_interval': ?requestInterval,
+           'resource_path': ?resourcePath,
+           'routing_control_arn': ?routingControlArn,
+           'search_string': ?searchString,
+           'tags': ?tags,
+           'triggers': ?triggers,
            'type': type,
          },
        );

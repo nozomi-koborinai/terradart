@@ -29,8 +29,8 @@ final class DataGoogleDataplexAssetIamPolicy extends Data {
            'asset': asset,
            'dataplex_zone': dataplexZone,
            'lake': lake,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

@@ -31,9 +31,9 @@ final class CloudflareZeroTrustAccessShortLivedCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
+           'account_id': ?accountId?.encodeAs('id'),
            'app_id': appId,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

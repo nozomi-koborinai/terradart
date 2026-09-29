@@ -19,7 +19,7 @@ final class DataAwsSesDomainIdentity extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'domain': domain, if (region != null) 'region': region},
+         argMap: {'domain': domain, 'region': ?region},
        );
 
   @override

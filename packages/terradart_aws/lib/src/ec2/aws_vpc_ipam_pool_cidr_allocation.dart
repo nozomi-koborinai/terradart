@@ -87,11 +87,11 @@ final class AwsVpcIpamPoolCidrAllocation extends Resource {
          terraformType: tfType,
          argMap: {
            ...?cidr?.argMap,
-           if (description != null) 'description': description,
-           if (disallowedCidrs != null) 'disallowed_cidrs': disallowedCidrs,
+           'description': ?description,
+           'disallowed_cidrs': ?disallowedCidrs,
            'ipam_pool_id': ipamPoolId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

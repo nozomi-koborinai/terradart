@@ -32,7 +32,7 @@ final class GoogleHealthcareFhirStoreIamBinding extends Resource {
            'fhir_store_id': fhirStoreId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

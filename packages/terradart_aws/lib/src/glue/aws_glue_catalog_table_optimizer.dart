@@ -106,10 +106,9 @@ final class GlueCatalogTableOptimizerConfigurationCompactionConfigurationIceberg
   strategy;
 
   Map<String, Object?> encode() => {
-    if (deleteFileThreshold != null)
-      'delete_file_threshold': deleteFileThreshold!.toTfJson(),
-    if (minInputFiles != null) 'min_input_files': minInputFiles!.toTfJson(),
-    if (strategy != null) 'strategy': strategy!.toTfJson(),
+    'delete_file_threshold': ?deleteFileThreshold?.toTfJson(),
+    'min_input_files': ?minInputFiles?.toTfJson(),
+    'strategy': ?strategy?.toTfJson(),
   };
 }
 
@@ -165,11 +164,10 @@ final class GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfiguratio
   final TfArg<num>? runRateInHours;
 
   Map<String, Object?> encode() => {
-    if (location != null) 'location': location!.toTfJson(),
-    if (orphanFileRetentionPeriodInDays != null)
-      'orphan_file_retention_period_in_days': orphanFileRetentionPeriodInDays!
-          .toTfJson(),
-    if (runRateInHours != null) 'run_rate_in_hours': runRateInHours!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'orphan_file_retention_period_in_days': ?orphanFileRetentionPeriodInDays
+        ?.toTfJson(),
+    'run_rate_in_hours': ?runRateInHours?.toTfJson(),
   };
 }
 
@@ -214,14 +212,11 @@ final class GlueCatalogTableOptimizerConfigurationRetentionConfigurationIcebergC
   final TfArg<num>? snapshotRetentionPeriodInDays;
 
   Map<String, Object?> encode() => {
-    if (cleanExpiredFiles != null)
-      'clean_expired_files': cleanExpiredFiles!.toTfJson(),
-    if (numberOfSnapshotsToRetain != null)
-      'number_of_snapshots_to_retain': numberOfSnapshotsToRetain!.toTfJson(),
-    if (runRateInHours != null) 'run_rate_in_hours': runRateInHours!.toTfJson(),
-    if (snapshotRetentionPeriodInDays != null)
-      'snapshot_retention_period_in_days': snapshotRetentionPeriodInDays!
-          .toTfJson(),
+    'clean_expired_files': ?cleanExpiredFiles?.toTfJson(),
+    'number_of_snapshots_to_retain': ?numberOfSnapshotsToRetain?.toTfJson(),
+    'run_rate_in_hours': ?runRateInHours?.toTfJson(),
+    'snapshot_retention_period_in_days': ?snapshotRetentionPeriodInDays
+        ?.toTfJson(),
   };
 }
 
@@ -246,7 +241,7 @@ final class AwsGlueCatalogTableOptimizer extends Resource {
          argMap: {
            'catalog_id': catalogId,
            'database_name': databaseName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'table_name': tableName,
            'type': type,
            if (configuration != null)

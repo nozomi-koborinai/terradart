@@ -26,7 +26,7 @@ final class DataGoogleStorageInsightsDatasetConfig extends Data {
          argMap: {
            'dataset_config_id': datasetConfigId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

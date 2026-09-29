@@ -24,8 +24,8 @@ final class AwsEc2CarrierGateway extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

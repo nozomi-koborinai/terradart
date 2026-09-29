@@ -22,7 +22,7 @@ final class DataGooglePubsubTopicIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (project != null) 'project': project, 'topic': topic},
+         argMap: {'project': ?project, 'topic': topic},
        );
 
   @override

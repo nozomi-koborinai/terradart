@@ -27,8 +27,8 @@ final class GoogleIamWorkforcePoolIamMember extends Resource {
            'workforce_pool_id': workforcePoolId,
            'role': role,
            'member': member,
-           if (location != null) 'location': location,
-           if (condition != null) 'condition': condition,
+           'location': ?location,
+           'condition': ?condition,
          },
        );
 

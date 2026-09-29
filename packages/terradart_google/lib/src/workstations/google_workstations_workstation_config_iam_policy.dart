@@ -36,8 +36,8 @@ final class GoogleWorkstationsWorkstationConfigIamPolicy extends Resource {
            'workstation_cluster_id': workstationClusterId,
            'workstation_config_id': workstationConfigId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

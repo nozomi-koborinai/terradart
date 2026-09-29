@@ -26,9 +26,9 @@ final class AwsLightsailDisk extends Resource {
          argMap: {
            'availability_zone': availabilityZone,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'size_in_gb': sizeInGb,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

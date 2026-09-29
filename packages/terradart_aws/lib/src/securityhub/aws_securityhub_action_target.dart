@@ -26,7 +26,7 @@ final class AwsSecurityhubActionTarget extends Resource {
            'description': description,
            'identifier': identifier,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

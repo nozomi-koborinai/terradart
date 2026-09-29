@@ -32,7 +32,7 @@ final class AiGatewayDynamicRoutingElements {
     'id': id.toTfJson(),
     'type': type.toTfJson(),
     'outputs': outputs.encode(),
-    if (properties != null) 'properties': properties!.encode(),
+    'properties': ?properties?.encode(),
   };
 }
 
@@ -76,12 +76,12 @@ final class AiGatewayDynamicRoutingElementsOutputs {
   final AiGatewayDynamicRoutingElementsOutputsTrue? trueCase;
 
   Map<String, Object?> encode() => {
-    if (elementId != null) 'element_id': elementId!.toTfJson(),
-    if (fallback != null) 'fallback': fallback!.encode(),
-    if (falseCase != null) 'false': falseCase!.encode(),
-    if (next != null) 'next': next!.encode(),
-    if (success != null) 'success': success!.encode(),
-    if (trueCase != null) 'true': trueCase!.encode(),
+    'element_id': ?elementId?.toTfJson(),
+    'fallback': ?fallback?.encode(),
+    'false': ?falseCase?.encode(),
+    'next': ?next?.encode(),
+    'success': ?success?.encode(),
+    'true': ?trueCase?.encode(),
   };
 }
 
@@ -179,17 +179,16 @@ final class AiGatewayDynamicRoutingElementsProperties {
   final TfArg<num>? window;
 
   Map<String, Object?> encode() => {
-    if (aiGatewayDynamicRoutingProvider != null)
-      'ai_gateway_dynamic_routing_provider': aiGatewayDynamicRoutingProvider!
-          .toTfJson(),
-    if (conditions != null) 'conditions': conditions!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (limitType != null) 'limit_type': limitType!.toTfJson(),
-    if (model != null) 'model': model!.toTfJson(),
-    if (retries != null) 'retries': retries!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
-    if (window != null) 'window': window!.toTfJson(),
+    'ai_gateway_dynamic_routing_provider': ?aiGatewayDynamicRoutingProvider
+        ?.toTfJson(),
+    'conditions': ?conditions?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'limit_type': ?limitType?.toTfJson(),
+    'model': ?model?.toTfJson(),
+    'retries': ?retries?.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
+    'window': ?window?.toTfJson(),
   };
 }
 

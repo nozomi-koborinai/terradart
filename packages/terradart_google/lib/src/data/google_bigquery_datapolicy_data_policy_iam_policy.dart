@@ -27,8 +27,8 @@ final class DataGoogleBigqueryDatapolicyDataPolicyIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'data_policy_id': dataPolicyId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

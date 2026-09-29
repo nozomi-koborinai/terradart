@@ -51,8 +51,8 @@ final class SsmAssociationOutputLocation {
 
   Map<String, Object?> encode() => {
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
-    if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix!.toTfJson(),
-    if (s3Region != null) 's3_region': s3Region!.toTfJson(),
+    's3_key_prefix': ?s3KeyPrefix?.toTfJson(),
+    's3_region': ?s3Region?.toTfJson(),
   };
 }
 
@@ -102,26 +102,21 @@ final class AwsSsmAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyOnlyAtCronInterval != null)
-             'apply_only_at_cron_interval': applyOnlyAtCronInterval,
-           if (associationName != null) 'association_name': associationName,
-           if (automationTargetParameterName != null)
-             'automation_target_parameter_name': automationTargetParameterName,
-           if (calendarNames != null) 'calendar_names': calendarNames,
-           if (complianceSeverity != null)
-             'compliance_severity': complianceSeverity,
-           if (documentVersion != null) 'document_version': documentVersion,
-           if (maxConcurrency != null) 'max_concurrency': maxConcurrency,
-           if (maxErrors != null) 'max_errors': maxErrors,
+           'apply_only_at_cron_interval': ?applyOnlyAtCronInterval,
+           'association_name': ?associationName,
+           'automation_target_parameter_name': ?automationTargetParameterName,
+           'calendar_names': ?calendarNames,
+           'compliance_severity': ?complianceSeverity,
+           'document_version': ?documentVersion,
+           'max_concurrency': ?maxConcurrency,
+           'max_errors': ?maxErrors,
            'name': name,
-           if (parameters != null) 'parameters': parameters,
-           if (region != null) 'region': region,
-           if (scheduleExpression != null)
-             'schedule_expression': scheduleExpression,
-           if (syncCompliance != null) 'sync_compliance': syncCompliance,
-           if (tags != null) 'tags': tags,
-           if (waitForSuccessTimeoutSeconds != null)
-             'wait_for_success_timeout_seconds': waitForSuccessTimeoutSeconds,
+           'parameters': ?parameters,
+           'region': ?region,
+           'schedule_expression': ?scheduleExpression,
+           'sync_compliance': ?syncCompliance,
+           'tags': ?tags,
+           'wait_for_success_timeout_seconds': ?waitForSuccessTimeoutSeconds,
            if (outputLocation != null)
              'output_location': TfArg.literal(outputLocation.encode()),
            if (targets != null)

@@ -149,24 +149,21 @@ final class AwsRedshiftserverlessNamespace extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (adminPasswordSecretKmsKeyId != null)
-             'admin_password_secret_kms_key_id': adminPasswordSecretKmsKeyId,
+           'admin_password_secret_kms_key_id': ?adminPasswordSecretKmsKeyId,
            ...?adminPassword?.argMap,
-           if (adminUserPasswordWoVersion != null)
-             'admin_user_password_wo_version': adminUserPasswordWoVersion,
-           if (adminUsername != null) 'admin_username': adminUsername,
-           if (dbName != null) 'db_name': dbName,
-           if (defaultIamRoleArn != null)
-             'default_iam_role_arn': defaultIamRoleArn,
-           if (iamRoles != null) 'iam_roles': iamRoles,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'admin_user_password_wo_version': ?adminUserPasswordWoVersion,
+           'admin_username': ?adminUsername,
+           'db_name': ?dbName,
+           'default_iam_role_arn': ?defaultIamRoleArn,
+           'iam_roles': ?iamRoles,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            if (logExports != null)
              'log_exports': TfArg.literal([
                for (final e in logExports) e.toTfJson(),
              ]),
            'namespace_name': namespaceName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

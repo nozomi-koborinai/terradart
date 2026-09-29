@@ -32,7 +32,7 @@ final class GoogleHealthcareHl7V2StoreIamBinding extends Resource {
            'hl7_v2_store_id': hl7V2StoreId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

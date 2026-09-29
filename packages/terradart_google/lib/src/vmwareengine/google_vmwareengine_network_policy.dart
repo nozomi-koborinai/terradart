@@ -15,9 +15,7 @@ final class VmwareengineNetworkPolicyExternalIp {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `internet_access` block of
@@ -28,9 +26,7 @@ final class VmwareengineNetworkPolicyInternetAccess {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `google_vmwareengine_network_policy`.
@@ -75,13 +71,13 @@ final class GoogleVmwareengineNetworkPolicy extends Resource {
            'location': location,
            'edge_services_cidr': edgeServicesCidr,
            'vmware_engine_network': vmwareEngineNetwork,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (externalIp != null)
              'external_ip': TfArg.literal(externalIp.encode()),
            if (internetAccess != null)
              'internet_access': TfArg.literal(internetAccess.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -60,19 +60,15 @@ final class CodebuildProjectArtifacts {
   final TfArg<CodebuildProjectArtifactsType> type;
 
   Map<String, Object?> encode() => {
-    if (artifactIdentifier != null)
-      'artifact_identifier': artifactIdentifier!.toTfJson(),
-    if (bucketOwnerAccess != null)
-      'bucket_owner_access': bucketOwnerAccess!.toTfJson(),
-    if (encryptionDisabled != null)
-      'encryption_disabled': encryptionDisabled!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (namespaceType != null) 'namespace_type': namespaceType!.toTfJson(),
-    if (overrideArtifactName != null)
-      'override_artifact_name': overrideArtifactName!.toTfJson(),
-    if (packaging != null) 'packaging': packaging!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'artifact_identifier': ?artifactIdentifier?.toTfJson(),
+    'bucket_owner_access': ?bucketOwnerAccess?.toTfJson(),
+    'encryption_disabled': ?encryptionDisabled?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'namespace_type': ?namespaceType?.toTfJson(),
+    'override_artifact_name': ?overrideArtifactName?.toTfJson(),
+    'packaging': ?packaging?.toTfJson(),
+    'path': ?path?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -139,11 +135,10 @@ final class CodebuildProjectBuildBatchConfig {
   final CodebuildProjectBuildBatchConfigRestrictions? restrictions;
 
   Map<String, Object?> encode() => {
-    if (combineArtifacts != null)
-      'combine_artifacts': combineArtifacts!.toTfJson(),
+    'combine_artifacts': ?combineArtifacts?.toTfJson(),
     'service_role': serviceRole.encodeAs('arn').toTfJson(),
-    if (timeoutInMins != null) 'timeout_in_mins': timeoutInMins!.toTfJson(),
-    if (restrictions != null) 'restrictions': restrictions!.encode(),
+    'timeout_in_mins': ?timeoutInMins?.toTfJson(),
+    'restrictions': ?restrictions?.encode(),
   };
 }
 
@@ -168,8 +163,7 @@ final class CodebuildProjectBuildBatchConfigRestrictions {
       'compute_types_allowed': [
         for (final e in computeTypesAllowed!) e.toTfJson(),
       ],
-    if (maximumBuildsAllowed != null)
-      'maximum_builds_allowed': maximumBuildsAllowed!.toTfJson(),
+    'maximum_builds_allowed': ?maximumBuildsAllowed?.toTfJson(),
   };
 }
 
@@ -216,10 +210,10 @@ final class CodebuildProjectCache {
   final TfArg<CodebuildProjectCacheType>? type;
 
   Map<String, Object?> encode() => {
-    if (cacheNamespace != null) 'cache_namespace': cacheNamespace!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
+    'cache_namespace': ?cacheNamespace?.toTfJson(),
+    'location': ?location?.toTfJson(),
     if (modes != null) 'modes': [for (final e in modes!) e.toTfJson()],
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -288,22 +282,20 @@ final class CodebuildProjectEnvironment {
   final CodebuildProjectEnvironmentRegistryCredential? registryCredential;
 
   Map<String, Object?> encode() => {
-    if (certificate != null) 'certificate': certificate!.toTfJson(),
+    'certificate': ?certificate?.toTfJson(),
     'compute_type': computeType.toTfJson(),
-    if (hostKernel != null) 'host_kernel': hostKernel!.toTfJson(),
+    'host_kernel': ?hostKernel?.toTfJson(),
     'image': image.toTfJson(),
-    if (imagePullCredentialsType != null)
-      'image_pull_credentials_type': imagePullCredentialsType!.toTfJson(),
-    if (privilegedMode != null) 'privileged_mode': privilegedMode!.toTfJson(),
+    'image_pull_credentials_type': ?imagePullCredentialsType?.toTfJson(),
+    'privileged_mode': ?privilegedMode?.toTfJson(),
     'type': type.toTfJson(),
-    if (dockerServer != null) 'docker_server': dockerServer!.encode(),
+    'docker_server': ?dockerServer?.encode(),
     if (environmentVariable != null)
       'environment_variable': [
         for (final e in environmentVariable!) e.encode(),
       ],
-    if (fleet != null) 'fleet': fleet!.encode(),
-    if (registryCredential != null)
-      'registry_credential': registryCredential!.encode(),
+    'fleet': ?fleet?.encode(),
+    'registry_credential': ?registryCredential?.encode(),
   };
 }
 
@@ -386,8 +378,7 @@ final class CodebuildProjectEnvironmentDockerServer {
 
   Map<String, Object?> encode() => {
     'compute_type': computeType.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -430,7 +421,7 @@ final class CodebuildProjectEnvironmentEnvironmentVariable {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -455,9 +446,7 @@ final class CodebuildProjectEnvironmentFleet {
 
   final TfArg<String>? fleetArn;
 
-  Map<String, Object?> encode() => {
-    if (fleetArn != null) 'fleet_arn': fleetArn!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'fleet_arn': ?fleetArn?.toTfJson()};
 }
 
 /// Typed helper for the `environment.registry_credential` block of
@@ -515,11 +504,11 @@ final class CodebuildProjectFileSystemLocations {
   final TfArg<CodebuildProjectFileSystemLocationsType>? type;
 
   Map<String, Object?> encode() => {
-    if (identifier != null) 'identifier': identifier!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (mountOptions != null) 'mount_options': mountOptions!.toTfJson(),
-    if (mountPoint != null) 'mount_point': mountPoint!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'identifier': ?identifier?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'mount_options': ?mountOptions?.toTfJson(),
+    'mount_point': ?mountPoint?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -543,8 +532,8 @@ final class CodebuildProjectLogsConfig {
   final CodebuildProjectLogsConfigS3Logs? s3Logs;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLogs != null) 'cloudwatch_logs': cloudwatchLogs!.encode(),
-    if (s3Logs != null) 's3_logs': s3Logs!.encode(),
+    'cloudwatch_logs': ?cloudwatchLogs?.encode(),
+    's3_logs': ?s3Logs?.encode(),
   };
 }
 
@@ -565,9 +554,9 @@ final class CodebuildProjectLogsConfigCloudwatchLogs {
   final TfArg<String>? streamName;
 
   Map<String, Object?> encode() => {
-    if (groupName != null) 'group_name': groupName!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
-    if (streamName != null) 'stream_name': streamName!.toTfJson(),
+    'group_name': ?groupName?.toTfJson(),
+    'status': ?status?.toTfJson(),
+    'stream_name': ?streamName?.toTfJson(),
   };
 }
 
@@ -602,12 +591,10 @@ final class CodebuildProjectLogsConfigS3Logs {
   final TfArg<CodebuildProjectLogsConfigS3LogsStatus>? status;
 
   Map<String, Object?> encode() => {
-    if (bucketOwnerAccess != null)
-      'bucket_owner_access': bucketOwnerAccess!.toTfJson(),
-    if (encryptionDisabled != null)
-      'encryption_disabled': encryptionDisabled!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'bucket_owner_access': ?bucketOwnerAccess?.toTfJson(),
+    'encryption_disabled': ?encryptionDisabled?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -673,17 +660,14 @@ final class CodebuildProjectSecondaryArtifacts {
 
   Map<String, Object?> encode() => {
     'artifact_identifier': artifactIdentifier.toTfJson(),
-    if (bucketOwnerAccess != null)
-      'bucket_owner_access': bucketOwnerAccess!.toTfJson(),
-    if (encryptionDisabled != null)
-      'encryption_disabled': encryptionDisabled!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (namespaceType != null) 'namespace_type': namespaceType!.toTfJson(),
-    if (overrideArtifactName != null)
-      'override_artifact_name': overrideArtifactName!.toTfJson(),
-    if (packaging != null) 'packaging': packaging!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'bucket_owner_access': ?bucketOwnerAccess?.toTfJson(),
+    'encryption_disabled': ?encryptionDisabled?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'namespace_type': ?namespaceType?.toTfJson(),
+    'override_artifact_name': ?overrideArtifactName?.toTfJson(),
+    'packaging': ?packaging?.toTfJson(),
+    'path': ?path?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -791,19 +775,16 @@ final class CodebuildProjectSecondarySources {
   gitSubmodulesConfig;
 
   Map<String, Object?> encode() => {
-    if (buildspec != null) 'buildspec': buildspec!.toTfJson(),
-    if (gitCloneDepth != null) 'git_clone_depth': gitCloneDepth!.toTfJson(),
-    if (insecureSsl != null) 'insecure_ssl': insecureSsl!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (reportBuildStatus != null)
-      'report_build_status': reportBuildStatus!.toTfJson(),
+    'buildspec': ?buildspec?.toTfJson(),
+    'git_clone_depth': ?gitCloneDepth?.toTfJson(),
+    'insecure_ssl': ?insecureSsl?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'report_build_status': ?reportBuildStatus?.toTfJson(),
     'source_identifier': sourceIdentifier.toTfJson(),
     'type': type.toTfJson(),
-    if (auth != null) 'auth': auth!.encode(),
-    if (buildStatusConfig != null)
-      'build_status_config': buildStatusConfig!.encode(),
-    if (gitSubmodulesConfig != null)
-      'git_submodules_config': gitSubmodulesConfig!.encode(),
+    'auth': ?auth?.encode(),
+    'build_status_config': ?buildStatusConfig?.encode(),
+    'git_submodules_config': ?gitSubmodulesConfig?.encode(),
   };
 }
 
@@ -870,8 +851,8 @@ final class CodebuildProjectSecondarySourcesBuildStatusConfig {
   final TfArg<String>? targetUrl;
 
   Map<String, Object?> encode() => {
-    if (context != null) 'context': context!.toTfJson(),
-    if (targetUrl != null) 'target_url': targetUrl!.toTfJson(),
+    'context': ?context?.toTfJson(),
+    'target_url': ?targetUrl?.toTfJson(),
   };
 }
 
@@ -925,18 +906,15 @@ final class CodebuildProjectSource {
   final CodebuildProjectSourceGitSubmodulesConfig? gitSubmodulesConfig;
 
   Map<String, Object?> encode() => {
-    if (buildspec != null) 'buildspec': buildspec!.toTfJson(),
-    if (gitCloneDepth != null) 'git_clone_depth': gitCloneDepth!.toTfJson(),
-    if (insecureSsl != null) 'insecure_ssl': insecureSsl!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (reportBuildStatus != null)
-      'report_build_status': reportBuildStatus!.toTfJson(),
+    'buildspec': ?buildspec?.toTfJson(),
+    'git_clone_depth': ?gitCloneDepth?.toTfJson(),
+    'insecure_ssl': ?insecureSsl?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'report_build_status': ?reportBuildStatus?.toTfJson(),
     'type': type.toTfJson(),
-    if (auth != null) 'auth': auth!.encode(),
-    if (buildStatusConfig != null)
-      'build_status_config': buildStatusConfig!.encode(),
-    if (gitSubmodulesConfig != null)
-      'git_submodules_config': gitSubmodulesConfig!.encode(),
+    'auth': ?auth?.encode(),
+    'build_status_config': ?buildStatusConfig?.encode(),
+    'git_submodules_config': ?gitSubmodulesConfig?.encode(),
   };
 }
 
@@ -1000,8 +978,8 @@ final class CodebuildProjectSourceBuildStatusConfig {
   final TfArg<String>? targetUrl;
 
   Map<String, Object?> encode() => {
-    if (context != null) 'context': context!.toTfJson(),
-    if (targetUrl != null) 'target_url': targetUrl!.toTfJson(),
+    'context': ?context?.toTfJson(),
+    'target_url': ?targetUrl?.toTfJson(),
   };
 }
 
@@ -1081,23 +1059,20 @@ final class AwsCodebuildProject extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoRetryLimit != null) 'auto_retry_limit': autoRetryLimit,
-           if (badgeEnabled != null) 'badge_enabled': badgeEnabled,
-           if (buildTimeout != null) 'build_timeout': buildTimeout,
-           if (concurrentBuildLimit != null)
-             'concurrent_build_limit': concurrentBuildLimit,
-           if (description != null) 'description': description,
-           if (encryptionKey != null) 'encryption_key': encryptionKey,
+           'auto_retry_limit': ?autoRetryLimit,
+           'badge_enabled': ?badgeEnabled,
+           'build_timeout': ?buildTimeout,
+           'concurrent_build_limit': ?concurrentBuildLimit,
+           'description': ?description,
+           'encryption_key': ?encryptionKey,
            'name': name,
-           if (projectVisibility != null)
-             'project_visibility': projectVisibility,
-           if (queuedTimeout != null) 'queued_timeout': queuedTimeout,
-           if (region != null) 'region': region,
-           if (resourceAccessRole != null)
-             'resource_access_role': resourceAccessRole,
+           'project_visibility': ?projectVisibility,
+           'queued_timeout': ?queuedTimeout,
+           'region': ?region,
+           'resource_access_role': ?resourceAccessRole,
            'service_role': serviceRole.encodeAs('arn'),
-           if (sourceVersion != null) 'source_version': sourceVersion,
-           if (tags != null) 'tags': tags,
+           'source_version': ?sourceVersion,
+           'tags': ?tags,
            'artifacts': TfArg.literal(artifacts.encode()),
            if (buildBatchConfig != null)
              'build_batch_config': TfArg.literal(buildBatchConfig.encode()),

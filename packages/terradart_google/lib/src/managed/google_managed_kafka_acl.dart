@@ -27,9 +27,9 @@ final class ManagedKafkaAclAclEntries {
   final TfArg<String> principal;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
+    'host': ?host?.toTfJson(),
     'operation': operation.toTfJson(),
-    if (permissionType != null) 'permission_type': permissionType!.toTfJson(),
+    'permission_type': ?permissionType?.toTfJson(),
     'principal': principal.toTfJson(),
   };
 }
@@ -87,8 +87,8 @@ final class GoogleManagedKafkaAcl extends Resource {
            'acl_entries': TfArg.literal([
              for (final e in aclEntries) e.encode(),
            ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

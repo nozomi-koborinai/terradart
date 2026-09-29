@@ -56,14 +56,10 @@ final class NetappBackupVaultBackupRetentionPolicy {
   Map<String, Object?> encode() => {
     'backup_minimum_enforced_retention_days': backupMinimumEnforcedRetentionDays
         .toTfJson(),
-    if (dailyBackupImmutable != null)
-      'daily_backup_immutable': dailyBackupImmutable!.toTfJson(),
-    if (manualBackupImmutable != null)
-      'manual_backup_immutable': manualBackupImmutable!.toTfJson(),
-    if (monthlyBackupImmutable != null)
-      'monthly_backup_immutable': monthlyBackupImmutable!.toTfJson(),
-    if (weeklyBackupImmutable != null)
-      'weekly_backup_immutable': weeklyBackupImmutable!.toTfJson(),
+    'daily_backup_immutable': ?dailyBackupImmutable?.toTfJson(),
+    'manual_backup_immutable': ?manualBackupImmutable?.toTfJson(),
+    'monthly_backup_immutable': ?monthlyBackupImmutable?.toTfJson(),
+    'weekly_backup_immutable': ?weeklyBackupImmutable?.toTfJson(),
   };
 }
 
@@ -111,16 +107,16 @@ final class GoogleNetappBackupVault extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (backupRegion != null) 'backup_region': backupRegion,
-           if (backupVaultType != null) 'backup_vault_type': backupVaultType,
+           'description': ?description,
+           'labels': ?labels,
+           'backup_region': ?backupRegion,
+           'backup_vault_type': ?backupVaultType,
            if (backupRetentionPolicy != null)
              'backup_retention_policy': TfArg.literal(
                backupRetentionPolicy.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

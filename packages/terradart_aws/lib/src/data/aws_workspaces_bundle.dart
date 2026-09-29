@@ -21,10 +21,10 @@ final class DataAwsWorkspacesBundle extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bundleId != null) 'bundle_id': bundleId,
-           if (name != null) 'name': name,
-           if (owner != null) 'owner': owner,
-           if (region != null) 'region': region,
+           'bundle_id': ?bundleId,
+           'name': ?name,
+           'owner': ?owner,
+           'region': ?region,
          },
        );
 

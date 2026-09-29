@@ -31,11 +31,7 @@ final class AwsRoute53recoverycontrolconfigCluster extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (networkType != null) 'network_type': networkType,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'name': name, 'network_type': ?networkType, 'tags': ?tags},
        );
 
   @override

@@ -21,8 +21,8 @@ final class ManagedKafkaConnectorTaskRestartPolicy {
   final TfArg<String>? minimumBackoff;
 
   Map<String, Object?> encode() => {
-    if (maximumBackoff != null) 'maximum_backoff': maximumBackoff!.toTfJson(),
-    if (minimumBackoff != null) 'minimum_backoff': minimumBackoff!.toTfJson(),
+    'maximum_backoff': ?maximumBackoff?.toTfJson(),
+    'minimum_backoff': ?minimumBackoff?.toTfJson(),
   };
 }
 
@@ -71,11 +71,11 @@ final class GoogleManagedKafkaConnector extends Resource {
            'connector_id': connectorId,
            'connect_cluster': connectCluster,
            'location': location,
-           if (configs != null) 'configs': configs,
+           'configs': ?configs,
            if (taskRestartPolicy != null)
              'task_restart_policy': TfArg.literal(taskRestartPolicy.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

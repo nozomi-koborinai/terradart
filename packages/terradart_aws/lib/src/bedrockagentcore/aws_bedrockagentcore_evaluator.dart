@@ -125,8 +125,7 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedLambdaConfig {
 
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
-    if (lambdaTimeoutInSeconds != null)
-      'lambda_timeout_in_seconds': lambdaTimeoutInSeconds!.toTfJson(),
+    'lambda_timeout_in_seconds': ?lambdaTimeoutInSeconds?.toTfJson(),
   };
 }
 
@@ -198,9 +197,8 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedroc
   inferenceConfig;
 
   Map<String, Object?> encode() => {
-    if (additionalModelRequestFields != null)
-      'additional_model_request_fields': additionalModelRequestFields!
-          .toTfJson(),
+    'additional_model_request_fields': ?additionalModelRequestFields
+        ?.toTfJson(),
     'model_id': modelId.toTfJson(),
     if (inferenceConfig != null)
       'inference_config': [for (final e in inferenceConfig!) e.encode()],
@@ -227,10 +225,10 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedroc
   final TfArg<num>? topP;
 
   Map<String, Object?> encode() => {
-    if (maxTokens != null) 'max_tokens': maxTokens!.toTfJson(),
-    if (stopSequences != null) 'stop_sequences': stopSequences!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
-    if (topP != null) 'top_p': topP!.toTfJson(),
+    'max_tokens': ?maxTokens?.toTfJson(),
+    'stop_sequences': ?stopSequences?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'top_p': ?topP?.toTfJson(),
   };
 }
 
@@ -383,12 +381,12 @@ final class AwsBedrockagentcoreEvaluator extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'evaluator_name': evaluatorName,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'level': level,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (evaluatorConfig != null)
              'evaluator_config': TfArg.literal([
                for (final e in evaluatorConfig) e.encode(),

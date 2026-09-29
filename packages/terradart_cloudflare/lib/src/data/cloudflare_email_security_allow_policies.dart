@@ -33,18 +33,16 @@ final class DataCloudflareEmailSecurityAllowPolicies extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (isAcceptableSender != null)
-             'is_acceptable_sender': isAcceptableSender,
-           if (isExemptRecipient != null)
-             'is_exempt_recipient': isExemptRecipient,
-           if (isTrustedSender != null) 'is_trusted_sender': isTrustedSender,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
-           if (pattern != null) 'pattern': pattern,
-           if (patternType != null) 'pattern_type': patternType,
-           if (search != null) 'search': search,
-           if (verifySender != null) 'verify_sender': verifySender,
+           'direction': ?direction,
+           'is_acceptable_sender': ?isAcceptableSender,
+           'is_exempt_recipient': ?isExemptRecipient,
+           'is_trusted_sender': ?isTrustedSender,
+           'max_items': ?maxItems,
+           'order': ?order,
+           'pattern': ?pattern,
+           'pattern_type': ?patternType,
+           'search': ?search,
+           'verify_sender': ?verifySender,
          },
        );
 

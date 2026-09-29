@@ -25,7 +25,7 @@ final class AwsVpcDhcpOptionsAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'dhcp_options_id': dhcpOptionsId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

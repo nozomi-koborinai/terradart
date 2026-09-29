@@ -28,7 +28,7 @@ final class AwsNetworkmanagerCustomerGatewayAssociation extends Resource {
            'customer_gateway_arn': customerGatewayArn,
            'device_id': deviceId,
            'global_network_id': globalNetworkId,
-           if (linkId != null) 'link_id': linkId,
+           'link_id': ?linkId,
          },
        );
 

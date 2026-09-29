@@ -86,7 +86,7 @@ final class EvidentlyProjectDataDeliveryCloudwatchLogs {
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
   Map<String, Object?> encode() => {
-    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
+    'log_group': ?logGroup?.encodeAs('name').toTfJson(),
   };
 }
 
@@ -101,8 +101,8 @@ final class EvidentlyProjectDataDeliveryS3Destination {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -124,10 +124,10 @@ final class AwsEvidentlyProject extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (dataDelivery != null)
              'data_delivery': TfArg.literal(dataDelivery.encode()),
          },

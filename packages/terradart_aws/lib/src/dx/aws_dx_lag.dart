@@ -27,14 +27,14 @@ final class AwsDxLag extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (connectionId != null) 'connection_id': connectionId,
+           'connection_id': ?connectionId,
            'connections_bandwidth': connectionsBandwidth,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'force_destroy': ?forceDestroy,
            'location': location,
            'name': name,
-           if (providerName != null) 'provider_name': providerName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'provider_name': ?providerName,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

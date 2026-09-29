@@ -30,11 +30,11 @@ final class ConnectUserHierarchyStructureHierarchyStructure {
   final ConnectUserHierarchyStructureHierarchyStructureLevelTwo? levelTwo;
 
   Map<String, Object?> encode() => {
-    if (levelFive != null) 'level_five': levelFive!.encode(),
-    if (levelFour != null) 'level_four': levelFour!.encode(),
-    if (levelOne != null) 'level_one': levelOne!.encode(),
-    if (levelThree != null) 'level_three': levelThree!.encode(),
-    if (levelTwo != null) 'level_two': levelTwo!.encode(),
+    'level_five': ?levelFive?.encode(),
+    'level_four': ?levelFour?.encode(),
+    'level_one': ?levelOne?.encode(),
+    'level_three': ?levelThree?.encode(),
+    'level_two': ?levelTwo?.encode(),
   };
 }
 
@@ -120,7 +120,7 @@ final class AwsConnectUserHierarchyStructure extends Resource {
          terraformType: tfType,
          argMap: {
            'instance_id': instanceId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'hierarchy_structure': TfArg.literal(hierarchyStructure.encode()),
          },
        );

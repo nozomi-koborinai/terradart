@@ -21,11 +21,7 @@ final class AwsRoute53recoveryreadinessCell extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'cell_name': cellName,
-           if (cells != null) 'cells': cells,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'cell_name': cellName, 'cells': ?cells, 'tags': ?tags},
        );
 
   @override

@@ -21,11 +21,7 @@ final class AwsElbAttachment extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'elb': elb,
-           'instance': instance,
-           if (region != null) 'region': region,
-         },
+         argMap: {'elb': elb, 'instance': instance, 'region': ?region},
        );
 
   @override

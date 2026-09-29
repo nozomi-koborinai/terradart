@@ -39,8 +39,7 @@ final class QuicksightTemplateDefinition {
   final List<QuicksightTemplateDefinitionSheets>? sheets;
 
   Map<String, Object?> encode() => {
-    if (analysisDefaults != null)
-      'analysis_defaults': analysisDefaults!.encode(),
+    'analysis_defaults': ?analysisDefaults?.encode(),
     if (calculatedFields != null)
       'calculated_fields': [for (final e in calculatedFields!) e.encode()],
     if (columnConfigurations != null)
@@ -95,13 +94,10 @@ final class QuicksightTemplateDefinitionAnalysisDefaultsDefaultNewSheetConfigura
   paginatedLayoutConfiguration;
 
   Map<String, Object?> encode() => {
-    if (sheetContentType != null)
-      'sheet_content_type': sheetContentType!.toTfJson(),
-    if (interactiveLayoutConfiguration != null)
-      'interactive_layout_configuration': interactiveLayoutConfiguration!
-          .encode(),
-    if (paginatedLayoutConfiguration != null)
-      'paginated_layout_configuration': paginatedLayoutConfiguration!.encode(),
+    'sheet_content_type': ?sheetContentType?.toTfJson(),
+    'interactive_layout_configuration': ?interactiveLayoutConfiguration
+        ?.encode(),
+    'paginated_layout_configuration': ?paginatedLayoutConfiguration?.encode(),
   };
 }
 
@@ -121,8 +117,8 @@ final class QuicksightTemplateDefinitionAnalysisDefaultsDefaultNewSheetConfigura
   grid;
 
   Map<String, Object?> encode() => {
-    if (freeForm != null) 'free_form': freeForm!.encode(),
-    if (grid != null) 'grid': grid!.encode(),
+    'free_form': ?freeForm?.encode(),
+    'grid': ?grid?.encode(),
   };
 }
 
@@ -155,8 +151,7 @@ final class QuicksightTemplateDefinitionAnalysisDefaultsDefaultNewSheetConfigura
   screenCanvasSizeOptions;
 
   Map<String, Object?> encode() => {
-    if (screenCanvasSizeOptions != null)
-      'screen_canvas_size_options': screenCanvasSizeOptions!.encode(),
+    'screen_canvas_size_options': ?screenCanvasSizeOptions?.encode(),
   };
 }
 
@@ -205,8 +200,7 @@ final class QuicksightTemplateDefinitionAnalysisDefaultsDefaultNewSheetConfigura
   screenCanvasSizeOptions;
 
   Map<String, Object?> encode() => {
-    if (screenCanvasSizeOptions != null)
-      'screen_canvas_size_options': screenCanvasSizeOptions!.encode(),
+    'screen_canvas_size_options': ?screenCanvasSizeOptions?.encode(),
   };
 }
 
@@ -225,8 +219,7 @@ final class QuicksightTemplateDefinitionAnalysisDefaultsDefaultNewSheetConfigura
   final TfArg<String> resizeOption;
 
   Map<String, Object?> encode() => {
-    if (optimizedViewPortWidth != null)
-      'optimized_view_port_width': optimizedViewPortWidth!.toTfJson(),
+    'optimized_view_port_width': ?optimizedViewPortWidth?.toTfJson(),
     'resize_option': resizeOption.toTfJson(),
   };
 }
@@ -242,9 +235,7 @@ final class QuicksightTemplateDefinitionAnalysisDefaultsDefaultNewSheetConfigura
   final QuicksightTemplateDefinitionAnalysisDefaultsDefaultNewSheetConfigurationPaginatedLayoutConfigurationSectionBased?
   sectionBased;
 
-  Map<String, Object?> encode() => {
-    if (sectionBased != null) 'section_based': sectionBased!.encode(),
-  };
+  Map<String, Object?> encode() => {'section_based': ?sectionBased?.encode()};
 }
 
 /// Typed helper for the `definition.analysis_defaults.default_new_sheet_configuration.paginated_layout_configuration.section_based` block of
@@ -276,8 +267,7 @@ final class QuicksightTemplateDefinitionAnalysisDefaultsDefaultNewSheetConfigura
   paperCanvasSizeOptions;
 
   Map<String, Object?> encode() => {
-    if (paperCanvasSizeOptions != null)
-      'paper_canvas_size_options': paperCanvasSizeOptions!.encode(),
+    'paper_canvas_size_options': ?paperCanvasSizeOptions?.encode(),
   };
 }
 
@@ -300,10 +290,9 @@ final class QuicksightTemplateDefinitionAnalysisDefaultsDefaultNewSheetConfigura
   paperMargin;
 
   Map<String, Object?> encode() => {
-    if (paperOrientation != null)
-      'paper_orientation': paperOrientation!.toTfJson(),
-    if (paperSize != null) 'paper_size': paperSize!.toTfJson(),
-    if (paperMargin != null) 'paper_margin': paperMargin!.encode(),
+    'paper_orientation': ?paperOrientation?.toTfJson(),
+    'paper_size': ?paperSize?.toTfJson(),
+    'paper_margin': ?paperMargin?.encode(),
   };
 }
 
@@ -328,10 +317,10 @@ final class QuicksightTemplateDefinitionAnalysisDefaultsDefaultNewSheetConfigura
   final TfArg<String>? top;
 
   Map<String, Object?> encode() => {
-    if (bottom != null) 'bottom': bottom!.toTfJson(),
-    if (left != null) 'left': left!.toTfJson(),
-    if (right != null) 'right': right!.toTfJson(),
-    if (top != null) 'top': top!.toTfJson(),
+    'bottom': ?bottom?.toTfJson(),
+    'left': ?left?.toTfJson(),
+    'right': ?right?.toTfJson(),
+    'top': ?top?.toTfJson(),
   };
 }
 
@@ -376,10 +365,9 @@ final class QuicksightTemplateDefinitionColumnConfigurations {
   formatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (role != null) 'role': role!.toTfJson(),
+    'role': ?role?.toTfJson(),
     'column': column.encode(),
-    if (formatConfiguration != null)
-      'format_configuration': formatConfiguration!.encode(),
+    'format_configuration': ?formatConfiguration?.encode(),
   };
 }
 
@@ -424,12 +412,9 @@ final class QuicksightTemplateDefinitionColumnConfigurationsFormatConfiguration 
   stringFormatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (dateTimeFormatConfiguration != null)
-      'date_time_format_configuration': dateTimeFormatConfiguration!.encode(),
-    if (numberFormatConfiguration != null)
-      'number_format_configuration': numberFormatConfiguration!.encode(),
-    if (stringFormatConfiguration != null)
-      'string_format_configuration': stringFormatConfiguration!.encode(),
+    'date_time_format_configuration': ?dateTimeFormatConfiguration?.encode(),
+    'number_format_configuration': ?numberFormatConfiguration?.encode(),
+    'string_format_configuration': ?stringFormatConfiguration?.encode(),
   };
 }
 
@@ -453,11 +438,9 @@ final class QuicksightTemplateDefinitionColumnConfigurationsFormatConfigurationD
   numericFormatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (dateTimeFormat != null) 'date_time_format': dateTimeFormat!.toTfJson(),
-    if (nullValueFormatConfiguration != null)
-      'null_value_format_configuration': nullValueFormatConfiguration!.encode(),
-    if (numericFormatConfiguration != null)
-      'numeric_format_configuration': numericFormatConfiguration!.encode(),
+    'date_time_format': ?dateTimeFormat?.toTfJson(),
+    'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
+    'numeric_format_configuration': ?numericFormatConfiguration?.encode(),
   };
 }
 
@@ -496,15 +479,12 @@ final class QuicksightTemplateDefinitionColumnConfigurationsFormatConfigurationD
   percentageDisplayFormatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (currencyDisplayFormatConfiguration != null)
-      'currency_display_format_configuration':
-          currencyDisplayFormatConfiguration!.encode(),
-    if (numberDisplayFormatConfiguration != null)
-      'number_display_format_configuration': numberDisplayFormatConfiguration!
-          .encode(),
-    if (percentageDisplayFormatConfiguration != null)
-      'percentage_display_format_configuration':
-          percentageDisplayFormatConfiguration!.encode(),
+    'currency_display_format_configuration': ?currencyDisplayFormatConfiguration
+        ?.encode(),
+    'number_display_format_configuration': ?numberDisplayFormatConfiguration
+        ?.encode(),
+    'percentage_display_format_configuration':
+        ?percentageDisplayFormatConfiguration?.encode(),
   };
 }
 
@@ -545,18 +525,14 @@ final class QuicksightTemplateDefinitionColumnConfigurationsFormatConfigurationD
   separatorConfiguration;
 
   Map<String, Object?> encode() => {
-    if (numberScale != null) 'number_scale': numberScale!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
-    if (symbol != null) 'symbol': symbol!.toTfJson(),
-    if (decimalPlacesConfiguration != null)
-      'decimal_places_configuration': decimalPlacesConfiguration!.encode(),
-    if (negativeValueConfiguration != null)
-      'negative_value_configuration': negativeValueConfiguration!.encode(),
-    if (nullValueFormatConfiguration != null)
-      'null_value_format_configuration': nullValueFormatConfiguration!.encode(),
-    if (separatorConfiguration != null)
-      'separator_configuration': separatorConfiguration!.encode(),
+    'number_scale': ?numberScale?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
+    'symbol': ?symbol?.toTfJson(),
+    'decimal_places_configuration': ?decimalPlacesConfiguration?.encode(),
+    'negative_value_configuration': ?negativeValueConfiguration?.encode(),
+    'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
+    'separator_configuration': ?separatorConfiguration?.encode(),
   };
 }
 
@@ -604,10 +580,8 @@ final class QuicksightTemplateDefinitionColumnConfigurationsFormatConfigurationD
   thousandsSeparator;
 
   Map<String, Object?> encode() => {
-    if (decimalSeparator != null)
-      'decimal_separator': decimalSeparator!.toTfJson(),
-    if (thousandsSeparator != null)
-      'thousands_separator': thousandsSeparator!.encode(),
+    'decimal_separator': ?decimalSeparator?.toTfJson(),
+    'thousands_separator': ?thousandsSeparator?.encode(),
   };
 }
 
@@ -626,8 +600,8 @@ final class QuicksightTemplateDefinitionColumnConfigurationsFormatConfigurationD
   final TfArg<String>? visibility;
 
   Map<String, Object?> encode() => {
-    if (symbol != null) 'symbol': symbol!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
+    'symbol': ?symbol?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
   };
 }
 
@@ -665,17 +639,13 @@ final class QuicksightTemplateDefinitionColumnConfigurationsFormatConfigurationD
   separatorConfiguration;
 
   Map<String, Object?> encode() => {
-    if (numberScale != null) 'number_scale': numberScale!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
-    if (decimalPlacesConfiguration != null)
-      'decimal_places_configuration': decimalPlacesConfiguration!.encode(),
-    if (negativeValueConfiguration != null)
-      'negative_value_configuration': negativeValueConfiguration!.encode(),
-    if (nullValueFormatConfiguration != null)
-      'null_value_format_configuration': nullValueFormatConfiguration!.encode(),
-    if (separatorConfiguration != null)
-      'separator_configuration': separatorConfiguration!.encode(),
+    'number_scale': ?numberScale?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
+    'decimal_places_configuration': ?decimalPlacesConfiguration?.encode(),
+    'negative_value_configuration': ?negativeValueConfiguration?.encode(),
+    'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
+    'separator_configuration': ?separatorConfiguration?.encode(),
   };
 }
 
@@ -710,16 +680,12 @@ final class QuicksightTemplateDefinitionColumnConfigurationsFormatConfigurationD
   separatorConfiguration;
 
   Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
-    if (decimalPlacesConfiguration != null)
-      'decimal_places_configuration': decimalPlacesConfiguration!.encode(),
-    if (negativeValueConfiguration != null)
-      'negative_value_configuration': negativeValueConfiguration!.encode(),
-    if (nullValueFormatConfiguration != null)
-      'null_value_format_configuration': nullValueFormatConfiguration!.encode(),
-    if (separatorConfiguration != null)
-      'separator_configuration': separatorConfiguration!.encode(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
+    'decimal_places_configuration': ?decimalPlacesConfiguration?.encode(),
+    'negative_value_configuration': ?negativeValueConfiguration?.encode(),
+    'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
+    'separator_configuration': ?separatorConfiguration?.encode(),
   };
 }
 
@@ -736,8 +702,7 @@ final class QuicksightTemplateDefinitionColumnConfigurationsFormatConfigurationN
   numericFormatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (numericFormatConfiguration != null)
-      'numeric_format_configuration': numericFormatConfiguration!.encode(),
+    'numeric_format_configuration': ?numericFormatConfiguration?.encode(),
   };
 }
 
@@ -758,10 +723,8 @@ final class QuicksightTemplateDefinitionColumnConfigurationsFormatConfigurationS
   numericFormatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (nullValueFormatConfiguration != null)
-      'null_value_format_configuration': nullValueFormatConfiguration!.encode(),
-    if (numericFormatConfiguration != null)
-      'numeric_format_configuration': numericFormatConfiguration!.encode(),
+    'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
+    'numeric_format_configuration': ?numericFormatConfiguration?.encode(),
   };
 }
 
@@ -786,12 +749,12 @@ final class QuicksightTemplateDefinitionDataSetConfiguration {
   dataSetSchema;
 
   Map<String, Object?> encode() => {
-    if (placeholder != null) 'placeholder': placeholder!.toTfJson(),
+    'placeholder': ?placeholder?.toTfJson(),
     if (columnGroupSchemaList != null)
       'column_group_schema_list': [
         for (final e in columnGroupSchemaList!) e.encode(),
       ],
-    if (dataSetSchema != null) 'data_set_schema': dataSetSchema!.encode(),
+    'data_set_schema': ?dataSetSchema?.encode(),
   };
 }
 
@@ -812,7 +775,7 @@ final class QuicksightTemplateDefinitionDataSetConfigurationColumnGroupSchemaLis
   columnGroupColumnSchemaList;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (columnGroupColumnSchemaList != null)
       'column_group_column_schema_list': [
         for (final e in columnGroupColumnSchemaList!) e.encode(),
@@ -831,7 +794,7 @@ final class QuicksightTemplateDefinitionDataSetConfigurationColumnGroupSchemaLis
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `definition.data_set_configuration.data_set_schema` block of
@@ -870,9 +833,9 @@ final class QuicksightTemplateDefinitionDataSetConfigurationDataSetSchemaColumnS
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
-    if (geographicRole != null) 'geographic_role': geographicRole!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
+    'geographic_role': ?geographicRole?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -902,7 +865,7 @@ final class QuicksightTemplateDefinitionFilterGroups {
   Map<String, Object?> encode() => {
     'cross_dataset': crossDataset.toTfJson(),
     'filter_group_id': filterGroupId.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'status': ?status?.toTfJson(),
     'filters': [for (final e in filters) e.encode()],
     'scope_configuration': scopeConfiguration.encode(),
   };
@@ -944,17 +907,13 @@ final class QuicksightTemplateDefinitionFilterGroupsFilters {
   topBottomFilter;
 
   Map<String, Object?> encode() => {
-    if (categoryFilter != null) 'category_filter': categoryFilter!.encode(),
-    if (numericEqualityFilter != null)
-      'numeric_equality_filter': numericEqualityFilter!.encode(),
-    if (numericRangeFilter != null)
-      'numeric_range_filter': numericRangeFilter!.encode(),
-    if (relativeDatesFilter != null)
-      'relative_dates_filter': relativeDatesFilter!.encode(),
-    if (timeEqualityFilter != null)
-      'time_equality_filter': timeEqualityFilter!.encode(),
-    if (timeRangeFilter != null) 'time_range_filter': timeRangeFilter!.encode(),
-    if (topBottomFilter != null) 'top_bottom_filter': topBottomFilter!.encode(),
+    'category_filter': ?categoryFilter?.encode(),
+    'numeric_equality_filter': ?numericEqualityFilter?.encode(),
+    'numeric_range_filter': ?numericRangeFilter?.encode(),
+    'relative_dates_filter': ?relativeDatesFilter?.encode(),
+    'time_equality_filter': ?timeEqualityFilter?.encode(),
+    'time_range_filter': ?timeRangeFilter?.encode(),
+    'top_bottom_filter': ?topBottomFilter?.encode(),
   };
 }
 
@@ -1002,13 +961,10 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersCategoryFilterConfigu
   filterListConfiguration;
 
   Map<String, Object?> encode() => {
-    if (customFilterConfiguration != null)
-      'custom_filter_configuration': customFilterConfiguration!.encode(),
-    if (customFilterListConfiguration != null)
-      'custom_filter_list_configuration': customFilterListConfiguration!
-          .encode(),
-    if (filterListConfiguration != null)
-      'filter_list_configuration': filterListConfiguration!.encode(),
+    'custom_filter_configuration': ?customFilterConfiguration?.encode(),
+    'custom_filter_list_configuration': ?customFilterListConfiguration
+        ?.encode(),
+    'filter_list_configuration': ?filterListConfiguration?.encode(),
   };
 }
 
@@ -1035,12 +991,11 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersCategoryFilterConfigu
   final TfArg<String>? selectAllOptions;
 
   Map<String, Object?> encode() => {
-    if (categoryValue != null) 'category_value': categoryValue!.toTfJson(),
+    'category_value': ?categoryValue?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
     'null_option': nullOption.toTfJson(),
-    if (parameterName != null) 'parameter_name': parameterName!.toTfJson(),
-    if (selectAllOptions != null)
-      'select_all_options': selectAllOptions!.toTfJson(),
+    'parameter_name': ?parameterName?.toTfJson(),
+    'select_all_options': ?selectAllOptions?.toTfJson(),
   };
 }
 
@@ -1064,11 +1019,10 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersCategoryFilterConfigu
   final TfArg<String>? selectAllOptions;
 
   Map<String, Object?> encode() => {
-    if (categoryValues != null) 'category_values': categoryValues!.toTfJson(),
+    'category_values': ?categoryValues?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
     'null_option': nullOption.toTfJson(),
-    if (selectAllOptions != null)
-      'select_all_options': selectAllOptions!.toTfJson(),
+    'select_all_options': ?selectAllOptions?.toTfJson(),
   };
 }
 
@@ -1089,10 +1043,9 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersCategoryFilterConfigu
   final TfArg<String>? selectAllOptions;
 
   Map<String, Object?> encode() => {
-    if (categoryValues != null) 'category_values': categoryValues!.toTfJson(),
+    'category_values': ?categoryValues?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
-    if (selectAllOptions != null)
-      'select_all_options': selectAllOptions!.toTfJson(),
+    'select_all_options': ?selectAllOptions?.toTfJson(),
   };
 }
 
@@ -1132,12 +1085,10 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersNumericEqualityFilter
     'filter_id': filterId.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
     'null_option': nullOption.toTfJson(),
-    if (parameterName != null) 'parameter_name': parameterName!.toTfJson(),
-    if (selectAllOptions != null)
-      'select_all_options': selectAllOptions!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
-    if (aggregationFunction != null)
-      'aggregation_function': aggregationFunction!.encode(),
+    'parameter_name': ?parameterName?.toTfJson(),
+    'select_all_options': ?selectAllOptions?.toTfJson(),
+    'value': ?value?.toTfJson(),
+    'aggregation_function': ?aggregationFunction?.encode(),
     'column': column.encode(),
   };
 }
@@ -1161,13 +1112,10 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersNumericEqualityFilter
   numericalAggregationFunction;
 
   Map<String, Object?> encode() => {
-    if (categoricalAggregationFunction != null)
-      'categorical_aggregation_function': categoricalAggregationFunction!
-          .toTfJson(),
-    if (dateAggregationFunction != null)
-      'date_aggregation_function': dateAggregationFunction!.toTfJson(),
-    if (numericalAggregationFunction != null)
-      'numerical_aggregation_function': numericalAggregationFunction!.encode(),
+    'categorical_aggregation_function': ?categoricalAggregationFunction
+        ?.toTfJson(),
+    'date_aggregation_function': ?dateAggregationFunction?.toTfJson(),
+    'numerical_aggregation_function': ?numericalAggregationFunction?.encode(),
   };
 }
 
@@ -1187,10 +1135,8 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersNumericEqualityFilter
   percentileAggregation;
 
   Map<String, Object?> encode() => {
-    if (simpleNumericalAggregation != null)
-      'simple_numerical_aggregation': simpleNumericalAggregation!.toTfJson(),
-    if (percentileAggregation != null)
-      'percentile_aggregation': percentileAggregation!.encode(),
+    'simple_numerical_aggregation': ?simpleNumericalAggregation?.toTfJson(),
+    'percentile_aggregation': ?percentileAggregation?.encode(),
   };
 }
 
@@ -1206,8 +1152,7 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersNumericEqualityFilter
   final TfArg<num>? percentileValue;
 
   Map<String, Object?> encode() => {
-    if (percentileValue != null)
-      'percentile_value': percentileValue!.toTfJson(),
+    'percentile_value': ?percentileValue?.toTfJson(),
   };
 }
 
@@ -1250,16 +1195,14 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersNumericRangeFilter {
 
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
-    if (includeMaximum != null) 'include_maximum': includeMaximum!.toTfJson(),
-    if (includeMinimum != null) 'include_minimum': includeMinimum!.toTfJson(),
+    'include_maximum': ?includeMaximum?.toTfJson(),
+    'include_minimum': ?includeMinimum?.toTfJson(),
     'null_option': nullOption.toTfJson(),
-    if (selectAllOptions != null)
-      'select_all_options': selectAllOptions!.toTfJson(),
-    if (aggregationFunction != null)
-      'aggregation_function': aggregationFunction!.encode(),
+    'select_all_options': ?selectAllOptions?.toTfJson(),
+    'aggregation_function': ?aggregationFunction?.encode(),
     'column': column.encode(),
-    if (rangeMaximum != null) 'range_maximum': rangeMaximum!.encode(),
-    if (rangeMinimum != null) 'range_minimum': rangeMinimum!.encode(),
+    'range_maximum': ?rangeMaximum?.encode(),
+    'range_minimum': ?rangeMinimum?.encode(),
   };
 }
 
@@ -1278,8 +1221,8 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersNumericRangeFilterRan
   final TfArg<num>? staticValue;
 
   Map<String, Object?> encode() => {
-    if (parameter != null) 'parameter': parameter!.toTfJson(),
-    if (staticValue != null) 'static_value': staticValue!.toTfJson(),
+    'parameter': ?parameter?.toTfJson(),
+    'static_value': ?staticValue?.toTfJson(),
   };
 }
 
@@ -1326,15 +1269,13 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersRelativeDatesFilter {
     'filter_id': filterId.toTfJson(),
     'minimum_granularity': minimumGranularity.toTfJson(),
     'null_option': nullOption.toTfJson(),
-    if (parameterName != null) 'parameter_name': parameterName!.toTfJson(),
+    'parameter_name': ?parameterName?.toTfJson(),
     'relative_date_type': relativeDateType.toTfJson(),
-    if (relativeDateValue != null)
-      'relative_date_value': relativeDateValue!.toTfJson(),
+    'relative_date_value': ?relativeDateValue?.toTfJson(),
     'time_granularity': timeGranularity.toTfJson(),
     'anchor_date_configuration': anchorDateConfiguration.encode(),
     'column': column.encode(),
-    if (excludePeriodConfiguration != null)
-      'exclude_period_configuration': excludePeriodConfiguration!.encode(),
+    'exclude_period_configuration': ?excludePeriodConfiguration?.encode(),
   };
 }
 
@@ -1352,8 +1293,8 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersRelativeDatesFilterAn
   final TfArg<String>? parameterName;
 
   Map<String, Object?> encode() => {
-    if (anchorOption != null) 'anchor_option': anchorOption!.toTfJson(),
-    if (parameterName != null) 'parameter_name': parameterName!.toTfJson(),
+    'anchor_option': ?anchorOption?.toTfJson(),
+    'parameter_name': ?parameterName?.toTfJson(),
   };
 }
 
@@ -1377,7 +1318,7 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersRelativeDatesFilterEx
   Map<String, Object?> encode() => {
     'amount': amount.toTfJson(),
     'granularity': granularity.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -1405,9 +1346,9 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersTimeEqualityFilter {
 
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
-    if (parameterName != null) 'parameter_name': parameterName!.toTfJson(),
+    'parameter_name': ?parameterName?.toTfJson(),
     'time_granularity': timeGranularity.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
     'column': column.encode(),
   };
 }
@@ -1451,17 +1392,14 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersTimeRangeFilter {
 
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
-    if (includeMaximum != null) 'include_maximum': includeMaximum!.toTfJson(),
-    if (includeMinimum != null) 'include_minimum': includeMinimum!.toTfJson(),
+    'include_maximum': ?includeMaximum?.toTfJson(),
+    'include_minimum': ?includeMinimum?.toTfJson(),
     'null_option': nullOption.toTfJson(),
     'time_granularity': timeGranularity.toTfJson(),
     'column': column.encode(),
-    if (excludePeriodConfiguration != null)
-      'exclude_period_configuration': excludePeriodConfiguration!.encode(),
-    if (rangeMaximumValue != null)
-      'range_maximum_value': rangeMaximumValue!.encode(),
-    if (rangeMinimumValue != null)
-      'range_minimum_value': rangeMinimumValue!.encode(),
+    'exclude_period_configuration': ?excludePeriodConfiguration?.encode(),
+    'range_maximum_value': ?rangeMaximumValue?.encode(),
+    'range_minimum_value': ?rangeMinimumValue?.encode(),
   };
 }
 
@@ -1484,9 +1422,9 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersTimeRangeFilterRangeM
   rollingDate;
 
   Map<String, Object?> encode() => {
-    if (parameter != null) 'parameter': parameter!.toTfJson(),
-    if (staticValue != null) 'static_value': staticValue!.toTfJson(),
-    if (rollingDate != null) 'rolling_date': rollingDate!.encode(),
+    'parameter': ?parameter?.toTfJson(),
+    'static_value': ?staticValue?.toTfJson(),
+    'rolling_date': ?rollingDate?.encode(),
   };
 }
 
@@ -1505,8 +1443,7 @@ final class QuicksightTemplateDefinitionParametersDeclarationsDateTimeParameterD
   final TfArg<String> expression;
 
   Map<String, Object?> encode() => {
-    if (dataSetIdentifier != null)
-      'data_set_identifier': dataSetIdentifier!.toTfJson(),
+    'data_set_identifier': ?dataSetIdentifier?.toTfJson(),
     'expression': expression.toTfJson(),
   };
 }
@@ -1541,8 +1478,8 @@ final class QuicksightTemplateDefinitionFilterGroupsFiltersTopBottomFilter {
 
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (parameterName != null) 'parameter_name': parameterName!.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'parameter_name': ?parameterName?.toTfJson(),
     'time_granularity': timeGranularity.toTfJson(),
     'aggregation_sort_configuration': [
       for (final e in aggregationSortConfiguration) e.encode(),
@@ -1587,7 +1524,7 @@ final class QuicksightTemplateDefinitionFilterGroupsScopeConfiguration {
   selectedSheets;
 
   Map<String, Object?> encode() => {
-    if (selectedSheets != null) 'selected_sheets': selectedSheets!.encode(),
+    'selected_sheets': ?selectedSheets?.encode(),
   };
 }
 
@@ -1631,7 +1568,7 @@ final class QuicksightTemplateDefinitionFilterGroupsScopeConfigurationSelectedSh
   Map<String, Object?> encode() => {
     'scope': scope.toTfJson(),
     'sheet_id': sheetId.toTfJson(),
-    if (visualIds != null) 'visual_ids': visualIds!.toTfJson(),
+    'visual_ids': ?visualIds?.toTfJson(),
   };
 }
 
@@ -1659,14 +1596,10 @@ final class QuicksightTemplateDefinitionParametersDeclarations {
   stringParameterDeclaration;
 
   Map<String, Object?> encode() => {
-    if (dateTimeParameterDeclaration != null)
-      'date_time_parameter_declaration': dateTimeParameterDeclaration!.encode(),
-    if (decimalParameterDeclaration != null)
-      'decimal_parameter_declaration': decimalParameterDeclaration!.encode(),
-    if (integerParameterDeclaration != null)
-      'integer_parameter_declaration': integerParameterDeclaration!.encode(),
-    if (stringParameterDeclaration != null)
-      'string_parameter_declaration': stringParameterDeclaration!.encode(),
+    'date_time_parameter_declaration': ?dateTimeParameterDeclaration?.encode(),
+    'decimal_parameter_declaration': ?decimalParameterDeclaration?.encode(),
+    'integer_parameter_declaration': ?integerParameterDeclaration?.encode(),
+    'string_parameter_declaration': ?stringParameterDeclaration?.encode(),
   };
 }
 
@@ -1693,10 +1626,9 @@ final class QuicksightTemplateDefinitionParametersDeclarationsDateTimeParameterD
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (timeGranularity != null)
-      'time_granularity': timeGranularity!.toTfJson(),
-    if (defaultValues != null) 'default_values': defaultValues!.encode(),
-    if (valuesWhenUnset != null) 'values_when_unset': valuesWhenUnset!.encode(),
+    'time_granularity': ?timeGranularity?.toTfJson(),
+    'default_values': ?defaultValues?.encode(),
+    'values_when_unset': ?valuesWhenUnset?.encode(),
   };
 }
 
@@ -1719,9 +1651,9 @@ final class QuicksightTemplateDefinitionParametersDeclarationsDateTimeParameterD
   rollingDate;
 
   Map<String, Object?> encode() => {
-    if (staticValues != null) 'static_values': staticValues!.toTfJson(),
-    if (dynamicValue != null) 'dynamic_value': dynamicValue!.encode(),
-    if (rollingDate != null) 'rolling_date': rollingDate!.encode(),
+    'static_values': ?staticValues?.toTfJson(),
+    'dynamic_value': ?dynamicValue?.encode(),
+    'rolling_date': ?rollingDate?.encode(),
   };
 }
 
@@ -1745,8 +1677,8 @@ final class QuicksightTemplateDefinitionParametersDeclarationsDateTimeParameterD
 
   Map<String, Object?> encode() => {
     'default_value_column': defaultValueColumn.encode(),
-    if (groupNameColumn != null) 'group_name_column': groupNameColumn!.encode(),
-    if (userNameColumn != null) 'user_name_column': userNameColumn!.encode(),
+    'group_name_column': ?groupNameColumn?.encode(),
+    'user_name_column': ?userNameColumn?.encode(),
   };
 }
 
@@ -1765,9 +1697,8 @@ final class QuicksightTemplateDefinitionParametersDeclarationsDateTimeParameterD
   final TfArg<String>? valueWhenUnsetOption;
 
   Map<String, Object?> encode() => {
-    if (customValue != null) 'custom_value': customValue!.toTfJson(),
-    if (valueWhenUnsetOption != null)
-      'value_when_unset_option': valueWhenUnsetOption!.toTfJson(),
+    'custom_value': ?customValue?.toTfJson(),
+    'value_when_unset_option': ?valueWhenUnsetOption?.toTfJson(),
   };
 }
 
@@ -1796,8 +1727,8 @@ final class QuicksightTemplateDefinitionParametersDeclarationsDecimalParameterDe
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameter_value_type': parameterValueType.toTfJson(),
-    if (defaultValues != null) 'default_values': defaultValues!.encode(),
-    if (valuesWhenUnset != null) 'values_when_unset': valuesWhenUnset!.encode(),
+    'default_values': ?defaultValues?.encode(),
+    'values_when_unset': ?valuesWhenUnset?.encode(),
   };
 }
 
@@ -1817,8 +1748,8 @@ final class QuicksightTemplateDefinitionParametersDeclarationsDecimalParameterDe
   dynamicValue;
 
   Map<String, Object?> encode() => {
-    if (staticValues != null) 'static_values': staticValues!.toTfJson(),
-    if (dynamicValue != null) 'dynamic_value': dynamicValue!.encode(),
+    'static_values': ?staticValues?.toTfJson(),
+    'dynamic_value': ?dynamicValue?.encode(),
   };
 }
 
@@ -1837,9 +1768,8 @@ final class QuicksightTemplateDefinitionParametersDeclarationsDecimalParameterDe
   final TfArg<String>? valueWhenUnsetOption;
 
   Map<String, Object?> encode() => {
-    if (customValue != null) 'custom_value': customValue!.toTfJson(),
-    if (valueWhenUnsetOption != null)
-      'value_when_unset_option': valueWhenUnsetOption!.toTfJson(),
+    'custom_value': ?customValue?.toTfJson(),
+    'value_when_unset_option': ?valueWhenUnsetOption?.toTfJson(),
   };
 }
 
@@ -1867,8 +1797,8 @@ final class QuicksightTemplateDefinitionParametersDeclarationsStringParameterDec
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameter_value_type': parameterValueType.toTfJson(),
-    if (defaultValues != null) 'default_values': defaultValues!.encode(),
-    if (valuesWhenUnset != null) 'values_when_unset': valuesWhenUnset!.encode(),
+    'default_values': ?defaultValues?.encode(),
+    'values_when_unset': ?valuesWhenUnset?.encode(),
   };
 }
 
@@ -1915,18 +1845,17 @@ final class QuicksightTemplateDefinitionSheets {
   final List<QuicksightTemplateDefinitionSheetsVisuals>? visuals;
 
   Map<String, Object?> encode() => {
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'name': ?name?.toTfJson(),
     'sheet_id': sheetId.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'title': ?title?.toTfJson(),
     if (filterControls != null)
       'filter_controls': [for (final e in filterControls!) e.encode()],
-    if (layouts != null) 'layouts': layouts!.encode(),
+    'layouts': ?layouts?.encode(),
     if (parameterControls != null)
       'parameter_controls': [for (final e in parameterControls!) e.encode()],
-    if (sheetControlLayouts != null)
-      'sheet_control_layouts': sheetControlLayouts!.encode(),
+    'sheet_control_layouts': ?sheetControlLayouts?.encode(),
     if (textBoxes != null)
       'text_boxes': [for (final e in textBoxes!) e.encode()],
     if (visuals != null) 'visuals': [for (final e in visuals!) e.encode()],
@@ -1964,14 +1893,13 @@ final class QuicksightTemplateDefinitionSheetsFilterControls {
   final QuicksightTemplateDefinitionSheetsFilterControlsTextField? textField;
 
   Map<String, Object?> encode() => {
-    if (dateTimePicker != null) 'date_time_picker': dateTimePicker!.encode(),
-    if (dropdown != null) 'dropdown': dropdown!.encode(),
-    if (list != null) 'list': list!.encode(),
-    if (relativeDateTime != null)
-      'relative_date_time': relativeDateTime!.encode(),
-    if (slider != null) 'slider': slider!.encode(),
-    if (textArea != null) 'text_area': textArea!.encode(),
-    if (textField != null) 'text_field': textField!.encode(),
+    'date_time_picker': ?dateTimePicker?.encode(),
+    'dropdown': ?dropdown?.encode(),
+    'list': ?list?.encode(),
+    'relative_date_time': ?relativeDateTime?.encode(),
+    'slider': ?slider?.encode(),
+    'text_area': ?textArea?.encode(),
+    'text_field': ?textField?.encode(),
   };
 }
 
@@ -2002,8 +1930,8 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsDateTimePicker {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
     'title': title.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
+    'type': ?type?.toTfJson(),
+    'display_options': ?displayOptions?.encode(),
   };
 }
 
@@ -2023,8 +1951,8 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsDateTimePickerDispla
   titleOptions;
 
   Map<String, Object?> encode() => {
-    if (dateTimeFormat != null) 'date_time_format': dateTimeFormat!.toTfJson(),
-    if (titleOptions != null) 'title_options': titleOptions!.encode(),
+    'date_time_format': ?dateTimeFormat?.toTfJson(),
+    'title_options': ?titleOptions?.encode(),
   };
 }
 
@@ -2047,10 +1975,9 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsDateTimePickerDispla
   fontConfiguration;
 
   Map<String, Object?> encode() => {
-    if (customLabel != null) 'custom_label': customLabel!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-    if (fontConfiguration != null)
-      'font_configuration': fontConfiguration!.encode(),
+    'custom_label': ?customLabel?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
+    'font_configuration': ?fontConfiguration?.encode(),
   };
 }
 
@@ -2080,11 +2007,11 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsDateTimePickerDispla
   fontWeight;
 
   Map<String, Object?> encode() => {
-    if (fontColor != null) 'font_color': fontColor!.toTfJson(),
-    if (fontDecoration != null) 'font_decoration': fontDecoration!.toTfJson(),
-    if (fontStyle != null) 'font_style': fontStyle!.toTfJson(),
-    if (fontSize != null) 'font_size': fontSize!.encode(),
-    if (fontWeight != null) 'font_weight': fontWeight!.encode(),
+    'font_color': ?fontColor?.toTfJson(),
+    'font_decoration': ?fontDecoration?.toTfJson(),
+    'font_style': ?fontStyle?.toTfJson(),
+    'font_size': ?fontSize?.encode(),
+    'font_weight': ?fontWeight?.encode(),
   };
 }
 
@@ -2099,9 +2026,7 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsDateTimePickerDispla
 
   final TfArg<String>? relative;
 
-  Map<String, Object?> encode() => {
-    if (relative != null) 'relative': relative!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'relative': ?relative?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.filter_controls.dropdown` block of
@@ -2139,13 +2064,10 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsDropdown {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
     'title': title.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (cascadingControlConfiguration != null)
-      'cascading_control_configuration': cascadingControlConfiguration!
-          .encode(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
-    if (selectableValues != null)
-      'selectable_values': selectableValues!.encode(),
+    'type': ?type?.toTfJson(),
+    'cascading_control_configuration': ?cascadingControlConfiguration?.encode(),
+    'display_options': ?displayOptions?.encode(),
+    'selectable_values': ?selectableValues?.encode(),
   };
 }
 
@@ -2184,8 +2106,7 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsDropdownCascadingCon
   final QuicksightTemplateDefinitionColumnConfigurationsColumn columnToMatch;
 
   Map<String, Object?> encode() => {
-    if (sourceSheetControlId != null)
-      'source_sheet_control_id': sourceSheetControlId!.toTfJson(),
+    'source_sheet_control_id': ?sourceSheetControlId?.toTfJson(),
     'column_to_match': columnToMatch.encode(),
   };
 }
@@ -2207,9 +2128,8 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsDropdownDisplayOptio
   titleOptions;
 
   Map<String, Object?> encode() => {
-    if (selectAllOptions != null)
-      'select_all_options': selectAllOptions!.encode(),
-    if (titleOptions != null) 'title_options': titleOptions!.encode(),
+    'select_all_options': ?selectAllOptions?.encode(),
+    'title_options': ?titleOptions?.encode(),
   };
 }
 
@@ -2224,9 +2144,7 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsDropdownDisplayOptio
 
   final TfArg<String>? visibility;
 
-  Map<String, Object?> encode() => {
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'visibility': ?visibility?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.filter_controls.dropdown.selectable_values` block of
@@ -2240,9 +2158,7 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsDropdownSelectableVa
 
   final TfArg<List<Object?>>? values;
 
-  Map<String, Object?> encode() => {
-    if (values != null) 'values': values!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'values': ?values?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.filter_controls.list` block of
@@ -2280,13 +2196,10 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsList {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
     'title': title.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (cascadingControlConfiguration != null)
-      'cascading_control_configuration': cascadingControlConfiguration!
-          .encode(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
-    if (selectableValues != null)
-      'selectable_values': selectableValues!.encode(),
+    'type': ?type?.toTfJson(),
+    'cascading_control_configuration': ?cascadingControlConfiguration?.encode(),
+    'display_options': ?displayOptions?.encode(),
+    'selectable_values': ?selectableValues?.encode(),
   };
 }
 
@@ -2311,10 +2224,9 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsListDisplayOptions {
   titleOptions;
 
   Map<String, Object?> encode() => {
-    if (searchOptions != null) 'search_options': searchOptions!.encode(),
-    if (selectAllOptions != null)
-      'select_all_options': selectAllOptions!.encode(),
-    if (titleOptions != null) 'title_options': titleOptions!.encode(),
+    'search_options': ?searchOptions?.encode(),
+    'select_all_options': ?selectAllOptions?.encode(),
+    'title_options': ?titleOptions?.encode(),
   };
 }
 
@@ -2342,7 +2254,7 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsRelativeDateTime {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
     'title': title.toTfJson(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
+    'display_options': ?displayOptions?.encode(),
   };
 }
 
@@ -2385,8 +2297,8 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsSlider {
     'source_filter_id': sourceFilterId.toTfJson(),
     'step_size': stepSize.toTfJson(),
     'title': title.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
+    'type': ?type?.toTfJson(),
+    'display_options': ?displayOptions?.encode(),
   };
 }
 
@@ -2402,9 +2314,7 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsSliderDisplayOptions
   final QuicksightTemplateDefinitionSheetsFilterControlsDateTimePickerDisplayOptionsTitleOptions?
   titleOptions;
 
-  Map<String, Object?> encode() => {
-    if (titleOptions != null) 'title_options': titleOptions!.encode(),
-  };
+  Map<String, Object?> encode() => {'title_options': ?titleOptions?.encode()};
 }
 
 /// Typed helper for the `definition.sheets.filter_controls.text_area` block of
@@ -2431,11 +2341,11 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsTextArea {
   displayOptions;
 
   Map<String, Object?> encode() => {
-    if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
+    'delimiter': ?delimiter?.toTfJson(),
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
     'title': title.toTfJson(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
+    'display_options': ?displayOptions?.encode(),
   };
 }
 
@@ -2456,9 +2366,8 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsTextAreaDisplayOptio
   titleOptions;
 
   Map<String, Object?> encode() => {
-    if (placeholderOptions != null)
-      'placeholder_options': placeholderOptions!.encode(),
-    if (titleOptions != null) 'title_options': titleOptions!.encode(),
+    'placeholder_options': ?placeholderOptions?.encode(),
+    'title_options': ?titleOptions?.encode(),
   };
 }
 
@@ -2486,7 +2395,7 @@ final class QuicksightTemplateDefinitionSheetsFilterControlsTextField {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
     'title': title.toTfJson(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
+    'display_options': ?displayOptions?.encode(),
   };
 }
 
@@ -2523,10 +2432,9 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfiguration {
   sectionBasedLayout;
 
   Map<String, Object?> encode() => {
-    if (freeFormLayout != null) 'free_form_layout': freeFormLayout!.encode(),
-    if (gridLayout != null) 'grid_layout': gridLayout!.encode(),
-    if (sectionBasedLayout != null)
-      'section_based_layout': sectionBasedLayout!.encode(),
+    'free_form_layout': ?freeFormLayout?.encode(),
+    'grid_layout': ?gridLayout?.encode(),
+    'section_based_layout': ?sectionBasedLayout?.encode(),
   };
 }
 
@@ -2548,8 +2456,7 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationFreeFormLayout
   elements;
 
   Map<String, Object?> encode() => {
-    if (canvasSizeOptions != null)
-      'canvas_size_options': canvasSizeOptions!.encode(),
+    'canvas_size_options': ?canvasSizeOptions?.encode(),
     'elements': [for (final e in elements) e.encode()],
   };
 }
@@ -2609,18 +2516,16 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationFreeFormLayout
     'element_id': elementId.toTfJson(),
     'element_type': elementType.toTfJson(),
     'height': height.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
     'width': width.toTfJson(),
     'x_axis_location': xAxisLocation.toTfJson(),
     'y_axis_location': yAxisLocation.toTfJson(),
-    if (backgroundStyle != null) 'background_style': backgroundStyle!.encode(),
-    if (borderStyle != null) 'border_style': borderStyle!.encode(),
-    if (loadingAnimation != null)
-      'loading_animation': loadingAnimation!.encode(),
+    'background_style': ?backgroundStyle?.encode(),
+    'border_style': ?borderStyle?.encode(),
+    'loading_animation': ?loadingAnimation?.encode(),
     if (renderingRules != null)
       'rendering_rules': [for (final e in renderingRules!) e.encode()],
-    if (selectedBorderStyle != null)
-      'selected_border_style': selectedBorderStyle!.encode(),
+    'selected_border_style': ?selectedBorderStyle?.encode(),
   };
 }
 
@@ -2639,8 +2544,8 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationFreeFormLayout
   final TfArg<String>? visibility;
 
   Map<String, Object?> encode() => {
-    if (color != null) 'color': color!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
+    'color': ?color?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
   };
 }
 
@@ -2684,8 +2589,7 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationGridLayout {
   elements;
 
   Map<String, Object?> encode() => {
-    if (canvasSizeOptions != null)
-      'canvas_size_options': canvasSizeOptions!.encode(),
+    'canvas_size_options': ?canvasSizeOptions?.encode(),
     'elements': [for (final e in elements) e.encode()],
   };
 }
@@ -2717,11 +2621,11 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationGridLayoutElem
   final TfArg<num> rowSpan;
 
   Map<String, Object?> encode() => {
-    if (columnIndex != null) 'column_index': columnIndex!.toTfJson(),
+    'column_index': ?columnIndex?.toTfJson(),
     'column_span': columnSpan.toTfJson(),
     'element_id': elementId.toTfJson(),
     'element_type': elementType.toTfJson(),
-    if (rowIndex != null) 'row_index': rowIndex!.toTfJson(),
+    'row_index': ?rowIndex?.toTfJson(),
     'row_span': rowSpan.toTfJson(),
   };
 }
@@ -2753,8 +2657,7 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationSectionBasedLa
 
   Map<String, Object?> encode() => {
     'body_sections': [for (final e in bodySections) e.encode()],
-    if (canvasSizeOptions != null)
-      'canvas_size_options': canvasSizeOptions!.encode(),
+    'canvas_size_options': ?canvasSizeOptions?.encode(),
     'footer_sections': footerSections.encode(),
     'header_sections': headerSections.encode(),
   };
@@ -2785,9 +2688,8 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationSectionBasedLa
   Map<String, Object?> encode() => {
     'section_id': sectionId.toTfJson(),
     'content': content.encode(),
-    if (pageBreakConfiguration != null)
-      'page_break_configuration': pageBreakConfiguration!.encode(),
-    if (style != null) 'style': style!.encode(),
+    'page_break_configuration': ?pageBreakConfiguration?.encode(),
+    'style': ?style?.encode(),
   };
 }
 
@@ -2802,9 +2704,7 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationSectionBasedLa
   final QuicksightTemplateDefinitionSheetsLayoutsConfigurationSectionBasedLayoutFooterSectionsLayout?
   layout;
 
-  Map<String, Object?> encode() => {
-    if (layout != null) 'layout': layout!.encode(),
-  };
+  Map<String, Object?> encode() => {'layout': ?layout?.encode()};
 }
 
 /// Typed helper for the `definition.sheets.layouts.configuration.section_based_layout.footer_sections.layout` block of
@@ -2854,9 +2754,7 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationSectionBasedLa
   final QuicksightTemplateDefinitionSheetsLayoutsConfigurationSectionBasedLayoutBodySectionsPageBreakConfigurationAfter?
   after;
 
-  Map<String, Object?> encode() => {
-    if (after != null) 'after': after!.encode(),
-  };
+  Map<String, Object?> encode() => {'after': ?after?.encode()};
 }
 
 /// Typed helper for the `definition.sheets.layouts.configuration.section_based_layout.body_sections.page_break_configuration.after` block of
@@ -2869,9 +2767,7 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationSectionBasedLa
 
   final TfArg<String>? status;
 
-  Map<String, Object?> encode() => {
-    if (status != null) 'status': status!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.layouts.configuration.section_based_layout.body_sections.style` block of
@@ -2890,8 +2786,8 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationSectionBasedLa
   padding;
 
   Map<String, Object?> encode() => {
-    if (height != null) 'height': height!.toTfJson(),
-    if (padding != null) 'padding': padding!.encode(),
+    'height': ?height?.toTfJson(),
+    'padding': ?padding?.encode(),
   };
 }
 
@@ -2916,8 +2812,8 @@ final class QuicksightTemplateDefinitionSheetsLayoutsConfigurationSectionBasedLa
 
   Map<String, Object?> encode() => {
     'section_id': sectionId.toTfJson(),
-    if (layout != null) 'layout': layout!.encode(),
-    if (style != null) 'style': style!.encode(),
+    'layout': ?layout?.encode(),
+    'style': ?style?.encode(),
   };
 }
 
@@ -2948,12 +2844,12 @@ final class QuicksightTemplateDefinitionSheetsParameterControls {
   final QuicksightTemplateDefinitionSheetsParameterControlsTextField? textField;
 
   Map<String, Object?> encode() => {
-    if (dateTimePicker != null) 'date_time_picker': dateTimePicker!.encode(),
-    if (dropdown != null) 'dropdown': dropdown!.encode(),
-    if (list != null) 'list': list!.encode(),
-    if (slider != null) 'slider': slider!.encode(),
-    if (textArea != null) 'text_area': textArea!.encode(),
-    if (textField != null) 'text_field': textField!.encode(),
+    'date_time_picker': ?dateTimePicker?.encode(),
+    'dropdown': ?dropdown?.encode(),
+    'list': ?list?.encode(),
+    'slider': ?slider?.encode(),
+    'text_area': ?textArea?.encode(),
+    'text_field': ?textField?.encode(),
   };
 }
 
@@ -2981,7 +2877,7 @@ final class QuicksightTemplateDefinitionSheetsParameterControlsDateTimePicker {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
     'title': title.toTfJson(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
+    'display_options': ?displayOptions?.encode(),
   };
 }
 
@@ -3020,13 +2916,10 @@ final class QuicksightTemplateDefinitionSheetsParameterControlsDropdown {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
     'title': title.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (cascadingControlConfiguration != null)
-      'cascading_control_configuration': cascadingControlConfiguration!
-          .encode(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
-    if (selectableValues != null)
-      'selectable_values': selectableValues!.encode(),
+    'type': ?type?.toTfJson(),
+    'cascading_control_configuration': ?cascadingControlConfiguration?.encode(),
+    'display_options': ?displayOptions?.encode(),
+    'selectable_values': ?selectableValues?.encode(),
   };
 }
 
@@ -3046,9 +2939,8 @@ final class QuicksightTemplateDefinitionSheetsParameterControlsDropdownSelectabl
   linkToDataSetColumn;
 
   Map<String, Object?> encode() => {
-    if (values != null) 'values': values!.toTfJson(),
-    if (linkToDataSetColumn != null)
-      'link_to_data_set_column': linkToDataSetColumn!.encode(),
+    'values': ?values?.toTfJson(),
+    'link_to_data_set_column': ?linkToDataSetColumn?.encode(),
   };
 }
 
@@ -3087,13 +2979,10 @@ final class QuicksightTemplateDefinitionSheetsParameterControlsList {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
     'title': title.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (cascadingControlConfiguration != null)
-      'cascading_control_configuration': cascadingControlConfiguration!
-          .encode(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
-    if (selectableValues != null)
-      'selectable_values': selectableValues!.encode(),
+    'type': ?type?.toTfJson(),
+    'cascading_control_configuration': ?cascadingControlConfiguration?.encode(),
+    'display_options': ?displayOptions?.encode(),
+    'selectable_values': ?selectableValues?.encode(),
   };
 }
 
@@ -3133,7 +3022,7 @@ final class QuicksightTemplateDefinitionSheetsParameterControlsSlider {
     'source_parameter_name': sourceParameterName.toTfJson(),
     'step_size': stepSize.toTfJson(),
     'title': title.toTfJson(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
+    'display_options': ?displayOptions?.encode(),
   };
 }
 
@@ -3161,11 +3050,11 @@ final class QuicksightTemplateDefinitionSheetsParameterControlsTextArea {
   displayOptions;
 
   Map<String, Object?> encode() => {
-    if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
+    'delimiter': ?delimiter?.toTfJson(),
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
     'title': title.toTfJson(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
+    'display_options': ?displayOptions?.encode(),
   };
 }
 
@@ -3193,7 +3082,7 @@ final class QuicksightTemplateDefinitionSheetsParameterControlsTextField {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
     'title': title.toTfJson(),
-    if (displayOptions != null) 'display_options': displayOptions!.encode(),
+    'display_options': ?displayOptions?.encode(),
   };
 }
 
@@ -3222,9 +3111,7 @@ final class QuicksightTemplateDefinitionSheetsSheetControlLayoutsConfiguration {
   final QuicksightTemplateDefinitionSheetsLayoutsConfigurationGridLayout?
   gridLayout;
 
-  Map<String, Object?> encode() => {
-    if (gridLayout != null) 'grid_layout': gridLayout!.encode(),
-  };
+  Map<String, Object?> encode() => {'grid_layout': ?gridLayout?.encode()};
 }
 
 /// Typed helper for the `definition.sheets.text_boxes` block of
@@ -3241,7 +3128,7 @@ final class QuicksightTemplateDefinitionSheetsTextBoxes {
   final TfArg<String> sheetTextBoxId;
 
   Map<String, Object?> encode() => {
-    if (content != null) 'content': content!.toTfJson(),
+    'content': ?content?.toTfJson(),
     'sheet_text_box_id': sheetTextBoxId.toTfJson(),
   };
 }
@@ -3337,38 +3224,29 @@ final class QuicksightTemplateDefinitionSheetsVisuals {
   wordCloudVisual;
 
   Map<String, Object?> encode() => {
-    if (barChartVisual != null) 'bar_chart_visual': barChartVisual!.encode(),
-    if (boxPlotVisual != null) 'box_plot_visual': boxPlotVisual!.encode(),
-    if (comboChartVisual != null)
-      'combo_chart_visual': comboChartVisual!.encode(),
-    if (customContentVisual != null)
-      'custom_content_visual': customContentVisual!.encode(),
-    if (emptyVisual != null) 'empty_visual': emptyVisual!.encode(),
-    if (filledMapVisual != null) 'filled_map_visual': filledMapVisual!.encode(),
-    if (funnelChartVisual != null)
-      'funnel_chart_visual': funnelChartVisual!.encode(),
-    if (gaugeChartVisual != null)
-      'gauge_chart_visual': gaugeChartVisual!.encode(),
-    if (geospatialMapVisual != null)
-      'geospatial_map_visual': geospatialMapVisual!.encode(),
-    if (heatMapVisual != null) 'heat_map_visual': heatMapVisual!.encode(),
-    if (histogramVisual != null) 'histogram_visual': histogramVisual!.encode(),
-    if (insightVisual != null) 'insight_visual': insightVisual!.encode(),
-    if (kpiVisual != null) 'kpi_visual': kpiVisual!.encode(),
-    if (lineChartVisual != null) 'line_chart_visual': lineChartVisual!.encode(),
-    if (pieChartVisual != null) 'pie_chart_visual': pieChartVisual!.encode(),
-    if (pivotTableVisual != null)
-      'pivot_table_visual': pivotTableVisual!.encode(),
-    if (radarChartVisual != null)
-      'radar_chart_visual': radarChartVisual!.encode(),
-    if (sankeyDiagramVisual != null)
-      'sankey_diagram_visual': sankeyDiagramVisual!.encode(),
-    if (scatterPlotVisual != null)
-      'scatter_plot_visual': scatterPlotVisual!.encode(),
-    if (tableVisual != null) 'table_visual': tableVisual!.encode(),
-    if (treeMapVisual != null) 'tree_map_visual': treeMapVisual!.encode(),
-    if (waterfallVisual != null) 'waterfall_visual': waterfallVisual!.encode(),
-    if (wordCloudVisual != null) 'word_cloud_visual': wordCloudVisual!.encode(),
+    'bar_chart_visual': ?barChartVisual?.encode(),
+    'box_plot_visual': ?boxPlotVisual?.encode(),
+    'combo_chart_visual': ?comboChartVisual?.encode(),
+    'custom_content_visual': ?customContentVisual?.encode(),
+    'empty_visual': ?emptyVisual?.encode(),
+    'filled_map_visual': ?filledMapVisual?.encode(),
+    'funnel_chart_visual': ?funnelChartVisual?.encode(),
+    'gauge_chart_visual': ?gaugeChartVisual?.encode(),
+    'geospatial_map_visual': ?geospatialMapVisual?.encode(),
+    'heat_map_visual': ?heatMapVisual?.encode(),
+    'histogram_visual': ?histogramVisual?.encode(),
+    'insight_visual': ?insightVisual?.encode(),
+    'kpi_visual': ?kpiVisual?.encode(),
+    'line_chart_visual': ?lineChartVisual?.encode(),
+    'pie_chart_visual': ?pieChartVisual?.encode(),
+    'pivot_table_visual': ?pivotTableVisual?.encode(),
+    'radar_chart_visual': ?radarChartVisual?.encode(),
+    'sankey_diagram_visual': ?sankeyDiagramVisual?.encode(),
+    'scatter_plot_visual': ?scatterPlotVisual?.encode(),
+    'table_visual': ?tableVisual?.encode(),
+    'tree_map_visual': ?treeMapVisual?.encode(),
+    'waterfall_visual': ?waterfallVisual?.encode(),
+    'word_cloud_visual': ?wordCloudVisual?.encode(),
   };
 }
 
@@ -3406,12 +3284,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -3475,12 +3352,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualActionsAction
   urlOperation;
 
   Map<String, Object?> encode() => {
-    if (filterOperation != null) 'filter_operation': filterOperation!.encode(),
-    if (navigationOperation != null)
-      'navigation_operation': navigationOperation!.encode(),
-    if (setParametersOperation != null)
-      'set_parameters_operation': setParametersOperation!.encode(),
-    if (urlOperation != null) 'url_operation': urlOperation!.encode(),
+    'filter_operation': ?filterOperation?.encode(),
+    'navigation_operation': ?navigationOperation?.encode(),
+    'set_parameters_operation': ?setParametersOperation?.encode(),
+    'url_operation': ?urlOperation?.encode(),
   };
 }
 
@@ -3521,9 +3396,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualActionsAction
   final TfArg<List<Object?>>? selectedFields;
 
   Map<String, Object?> encode() => {
-    if (selectedFieldOption != null)
-      'selected_field_option': selectedFieldOption!.toTfJson(),
-    if (selectedFields != null) 'selected_fields': selectedFields!.toTfJson(),
+    'selected_field_option': ?selectedFieldOption?.toTfJson(),
+    'selected_fields': ?selectedFields?.toTfJson(),
   };
 }
 
@@ -3540,9 +3414,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualActionsAction
   sameSheetTargetVisualConfiguration;
 
   Map<String, Object?> encode() => {
-    if (sameSheetTargetVisualConfiguration != null)
-      'same_sheet_target_visual_configuration':
-          sameSheetTargetVisualConfiguration!.encode(),
+    'same_sheet_target_visual_configuration':
+        ?sameSheetTargetVisualConfiguration?.encode(),
   };
 }
 
@@ -3561,9 +3434,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualActionsAction
   final TfArg<List<Object?>>? targetVisuals;
 
   Map<String, Object?> encode() => {
-    if (targetVisualOption != null)
-      'target_visual_option': targetVisualOption!.toTfJson(),
-    if (targetVisuals != null) 'target_visuals': targetVisuals!.toTfJson(),
+    'target_visual_option': ?targetVisualOption?.toTfJson(),
+    'target_visuals': ?targetVisuals?.toTfJson(),
   };
 }
 
@@ -3580,8 +3452,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualActionsAction
   localNavigationConfiguration;
 
   Map<String, Object?> encode() => {
-    if (localNavigationConfiguration != null)
-      'local_navigation_configuration': localNavigationConfiguration!.encode(),
+    'local_navigation_configuration': ?localNavigationConfiguration?.encode(),
   };
 }
 
@@ -3665,13 +3536,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualActionsAction
   customValuesConfiguration;
 
   Map<String, Object?> encode() => {
-    if (selectAllValueOptions != null)
-      'select_all_value_options': selectAllValueOptions!.toTfJson(),
-    if (sourceField != null) 'source_field': sourceField!.toTfJson(),
-    if (sourceParameterName != null)
-      'source_parameter_name': sourceParameterName!.toTfJson(),
-    if (customValuesConfiguration != null)
-      'custom_values_configuration': customValuesConfiguration!.encode(),
+    'select_all_value_options': ?selectAllValueOptions?.toTfJson(),
+    'source_field': ?sourceField?.toTfJson(),
+    'source_parameter_name': ?sourceParameterName?.toTfJson(),
+    'custom_values_configuration': ?customValuesConfiguration?.encode(),
   };
 }
 
@@ -3691,8 +3559,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualActionsAction
   customValues;
 
   Map<String, Object?> encode() => {
-    if (includeNullValue != null)
-      'include_null_value': includeNullValue!.toTfJson(),
+    'include_null_value': ?includeNullValue?.toTfJson(),
     'custom_values': customValues.encode(),
   };
 }
@@ -3718,10 +3585,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualActionsAction
   final TfArg<List<Object?>>? stringValues;
 
   Map<String, Object?> encode() => {
-    if (dateTimeValues != null) 'date_time_values': dateTimeValues!.toTfJson(),
-    if (decimalValues != null) 'decimal_values': decimalValues!.toTfJson(),
-    if (integerValues != null) 'integer_values': integerValues!.toTfJson(),
-    if (stringValues != null) 'string_values': stringValues!.toTfJson(),
+    'date_time_values': ?dateTimeValues?.toTfJson(),
+    'decimal_values': ?decimalValues?.toTfJson(),
+    'integer_values': ?integerValues?.toTfJson(),
+    'string_values': ?stringValues?.toTfJson(),
   };
 }
 
@@ -3819,32 +3686,26 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   visualPalette;
 
   Map<String, Object?> encode() => {
-    if (barsArrangement != null)
-      'bars_arrangement': barsArrangement!.toTfJson(),
-    if (orientation != null) 'orientation': orientation!.toTfJson(),
-    if (categoryAxis != null) 'category_axis': categoryAxis!.encode(),
-    if (categoryLabelOptions != null)
-      'category_label_options': categoryLabelOptions!.encode(),
-    if (colorLabelOptions != null)
-      'color_label_options': colorLabelOptions!.encode(),
+    'bars_arrangement': ?barsArrangement?.toTfJson(),
+    'orientation': ?orientation?.toTfJson(),
+    'category_axis': ?categoryAxis?.encode(),
+    'category_label_options': ?categoryLabelOptions?.encode(),
+    'color_label_options': ?colorLabelOptions?.encode(),
     if (contributionAnalysisDefaults != null)
       'contribution_analysis_defaults': [
         for (final e in contributionAnalysisDefaults!) e.encode(),
       ],
-    if (dataLabels != null) 'data_labels': dataLabels!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
+    'data_labels': ?dataLabels?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'legend': ?legend?.encode(),
     if (referenceLines != null)
       'reference_lines': [for (final e in referenceLines!) e.encode()],
-    if (smallMultiplesOptions != null)
-      'small_multiples_options': smallMultiplesOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (valueAxis != null) 'value_axis': valueAxis!.encode(),
-    if (valueLabelOptions != null)
-      'value_label_options': valueLabelOptions!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
+    'small_multiples_options': ?smallMultiplesOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'value_axis': ?valueAxis?.encode(),
+    'value_label_options': ?valueLabelOptions?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
   };
 }
 
@@ -3878,16 +3739,12 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   tickLabelOptions;
 
   Map<String, Object?> encode() => {
-    if (axisLineVisibility != null)
-      'axis_line_visibility': axisLineVisibility!.toTfJson(),
-    if (axisOffset != null) 'axis_offset': axisOffset!.toTfJson(),
-    if (gridLineVisibility != null)
-      'grid_line_visibility': gridLineVisibility!.toTfJson(),
-    if (dataOptions != null) 'data_options': dataOptions!.encode(),
-    if (scrollbarOptions != null)
-      'scrollbar_options': scrollbarOptions!.encode(),
-    if (tickLabelOptions != null)
-      'tick_label_options': tickLabelOptions!.encode(),
+    'axis_line_visibility': ?axisLineVisibility?.toTfJson(),
+    'axis_offset': ?axisOffset?.toTfJson(),
+    'grid_line_visibility': ?gridLineVisibility?.toTfJson(),
+    'data_options': ?dataOptions?.encode(),
+    'scrollbar_options': ?scrollbarOptions?.encode(),
+    'tick_label_options': ?tickLabelOptions?.encode(),
   };
 }
 
@@ -3908,9 +3765,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   numericAxisOptions;
 
   Map<String, Object?> encode() => {
-    if (dateAxisOptions != null) 'date_axis_options': dateAxisOptions!.encode(),
-    if (numericAxisOptions != null)
-      'numeric_axis_options': numericAxisOptions!.encode(),
+    'date_axis_options': ?dateAxisOptions?.encode(),
+    'numeric_axis_options': ?numericAxisOptions?.encode(),
   };
 }
 
@@ -3926,8 +3782,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   final TfArg<String>? missingDateVisibility;
 
   Map<String, Object?> encode() => {
-    if (missingDateVisibility != null)
-      'missing_date_visibility': missingDateVisibility!.toTfJson(),
+    'missing_date_visibility': ?missingDateVisibility?.toTfJson(),
   };
 }
 
@@ -3948,8 +3803,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   scale;
 
   Map<String, Object?> encode() => {
-    if (range != null) 'range': range!.encode(),
-    if (scale != null) 'scale': scale!.encode(),
+    'range': ?range?.encode(),
+    'scale': ?scale?.encode(),
   };
 }
 
@@ -3970,8 +3825,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   minMax;
 
   Map<String, Object?> encode() => {
-    if (dataDriven != null) 'data_driven': dataDriven!.encode(),
-    if (minMax != null) 'min_max': minMax!.encode(),
+    'data_driven': ?dataDriven?.encode(),
+    'min_max': ?minMax?.encode(),
   };
 }
 
@@ -4000,8 +3855,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   final TfArg<num>? minimum;
 
   Map<String, Object?> encode() => {
-    if (maximum != null) 'maximum': maximum!.toTfJson(),
-    if (minimum != null) 'minimum': minimum!.toTfJson(),
+    'maximum': ?maximum?.toTfJson(),
+    'minimum': ?minimum?.toTfJson(),
   };
 }
 
@@ -4022,8 +3877,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   logarithmic;
 
   Map<String, Object?> encode() => {
-    if (linear != null) 'linear': linear!.encode(),
-    if (logarithmic != null) 'logarithmic': logarithmic!.encode(),
+    'linear': ?linear?.encode(),
+    'logarithmic': ?logarithmic?.encode(),
   };
 }
 
@@ -4042,8 +3897,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   final TfArg<num>? stepSize;
 
   Map<String, Object?> encode() => {
-    if (stepCount != null) 'step_count': stepCount!.toTfJson(),
-    if (stepSize != null) 'step_size': stepSize!.toTfJson(),
+    'step_count': ?stepCount?.toTfJson(),
+    'step_size': ?stepSize?.toTfJson(),
   };
 }
 
@@ -4058,7 +3913,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   final TfArg<num>? base;
 
-  Map<String, Object?> encode() => {if (base != null) 'base': base!.toTfJson()};
+  Map<String, Object?> encode() => {'base': ?base?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.bar_chart_visual.chart_configuration.category_axis.scrollbar_options` block of
@@ -4077,8 +3932,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   visibleRange;
 
   Map<String, Object?> encode() => {
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-    if (visibleRange != null) 'visible_range': visibleRange!.encode(),
+    'visibility': ?visibility?.toTfJson(),
+    'visible_range': ?visibleRange?.encode(),
   };
 }
 
@@ -4094,9 +3949,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   final QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigurationCategoryAxisScrollbarOptionsVisibleRangePercentRange?
   percentRange;
 
-  Map<String, Object?> encode() => {
-    if (percentRange != null) 'percent_range': percentRange!.encode(),
-  };
+  Map<String, Object?> encode() => {'percent_range': ?percentRange?.encode()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.bar_chart_visual.chart_configuration.category_axis.scrollbar_options.visible_range.percent_range` block of
@@ -4114,8 +3967,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   final TfArg<num>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -4135,8 +3988,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   labelOptions;
 
   Map<String, Object?> encode() => {
-    if (rotationAngle != null) 'rotation_angle': rotationAngle!.toTfJson(),
-    if (labelOptions != null) 'label_options': labelOptions!.encode(),
+    'rotation_angle': ?rotationAngle?.toTfJson(),
+    'label_options': ?labelOptions?.encode(),
   };
 }
 
@@ -4159,11 +4012,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   axisLabelOptions;
 
   Map<String, Object?> encode() => {
-    if (sortIconVisibility != null)
-      'sort_icon_visibility': sortIconVisibility!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-    if (axisLabelOptions != null)
-      'axis_label_options': axisLabelOptions!.encode(),
+    'sort_icon_visibility': ?sortIconVisibility?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
+    'axis_label_options': ?axisLabelOptions?.encode(),
   };
 }
 
@@ -4187,10 +4038,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   fontConfiguration;
 
   Map<String, Object?> encode() => {
-    if (customLabel != null) 'custom_label': customLabel!.toTfJson(),
-    if (applyTo != null) 'apply_to': applyTo!.encode(),
-    if (fontConfiguration != null)
-      'font_configuration': fontConfiguration!.encode(),
+    'custom_label': ?customLabel?.toTfJson(),
+    'apply_to': ?applyTo?.encode(),
+    'font_configuration': ?fontConfiguration?.encode(),
   };
 }
 
@@ -4277,19 +4127,16 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   labelFontConfiguration;
 
   Map<String, Object?> encode() => {
-    if (categoryLabelVisibility != null)
-      'category_label_visibility': categoryLabelVisibility!.toTfJson(),
-    if (labelColor != null) 'label_color': labelColor!.toTfJson(),
-    if (labelContent != null) 'label_content': labelContent!.toTfJson(),
-    if (measureLabelVisibility != null)
-      'measure_label_visibility': measureLabelVisibility!.toTfJson(),
-    if (overlap != null) 'overlap': overlap!.toTfJson(),
-    if (position != null) 'position': position!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
+    'category_label_visibility': ?categoryLabelVisibility?.toTfJson(),
+    'label_color': ?labelColor?.toTfJson(),
+    'label_content': ?labelContent?.toTfJson(),
+    'measure_label_visibility': ?measureLabelVisibility?.toTfJson(),
+    'overlap': ?overlap?.toTfJson(),
+    'position': ?position?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
     if (dataLabelTypes != null)
       'data_label_types': [for (final e in dataLabelTypes!) e.encode()],
-    if (labelFontConfiguration != null)
-      'label_font_configuration': labelFontConfiguration!.encode(),
+    'label_font_configuration': ?labelFontConfiguration?.encode(),
   };
 }
 
@@ -4322,15 +4169,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   rangeEndsLabelType;
 
   Map<String, Object?> encode() => {
-    if (dataPathLabelType != null)
-      'data_path_label_type': dataPathLabelType!.encode(),
-    if (fieldLabelType != null) 'field_label_type': fieldLabelType!.encode(),
-    if (maximumLabelType != null)
-      'maximum_label_type': maximumLabelType!.encode(),
-    if (minimumLabelType != null)
-      'minimum_label_type': minimumLabelType!.encode(),
-    if (rangeEndsLabelType != null)
-      'range_ends_label_type': rangeEndsLabelType!.encode(),
+    'data_path_label_type': ?dataPathLabelType?.encode(),
+    'field_label_type': ?fieldLabelType?.encode(),
+    'maximum_label_type': ?maximumLabelType?.encode(),
+    'minimum_label_type': ?minimumLabelType?.encode(),
+    'range_ends_label_type': ?rangeEndsLabelType?.encode(),
   };
 }
 
@@ -4352,9 +4195,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   final TfArg<String>? visibility;
 
   Map<String, Object?> encode() => {
-    if (fieldId != null) 'field_id': fieldId!.toTfJson(),
-    if (fieldValue != null) 'field_value': fieldValue!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
+    'field_id': ?fieldId?.toTfJson(),
+    'field_value': ?fieldValue?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
   };
 }
 
@@ -4373,8 +4216,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   final TfArg<String>? visibility;
 
   Map<String, Object?> encode() => {
-    if (fieldId != null) 'field_id': fieldId!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
+    'field_id': ?fieldId?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
   };
 }
 
@@ -4390,9 +4233,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   barChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (barChartAggregatedFieldWells != null)
-      'bar_chart_aggregated_field_wells': barChartAggregatedFieldWells!
-          .encode(),
+    'bar_chart_aggregated_field_wells': ?barChartAggregatedFieldWells?.encode(),
   };
 }
 
@@ -4429,7 +4270,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
     if (colors != null) 'colors': [for (final e in colors!) e.encode()],
-    if (smallMultiples != null) 'small_multiples': smallMultiples!.encode(),
+    'small_multiples': ?smallMultiples?.encode(),
     if (values != null) 'values': [for (final e in values!) e.encode()],
   };
 }
@@ -4455,12 +4296,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsKpiVisualChartConfiguration
   numericalDimensionField;
 
   Map<String, Object?> encode() => {
-    if (categoricalDimensionField != null)
-      'categorical_dimension_field': categoricalDimensionField!.encode(),
-    if (dateDimensionField != null)
-      'date_dimension_field': dateDimensionField!.encode(),
-    if (numericalDimensionField != null)
-      'numerical_dimension_field': numericalDimensionField!.encode(),
+    'categorical_dimension_field': ?categoricalDimensionField?.encode(),
+    'date_dimension_field': ?dateDimensionField?.encode(),
+    'numerical_dimension_field': ?numericalDimensionField?.encode(),
   };
 }
 
@@ -4487,10 +4325,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsKpiVisualChartConfiguration
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
-    if (hierarchyId != null) 'hierarchy_id': hierarchyId!.toTfJson(),
+    'hierarchy_id': ?hierarchyId?.toTfJson(),
     'column': column.encode(),
-    if (formatConfiguration != null)
-      'format_configuration': formatConfiguration!.encode(),
+    'format_configuration': ?formatConfiguration?.encode(),
   };
 }
 
@@ -4519,13 +4356,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsKpiVisualChartConfiguration
   formatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (dateGranularity != null)
-      'date_granularity': dateGranularity!.toTfJson(),
+    'date_granularity': ?dateGranularity?.toTfJson(),
     'field_id': fieldId.toTfJson(),
-    if (hierarchyId != null) 'hierarchy_id': hierarchyId!.toTfJson(),
+    'hierarchy_id': ?hierarchyId?.toTfJson(),
     'column': column.encode(),
-    if (formatConfiguration != null)
-      'format_configuration': formatConfiguration!.encode(),
+    'format_configuration': ?formatConfiguration?.encode(),
   };
 }
 
@@ -4552,10 +4387,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsKpiVisualChartConfiguration
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
-    if (hierarchyId != null) 'hierarchy_id': hierarchyId!.toTfJson(),
+    'hierarchy_id': ?hierarchyId?.toTfJson(),
     'column': column.encode(),
-    if (formatConfiguration != null)
-      'format_configuration': formatConfiguration!.encode(),
+    'format_configuration': ?formatConfiguration?.encode(),
   };
 }
 
@@ -4584,14 +4418,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
   numericalMeasureField;
 
   Map<String, Object?> encode() => {
-    if (calculatedMeasureField != null)
-      'calculated_measure_field': calculatedMeasureField!.encode(),
-    if (categoricalMeasureField != null)
-      'categorical_measure_field': categoricalMeasureField!.encode(),
-    if (dateMeasureField != null)
-      'date_measure_field': dateMeasureField!.encode(),
-    if (numericalMeasureField != null)
-      'numerical_measure_field': numericalMeasureField!.encode(),
+    'calculated_measure_field': ?calculatedMeasureField?.encode(),
+    'categorical_measure_field': ?categoricalMeasureField?.encode(),
+    'date_measure_field': ?dateMeasureField?.encode(),
+    'numerical_measure_field': ?numericalMeasureField?.encode(),
   };
 }
 
@@ -4637,12 +4467,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
   formatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (aggregationFunction != null)
-      'aggregation_function': aggregationFunction!.toTfJson(),
+    'aggregation_function': ?aggregationFunction?.toTfJson(),
     'field_id': fieldId.toTfJson(),
     'column': column.encode(),
-    if (formatConfiguration != null)
-      'format_configuration': formatConfiguration!.encode(),
+    'format_configuration': ?formatConfiguration?.encode(),
   };
 }
 
@@ -4668,12 +4496,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
   formatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (aggregationFunction != null)
-      'aggregation_function': aggregationFunction!.toTfJson(),
+    'aggregation_function': ?aggregationFunction?.toTfJson(),
     'field_id': fieldId.toTfJson(),
     'column': column.encode(),
-    if (formatConfiguration != null)
-      'format_configuration': formatConfiguration!.encode(),
+    'format_configuration': ?formatConfiguration?.encode(),
   };
 }
 
@@ -4701,11 +4527,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
-    if (aggregationFunction != null)
-      'aggregation_function': aggregationFunction!.encode(),
+    'aggregation_function': ?aggregationFunction?.encode(),
     'column': column.encode(),
-    if (formatConfiguration != null)
-      'format_configuration': formatConfiguration!.encode(),
+    'format_configuration': ?formatConfiguration?.encode(),
   };
 }
 
@@ -4734,11 +4558,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   title;
 
   Map<String, Object?> encode() => {
-    if (height != null) 'height': height!.toTfJson(),
-    if (position != null) 'position': position!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-    if (width != null) 'width': width!.toTfJson(),
-    if (title != null) 'title': title!.encode(),
+    'height': ?height?.toTfJson(),
+    'position': ?position?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
+    'width': ?width?.toTfJson(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -4766,12 +4590,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   styleConfiguration;
 
   Map<String, Object?> encode() => {
-    if (status != null) 'status': status!.toTfJson(),
+    'status': ?status?.toTfJson(),
     'data_configuration': dataConfiguration.encode(),
-    if (labelConfiguration != null)
-      'label_configuration': labelConfiguration!.encode(),
-    if (styleConfiguration != null)
-      'style_configuration': styleConfiguration!.encode(),
+    'label_configuration': ?labelConfiguration?.encode(),
+    'style_configuration': ?styleConfiguration?.encode(),
   };
 }
 
@@ -4795,11 +4617,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   staticConfiguration;
 
   Map<String, Object?> encode() => {
-    if (axisBinding != null) 'axis_binding': axisBinding!.toTfJson(),
-    if (dynamicConfiguration != null)
-      'dynamic_configuration': dynamicConfiguration!.encode(),
-    if (staticConfiguration != null)
-      'static_configuration': staticConfiguration!.encode(),
+    'axis_binding': ?axisBinding?.toTfJson(),
+    'dynamic_configuration': ?dynamicConfiguration?.encode(),
+    'static_configuration': ?staticConfiguration?.encode(),
   };
 }
 
@@ -4873,17 +4693,12 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   valueLabelConfiguration;
 
   Map<String, Object?> encode() => {
-    if (fontColor != null) 'font_color': fontColor!.toTfJson(),
-    if (horizontalPosition != null)
-      'horizontal_position': horizontalPosition!.toTfJson(),
-    if (verticalPosition != null)
-      'vertical_position': verticalPosition!.toTfJson(),
-    if (customLabelConfiguration != null)
-      'custom_label_configuration': customLabelConfiguration!.encode(),
-    if (fontConfiguration != null)
-      'font_configuration': fontConfiguration!.encode(),
-    if (valueLabelConfiguration != null)
-      'value_label_configuration': valueLabelConfiguration!.encode(),
+    'font_color': ?fontColor?.toTfJson(),
+    'horizontal_position': ?horizontalPosition?.toTfJson(),
+    'vertical_position': ?verticalPosition?.toTfJson(),
+    'custom_label_configuration': ?customLabelConfiguration?.encode(),
+    'font_configuration': ?fontConfiguration?.encode(),
+    'value_label_configuration': ?valueLabelConfiguration?.encode(),
   };
 }
 
@@ -4917,10 +4732,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   formatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (relativePosition != null)
-      'relative_position': relativePosition!.toTfJson(),
-    if (formatConfiguration != null)
-      'format_configuration': formatConfiguration!.encode(),
+    'relative_position': ?relativePosition?.toTfJson(),
+    'format_configuration': ?formatConfiguration?.encode(),
   };
 }
 
@@ -4939,8 +4752,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   final TfArg<String>? pattern;
 
   Map<String, Object?> encode() => {
-    if (color != null) 'color': color!.toTfJson(),
-    if (pattern != null) 'pattern': pattern!.toTfJson(),
+    'color': ?color?.toTfJson(),
+    'pattern': ?pattern?.toTfJson(),
   };
 }
 
@@ -4963,11 +4776,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   panelConfiguration;
 
   Map<String, Object?> encode() => {
-    if (maxVisibleColumns != null)
-      'max_visible_columns': maxVisibleColumns!.toTfJson(),
-    if (maxVisibleRows != null) 'max_visible_rows': maxVisibleRows!.toTfJson(),
-    if (panelConfiguration != null)
-      'panel_configuration': panelConfiguration!.encode(),
+    'max_visible_columns': ?maxVisibleColumns?.toTfJson(),
+    'max_visible_rows': ?maxVisibleRows?.toTfJson(),
+    'panel_configuration': ?panelConfiguration?.encode(),
   };
 }
 
@@ -5008,20 +4819,15 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   title;
 
   Map<String, Object?> encode() => {
-    if (backgroundColor != null)
-      'background_color': backgroundColor!.toTfJson(),
-    if (backgroundVisibility != null)
-      'background_visibility': backgroundVisibility!.toTfJson(),
-    if (borderColor != null) 'border_color': borderColor!.toTfJson(),
-    if (borderStyle != null) 'border_style': borderStyle!.toTfJson(),
-    if (borderThickness != null)
-      'border_thickness': borderThickness!.toTfJson(),
-    if (borderVisibility != null)
-      'border_visibility': borderVisibility!.toTfJson(),
-    if (gutterSpacing != null) 'gutter_spacing': gutterSpacing!.toTfJson(),
-    if (gutterVisibility != null)
-      'gutter_visibility': gutterVisibility!.toTfJson(),
-    if (title != null) 'title': title!.encode(),
+    'background_color': ?backgroundColor?.toTfJson(),
+    'background_visibility': ?backgroundVisibility?.toTfJson(),
+    'border_color': ?borderColor?.toTfJson(),
+    'border_style': ?borderStyle?.toTfJson(),
+    'border_thickness': ?borderThickness?.toTfJson(),
+    'border_visibility': ?borderVisibility?.toTfJson(),
+    'gutter_spacing': ?gutterSpacing?.toTfJson(),
+    'gutter_visibility': ?gutterVisibility?.toTfJson(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -5044,11 +4850,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   fontConfiguration;
 
   Map<String, Object?> encode() => {
-    if (horizontalTextAlignment != null)
-      'horizontal_text_alignment': horizontalTextAlignment!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-    if (fontConfiguration != null)
-      'font_configuration': fontConfiguration!.encode(),
+    'horizontal_text_alignment': ?horizontalTextAlignment?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
+    'font_configuration': ?fontConfiguration?.encode(),
   };
 }
 
@@ -5090,16 +4894,14 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   smallMultiplesSort;
 
   Map<String, Object?> encode() => {
-    if (categoryItemsLimit != null)
-      'category_items_limit': categoryItemsLimit!.encode(),
+    'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
-    if (colorItemsLimit != null) 'color_items_limit': colorItemsLimit!.encode(),
+    'color_items_limit': ?colorItemsLimit?.encode(),
     if (colorSort != null)
       'color_sort': [for (final e in colorSort!) e.encode()],
-    if (smallMultiplesLimitConfiguration != null)
-      'small_multiples_limit_configuration': smallMultiplesLimitConfiguration!
-          .encode(),
+    'small_multiples_limit_configuration': ?smallMultiplesLimitConfiguration
+        ?.encode(),
     if (smallMultiplesSort != null)
       'small_multiples_sort': [for (final e in smallMultiplesSort!) e.encode()],
   };
@@ -5120,7 +4922,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   final TfArg<String> otherCategories;
 
   Map<String, Object?> encode() => {
-    if (itemsLimit != null) 'items_limit': itemsLimit!.toTfJson(),
+    'items_limit': ?itemsLimit?.toTfJson(),
     'other_categories': otherCategories.toTfJson(),
   };
 }
@@ -5142,8 +4944,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   fieldSort;
 
   Map<String, Object?> encode() => {
-    if (columnSort != null) 'column_sort': columnSort!.encode(),
-    if (fieldSort != null) 'field_sort': fieldSort!.encode(),
+    'column_sort': ?columnSort?.encode(),
+    'field_sort': ?fieldSort?.encode(),
   };
 }
 
@@ -5167,8 +4969,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
-    if (aggregationFunction != null)
-      'aggregation_function': aggregationFunction!.encode(),
+    'aggregation_function': ?aggregationFunction?.encode(),
     'sort_by': sortBy.encode(),
   };
 }
@@ -5212,12 +5013,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   fieldBaseTooltip;
 
   Map<String, Object?> encode() => {
-    if (selectedTooltipType != null)
-      'selected_tooltip_type': selectedTooltipType!.toTfJson(),
-    if (tooltipVisibility != null)
-      'tooltip_visibility': tooltipVisibility!.toTfJson(),
-    if (fieldBaseTooltip != null)
-      'field_base_tooltip': fieldBaseTooltip!.encode(),
+    'selected_tooltip_type': ?selectedTooltipType?.toTfJson(),
+    'tooltip_visibility': ?tooltipVisibility?.toTfJson(),
+    'field_base_tooltip': ?fieldBaseTooltip?.encode(),
   };
 }
 
@@ -5242,10 +5040,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   tooltipFields;
 
   Map<String, Object?> encode() => {
-    if (aggregationVisibility != null)
-      'aggregation_visibility': aggregationVisibility!.toTfJson(),
-    if (tooltipTitleType != null)
-      'tooltip_title_type': tooltipTitleType!.toTfJson(),
+    'aggregation_visibility': ?aggregationVisibility?.toTfJson(),
+    'tooltip_title_type': ?tooltipTitleType?.toTfJson(),
     if (tooltipFields != null)
       'tooltip_fields': [for (final e in tooltipFields!) e.encode()],
   };
@@ -5268,10 +5064,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   fieldTooltipItem;
 
   Map<String, Object?> encode() => {
-    if (columnTooltipItem != null)
-      'column_tooltip_item': columnTooltipItem!.encode(),
-    if (fieldTooltipItem != null)
-      'field_tooltip_item': fieldTooltipItem!.encode(),
+    'column_tooltip_item': ?columnTooltipItem?.encode(),
+    'field_tooltip_item': ?fieldTooltipItem?.encode(),
   };
 }
 
@@ -5297,9 +5091,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   final QuicksightTemplateDefinitionColumnConfigurationsColumn column;
 
   Map<String, Object?> encode() => {
-    if (label != null) 'label': label!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-    if (aggregation != null) 'aggregation': aggregation!.encode(),
+    'label': ?label?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
+    'aggregation': ?aggregation?.encode(),
     'column': column.encode(),
   };
 }
@@ -5323,8 +5117,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
-    if (label != null) 'label': label!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
+    'label': ?label?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
   };
 }
 
@@ -5346,7 +5140,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
   colorMap;
 
   Map<String, Object?> encode() => {
-    if (chartColor != null) 'chart_color': chartColor!.toTfJson(),
+    'chart_color': ?chartColor?.toTfJson(),
     if (colorMap != null) 'color_map': [for (final e in colorMap!) e.encode()],
   };
 }
@@ -5371,8 +5165,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualChartConfigur
 
   Map<String, Object?> encode() => {
     'color': color.toTfJson(),
-    if (timeGranularity != null)
-      'time_granularity': timeGranularity!.toTfJson(),
+    'time_granularity': ?timeGranularity?.toTfJson(),
     'element': element.encode(),
   };
 }
@@ -5418,12 +5211,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualColumnHierarc
   predefinedHierarchy;
 
   Map<String, Object?> encode() => {
-    if (dateTimeHierarchy != null)
-      'date_time_hierarchy': dateTimeHierarchy!.encode(),
-    if (explicitHierarchy != null)
-      'explicit_hierarchy': explicitHierarchy!.encode(),
-    if (predefinedHierarchy != null)
-      'predefined_hierarchy': predefinedHierarchy!.encode(),
+    'date_time_hierarchy': ?dateTimeHierarchy?.encode(),
+    'explicit_hierarchy': ?explicitHierarchy?.encode(),
+    'predefined_hierarchy': ?predefinedHierarchy?.encode(),
   };
 }
 
@@ -5472,10 +5262,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualColumnHierarc
   timeRangeFilter;
 
   Map<String, Object?> encode() => {
-    if (categoryFilter != null) 'category_filter': categoryFilter!.encode(),
-    if (numericEqualityFilter != null)
-      'numeric_equality_filter': numericEqualityFilter!.encode(),
-    if (timeRangeFilter != null) 'time_range_filter': timeRangeFilter!.encode(),
+    'category_filter': ?categoryFilter?.encode(),
+    'numeric_equality_filter': ?numericEqualityFilter?.encode(),
+    'time_range_filter': ?timeRangeFilter?.encode(),
   };
 }
 
@@ -5591,8 +5380,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualSubtitle {
   formatText;
 
   Map<String, Object?> encode() => {
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-    if (formatText != null) 'format_text': formatText!.encode(),
+    'visibility': ?visibility?.toTfJson(),
+    'format_text': ?formatText?.encode(),
   };
 }
 
@@ -5611,8 +5400,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsBarChartVisualSubtitleForma
   final TfArg<String>? richText;
 
   Map<String, Object?> encode() => {
-    if (plainText != null) 'plain_text': plainText!.toTfJson(),
-    if (richText != null) 'rich_text': richText!.toTfJson(),
+    'plain_text': ?plainText?.toTfJson(),
+    'rich_text': ?richText?.toTfJson(),
   };
 }
 
@@ -5650,12 +5439,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsBoxPlotVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -5713,22 +5501,18 @@ final class QuicksightTemplateDefinitionSheetsVisualsBoxPlotVisualChartConfigura
   visualPalette;
 
   Map<String, Object?> encode() => {
-    if (boxPlotOptions != null) 'box_plot_options': boxPlotOptions!.encode(),
-    if (categoryAxis != null) 'category_axis': categoryAxis!.encode(),
-    if (categoryLabelOptions != null)
-      'category_label_options': categoryLabelOptions!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
-    if (primaryYAxisDisplayOptions != null)
-      'primary_y_axis_display_options': primaryYAxisDisplayOptions!.encode(),
-    if (primaryYAxisLabelOptions != null)
-      'primary_y_axis_label_options': primaryYAxisLabelOptions!.encode(),
+    'box_plot_options': ?boxPlotOptions?.encode(),
+    'category_axis': ?categoryAxis?.encode(),
+    'category_label_options': ?categoryLabelOptions?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'legend': ?legend?.encode(),
+    'primary_y_axis_display_options': ?primaryYAxisDisplayOptions?.encode(),
+    'primary_y_axis_label_options': ?primaryYAxisLabelOptions?.encode(),
     if (referenceLines != null)
       'reference_lines': [for (final e in referenceLines!) e.encode()],
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
   };
 }
 
@@ -5750,11 +5534,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsBoxPlotVisualChartConfigura
   styleOptions;
 
   Map<String, Object?> encode() => {
-    if (allDataPointsVisibility != null)
-      'all_data_points_visibility': allDataPointsVisibility!.toTfJson(),
-    if (outlierVisibility != null)
-      'outlier_visibility': outlierVisibility!.toTfJson(),
-    if (styleOptions != null) 'style_options': styleOptions!.encode(),
+    'all_data_points_visibility': ?allDataPointsVisibility?.toTfJson(),
+    'outlier_visibility': ?outlierVisibility?.toTfJson(),
+    'style_options': ?styleOptions?.encode(),
   };
 }
 
@@ -5768,9 +5550,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBoxPlotVisualChartConfigura
 
   final TfArg<String>? fillStyle;
 
-  Map<String, Object?> encode() => {
-    if (fillStyle != null) 'fill_style': fillStyle!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'fill_style': ?fillStyle?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.box_plot_visual.chart_configuration.field_wells` block of
@@ -5785,8 +5565,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBoxPlotVisualChartConfigura
   boxPlotAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (boxPlotAggregatedFieldWells != null)
-      'box_plot_aggregated_field_wells': boxPlotAggregatedFieldWells!.encode(),
+    'box_plot_aggregated_field_wells': ?boxPlotAggregatedFieldWells?.encode(),
   };
 }
 
@@ -5808,7 +5587,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBoxPlotVisualChartConfigura
   values;
 
   Map<String, Object?> encode() => {
-    if (groupBy != null) 'group_by': groupBy!.encode(),
+    'group_by': ?groupBy?.encode(),
     if (values != null) 'values': [for (final e in values!) e.encode()],
   };
 }
@@ -5833,8 +5612,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsBoxPlotVisualChartConfigura
   Map<String, Object?> encode() => {
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
-    if (paginationConfiguration != null)
-      'pagination_configuration': paginationConfiguration!.encode(),
+    'pagination_configuration': ?paginationConfiguration?.encode(),
   };
 }
 
@@ -5892,12 +5670,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsComboChartVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -5974,32 +5751,23 @@ final class QuicksightTemplateDefinitionSheetsVisualsComboChartVisualChartConfig
   visualPalette;
 
   Map<String, Object?> encode() => {
-    if (barsArrangement != null)
-      'bars_arrangement': barsArrangement!.toTfJson(),
-    if (barDataLabels != null) 'bar_data_labels': barDataLabels!.encode(),
-    if (categoryAxis != null) 'category_axis': categoryAxis!.encode(),
-    if (categoryLabelOptions != null)
-      'category_label_options': categoryLabelOptions!.encode(),
-    if (colorLabelOptions != null)
-      'color_label_options': colorLabelOptions!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
-    if (lineDataLabels != null) 'line_data_labels': lineDataLabels!.encode(),
-    if (primaryYAxisDisplayOptions != null)
-      'primary_y_axis_display_options': primaryYAxisDisplayOptions!.encode(),
-    if (primaryYAxisLabelOptions != null)
-      'primary_y_axis_label_options': primaryYAxisLabelOptions!.encode(),
+    'bars_arrangement': ?barsArrangement?.toTfJson(),
+    'bar_data_labels': ?barDataLabels?.encode(),
+    'category_axis': ?categoryAxis?.encode(),
+    'category_label_options': ?categoryLabelOptions?.encode(),
+    'color_label_options': ?colorLabelOptions?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'legend': ?legend?.encode(),
+    'line_data_labels': ?lineDataLabels?.encode(),
+    'primary_y_axis_display_options': ?primaryYAxisDisplayOptions?.encode(),
+    'primary_y_axis_label_options': ?primaryYAxisLabelOptions?.encode(),
     if (referenceLines != null)
       'reference_lines': [for (final e in referenceLines!) e.encode()],
-    if (secondaryYAxisDisplayOptions != null)
-      'secondary_y_axis_display_options': secondaryYAxisDisplayOptions!
-          .encode(),
-    if (secondaryYAxisLabelOptions != null)
-      'secondary_y_axis_label_options': secondaryYAxisLabelOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
+    'secondary_y_axis_display_options': ?secondaryYAxisDisplayOptions?.encode(),
+    'secondary_y_axis_label_options': ?secondaryYAxisLabelOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
   };
 }
 
@@ -6015,9 +5783,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsComboChartVisualChartConfig
   comboChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (comboChartAggregatedFieldWells != null)
-      'combo_chart_aggregated_field_wells': comboChartAggregatedFieldWells!
-          .encode(),
+    'combo_chart_aggregated_field_wells': ?comboChartAggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -6091,11 +5858,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsComboChartVisualChartConfig
   colorSort;
 
   Map<String, Object?> encode() => {
-    if (categoryItemsLimit != null)
-      'category_items_limit': categoryItemsLimit!.encode(),
+    'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
-    if (colorItemsLimit != null) 'color_items_limit': colorItemsLimit!.encode(),
+    'color_items_limit': ?colorItemsLimit?.encode(),
     if (colorSort != null)
       'color_sort': [for (final e in colorSort!) e.encode()],
   };
@@ -6133,10 +5899,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsCustomContentVisual {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -6157,9 +5922,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsCustomContentVisualChartCon
   final TfArg<String>? imageScaling;
 
   Map<String, Object?> encode() => {
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
-    if (contentUrl != null) 'content_url': contentUrl!.toTfJson(),
-    if (imageScaling != null) 'image_scaling': imageScaling!.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
+    'content_url': ?contentUrl?.toTfJson(),
+    'image_scaling': ?imageScaling?.toTfJson(),
   };
 }
 
@@ -6225,14 +5990,12 @@ final class QuicksightTemplateDefinitionSheetsVisualsFilledMapVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (conditionalFormatting != null)
-      'conditional_formatting': conditionalFormatting!.encode(),
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'conditional_formatting': ?conditionalFormatting?.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -6268,13 +6031,12 @@ final class QuicksightTemplateDefinitionSheetsVisualsFilledMapVisualChartConfigu
   windowOptions;
 
   Map<String, Object?> encode() => {
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
-    if (mapStyleOptions != null) 'map_style_options': mapStyleOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (windowOptions != null) 'window_options': windowOptions!.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'legend': ?legend?.encode(),
+    'map_style_options': ?mapStyleOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'window_options': ?windowOptions?.encode(),
   };
 }
 
@@ -6290,9 +6052,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsFilledMapVisualChartConfigu
   filledMapAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (filledMapAggregatedFieldWells != null)
-      'filled_map_aggregated_field_wells': filledMapAggregatedFieldWells!
-          .encode(),
+    'filled_map_aggregated_field_wells': ?filledMapAggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -6312,8 +6073,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsFilledMapVisualChartConfigu
   values;
 
   Map<String, Object?> encode() => {
-    if (geospatial != null) 'geospatial': geospatial!.encode(),
-    if (values != null) 'values': values!.encode(),
+    'geospatial': ?geospatial?.encode(),
+    'values': ?values?.encode(),
   };
 }
 
@@ -6329,7 +6090,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsFilledMapVisualChartConfigu
   final TfArg<String>? baseMapStyle;
 
   Map<String, Object?> encode() => {
-    if (baseMapStyle != null) 'base_map_style': baseMapStyle!.toTfJson(),
+    'base_map_style': ?baseMapStyle?.toTfJson(),
   };
 }
 
@@ -6368,8 +6129,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsFilledMapVisualChartConfigu
   bounds;
 
   Map<String, Object?> encode() => {
-    if (mapZoomMode != null) 'map_zoom_mode': mapZoomMode!.toTfJson(),
-    if (bounds != null) 'bounds': bounds!.encode(),
+    'map_zoom_mode': ?mapZoomMode?.toTfJson(),
+    'bounds': ?bounds?.encode(),
   };
 }
 
@@ -6451,7 +6212,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsFilledMapVisualConditionalF
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
-    if (format != null) 'format': format!.encode(),
+    'format': ?format?.encode(),
   };
 }
 
@@ -6488,8 +6249,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualConditional
   solid;
 
   Map<String, Object?> encode() => {
-    if (gradient != null) 'gradient': gradient!.encode(),
-    if (solid != null) 'solid': solid!.encode(),
+    'gradient': ?gradient?.encode(),
+    'solid': ?solid?.encode(),
   };
 }
 
@@ -6551,8 +6312,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualConditional
   final TfArg<num> gradientOffset;
 
   Map<String, Object?> encode() => {
-    if (color != null) 'color': color!.toTfJson(),
-    if (dataValue != null) 'data_value': dataValue!.toTfJson(),
+    'color': ?color?.toTfJson(),
+    'data_value': ?dataValue?.toTfJson(),
     'gradient_offset': gradientOffset.toTfJson(),
   };
 }
@@ -6572,7 +6333,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualConditional
   final TfArg<String> expression;
 
   Map<String, Object?> encode() => {
-    if (color != null) 'color': color!.toTfJson(),
+    'color': ?color?.toTfJson(),
     'expression': expression.toTfJson(),
   };
 }
@@ -6611,12 +6372,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsFunnelChartVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -6656,17 +6416,13 @@ final class QuicksightTemplateDefinitionSheetsVisualsFunnelChartVisualChartConfi
   visualPalette;
 
   Map<String, Object?> encode() => {
-    if (categoryLabelOptions != null)
-      'category_label_options': categoryLabelOptions!.encode(),
-    if (dataLabelOptions != null)
-      'data_label_options': dataLabelOptions!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (valueLabelOptions != null)
-      'value_label_options': valueLabelOptions!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
+    'category_label_options': ?categoryLabelOptions?.encode(),
+    'data_label_options': ?dataLabelOptions?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'value_label_options': ?valueLabelOptions?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
   };
 }
 
@@ -6700,17 +6456,13 @@ final class QuicksightTemplateDefinitionSheetsVisualsFunnelChartVisualChartConfi
   labelFontConfiguration;
 
   Map<String, Object?> encode() => {
-    if (categoryLabelVisibility != null)
-      'category_label_visibility': categoryLabelVisibility!.toTfJson(),
-    if (labelColor != null) 'label_color': labelColor!.toTfJson(),
-    if (measureDataLabelStyle != null)
-      'measure_data_label_style': measureDataLabelStyle!.toTfJson(),
-    if (measureLabelVisibility != null)
-      'measure_label_visibility': measureLabelVisibility!.toTfJson(),
-    if (position != null) 'position': position!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-    if (labelFontConfiguration != null)
-      'label_font_configuration': labelFontConfiguration!.encode(),
+    'category_label_visibility': ?categoryLabelVisibility?.toTfJson(),
+    'label_color': ?labelColor?.toTfJson(),
+    'measure_data_label_style': ?measureDataLabelStyle?.toTfJson(),
+    'measure_label_visibility': ?measureLabelVisibility?.toTfJson(),
+    'position': ?position?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
+    'label_font_configuration': ?labelFontConfiguration?.encode(),
   };
 }
 
@@ -6726,9 +6478,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsFunnelChartVisualChartConfi
   funnelChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (funnelChartAggregatedFieldWells != null)
-      'funnel_chart_aggregated_field_wells': funnelChartAggregatedFieldWells!
-          .encode(),
+    'funnel_chart_aggregated_field_wells': ?funnelChartAggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -6748,8 +6499,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsFunnelChartVisualChartConfi
   values;
 
   Map<String, Object?> encode() => {
-    if (category != null) 'category': category!.encode(),
-    if (values != null) 'values': values!.encode(),
+    'category': ?category?.encode(),
+    'values': ?values?.encode(),
   };
 }
 
@@ -6772,8 +6523,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsFunnelChartVisualChartConfi
   categorySort;
 
   Map<String, Object?> encode() => {
-    if (categoryItemsLimit != null)
-      'category_items_limit': categoryItemsLimit!.encode(),
+    'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
   };
@@ -6811,12 +6561,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
-    if (conditionalFormatting != null)
-      'conditional_formatting': conditionalFormatting!.encode(),
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
+    'conditional_formatting': ?conditionalFormatting?.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -6848,12 +6596,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
   visualPalette;
 
   Map<String, Object?> encode() => {
-    if (dataLabels != null) 'data_labels': dataLabels!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (gaugeChartOptions != null)
-      'gauge_chart_options': gaugeChartOptions!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
+    'data_labels': ?dataLabels?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'gauge_chart_options': ?gaugeChartOptions?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
   };
 }
 
@@ -6910,14 +6657,12 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
   primaryValueFontConfiguration;
 
   Map<String, Object?> encode() => {
-    if (primaryValueDisplayType != null)
-      'primary_value_display_type': primaryValueDisplayType!.toTfJson(),
-    if (arc != null) 'arc': arc!.encode(),
-    if (arcAxis != null) 'arc_axis': arcAxis!.encode(),
-    if (comparison != null) 'comparison': comparison!.encode(),
-    if (primaryValueFontConfiguration != null)
-      'primary_value_font_configuration': primaryValueFontConfiguration!
-          .encode(),
+    'primary_value_display_type': ?primaryValueDisplayType?.toTfJson(),
+    'arc': ?arc?.encode(),
+    'arc_axis': ?arcAxis?.encode(),
+    'comparison': ?comparison?.encode(),
+    'primary_value_font_configuration': ?primaryValueFontConfiguration
+        ?.encode(),
   };
 }
 
@@ -6935,8 +6680,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
   final TfArg<String>? arcThickness;
 
   Map<String, Object?> encode() => {
-    if (arcAngle != null) 'arc_angle': arcAngle!.toTfJson(),
-    if (arcThickness != null) 'arc_thickness': arcThickness!.toTfJson(),
+    'arc_angle': ?arcAngle?.toTfJson(),
+    'arc_thickness': ?arcThickness?.toTfJson(),
   };
 }
 
@@ -6955,8 +6700,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
   range;
 
   Map<String, Object?> encode() => {
-    if (reserveRange != null) 'reserve_range': reserveRange!.toTfJson(),
-    if (range != null) 'range': range!.encode(),
+    'reserve_range': ?reserveRange?.toTfJson(),
+    'range': ?range?.encode(),
   };
 }
 
@@ -6974,8 +6719,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -6995,10 +6740,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
   comparisonFormat;
 
   Map<String, Object?> encode() => {
-    if (comparisonMethod != null)
-      'comparison_method': comparisonMethod!.toTfJson(),
-    if (comparisonFormat != null)
-      'comparison_format': comparisonFormat!.encode(),
+    'comparison_method': ?comparisonMethod?.toTfJson(),
+    'comparison_format': ?comparisonFormat?.encode(),
   };
 }
 
@@ -7019,12 +6762,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfig
   percentageDisplayFormatConfiguration;
 
   Map<String, Object?> encode() => {
-    if (numberDisplayFormatConfiguration != null)
-      'number_display_format_configuration': numberDisplayFormatConfiguration!
-          .encode(),
-    if (percentageDisplayFormatConfiguration != null)
-      'percentage_display_format_configuration':
-          percentageDisplayFormatConfiguration!.encode(),
+    'number_display_format_configuration': ?numberDisplayFormatConfiguration
+        ?.encode(),
+    'percentage_display_format_configuration':
+        ?percentageDisplayFormatConfiguration?.encode(),
   };
 }
 
@@ -7065,8 +6806,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualConditional
   primaryValue;
 
   Map<String, Object?> encode() => {
-    if (arc != null) 'arc': arc!.encode(),
-    if (primaryValue != null) 'primary_value': primaryValue!.encode(),
+    'arc': ?arc?.encode(),
+    'primary_value': ?primaryValue?.encode(),
   };
 }
 
@@ -7104,7 +6845,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualConditional
   textColor;
 
   Map<String, Object?> encode() => {
-    if (icon != null) 'icon': icon!.encode(),
+    'icon': ?icon?.encode(),
     'text_color': textColor.encode(),
   };
 }
@@ -7126,8 +6867,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualConditional
   iconSet;
 
   Map<String, Object?> encode() => {
-    if (customCondition != null) 'custom_condition': customCondition!.encode(),
-    if (iconSet != null) 'icon_set': iconSet!.encode(),
+    'custom_condition': ?customCondition?.encode(),
+    'icon_set': ?iconSet?.encode(),
   };
 }
 
@@ -7154,10 +6895,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualConditional
   iconOptions;
 
   Map<String, Object?> encode() => {
-    if (color != null) 'color': color!.toTfJson(),
+    'color': ?color?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (displayConfiguration != null)
-      'display_configuration': displayConfiguration!.encode(),
+    'display_configuration': ?displayConfiguration?.encode(),
     'icon_options': iconOptions.encode(),
   };
 }
@@ -7174,8 +6914,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualConditional
   final TfArg<String>? iconDisplayOption;
 
   Map<String, Object?> encode() => {
-    if (iconDisplayOption != null)
-      'icon_display_option': iconDisplayOption!.toTfJson(),
+    'icon_display_option': ?iconDisplayOption?.toTfJson(),
   };
 }
 
@@ -7194,8 +6933,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualConditional
   final TfArg<String>? unicodeIcon;
 
   Map<String, Object?> encode() => {
-    if (icon != null) 'icon': icon!.toTfJson(),
-    if (unicodeIcon != null) 'unicode_icon': unicodeIcon!.toTfJson(),
+    'icon': ?icon?.toTfJson(),
+    'unicode_icon': ?unicodeIcon?.toTfJson(),
   };
 }
 
@@ -7215,7 +6954,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualConditional
 
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
-    if (iconSetType != null) 'icon_set_type': iconSetType!.toTfJson(),
+    'icon_set_type': ?iconSetType?.toTfJson(),
   };
 }
 
@@ -7253,12 +6992,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsGeospatialMapVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -7298,14 +7036,13 @@ final class QuicksightTemplateDefinitionSheetsVisualsGeospatialMapVisualChartCon
   windowOptions;
 
   Map<String, Object?> encode() => {
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
-    if (mapStyleOptions != null) 'map_style_options': mapStyleOptions!.encode(),
-    if (pointStyleOptions != null)
-      'point_style_options': pointStyleOptions!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
-    if (windowOptions != null) 'window_options': windowOptions!.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'legend': ?legend?.encode(),
+    'map_style_options': ?mapStyleOptions?.encode(),
+    'point_style_options': ?pointStyleOptions?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
+    'window_options': ?windowOptions?.encode(),
   };
 }
 
@@ -7321,9 +7058,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGeospatialMapVisualChartCon
   geospatialMapAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (geospatialMapAggregatedFieldWells != null)
-      'geospatial_map_aggregated_field_wells':
-          geospatialMapAggregatedFieldWells!.encode(),
+    'geospatial_map_aggregated_field_wells': ?geospatialMapAggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -7375,10 +7111,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsGeospatialMapVisualChartCon
   clusterMarkerConfiguration;
 
   Map<String, Object?> encode() => {
-    if (selectedPointStyle != null)
-      'selected_point_style': selectedPointStyle!.toTfJson(),
-    if (clusterMarkerConfiguration != null)
-      'cluster_marker_configuration': clusterMarkerConfiguration!.encode(),
+    'selected_point_style': ?selectedPointStyle?.toTfJson(),
+    'cluster_marker_configuration': ?clusterMarkerConfiguration?.encode(),
   };
 }
 
@@ -7393,9 +7127,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsGeospatialMapVisualChartCon
   final QuicksightTemplateDefinitionSheetsVisualsGeospatialMapVisualChartConfigurationPointStyleOptionsClusterMarkerConfigurationClusterMarker?
   clusterMarker;
 
-  Map<String, Object?> encode() => {
-    if (clusterMarker != null) 'cluster_marker': clusterMarker!.encode(),
-  };
+  Map<String, Object?> encode() => {'cluster_marker': ?clusterMarker?.encode()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.geospatial_map_visual.chart_configuration.point_style_options.cluster_marker_configuration.cluster_marker` block of
@@ -7410,8 +7142,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsGeospatialMapVisualChartCon
   simpleClusterMarker;
 
   Map<String, Object?> encode() => {
-    if (simpleClusterMarker != null)
-      'simple_cluster_marker': simpleClusterMarker!.encode(),
+    'simple_cluster_marker': ?simpleClusterMarker?.encode(),
   };
 }
 
@@ -7425,9 +7156,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsGeospatialMapVisualChartCon
 
   final TfArg<String>? color;
 
-  Map<String, Object?> encode() => {
-    if (color != null) 'color': color!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'color': ?color?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.heat_map_visual` block of
@@ -7464,12 +7193,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsHeatMapVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -7513,16 +7241,14 @@ final class QuicksightTemplateDefinitionSheetsVisualsHeatMapVisualChartConfigura
   tooltip;
 
   Map<String, Object?> encode() => {
-    if (colorScale != null) 'color_scale': colorScale!.encode(),
-    if (columnLabelOptions != null)
-      'column_label_options': columnLabelOptions!.encode(),
-    if (dataLabels != null) 'data_labels': dataLabels!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
-    if (rowLabelOptions != null) 'row_label_options': rowLabelOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
+    'color_scale': ?colorScale?.encode(),
+    'column_label_options': ?columnLabelOptions?.encode(),
+    'data_labels': ?dataLabels?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'legend': ?legend?.encode(),
+    'row_label_options': ?rowLabelOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'tooltip': ?tooltip?.encode(),
   };
 }
 
@@ -7550,7 +7276,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsHeatMapVisualChartConfigura
   Map<String, Object?> encode() => {
     'color_fill_type': colorFillType.toTfJson(),
     'colors': [for (final e in colors) e.encode()],
-    if (nullValueColor != null) 'null_value_color': nullValueColor!.encode(),
+    'null_value_color': ?nullValueColor?.encode(),
   };
 }
 
@@ -7569,8 +7295,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsHeatMapVisualChartConfigura
   final TfArg<num>? dataValue;
 
   Map<String, Object?> encode() => {
-    if (color != null) 'color': color!.toTfJson(),
-    if (dataValue != null) 'data_value': dataValue!.toTfJson(),
+    'color': ?color?.toTfJson(),
+    'data_value': ?dataValue?.toTfJson(),
   };
 }
 
@@ -7586,8 +7312,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsHeatMapVisualChartConfigura
   heatMapAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (heatMapAggregatedFieldWells != null)
-      'heat_map_aggregated_field_wells': heatMapAggregatedFieldWells!.encode(),
+    'heat_map_aggregated_field_wells': ?heatMapAggregatedFieldWells?.encode(),
   };
 }
 
@@ -7611,9 +7336,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsHeatMapVisualChartConfigura
   values;
 
   Map<String, Object?> encode() => {
-    if (columns != null) 'columns': columns!.encode(),
-    if (rows != null) 'rows': rows!.encode(),
-    if (values != null) 'values': values!.encode(),
+    'columns': ?columns?.encode(),
+    'rows': ?rows?.encode(),
+    'values': ?values?.encode(),
   };
 }
 
@@ -7645,14 +7370,12 @@ final class QuicksightTemplateDefinitionSheetsVisualsHeatMapVisualChartConfigura
   heatMapRowSort;
 
   Map<String, Object?> encode() => {
-    if (heatMapColumnItemsLimitConfiguration != null)
-      'heat_map_column_items_limit_configuration':
-          heatMapColumnItemsLimitConfiguration!.encode(),
+    'heat_map_column_items_limit_configuration':
+        ?heatMapColumnItemsLimitConfiguration?.encode(),
     if (heatMapColumnSort != null)
       'heat_map_column_sort': [for (final e in heatMapColumnSort!) e.encode()],
-    if (heatMapRowItemsLimitConfiguration != null)
-      'heat_map_row_items_limit_configuration':
-          heatMapRowItemsLimitConfiguration!.encode(),
+    'heat_map_row_items_limit_configuration': ?heatMapRowItemsLimitConfiguration
+        ?.encode(),
     if (heatMapRowSort != null)
       'heat_map_row_sort': [for (final e in heatMapRowSort!) e.encode()],
   };
@@ -7686,10 +7409,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsHistogramVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -7733,17 +7455,14 @@ final class QuicksightTemplateDefinitionSheetsVisualsHistogramVisualChartConfigu
   yAxisDisplayOptions;
 
   Map<String, Object?> encode() => {
-    if (binOptions != null) 'bin_options': binOptions!.encode(),
-    if (dataLabels != null) 'data_labels': dataLabels!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
-    if (xAxisDisplayOptions != null)
-      'x_axis_display_options': xAxisDisplayOptions!.encode(),
-    if (xAxisLabelOptions != null)
-      'x_axis_label_options': xAxisLabelOptions!.encode(),
-    if (yAxisDisplayOptions != null)
-      'y_axis_display_options': yAxisDisplayOptions!.encode(),
+    'bin_options': ?binOptions?.encode(),
+    'data_labels': ?dataLabels?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
+    'x_axis_display_options': ?xAxisDisplayOptions?.encode(),
+    'x_axis_label_options': ?xAxisLabelOptions?.encode(),
+    'y_axis_display_options': ?yAxisDisplayOptions?.encode(),
   };
 }
 
@@ -7769,11 +7488,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsHistogramVisualChartConfigu
   binWidth;
 
   Map<String, Object?> encode() => {
-    if (selectedBinType != null)
-      'selected_bin_type': selectedBinType!.toTfJson(),
-    if (startValue != null) 'start_value': startValue!.toTfJson(),
-    if (binCount != null) 'bin_count': binCount!.encode(),
-    if (binWidth != null) 'bin_width': binWidth!.encode(),
+    'selected_bin_type': ?selectedBinType?.toTfJson(),
+    'start_value': ?startValue?.toTfJson(),
+    'bin_count': ?binCount?.encode(),
+    'bin_width': ?binWidth?.encode(),
   };
 }
 
@@ -7787,9 +7505,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsHistogramVisualChartConfigu
 
   final TfArg<num>? value;
 
-  Map<String, Object?> encode() => {
-    if (value != null) 'value': value!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'value': ?value?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.histogram_visual.chart_configuration.bin_options.bin_width` block of
@@ -7806,8 +7522,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsHistogramVisualChartConfigu
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (binCountLimit != null) 'bin_count_limit': binCountLimit!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'bin_count_limit': ?binCountLimit?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -7823,9 +7539,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsHistogramVisualChartConfigu
   histogramAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (histogramAggregatedFieldWells != null)
-      'histogram_aggregated_field_wells': histogramAggregatedFieldWells!
-          .encode(),
+    'histogram_aggregated_field_wells': ?histogramAggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -7840,9 +7555,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsHistogramVisualChartConfigu
   final QuicksightTemplateDefinitionSheetsVisualsGaugeChartVisualChartConfigurationFieldWellsTargetValues?
   values;
 
-  Map<String, Object?> encode() => {
-    if (values != null) 'values': values!.encode(),
-  };
+  Map<String, Object?> encode() => {'values': ?values?.encode()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.insight_visual` block of
@@ -7877,10 +7590,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisual {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (insightConfiguration != null)
-      'insight_configuration': insightConfiguration!.encode(),
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'insight_configuration': ?insightConfiguration?.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -7904,7 +7616,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
   Map<String, Object?> encode() => {
     if (computation != null)
       'computation': [for (final e in computation!) e.encode()],
-    if (customNarrative != null) 'custom_narrative': customNarrative!.encode(),
+    'custom_narrative': ?customNarrative?.encode(),
   };
 }
 
@@ -7956,19 +7668,16 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
   uniqueValues;
 
   Map<String, Object?> encode() => {
-    if (forecast != null) 'forecast': forecast!.encode(),
-    if (growthRate != null) 'growth_rate': growthRate!.encode(),
-    if (maximumMinimum != null) 'maximum_minimum': maximumMinimum!.encode(),
-    if (metricComparison != null)
-      'metric_comparison': metricComparison!.encode(),
-    if (periodOverPeriod != null)
-      'period_over_period': periodOverPeriod!.encode(),
-    if (periodToDate != null) 'period_to_date': periodToDate!.encode(),
-    if (topBottomMovers != null) 'top_bottom_movers': topBottomMovers!.encode(),
-    if (topBottomRanked != null) 'top_bottom_ranked': topBottomRanked!.encode(),
-    if (totalAggregation != null)
-      'total_aggregation': totalAggregation!.encode(),
-    if (uniqueValues != null) 'unique_values': uniqueValues!.encode(),
+    'forecast': ?forecast?.encode(),
+    'growth_rate': ?growthRate?.encode(),
+    'maximum_minimum': ?maximumMinimum?.encode(),
+    'metric_comparison': ?metricComparison?.encode(),
+    'period_over_period': ?periodOverPeriod?.encode(),
+    'period_to_date': ?periodToDate?.encode(),
+    'top_bottom_movers': ?topBottomMovers?.encode(),
+    'top_bottom_ranked': ?topBottomRanked?.encode(),
+    'total_aggregation': ?totalAggregation?.encode(),
+    'unique_values': ?uniqueValues?.encode(),
   };
 }
 
@@ -8016,19 +7725,16 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
-    if (customSeasonalityValue != null)
-      'custom_seasonality_value': customSeasonalityValue!.toTfJson(),
-    if (lowerBoundary != null) 'lower_boundary': lowerBoundary!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (periodsBackward != null)
-      'periods_backward': periodsBackward!.toTfJson(),
-    if (periodsForward != null) 'periods_forward': periodsForward!.toTfJson(),
-    if (predictionInterval != null)
-      'prediction_interval': predictionInterval!.toTfJson(),
+    'custom_seasonality_value': ?customSeasonalityValue?.toTfJson(),
+    'lower_boundary': ?lowerBoundary?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'periods_backward': ?periodsBackward?.toTfJson(),
+    'periods_forward': ?periodsForward?.toTfJson(),
+    'prediction_interval': ?predictionInterval?.toTfJson(),
     'seasonality': seasonality.toTfJson(),
-    if (upperBoundary != null) 'upper_boundary': upperBoundary!.toTfJson(),
-    if (time != null) 'time': time!.encode(),
-    if (value != null) 'value': value!.encode(),
+    'upper_boundary': ?upperBoundary?.toTfJson(),
+    'time': ?time?.encode(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -8058,10 +7764,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (periodSize != null) 'period_size': periodSize!.toTfJson(),
-    if (time != null) 'time': time!.encode(),
-    if (value != null) 'value': value!.encode(),
+    'name': ?name?.toTfJson(),
+    'period_size': ?periodSize?.toTfJson(),
+    'time': ?time?.encode(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -8091,10 +7797,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     'type': type.toTfJson(),
-    if (time != null) 'time': time!.encode(),
-    if (value != null) 'value': value!.encode(),
+    'time': ?time?.encode(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -8125,10 +7831,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (fromValue != null) 'from_value': fromValue!.encode(),
-    if (targetValue != null) 'target_value': targetValue!.encode(),
-    if (time != null) 'time': time!.encode(),
+    'name': ?name?.toTfJson(),
+    'from_value': ?fromValue?.encode(),
+    'target_value': ?targetValue?.encode(),
+    'time': ?time?.encode(),
   };
 }
 
@@ -8155,9 +7861,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (time != null) 'time': time!.encode(),
-    if (value != null) 'value': value!.encode(),
+    'name': ?name?.toTfJson(),
+    'time': ?time?.encode(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -8187,10 +7893,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     'period_time_granularity': periodTimeGranularity.toTfJson(),
-    if (time != null) 'time': time!.encode(),
-    if (value != null) 'value': value!.encode(),
+    'time': ?time?.encode(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -8230,13 +7936,13 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
-    if (moverSize != null) 'mover_size': moverSize!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'mover_size': ?moverSize?.toTfJson(),
+    'name': ?name?.toTfJson(),
     'sort_order': sortOrder.toTfJson(),
     'type': type.toTfJson(),
-    if (category != null) 'category': category!.encode(),
-    if (time != null) 'time': time!.encode(),
-    if (value != null) 'value': value!.encode(),
+    'category': ?category?.encode(),
+    'time': ?time?.encode(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -8269,11 +7975,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (resultSize != null) 'result_size': resultSize!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'result_size': ?resultSize?.toTfJson(),
     'type': type.toTfJson(),
-    if (category != null) 'category': category!.encode(),
-    if (value != null) 'value': value!.encode(),
+    'category': ?category?.encode(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -8296,8 +8002,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.encode(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -8320,8 +8026,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsInsightVisualInsightConfigu
 
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (category != null) 'category': category!.encode(),
+    'name': ?name?.toTfJson(),
+    'category': ?category?.encode(),
   };
 }
 
@@ -8376,14 +8082,12 @@ final class QuicksightTemplateDefinitionSheetsVisualsKpiVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (conditionalFormatting != null)
-      'conditional_formatting': conditionalFormatting!.encode(),
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'conditional_formatting': ?conditionalFormatting?.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -8407,10 +8111,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsKpiVisualChartConfiguration
   sortConfiguration;
 
   Map<String, Object?> encode() => {
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (kpiOptions != null) 'kpi_options': kpiOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'kpi_options': ?kpiOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
   };
 }
 
@@ -8491,21 +8194,17 @@ final class QuicksightTemplateDefinitionSheetsVisualsKpiVisualChartConfiguration
   visualLayoutOptions;
 
   Map<String, Object?> encode() => {
-    if (primaryValueDisplayType != null)
-      'primary_value_display_type': primaryValueDisplayType!.toTfJson(),
-    if (comparison != null) 'comparison': comparison!.encode(),
-    if (primaryValueFontConfiguration != null)
-      'primary_value_font_configuration': primaryValueFontConfiguration!
-          .encode(),
-    if (progressBar != null) 'progress_bar': progressBar!.encode(),
-    if (secondaryValue != null) 'secondary_value': secondaryValue!.encode(),
-    if (secondaryValueFontConfiguration != null)
-      'secondary_value_font_configuration': secondaryValueFontConfiguration!
-          .encode(),
-    if (sparkline != null) 'sparkline': sparkline!.encode(),
-    if (trendArrows != null) 'trend_arrows': trendArrows!.encode(),
-    if (visualLayoutOptions != null)
-      'visual_layout_options': visualLayoutOptions!.encode(),
+    'primary_value_display_type': ?primaryValueDisplayType?.toTfJson(),
+    'comparison': ?comparison?.encode(),
+    'primary_value_font_configuration': ?primaryValueFontConfiguration
+        ?.encode(),
+    'progress_bar': ?progressBar?.encode(),
+    'secondary_value': ?secondaryValue?.encode(),
+    'secondary_value_font_configuration': ?secondaryValueFontConfiguration
+        ?.encode(),
+    'sparkline': ?sparkline?.encode(),
+    'trend_arrows': ?trendArrows?.encode(),
+    'visual_layout_options': ?visualLayoutOptions?.encode(),
   };
 }
 
@@ -8529,11 +8228,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsKpiVisualChartConfiguration
   final TfArg<String>? visibility;
 
   Map<String, Object?> encode() => {
-    if (color != null) 'color': color!.toTfJson(),
-    if (tooltipVisibility != null)
-      'tooltip_visibility': tooltipVisibility!.toTfJson(),
+    'color': ?color?.toTfJson(),
+    'tooltip_visibility': ?tooltipVisibility?.toTfJson(),
     'type': type.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
   };
 }
 
@@ -8549,7 +8247,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsKpiVisualChartConfiguration
   standardLayout;
 
   Map<String, Object?> encode() => {
-    if (standardLayout != null) 'standard_layout': standardLayout!.encode(),
+    'standard_layout': ?standardLayout?.encode(),
   };
 }
 
@@ -8630,10 +8328,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsKpiVisualConditionalFormatt
   progressBar;
 
   Map<String, Object?> encode() => {
-    if (actualValue != null) 'actual_value': actualValue!.encode(),
-    if (comparisonValue != null) 'comparison_value': comparisonValue!.encode(),
-    if (primaryValue != null) 'primary_value': primaryValue!.encode(),
-    if (progressBar != null) 'progress_bar': progressBar!.encode(),
+    'actual_value': ?actualValue?.encode(),
+    'comparison_value': ?comparisonValue?.encode(),
+    'primary_value': ?primaryValue?.encode(),
+    'progress_bar': ?progressBar?.encode(),
   };
 }
 
@@ -8671,12 +8369,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -8771,42 +8468,32 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   xAxisLabelOptions;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     if (contributionAnalysisDefaults != null)
       'contribution_analysis_defaults': [
         for (final e in contributionAnalysisDefaults!) e.encode(),
       ],
-    if (dataLabels != null) 'data_labels': dataLabels!.encode(),
-    if (defaultSeriesSettings != null)
-      'default_series_settings': defaultSeriesSettings!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
+    'data_labels': ?dataLabels?.encode(),
+    'default_series_settings': ?defaultSeriesSettings?.encode(),
+    'field_wells': ?fieldWells?.encode(),
     if (forecastConfigurations != null)
       'forecast_configurations': [
         for (final e in forecastConfigurations!) e.encode(),
       ],
-    if (legend != null) 'legend': legend!.encode(),
-    if (primaryYAxisDisplayOptions != null)
-      'primary_y_axis_display_options': primaryYAxisDisplayOptions!.encode(),
-    if (primaryYAxisLabelOptions != null)
-      'primary_y_axis_label_options': primaryYAxisLabelOptions!.encode(),
+    'legend': ?legend?.encode(),
+    'primary_y_axis_display_options': ?primaryYAxisDisplayOptions?.encode(),
+    'primary_y_axis_label_options': ?primaryYAxisLabelOptions?.encode(),
     if (referenceLines != null)
       'reference_lines': [for (final e in referenceLines!) e.encode()],
-    if (secondaryYAxisDisplayOptions != null)
-      'secondary_y_axis_display_options': secondaryYAxisDisplayOptions!
-          .encode(),
-    if (secondaryYAxisLabelOptions != null)
-      'secondary_y_axis_label_options': secondaryYAxisLabelOptions!.encode(),
+    'secondary_y_axis_display_options': ?secondaryYAxisDisplayOptions?.encode(),
+    'secondary_y_axis_label_options': ?secondaryYAxisLabelOptions?.encode(),
     if (series != null) 'series': [for (final e in series!) e.encode()],
-    if (smallMultiplesOptions != null)
-      'small_multiples_options': smallMultiplesOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
-    if (xAxisDisplayOptions != null)
-      'x_axis_display_options': xAxisDisplayOptions!.encode(),
-    if (xAxisLabelOptions != null)
-      'x_axis_label_options': xAxisLabelOptions!.encode(),
+    'small_multiples_options': ?smallMultiplesOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
+    'x_axis_display_options': ?xAxisDisplayOptions?.encode(),
+    'x_axis_label_options': ?xAxisLabelOptions?.encode(),
   };
 }
 
@@ -8829,11 +8516,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   markerStyleSettings;
 
   Map<String, Object?> encode() => {
-    if (axisBinding != null) 'axis_binding': axisBinding!.toTfJson(),
-    if (lineStyleSettings != null)
-      'line_style_settings': lineStyleSettings!.encode(),
-    if (markerStyleSettings != null)
-      'marker_style_settings': markerStyleSettings!.encode(),
+    'axis_binding': ?axisBinding?.toTfJson(),
+    'line_style_settings': ?lineStyleSettings?.encode(),
+    'marker_style_settings': ?markerStyleSettings?.encode(),
   };
 }
 
@@ -8858,11 +8543,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   final TfArg<String>? lineWidth;
 
   Map<String, Object?> encode() => {
-    if (lineInterpolation != null)
-      'line_interpolation': lineInterpolation!.toTfJson(),
-    if (lineStyle != null) 'line_style': lineStyle!.toTfJson(),
-    if (lineVisibility != null) 'line_visibility': lineVisibility!.toTfJson(),
-    if (lineWidth != null) 'line_width': lineWidth!.toTfJson(),
+    'line_interpolation': ?lineInterpolation?.toTfJson(),
+    'line_style': ?lineStyle?.toTfJson(),
+    'line_visibility': ?lineVisibility?.toTfJson(),
+    'line_width': ?lineWidth?.toTfJson(),
   };
 }
 
@@ -8887,11 +8571,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   final TfArg<String>? markerVisibility;
 
   Map<String, Object?> encode() => {
-    if (markerColor != null) 'marker_color': markerColor!.toTfJson(),
-    if (markerShape != null) 'marker_shape': markerShape!.toTfJson(),
-    if (markerSize != null) 'marker_size': markerSize!.toTfJson(),
-    if (markerVisibility != null)
-      'marker_visibility': markerVisibility!.toTfJson(),
+    'marker_color': ?markerColor?.toTfJson(),
+    'marker_shape': ?markerShape?.toTfJson(),
+    'marker_size': ?markerSize?.toTfJson(),
+    'marker_visibility': ?markerVisibility?.toTfJson(),
   };
 }
 
@@ -8907,9 +8590,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   lineChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (lineChartAggregatedFieldWells != null)
-      'line_chart_aggregated_field_wells': lineChartAggregatedFieldWells!
-          .encode(),
+    'line_chart_aggregated_field_wells': ?lineChartAggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -8929,9 +8611,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   scenario;
 
   Map<String, Object?> encode() => {
-    if (forecastProperties != null)
-      'forecast_properties': forecastProperties!.encode(),
-    if (scenario != null) 'scenario': scenario!.encode(),
+    'forecast_properties': ?forecastProperties?.encode(),
+    'scenario': ?scenario?.encode(),
   };
 }
 
@@ -8961,14 +8642,12 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   final TfArg<num>? upperBoundary;
 
   Map<String, Object?> encode() => {
-    if (lowerBoundary != null) 'lower_boundary': lowerBoundary!.toTfJson(),
-    if (periodsBackward != null)
-      'periods_backward': periodsBackward!.toTfJson(),
-    if (periodsForward != null) 'periods_forward': periodsForward!.toTfJson(),
-    if (predictionInterval != null)
-      'prediction_interval': predictionInterval!.toTfJson(),
-    if (seasonality != null) 'seasonality': seasonality!.toTfJson(),
-    if (upperBoundary != null) 'upper_boundary': upperBoundary!.toTfJson(),
+    'lower_boundary': ?lowerBoundary?.toTfJson(),
+    'periods_backward': ?periodsBackward?.toTfJson(),
+    'periods_forward': ?periodsForward?.toTfJson(),
+    'prediction_interval': ?predictionInterval?.toTfJson(),
+    'seasonality': ?seasonality?.toTfJson(),
+    'upper_boundary': ?upperBoundary?.toTfJson(),
   };
 }
 
@@ -8988,10 +8667,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   whatIfRangeScenario;
 
   Map<String, Object?> encode() => {
-    if (whatIfPointScenario != null)
-      'what_if_point_scenario': whatIfPointScenario!.encode(),
-    if (whatIfRangeScenario != null)
-      'what_if_range_scenario': whatIfRangeScenario!.encode(),
+    'what_if_point_scenario': ?whatIfPointScenario?.encode(),
+    'what_if_range_scenario': ?whatIfRangeScenario?.encode(),
   };
 }
 
@@ -9056,7 +8733,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   missingDataConfiguration;
 
   Map<String, Object?> encode() => {
-    if (axisOptions != null) 'axis_options': axisOptions!.encode(),
+    'axis_options': ?axisOptions?.encode(),
     if (missingDataConfiguration != null)
       'missing_data_configuration': [
         for (final e in missingDataConfiguration!) e.encode(),
@@ -9076,8 +8753,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   final TfArg<String>? treatmentOption;
 
   Map<String, Object?> encode() => {
-    if (treatmentOption != null)
-      'treatment_option': treatmentOption!.toTfJson(),
+    'treatment_option': ?treatmentOption?.toTfJson(),
   };
 }
 
@@ -9097,9 +8773,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   fieldSeriesItem;
 
   Map<String, Object?> encode() => {
-    if (dataFieldSeriesItem != null)
-      'data_field_series_item': dataFieldSeriesItem!.encode(),
-    if (fieldSeriesItem != null) 'field_series_item': fieldSeriesItem!.encode(),
+    'data_field_series_item': ?dataFieldSeriesItem?.encode(),
+    'field_series_item': ?fieldSeriesItem?.encode(),
   };
 }
 
@@ -9126,8 +8801,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   Map<String, Object?> encode() => {
     'axis_binding': axisBinding.toTfJson(),
     'field_id': fieldId.toTfJson(),
-    if (fieldValue != null) 'field_value': fieldValue!.toTfJson(),
-    if (settings != null) 'settings': settings!.encode(),
+    'field_value': ?fieldValue?.toTfJson(),
+    'settings': ?settings?.encode(),
   };
 }
 
@@ -9148,10 +8823,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   markerStyleSettings;
 
   Map<String, Object?> encode() => {
-    if (lineStyleSettings != null)
-      'line_style_settings': lineStyleSettings!.encode(),
-    if (markerStyleSettings != null)
-      'marker_style_settings': markerStyleSettings!.encode(),
+    'line_style_settings': ?lineStyleSettings?.encode(),
+    'marker_style_settings': ?markerStyleSettings?.encode(),
   };
 }
 
@@ -9175,7 +8848,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   Map<String, Object?> encode() => {
     'axis_binding': axisBinding.toTfJson(),
     'field_id': fieldId.toTfJson(),
-    if (settings != null) 'settings': settings!.encode(),
+    'settings': ?settings?.encode(),
   };
 }
 
@@ -9211,16 +8884,13 @@ final class QuicksightTemplateDefinitionSheetsVisualsLineChartVisualChartConfigu
   smallMultiplesSort;
 
   Map<String, Object?> encode() => {
-    if (categoryItemsLimitConfiguration != null)
-      'category_items_limit_configuration': categoryItemsLimitConfiguration!
-          .encode(),
+    'category_items_limit_configuration': ?categoryItemsLimitConfiguration
+        ?.encode(),
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
-    if (colorItemsLimitConfiguration != null)
-      'color_items_limit_configuration': colorItemsLimitConfiguration!.encode(),
-    if (smallMultiplesLimitConfiguration != null)
-      'small_multiples_limit_configuration': smallMultiplesLimitConfiguration!
-          .encode(),
+    'color_items_limit_configuration': ?colorItemsLimitConfiguration?.encode(),
+    'small_multiples_limit_configuration': ?smallMultiplesLimitConfiguration
+        ?.encode(),
     if (smallMultiplesSort != null)
       'small_multiples_sort': [for (final e in smallMultiplesSort!) e.encode()],
   };
@@ -9260,12 +8930,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsPieChartVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -9323,24 +8992,20 @@ final class QuicksightTemplateDefinitionSheetsVisualsPieChartVisualChartConfigur
   visualPalette;
 
   Map<String, Object?> encode() => {
-    if (categoryLabelOptions != null)
-      'category_label_options': categoryLabelOptions!.encode(),
+    'category_label_options': ?categoryLabelOptions?.encode(),
     if (contributionAnalysisDefaults != null)
       'contribution_analysis_defaults': [
         for (final e in contributionAnalysisDefaults!) e.encode(),
       ],
-    if (dataLabels != null) 'data_labels': dataLabels!.encode(),
-    if (donutOptions != null) 'donut_options': donutOptions!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
-    if (smallMultiplesOptions != null)
-      'small_multiples_options': smallMultiplesOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (valueLabelOptions != null)
-      'value_label_options': valueLabelOptions!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
+    'data_labels': ?dataLabels?.encode(),
+    'donut_options': ?donutOptions?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'legend': ?legend?.encode(),
+    'small_multiples_options': ?smallMultiplesOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'value_label_options': ?valueLabelOptions?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
   };
 }
 
@@ -9360,9 +9025,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsPieChartVisualChartConfigur
   donutCenterOptions;
 
   Map<String, Object?> encode() => {
-    if (arcOptions != null) 'arc_options': arcOptions!.encode(),
-    if (donutCenterOptions != null)
-      'donut_center_options': donutCenterOptions!.encode(),
+    'arc_options': ?arcOptions?.encode(),
+    'donut_center_options': ?donutCenterOptions?.encode(),
   };
 }
 
@@ -9376,9 +9040,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsPieChartVisualChartConfigur
 
   final TfArg<String>? arcThickness;
 
-  Map<String, Object?> encode() => {
-    if (arcThickness != null) 'arc_thickness': arcThickness!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'arc_thickness': ?arcThickness?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.pie_chart_visual.chart_configuration.donut_options.donut_center_options` block of
@@ -9392,8 +9054,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsPieChartVisualChartConfigur
   final TfArg<String>? labelVisibility;
 
   Map<String, Object?> encode() => {
-    if (labelVisibility != null)
-      'label_visibility': labelVisibility!.toTfJson(),
+    'label_visibility': ?labelVisibility?.toTfJson(),
   };
 }
 
@@ -9409,9 +9070,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsPieChartVisualChartConfigur
   pieChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (pieChartAggregatedFieldWells != null)
-      'pie_chart_aggregated_field_wells': pieChartAggregatedFieldWells!
-          .encode(),
+    'pie_chart_aggregated_field_wells': ?pieChartAggregatedFieldWells?.encode(),
   };
 }
 
@@ -9440,7 +9099,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsPieChartVisualChartConfigur
 
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
-    if (smallMultiples != null) 'small_multiples': smallMultiples!.encode(),
+    'small_multiples': ?smallMultiples?.encode(),
     if (values != null) 'values': [for (final e in values!) e.encode()],
   };
 }
@@ -9473,13 +9132,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsPieChartVisualChartConfigur
   smallMultiplesSort;
 
   Map<String, Object?> encode() => {
-    if (categoryItemsLimit != null)
-      'category_items_limit': categoryItemsLimit!.encode(),
+    'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
-    if (smallMultiplesLimitConfiguration != null)
-      'small_multiples_limit_configuration': smallMultiplesLimitConfiguration!
-          .encode(),
+    'small_multiples_limit_configuration': ?smallMultiplesLimitConfiguration
+        ?.encode(),
     if (smallMultiplesSort != null)
       'small_multiples_sort': [for (final e in smallMultiplesSort!) e.encode()],
   };
@@ -9517,12 +9174,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
-    if (conditionalFormatting != null)
-      'conditional_formatting': conditionalFormatting!.encode(),
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
+    'conditional_formatting': ?conditionalFormatting?.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -9558,14 +9213,12 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   totalOptions;
 
   Map<String, Object?> encode() => {
-    if (fieldOptions != null) 'field_options': fieldOptions!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (paginatedReportOptions != null)
-      'paginated_report_options': paginatedReportOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (tableOptions != null) 'table_options': tableOptions!.encode(),
-    if (totalOptions != null) 'total_options': totalOptions!.encode(),
+    'field_options': ?fieldOptions?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'paginated_report_options': ?paginatedReportOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'table_options': ?tableOptions?.encode(),
+    'total_options': ?totalOptions?.encode(),
   };
 }
 
@@ -9615,7 +9268,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   dataPathList;
 
   Map<String, Object?> encode() => {
-    if (width != null) 'width': width!.toTfJson(),
+    'width': ?width?.toTfJson(),
     'data_path_list': [for (final e in dataPathList) e.encode()],
   };
 }
@@ -9637,9 +9290,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   final TfArg<String>? visibility;
 
   Map<String, Object?> encode() => {
-    if (customLabel != null) 'custom_label': customLabel!.toTfJson(),
+    'custom_label': ?customLabel?.toTfJson(),
     'field_id': fieldId.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
   };
 }
 
@@ -9655,9 +9308,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   pivotTableAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (pivotTableAggregatedFieldWells != null)
-      'pivot_table_aggregated_field_wells': pivotTableAggregatedFieldWells!
-          .encode(),
+    'pivot_table_aggregated_field_wells': ?pivotTableAggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -9708,11 +9360,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   final TfArg<String>? verticalOverflowVisibility;
 
   Map<String, Object?> encode() => {
-    if (overflowColumnHeaderVisibility != null)
-      'overflow_column_header_visibility': overflowColumnHeaderVisibility!
-          .toTfJson(),
-    if (verticalOverflowVisibility != null)
-      'vertical_overflow_visibility': verticalOverflowVisibility!.toTfJson(),
+    'overflow_column_header_visibility': ?overflowColumnHeaderVisibility
+        ?.toTfJson(),
+    'vertical_overflow_visibility': ?verticalOverflowVisibility?.toTfJson(),
   };
 }
 
@@ -9775,9 +9425,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   field;
 
   Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.encode(),
-    if (dataPath != null) 'data_path': dataPath!.encode(),
-    if (field != null) 'field': field!.encode(),
+    'column': ?column?.encode(),
+    'data_path': ?dataPath?.encode(),
+    'field': ?field?.encode(),
   };
 }
 
@@ -9846,25 +9496,17 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   rowHeaderStyle;
 
   Map<String, Object?> encode() => {
-    if (collapsedRowDimensionsVisibility != null)
-      'collapsed_row_dimensions_visibility': collapsedRowDimensionsVisibility!
-          .toTfJson(),
-    if (columnNamesVisibility != null)
-      'column_names_visibility': columnNamesVisibility!.toTfJson(),
-    if (metricPlacement != null)
-      'metric_placement': metricPlacement!.toTfJson(),
-    if (singleMetricVisibility != null)
-      'single_metric_visibility': singleMetricVisibility!.toTfJson(),
-    if (toggleButtonsVisibility != null)
-      'toggle_buttons_visibility': toggleButtonsVisibility!.toTfJson(),
-    if (cellStyle != null) 'cell_style': cellStyle!.encode(),
-    if (columnHeaderStyle != null)
-      'column_header_style': columnHeaderStyle!.encode(),
-    if (rowAlternateColorOptions != null)
-      'row_alternate_color_options': rowAlternateColorOptions!.encode(),
-    if (rowFieldNamesStyle != null)
-      'row_field_names_style': rowFieldNamesStyle!.encode(),
-    if (rowHeaderStyle != null) 'row_header_style': rowHeaderStyle!.encode(),
+    'collapsed_row_dimensions_visibility': ?collapsedRowDimensionsVisibility
+        ?.toTfJson(),
+    'column_names_visibility': ?columnNamesVisibility?.toTfJson(),
+    'metric_placement': ?metricPlacement?.toTfJson(),
+    'single_metric_visibility': ?singleMetricVisibility?.toTfJson(),
+    'toggle_buttons_visibility': ?toggleButtonsVisibility?.toTfJson(),
+    'cell_style': ?cellStyle?.encode(),
+    'column_header_style': ?columnHeaderStyle?.encode(),
+    'row_alternate_color_options': ?rowAlternateColorOptions?.encode(),
+    'row_field_names_style': ?rowFieldNamesStyle?.encode(),
+    'row_header_style': ?rowHeaderStyle?.encode(),
   };
 }
 
@@ -9903,18 +9545,14 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   fontConfiguration;
 
   Map<String, Object?> encode() => {
-    if (backgroundColor != null)
-      'background_color': backgroundColor!.toTfJson(),
-    if (height != null) 'height': height!.toTfJson(),
-    if (horizontalTextAlignment != null)
-      'horizontal_text_alignment': horizontalTextAlignment!.toTfJson(),
-    if (textWrap != null) 'text_wrap': textWrap!.toTfJson(),
-    if (verticalTextAlignment != null)
-      'vertical_text_alignment': verticalTextAlignment!.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-    if (border != null) 'border': border!.encode(),
-    if (fontConfiguration != null)
-      'font_configuration': fontConfiguration!.encode(),
+    'background_color': ?backgroundColor?.toTfJson(),
+    'height': ?height?.toTfJson(),
+    'horizontal_text_alignment': ?horizontalTextAlignment?.toTfJson(),
+    'text_wrap': ?textWrap?.toTfJson(),
+    'vertical_text_alignment': ?verticalTextAlignment?.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
+    'border': ?border?.encode(),
+    'font_configuration': ?fontConfiguration?.encode(),
   };
 }
 
@@ -9935,8 +9573,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   uniformBorder;
 
   Map<String, Object?> encode() => {
-    if (sideSpecificBorder != null)
-      'side_specific_border': sideSpecificBorder!.encode(),
+    'side_specific_border': ?sideSpecificBorder?.encode(),
     'uniform_border': uniformBorder.encode(),
   };
 }
@@ -10001,9 +9638,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   final TfArg<num>? thickness;
 
   Map<String, Object?> encode() => {
-    if (color != null) 'color': color!.toTfJson(),
-    if (style != null) 'style': style!.toTfJson(),
-    if (thickness != null) 'thickness': thickness!.toTfJson(),
+    'color': ?color?.toTfJson(),
+    'style': ?style?.toTfJson(),
+    'thickness': ?thickness?.toTfJson(),
   };
 }
 
@@ -10022,9 +9659,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   final TfArg<String>? status;
 
   Map<String, Object?> encode() => {
-    if (rowAlternateColors != null)
-      'row_alternate_colors': rowAlternateColors!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'row_alternate_colors': ?rowAlternateColors?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -10052,13 +9688,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   rowTotalOptions;
 
   Map<String, Object?> encode() => {
-    if (columnSubtotalOptions != null)
-      'column_subtotal_options': columnSubtotalOptions!.encode(),
-    if (columnTotalOptions != null)
-      'column_total_options': columnTotalOptions!.encode(),
-    if (rowSubtotalOptions != null)
-      'row_subtotal_options': rowSubtotalOptions!.encode(),
-    if (rowTotalOptions != null) 'row_total_options': rowTotalOptions!.encode(),
+    'column_subtotal_options': ?columnSubtotalOptions?.encode(),
+    'column_total_options': ?columnTotalOptions?.encode(),
+    'row_subtotal_options': ?rowSubtotalOptions?.encode(),
+    'row_total_options': ?rowTotalOptions?.encode(),
   };
 }
 
@@ -10098,16 +9731,14 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   valueCellStyle;
 
   Map<String, Object?> encode() => {
-    if (customLabel != null) 'custom_label': customLabel!.toTfJson(),
-    if (fieldLevel != null) 'field_level': fieldLevel!.toTfJson(),
-    if (totalsVisibility != null)
-      'totals_visibility': totalsVisibility!.toTfJson(),
+    'custom_label': ?customLabel?.toTfJson(),
+    'field_level': ?fieldLevel?.toTfJson(),
+    'totals_visibility': ?totalsVisibility?.toTfJson(),
     if (fieldLevelOptions != null)
       'field_level_options': [for (final e in fieldLevelOptions!) e.encode()],
-    if (metricHeaderCellStyle != null)
-      'metric_header_cell_style': metricHeaderCellStyle!.encode(),
-    if (totalCellStyle != null) 'total_cell_style': totalCellStyle!.encode(),
-    if (valueCellStyle != null) 'value_cell_style': valueCellStyle!.encode(),
+    'metric_header_cell_style': ?metricHeaderCellStyle?.encode(),
+    'total_cell_style': ?totalCellStyle?.encode(),
+    'value_cell_style': ?valueCellStyle?.encode(),
   };
 }
 
@@ -10122,9 +9753,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
 
   final TfArg<String>? fieldId;
 
-  Map<String, Object?> encode() => {
-    if (fieldId != null) 'field_id': fieldId!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'field_id': ?fieldId?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.chart_configuration.total_options.column_total_options` block of
@@ -10160,15 +9789,13 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualChartConfig
   valueCellStyle;
 
   Map<String, Object?> encode() => {
-    if (customLabel != null) 'custom_label': customLabel!.toTfJson(),
-    if (placement != null) 'placement': placement!.toTfJson(),
-    if (scrollStatus != null) 'scroll_status': scrollStatus!.toTfJson(),
-    if (totalsVisibility != null)
-      'totals_visibility': totalsVisibility!.toTfJson(),
-    if (metricHeaderCellStyle != null)
-      'metric_header_cell_style': metricHeaderCellStyle!.encode(),
-    if (totalCellStyle != null) 'total_cell_style': totalCellStyle!.encode(),
-    if (valueCellStyle != null) 'value_cell_style': valueCellStyle!.encode(),
+    'custom_label': ?customLabel?.toTfJson(),
+    'placement': ?placement?.toTfJson(),
+    'scroll_status': ?scrollStatus?.toTfJson(),
+    'totals_visibility': ?totalsVisibility?.toTfJson(),
+    'metric_header_cell_style': ?metricHeaderCellStyle?.encode(),
+    'total_cell_style': ?totalCellStyle?.encode(),
+    'value_cell_style': ?valueCellStyle?.encode(),
   };
 }
 
@@ -10204,7 +9831,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualConditional
   final QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualConditionalFormattingConditionalFormattingOptionsCell?
   cell;
 
-  Map<String, Object?> encode() => {if (cell != null) 'cell': cell!.encode()};
+  Map<String, Object?> encode() => {'cell': ?cell?.encode()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.conditional_formatting.conditional_formatting_options.cell` block of
@@ -10227,8 +9854,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualConditional
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
-    if (scope != null) 'scope': scope!.encode(),
-    if (textFormat != null) 'text_format': textFormat!.encode(),
+    'scope': ?scope?.encode(),
+    'text_format': ?textFormat?.encode(),
   };
 }
 
@@ -10242,7 +9869,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualConditional
 
   final TfArg<String>? role;
 
-  Map<String, Object?> encode() => {if (role != null) 'role': role!.toTfJson()};
+  Map<String, Object?> encode() => {'role': ?role?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.pivot_table_visual.conditional_formatting.conditional_formatting_options.cell.text_format` block of
@@ -10267,7 +9894,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsPivotTableVisualConditional
 
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
-    if (icon != null) 'icon': icon!.encode(),
+    'icon': ?icon?.encode(),
     'text_color': textColor.encode(),
   };
 }
@@ -10306,12 +9933,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsRadarChartVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -10374,28 +10000,21 @@ final class QuicksightTemplateDefinitionSheetsVisualsRadarChartVisualChartConfig
   visualPalette;
 
   Map<String, Object?> encode() => {
-    if (alternateBandColorsVisibility != null)
-      'alternate_band_colors_visibility': alternateBandColorsVisibility!
-          .toTfJson(),
-    if (alternateBandEvenColor != null)
-      'alternate_band_even_color': alternateBandEvenColor!.toTfJson(),
-    if (alternateBandOddColor != null)
-      'alternate_band_odd_color': alternateBandOddColor!.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
-    if (startAngle != null) 'start_angle': startAngle!.toTfJson(),
-    if (baseSeriesSettings != null)
-      'base_series_settings': baseSeriesSettings!.encode(),
-    if (categoryAxis != null) 'category_axis': categoryAxis!.encode(),
-    if (categoryLabelOptions != null)
-      'category_label_options': categoryLabelOptions!.encode(),
-    if (colorAxis != null) 'color_axis': colorAxis!.encode(),
-    if (colorLabelOptions != null)
-      'color_label_options': colorLabelOptions!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
+    'alternate_band_colors_visibility': ?alternateBandColorsVisibility
+        ?.toTfJson(),
+    'alternate_band_even_color': ?alternateBandEvenColor?.toTfJson(),
+    'alternate_band_odd_color': ?alternateBandOddColor?.toTfJson(),
+    'shape': ?shape?.toTfJson(),
+    'start_angle': ?startAngle?.toTfJson(),
+    'base_series_settings': ?baseSeriesSettings?.encode(),
+    'category_axis': ?categoryAxis?.encode(),
+    'category_label_options': ?categoryLabelOptions?.encode(),
+    'color_axis': ?colorAxis?.encode(),
+    'color_label_options': ?colorLabelOptions?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'legend': ?legend?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
   };
 }
 
@@ -10411,8 +10030,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsRadarChartVisualChartConfig
   areaStyleSettings;
 
   Map<String, Object?> encode() => {
-    if (areaStyleSettings != null)
-      'area_style_settings': areaStyleSettings!.encode(),
+    'area_style_settings': ?areaStyleSettings?.encode(),
   };
 }
 
@@ -10428,9 +10046,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsRadarChartVisualChartConfig
   radarChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (radarChartAggregatedFieldWells != null)
-      'radar_chart_aggregated_field_wells': radarChartAggregatedFieldWells!
-          .encode(),
+    'radar_chart_aggregated_field_wells': ?radarChartAggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -10456,8 +10073,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsRadarChartVisualChartConfig
   values;
 
   Map<String, Object?> encode() => {
-    if (category != null) 'category': category!.encode(),
-    if (color != null) 'color': color!.encode(),
+    'category': ?category?.encode(),
+    'color': ?color?.encode(),
     if (values != null) 'values': [for (final e in values!) e.encode()],
   };
 }
@@ -10490,10 +10107,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsSankeyDiagramVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -10517,10 +10133,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsSankeyDiagramVisualChartCon
   sortConfiguration;
 
   Map<String, Object?> encode() => {
-    if (dataLabels != null) 'data_labels': dataLabels!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
+    'data_labels': ?dataLabels?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
   };
 }
 
@@ -10536,9 +10151,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsSankeyDiagramVisualChartCon
   sankeyDiagramAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (sankeyDiagramAggregatedFieldWells != null)
-      'sankey_diagram_aggregated_field_wells':
-          sankeyDiagramAggregatedFieldWells!.encode(),
+    'sankey_diagram_aggregated_field_wells': ?sankeyDiagramAggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -10597,10 +10211,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsSankeyDiagramVisualChartCon
   weightSort;
 
   Map<String, Object?> encode() => {
-    if (destinationItemsLimit != null)
-      'destination_items_limit': destinationItemsLimit!.encode(),
-    if (sourceItemsLimit != null)
-      'source_items_limit': sourceItemsLimit!.encode(),
+    'destination_items_limit': ?destinationItemsLimit?.encode(),
+    'source_items_limit': ?sourceItemsLimit?.encode(),
     if (weightSort != null)
       'weight_sort': [for (final e in weightSort!) e.encode()],
   };
@@ -10640,12 +10252,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsScatterPlotVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -10693,19 +10304,15 @@ final class QuicksightTemplateDefinitionSheetsVisualsScatterPlotVisualChartConfi
   yAxisLabelOptions;
 
   Map<String, Object?> encode() => {
-    if (dataLabels != null) 'data_labels': dataLabels!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
-    if (xAxisDisplayOptions != null)
-      'x_axis_display_options': xAxisDisplayOptions!.encode(),
-    if (xAxisLabelOptions != null)
-      'x_axis_label_options': xAxisLabelOptions!.encode(),
-    if (yAxisDisplayOptions != null)
-      'y_axis_display_options': yAxisDisplayOptions!.encode(),
-    if (yAxisLabelOptions != null)
-      'y_axis_label_options': yAxisLabelOptions!.encode(),
+    'data_labels': ?dataLabels?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'legend': ?legend?.encode(),
+    'tooltip': ?tooltip?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
+    'x_axis_display_options': ?xAxisDisplayOptions?.encode(),
+    'x_axis_label_options': ?xAxisLabelOptions?.encode(),
+    'y_axis_display_options': ?yAxisDisplayOptions?.encode(),
+    'y_axis_label_options': ?yAxisLabelOptions?.encode(),
   };
 }
 
@@ -10725,12 +10332,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsScatterPlotVisualChartConfi
   scatterPlotUnaggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (scatterPlotCategoricallyAggregatedFieldWells != null)
-      'scatter_plot_categorically_aggregated_field_wells':
-          scatterPlotCategoricallyAggregatedFieldWells!.encode(),
-    if (scatterPlotUnaggregatedFieldWells != null)
-      'scatter_plot_unaggregated_field_wells':
-          scatterPlotUnaggregatedFieldWells!.encode(),
+    'scatter_plot_categorically_aggregated_field_wells':
+        ?scatterPlotCategoricallyAggregatedFieldWells?.encode(),
+    'scatter_plot_unaggregated_field_wells': ?scatterPlotUnaggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -10837,12 +10442,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
-    if (conditionalFormatting != null)
-      'conditional_formatting': conditionalFormatting!.encode(),
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
+    'conditional_formatting': ?conditionalFormatting?.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -10884,18 +10487,16 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   totalOptions;
 
   Map<String, Object?> encode() => {
-    if (fieldOptions != null) 'field_options': fieldOptions!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (paginatedReportOptions != null)
-      'paginated_report_options': paginatedReportOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
+    'field_options': ?fieldOptions?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'paginated_report_options': ?paginatedReportOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
     if (tableInlineVisualizations != null)
       'table_inline_visualizations': [
         for (final e in tableInlineVisualizations!) e.encode(),
       ],
-    if (tableOptions != null) 'table_options': tableOptions!.encode(),
-    if (totalOptions != null) 'total_options': totalOptions!.encode(),
+    'table_options': ?tableOptions?.encode(),
+    'total_options': ?totalOptions?.encode(),
   };
 }
 
@@ -10916,7 +10517,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   selectedFieldOptions;
 
   Map<String, Object?> encode() => {
-    if (order != null) 'order': order!.toTfJson(),
+    'order': ?order?.toTfJson(),
     if (selectedFieldOptions != null)
       'selected_field_options': [
         for (final e in selectedFieldOptions!) e.encode(),
@@ -10948,11 +10549,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   urlStyling;
 
   Map<String, Object?> encode() => {
-    if (customLabel != null) 'custom_label': customLabel!.toTfJson(),
+    'custom_label': ?customLabel?.toTfJson(),
     'field_id': fieldId.toTfJson(),
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
-    if (width != null) 'width': width!.toTfJson(),
-    if (urlStyling != null) 'url_styling': urlStyling!.encode(),
+    'visibility': ?visibility?.toTfJson(),
+    'width': ?width?.toTfJson(),
+    'url_styling': ?urlStyling?.encode(),
   };
 }
 
@@ -10972,10 +10573,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   linkConfiguration;
 
   Map<String, Object?> encode() => {
-    if (imageConfiguration != null)
-      'image_configuration': imageConfiguration!.encode(),
-    if (linkConfiguration != null)
-      'link_configuration': linkConfiguration!.encode(),
+    'image_configuration': ?imageConfiguration?.encode(),
+    'link_configuration': ?linkConfiguration?.encode(),
   };
 }
 
@@ -10990,9 +10589,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   final QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurationFieldOptionsSelectedFieldOptionsUrlStylingImageConfigurationSizingOptions?
   sizingOptions;
 
-  Map<String, Object?> encode() => {
-    if (sizingOptions != null) 'sizing_options': sizingOptions!.encode(),
-  };
+  Map<String, Object?> encode() => {'sizing_options': ?sizingOptions?.encode()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options.selected_field_options.url_styling.image_configuration.sizing_options` block of
@@ -11006,9 +10603,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   final TfArg<String>? tableCellImageScalingConfiguration;
 
   Map<String, Object?> encode() => {
-    if (tableCellImageScalingConfiguration != null)
-      'table_cell_image_scaling_configuration':
-          tableCellImageScalingConfiguration!.toTfJson(),
+    'table_cell_image_scaling_configuration':
+        ?tableCellImageScalingConfiguration?.toTfJson(),
   };
 }
 
@@ -11027,8 +10623,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   content;
 
   Map<String, Object?> encode() => {
-    if (target != null) 'target': target!.toTfJson(),
-    if (content != null) 'content': content!.encode(),
+    'target': ?target?.toTfJson(),
+    'content': ?content?.encode(),
   };
 }
 
@@ -11048,10 +10644,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   customTextContent;
 
   Map<String, Object?> encode() => {
-    if (customIconContent != null)
-      'custom_icon_content': customIconContent!.encode(),
-    if (customTextContent != null)
-      'custom_text_content': customTextContent!.encode(),
+    'custom_icon_content': ?customIconContent?.encode(),
+    'custom_text_content': ?customTextContent?.encode(),
   };
 }
 
@@ -11065,7 +10659,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
 
   final TfArg<String>? icon;
 
-  Map<String, Object?> encode() => {if (icon != null) 'icon': icon!.toTfJson()};
+  Map<String, Object?> encode() => {'icon': ?icon?.toTfJson()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.field_options.selected_field_options.url_styling.link_configuration.content.custom_text_content` block of
@@ -11083,9 +10677,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   fontConfiguration;
 
   Map<String, Object?> encode() => {
-    if (value != null) 'value': value!.toTfJson(),
-    if (fontConfiguration != null)
-      'font_configuration': fontConfiguration!.encode(),
+    'value': ?value?.toTfJson(),
+    'font_configuration': ?fontConfiguration?.encode(),
   };
 }
 
@@ -11105,10 +10698,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   tableUnaggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (tableAggregatedFieldWells != null)
-      'table_aggregated_field_wells': tableAggregatedFieldWells!.encode(),
-    if (tableUnaggregatedFieldWells != null)
-      'table_unaggregated_field_wells': tableUnaggregatedFieldWells!.encode(),
+    'table_aggregated_field_wells': ?tableAggregatedFieldWells?.encode(),
+    'table_unaggregated_field_wells': ?tableUnaggregatedFieldWells?.encode(),
   };
 }
 
@@ -11175,8 +10766,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'column': column.encode(),
-    if (formatConfiguration != null)
-      'format_configuration': formatConfiguration!.encode(),
+    'format_configuration': ?formatConfiguration?.encode(),
   };
 }
 
@@ -11198,8 +10788,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   rowSort;
 
   Map<String, Object?> encode() => {
-    if (paginationConfiguration != null)
-      'pagination_configuration': paginationConfiguration!.encode(),
+    'pagination_configuration': ?paginationConfiguration?.encode(),
     if (rowSort != null) 'row_sort': [for (final e in rowSort!) e.encode()],
   };
 }
@@ -11215,9 +10804,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   final QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurationTableInlineVisualizationsDataBars?
   dataBars;
 
-  Map<String, Object?> encode() => {
-    if (dataBars != null) 'data_bars': dataBars!.encode(),
-  };
+  Map<String, Object?> encode() => {'data_bars': ?dataBars?.encode()};
 }
 
 /// Typed helper for the `definition.sheets.visuals.table_visual.chart_configuration.table_inline_visualizations.data_bars` block of
@@ -11238,8 +10825,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
-    if (negativeColor != null) 'negative_color': negativeColor!.toTfJson(),
-    if (positiveColor != null) 'positive_color': positiveColor!.toTfJson(),
+    'negative_color': ?negativeColor?.toTfJson(),
+    'positive_color': ?positiveColor?.toTfJson(),
   };
 }
 
@@ -11266,11 +10853,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   rowAlternateColorOptions;
 
   Map<String, Object?> encode() => {
-    if (orientation != null) 'orientation': orientation!.toTfJson(),
-    if (cellStyle != null) 'cell_style': cellStyle!.encode(),
-    if (headerStyle != null) 'header_style': headerStyle!.encode(),
-    if (rowAlternateColorOptions != null)
-      'row_alternate_color_options': rowAlternateColorOptions!.encode(),
+    'orientation': ?orientation?.toTfJson(),
+    'cell_style': ?cellStyle?.encode(),
+    'header_style': ?headerStyle?.encode(),
+    'row_alternate_color_options': ?rowAlternateColorOptions?.encode(),
   };
 }
 
@@ -11298,12 +10884,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualChartConfigurati
   totalCellStyle;
 
   Map<String, Object?> encode() => {
-    if (customLabel != null) 'custom_label': customLabel!.toTfJson(),
-    if (placement != null) 'placement': placement!.toTfJson(),
-    if (scrollStatus != null) 'scroll_status': scrollStatus!.toTfJson(),
-    if (totalsVisibility != null)
-      'totals_visibility': totalsVisibility!.toTfJson(),
-    if (totalCellStyle != null) 'total_cell_style': totalCellStyle!.encode(),
+    'custom_label': ?customLabel?.toTfJson(),
+    'placement': ?placement?.toTfJson(),
+    'scroll_status': ?scrollStatus?.toTfJson(),
+    'totals_visibility': ?totalsVisibility?.toTfJson(),
+    'total_cell_style': ?totalCellStyle?.encode(),
   };
 }
 
@@ -11344,8 +10929,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualConditionalForma
   row;
 
   Map<String, Object?> encode() => {
-    if (cell != null) 'cell': cell!.encode(),
-    if (row != null) 'row': row!.encode(),
+    'cell': ?cell?.encode(),
+    'row': ?row?.encode(),
   };
 }
 
@@ -11365,7 +10950,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsTableVisualConditionalForma
 
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
-    if (textFormat != null) 'text_format': textFormat!.encode(),
+    'text_format': ?textFormat?.encode(),
   };
 }
 
@@ -11424,12 +11009,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsTreeMapVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -11477,19 +11061,15 @@ final class QuicksightTemplateDefinitionSheetsVisualsTreeMapVisualChartConfigura
   tooltip;
 
   Map<String, Object?> encode() => {
-    if (colorLabelOptions != null)
-      'color_label_options': colorLabelOptions!.encode(),
-    if (colorScale != null) 'color_scale': colorScale!.encode(),
-    if (dataLabels != null) 'data_labels': dataLabels!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (groupLabelOptions != null)
-      'group_label_options': groupLabelOptions!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
-    if (sizeLabelOptions != null)
-      'size_label_options': sizeLabelOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (tooltip != null) 'tooltip': tooltip!.encode(),
+    'color_label_options': ?colorLabelOptions?.encode(),
+    'color_scale': ?colorScale?.encode(),
+    'data_labels': ?dataLabels?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'group_label_options': ?groupLabelOptions?.encode(),
+    'legend': ?legend?.encode(),
+    'size_label_options': ?sizeLabelOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'tooltip': ?tooltip?.encode(),
   };
 }
 
@@ -11505,8 +11085,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsTreeMapVisualChartConfigura
   treeMapAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (treeMapAggregatedFieldWells != null)
-      'tree_map_aggregated_field_wells': treeMapAggregatedFieldWells!.encode(),
+    'tree_map_aggregated_field_wells': ?treeMapAggregatedFieldWells?.encode(),
   };
 }
 
@@ -11530,9 +11109,9 @@ final class QuicksightTemplateDefinitionSheetsVisualsTreeMapVisualChartConfigura
   sizes;
 
   Map<String, Object?> encode() => {
-    if (colors != null) 'colors': colors!.encode(),
-    if (groups != null) 'groups': groups!.encode(),
-    if (sizes != null) 'sizes': sizes!.encode(),
+    'colors': ?colors?.encode(),
+    'groups': ?groups?.encode(),
+    'sizes': ?sizes?.encode(),
   };
 }
 
@@ -11554,9 +11133,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsTreeMapVisualChartConfigura
   treeMapSort;
 
   Map<String, Object?> encode() => {
-    if (treeMapGroupItemsLimitConfiguration != null)
-      'tree_map_group_items_limit_configuration':
-          treeMapGroupItemsLimitConfiguration!.encode(),
+    'tree_map_group_items_limit_configuration':
+        ?treeMapGroupItemsLimitConfiguration?.encode(),
     if (treeMapSort != null)
       'tree_map_sort': [for (final e in treeMapSort!) e.encode()],
   };
@@ -11596,12 +11174,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsWaterfallVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -11653,22 +11230,16 @@ final class QuicksightTemplateDefinitionSheetsVisualsWaterfallVisualChartConfigu
   waterfallChartOptions;
 
   Map<String, Object?> encode() => {
-    if (categoryAxisDisplayOptions != null)
-      'category_axis_display_options': categoryAxisDisplayOptions!.encode(),
-    if (categoryAxisLabelOptions != null)
-      'category_axis_label_options': categoryAxisLabelOptions!.encode(),
-    if (dataLabels != null) 'data_labels': dataLabels!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (legend != null) 'legend': legend!.encode(),
-    if (primaryYAxisDisplayOptions != null)
-      'primary_y_axis_display_options': primaryYAxisDisplayOptions!.encode(),
-    if (primaryYAxisLabelOptions != null)
-      'primary_y_axis_label_options': primaryYAxisLabelOptions!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (visualPalette != null) 'visual_palette': visualPalette!.encode(),
-    if (waterfallChartOptions != null)
-      'waterfall_chart_options': waterfallChartOptions!.encode(),
+    'category_axis_display_options': ?categoryAxisDisplayOptions?.encode(),
+    'category_axis_label_options': ?categoryAxisLabelOptions?.encode(),
+    'data_labels': ?dataLabels?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'legend': ?legend?.encode(),
+    'primary_y_axis_display_options': ?primaryYAxisDisplayOptions?.encode(),
+    'primary_y_axis_label_options': ?primaryYAxisLabelOptions?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'visual_palette': ?visualPalette?.encode(),
+    'waterfall_chart_options': ?waterfallChartOptions?.encode(),
   };
 }
 
@@ -11684,9 +11255,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsWaterfallVisualChartConfigu
   waterfallChartAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (waterfallChartAggregatedFieldWells != null)
-      'waterfall_chart_aggregated_field_wells':
-          waterfallChartAggregatedFieldWells!.encode(),
+    'waterfall_chart_aggregated_field_wells':
+        ?waterfallChartAggregatedFieldWells?.encode(),
   };
 }
 
@@ -11742,8 +11312,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsWaterfallVisualChartConfigu
   categorySort;
 
   Map<String, Object?> encode() => {
-    if (breakdownItemsLimit != null)
-      'breakdown_items_limit': breakdownItemsLimit!.encode(),
+    'breakdown_items_limit': ?breakdownItemsLimit?.encode(),
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
   };
@@ -11760,7 +11329,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsWaterfallVisualChartConfigu
   final TfArg<String>? totalBarLabel;
 
   Map<String, Object?> encode() => {
-    if (totalBarLabel != null) 'total_bar_label': totalBarLabel!.toTfJson(),
+    'total_bar_label': ?totalBarLabel?.toTfJson(),
   };
 }
 
@@ -11798,12 +11367,11 @@ final class QuicksightTemplateDefinitionSheetsVisualsWordCloudVisual {
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
-    if (chartConfiguration != null)
-      'chart_configuration': chartConfiguration!.encode(),
+    'chart_configuration': ?chartConfiguration?.encode(),
     if (columnHierarchies != null)
       'column_hierarchies': [for (final e in columnHierarchies!) e.encode()],
-    if (subtitle != null) 'subtitle': subtitle!.encode(),
-    if (title != null) 'title': title!.encode(),
+    'subtitle': ?subtitle?.encode(),
+    'title': ?title?.encode(),
   };
 }
 
@@ -11831,13 +11399,10 @@ final class QuicksightTemplateDefinitionSheetsVisualsWordCloudVisualChartConfigu
   wordCloudOptions;
 
   Map<String, Object?> encode() => {
-    if (categoryLabelOptions != null)
-      'category_label_options': categoryLabelOptions!.encode(),
-    if (fieldWells != null) 'field_wells': fieldWells!.encode(),
-    if (sortConfiguration != null)
-      'sort_configuration': sortConfiguration!.encode(),
-    if (wordCloudOptions != null)
-      'word_cloud_options': wordCloudOptions!.encode(),
+    'category_label_options': ?categoryLabelOptions?.encode(),
+    'field_wells': ?fieldWells?.encode(),
+    'sort_configuration': ?sortConfiguration?.encode(),
+    'word_cloud_options': ?wordCloudOptions?.encode(),
   };
 }
 
@@ -11853,9 +11418,8 @@ final class QuicksightTemplateDefinitionSheetsVisualsWordCloudVisualChartConfigu
   wordCloudAggregatedFieldWells;
 
   Map<String, Object?> encode() => {
-    if (wordCloudAggregatedFieldWells != null)
-      'word_cloud_aggregated_field_wells': wordCloudAggregatedFieldWells!
-          .encode(),
+    'word_cloud_aggregated_field_wells': ?wordCloudAggregatedFieldWells
+        ?.encode(),
   };
 }
 
@@ -11878,7 +11442,7 @@ final class QuicksightTemplateDefinitionSheetsVisualsWordCloudVisualChartConfigu
 
   Map<String, Object?> encode() => {
     if (groupBy != null) 'group_by': [for (final e in groupBy!) e.encode()],
-    if (size != null) 'size': size!.encode(),
+    'size': ?size?.encode(),
   };
 }
 
@@ -11908,14 +11472,12 @@ final class QuicksightTemplateDefinitionSheetsVisualsWordCloudVisualChartConfigu
   final TfArg<String>? wordScaling;
 
   Map<String, Object?> encode() => {
-    if (cloudLayout != null) 'cloud_layout': cloudLayout!.toTfJson(),
-    if (maximumStringLength != null)
-      'maximum_string_length': maximumStringLength!.toTfJson(),
-    if (wordCasing != null) 'word_casing': wordCasing!.toTfJson(),
-    if (wordOrientation != null)
-      'word_orientation': wordOrientation!.toTfJson(),
-    if (wordPadding != null) 'word_padding': wordPadding!.toTfJson(),
-    if (wordScaling != null) 'word_scaling': wordScaling!.toTfJson(),
+    'cloud_layout': ?cloudLayout?.toTfJson(),
+    'maximum_string_length': ?maximumStringLength?.toTfJson(),
+    'word_casing': ?wordCasing?.toTfJson(),
+    'word_orientation': ?wordOrientation?.toTfJson(),
+    'word_padding': ?wordPadding?.toTfJson(),
+    'word_scaling': ?wordScaling?.toTfJson(),
   };
 }
 
@@ -11952,8 +11514,8 @@ final class QuicksightTemplateSourceEntity {
   final QuicksightTemplateSourceEntitySourceTemplate? sourceTemplate;
 
   Map<String, Object?> encode() => {
-    if (sourceAnalysis != null) 'source_analysis': sourceAnalysis!.encode(),
-    if (sourceTemplate != null) 'source_template': sourceTemplate!.encode(),
+    'source_analysis': ?sourceAnalysis?.encode(),
+    'source_template': ?sourceTemplate?.encode(),
   };
 }
 
@@ -12029,10 +11591,10 @@ final class AwsQuicksightTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'template_id': templateId,
            'version_description': versionDescription,
            if (definition != null)

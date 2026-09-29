@@ -23,11 +23,7 @@ final class DataGoogleDataplexLakeIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'lake': lake,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
-         },
+         argMap: {'lake': lake, 'location': ?location, 'project': ?project},
        );
 
   @override

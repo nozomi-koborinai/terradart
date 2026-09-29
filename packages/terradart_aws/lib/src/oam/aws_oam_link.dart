@@ -38,10 +38,8 @@ final class OamLinkLinkConfiguration {
   final OamLinkLinkConfigurationMetricConfiguration? metricConfiguration;
 
   Map<String, Object?> encode() => {
-    if (logGroupConfiguration != null)
-      'log_group_configuration': logGroupConfiguration!.encode(),
-    if (metricConfiguration != null)
-      'metric_configuration': metricConfiguration!.encode(),
+    'log_group_configuration': ?logGroupConfiguration?.encode(),
+    'metric_configuration': ?metricConfiguration?.encode(),
   };
 }
 
@@ -87,12 +85,12 @@ final class AwsOamLink extends Resource {
          terraformType: tfType,
          argMap: {
            'label_template': labelTemplate,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_types': TfArg.literal([
              for (final e in resourceTypes) e.toTfJson(),
            ]),
            'sink_identifier': sinkIdentifier,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (linkConfiguration != null)
              'link_configuration': TfArg.literal(linkConfiguration.encode()),
          },

@@ -136,11 +136,11 @@ final class GoogleGkeHubScopeRbacRoleBinding extends Resource {
          argMap: {
            'scope_id': scopeId,
            'scope_rbac_role_binding_id': scopeRbacRoleBindingId,
-           if (user != null) 'user': user,
+           'user': ?user,
            'role': TfArg.literal(role.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

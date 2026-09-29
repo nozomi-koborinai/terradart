@@ -24,9 +24,9 @@ final class CloudRunServiceMetadata {
   final TfArg<String>? namespace;
 
   Map<String, Object?> encode() => {
-    if (annotations != null) 'annotations': annotations!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'annotations': ?annotations?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
   };
 }
 
@@ -41,8 +41,8 @@ final class CloudRunServiceTemplate {
   final CloudRunServiceTemplateSpec? spec;
 
   Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.encode(),
-    if (spec != null) 'spec': spec!.encode(),
+    'metadata': ?metadata?.encode(),
+    'spec': ?spec?.encode(),
   };
 }
 
@@ -66,10 +66,10 @@ final class CloudRunServiceTemplateMetadata {
   final TfArg<String>? namespace;
 
   Map<String, Object?> encode() => {
-    if (annotations != null) 'annotations': annotations!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'annotations': ?annotations?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
   };
 }
 
@@ -99,12 +99,10 @@ final class CloudRunServiceTemplateSpec {
   final List<CloudRunServiceTemplateSpecVolumes>? volumes;
 
   Map<String, Object?> encode() => {
-    if (containerConcurrency != null)
-      'container_concurrency': containerConcurrency!.toTfJson(),
-    if (nodeSelector != null) 'node_selector': nodeSelector!.toTfJson(),
-    if (serviceAccountName != null)
-      'service_account_name': serviceAccountName!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
+    'container_concurrency': ?containerConcurrency?.toTfJson(),
+    'node_selector': ?nodeSelector?.toTfJson(),
+    'service_account_name': ?serviceAccountName?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
     if (containers != null)
       'containers': [for (final e in containers!) e.encode()],
     if (volumes != null) 'volumes': [for (final e in volumes!) e.encode()],
@@ -161,20 +159,19 @@ final class CloudRunServiceTemplateSpecContainers {
   final List<CloudRunServiceTemplateSpecContainersVolumeMounts>? volumeMounts;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (command != null) 'command': command!.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
     'image': image.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (sandboxLauncher != null)
-      'sandbox_launcher': sandboxLauncher!.toTfJson(),
-    if (workingDir != null) 'working_dir': workingDir!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'sandbox_launcher': ?sandboxLauncher?.toTfJson(),
+    'working_dir': ?workingDir?.toTfJson(),
     if (env != null) 'env': [for (final e in env!) e.encode()],
     if (envFrom != null) 'env_from': [for (final e in envFrom!) e.encode()],
-    if (livenessProbe != null) 'liveness_probe': livenessProbe!.encode(),
+    'liveness_probe': ?livenessProbe?.encode(),
     if (ports != null) 'ports': [for (final e in ports!) e.encode()],
-    if (readinessProbe != null) 'readiness_probe': readinessProbe!.encode(),
-    if (resources != null) 'resources': resources!.encode(),
-    if (startupProbe != null) 'startup_probe': startupProbe!.encode(),
+    'readiness_probe': ?readinessProbe?.encode(),
+    'resources': ?resources?.encode(),
+    'startup_probe': ?startupProbe?.encode(),
     if (volumeMounts != null)
       'volume_mounts': [for (final e in volumeMounts!) e.encode()],
   };
@@ -197,9 +194,9 @@ final class CloudRunServiceTemplateSpecContainersEnv {
   final CloudRunServiceTemplateSpecContainersEnvValueFrom? valueFrom;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
-    if (valueFrom != null) 'value_from': valueFrom!.encode(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
+    'value_from': ?valueFrom?.encode(),
   };
 }
 
@@ -253,9 +250,9 @@ final class CloudRunServiceTemplateSpecContainersEnvFrom {
   final CloudRunServiceTemplateSpecContainersEnvFromSecretRef? secretRef;
 
   Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (configMapRef != null) 'config_map_ref': configMapRef!.encode(),
-    if (secretRef != null) 'secret_ref': secretRef!.encode(),
+    'prefix': ?prefix?.toTfJson(),
+    'config_map_ref': ?configMapRef?.encode(),
+    'secret_ref': ?secretRef?.encode(),
   };
 }
 
@@ -274,9 +271,8 @@ final class CloudRunServiceTemplateSpecContainersEnvFromConfigMapRef {
   localObjectReference;
 
   Map<String, Object?> encode() => {
-    if (optional != null) 'optional': optional!.toTfJson(),
-    if (localObjectReference != null)
-      'local_object_reference': localObjectReference!.encode(),
+    'optional': ?optional?.toTfJson(),
+    'local_object_reference': ?localObjectReference?.encode(),
   };
 }
 
@@ -308,9 +304,8 @@ final class CloudRunServiceTemplateSpecContainersEnvFromSecretRef {
   localObjectReference;
 
   Map<String, Object?> encode() => {
-    if (optional != null) 'optional': optional!.toTfJson(),
-    if (localObjectReference != null)
-      'local_object_reference': localObjectReference!.encode(),
+    'optional': ?optional?.toTfJson(),
+    'local_object_reference': ?localObjectReference?.encode(),
   };
 }
 
@@ -350,12 +345,10 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
   final CloudRunServiceTemplateSpecContainersLivenessProbeCheck check;
 
   Map<String, Object?> encode() => {
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
-    if (initialDelaySeconds != null)
-      'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
-    if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
+    'period_seconds': ?periodSeconds?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
     ...check.encode(),
   };
 }
@@ -427,8 +420,8 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeGrpc {
   final TfArg<String>? service;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'service': ?service?.toTfJson(),
   };
 }
 
@@ -452,8 +445,8 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet {
   httpHeaders;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
     if (httpHeaders != null)
       'http_headers': [for (final e in httpHeaders!) e.encode()],
   };
@@ -474,7 +467,7 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetHttpHeaders
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -495,9 +488,9 @@ final class CloudRunServiceTemplateSpecContainersPorts {
   final TfArg<String>? protocol;
 
   Map<String, Object?> encode() => {
-    if (containerPort != null) 'container_port': containerPort!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
+    'container_port': ?containerPort?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
   };
 }
 
@@ -524,12 +517,10 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
   final CloudRunServiceTemplateSpecContainersReadinessProbeCheck check;
 
   Map<String, Object?> encode() => {
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
-    if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
-    if (successThreshold != null)
-      'success_threshold': successThreshold!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'period_seconds': ?periodSeconds?.toTfJson(),
+    'success_threshold': ?successThreshold?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
     ...check.encode(),
   };
 }
@@ -601,8 +592,8 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbeGrpc {
   final TfArg<String>? service;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'service': ?service?.toTfJson(),
   };
 }
 
@@ -620,8 +611,8 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet {
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -639,8 +630,8 @@ final class CloudRunServiceTemplateSpecContainersResources {
   final TfArg<Map<String, String>>? requests;
 
   Map<String, Object?> encode() => {
-    if (limits != null) 'limits': limits!.toTfJson(),
-    if (requests != null) 'requests': requests!.toTfJson(),
+    'limits': ?limits?.toTfJson(),
+    'requests': ?requests?.toTfJson(),
   };
 }
 
@@ -667,12 +658,10 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
   final CloudRunServiceTemplateSpecContainersStartupProbeCheck check;
 
   Map<String, Object?> encode() => {
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
-    if (initialDelaySeconds != null)
-      'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
-    if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
+    'period_seconds': ?periodSeconds?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
     ...check.encode(),
   };
 }
@@ -765,8 +754,8 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeGrpc {
   final TfArg<String>? service;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'service': ?service?.toTfJson(),
   };
 }
 
@@ -790,8 +779,8 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeHttpGet {
   httpHeaders;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
     if (httpHeaders != null)
       'http_headers': [for (final e in httpHeaders!) e.encode()],
   };
@@ -812,7 +801,7 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeHttpGetHttpHeaders 
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -824,7 +813,7 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket {
 
   final TfArg<num>? port;
 
-  Map<String, Object?> encode() => {if (port != null) 'port': port!.toTfJson()};
+  Map<String, Object?> encode() => {'port': ?port?.toTfJson()};
 }
 
 /// Typed helper for the `template.spec.containers.volume_mounts` block of
@@ -846,7 +835,7 @@ final class CloudRunServiceTemplateSpecContainersVolumeMounts {
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
     'name': name.toTfJson(),
-    if (subPath != null) 'sub_path': subPath!.toTfJson(),
+    'sub_path': ?subPath?.toTfJson(),
   };
 }
 
@@ -874,10 +863,10 @@ final class CloudRunServiceTemplateSpecVolumes {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (csi != null) 'csi': csi!.encode(),
-    if (emptyDir != null) 'empty_dir': emptyDir!.encode(),
-    if (nfs != null) 'nfs': nfs!.encode(),
-    if (secret != null) 'secret': secret!.encode(),
+    'csi': ?csi?.encode(),
+    'empty_dir': ?emptyDir?.encode(),
+    'nfs': ?nfs?.encode(),
+    'secret': ?secret?.encode(),
   };
 }
 
@@ -899,9 +888,8 @@ final class CloudRunServiceTemplateSpecVolumesCsi {
 
   Map<String, Object?> encode() => {
     'driver': driver.toTfJson(),
-    if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-    if (volumeAttributes != null)
-      'volume_attributes': volumeAttributes!.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
+    'volume_attributes': ?volumeAttributes?.toTfJson(),
   };
 }
 
@@ -919,8 +907,8 @@ final class CloudRunServiceTemplateSpecVolumesEmptyDir {
   final TfArg<String>? sizeLimit;
 
   Map<String, Object?> encode() => {
-    if (medium != null) 'medium': medium!.toTfJson(),
-    if (sizeLimit != null) 'size_limit': sizeLimit!.toTfJson(),
+    'medium': ?medium?.toTfJson(),
+    'size_limit': ?sizeLimit?.toTfJson(),
   };
 }
 
@@ -942,7 +930,7 @@ final class CloudRunServiceTemplateSpecVolumesNfs {
 
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
-    if (readOnly != null) 'read_only': readOnly!.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
     'server': server.toTfJson(),
   };
 }
@@ -964,7 +952,7 @@ final class CloudRunServiceTemplateSpecVolumesSecret {
   final List<CloudRunServiceTemplateSpecVolumesSecretItems>? items;
 
   Map<String, Object?> encode() => {
-    if (defaultMode != null) 'default_mode': defaultMode!.toTfJson(),
+    'default_mode': ?defaultMode?.toTfJson(),
     'secret_name': secretName.toTfJson(),
     if (items != null) 'items': [for (final e in items!) e.encode()],
   };
@@ -988,7 +976,7 @@ final class CloudRunServiceTemplateSpecVolumesSecretItems {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
+    'mode': ?mode?.toTfJson(),
     'path': path.toTfJson(),
   };
 }
@@ -1013,10 +1001,10 @@ final class CloudRunServiceTraffic {
   final TfArg<String>? tag;
 
   Map<String, Object?> encode() => {
-    if (latestRevision != null) 'latest_revision': latestRevision!.toTfJson(),
+    'latest_revision': ?latestRevision?.toTfJson(),
     'percent': percent.toTfJson(),
-    if (revisionName != null) 'revision_name': revisionName!.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
+    'revision_name': ?revisionName?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
   };
 }
 
@@ -1087,10 +1075,9 @@ final class GoogleCloudRunService extends Resource {
            if (template != null) 'template': TfArg.literal(template.encode()),
            if (traffic != null)
              'traffic': TfArg.literal([for (final e in traffic) e.encode()]),
-           if (autogenerateRevisionName != null)
-             'autogenerate_revision_name': autogenerateRevisionName,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'autogenerate_revision_name': ?autogenerateRevisionName,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

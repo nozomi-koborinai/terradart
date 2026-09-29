@@ -126,15 +126,14 @@ final class GoogleDataCatalogEntry extends Resource {
            'entry_group': entryGroup,
            'entry_id': entryId,
            entryKind.blockKey: entryKind.value,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (userSpecifiedSystem != null)
-             'user_specified_system': userSpecifiedSystem,
-           if (linkedResource != null) 'linked_resource': linkedResource,
-           if (schema != null) 'schema': schema,
+           'display_name': ?displayName,
+           'description': ?description,
+           'user_specified_system': ?userSpecifiedSystem,
+           'linked_resource': ?linkedResource,
+           'schema': ?schema,
            if (gcsFilesetSpec != null)
              'gcs_fileset_spec': TfArg.literal([gcsFilesetSpec.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

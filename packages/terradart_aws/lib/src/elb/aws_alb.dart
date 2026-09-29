@@ -223,8 +223,8 @@ final class AlbAccessLogs {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -242,8 +242,8 @@ final class AlbConnectionLogs {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -261,8 +261,8 @@ final class AlbHealthCheckLogs {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -310,10 +310,9 @@ final class AlbSubnetMapping {
   final RefTo<AwsSubnet> subnetId;
 
   Map<String, Object?> encode() => {
-    if (allocationId != null) 'allocation_id': allocationId!.toTfJson(),
-    if (ipv6Address != null) 'ipv6_address': ipv6Address!.toTfJson(),
-    if (privateIpv4Address != null)
-      'private_ipv4_address': privateIpv4Address!.toTfJson(),
+    'allocation_id': ?allocationId?.toTfJson(),
+    'ipv6_address': ?ipv6Address?.toTfJson(),
+    'private_ipv4_address': ?privateIpv4Address?.toTfJson(),
     'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 }
@@ -363,50 +362,35 @@ final class AwsAlb extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clientKeepAlive != null) 'client_keep_alive': clientKeepAlive,
-           if (customerOwnedIpv4Pool != null)
-             'customer_owned_ipv4_pool': customerOwnedIpv4Pool,
-           if (desyncMitigationMode != null)
-             'desync_mitigation_mode': desyncMitigationMode,
-           if (dnsRecordClientRoutingPolicy != null)
-             'dns_record_client_routing_policy': dnsRecordClientRoutingPolicy,
-           if (dropInvalidHeaderFields != null)
-             'drop_invalid_header_fields': dropInvalidHeaderFields,
-           if (enableCrossZoneLoadBalancing != null)
-             'enable_cross_zone_load_balancing': enableCrossZoneLoadBalancing,
-           if (enableDeletionProtection != null)
-             'enable_deletion_protection': enableDeletionProtection,
-           if (enableHttp2 != null) 'enable_http2': enableHttp2,
-           if (enablePrefixForIpv6SourceNat != null)
-             'enable_prefix_for_ipv6_source_nat': enablePrefixForIpv6SourceNat,
-           if (enableTlsVersionAndCipherSuiteHeaders != null)
-             'enable_tls_version_and_cipher_suite_headers':
-                 enableTlsVersionAndCipherSuiteHeaders,
-           if (enableWafFailOpen != null)
-             'enable_waf_fail_open': enableWafFailOpen,
-           if (enableXffClientPort != null)
-             'enable_xff_client_port': enableXffClientPort,
-           if (enableZonalShift != null) 'enable_zonal_shift': enableZonalShift,
-           if (enforceSecurityGroupInboundRulesOnPrivateLinkTraffic != null)
-             'enforce_security_group_inbound_rules_on_private_link_traffic':
-                 enforceSecurityGroupInboundRulesOnPrivateLinkTraffic,
-           if (idleTimeout != null) 'idle_timeout': idleTimeout,
-           if (internal != null) 'internal': internal,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (loadBalancerType != null) 'load_balancer_type': loadBalancerType,
+           'client_keep_alive': ?clientKeepAlive,
+           'customer_owned_ipv4_pool': ?customerOwnedIpv4Pool,
+           'desync_mitigation_mode': ?desyncMitigationMode,
+           'dns_record_client_routing_policy': ?dnsRecordClientRoutingPolicy,
+           'drop_invalid_header_fields': ?dropInvalidHeaderFields,
+           'enable_cross_zone_load_balancing': ?enableCrossZoneLoadBalancing,
+           'enable_deletion_protection': ?enableDeletionProtection,
+           'enable_http2': ?enableHttp2,
+           'enable_prefix_for_ipv6_source_nat': ?enablePrefixForIpv6SourceNat,
+           'enable_tls_version_and_cipher_suite_headers':
+               ?enableTlsVersionAndCipherSuiteHeaders,
+           'enable_waf_fail_open': ?enableWafFailOpen,
+           'enable_xff_client_port': ?enableXffClientPort,
+           'enable_zonal_shift': ?enableZonalShift,
+           'enforce_security_group_inbound_rules_on_private_link_traffic':
+               ?enforceSecurityGroupInboundRulesOnPrivateLinkTraffic,
+           'idle_timeout': ?idleTimeout,
+           'internal': ?internal,
+           'ip_address_type': ?ipAddressType,
+           'load_balancer_type': ?loadBalancerType,
            ...?name?.argMap,
-           if (preserveHostHeader != null)
-             'preserve_host_header': preserveHostHeader,
-           if (region != null) 'region': region,
-           if (secondaryIpsAutoAssignedPerSubnet != null)
-             'secondary_ips_auto_assigned_per_subnet':
-                 secondaryIpsAutoAssignedPerSubnet,
-           if (securityGroups != null)
-             'security_groups': securityGroups.encodeAs('id'),
+           'preserve_host_header': ?preserveHostHeader,
+           'region': ?region,
+           'secondary_ips_auto_assigned_per_subnet':
+               ?secondaryIpsAutoAssignedPerSubnet,
+           'security_groups': ?securityGroups?.encodeAs('id'),
            ...subnet.argMap,
-           if (tags != null) 'tags': tags,
-           if (xffHeaderProcessingMode != null)
-             'xff_header_processing_mode': xffHeaderProcessingMode,
+           'tags': ?tags,
+           'xff_header_processing_mode': ?xffHeaderProcessingMode,
            if (accessLogs != null)
              'access_logs': TfArg.literal(accessLogs.encode()),
            if (connectionLogs != null)

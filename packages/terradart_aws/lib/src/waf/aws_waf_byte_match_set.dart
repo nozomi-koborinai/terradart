@@ -28,7 +28,7 @@ final class WafByteMatchSetByteMatchTuples {
 
   Map<String, Object?> encode() => {
     'positional_constraint': positionalConstraint.toTfJson(),
-    if (targetString != null) 'target_string': targetString!.toTfJson(),
+    'target_string': ?targetString?.toTfJson(),
     'text_transformation': textTransformation.toTfJson(),
     'field_to_match': fieldToMatch.encode(),
   };
@@ -48,7 +48,7 @@ final class WafByteMatchSetByteMatchTuplesFieldToMatch {
   final TfArg<WafByteMatchSetByteMatchTuplesFieldToMatchType> type;
 
   Map<String, Object?> encode() => {
-    if (data != null) 'data': data!.toTfJson(),
+    'data': ?data?.toTfJson(),
     'type': type.toTfJson(),
   };
 }

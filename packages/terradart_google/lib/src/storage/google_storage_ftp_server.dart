@@ -143,11 +143,11 @@ final class GoogleStorageFtpServer extends Resource {
          argMap: {
            'access_type': accessType,
            config.blockKey: TfArg.literal(config.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'server_id': serverId,
          },
        );

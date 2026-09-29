@@ -36,30 +36,20 @@ final class AwsSnsPlatformApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applePlatformBundleId != null)
-             'apple_platform_bundle_id': applePlatformBundleId,
-           if (applePlatformTeamId != null)
-             'apple_platform_team_id': applePlatformTeamId,
-           if (eventDeliveryFailureTopicArn != null)
-             'event_delivery_failure_topic_arn': eventDeliveryFailureTopicArn,
-           if (eventEndpointCreatedTopicArn != null)
-             'event_endpoint_created_topic_arn': eventEndpointCreatedTopicArn,
-           if (eventEndpointDeletedTopicArn != null)
-             'event_endpoint_deleted_topic_arn': eventEndpointDeletedTopicArn,
-           if (eventEndpointUpdatedTopicArn != null)
-             'event_endpoint_updated_topic_arn': eventEndpointUpdatedTopicArn,
-           if (failureFeedbackRoleArn != null)
-             'failure_feedback_role_arn': failureFeedbackRoleArn,
+           'apple_platform_bundle_id': ?applePlatformBundleId,
+           'apple_platform_team_id': ?applePlatformTeamId,
+           'event_delivery_failure_topic_arn': ?eventDeliveryFailureTopicArn,
+           'event_endpoint_created_topic_arn': ?eventEndpointCreatedTopicArn,
+           'event_endpoint_deleted_topic_arn': ?eventEndpointDeletedTopicArn,
+           'event_endpoint_updated_topic_arn': ?eventEndpointUpdatedTopicArn,
+           'failure_feedback_role_arn': ?failureFeedbackRoleArn,
            'name': name,
            'platform': platform,
            'platform_credential': platformCredential,
-           if (platformPrincipal != null)
-             'platform_principal': platformPrincipal,
-           if (region != null) 'region': region,
-           if (successFeedbackRoleArn != null)
-             'success_feedback_role_arn': successFeedbackRoleArn,
-           if (successFeedbackSampleRate != null)
-             'success_feedback_sample_rate': successFeedbackSampleRate,
+           'platform_principal': ?platformPrincipal,
+           'region': ?region,
+           'success_feedback_role_arn': ?successFeedbackRoleArn,
+           'success_feedback_sample_rate': ?successFeedbackSampleRate,
          },
        );
 

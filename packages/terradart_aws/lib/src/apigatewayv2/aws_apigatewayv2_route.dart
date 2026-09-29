@@ -65,22 +65,18 @@ final class AwsApigatewayv2Route extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (apiKeyRequired != null) 'api_key_required': apiKeyRequired,
-           if (authorizationScopes != null)
-             'authorization_scopes': authorizationScopes,
-           if (authorizationType != null)
-             'authorization_type': authorizationType,
-           if (authorizerId != null) 'authorizer_id': authorizerId,
-           if (modelSelectionExpression != null)
-             'model_selection_expression': modelSelectionExpression,
-           if (operationName != null) 'operation_name': operationName,
-           if (region != null) 'region': region,
-           if (requestModels != null) 'request_models': requestModels,
+           'api_key_required': ?apiKeyRequired,
+           'authorization_scopes': ?authorizationScopes,
+           'authorization_type': ?authorizationType,
+           'authorizer_id': ?authorizerId,
+           'model_selection_expression': ?modelSelectionExpression,
+           'operation_name': ?operationName,
+           'region': ?region,
+           'request_models': ?requestModels,
            'route_key': routeKey,
-           if (routeResponseSelectionExpression != null)
-             'route_response_selection_expression':
-                 routeResponseSelectionExpression,
-           if (target != null) 'target': target,
+           'route_response_selection_expression':
+               ?routeResponseSelectionExpression,
+           'target': ?target,
            if (requestParameter != null)
              'request_parameter': TfArg.literal([
                for (final e in requestParameter) e.encode(),

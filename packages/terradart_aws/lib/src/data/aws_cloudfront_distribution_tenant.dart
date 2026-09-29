@@ -20,11 +20,7 @@ final class DataAwsCloudfrontDistributionTenant extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (arn != null) 'arn': arn,
-           if (domain != null) 'domain': domain,
-           if (name != null) 'name': name,
-         },
+         argMap: {'arn': ?arn, 'domain': ?domain, 'name': ?name},
        );
 
   @override

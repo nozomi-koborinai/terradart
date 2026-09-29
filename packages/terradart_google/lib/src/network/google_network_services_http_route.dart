@@ -18,7 +18,7 @@ final class NetworkServicesHttpRouteRules {
   final List<NetworkServicesHttpRouteRulesMatches>? matches;
 
   Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.encode(),
+    'action': ?action?.encode(),
     if (matches != null) 'matches': [for (final e in matches!) e.encode()],
   };
 }
@@ -65,21 +65,17 @@ final class NetworkServicesHttpRouteRulesAction {
   final NetworkServicesHttpRouteRulesActionUrlRewrite? urlRewrite;
 
   Map<String, Object?> encode() => {
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
-    if (corsPolicy != null) 'cors_policy': corsPolicy!.encode(),
+    'timeout': ?timeout?.toTfJson(),
+    'cors_policy': ?corsPolicy?.encode(),
     if (destinations != null)
       'destinations': [for (final e in destinations!) e.encode()],
-    if (faultInjectionPolicy != null)
-      'fault_injection_policy': faultInjectionPolicy!.encode(),
-    if (redirect != null) 'redirect': redirect!.encode(),
-    if (requestHeaderModifier != null)
-      'request_header_modifier': requestHeaderModifier!.encode(),
-    if (requestMirrorPolicy != null)
-      'request_mirror_policy': requestMirrorPolicy!.encode(),
-    if (responseHeaderModifier != null)
-      'response_header_modifier': responseHeaderModifier!.encode(),
-    if (retryPolicy != null) 'retry_policy': retryPolicy!.encode(),
-    if (urlRewrite != null) 'url_rewrite': urlRewrite!.encode(),
+    'fault_injection_policy': ?faultInjectionPolicy?.encode(),
+    'redirect': ?redirect?.encode(),
+    'request_header_modifier': ?requestHeaderModifier?.encode(),
+    'request_mirror_policy': ?requestMirrorPolicy?.encode(),
+    'response_header_modifier': ?responseHeaderModifier?.encode(),
+    'retry_policy': ?retryPolicy?.encode(),
+    'url_rewrite': ?urlRewrite?.encode(),
   };
 }
 
@@ -115,16 +111,14 @@ final class NetworkServicesHttpRouteRulesActionCorsPolicy {
   final TfArg<String>? maxAge;
 
   Map<String, Object?> encode() => {
-    if (allowCredentials != null)
-      'allow_credentials': allowCredentials!.toTfJson(),
-    if (allowHeaders != null) 'allow_headers': allowHeaders!.toTfJson(),
-    if (allowMethods != null) 'allow_methods': allowMethods!.toTfJson(),
-    if (allowOriginRegexes != null)
-      'allow_origin_regexes': allowOriginRegexes!.toTfJson(),
-    if (allowOrigins != null) 'allow_origins': allowOrigins!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (exposeHeaders != null) 'expose_headers': exposeHeaders!.toTfJson(),
-    if (maxAge != null) 'max_age': maxAge!.toTfJson(),
+    'allow_credentials': ?allowCredentials?.toTfJson(),
+    'allow_headers': ?allowHeaders?.toTfJson(),
+    'allow_methods': ?allowMethods?.toTfJson(),
+    'allow_origin_regexes': ?allowOriginRegexes?.toTfJson(),
+    'allow_origins': ?allowOrigins?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
   };
 }
 
@@ -142,8 +136,8 @@ final class NetworkServicesHttpRouteRulesActionDestinations {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -161,8 +155,8 @@ final class NetworkServicesHttpRouteRulesActionFaultInjectionPolicy {
   final NetworkServicesHttpRouteRulesActionFaultInjectionPolicyDelay? delay;
 
   Map<String, Object?> encode() => {
-    if (abort != null) 'abort': abort!.encode(),
-    if (delay != null) 'delay': delay!.encode(),
+    'abort': ?abort?.encode(),
+    'delay': ?delay?.encode(),
   };
 }
 
@@ -180,8 +174,8 @@ final class NetworkServicesHttpRouteRulesActionFaultInjectionPolicyAbort {
   final TfArg<num>? percentage;
 
   Map<String, Object?> encode() => {
-    if (httpStatus != null) 'http_status': httpStatus!.toTfJson(),
-    if (percentage != null) 'percentage': percentage!.toTfJson(),
+    'http_status': ?httpStatus?.toTfJson(),
+    'percentage': ?percentage?.toTfJson(),
   };
 }
 
@@ -199,8 +193,8 @@ final class NetworkServicesHttpRouteRulesActionFaultInjectionPolicyDelay {
   final TfArg<num>? percentage;
 
   Map<String, Object?> encode() => {
-    if (fixedDelay != null) 'fixed_delay': fixedDelay!.toTfJson(),
-    if (percentage != null) 'percentage': percentage!.toTfJson(),
+    'fixed_delay': ?fixedDelay?.toTfJson(),
+    'percentage': ?percentage?.toTfJson(),
   };
 }
 
@@ -233,13 +227,13 @@ final class NetworkServicesHttpRouteRulesActionRedirect {
   final TfArg<bool>? stripQuery;
 
   Map<String, Object?> encode() => {
-    if (hostRedirect != null) 'host_redirect': hostRedirect!.toTfJson(),
-    if (httpsRedirect != null) 'https_redirect': httpsRedirect!.toTfJson(),
-    if (pathRedirect != null) 'path_redirect': pathRedirect!.toTfJson(),
-    if (portRedirect != null) 'port_redirect': portRedirect!.toTfJson(),
-    if (prefixRewrite != null) 'prefix_rewrite': prefixRewrite!.toTfJson(),
-    if (responseCode != null) 'response_code': responseCode!.toTfJson(),
-    if (stripQuery != null) 'strip_query': stripQuery!.toTfJson(),
+    'host_redirect': ?hostRedirect?.toTfJson(),
+    'https_redirect': ?httpsRedirect?.toTfJson(),
+    'path_redirect': ?pathRedirect?.toTfJson(),
+    'port_redirect': ?portRedirect?.toTfJson(),
+    'prefix_rewrite': ?prefixRewrite?.toTfJson(),
+    'response_code': ?responseCode?.toTfJson(),
+    'strip_query': ?stripQuery?.toTfJson(),
   };
 }
 
@@ -260,9 +254,9 @@ final class NetworkServicesHttpRouteRulesActionRequestHeaderModifier {
   final TfArg<Map<String, String>>? set;
 
   Map<String, Object?> encode() => {
-    if (add != null) 'add': add!.toTfJson(),
-    if (remove != null) 'remove': remove!.toTfJson(),
-    if (set != null) 'set': set!.toTfJson(),
+    'add': ?add?.toTfJson(),
+    'remove': ?remove?.toTfJson(),
+    'set': ?set?.toTfJson(),
   };
 }
 
@@ -277,9 +271,7 @@ final class NetworkServicesHttpRouteRulesActionRequestMirrorPolicy {
   final NetworkServicesHttpRouteRulesActionRequestMirrorPolicyDestination?
   destination;
 
-  Map<String, Object?> encode() => {
-    if (destination != null) 'destination': destination!.encode(),
-  };
+  Map<String, Object?> encode() => {'destination': ?destination?.encode()};
 }
 
 /// Typed helper for the `rules.action.request_mirror_policy.destination` block of
@@ -296,8 +288,8 @@ final class NetworkServicesHttpRouteRulesActionRequestMirrorPolicyDestination {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -318,9 +310,9 @@ final class NetworkServicesHttpRouteRulesActionResponseHeaderModifier {
   final TfArg<Map<String, String>>? set;
 
   Map<String, Object?> encode() => {
-    if (add != null) 'add': add!.toTfJson(),
-    if (remove != null) 'remove': remove!.toTfJson(),
-    if (set != null) 'set': set!.toTfJson(),
+    'add': ?add?.toTfJson(),
+    'remove': ?remove?.toTfJson(),
+    'set': ?set?.toTfJson(),
   };
 }
 
@@ -341,10 +333,9 @@ final class NetworkServicesHttpRouteRulesActionRetryPolicy {
   final TfArg<List<Object?>>? retryConditions;
 
   Map<String, Object?> encode() => {
-    if (numRetries != null) 'num_retries': numRetries!.toTfJson(),
-    if (perTryTimeout != null) 'per_try_timeout': perTryTimeout!.toTfJson(),
-    if (retryConditions != null)
-      'retry_conditions': retryConditions!.toTfJson(),
+    'num_retries': ?numRetries?.toTfJson(),
+    'per_try_timeout': ?perTryTimeout?.toTfJson(),
+    'retry_conditions': ?retryConditions?.toTfJson(),
   };
 }
 
@@ -362,9 +353,8 @@ final class NetworkServicesHttpRouteRulesActionUrlRewrite {
   final TfArg<String>? pathPrefixRewrite;
 
   Map<String, Object?> encode() => {
-    if (hostRewrite != null) 'host_rewrite': hostRewrite!.toTfJson(),
-    if (pathPrefixRewrite != null)
-      'path_prefix_rewrite': pathPrefixRewrite!.toTfJson(),
+    'host_rewrite': ?hostRewrite?.toTfJson(),
+    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
   };
 }
 
@@ -390,7 +380,7 @@ final class NetworkServicesHttpRouteRulesMatches {
 
   Map<String, Object?> encode() => {
     ...match.encode(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
     if (queryParameters != null)
       'query_parameters': [for (final e in queryParameters!) e.encode()],
@@ -489,8 +479,8 @@ final class NetworkServicesHttpRouteRulesMatchesHeaders {
 
   Map<String, Object?> encode() => {
     ...match.encode(),
-    if (header != null) 'header': header!.toTfJson(),
-    if (invertMatch != null) 'invert_match': invertMatch!.toTfJson(),
+    'header': ?header?.toTfJson(),
+    'invert_match': ?invertMatch?.toTfJson(),
   };
 }
 
@@ -667,7 +657,7 @@ final class NetworkServicesHttpRouteRulesMatchesQueryParameters {
 
   Map<String, Object?> encode() => {
     ...match.encode(),
-    if (queryParameter != null) 'query_parameter': queryParameter!.toTfJson(),
+    'query_parameter': ?queryParameter?.toTfJson(),
   };
 }
 
@@ -780,12 +770,12 @@ final class GoogleNetworkServicesHttpRoute extends Resource {
            'name': name,
            'hostnames': hostnames,
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
-           if (meshes != null) 'meshes': meshes,
-           if (gateways != null) 'gateways': gateways,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'meshes': ?meshes,
+           'gateways': ?gateways,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -24,11 +24,10 @@ final class DataAwsConnectSecurityProfile extends Data {
          terraformType: tfType,
          argMap: {
            'instance_id': instanceId,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (securityProfileId != null)
-             'security_profile_id': securityProfileId,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'security_profile_id': ?securityProfileId,
+           'tags': ?tags,
          },
        );
 

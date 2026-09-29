@@ -101,11 +101,11 @@ final class AwsSsoadminTrustedTokenIssuer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clientToken != null) 'client_token': clientToken,
+           'client_token': ?clientToken,
            'instance_arn': instanceArn,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'trusted_token_issuer_type': trustedTokenIssuerType,
            if (trustedTokenIssuerConfiguration != null)
              'trusted_token_issuer_configuration': TfArg.literal([

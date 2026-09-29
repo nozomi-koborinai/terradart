@@ -23,9 +23,8 @@ final class AwsIotThingGroupMembership extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (overrideDynamicGroup != null)
-             'override_dynamic_group': overrideDynamicGroup,
-           if (region != null) 'region': region,
+           'override_dynamic_group': ?overrideDynamicGroup,
+           'region': ?region,
            'thing_group_name': thingGroupName,
            'thing_name': thingName,
          },

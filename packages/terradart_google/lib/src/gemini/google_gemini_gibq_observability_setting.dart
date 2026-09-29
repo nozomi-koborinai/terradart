@@ -27,13 +27,12 @@ final class GoogleGeminiGibqObservabilitySetting extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'gibq_observability_setting_id': gibqObservabilitySettingId,
-           if (labels != null) 'labels': labels,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
-           if (conversationalAnalyticsSetting != null)
-             'conversational_analytics_setting': conversationalAnalyticsSetting,
+           'labels': ?labels,
+           'location': ?location,
+           'project': ?project,
+           'conversational_analytics_setting': ?conversationalAnalyticsSetting,
          },
        );
 

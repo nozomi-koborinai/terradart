@@ -125,8 +125,8 @@ final class GoogleVertexAiRagEngineConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'region': region,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
            'rag_managed_db_config': TfArg.literal(ragManagedDbConfig.encode()),
          },
        );

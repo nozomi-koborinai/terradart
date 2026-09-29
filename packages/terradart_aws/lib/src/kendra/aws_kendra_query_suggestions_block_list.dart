@@ -49,12 +49,12 @@ final class AwsKendraQuerySuggestionsBlockList extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'index_id': indexId,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'source_s3_path': TfArg.literal(sourceS3Path.encode()),
          },
        );

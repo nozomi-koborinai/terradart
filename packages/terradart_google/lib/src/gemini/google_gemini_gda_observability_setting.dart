@@ -27,13 +27,12 @@ final class GoogleGeminiGdaObservabilitySetting extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'gda_observability_setting_id': gdaObservabilitySettingId,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
-           if (conversationalAnalyticsSetting != null)
-             'conversational_analytics_setting': conversationalAnalyticsSetting,
+           'project': ?project,
+           'conversational_analytics_setting': ?conversationalAnalyticsSetting,
          },
        );
 

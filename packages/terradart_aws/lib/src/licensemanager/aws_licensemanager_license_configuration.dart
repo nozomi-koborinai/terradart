@@ -43,15 +43,14 @@ final class AwsLicensemanagerLicenseConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (licenseCount != null) 'license_count': licenseCount,
-           if (licenseCountHardLimit != null)
-             'license_count_hard_limit': licenseCountHardLimit,
+           'description': ?description,
+           'license_count': ?licenseCount,
+           'license_count_hard_limit': ?licenseCountHardLimit,
            'license_counting_type': licenseCountingType,
-           if (licenseRules != null) 'license_rules': licenseRules,
+           'license_rules': ?licenseRules,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

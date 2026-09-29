@@ -24,10 +24,7 @@ final class DataCloudflareZeroTrustRiskScoringIntegration extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'integration_id': integrationId,
-         },
+         argMap: {'account_id': ?accountId, 'integration_id': integrationId},
        );
 
   @override

@@ -64,10 +64,10 @@ final class AwsDevicefarmUpload extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (contentType != null) 'content_type': contentType,
+           'content_type': ?contentType,
            'name': name,
            'project_arn': projectArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'type': type,
          },
        );

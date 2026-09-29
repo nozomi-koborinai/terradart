@@ -23,7 +23,7 @@ final class DataAwsConnectLambdaFunctionAssociation extends Data {
          argMap: {
            'function_arn': functionArn,
            'instance_id': instanceId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

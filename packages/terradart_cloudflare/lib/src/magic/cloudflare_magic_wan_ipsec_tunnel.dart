@@ -33,10 +33,10 @@ final class MagicWanIpsecTunnelBgp {
 
   Map<String, Object?> encode() => {
     'customer_asn': customerAsn.toTfJson(),
-    if (exportFilterId != null) 'export_filter_id': exportFilterId!.toTfJson(),
-    if (extraPrefixes != null) 'extra_prefixes': extraPrefixes!.toTfJson(),
-    if (importFilterId != null) 'import_filter_id': importFilterId!.toTfJson(),
-    if (md5Key != null) 'md5_key': md5Key!.toTfJson(),
+    'export_filter_id': ?exportFilterId?.toTfJson(),
+    'extra_prefixes': ?extraPrefixes?.toTfJson(),
+    'import_filter_id': ?importFilterId?.toTfJson(),
+    'md5_key': ?md5Key?.toTfJson(),
   };
 }
 
@@ -48,9 +48,7 @@ final class MagicWanIpsecTunnelCustomRemoteIdentities {
 
   final TfArg<String>? fqdnId;
 
-  Map<String, Object?> encode() => {
-    if (fqdnId != null) 'fqdn_id': fqdnId!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'fqdn_id': ?fqdnId?.toTfJson()};
 }
 
 /// Typed helper for the `health_check` block of
@@ -76,11 +74,11 @@ final class MagicWanIpsecTunnelHealthCheck {
   final MagicWanIpsecTunnelHealthCheckTarget? target;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (rate != null) 'rate': rate!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (target != null) 'target': target!.encode(),
+    'direction': ?direction?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'rate': ?rate?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'target': ?target?.encode(),
   };
 }
 
@@ -123,9 +121,7 @@ final class MagicWanIpsecTunnelHealthCheckTarget {
 
   final TfArg<String>? saved;
 
-  Map<String, Object?> encode() => {
-    if (saved != null) 'saved': saved!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'saved': ?saved?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_magic_wan_ipsec_tunnel`.
@@ -155,17 +151,15 @@ final class CloudflareMagicWanIpsecTunnel extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (automaticReturnRouting != null)
-             'automatic_return_routing': automaticReturnRouting,
+           'automatic_return_routing': ?automaticReturnRouting,
            'cloudflare_endpoint': cloudflareEndpoint,
-           if (customerEndpoint != null) 'customer_endpoint': customerEndpoint,
-           if (description != null) 'description': description,
+           'customer_endpoint': ?customerEndpoint,
+           'description': ?description,
            'interface_address': interfaceAddress,
-           if (interfaceAddress6 != null)
-             'interface_address6': interfaceAddress6,
+           'interface_address6': ?interfaceAddress6,
            'name': name,
-           if (psk != null) 'psk': psk,
-           if (replayProtection != null) 'replay_protection': replayProtection,
+           'psk': ?psk,
+           'replay_protection': ?replayProtection,
            if (bgp != null) 'bgp': TfArg.literal(bgp.encode()),
            if (customRemoteIdentities != null)
              'custom_remote_identities': TfArg.literal(

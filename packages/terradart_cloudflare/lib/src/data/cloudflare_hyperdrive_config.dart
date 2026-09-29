@@ -26,10 +26,7 @@ final class DataCloudflareHyperdriveConfig extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'hyperdrive_id': hyperdriveId,
-         },
+         argMap: {'account_id': ?accountId, 'hyperdrive_id': hyperdriveId},
        );
 
   @override

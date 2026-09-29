@@ -18,10 +18,7 @@ final class DataAwsOdbGiVersions extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (shape != null) 'shape': shape,
-         },
+         argMap: {'region': ?region, 'shape': ?shape},
        );
 
   @override

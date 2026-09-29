@@ -18,7 +18,7 @@ final class CesExampleMessages {
   final List<CesExampleMessagesChunks>? chunks;
 
   Map<String, Object?> encode() => {
-    if (role != null) 'role': role!.toTfJson(),
+    'role': ?role?.toTfJson(),
     if (chunks != null) 'chunks': [for (final e in chunks!) e.encode()],
   };
 }
@@ -52,14 +52,13 @@ final class CesExampleMessagesChunks {
   final CesExampleMessagesChunksToolResponse? toolResponse;
 
   Map<String, Object?> encode() => {
-    if (text != null) 'text': text!.toTfJson(),
-    if (updatedVariables != null)
-      'updated_variables': updatedVariables!.toTfJson(),
-    if (agentTransfer != null) 'agent_transfer': agentTransfer!.encode(),
-    if (blob != null) 'blob': blob!.encode(),
-    if (image != null) 'image': image!.encode(),
-    if (toolCall != null) 'tool_call': toolCall!.encode(),
-    if (toolResponse != null) 'tool_response': toolResponse!.encode(),
+    'text': ?text?.toTfJson(),
+    'updated_variables': ?updatedVariables?.toTfJson(),
+    'agent_transfer': ?agentTransfer?.encode(),
+    'blob': ?blob?.encode(),
+    'image': ?image?.encode(),
+    'tool_call': ?toolCall?.encode(),
+    'tool_response': ?toolResponse?.encode(),
   };
 }
 
@@ -110,7 +109,7 @@ final class CesExampleMessagesChunksImage {
   final TfArg<String> mimeType;
 
   Map<String, Object?> encode() => {
-    if (altText != null) 'alt_text': altText!.toTfJson(),
+    'alt_text': ?altText?.toTfJson(),
     'data': data.toTfJson(),
     'mime_type': mimeType.toTfJson(),
   };
@@ -136,10 +135,10 @@ final class CesExampleMessagesChunksToolCall {
   final CesExampleMessagesChunksToolCallToolsetTool? toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'args': ?args?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -157,7 +156,7 @@ final class CesExampleMessagesChunksToolCallToolsetTool {
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -182,10 +181,10 @@ final class CesExampleMessagesChunksToolResponse {
   final CesExampleMessagesChunksToolResponseToolsetTool? toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
+    'id': ?id?.toTfJson(),
     'response': response.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -203,7 +202,7 @@ final class CesExampleMessagesChunksToolResponseToolsetTool {
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -271,12 +270,12 @@ final class GoogleCesExample extends Resource {
            'app': app,
            'example_id': exampleId,
            'display_name': displayName,
-           if (description != null) 'description': description,
-           if (entryAgent != null) 'entry_agent': entryAgent,
+           'description': ?description,
+           'entry_agent': ?entryAgent,
            if (messages != null)
              'messages': TfArg.literal([for (final e in messages) e.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -32,11 +32,10 @@ final class GlueCrawlerCatalogTarget {
   final TfArg<List<Object?>> tables;
 
   Map<String, Object?> encode() => {
-    if (connectionName != null) 'connection_name': connectionName!.toTfJson(),
+    'connection_name': ?connectionName?.toTfJson(),
     'database_name': databaseName.toTfJson(),
-    if (dlqEventQueueArn != null)
-      'dlq_event_queue_arn': dlqEventQueueArn!.toTfJson(),
-    if (eventQueueArn != null) 'event_queue_arn': eventQueueArn!.toTfJson(),
+    'dlq_event_queue_arn': ?dlqEventQueueArn?.toTfJson(),
+    'event_queue_arn': ?eventQueueArn?.toTfJson(),
     'tables': tables.toTfJson(),
   };
 }
@@ -61,9 +60,8 @@ final class GlueCrawlerDeltaTarget {
   final TfArg<bool> writeManifest;
 
   Map<String, Object?> encode() => {
-    if (connectionName != null) 'connection_name': connectionName!.toTfJson(),
-    if (createNativeDeltaTable != null)
-      'create_native_delta_table': createNativeDeltaTable!.toTfJson(),
+    'connection_name': ?connectionName?.toTfJson(),
+    'create_native_delta_table': ?createNativeDeltaTable?.toTfJson(),
     'delta_tables': deltaTables.toTfJson(),
     'write_manifest': writeManifest.toTfJson(),
   };
@@ -87,8 +85,8 @@ final class GlueCrawlerDynamodbTarget {
 
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
-    if (scanAll != null) 'scan_all': scanAll!.toTfJson(),
-    if (scanRate != null) 'scan_rate': scanRate!.toTfJson(),
+    'scan_all': ?scanAll?.toTfJson(),
+    'scan_rate': ?scanRate?.toTfJson(),
   };
 }
 
@@ -112,8 +110,8 @@ final class GlueCrawlerHudiTarget {
   final TfArg<List<Object?>> paths;
 
   Map<String, Object?> encode() => {
-    if (connectionName != null) 'connection_name': connectionName!.toTfJson(),
-    if (exclusions != null) 'exclusions': exclusions!.toTfJson(),
+    'connection_name': ?connectionName?.toTfJson(),
+    'exclusions': ?exclusions?.toTfJson(),
     'maximum_traversal_depth': maximumTraversalDepth.toTfJson(),
     'paths': paths.toTfJson(),
   };
@@ -139,8 +137,8 @@ final class GlueCrawlerIcebergTarget {
   final TfArg<List<Object?>> paths;
 
   Map<String, Object?> encode() => {
-    if (connectionName != null) 'connection_name': connectionName!.toTfJson(),
-    if (exclusions != null) 'exclusions': exclusions!.toTfJson(),
+    'connection_name': ?connectionName?.toTfJson(),
+    'exclusions': ?exclusions?.toTfJson(),
     'maximum_traversal_depth': maximumTraversalDepth.toTfJson(),
     'paths': paths.toTfJson(),
   };
@@ -172,7 +170,7 @@ final class GlueCrawlerJdbcTarget {
       'enable_additional_metadata': [
         for (final e in enableAdditionalMetadata!) e.toTfJson(),
       ],
-    if (exclusions != null) 'exclusions': exclusions!.toTfJson(),
+    'exclusions': ?exclusions?.toTfJson(),
     'path': path.toTfJson(),
   };
 }
@@ -201,9 +199,8 @@ final class GlueCrawlerLakeFormationConfiguration {
   final TfArg<bool>? useLakeFormationCredentials;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
-    if (useLakeFormationCredentials != null)
-      'use_lake_formation_credentials': useLakeFormationCredentials!.toTfJson(),
+    'account_id': ?accountId?.toTfJson(),
+    'use_lake_formation_credentials': ?useLakeFormationCredentials?.toTfJson(),
   };
 }
 
@@ -217,8 +214,7 @@ final class GlueCrawlerLineageConfiguration {
   crawlerLineageSettings;
 
   Map<String, Object?> encode() => {
-    if (crawlerLineageSettings != null)
-      'crawler_lineage_settings': crawlerLineageSettings!.toTfJson(),
+    'crawler_lineage_settings': ?crawlerLineageSettings?.toTfJson(),
   };
 }
 
@@ -254,7 +250,7 @@ final class GlueCrawlerMongodbTarget {
   Map<String, Object?> encode() => {
     'connection_name': connectionName.toTfJson(),
     'path': path.toTfJson(),
-    if (scanAll != null) 'scan_all': scanAll!.toTfJson(),
+    'scan_all': ?scanAll?.toTfJson(),
   };
 }
 
@@ -267,8 +263,7 @@ final class GlueCrawlerRecrawlPolicy {
   final TfArg<GlueCrawlerRecrawlPolicyRecrawlBehavior>? recrawlBehavior;
 
   Map<String, Object?> encode() => {
-    if (recrawlBehavior != null)
-      'recrawl_behavior': recrawlBehavior!.toTfJson(),
+    'recrawl_behavior': ?recrawlBehavior?.toTfJson(),
   };
 }
 
@@ -309,13 +304,12 @@ final class GlueCrawlerS3Target {
   final TfArg<num>? sampleSize;
 
   Map<String, Object?> encode() => {
-    if (connectionName != null) 'connection_name': connectionName!.toTfJson(),
-    if (dlqEventQueueArn != null)
-      'dlq_event_queue_arn': dlqEventQueueArn!.toTfJson(),
-    if (eventQueueArn != null) 'event_queue_arn': eventQueueArn!.toTfJson(),
-    if (exclusions != null) 'exclusions': exclusions!.toTfJson(),
+    'connection_name': ?connectionName?.toTfJson(),
+    'dlq_event_queue_arn': ?dlqEventQueueArn?.toTfJson(),
+    'event_queue_arn': ?eventQueueArn?.toTfJson(),
+    'exclusions': ?exclusions?.toTfJson(),
     'path': path.toTfJson(),
-    if (sampleSize != null) 'sample_size': sampleSize!.toTfJson(),
+    'sample_size': ?sampleSize?.toTfJson(),
   };
 }
 
@@ -333,8 +327,8 @@ final class GlueCrawlerSchemaChangePolicy {
   final TfArg<GlueCrawlerSchemaChangePolicyUpdateBehavior>? updateBehavior;
 
   Map<String, Object?> encode() => {
-    if (deleteBehavior != null) 'delete_behavior': deleteBehavior!.toTfJson(),
-    if (updateBehavior != null) 'update_behavior': updateBehavior!.toTfJson(),
+    'delete_behavior': ?deleteBehavior?.toTfJson(),
+    'update_behavior': ?updateBehavior?.toTfJson(),
   };
 }
 
@@ -395,18 +389,17 @@ final class AwsGlueCrawler extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (classifiers != null) 'classifiers': classifiers,
-           if (configuration != null) 'configuration': configuration,
+           'classifiers': ?classifiers,
+           'configuration': ?configuration,
            'database_name': databaseName,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role': role.encodeAs('name'),
-           if (schedule != null) 'schedule': schedule,
-           if (securityConfiguration != null)
-             'security_configuration': securityConfiguration,
-           if (tablePrefix != null) 'table_prefix': tablePrefix,
-           if (tags != null) 'tags': tags,
+           'schedule': ?schedule,
+           'security_configuration': ?securityConfiguration,
+           'table_prefix': ?tablePrefix,
+           'tags': ?tags,
            if (catalogTarget != null)
              'catalog_target': TfArg.literal([
                for (final e in catalogTarget) e.encode(),

@@ -85,7 +85,7 @@ final class GoogleSiteVerificationWebResource extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'verification_method': verificationMethod,
            'site': TfArg.literal(site.encode()),
          },

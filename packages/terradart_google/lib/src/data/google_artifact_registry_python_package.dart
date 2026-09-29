@@ -26,7 +26,7 @@ final class DataGoogleArtifactRegistryPythonPackage extends Data {
          argMap: {
            'location': location,
            'package_name': packageName,
-           if (project != null) 'project': project,
+           'project': ?project,
            'repository_id': repositoryId,
          },
        );

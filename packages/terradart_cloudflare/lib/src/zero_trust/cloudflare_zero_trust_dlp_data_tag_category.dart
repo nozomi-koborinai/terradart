@@ -29,7 +29,7 @@ final class CloudflareZeroTrustDlpDataTagCategory extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
          },
        );

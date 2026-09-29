@@ -44,10 +44,10 @@ final class ApphubApplicationAttributes {
   Map<String, Object?> encode() => {
     if (businessOwners != null)
       'business_owners': [for (final e in businessOwners!) e.encode()],
-    if (criticality != null) 'criticality': criticality!.encode(),
+    'criticality': ?criticality?.encode(),
     if (developerOwners != null)
       'developer_owners': [for (final e in developerOwners!) e.encode()],
-    if (environment != null) 'environment': environment!.encode(),
+    'environment': ?environment?.encode(),
     if (operatorOwners != null)
       'operator_owners': [for (final e in operatorOwners!) e.encode()],
   };
@@ -67,7 +67,7 @@ final class ApphubApplicationAttributesBusinessOwners {
   final TfArg<String> email;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
   };
 }
@@ -109,7 +109,7 @@ final class ApphubApplicationAttributesDeveloperOwners {
   final TfArg<String> email;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
   };
 }
@@ -151,7 +151,7 @@ final class ApphubApplicationAttributesOperatorOwners {
   final TfArg<String> email;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
   };
 }
@@ -222,12 +222,12 @@ final class GoogleApphubApplication extends Resource {
            'location': location,
            'application_id': applicationId,
            'scope': TfArg.literal(scope.encode()),
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
+           'display_name': ?displayName,
+           'description': ?description,
            if (attributes != null)
              'attributes': TfArg.literal(attributes.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

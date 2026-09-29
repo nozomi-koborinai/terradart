@@ -30,13 +30,13 @@ final class DataCloudflareZeroTrustNetworkHostnameRoutes extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (comment != null) 'comment': comment,
-           if (existedAt != null) 'existed_at': existedAt,
-           if (hostname != null) 'hostname': hostname,
-           if (isDeleted != null) 'is_deleted': isDeleted,
-           if (maxItems != null) 'max_items': maxItems,
-           if (tunnelId != null) 'tunnel_id': tunnelId,
+           'account_id': ?accountId,
+           'comment': ?comment,
+           'existed_at': ?existedAt,
+           'hostname': ?hostname,
+           'is_deleted': ?isDeleted,
+           'max_items': ?maxItems,
+           'tunnel_id': ?tunnelId,
          },
        );
 

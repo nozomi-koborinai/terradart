@@ -120,8 +120,8 @@ final class BedrockagentAgentActionGroupActionGroupExecutor {
   final TfArg<String>? lambda;
 
   Map<String, Object?> encode() => {
-    if (customControl != null) 'custom_control': customControl!.toTfJson(),
-    if (lambda != null) 'lambda': lambda!.toTfJson(),
+    'custom_control': ?customControl?.toTfJson(),
+    'lambda': ?lambda?.toTfJson(),
   };
 }
 
@@ -216,9 +216,8 @@ final class BedrockagentAgentActionGroupApiSchemaS3 {
   final TfArg<String>? s3ObjectKey;
 
   Map<String, Object?> encode() => {
-    if (s3BucketName != null)
-      's3_bucket_name': s3BucketName!.encodeAs('id').toTfJson(),
-    if (s3ObjectKey != null) 's3_object_key': s3ObjectKey!.toTfJson(),
+    's3_bucket_name': ?s3BucketName?.encodeAs('id').toTfJson(),
+    's3_object_key': ?s3ObjectKey?.toTfJson(),
   };
 }
 
@@ -276,7 +275,7 @@ final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctions {
   parameters;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
     if (parameters != null)
       'parameters': [for (final e in parameters!) e.encode()],
@@ -306,9 +305,9 @@ final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsPa
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'map_block_key': mapBlockKey.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -354,14 +353,13 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'action_group_name': actionGroupName,
-           if (actionGroupState != null) 'action_group_state': actionGroupState,
+           'action_group_state': ?actionGroupState,
            'agent_id': agentId,
            'agent_version': agentVersion,
            ...?definition?.argMap,
-           if (prepareAgent != null) 'prepare_agent': prepareAgent,
-           if (region != null) 'region': region,
-           if (skipResourceInUseCheck != null)
-             'skip_resource_in_use_check': skipResourceInUseCheck,
+           'prepare_agent': ?prepareAgent,
+           'region': ?region,
+           'skip_resource_in_use_check': ?skipResourceInUseCheck,
            if (actionGroupExecutor != null)
              'action_group_executor': TfArg.literal([
                for (final e in actionGroupExecutor) e.encode(),

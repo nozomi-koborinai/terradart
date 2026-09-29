@@ -145,22 +145,20 @@ final class AwsKinesisStream extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (encryptionType != null) 'encryption_type': encryptionType,
-           if (enforceConsumerDeletion != null)
-             'enforce_consumer_deletion': enforceConsumerDeletion,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (maxRecordSizeInKib != null)
-             'max_record_size_in_kib': maxRecordSizeInKib,
+           'arn': ?arn,
+           'encryption_type': ?encryptionType,
+           'enforce_consumer_deletion': ?enforceConsumerDeletion,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'max_record_size_in_kib': ?maxRecordSizeInKib,
            'name': name,
-           if (region != null) 'region': region,
-           if (retentionPeriod != null) 'retention_period': retentionPeriod,
+           'region': ?region,
+           'retention_period': ?retentionPeriod,
            ...?capacity?.argMap,
            if (shardLevelMetrics != null)
              'shard_level_metrics': TfArg.literal([
                for (final e in shardLevelMetrics) e.toTfJson(),
              ]),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (streamModeDetails != null)
              'stream_mode_details': TfArg.literal(streamModeDetails.encode()),
          },

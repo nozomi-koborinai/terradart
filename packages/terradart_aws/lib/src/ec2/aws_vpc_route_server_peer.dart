@@ -23,8 +23,7 @@ final class VpcRouteServerPeerBgpOptions {
 
   Map<String, Object?> encode() => {
     'peer_asn': peerAsn.toTfJson(),
-    if (peerLivenessDetection != null)
-      'peer_liveness_detection': peerLivenessDetection!.toTfJson(),
+    'peer_liveness_detection': ?peerLivenessDetection?.toTfJson(),
   };
 }
 
@@ -58,9 +57,9 @@ final class AwsVpcRouteServerPeer extends Resource {
          terraformType: tfType,
          argMap: {
            'peer_address': peerAddress,
-           if (region != null) 'region': region,
+           'region': ?region,
            'route_server_endpoint_id': routeServerEndpointId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (bgpOptions != null)
              'bgp_options': TfArg.literal([
                for (final e in bgpOptions) e.encode(),

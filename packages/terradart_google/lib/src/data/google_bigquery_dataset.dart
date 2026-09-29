@@ -22,10 +22,7 @@ final class DataGoogleBigqueryDataset extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'dataset_id': datasetId,
-           if (project != null) 'project': project,
-         },
+         argMap: {'dataset_id': datasetId, 'project': ?project},
        );
 
   @override

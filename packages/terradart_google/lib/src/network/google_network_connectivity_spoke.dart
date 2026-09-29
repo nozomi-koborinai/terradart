@@ -356,11 +356,11 @@ final class GoogleNetworkConnectivitySpoke extends Resource {
            'location': location,
            'hub': hub,
            attachment.blockKey: TfArg.literal([attachment.encode()]),
-           if (group != null) 'group': group,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'group': ?group,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

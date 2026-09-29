@@ -34,11 +34,11 @@ final class AwsQuicksightIngestion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'data_set_id': dataSetId,
            'ingestion_id': ingestionId,
            'ingestion_type': ingestionType,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

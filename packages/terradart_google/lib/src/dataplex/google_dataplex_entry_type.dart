@@ -30,15 +30,15 @@ final class GoogleDataplexEntryType extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (entryTypeId != null) 'entry_type_id': entryTypeId,
-           if (location != null) 'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (platform != null) 'platform': platform,
-           if (system != null) 'system': system,
-           if (typeAliases != null) 'type_aliases': typeAliases,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'entry_type_id': ?entryTypeId,
+           'location': ?location,
+           'display_name': ?displayName,
+           'description': ?description,
+           'platform': ?platform,
+           'system': ?system,
+           'type_aliases': ?typeAliases,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

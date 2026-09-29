@@ -92,10 +92,10 @@ final class GoogleSpannerInstance extends Resource {
          argMap: {
            'config': config,
            'display_name': displayName,
-           if (numNodes != null) 'num_nodes': numNodes,
-           if (processingUnits != null) 'processing_units': processingUnits,
-           if (edition != null) 'edition': edition,
-           if (labels != null) 'labels': labels,
+           'num_nodes': ?numNodes,
+           'processing_units': ?processingUnits,
+           'edition': ?edition,
+           'labels': ?labels,
          },
        );
 

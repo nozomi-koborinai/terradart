@@ -30,11 +30,10 @@ final class GeminiCodeToolsSettingEnabledTool {
   final List<GeminiCodeToolsSettingEnabledToolConfig>? config;
 
   Map<String, Object?> encode() => {
-    if (accountConnector != null)
-      'account_connector': accountConnector!.toTfJson(),
+    'account_connector': ?accountConnector?.toTfJson(),
     'handle': handle.toTfJson(),
     'tool': tool.toTfJson(),
-    if (uriOverride != null) 'uri_override': uriOverride!.toTfJson(),
+    'uri_override': ?uriOverride?.toTfJson(),
     if (config != null) 'config': [for (final e in config!) e.encode()],
   };
 }
@@ -96,10 +95,10 @@ final class GoogleGeminiCodeToolsSetting extends Resource {
            'enabled_tool': TfArg.literal([
              for (final e in enabledTool) e.encode(),
            ]),
-           if (location != null) 'location': location,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

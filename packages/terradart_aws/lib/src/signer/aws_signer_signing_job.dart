@@ -32,7 +32,7 @@ final class SignerSigningJobDestinationS3 {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -88,10 +88,9 @@ final class AwsSignerSigningJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (ignoreSigningJobFailure != null)
-             'ignore_signing_job_failure': ignoreSigningJobFailure,
+           'ignore_signing_job_failure': ?ignoreSigningJobFailure,
            'profile_name': profileName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'destination': TfArg.literal(destination.encode()),
            'source': TfArg.literal(source.encode()),
          },

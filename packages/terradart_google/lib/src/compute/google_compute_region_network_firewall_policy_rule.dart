@@ -85,26 +85,19 @@ final class ComputeRegionNetworkFirewallPolicyRuleMatch {
   srcSecureTags;
 
   Map<String, Object?> encode() => {
-    if (destAddressGroups != null)
-      'dest_address_groups': destAddressGroups!.toTfJson(),
-    if (destFqdns != null) 'dest_fqdns': destFqdns!.toTfJson(),
-    if (destIpRanges != null) 'dest_ip_ranges': destIpRanges!.toTfJson(),
-    if (destNetworkContext != null)
-      'dest_network_context': destNetworkContext!.toTfJson(),
-    if (destRegionCodes != null)
-      'dest_region_codes': destRegionCodes!.toTfJson(),
-    if (destThreatIntelligences != null)
-      'dest_threat_intelligences': destThreatIntelligences!.toTfJson(),
-    if (srcAddressGroups != null)
-      'src_address_groups': srcAddressGroups!.toTfJson(),
-    if (srcFqdns != null) 'src_fqdns': srcFqdns!.toTfJson(),
-    if (srcIpRanges != null) 'src_ip_ranges': srcIpRanges!.toTfJson(),
-    if (srcNetworkContext != null)
-      'src_network_context': srcNetworkContext!.toTfJson(),
-    if (srcNetworks != null) 'src_networks': srcNetworks!.toTfJson(),
-    if (srcRegionCodes != null) 'src_region_codes': srcRegionCodes!.toTfJson(),
-    if (srcThreatIntelligences != null)
-      'src_threat_intelligences': srcThreatIntelligences!.toTfJson(),
+    'dest_address_groups': ?destAddressGroups?.toTfJson(),
+    'dest_fqdns': ?destFqdns?.toTfJson(),
+    'dest_ip_ranges': ?destIpRanges?.toTfJson(),
+    'dest_network_context': ?destNetworkContext?.toTfJson(),
+    'dest_region_codes': ?destRegionCodes?.toTfJson(),
+    'dest_threat_intelligences': ?destThreatIntelligences?.toTfJson(),
+    'src_address_groups': ?srcAddressGroups?.toTfJson(),
+    'src_fqdns': ?srcFqdns?.toTfJson(),
+    'src_ip_ranges': ?srcIpRanges?.toTfJson(),
+    'src_network_context': ?srcNetworkContext?.toTfJson(),
+    'src_networks': ?srcNetworks?.toTfJson(),
+    'src_region_codes': ?srcRegionCodes?.toTfJson(),
+    'src_threat_intelligences': ?srcThreatIntelligences?.toTfJson(),
     'layer4_configs': [for (final e in layer4Configs) e.encode()],
     if (srcSecureTags != null)
       'src_secure_tags': [for (final e in srcSecureTags!) e.encode()],
@@ -158,7 +151,7 @@ final class ComputeRegionNetworkFirewallPolicyRuleMatchLayer4Configs {
 
   Map<String, Object?> encode() => {
     'ip_protocol': ipProtocol.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
+    'ports': ?ports?.toTfJson(),
   };
 }
 
@@ -170,7 +163,7 @@ final class ComputeRegionNetworkFirewallPolicyRuleMatchSrcSecureTags {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `target_secure_tags` block of
@@ -181,7 +174,7 @@ final class ComputeRegionNetworkFirewallPolicyRuleTargetSecureTags {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_region_network_firewall_policy_rule`.
@@ -240,18 +233,17 @@ final class GoogleComputeRegionNetworkFirewallPolicyRule extends Resource {
          terraformType: tfType,
          argMap: {
            'firewall_policy': firewallPolicy,
-           if (region != null) 'region': region,
+           'region': ?region,
            'priority': priority,
            'action': action,
            'direction': direction,
            'match': TfArg.literal(match.encode()),
-           if (ruleName != null) 'rule_name': ruleName,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (enableLogging != null) 'enable_logging': enableLogging,
-           if (targetServiceAccounts != null)
-             'target_service_accounts': targetServiceAccounts,
-           if (project != null) 'project': project,
+           'rule_name': ?ruleName,
+           'description': ?description,
+           'disabled': ?disabled,
+           'enable_logging': ?enableLogging,
+           'target_service_accounts': ?targetServiceAccounts,
+           'project': ?project,
          },
        );
 

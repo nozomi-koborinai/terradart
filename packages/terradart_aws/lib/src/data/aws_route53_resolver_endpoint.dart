@@ -41,9 +41,8 @@ final class DataAwsRoute53ResolverEndpoint extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (resolverEndpointId != null)
-             'resolver_endpoint_id': resolverEndpointId,
+           'region': ?region,
+           'resolver_endpoint_id': ?resolverEndpointId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

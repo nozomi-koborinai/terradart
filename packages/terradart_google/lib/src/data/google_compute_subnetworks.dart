@@ -22,11 +22,7 @@ final class DataGoogleComputeSubnetworks extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (filter != null) 'filter': filter,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-         },
+         argMap: {'filter': ?filter, 'project': ?project, 'region': ?region},
        );
 
   @override

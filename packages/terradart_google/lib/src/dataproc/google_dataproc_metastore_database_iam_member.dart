@@ -31,9 +31,9 @@ final class GoogleDataprocMetastoreDatabaseIamMember extends Resource {
            'database': database,
            'role': role,
            'member': member,
-           if (location != null) 'location': location,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

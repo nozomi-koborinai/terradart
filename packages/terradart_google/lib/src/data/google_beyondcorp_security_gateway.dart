@@ -23,7 +23,7 @@ final class DataGoogleBeyondcorpSecurityGateway extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (project != null) 'project': project,
+           'project': ?project,
            'security_gateway_id': securityGatewayId,
          },
        );

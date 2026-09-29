@@ -58,8 +58,7 @@ final class LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration {
     'associated_compute_resource_types': [
       for (final e in associatedComputeResourceTypes) e.toTfJson(),
     ],
-    if (networkProtocol != null)
-      'network_protocol': networkProtocol!.toTfJson(),
+    'network_protocol': ?networkProtocol?.toTfJson(),
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
@@ -109,7 +108,7 @@ final class AwsLambdacoreNetworkConnector extends Resource {
          argMap: {
            'name': name,
            'operator_role': operatorRole,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (configuration != null)
              'configuration': TfArg.literal([
                for (final e in configuration) e.encode(),

@@ -25,9 +25,9 @@ final class DataGoogleDnsRecordSets extends Data {
          terraformType: tfType,
          argMap: {
            'managed_zone': managedZone,
-           if (name != null) 'name': name,
-           if (project != null) 'project': project,
-           if (type != null) 'type': type,
+           'name': ?name,
+           'project': ?project,
+           'type': ?type,
          },
        );
 

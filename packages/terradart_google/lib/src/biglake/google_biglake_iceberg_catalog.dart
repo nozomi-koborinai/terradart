@@ -60,11 +60,11 @@ final class GoogleBiglakeIcebergCatalog extends Resource {
          argMap: {
            'name': name,
            'catalog_type': catalogType,
-           if (credentialMode != null) 'credential_mode': credentialMode,
-           if (primaryLocation != null) 'primary_location': primaryLocation,
-           if (defaultLocation != null) 'default_location': defaultLocation,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'credential_mode': ?credentialMode,
+           'primary_location': ?primaryLocation,
+           'default_location': ?defaultLocation,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

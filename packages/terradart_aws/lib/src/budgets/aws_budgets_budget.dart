@@ -257,8 +257,7 @@ final class BudgetsBudgetAutoAdjustData {
 
   Map<String, Object?> encode() => {
     'auto_adjust_type': autoAdjustType.toTfJson(),
-    if (historicalOptions != null)
-      'historical_options': historicalOptions!.encode(),
+    'historical_options': ?historicalOptions?.encode(),
   };
 }
 
@@ -344,21 +343,17 @@ final class BudgetsBudgetCostTypes {
   final TfArg<bool>? useBlended;
 
   Map<String, Object?> encode() => {
-    if (includeCredit != null) 'include_credit': includeCredit!.toTfJson(),
-    if (includeDiscount != null)
-      'include_discount': includeDiscount!.toTfJson(),
-    if (includeOtherSubscription != null)
-      'include_other_subscription': includeOtherSubscription!.toTfJson(),
-    if (includeRecurring != null)
-      'include_recurring': includeRecurring!.toTfJson(),
-    if (includeRefund != null) 'include_refund': includeRefund!.toTfJson(),
-    if (includeSubscription != null)
-      'include_subscription': includeSubscription!.toTfJson(),
-    if (includeSupport != null) 'include_support': includeSupport!.toTfJson(),
-    if (includeTax != null) 'include_tax': includeTax!.toTfJson(),
-    if (includeUpfront != null) 'include_upfront': includeUpfront!.toTfJson(),
-    if (useAmortized != null) 'use_amortized': useAmortized!.toTfJson(),
-    if (useBlended != null) 'use_blended': useBlended!.toTfJson(),
+    'include_credit': ?includeCredit?.toTfJson(),
+    'include_discount': ?includeDiscount?.toTfJson(),
+    'include_other_subscription': ?includeOtherSubscription?.toTfJson(),
+    'include_recurring': ?includeRecurring?.toTfJson(),
+    'include_refund': ?includeRefund?.toTfJson(),
+    'include_subscription': ?includeSubscription?.toTfJson(),
+    'include_support': ?includeSupport?.toTfJson(),
+    'include_tax': ?includeTax?.toTfJson(),
+    'include_upfront': ?includeUpfront?.toTfJson(),
+    'use_amortized': ?useAmortized?.toTfJson(),
+    'use_blended': ?useBlended?.toTfJson(),
   };
 }
 
@@ -389,11 +384,11 @@ final class BudgetsBudgetFilterExpression {
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (not != null) 'not': not!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
-    if (tags != null) 'tags': tags!.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -424,11 +419,11 @@ final class BudgetsBudgetFilterExpressionAnd {
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (not != null) 'not': not!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
-    if (tags != null) 'tags': tags!.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -449,9 +444,9 @@ final class BudgetsBudgetFilterExpressionAndAnd {
   final BudgetsBudgetFilterExpressionAndAndTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -472,9 +467,9 @@ final class BudgetsBudgetFilterExpressionAndAndCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -496,7 +491,7 @@ final class BudgetsBudgetFilterExpressionAndAndDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -518,9 +513,9 @@ final class BudgetsBudgetFilterExpressionAndAndTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -541,9 +536,9 @@ final class BudgetsBudgetFilterExpressionAndCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -565,7 +560,7 @@ final class BudgetsBudgetFilterExpressionAndDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -587,9 +582,9 @@ final class BudgetsBudgetFilterExpressionAndNot {
   final BudgetsBudgetFilterExpressionAndNotTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -610,9 +605,9 @@ final class BudgetsBudgetFilterExpressionAndNotCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -634,7 +629,7 @@ final class BudgetsBudgetFilterExpressionAndNotDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -656,9 +651,9 @@ final class BudgetsBudgetFilterExpressionAndNotTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -679,9 +674,9 @@ final class BudgetsBudgetFilterExpressionAndOr {
   final BudgetsBudgetFilterExpressionAndOrTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -702,9 +697,9 @@ final class BudgetsBudgetFilterExpressionAndOrCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -726,7 +721,7 @@ final class BudgetsBudgetFilterExpressionAndOrDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -748,9 +743,9 @@ final class BudgetsBudgetFilterExpressionAndOrTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -771,9 +766,9 @@ final class BudgetsBudgetFilterExpressionAndTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -795,10 +790,10 @@ final class BudgetsBudgetFilterExpressionCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     if (matchOptions != null)
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -933,11 +928,11 @@ final class BudgetsBudgetFilterExpressionNot {
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (not != null) 'not': not!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
-    if (tags != null) 'tags': tags!.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -958,9 +953,9 @@ final class BudgetsBudgetFilterExpressionNotAnd {
   final BudgetsBudgetFilterExpressionNotAndTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -981,9 +976,9 @@ final class BudgetsBudgetFilterExpressionNotAndCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1005,7 +1000,7 @@ final class BudgetsBudgetFilterExpressionNotAndDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -1027,9 +1022,9 @@ final class BudgetsBudgetFilterExpressionNotAndTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1050,9 +1045,9 @@ final class BudgetsBudgetFilterExpressionNotCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1074,7 +1069,7 @@ final class BudgetsBudgetFilterExpressionNotDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -1096,9 +1091,9 @@ final class BudgetsBudgetFilterExpressionNotNot {
   final BudgetsBudgetFilterExpressionNotNotTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -1119,9 +1114,9 @@ final class BudgetsBudgetFilterExpressionNotNotCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1143,7 +1138,7 @@ final class BudgetsBudgetFilterExpressionNotNotDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -1165,9 +1160,9 @@ final class BudgetsBudgetFilterExpressionNotNotTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1188,9 +1183,9 @@ final class BudgetsBudgetFilterExpressionNotOr {
   final BudgetsBudgetFilterExpressionNotOrTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -1211,9 +1206,9 @@ final class BudgetsBudgetFilterExpressionNotOrCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1235,7 +1230,7 @@ final class BudgetsBudgetFilterExpressionNotOrDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -1257,9 +1252,9 @@ final class BudgetsBudgetFilterExpressionNotOrTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1280,9 +1275,9 @@ final class BudgetsBudgetFilterExpressionNotTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1313,11 +1308,11 @@ final class BudgetsBudgetFilterExpressionOr {
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (not != null) 'not': not!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
-    if (tags != null) 'tags': tags!.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -1338,9 +1333,9 @@ final class BudgetsBudgetFilterExpressionOrAnd {
   final BudgetsBudgetFilterExpressionOrAndTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -1361,9 +1356,9 @@ final class BudgetsBudgetFilterExpressionOrAndCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1385,7 +1380,7 @@ final class BudgetsBudgetFilterExpressionOrAndDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -1407,9 +1402,9 @@ final class BudgetsBudgetFilterExpressionOrAndTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1430,9 +1425,9 @@ final class BudgetsBudgetFilterExpressionOrCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1454,7 +1449,7 @@ final class BudgetsBudgetFilterExpressionOrDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -1476,9 +1471,9 @@ final class BudgetsBudgetFilterExpressionOrNot {
   final BudgetsBudgetFilterExpressionOrNotTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -1499,9 +1494,9 @@ final class BudgetsBudgetFilterExpressionOrNotCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1523,7 +1518,7 @@ final class BudgetsBudgetFilterExpressionOrNotDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -1545,9 +1540,9 @@ final class BudgetsBudgetFilterExpressionOrNotTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1568,9 +1563,9 @@ final class BudgetsBudgetFilterExpressionOrOr {
   final BudgetsBudgetFilterExpressionOrOrTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategories != null) 'cost_categories': costCategories!.encode(),
-    if (dimensions != null) 'dimensions': dimensions!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -1591,9 +1586,9 @@ final class BudgetsBudgetFilterExpressionOrOrCostCategories {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1615,7 +1610,7 @@ final class BudgetsBudgetFilterExpressionOrOrDimensions {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -1637,9 +1632,9 @@ final class BudgetsBudgetFilterExpressionOrOrTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1660,9 +1655,9 @@ final class BudgetsBudgetFilterExpressionOrTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1684,10 +1679,10 @@ final class BudgetsBudgetFilterExpressionTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     if (matchOptions != null)
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1735,10 +1730,8 @@ final class BudgetsBudgetNotification {
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
     'notification_type': notificationType.toTfJson(),
-    if (subscriberEmailAddresses != null)
-      'subscriber_email_addresses': subscriberEmailAddresses!.toTfJson(),
-    if (subscriberSnsTopicArns != null)
-      'subscriber_sns_topic_arns': subscriberSnsTopicArns!.toTfJson(),
+    'subscriber_email_addresses': ?subscriberEmailAddresses?.toTfJson(),
+    'subscriber_sns_topic_arns': ?subscriberSnsTopicArns?.toTfJson(),
     'threshold': threshold.toTfJson(),
     'threshold_type': thresholdType.toTfJson(),
   };
@@ -1826,16 +1819,16 @@ final class AwsBudgetsBudget extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (billingViewArn != null) 'billing_view_arn': billingViewArn,
+           'account_id': ?accountId,
+           'billing_view_arn': ?billingViewArn,
            'budget_type': budgetType,
-           if (limitAmount != null) 'limit_amount': limitAmount,
-           if (limitUnit != null) 'limit_unit': limitUnit,
+           'limit_amount': ?limitAmount,
+           'limit_unit': ?limitUnit,
            ...?measure?.argMap,
            ...?name?.argMap,
-           if (tags != null) 'tags': tags,
-           if (timePeriodEnd != null) 'time_period_end': timePeriodEnd,
-           if (timePeriodStart != null) 'time_period_start': timePeriodStart,
+           'tags': ?tags,
+           'time_period_end': ?timePeriodEnd,
+           'time_period_start': ?timePeriodStart,
            'time_unit': timeUnit,
            if (autoAdjustData != null)
              'auto_adjust_data': TfArg.literal(autoAdjustData.encode()),

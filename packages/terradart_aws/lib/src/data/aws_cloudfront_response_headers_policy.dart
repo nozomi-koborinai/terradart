@@ -16,7 +16,7 @@ final class DataAwsCloudfrontResponseHeadersPolicy extends Data {
     TfArg<String>? name,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {if (name != null) 'name': name});
+  }) : super(terraformType: tfType, argMap: {'name': ?name});
 
   @override
   Set<String> get sensitiveFields =>

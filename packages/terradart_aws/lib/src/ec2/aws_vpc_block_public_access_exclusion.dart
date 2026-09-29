@@ -98,9 +98,9 @@ final class AwsVpcBlockPublicAccessExclusion extends Resource {
          terraformType: tfType,
          argMap: {
            'internet_gateway_exclusion_mode': internetGatewayExclusionMode,
-           if (region != null) 'region': region,
+           'region': ?region,
            ...target.argMap,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

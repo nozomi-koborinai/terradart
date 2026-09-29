@@ -36,8 +36,8 @@ final class EcrRepositoryEncryptionConfiguration {
   final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (encryptionType != null) 'encryption_type': encryptionType!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
+    'encryption_type': ?encryptionType?.toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -118,12 +118,11 @@ final class AwsEcrRepository extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (forceDelete != null) 'force_delete': forceDelete,
-           if (imageTagMutability != null)
-             'image_tag_mutability': imageTagMutability,
+           'force_delete': ?forceDelete,
+           'image_tag_mutability': ?imageTagMutability,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (encryptionConfiguration != null)
              'encryption_configuration': TfArg.literal([
                for (final e in encryptionConfiguration) e.encode(),

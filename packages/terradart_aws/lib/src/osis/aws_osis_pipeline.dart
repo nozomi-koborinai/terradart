@@ -53,8 +53,7 @@ final class OsisPipelineLogPublishingOptions {
   cloudwatchLogDestination;
 
   Map<String, Object?> encode() => {
-    if (isLoggingEnabled != null)
-      'is_logging_enabled': isLoggingEnabled!.toTfJson(),
+    'is_logging_enabled': ?isLoggingEnabled?.toTfJson(),
     if (cloudwatchLogDestination != null)
       'cloudwatch_log_destination': [
         for (final e in cloudwatchLogDestination!) e.encode(),
@@ -95,11 +94,9 @@ final class OsisPipelineVpcOptions {
   vpcEndpointManagement;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (vpcEndpointManagement != null)
-      'vpc_endpoint_management': vpcEndpointManagement!.toTfJson(),
+    'vpc_endpoint_management': ?vpcEndpointManagement?.toTfJson(),
   };
 }
 
@@ -141,9 +138,9 @@ final class AwsOsisPipeline extends Resource {
            'min_units': minUnits,
            'pipeline_configuration_body': pipelineConfigurationBody,
            'pipeline_name': pipelineName,
-           if (pipelineRoleArn != null) 'pipeline_role_arn': pipelineRoleArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'pipeline_role_arn': ?pipelineRoleArn,
+           'region': ?region,
+           'tags': ?tags,
            if (bufferOptions != null)
              'buffer_options': TfArg.literal([
                for (final e in bufferOptions) e.encode(),

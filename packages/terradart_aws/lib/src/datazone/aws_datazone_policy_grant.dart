@@ -154,8 +154,7 @@ final class DatazonePolicyGrantDetailAddToProjectMemberPool {
   final TfArg<bool>? includeChildDomainUnits;
 
   Map<String, Object?> encode() => {
-    if (includeChildDomainUnits != null)
-      'include_child_domain_units': includeChildDomainUnits!.toTfJson(),
+    'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
 }
 
@@ -170,8 +169,7 @@ final class DatazonePolicyGrantDetailCreateAssetType {
   final TfArg<bool>? includeChildDomainUnits;
 
   Map<String, Object?> encode() => {
-    if (includeChildDomainUnits != null)
-      'include_child_domain_units': includeChildDomainUnits!.toTfJson(),
+    'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
 }
 
@@ -186,8 +184,7 @@ final class DatazonePolicyGrantDetailCreateDomainUnit {
   final TfArg<bool>? includeChildDomainUnits;
 
   Map<String, Object?> encode() => {
-    if (includeChildDomainUnits != null)
-      'include_child_domain_units': includeChildDomainUnits!.toTfJson(),
+    'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
 }
 
@@ -218,7 +215,7 @@ final class DatazonePolicyGrantDetailCreateEnvironmentProfile {
   final TfArg<String>? domainUnitId;
 
   Map<String, Object?> encode() => {
-    if (domainUnitId != null) 'domain_unit_id': domainUnitId!.toTfJson(),
+    'domain_unit_id': ?domainUnitId?.toTfJson(),
   };
 }
 
@@ -231,8 +228,7 @@ final class DatazonePolicyGrantDetailCreateFormType {
   final TfArg<bool>? includeChildDomainUnits;
 
   Map<String, Object?> encode() => {
-    if (includeChildDomainUnits != null)
-      'include_child_domain_units': includeChildDomainUnits!.toTfJson(),
+    'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
 }
 
@@ -245,8 +241,7 @@ final class DatazonePolicyGrantDetailCreateGlossary {
   final TfArg<bool>? includeChildDomainUnits;
 
   Map<String, Object?> encode() => {
-    if (includeChildDomainUnits != null)
-      'include_child_domain_units': includeChildDomainUnits!.toTfJson(),
+    'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
 }
 
@@ -259,8 +254,7 @@ final class DatazonePolicyGrantDetailCreateProject {
   final TfArg<bool>? includeChildDomainUnits;
 
   Map<String, Object?> encode() => {
-    if (includeChildDomainUnits != null)
-      'include_child_domain_units': includeChildDomainUnits!.toTfJson(),
+    'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
 }
 
@@ -278,10 +272,8 @@ final class DatazonePolicyGrantDetailCreateProjectFromProjectProfile {
   final TfArg<List<Object?>>? projectProfiles;
 
   Map<String, Object?> encode() => {
-    if (includeChildDomainUnits != null)
-      'include_child_domain_units': includeChildDomainUnits!.toTfJson(),
-    if (projectProfiles != null)
-      'project_profiles': projectProfiles!.toTfJson(),
+    'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
+    'project_profiles': ?projectProfiles?.toTfJson(),
   };
 }
 
@@ -305,8 +297,7 @@ final class DatazonePolicyGrantDetailOverrideDomainUnitOwners {
   final TfArg<bool>? includeChildDomainUnits;
 
   Map<String, Object?> encode() => {
-    if (includeChildDomainUnits != null)
-      'include_child_domain_units': includeChildDomainUnits!.toTfJson(),
+    'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
 }
 
@@ -321,8 +312,7 @@ final class DatazonePolicyGrantDetailOverrideProjectOwners {
   final TfArg<bool>? includeChildDomainUnits;
 
   Map<String, Object?> encode() => {
-    if (includeChildDomainUnits != null)
-      'include_child_domain_units': includeChildDomainUnits!.toTfJson(),
+    'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
 }
 
@@ -335,7 +325,7 @@ final class DatazonePolicyGrantDetailUseAssetType {
   final TfArg<String>? domainUnitId;
 
   Map<String, Object?> encode() => {
-    if (domainUnitId != null) 'domain_unit_id': domainUnitId!.toTfJson(),
+    'domain_unit_id': ?domainUnitId?.toTfJson(),
   };
 }
 
@@ -387,8 +377,7 @@ final class DatazonePolicyGrantPrincipalDomainUnit {
 
   Map<String, Object?> encode() => {
     'domain_unit_designation': domainUnitDesignation.toTfJson(),
-    if (domainUnitIdentifier != null)
-      'domain_unit_identifier': domainUnitIdentifier!.toTfJson(),
+    'domain_unit_identifier': ?domainUnitIdentifier?.toTfJson(),
     if (allDomainUnitsGrantFilter != null)
       'all_domain_units_grant_filter': [
         for (final e in allDomainUnitsGrantFilter!) e.encode(),
@@ -450,8 +439,7 @@ final class DatazonePolicyGrantPrincipalProject {
 
   Map<String, Object?> encode() => {
     'project_designation': projectDesignation.toTfJson(),
-    if (projectIdentifier != null)
-      'project_identifier': projectIdentifier!.toTfJson(),
+    'project_identifier': ?projectIdentifier?.toTfJson(),
     if (domainUnitFilter != null)
       'domain_unit_filter': [for (final e in domainUnitFilter!) e.encode()],
   };
@@ -486,8 +474,7 @@ final class DatazonePolicyGrantPrincipalProjectDomainUnitFilter {
 
   Map<String, Object?> encode() => {
     'domain_unit': domainUnit.toTfJson(),
-    if (includeChildDomainUnits != null)
-      'include_child_domain_units': includeChildDomainUnits!.toTfJson(),
+    'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
 }
 
@@ -506,7 +493,7 @@ final class DatazonePolicyGrantPrincipalUser {
   allUsersGrantFilter;
 
   Map<String, Object?> encode() => {
-    if (userIdentifier != null) 'user_identifier': userIdentifier!.toTfJson(),
+    'user_identifier': ?userIdentifier?.toTfJson(),
     if (allUsersGrantFilter != null)
       'all_users_grant_filter': [
         for (final e in allUsersGrantFilter!) e.encode(),
@@ -547,7 +534,7 @@ final class AwsDatazonePolicyGrant extends Resource {
            'entity_identifier': entityIdentifier,
            'entity_type': entityType,
            'policy_type': policyType,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (detail != null)
              'detail': TfArg.literal([for (final e in detail) e.encode()]),
            if (principal != null)

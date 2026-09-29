@@ -47,8 +47,8 @@ final class AwsControltowerBaseline extends Resource {
          argMap: {
            'baseline_identifier': baselineIdentifier,
            'baseline_version': baselineVersion,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'target_identifier': targetIdentifier,
            if (parameters != null)
              'parameters': TfArg.literal([

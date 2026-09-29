@@ -54,32 +54,24 @@ final class AwsAmplifyBranch extends Resource {
          terraformType: tfType,
          argMap: {
            'app_id': appId,
-           if (backendEnvironmentArn != null)
-             'backend_environment_arn': backendEnvironmentArn,
-           if (basicAuthCredentials != null)
-             'basic_auth_credentials': basicAuthCredentials,
+           'backend_environment_arn': ?backendEnvironmentArn,
+           'basic_auth_credentials': ?basicAuthCredentials,
            'branch_name': branchName,
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
-           if (enableAutoBuild != null) 'enable_auto_build': enableAutoBuild,
-           if (enableBasicAuth != null) 'enable_basic_auth': enableBasicAuth,
-           if (enableNotification != null)
-             'enable_notification': enableNotification,
-           if (enablePerformanceMode != null)
-             'enable_performance_mode': enablePerformanceMode,
-           if (enablePullRequestPreview != null)
-             'enable_pull_request_preview': enablePullRequestPreview,
-           if (enableSkewProtection != null)
-             'enable_skew_protection': enableSkewProtection,
-           if (environmentVariables != null)
-             'environment_variables': environmentVariables,
-           if (framework != null) 'framework': framework,
-           if (pullRequestEnvironmentName != null)
-             'pull_request_environment_name': pullRequestEnvironmentName,
-           if (region != null) 'region': region,
-           if (stage != null) 'stage': stage,
-           if (tags != null) 'tags': tags,
-           if (ttl != null) 'ttl': ttl,
+           'description': ?description,
+           'display_name': ?displayName,
+           'enable_auto_build': ?enableAutoBuild,
+           'enable_basic_auth': ?enableBasicAuth,
+           'enable_notification': ?enableNotification,
+           'enable_performance_mode': ?enablePerformanceMode,
+           'enable_pull_request_preview': ?enablePullRequestPreview,
+           'enable_skew_protection': ?enableSkewProtection,
+           'environment_variables': ?environmentVariables,
+           'framework': ?framework,
+           'pull_request_environment_name': ?pullRequestEnvironmentName,
+           'region': ?region,
+           'stage': ?stage,
+           'tags': ?tags,
+           'ttl': ?ttl,
          },
        );
 

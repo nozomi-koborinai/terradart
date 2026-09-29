@@ -27,8 +27,8 @@ final class DataKmsSecretSecret {
   final TfArg<String> payload;
 
   Map<String, Object?> encode() => {
-    if (context != null) 'context': context!.toTfJson(),
-    if (grantTokens != null) 'grant_tokens': grantTokens!.toTfJson(),
+    'context': ?context?.toTfJson(),
+    'grant_tokens': ?grantTokens?.toTfJson(),
     'name': name.toTfJson(),
     'payload': payload.toTfJson(),
   };
@@ -47,7 +47,7 @@ final class DataAwsKmsSecret extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'secret': TfArg.literal([for (final e in secret) e.encode()]),
          },
        );

@@ -39,14 +39,14 @@ final class AwsDmsEventSubscription extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'event_categories': eventCategories,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'sns_topic_arn': snsTopicArn.encodeAs('arn'),
-           if (sourceIds != null) 'source_ids': sourceIds,
+           'source_ids': ?sourceIds,
            'source_type': sourceType,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

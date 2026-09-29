@@ -43,14 +43,12 @@ final class PagesProjectBuildConfig {
   final TfArg<String>? webAnalyticsToken;
 
   Map<String, Object?> encode() => {
-    if (buildCaching != null) 'build_caching': buildCaching!.toTfJson(),
-    if (buildCommand != null) 'build_command': buildCommand!.toTfJson(),
-    if (destinationDir != null) 'destination_dir': destinationDir!.toTfJson(),
-    if (rootDir != null) 'root_dir': rootDir!.toTfJson(),
-    if (webAnalyticsTag != null)
-      'web_analytics_tag': webAnalyticsTag!.toTfJson(),
-    if (webAnalyticsToken != null)
-      'web_analytics_token': webAnalyticsToken!.toTfJson(),
+    'build_caching': ?buildCaching?.toTfJson(),
+    'build_command': ?buildCommand?.toTfJson(),
+    'destination_dir': ?destinationDir?.toTfJson(),
+    'root_dir': ?rootDir?.toTfJson(),
+    'web_analytics_tag': ?webAnalyticsTag?.toTfJson(),
+    'web_analytics_token': ?webAnalyticsToken?.toTfJson(),
   };
 }
 
@@ -65,8 +63,8 @@ final class PagesProjectDeploymentConfigs {
   final PagesProjectDeploymentConfigsProduction? production;
 
   Map<String, Object?> encode() => {
-    if (preview != null) 'preview': preview!.encode(),
-    if (production != null) 'production': production!.encode(),
+    'preview': ?preview?.encode(),
+    'production': ?production?.encode(),
   };
 }
 
@@ -158,19 +156,14 @@ final class PagesProjectDeploymentConfigsPreview {
   vectorizeBindings;
 
   Map<String, Object?> encode() => {
-    if (alwaysUseLatestCompatibilityDate != null)
-      'always_use_latest_compatibility_date': alwaysUseLatestCompatibilityDate!
-          .toTfJson(),
-    if (buildImageMajorVersion != null)
-      'build_image_major_version': buildImageMajorVersion!.toTfJson(),
-    if (compatibilityDate != null)
-      'compatibility_date': compatibilityDate!.toTfJson(),
-    if (compatibilityFlags != null)
-      'compatibility_flags': compatibilityFlags!.toTfJson(),
-    if (failOpen != null) 'fail_open': failOpen!.toTfJson(),
-    if (usageModel != null) 'usage_model': usageModel!.toTfJson(),
-    if (wranglerConfigHash != null)
-      'wrangler_config_hash': wranglerConfigHash!.toTfJson(),
+    'always_use_latest_compatibility_date': ?alwaysUseLatestCompatibilityDate
+        ?.toTfJson(),
+    'build_image_major_version': ?buildImageMajorVersion?.toTfJson(),
+    'compatibility_date': ?compatibilityDate?.toTfJson(),
+    'compatibility_flags': ?compatibilityFlags?.toTfJson(),
+    'fail_open': ?failOpen?.toTfJson(),
+    'usage_model': ?usageModel?.toTfJson(),
+    'wrangler_config_hash': ?wranglerConfigHash?.toTfJson(),
     if (aiBindings != null)
       'ai_bindings': {
         for (final e in aiBindings!.entries) e.key: e.value.encode(),
@@ -201,12 +194,12 @@ final class PagesProjectDeploymentConfigsPreview {
       'kv_namespaces': {
         for (final e in kvNamespaces!.entries) e.key: e.value.encode(),
       },
-    if (limits != null) 'limits': limits!.encode(),
+    'limits': ?limits?.encode(),
     if (mtlsCertificates != null)
       'mtls_certificates': {
         for (final e in mtlsCertificates!.entries) e.key: e.value.encode(),
       },
-    if (placement != null) 'placement': placement!.encode(),
+    'placement': ?placement?.encode(),
     if (queueProducers != null)
       'queue_producers': {
         for (final e in queueProducers!.entries) e.key: e.value.encode(),
@@ -381,7 +374,7 @@ final class PagesProjectDeploymentConfigsPreviewPlacement {
 
   final TfArg<String>? mode;
 
-  Map<String, Object?> encode() => {if (mode != null) 'mode': mode!.toTfJson()};
+  Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// Typed helper for the `deployment_configs.preview.queue_producers` block of
@@ -411,7 +404,7 @@ final class PagesProjectDeploymentConfigsPreviewR2Buckets {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (jurisdiction != null) 'jurisdiction': jurisdiction!.toTfJson(),
+    'jurisdiction': ?jurisdiction?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -433,8 +426,8 @@ final class PagesProjectDeploymentConfigsPreviewServices {
   final TfArg<String> service;
 
   Map<String, Object?> encode() => {
-    if (entrypoint != null) 'entrypoint': entrypoint!.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
+    'entrypoint': ?entrypoint?.toTfJson(),
+    'environment': ?environment?.toTfJson(),
     'service': service.toTfJson(),
   };
 }
@@ -542,19 +535,14 @@ final class PagesProjectDeploymentConfigsProduction {
   vectorizeBindings;
 
   Map<String, Object?> encode() => {
-    if (alwaysUseLatestCompatibilityDate != null)
-      'always_use_latest_compatibility_date': alwaysUseLatestCompatibilityDate!
-          .toTfJson(),
-    if (buildImageMajorVersion != null)
-      'build_image_major_version': buildImageMajorVersion!.toTfJson(),
-    if (compatibilityDate != null)
-      'compatibility_date': compatibilityDate!.toTfJson(),
-    if (compatibilityFlags != null)
-      'compatibility_flags': compatibilityFlags!.toTfJson(),
-    if (failOpen != null) 'fail_open': failOpen!.toTfJson(),
-    if (usageModel != null) 'usage_model': usageModel!.toTfJson(),
-    if (wranglerConfigHash != null)
-      'wrangler_config_hash': wranglerConfigHash!.toTfJson(),
+    'always_use_latest_compatibility_date': ?alwaysUseLatestCompatibilityDate
+        ?.toTfJson(),
+    'build_image_major_version': ?buildImageMajorVersion?.toTfJson(),
+    'compatibility_date': ?compatibilityDate?.toTfJson(),
+    'compatibility_flags': ?compatibilityFlags?.toTfJson(),
+    'fail_open': ?failOpen?.toTfJson(),
+    'usage_model': ?usageModel?.toTfJson(),
+    'wrangler_config_hash': ?wranglerConfigHash?.toTfJson(),
     if (aiBindings != null)
       'ai_bindings': {
         for (final e in aiBindings!.entries) e.key: e.value.encode(),
@@ -585,12 +573,12 @@ final class PagesProjectDeploymentConfigsProduction {
       'kv_namespaces': {
         for (final e in kvNamespaces!.entries) e.key: e.value.encode(),
       },
-    if (limits != null) 'limits': limits!.encode(),
+    'limits': ?limits?.encode(),
     if (mtlsCertificates != null)
       'mtls_certificates': {
         for (final e in mtlsCertificates!.entries) e.key: e.value.encode(),
       },
-    if (placement != null) 'placement': placement!.encode(),
+    'placement': ?placement?.encode(),
     if (queueProducers != null)
       'queue_producers': {
         for (final e in queueProducers!.entries) e.key: e.value.encode(),
@@ -767,7 +755,7 @@ final class PagesProjectDeploymentConfigsProductionPlacement {
 
   final TfArg<String>? mode;
 
-  Map<String, Object?> encode() => {if (mode != null) 'mode': mode!.toTfJson()};
+  Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// Typed helper for the `deployment_configs.production.queue_producers` block of
@@ -797,7 +785,7 @@ final class PagesProjectDeploymentConfigsProductionR2Buckets {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (jurisdiction != null) 'jurisdiction': jurisdiction!.toTfJson(),
+    'jurisdiction': ?jurisdiction?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -819,8 +807,8 @@ final class PagesProjectDeploymentConfigsProductionServices {
   final TfArg<String> service;
 
   Map<String, Object?> encode() => {
-    if (entrypoint != null) 'entrypoint': entrypoint!.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
+    'entrypoint': ?entrypoint?.toTfJson(),
+    'environment': ?environment?.toTfJson(),
     'service': service.toTfJson(),
   };
 }
@@ -912,27 +900,19 @@ final class PagesProjectSourceConfig {
   final TfArg<String>? repoName;
 
   Map<String, Object?> encode() => {
-    if (deploymentsEnabled != null)
-      'deployments_enabled': deploymentsEnabled!.toTfJson(),
-    if (owner != null) 'owner': owner!.toTfJson(),
-    if (ownerId != null) 'owner_id': ownerId!.toTfJson(),
-    if (pathExcludes != null) 'path_excludes': pathExcludes!.toTfJson(),
-    if (pathIncludes != null) 'path_includes': pathIncludes!.toTfJson(),
-    if (prCommentsEnabled != null)
-      'pr_comments_enabled': prCommentsEnabled!.toTfJson(),
-    if (previewBranchExcludes != null)
-      'preview_branch_excludes': previewBranchExcludes!.toTfJson(),
-    if (previewBranchIncludes != null)
-      'preview_branch_includes': previewBranchIncludes!.toTfJson(),
-    if (previewDeploymentSetting != null)
-      'preview_deployment_setting': previewDeploymentSetting!.toTfJson(),
-    if (productionBranch != null)
-      'production_branch': productionBranch!.toTfJson(),
-    if (productionDeploymentsEnabled != null)
-      'production_deployments_enabled': productionDeploymentsEnabled!
-          .toTfJson(),
-    if (repoId != null) 'repo_id': repoId!.toTfJson(),
-    if (repoName != null) 'repo_name': repoName!.toTfJson(),
+    'deployments_enabled': ?deploymentsEnabled?.toTfJson(),
+    'owner': ?owner?.toTfJson(),
+    'owner_id': ?ownerId?.toTfJson(),
+    'path_excludes': ?pathExcludes?.toTfJson(),
+    'path_includes': ?pathIncludes?.toTfJson(),
+    'pr_comments_enabled': ?prCommentsEnabled?.toTfJson(),
+    'preview_branch_excludes': ?previewBranchExcludes?.toTfJson(),
+    'preview_branch_includes': ?previewBranchIncludes?.toTfJson(),
+    'preview_deployment_setting': ?previewDeploymentSetting?.toTfJson(),
+    'production_branch': ?productionBranch?.toTfJson(),
+    'production_deployments_enabled': ?productionDeploymentsEnabled?.toTfJson(),
+    'repo_id': ?repoId?.toTfJson(),
+    'repo_name': ?repoName?.toTfJson(),
   };
 }
 

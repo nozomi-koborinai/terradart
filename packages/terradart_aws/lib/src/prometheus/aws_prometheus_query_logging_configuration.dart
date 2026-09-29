@@ -74,7 +74,7 @@ final class AwsPrometheusQueryLoggingConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'workspace_id': workspaceId,
            if (destination != null)
              'destination': TfArg.literal([

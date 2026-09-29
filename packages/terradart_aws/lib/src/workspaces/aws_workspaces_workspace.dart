@@ -31,16 +31,12 @@ final class WorkspacesWorkspaceWorkspaceProperties {
   final TfArg<num>? userVolumeSizeGib;
 
   Map<String, Object?> encode() => {
-    if (computeTypeName != null)
-      'compute_type_name': computeTypeName!.toTfJson(),
-    if (rootVolumeSizeGib != null)
-      'root_volume_size_gib': rootVolumeSizeGib!.toTfJson(),
-    if (runningMode != null) 'running_mode': runningMode!.toTfJson(),
-    if (runningModeAutoStopTimeoutInMinutes != null)
-      'running_mode_auto_stop_timeout_in_minutes':
-          runningModeAutoStopTimeoutInMinutes!.toTfJson(),
-    if (userVolumeSizeGib != null)
-      'user_volume_size_gib': userVolumeSizeGib!.toTfJson(),
+    'compute_type_name': ?computeTypeName?.toTfJson(),
+    'root_volume_size_gib': ?rootVolumeSizeGib?.toTfJson(),
+    'running_mode': ?runningMode?.toTfJson(),
+    'running_mode_auto_stop_timeout_in_minutes':
+        ?runningModeAutoStopTimeoutInMinutes?.toTfJson(),
+    'user_volume_size_gib': ?userVolumeSizeGib?.toTfJson(),
   };
 }
 
@@ -113,15 +109,12 @@ final class AwsWorkspacesWorkspace extends Resource {
          argMap: {
            'bundle_id': bundleId,
            'directory_id': directoryId,
-           if (region != null) 'region': region,
-           if (rootVolumeEncryptionEnabled != null)
-             'root_volume_encryption_enabled': rootVolumeEncryptionEnabled,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'root_volume_encryption_enabled': ?rootVolumeEncryptionEnabled,
+           'tags': ?tags,
            'user_name': userName,
-           if (userVolumeEncryptionEnabled != null)
-             'user_volume_encryption_enabled': userVolumeEncryptionEnabled,
-           if (volumeEncryptionKey != null)
-             'volume_encryption_key': volumeEncryptionKey,
+           'user_volume_encryption_enabled': ?userVolumeEncryptionEnabled,
+           'volume_encryption_key': ?volumeEncryptionKey,
            if (workspaceProperties != null)
              'workspace_properties': TfArg.literal(
                workspaceProperties.encode(),

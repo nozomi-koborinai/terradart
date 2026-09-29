@@ -54,12 +54,11 @@ final class ServicecatalogProductProvisioningArtifactParameters {
   final TfArg<ServicecatalogProductProvisioningArtifactParametersType>? type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disableTemplateValidation != null)
-      'disable_template_validation': disableTemplateValidation!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disable_template_validation': ?disableTemplateValidation?.toTfJson(),
+    'name': ?name?.toTfJson(),
     ...template.encode(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -163,17 +162,16 @@ final class AwsServicecatalogProduct extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
-           if (description != null) 'description': description,
-           if (distributor != null) 'distributor': distributor,
+           'accept_language': ?acceptLanguage,
+           'description': ?description,
+           'distributor': ?distributor,
            'name': name,
            'owner': owner,
-           if (region != null) 'region': region,
-           if (supportDescription != null)
-             'support_description': supportDescription,
-           if (supportEmail != null) 'support_email': supportEmail,
-           if (supportUrl != null) 'support_url': supportUrl,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'support_description': ?supportDescription,
+           'support_email': ?supportEmail,
+           'support_url': ?supportUrl,
+           'tags': ?tags,
            'type': type,
            'provisioning_artifact_parameters': TfArg.literal(
              provisioningArtifactParameters.encode(),

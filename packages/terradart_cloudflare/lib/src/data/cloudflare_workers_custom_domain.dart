@@ -31,11 +31,11 @@ final class DataWorkersCustomDomainFilter {
   final TfArg<String>? zoneName;
 
   Map<String, Object?> encode() => {
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
-    if (zoneId != null) 'zone_id': zoneId!.toTfJson(),
-    if (zoneName != null) 'zone_name': zoneName!.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'service': ?service?.toTfJson(),
+    'zone_id': ?zoneId?.toTfJson(),
+    'zone_name': ?zoneName?.toTfJson(),
   };
 }
 
@@ -57,8 +57,8 @@ final class DataCloudflareWorkersCustomDomain extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (domainId != null) 'domain_id': domainId,
+           'account_id': ?accountId,
+           'domain_id': ?domainId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

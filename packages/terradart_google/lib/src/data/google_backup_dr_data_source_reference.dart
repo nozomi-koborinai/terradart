@@ -25,7 +25,7 @@ final class DataGoogleBackupDrDataSourceReference extends Data {
          argMap: {
            'data_source_reference_id': dataSourceReferenceId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

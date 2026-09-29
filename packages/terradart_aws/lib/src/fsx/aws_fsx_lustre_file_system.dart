@@ -81,7 +81,7 @@ final class FsxLustreFileSystemDataReadCacheConfiguration {
   sizingMode;
 
   Map<String, Object?> encode() => {
-    if (size != null) 'size': size!.toTfJson(),
+    'size': ?size?.toTfJson(),
     'sizing_mode': sizingMode.toTfJson(),
   };
 }
@@ -111,8 +111,8 @@ final class FsxLustreFileSystemLogConfiguration {
   final TfArg<FsxLustreFileSystemLogConfigurationLevel>? level;
 
   Map<String, Object?> encode() => {
-    if (destination != null) 'destination': destination!.toTfJson(),
-    if (level != null) 'level': level!.toTfJson(),
+    'destination': ?destination?.toTfJson(),
+    'level': ?level?.toTfJson(),
   };
 }
 
@@ -139,8 +139,8 @@ final class FsxLustreFileSystemMetadataConfiguration {
   final TfArg<FsxLustreFileSystemMetadataConfigurationMode>? mode;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
   };
 }
 
@@ -168,8 +168,8 @@ final class FsxLustreFileSystemRootSquashConfiguration {
   final TfArg<String>? rootSquash;
 
   Map<String, Object?> encode() => {
-    if (noSquashNids != null) 'no_squash_nids': noSquashNids!.toTfJson(),
-    if (rootSquash != null) 'root_squash': rootSquash!.toTfJson(),
+    'no_squash_nids': ?noSquashNids?.toTfJson(),
+    'root_squash': ?rootSquash?.toTfJson(),
   };
 }
 
@@ -215,41 +215,31 @@ final class AwsFsxLustreFileSystem extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoImportPolicy != null) 'auto_import_policy': autoImportPolicy,
-           if (automaticBackupRetentionDays != null)
-             'automatic_backup_retention_days': automaticBackupRetentionDays,
-           if (backupId != null) 'backup_id': backupId,
-           if (copyTagsToBackups != null)
-             'copy_tags_to_backups': copyTagsToBackups,
-           if (dailyAutomaticBackupStartTime != null)
-             'daily_automatic_backup_start_time': dailyAutomaticBackupStartTime,
-           if (dataCompressionType != null)
-             'data_compression_type': dataCompressionType,
-           if (deploymentType != null) 'deployment_type': deploymentType,
-           if (driveCacheType != null) 'drive_cache_type': driveCacheType,
-           if (efaEnabled != null) 'efa_enabled': efaEnabled,
-           if (exportPath != null) 'export_path': exportPath,
-           if (fileSystemTypeVersion != null)
-             'file_system_type_version': fileSystemTypeVersion,
-           if (finalBackupTags != null) 'final_backup_tags': finalBackupTags,
-           if (importPath != null) 'import_path': importPath,
-           if (importedFileChunkSize != null)
-             'imported_file_chunk_size': importedFileChunkSize,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (perUnitStorageThroughput != null)
-             'per_unit_storage_throughput': perUnitStorageThroughput,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (skipFinalBackup != null) 'skip_final_backup': skipFinalBackup,
-           if (storageCapacity != null) 'storage_capacity': storageCapacity,
-           if (storageType != null) 'storage_type': storageType,
+           'auto_import_policy': ?autoImportPolicy,
+           'automatic_backup_retention_days': ?automaticBackupRetentionDays,
+           'backup_id': ?backupId,
+           'copy_tags_to_backups': ?copyTagsToBackups,
+           'daily_automatic_backup_start_time': ?dailyAutomaticBackupStartTime,
+           'data_compression_type': ?dataCompressionType,
+           'deployment_type': ?deploymentType,
+           'drive_cache_type': ?driveCacheType,
+           'efa_enabled': ?efaEnabled,
+           'export_path': ?exportPath,
+           'file_system_type_version': ?fileSystemTypeVersion,
+           'final_backup_tags': ?finalBackupTags,
+           'import_path': ?importPath,
+           'imported_file_chunk_size': ?importedFileChunkSize,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'per_unit_storage_throughput': ?perUnitStorageThroughput,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'skip_final_backup': ?skipFinalBackup,
+           'storage_capacity': ?storageCapacity,
+           'storage_type': ?storageType,
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (throughputCapacity != null)
-             'throughput_capacity': throughputCapacity,
-           if (weeklyMaintenanceStartTime != null)
-             'weekly_maintenance_start_time': weeklyMaintenanceStartTime,
+           'tags': ?tags,
+           'throughput_capacity': ?throughputCapacity,
+           'weekly_maintenance_start_time': ?weeklyMaintenanceStartTime,
            if (dataReadCacheConfiguration != null)
              'data_read_cache_configuration': TfArg.literal(
                dataReadCacheConfiguration.encode(),

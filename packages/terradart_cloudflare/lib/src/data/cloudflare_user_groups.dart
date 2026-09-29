@@ -27,10 +27,10 @@ final class DataCloudflareUserGroups extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (fuzzyName != null) 'fuzzy_name': fuzzyName,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
+           'direction': ?direction,
+           'fuzzy_name': ?fuzzyName,
+           'max_items': ?maxItems,
+           'name': ?name,
          },
        );
 

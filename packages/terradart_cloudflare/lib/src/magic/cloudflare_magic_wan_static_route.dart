@@ -20,8 +20,8 @@ final class MagicWanStaticRouteScope {
   final TfArg<List<Object?>>? coloRegions;
 
   Map<String, Object?> encode() => {
-    if (coloNames != null) 'colo_names': coloNames!.toTfJson(),
-    if (coloRegions != null) 'colo_regions': coloRegions!.toTfJson(),
+    'colo_names': ?coloNames?.toTfJson(),
+    'colo_regions': ?coloRegions?.toTfJson(),
   };
 }
 
@@ -46,11 +46,11 @@ final class CloudflareMagicWanStaticRoute extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
+           'description': ?description,
            'nexthop': nexthop,
            'prefix': prefix,
            'priority': priority,
-           if (weight != null) 'weight': weight,
+           'weight': ?weight,
            if (scope != null) 'scope': TfArg.literal(scope.encode()),
          },
        );

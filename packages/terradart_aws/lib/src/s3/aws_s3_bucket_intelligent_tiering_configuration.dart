@@ -31,8 +31,8 @@ final class S3BucketIntelligentTieringConfigurationFilter {
   final TfArg<Map<String, String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -91,8 +91,8 @@ final class AwsS3BucketIntelligentTieringConfiguration extends Resource {
          argMap: {
            'bucket': bucket.encodeAs('id'),
            'name': name,
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
+           'region': ?region,
+           'status': ?status,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
            'tiering': TfArg.literal([for (final e in tiering) e.encode()]),
          },

@@ -844,8 +844,8 @@ final class GoogleComputeSecurityPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (description != null) 'description': description,
-           if (type != null) 'type': type,
+           'description': ?description,
+           'type': ?type,
            'rule': TfArg.literal(rules.map((r) => r.toArgMap()).toList()),
            if (adaptiveProtectionConfig != null)
              'adaptive_protection_config': TfArg.literal([
@@ -859,8 +859,8 @@ final class GoogleComputeSecurityPolicy extends Resource {
              'recaptcha_options_config': TfArg.literal([
                recaptchaOptionsConfig.toArgMap(),
              ]),
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

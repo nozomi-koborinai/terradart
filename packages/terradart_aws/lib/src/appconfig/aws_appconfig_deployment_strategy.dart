@@ -49,15 +49,14 @@ final class AwsAppconfigDeploymentStrategy extends Resource {
          terraformType: tfType,
          argMap: {
            'deployment_duration_in_minutes': deploymentDurationInMinutes,
-           if (description != null) 'description': description,
-           if (finalBakeTimeInMinutes != null)
-             'final_bake_time_in_minutes': finalBakeTimeInMinutes,
+           'description': ?description,
+           'final_bake_time_in_minutes': ?finalBakeTimeInMinutes,
            'growth_factor': growthFactor,
-           if (growthType != null) 'growth_type': growthType,
+           'growth_type': ?growthType,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'replicate_to': replicateTo,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

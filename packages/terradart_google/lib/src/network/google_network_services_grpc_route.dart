@@ -18,7 +18,7 @@ final class NetworkServicesGrpcRouteRules {
   final List<NetworkServicesGrpcRouteRulesMatches>? matches;
 
   Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.encode(),
+    'action': ?action?.encode(),
     if (matches != null) 'matches': [for (final e in matches!) e.encode()],
   };
 }
@@ -44,12 +44,11 @@ final class NetworkServicesGrpcRouteRulesAction {
   final NetworkServicesGrpcRouteRulesActionRetryPolicy? retryPolicy;
 
   Map<String, Object?> encode() => {
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
     if (destinations != null)
       'destinations': [for (final e in destinations!) e.encode()],
-    if (faultInjectionPolicy != null)
-      'fault_injection_policy': faultInjectionPolicy!.encode(),
-    if (retryPolicy != null) 'retry_policy': retryPolicy!.encode(),
+    'fault_injection_policy': ?faultInjectionPolicy?.encode(),
+    'retry_policy': ?retryPolicy?.encode(),
   };
 }
 
@@ -67,8 +66,8 @@ final class NetworkServicesGrpcRouteRulesActionDestinations {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -86,8 +85,8 @@ final class NetworkServicesGrpcRouteRulesActionFaultInjectionPolicy {
   final NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyDelay? delay;
 
   Map<String, Object?> encode() => {
-    if (abort != null) 'abort': abort!.encode(),
-    if (delay != null) 'delay': delay!.encode(),
+    'abort': ?abort?.encode(),
+    'delay': ?delay?.encode(),
   };
 }
 
@@ -105,8 +104,8 @@ final class NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyAbort {
   final TfArg<num>? percentage;
 
   Map<String, Object?> encode() => {
-    if (httpStatus != null) 'http_status': httpStatus!.toTfJson(),
-    if (percentage != null) 'percentage': percentage!.toTfJson(),
+    'http_status': ?httpStatus?.toTfJson(),
+    'percentage': ?percentage?.toTfJson(),
   };
 }
 
@@ -124,8 +123,8 @@ final class NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyDelay {
   final TfArg<num>? percentage;
 
   Map<String, Object?> encode() => {
-    if (fixedDelay != null) 'fixed_delay': fixedDelay!.toTfJson(),
-    if (percentage != null) 'percentage': percentage!.toTfJson(),
+    'fixed_delay': ?fixedDelay?.toTfJson(),
+    'percentage': ?percentage?.toTfJson(),
   };
 }
 
@@ -146,7 +145,7 @@ final class NetworkServicesGrpcRouteRulesActionRetryPolicy {
   retryConditions;
 
   Map<String, Object?> encode() => {
-    if (numRetries != null) 'num_retries': numRetries!.toTfJson(),
+    'num_retries': ?numRetries?.toTfJson(),
     if (retryConditions != null)
       'retry_conditions': [for (final e in retryConditions!) e.toTfJson()],
   };
@@ -181,7 +180,7 @@ final class NetworkServicesGrpcRouteRulesMatches {
 
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
-    if (method != null) 'method': method!.encode(),
+    'method': ?method?.encode(),
   };
 }
 
@@ -203,7 +202,7 @@ final class NetworkServicesGrpcRouteRulesMatchesHeaders {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -236,7 +235,7 @@ final class NetworkServicesGrpcRouteRulesMatchesMethod {
   final TfArg<String> grpcService;
 
   Map<String, Object?> encode() => {
-    if (caseSensitive != null) 'case_sensitive': caseSensitive!.toTfJson(),
+    'case_sensitive': ?caseSensitive?.toTfJson(),
     'grpc_method': grpcMethod.toTfJson(),
     'grpc_service': grpcService.toTfJson(),
   };
@@ -276,13 +275,13 @@ final class GoogleNetworkServicesGrpcRoute extends Resource {
            'name': name,
            'hostnames': hostnames,
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
-           if (meshes != null) 'meshes': meshes,
-           if (gateways != null) 'gateways': gateways,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'meshes': ?meshes,
+           'gateways': ?gateways,
+           'location': ?location,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

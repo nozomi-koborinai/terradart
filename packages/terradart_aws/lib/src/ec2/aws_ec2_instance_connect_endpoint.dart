@@ -39,13 +39,12 @@ final class AwsEc2InstanceConnectEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (preserveClientIp != null) 'preserve_client_ip': preserveClientIp,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
+           'ip_address_type': ?ipAddressType,
+           'preserve_client_ip': ?preserveClientIp,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
            'subnet_id': subnetId.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

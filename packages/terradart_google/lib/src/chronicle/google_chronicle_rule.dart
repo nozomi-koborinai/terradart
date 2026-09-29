@@ -44,14 +44,14 @@ final class GoogleChronicleRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (text != null) 'text': text,
+           'text': ?text,
            'location': location,
            'instance': instance,
-           if (ruleId != null) 'rule_id': ruleId,
-           if (scope != null) 'scope': scope,
-           if (etag != null) 'etag': etag,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'rule_id': ?ruleId,
+           'scope': ?scope,
+           'etag': ?etag,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -48,14 +48,13 @@ final class AppwriteStorageBucket extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (enabled != null) 'enabled': enabled,
-           if (fileSecurity != null) 'file_security': fileSecurity,
-           if (maximumFileSize != null) 'maximum_file_size': maximumFileSize,
-           if (allowedFileExtensions != null)
-             'allowed_file_extensions': allowedFileExtensions,
-           if (compression != null) 'compression': compression,
-           if (encryption != null) 'encryption': encryption,
-           if (antivirus != null) 'antivirus': antivirus,
+           'enabled': ?enabled,
+           'file_security': ?fileSecurity,
+           'maximum_file_size': ?maximumFileSize,
+           'allowed_file_extensions': ?allowedFileExtensions,
+           'compression': ?compression,
+           'encryption': ?encryption,
+           'antivirus': ?antivirus,
          },
        );
 

@@ -70,27 +70,21 @@ final class AwsKmsKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bypassPolicyLockoutSafetyCheck != null)
-             'bypass_policy_lockout_safety_check':
-                 bypassPolicyLockoutSafetyCheck,
-           if (customKeyStoreId != null)
-             'custom_key_store_id': customKeyStoreId,
-           if (customerMasterKeySpec != null)
-             'customer_master_key_spec': customerMasterKeySpec,
-           if (deletionWindowInDays != null)
-             'deletion_window_in_days': deletionWindowInDays,
-           if (description != null) 'description': description,
-           if (enableKeyRotation != null)
-             'enable_key_rotation': enableKeyRotation,
-           if (isEnabled != null) 'is_enabled': isEnabled,
-           if (keyUsage != null) 'key_usage': keyUsage,
-           if (multiRegion != null) 'multi_region': multiRegion,
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
-           if (rotationPeriodInDays != null)
-             'rotation_period_in_days': rotationPeriodInDays,
-           if (tags != null) 'tags': tags,
-           if (xksKeyId != null) 'xks_key_id': xksKeyId,
+           'bypass_policy_lockout_safety_check':
+               ?bypassPolicyLockoutSafetyCheck,
+           'custom_key_store_id': ?customKeyStoreId,
+           'customer_master_key_spec': ?customerMasterKeySpec,
+           'deletion_window_in_days': ?deletionWindowInDays,
+           'description': ?description,
+           'enable_key_rotation': ?enableKeyRotation,
+           'is_enabled': ?isEnabled,
+           'key_usage': ?keyUsage,
+           'multi_region': ?multiRegion,
+           'policy': ?policy,
+           'region': ?region,
+           'rotation_period_in_days': ?rotationPeriodInDays,
+           'tags': ?tags,
+           'xks_key_id': ?xksKeyId,
          },
        );
 

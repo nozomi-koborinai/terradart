@@ -36,7 +36,7 @@ final class AwsInspector2Enabler extends Resource {
          terraformType: tfType,
          argMap: {
            'account_ids': accountIds,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_types': TfArg.literal([
              for (final e in resourceTypes) e.toTfJson(),
            ]),

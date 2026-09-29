@@ -38,10 +38,9 @@ final class DataAwsInstances extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (instanceStateNames != null)
-             'instance_state_names': instanceStateNames,
-           if (instanceTags != null) 'instance_tags': instanceTags,
-           if (region != null) 'region': region,
+           'instance_state_names': ?instanceStateNames,
+           'instance_tags': ?instanceTags,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

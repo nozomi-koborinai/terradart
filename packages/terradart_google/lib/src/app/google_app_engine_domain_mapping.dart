@@ -32,7 +32,7 @@ final class AppEngineDomainMappingSslSettings {
   sslManagementType;
 
   Map<String, Object?> encode() => {
-    if (certificateId != null) 'certificate_id': certificateId!.toTfJson(),
+    'certificate_id': ?certificateId?.toTfJson(),
     'ssl_management_type': sslManagementType.toTfJson(),
   };
 }
@@ -69,11 +69,11 @@ final class GoogleAppEngineDomainMapping extends Resource {
          terraformType: tfType,
          argMap: {
            'domain_name': domainName,
-           if (overrideStrategy != null) 'override_strategy': overrideStrategy,
+           'override_strategy': ?overrideStrategy,
            if (sslSettings != null)
              'ssl_settings': TfArg.literal(sslSettings.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

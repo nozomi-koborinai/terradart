@@ -25,14 +25,12 @@ final class AwsGlueWorkflow extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultRunProperties != null)
-             'default_run_properties': defaultRunProperties,
-           if (description != null) 'description': description,
-           if (maxConcurrentRuns != null)
-             'max_concurrent_runs': maxConcurrentRuns,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'default_run_properties': ?defaultRunProperties,
+           'description': ?description,
+           'max_concurrent_runs': ?maxConcurrentRuns,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

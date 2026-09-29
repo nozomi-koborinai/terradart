@@ -32,10 +32,10 @@ final class AppwriteProjectKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (expire != null) 'expire': expire,
+           'expire': ?expire,
            'name': name,
-           if (organizationId != null) 'organization_id': organizationId,
-           if (projectId != null) 'project_id': projectId,
+           'organization_id': ?organizationId,
+           'project_id': ?projectId,
            'scopes': scopes,
          },
        );

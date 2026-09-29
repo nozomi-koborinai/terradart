@@ -20,8 +20,8 @@ final class ZeroTrustDlpCustomProfileContextAwareness {
   final ZeroTrustDlpCustomProfileContextAwarenessSkip? skip;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (skip != null) 'skip': skip!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'skip': ?skip?.encode(),
   };
 }
 
@@ -33,9 +33,7 @@ final class ZeroTrustDlpCustomProfileContextAwarenessSkip {
 
   final TfArg<bool>? files;
 
-  Map<String, Object?> encode() => {
-    if (files != null) 'files': files!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'files': ?files?.toTfJson()};
 }
 
 /// Typed helper for the `entries` block of
@@ -61,9 +59,9 @@ final class ZeroTrustDlpCustomProfileEntries {
   final ZeroTrustDlpCustomProfileEntriesPattern pattern;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (entryId != null) 'entry_id': entryId!.toTfJson(),
+    'entry_id': ?entryId?.toTfJson(),
     'name': name.toTfJson(),
     'pattern': pattern.encode(),
   };
@@ -84,7 +82,7 @@ final class ZeroTrustDlpCustomProfileEntriesPattern {
 
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
-    if (validation != null) 'validation': validation!.toTfJson(),
+    'validation': ?validation?.toTfJson(),
   };
 }
 
@@ -184,16 +182,14 @@ final class CloudflareZeroTrustDlpCustomProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (aiContextEnabled != null) 'ai_context_enabled': aiContextEnabled,
-           if (allowedMatchCount != null)
-             'allowed_match_count': allowedMatchCount,
-           if (confidenceThreshold != null)
-             'confidence_threshold': confidenceThreshold,
-           if (dataClasses != null) 'data_classes': dataClasses,
-           if (dataTags != null) 'data_tags': dataTags,
-           if (description != null) 'description': description,
+           'ai_context_enabled': ?aiContextEnabled,
+           'allowed_match_count': ?allowedMatchCount,
+           'confidence_threshold': ?confidenceThreshold,
+           'data_classes': ?dataClasses,
+           'data_tags': ?dataTags,
+           'description': ?description,
            'name': name,
-           if (ocrEnabled != null) 'ocr_enabled': ocrEnabled,
+           'ocr_enabled': ?ocrEnabled,
            if (contextAwareness != null)
              'context_awareness': TfArg.literal(contextAwareness.encode()),
            if (entries != null)

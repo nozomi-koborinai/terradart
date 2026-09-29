@@ -29,15 +29,12 @@ final class AwsLakeformationResource extends Resource {
          terraformType: tfType,
          argMap: {
            'arn': arn,
-           if (hybridAccessEnabled != null)
-             'hybrid_access_enabled': hybridAccessEnabled,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
-           if (useServiceLinkedRole != null)
-             'use_service_linked_role': useServiceLinkedRole,
-           if (withFederation != null) 'with_federation': withFederation,
-           if (withPrivilegedAccess != null)
-             'with_privileged_access': withPrivilegedAccess,
+           'hybrid_access_enabled': ?hybridAccessEnabled,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
+           'use_service_linked_role': ?useServiceLinkedRole,
+           'with_federation': ?withFederation,
+           'with_privileged_access': ?withPrivilegedAccess,
          },
        );
 

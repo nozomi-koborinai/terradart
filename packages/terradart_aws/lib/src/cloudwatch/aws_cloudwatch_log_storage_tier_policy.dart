@@ -34,10 +34,7 @@ final class AwsCloudwatchLogStorageTierPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'storage_tier': storageTier,
-         },
+         argMap: {'region': ?region, 'storage_tier': storageTier},
        );
 
   @override

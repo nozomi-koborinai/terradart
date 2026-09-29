@@ -34,7 +34,7 @@ final class GoogleSccV2OrganizationSourceIamBinding extends Resource {
            'organization': organization,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

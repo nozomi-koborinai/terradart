@@ -36,9 +36,8 @@ final class GoogleContactCenterInsightsQaScorecardRevision extends Resource {
          argMap: {
            'location': location,
            'qa_scorecard': qaScorecard,
-           if (qaScorecardRevisionId != null)
-             'qa_scorecard_revision_id': qaScorecardRevisionId,
-           if (project != null) 'project': project,
+           'qa_scorecard_revision_id': ?qaScorecardRevisionId,
+           'project': ?project,
          },
        );
 

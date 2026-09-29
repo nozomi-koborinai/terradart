@@ -15,9 +15,7 @@ final class VertexAiMetadataStoreEncryptionSpec {
 
   final TfArg<String>? kmsKeyName;
 
-  Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'kms_key_name': ?kmsKeyName?.toTfJson()};
 }
 
 /// Factory wrapper for `google_vertex_ai_metadata_store`.
@@ -43,11 +41,11 @@ final class GoogleVertexAiMetadataStore extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (name != null) 'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'name': ?name,
+           'project': ?project,
+           'region': ?region,
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),
          },

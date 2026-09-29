@@ -49,14 +49,11 @@ final class OpensearchDomainAdvancedSecurityOptions {
   masterUserOptions;
 
   Map<String, Object?> encode() => {
-    if (anonymousAuthEnabled != null)
-      'anonymous_auth_enabled': anonymousAuthEnabled!.toTfJson(),
+    'anonymous_auth_enabled': ?anonymousAuthEnabled?.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (internalUserDatabaseEnabled != null)
-      'internal_user_database_enabled': internalUserDatabaseEnabled!.toTfJson(),
-    if (jwtOptions != null) 'jwt_options': jwtOptions!.encode(),
-    if (masterUserOptions != null)
-      'master_user_options': masterUserOptions!.encode(),
+    'internal_user_database_enabled': ?internalUserDatabaseEnabled?.toTfJson(),
+    'jwt_options': ?jwtOptions?.encode(),
+    'master_user_options': ?masterUserOptions?.encode(),
   };
 }
 
@@ -83,11 +80,11 @@ final class OpensearchDomainAdvancedSecurityOptionsJwtOptions {
   final TfArg<String>? subjectKey;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (jwksUrl != null) 'jwks_url': jwksUrl!.toTfJson(),
-    if (publicKey != null) 'public_key': publicKey!.toTfJson(),
-    if (rolesKey != null) 'roles_key': rolesKey!.toTfJson(),
-    if (subjectKey != null) 'subject_key': subjectKey!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'jwks_url': ?jwksUrl?.toTfJson(),
+    'public_key': ?publicKey?.toTfJson(),
+    'roles_key': ?rolesKey?.toTfJson(),
+    'subject_key': ?subjectKey?.toTfJson(),
   };
 }
 
@@ -108,10 +105,9 @@ final class OpensearchDomainAdvancedSecurityOptionsMasterUserOptions {
   final TfArg<String>? masterUserPassword;
 
   Map<String, Object?> encode() => {
-    if (masterUserArn != null) 'master_user_arn': masterUserArn!.toTfJson(),
-    if (masterUserName != null) 'master_user_name': masterUserName!.toTfJson(),
-    if (masterUserPassword != null)
-      'master_user_password': masterUserPassword!.toTfJson(),
+    'master_user_arn': ?masterUserArn?.toTfJson(),
+    'master_user_name': ?masterUserName?.toTfJson(),
+    'master_user_password': ?masterUserPassword?.toTfJson(),
   };
 }
 
@@ -134,12 +130,10 @@ final class OpensearchDomainAimlOptions {
   serverlessVectorAcceleration;
 
   Map<String, Object?> encode() => {
-    if (naturalLanguageQueryGenerationOptions != null)
-      'natural_language_query_generation_options':
-          naturalLanguageQueryGenerationOptions!.encode(),
-    if (s3VectorsEngine != null) 's3_vectors_engine': s3VectorsEngine!.encode(),
-    if (serverlessVectorAcceleration != null)
-      'serverless_vector_acceleration': serverlessVectorAcceleration!.encode(),
+    'natural_language_query_generation_options':
+        ?naturalLanguageQueryGenerationOptions?.encode(),
+    's3_vectors_engine': ?s3VectorsEngine?.encode(),
+    'serverless_vector_acceleration': ?serverlessVectorAcceleration?.encode(),
   };
 }
 
@@ -156,9 +150,7 @@ final class OpensearchDomainAimlOptionsNaturalLanguageQueryGenerationOptions {
   >?
   desiredState;
 
-  Map<String, Object?> encode() => {
-    if (desiredState != null) 'desired_state': desiredState!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'desired_state': ?desiredState?.toTfJson()};
 }
 
 /// `desired_state` — derived from the provider schema description.
@@ -182,9 +174,7 @@ final class OpensearchDomainAimlOptionsS3VectorsEngine {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `aiml_options.serverless_vector_acceleration` block of
@@ -195,9 +185,7 @@ final class OpensearchDomainAimlOptionsServerlessVectorAcceleration {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `auto_tune_options` block of
@@ -223,10 +211,8 @@ final class OpensearchDomainAutoTuneOptions {
 
   Map<String, Object?> encode() => {
     'desired_state': desiredState.toTfJson(),
-    if (rollbackOnDisable != null)
-      'rollback_on_disable': rollbackOnDisable!.toTfJson(),
-    if (useOffPeakWindow != null)
-      'use_off_peak_window': useOffPeakWindow!.toTfJson(),
+    'rollback_on_disable': ?rollbackOnDisable?.toTfJson(),
+    'use_off_peak_window': ?useOffPeakWindow?.toTfJson(),
     if (maintenanceSchedule != null)
       'maintenance_schedule': [
         for (final e in maintenanceSchedule!) e.encode(),
@@ -356,27 +342,20 @@ final class OpensearchDomainClusterConfig {
   final OpensearchDomainClusterConfigZoneAwarenessConfig? zoneAwarenessConfig;
 
   Map<String, Object?> encode() => {
-    if (dedicatedMasterCount != null)
-      'dedicated_master_count': dedicatedMasterCount!.toTfJson(),
-    if (dedicatedMasterEnabled != null)
-      'dedicated_master_enabled': dedicatedMasterEnabled!.toTfJson(),
-    if (dedicatedMasterType != null)
-      'dedicated_master_type': dedicatedMasterType!.toTfJson(),
-    if (instanceCount != null) 'instance_count': instanceCount!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (multiAzWithStandbyEnabled != null)
-      'multi_az_with_standby_enabled': multiAzWithStandbyEnabled!.toTfJson(),
-    if (warmCount != null) 'warm_count': warmCount!.toTfJson(),
-    if (warmEnabled != null) 'warm_enabled': warmEnabled!.toTfJson(),
-    if (warmType != null) 'warm_type': warmType!.toTfJson(),
-    if (zoneAwarenessEnabled != null)
-      'zone_awareness_enabled': zoneAwarenessEnabled!.toTfJson(),
-    if (coldStorageOptions != null)
-      'cold_storage_options': coldStorageOptions!.encode(),
+    'dedicated_master_count': ?dedicatedMasterCount?.toTfJson(),
+    'dedicated_master_enabled': ?dedicatedMasterEnabled?.toTfJson(),
+    'dedicated_master_type': ?dedicatedMasterType?.toTfJson(),
+    'instance_count': ?instanceCount?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'multi_az_with_standby_enabled': ?multiAzWithStandbyEnabled?.toTfJson(),
+    'warm_count': ?warmCount?.toTfJson(),
+    'warm_enabled': ?warmEnabled?.toTfJson(),
+    'warm_type': ?warmType?.toTfJson(),
+    'zone_awareness_enabled': ?zoneAwarenessEnabled?.toTfJson(),
+    'cold_storage_options': ?coldStorageOptions?.encode(),
     if (nodeOptions != null)
       'node_options': [for (final e in nodeOptions!) e.encode()],
-    if (zoneAwarenessConfig != null)
-      'zone_awareness_config': zoneAwarenessConfig!.encode(),
+    'zone_awareness_config': ?zoneAwarenessConfig?.encode(),
   };
 }
 
@@ -399,9 +378,7 @@ final class OpensearchDomainClusterConfigColdStorageOptions {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `cluster_config.node_options` block of
@@ -418,8 +395,8 @@ final class OpensearchDomainClusterConfigNodeOptions {
   final OpensearchDomainClusterConfigNodeOptionsNodeConfig? nodeConfig;
 
   Map<String, Object?> encode() => {
-    if (nodeType != null) 'node_type': nodeType!.toTfJson(),
-    if (nodeConfig != null) 'node_config': nodeConfig!.encode(),
+    'node_type': ?nodeType?.toTfJson(),
+    'node_config': ?nodeConfig?.encode(),
   };
 }
 
@@ -449,9 +426,9 @@ final class OpensearchDomainClusterConfigNodeOptionsNodeConfig {
   final TfArg<String>? type;
 
   Map<String, Object?> encode() => {
-    if (count != null) 'count': count!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'count': ?count?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -466,8 +443,7 @@ final class OpensearchDomainClusterConfigZoneAwarenessConfig {
   final TfArg<num>? availabilityZoneCount;
 
   Map<String, Object?> encode() => {
-    if (availabilityZoneCount != null)
-      'availability_zone_count': availabilityZoneCount!.toTfJson(),
+    'availability_zone_count': ?availabilityZoneCount?.toTfJson(),
   };
 }
 
@@ -491,7 +467,7 @@ final class OpensearchDomainCognitoOptions {
   final TfArg<String> userPoolId;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'identity_pool_id': identityPoolId.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'user_pool_id': userPoolId.toTfJson(),
@@ -551,15 +527,12 @@ final class OpensearchDomainDomainEndpointOptions {
   tlsSecurityPolicy;
 
   Map<String, Object?> encode() => {
-    if (customEndpoint != null) 'custom_endpoint': customEndpoint!.toTfJson(),
-    if (customEndpointCertificateArn != null)
-      'custom_endpoint_certificate_arn': customEndpointCertificateArn!
-          .toTfJson(),
-    if (customEndpointEnabled != null)
-      'custom_endpoint_enabled': customEndpointEnabled!.toTfJson(),
-    if (enforceHttps != null) 'enforce_https': enforceHttps!.toTfJson(),
-    if (tlsSecurityPolicy != null)
-      'tls_security_policy': tlsSecurityPolicy!.toTfJson(),
+    'custom_endpoint': ?customEndpoint?.toTfJson(),
+    'custom_endpoint_certificate_arn': ?customEndpointCertificateArn
+        ?.toTfJson(),
+    'custom_endpoint_enabled': ?customEndpointEnabled?.toTfJson(),
+    'enforce_https': ?enforceHttps?.toTfJson(),
+    'tls_security_policy': ?tlsSecurityPolicy?.toTfJson(),
   };
 }
 
@@ -602,10 +575,10 @@ final class OpensearchDomainEbsOptions {
 
   Map<String, Object?> encode() => {
     'ebs_enabled': ebsEnabled.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -633,7 +606,7 @@ final class OpensearchDomainEncryptAtRest {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -657,12 +630,10 @@ final class OpensearchDomainIdentityCenterOptions {
   final TfArg<OpensearchDomainIdentityCenterOptionsSubjectKey>? subjectKey;
 
   Map<String, Object?> encode() => {
-    if (enabledApiAccess != null)
-      'enabled_api_access': enabledApiAccess!.toTfJson(),
-    if (identityCenterInstanceArn != null)
-      'identity_center_instance_arn': identityCenterInstanceArn!.toTfJson(),
-    if (rolesKey != null) 'roles_key': rolesKey!.toTfJson(),
-    if (subjectKey != null) 'subject_key': subjectKey!.toTfJson(),
+    'enabled_api_access': ?enabledApiAccess?.toTfJson(),
+    'identity_center_instance_arn': ?identityCenterInstanceArn?.toTfJson(),
+    'roles_key': ?rolesKey?.toTfJson(),
+    'subject_key': ?subjectKey?.toTfJson(),
   };
 }
 
@@ -707,7 +678,7 @@ final class OpensearchDomainLogPublishingOptions {
     'cloudwatch_log_group_arn': cloudwatchLogGroupArn
         .encodeAs('arn')
         .toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'log_type': logType.toTfJson(),
   };
 }
@@ -749,8 +720,8 @@ final class OpensearchDomainOffPeakWindowOptions {
   final OpensearchDomainOffPeakWindowOptionsOffPeakWindow? offPeakWindow;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (offPeakWindow != null) 'off_peak_window': offPeakWindow!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'off_peak_window': ?offPeakWindow?.encode(),
   };
 }
 
@@ -766,7 +737,7 @@ final class OpensearchDomainOffPeakWindowOptionsOffPeakWindow {
   windowStartTime;
 
   Map<String, Object?> encode() => {
-    if (windowStartTime != null) 'window_start_time': windowStartTime!.encode(),
+    'window_start_time': ?windowStartTime?.encode(),
   };
 }
 
@@ -784,8 +755,8 @@ final class OpensearchDomainOffPeakWindowOptionsOffPeakWindowWindowStartTime {
   final TfArg<num>? minutes;
 
   Map<String, Object?> encode() => {
-    if (hours != null) 'hours': hours!.toTfJson(),
-    if (minutes != null) 'minutes': minutes!.toTfJson(),
+    'hours': ?hours?.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
   };
 }
 
@@ -813,8 +784,7 @@ final class OpensearchDomainSoftwareUpdateOptions {
   final TfArg<bool>? autoSoftwareUpdateEnabled;
 
   Map<String, Object?> encode() => {
-    if (autoSoftwareUpdateEnabled != null)
-      'auto_software_update_enabled': autoSoftwareUpdateEnabled!.toTfJson(),
+    'auto_software_update_enabled': ?autoSoftwareUpdateEnabled?.toTfJson(),
   };
 }
 
@@ -829,9 +799,8 @@ final class OpensearchDomainVpcOptions {
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
+    'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -871,13 +840,13 @@ final class AwsOpensearchDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessPolicies != null) 'access_policies': accessPolicies,
-           if (advancedOptions != null) 'advanced_options': advancedOptions,
+           'access_policies': ?accessPolicies,
+           'advanced_options': ?advancedOptions,
            'domain_name': domainName,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'engine_version': ?engineVersion,
+           'ip_address_type': ?ipAddressType,
+           'region': ?region,
+           'tags': ?tags,
            if (advancedSecurityOptions != null)
              'advanced_security_options': TfArg.literal(
                advancedSecurityOptions.encode(),

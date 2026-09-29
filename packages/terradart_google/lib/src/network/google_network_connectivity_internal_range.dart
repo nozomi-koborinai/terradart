@@ -112,15 +112,15 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
            'network': network.encodeAs('id'),
            'usage': usage,
            'peering': peering,
-           if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange,
-           if (prefixLength != null) 'prefix_length': prefixLength,
+           'ip_cidr_range': ?ipCidrRange,
+           'prefix_length': ?prefixLength,
            if (allocationOptions != null)
              'allocation_options': TfArg.literal([allocationOptions.encode()]),
-           if (description != null) 'description': description,
-           if (targetCidrRange != null) 'target_cidr_range': targetCidrRange,
-           if (overlaps != null) 'overlaps': overlaps,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'target_cidr_range': ?targetCidrRange,
+           'overlaps': ?overlaps,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

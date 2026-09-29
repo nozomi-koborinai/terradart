@@ -41,8 +41,8 @@ final class CloudflareWeb3Hostname extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (dnslink != null) 'dnslink': dnslink,
+           'description': ?description,
+           'dnslink': ?dnslink,
            'name': name,
            'target': target,
            'zone_id': zoneId.encodeAs('id'),

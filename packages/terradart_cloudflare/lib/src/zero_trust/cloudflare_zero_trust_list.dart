@@ -37,8 +37,8 @@ final class ZeroTrustListItems {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -61,7 +61,7 @@ final class CloudflareZeroTrustList extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
            'type': type,
            if (items != null)

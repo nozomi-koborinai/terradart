@@ -57,15 +57,13 @@ final class AwsDatasyncLocationEfs extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessPointArn != null) 'access_point_arn': accessPointArn,
+           'access_point_arn': ?accessPointArn,
            'efs_file_system_arn': efsFileSystemArn,
-           if (fileSystemAccessRoleArn != null)
-             'file_system_access_role_arn': fileSystemAccessRoleArn,
-           if (inTransitEncryption != null)
-             'in_transit_encryption': inTransitEncryption,
-           if (region != null) 'region': region,
-           if (subdirectory != null) 'subdirectory': subdirectory,
-           if (tags != null) 'tags': tags,
+           'file_system_access_role_arn': ?fileSystemAccessRoleArn,
+           'in_transit_encryption': ?inTransitEncryption,
+           'region': ?region,
+           'subdirectory': ?subdirectory,
+           'tags': ?tags,
            'ec2_config': TfArg.literal(ec2Config.encode()),
          },
        );

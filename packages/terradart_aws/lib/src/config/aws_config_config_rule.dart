@@ -28,7 +28,7 @@ final class ConfigConfigRuleEvaluationMode {
 
   final TfArg<ConfigConfigRuleEvaluationModeMode>? mode;
 
-  Map<String, Object?> encode() => {if (mode != null) 'mode': mode!.toTfJson()};
+  Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
@@ -61,12 +61,10 @@ final class ConfigConfigRuleScope {
   final TfArg<String>? tagValue;
 
   Map<String, Object?> encode() => {
-    if (complianceResourceId != null)
-      'compliance_resource_id': complianceResourceId!.toTfJson(),
-    if (complianceResourceTypes != null)
-      'compliance_resource_types': complianceResourceTypes!.toTfJson(),
-    if (tagKey != null) 'tag_key': tagKey!.toTfJson(),
-    if (tagValue != null) 'tag_value': tagValue!.toTfJson(),
+    'compliance_resource_id': ?complianceResourceId?.toTfJson(),
+    'compliance_resource_types': ?complianceResourceTypes?.toTfJson(),
+    'tag_key': ?tagKey?.toTfJson(),
+    'tag_value': ?tagValue?.toTfJson(),
   };
 }
 
@@ -91,10 +89,8 @@ final class ConfigConfigRuleSource {
 
   Map<String, Object?> encode() => {
     'owner': owner.toTfJson(),
-    if (sourceIdentifier != null)
-      'source_identifier': sourceIdentifier!.toTfJson(),
-    if (customPolicyDetails != null)
-      'custom_policy_details': customPolicyDetails!.encode(),
+    'source_identifier': ?sourceIdentifier?.toTfJson(),
+    'custom_policy_details': ?customPolicyDetails?.encode(),
     if (sourceDetail != null)
       'source_detail': [for (final e in sourceDetail!) e.encode()],
   };
@@ -128,8 +124,7 @@ final class ConfigConfigRuleSourceCustomPolicyDetails {
   final TfArg<String> policyText;
 
   Map<String, Object?> encode() => {
-    if (enableDebugLogDelivery != null)
-      'enable_debug_log_delivery': enableDebugLogDelivery!.toTfJson(),
+    'enable_debug_log_delivery': ?enableDebugLogDelivery?.toTfJson(),
     'policy_runtime': policyRuntime.toTfJson(),
     'policy_text': policyText.toTfJson(),
   };
@@ -153,10 +148,9 @@ final class ConfigConfigRuleSourceSourceDetail {
   final TfArg<ConfigConfigRuleSourceSourceDetailMessageType>? messageType;
 
   Map<String, Object?> encode() => {
-    if (eventSource != null) 'event_source': eventSource!.toTfJson(),
-    if (maximumExecutionFrequency != null)
-      'maximum_execution_frequency': maximumExecutionFrequency!.toTfJson(),
-    if (messageType != null) 'message_type': messageType!.toTfJson(),
+    'event_source': ?eventSource?.toTfJson(),
+    'maximum_execution_frequency': ?maximumExecutionFrequency?.toTfJson(),
+    'message_type': ?messageType?.toTfJson(),
   };
 }
 
@@ -223,13 +217,12 @@ final class AwsConfigConfigRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (inputParameters != null) 'input_parameters': inputParameters,
-           if (maximumExecutionFrequency != null)
-             'maximum_execution_frequency': maximumExecutionFrequency,
+           'description': ?description,
+           'input_parameters': ?inputParameters,
+           'maximum_execution_frequency': ?maximumExecutionFrequency,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (evaluationMode != null)
              'evaluation_mode': TfArg.literal([
                for (final e in evaluationMode) e.encode(),

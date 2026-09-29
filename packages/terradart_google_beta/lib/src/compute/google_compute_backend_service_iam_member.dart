@@ -24,7 +24,7 @@ final class ComputeBackendServiceIamMemberCondition {
   final TfArg<String> title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
     'title': title.toTfJson(),
   };
@@ -51,7 +51,7 @@ final class GoogleComputeBackendServiceIamMember extends Resource {
          argMap: {
            'member': member,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

@@ -23,10 +23,7 @@ final class DataCloudflareSsoConnector extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'sso_connector_id': ssoConnectorId,
-         },
+         argMap: {'account_id': ?accountId, 'sso_connector_id': ssoConnectorId},
        );
 
   @override

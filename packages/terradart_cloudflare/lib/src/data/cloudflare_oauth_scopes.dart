@@ -15,10 +15,7 @@ final class DataCloudflareOauthScopes extends Data {
     TfArg<num>? maxItems,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (maxItems != null) 'max_items': maxItems},
-       );
+  }) : super(terraformType: tfType, argMap: {'max_items': ?maxItems});
 
   @override
   Set<String> get sensitiveFields => _cloudflareOauthScopesSensitive;

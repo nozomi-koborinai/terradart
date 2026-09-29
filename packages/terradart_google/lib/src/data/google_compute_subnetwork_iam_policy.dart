@@ -24,8 +24,8 @@ final class DataGoogleComputeSubnetworkIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
            'subnetwork': subnetwork,
          },
        );

@@ -56,10 +56,10 @@ final class AwsGlacierVault extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessPolicy != null) 'access_policy': accessPolicy,
+           'access_policy': ?accessPolicy,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (notification != null)
              'notification': TfArg.literal(notification.encode()),
          },

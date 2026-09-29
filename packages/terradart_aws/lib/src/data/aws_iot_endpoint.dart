@@ -18,10 +18,7 @@ final class DataAwsIotEndpoint extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (endpointType != null) 'endpoint_type': endpointType,
-           if (region != null) 'region': region,
-         },
+         argMap: {'endpoint_type': ?endpointType, 'region': ?region},
        );
 
   @override

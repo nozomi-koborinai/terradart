@@ -28,7 +28,7 @@ final class GoogleStorageBucketIamMember extends Resource {
            'bucket': bucket.encodeAs('name'),
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

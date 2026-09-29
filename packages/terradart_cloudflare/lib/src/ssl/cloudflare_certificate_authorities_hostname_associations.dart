@@ -31,9 +31,8 @@ final class CloudflareCertificateAuthoritiesHostnameAssociations
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (hostnames != null) 'hostnames': hostnames,
-           if (mtlsCertificateId != null)
-             'mtls_certificate_id': mtlsCertificateId,
+           'hostnames': ?hostnames,
+           'mtls_certificate_id': ?mtlsCertificateId,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

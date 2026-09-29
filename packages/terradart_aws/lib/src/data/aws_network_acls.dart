@@ -38,9 +38,9 @@ final class DataAwsNetworkAcls extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
+           'region': ?region,
+           'tags': ?tags,
+           'vpc_id': ?vpcId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

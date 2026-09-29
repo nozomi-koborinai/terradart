@@ -117,8 +117,8 @@ final class AwsAppfabricAppAuthorization extends Resource {
            'app': app,
            'app_bundle_arn': appBundleArn,
            'auth_type': authType,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (credential != null)
              'credential': TfArg.literal([
                for (final e in credential) e.encode(),

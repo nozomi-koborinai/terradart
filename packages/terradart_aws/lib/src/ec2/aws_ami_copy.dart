@@ -52,17 +52,16 @@ final class AwsAmiCopy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deprecationTime != null) 'deprecation_time': deprecationTime,
-           if (description != null) 'description': description,
-           if (destinationOutpostArn != null)
-             'destination_outpost_arn': destinationOutpostArn,
-           if (encrypted != null) 'encrypted': encrypted,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'deprecation_time': ?deprecationTime,
+           'description': ?description,
+           'destination_outpost_arn': ?destinationOutpostArn,
+           'encrypted': ?encrypted,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'source_ami_id': sourceAmiId,
            'source_ami_region': sourceAmiRegion,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (ebsBlockDevice != null)
              'ebs_block_device': TfArg.literal([
                for (final e in ebsBlockDevice) e.encode(),

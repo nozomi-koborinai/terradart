@@ -698,24 +698,18 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
+           'region': ?region,
+           'description': ?description,
            'base_instance_name': baseInstanceName,
-           if (targetSize != null) 'target_size': targetSize,
-           if (targetStoppedSize != null)
-             'target_stopped_size': targetStoppedSize,
-           if (targetSuspendedSize != null)
-             'target_suspended_size': targetSuspendedSize,
-           if (listManagedInstancesResults != null)
-             'list_managed_instances_results': listManagedInstancesResults,
-           if (waitForInstances != null) 'wait_for_instances': waitForInstances,
-           if (waitForInstancesStatus != null)
-             'wait_for_instances_status': waitForInstancesStatus,
-           if (distributionPolicyZones != null)
-             'distribution_policy_zones': distributionPolicyZones,
-           if (distributionPolicyTargetShape != null)
-             'distribution_policy_target_shape': distributionPolicyTargetShape,
-           if (targetPools != null) 'target_pools': targetPools,
+           'target_size': ?targetSize,
+           'target_stopped_size': ?targetStoppedSize,
+           'target_suspended_size': ?targetSuspendedSize,
+           'list_managed_instances_results': ?listManagedInstancesResults,
+           'wait_for_instances': ?waitForInstances,
+           'wait_for_instances_status': ?waitForInstancesStatus,
+           'distribution_policy_zones': ?distributionPolicyZones,
+           'distribution_policy_target_shape': ?distributionPolicyTargetShape,
+           'target_pools': ?targetPools,
            'version': TfArg.literal(versions.map((v) => v.toArgMap()).toList()),
            if (namedPorts != null)
              'named_port': TfArg.literal(
@@ -759,7 +753,7 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
              'stateful_external_ip': TfArg.literal(
                statefulExternalIps.map((i) => i.toArgMap()).toList(),
              ),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

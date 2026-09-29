@@ -22,8 +22,8 @@ final class DataAwsCloudhsmV2Cluster extends Data {
          terraformType: tfType,
          argMap: {
            'cluster_id': clusterId,
-           if (clusterState != null) 'cluster_state': clusterState,
-           if (region != null) 'region': region,
+           'cluster_state': ?clusterState,
+           'region': ?region,
          },
        );
 

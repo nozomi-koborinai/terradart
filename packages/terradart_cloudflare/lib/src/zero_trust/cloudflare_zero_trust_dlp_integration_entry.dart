@@ -32,7 +32,7 @@ final class CloudflareZeroTrustDlpIntegrationEntry extends Resource {
            'account_id': accountId.encodeAs('id'),
            'enabled': enabled,
            'entry_id': entryId,
-           if (profileId != null) 'profile_id': profileId,
+           'profile_id': ?profileId,
          },
        );
 

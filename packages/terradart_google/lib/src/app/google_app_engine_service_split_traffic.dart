@@ -22,7 +22,7 @@ final class AppEngineServiceSplitTrafficSplit {
 
   Map<String, Object?> encode() => {
     'allocations': allocations.toTfJson(),
-    if (shardBy != null) 'shard_by': shardBy!.toTfJson(),
+    'shard_by': ?shardBy?.toTfJson(),
   };
 }
 
@@ -60,8 +60,8 @@ final class GoogleAppEngineServiceSplitTraffic extends Resource {
          argMap: {
            'service': service,
            'split': TfArg.literal(split.encode()),
-           if (migrateTraffic != null) 'migrate_traffic': migrateTraffic,
-           if (project != null) 'project': project,
+           'migrate_traffic': ?migrateTraffic,
+           'project': ?project,
          },
        );
 

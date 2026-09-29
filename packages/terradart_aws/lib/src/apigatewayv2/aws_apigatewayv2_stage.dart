@@ -49,15 +49,11 @@ final class Apigatewayv2StageDefaultRouteSettings {
   final TfArg<num>? throttlingRateLimit;
 
   Map<String, Object?> encode() => {
-    if (dataTraceEnabled != null)
-      'data_trace_enabled': dataTraceEnabled!.toTfJson(),
-    if (detailedMetricsEnabled != null)
-      'detailed_metrics_enabled': detailedMetricsEnabled!.toTfJson(),
-    if (loggingLevel != null) 'logging_level': loggingLevel!.toTfJson(),
-    if (throttlingBurstLimit != null)
-      'throttling_burst_limit': throttlingBurstLimit!.toTfJson(),
-    if (throttlingRateLimit != null)
-      'throttling_rate_limit': throttlingRateLimit!.toTfJson(),
+    'data_trace_enabled': ?dataTraceEnabled?.toTfJson(),
+    'detailed_metrics_enabled': ?detailedMetricsEnabled?.toTfJson(),
+    'logging_level': ?loggingLevel?.toTfJson(),
+    'throttling_burst_limit': ?throttlingBurstLimit?.toTfJson(),
+    'throttling_rate_limit': ?throttlingRateLimit?.toTfJson(),
   };
 }
 
@@ -99,16 +95,12 @@ final class Apigatewayv2StageRouteSettings {
   final TfArg<num>? throttlingRateLimit;
 
   Map<String, Object?> encode() => {
-    if (dataTraceEnabled != null)
-      'data_trace_enabled': dataTraceEnabled!.toTfJson(),
-    if (detailedMetricsEnabled != null)
-      'detailed_metrics_enabled': detailedMetricsEnabled!.toTfJson(),
-    if (loggingLevel != null) 'logging_level': loggingLevel!.toTfJson(),
+    'data_trace_enabled': ?dataTraceEnabled?.toTfJson(),
+    'detailed_metrics_enabled': ?detailedMetricsEnabled?.toTfJson(),
+    'logging_level': ?loggingLevel?.toTfJson(),
     'route_key': routeKey.toTfJson(),
-    if (throttlingBurstLimit != null)
-      'throttling_burst_limit': throttlingBurstLimit!.toTfJson(),
-    if (throttlingRateLimit != null)
-      'throttling_rate_limit': throttlingRateLimit!.toTfJson(),
+    'throttling_burst_limit': ?throttlingBurstLimit?.toTfJson(),
+    'throttling_rate_limit': ?throttlingRateLimit?.toTfJson(),
   };
 }
 
@@ -149,15 +141,14 @@ final class AwsApigatewayv2Stage extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (autoDeploy != null) 'auto_deploy': autoDeploy,
-           if (clientCertificateId != null)
-             'client_certificate_id': clientCertificateId,
-           if (deploymentId != null) 'deployment_id': deploymentId,
-           if (description != null) 'description': description,
+           'auto_deploy': ?autoDeploy,
+           'client_certificate_id': ?clientCertificateId,
+           'deployment_id': ?deploymentId,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (stageVariables != null) 'stage_variables': stageVariables,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'stage_variables': ?stageVariables,
+           'tags': ?tags,
            if (accessLogSettings != null)
              'access_log_settings': TfArg.literal(accessLogSettings.encode()),
            if (defaultRouteSettings != null)

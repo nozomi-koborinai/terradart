@@ -65,17 +65,15 @@ final class GuarddutyFilterFindingCriteriaCriterion {
   final TfArg<List<Object?>>? notMatches;
 
   Map<String, Object?> encode() => {
-    if (equals != null) 'equals': equals!.toTfJson(),
+    'equals': ?equals?.toTfJson(),
     'field': field.toTfJson(),
-    if (greaterThan != null) 'greater_than': greaterThan!.toTfJson(),
-    if (greaterThanOrEqual != null)
-      'greater_than_or_equal': greaterThanOrEqual!.toTfJson(),
-    if (lessThan != null) 'less_than': lessThan!.toTfJson(),
-    if (lessThanOrEqual != null)
-      'less_than_or_equal': lessThanOrEqual!.toTfJson(),
-    if (matches != null) 'matches': matches!.toTfJson(),
-    if (notEquals != null) 'not_equals': notEquals!.toTfJson(),
-    if (notMatches != null) 'not_matches': notMatches!.toTfJson(),
+    'greater_than': ?greaterThan?.toTfJson(),
+    'greater_than_or_equal': ?greaterThanOrEqual?.toTfJson(),
+    'less_than': ?lessThan?.toTfJson(),
+    'less_than_or_equal': ?lessThanOrEqual?.toTfJson(),
+    'matches': ?matches?.toTfJson(),
+    'not_equals': ?notEquals?.toTfJson(),
+    'not_matches': ?notMatches?.toTfJson(),
   };
 }
 
@@ -101,12 +99,12 @@ final class AwsGuarddutyFilter extends Resource {
          terraformType: tfType,
          argMap: {
            'action': action,
-           if (description != null) 'description': description,
+           'description': ?description,
            'detector_id': detectorId,
            'name': name,
            'rank': rank,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'finding_criteria': TfArg.literal(findingCriteria.encode()),
          },
        );

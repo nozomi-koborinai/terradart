@@ -42,17 +42,16 @@ final class GoogleDataplexEntry extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (entryGroupId != null) 'entry_group_id': entryGroupId,
-           if (entryId != null) 'entry_id': entryId,
+           'entry_group_id': ?entryGroupId,
+           'entry_id': ?entryId,
            'entry_type': entryType,
-           if (location != null) 'location': location,
-           if (fullyQualifiedName != null)
-             'fully_qualified_name': fullyQualifiedName,
-           if (parentEntry != null) 'parent_entry': parentEntry,
-           if (entrySource != null) 'entry_source': entrySource,
-           if (aspects != null) 'aspects': aspects,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'fully_qualified_name': ?fullyQualifiedName,
+           'parent_entry': ?parentEntry,
+           'entry_source': ?entrySource,
+           'aspects': ?aspects,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -48,13 +48,12 @@ final class AwsDirectoryServiceRegion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (desiredNumberOfDomainControllers != null)
-             'desired_number_of_domain_controllers':
-                 desiredNumberOfDomainControllers,
+           'desired_number_of_domain_controllers':
+               ?desiredNumberOfDomainControllers,
            'directory_id': directoryId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'region_name': regionName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'vpc_settings': TfArg.literal(vpcSettings.encode()),
          },
        );

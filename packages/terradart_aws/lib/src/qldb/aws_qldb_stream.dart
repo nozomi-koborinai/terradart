@@ -23,8 +23,7 @@ final class QldbStreamKinesisConfiguration {
   final TfArg<String> streamArn;
 
   Map<String, Object?> encode() => {
-    if (aggregationEnabled != null)
-      'aggregation_enabled': aggregationEnabled!.toTfJson(),
+    'aggregation_enabled': ?aggregationEnabled?.toTfJson(),
     'stream_arn': streamArn.toTfJson(),
   };
 }
@@ -50,13 +49,13 @@ final class AwsQldbStream extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (exclusiveEndTime != null) 'exclusive_end_time': exclusiveEndTime,
+           'exclusive_end_time': ?exclusiveEndTime,
            'inclusive_start_time': inclusiveStartTime,
            'ledger_name': ledgerName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
            'stream_name': streamName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'kinesis_configuration': TfArg.literal(
              kinesisConfiguration.encode(),
            ),

@@ -26,11 +26,11 @@ final class DataCloudflareZeroTrustAccessServiceTokens extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
-           if (search != null) 'search': search,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'name': ?name,
+           'search': ?search,
+           'zone_id': ?zoneId,
          },
        );
 

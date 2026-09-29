@@ -18,10 +18,7 @@ final class DataCloudflareSnippetsList extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (maxItems != null) 'max_items': maxItems,
-           'zone_id': zoneId,
-         },
+         argMap: {'max_items': ?maxItems, 'zone_id': zoneId},
        );
 
   @override

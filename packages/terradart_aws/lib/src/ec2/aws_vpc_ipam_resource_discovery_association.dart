@@ -25,8 +25,8 @@ final class AwsVpcIpamResourceDiscoveryAssociation extends Resource {
          argMap: {
            'ipam_id': ipamId,
            'ipam_resource_discovery_id': ipamResourceDiscoveryId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

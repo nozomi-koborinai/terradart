@@ -22,8 +22,8 @@ final class DataAwsSesv2EmailIdentity extends Data {
          terraformType: tfType,
          argMap: {
            'email_identity': emailIdentity,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -47,13 +47,11 @@ final class AwsStoragegatewayTapePool extends Resource {
          terraformType: tfType,
          argMap: {
            'pool_name': poolName,
-           if (region != null) 'region': region,
-           if (retentionLockTimeInDays != null)
-             'retention_lock_time_in_days': retentionLockTimeInDays,
-           if (retentionLockType != null)
-             'retention_lock_type': retentionLockType,
+           'region': ?region,
+           'retention_lock_time_in_days': ?retentionLockTimeInDays,
+           'retention_lock_type': ?retentionLockType,
            'storage_class': storageClass,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

@@ -35,11 +35,7 @@ final class AwsIamAccessKey extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (pgpKey != null) 'pgp_key': pgpKey,
-           if (status != null) 'status': status,
-           'user': user,
-         },
+         argMap: {'pgp_key': ?pgpKey, 'status': ?status, 'user': user},
        );
 
   @override

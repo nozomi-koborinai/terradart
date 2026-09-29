@@ -26,8 +26,8 @@ final class DataGoogleIapAgentRegistryEndpointIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'endpoint_id': endpointId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

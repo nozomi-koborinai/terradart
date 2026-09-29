@@ -78,7 +78,7 @@ final class GoogleKmsProjectKajPolicyConfig extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (project != null) 'project': project,
+           'project': ?project,
            if (defaultKeyAccessJustificationPolicy != null)
              'default_key_access_justification_policy': TfArg.literal(
                defaultKeyAccessJustificationPolicy.encode(),

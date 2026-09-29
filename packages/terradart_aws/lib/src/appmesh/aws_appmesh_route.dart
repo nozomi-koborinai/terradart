@@ -30,11 +30,11 @@ final class AppmeshRouteSpec {
   final AppmeshRouteSpecTcpRoute? tcpRoute;
 
   Map<String, Object?> encode() => {
-    if (priority != null) 'priority': priority!.toTfJson(),
-    if (grpcRoute != null) 'grpc_route': grpcRoute!.encode(),
-    if (http2Route != null) 'http2_route': http2Route!.encode(),
-    if (httpRoute != null) 'http_route': httpRoute!.encode(),
-    if (tcpRoute != null) 'tcp_route': tcpRoute!.encode(),
+    'priority': ?priority?.toTfJson(),
+    'grpc_route': ?grpcRoute?.encode(),
+    'http2_route': ?http2Route?.encode(),
+    'http_route': ?httpRoute?.encode(),
+    'tcp_route': ?tcpRoute?.encode(),
   };
 }
 
@@ -59,9 +59,9 @@ final class AppmeshRouteSpecGrpcRoute {
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
-    if (match != null) 'match': match!.encode(),
-    if (retryPolicy != null) 'retry_policy': retryPolicy!.encode(),
-    if (timeout != null) 'timeout': timeout!.encode(),
+    'match': ?match?.encode(),
+    'retry_policy': ?retryPolicy?.encode(),
+    'timeout': ?timeout?.encode(),
   };
 }
 
@@ -95,7 +95,7 @@ final class AppmeshRouteSpecGrpcRouteActionWeightedTarget {
   final TfArg<num> weight;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'virtual_node': virtualNode.toTfJson(),
     'weight': weight.toTfJson(),
   };
@@ -124,10 +124,10 @@ final class AppmeshRouteSpecGrpcRouteMatch {
   final List<AppmeshRouteSpecGrpcRouteMatchMetadata>? metadata;
 
   Map<String, Object?> encode() => {
-    if (methodName != null) 'method_name': methodName!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
+    'method_name': ?methodName?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
     if (metadata != null) 'metadata': [for (final e in metadata!) e.encode()],
   };
 }
@@ -149,9 +149,9 @@ final class AppmeshRouteSpecGrpcRouteMatchMetadata {
   final AppmeshRouteSpecGrpcRouteMatchMetadataMatch? match;
 
   Map<String, Object?> encode() => {
-    if (invert != null) 'invert': invert!.toTfJson(),
+    'invert': ?invert?.toTfJson(),
     'name': name.toTfJson(),
-    if (match != null) 'match': match!.encode(),
+    'match': ?match?.encode(),
   };
 }
 
@@ -178,11 +178,11 @@ final class AppmeshRouteSpecGrpcRouteMatchMetadataMatch {
   final AppmeshRouteSpecGrpcRouteMatchMetadataMatchRange? range;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
-    if (range != null) 'range': range!.encode(),
+    'exact': ?exact?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'regex': ?regex?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
+    'range': ?range?.encode(),
   };
 }
 
@@ -228,12 +228,10 @@ final class AppmeshRouteSpecGrpcRouteRetryPolicy {
   final AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeout perRetryTimeout;
 
   Map<String, Object?> encode() => {
-    if (grpcRetryEvents != null)
-      'grpc_retry_events': grpcRetryEvents!.toTfJson(),
-    if (httpRetryEvents != null)
-      'http_retry_events': httpRetryEvents!.toTfJson(),
+    'grpc_retry_events': ?grpcRetryEvents?.toTfJson(),
+    'http_retry_events': ?httpRetryEvents?.toTfJson(),
     'max_retries': maxRetries.toTfJson(),
-    if (tcpRetryEvents != null) 'tcp_retry_events': tcpRetryEvents!.toTfJson(),
+    'tcp_retry_events': ?tcpRetryEvents?.toTfJson(),
     'per_retry_timeout': perRetryTimeout.encode(),
   };
 }
@@ -281,8 +279,8 @@ final class AppmeshRouteSpecGrpcRouteTimeout {
   final AppmeshRouteSpecGrpcRouteTimeoutPerRequest? perRequest;
 
   Map<String, Object?> encode() => {
-    if (idle != null) 'idle': idle!.encode(),
-    if (perRequest != null) 'per_request': perRequest!.encode(),
+    'idle': ?idle?.encode(),
+    'per_request': ?perRequest?.encode(),
   };
 }
 
@@ -366,8 +364,8 @@ final class AppmeshRouteSpecHttp2Route {
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'match': match.encode(),
-    if (retryPolicy != null) 'retry_policy': retryPolicy!.encode(),
-    if (timeout != null) 'timeout': timeout!.encode(),
+    'retry_policy': ?retryPolicy?.encode(),
+    'timeout': ?timeout?.encode(),
   };
 }
 
@@ -401,7 +399,7 @@ final class AppmeshRouteSpecHttp2RouteActionWeightedTarget {
   final TfArg<num> weight;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'virtual_node': virtualNode.toTfJson(),
     'weight': weight.toTfJson(),
   };
@@ -436,12 +434,12 @@ final class AppmeshRouteSpecHttp2RouteMatch {
   final List<AppmeshRouteSpecHttp2RouteMatchQueryParameter>? queryParameter;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (scheme != null) 'scheme': scheme!.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'scheme': ?scheme?.toTfJson(),
     if (header != null) 'header': [for (final e in header!) e.encode()],
-    if (path != null) 'path': path!.encode(),
+    'path': ?path?.encode(),
     if (queryParameter != null)
       'query_parameter': [for (final e in queryParameter!) e.encode()],
   };
@@ -464,9 +462,9 @@ final class AppmeshRouteSpecHttp2RouteMatchHeader {
   final AppmeshRouteSpecHttp2RouteMatchHeaderMatch? match;
 
   Map<String, Object?> encode() => {
-    if (invert != null) 'invert': invert!.toTfJson(),
+    'invert': ?invert?.toTfJson(),
     'name': name.toTfJson(),
-    if (match != null) 'match': match!.encode(),
+    'match': ?match?.encode(),
   };
 }
 
@@ -493,11 +491,11 @@ final class AppmeshRouteSpecHttp2RouteMatchHeaderMatch {
   final AppmeshRouteSpecHttp2RouteMatchHeaderMatchRange? range;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
-    if (range != null) 'range': range!.encode(),
+    'exact': ?exact?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'regex': ?regex?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
+    'range': ?range?.encode(),
   };
 }
 
@@ -531,8 +529,8 @@ final class AppmeshRouteSpecHttp2RouteMatchPath {
   final TfArg<String>? regex;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'regex': ?regex?.toTfJson(),
   };
 }
 
@@ -551,7 +549,7 @@ final class AppmeshRouteSpecHttp2RouteMatchQueryParameter {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (match != null) 'match': match!.encode(),
+    'match': ?match?.encode(),
   };
 }
 
@@ -563,9 +561,7 @@ final class AppmeshRouteSpecHttp2RouteMatchQueryParameterMatch {
 
   final TfArg<String>? exact;
 
-  Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
 /// Typed helper for the `spec.http2_route.retry_policy` block of
@@ -588,10 +584,9 @@ final class AppmeshRouteSpecHttp2RouteRetryPolicy {
   final AppmeshRouteSpecHttp2RouteRetryPolicyPerRetryTimeout perRetryTimeout;
 
   Map<String, Object?> encode() => {
-    if (httpRetryEvents != null)
-      'http_retry_events': httpRetryEvents!.toTfJson(),
+    'http_retry_events': ?httpRetryEvents?.toTfJson(),
     'max_retries': maxRetries.toTfJson(),
-    if (tcpRetryEvents != null) 'tcp_retry_events': tcpRetryEvents!.toTfJson(),
+    'tcp_retry_events': ?tcpRetryEvents?.toTfJson(),
     'per_retry_timeout': perRetryTimeout.encode(),
   };
 }
@@ -626,8 +621,8 @@ final class AppmeshRouteSpecHttp2RouteTimeout {
   final AppmeshRouteSpecHttp2RouteTimeoutPerRequest? perRequest;
 
   Map<String, Object?> encode() => {
-    if (idle != null) 'idle': idle!.encode(),
-    if (perRequest != null) 'per_request': perRequest!.encode(),
+    'idle': ?idle?.encode(),
+    'per_request': ?perRequest?.encode(),
   };
 }
 
@@ -691,8 +686,8 @@ final class AppmeshRouteSpecHttpRoute {
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'match': match.encode(),
-    if (retryPolicy != null) 'retry_policy': retryPolicy!.encode(),
-    if (timeout != null) 'timeout': timeout!.encode(),
+    'retry_policy': ?retryPolicy?.encode(),
+    'timeout': ?timeout?.encode(),
   };
 }
 
@@ -726,7 +721,7 @@ final class AppmeshRouteSpecHttpRouteActionWeightedTarget {
   final TfArg<num> weight;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'virtual_node': virtualNode.toTfJson(),
     'weight': weight.toTfJson(),
   };
@@ -761,12 +756,12 @@ final class AppmeshRouteSpecHttpRouteMatch {
   final List<AppmeshRouteSpecHttpRouteMatchQueryParameter>? queryParameter;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (scheme != null) 'scheme': scheme!.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'scheme': ?scheme?.toTfJson(),
     if (header != null) 'header': [for (final e in header!) e.encode()],
-    if (path != null) 'path': path!.encode(),
+    'path': ?path?.encode(),
     if (queryParameter != null)
       'query_parameter': [for (final e in queryParameter!) e.encode()],
   };
@@ -789,9 +784,9 @@ final class AppmeshRouteSpecHttpRouteMatchHeader {
   final AppmeshRouteSpecHttpRouteMatchHeaderMatch? match;
 
   Map<String, Object?> encode() => {
-    if (invert != null) 'invert': invert!.toTfJson(),
+    'invert': ?invert?.toTfJson(),
     'name': name.toTfJson(),
-    if (match != null) 'match': match!.encode(),
+    'match': ?match?.encode(),
   };
 }
 
@@ -818,11 +813,11 @@ final class AppmeshRouteSpecHttpRouteMatchHeaderMatch {
   final AppmeshRouteSpecHttpRouteMatchHeaderMatchRange? range;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
-    if (range != null) 'range': range!.encode(),
+    'exact': ?exact?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'regex': ?regex?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
+    'range': ?range?.encode(),
   };
 }
 
@@ -856,8 +851,8 @@ final class AppmeshRouteSpecHttpRouteMatchPath {
   final TfArg<String>? regex;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'regex': ?regex?.toTfJson(),
   };
 }
 
@@ -876,7 +871,7 @@ final class AppmeshRouteSpecHttpRouteMatchQueryParameter {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (match != null) 'match': match!.encode(),
+    'match': ?match?.encode(),
   };
 }
 
@@ -888,9 +883,7 @@ final class AppmeshRouteSpecHttpRouteMatchQueryParameterMatch {
 
   final TfArg<String>? exact;
 
-  Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
 /// Typed helper for the `spec.http_route.retry_policy` block of
@@ -913,10 +906,9 @@ final class AppmeshRouteSpecHttpRouteRetryPolicy {
   final AppmeshRouteSpecHttpRouteRetryPolicyPerRetryTimeout perRetryTimeout;
 
   Map<String, Object?> encode() => {
-    if (httpRetryEvents != null)
-      'http_retry_events': httpRetryEvents!.toTfJson(),
+    'http_retry_events': ?httpRetryEvents?.toTfJson(),
     'max_retries': maxRetries.toTfJson(),
-    if (tcpRetryEvents != null) 'tcp_retry_events': tcpRetryEvents!.toTfJson(),
+    'tcp_retry_events': ?tcpRetryEvents?.toTfJson(),
     'per_retry_timeout': perRetryTimeout.encode(),
   };
 }
@@ -951,8 +943,8 @@ final class AppmeshRouteSpecHttpRouteTimeout {
   final AppmeshRouteSpecHttpRouteTimeoutPerRequest? perRequest;
 
   Map<String, Object?> encode() => {
-    if (idle != null) 'idle': idle!.encode(),
-    if (perRequest != null) 'per_request': perRequest!.encode(),
+    'idle': ?idle?.encode(),
+    'per_request': ?perRequest?.encode(),
   };
 }
 
@@ -1012,8 +1004,8 @@ final class AppmeshRouteSpecTcpRoute {
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
-    if (match != null) 'match': match!.encode(),
-    if (timeout != null) 'timeout': timeout!.encode(),
+    'match': ?match?.encode(),
+    'timeout': ?timeout?.encode(),
   };
 }
 
@@ -1047,7 +1039,7 @@ final class AppmeshRouteSpecTcpRouteActionWeightedTarget {
   final TfArg<num> weight;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'virtual_node': virtualNode.toTfJson(),
     'weight': weight.toTfJson(),
   };
@@ -1061,7 +1053,7 @@ final class AppmeshRouteSpecTcpRouteMatch {
 
   final TfArg<num>? port;
 
-  Map<String, Object?> encode() => {if (port != null) 'port': port!.toTfJson()};
+  Map<String, Object?> encode() => {'port': ?port?.toTfJson()};
 }
 
 /// Typed helper for the `spec.tcp_route.timeout` block of
@@ -1072,7 +1064,7 @@ final class AppmeshRouteSpecTcpRouteTimeout {
 
   final AppmeshRouteSpecTcpRouteTimeoutIdle? idle;
 
-  Map<String, Object?> encode() => {if (idle != null) 'idle': idle!.encode()};
+  Map<String, Object?> encode() => {'idle': ?idle?.encode()};
 }
 
 /// Typed helper for the `spec.tcp_route.timeout.idle` block of
@@ -1125,10 +1117,10 @@ final class AwsAppmeshRoute extends Resource {
          terraformType: tfType,
          argMap: {
            'mesh_name': meshName,
-           if (meshOwner != null) 'mesh_owner': meshOwner,
+           'mesh_owner': ?meshOwner,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'virtual_router_name': virtualRouterName,
            'spec': TfArg.literal(spec.encode()),
          },

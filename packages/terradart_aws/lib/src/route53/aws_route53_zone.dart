@@ -88,7 +88,7 @@ final class Route53ZoneVpc {
 
   Map<String, Object?> encode() => {
     'vpc_id': vpcId.encodeAs('id').toTfJson(),
-    if (vpcRegion != null) 'vpc_region': vpcRegion!.toTfJson(),
+    'vpc_region': ?vpcRegion?.toTfJson(),
   };
 }
 
@@ -111,13 +111,12 @@ final class AwsRoute53Zone extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            ...?visibility?.argMap,
-           if (enableAcceleratedRecovery != null)
-             'enable_accelerated_recovery': enableAcceleratedRecovery,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'enable_accelerated_recovery': ?enableAcceleratedRecovery,
+           'force_destroy': ?forceDestroy,
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

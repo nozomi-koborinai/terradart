@@ -22,7 +22,7 @@ final class AwsVpcEndpointConnectionAccepter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'vpc_endpoint_id': vpcEndpointId,
            'vpc_endpoint_service_id': vpcEndpointServiceId,
          },

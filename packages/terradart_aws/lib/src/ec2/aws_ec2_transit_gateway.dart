@@ -116,26 +116,20 @@ final class AwsEc2TransitGateway extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (amazonSideAsn != null) 'amazon_side_asn': amazonSideAsn,
-           if (autoAcceptSharedAttachments != null)
-             'auto_accept_shared_attachments': autoAcceptSharedAttachments,
-           if (defaultRouteTableAssociation != null)
-             'default_route_table_association': defaultRouteTableAssociation,
-           if (defaultRouteTablePropagation != null)
-             'default_route_table_propagation': defaultRouteTablePropagation,
-           if (description != null) 'description': description,
-           if (dnsSupport != null) 'dns_support': dnsSupport,
-           if (encryptionSupport != null)
-             'encryption_support': encryptionSupport,
-           if (multicastSupport != null) 'multicast_support': multicastSupport,
-           if (region != null) 'region': region,
-           if (securityGroupReferencingSupport != null)
-             'security_group_referencing_support':
-                 securityGroupReferencingSupport,
-           if (tags != null) 'tags': tags,
-           if (transitGatewayCidrBlocks != null)
-             'transit_gateway_cidr_blocks': transitGatewayCidrBlocks,
-           if (vpnEcmpSupport != null) 'vpn_ecmp_support': vpnEcmpSupport,
+           'amazon_side_asn': ?amazonSideAsn,
+           'auto_accept_shared_attachments': ?autoAcceptSharedAttachments,
+           'default_route_table_association': ?defaultRouteTableAssociation,
+           'default_route_table_propagation': ?defaultRouteTablePropagation,
+           'description': ?description,
+           'dns_support': ?dnsSupport,
+           'encryption_support': ?encryptionSupport,
+           'multicast_support': ?multicastSupport,
+           'region': ?region,
+           'security_group_referencing_support':
+               ?securityGroupReferencingSupport,
+           'tags': ?tags,
+           'transit_gateway_cidr_blocks': ?transitGatewayCidrBlocks,
+           'vpn_ecmp_support': ?vpnEcmpSupport,
          },
        );
 

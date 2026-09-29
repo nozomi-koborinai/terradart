@@ -28,18 +28,15 @@ final class AwsRolesanywhereProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptRoleSessionName != null)
-             'accept_role_session_name': acceptRoleSessionName,
-           if (durationSeconds != null) 'duration_seconds': durationSeconds,
-           if (enabled != null) 'enabled': enabled,
-           if (managedPolicyArns != null)
-             'managed_policy_arns': managedPolicyArns,
+           'accept_role_session_name': ?acceptRoleSessionName,
+           'duration_seconds': ?durationSeconds,
+           'enabled': ?enabled,
+           'managed_policy_arns': ?managedPolicyArns,
            'name': name,
-           if (requireInstanceProperties != null)
-             'require_instance_properties': requireInstanceProperties,
-           if (roleArns != null) 'role_arns': roleArns,
-           if (sessionPolicy != null) 'session_policy': sessionPolicy,
-           if (tags != null) 'tags': tags,
+           'require_instance_properties': ?requireInstanceProperties,
+           'role_arns': ?roleArns,
+           'session_policy': ?sessionPolicy,
+           'tags': ?tags,
          },
        );
 

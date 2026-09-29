@@ -88,8 +88,8 @@ final class AwsNetworkflowmonitorScope extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (target != null)
              'target': TfArg.literal([for (final e in target) e.encode()]),
          },

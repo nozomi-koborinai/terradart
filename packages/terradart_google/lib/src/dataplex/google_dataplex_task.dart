@@ -131,11 +131,10 @@ final class DataplexTaskExecutionSpec {
   final RefTo<GoogleServiceAccount> serviceAccount;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
-    if (maxJobExecutionLifetime != null)
-      'max_job_execution_lifetime': maxJobExecutionLifetime!.toTfJson(),
-    if (project != null) 'project': project!.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
+    'max_job_execution_lifetime': ?maxJobExecutionLifetime?.toTfJson(),
+    'project': ?project?.toTfJson(),
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
@@ -163,10 +162,10 @@ final class DataplexTaskTriggerSpec {
   final TfArg<DataplexTaskTriggerSpecType> type;
 
   Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (maxRetries != null) 'max_retries': maxRetries!.toTfJson(),
-    if (schedule != null) 'schedule': schedule!.toTfJson(),
-    if (startTime != null) 'start_time': startTime!.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'max_retries': ?maxRetries?.toTfJson(),
+    'schedule': ?schedule?.toTfJson(),
+    'start_time': ?startTime?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -214,16 +213,16 @@ final class GoogleDataplexTask extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (taskId != null) 'task_id': taskId,
-           if (location != null) 'location': location,
-           if (lake != null) 'lake': lake,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'task_id': ?taskId,
+           'location': ?location,
+           'lake': ?lake,
+           'display_name': ?displayName,
+           'description': ?description,
+           'labels': ?labels,
            'trigger_spec': TfArg.literal(triggerSpec.encode()),
            'execution_spec': TfArg.literal(executionSpec.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            workload.blockKey: TfArg.literal(workload.encode()),
          },
        );

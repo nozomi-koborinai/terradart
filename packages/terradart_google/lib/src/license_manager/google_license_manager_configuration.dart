@@ -60,10 +60,10 @@ final class GoogleLicenseManagerConfiguration extends Resource {
            'configuration_id': configurationId,
            'product': product,
            'license_count': licenseCount,
-           if (active != null) 'active': active,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'active': ?active,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

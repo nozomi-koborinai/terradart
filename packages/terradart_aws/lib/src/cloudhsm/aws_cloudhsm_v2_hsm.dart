@@ -88,8 +88,8 @@ final class AwsCloudhsmV2Hsm extends Resource {
          argMap: {
            ...placement.argMap,
            'cluster_id': clusterId,
-           if (ipAddress != null) 'ip_address': ipAddress,
-           if (region != null) 'region': region,
+           'ip_address': ?ipAddress,
+           'region': ?region,
          },
        );
 

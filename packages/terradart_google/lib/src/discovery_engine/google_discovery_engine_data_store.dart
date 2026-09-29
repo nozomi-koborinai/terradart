@@ -57,11 +57,10 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
            'data_store_id': dataStoreId,
            'display_name': displayName,
            'industry_vertical': industryVertical,
-           if (contentConfig != null) 'content_config': contentConfig,
-           if (solutionTypes != null) 'solution_types': solutionTypes,
-           if (skipDefaultSchemaCreation != null)
-             'skip_default_schema_creation': skipDefaultSchemaCreation,
-           if (project != null) 'project': project,
+           'content_config': ?contentConfig,
+           'solution_types': ?solutionTypes,
+           'skip_default_schema_creation': ?skipDefaultSchemaCreation,
+           'project': ?project,
          },
        );
 

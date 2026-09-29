@@ -54,8 +54,8 @@ final class GoogleApigeeDataCollector extends Resource {
            'org_id': orgId,
            'data_collector_id': dataCollectorId,
            'type': type,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

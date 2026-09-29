@@ -18,9 +18,7 @@ final class VpcPeeringConnectionAccepter {
   final TfArg<bool>? allowRemoteVpcDnsResolution;
 
   Map<String, Object?> encode() => {
-    if (allowRemoteVpcDnsResolution != null)
-      'allow_remote_vpc_dns_resolution': allowRemoteVpcDnsResolution!
-          .toTfJson(),
+    'allow_remote_vpc_dns_resolution': ?allowRemoteVpcDnsResolution?.toTfJson(),
   };
 }
 
@@ -33,9 +31,7 @@ final class VpcPeeringConnectionRequester {
   final TfArg<bool>? allowRemoteVpcDnsResolution;
 
   Map<String, Object?> encode() => {
-    if (allowRemoteVpcDnsResolution != null)
-      'allow_remote_vpc_dns_resolution': allowRemoteVpcDnsResolution!
-          .toTfJson(),
+    'allow_remote_vpc_dns_resolution': ?allowRemoteVpcDnsResolution?.toTfJson(),
   };
 }
 
@@ -61,12 +57,12 @@ final class AwsVpcPeeringConnection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoAccept != null) 'auto_accept': autoAccept,
-           if (peerOwnerId != null) 'peer_owner_id': peerOwnerId,
-           if (peerRegion != null) 'peer_region': peerRegion,
+           'auto_accept': ?autoAccept,
+           'peer_owner_id': ?peerOwnerId,
+           'peer_region': ?peerRegion,
            'peer_vpc_id': peerVpcId.encodeAs('id'),
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
            if (accepter != null) 'accepter': TfArg.literal(accepter.encode()),
            if (requester != null)

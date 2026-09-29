@@ -55,11 +55,11 @@ final class AwsServicecatalogPrincipalPortfolioAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
+           'accept_language': ?acceptLanguage,
            'portfolio_id': portfolioId,
            'principal_arn': principalArn,
-           if (principalType != null) 'principal_type': principalType,
-           if (region != null) 'region': region,
+           'principal_type': ?principalType,
+           'region': ?region,
          },
        );
 

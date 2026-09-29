@@ -41,9 +41,9 @@ final class R2BucketEventNotificationRules {
 
   Map<String, Object?> encode() => {
     'actions': [for (final e in actions) e.toTfJson()],
-    if (description != null) 'description': description!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -84,7 +84,7 @@ final class CloudflareR2BucketEventNotification extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
+           'jurisdiction': ?jurisdiction,
            'queue_id': queueId,
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },

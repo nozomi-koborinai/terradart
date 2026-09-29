@@ -28,9 +28,9 @@ final class GoogleCloudRunV2JobIamMember extends Resource {
            'name': name,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

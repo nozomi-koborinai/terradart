@@ -23,7 +23,7 @@ final class QuicksightKeyRegistrationKeyRegistration {
   final RefTo<AwsKmsKey> keyArn;
 
   Map<String, Object?> encode() => {
-    if (defaultKey != null) 'default_key': defaultKey!.toTfJson(),
+    'default_key': ?defaultKey?.toTfJson(),
     'key_arn': keyArn.encodeAs('arn').toTfJson(),
   };
 }
@@ -44,8 +44,8 @@ final class AwsQuicksightKeyRegistration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
-           if (region != null) 'region': region,
+           'aws_account_id': ?awsAccountId,
+           'region': ?region,
            if (keyRegistration != null)
              'key_registration': TfArg.literal([
                for (final e in keyRegistration) e.encode(),

@@ -60,17 +60,16 @@ final class GkeonpremVmwareNodePoolConfig {
   final GkeonpremVmwareNodePoolConfigVsphereConfig? vsphereConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (cpus != null) 'cpus': cpus!.toTfJson(),
-    if (enableLoadBalancer != null)
-      'enable_load_balancer': enableLoadBalancer!.toTfJson(),
-    if (image != null) 'image': image!.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'cpus': ?cpus?.toTfJson(),
+    'enable_load_balancer': ?enableLoadBalancer?.toTfJson(),
+    'image': ?image?.toTfJson(),
     'image_type': imageType.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (memoryMb != null) 'memory_mb': memoryMb!.toTfJson(),
-    if (replicas != null) 'replicas': replicas!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'memory_mb': ?memoryMb?.toTfJson(),
+    'replicas': ?replicas?.toTfJson(),
     if (taints != null) 'taints': [for (final e in taints!) e.encode()],
-    if (vsphereConfig != null) 'vsphere_config': vsphereConfig!.encode(),
+    'vsphere_config': ?vsphereConfig?.encode(),
   };
 }
 
@@ -91,7 +90,7 @@ final class GkeonpremVmwareNodePoolConfigTaints {
   final TfArg<String> value;
 
   Map<String, Object?> encode() => {
-    if (effect != null) 'effect': effect!.toTfJson(),
+    'effect': ?effect?.toTfJson(),
     'key': key.toTfJson(),
     'value': value.toTfJson(),
   };
@@ -126,8 +125,8 @@ final class GkeonpremVmwareNodePoolConfigVsphereConfig {
   final List<GkeonpremVmwareNodePoolConfigVsphereConfigTags>? tags;
 
   Map<String, Object?> encode() => {
-    if (datastore != null) 'datastore': datastore!.toTfJson(),
-    if (hostGroups != null) 'host_groups': hostGroups!.toTfJson(),
+    'datastore': ?datastore?.toTfJson(),
+    'host_groups': ?hostGroups?.toTfJson(),
     if (tags != null) 'tags': [for (final e in tags!) e.encode()],
   };
 }
@@ -146,8 +145,8 @@ final class GkeonpremVmwareNodePoolConfigVsphereConfigTags {
   final TfArg<String>? tag;
 
   Map<String, Object?> encode() => {
-    if (category != null) 'category': category!.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
+    'category': ?category?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
   };
 }
 
@@ -209,15 +208,15 @@ final class GoogleGkeonpremVmwareNodePool extends Resource {
            'location': location,
            'vmware_cluster': vmwareCluster,
            'config': TfArg.literal(config.encode()),
-           if (onPremVersion != null) 'on_prem_version': onPremVersion,
-           if (displayName != null) 'display_name': displayName,
+           'on_prem_version': ?onPremVersion,
+           'display_name': ?displayName,
            if (nodePoolAutoscaling != null)
              'node_pool_autoscaling': TfArg.literal(
                nodePoolAutoscaling.encode(),
              ),
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

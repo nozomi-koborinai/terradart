@@ -27,7 +27,7 @@ final class AwsVpcSecurityGroupRulesExclusive extends Resource {
          argMap: {
            'egress_rule_ids': egressRuleIds,
            'ingress_rule_ids': ingressRuleIds,
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_group_id': securityGroupId.encodeAs('id'),
          },
        );

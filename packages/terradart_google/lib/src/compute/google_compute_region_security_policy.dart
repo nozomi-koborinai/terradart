@@ -427,11 +427,11 @@ final class GoogleComputeRegionSecurityPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (type != null) 'type': type,
+           'project': ?project,
+           'region': ?region,
+           'type': ?type,
            if (advancedOptionsConfig != null)
              'advanced_options_config': TfArg.literal([
                advancedOptionsConfig.toArgMap(),

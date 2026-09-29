@@ -31,13 +31,11 @@ final class NetworkServicesMulticastDomainActivationTrafficSpec {
   final TfArg<String>? maxPerGroupSubscribers;
 
   Map<String, Object?> encode() => {
-    if (aggrEgressPps != null) 'aggr_egress_pps': aggrEgressPps!.toTfJson(),
-    if (aggrIngressPps != null) 'aggr_ingress_pps': aggrIngressPps!.toTfJson(),
-    if (avgPacketSize != null) 'avg_packet_size': avgPacketSize!.toTfJson(),
-    if (maxPerGroupIngressPps != null)
-      'max_per_group_ingress_pps': maxPerGroupIngressPps!.toTfJson(),
-    if (maxPerGroupSubscribers != null)
-      'max_per_group_subscribers': maxPerGroupSubscribers!.toTfJson(),
+    'aggr_egress_pps': ?aggrEgressPps?.toTfJson(),
+    'aggr_ingress_pps': ?aggrIngressPps?.toTfJson(),
+    'avg_packet_size': ?avgPacketSize?.toTfJson(),
+    'max_per_group_ingress_pps': ?maxPerGroupIngressPps?.toTfJson(),
+    'max_per_group_subscribers': ?maxPerGroupSubscribers?.toTfJson(),
   };
 }
 
@@ -84,12 +82,11 @@ final class GoogleNetworkServicesMulticastDomainActivation extends Resource {
            'multicast_domain': multicastDomain,
            if (trafficSpec != null)
              'traffic_spec': TfArg.literal(trafficSpec.encode()),
-           if (disablePlacementPolicy != null)
-             'disable_placement_policy': disablePlacementPolicy,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'disable_placement_policy': ?disablePlacementPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

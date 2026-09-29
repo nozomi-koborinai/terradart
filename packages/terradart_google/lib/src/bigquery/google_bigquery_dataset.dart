@@ -485,24 +485,18 @@ final class GoogleBigqueryDataset extends Resource {
          terraformType: tfType,
          argMap: {
            'dataset_id': datasetId,
-           if (friendlyName != null) 'friendly_name': friendlyName,
-           if (description != null) 'description': description,
-           if (location != null) 'location': location,
-           if (defaultTableExpirationMs != null)
-             'default_table_expiration_ms': defaultTableExpirationMs,
-           if (defaultPartitionExpirationMs != null)
-             'default_partition_expiration_ms': defaultPartitionExpirationMs,
-           if (defaultCollation != null) 'default_collation': defaultCollation,
-           if (isCaseInsensitive != null)
-             'is_case_insensitive': isCaseInsensitive,
-           if (maxTimeTravelHours != null)
-             'max_time_travel_hours': maxTimeTravelHours,
-           if (storageBillingModel != null)
-             'storage_billing_model': storageBillingModel,
-           if (deleteContentsOnDestroy != null)
-             'delete_contents_on_destroy': deleteContentsOnDestroy,
-           if (labels != null) 'labels': labels,
-           if (resourceTags != null) 'resource_tags': resourceTags,
+           'friendly_name': ?friendlyName,
+           'description': ?description,
+           'location': ?location,
+           'default_table_expiration_ms': ?defaultTableExpirationMs,
+           'default_partition_expiration_ms': ?defaultPartitionExpirationMs,
+           'default_collation': ?defaultCollation,
+           'is_case_insensitive': ?isCaseInsensitive,
+           'max_time_travel_hours': ?maxTimeTravelHours,
+           'storage_billing_model': ?storageBillingModel,
+           'delete_contents_on_destroy': ?deleteContentsOnDestroy,
+           'labels': ?labels,
+           'resource_tags': ?resourceTags,
            if (access != null)
              'access': TfArg.literal(access.map((a) => a.encode()).toList()),
            if (defaultEncryptionConfiguration != null)
@@ -517,7 +511,7 @@ final class GoogleBigqueryDataset extends Resource {
              'external_catalog_dataset_options': TfArg.literal([
                externalCatalogDatasetOptions.encode(),
              ]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

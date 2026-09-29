@@ -50,12 +50,11 @@ final class AppsyncDatasourceDynamodbConfig {
   final AppsyncDatasourceDynamodbConfigDeltaSyncConfig? deltaSyncConfig;
 
   Map<String, Object?> encode() => {
-    if (region != null) 'region': region!.toTfJson(),
+    'region': ?region?.toTfJson(),
     'table_name': tableName.toTfJson(),
-    if (useCallerCredentials != null)
-      'use_caller_credentials': useCallerCredentials!.toTfJson(),
-    if (versioned != null) 'versioned': versioned!.toTfJson(),
-    if (deltaSyncConfig != null) 'delta_sync_config': deltaSyncConfig!.encode(),
+    'use_caller_credentials': ?useCallerCredentials?.toTfJson(),
+    'versioned': ?versioned?.toTfJson(),
+    'delta_sync_config': ?deltaSyncConfig?.encode(),
   };
 }
 
@@ -76,10 +75,9 @@ final class AppsyncDatasourceDynamodbConfigDeltaSyncConfig {
   final TfArg<num>? deltaSyncTableTtl;
 
   Map<String, Object?> encode() => {
-    if (baseTableTtl != null) 'base_table_ttl': baseTableTtl!.toTfJson(),
+    'base_table_ttl': ?baseTableTtl?.toTfJson(),
     'delta_sync_table_name': deltaSyncTableName.toTfJson(),
-    if (deltaSyncTableTtl != null)
-      'delta_sync_table_ttl': deltaSyncTableTtl!.toTfJson(),
+    'delta_sync_table_ttl': ?deltaSyncTableTtl?.toTfJson(),
   };
 }
 
@@ -98,7 +96,7 @@ final class AppsyncDatasourceElasticsearchConfig {
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'region': ?region?.toTfJson(),
   };
 }
 
@@ -128,8 +126,7 @@ final class AppsyncDatasourceHttpConfig {
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
-    if (authorizationConfig != null)
-      'authorization_config': authorizationConfig!.encode(),
+    'authorization_config': ?authorizationConfig?.encode(),
   };
 }
 
@@ -149,9 +146,8 @@ final class AppsyncDatasourceHttpConfigAuthorizationConfig {
   awsIamConfig;
 
   Map<String, Object?> encode() => {
-    if (authorizationType != null)
-      'authorization_type': authorizationType!.toTfJson(),
-    if (awsIamConfig != null) 'aws_iam_config': awsIamConfig!.encode(),
+    'authorization_type': ?authorizationType?.toTfJson(),
+    'aws_iam_config': ?awsIamConfig?.encode(),
   };
 }
 
@@ -181,9 +177,8 @@ final class AppsyncDatasourceHttpConfigAuthorizationConfigAwsIamConfig {
   final TfArg<String>? signingServiceName;
 
   Map<String, Object?> encode() => {
-    if (signingRegion != null) 'signing_region': signingRegion!.toTfJson(),
-    if (signingServiceName != null)
-      'signing_service_name': signingServiceName!.toTfJson(),
+    'signing_region': ?signingRegion?.toTfJson(),
+    'signing_service_name': ?signingServiceName?.toTfJson(),
   };
 }
 
@@ -215,7 +210,7 @@ final class AppsyncDatasourceOpensearchserviceConfig {
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'region': ?region?.toTfJson(),
   };
 }
 
@@ -234,9 +229,8 @@ final class AppsyncDatasourceRelationalDatabaseConfig {
   httpEndpointConfig;
 
   Map<String, Object?> encode() => {
-    if (sourceType != null) 'source_type': sourceType!.toTfJson(),
-    if (httpEndpointConfig != null)
-      'http_endpoint_config': httpEndpointConfig!.encode(),
+    'source_type': ?sourceType?.toTfJson(),
+    'http_endpoint_config': ?httpEndpointConfig?.encode(),
   };
 }
 
@@ -276,10 +270,10 @@ final class AppsyncDatasourceRelationalDatabaseConfigHttpEndpointConfig {
 
   Map<String, Object?> encode() => {
     'aws_secret_store_arn': awsSecretStoreArn.toTfJson(),
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
     'db_cluster_identifier': dbClusterIdentifier.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (schema != null) 'schema': schema!.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'schema': ?schema?.toTfJson(),
   };
 }
 
@@ -310,11 +304,10 @@ final class AwsAppsyncDatasource extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (serviceRoleArn != null)
-             'service_role_arn': serviceRoleArn.encodeAs('arn'),
+           'region': ?region,
+           'service_role_arn': ?serviceRoleArn?.encodeAs('arn'),
            'type': type,
            if (dynamodbConfig != null)
              'dynamodb_config': TfArg.literal(dynamodbConfig.encode()),

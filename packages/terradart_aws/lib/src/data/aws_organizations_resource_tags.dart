@@ -18,7 +18,7 @@ final class DataAwsOrganizationsResourceTags extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'resource_id': resourceId, if (tags != null) 'tags': tags},
+         argMap: {'resource_id': resourceId, 'tags': ?tags},
        );
 
   @override

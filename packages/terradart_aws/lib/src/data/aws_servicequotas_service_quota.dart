@@ -22,9 +22,9 @@ final class DataAwsServicequotasServiceQuota extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (quotaCode != null) 'quota_code': quotaCode,
-           if (quotaName != null) 'quota_name': quotaName,
-           if (region != null) 'region': region,
+           'quota_code': ?quotaCode,
+           'quota_name': ?quotaName,
+           'region': ?region,
            'service_code': serviceCode,
          },
        );

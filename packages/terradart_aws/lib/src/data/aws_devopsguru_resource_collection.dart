@@ -17,10 +17,7 @@ final class DataAwsDevopsguruResourceCollection extends Data {
     required TfArg<String> type,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (region != null) 'region': region, 'type': type},
-       );
+  }) : super(terraformType: tfType, argMap: {'region': ?region, 'type': type});
 
   @override
   Set<String> get sensitiveFields => _awsDevopsguruResourceCollectionSensitive;

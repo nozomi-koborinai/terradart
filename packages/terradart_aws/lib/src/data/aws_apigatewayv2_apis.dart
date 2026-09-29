@@ -21,10 +21,10 @@ final class DataAwsApigatewayv2Apis extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (protocolType != null) 'protocol_type': protocolType,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'protocol_type': ?protocolType,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

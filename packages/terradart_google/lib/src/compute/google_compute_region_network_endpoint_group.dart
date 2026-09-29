@@ -257,19 +257,18 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
          argMap: {
            'name': name,
            'region': region,
-           if (networkEndpointType != null)
-             'network_endpoint_type': networkEndpointType,
+           'network_endpoint_type': ?networkEndpointType,
            if (cloudRun != null)
              'cloud_run': TfArg.literal([cloudRun.toArgMap()]),
            if (cloudFunction != null)
              'cloud_function': TfArg.literal([cloudFunction.toArgMap()]),
            if (appEngine != null)
              'app_engine': TfArg.literal([appEngine.toArgMap()]),
-           if (pscTargetService != null) 'psc_target_service': pscTargetService,
-           if (network != null) 'network': network.encodeAs('id'),
-           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'psc_target_service': ?pscTargetService,
+           'network': ?network?.encodeAs('id'),
+           'subnetwork': ?subnetwork?.encodeAs('id'),
+           'description': ?description,
+           'project': ?project,
          },
        );
 

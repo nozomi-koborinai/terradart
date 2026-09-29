@@ -31,7 +31,7 @@ final class GoogleProjectDefaultServiceAccounts extends Resource {
          argMap: {
            'action': action,
            'project': project,
-           if (restorePolicy != null) 'restore_policy': restorePolicy,
+           'restore_policy': ?restorePolicy,
          },
        );
 

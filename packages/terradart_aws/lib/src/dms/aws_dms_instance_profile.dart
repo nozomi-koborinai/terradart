@@ -43,19 +43,16 @@ final class AwsDmsInstanceProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (description != null) 'description': description,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (name != null) 'name': name,
-           if (networkType != null) 'network_type': networkType,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
-           if (subnetGroupIdentifier != null)
-             'subnet_group_identifier': subnetGroupIdentifier,
-           if (tags != null) 'tags': tags,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'availability_zone': ?availabilityZone,
+           'description': ?description,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
+           'name': ?name,
+           'network_type': ?networkType,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
+           'subnet_group_identifier': ?subnetGroupIdentifier,
+           'tags': ?tags,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
          },
        );
 

@@ -19,10 +19,7 @@ final class DataAwsGlueDataCatalogEncryptionSettings extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'catalog_id': catalogId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'catalog_id': catalogId, 'region': ?region},
        );
 
   @override

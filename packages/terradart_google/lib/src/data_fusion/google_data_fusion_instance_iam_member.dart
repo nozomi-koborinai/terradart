@@ -28,9 +28,9 @@ final class GoogleDataFusionInstanceIamMember extends Resource {
            'name': name,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'region': ?region,
+           'project': ?project,
          },
        );
 

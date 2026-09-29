@@ -125,8 +125,8 @@ final class GoogleGkeHubFleet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (displayName != null) 'display_name': displayName,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'project': ?project,
            if (defaultClusterConfig != null)
              'default_cluster_config': TfArg.literal([
                defaultClusterConfig.encode(),

@@ -23,9 +23,8 @@ final class DiscoveryEngineDataConnectorActionConfig {
   final TfArg<bool>? createBapConnection;
 
   Map<String, Object?> encode() => {
-    if (actionParams != null) 'action_params': actionParams!.toTfJson(),
-    if (createBapConnection != null)
-      'create_bap_connection': createBapConnection!.toTfJson(),
+    'action_params': ?actionParams?.toTfJson(),
+    'create_bap_connection': ?createBapConnection?.toTfJson(),
   };
 }
 
@@ -43,9 +42,8 @@ final class DiscoveryEngineDataConnectorBapConfig {
   final TfArg<List<Object?>>? supportedConnectorModes;
 
   Map<String, Object?> encode() => {
-    if (enabledActions != null) 'enabled_actions': enabledActions!.toTfJson(),
-    if (supportedConnectorModes != null)
-      'supported_connector_modes': supportedConnectorModes!.toTfJson(),
+    'enabled_actions': ?enabledActions?.toTfJson(),
+    'supported_connector_modes': ?supportedConnectorModes?.toTfJson(),
   };
 }
 
@@ -67,8 +65,8 @@ final class DiscoveryEngineDataConnectorDestinationConfigs {
   destinations;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (params != null) 'params': params!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'params': ?params?.toTfJson(),
     if (destinations != null)
       'destinations': [for (final e in destinations!) e.encode()],
   };
@@ -88,8 +86,8 @@ final class DiscoveryEngineDataConnectorDestinationConfigsDestinations {
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -110,10 +108,9 @@ final class DiscoveryEngineDataConnectorEntities {
   final TfArg<String>? params;
 
   Map<String, Object?> encode() => {
-    if (entityName != null) 'entity_name': entityName!.toTfJson(),
-    if (keyPropertyMappings != null)
-      'key_property_mappings': keyPropertyMappings!.toTfJson(),
-    if (params != null) 'params': params!.toTfJson(),
+    'entity_name': ?entityName?.toTfJson(),
+    'key_property_mappings': ?keyPropertyMappings?.toTfJson(),
+    'params': ?params?.toTfJson(),
   };
 }
 
@@ -140,12 +137,11 @@ final class DiscoveryEngineDataConnectorMetadata {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (author != null) 'author': author!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (note != null) 'note': note!.toTfJson(),
-    if (shortDescription != null)
-      'short_description': shortDescription!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'author': ?author?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'note': ?note?.toTfJson(),
+    'short_description': ?shortDescription?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -194,25 +190,22 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoRunDisabled != null) 'auto_run_disabled': autoRunDisabled,
+           'auto_run_disabled': ?autoRunDisabled,
            'collection_display_name': collectionDisplayName,
            'collection_id': collectionId,
-           if (connectorModes != null) 'connector_modes': connectorModes,
+           'connector_modes': ?connectorModes,
            'data_source': dataSource,
-           if (dataSourceVersion != null)
-             'data_source_version': dataSourceVersion,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (incrementalRefreshInterval != null)
-             'incremental_refresh_interval': incrementalRefreshInterval,
-           if (incrementalSyncDisabled != null)
-             'incremental_sync_disabled': incrementalSyncDisabled,
-           if (jsonParams != null) 'json_params': jsonParams,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
+           'data_source_version': ?dataSourceVersion,
+           'deletion_policy': ?deletionPolicy,
+           'incremental_refresh_interval': ?incrementalRefreshInterval,
+           'incremental_sync_disabled': ?incrementalSyncDisabled,
+           'json_params': ?jsonParams,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'refresh_interval': refreshInterval,
-           if (staticIpEnabled != null) 'static_ip_enabled': staticIpEnabled,
-           if (syncMode != null) 'sync_mode': syncMode,
+           'static_ip_enabled': ?staticIpEnabled,
+           'sync_mode': ?syncMode,
            if (actionConfig != null)
              'action_config': TfArg.literal(actionConfig.encode()),
            if (bapConfig != null)

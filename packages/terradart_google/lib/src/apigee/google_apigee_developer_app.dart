@@ -20,8 +20,8 @@ final class ApigeeDeveloperAppAttributes {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -64,11 +64,11 @@ final class GoogleApigeeDeveloperApp extends Resource {
            'org_id': orgId,
            'developer_email': developerEmail,
            'callback_url': callbackUrl,
-           if (apiProducts != null) 'api_products': apiProducts,
-           if (scopes != null) 'scopes': scopes,
-           if (keyExpiresIn != null) 'key_expires_in': keyExpiresIn,
-           if (consumerKey != null) 'consumer_key': consumerKey,
-           if (consumerSecret != null) 'consumer_secret': consumerSecret,
+           'api_products': ?apiProducts,
+           'scopes': ?scopes,
+           'key_expires_in': ?keyExpiresIn,
+           'consumer_key': ?consumerKey,
+           'consumer_secret': ?consumerSecret,
            if (attributes != null)
              'attributes': TfArg.literal([
                for (final e in attributes) e.encode(),

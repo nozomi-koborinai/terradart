@@ -195,7 +195,7 @@ final class GoogleFilestoreInstance extends Resource {
          argMap: {
            'name': name,
            'tier': tier,
-           if (location != null) 'location': location,
+           'location': ?location,
            if (fileShares != null)
              'file_shares': TfArg.literal([fileShares.toArgMap()]),
            if (networks != null)
@@ -206,7 +206,7 @@ final class GoogleFilestoreInstance extends Resource {
              'initial_replication': TfArg.literal([
                initialReplication.toArgMap(),
              ]),
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
          },
        );
 

@@ -62,8 +62,8 @@ final class ElasticacheServerlessCacheCacheUsageLimitsDataStorage {
   final TfArg<ElasticacheServerlessCacheCacheUsageLimitsDataStorageUnit> unit;
 
   Map<String, Object?> encode() => {
-    if (maximum != null) 'maximum': maximum!.toTfJson(),
-    if (minimum != null) 'minimum': minimum!.toTfJson(),
+    'maximum': ?maximum?.toTfJson(),
+    'minimum': ?minimum?.toTfJson(),
     'unit': unit.toTfJson(),
   };
 }
@@ -94,8 +94,8 @@ final class ElasticacheServerlessCacheCacheUsageLimitsEcpuPerSecond {
   final TfArg<num>? minimum;
 
   Map<String, Object?> encode() => {
-    if (maximum != null) 'maximum': maximum!.toTfJson(),
-    if (minimum != null) 'minimum': minimum!.toTfJson(),
+    'maximum': ?maximum?.toTfJson(),
+    'minimum': ?minimum?.toTfJson(),
   };
 }
 
@@ -127,25 +127,20 @@ final class AwsElasticacheServerlessCache extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dailySnapshotTime != null)
-             'daily_snapshot_time': dailySnapshotTime,
-           if (description != null) 'description': description,
+           'daily_snapshot_time': ?dailySnapshotTime,
+           'description': ?description,
            'engine': engine,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (majorEngineVersion != null)
-             'major_engine_version': majorEngineVersion,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'major_engine_version': ?majorEngineVersion,
            'name': name,
-           if (networkType != null) 'network_type': networkType,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (snapshotArnsToRestore != null)
-             'snapshot_arns_to_restore': snapshotArnsToRestore,
-           if (snapshotRetentionLimit != null)
-             'snapshot_retention_limit': snapshotRetentionLimit,
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (userGroupId != null) 'user_group_id': userGroupId,
+           'network_type': ?networkType,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'snapshot_arns_to_restore': ?snapshotArnsToRestore,
+           'snapshot_retention_limit': ?snapshotRetentionLimit,
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
+           'tags': ?tags,
+           'user_group_id': ?userGroupId,
            if (cacheUsageLimits != null)
              'cache_usage_limits': TfArg.literal([
                for (final e in cacheUsageLimits) e.encode(),

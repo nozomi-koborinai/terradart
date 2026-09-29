@@ -76,11 +76,10 @@ final class AwsBatchJobQueue extends Resource {
          argMap: {
            'name': name,
            'priority': priority,
-           if (region != null) 'region': region,
-           if (schedulingPolicyArn != null)
-             'scheduling_policy_arn': schedulingPolicyArn,
+           'region': ?region,
+           'scheduling_policy_arn': ?schedulingPolicyArn,
            'state': state,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (computeEnvironmentOrder != null)
              'compute_environment_order': TfArg.literal([
                for (final e in computeEnvironmentOrder) e.encode(),

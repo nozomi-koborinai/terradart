@@ -160,7 +160,7 @@ final class GoogleLoggingSavedQuery extends Resource {
            'parent': parent,
            'location': location,
            'visibility': visibility,
-           if (description != null) 'description': description,
+           'description': ?description,
            ...query.argMap,
          },
        );

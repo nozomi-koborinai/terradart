@@ -79,22 +79,18 @@ final class AwsEc2TransitGatewayVpcAttachment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applianceModeSupport != null)
-             'appliance_mode_support': applianceModeSupport,
-           if (dnsSupport != null) 'dns_support': dnsSupport,
-           if (ipv6Support != null) 'ipv6_support': ipv6Support,
-           if (region != null) 'region': region,
-           if (securityGroupReferencingSupport != null)
-             'security_group_referencing_support':
-                 securityGroupReferencingSupport,
+           'appliance_mode_support': ?applianceModeSupport,
+           'dns_support': ?dnsSupport,
+           'ipv6_support': ?ipv6Support,
+           'region': ?region,
+           'security_group_referencing_support':
+               ?securityGroupReferencingSupport,
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (transitGatewayDefaultRouteTableAssociation != null)
-             'transit_gateway_default_route_table_association':
-                 transitGatewayDefaultRouteTableAssociation,
-           if (transitGatewayDefaultRouteTablePropagation != null)
-             'transit_gateway_default_route_table_propagation':
-                 transitGatewayDefaultRouteTablePropagation,
+           'tags': ?tags,
+           'transit_gateway_default_route_table_association':
+               ?transitGatewayDefaultRouteTableAssociation,
+           'transit_gateway_default_route_table_propagation':
+               ?transitGatewayDefaultRouteTablePropagation,
            'transit_gateway_id': transitGatewayId,
            'vpc_id': vpcId.encodeAs('id'),
          },

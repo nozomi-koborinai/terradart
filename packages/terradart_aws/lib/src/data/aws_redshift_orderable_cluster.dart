@@ -22,12 +22,11 @@ final class DataAwsRedshiftOrderableCluster extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clusterType != null) 'cluster_type': clusterType,
-           if (clusterVersion != null) 'cluster_version': clusterVersion,
-           if (nodeType != null) 'node_type': nodeType,
-           if (preferredNodeTypes != null)
-             'preferred_node_types': preferredNodeTypes,
-           if (region != null) 'region': region,
+           'cluster_type': ?clusterType,
+           'cluster_version': ?clusterVersion,
+           'node_type': ?nodeType,
+           'preferred_node_types': ?preferredNodeTypes,
+           'region': ?region,
          },
        );
 

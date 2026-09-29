@@ -30,11 +30,9 @@ final class CesAppAudioProcessingConfig {
   synthesizeSpeechConfigs;
 
   Map<String, Object?> encode() => {
-    if (inactivityTimeout != null)
-      'inactivity_timeout': inactivityTimeout!.toTfJson(),
-    if (ambientSoundConfig != null)
-      'ambient_sound_config': ambientSoundConfig!.encode(),
-    if (bargeInConfig != null) 'barge_in_config': bargeInConfig!.encode(),
+    'inactivity_timeout': ?inactivityTimeout?.toTfJson(),
+    'ambient_sound_config': ?ambientSoundConfig?.encode(),
+    'barge_in_config': ?bargeInConfig?.encode(),
     if (synthesizeSpeechConfigs != null)
       'synthesize_speech_configs': [
         for (final e in synthesizeSpeechConfigs!) e.encode(),
@@ -59,10 +57,9 @@ final class CesAppAudioProcessingConfigAmbientSoundConfig {
   final TfArg<num>? volumeGainDb;
 
   Map<String, Object?> encode() => {
-    if (gcsUri != null) 'gcs_uri': gcsUri!.toTfJson(),
-    if (prebuiltAmbientSound != null)
-      'prebuilt_ambient_sound': prebuiltAmbientSound!.toTfJson(),
-    if (volumeGainDb != null) 'volume_gain_db': volumeGainDb!.toTfJson(),
+    'gcs_uri': ?gcsUri?.toTfJson(),
+    'prebuilt_ambient_sound': ?prebuiltAmbientSound?.toTfJson(),
+    'volume_gain_db': ?volumeGainDb?.toTfJson(),
   };
 }
 
@@ -75,8 +72,7 @@ final class CesAppAudioProcessingConfigBargeInConfig {
   final TfArg<bool>? bargeInAwareness;
 
   Map<String, Object?> encode() => {
-    if (bargeInAwareness != null)
-      'barge_in_awareness': bargeInAwareness!.toTfJson(),
+    'barge_in_awareness': ?bargeInAwareness?.toTfJson(),
   };
 }
 
@@ -98,8 +94,8 @@ final class CesAppAudioProcessingConfigSynthesizeSpeechConfigs {
 
   Map<String, Object?> encode() => {
     'language_code': languageCode.toTfJson(),
-    if (speakingRate != null) 'speaking_rate': speakingRate!.toTfJson(),
-    if (voice != null) 'voice': voice!.toTfJson(),
+    'speaking_rate': ?speakingRate?.toTfJson(),
+    'voice': ?voice?.toTfJson(),
   };
 }
 
@@ -120,7 +116,7 @@ final class CesAppClientCertificateSettings {
   final TfArg<String> tlsCertificate;
 
   Map<String, Object?> encode() => {
-    if (passphrase != null) 'passphrase': passphrase!.toTfJson(),
+    'passphrase': ?passphrase?.toTfJson(),
     'private_key': privateKey.toTfJson(),
     'tls_certificate': tlsCertificate.toTfJson(),
   };
@@ -164,14 +160,13 @@ final class CesAppDefaultChannelProfile {
   final CesAppDefaultChannelProfileWhatsappConfig? whatsappConfig;
 
   Map<String, Object?> encode() => {
-    if (channelType != null) 'channel_type': channelType!.toTfJson(),
-    if (disableBargeInControl != null)
-      'disable_barge_in_control': disableBargeInControl!.toTfJson(),
-    if (disableDtmf != null) 'disable_dtmf': disableDtmf!.toTfJson(),
-    if (profileId != null) 'profile_id': profileId!.toTfJson(),
-    if (personaProperty != null) 'persona_property': personaProperty!.encode(),
-    if (webWidgetConfig != null) 'web_widget_config': webWidgetConfig!.encode(),
-    if (whatsappConfig != null) 'whatsapp_config': whatsappConfig!.encode(),
+    'channel_type': ?channelType?.toTfJson(),
+    'disable_barge_in_control': ?disableBargeInControl?.toTfJson(),
+    'disable_dtmf': ?disableDtmf?.toTfJson(),
+    'profile_id': ?profileId?.toTfJson(),
+    'persona_property': ?personaProperty?.encode(),
+    'web_widget_config': ?webWidgetConfig?.encode(),
+    'whatsapp_config': ?whatsappConfig?.encode(),
   };
 }
 
@@ -183,9 +178,7 @@ final class CesAppDefaultChannelProfilePersonaProperty {
 
   final TfArg<String>? persona;
 
-  Map<String, Object?> encode() => {
-    if (persona != null) 'persona': persona!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'persona': ?persona?.toTfJson()};
 }
 
 /// Typed helper for the `default_channel_profile.web_widget_config` block of
@@ -209,11 +202,10 @@ final class CesAppDefaultChannelProfileWebWidgetConfig {
   securitySettings;
 
   Map<String, Object?> encode() => {
-    if (modality != null) 'modality': modality!.toTfJson(),
-    if (theme != null) 'theme': theme!.toTfJson(),
-    if (webWidgetTitle != null) 'web_widget_title': webWidgetTitle!.toTfJson(),
-    if (securitySettings != null)
-      'security_settings': securitySettings!.encode(),
+    'modality': ?modality?.toTfJson(),
+    'theme': ?theme?.toTfJson(),
+    'web_widget_title': ?webWidgetTitle?.toTfJson(),
+    'security_settings': ?securitySettings?.encode(),
   };
 }
 
@@ -237,13 +229,10 @@ final class CesAppDefaultChannelProfileWebWidgetConfigSecuritySettings {
   final TfArg<bool>? enableRecaptcha;
 
   Map<String, Object?> encode() => {
-    if (allowedOrigins != null) 'allowed_origins': allowedOrigins!.toTfJson(),
-    if (enableOriginCheck != null)
-      'enable_origin_check': enableOriginCheck!.toTfJson(),
-    if (enablePublicAccess != null)
-      'enable_public_access': enablePublicAccess!.toTfJson(),
-    if (enableRecaptcha != null)
-      'enable_recaptcha': enableRecaptcha!.toTfJson(),
+    'allowed_origins': ?allowedOrigins?.toTfJson(),
+    'enable_origin_check': ?enableOriginCheck?.toTfJson(),
+    'enable_public_access': ?enablePublicAccess?.toTfJson(),
+    'enable_recaptcha': ?enableRecaptcha?.toTfJson(),
   };
 }
 
@@ -264,7 +253,7 @@ final class CesAppDefaultChannelProfileWhatsappConfig {
   final TfArg<String> wabaId;
 
   Map<String, Object?> encode() => {
-    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
+    'phone_number': ?phoneNumber?.toTfJson(),
     'phone_number_id': phoneNumberId.toTfJson(),
     'waba_id': wabaId.toTfJson(),
   };
@@ -288,12 +277,9 @@ final class CesAppErrorHandlingSettings {
   fallbackResponseConfig;
 
   Map<String, Object?> encode() => {
-    if (errorHandlingStrategy != null)
-      'error_handling_strategy': errorHandlingStrategy!.toTfJson(),
-    if (endSessionConfig != null)
-      'end_session_config': endSessionConfig!.encode(),
-    if (fallbackResponseConfig != null)
-      'fallback_response_config': fallbackResponseConfig!.encode(),
+    'error_handling_strategy': ?errorHandlingStrategy?.toTfJson(),
+    'end_session_config': ?endSessionConfig?.encode(),
+    'fallback_response_config': ?fallbackResponseConfig?.encode(),
   };
 }
 
@@ -306,8 +292,7 @@ final class CesAppErrorHandlingSettingsEndSessionConfig {
   final TfArg<bool>? escalateSession;
 
   Map<String, Object?> encode() => {
-    if (escalateSession != null)
-      'escalate_session': escalateSession!.toTfJson(),
+    'escalate_session': ?escalateSession?.toTfJson(),
   };
 }
 
@@ -325,10 +310,8 @@ final class CesAppErrorHandlingSettingsFallbackResponseConfig {
   final TfArg<num>? maxFallbackAttempts;
 
   Map<String, Object?> encode() => {
-    if (customFallbackMessages != null)
-      'custom_fallback_messages': customFallbackMessages!.toTfJson(),
-    if (maxFallbackAttempts != null)
-      'max_fallback_attempts': maxFallbackAttempts!.toTfJson(),
+    'custom_fallback_messages': ?customFallbackMessages?.toTfJson(),
+    'max_fallback_attempts': ?maxFallbackAttempts?.toTfJson(),
   };
 }
 
@@ -356,15 +339,12 @@ final class CesAppEvaluationMetricsThresholds {
   goldenEvaluationMetricsThresholds;
 
   Map<String, Object?> encode() => {
-    if (goldenHallucinationMetricBehavior != null)
-      'golden_hallucination_metric_behavior': goldenHallucinationMetricBehavior!
-          .toTfJson(),
-    if (scenarioHallucinationMetricBehavior != null)
-      'scenario_hallucination_metric_behavior':
-          scenarioHallucinationMetricBehavior!.toTfJson(),
-    if (goldenEvaluationMetricsThresholds != null)
-      'golden_evaluation_metrics_thresholds': goldenEvaluationMetricsThresholds!
-          .encode(),
+    'golden_hallucination_metric_behavior': ?goldenHallucinationMetricBehavior
+        ?.toTfJson(),
+    'scenario_hallucination_metric_behavior':
+        ?scenarioHallucinationMetricBehavior?.toTfJson(),
+    'golden_evaluation_metrics_thresholds': ?goldenEvaluationMetricsThresholds
+        ?.encode(),
   };
 }
 
@@ -414,13 +394,10 @@ final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds {
   turnLevelMetricsThresholds;
 
   Map<String, Object?> encode() => {
-    if (expectationLevelMetricsThresholds != null)
-      'expectation_level_metrics_thresholds': expectationLevelMetricsThresholds!
-          .encode(),
-    if (toolMatchingSettings != null)
-      'tool_matching_settings': toolMatchingSettings!.encode(),
-    if (turnLevelMetricsThresholds != null)
-      'turn_level_metrics_thresholds': turnLevelMetricsThresholds!.encode(),
+    'expectation_level_metrics_thresholds': ?expectationLevelMetricsThresholds
+        ?.encode(),
+    'tool_matching_settings': ?toolMatchingSettings?.encode(),
+    'turn_level_metrics_thresholds': ?turnLevelMetricsThresholds?.encode(),
   };
 }
 
@@ -435,9 +412,8 @@ final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsEx
   final TfArg<num>? toolInvocationParameterCorrectnessThreshold;
 
   Map<String, Object?> encode() => {
-    if (toolInvocationParameterCorrectnessThreshold != null)
-      'tool_invocation_parameter_correctness_threshold':
-          toolInvocationParameterCorrectnessThreshold!.toTfJson(),
+    'tool_invocation_parameter_correctness_threshold':
+        ?toolInvocationParameterCorrectnessThreshold?.toTfJson(),
   };
 }
 
@@ -455,8 +431,7 @@ final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTo
   extraToolCallBehavior;
 
   Map<String, Object?> encode() => {
-    if (extraToolCallBehavior != null)
-      'extra_tool_call_behavior': extraToolCallBehavior!.toTfJson(),
+    'extra_tool_call_behavior': ?extraToolCallBehavior?.toTfJson(),
   };
 }
 
@@ -490,14 +465,11 @@ final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTu
   final TfArg<num>? semanticSimilaritySuccessThreshold;
 
   Map<String, Object?> encode() => {
-    if (overallToolInvocationCorrectnessThreshold != null)
-      'overall_tool_invocation_correctness_threshold':
-          overallToolInvocationCorrectnessThreshold!.toTfJson(),
-    if (semanticSimilarityChannel != null)
-      'semantic_similarity_channel': semanticSimilarityChannel!.toTfJson(),
-    if (semanticSimilaritySuccessThreshold != null)
-      'semantic_similarity_success_threshold':
-          semanticSimilaritySuccessThreshold!.toTfJson(),
+    'overall_tool_invocation_correctness_threshold':
+        ?overallToolInvocationCorrectnessThreshold?.toTfJson(),
+    'semantic_similarity_channel': ?semanticSimilarityChannel?.toTfJson(),
+    'semantic_similarity_success_threshold': ?semanticSimilaritySuccessThreshold
+        ?.toTfJson(),
   };
 }
 
@@ -521,13 +493,10 @@ final class CesAppLanguageSettings {
   final TfArg<List<Object?>>? supportedLanguageCodes;
 
   Map<String, Object?> encode() => {
-    if (defaultLanguageCode != null)
-      'default_language_code': defaultLanguageCode!.toTfJson(),
-    if (enableMultilingualSupport != null)
-      'enable_multilingual_support': enableMultilingualSupport!.toTfJson(),
-    if (fallbackAction != null) 'fallback_action': fallbackAction!.toTfJson(),
-    if (supportedLanguageCodes != null)
-      'supported_language_codes': supportedLanguageCodes!.toTfJson(),
+    'default_language_code': ?defaultLanguageCode?.toTfJson(),
+    'enable_multilingual_support': ?enableMultilingualSupport?.toTfJson(),
+    'fallback_action': ?fallbackAction?.toTfJson(),
+    'supported_language_codes': ?supportedLanguageCodes?.toTfJson(),
   };
 }
 
@@ -558,17 +527,12 @@ final class CesAppLoggingSettings {
   final CesAppLoggingSettingsRedactionConfig? redactionConfig;
 
   Map<String, Object?> encode() => {
-    if (audioRecordingConfig != null)
-      'audio_recording_config': audioRecordingConfig!.encode(),
-    if (bigqueryExportSettings != null)
-      'bigquery_export_settings': bigqueryExportSettings!.encode(),
-    if (cloudLoggingSettings != null)
-      'cloud_logging_settings': cloudLoggingSettings!.encode(),
-    if (conversationLoggingSettings != null)
-      'conversation_logging_settings': conversationLoggingSettings!.encode(),
-    if (metricAnalysisSettings != null)
-      'metric_analysis_settings': metricAnalysisSettings!.encode(),
-    if (redactionConfig != null) 'redaction_config': redactionConfig!.encode(),
+    'audio_recording_config': ?audioRecordingConfig?.encode(),
+    'bigquery_export_settings': ?bigqueryExportSettings?.encode(),
+    'cloud_logging_settings': ?cloudLoggingSettings?.encode(),
+    'conversation_logging_settings': ?conversationLoggingSettings?.encode(),
+    'metric_analysis_settings': ?metricAnalysisSettings?.encode(),
+    'redaction_config': ?redactionConfig?.encode(),
   };
 }
 
@@ -586,8 +550,8 @@ final class CesAppLoggingSettingsAudioRecordingConfig {
   final TfArg<String>? gcsPathPrefix;
 
   Map<String, Object?> encode() => {
-    if (gcsBucket != null) 'gcs_bucket': gcsBucket!.encodeAs('name').toTfJson(),
-    if (gcsPathPrefix != null) 'gcs_path_prefix': gcsPathPrefix!.toTfJson(),
+    'gcs_bucket': ?gcsBucket?.encodeAs('name').toTfJson(),
+    'gcs_path_prefix': ?gcsPathPrefix?.toTfJson(),
   };
 }
 
@@ -608,9 +572,9 @@ final class CesAppLoggingSettingsBigqueryExportSettings {
   final TfArg<String>? project;
 
   Map<String, Object?> encode() => {
-    if (dataset != null) 'dataset': dataset!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (project != null) 'project': project!.toTfJson(),
+    'dataset': ?dataset?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'project': ?project?.toTfJson(),
   };
 }
 
@@ -623,8 +587,7 @@ final class CesAppLoggingSettingsCloudLoggingSettings {
   final TfArg<bool>? enableCloudLogging;
 
   Map<String, Object?> encode() => {
-    if (enableCloudLogging != null)
-      'enable_cloud_logging': enableCloudLogging!.toTfJson(),
+    'enable_cloud_logging': ?enableCloudLogging?.toTfJson(),
   };
 }
 
@@ -642,10 +605,8 @@ final class CesAppLoggingSettingsConversationLoggingSettings {
   final TfArg<String>? retentionWindow;
 
   Map<String, Object?> encode() => {
-    if (disableConversationLogging != null)
-      'disable_conversation_logging': disableConversationLogging!.toTfJson(),
-    if (retentionWindow != null)
-      'retention_window': retentionWindow!.toTfJson(),
+    'disable_conversation_logging': ?disableConversationLogging?.toTfJson(),
+    'retention_window': ?retentionWindow?.toTfJson(),
   };
 }
 
@@ -658,8 +619,7 @@ final class CesAppLoggingSettingsMetricAnalysisSettings {
   final TfArg<bool>? llmMetricsOptedOut;
 
   Map<String, Object?> encode() => {
-    if (llmMetricsOptedOut != null)
-      'llm_metrics_opted_out': llmMetricsOptedOut!.toTfJson(),
+    'llm_metrics_opted_out': ?llmMetricsOptedOut?.toTfJson(),
   };
 }
 
@@ -680,12 +640,9 @@ final class CesAppLoggingSettingsRedactionConfig {
   final TfArg<String>? inspectTemplate;
 
   Map<String, Object?> encode() => {
-    if (deidentifyTemplate != null)
-      'deidentify_template': deidentifyTemplate!.toTfJson(),
-    if (enableRedaction != null)
-      'enable_redaction': enableRedaction!.toTfJson(),
-    if (inspectTemplate != null)
-      'inspect_template': inspectTemplate!.toTfJson(),
+    'deidentify_template': ?deidentifyTemplate?.toTfJson(),
+    'enable_redaction': ?enableRedaction?.toTfJson(),
+    'inspect_template': ?inspectTemplate?.toTfJson(),
   };
 }
 
@@ -700,8 +657,8 @@ final class CesAppModelSettings {
   final TfArg<num>? temperature;
 
   Map<String, Object?> encode() => {
-    if (model != null) 'model': model!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
+    'model': ?model?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
   };
 }
 
@@ -713,9 +670,7 @@ final class CesAppTimeZoneSettings {
 
   final TfArg<String>? timeZone;
 
-  Map<String, Object?> encode() => {
-    if (timeZone != null) 'time_zone': timeZone!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'time_zone': ?timeZone?.toTfJson()};
 }
 
 /// Typed helper for the `variable_declarations` block of
@@ -794,22 +749,21 @@ final class CesAppVariableDeclarationsSchema {
   final TfArg<bool>? uniqueItems;
 
   Map<String, Object?> encode() => {
-    if (additionalProperties != null)
-      'additional_properties': additionalProperties!.toTfJson(),
-    if (anyOf != null) 'any_of': anyOf!.toTfJson(),
-    if (defaultCase != null) 'default': defaultCase!.toTfJson(),
-    if (defs != null) 'defs': defs!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enumCase != null) 'enum': enumCase!.toTfJson(),
-    if (items != null) 'items': items!.toTfJson(),
-    if (nullable != null) 'nullable': nullable!.toTfJson(),
-    if (prefixItems != null) 'prefix_items': prefixItems!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (ref != null) 'ref': ref!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'additional_properties': ?additionalProperties?.toTfJson(),
+    'any_of': ?anyOf?.toTfJson(),
+    'default': ?defaultCase?.toTfJson(),
+    'defs': ?defs?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enum': ?enumCase?.toTfJson(),
+    'items': ?items?.toTfJson(),
+    'nullable': ?nullable?.toTfJson(),
+    'prefix_items': ?prefixItems?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'ref': ?ref?.toTfJson(),
+    'required': ?required?.toTfJson(),
+    'title': ?title?.toTfJson(),
     'type': type.toTfJson(),
-    if (uniqueItems != null) 'unique_items': uniqueItems!.toTfJson(),
+    'unique_items': ?uniqueItems?.toTfJson(),
   };
 }
 
@@ -822,7 +776,7 @@ final class CesAppVpcScSettings {
   final TfArg<List<Object?>>? allowedOrigins;
 
   Map<String, Object?> encode() => {
-    if (allowedOrigins != null) 'allowed_origins': allowedOrigins!.toTfJson(),
+    'allowed_origins': ?allowedOrigins?.toTfJson(),
   };
 }
 
@@ -892,21 +846,19 @@ final class GoogleCesApp extends Resource {
            'location': location,
            'app_id': appId,
            'display_name': displayName,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (languageSettings != null)
              'language_settings': TfArg.literal(languageSettings.encode()),
            if (timeZoneSettings != null)
              'time_zone_settings': TfArg.literal(timeZoneSettings.encode()),
            if (modelSettings != null)
              'model_settings': TfArg.literal(modelSettings.encode()),
-           if (globalInstruction != null)
-             'global_instruction': globalInstruction,
-           if (guardrails != null) 'guardrails': guardrails,
-           if (rootAgent != null) 'root_agent': rootAgent,
-           if (pinned != null) 'pinned': pinned,
-           if (metadata != null) 'metadata': metadata,
-           if (toolExecutionMode != null)
-             'tool_execution_mode': toolExecutionMode,
+           'global_instruction': ?globalInstruction,
+           'guardrails': ?guardrails,
+           'root_agent': ?rootAgent,
+           'pinned': ?pinned,
+           'metadata': ?metadata,
+           'tool_execution_mode': ?toolExecutionMode,
            if (audioProcessingConfig != null)
              'audio_processing_config': TfArg.literal(
                audioProcessingConfig.encode(),
@@ -931,8 +883,8 @@ final class GoogleCesApp extends Resource {
              'variable_declarations': TfArg.literal([
                for (final e in variableDeclarations) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -37,8 +37,8 @@ final class GoogleApphubBoundary extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (crmNode != null) 'crm_node': crmNode,
-           if (project != null) 'project': project,
+           'crm_node': ?crmNode,
+           'project': ?project,
          },
        );
 

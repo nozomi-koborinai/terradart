@@ -42,11 +42,11 @@ final class AwsChimeVoiceConnector extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsRegion != null) 'aws_region': awsRegion,
+           'aws_region': ?awsRegion,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'require_encryption': requireEncryption,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

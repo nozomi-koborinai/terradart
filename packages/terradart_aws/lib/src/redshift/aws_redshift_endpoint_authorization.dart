@@ -26,9 +26,9 @@ final class AwsRedshiftEndpointAuthorization extends Resource {
          argMap: {
            'account': account,
            'cluster_identifier': clusterIdentifier,
-           if (forceDelete != null) 'force_delete': forceDelete,
-           if (region != null) 'region': region,
-           if (vpcIds != null) 'vpc_ids': vpcIds,
+           'force_delete': ?forceDelete,
+           'region': ?region,
+           'vpc_ids': ?vpcIds,
          },
        );
 

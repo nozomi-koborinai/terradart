@@ -145,13 +145,11 @@ final class TransferServerEndpointDetails {
   final RefTo<AwsVpc>? vpcId;
 
   Map<String, Object?> encode() => {
-    if (addressAllocationIds != null)
-      'address_allocation_ids': addressAllocationIds!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
-    if (vpcEndpointId != null) 'vpc_endpoint_id': vpcEndpointId!.toTfJson(),
-    if (vpcId != null) 'vpc_id': vpcId!.encodeAs('id').toTfJson(),
+    'address_allocation_ids': ?addressAllocationIds?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
+    'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
+    'vpc_endpoint_id': ?vpcEndpointId?.toTfJson(),
+    'vpc_id': ?vpcId?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -178,10 +176,9 @@ final class TransferServerProtocolDetails {
   Map<String, Object?> encode() => {
     if (as2Transports != null)
       'as2_transports': [for (final e in as2Transports!) e.toTfJson()],
-    if (passiveIp != null) 'passive_ip': passiveIp!.toTfJson(),
-    if (setStatOption != null) 'set_stat_option': setStatOption!.toTfJson(),
-    if (tlsSessionResumptionMode != null)
-      'tls_session_resumption_mode': tlsSessionResumptionMode!.toTfJson(),
+    'passive_ip': ?passiveIp?.toTfJson(),
+    'set_stat_option': ?setStatOption?.toTfJson(),
+    'tls_session_resumption_mode': ?tlsSessionResumptionMode?.toTfJson(),
   };
 }
 
@@ -228,9 +225,7 @@ final class TransferServerS3StorageOptions {
   directoryListingOptimization;
 
   Map<String, Object?> encode() => {
-    if (directoryListingOptimization != null)
-      'directory_listing_optimization': directoryListingOptimization!
-          .toTfJson(),
+    'directory_listing_optimization': ?directoryListingOptimization?.toTfJson(),
   };
 }
 
@@ -258,8 +253,8 @@ final class TransferServerWorkflowDetails {
   final TransferServerWorkflowDetailsOnUpload? onUpload;
 
   Map<String, Object?> encode() => {
-    if (onPartialUpload != null) 'on_partial_upload': onPartialUpload!.encode(),
-    if (onUpload != null) 'on_upload': onUpload!.encode(),
+    'on_partial_upload': ?onPartialUpload?.encode(),
+    'on_upload': ?onUpload?.encode(),
   };
 }
 
@@ -338,35 +333,29 @@ final class AwsTransferServer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (certificate != null) 'certificate': certificate,
-           if (directoryId != null) 'directory_id': directoryId,
-           if (domain != null) 'domain': domain,
-           if (endpointType != null) 'endpoint_type': endpointType,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (function != null) 'function': function,
-           if (hostKey != null) 'host_key': hostKey,
-           if (identityProviderType != null)
-             'identity_provider_type': identityProviderType,
-           if (invocationRole != null) 'invocation_role': invocationRole,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (loggingRole != null) 'logging_role': loggingRole,
-           if (postAuthenticationLoginBanner != null)
-             'post_authentication_login_banner': postAuthenticationLoginBanner,
-           if (preAuthenticationLoginBanner != null)
-             'pre_authentication_login_banner': preAuthenticationLoginBanner,
+           'certificate': ?certificate,
+           'directory_id': ?directoryId,
+           'domain': ?domain,
+           'endpoint_type': ?endpointType,
+           'force_destroy': ?forceDestroy,
+           'function': ?function,
+           'host_key': ?hostKey,
+           'identity_provider_type': ?identityProviderType,
+           'invocation_role': ?invocationRole,
+           'ip_address_type': ?ipAddressType,
+           'logging_role': ?loggingRole,
+           'post_authentication_login_banner': ?postAuthenticationLoginBanner,
+           'pre_authentication_login_banner': ?preAuthenticationLoginBanner,
            if (protocols != null)
              'protocols': TfArg.literal([
                for (final e in protocols) e.toTfJson(),
              ]),
-           if (region != null) 'region': region,
-           if (securityPolicyName != null)
-             'security_policy_name': securityPolicyName,
-           if (sftpAuthenticationMethods != null)
-             'sftp_authentication_methods': sftpAuthenticationMethods,
-           if (structuredLogDestinations != null)
-             'structured_log_destinations': structuredLogDestinations,
-           if (tags != null) 'tags': tags,
-           if (url != null) 'url': url,
+           'region': ?region,
+           'security_policy_name': ?securityPolicyName,
+           'sftp_authentication_methods': ?sftpAuthenticationMethods,
+           'structured_log_destinations': ?structuredLogDestinations,
+           'tags': ?tags,
+           'url': ?url,
            if (endpointDetails != null)
              'endpoint_details': TfArg.literal(endpointDetails.encode()),
            if (protocolDetails != null)

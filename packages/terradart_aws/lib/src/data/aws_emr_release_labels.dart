@@ -18,8 +18,8 @@ final class DataEmrReleaseLabelsFilters {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (application != null) 'application': application!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'application': ?application?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -36,7 +36,7 @@ final class DataAwsEmrReleaseLabels extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (filters != null) 'filters': TfArg.literal(filters.encode()),
          },
        );

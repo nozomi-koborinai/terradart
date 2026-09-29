@@ -32,13 +32,11 @@ final class SagemakerDataQualityJobDefinitionDataQualityAppSpecification {
   final TfArg<String>? recordPreprocessorSourceUri;
 
   Map<String, Object?> encode() => {
-    if (environment != null) 'environment': environment!.toTfJson(),
+    'environment': ?environment?.toTfJson(),
     'image_uri': imageUri.toTfJson(),
-    if (postAnalyticsProcessorSourceUri != null)
-      'post_analytics_processor_source_uri': postAnalyticsProcessorSourceUri!
-          .toTfJson(),
-    if (recordPreprocessorSourceUri != null)
-      'record_preprocessor_source_uri': recordPreprocessorSourceUri!.toTfJson(),
+    'post_analytics_processor_source_uri': ?postAnalyticsProcessorSourceUri
+        ?.toTfJson(),
+    'record_preprocessor_source_uri': ?recordPreprocessorSourceUri?.toTfJson(),
   };
 }
 
@@ -58,10 +56,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityBaselineConfig {
   statisticsResource;
 
   Map<String, Object?> encode() => {
-    if (constraintsResource != null)
-      'constraints_resource': constraintsResource!.encode(),
-    if (statisticsResource != null)
-      'statistics_resource': statisticsResource!.encode(),
+    'constraints_resource': ?constraintsResource?.encode(),
+    'statistics_resource': ?statisticsResource?.encode(),
   };
 }
 
@@ -75,9 +71,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityBaselineConfigConstraint
 
   final TfArg<String>? s3Uri;
 
-  Map<String, Object?> encode() => {
-    if (s3Uri != null) 's3_uri': s3Uri!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'s3_uri': ?s3Uri?.toTfJson()};
 }
 
 /// Typed helper for the `data_quality_baseline_config.statistics_resource` block of
@@ -90,9 +84,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityBaselineConfigStatistics
 
   final TfArg<String>? s3Uri;
 
-  Map<String, Object?> encode() => {
-    if (s3Uri != null) 's3_uri': s3Uri!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'s3_uri': ?s3Uri?.toTfJson()};
 }
 
 /// Typed helper for the `data_quality_job_input` block of
@@ -111,9 +103,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInput {
   endpointInput;
 
   Map<String, Object?> encode() => {
-    if (batchTransformInput != null)
-      'batch_transform_input': batchTransformInput!.encode(),
-    if (endpointInput != null) 'endpoint_input': endpointInput!.encode(),
+    'batch_transform_input': ?batchTransformInput?.encode(),
+    'endpoint_input': ?endpointInput?.encode(),
   };
 }
 
@@ -148,10 +139,9 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformIn
 
   Map<String, Object?> encode() => {
     'data_captured_destination_s3_uri': dataCapturedDestinationS3Uri.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
-    if (s3DataDistributionType != null)
-      's3_data_distribution_type': s3DataDistributionType!.toTfJson(),
-    if (s3InputMode != null) 's3_input_mode': s3InputMode!.toTfJson(),
+    'local_path': ?localPath?.toTfJson(),
+    's3_data_distribution_type': ?s3DataDistributionType?.toTfJson(),
+    's3_input_mode': ?s3InputMode?.toTfJson(),
     'dataset_format': datasetFormat.encode(),
   };
 }
@@ -198,8 +188,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformIn
   json;
 
   Map<String, Object?> encode() => {
-    if (csv != null) 'csv': csv!.encode(),
-    if (json != null) 'json': json!.encode(),
+    'csv': ?csv?.encode(),
+    'json': ?json?.encode(),
   };
 }
 
@@ -213,9 +203,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformIn
 
   final TfArg<bool>? header;
 
-  Map<String, Object?> encode() => {
-    if (header != null) 'header': header!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'header': ?header?.toTfJson()};
 }
 
 /// Typed helper for the `data_quality_job_input.batch_transform_input.dataset_format.json` block of
@@ -228,7 +216,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputBatchTransformIn
 
   final TfArg<bool>? line;
 
-  Map<String, Object?> encode() => {if (line != null) 'line': line!.toTfJson()};
+  Map<String, Object?> encode() => {'line': ?line?.toTfJson()};
 }
 
 /// Typed helper for the `data_quality_job_input.endpoint_input` block of
@@ -258,10 +246,9 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInputEndpointInput {
 
   Map<String, Object?> encode() => {
     'endpoint_name': endpointName.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
-    if (s3DataDistributionType != null)
-      's3_data_distribution_type': s3DataDistributionType!.toTfJson(),
-    if (s3InputMode != null) 's3_input_mode': s3InputMode!.toTfJson(),
+    'local_path': ?localPath?.toTfJson(),
+    's3_data_distribution_type': ?s3DataDistributionType?.toTfJson(),
+    's3_input_mode': ?s3InputMode?.toTfJson(),
   };
 }
 
@@ -306,7 +293,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfig {
   monitoringOutputs;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     'monitoring_outputs': monitoringOutputs.encode(),
   };
 }
@@ -345,8 +332,8 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitorin
   final TfArg<String> s3Uri;
 
   Map<String, Object?> encode() => {
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
-    if (s3UploadMode != null) 's3_upload_mode': s3UploadMode!.toTfJson(),
+    'local_path': ?localPath?.toTfJson(),
+    's3_upload_mode': ?s3UploadMode?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
   };
 }
@@ -403,7 +390,7 @@ final class SagemakerDataQualityJobDefinitionJobResourcesClusterConfig {
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
     'instance_type': instanceType.toTfJson(),
-    if (volumeKmsKeyId != null) 'volume_kms_key_id': volumeKmsKeyId!.toTfJson(),
+    'volume_kms_key_id': ?volumeKmsKeyId?.toTfJson(),
     'volume_size_in_gb': volumeSizeInGb.toTfJson(),
   };
 }
@@ -569,12 +556,10 @@ final class SagemakerDataQualityJobDefinitionNetworkConfig {
   final SagemakerDataQualityJobDefinitionNetworkConfigVpcConfig? vpcConfig;
 
   Map<String, Object?> encode() => {
-    if (enableInterContainerTrafficEncryption != null)
-      'enable_inter_container_traffic_encryption':
-          enableInterContainerTrafficEncryption!.toTfJson(),
-    if (enableNetworkIsolation != null)
-      'enable_network_isolation': enableNetworkIsolation!.toTfJson(),
-    if (vpcConfig != null) 'vpc_config': vpcConfig!.encode(),
+    'enable_inter_container_traffic_encryption':
+        ?enableInterContainerTrafficEncryption?.toTfJson(),
+    'enable_network_isolation': ?enableNetworkIsolation?.toTfJson(),
+    'vpc_config': ?vpcConfig?.encode(),
   };
 }
 
@@ -608,8 +593,7 @@ final class SagemakerDataQualityJobDefinitionStoppingCondition {
   final TfArg<num>? maxRuntimeInSeconds;
 
   Map<String, Object?> encode() => {
-    if (maxRuntimeInSeconds != null)
-      'max_runtime_in_seconds': maxRuntimeInSeconds!.toTfJson(),
+    'max_runtime_in_seconds': ?maxRuntimeInSeconds?.toTfJson(),
   };
 }
 
@@ -641,10 +625,10 @@ final class AwsSagemakerDataQualityJobDefinition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'data_quality_app_specification': TfArg.literal(
              dataQualityAppSpecification.encode(),
            ),

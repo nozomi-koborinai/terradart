@@ -15,9 +15,7 @@ final class SaasRuntimeReleaseBlueprint {
 
   final TfArg<String>? package;
 
-  Map<String, Object?> encode() => {
-    if (package != null) 'package': package!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'package': ?package?.toTfJson()};
 }
 
 /// Typed helper for the `input_variable_defaults` block of
@@ -37,8 +35,8 @@ final class SaasRuntimeReleaseInputVariableDefaults {
   final TfArg<String> variable;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
     'variable': variable.toTfJson(),
   };
 }
@@ -64,8 +62,7 @@ final class SaasRuntimeReleaseReleaseRequirements {
   final TfArg<List<Object?>>? upgradeableFromReleases;
 
   Map<String, Object?> encode() => {
-    if (upgradeableFromReleases != null)
-      'upgradeable_from_releases': upgradeableFromReleases!.toTfJson(),
+    'upgradeable_from_releases': ?upgradeableFromReleases?.toTfJson(),
   };
 }
 
@@ -97,11 +94,11 @@ final class GoogleSaasRuntimeRelease extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'release_id': releaseId,
            'unit_kind': unitKind,
            if (blueprint != null)

@@ -24,9 +24,9 @@ final class NetworkServicesWasmPluginLogConfig {
   final TfArg<num>? sampleRate;
 
   Map<String, Object?> encode() => {
-    if (enable != null) 'enable': enable!.toTfJson(),
-    if (minLogLevel != null) 'min_log_level': minLogLevel!.toTfJson(),
-    if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
+    'enable': ?enable?.toTfJson(),
+    'min_log_level': ?minLogLevel?.toTfJson(),
+    'sample_rate': ?sampleRate?.toTfJson(),
   };
 }
 
@@ -71,13 +71,11 @@ final class NetworkServicesWasmPluginVersions {
   final TfArg<String> versionName;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (imageUri != null) 'image_uri': imageUri!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (pluginConfigData != null)
-      'plugin_config_data': pluginConfigData!.toTfJson(),
-    if (pluginConfigUri != null)
-      'plugin_config_uri': pluginConfigUri!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'image_uri': ?imageUri?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'plugin_config_data': ?pluginConfigData?.toTfJson(),
+    'plugin_config_uri': ?pluginConfigUri?.toTfJson(),
     'version_name': versionName.toTfJson(),
   };
 }
@@ -113,13 +111,13 @@ final class GoogleNetworkServicesWasmPlugin extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (location != null) 'location': location,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'location': ?location,
            'main_version_id': mainVersionId,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (logConfig != null)
              'log_config': TfArg.literal(logConfig.encode()),
            'versions': TfArg.literal([for (final e in versions) e.encode()]),

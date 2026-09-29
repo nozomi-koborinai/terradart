@@ -47,17 +47,13 @@ final class SagemakerTrainingJobAlgorithmSpecification {
   trainingImageConfig;
 
   Map<String, Object?> encode() => {
-    if (algorithmName != null) 'algorithm_name': algorithmName!.toTfJson(),
-    if (containerArguments != null)
-      'container_arguments': containerArguments!.toTfJson(),
-    if (containerEntrypoint != null)
-      'container_entrypoint': containerEntrypoint!.toTfJson(),
-    if (enableSagemakerMetricsTimeSeries != null)
-      'enable_sagemaker_metrics_time_series': enableSagemakerMetricsTimeSeries!
-          .toTfJson(),
-    if (trainingImage != null) 'training_image': trainingImage!.toTfJson(),
-    if (trainingInputMode != null)
-      'training_input_mode': trainingInputMode!.toTfJson(),
+    'algorithm_name': ?algorithmName?.toTfJson(),
+    'container_arguments': ?containerArguments?.toTfJson(),
+    'container_entrypoint': ?containerEntrypoint?.toTfJson(),
+    'enable_sagemaker_metrics_time_series': ?enableSagemakerMetricsTimeSeries
+        ?.toTfJson(),
+    'training_image': ?trainingImage?.toTfJson(),
+    'training_input_mode': ?trainingInputMode?.toTfJson(),
     if (metricDefinitions != null)
       'metric_definitions': [for (final e in metricDefinitions!) e.encode()],
     if (trainingImageConfig != null)
@@ -117,9 +113,8 @@ final class SagemakerTrainingJobAlgorithmSpecificationTrainingImageConfig {
   trainingRepositoryAuthConfig;
 
   Map<String, Object?> encode() => {
-    if (trainingRepositoryAccessMode != null)
-      'training_repository_access_mode': trainingRepositoryAccessMode!
-          .toTfJson(),
+    'training_repository_access_mode': ?trainingRepositoryAccessMode
+        ?.toTfJson(),
     if (trainingRepositoryAuthConfig != null)
       'training_repository_auth_config': [
         for (final e in trainingRepositoryAuthConfig!) e.encode(),
@@ -138,9 +133,8 @@ final class SagemakerTrainingJobAlgorithmSpecificationTrainingImageConfigTrainin
   final TfArg<String>? trainingRepositoryCredentialsProviderArn;
 
   Map<String, Object?> encode() => {
-    if (trainingRepositoryCredentialsProviderArn != null)
-      'training_repository_credentials_provider_arn':
-          trainingRepositoryCredentialsProviderArn!.toTfJson(),
+    'training_repository_credentials_provider_arn':
+        ?trainingRepositoryCredentialsProviderArn?.toTfJson(),
   };
 }
 
@@ -158,7 +152,7 @@ final class SagemakerTrainingJobCheckpointConfig {
   final TfArg<String> s3Uri;
 
   Map<String, Object?> encode() => {
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
+    'local_path': ?localPath?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
   };
 }
@@ -184,8 +178,8 @@ final class SagemakerTrainingJobDebugHookConfig {
   collectionConfigurations;
 
   Map<String, Object?> encode() => {
-    if (hookParameters != null) 'hook_parameters': hookParameters!.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
+    'hook_parameters': ?hookParameters?.toTfJson(),
+    'local_path': ?localPath?.toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
     if (collectionConfigurations != null)
       'collection_configurations': [
@@ -208,9 +202,8 @@ final class SagemakerTrainingJobDebugHookConfigCollectionConfigurations {
   final TfArg<Map<String, String>>? collectionParameters;
 
   Map<String, Object?> encode() => {
-    if (collectionName != null) 'collection_name': collectionName!.toTfJson(),
-    if (collectionParameters != null)
-      'collection_parameters': collectionParameters!.toTfJson(),
+    'collection_name': ?collectionName?.toTfJson(),
+    'collection_parameters': ?collectionParameters?.toTfJson(),
   };
 }
 
@@ -244,13 +237,13 @@ final class SagemakerTrainingJobDebugRuleConfigurations {
   final TfArg<num>? volumeSizeInGb;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'local_path': ?localPath?.toTfJson(),
     'rule_configuration_name': ruleConfigurationName.toTfJson(),
     'rule_evaluator_image': ruleEvaluatorImage.toTfJson(),
-    if (ruleParameters != null) 'rule_parameters': ruleParameters!.toTfJson(),
-    if (s3OutputPath != null) 's3_output_path': s3OutputPath!.toTfJson(),
-    if (volumeSizeInGb != null) 'volume_size_in_gb': volumeSizeInGb!.toTfJson(),
+    'rule_parameters': ?ruleParameters?.toTfJson(),
+    's3_output_path': ?s3OutputPath?.toTfJson(),
+    'volume_size_in_gb': ?volumeSizeInGb?.toTfJson(),
   };
 }
 
@@ -418,11 +411,10 @@ final class SagemakerTrainingJobExperimentConfig {
   final TfArg<String>? trialName;
 
   Map<String, Object?> encode() => {
-    if (experimentName != null) 'experiment_name': experimentName!.toTfJson(),
-    if (runName != null) 'run_name': runName!.toTfJson(),
-    if (trialComponentDisplayName != null)
-      'trial_component_display_name': trialComponentDisplayName!.toTfJson(),
-    if (trialName != null) 'trial_name': trialName!.toTfJson(),
+    'experiment_name': ?experimentName?.toTfJson(),
+    'run_name': ?runName?.toTfJson(),
+    'trial_component_display_name': ?trialComponentDisplayName?.toTfJson(),
+    'trial_name': ?trialName?.toTfJson(),
   };
 }
 
@@ -435,8 +427,7 @@ final class SagemakerTrainingJobInfraCheckConfig {
   final TfArg<bool>? enableInfraCheck;
 
   Map<String, Object?> encode() => {
-    if (enableInfraCheck != null)
-      'enable_infra_check': enableInfraCheck!.toTfJson(),
+    'enable_infra_check': ?enableInfraCheck?.toTfJson(),
   };
 }
 
@@ -472,12 +463,10 @@ final class SagemakerTrainingJobInputDataConfig {
 
   Map<String, Object?> encode() => {
     'channel_name': channelName.toTfJson(),
-    if (compressionType != null)
-      'compression_type': compressionType!.toTfJson(),
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
-    if (inputMode != null) 'input_mode': inputMode!.toTfJson(),
-    if (recordWrapperType != null)
-      'record_wrapper_type': recordWrapperType!.toTfJson(),
+    'compression_type': ?compressionType?.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
+    'input_mode': ?inputMode?.toTfJson(),
+    'record_wrapper_type': ?recordWrapperType?.toTfJson(),
     if (dataSource != null)
       'data_source': [for (final e in dataSource!) e.encode()],
     if (shuffleConfig != null)
@@ -645,11 +634,9 @@ final class SagemakerTrainingJobInputDataConfigDataSourceS3DataSource {
   modelAccessConfig;
 
   Map<String, Object?> encode() => {
-    if (attributeNames != null) 'attribute_names': attributeNames!.toTfJson(),
-    if (instanceGroupNames != null)
-      'instance_group_names': instanceGroupNames!.toTfJson(),
-    if (s3DataDistributionType != null)
-      's3_data_distribution_type': s3DataDistributionType!.toTfJson(),
+    'attribute_names': ?attributeNames?.toTfJson(),
+    'instance_group_names': ?instanceGroupNames?.toTfJson(),
+    's3_data_distribution_type': ?s3DataDistributionType?.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
     if (hubAccessConfig != null)
@@ -723,7 +710,7 @@ final class SagemakerTrainingJobInputDataConfigShuffleConfig {
 
   final TfArg<num>? seed;
 
-  Map<String, Object?> encode() => {if (seed != null) 'seed': seed!.toTfJson()};
+  Map<String, Object?> encode() => {'seed': ?seed?.toTfJson()};
 }
 
 /// Typed helper for the `mlflow_config` block of
@@ -743,10 +730,9 @@ final class SagemakerTrainingJobMlflowConfig {
   final TfArg<String>? mlflowRunName;
 
   Map<String, Object?> encode() => {
-    if (mlflowExperimentName != null)
-      'mlflow_experiment_name': mlflowExperimentName!.toTfJson(),
+    'mlflow_experiment_name': ?mlflowExperimentName?.toTfJson(),
     'mlflow_resource_arn': mlflowResourceArn.toTfJson(),
-    if (mlflowRunName != null) 'mlflow_run_name': mlflowRunName!.toTfJson(),
+    'mlflow_run_name': ?mlflowRunName?.toTfJson(),
   };
 }
 
@@ -765,8 +751,7 @@ final class SagemakerTrainingJobModelPackageConfig {
 
   Map<String, Object?> encode() => {
     'model_package_group_arn': modelPackageGroupArn.toTfJson(),
-    if (sourceModelPackageArn != null)
-      'source_model_package_arn': sourceModelPackageArn!.toTfJson(),
+    'source_model_package_arn': ?sourceModelPackageArn?.toTfJson(),
   };
 }
 
@@ -788,9 +773,8 @@ final class SagemakerTrainingJobOutputDataConfig {
   final TfArg<String> s3OutputPath;
 
   Map<String, Object?> encode() => {
-    if (compressionType != null)
-      'compression_type': compressionType!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'compression_type': ?compressionType?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
 }
@@ -828,14 +812,11 @@ final class SagemakerTrainingJobProfilerConfig {
   final TfArg<String>? s3OutputPath;
 
   Map<String, Object?> encode() => {
-    if (disableProfiler != null)
-      'disable_profiler': disableProfiler!.toTfJson(),
-    if (profilingIntervalInMilliseconds != null)
-      'profiling_interval_in_milliseconds': profilingIntervalInMilliseconds!
-          .toTfJson(),
-    if (profilingParameters != null)
-      'profiling_parameters': profilingParameters!.toTfJson(),
-    if (s3OutputPath != null) 's3_output_path': s3OutputPath!.toTfJson(),
+    'disable_profiler': ?disableProfiler?.toTfJson(),
+    'profiling_interval_in_milliseconds': ?profilingIntervalInMilliseconds
+        ?.toTfJson(),
+    'profiling_parameters': ?profilingParameters?.toTfJson(),
+    's3_output_path': ?s3OutputPath?.toTfJson(),
   };
 }
 
@@ -869,13 +850,13 @@ final class SagemakerTrainingJobProfilerRuleConfigurations {
   final TfArg<num>? volumeSizeInGb;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'local_path': ?localPath?.toTfJson(),
     'rule_configuration_name': ruleConfigurationName.toTfJson(),
     'rule_evaluator_image': ruleEvaluatorImage.toTfJson(),
-    if (ruleParameters != null) 'rule_parameters': ruleParameters!.toTfJson(),
-    if (s3OutputPath != null) 's3_output_path': s3OutputPath!.toTfJson(),
-    if (volumeSizeInGb != null) 'volume_size_in_gb': volumeSizeInGb!.toTfJson(),
+    'rule_parameters': ?ruleParameters?.toTfJson(),
+    's3_output_path': ?s3OutputPath?.toTfJson(),
+    'volume_size_in_gb': ?volumeSizeInGb?.toTfJson(),
   };
 }
 
@@ -1032,8 +1013,7 @@ final class SagemakerTrainingJobRemoteDebugConfig {
   final TfArg<bool>? enableRemoteDebug;
 
   Map<String, Object?> encode() => {
-    if (enableRemoteDebug != null)
-      'enable_remote_debug': enableRemoteDebug!.toTfJson(),
+    'enable_remote_debug': ?enableRemoteDebug?.toTfJson(),
   };
 }
 
@@ -1070,14 +1050,12 @@ final class SagemakerTrainingJobResourceConfig {
   instancePlacementConfig;
 
   Map<String, Object?> encode() => {
-    if (instanceCount != null) 'instance_count': instanceCount!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (keepAlivePeriodInSeconds != null)
-      'keep_alive_period_in_seconds': keepAlivePeriodInSeconds!.toTfJson(),
-    if (trainingPlanArn != null)
-      'training_plan_arn': trainingPlanArn!.toTfJson(),
-    if (volumeKmsKeyId != null) 'volume_kms_key_id': volumeKmsKeyId!.toTfJson(),
-    if (volumeSizeInGb != null) 'volume_size_in_gb': volumeSizeInGb!.toTfJson(),
+    'instance_count': ?instanceCount?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'keep_alive_period_in_seconds': ?keepAlivePeriodInSeconds?.toTfJson(),
+    'training_plan_arn': ?trainingPlanArn?.toTfJson(),
+    'volume_kms_key_id': ?volumeKmsKeyId?.toTfJson(),
+    'volume_size_in_gb': ?volumeSizeInGb?.toTfJson(),
     if (instanceGroups != null)
       'instance_groups': [for (final e in instanceGroups!) e.encode()],
     if (instancePlacementConfig != null)
@@ -1264,10 +1242,9 @@ final class SagemakerTrainingJobResourceConfigInstanceGroups {
   instanceType;
 
   Map<String, Object?> encode() => {
-    if (instanceCount != null) 'instance_count': instanceCount!.toTfJson(),
-    if (instanceGroupName != null)
-      'instance_group_name': instanceGroupName!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
+    'instance_count': ?instanceCount?.toTfJson(),
+    'instance_group_name': ?instanceGroupName?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
   };
 }
 
@@ -1450,8 +1427,7 @@ final class SagemakerTrainingJobResourceConfigInstancePlacementConfig {
   placementSpecifications;
 
   Map<String, Object?> encode() => {
-    if (enableMultipleJobs != null)
-      'enable_multiple_jobs': enableMultipleJobs!.toTfJson(),
+    'enable_multiple_jobs': ?enableMultipleJobs?.toTfJson(),
     if (placementSpecifications != null)
       'placement_specifications': [
         for (final e in placementSpecifications!) e.encode(),
@@ -1473,8 +1449,8 @@ final class SagemakerTrainingJobResourceConfigInstancePlacementConfigPlacementSp
   final TfArg<String>? ultraServerId;
 
   Map<String, Object?> encode() => {
-    if (instanceCount != null) 'instance_count': instanceCount!.toTfJson(),
-    if (ultraServerId != null) 'ultra_server_id': ultraServerId!.toTfJson(),
+    'instance_count': ?instanceCount?.toTfJson(),
+    'ultra_server_id': ?ultraServerId?.toTfJson(),
   };
 }
 
@@ -1522,14 +1498,13 @@ final class SagemakerTrainingJobServerlessJobConfig {
   final TfArg<SagemakerTrainingJobServerlessJobConfigPeft>? peft;
 
   Map<String, Object?> encode() => {
-    if (acceptEula != null) 'accept_eula': acceptEula!.toTfJson(),
+    'accept_eula': ?acceptEula?.toTfJson(),
     'base_model_arn': baseModelArn.toTfJson(),
-    if (customizationTechnique != null)
-      'customization_technique': customizationTechnique!.toTfJson(),
-    if (evaluationType != null) 'evaluation_type': evaluationType!.toTfJson(),
-    if (evaluatorArn != null) 'evaluator_arn': evaluatorArn!.toTfJson(),
+    'customization_technique': ?customizationTechnique?.toTfJson(),
+    'evaluation_type': ?evaluationType?.toTfJson(),
+    'evaluator_arn': ?evaluatorArn?.toTfJson(),
     'job_type': jobType.toTfJson(),
-    if (peft != null) 'peft': peft!.toTfJson(),
+    'peft': ?peft?.toTfJson(),
   };
 }
 
@@ -1592,8 +1567,7 @@ final class SagemakerTrainingJobSessionChainingConfig {
   final TfArg<bool>? enableSessionTagChaining;
 
   Map<String, Object?> encode() => {
-    if (enableSessionTagChaining != null)
-      'enable_session_tag_chaining': enableSessionTagChaining!.toTfJson(),
+    'enable_session_tag_chaining': ?enableSessionTagChaining?.toTfJson(),
   };
 }
 
@@ -1614,12 +1588,9 @@ final class SagemakerTrainingJobStoppingCondition {
   final TfArg<num>? maxWaitTimeInSeconds;
 
   Map<String, Object?> encode() => {
-    if (maxPendingTimeInSeconds != null)
-      'max_pending_time_in_seconds': maxPendingTimeInSeconds!.toTfJson(),
-    if (maxRuntimeInSeconds != null)
-      'max_runtime_in_seconds': maxRuntimeInSeconds!.toTfJson(),
-    if (maxWaitTimeInSeconds != null)
-      'max_wait_time_in_seconds': maxWaitTimeInSeconds!.toTfJson(),
+    'max_pending_time_in_seconds': ?maxPendingTimeInSeconds?.toTfJson(),
+    'max_runtime_in_seconds': ?maxRuntimeInSeconds?.toTfJson(),
+    'max_wait_time_in_seconds': ?maxWaitTimeInSeconds?.toTfJson(),
   };
 }
 
@@ -1637,7 +1608,7 @@ final class SagemakerTrainingJobTensorBoardOutputConfig {
   final TfArg<String> s3OutputPath;
 
   Map<String, Object?> encode() => {
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
+    'local_path': ?localPath?.toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
 }
@@ -1706,22 +1677,17 @@ final class AwsSagemakerTrainingJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deleteModelPackagesOnDestroy != null)
-             'delete_model_packages_on_destroy': deleteModelPackagesOnDestroy,
-           if (deleteVpcEnisOnDestroy != null)
-             'delete_vpc_enis_on_destroy': deleteVpcEnisOnDestroy,
-           if (enableInterContainerTrafficEncryption != null)
-             'enable_inter_container_traffic_encryption':
-                 enableInterContainerTrafficEncryption,
-           if (enableManagedSpotTraining != null)
-             'enable_managed_spot_training': enableManagedSpotTraining,
-           if (enableNetworkIsolation != null)
-             'enable_network_isolation': enableNetworkIsolation,
-           if (environment != null) 'environment': environment,
-           if (hyperParameters != null) 'hyper_parameters': hyperParameters,
-           if (region != null) 'region': region,
+           'delete_model_packages_on_destroy': ?deleteModelPackagesOnDestroy,
+           'delete_vpc_enis_on_destroy': ?deleteVpcEnisOnDestroy,
+           'enable_inter_container_traffic_encryption':
+               ?enableInterContainerTrafficEncryption,
+           'enable_managed_spot_training': ?enableManagedSpotTraining,
+           'enable_network_isolation': ?enableNetworkIsolation,
+           'environment': ?environment,
+           'hyper_parameters': ?hyperParameters,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'training_job_name': trainingJobName,
            if (algorithmSpecification != null)
              'algorithm_specification': TfArg.literal([

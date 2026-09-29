@@ -35,7 +35,7 @@ final class ColabScheduleCreatePipelineJobRequest {
   final ColabScheduleCreatePipelineJobRequestPipelineJob pipelineJob;
 
   Map<String, Object?> encode() => {
-    if (parent != null) 'parent': parent!.toTfJson(),
+    'parent': ?parent?.toTfJson(),
     'pipeline_job': pipelineJob.encode(),
   };
 }
@@ -84,21 +84,17 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJob {
   runtimeConfig;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
-    if (pipelineSpec != null) 'pipeline_spec': pipelineSpec!.toTfJson(),
-    if (preflightValidations != null)
-      'preflight_validations': preflightValidations!.toTfJson(),
-    if (reservedIpRanges != null)
-      'reserved_ip_ranges': reservedIpRanges!.toTfJson(),
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
-    if (templateUri != null) 'template_uri': templateUri!.toTfJson(),
-    if (encryptionSpec != null) 'encryption_spec': encryptionSpec!.encode(),
-    if (pscInterfaceConfig != null)
-      'psc_interface_config': pscInterfaceConfig!.encode(),
-    if (runtimeConfig != null) 'runtime_config': runtimeConfig!.encode(),
+    'display_name': ?displayName?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'pipeline_spec': ?pipelineSpec?.toTfJson(),
+    'preflight_validations': ?preflightValidations?.toTfJson(),
+    'reserved_ip_ranges': ?reservedIpRanges?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'template_uri': ?templateUri?.toTfJson(),
+    'encryption_spec': ?encryptionSpec?.encode(),
+    'psc_interface_config': ?pscInterfaceConfig?.encode(),
+    'runtime_config': ?runtimeConfig?.encode(),
   };
 }
 
@@ -134,8 +130,7 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfig {
   dnsPeeringConfigs;
 
   Map<String, Object?> encode() => {
-    if (networkAttachment != null)
-      'network_attachment': networkAttachment!.toTfJson(),
+    'network_attachment': ?networkAttachment?.toTfJson(),
     if (dnsPeeringConfigs != null)
       'dns_peering_configs': [for (final e in dnsPeeringConfigs!) e.encode()],
   };
@@ -181,10 +176,9 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJobRuntimeConfig {
   final TfArg<Map<String, String>>? parameterValues;
 
   Map<String, Object?> encode() => {
-    if (failurePolicy != null) 'failure_policy': failurePolicy!.toTfJson(),
+    'failure_policy': ?failurePolicy?.toTfJson(),
     'gcs_output_directory': gcsOutputDirectory.toTfJson(),
-    if (parameterValues != null)
-      'parameter_values': parameterValues!.toTfJson(),
+    'parameter_values': ?parameterValues?.toTfJson(),
   };
 }
 
@@ -226,16 +220,15 @@ final class GoogleColabSchedule extends Resource {
            'display_name': displayName,
            'cron': cron,
            'max_concurrent_run_count': maxConcurrentRunCount,
-           if (createNotebookExecutionJobRequest != null)
-             'create_notebook_execution_job_request':
-                 createNotebookExecutionJobRequest,
-           if (desiredState != null) 'desired_state': desiredState,
-           if (allowQueueing != null) 'allow_queueing': allowQueueing,
-           if (maxRunCount != null) 'max_run_count': maxRunCount,
-           if (startTime != null) 'start_time': startTime,
-           if (endTime != null) 'end_time': endTime,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'create_notebook_execution_job_request':
+               ?createNotebookExecutionJobRequest,
+           'desired_state': ?desiredState,
+           'allow_queueing': ?allowQueueing,
+           'max_run_count': ?maxRunCount,
+           'start_time': ?startTime,
+           'end_time': ?endTime,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

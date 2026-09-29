@@ -34,15 +34,14 @@ final class GoogleEventarcGoogleApiSource extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (cryptoKeyName != null)
-             'crypto_key_name': cryptoKeyName.encodeAs('id'),
+           'annotations': ?annotations,
+           'crypto_key_name': ?cryptoKeyName?.encodeAs('id'),
            'destination': destination,
-           if (displayName != null) 'display_name': displayName,
+           'display_name': ?displayName,
            'google_api_source_id': googleApiSourceId,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (loggingConfig != null)
              'logging_config': TfArg.literal([loggingConfig.encode()]),
          },

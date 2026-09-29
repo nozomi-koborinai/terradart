@@ -42,8 +42,8 @@ final class AwsChimesdkvoiceSipMediaApplication extends Resource {
          argMap: {
            'aws_region': awsRegion,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'endpoints': TfArg.literal(endpoints.encode()),
          },
        );

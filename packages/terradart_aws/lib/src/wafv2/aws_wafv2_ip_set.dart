@@ -103,13 +103,13 @@ final class AwsWafv2IpSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (addresses != null) 'addresses': addresses,
-           if (description != null) 'description': description,
+           'addresses': ?addresses,
+           'description': ?description,
            'ip_address_version': ipAddressVersion,
            ...?name?.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            'scope': scope,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

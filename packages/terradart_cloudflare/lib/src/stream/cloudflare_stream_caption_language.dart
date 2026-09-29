@@ -30,7 +30,7 @@ final class CloudflareStreamCaptionLanguage extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (file != null) 'file': file,
+           'file': ?file,
            'identifier': identifier,
            'language': language,
          },

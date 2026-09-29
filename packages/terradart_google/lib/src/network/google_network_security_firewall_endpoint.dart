@@ -18,8 +18,7 @@ final class NetworkSecurityFirewallEndpointEndpointSettings {
   final TfArg<bool>? jumboFramesEnabled;
 
   Map<String, Object?> encode() => {
-    if (jumboFramesEnabled != null)
-      'jumbo_frames_enabled': jumboFramesEnabled!.toTfJson(),
+    'jumbo_frames_enabled': ?jumboFramesEnabled?.toTfJson(),
   };
 }
 
@@ -66,11 +65,11 @@ final class GoogleNetworkSecurityFirewallEndpoint extends Resource {
            'name': name,
            'location': location,
            'parent': parent,
-           if (billingProjectId != null) 'billing_project_id': billingProjectId,
+           'billing_project_id': ?billingProjectId,
            if (endpointSettings != null)
              'endpoint_settings': TfArg.literal(endpointSettings.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

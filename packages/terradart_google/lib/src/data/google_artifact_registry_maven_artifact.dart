@@ -28,7 +28,7 @@ final class DataGoogleArtifactRegistryMavenArtifact extends Data {
            'artifact_id': artifactId,
            'group_id': groupId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'repository_id': repositoryId,
          },
        );

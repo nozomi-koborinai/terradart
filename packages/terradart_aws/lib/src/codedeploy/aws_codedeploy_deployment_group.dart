@@ -37,10 +37,9 @@ final class CodedeployDeploymentGroupAlarmConfiguration {
   final TfArg<bool>? ignorePollAlarmFailure;
 
   Map<String, Object?> encode() => {
-    if (alarms != null) 'alarms': alarms!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (ignorePollAlarmFailure != null)
-      'ignore_poll_alarm_failure': ignorePollAlarmFailure!.toTfJson(),
+    'alarms': ?alarms?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'ignore_poll_alarm_failure': ?ignorePollAlarmFailure?.toTfJson(),
   };
 }
 
@@ -58,8 +57,8 @@ final class CodedeployDeploymentGroupAutoRollbackConfiguration {
   final TfArg<List<Object?>>? events;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (events != null) 'events': events!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'events': ?events?.toTfJson(),
   };
 }
 
@@ -83,13 +82,10 @@ final class CodedeployDeploymentGroupBlueGreenDeploymentConfig {
   terminateBlueInstancesOnDeploymentSuccess;
 
   Map<String, Object?> encode() => {
-    if (deploymentReadyOption != null)
-      'deployment_ready_option': deploymentReadyOption!.encode(),
-    if (greenFleetProvisioningOption != null)
-      'green_fleet_provisioning_option': greenFleetProvisioningOption!.encode(),
-    if (terminateBlueInstancesOnDeploymentSuccess != null)
-      'terminate_blue_instances_on_deployment_success':
-          terminateBlueInstancesOnDeploymentSuccess!.encode(),
+    'deployment_ready_option': ?deploymentReadyOption?.encode(),
+    'green_fleet_provisioning_option': ?greenFleetProvisioningOption?.encode(),
+    'terminate_blue_instances_on_deployment_success':
+        ?terminateBlueInstancesOnDeploymentSuccess?.encode(),
   };
 }
 
@@ -110,10 +106,8 @@ final class CodedeployDeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOpt
   final TfArg<num>? waitTimeInMinutes;
 
   Map<String, Object?> encode() => {
-    if (actionOnTimeout != null)
-      'action_on_timeout': actionOnTimeout!.toTfJson(),
-    if (waitTimeInMinutes != null)
-      'wait_time_in_minutes': waitTimeInMinutes!.toTfJson(),
+    'action_on_timeout': ?actionOnTimeout?.toTfJson(),
+    'wait_time_in_minutes': ?waitTimeInMinutes?.toTfJson(),
   };
 }
 
@@ -143,9 +137,7 @@ final class CodedeployDeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisio
   >?
   action;
 
-  Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
@@ -178,10 +170,9 @@ final class CodedeployDeploymentGroupBlueGreenDeploymentConfigTerminateBlueInsta
   final TfArg<num>? terminationWaitTimeInMinutes;
 
   Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
-    if (terminationWaitTimeInMinutes != null)
-      'termination_wait_time_in_minutes': terminationWaitTimeInMinutes!
-          .toTfJson(),
+    'action': ?action?.toTfJson(),
+    'termination_wait_time_in_minutes': ?terminationWaitTimeInMinutes
+        ?.toTfJson(),
   };
 }
 
@@ -214,9 +205,8 @@ final class CodedeployDeploymentGroupDeploymentStyle {
   deploymentType;
 
   Map<String, Object?> encode() => {
-    if (deploymentOption != null)
-      'deployment_option': deploymentOption!.toTfJson(),
-    if (deploymentType != null) 'deployment_type': deploymentType!.toTfJson(),
+    'deployment_option': ?deploymentOption?.toTfJson(),
+    'deployment_type': ?deploymentType?.toTfJson(),
   };
 }
 
@@ -263,9 +253,9 @@ final class CodedeployDeploymentGroupEc2TagFilter {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -311,9 +301,9 @@ final class CodedeployDeploymentGroupEc2TagSetEc2TagFilter {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -370,8 +360,7 @@ final class CodedeployDeploymentGroupLoadBalancerInfo {
     if (elbInfo != null) 'elb_info': [for (final e in elbInfo!) e.encode()],
     if (targetGroupInfo != null)
       'target_group_info': [for (final e in targetGroupInfo!) e.encode()],
-    if (targetGroupPairInfo != null)
-      'target_group_pair_info': targetGroupPairInfo!.encode(),
+    'target_group_pair_info': ?targetGroupPairInfo?.encode(),
   };
 }
 
@@ -383,7 +372,7 @@ final class CodedeployDeploymentGroupLoadBalancerInfoElbInfo {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `load_balancer_info.target_group_info` block of
@@ -394,7 +383,7 @@ final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupInfo {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `load_balancer_info.target_group_pair_info` block of
@@ -421,8 +410,7 @@ final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfo {
   Map<String, Object?> encode() => {
     'prod_traffic_route': prodTrafficRoute.encode(),
     'target_group': [for (final e in targetGroup) e.encode()],
-    if (testTrafficRoute != null)
-      'test_traffic_route': testTrafficRoute!.encode(),
+    'test_traffic_route': ?testTrafficRoute?.encode(),
   };
 }
 
@@ -482,9 +470,9 @@ final class CodedeployDeploymentGroupOnPremisesInstanceTagFilter {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -584,18 +572,14 @@ final class AwsCodedeployDeploymentGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'app_name': appName,
-           if (autoscalingGroups != null)
-             'autoscaling_groups': autoscalingGroups,
-           if (deploymentConfigName != null)
-             'deployment_config_name': deploymentConfigName,
+           'autoscaling_groups': ?autoscalingGroups,
+           'deployment_config_name': ?deploymentConfigName,
            'deployment_group_name': deploymentGroupName,
-           if (outdatedInstancesStrategy != null)
-             'outdated_instances_strategy': outdatedInstancesStrategy,
-           if (region != null) 'region': region,
+           'outdated_instances_strategy': ?outdatedInstancesStrategy,
+           'region': ?region,
            'service_role_arn': serviceRoleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
-           if (terminationHookEnabled != null)
-             'termination_hook_enabled': terminationHookEnabled,
+           'tags': ?tags,
+           'termination_hook_enabled': ?terminationHookEnabled,
            if (alarmConfiguration != null)
              'alarm_configuration': TfArg.literal(alarmConfiguration.encode()),
            if (autoRollbackConfiguration != null)

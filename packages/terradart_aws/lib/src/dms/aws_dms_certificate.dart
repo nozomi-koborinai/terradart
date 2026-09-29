@@ -95,8 +95,8 @@ final class AwsDmsCertificate extends Resource {
          argMap: {
            'certificate_id': certificateId,
            ...certificate.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

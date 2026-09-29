@@ -37,8 +37,8 @@ final class AwsEc2SubnetCidrReservation extends Resource {
          terraformType: tfType,
          argMap: {
            'cidr_block': cidrBlock,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'region': ?region,
            'reservation_type': reservationType,
            'subnet_id': subnetId.encodeAs('id'),
          },

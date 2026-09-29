@@ -109,14 +109,13 @@ final class GoogleComputeNetworkEndpointGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (zone != null) 'zone': zone,
+           'zone': ?zone,
            'network': network.encodeAs('id'),
-           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
-           if (networkEndpointType != null)
-             'network_endpoint_type': networkEndpointType,
-           if (defaultPort != null) 'default_port': defaultPort,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'subnetwork': ?subnetwork?.encodeAs('id'),
+           'network_endpoint_type': ?networkEndpointType,
+           'default_port': ?defaultPort,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

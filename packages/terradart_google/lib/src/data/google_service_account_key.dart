@@ -22,10 +22,7 @@ final class DataGoogleServiceAccountKey extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (publicKeyType != null) 'public_key_type': publicKeyType,
-         },
+         argMap: {'name': name, 'public_key_type': ?publicKeyType},
        );
 
   @override

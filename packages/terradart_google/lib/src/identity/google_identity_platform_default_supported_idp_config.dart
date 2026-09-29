@@ -43,10 +43,10 @@ final class GoogleIdentityPlatformDefaultSupportedIdpConfig extends Resource {
          argMap: {
            'client_id': clientId,
            'client_secret': clientSecret,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (enabled != null) 'enabled': enabled,
+           'deletion_policy': ?deletionPolicy,
+           'enabled': ?enabled,
            'idp_id': idpId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

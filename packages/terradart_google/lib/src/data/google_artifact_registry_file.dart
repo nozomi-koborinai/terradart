@@ -29,8 +29,8 @@ final class DataGoogleArtifactRegistryFile extends Data {
            'file_id': fileId,
            'location': location,
            'output_path': outputPath,
-           if (overwrite != null) 'overwrite': overwrite,
-           if (project != null) 'project': project,
+           'overwrite': ?overwrite,
+           'project': ?project,
            'repository_id': repositoryId,
          },
        );

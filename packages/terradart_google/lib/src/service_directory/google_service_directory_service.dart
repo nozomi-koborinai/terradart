@@ -27,8 +27,8 @@ final class GoogleServiceDirectoryService extends Resource {
          argMap: {
            'service_id': serviceId,
            'namespace': namespace,
-           if (metadata != null) 'metadata': metadata,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'metadata': ?metadata,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

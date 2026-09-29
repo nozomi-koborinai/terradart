@@ -82,7 +82,7 @@ final class AwsRouteTableAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            ...target.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            'route_table_id': routeTableId,
          },
        );

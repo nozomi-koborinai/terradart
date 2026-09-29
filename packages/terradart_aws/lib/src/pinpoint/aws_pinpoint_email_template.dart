@@ -36,13 +36,12 @@ final class PinpointEmailTemplateEmailTemplate {
   final List<PinpointEmailTemplateEmailTemplateHeader>? header;
 
   Map<String, Object?> encode() => {
-    if (defaultSubstitutions != null)
-      'default_substitutions': defaultSubstitutions!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (htmlPart != null) 'html_part': htmlPart!.toTfJson(),
-    if (recommenderId != null) 'recommender_id': recommenderId!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
-    if (textPart != null) 'text_part': textPart!.toTfJson(),
+    'default_substitutions': ?defaultSubstitutions?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'html_part': ?htmlPart?.toTfJson(),
+    'recommender_id': ?recommenderId?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
+    'text_part': ?textPart?.toTfJson(),
     if (header != null) 'header': [for (final e in header!) e.encode()],
   };
 }
@@ -58,8 +57,8 @@ final class PinpointEmailTemplateEmailTemplateHeader {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -80,8 +79,8 @@ final class AwsPinpointEmailTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'template_name': templateName,
            if (emailTemplate != null)
              'email_template': TfArg.literal([

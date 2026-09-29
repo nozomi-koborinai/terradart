@@ -33,7 +33,7 @@ final class GoogleSccV2OrganizationSource extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'display_name': displayName,
            'organization': organization,
          },

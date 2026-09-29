@@ -32,11 +32,11 @@ final class CloudflareWebAnalyticsSite extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (autoInstall != null) 'auto_install': autoInstall,
-           if (enabled != null) 'enabled': enabled,
-           if (host != null) 'host': host,
-           if (lite != null) 'lite': lite,
-           if (zoneTag != null) 'zone_tag': zoneTag,
+           'auto_install': ?autoInstall,
+           'enabled': ?enabled,
+           'host': ?host,
+           'lite': ?lite,
+           'zone_tag': ?zoneTag,
          },
        );
 

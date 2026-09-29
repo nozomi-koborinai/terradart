@@ -38,11 +38,9 @@ final class GoogleIdentityPlatformConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (authorizedDomains != null)
-             'authorized_domains': authorizedDomains,
-           if (autodeleteAnonymousUsers != null)
-             'autodelete_anonymous_users': autodeleteAnonymousUsers,
-           if (project != null) 'project': project,
+           'authorized_domains': ?authorizedDomains,
+           'autodelete_anonymous_users': ?autodeleteAnonymousUsers,
+           'project': ?project,
          },
        );
 

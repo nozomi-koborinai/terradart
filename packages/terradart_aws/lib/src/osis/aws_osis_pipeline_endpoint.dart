@@ -24,8 +24,7 @@ final class OsisPipelineEndpointVpcOptions {
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
@@ -47,7 +46,7 @@ final class AwsOsisPipelineEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'pipeline_arn': pipelineArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (vpcOptions != null)
              'vpc_options': TfArg.literal([
                for (final e in vpcOptions) e.encode(),

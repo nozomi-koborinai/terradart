@@ -68,7 +68,7 @@ final class AwsDevopsguruEventSourcesConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (eventSources != null)
              'event_sources': TfArg.literal([
                for (final e in eventSources) e.encode(),

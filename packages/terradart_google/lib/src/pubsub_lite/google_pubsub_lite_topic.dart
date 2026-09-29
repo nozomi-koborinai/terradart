@@ -19,7 +19,7 @@ final class PubsubLiteTopicPartitionConfig {
 
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
-    if (capacity != null) 'capacity': capacity!.encode(),
+    'capacity': ?capacity?.encode(),
   };
 }
 
@@ -51,8 +51,7 @@ final class PubsubLiteTopicReservationConfig {
   final TfArg<String>? throughputReservation;
 
   Map<String, Object?> encode() => {
-    if (throughputReservation != null)
-      'throughput_reservation': throughputReservation!.toTfJson(),
+    'throughput_reservation': ?throughputReservation?.toTfJson(),
   };
 }
 
@@ -71,7 +70,7 @@ final class PubsubLiteTopicRetentionConfig {
 
   Map<String, Object?> encode() => {
     'per_partition_bytes': perPartitionBytes.toTfJson(),
-    if (period != null) 'period': period!.toTfJson(),
+    'period': ?period?.toTfJson(),
   };
 }
 
@@ -109,16 +108,16 @@ final class GooglePubsubLiteTopic extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (zone != null) 'zone': zone,
+           'region': ?region,
+           'zone': ?zone,
            if (partitionConfig != null)
              'partition_config': TfArg.literal(partitionConfig.encode()),
            if (retentionConfig != null)
              'retention_config': TfArg.literal(retentionConfig.encode()),
            if (reservationConfig != null)
              'reservation_config': TfArg.literal(reservationConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

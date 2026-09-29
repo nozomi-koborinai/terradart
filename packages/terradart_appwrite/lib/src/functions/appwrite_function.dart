@@ -41,32 +41,26 @@ final class AppwriteFunction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (buildSpecification != null)
-             'build_specification': buildSpecification,
-           if (commands != null) 'commands': commands,
-           if (deploymentRetention != null)
-             'deployment_retention': deploymentRetention,
-           if (enabled != null) 'enabled': enabled,
-           if (entrypoint != null) 'entrypoint': entrypoint,
-           if (events != null) 'events': events,
-           if (execute != null) 'execute': execute,
-           if (installationId != null) 'installation_id': installationId,
-           if (logging != null) 'logging': logging,
+           'build_specification': ?buildSpecification,
+           'commands': ?commands,
+           'deployment_retention': ?deploymentRetention,
+           'enabled': ?enabled,
+           'entrypoint': ?entrypoint,
+           'events': ?events,
+           'execute': ?execute,
+           'installation_id': ?installationId,
+           'logging': ?logging,
            'name': name,
-           if (projectId != null) 'project_id': projectId,
-           if (providerBranch != null) 'provider_branch': providerBranch,
-           if (providerRepositoryId != null)
-             'provider_repository_id': providerRepositoryId,
-           if (providerRootDirectory != null)
-             'provider_root_directory': providerRootDirectory,
-           if (providerSilentMode != null)
-             'provider_silent_mode': providerSilentMode,
+           'project_id': ?projectId,
+           'provider_branch': ?providerBranch,
+           'provider_repository_id': ?providerRepositoryId,
+           'provider_root_directory': ?providerRootDirectory,
+           'provider_silent_mode': ?providerSilentMode,
            'runtime': runtime,
-           if (runtimeSpecification != null)
-             'runtime_specification': runtimeSpecification,
-           if (schedule != null) 'schedule': schedule,
-           if (scopes != null) 'scopes': scopes,
-           if (timeout != null) 'timeout': timeout,
+           'runtime_specification': ?runtimeSpecification,
+           'schedule': ?schedule,
+           'scopes': ?scopes,
+           'timeout': ?timeout,
          },
        );
 

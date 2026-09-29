@@ -37,9 +37,9 @@ final class DataCloudflareCustomCsr extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (customCsrId != null) 'custom_csr_id': customCsrId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'custom_csr_id': ?customCsrId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

@@ -60,16 +60,15 @@ final class GoogleComputePublicDelegatedPrefix extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allocatablePrefixLength != null)
-             'allocatable_prefix_length': allocatablePrefixLength,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'allocatable_prefix_length': ?allocatablePrefixLength,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'ip_cidr_range': ipCidrRange,
-           if (isLiveMigration != null) 'is_live_migration': isLiveMigration,
-           if (mode != null) 'mode': mode,
+           'is_live_migration': ?isLiveMigration,
+           'mode': ?mode,
            'name': name,
            'parent_prefix': parentPrefix,
-           if (project != null) 'project': project,
+           'project': ?project,
            'region': region,
          },
        );

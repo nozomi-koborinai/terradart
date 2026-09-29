@@ -24,7 +24,7 @@ final class AwsTransferSshKey extends Resource {
          terraformType: tfType,
          argMap: {
            'body': body,
-           if (region != null) 'region': region,
+           'region': ?region,
            'server_id': serverId,
            'user_name': userName,
          },

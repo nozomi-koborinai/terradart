@@ -33,8 +33,8 @@ final class ContactCenterInsightsAutoLabelingRuleConditions {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (condition != null) 'condition': condition!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'condition': ?condition?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -73,19 +73,18 @@ final class GoogleContactCenterInsightsAutoLabelingRule extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (autoLabelingRuleId != null)
-             'auto_labeling_rule_id': autoLabelingRuleId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (labelKey != null) 'label_key': labelKey,
-           if (labelKeyType != null) 'label_key_type': labelKeyType,
+           'auto_labeling_rule_id': ?autoLabelingRuleId,
+           'display_name': ?displayName,
+           'description': ?description,
+           'label_key': ?labelKey,
+           'label_key_type': ?labelKeyType,
            if (conditions != null)
              'conditions': TfArg.literal([
                for (final e in conditions) e.encode(),
              ]),
-           if (active != null) 'active': active,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'active': ?active,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

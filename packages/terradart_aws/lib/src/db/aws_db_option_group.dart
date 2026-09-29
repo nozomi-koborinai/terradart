@@ -91,13 +91,11 @@ final class DbOptionGroupOption {
   final List<DbOptionGroupOptionOptionSettings>? optionSettings;
 
   Map<String, Object?> encode() => {
-    if (dbSecurityGroupMemberships != null)
-      'db_security_group_memberships': dbSecurityGroupMemberships!.toTfJson(),
+    'db_security_group_memberships': ?dbSecurityGroupMemberships?.toTfJson(),
     'option_name': optionName.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (vpcSecurityGroupMemberships != null)
-      'vpc_security_group_memberships': vpcSecurityGroupMemberships!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'version': ?version?.toTfJson(),
+    'vpc_security_group_memberships': ?vpcSecurityGroupMemberships?.toTfJson(),
     if (optionSettings != null)
       'option_settings': [for (final e in optionSettings!) e.encode()],
   };
@@ -146,11 +144,10 @@ final class AwsDbOptionGroup extends Resource {
            'engine_name': engineName,
            'major_engine_version': majorEngineVersion,
            ...?name?.argMap,
-           if (optionGroupDescription != null)
-             'option_group_description': optionGroupDescription,
-           if (region != null) 'region': region,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (tags != null) 'tags': tags,
+           'option_group_description': ?optionGroupDescription,
+           'region': ?region,
+           'skip_destroy': ?skipDestroy,
+           'tags': ?tags,
            if (option != null)
              'option': TfArg.literal([for (final e in option) e.encode()]),
          },

@@ -113,11 +113,11 @@ final class GoogleNetworkSecurityMirroringEndpointGroup extends Resource {
          argMap: {
            'location': location,
            'mirroring_endpoint_group_id': mirroringEndpointGroupId,
-           if (type != null) 'type': type,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'type': ?type,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
            deploymentLink.blockKey: TfArg.literal(
              deploymentLink.encode()[deploymentLink.blockKey],
            ),

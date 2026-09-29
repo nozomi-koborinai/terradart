@@ -54,13 +54,12 @@ final class GoogleOracleDatabaseCloudExadataInfrastructure extends Resource {
          argMap: {
            'location': location,
            'cloud_exadata_infrastructure_id': cloudExadataInfrastructureId,
-           if (displayName != null) 'display_name': displayName,
-           if (properties != null) 'properties': properties,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'properties': ?properties,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

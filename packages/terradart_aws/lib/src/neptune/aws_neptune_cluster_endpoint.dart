@@ -40,10 +40,10 @@ final class AwsNeptuneClusterEndpoint extends Resource {
            'cluster_endpoint_identifier': clusterEndpointIdentifier,
            'cluster_identifier': clusterIdentifier,
            'endpoint_type': endpointType,
-           if (excludedMembers != null) 'excluded_members': excludedMembers,
-           if (region != null) 'region': region,
-           if (staticMembers != null) 'static_members': staticMembers,
-           if (tags != null) 'tags': tags,
+           'excluded_members': ?excludedMembers,
+           'region': ?region,
+           'static_members': ?staticMembers,
+           'tags': ?tags,
          },
        );
 

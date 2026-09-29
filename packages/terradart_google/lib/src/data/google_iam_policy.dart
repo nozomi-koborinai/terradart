@@ -21,10 +21,7 @@ final class DataGoogleIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (auditConfig != null) 'audit_config': auditConfig,
-           if (binding != null) 'binding': binding,
-         },
+         argMap: {'audit_config': ?auditConfig, 'binding': ?binding},
        );
 
   @override

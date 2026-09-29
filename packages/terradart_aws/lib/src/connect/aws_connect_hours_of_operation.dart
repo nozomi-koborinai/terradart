@@ -103,11 +103,11 @@ final class AwsConnectHoursOfOperation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'instance_id': instanceId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'time_zone': timeZone,
            'config': TfArg.literal([for (final e in config) e.encode()]),
          },

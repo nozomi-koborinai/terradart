@@ -56,7 +56,7 @@ final class IotTopicRuleCloudwatchLogs {
   final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
+    'batch_mode': ?batchMode?.toTfJson(),
     'log_group_name': logGroupName.encodeAs('name').toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
@@ -90,8 +90,7 @@ final class IotTopicRuleCloudwatchMetric {
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     'metric_namespace': metricNamespace.toTfJson(),
-    if (metricTimestamp != null)
-      'metric_timestamp': metricTimestamp!.toTfJson(),
+    'metric_timestamp': ?metricTimestamp?.toTfJson(),
     'metric_unit': metricUnit.toTfJson(),
     'metric_value': metricValue.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -137,13 +136,13 @@ final class IotTopicRuleDynamodb {
 
   Map<String, Object?> encode() => {
     'hash_key_field': hashKeyField.toTfJson(),
-    if (hashKeyType != null) 'hash_key_type': hashKeyType!.toTfJson(),
+    'hash_key_type': ?hashKeyType?.toTfJson(),
     'hash_key_value': hashKeyValue.toTfJson(),
-    if (operation != null) 'operation': operation!.toTfJson(),
-    if (payloadField != null) 'payload_field': payloadField!.toTfJson(),
-    if (rangeKeyField != null) 'range_key_field': rangeKeyField!.toTfJson(),
-    if (rangeKeyType != null) 'range_key_type': rangeKeyType!.toTfJson(),
-    if (rangeKeyValue != null) 'range_key_value': rangeKeyValue!.toTfJson(),
+    'operation': ?operation?.toTfJson(),
+    'payload_field': ?payloadField?.toTfJson(),
+    'range_key_field': ?rangeKeyField?.toTfJson(),
+    'range_key_type': ?rangeKeyType?.toTfJson(),
+    'range_key_value': ?rangeKeyValue?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_name': tableName.toTfJson(),
   };
@@ -172,7 +171,7 @@ final class IotTopicRuleDynamodbv2 {
 
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (putItem != null) 'put_item': putItem!.encode(),
+    'put_item': ?putItem?.encode(),
   };
 }
 
@@ -283,26 +282,25 @@ final class IotTopicRuleErrorAction {
   final IotTopicRuleErrorActionTimestream? timestream;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchAlarm != null) 'cloudwatch_alarm': cloudwatchAlarm!.encode(),
-    if (cloudwatchLogs != null) 'cloudwatch_logs': cloudwatchLogs!.encode(),
-    if (cloudwatchMetric != null)
-      'cloudwatch_metric': cloudwatchMetric!.encode(),
-    if (dynamodb != null) 'dynamodb': dynamodb!.encode(),
-    if (dynamodbv2 != null) 'dynamodbv2': dynamodbv2!.encode(),
-    if (elasticsearch != null) 'elasticsearch': elasticsearch!.encode(),
-    if (firehose != null) 'firehose': firehose!.encode(),
-    if (http != null) 'http': http!.encode(),
-    if (iotAnalytics != null) 'iot_analytics': iotAnalytics!.encode(),
-    if (iotEvents != null) 'iot_events': iotEvents!.encode(),
-    if (kafka != null) 'kafka': kafka!.encode(),
-    if (kinesis != null) 'kinesis': kinesis!.encode(),
-    if (lambda != null) 'lambda': lambda!.encode(),
-    if (republish != null) 'republish': republish!.encode(),
-    if (s3 != null) 's3': s3!.encode(),
-    if (sns != null) 'sns': sns!.encode(),
-    if (sqs != null) 'sqs': sqs!.encode(),
-    if (stepFunctions != null) 'step_functions': stepFunctions!.encode(),
-    if (timestream != null) 'timestream': timestream!.encode(),
+    'cloudwatch_alarm': ?cloudwatchAlarm?.encode(),
+    'cloudwatch_logs': ?cloudwatchLogs?.encode(),
+    'cloudwatch_metric': ?cloudwatchMetric?.encode(),
+    'dynamodb': ?dynamodb?.encode(),
+    'dynamodbv2': ?dynamodbv2?.encode(),
+    'elasticsearch': ?elasticsearch?.encode(),
+    'firehose': ?firehose?.encode(),
+    'http': ?http?.encode(),
+    'iot_analytics': ?iotAnalytics?.encode(),
+    'iot_events': ?iotEvents?.encode(),
+    'kafka': ?kafka?.encode(),
+    'kinesis': ?kinesis?.encode(),
+    'lambda': ?lambda?.encode(),
+    'republish': ?republish?.encode(),
+    's3': ?s3?.encode(),
+    'sns': ?sns?.encode(),
+    'sqs': ?sqs?.encode(),
+    'step_functions': ?stepFunctions?.encode(),
+    'timestream': ?timestream?.encode(),
   };
 }
 
@@ -350,7 +348,7 @@ final class IotTopicRuleErrorActionCloudwatchLogs {
   final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
+    'batch_mode': ?batchMode?.toTfJson(),
     'log_group_name': logGroupName.encodeAs('name').toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
@@ -384,8 +382,7 @@ final class IotTopicRuleErrorActionCloudwatchMetric {
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     'metric_namespace': metricNamespace.toTfJson(),
-    if (metricTimestamp != null)
-      'metric_timestamp': metricTimestamp!.toTfJson(),
+    'metric_timestamp': ?metricTimestamp?.toTfJson(),
     'metric_unit': metricUnit.toTfJson(),
     'metric_value': metricValue.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -431,13 +428,13 @@ final class IotTopicRuleErrorActionDynamodb {
 
   Map<String, Object?> encode() => {
     'hash_key_field': hashKeyField.toTfJson(),
-    if (hashKeyType != null) 'hash_key_type': hashKeyType!.toTfJson(),
+    'hash_key_type': ?hashKeyType?.toTfJson(),
     'hash_key_value': hashKeyValue.toTfJson(),
-    if (operation != null) 'operation': operation!.toTfJson(),
-    if (payloadField != null) 'payload_field': payloadField!.toTfJson(),
-    if (rangeKeyField != null) 'range_key_field': rangeKeyField!.toTfJson(),
-    if (rangeKeyType != null) 'range_key_type': rangeKeyType!.toTfJson(),
-    if (rangeKeyValue != null) 'range_key_value': rangeKeyValue!.toTfJson(),
+    'operation': ?operation?.toTfJson(),
+    'payload_field': ?payloadField?.toTfJson(),
+    'range_key_field': ?rangeKeyField?.toTfJson(),
+    'range_key_type': ?rangeKeyType?.toTfJson(),
+    'range_key_value': ?rangeKeyValue?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_name': tableName.toTfJson(),
   };
@@ -469,7 +466,7 @@ final class IotTopicRuleErrorActionDynamodbv2 {
 
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (putItem != null) 'put_item': putItem!.encode(),
+    'put_item': ?putItem?.encode(),
   };
 }
 
@@ -535,10 +532,10 @@ final class IotTopicRuleErrorActionFirehose {
   final TfArg<String>? separator;
 
   Map<String, Object?> encode() => {
-    if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
+    'batch_mode': ?batchMode?.toTfJson(),
     'delivery_stream_name': deliveryStreamName.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (separator != null) 'separator': separator!.toTfJson(),
+    'separator': ?separator?.toTfJson(),
   };
 }
 
@@ -559,8 +556,7 @@ final class IotTopicRuleErrorActionHttp {
   final List<IotTopicRuleErrorActionHttpHttpHeader>? httpHeader;
 
   Map<String, Object?> encode() => {
-    if (confirmationUrl != null)
-      'confirmation_url': confirmationUrl!.toTfJson(),
+    'confirmation_url': ?confirmationUrl?.toTfJson(),
     'url': url.toTfJson(),
     if (httpHeader != null)
       'http_header': [for (final e in httpHeader!) e.encode()],
@@ -603,7 +599,7 @@ final class IotTopicRuleErrorActionIotAnalytics {
   final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
+    'batch_mode': ?batchMode?.toTfJson(),
     'channel_name': channelName.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
@@ -629,9 +625,9 @@ final class IotTopicRuleErrorActionIotEvents {
   final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
+    'batch_mode': ?batchMode?.toTfJson(),
     'input_name': inputName.toTfJson(),
-    if (messageId != null) 'message_id': messageId!.toTfJson(),
+    'message_id': ?messageId?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
@@ -664,8 +660,8 @@ final class IotTopicRuleErrorActionKafka {
   Map<String, Object?> encode() => {
     'client_properties': clientProperties.toTfJson(),
     'destination_arn': destinationArn.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (partition != null) 'partition': partition!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'partition': ?partition?.toTfJson(),
     'topic': topic.toTfJson(),
     if (header != null) 'header': [for (final e in header!) e.encode()],
   };
@@ -707,7 +703,7 @@ final class IotTopicRuleErrorActionKinesis {
   final TfArg<String> streamName;
 
   Map<String, Object?> encode() => {
-    if (partitionKey != null) 'partition_key': partitionKey!.toTfJson(),
+    'partition_key': ?partitionKey?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'stream_name': streamName.toTfJson(),
   };
@@ -743,7 +739,7 @@ final class IotTopicRuleErrorActionRepublish {
   final TfArg<String> topic;
 
   Map<String, Object?> encode() => {
-    if (qos != null) 'qos': qos!.toTfJson(),
+    'qos': ?qos?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'topic': topic.toTfJson(),
   };
@@ -770,7 +766,7 @@ final class IotTopicRuleErrorActionS3 {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (cannedAcl != null) 'canned_acl': cannedAcl!.toTfJson(),
+    'canned_acl': ?cannedAcl?.toTfJson(),
     'key': key.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
@@ -809,7 +805,7 @@ final class IotTopicRuleErrorActionSns {
   final TfArg<String> targetArn;
 
   Map<String, Object?> encode() => {
-    if (messageFormat != null) 'message_format': messageFormat!.toTfJson(),
+    'message_format': ?messageFormat?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'target_arn': targetArn.toTfJson(),
   };
@@ -855,8 +851,7 @@ final class IotTopicRuleErrorActionStepFunctions {
   final TfArg<String> stateMachineName;
 
   Map<String, Object?> encode() => {
-    if (executionNamePrefix != null)
-      'execution_name_prefix': executionNamePrefix!.toTfJson(),
+    'execution_name_prefix': ?executionNamePrefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'state_machine_name': stateMachineName.toTfJson(),
   };
@@ -889,7 +884,7 @@ final class IotTopicRuleErrorActionTimestream {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_name': tableName.toTfJson(),
     'dimension': [for (final e in dimension) e.encode()],
-    if (timestamp != null) 'timestamp': timestamp!.encode(),
+    'timestamp': ?timestamp?.encode(),
   };
 }
 
@@ -963,10 +958,10 @@ final class IotTopicRuleFirehose {
   final TfArg<String>? separator;
 
   Map<String, Object?> encode() => {
-    if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
+    'batch_mode': ?batchMode?.toTfJson(),
     'delivery_stream_name': deliveryStreamName.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (separator != null) 'separator': separator!.toTfJson(),
+    'separator': ?separator?.toTfJson(),
   };
 }
 
@@ -987,8 +982,7 @@ final class IotTopicRuleHttp {
   final List<IotTopicRuleHttpHttpHeader>? httpHeader;
 
   Map<String, Object?> encode() => {
-    if (confirmationUrl != null)
-      'confirmation_url': confirmationUrl!.toTfJson(),
+    'confirmation_url': ?confirmationUrl?.toTfJson(),
     'url': url.toTfJson(),
     if (httpHeader != null)
       'http_header': [for (final e in httpHeader!) e.encode()],
@@ -1028,7 +1022,7 @@ final class IotTopicRuleIotAnalytics {
   final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
+    'batch_mode': ?batchMode?.toTfJson(),
     'channel_name': channelName.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
@@ -1054,9 +1048,9 @@ final class IotTopicRuleIotEvents {
   final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    if (batchMode != null) 'batch_mode': batchMode!.toTfJson(),
+    'batch_mode': ?batchMode?.toTfJson(),
     'input_name': inputName.toTfJson(),
-    if (messageId != null) 'message_id': messageId!.toTfJson(),
+    'message_id': ?messageId?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
@@ -1089,8 +1083,8 @@ final class IotTopicRuleKafka {
   Map<String, Object?> encode() => {
     'client_properties': clientProperties.toTfJson(),
     'destination_arn': destinationArn.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (partition != null) 'partition': partition!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'partition': ?partition?.toTfJson(),
     'topic': topic.toTfJson(),
     if (header != null) 'header': [for (final e in header!) e.encode()],
   };
@@ -1129,7 +1123,7 @@ final class IotTopicRuleKinesis {
   final TfArg<String> streamName;
 
   Map<String, Object?> encode() => {
-    if (partitionKey != null) 'partition_key': partitionKey!.toTfJson(),
+    'partition_key': ?partitionKey?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'stream_name': streamName.toTfJson(),
   };
@@ -1165,7 +1159,7 @@ final class IotTopicRuleRepublish {
   final TfArg<String> topic;
 
   Map<String, Object?> encode() => {
-    if (qos != null) 'qos': qos!.toTfJson(),
+    'qos': ?qos?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'topic': topic.toTfJson(),
   };
@@ -1192,7 +1186,7 @@ final class IotTopicRuleS3 {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (cannedAcl != null) 'canned_acl': cannedAcl!.toTfJson(),
+    'canned_acl': ?cannedAcl?.toTfJson(),
     'key': key.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
@@ -1231,7 +1225,7 @@ final class IotTopicRuleSns {
   final TfArg<String> targetArn;
 
   Map<String, Object?> encode() => {
-    if (messageFormat != null) 'message_format': messageFormat!.toTfJson(),
+    'message_format': ?messageFormat?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'target_arn': targetArn.toTfJson(),
   };
@@ -1277,8 +1271,7 @@ final class IotTopicRuleStepFunctions {
   final TfArg<String> stateMachineName;
 
   Map<String, Object?> encode() => {
-    if (executionNamePrefix != null)
-      'execution_name_prefix': executionNamePrefix!.toTfJson(),
+    'execution_name_prefix': ?executionNamePrefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'state_machine_name': stateMachineName.toTfJson(),
   };
@@ -1311,7 +1304,7 @@ final class IotTopicRuleTimestream {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_name': tableName.toTfJson(),
     'dimension': [for (final e in dimension) e.encode()],
-    if (timestamp != null) 'timestamp': timestamp!.encode(),
+    'timestamp': ?timestamp?.encode(),
   };
 }
 
@@ -1405,13 +1398,13 @@ final class AwsIotTopicRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'enabled': enabled,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'sql': sql,
            'sql_version': sqlVersion,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (cloudwatchAlarm != null)
              'cloudwatch_alarm': TfArg.literal([
                for (final e in cloudwatchAlarm) e.encode(),

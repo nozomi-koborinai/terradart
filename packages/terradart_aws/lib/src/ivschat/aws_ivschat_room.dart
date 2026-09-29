@@ -18,8 +18,8 @@ final class IvschatRoomMessageReviewHandler {
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (fallbackResult != null) 'fallback_result': fallbackResult!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'fallback_result': ?fallbackResult?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -43,16 +43,13 @@ final class AwsIvschatRoom extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (loggingConfigurationIdentifiers != null)
-             'logging_configuration_identifiers':
-                 loggingConfigurationIdentifiers,
-           if (maximumMessageLength != null)
-             'maximum_message_length': maximumMessageLength,
-           if (maximumMessageRatePerSecond != null)
-             'maximum_message_rate_per_second': maximumMessageRatePerSecond,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'logging_configuration_identifiers':
+               ?loggingConfigurationIdentifiers,
+           'maximum_message_length': ?maximumMessageLength,
+           'maximum_message_rate_per_second': ?maximumMessageRatePerSecond,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
            if (messageReviewHandler != null)
              'message_review_handler': TfArg.literal(
                messageReviewHandler.encode(),

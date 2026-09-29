@@ -28,13 +28,13 @@ final class DataCloudflareZeroTrustResourceLibraryApplications extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (fields != null) 'fields': fields,
-           if (filter != null) 'filter': filter,
-           if (limit != null) 'limit': limit,
-           if (maxItems != null) 'max_items': maxItems,
-           if (offset != null) 'offset': offset,
-           if (orderBy != null) 'order_by': orderBy,
-           if (search != null) 'search': search,
+           'fields': ?fields,
+           'filter': ?filter,
+           'limit': ?limit,
+           'max_items': ?maxItems,
+           'offset': ?offset,
+           'order_by': ?orderBy,
+           'search': ?search,
          },
        );
 

@@ -23,11 +23,11 @@ final class DataAwsCloudformationType extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (region != null) 'region': region,
-           if (type != null) 'type': type,
-           if (typeName != null) 'type_name': typeName,
-           if (versionId != null) 'version_id': versionId,
+           'arn': ?arn,
+           'region': ?region,
+           'type': ?type,
+           'type_name': ?typeName,
+           'version_id': ?versionId,
          },
        );
 

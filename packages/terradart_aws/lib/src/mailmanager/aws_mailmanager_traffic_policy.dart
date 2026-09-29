@@ -612,11 +612,10 @@ final class AwsMailmanagerTrafficPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'default_action': defaultAction,
-           if (maxMessageSizeBytes != null)
-             'max_message_size_bytes': maxMessageSizeBytes,
+           'max_message_size_bytes': ?maxMessageSizeBytes,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (policyStatement != null)
              'policy_statement': TfArg.literal([
                for (final e in policyStatement) e.encode(),

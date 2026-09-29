@@ -22,10 +22,7 @@ final class DataCloudflareFirewallRule extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (ruleId != null) 'rule_id': ruleId,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'rule_id': ?ruleId, 'zone_id': ?zoneId},
        );
 
   @override

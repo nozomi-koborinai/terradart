@@ -45,7 +45,7 @@ final class AwsAppfabricAppAuthorizationConnection extends Resource {
          argMap: {
            'app_authorization_arn': appAuthorizationArn,
            'app_bundle_arn': appBundleArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (authRequest != null)
              'auth_request': TfArg.literal([
                for (final e in authRequest) e.encode(),

@@ -40,10 +40,10 @@ final class AwsSecurityhubStandardsControlAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'association_status': associationStatus,
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_control_id': securityControlId,
            'standards_arn': standardsArn,
-           if (updatedReason != null) 'updated_reason': updatedReason,
+           'updated_reason': ?updatedReason,
          },
        );
 

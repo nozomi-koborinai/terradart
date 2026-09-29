@@ -16,9 +16,7 @@ final class DataMagicTransitSiteFilter {
 
   final TfArg<String>? connectorid;
 
-  Map<String, Object?> encode() => {
-    if (connectorid != null) 'connectorid': connectorid!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'connectorid': ?connectorid?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_magic_transit_site`.
@@ -40,8 +38,8 @@ final class DataCloudflareMagicTransitSite extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (siteId != null) 'site_id': siteId,
+           'account_id': ?accountId,
+           'site_id': ?siteId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

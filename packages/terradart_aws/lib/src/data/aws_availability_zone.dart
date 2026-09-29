@@ -40,12 +40,11 @@ final class DataAwsAvailabilityZone extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allAvailabilityZones != null)
-             'all_availability_zones': allAvailabilityZones,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (state != null) 'state': state,
-           if (zoneId != null) 'zone_id': zoneId,
+           'all_availability_zones': ?allAvailabilityZones,
+           'name': ?name,
+           'region': ?region,
+           'state': ?state,
+           'zone_id': ?zoneId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

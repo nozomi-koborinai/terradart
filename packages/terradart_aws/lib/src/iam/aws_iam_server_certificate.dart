@@ -85,11 +85,11 @@ final class AwsIamServerCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate_body': certificateBody,
-           if (certificateChain != null) 'certificate_chain': certificateChain,
+           'certificate_chain': ?certificateChain,
            ...?name?.argMap,
-           if (path != null) 'path': path,
+           'path': ?path,
            'private_key': privateKey,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

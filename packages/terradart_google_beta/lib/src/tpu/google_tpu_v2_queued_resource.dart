@@ -37,7 +37,7 @@ final class TpuV2QueuedResourceTpuNodeSpec {
   final TpuV2QueuedResourceTpuNodeSpecNode node;
 
   Map<String, Object?> encode() => {
-    if (nodeId != null) 'node_id': nodeId!.toTfJson(),
+    'node_id': ?nodeId?.toTfJson(),
     'parent': parent.toTfJson(),
     'node': node.encode(),
   };
@@ -63,11 +63,10 @@ final class TpuV2QueuedResourceTpuNodeSpecNode {
   final TpuV2QueuedResourceTpuNodeSpecNodeNetworkConfig? networkConfig;
 
   Map<String, Object?> encode() => {
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
+    'description': ?description?.toTfJson(),
     'runtime_version': runtimeVersion.toTfJson(),
-    if (networkConfig != null) 'network_config': networkConfig!.encode(),
+    'network_config': ?networkConfig?.encode(),
   };
 }
 
@@ -94,12 +93,11 @@ final class TpuV2QueuedResourceTpuNodeSpecNodeNetworkConfig {
   final TfArg<String>? subnetwork;
 
   Map<String, Object?> encode() => {
-    if (canIpForward != null) 'can_ip_forward': canIpForward!.toTfJson(),
-    if (enableExternalIps != null)
-      'enable_external_ips': enableExternalIps!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
-    if (queueCount != null) 'queue_count': queueCount!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    'can_ip_forward': ?canIpForward?.toTfJson(),
+    'enable_external_ips': ?enableExternalIps?.toTfJson(),
+    'network': ?network?.toTfJson(),
+    'queue_count': ?queueCount?.toTfJson(),
+    'subnetwork': ?subnetwork?.toTfJson(),
   };
 }
 
@@ -124,10 +122,10 @@ final class GoogleTpuV2QueuedResource extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'name': name,
-           if (project != null) 'project': project,
-           if (zone != null) 'zone': zone,
+           'project': ?project,
+           'zone': ?zone,
            if (tpu != null) 'tpu': TfArg.literal(tpu.encode()),
          },
        );

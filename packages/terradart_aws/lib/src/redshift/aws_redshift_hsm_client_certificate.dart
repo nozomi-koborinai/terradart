@@ -23,8 +23,8 @@ final class AwsRedshiftHsmClientCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'hsm_client_certificate_identifier': hsmClientCertificateIdentifier,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

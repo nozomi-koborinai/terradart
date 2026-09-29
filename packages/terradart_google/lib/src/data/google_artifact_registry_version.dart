@@ -28,10 +28,10 @@ final class DataGoogleArtifactRegistryVersion extends Data {
          argMap: {
            'location': location,
            'package_name': packageName,
-           if (project != null) 'project': project,
+           'project': ?project,
            'repository_id': repositoryId,
            'version_name': versionName,
-           if (view != null) 'view': view,
+           'view': ?view,
          },
        );
 

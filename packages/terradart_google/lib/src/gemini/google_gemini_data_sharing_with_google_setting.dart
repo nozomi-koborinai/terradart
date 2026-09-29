@@ -50,13 +50,11 @@ final class GoogleGeminiDataSharingWithGoogleSetting extends Resource {
          argMap: {
            'data_sharing_with_google_setting_id':
                dataSharingWithGoogleSettingId,
-           if (location != null) 'location': location,
-           if (enableDataSharing != null)
-             'enable_data_sharing': enableDataSharing,
-           if (enablePreviewDataSharing != null)
-             'enable_preview_data_sharing': enablePreviewDataSharing,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'enable_data_sharing': ?enableDataSharing,
+           'enable_preview_data_sharing': ?enablePreviewDataSharing,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

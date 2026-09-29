@@ -19,10 +19,7 @@ final class DataAwsShieldProtection extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (protectionId != null) 'protection_id': protectionId,
-           if (resourceArn != null) 'resource_arn': resourceArn,
-         },
+         argMap: {'protection_id': ?protectionId, 'resource_arn': ?resourceArn},
        );
 
   @override

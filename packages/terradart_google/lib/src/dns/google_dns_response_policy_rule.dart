@@ -94,7 +94,7 @@ final class GoogleDnsResponsePolicyRule extends Resource {
            'response_policy': responsePolicy,
            'rule_name': ruleName,
            'dns_name': dnsName,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (localData != null)
              'local_data': TfArg.literal([localData.encode()]),
          },

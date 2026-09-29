@@ -24,7 +24,7 @@ final class BedrockagentcoreTokenVaultCmkKmsConfiguration {
 
   Map<String, Object?> encode() => {
     'key_type': keyType.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -57,8 +57,8 @@ final class AwsBedrockagentcoreTokenVaultCmk extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tokenVaultId != null) 'token_vault_id': tokenVaultId,
+           'region': ?region,
+           'token_vault_id': ?tokenVaultId,
            if (kmsConfiguration != null)
              'kms_configuration': TfArg.literal([
                for (final e in kmsConfiguration) e.encode(),

@@ -32,8 +32,8 @@ final class GoogleBigqueryDatapolicyDataPolicyIamPolicy extends Resource {
          argMap: {
            'data_policy_id': dataPolicyId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

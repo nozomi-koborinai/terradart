@@ -21,8 +21,8 @@ final class DataAwsLocationTracker extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'tracker_name': trackerName,
          },
        );

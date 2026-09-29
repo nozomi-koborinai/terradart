@@ -23,7 +23,7 @@ final class AwsPrometheusAlertManagerDefinition extends Resource {
          terraformType: tfType,
          argMap: {
            'definition': definition,
-           if (region != null) 'region': region,
+           'region': ?region,
            'workspace_id': workspaceId,
          },
        );

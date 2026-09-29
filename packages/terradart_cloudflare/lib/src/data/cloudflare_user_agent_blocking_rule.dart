@@ -25,9 +25,9 @@ final class DataUserAgentBlockingRuleFilter {
   final TfArg<String>? userAgent;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (paused != null) 'paused': paused!.toTfJson(),
-    if (userAgent != null) 'user_agent': userAgent!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'paused': ?paused?.toTfJson(),
+    'user_agent': ?userAgent?.toTfJson(),
   };
 }
 
@@ -49,8 +49,8 @@ final class DataCloudflareUserAgentBlockingRule extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (uaRuleId != null) 'ua_rule_id': uaRuleId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'ua_rule_id': ?uaRuleId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

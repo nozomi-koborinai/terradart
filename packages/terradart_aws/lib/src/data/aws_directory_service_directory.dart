@@ -22,8 +22,8 @@ final class DataAwsDirectoryServiceDirectory extends Data {
          terraformType: tfType,
          argMap: {
            'directory_id': directoryId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

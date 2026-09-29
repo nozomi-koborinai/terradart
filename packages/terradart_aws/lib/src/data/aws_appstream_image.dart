@@ -23,12 +23,12 @@ final class DataAwsAppstreamImage extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (name != null) 'name': name,
-           if (nameRegex != null) 'name_regex': nameRegex,
-           if (region != null) 'region': region,
-           if (type != null) 'type': type,
+           'arn': ?arn,
+           'most_recent': ?mostRecent,
+           'name': ?name,
+           'name_regex': ?nameRegex,
+           'region': ?region,
+           'type': ?type,
          },
        );
 

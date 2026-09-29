@@ -144,13 +144,10 @@ final class FsxWindowsFileSystemAuditLogConfiguration {
   fileShareAccessAuditLogLevel;
 
   Map<String, Object?> encode() => {
-    if (auditLogDestination != null)
-      'audit_log_destination': auditLogDestination!.toTfJson(),
-    if (fileAccessAuditLogLevel != null)
-      'file_access_audit_log_level': fileAccessAuditLogLevel!.toTfJson(),
-    if (fileShareAccessAuditLogLevel != null)
-      'file_share_access_audit_log_level': fileShareAccessAuditLogLevel!
-          .toTfJson(),
+    'audit_log_destination': ?auditLogDestination?.toTfJson(),
+    'file_access_audit_log_level': ?fileAccessAuditLogLevel?.toTfJson(),
+    'file_share_access_audit_log_level': ?fileShareAccessAuditLogLevel
+        ?.toTfJson(),
   };
 }
 
@@ -195,8 +192,8 @@ final class FsxWindowsFileSystemDiskIopsConfiguration {
   final TfArg<FsxWindowsFileSystemDiskIopsConfigurationMode>? mode;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
   };
 }
 
@@ -246,21 +243,17 @@ final class FsxWindowsFileSystemSelfManagedActiveDirectory {
 
   Map<String, Object?> encode() => {
     'dns_ips': dnsIps.toTfJson(),
-    if (domainJoinServiceAccountSecret != null)
-      'domain_join_service_account_secret': domainJoinServiceAccountSecret!
-          .toTfJson(),
+    'domain_join_service_account_secret': ?domainJoinServiceAccountSecret
+        ?.toTfJson(),
     'domain_name': domainName.toTfJson(),
-    if (fileSystemAdministratorsGroup != null)
-      'file_system_administrators_group': fileSystemAdministratorsGroup!
-          .toTfJson(),
-    if (organizationalUnitDistinguishedName != null)
-      'organizational_unit_distinguished_name':
-          organizationalUnitDistinguishedName!.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (passwordWo != null) 'password_wo': passwordWo!.toTfJson(),
-    if (passwordWoVersion != null)
-      'password_wo_version': passwordWoVersion!.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'file_system_administrators_group': ?fileSystemAdministratorsGroup
+        ?.toTfJson(),
+    'organizational_unit_distinguished_name':
+        ?organizationalUnitDistinguishedName?.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'password_wo': ?passwordWo?.toTfJson(),
+    'password_wo_version': ?passwordWoVersion?.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -300,31 +293,25 @@ final class AwsFsxWindowsFileSystem extends Resource {
          terraformType: tfType,
          argMap: {
            ...?activeDirectory?.argMap,
-           if (aliases != null) 'aliases': aliases,
-           if (automaticBackupRetentionDays != null)
-             'automatic_backup_retention_days': automaticBackupRetentionDays,
-           if (backupId != null) 'backup_id': backupId,
-           if (copyTagsToBackups != null)
-             'copy_tags_to_backups': copyTagsToBackups,
-           if (dailyAutomaticBackupStartTime != null)
-             'daily_automatic_backup_start_time': dailyAutomaticBackupStartTime,
-           if (deploymentType != null) 'deployment_type': deploymentType,
-           if (finalBackupTags != null) 'final_backup_tags': finalBackupTags,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (networkType != null) 'network_type': networkType,
-           if (preferredSubnetId != null)
-             'preferred_subnet_id': preferredSubnetId,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (skipFinalBackup != null) 'skip_final_backup': skipFinalBackup,
-           if (storageCapacity != null) 'storage_capacity': storageCapacity,
-           if (storageType != null) 'storage_type': storageType,
+           'aliases': ?aliases,
+           'automatic_backup_retention_days': ?automaticBackupRetentionDays,
+           'backup_id': ?backupId,
+           'copy_tags_to_backups': ?copyTagsToBackups,
+           'daily_automatic_backup_start_time': ?dailyAutomaticBackupStartTime,
+           'deployment_type': ?deploymentType,
+           'final_backup_tags': ?finalBackupTags,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'network_type': ?networkType,
+           'preferred_subnet_id': ?preferredSubnetId,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'skip_final_backup': ?skipFinalBackup,
+           'storage_capacity': ?storageCapacity,
+           'storage_type': ?storageType,
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'throughput_capacity': throughputCapacity,
-           if (weeklyMaintenanceStartTime != null)
-             'weekly_maintenance_start_time': weeklyMaintenanceStartTime,
+           'weekly_maintenance_start_time': ?weeklyMaintenanceStartTime,
            if (auditLogConfiguration != null)
              'audit_log_configuration': TfArg.literal(
                auditLogConfiguration.encode(),

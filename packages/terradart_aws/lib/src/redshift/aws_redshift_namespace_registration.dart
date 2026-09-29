@@ -27,13 +27,10 @@ final class AwsRedshiftNamespaceRegistration extends Resource {
          argMap: {
            'consumer_identifier': consumerIdentifier,
            'namespace_type': namespaceType,
-           if (provisionedClusterIdentifier != null)
-             'provisioned_cluster_identifier': provisionedClusterIdentifier,
-           if (region != null) 'region': region,
-           if (serverlessNamespaceIdentifier != null)
-             'serverless_namespace_identifier': serverlessNamespaceIdentifier,
-           if (serverlessWorkgroupIdentifier != null)
-             'serverless_workgroup_identifier': serverlessWorkgroupIdentifier,
+           'provisioned_cluster_identifier': ?provisionedClusterIdentifier,
+           'region': ?region,
+           'serverless_namespace_identifier': ?serverlessNamespaceIdentifier,
+           'serverless_workgroup_identifier': ?serverlessWorkgroupIdentifier,
          },
        );
 

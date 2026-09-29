@@ -23,9 +23,9 @@ final class AwsServicecatalogTagOption extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (active != null) 'active': active,
+           'active': ?active,
            'key': key,
-           if (region != null) 'region': region,
+           'region': ?region,
            'value': value,
          },
        );

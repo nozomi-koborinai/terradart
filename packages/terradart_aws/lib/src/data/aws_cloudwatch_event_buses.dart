@@ -18,10 +18,7 @@ final class DataAwsCloudwatchEventBuses extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (namePrefix != null) 'name_prefix': namePrefix,
-           if (region != null) 'region': region,
-         },
+         argMap: {'name_prefix': ?namePrefix, 'region': ?region},
        );
 
   @override

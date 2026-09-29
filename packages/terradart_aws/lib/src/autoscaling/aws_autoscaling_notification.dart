@@ -27,7 +27,7 @@ final class AwsAutoscalingNotification extends Resource {
          argMap: {
            'group_names': groupNames,
            'notifications': notifications,
-           if (region != null) 'region': region,
+           'region': ?region,
            'topic_arn': topicArn.encodeAs('arn'),
          },
        );

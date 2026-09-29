@@ -26,8 +26,7 @@ final class QuicksightRefreshScheduleSchedule {
 
   Map<String, Object?> encode() => {
     'refresh_type': refreshType.toTfJson(),
-    if (startAfterDateTime != null)
-      'start_after_date_time': startAfterDateTime!.toTfJson(),
+    'start_after_date_time': ?startAfterDateTime?.toTfJson(),
     if (scheduleFrequency != null)
       'schedule_frequency': [for (final e in scheduleFrequency!) e.encode()],
   };
@@ -66,8 +65,8 @@ final class QuicksightRefreshScheduleScheduleScheduleFrequency {
 
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
-    if (timeOfTheDay != null) 'time_of_the_day': timeOfTheDay!.toTfJson(),
-    if (timezone != null) 'timezone': timezone!.toTfJson(),
+    'time_of_the_day': ?timeOfTheDay?.toTfJson(),
+    'timezone': ?timezone?.toTfJson(),
     if (refreshOnDay != null)
       'refresh_on_day': [for (final e in refreshOnDay!) e.encode()],
   };
@@ -201,9 +200,9 @@ final class AwsQuicksightRefreshSchedule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'data_set_id': dataSetId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'schedule_id': scheduleId,
            if (schedule != null)
              'schedule': TfArg.literal([for (final e in schedule) e.encode()]),

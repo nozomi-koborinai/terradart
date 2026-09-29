@@ -40,20 +40,17 @@ final class AwsEip extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (address != null) 'address': address,
-           if (associateWithPrivateIp != null)
-             'associate_with_private_ip': associateWithPrivateIp,
-           if (customerOwnedIpv4Pool != null)
-             'customer_owned_ipv4_pool': customerOwnedIpv4Pool,
-           if (domain != null) 'domain': domain,
-           if (instance != null) 'instance': instance,
-           if (ipamPoolId != null) 'ipam_pool_id': ipamPoolId,
-           if (networkBorderGroup != null)
-             'network_border_group': networkBorderGroup,
-           if (networkInterface != null) 'network_interface': networkInterface,
-           if (publicIpv4Pool != null) 'public_ipv4_pool': publicIpv4Pool,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'address': ?address,
+           'associate_with_private_ip': ?associateWithPrivateIp,
+           'customer_owned_ipv4_pool': ?customerOwnedIpv4Pool,
+           'domain': ?domain,
+           'instance': ?instance,
+           'ipam_pool_id': ?ipamPoolId,
+           'network_border_group': ?networkBorderGroup,
+           'network_interface': ?networkInterface,
+           'public_ipv4_pool': ?publicIpv4Pool,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

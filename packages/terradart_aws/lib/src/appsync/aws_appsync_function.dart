@@ -62,12 +62,9 @@ final class AppsyncFunctionSyncConfig {
   lambdaConflictHandlerConfig;
 
   Map<String, Object?> encode() => {
-    if (conflictDetection != null)
-      'conflict_detection': conflictDetection!.toTfJson(),
-    if (conflictHandler != null)
-      'conflict_handler': conflictHandler!.toTfJson(),
-    if (lambdaConflictHandlerConfig != null)
-      'lambda_conflict_handler_config': lambdaConflictHandlerConfig!.encode(),
+    'conflict_detection': ?conflictDetection?.toTfJson(),
+    'conflict_handler': ?conflictHandler?.toTfJson(),
+    'lambda_conflict_handler_config': ?lambdaConflictHandlerConfig?.encode(),
   };
 }
 
@@ -104,8 +101,7 @@ final class AppsyncFunctionSyncConfigLambdaConflictHandlerConfig {
   final TfArg<String>? lambdaConflictHandlerArn;
 
   Map<String, Object?> encode() => {
-    if (lambdaConflictHandlerArn != null)
-      'lambda_conflict_handler_arn': lambdaConflictHandlerArn!.toTfJson(),
+    'lambda_conflict_handler_arn': ?lambdaConflictHandlerArn?.toTfJson(),
   };
 }
 
@@ -135,17 +131,15 @@ final class AwsAppsyncFunction extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (code != null) 'code': code,
+           'code': ?code,
            'data_source': dataSource,
-           if (description != null) 'description': description,
-           if (functionVersion != null) 'function_version': functionVersion,
-           if (maxBatchSize != null) 'max_batch_size': maxBatchSize,
+           'description': ?description,
+           'function_version': ?functionVersion,
+           'max_batch_size': ?maxBatchSize,
            'name': name,
-           if (region != null) 'region': region,
-           if (requestMappingTemplate != null)
-             'request_mapping_template': requestMappingTemplate,
-           if (responseMappingTemplate != null)
-             'response_mapping_template': responseMappingTemplate,
+           'region': ?region,
+           'request_mapping_template': ?requestMappingTemplate,
+           'response_mapping_template': ?responseMappingTemplate,
            if (runtime != null) 'runtime': TfArg.literal(runtime.encode()),
            if (syncConfig != null)
              'sync_config': TfArg.literal(syncConfig.encode()),

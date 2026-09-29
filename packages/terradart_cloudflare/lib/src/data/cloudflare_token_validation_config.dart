@@ -24,7 +24,7 @@ final class DataCloudflareTokenValidationConfig extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'config_id': configId, if (zoneId != null) 'zone_id': zoneId},
+         argMap: {'config_id': configId, 'zone_id': ?zoneId},
        );
 
   @override

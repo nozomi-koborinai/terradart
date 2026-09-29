@@ -39,9 +39,8 @@ final class CloudflareZoneHold extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (holdAfter != null) 'hold_after': holdAfter,
-           if (includeSubdomains != null)
-             'include_subdomains': includeSubdomains,
+           'hold_after': ?holdAfter,
+           'include_subdomains': ?includeSubdomains,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

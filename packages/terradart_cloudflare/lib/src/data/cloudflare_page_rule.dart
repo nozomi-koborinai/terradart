@@ -34,10 +34,7 @@ final class DataCloudflarePageRule extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'pagerule_id': pageruleId,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'pagerule_id': pageruleId, 'zone_id': ?zoneId},
        );
 
   @override

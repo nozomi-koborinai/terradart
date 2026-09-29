@@ -40,7 +40,7 @@ final class Apigatewayv2RoutingRuleActionInvokeApi {
   Map<String, Object?> encode() => {
     'api_id': apiId.toTfJson(),
     'stage': stage.toTfJson(),
-    if (stripBasePath != null) 'strip_base_path': stripBasePath!.toTfJson(),
+    'strip_base_path': ?stripBasePath?.toTfJson(),
   };
 }
 
@@ -128,7 +128,7 @@ final class AwsApigatewayv2RoutingRule extends Resource {
          argMap: {
            'domain_name': domainName,
            'priority': priority,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (action != null)
              'action': TfArg.literal([for (final e in action) e.encode()]),
            if (condition != null)

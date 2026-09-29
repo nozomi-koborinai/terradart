@@ -34,9 +34,9 @@ final class GoogleBiglakeIcebergNamespace extends Resource {
          argMap: {
            'catalog': catalog,
            'namespace_id': namespaceId,
-           if (properties != null) 'properties': properties,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'properties': ?properties,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

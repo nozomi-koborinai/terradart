@@ -44,11 +44,11 @@ final class DataAwsFsxOpenzfsSnapshot extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (snapshotIds != null) 'snapshot_ids': snapshotIds,
-           if (tags != null) 'tags': tags,
+           'most_recent': ?mostRecent,
+           'name': ?name,
+           'region': ?region,
+           'snapshot_ids': ?snapshotIds,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

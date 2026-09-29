@@ -21,10 +21,10 @@ final class DataAwsMqBrokerInstanceTypeOfferings extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (engineType != null) 'engine_type': engineType,
-           if (hostInstanceType != null) 'host_instance_type': hostInstanceType,
-           if (region != null) 'region': region,
-           if (storageType != null) 'storage_type': storageType,
+           'engine_type': ?engineType,
+           'host_instance_type': ?hostInstanceType,
+           'region': ?region,
+           'storage_type': ?storageType,
          },
        );
 

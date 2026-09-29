@@ -41,12 +41,11 @@ final class DataAwsRamResourceShare extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            'resource_owner': resourceOwner,
-           if (resourceShareStatus != null)
-             'resource_share_status': resourceShareStatus,
-           if (tags != null) 'tags': tags,
+           'resource_share_status': ?resourceShareStatus,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

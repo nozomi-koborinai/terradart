@@ -26,12 +26,11 @@ final class AwsVpclatticeServiceNetworkResourceAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (privateDnsEnabled != null)
-             'private_dns_enabled': privateDnsEnabled,
-           if (region != null) 'region': region,
+           'private_dns_enabled': ?privateDnsEnabled,
+           'region': ?region,
            'resource_configuration_identifier': resourceConfigurationIdentifier,
            'service_network_identifier': serviceNetworkIdentifier,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

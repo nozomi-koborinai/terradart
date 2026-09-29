@@ -44,7 +44,7 @@ final class GooglePrivatecaCaPoolIamMember extends Resource {
            'ca_pool': caPool,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

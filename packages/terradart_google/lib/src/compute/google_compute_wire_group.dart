@@ -41,9 +41,9 @@ final class ComputeWireGroupEndpointsInterconnects {
   final TfArg<List<Object?>>? vlanTags;
 
   Map<String, Object?> encode() => {
-    if (interconnect != null) 'interconnect': interconnect!.toTfJson(),
+    'interconnect': ?interconnect?.toTfJson(),
     'interconnect_name': interconnectName.toTfJson(),
-    if (vlanTags != null) 'vlan_tags': vlanTags!.toTfJson(),
+    'vlan_tags': ?vlanTags?.toTfJson(),
   };
 }
 
@@ -65,9 +65,8 @@ final class ComputeWireGroupWireProperties {
 
   Map<String, Object?> encode() => {
     'bandwidth_allocation': bandwidthAllocation.toTfJson(),
-    if (bandwidthUnmetered != null)
-      'bandwidth_unmetered': bandwidthUnmetered!.toTfJson(),
-    if (faultResponse != null) 'fault_response': faultResponse!.toTfJson(),
+    'bandwidth_unmetered': ?bandwidthUnmetered?.toTfJson(),
+    'fault_response': ?faultResponse?.toTfJson(),
   };
 }
 
@@ -110,16 +109,16 @@ final class GoogleComputeWireGroup extends Resource {
          argMap: {
            'name': name,
            'cross_site_network': crossSiteNetwork,
-           if (description != null) 'description': description,
-           if (adminEnabled != null) 'admin_enabled': adminEnabled,
+           'description': ?description,
+           'admin_enabled': ?adminEnabled,
            if (endpoints != null)
              'endpoints': TfArg.literal([
                for (final e in endpoints) e.encode(),
              ]),
            if (wireProperties != null)
              'wire_properties': TfArg.literal(wireProperties.encode()),
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

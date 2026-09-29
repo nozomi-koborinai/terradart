@@ -30,11 +30,11 @@ final class AccessanalyzerArchiveRuleFilter {
   final TfArg<List<Object?>>? neq;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
     'criteria': criteria.toTfJson(),
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (exists != null) 'exists': exists!.toTfJson(),
-    if (neq != null) 'neq': neq!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'exists': ?exists?.toTfJson(),
+    'neq': ?neq?.toTfJson(),
   };
 }
 
@@ -56,7 +56,7 @@ final class AwsAccessanalyzerArchiveRule extends Resource {
          terraformType: tfType,
          argMap: {
            'analyzer_name': analyzerName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rule_name': ruleName,
            'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

@@ -23,10 +23,7 @@ final class DataCloudflareZoneSetting extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'setting_id': settingId,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'setting_id': settingId, 'zone_id': ?zoneId},
        );
 
   @override

@@ -55,8 +55,8 @@ final class DataplexEntryLinkEntryReferences {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -102,8 +102,8 @@ final class GoogleDataplexEntryLink extends Resource {
            ]),
            if (aspects != null)
              'aspects': TfArg.literal([for (final e in aspects) e.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

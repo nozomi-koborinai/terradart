@@ -21,9 +21,9 @@ final class DataAwsDmsReplicationInstance extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'replication_instance_id': replicationInstanceId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

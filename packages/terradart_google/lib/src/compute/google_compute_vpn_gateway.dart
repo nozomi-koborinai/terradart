@@ -32,10 +32,10 @@ final class GoogleComputeVpnGateway extends Resource {
          argMap: {
            'name': name,
            'network': network.encodeAs('id'),
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

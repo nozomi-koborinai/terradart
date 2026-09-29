@@ -28,7 +28,7 @@ final class BackupReportPlanReportDeliveryChannel {
   Map<String, Object?> encode() => {
     if (formats != null) 'formats': [for (final e in formats!) e.toTfJson()],
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
-    if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix!.toTfJson(),
+    's3_key_prefix': ?s3KeyPrefix?.toTfJson(),
   };
 }
 
@@ -68,13 +68,11 @@ final class BackupReportPlanReportSetting {
   final TfArg<BackupReportPlanReportSettingReportTemplate> reportTemplate;
 
   Map<String, Object?> encode() => {
-    if (accounts != null) 'accounts': accounts!.toTfJson(),
-    if (frameworkArns != null) 'framework_arns': frameworkArns!.toTfJson(),
-    if (numberOfFrameworks != null)
-      'number_of_frameworks': numberOfFrameworks!.toTfJson(),
-    if (organizationUnits != null)
-      'organization_units': organizationUnits!.toTfJson(),
-    if (regions != null) 'regions': regions!.toTfJson(),
+    'accounts': ?accounts?.toTfJson(),
+    'framework_arns': ?frameworkArns?.toTfJson(),
+    'number_of_frameworks': ?numberOfFrameworks?.toTfJson(),
+    'organization_units': ?organizationUnits?.toTfJson(),
+    'regions': ?regions?.toTfJson(),
     'report_template': reportTemplate.toTfJson(),
   };
 }
@@ -111,10 +109,10 @@ final class AwsBackupReportPlan extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'report_delivery_channel': TfArg.literal(
              reportDeliveryChannel.encode(),
            ),

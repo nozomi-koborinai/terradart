@@ -29,7 +29,7 @@ final class GoogleBillingSubaccount extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
            'master_billing_account': masterBillingAccount,
          },

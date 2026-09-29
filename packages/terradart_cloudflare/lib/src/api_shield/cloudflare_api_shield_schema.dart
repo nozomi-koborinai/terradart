@@ -54,11 +54,10 @@ final class CloudflareApiShieldSchema extends Resource {
          argMap: {
            'file': file,
            'kind': kind,
-           if (name != null) 'name': name,
-           if (omitSource != null) 'omit_source': omitSource,
-           if (schemaId != null) 'schema_id': schemaId,
-           if (validationEnabled != null)
-             'validation_enabled': validationEnabled,
+           'name': ?name,
+           'omit_source': ?omitSource,
+           'schema_id': ?schemaId,
+           'validation_enabled': ?validationEnabled,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

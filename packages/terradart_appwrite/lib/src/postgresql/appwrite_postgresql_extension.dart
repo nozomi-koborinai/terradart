@@ -28,7 +28,7 @@ final class AppwritePostgresqlExtension extends Resource {
          argMap: {
            'database_id': databaseId,
            'name': name,
-           if (projectId != null) 'project_id': projectId,
+           'project_id': ?projectId,
          },
        );
 

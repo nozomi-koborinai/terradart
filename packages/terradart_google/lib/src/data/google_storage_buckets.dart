@@ -21,10 +21,7 @@ final class DataGoogleStorageBuckets extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (prefix != null) 'prefix': prefix,
-           if (project != null) 'project': project,
-         },
+         argMap: {'prefix': ?prefix, 'project': ?project},
        );
 
   @override

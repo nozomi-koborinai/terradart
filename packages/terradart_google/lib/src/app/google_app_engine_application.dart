@@ -68,13 +68,13 @@ final class GoogleAppEngineApplication extends Resource {
          terraformType: tfType,
          argMap: {
            'location_id': locationId,
-           if (databaseType != null) 'database_type': databaseType,
-           if (servingStatus != null) 'serving_status': servingStatus,
-           if (authDomain != null) 'auth_domain': authDomain,
-           if (sslPolicy != null) 'ssl_policy': sslPolicy,
-           if (featureSettings != null) 'feature_settings': featureSettings,
-           if (iap != null) 'iap': iap,
-           if (project != null) 'project': project,
+           'database_type': ?databaseType,
+           'serving_status': ?servingStatus,
+           'auth_domain': ?authDomain,
+           'ssl_policy': ?sslPolicy,
+           'feature_settings': ?featureSettings,
+           'iap': ?iap,
+           'project': ?project,
          },
        );
 

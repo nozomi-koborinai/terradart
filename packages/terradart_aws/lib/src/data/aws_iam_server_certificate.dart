@@ -22,10 +22,10 @@ final class DataAwsIamServerCertificate extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (latest != null) 'latest': latest,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
-           if (pathPrefix != null) 'path_prefix': pathPrefix,
+           'latest': ?latest,
+           'name': ?name,
+           'name_prefix': ?namePrefix,
+           'path_prefix': ?pathPrefix,
          },
        );
 

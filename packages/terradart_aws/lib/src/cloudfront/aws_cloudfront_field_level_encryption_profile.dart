@@ -56,9 +56,7 @@ final class CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesItemsFieldPat
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_cloudfront_field_level_encryption_profile`.
@@ -78,7 +76,7 @@ final class AwsCloudfrontFieldLevelEncryptionProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'name': name,
            'encryption_entities': TfArg.literal(encryptionEntities.encode()),
          },

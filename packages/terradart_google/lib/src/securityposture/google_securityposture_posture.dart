@@ -35,7 +35,7 @@ final class SecurityposturePosturePolicySets {
   final List<SecurityposturePosturePolicySetsPolicies> policies;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'policy_set_id': policySetId.toTfJson(),
     'policies': [for (final e in policies) e.encode()],
   };
@@ -62,7 +62,7 @@ final class SecurityposturePosturePolicySetsPolicies {
   final SecurityposturePosturePolicySetsPoliciesConstraint constraint;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'policy_id': policyId.toTfJson(),
     if (complianceStandards != null)
       'compliance_standards': [
@@ -86,8 +86,8 @@ final class SecurityposturePosturePolicySetsPoliciesComplianceStandards {
   final TfArg<String>? standard;
 
   Map<String, Object?> encode() => {
-    if (control != null) 'control': control!.toTfJson(),
-    if (standard != null) 'standard': standard!.toTfJson(),
+    'control': ?control?.toTfJson(),
+    'standard': ?standard?.toTfJson(),
   };
 }
 
@@ -115,16 +115,12 @@ final class SecurityposturePosturePolicySetsPoliciesConstraint {
   securityHealthAnalyticsModule;
 
   Map<String, Object?> encode() => {
-    if (orgPolicyConstraint != null)
-      'org_policy_constraint': orgPolicyConstraint!.encode(),
-    if (orgPolicyConstraintCustom != null)
-      'org_policy_constraint_custom': orgPolicyConstraintCustom!.encode(),
-    if (securityHealthAnalyticsCustomModule != null)
-      'security_health_analytics_custom_module':
-          securityHealthAnalyticsCustomModule!.encode(),
-    if (securityHealthAnalyticsModule != null)
-      'security_health_analytics_module': securityHealthAnalyticsModule!
-          .encode(),
+    'org_policy_constraint': ?orgPolicyConstraint?.encode(),
+    'org_policy_constraint_custom': ?orgPolicyConstraintCustom?.encode(),
+    'security_health_analytics_custom_module':
+        ?securityHealthAnalyticsCustomModule?.encode(),
+    'security_health_analytics_module': ?securityHealthAnalyticsModule
+        ?.encode(),
   };
 }
 
@@ -175,11 +171,11 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
   values;
 
   Map<String, Object?> encode() => {
-    if (allowAll != null) 'allow_all': allowAll!.toTfJson(),
-    if (denyAll != null) 'deny_all': denyAll!.toTfJson(),
-    if (enforce != null) 'enforce': enforce!.toTfJson(),
-    if (condition != null) 'condition': condition!.encode(),
-    if (values != null) 'values': values!.encode(),
+    'allow_all': ?allowAll?.toTfJson(),
+    'deny_all': ?denyAll?.toTfJson(),
+    'enforce': ?enforce?.toTfJson(),
+    'condition': ?condition?.encode(),
+    'values': ?values?.encode(),
   };
 }
 
@@ -203,10 +199,10 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -224,8 +220,8 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
   final TfArg<List<Object?>>? deniedValues;
 
   Map<String, Object?> encode() => {
-    if (allowedValues != null) 'allowed_values': allowedValues!.toTfJson(),
-    if (deniedValues != null) 'denied_values': deniedValues!.toTfJson(),
+    'allowed_values': ?allowedValues?.toTfJson(),
+    'denied_values': ?deniedValues?.toTfJson(),
   };
 }
 
@@ -247,8 +243,7 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
   policyRules;
 
   Map<String, Object?> encode() => {
-    if (customConstraint != null)
-      'custom_constraint': customConstraint!.encode(),
+    'custom_constraint': ?customConstraint?.encode(),
     'policy_rules': [for (final e in policyRules) e.encode()],
   };
 }
@@ -287,8 +282,8 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
   Map<String, Object?> encode() => {
     'action_type': actionType.toTfJson(),
     'condition': condition.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'method_types': methodTypes.toTfJson(),
     'name': name.toTfJson(),
     'resource_types': resourceTypes.toTfJson(),
@@ -333,11 +328,11 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
   values;
 
   Map<String, Object?> encode() => {
-    if (allowAll != null) 'allow_all': allowAll!.toTfJson(),
-    if (denyAll != null) 'deny_all': denyAll!.toTfJson(),
-    if (enforce != null) 'enforce': enforce!.toTfJson(),
-    if (condition != null) 'condition': condition!.encode(),
-    if (values != null) 'values': values!.encode(),
+    'allow_all': ?allowAll?.toTfJson(),
+    'deny_all': ?denyAll?.toTfJson(),
+    'enforce': ?enforce?.toTfJson(),
+    'condition': ?condition?.encode(),
+    'values': ?values?.encode(),
   };
 }
 
@@ -361,10 +356,10 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -382,8 +377,8 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintOrgPolicyConstrain
   final TfArg<List<Object?>>? deniedValues;
 
   Map<String, Object?> encode() => {
-    if (allowedValues != null) 'allowed_values': allowedValues!.toTfJson(),
-    if (deniedValues != null) 'denied_values': deniedValues!.toTfJson(),
+    'allowed_values': ?allowedValues?.toTfJson(),
+    'denied_values': ?deniedValues?.toTfJson(),
   };
 }
 
@@ -408,9 +403,8 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
   config;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (moduleEnablementState != null)
-      'module_enablement_state': moduleEnablementState!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'module_enablement_state': ?moduleEnablementState?.toTfJson(),
     'config': config.encode(),
   };
 }
@@ -461,10 +455,10 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
   resourceSelector;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (recommendation != null) 'recommendation': recommendation!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'recommendation': ?recommendation?.toTfJson(),
     'severity': severity.toTfJson(),
-    if (customOutput != null) 'custom_output': customOutput!.encode(),
+    'custom_output': ?customOutput?.encode(),
     'predicate': predicate.encode(),
     'resource_selector': resourceSelector.encode(),
   };
@@ -521,7 +515,7 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (valueExpression != null) 'value_expression': valueExpression!.encode(),
+    'value_expression': ?valueExpression?.encode(),
   };
 }
 
@@ -545,10 +539,10 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -572,10 +566,10 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -609,8 +603,7 @@ final class SecurityposturePosturePolicySetsPoliciesConstraintSecurityHealthAnal
   final TfArg<String> moduleName;
 
   Map<String, Object?> encode() => {
-    if (moduleEnablementState != null)
-      'module_enablement_state': moduleEnablementState!.toTfJson(),
+    'module_enablement_state': ?moduleEnablementState?.toTfJson(),
     'module_name': moduleName.toTfJson(),
   };
 }
@@ -662,8 +655,8 @@ final class GoogleSecurityposturePosture extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'location': location,
            'parent': parent,
            'posture_id': postureId,

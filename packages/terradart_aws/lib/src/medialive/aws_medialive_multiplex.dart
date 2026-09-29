@@ -27,14 +27,12 @@ final class MedialiveMultiplexMultiplexSettings {
   final TfArg<num>? transportStreamReservedBitrate;
 
   Map<String, Object?> encode() => {
-    if (maximumVideoBufferDelayMilliseconds != null)
-      'maximum_video_buffer_delay_milliseconds':
-          maximumVideoBufferDelayMilliseconds!.toTfJson(),
+    'maximum_video_buffer_delay_milliseconds':
+        ?maximumVideoBufferDelayMilliseconds?.toTfJson(),
     'transport_stream_bitrate': transportStreamBitrate.toTfJson(),
     'transport_stream_id': transportStreamId.toTfJson(),
-    if (transportStreamReservedBitrate != null)
-      'transport_stream_reserved_bitrate': transportStreamReservedBitrate!
-          .toTfJson(),
+    'transport_stream_reserved_bitrate': ?transportStreamReservedBitrate
+        ?.toTfJson(),
   };
 }
 
@@ -59,9 +57,9 @@ final class AwsMedialiveMultiplex extends Resource {
          argMap: {
            'availability_zones': availabilityZones,
            'name': name,
-           if (region != null) 'region': region,
-           if (startMultiplex != null) 'start_multiplex': startMultiplex,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'start_multiplex': ?startMultiplex,
+           'tags': ?tags,
            if (multiplexSettings != null)
              'multiplex_settings': TfArg.literal(multiplexSettings.encode()),
          },

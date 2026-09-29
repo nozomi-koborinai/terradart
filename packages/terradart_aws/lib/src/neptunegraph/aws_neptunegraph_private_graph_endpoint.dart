@@ -29,11 +29,10 @@ final class AwsNeptunegraphPrivateGraphEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'graph_identifier': graphIdentifier,
-           if (region != null) 'region': region,
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
+           'region': ?region,
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
            'vpc_id': vpcId.encodeAs('id'),
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
          },
        );
 

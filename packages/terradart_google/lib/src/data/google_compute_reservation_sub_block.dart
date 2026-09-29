@@ -26,10 +26,10 @@ final class DataGoogleComputeReservationSubBlock extends Data {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'reservation': reservation,
            'reservation_block': reservationBlock,
-           if (zone != null) 'zone': zone,
+           'zone': ?zone,
          },
        );
 

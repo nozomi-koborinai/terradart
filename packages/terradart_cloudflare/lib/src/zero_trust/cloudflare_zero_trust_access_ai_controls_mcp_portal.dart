@@ -47,9 +47,8 @@ final class ZeroTrustAccessAiControlsMcpPortalServers {
   updatedTools;
 
   Map<String, Object?> encode() => {
-    if (defaultDisabled != null)
-      'default_disabled': defaultDisabled!.toTfJson(),
-    if (onBehalf != null) 'on_behalf': onBehalf!.toTfJson(),
+    'default_disabled': ?defaultDisabled?.toTfJson(),
+    'on_behalf': ?onBehalf?.toTfJson(),
     'server_id': serverId.toTfJson(),
     if (updatedPrompts != null)
       'updated_prompts': [for (final e in updatedPrompts!) e.encode()],
@@ -78,9 +77,9 @@ final class ZeroTrustAccessAiControlsMcpPortalServersUpdatedPrompts {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (alias != null) 'alias': alias!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'alias': ?alias?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -105,9 +104,9 @@ final class ZeroTrustAccessAiControlsMcpPortalServersUpdatedTools {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (alias != null) 'alias': alias!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'alias': ?alias?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -140,13 +139,13 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (allowCodeMode != null) 'allow_code_mode': allowCodeMode,
-           if (codeMode != null) 'code_mode': codeMode,
-           if (description != null) 'description': description,
+           'allow_code_mode': ?allowCodeMode,
+           'code_mode': ?codeMode,
+           'description': ?description,
            'hostname': hostname,
            'id': id,
            'name': name,
-           if (secureWebGateway != null) 'secure_web_gateway': secureWebGateway,
+           'secure_web_gateway': ?secureWebGateway,
            if (servers != null)
              'servers': TfArg.literal([for (final e in servers) e.encode()]),
          },

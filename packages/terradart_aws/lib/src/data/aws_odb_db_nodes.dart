@@ -18,10 +18,7 @@ final class DataAwsOdbDbNodes extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'cloud_vm_cluster_id': cloudVmClusterId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'cloud_vm_cluster_id': cloudVmClusterId, 'region': ?region},
        );
 
   @override

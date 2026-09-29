@@ -35,10 +35,9 @@ final class GuarddutyDetectorDatasources {
   final GuarddutyDetectorDatasourcesS3Logs? s3Logs;
 
   Map<String, Object?> encode() => {
-    if (kubernetes != null) 'kubernetes': kubernetes!.encode(),
-    if (malwareProtection != null)
-      'malware_protection': malwareProtection!.encode(),
-    if (s3Logs != null) 's3_logs': s3Logs!.encode(),
+    'kubernetes': ?kubernetes?.encode(),
+    'malware_protection': ?malwareProtection?.encode(),
+    's3_logs': ?s3Logs?.encode(),
   };
 }
 
@@ -137,11 +136,10 @@ final class AwsGuarddutyDetector extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enable != null) 'enable': enable,
-           if (findingPublishingFrequency != null)
-             'finding_publishing_frequency': findingPublishingFrequency,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'enable': ?enable,
+           'finding_publishing_frequency': ?findingPublishingFrequency,
+           'region': ?region,
+           'tags': ?tags,
            if (datasources != null)
              'datasources': TfArg.literal(datasources.encode()),
          },

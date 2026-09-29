@@ -49,19 +49,18 @@ final class CloudflareCustomCsr extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
+           'account_id': ?accountId?.encodeAs('id'),
            'common_name': commonName,
            'country': country,
-           if (description != null) 'description': description,
-           if (keyType != null) 'key_type': keyType,
+           'description': ?description,
+           'key_type': ?keyType,
            'locality': locality,
-           if (name != null) 'name': name,
+           'name': ?name,
            'organization': organization,
-           if (organizationalUnit != null)
-             'organizational_unit': organizationalUnit,
+           'organizational_unit': ?organizationalUnit,
            'sans': sans,
            'state': state,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

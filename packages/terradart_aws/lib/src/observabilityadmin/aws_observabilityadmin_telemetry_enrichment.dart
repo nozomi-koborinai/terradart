@@ -18,10 +18,7 @@ final class AwsObservabilityadminTelemetryEnrichment extends Resource {
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (region != null) 'region': region},
-       );
+  }) : super(terraformType: tfType, argMap: {'region': ?region});
 
   @override
   Set<String> get sensitiveFields =>

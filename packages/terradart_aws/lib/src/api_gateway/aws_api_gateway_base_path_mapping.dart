@@ -26,11 +26,11 @@ final class AwsApiGatewayBasePathMapping extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (basePath != null) 'base_path': basePath,
+           'base_path': ?basePath,
            'domain_name': domainName,
-           if (domainNameId != null) 'domain_name_id': domainNameId,
-           if (region != null) 'region': region,
-           if (stageName != null) 'stage_name': stageName,
+           'domain_name_id': ?domainNameId,
+           'region': ?region,
+           'stage_name': ?stageName,
          },
        );
 

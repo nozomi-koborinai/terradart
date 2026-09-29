@@ -31,12 +31,11 @@ final class GoogleFolder extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
            'display_name': displayName,
            'parent': parent,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

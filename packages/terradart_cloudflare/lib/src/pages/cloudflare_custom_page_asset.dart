@@ -27,11 +27,11 @@ final class CloudflareCustomPageAsset extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
+           'account_id': ?accountId?.encodeAs('id'),
            'description': description,
            'name': name,
            'url': url,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

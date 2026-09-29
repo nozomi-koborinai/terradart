@@ -44,7 +44,7 @@ final class ContainerAnalysisNoteRelatedUrl {
   final TfArg<String> url;
 
   Map<String, Object?> encode() => {
-    if (label != null) 'label': label!.toTfJson(),
+    'label': ?label?.toTfJson(),
     'url': url.toTfJson(),
   };
 }
@@ -95,8 +95,8 @@ final class GoogleContainerAnalysisNote extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (shortDescription != null) 'short_description': shortDescription,
-           if (longDescription != null) 'long_description': longDescription,
+           'short_description': ?shortDescription,
+           'long_description': ?longDescription,
            'attestation_authority': TfArg.literal(
              attestationAuthority.encode(),
            ),
@@ -104,10 +104,10 @@ final class GoogleContainerAnalysisNote extends Resource {
              'related_url': TfArg.literal([
                for (final e in relatedUrl) e.encode(),
              ]),
-           if (relatedNoteNames != null) 'related_note_names': relatedNoteNames,
-           if (expirationTime != null) 'expiration_time': expirationTime,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'related_note_names': ?relatedNoteNames,
+           'expiration_time': ?expirationTime,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

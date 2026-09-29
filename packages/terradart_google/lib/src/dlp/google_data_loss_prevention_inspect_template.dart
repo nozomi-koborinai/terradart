@@ -37,14 +37,13 @@ final class GoogleDataLossPreventionInspectTemplate extends Resource {
          terraformType: tfType,
          argMap: {
            'parent': parent,
-           if (templateId != null) 'template_id': templateId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (inspectConfig != null) 'inspect_config': inspectConfig,
-           if (allowLimitedAvailabilityInfoTypes != null)
-             'allow_limited_availability_info_types':
-                 allowLimitedAvailabilityInfoTypes,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'template_id': ?templateId,
+           'display_name': ?displayName,
+           'description': ?description,
+           'inspect_config': ?inspectConfig,
+           'allow_limited_availability_info_types':
+               ?allowLimitedAvailabilityInfoTypes,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

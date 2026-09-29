@@ -50,9 +50,8 @@ final class IvsRecordingConfigurationThumbnailConfiguration {
   final TfArg<num>? targetIntervalSeconds;
 
   Map<String, Object?> encode() => {
-    if (recordingMode != null) 'recording_mode': recordingMode!.toTfJson(),
-    if (targetIntervalSeconds != null)
-      'target_interval_seconds': targetIntervalSeconds!.toTfJson(),
+    'recording_mode': ?recordingMode?.toTfJson(),
+    'target_interval_seconds': ?targetIntervalSeconds?.toTfJson(),
   };
 }
 
@@ -89,12 +88,11 @@ final class AwsIvsRecordingConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (recordingReconnectWindowSeconds != null)
-             'recording_reconnect_window_seconds':
-                 recordingReconnectWindowSeconds,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'recording_reconnect_window_seconds':
+               ?recordingReconnectWindowSeconds,
+           'region': ?region,
+           'tags': ?tags,
            'destination_configuration': TfArg.literal(
              destinationConfiguration.encode(),
            ),

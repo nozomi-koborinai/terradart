@@ -29,11 +29,10 @@ final class AwsRedshiftserverlessEndpointAccess extends Resource {
          terraformType: tfType,
          argMap: {
            'endpoint_name': endpointName,
-           if (ownerAccount != null) 'owner_account': ownerAccount,
-           if (region != null) 'region': region,
+           'owner_account': ?ownerAccount,
+           'region': ?region,
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
            'workgroup_name': workgroupName,
          },
        );

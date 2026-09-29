@@ -43,23 +43,18 @@ final class AwsConnectInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoResolveBestVoicesEnabled != null)
-             'auto_resolve_best_voices_enabled': autoResolveBestVoicesEnabled,
-           if (contactFlowLogsEnabled != null)
-             'contact_flow_logs_enabled': contactFlowLogsEnabled,
-           if (contactLensEnabled != null)
-             'contact_lens_enabled': contactLensEnabled,
-           if (directoryId != null) 'directory_id': directoryId,
-           if (earlyMediaEnabled != null)
-             'early_media_enabled': earlyMediaEnabled,
+           'auto_resolve_best_voices_enabled': ?autoResolveBestVoicesEnabled,
+           'contact_flow_logs_enabled': ?contactFlowLogsEnabled,
+           'contact_lens_enabled': ?contactLensEnabled,
+           'directory_id': ?directoryId,
+           'early_media_enabled': ?earlyMediaEnabled,
            'identity_management_type': identityManagementType,
            'inbound_calls_enabled': inboundCallsEnabled,
-           if (instanceAlias != null) 'instance_alias': instanceAlias,
-           if (multiPartyConferenceEnabled != null)
-             'multi_party_conference_enabled': multiPartyConferenceEnabled,
+           'instance_alias': ?instanceAlias,
+           'multi_party_conference_enabled': ?multiPartyConferenceEnabled,
            'outbound_calls_enabled': outboundCallsEnabled,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

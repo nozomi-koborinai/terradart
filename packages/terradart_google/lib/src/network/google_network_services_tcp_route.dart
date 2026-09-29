@@ -40,9 +40,8 @@ final class NetworkServicesTcpRouteRulesAction {
   final List<NetworkServicesTcpRouteRulesActionDestinations>? destinations;
 
   Map<String, Object?> encode() => {
-    if (idleTimeout != null) 'idle_timeout': idleTimeout!.toTfJson(),
-    if (originalDestination != null)
-      'original_destination': originalDestination!.toTfJson(),
+    'idle_timeout': ?idleTimeout?.toTfJson(),
+    'original_destination': ?originalDestination?.toTfJson(),
     if (destinations != null)
       'destinations': [for (final e in destinations!) e.encode()],
   };
@@ -62,8 +61,8 @@ final class NetworkServicesTcpRouteRulesActionDestinations {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -117,12 +116,12 @@ final class GoogleNetworkServicesTcpRoute extends Resource {
          argMap: {
            'name': name,
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
-           if (meshes != null) 'meshes': meshes,
-           if (gateways != null) 'gateways': gateways,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'meshes': ?meshes,
+           'gateways': ?gateways,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

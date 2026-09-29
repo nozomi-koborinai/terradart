@@ -50,16 +50,13 @@ final class GlueConnectionAuthenticationConfiguration {
 
   Map<String, Object?> encode() => {
     'authentication_type': authenticationType.toTfJson(),
-    if (customAuthenticationCredentials != null)
-      'custom_authentication_credentials': customAuthenticationCredentials!
-          .toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
-    if (basicAuthenticationCredentials != null)
-      'basic_authentication_credentials': basicAuthenticationCredentials!
-          .encode(),
-    if (oauth2Properties != null)
-      'oauth2_properties': oauth2Properties!.encode(),
+    'custom_authentication_credentials': ?customAuthenticationCredentials
+        ?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'secret_arn': ?secretArn?.toTfJson(),
+    'basic_authentication_credentials': ?basicAuthenticationCredentials
+        ?.encode(),
+    'oauth2_properties': ?oauth2Properties?.encode(),
   };
 }
 
@@ -111,17 +108,12 @@ final class GlueConnectionAuthenticationConfigurationOauth2Properties {
   oauth2Credentials;
 
   Map<String, Object?> encode() => {
-    if (oauth2GrantType != null)
-      'oauth2_grant_type': oauth2GrantType!.toTfJson(),
-    if (tokenUrl != null) 'token_url': tokenUrl!.toTfJson(),
-    if (tokenUrlParametersMap != null)
-      'token_url_parameters_map': tokenUrlParametersMap!.toTfJson(),
-    if (authorizationCodeProperties != null)
-      'authorization_code_properties': authorizationCodeProperties!.encode(),
-    if (oauth2ClientApplication != null)
-      'oauth2_client_application': oauth2ClientApplication!.encode(),
-    if (oauth2Credentials != null)
-      'oauth2_credentials': oauth2Credentials!.encode(),
+    'oauth2_grant_type': ?oauth2GrantType?.toTfJson(),
+    'token_url': ?tokenUrl?.toTfJson(),
+    'token_url_parameters_map': ?tokenUrlParametersMap?.toTfJson(),
+    'authorization_code_properties': ?authorizationCodeProperties?.encode(),
+    'oauth2_client_application': ?oauth2ClientApplication?.encode(),
+    'oauth2_credentials': ?oauth2Credentials?.encode(),
   };
 }
 
@@ -158,12 +150,10 @@ final class GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2Clien
   final TfArg<String>? userManagedClientApplicationClientId;
 
   Map<String, Object?> encode() => {
-    if (awsManagedClientApplicationReference != null)
-      'aws_managed_client_application_reference':
-          awsManagedClientApplicationReference!.toTfJson(),
-    if (userManagedClientApplicationClientId != null)
-      'user_managed_client_application_client_id':
-          userManagedClientApplicationClientId!.toTfJson(),
+    'aws_managed_client_application_reference':
+        ?awsManagedClientApplicationReference?.toTfJson(),
+    'user_managed_client_application_client_id':
+        ?userManagedClientApplicationClientId?.toTfJson(),
   };
 }
 
@@ -187,12 +177,11 @@ final class GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2Crede
   final TfArg<String>? userManagedClientApplicationClientSecret;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
-    if (jwtToken != null) 'jwt_token': jwtToken!.toTfJson(),
-    if (refreshToken != null) 'refresh_token': refreshToken!.toTfJson(),
-    if (userManagedClientApplicationClientSecret != null)
-      'user_managed_client_application_client_secret':
-          userManagedClientApplicationClientSecret!.toTfJson(),
+    'access_token': ?accessToken?.toTfJson(),
+    'jwt_token': ?jwtToken?.toTfJson(),
+    'refresh_token': ?refreshToken?.toTfJson(),
+    'user_managed_client_application_client_secret':
+        ?userManagedClientApplicationClientSecret?.toTfJson(),
   };
 }
 
@@ -213,11 +202,9 @@ final class GlueConnectionPhysicalConnectionRequirements {
   final RefTo<AwsSubnet>? subnetId;
 
   Map<String, Object?> encode() => {
-    if (availabilityZone != null)
-      'availability_zone': availabilityZone!.toTfJson(),
-    if (securityGroupIdList != null)
-      'security_group_id_list': securityGroupIdList!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
+    'availability_zone': ?availabilityZone?.toTfJson(),
+    'security_group_id_list': ?securityGroupIdList?.toTfJson(),
+    'subnet_id': ?subnetId?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -246,16 +233,15 @@ final class AwsGlueConnection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (athenaProperties != null) 'athena_properties': athenaProperties,
-           if (catalogId != null) 'catalog_id': catalogId,
-           if (connectionProperties != null)
-             'connection_properties': connectionProperties,
-           if (connectionType != null) 'connection_type': connectionType,
-           if (description != null) 'description': description,
-           if (matchCriteria != null) 'match_criteria': matchCriteria,
+           'athena_properties': ?athenaProperties,
+           'catalog_id': ?catalogId,
+           'connection_properties': ?connectionProperties,
+           'connection_type': ?connectionType,
+           'description': ?description,
+           'match_criteria': ?matchCriteria,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (authenticationConfiguration != null)
              'authentication_configuration': TfArg.literal(
                authenticationConfiguration.encode(),

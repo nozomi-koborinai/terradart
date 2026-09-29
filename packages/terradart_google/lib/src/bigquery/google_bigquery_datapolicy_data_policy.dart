@@ -69,7 +69,7 @@ final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
            'data_policy_type': dataPolicyType,
            'location': location,
            'policy_tag': policyTag,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (dataMaskingPolicy != null)
              'data_masking_policy': TfArg.literal([dataMaskingPolicy.encode()]),
          },

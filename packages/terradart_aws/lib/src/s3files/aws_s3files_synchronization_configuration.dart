@@ -78,9 +78,8 @@ final class AwsS3filesSynchronizationConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'file_system_id': fileSystemId,
-           if (latestVersionNumber != null)
-             'latest_version_number': latestVersionNumber,
-           if (region != null) 'region': region,
+           'latest_version_number': ?latestVersionNumber,
+           'region': ?region,
            if (expirationDataRule != null)
              'expiration_data_rule': TfArg.literal([
                for (final e in expirationDataRule) e.encode(),

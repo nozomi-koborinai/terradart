@@ -35,10 +35,10 @@ final class AwsElasticacheUserGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'engine': engine,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'user_group_id': userGroupId,
-           if (userIds != null) 'user_ids': userIds,
+           'user_ids': ?userIds,
          },
        );
 

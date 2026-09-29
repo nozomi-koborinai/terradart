@@ -29,10 +29,10 @@ final class ImagebuilderImageRecipeBlockDeviceMapping {
   final ImagebuilderImageRecipeBlockDeviceMappingEbs? ebs;
 
   Map<String, Object?> encode() => {
-    if (deviceName != null) 'device_name': deviceName!.toTfJson(),
-    if (noDevice != null) 'no_device': noDevice!.toTfJson(),
-    if (virtualName != null) 'virtual_name': virtualName!.toTfJson(),
-    if (ebs != null) 'ebs': ebs!.encode(),
+    'device_name': ?deviceName?.toTfJson(),
+    'no_device': ?noDevice?.toTfJson(),
+    'virtual_name': ?virtualName?.toTfJson(),
+    'ebs': ?ebs?.encode(),
   };
 }
 
@@ -69,15 +69,14 @@ final class ImagebuilderImageRecipeBlockDeviceMappingEbs {
   volumeType;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'snapshot_id': ?snapshotId?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -178,15 +177,15 @@ final class AwsImagebuilderImageRecipe extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (amiTags != null) 'ami_tags': amiTags,
-           if (description != null) 'description': description,
+           'ami_tags': ?amiTags,
+           'description': ?description,
            'name': name,
            'parent_image': parentImage,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (userDataBase64 != null) 'user_data_base64': userDataBase64,
+           'region': ?region,
+           'tags': ?tags,
+           'user_data_base64': ?userDataBase64,
            'version': version,
-           if (workingDirectory != null) 'working_directory': workingDirectory,
+           'working_directory': ?workingDirectory,
            if (blockDeviceMapping != null)
              'block_device_mapping': TfArg.literal([
                for (final e in blockDeviceMapping) e.encode(),

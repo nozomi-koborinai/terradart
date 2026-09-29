@@ -25,10 +25,10 @@ final class AwsLbTargetGroupAttachment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (port != null) 'port': port,
-           if (quicServerId != null) 'quic_server_id': quicServerId,
-           if (region != null) 'region': region,
+           'availability_zone': ?availabilityZone,
+           'port': ?port,
+           'quic_server_id': ?quicServerId,
+           'region': ?region,
            'target_group_arn': targetGroupArn,
            'target_id': targetId,
          },

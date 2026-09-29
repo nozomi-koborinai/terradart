@@ -41,12 +41,12 @@ final class AppwritePostgresqlBackupPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'database_id': databaseId,
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'name': name,
-           if (projectId != null) 'project_id': projectId,
+           'project_id': ?projectId,
            'retention': retention,
            'schedule': schedule,
-           if (type != null) 'type': type,
+           'type': ?type,
          },
        );
 

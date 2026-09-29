@@ -104,28 +104,21 @@ final class AwsVpcIpamPool extends Resource {
          terraformType: tfType,
          argMap: {
            'address_family': addressFamily,
-           if (allocationDefaultNetmaskLength != null)
-             'allocation_default_netmask_length':
-                 allocationDefaultNetmaskLength,
-           if (allocationMaxNetmaskLength != null)
-             'allocation_max_netmask_length': allocationMaxNetmaskLength,
-           if (allocationMinNetmaskLength != null)
-             'allocation_min_netmask_length': allocationMinNetmaskLength,
-           if (allocationResourceTags != null)
-             'allocation_resource_tags': allocationResourceTags,
-           if (autoImport != null) 'auto_import': autoImport,
-           if (awsService != null) 'aws_service': awsService,
-           if (cascade != null) 'cascade': cascade,
-           if (description != null) 'description': description,
+           'allocation_default_netmask_length': ?allocationDefaultNetmaskLength,
+           'allocation_max_netmask_length': ?allocationMaxNetmaskLength,
+           'allocation_min_netmask_length': ?allocationMinNetmaskLength,
+           'allocation_resource_tags': ?allocationResourceTags,
+           'auto_import': ?autoImport,
+           'aws_service': ?awsService,
+           'cascade': ?cascade,
+           'description': ?description,
            'ipam_scope_id': ipamScopeId,
-           if (locale != null) 'locale': locale,
-           if (publicIpSource != null) 'public_ip_source': publicIpSource,
-           if (publiclyAdvertisable != null)
-             'publicly_advertisable': publiclyAdvertisable,
-           if (region != null) 'region': region,
-           if (sourceIpamPoolId != null)
-             'source_ipam_pool_id': sourceIpamPoolId,
-           if (tags != null) 'tags': tags,
+           'locale': ?locale,
+           'public_ip_source': ?publicIpSource,
+           'publicly_advertisable': ?publiclyAdvertisable,
+           'region': ?region,
+           'source_ipam_pool_id': ?sourceIpamPoolId,
+           'tags': ?tags,
            if (sourceResource != null)
              'source_resource': TfArg.literal(sourceResource.encode()),
          },

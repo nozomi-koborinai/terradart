@@ -20,8 +20,7 @@ final class StoragegatewayFileSystemAssociationCacheAttributes {
   final TfArg<num>? cacheStaleTimeoutInSeconds;
 
   Map<String, Object?> encode() => {
-    if (cacheStaleTimeoutInSeconds != null)
-      'cache_stale_timeout_in_seconds': cacheStaleTimeoutInSeconds!.toTfJson(),
+    'cache_stale_timeout_in_seconds': ?cacheStaleTimeoutInSeconds?.toTfJson(),
   };
 }
 
@@ -46,13 +45,12 @@ final class AwsStoragegatewayFileSystemAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (auditDestinationArn != null)
-             'audit_destination_arn': auditDestinationArn,
+           'audit_destination_arn': ?auditDestinationArn,
            'gateway_arn': gatewayArn,
            'location_arn': locationArn,
            'password': password,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'username': username,
            if (cacheAttributes != null)
              'cache_attributes': TfArg.literal(cacheAttributes.encode()),

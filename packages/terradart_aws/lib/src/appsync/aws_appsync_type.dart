@@ -36,7 +36,7 @@ final class AwsAppsyncType extends Resource {
            'api_id': apiId,
            'definition': definition,
            'format': format,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

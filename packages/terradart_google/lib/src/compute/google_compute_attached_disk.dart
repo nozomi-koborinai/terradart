@@ -29,12 +29,12 @@ final class GoogleComputeAttachedDisk extends Resource {
          argMap: {
            'disk': disk,
            'instance': instance,
-           if (deviceName != null) 'device_name': deviceName,
-           if (mode != null) 'mode': mode,
-           if (interface != null) 'interface': interface,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (zone != null) 'zone': zone,
-           if (project != null) 'project': project,
+           'device_name': ?deviceName,
+           'mode': ?mode,
+           'interface': ?interface,
+           'deletion_policy': ?deletionPolicy,
+           'zone': ?zone,
+           'project': ?project,
          },
        );
 

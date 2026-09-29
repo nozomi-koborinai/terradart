@@ -28,7 +28,7 @@ final class SsoadminApplicationPortalOptions {
   final List<SsoadminApplicationPortalOptionsSignInOptions>? signInOptions;
 
   Map<String, Object?> encode() => {
-    if (visibility != null) 'visibility': visibility!.toTfJson(),
+    'visibility': ?visibility?.toTfJson(),
     if (signInOptions != null)
       'sign_in_options': [for (final e in signInOptions!) e.encode()],
   };
@@ -58,7 +58,7 @@ final class SsoadminApplicationPortalOptionsSignInOptions {
   final TfArg<SsoadminApplicationPortalOptionsSignInOptionsOrigin> origin;
 
   Map<String, Object?> encode() => {
-    if (applicationUrl != null) 'application_url': applicationUrl!.toTfJson(),
+    'application_url': ?applicationUrl?.toTfJson(),
     'origin': origin.toTfJson(),
   };
 }
@@ -99,13 +99,13 @@ final class AwsSsoadminApplication extends Resource {
          terraformType: tfType,
          argMap: {
            'application_provider_arn': applicationProviderArn,
-           if (clientToken != null) 'client_token': clientToken,
-           if (description != null) 'description': description,
+           'client_token': ?clientToken,
+           'description': ?description,
            'instance_arn': instanceArn,
            'name': name,
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'status': ?status,
+           'tags': ?tags,
            if (portalOptions != null)
              'portal_options': TfArg.literal([
                for (final e in portalOptions) e.encode(),

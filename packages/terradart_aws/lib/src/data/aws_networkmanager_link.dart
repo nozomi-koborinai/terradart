@@ -23,7 +23,7 @@ final class DataAwsNetworkmanagerLink extends Data {
          argMap: {
            'global_network_id': globalNetworkId,
            'link_id': linkId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

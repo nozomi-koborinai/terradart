@@ -55,9 +55,9 @@ final class GoogleCloudbuildv2Repository extends Resource {
            'name': name,
            'parent_connection': parentConnection,
            'remote_uri': remoteUri,
-           if (location != null) 'location': location,
-           if (annotations != null) 'annotations': annotations,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'annotations': ?annotations,
+           'project': ?project,
          },
        );
 

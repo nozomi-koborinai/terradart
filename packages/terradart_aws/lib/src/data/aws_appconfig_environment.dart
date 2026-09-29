@@ -24,8 +24,8 @@ final class DataAwsAppconfigEnvironment extends Data {
          argMap: {
            'application_id': applicationId,
            'environment_id': environmentId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

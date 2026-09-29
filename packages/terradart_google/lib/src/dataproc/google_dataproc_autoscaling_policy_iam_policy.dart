@@ -30,9 +30,9 @@ final class GoogleDataprocAutoscalingPolicyIamPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_id': policyId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

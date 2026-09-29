@@ -25,10 +25,10 @@ final class AwsDatasyncLocationFsxLustreFileSystem extends Resource {
          terraformType: tfType,
          argMap: {
            'fsx_filesystem_arn': fsxFilesystemArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_group_arns': securityGroupArns,
-           if (subdirectory != null) 'subdirectory': subdirectory,
-           if (tags != null) 'tags': tags,
+           'subdirectory': ?subdirectory,
+           'tags': ?tags,
          },
        );
 

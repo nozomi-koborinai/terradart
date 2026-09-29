@@ -36,12 +36,9 @@ final class EcsCapacityProviderAutoScalingGroupProvider {
 
   Map<String, Object?> encode() => {
     'auto_scaling_group_arn': autoScalingGroupArn.toTfJson(),
-    if (managedDraining != null)
-      'managed_draining': managedDraining!.toTfJson(),
-    if (managedTerminationProtection != null)
-      'managed_termination_protection': managedTerminationProtection!
-          .toTfJson(),
-    if (managedScaling != null) 'managed_scaling': managedScaling!.encode(),
+    'managed_draining': ?managedDraining?.toTfJson(),
+    'managed_termination_protection': ?managedTerminationProtection?.toTfJson(),
+    'managed_scaling': ?managedScaling?.encode(),
   };
 }
 
@@ -95,14 +92,11 @@ final class EcsCapacityProviderAutoScalingGroupProviderManagedScaling {
   final TfArg<num>? targetCapacity;
 
   Map<String, Object?> encode() => {
-    if (instanceWarmupPeriod != null)
-      'instance_warmup_period': instanceWarmupPeriod!.toTfJson(),
-    if (maximumScalingStepSize != null)
-      'maximum_scaling_step_size': maximumScalingStepSize!.toTfJson(),
-    if (minimumScalingStepSize != null)
-      'minimum_scaling_step_size': minimumScalingStepSize!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
-    if (targetCapacity != null) 'target_capacity': targetCapacity!.toTfJson(),
+    'instance_warmup_period': ?instanceWarmupPeriod?.toTfJson(),
+    'maximum_scaling_step_size': ?maximumScalingStepSize?.toTfJson(),
+    'minimum_scaling_step_size': ?minimumScalingStepSize?.toTfJson(),
+    'status': ?status?.toTfJson(),
+    'target_capacity': ?targetCapacity?.toTfJson(),
   };
 }
 
@@ -147,11 +141,9 @@ final class EcsCapacityProviderManagedInstancesProvider {
 
   Map<String, Object?> encode() => {
     'infrastructure_role_arn': infrastructureRoleArn.toTfJson(),
-    if (propagateTags != null) 'propagate_tags': propagateTags!.toTfJson(),
-    if (autoRepairConfiguration != null)
-      'auto_repair_configuration': autoRepairConfiguration!.encode(),
-    if (infrastructureOptimization != null)
-      'infrastructure_optimization': infrastructureOptimization!.encode(),
+    'propagate_tags': ?propagateTags?.toTfJson(),
+    'auto_repair_configuration': ?autoRepairConfiguration?.encode(),
+    'infrastructure_optimization': ?infrastructureOptimization?.encode(),
     'instance_launch_template': instanceLaunchTemplate.encode(),
   };
 }
@@ -183,7 +175,7 @@ final class EcsCapacityProviderManagedInstancesProviderAutoRepairConfiguration {
   actionsStatus;
 
   Map<String, Object?> encode() => {
-    if (actionsStatus != null) 'actions_status': actionsStatus!.toTfJson(),
+    'actions_status': ?actionsStatus?.toTfJson(),
   };
 }
 
@@ -211,7 +203,7 @@ final class EcsCapacityProviderManagedInstancesProviderInfrastructureOptimizatio
   final TfArg<num>? scaleInAfter;
 
   Map<String, Object?> encode() => {
-    if (scaleInAfter != null) 'scale_in_after': scaleInAfter!.toTfJson(),
+    'scale_in_after': ?scaleInAfter?.toTfJson(),
   };
 }
 
@@ -258,19 +250,14 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplate {
   storageConfiguration;
 
   Map<String, Object?> encode() => {
-    if (capacityOptionType != null)
-      'capacity_option_type': capacityOptionType!.toTfJson(),
+    'capacity_option_type': ?capacityOptionType?.toTfJson(),
     'ec2_instance_profile_arn': ec2InstanceProfileArn.toTfJson(),
-    if (monitoring != null) 'monitoring': monitoring!.toTfJson(),
-    if (capacityReservations != null)
-      'capacity_reservations': capacityReservations!.encode(),
-    if (instanceRequirements != null)
-      'instance_requirements': instanceRequirements!.encode(),
-    if (localStorageConfiguration != null)
-      'local_storage_configuration': localStorageConfiguration!.encode(),
+    'monitoring': ?monitoring?.toTfJson(),
+    'capacity_reservations': ?capacityReservations?.encode(),
+    'instance_requirements': ?instanceRequirements?.encode(),
+    'local_storage_configuration': ?localStorageConfiguration?.encode(),
     'network_configuration': networkConfiguration.encode(),
-    if (storageConfiguration != null)
-      'storage_configuration': storageConfiguration!.encode(),
+    'storage_configuration': ?storageConfiguration?.encode(),
   };
 }
 
@@ -318,10 +305,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCap
   reservationPreference;
 
   Map<String, Object?> encode() => {
-    if (reservationGroupArn != null)
-      'reservation_group_arn': reservationGroupArn!.toTfJson(),
-    if (reservationPreference != null)
-      'reservation_preference': reservationPreference!.toTfJson(),
+    'reservation_group_arn': ?reservationGroupArn?.toTfJson(),
+    'reservation_preference': ?reservationPreference?.toTfJson(),
   };
 }
 
@@ -475,48 +460,34 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
       'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
     if (acceleratorTypes != null)
       'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
-    if (allowedInstanceTypes != null)
-      'allowed_instance_types': allowedInstanceTypes!.toTfJson(),
-    if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
-    if (burstablePerformance != null)
-      'burstable_performance': burstablePerformance!.toTfJson(),
+    'allowed_instance_types': ?allowedInstanceTypes?.toTfJson(),
+    'bare_metal': ?bareMetal?.toTfJson(),
+    'burstable_performance': ?burstablePerformance?.toTfJson(),
     if (cpuManufacturers != null)
       'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
-    if (excludedInstanceTypes != null)
-      'excluded_instance_types': excludedInstanceTypes!.toTfJson(),
+    'excluded_instance_types': ?excludedInstanceTypes?.toTfJson(),
     if (instanceGenerations != null)
       'instance_generations': [
         for (final e in instanceGenerations!) e.toTfJson(),
       ],
-    if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
+    'local_storage': ?localStorage?.toTfJson(),
     if (localStorageTypes != null)
       'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
-    if (maxSpotPriceAsPercentageOfOptimalOnDemandPrice != null)
-      'max_spot_price_as_percentage_of_optimal_on_demand_price':
-          maxSpotPriceAsPercentageOfOptimalOnDemandPrice!.toTfJson(),
-    if (onDemandMaxPricePercentageOverLowestPrice != null)
-      'on_demand_max_price_percentage_over_lowest_price':
-          onDemandMaxPricePercentageOverLowestPrice!.toTfJson(),
-    if (requireHibernateSupport != null)
-      'require_hibernate_support': requireHibernateSupport!.toTfJson(),
-    if (spotMaxPricePercentageOverLowestPrice != null)
-      'spot_max_price_percentage_over_lowest_price':
-          spotMaxPricePercentageOverLowestPrice!.toTfJson(),
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.encode(),
-    if (acceleratorTotalMemoryMib != null)
-      'accelerator_total_memory_mib': acceleratorTotalMemoryMib!.encode(),
-    if (baselineEbsBandwidthMbps != null)
-      'baseline_ebs_bandwidth_mbps': baselineEbsBandwidthMbps!.encode(),
-    if (memoryGibPerVcpu != null)
-      'memory_gib_per_vcpu': memoryGibPerVcpu!.encode(),
+    'max_spot_price_as_percentage_of_optimal_on_demand_price':
+        ?maxSpotPriceAsPercentageOfOptimalOnDemandPrice?.toTfJson(),
+    'on_demand_max_price_percentage_over_lowest_price':
+        ?onDemandMaxPricePercentageOverLowestPrice?.toTfJson(),
+    'require_hibernate_support': ?requireHibernateSupport?.toTfJson(),
+    'spot_max_price_percentage_over_lowest_price':
+        ?spotMaxPricePercentageOverLowestPrice?.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.encode(),
+    'accelerator_total_memory_mib': ?acceleratorTotalMemoryMib?.encode(),
+    'baseline_ebs_bandwidth_mbps': ?baselineEbsBandwidthMbps?.encode(),
+    'memory_gib_per_vcpu': ?memoryGibPerVcpu?.encode(),
     'memory_mib': memoryMib.encode(),
-    if (networkBandwidthGbps != null)
-      'network_bandwidth_gbps': networkBandwidthGbps!.encode(),
-    if (networkInterfaceCount != null)
-      'network_interface_count': networkInterfaceCount!.encode(),
-    if (totalLocalStorageGb != null)
-      'total_local_storage_gb': totalLocalStorageGb!.encode(),
+    'network_bandwidth_gbps': ?networkBandwidthGbps?.encode(),
+    'network_interface_count': ?networkInterfaceCount?.encode(),
+    'total_local_storage_gb': ?totalLocalStorageGb?.encode(),
     'vcpu_count': vcpuCount.encode(),
   };
 }
@@ -670,8 +641,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -689,8 +660,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -708,8 +679,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -727,8 +698,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -746,7 +717,7 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
   final TfArg<num> min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
+    'max': ?max?.toTfJson(),
     'min': min.toTfJson(),
   };
 }
@@ -765,8 +736,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -784,8 +755,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -803,8 +774,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -822,7 +793,7 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
   final TfArg<num> min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
+    'max': ?max?.toTfJson(),
     'min': min.toTfJson(),
   };
 }
@@ -838,8 +809,7 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateLoc
   final TfArg<bool>? useLocalStorage;
 
   Map<String, Object?> encode() => {
-    if (useLocalStorage != null)
-      'use_local_storage': useLocalStorage!.toTfJson(),
+    'use_local_storage': ?useLocalStorage?.toTfJson(),
   };
 }
 
@@ -857,8 +827,7 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateNet
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
@@ -897,10 +866,10 @@ final class AwsEcsCapacityProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cluster != null) 'cluster': cluster,
+           'cluster': ?cluster,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (autoScalingGroupProvider != null)
              'auto_scaling_group_provider': TfArg.literal(
                autoScalingGroupProvider.encode(),

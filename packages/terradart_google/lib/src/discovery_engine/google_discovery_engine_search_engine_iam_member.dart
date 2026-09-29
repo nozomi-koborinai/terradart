@@ -28,13 +28,13 @@ final class GoogleDiscoveryEngineSearchEngineIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
+           'location': ?location,
            'collection_id': collectionId,
            'engine_id': engineId,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

@@ -231,44 +231,34 @@ final class AwsElasticacheCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (autoMinorVersionUpgrade != null)
-             'auto_minor_version_upgrade': autoMinorVersionUpgrade,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (azMode != null) 'az_mode': azMode,
+           'apply_immediately': ?applyImmediately,
+           'auto_minor_version_upgrade': ?autoMinorVersionUpgrade,
+           'availability_zone': ?availabilityZone,
+           'az_mode': ?azMode,
            'cluster_id': clusterId,
            ...source.argMap,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (finalSnapshotIdentifier != null)
-             'final_snapshot_identifier': finalSnapshotIdentifier,
-           if (ipDiscovery != null) 'ip_discovery': ipDiscovery,
-           if (maintenanceWindow != null)
-             'maintenance_window': maintenanceWindow,
-           if (networkType != null) 'network_type': networkType,
-           if (nodeType != null) 'node_type': nodeType,
-           if (notificationTopicArn != null)
-             'notification_topic_arn': notificationTopicArn,
-           if (numCacheNodes != null) 'num_cache_nodes': numCacheNodes,
-           if (outpostMode != null) 'outpost_mode': outpostMode,
-           if (parameterGroupName != null)
-             'parameter_group_name': parameterGroupName,
-           if (port != null) 'port': port,
-           if (preferredAvailabilityZones != null)
-             'preferred_availability_zones': preferredAvailabilityZones,
-           if (preferredOutpostArn != null)
-             'preferred_outpost_arn': preferredOutpostArn,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (snapshotArns != null) 'snapshot_arns': snapshotArns,
-           if (snapshotName != null) 'snapshot_name': snapshotName,
-           if (snapshotRetentionLimit != null)
-             'snapshot_retention_limit': snapshotRetentionLimit,
-           if (snapshotWindow != null) 'snapshot_window': snapshotWindow,
-           if (subnetGroupName != null) 'subnet_group_name': subnetGroupName,
-           if (tags != null) 'tags': tags,
-           if (transitEncryptionEnabled != null)
-             'transit_encryption_enabled': transitEncryptionEnabled,
+           'engine_version': ?engineVersion,
+           'final_snapshot_identifier': ?finalSnapshotIdentifier,
+           'ip_discovery': ?ipDiscovery,
+           'maintenance_window': ?maintenanceWindow,
+           'network_type': ?networkType,
+           'node_type': ?nodeType,
+           'notification_topic_arn': ?notificationTopicArn,
+           'num_cache_nodes': ?numCacheNodes,
+           'outpost_mode': ?outpostMode,
+           'parameter_group_name': ?parameterGroupName,
+           'port': ?port,
+           'preferred_availability_zones': ?preferredAvailabilityZones,
+           'preferred_outpost_arn': ?preferredOutpostArn,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'snapshot_arns': ?snapshotArns,
+           'snapshot_name': ?snapshotName,
+           'snapshot_retention_limit': ?snapshotRetentionLimit,
+           'snapshot_window': ?snapshotWindow,
+           'subnet_group_name': ?subnetGroupName,
+           'tags': ?tags,
+           'transit_encryption_enabled': ?transitEncryptionEnabled,
            if (logDeliveryConfiguration != null)
              'log_delivery_configuration': TfArg.literal([
                for (final e in logDeliveryConfiguration) e.encode(),

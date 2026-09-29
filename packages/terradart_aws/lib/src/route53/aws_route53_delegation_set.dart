@@ -17,10 +17,7 @@ final class AwsRoute53DelegationSet extends Resource {
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (referenceName != null) 'reference_name': referenceName},
-       );
+  }) : super(terraformType: tfType, argMap: {'reference_name': ?referenceName});
 
   @override
   Set<String> get sensitiveFields => _awsRoute53DelegationSetSensitive;

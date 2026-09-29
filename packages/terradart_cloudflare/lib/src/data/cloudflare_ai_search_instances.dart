@@ -23,12 +23,12 @@ final class DataCloudflareAiSearchInstances extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (namespace != null) 'namespace': namespace,
-           if (orderBy != null) 'order_by': orderBy,
-           if (orderByDirection != null) 'order_by_direction': orderByDirection,
-           if (search != null) 'search': search,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'namespace': ?namespace,
+           'order_by': ?orderBy,
+           'order_by_direction': ?orderByDirection,
+           'search': ?search,
          },
        );
 

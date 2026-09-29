@@ -28,7 +28,7 @@ final class DataGoogleGkeHubMembershipBinding extends Data {
            'location': location,
            'membership_binding_id': membershipBindingId,
            'membership_id': membershipId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

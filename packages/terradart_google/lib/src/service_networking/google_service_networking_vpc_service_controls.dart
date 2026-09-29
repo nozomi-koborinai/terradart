@@ -56,7 +56,7 @@ final class GoogleServiceNetworkingVpcServiceControls extends Resource {
          argMap: {
            'enabled': enabled,
            'network': network.encodeAs('name'),
-           if (project != null) 'project': project,
+           'project': ?project,
            'service': service,
          },
        );

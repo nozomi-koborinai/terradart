@@ -50,10 +50,8 @@ final class CloudwatchEventConnectionAuthParameters {
 
   Map<String, Object?> encode() => {
     ...auth.encode(),
-    if (connectivityParameters != null)
-      'connectivity_parameters': connectivityParameters!.encode(),
-    if (invocationHttpParameters != null)
-      'invocation_http_parameters': invocationHttpParameters!.encode(),
+    'connectivity_parameters': ?connectivityParameters?.encode(),
+    'invocation_http_parameters': ?invocationHttpParameters?.encode(),
   };
 }
 
@@ -246,9 +244,9 @@ final class CloudwatchEventConnectionAuthParametersInvocationHttpParametersBody 
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (isValueSecret != null) 'is_value_secret': isValueSecret!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'is_value_secret': ?isValueSecret?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -269,9 +267,9 @@ final class CloudwatchEventConnectionAuthParametersInvocationHttpParametersHeade
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (isValueSecret != null) 'is_value_secret': isValueSecret!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'is_value_secret': ?isValueSecret?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -292,9 +290,9 @@ final class CloudwatchEventConnectionAuthParametersInvocationHttpParametersQuery
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (isValueSecret != null) 'is_value_secret': isValueSecret!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'is_value_secret': ?isValueSecret?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -323,8 +321,7 @@ final class CloudwatchEventConnectionAuthParametersOauth {
   Map<String, Object?> encode() => {
     'authorization_endpoint': authorizationEndpoint.toTfJson(),
     'http_method': httpMethod.toTfJson(),
-    if (clientParameters != null)
-      'client_parameters': clientParameters!.encode(),
+    'client_parameters': ?clientParameters?.encode(),
     'oauth_http_parameters': oauthHttpParameters.encode(),
   };
 }
@@ -412,9 +409,9 @@ final class CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersBody 
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (isValueSecret != null) 'is_value_secret': isValueSecret!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'is_value_secret': ?isValueSecret?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -435,9 +432,9 @@ final class CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersHeade
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (isValueSecret != null) 'is_value_secret': isValueSecret!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'is_value_secret': ?isValueSecret?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -458,9 +455,9 @@ final class CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersQuery
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (isValueSecret != null) 'is_value_secret': isValueSecret!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'is_value_secret': ?isValueSecret?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -518,11 +515,10 @@ final class AwsCloudwatchEventConnection extends Resource {
          terraformType: tfType,
          argMap: {
            'authorization_type': authorizationType,
-           if (description != null) 'description': description,
-           if (kmsKeyIdentifier != null)
-             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
+           'description': ?description,
+           'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'auth_parameters': TfArg.literal(authParameters.encode()),
            if (invocationConnectivityParameters != null)
              'invocation_connectivity_parameters': TfArg.literal(

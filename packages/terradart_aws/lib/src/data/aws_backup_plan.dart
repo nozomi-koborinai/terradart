@@ -20,11 +20,7 @@ final class DataAwsBackupPlan extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'plan_id': planId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'plan_id': planId, 'region': ?region, 'tags': ?tags},
        );
 
   @override

@@ -32,10 +32,10 @@ final class ApphubServiceAttributes {
   Map<String, Object?> encode() => {
     if (businessOwners != null)
       'business_owners': [for (final e in businessOwners!) e.encode()],
-    if (criticality != null) 'criticality': criticality!.encode(),
+    'criticality': ?criticality?.encode(),
     if (developerOwners != null)
       'developer_owners': [for (final e in developerOwners!) e.encode()],
-    if (environment != null) 'environment': environment!.encode(),
+    'environment': ?environment?.encode(),
     if (operatorOwners != null)
       'operator_owners': [for (final e in operatorOwners!) e.encode()],
   };
@@ -55,7 +55,7 @@ final class ApphubServiceAttributesBusinessOwners {
   final TfArg<String> email;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
   };
 }
@@ -97,7 +97,7 @@ final class ApphubServiceAttributesDeveloperOwners {
   final TfArg<String> email;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
   };
 }
@@ -139,7 +139,7 @@ final class ApphubServiceAttributesOperatorOwners {
   final TfArg<String> email;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
   };
 }
@@ -179,12 +179,12 @@ final class GoogleApphubService extends Resource {
            'application_id': applicationId,
            'service_id': serviceId,
            'discovered_service': discoveredService,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
+           'display_name': ?displayName,
+           'description': ?description,
            if (attributes != null)
              'attributes': TfArg.literal(attributes.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

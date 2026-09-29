@@ -23,7 +23,7 @@ final class AwsNetworkmanagerTransitGatewayPeering extends Resource {
          terraformType: tfType,
          argMap: {
            'core_network_id': coreNetworkId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'transit_gateway_arn': transitGatewayArn,
          },
        );

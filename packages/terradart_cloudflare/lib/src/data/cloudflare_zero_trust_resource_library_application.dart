@@ -35,12 +35,12 @@ final class DataZeroTrustResourceLibraryApplicationFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (fields != null) 'fields': fields!.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (offset != null) 'offset': offset!.toTfJson(),
-    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'fields': ?fields?.toTfJson(),
+    'filter': ?filter?.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'offset': ?offset?.toTfJson(),
+    'order_by': ?orderBy?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 

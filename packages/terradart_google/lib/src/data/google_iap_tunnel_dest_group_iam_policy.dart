@@ -25,8 +25,8 @@ final class DataGoogleIapTunnelDestGroupIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'dest_group': destGroup,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

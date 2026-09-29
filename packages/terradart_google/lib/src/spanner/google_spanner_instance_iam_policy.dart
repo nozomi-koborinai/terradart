@@ -29,7 +29,7 @@ final class GoogleSpannerInstanceIamPolicy extends Resource {
          argMap: {
            'instance': instance,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -15,9 +15,7 @@ final class ComputeInstanceSettingsMetadata {
 
   final TfArg<Map<String, String>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_instance_settings`.
@@ -67,8 +65,8 @@ final class GoogleComputeInstanceSettings extends Resource {
          argMap: {
            'zone': zone,
            if (metadata != null) 'metadata': TfArg.literal(metadata.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

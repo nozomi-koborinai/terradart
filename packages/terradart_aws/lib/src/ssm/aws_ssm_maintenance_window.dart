@@ -32,20 +32,19 @@ final class AwsSsmMaintenanceWindow extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowUnassociatedTargets != null)
-             'allow_unassociated_targets': allowUnassociatedTargets,
+           'allow_unassociated_targets': ?allowUnassociatedTargets,
            'cutoff': cutoff,
-           if (description != null) 'description': description,
+           'description': ?description,
            'duration': duration,
-           if (enabled != null) 'enabled': enabled,
-           if (endDate != null) 'end_date': endDate,
+           'enabled': ?enabled,
+           'end_date': ?endDate,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'schedule': schedule,
-           if (scheduleOffset != null) 'schedule_offset': scheduleOffset,
-           if (scheduleTimezone != null) 'schedule_timezone': scheduleTimezone,
-           if (startDate != null) 'start_date': startDate,
-           if (tags != null) 'tags': tags,
+           'schedule_offset': ?scheduleOffset,
+           'schedule_timezone': ?scheduleTimezone,
+           'start_date': ?startDate,
+           'tags': ?tags,
          },
        );
 

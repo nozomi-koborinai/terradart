@@ -63,11 +63,11 @@ final class GoogleGeminiLoggingSettingBinding extends Resource {
            'logging_setting_id': loggingSettingId,
            'setting_binding_id': settingBindingId,
            'target': target,
-           if (location != null) 'location': location,
-           if (product != null) 'product': product,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'location': ?location,
+           'product': ?product,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

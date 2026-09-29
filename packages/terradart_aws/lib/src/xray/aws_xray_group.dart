@@ -22,8 +22,7 @@ final class XrayGroupInsightsConfiguration {
 
   Map<String, Object?> encode() => {
     'insights_enabled': insightsEnabled.toTfJson(),
-    if (notificationsEnabled != null)
-      'notifications_enabled': notificationsEnabled!.toTfJson(),
+    'notifications_enabled': ?notificationsEnabled?.toTfJson(),
   };
 }
 
@@ -47,8 +46,8 @@ final class AwsXrayGroup extends Resource {
          argMap: {
            'filter_expression': filterExpression,
            'group_name': groupName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (insightsConfiguration != null)
              'insights_configuration': TfArg.literal(
                insightsConfiguration.encode(),

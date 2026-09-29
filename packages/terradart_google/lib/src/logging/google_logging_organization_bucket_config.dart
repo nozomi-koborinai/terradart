@@ -70,11 +70,11 @@ final class GoogleLoggingOrganizationBucketConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket_id': bucketId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'location': location,
            'organization': organization,
-           if (retentionDays != null) 'retention_days': retentionDays,
+           'retention_days': ?retentionDays,
            if (cmekSettings != null)
              'cmek_settings': TfArg.literal(cmekSettings.encode()),
            if (indexConfigs != null)

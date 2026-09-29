@@ -175,14 +175,14 @@ final class GoogleAgentRegistryService extends Resource {
          argMap: {
            'location': location,
            'service_id': serviceId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
+           'display_name': ?displayName,
+           'description': ?description,
            if (interfaces != null)
              'interfaces': TfArg.literal([
                for (final e in interfaces) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            spec.blockKey: TfArg.literal([spec.encode()]),
          },
        );

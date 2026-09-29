@@ -58,26 +58,22 @@ final class DialogflowCxWebhookGenericWebService {
   serviceAccountAuthConfig;
 
   Map<String, Object?> encode() => {
-    if (allowedCaCerts != null) 'allowed_ca_certs': allowedCaCerts!.toTfJson(),
-    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
-    if (parameterMapping != null)
-      'parameter_mapping': parameterMapping!.toTfJson(),
-    if (requestBody != null) 'request_body': requestBody!.toTfJson(),
-    if (requestHeaders != null) 'request_headers': requestHeaders!.toTfJson(),
-    if (secretVersionForUsernamePassword != null)
-      'secret_version_for_username_password': secretVersionForUsernamePassword!
-          .toTfJson(),
-    if (serviceAgentAuth != null)
-      'service_agent_auth': serviceAgentAuth!.toTfJson(),
+    'allowed_ca_certs': ?allowedCaCerts?.toTfJson(),
+    'http_method': ?httpMethod?.toTfJson(),
+    'parameter_mapping': ?parameterMapping?.toTfJson(),
+    'request_body': ?requestBody?.toTfJson(),
+    'request_headers': ?requestHeaders?.toTfJson(),
+    'secret_version_for_username_password': ?secretVersionForUsernamePassword
+        ?.toTfJson(),
+    'service_agent_auth': ?serviceAgentAuth?.toTfJson(),
     'uri': uri.toTfJson(),
-    if (webhookType != null) 'webhook_type': webhookType!.toTfJson(),
-    if (oauthConfig != null) 'oauth_config': oauthConfig!.encode(),
+    'webhook_type': ?webhookType?.toTfJson(),
+    'oauth_config': ?oauthConfig?.encode(),
     if (secretVersionsForRequestHeaders != null)
       'secret_versions_for_request_headers': [
         for (final e in secretVersionsForRequestHeaders!) e.encode(),
       ],
-    if (serviceAccountAuthConfig != null)
-      'service_account_auth_config': serviceAccountAuthConfig!.encode(),
+    'service_account_auth_config': ?serviceAccountAuthConfig?.encode(),
   };
 }
 
@@ -144,11 +140,10 @@ final class DialogflowCxWebhookGenericWebServiceOauthConfig {
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
-    if (secretVersionForClientSecret != null)
-      'secret_version_for_client_secret': secretVersionForClientSecret!
-          .toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
+    'secret_version_for_client_secret': ?secretVersionForClientSecret
+        ?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
   };
 }
@@ -202,8 +197,7 @@ final class DialogflowCxWebhookServiceDirectory {
 
   Map<String, Object?> encode() => {
     'service': service.toTfJson(),
-    if (genericWebService != null)
-      'generic_web_service': genericWebService!.encode(),
+    'generic_web_service': ?genericWebService?.encode(),
   };
 }
 
@@ -261,26 +255,22 @@ final class DialogflowCxWebhookServiceDirectoryGenericWebService {
   serviceAccountAuthConfig;
 
   Map<String, Object?> encode() => {
-    if (allowedCaCerts != null) 'allowed_ca_certs': allowedCaCerts!.toTfJson(),
-    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
-    if (parameterMapping != null)
-      'parameter_mapping': parameterMapping!.toTfJson(),
-    if (requestBody != null) 'request_body': requestBody!.toTfJson(),
-    if (requestHeaders != null) 'request_headers': requestHeaders!.toTfJson(),
-    if (secretVersionForUsernamePassword != null)
-      'secret_version_for_username_password': secretVersionForUsernamePassword!
-          .toTfJson(),
-    if (serviceAgentAuth != null)
-      'service_agent_auth': serviceAgentAuth!.toTfJson(),
+    'allowed_ca_certs': ?allowedCaCerts?.toTfJson(),
+    'http_method': ?httpMethod?.toTfJson(),
+    'parameter_mapping': ?parameterMapping?.toTfJson(),
+    'request_body': ?requestBody?.toTfJson(),
+    'request_headers': ?requestHeaders?.toTfJson(),
+    'secret_version_for_username_password': ?secretVersionForUsernamePassword
+        ?.toTfJson(),
+    'service_agent_auth': ?serviceAgentAuth?.toTfJson(),
     'uri': uri.toTfJson(),
-    if (webhookType != null) 'webhook_type': webhookType!.toTfJson(),
-    if (oauthConfig != null) 'oauth_config': oauthConfig!.encode(),
+    'webhook_type': ?webhookType?.toTfJson(),
+    'oauth_config': ?oauthConfig?.encode(),
     if (secretVersionsForRequestHeaders != null)
       'secret_versions_for_request_headers': [
         for (final e in secretVersionsForRequestHeaders!) e.encode(),
       ],
-    if (serviceAccountAuthConfig != null)
-      'service_account_auth_config': serviceAccountAuthConfig!.encode(),
+    'service_account_auth_config': ?serviceAccountAuthConfig?.encode(),
   };
 }
 
@@ -353,11 +343,10 @@ final class DialogflowCxWebhookServiceDirectoryGenericWebServiceOauthConfig {
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
-    if (secretVersionForClientSecret != null)
-      'secret_version_for_client_secret': secretVersionForClientSecret!
-          .toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
+    'secret_version_for_client_secret': ?secretVersionForClientSecret
+        ?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
   };
 }
@@ -434,19 +423,17 @@ final class GoogleDialogflowCxWebhook extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (parent != null) 'parent': parent,
-           if (timeout != null) 'timeout': timeout,
-           if (disabled != null) 'disabled': disabled,
-           if (enableStackdriverLogging != null)
-             'enable_stackdriver_logging': enableStackdriverLogging,
-           if (enableSpellCorrection != null)
-             'enable_spell_correction': enableSpellCorrection,
-           if (securitySettings != null) 'security_settings': securitySettings,
+           'parent': ?parent,
+           'timeout': ?timeout,
+           'disabled': ?disabled,
+           'enable_stackdriver_logging': ?enableStackdriverLogging,
+           'enable_spell_correction': ?enableSpellCorrection,
+           'security_settings': ?securitySettings,
            if (genericWebService != null)
              'generic_web_service': TfArg.literal(genericWebService.encode()),
            if (serviceDirectory != null)
              'service_directory': TfArg.literal(serviceDirectory.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -64,8 +64,8 @@ final class GoogleChronicleRetrohunt extends Resource {
            'location': location,
            'instance': instance,
            'process_interval': TfArg.literal(processInterval.encode()),
-           if (retrohunt != null) 'retrohunt': retrohunt,
-           if (project != null) 'project': project,
+           'retrohunt': ?retrohunt,
+           'project': ?project,
          },
        );
 

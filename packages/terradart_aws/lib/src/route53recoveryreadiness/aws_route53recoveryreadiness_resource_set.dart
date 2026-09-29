@@ -25,11 +25,9 @@ final class Route53recoveryreadinessResourceSetResources {
   dnsTargetResource;
 
   Map<String, Object?> encode() => {
-    if (readinessScopes != null)
-      'readiness_scopes': readinessScopes!.toTfJson(),
-    if (resourceArn != null) 'resource_arn': resourceArn!.toTfJson(),
-    if (dnsTargetResource != null)
-      'dns_target_resource': dnsTargetResource!.encode(),
+    'readiness_scopes': ?readinessScopes?.toTfJson(),
+    'resource_arn': ?resourceArn?.toTfJson(),
+    'dns_target_resource': ?dnsTargetResource?.encode(),
   };
 }
 
@@ -58,10 +56,10 @@ final class Route53recoveryreadinessResourceSetResourcesDnsTargetResource {
 
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
-    if (hostedZoneArn != null) 'hosted_zone_arn': hostedZoneArn!.toTfJson(),
-    if (recordSetId != null) 'record_set_id': recordSetId!.toTfJson(),
-    if (recordType != null) 'record_type': recordType!.toTfJson(),
-    if (targetResource != null) 'target_resource': targetResource!.encode(),
+    'hosted_zone_arn': ?hostedZoneArn?.toTfJson(),
+    'record_set_id': ?recordSetId?.toTfJson(),
+    'record_type': ?recordType?.toTfJson(),
+    'target_resource': ?targetResource?.encode(),
   };
 }
 
@@ -81,8 +79,8 @@ final class Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetR
   r53Resource;
 
   Map<String, Object?> encode() => {
-    if (nlbResource != null) 'nlb_resource': nlbResource!.encode(),
-    if (r53Resource != null) 'r53_resource': r53Resource!.encode(),
+    'nlb_resource': ?nlbResource?.encode(),
+    'r53_resource': ?r53Resource?.encode(),
   };
 }
 
@@ -96,7 +94,7 @@ final class Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetR
 
   final TfArg<String>? arn;
 
-  Map<String, Object?> encode() => {if (arn != null) 'arn': arn!.toTfJson()};
+  Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
 /// Typed helper for the `resources.dns_target_resource.target_resource.r53_resource` block of
@@ -113,8 +111,8 @@ final class Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetR
   final TfArg<String>? recordSetId;
 
   Map<String, Object?> encode() => {
-    if (domainName != null) 'domain_name': domainName!.toTfJson(),
-    if (recordSetId != null) 'record_set_id': recordSetId!.toTfJson(),
+    'domain_name': ?domainName?.toTfJson(),
+    'record_set_id': ?recordSetId?.toTfJson(),
   };
 }
 
@@ -137,7 +135,7 @@ final class AwsRoute53recoveryreadinessResourceSet extends Resource {
          argMap: {
            'resource_set_name': resourceSetName,
            'resource_set_type': resourceSetType,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'resources': TfArg.literal([for (final e in resources) e.encode()]),
          },
        );

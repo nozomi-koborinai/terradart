@@ -91,9 +91,9 @@ final class AwsNetworkflowmonitorMonitor extends Resource {
          terraformType: tfType,
          argMap: {
            'monitor_name': monitorName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'scope_arn': scopeArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (localResource != null)
              'local_resource': TfArg.literal([
                for (final e in localResource) e.encode(),

@@ -19,10 +19,7 @@ final class DataCloudflareR2Bucket extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'bucket_name': bucketName,
-         },
+         argMap: {'account_id': ?accountId, 'bucket_name': bucketName},
        );
 
   @override

@@ -29,10 +29,10 @@ final class StreamPublicDetails {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (channelLink != null) 'channel_link': channelLink!.toTfJson(),
-    if (logo != null) 'logo': logo!.toTfJson(),
-    if (shareLink != null) 'share_link': shareLink!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'channel_link': ?channelLink?.toTfJson(),
+    'logo': ?logo?.toTfJson(),
+    'share_link': ?shareLink?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -67,21 +67,17 @@ final class CloudflareStream extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (allowedOrigins != null) 'allowed_origins': allowedOrigins,
-           if (creator != null) 'creator': creator,
-           if (directUser != null) 'direct_user': directUser,
-           if (identifier != null) 'identifier': identifier,
-           if (maxDurationSeconds != null)
-             'max_duration_seconds': maxDurationSeconds,
-           if (meta != null) 'meta': meta,
-           if (requireSignedUrls != null)
-             'require_signed_urls': requireSignedUrls,
-           if (scheduledDeletion != null)
-             'scheduled_deletion': scheduledDeletion,
-           if (thumbnailTimestampPct != null)
-             'thumbnail_timestamp_pct': thumbnailTimestampPct,
-           if (uid != null) 'uid': uid,
-           if (uploadExpiry != null) 'upload_expiry': uploadExpiry,
+           'allowed_origins': ?allowedOrigins,
+           'creator': ?creator,
+           'direct_user': ?directUser,
+           'identifier': ?identifier,
+           'max_duration_seconds': ?maxDurationSeconds,
+           'meta': ?meta,
+           'require_signed_urls': ?requireSignedUrls,
+           'scheduled_deletion': ?scheduledDeletion,
+           'thumbnail_timestamp_pct': ?thumbnailTimestampPct,
+           'uid': ?uid,
+           'upload_expiry': ?uploadExpiry,
            if (publicDetails != null)
              'public_details': TfArg.literal(publicDetails.encode()),
          },

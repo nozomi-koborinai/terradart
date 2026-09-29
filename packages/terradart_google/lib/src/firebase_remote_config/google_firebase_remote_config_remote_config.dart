@@ -353,7 +353,7 @@ final class GoogleFirebaseRemoteConfigRemoteConfig extends Resource {
              'conditions': TfArg.literal(
                conditions.map((c) => c.toArgMap()).toList(),
              ),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

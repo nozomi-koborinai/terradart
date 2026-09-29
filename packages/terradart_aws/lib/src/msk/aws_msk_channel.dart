@@ -132,10 +132,8 @@ final class MskChannelIcebergDestination {
 
   Map<String, Object?> encode() => {
     'append_only': appendOnly.toTfJson(),
-    if (compressionType != null)
-      'compression_type': compressionType!.toTfJson(),
-    if (dataFreshnessInSeconds != null)
-      'data_freshness_in_seconds': dataFreshnessInSeconds!.toTfJson(),
+    'compression_type': ?compressionType?.toTfJson(),
+    'data_freshness_in_seconds': ?dataFreshnessInSeconds?.toTfJson(),
     'service_execution_role_arn': serviceExecutionRoleArn.toTfJson(),
     if (catalog != null) 'catalog': [for (final e in catalog!) e.encode()],
     if (deadLetterQueueS3 != null)
@@ -173,9 +171,8 @@ final class MskChannelIcebergDestinationCatalog {
   final TfArg<String>? warehouseLocation;
 
   Map<String, Object?> encode() => {
-    if (catalogArn != null) 'catalog_arn': catalogArn!.toTfJson(),
-    if (warehouseLocation != null)
-      'warehouse_location': warehouseLocation!.toTfJson(),
+    'catalog_arn': ?catalogArn?.toTfJson(),
+    'warehouse_location': ?warehouseLocation?.toTfJson(),
   };
 }
 
@@ -197,10 +194,8 @@ final class MskChannelIcebergDestinationDeadLetterQueueS3 {
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (expectedBucketOwner != null)
-      'expected_bucket_owner': expectedBucketOwner!.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'expected_bucket_owner': ?expectedBucketOwner?.toTfJson(),
   };
 }
 
@@ -222,10 +217,8 @@ final class MskChannelIcebergDestinationDestinationTable {
   partitionSpec;
 
   Map<String, Object?> encode() => {
-    if (destinationDatabaseName != null)
-      'destination_database_name': destinationDatabaseName!.toTfJson(),
-    if (destinationTableName != null)
-      'destination_table_name': destinationTableName!.toTfJson(),
+    'destination_database_name': ?destinationDatabaseName?.toTfJson(),
+    'destination_table_name': ?destinationTableName?.toTfJson(),
     if (partitionSpec != null)
       'partition_spec': [for (final e in partitionSpec!) e.encode()],
   };
@@ -276,9 +269,7 @@ final class MskChannelIcebergDestinationDestinationTablePartitionSpecSource {
 
   final TfArg<String>? sourceName;
 
-  Map<String, Object?> encode() => {
-    if (sourceName != null) 'source_name': sourceName!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'source_name': ?sourceName?.toTfJson()};
 }
 
 /// Typed helper for the `iceberg_destination.schema_evolution` block of
@@ -292,8 +283,7 @@ final class MskChannelIcebergDestinationSchemaEvolution {
   final TfArg<bool>? enableSchemaEvolution;
 
   Map<String, Object?> encode() => {
-    if (enableSchemaEvolution != null)
-      'enable_schema_evolution': enableSchemaEvolution!.toTfJson(),
+    'enable_schema_evolution': ?enableSchemaEvolution?.toTfJson(),
   };
 }
 
@@ -306,8 +296,7 @@ final class MskChannelIcebergDestinationTableCreation {
   final TfArg<bool>? enableTableCreation;
 
   Map<String, Object?> encode() => {
-    if (enableTableCreation != null)
-      'enable_table_creation': enableTableCreation!.toTfJson(),
+    'enable_table_creation': ?enableTableCreation?.toTfJson(),
   };
 }
 
@@ -346,7 +335,7 @@ final class MskChannelLoggingInfoCloudwatchLogs {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
+    'log_group': ?logGroup?.encodeAs('name').toTfJson(),
   };
 }
 
@@ -364,7 +353,7 @@ final class MskChannelLoggingInfoFirehose {
   final TfArg<bool> enabled;
 
   Map<String, Object?> encode() => {
-    if (deliveryStream != null) 'delivery_stream': deliveryStream!.toTfJson(),
+    'delivery_stream': ?deliveryStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
   };
 }
@@ -386,9 +375,9 @@ final class MskChannelLoggingInfoS3 {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -412,8 +401,7 @@ final class MskChannelS3Destination {
   final List<MskChannelS3DestinationStorage>? storage;
 
   Map<String, Object?> encode() => {
-    if (dataFreshnessInSeconds != null)
-      'data_freshness_in_seconds': dataFreshnessInSeconds!.toTfJson(),
+    'data_freshness_in_seconds': ?dataFreshnessInSeconds?.toTfJson(),
     'service_execution_role_arn': serviceExecutionRoleArn.toTfJson(),
     if (deadLetterQueueS3 != null)
       'dead_letter_queue_s3': [for (final e in deadLetterQueueS3!) e.encode()],
@@ -439,10 +427,8 @@ final class MskChannelS3DestinationDeadLetterQueueS3 {
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (expectedBucketOwner != null)
-      'expected_bucket_owner': expectedBucketOwner!.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'expected_bucket_owner': ?expectedBucketOwner?.toTfJson(),
   };
 }
 
@@ -474,11 +460,9 @@ final class MskChannelS3DestinationStorage {
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'compression_type': compressionType.toTfJson(),
-    if (expectedBucketOwner != null)
-      'expected_bucket_owner': expectedBucketOwner!.toTfJson(),
-    if (outputKeyTemplate != null)
-      'output_key_template': outputKeyTemplate!.toTfJson(),
-    if (outputPrefix != null) 'output_prefix': outputPrefix!.toTfJson(),
+    'expected_bucket_owner': ?expectedBucketOwner?.toTfJson(),
+    'output_key_template': ?outputKeyTemplate?.toTfJson(),
+    'output_prefix': ?outputPrefix?.toTfJson(),
     'storage_class': storageClass.toTfJson(),
   };
 }
@@ -595,8 +579,8 @@ final class AwsMskChannel extends Resource {
          argMap: {
            'channel_name': channelName,
            'cluster_arn': clusterArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (encryptionConfiguration != null)
              'encryption_configuration': TfArg.literal([
                for (final e in encryptionConfiguration) e.encode(),

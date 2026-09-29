@@ -35,9 +35,9 @@ final class GoogleBiglakeHiveTableIamBinding extends Resource {
            'database': database,
            'members': members,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'role': role,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

@@ -522,9 +522,9 @@ final class GoogleCloudbuildv2Connection extends Resource {
            'name': name,
            'location': location,
            ...?host?.argMap,
-           if (disabled != null) 'disabled': disabled,
-           if (annotations != null) 'annotations': annotations,
-           if (project != null) 'project': project,
+           'disabled': ?disabled,
+           'annotations': ?annotations,
+           'project': ?project,
          },
        );
 

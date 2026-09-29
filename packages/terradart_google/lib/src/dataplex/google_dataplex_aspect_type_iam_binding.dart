@@ -33,9 +33,9 @@ final class GoogleDataplexAspectTypeIamBinding extends Resource {
            'aspect_type_id': aspectTypeId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

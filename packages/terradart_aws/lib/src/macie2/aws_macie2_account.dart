@@ -43,10 +43,9 @@ final class AwsMacie2Account extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (findingPublishingFrequency != null)
-             'finding_publishing_frequency': findingPublishingFrequency,
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
+           'finding_publishing_frequency': ?findingPublishingFrequency,
+           'region': ?region,
+           'status': ?status,
          },
        );
 

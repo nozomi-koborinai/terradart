@@ -28,11 +28,11 @@ final class GoogleComputeGlobalNetworkEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (fqdn != null) 'fqdn': fqdn,
+           'fqdn': ?fqdn,
            'global_network_endpoint_group': globalNetworkEndpointGroup,
-           if (ipAddress != null) 'ip_address': ipAddress,
+           'ip_address': ?ipAddress,
            'port': port,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

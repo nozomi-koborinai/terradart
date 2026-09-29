@@ -24,7 +24,7 @@ final class AppwriteMessagingSubscriber extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (projectId != null) 'project_id': projectId,
+           'project_id': ?projectId,
            'target_id': targetId,
            'topic_id': topicId,
          },

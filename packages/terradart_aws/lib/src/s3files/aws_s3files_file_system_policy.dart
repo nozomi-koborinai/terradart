@@ -24,7 +24,7 @@ final class AwsS3filesFileSystemPolicy extends Resource {
          argMap: {
            'file_system_id': fileSystemId,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

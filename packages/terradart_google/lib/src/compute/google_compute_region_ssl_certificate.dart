@@ -47,11 +47,11 @@ final class GoogleComputeRegionSslCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate': certificate,
-           if (privateKey != null) 'private_key': privateKey,
-           if (name != null) 'name': name,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
+           'private_key': ?privateKey,
+           'name': ?name,
+           'description': ?description,
+           'region': ?region,
+           'project': ?project,
          },
        );
 

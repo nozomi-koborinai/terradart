@@ -24,7 +24,7 @@ final class AwsMediaStoreContainerPolicy extends Resource {
          argMap: {
            'container_name': containerName,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

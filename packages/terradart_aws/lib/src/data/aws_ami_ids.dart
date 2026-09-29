@@ -41,13 +41,12 @@ final class DataAwsAmiIds extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (executableUsers != null) 'executable_users': executableUsers,
-           if (includeDeprecated != null)
-             'include_deprecated': includeDeprecated,
-           if (nameRegex != null) 'name_regex': nameRegex,
+           'executable_users': ?executableUsers,
+           'include_deprecated': ?includeDeprecated,
+           'name_regex': ?nameRegex,
            'owners': owners,
-           if (region != null) 'region': region,
-           if (sortAscending != null) 'sort_ascending': sortAscending,
+           'region': ?region,
+           'sort_ascending': ?sortAscending,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

@@ -40,13 +40,13 @@ final class EksIdentityProviderConfigOidc {
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    if (groupsClaim != null) 'groups_claim': groupsClaim!.toTfJson(),
-    if (groupsPrefix != null) 'groups_prefix': groupsPrefix!.toTfJson(),
+    'groups_claim': ?groupsClaim?.toTfJson(),
+    'groups_prefix': ?groupsPrefix?.toTfJson(),
     'identity_provider_config_name': identityProviderConfigName.toTfJson(),
     'issuer_url': issuerUrl.toTfJson(),
-    if (requiredClaims != null) 'required_claims': requiredClaims!.toTfJson(),
-    if (usernameClaim != null) 'username_claim': usernameClaim!.toTfJson(),
-    if (usernamePrefix != null) 'username_prefix': usernamePrefix!.toTfJson(),
+    'required_claims': ?requiredClaims?.toTfJson(),
+    'username_claim': ?usernameClaim?.toTfJson(),
+    'username_prefix': ?usernamePrefix?.toTfJson(),
   };
 }
 
@@ -68,8 +68,8 @@ final class AwsEksIdentityProviderConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_name': clusterName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'oidc': TfArg.literal(oidc.encode()),
          },
        );

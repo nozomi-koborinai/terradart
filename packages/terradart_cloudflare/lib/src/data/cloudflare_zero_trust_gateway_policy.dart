@@ -28,10 +28,10 @@ final class DataZeroTrustGatewayPolicyFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
-    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'filter': ?filter?.toTfJson(),
+    'order_by': ?orderBy?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -71,8 +71,8 @@ final class DataCloudflareZeroTrustGatewayPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (ruleId != null) 'rule_id': ruleId,
+           'account_id': ?accountId,
+           'rule_id': ?ruleId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

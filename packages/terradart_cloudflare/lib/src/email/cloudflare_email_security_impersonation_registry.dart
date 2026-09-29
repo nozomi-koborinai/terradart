@@ -49,15 +49,14 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (comments != null) 'comments': comments,
-           if (directoryId != null) 'directory_id': directoryId,
-           if (directoryNodeId != null) 'directory_node_id': directoryNodeId,
+           'comments': ?comments,
+           'directory_id': ?directoryId,
+           'directory_node_id': ?directoryNodeId,
            'email': email,
-           if (externalDirectoryNodeId != null)
-             'external_directory_node_id': externalDirectoryNodeId,
+           'external_directory_node_id': ?externalDirectoryNodeId,
            'is_email_regex': isEmailRegex,
            'name': name,
-           if (provenance != null) 'provenance': provenance,
+           'provenance': ?provenance,
          },
        );
 

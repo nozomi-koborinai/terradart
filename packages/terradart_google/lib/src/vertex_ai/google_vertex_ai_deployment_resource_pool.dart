@@ -30,8 +30,7 @@ final class VertexAiDeploymentResourcePoolDedicatedResources {
   final VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec machineSpec;
 
   Map<String, Object?> encode() => {
-    if (maxReplicaCount != null)
-      'max_replica_count': maxReplicaCount!.toTfJson(),
+    'max_replica_count': ?maxReplicaCount?.toTfJson(),
     'min_replica_count': minReplicaCount.toTfJson(),
     if (autoscalingMetricSpecs != null)
       'autoscaling_metric_specs': [
@@ -56,7 +55,7 @@ final class VertexAiDeploymentResourcePoolDedicatedResourcesAutoscalingMetricSpe
 
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
+    'target': ?target?.toTfJson(),
   };
 }
 
@@ -77,11 +76,9 @@ final class VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec {
   final TfArg<String>? machineType;
 
   Map<String, Object?> encode() => {
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.toTfJson(),
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
   };
 }
 
@@ -138,11 +135,11 @@ final class GoogleVertexAiDeploymentResourcePool extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (dedicatedResources != null)
              'dedicated_resources': TfArg.literal(dedicatedResources.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

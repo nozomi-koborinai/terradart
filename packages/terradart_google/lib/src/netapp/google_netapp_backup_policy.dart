@@ -59,11 +59,11 @@ final class GoogleNetappBackupPolicy extends Resource {
            'daily_backup_limit': dailyBackupLimit,
            'weekly_backup_limit': weeklyBackupLimit,
            'monthly_backup_limit': monthlyBackupLimit,
-           if (enabled != null) 'enabled': enabled,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'enabled': ?enabled,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

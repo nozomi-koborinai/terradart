@@ -34,13 +34,12 @@ final class DataTokenValidationRulesFilter {
   final TfArg<List<Object?>>? tokenConfiguration;
 
   Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (host != null) 'host': host!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (tokenConfiguration != null)
-      'token_configuration': tokenConfiguration!.toTfJson(),
+    'action': ?action?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'token_configuration': ?tokenConfiguration?.toTfJson(),
   };
 }
 
@@ -73,8 +72,8 @@ final class DataCloudflareTokenValidationRules extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (ruleId != null) 'rule_id': ruleId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'rule_id': ?ruleId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

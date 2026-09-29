@@ -38,11 +38,10 @@ final class DialogflowEnvironmentFulfillment {
   final DialogflowEnvironmentFulfillmentGenericWebService? genericWebService;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (features != null) 'features': [for (final e in features!) e.encode()],
-    if (genericWebService != null)
-      'generic_web_service': genericWebService!.encode(),
+    'generic_web_service': ?genericWebService?.encode(),
   };
 }
 
@@ -87,10 +86,10 @@ final class DialogflowEnvironmentFulfillmentGenericWebService {
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (password != null) 'password': password!.toTfJson(),
-    if (requestHeaders != null) 'request_headers': requestHeaders!.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'request_headers': ?requestHeaders?.toTfJson(),
     'uri': uri.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -116,12 +115,9 @@ final class DialogflowEnvironmentTextToSpeechSettings {
   synthesizeSpeechConfigs;
 
   Map<String, Object?> encode() => {
-    if (enableTextToSpeech != null)
-      'enable_text_to_speech': enableTextToSpeech!.toTfJson(),
-    if (outputAudioEncoding != null)
-      'output_audio_encoding': outputAudioEncoding!.toTfJson(),
-    if (sampleRateHertz != null)
-      'sample_rate_hertz': sampleRateHertz!.toTfJson(),
+    'enable_text_to_speech': ?enableTextToSpeech?.toTfJson(),
+    'output_audio_encoding': ?outputAudioEncoding?.toTfJson(),
+    'sample_rate_hertz': ?sampleRateHertz?.toTfJson(),
     if (synthesizeSpeechConfigs != null)
       'synthesize_speech_configs': [
         for (final e in synthesizeSpeechConfigs!) e.encode(),
@@ -174,13 +170,12 @@ final class DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigs {
   voice;
 
   Map<String, Object?> encode() => {
-    if (effectsProfileId != null)
-      'effects_profile_id': effectsProfileId!.toTfJson(),
+    'effects_profile_id': ?effectsProfileId?.toTfJson(),
     'language': language.toTfJson(),
-    if (pitch != null) 'pitch': pitch!.toTfJson(),
-    if (speakingRate != null) 'speaking_rate': speakingRate!.toTfJson(),
-    if (volumeGainDb != null) 'volume_gain_db': volumeGainDb!.toTfJson(),
-    if (voice != null) 'voice': voice!.encode(),
+    'pitch': ?pitch?.toTfJson(),
+    'speaking_rate': ?speakingRate?.toTfJson(),
+    'volume_gain_db': ?volumeGainDb?.toTfJson(),
+    'voice': ?voice?.encode(),
   };
 }
 
@@ -201,8 +196,8 @@ final class DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigsVoic
   ssmlGender;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (ssmlGender != null) 'ssml_gender': ssmlGender!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'ssml_gender': ?ssmlGender?.toTfJson(),
   };
 }
 
@@ -258,17 +253,17 @@ final class GoogleDialogflowEnvironment extends Resource {
          terraformType: tfType,
          argMap: {
            'environmentid': environmentid,
-           if (agentVersion != null) 'agent_version': agentVersion,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
+           'agent_version': ?agentVersion,
+           'location': ?location,
+           'description': ?description,
            if (fulfillment != null)
              'fulfillment': TfArg.literal(fulfillment.encode()),
            if (textToSpeechSettings != null)
              'text_to_speech_settings': TfArg.literal(
                textToSpeechSettings.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

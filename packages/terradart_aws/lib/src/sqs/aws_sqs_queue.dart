@@ -40,35 +40,25 @@ final class AwsSqsQueue extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (contentBasedDeduplication != null)
-             'content_based_deduplication': contentBasedDeduplication,
-           if (deduplicationScope != null)
-             'deduplication_scope': deduplicationScope,
-           if (delaySeconds != null) 'delay_seconds': delaySeconds,
-           if (fifoQueue != null) 'fifo_queue': fifoQueue,
-           if (fifoThroughputLimit != null)
-             'fifo_throughput_limit': fifoThroughputLimit,
-           if (kmsDataKeyReusePeriodSeconds != null)
-             'kms_data_key_reuse_period_seconds': kmsDataKeyReusePeriodSeconds,
-           if (kmsMasterKeyId != null)
-             'kms_master_key_id': kmsMasterKeyId.encodeAs('arn'),
-           if (maxMessageSize != null) 'max_message_size': maxMessageSize,
-           if (messageRetentionSeconds != null)
-             'message_retention_seconds': messageRetentionSeconds,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
-           if (policy != null) 'policy': policy,
-           if (receiveWaitTimeSeconds != null)
-             'receive_wait_time_seconds': receiveWaitTimeSeconds,
-           if (redriveAllowPolicy != null)
-             'redrive_allow_policy': redriveAllowPolicy,
-           if (redrivePolicy != null) 'redrive_policy': redrivePolicy,
-           if (region != null) 'region': region,
-           if (sqsManagedSseEnabled != null)
-             'sqs_managed_sse_enabled': sqsManagedSseEnabled,
-           if (tags != null) 'tags': tags,
-           if (visibilityTimeoutSeconds != null)
-             'visibility_timeout_seconds': visibilityTimeoutSeconds,
+           'content_based_deduplication': ?contentBasedDeduplication,
+           'deduplication_scope': ?deduplicationScope,
+           'delay_seconds': ?delaySeconds,
+           'fifo_queue': ?fifoQueue,
+           'fifo_throughput_limit': ?fifoThroughputLimit,
+           'kms_data_key_reuse_period_seconds': ?kmsDataKeyReusePeriodSeconds,
+           'kms_master_key_id': ?kmsMasterKeyId?.encodeAs('arn'),
+           'max_message_size': ?maxMessageSize,
+           'message_retention_seconds': ?messageRetentionSeconds,
+           'name': ?name,
+           'name_prefix': ?namePrefix,
+           'policy': ?policy,
+           'receive_wait_time_seconds': ?receiveWaitTimeSeconds,
+           'redrive_allow_policy': ?redriveAllowPolicy,
+           'redrive_policy': ?redrivePolicy,
+           'region': ?region,
+           'sqs_managed_sse_enabled': ?sqsManagedSseEnabled,
+           'tags': ?tags,
+           'visibility_timeout_seconds': ?visibilityTimeoutSeconds,
          },
        );
 

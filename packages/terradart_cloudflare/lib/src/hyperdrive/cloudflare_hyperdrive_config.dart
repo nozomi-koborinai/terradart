@@ -29,10 +29,9 @@ final class HyperdriveConfigCaching {
   final TfArg<num>? staleWhileRevalidate;
 
   Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (maxAge != null) 'max_age': maxAge!.toTfJson(),
-    if (staleWhileRevalidate != null)
-      'stale_while_revalidate': staleWhileRevalidate!.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
+    'stale_while_revalidate': ?staleWhileRevalidate?.toTfJson(),
   };
 }
 
@@ -53,11 +52,9 @@ final class HyperdriveConfigMtls {
   final TfArg<String>? sslmode;
 
   Map<String, Object?> encode() => {
-    if (caCertificateId != null)
-      'ca_certificate_id': caCertificateId!.toTfJson(),
-    if (mtlsCertificateId != null)
-      'mtls_certificate_id': mtlsCertificateId!.toTfJson(),
-    if (sslmode != null) 'sslmode': sslmode!.toTfJson(),
+    'ca_certificate_id': ?caCertificateId?.toTfJson(),
+    'mtls_certificate_id': ?mtlsCertificateId?.toTfJson(),
+    'sslmode': ?sslmode?.toTfJson(),
   };
 }
 
@@ -96,15 +93,14 @@ final class HyperdriveConfigOrigin {
   final TfArg<String> user;
 
   Map<String, Object?> encode() => {
-    if (accessClientId != null) 'access_client_id': accessClientId!.toTfJson(),
-    if (accessClientSecret != null)
-      'access_client_secret': accessClientSecret!.toTfJson(),
+    'access_client_id': ?accessClientId?.toTfJson(),
+    'access_client_secret': ?accessClientSecret?.toTfJson(),
     'database': database.toTfJson(),
-    if (host != null) 'host': host!.toTfJson(),
+    'host': ?host?.toTfJson(),
     'password': password.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'scheme': scheme.toTfJson(),
-    if (serviceId != null) 'service_id': serviceId!.toTfJson(),
+    'service_id': ?serviceId?.toTfJson(),
     'user': user.toTfJson(),
   };
 }
@@ -145,10 +141,9 @@ final class CloudflareHyperdriveConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (integration != null) 'integration': integration,
+           'integration': ?integration,
            'name': name,
-           if (originConnectionLimit != null)
-             'origin_connection_limit': originConnectionLimit,
+           'origin_connection_limit': ?originConnectionLimit,
            if (caching != null) 'caching': TfArg.literal(caching.encode()),
            if (mtls != null) 'mtls': TfArg.literal(mtls.encode()),
            if (origin != null) 'origin': TfArg.literal(origin.encode()),

@@ -23,10 +23,10 @@ final class AwsGlueRegistry extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'region': ?region,
            'registry_name': registryName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

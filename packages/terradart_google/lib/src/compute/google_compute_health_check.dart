@@ -521,16 +521,15 @@ final class GoogleComputeHealthCheck extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (description != null) 'description': description,
-           if (checkIntervalSec != null) 'check_interval_sec': checkIntervalSec,
-           if (timeoutSec != null) 'timeout_sec': timeoutSec,
-           if (healthyThreshold != null) 'healthy_threshold': healthyThreshold,
-           if (unhealthyThreshold != null)
-             'unhealthy_threshold': unhealthyThreshold,
-           if (sourceRegions != null) 'source_regions': sourceRegions,
+           'description': ?description,
+           'check_interval_sec': ?checkIntervalSec,
+           'timeout_sec': ?timeoutSec,
+           'healthy_threshold': ?healthyThreshold,
+           'unhealthy_threshold': ?unhealthyThreshold,
+           'source_regions': ?sourceRegions,
            if (logConfig != null)
              'log_config': TfArg.literal([logConfig.toArgMap()]),
-           if (project != null) 'project': project,
+           'project': ?project,
            protocol.blockKey: TfArg.literal(protocol.encode()),
          },
        );

@@ -16,7 +16,7 @@ final class DataWorkersScriptFilter {
 
   final TfArg<String>? tags;
 
-  Map<String, Object?> encode() => {if (tags != null) 'tags': tags!.toTfJson()};
+  Map<String, Object?> encode() => {'tags': ?tags?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_workers_script`.
@@ -37,8 +37,8 @@ final class DataCloudflareWorkersScript extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (scriptName != null) 'script_name': scriptName,
+           'account_id': ?accountId,
+           'script_name': ?scriptName,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

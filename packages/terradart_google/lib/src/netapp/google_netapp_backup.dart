@@ -24,7 +24,7 @@ final class NetappBackupOntapSource {
   final TfArg<String> volumeUuid;
 
   Map<String, Object?> encode() => {
-    if (snapshotUuid != null) 'snapshot_uuid': snapshotUuid!.toTfJson(),
+    'snapshot_uuid': ?snapshotUuid?.toTfJson(),
     'storage_pool': storagePool.toTfJson(),
     'volume_uuid': volumeUuid.toTfJson(),
   };
@@ -77,12 +77,12 @@ final class GoogleNetappBackup extends Resource {
            'name': name,
            'location': location,
            'vault_name': vaultName,
-           if (sourceVolume != null) 'source_volume': sourceVolume,
-           if (sourceSnapshot != null) 'source_snapshot': sourceSnapshot,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'source_volume': ?sourceVolume,
+           'source_snapshot': ?sourceSnapshot,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

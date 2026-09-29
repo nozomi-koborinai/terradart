@@ -23,8 +23,8 @@ final class AwsRekognitionCollection extends Resource {
          terraformType: tfType,
          argMap: {
            'collection_id': collectionId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

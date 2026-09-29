@@ -34,13 +34,13 @@ final class CloudflareStreamWatermark extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (identifier != null) 'identifier': identifier,
-           if (name != null) 'name': name,
-           if (opacity != null) 'opacity': opacity,
-           if (padding != null) 'padding': padding,
-           if (position != null) 'position': position,
-           if (scale != null) 'scale': scale,
-           if (url != null) 'url': url,
+           'identifier': ?identifier,
+           'name': ?name,
+           'opacity': ?opacity,
+           'padding': ?padding,
+           'position': ?position,
+           'scale': ?scale,
+           'url': ?url,
          },
        );
 

@@ -116,21 +116,20 @@ final class AwsCognitoUser extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (attributes != null) 'attributes': attributes,
-           if (clientMetadata != null) 'client_metadata': clientMetadata,
+           'attributes': ?attributes,
+           'client_metadata': ?clientMetadata,
            if (desiredDeliveryMediums != null)
              'desired_delivery_mediums': TfArg.literal([
                for (final e in desiredDeliveryMediums) e.toTfJson(),
              ]),
-           if (enabled != null) 'enabled': enabled,
-           if (forceAliasCreation != null)
-             'force_alias_creation': forceAliasCreation,
-           if (messageAction != null) 'message_action': messageAction,
+           'enabled': ?enabled,
+           'force_alias_creation': ?forceAliasCreation,
+           'message_action': ?messageAction,
            ...?password?.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            'user_pool_id': userPoolId,
            'username': username,
-           if (validationData != null) 'validation_data': validationData,
+           'validation_data': ?validationData,
          },
        );
 

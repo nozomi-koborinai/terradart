@@ -27,7 +27,7 @@ final class AwsGrafanaWorkspaceServiceAccountToken extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'seconds_to_live': secondsToLive,
            'service_account_id': serviceAccountId,
            'workspace_id': workspaceId,

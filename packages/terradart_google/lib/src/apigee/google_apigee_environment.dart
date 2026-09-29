@@ -51,8 +51,7 @@ final class ApigeeEnvironmentClientIpResolutionConfig {
   headerIndexAlgorithm;
 
   Map<String, Object?> encode() => {
-    if (headerIndexAlgorithm != null)
-      'header_index_algorithm': headerIndexAlgorithm!.encode(),
+    'header_index_algorithm': ?headerIndexAlgorithm?.encode(),
   };
 }
 
@@ -86,8 +85,8 @@ final class ApigeeEnvironmentNodeConfig {
   final TfArg<String>? minNodeCount;
 
   Map<String, Object?> encode() => {
-    if (maxNodeCount != null) 'max_node_count': maxNodeCount!.toTfJson(),
-    if (minNodeCount != null) 'min_node_count': minNodeCount!.toTfJson(),
+    'max_node_count': ?maxNodeCount?.toTfJson(),
+    'min_node_count': ?minNodeCount?.toTfJson(),
   };
 }
 
@@ -115,8 +114,8 @@ final class ApigeeEnvironmentPropertiesProperty {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -155,9 +154,9 @@ final class GoogleApigeeEnvironment extends Resource {
          argMap: {
            'name': name,
            'org_id': orgId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (forwardProxyUri != null) 'forward_proxy_uri': forwardProxyUri,
+           'display_name': ?displayName,
+           'description': ?description,
+           'forward_proxy_uri': ?forwardProxyUri,
            if (nodeConfig != null)
              'node_config': TfArg.literal(nodeConfig.encode()),
            if (properties != null)
@@ -166,7 +165,7 @@ final class GoogleApigeeEnvironment extends Resource {
              'client_ip_resolution_config': TfArg.literal(
                clientIpResolutionConfig.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

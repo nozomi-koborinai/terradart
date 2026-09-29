@@ -65,8 +65,8 @@ final class FsxOpenzfsFileSystemDiskIopsConfiguration {
   final TfArg<FsxOpenzfsFileSystemDiskIopsConfigurationMode>? mode;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
   };
 }
 
@@ -94,8 +94,8 @@ final class FsxOpenzfsFileSystemReadCacheConfiguration {
   final TfArg<FsxOpenzfsFileSystemReadCacheConfigurationSizingMode>? sizingMode;
 
   Map<String, Object?> encode() => {
-    if (size != null) 'size': size!.toTfJson(),
-    if (sizingMode != null) 'sizing_mode': sizingMode!.toTfJson(),
+    'size': ?size?.toTfJson(),
+    'sizing_mode': ?sizingMode?.toTfJson(),
   };
 }
 
@@ -141,13 +141,11 @@ final class FsxOpenzfsFileSystemRootVolumeConfiguration {
   userAndGroupQuotas;
 
   Map<String, Object?> encode() => {
-    if (copyTagsToSnapshots != null)
-      'copy_tags_to_snapshots': copyTagsToSnapshots!.toTfJson(),
-    if (dataCompressionType != null)
-      'data_compression_type': dataCompressionType!.toTfJson(),
-    if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-    if (recordSizeKib != null) 'record_size_kib': recordSizeKib!.toTfJson(),
-    if (nfsExports != null) 'nfs_exports': nfsExports!.encode(),
+    'copy_tags_to_snapshots': ?copyTagsToSnapshots?.toTfJson(),
+    'data_compression_type': ?dataCompressionType?.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
+    'record_size_kib': ?recordSizeKib?.toTfJson(),
+    'nfs_exports': ?nfsExports?.encode(),
     if (userAndGroupQuotas != null)
       'user_and_group_quotas': [
         for (final e in userAndGroupQuotas!) e.encode(),
@@ -281,39 +279,31 @@ final class AwsFsxOpenzfsFileSystem extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (automaticBackupRetentionDays != null)
-             'automatic_backup_retention_days': automaticBackupRetentionDays,
-           if (backupId != null) 'backup_id': backupId,
-           if (copyTagsToBackups != null)
-             'copy_tags_to_backups': copyTagsToBackups,
-           if (copyTagsToVolumes != null)
-             'copy_tags_to_volumes': copyTagsToVolumes,
-           if (dailyAutomaticBackupStartTime != null)
-             'daily_automatic_backup_start_time': dailyAutomaticBackupStartTime,
+           'automatic_backup_retention_days': ?automaticBackupRetentionDays,
+           'backup_id': ?backupId,
+           'copy_tags_to_backups': ?copyTagsToBackups,
+           'copy_tags_to_volumes': ?copyTagsToVolumes,
+           'daily_automatic_backup_start_time': ?dailyAutomaticBackupStartTime,
            if (deleteOptions != null)
              'delete_options': TfArg.literal([
                for (final e in deleteOptions) e.toTfJson(),
              ]),
            'deployment_type': deploymentType,
-           if (endpointIpAddressRange != null)
-             'endpoint_ip_address_range': endpointIpAddressRange,
-           if (finalBackupTags != null) 'final_backup_tags': finalBackupTags,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (networkType != null) 'network_type': networkType,
-           if (preferredSubnetId != null)
-             'preferred_subnet_id': preferredSubnetId,
-           if (region != null) 'region': region,
-           if (routeTableIds != null) 'route_table_ids': routeTableIds,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (skipFinalBackup != null) 'skip_final_backup': skipFinalBackup,
-           if (storageCapacity != null) 'storage_capacity': storageCapacity,
-           if (storageType != null) 'storage_type': storageType,
+           'endpoint_ip_address_range': ?endpointIpAddressRange,
+           'final_backup_tags': ?finalBackupTags,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'network_type': ?networkType,
+           'preferred_subnet_id': ?preferredSubnetId,
+           'region': ?region,
+           'route_table_ids': ?routeTableIds,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'skip_final_backup': ?skipFinalBackup,
+           'storage_capacity': ?storageCapacity,
+           'storage_type': ?storageType,
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'throughput_capacity': throughputCapacity,
-           if (weeklyMaintenanceStartTime != null)
-             'weekly_maintenance_start_time': weeklyMaintenanceStartTime,
+           'weekly_maintenance_start_time': ?weeklyMaintenanceStartTime,
            if (diskIopsConfiguration != null)
              'disk_iops_configuration': TfArg.literal(
                diskIopsConfiguration.encode(),

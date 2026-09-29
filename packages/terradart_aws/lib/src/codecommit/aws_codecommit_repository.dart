@@ -27,12 +27,12 @@ final class AwsCodecommitRepository extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultBranch != null) 'default_branch': defaultBranch,
-           if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'default_branch': ?defaultBranch,
+           'description': ?description,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'region': ?region,
            'repository_name': repositoryName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

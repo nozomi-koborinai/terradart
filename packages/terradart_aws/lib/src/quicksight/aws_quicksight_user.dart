@@ -55,14 +55,14 @@ final class AwsQuicksightUser extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'email': email,
-           if (iamArn != null) 'iam_arn': iamArn,
+           'iam_arn': ?iamArn,
            'identity_type': identityType,
-           if (namespace != null) 'namespace': namespace,
-           if (region != null) 'region': region,
-           if (sessionName != null) 'session_name': sessionName,
-           if (userName != null) 'user_name': userName,
+           'namespace': ?namespace,
+           'region': ?region,
+           'session_name': ?sessionName,
+           'user_name': ?userName,
            'user_role': userRole,
          },
        );

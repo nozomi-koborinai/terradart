@@ -33,9 +33,9 @@ final class GoogleDocumentAiProcessor extends Resource {
            'type': type,
            'display_name': displayName,
            'location': location,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

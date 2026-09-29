@@ -25,8 +25,8 @@ final class DataGooglePrivatecaCaPoolIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'ca_pool': caPool,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

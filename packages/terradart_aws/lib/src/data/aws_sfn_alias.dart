@@ -22,9 +22,9 @@ final class DataAwsSfnAlias extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'statemachine_arn': statemachineArn,
          },
        );

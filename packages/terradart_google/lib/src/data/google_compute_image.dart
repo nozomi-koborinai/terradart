@@ -26,11 +26,11 @@ final class DataGoogleComputeImage extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (family != null) 'family': family,
-           if (filter != null) 'filter': filter,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (name != null) 'name': name,
-           if (project != null) 'project': project,
+           'family': ?family,
+           'filter': ?filter,
+           'most_recent': ?mostRecent,
+           'name': ?name,
+           'project': ?project,
          },
        );
 

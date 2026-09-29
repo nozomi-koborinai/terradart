@@ -28,9 +28,9 @@ final class DataRoute53TrafficPolicyDocumentEndpoint {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -68,16 +68,16 @@ final class DataRoute53TrafficPolicyDocumentRule {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     if (geoProximityLocation != null)
       'geo_proximity_location': [
         for (final e in geoProximityLocation!) e.encode(),
       ],
     if (items != null) 'items': [for (final e in items!) e.encode()],
     if (location != null) 'location': [for (final e in location!) e.encode()],
-    if (primary != null) 'primary': primary!.encode(),
+    'primary': ?primary?.encode(),
     if (region != null) 'region': [for (final e in region!) e.encode()],
-    if (secondary != null) 'secondary': secondary!.encode(),
+    'secondary': ?secondary?.encode(),
   };
 }
 
@@ -113,16 +113,14 @@ final class DataRoute53TrafficPolicyDocumentRuleGeoProximityLocation {
   final TfArg<String>? ruleReference;
 
   Map<String, Object?> encode() => {
-    if (bias != null) 'bias': bias!.toTfJson(),
-    if (endpointReference != null)
-      'endpoint_reference': endpointReference!.toTfJson(),
-    if (evaluateTargetHealth != null)
-      'evaluate_target_health': evaluateTargetHealth!.toTfJson(),
-    if (healthCheck != null) 'health_check': healthCheck!.toTfJson(),
-    if (latitude != null) 'latitude': latitude!.toTfJson(),
-    if (longitude != null) 'longitude': longitude!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (ruleReference != null) 'rule_reference': ruleReference!.toTfJson(),
+    'bias': ?bias?.toTfJson(),
+    'endpoint_reference': ?endpointReference?.toTfJson(),
+    'evaluate_target_health': ?evaluateTargetHealth?.toTfJson(),
+    'health_check': ?healthCheck?.toTfJson(),
+    'latitude': ?latitude?.toTfJson(),
+    'longitude': ?longitude?.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'rule_reference': ?ruleReference?.toTfJson(),
   };
 }
 
@@ -140,9 +138,8 @@ final class DataRoute53TrafficPolicyDocumentRuleItems {
   final TfArg<String>? healthCheck;
 
   Map<String, Object?> encode() => {
-    if (endpointReference != null)
-      'endpoint_reference': endpointReference!.toTfJson(),
-    if (healthCheck != null) 'health_check': healthCheck!.toTfJson(),
+    'endpoint_reference': ?endpointReference?.toTfJson(),
+    'health_check': ?healthCheck?.toTfJson(),
   };
 }
 
@@ -178,16 +175,14 @@ final class DataRoute53TrafficPolicyDocumentRuleLocation {
   final TfArg<String>? subdivision;
 
   Map<String, Object?> encode() => {
-    if (continent != null) 'continent': continent!.toTfJson(),
-    if (country != null) 'country': country!.toTfJson(),
-    if (endpointReference != null)
-      'endpoint_reference': endpointReference!.toTfJson(),
-    if (evaluateTargetHealth != null)
-      'evaluate_target_health': evaluateTargetHealth!.toTfJson(),
-    if (healthCheck != null) 'health_check': healthCheck!.toTfJson(),
-    if (isDefault != null) 'is_default': isDefault!.toTfJson(),
-    if (ruleReference != null) 'rule_reference': ruleReference!.toTfJson(),
-    if (subdivision != null) 'subdivision': subdivision!.toTfJson(),
+    'continent': ?continent?.toTfJson(),
+    'country': ?country?.toTfJson(),
+    'endpoint_reference': ?endpointReference?.toTfJson(),
+    'evaluate_target_health': ?evaluateTargetHealth?.toTfJson(),
+    'health_check': ?healthCheck?.toTfJson(),
+    'is_default': ?isDefault?.toTfJson(),
+    'rule_reference': ?ruleReference?.toTfJson(),
+    'subdivision': ?subdivision?.toTfJson(),
   };
 }
 
@@ -211,12 +206,10 @@ final class DataRoute53TrafficPolicyDocumentRulePrimary {
   final TfArg<String>? ruleReference;
 
   Map<String, Object?> encode() => {
-    if (endpointReference != null)
-      'endpoint_reference': endpointReference!.toTfJson(),
-    if (evaluateTargetHealth != null)
-      'evaluate_target_health': evaluateTargetHealth!.toTfJson(),
-    if (healthCheck != null) 'health_check': healthCheck!.toTfJson(),
-    if (ruleReference != null) 'rule_reference': ruleReference!.toTfJson(),
+    'endpoint_reference': ?endpointReference?.toTfJson(),
+    'evaluate_target_health': ?evaluateTargetHealth?.toTfJson(),
+    'health_check': ?healthCheck?.toTfJson(),
+    'rule_reference': ?ruleReference?.toTfJson(),
   };
 }
 
@@ -243,13 +236,11 @@ final class DataRoute53TrafficPolicyDocumentRuleRegion {
   final TfArg<String>? ruleReference;
 
   Map<String, Object?> encode() => {
-    if (endpointReference != null)
-      'endpoint_reference': endpointReference!.toTfJson(),
-    if (evaluateTargetHealth != null)
-      'evaluate_target_health': evaluateTargetHealth!.toTfJson(),
-    if (healthCheck != null) 'health_check': healthCheck!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (ruleReference != null) 'rule_reference': ruleReference!.toTfJson(),
+    'endpoint_reference': ?endpointReference?.toTfJson(),
+    'evaluate_target_health': ?evaluateTargetHealth?.toTfJson(),
+    'health_check': ?healthCheck?.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'rule_reference': ?ruleReference?.toTfJson(),
   };
 }
 
@@ -273,12 +264,10 @@ final class DataRoute53TrafficPolicyDocumentRuleSecondary {
   final TfArg<String>? ruleReference;
 
   Map<String, Object?> encode() => {
-    if (endpointReference != null)
-      'endpoint_reference': endpointReference!.toTfJson(),
-    if (evaluateTargetHealth != null)
-      'evaluate_target_health': evaluateTargetHealth!.toTfJson(),
-    if (healthCheck != null) 'health_check': healthCheck!.toTfJson(),
-    if (ruleReference != null) 'rule_reference': ruleReference!.toTfJson(),
+    'endpoint_reference': ?endpointReference?.toTfJson(),
+    'evaluate_target_health': ?evaluateTargetHealth?.toTfJson(),
+    'health_check': ?healthCheck?.toTfJson(),
+    'rule_reference': ?ruleReference?.toTfJson(),
   };
 }
 
@@ -299,10 +288,10 @@ final class DataAwsRoute53TrafficPolicyDocument extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (recordType != null) 'record_type': recordType,
-           if (startEndpoint != null) 'start_endpoint': startEndpoint,
-           if (startRule != null) 'start_rule': startRule,
-           if (version != null) 'version': version,
+           'record_type': ?recordType,
+           'start_endpoint': ?startEndpoint,
+           'start_rule': ?startRule,
+           'version': ?version,
            if (endpoint != null)
              'endpoint': TfArg.literal([for (final e in endpoint) e.encode()]),
            if (rule != null)

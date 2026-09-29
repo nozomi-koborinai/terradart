@@ -40,9 +40,9 @@ final class R2BucketCorsRules {
   final R2BucketCorsRulesAllowed allowed;
 
   Map<String, Object?> encode() => {
-    if (exposeHeaders != null) 'expose_headers': exposeHeaders!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (maxAgeSeconds != null) 'max_age_seconds': maxAgeSeconds!.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'max_age_seconds': ?maxAgeSeconds?.toTfJson(),
     'allowed': allowed.encode(),
   };
 }
@@ -64,7 +64,7 @@ final class R2BucketCorsRulesAllowed {
   final TfArg<List<Object?>> origins;
 
   Map<String, Object?> encode() => {
-    if (headers != null) 'headers': headers!.toTfJson(),
+    'headers': ?headers?.toTfJson(),
     'methods': [for (final e in methods) e.toTfJson()],
     'origins': origins.toTfJson(),
   };
@@ -102,7 +102,7 @@ final class CloudflareR2BucketCors extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
+           'jurisdiction': ?jurisdiction,
            if (rules != null)
              'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },

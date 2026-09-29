@@ -69,8 +69,8 @@ final class AwsWafregionalRateBasedRule extends Resource {
            'name': name,
            'rate_key': rateKey,
            'rate_limit': rateLimit,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (predicate != null)
              'predicate': TfArg.literal([
                for (final e in predicate) e.encode(),

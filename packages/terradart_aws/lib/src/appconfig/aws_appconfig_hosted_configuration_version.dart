@@ -32,9 +32,9 @@ final class AwsAppconfigHostedConfigurationVersion extends Resource {
            'configuration_profile_id': configurationProfileId,
            'content': content,
            'content_type': contentType,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (versionLabel != null) 'version_label': versionLabel,
+           'description': ?description,
+           'region': ?region,
+           'version_label': ?versionLabel,
          },
        );
 

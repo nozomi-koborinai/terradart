@@ -21,8 +21,8 @@ final class DataAwsRedshiftProducerDataShares extends Data {
          terraformType: tfType,
          argMap: {
            'producer_arn': producerArn,
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
+           'region': ?region,
+           'status': ?status,
          },
        );
 

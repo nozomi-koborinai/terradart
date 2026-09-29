@@ -37,7 +37,7 @@ final class CloudflareMagicWanBgpFilterProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
+           'description': ?description,
            'match_action': matchAction,
            'name': name,
            'targets': targets,

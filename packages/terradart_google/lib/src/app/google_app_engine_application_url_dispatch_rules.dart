@@ -27,8 +27,8 @@ final class GoogleAppEngineApplicationUrlDispatchRules extends Resource {
          terraformType: tfType,
          argMap: {
            'dispatch_rules': dispatchRules,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

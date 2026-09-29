@@ -33,13 +33,10 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
   sessionPinningFilters;
 
   Map<String, Object?> encode() => {
-    if (connectionBorrowTimeout != null)
-      'connection_borrow_timeout': connectionBorrowTimeout!.toTfJson(),
-    if (initQuery != null) 'init_query': initQuery!.toTfJson(),
-    if (maxConnectionsPercent != null)
-      'max_connections_percent': maxConnectionsPercent!.toTfJson(),
-    if (maxIdleConnectionsPercent != null)
-      'max_idle_connections_percent': maxIdleConnectionsPercent!.toTfJson(),
+    'connection_borrow_timeout': ?connectionBorrowTimeout?.toTfJson(),
+    'init_query': ?initQuery?.toTfJson(),
+    'max_connections_percent': ?maxConnectionsPercent?.toTfJson(),
+    'max_idle_connections_percent': ?maxIdleConnectionsPercent?.toTfJson(),
     if (sessionPinningFilters != null)
       'session_pinning_filters': [
         for (final e in sessionPinningFilters!) e.toTfJson(),
@@ -76,7 +73,7 @@ final class AwsDbProxyDefaultTargetGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'db_proxy_name': dbProxyName,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (connectionPoolConfig != null)
              'connection_pool_config': TfArg.literal(
                connectionPoolConfig.encode(),

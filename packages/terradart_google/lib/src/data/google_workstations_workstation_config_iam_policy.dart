@@ -27,8 +27,8 @@ final class DataGoogleWorkstationsWorkstationConfigIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
            'workstation_cluster_id': workstationClusterId,
            'workstation_config_id': workstationConfigId,
          },

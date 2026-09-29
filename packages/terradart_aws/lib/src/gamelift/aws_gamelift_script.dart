@@ -94,7 +94,7 @@ final class GameliftScriptStorageLocation {
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),
-    if (objectVersion != null) 'object_version': objectVersion!.toTfJson(),
+    'object_version': ?objectVersion?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
@@ -118,9 +118,9 @@ final class AwsGameliftScript extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (version != null) 'version': version,
+           'region': ?region,
+           'tags': ?tags,
+           'version': ?version,
            ...code.argMap,
          },
        );

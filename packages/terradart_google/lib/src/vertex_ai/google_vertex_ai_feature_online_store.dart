@@ -168,11 +168,11 @@ final class GoogleVertexAiFeatureOnlineStore extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'region': ?region,
+           'force_destroy': ?forceDestroy,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
            storage.blockKey: TfArg.literal(storage.encode()),
          },
        );

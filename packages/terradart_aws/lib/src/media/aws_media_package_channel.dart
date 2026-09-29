@@ -24,9 +24,9 @@ final class AwsMediaPackageChannel extends Resource {
          terraformType: tfType,
          argMap: {
            'channel_id': channelId,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -37,8 +37,8 @@ final class CloudflareZeroTrustGatewayProxyEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (ips != null) 'ips': ips,
-           if (kind != null) 'kind': kind,
+           'ips': ?ips,
+           'kind': ?kind,
            'name': name,
          },
        );

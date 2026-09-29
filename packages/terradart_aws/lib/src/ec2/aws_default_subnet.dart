@@ -44,30 +44,23 @@ final class AwsDefaultSubnet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (assignIpv6AddressOnCreation != null)
-             'assign_ipv6_address_on_creation': assignIpv6AddressOnCreation,
+           'assign_ipv6_address_on_creation': ?assignIpv6AddressOnCreation,
            'availability_zone': availabilityZone,
-           if (customerOwnedIpv4Pool != null)
-             'customer_owned_ipv4_pool': customerOwnedIpv4Pool,
-           if (enableDns64 != null) 'enable_dns64': enableDns64,
-           if (enableResourceNameDnsARecordOnLaunch != null)
-             'enable_resource_name_dns_a_record_on_launch':
-                 enableResourceNameDnsARecordOnLaunch,
-           if (enableResourceNameDnsAaaaRecordOnLaunch != null)
-             'enable_resource_name_dns_aaaa_record_on_launch':
-                 enableResourceNameDnsAaaaRecordOnLaunch,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (ipv6CidrBlock != null) 'ipv6_cidr_block': ipv6CidrBlock,
-           if (ipv6Native != null) 'ipv6_native': ipv6Native,
-           if (mapCustomerOwnedIpOnLaunch != null)
-             'map_customer_owned_ip_on_launch': mapCustomerOwnedIpOnLaunch,
-           if (mapPublicIpOnLaunch != null)
-             'map_public_ip_on_launch': mapPublicIpOnLaunch,
-           if (privateDnsHostnameTypeOnLaunch != null)
-             'private_dns_hostname_type_on_launch':
-                 privateDnsHostnameTypeOnLaunch,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'customer_owned_ipv4_pool': ?customerOwnedIpv4Pool,
+           'enable_dns64': ?enableDns64,
+           'enable_resource_name_dns_a_record_on_launch':
+               ?enableResourceNameDnsARecordOnLaunch,
+           'enable_resource_name_dns_aaaa_record_on_launch':
+               ?enableResourceNameDnsAaaaRecordOnLaunch,
+           'force_destroy': ?forceDestroy,
+           'ipv6_cidr_block': ?ipv6CidrBlock,
+           'ipv6_native': ?ipv6Native,
+           'map_customer_owned_ip_on_launch': ?mapCustomerOwnedIpOnLaunch,
+           'map_public_ip_on_launch': ?mapPublicIpOnLaunch,
+           'private_dns_hostname_type_on_launch':
+               ?privateDnsHostnameTypeOnLaunch,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

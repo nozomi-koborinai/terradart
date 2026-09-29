@@ -42,10 +42,9 @@ final class DataAwsEc2NetworkInsightsAnalysis extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (networkInsightsAnalysisId != null)
-             'network_insights_analysis_id': networkInsightsAnalysisId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'network_insights_analysis_id': ?networkInsightsAnalysisId,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

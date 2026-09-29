@@ -118,22 +118,19 @@ final class GooglePubsubTopic extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
-           if (labels != null) 'labels': labels,
-           if (messageStoragePolicy != null)
-             'message_storage_policy': messageStoragePolicy,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'labels': ?labels,
+           'message_storage_policy': ?messageStoragePolicy,
            if (schemaSettings != null)
              'schema_settings': TfArg.literal([schemaSettings.encode()]),
-           if (messageRetentionDuration != null)
-             'message_retention_duration': messageRetentionDuration,
+           'message_retention_duration': ?messageRetentionDuration,
            if (ingestionDataSourceSettings != null)
              'ingestion_data_source_settings': TfArg.literal([
                ingestionDataSourceSettings.encode(),
              ]),
-           if (messageTransforms != null)
-             'message_transforms': messageTransforms,
-           if (tags != null) 'tags': tags,
-           if (project != null) 'project': project,
+           'message_transforms': ?messageTransforms,
+           'tags': ?tags,
+           'project': ?project,
          },
        );
 

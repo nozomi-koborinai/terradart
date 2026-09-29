@@ -25,9 +25,9 @@ final class DataAwsLambdaInvocation extends Data {
          argMap: {
            'function_name': functionName,
            'input': input,
-           if (qualifier != null) 'qualifier': qualifier,
-           if (region != null) 'region': region,
-           if (tenantId != null) 'tenant_id': tenantId,
+           'qualifier': ?qualifier,
+           'region': ?region,
+           'tenant_id': ?tenantId,
          },
        );
 

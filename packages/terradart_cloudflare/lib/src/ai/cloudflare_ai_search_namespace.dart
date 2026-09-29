@@ -45,19 +45,15 @@ final class AiSearchNamespacePublicEndpointParams {
   final AiSearchNamespacePublicEndpointParamsSearchEndpoint? searchEndpoint;
 
   Map<String, Object?> encode() => {
-    if (authorizedHosts != null)
-      'authorized_hosts': authorizedHosts!.toTfJson(),
-    if (customDomains != null) 'custom_domains': customDomains!.toTfJson(),
-    if (defaultDomainEnabled != null)
-      'default_domain_enabled': defaultDomainEnabled!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (instancesAllowed != null)
-      'instances_allowed': instancesAllowed!.toTfJson(),
-    if (chatCompletionsEndpoint != null)
-      'chat_completions_endpoint': chatCompletionsEndpoint!.encode(),
-    if (mcp != null) 'mcp': mcp!.encode(),
-    if (rateLimit != null) 'rate_limit': rateLimit!.encode(),
-    if (searchEndpoint != null) 'search_endpoint': searchEndpoint!.encode(),
+    'authorized_hosts': ?authorizedHosts?.toTfJson(),
+    'custom_domains': ?customDomains?.toTfJson(),
+    'default_domain_enabled': ?defaultDomainEnabled?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'instances_allowed': ?instancesAllowed?.toTfJson(),
+    'chat_completions_endpoint': ?chatCompletionsEndpoint?.encode(),
+    'mcp': ?mcp?.encode(),
+    'rate_limit': ?rateLimit?.encode(),
+    'search_endpoint': ?searchEndpoint?.encode(),
   };
 }
 
@@ -71,9 +67,7 @@ final class AiSearchNamespacePublicEndpointParamsChatCompletionsEndpoint {
 
   final TfArg<bool>? disabled;
 
-  Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
 }
 
 /// Typed helper for the `public_endpoint_params.mcp` block of
@@ -90,8 +84,8 @@ final class AiSearchNamespacePublicEndpointParamsMcp {
   final TfArg<bool>? disabled;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
   };
 }
 
@@ -113,9 +107,9 @@ final class AiSearchNamespacePublicEndpointParamsRateLimit {
   technique;
 
   Map<String, Object?> encode() => {
-    if (periodMs != null) 'period_ms': periodMs!.toTfJson(),
-    if (requests != null) 'requests': requests!.toTfJson(),
-    if (technique != null) 'technique': technique!.toTfJson(),
+    'period_ms': ?periodMs?.toTfJson(),
+    'requests': ?requests?.toTfJson(),
+    'technique': ?technique?.toTfJson(),
   };
 }
 
@@ -140,9 +134,7 @@ final class AiSearchNamespacePublicEndpointParamsSearchEndpoint {
 
   final TfArg<bool>? disabled;
 
-  Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_ai_search_namespace`.
@@ -163,7 +155,7 @@ final class CloudflareAiSearchNamespace extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
            if (publicEndpointParams != null)
              'public_endpoint_params': TfArg.literal(

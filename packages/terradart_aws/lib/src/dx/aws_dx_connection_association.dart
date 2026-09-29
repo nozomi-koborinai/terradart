@@ -24,7 +24,7 @@ final class AwsDxConnectionAssociation extends Resource {
          argMap: {
            'connection_id': connectionId,
            'lag_id': lagId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

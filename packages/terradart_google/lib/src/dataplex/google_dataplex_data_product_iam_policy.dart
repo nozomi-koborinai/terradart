@@ -30,8 +30,8 @@ final class GoogleDataplexDataProductIamPolicy extends Resource {
          argMap: {
            'data_product_id': dataProductId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

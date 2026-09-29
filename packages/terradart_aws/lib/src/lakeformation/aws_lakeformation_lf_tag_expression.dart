@@ -46,10 +46,10 @@ final class AwsLakeformationLfTagExpression extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
-           if (description != null) 'description': description,
+           'catalog_id': ?catalogId,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (expression != null)
              'expression': TfArg.literal([
                for (final e in expression) e.encode(),

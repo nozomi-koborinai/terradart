@@ -26,10 +26,10 @@ final class DataCloudflareCustomSsls extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (match != null) 'match': match,
-           if (maxItems != null) 'max_items': maxItems,
-           if (status != null) 'status': status,
-           if (zoneId != null) 'zone_id': zoneId,
+           'match': ?match,
+           'max_items': ?maxItems,
+           'status': ?status,
+           'zone_id': ?zoneId,
          },
        );
 

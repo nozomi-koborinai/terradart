@@ -25,7 +25,7 @@ final class AwsCloudwatchLogDeliveryDestinationPolicy extends Resource {
          argMap: {
            'delivery_destination_name': deliveryDestinationName,
            'delivery_destination_policy': deliveryDestinationPolicy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

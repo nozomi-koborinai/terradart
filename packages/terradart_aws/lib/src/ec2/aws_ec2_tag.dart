@@ -24,7 +24,7 @@ final class AwsEc2Tag extends Resource {
          terraformType: tfType,
          argMap: {
            'key': key,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_id': resourceId,
            'value': value,
          },

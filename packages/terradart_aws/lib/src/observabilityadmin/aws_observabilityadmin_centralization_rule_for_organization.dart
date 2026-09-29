@@ -138,8 +138,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
   final TfArg<String>? region;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'region': ?region?.toTfJson(),
   };
 }
 
@@ -187,13 +187,11 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (encryptionConflictResolutionStrategy != null)
-      'encryption_conflict_resolution_strategy':
-          encryptionConflictResolutionStrategy!.toTfJson(),
-    if (encryptionScope != null)
-      'encryption_scope': encryptionScope!.toTfJson(),
+    'encryption_conflict_resolution_strategy':
+        ?encryptionConflictResolutionStrategy?.toTfJson(),
+    'encryption_scope': ?encryptionScope?.toTfJson(),
     'encryption_strategy': encryptionStrategy.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -254,9 +252,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
 
   Map<String, Object?> encode() => {
     'destination_role_arn': destinationRoleArn.toTfJson(),
-    if (tagConflictResolutionStrategy != null)
-      'tag_conflict_resolution_strategy': tagConflictResolutionStrategy!
-          .toTfJson(),
+    'tag_conflict_resolution_strategy': ?tagConflictResolutionStrategy
+        ?.toTfJson(),
   };
 }
 
@@ -367,11 +364,9 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceL
   final TfArg<String>? logGroupSelectionCriteria;
 
   Map<String, Object?> encode() => {
-    if (dataSourceSelectionCriteria != null)
-      'data_source_selection_criteria': dataSourceSelectionCriteria!.toTfJson(),
+    'data_source_selection_criteria': ?dataSourceSelectionCriteria?.toTfJson(),
     'encrypted_log_group_strategy': encryptedLogGroupStrategy.toTfJson(),
-    if (logGroupSelectionCriteria != null)
-      'log_group_selection_criteria': logGroupSelectionCriteria!.toTfJson(),
+    'log_group_selection_criteria': ?logGroupSelectionCriteria?.toTfJson(),
   };
 }
 
@@ -422,9 +417,9 @@ final class AwsObservabilityadminCentralizationRuleForOrganization
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'rule_name': ruleName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (rule != null)
              'rule': TfArg.literal([for (final e in rule) e.encode()]),
          },

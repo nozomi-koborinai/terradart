@@ -22,8 +22,8 @@ final class DataAwsLocationRouteCalculator extends Data {
          terraformType: tfType,
          argMap: {
            'calculator_name': calculatorName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

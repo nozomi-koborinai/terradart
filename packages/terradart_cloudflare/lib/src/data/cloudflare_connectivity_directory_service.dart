@@ -16,7 +16,7 @@ final class DataConnectivityDirectoryServiceFilter {
 
   final TfArg<DataConnectivityDirectoryServiceFilterType>? type;
 
-  Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
@@ -43,8 +43,8 @@ final class DataCloudflareConnectivityDirectoryService extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (serviceId != null) 'service_id': serviceId,
+           'account_id': ?accountId,
+           'service_id': ?serviceId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

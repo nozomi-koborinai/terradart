@@ -52,9 +52,8 @@ final class GlueSecurityConfigurationEncryptionConfigurationCloudwatchEncryption
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchEncryptionMode != null)
-      'cloudwatch_encryption_mode': cloudwatchEncryptionMode!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'cloudwatch_encryption_mode': ?cloudwatchEncryptionMode?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -88,9 +87,8 @@ final class GlueSecurityConfigurationEncryptionConfigurationJobBookmarksEncrypti
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (jobBookmarksEncryptionMode != null)
-      'job_bookmarks_encryption_mode': jobBookmarksEncryptionMode!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'job_bookmarks_encryption_mode': ?jobBookmarksEncryptionMode?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -124,9 +122,8 @@ final class GlueSecurityConfigurationEncryptionConfigurationS3Encryption {
   s3EncryptionMode;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (s3EncryptionMode != null)
-      's3_encryption_mode': s3EncryptionMode!.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    's3_encryption_mode': ?s3EncryptionMode?.toTfJson(),
   };
 }
 
@@ -162,7 +159,7 @@ final class AwsGlueSecurityConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'encryption_configuration': TfArg.literal(
              encryptionConfiguration.encode(),
            ),

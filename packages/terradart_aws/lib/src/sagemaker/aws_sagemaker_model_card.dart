@@ -56,8 +56,8 @@ final class AwsSagemakerModelCard extends Resource {
            'content': content,
            'model_card_name': modelCardName,
            'model_card_status': modelCardStatus,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (securityConfig != null)
              'security_config': TfArg.literal([
                for (final e in securityConfig) e.encode(),

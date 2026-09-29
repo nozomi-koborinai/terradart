@@ -27,7 +27,7 @@ final class DataGoogleParameterManagerParameterVersionRender extends Data {
          argMap: {
            'parameter': parameter,
            'parameter_version_id': parameterVersionId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

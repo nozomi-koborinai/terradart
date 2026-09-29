@@ -24,11 +24,10 @@ final class DataGoogleServiceAccountIdToken extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (delegates != null) 'delegates': delegates,
-           if (includeEmail != null) 'include_email': includeEmail,
+           'delegates': ?delegates,
+           'include_email': ?includeEmail,
            'target_audience': targetAudience,
-           if (targetServiceAccount != null)
-             'target_service_account': targetServiceAccount,
+           'target_service_account': ?targetServiceAccount,
          },
        );
 

@@ -180,9 +180,9 @@ final class GoogleDnsRecordSet extends Resource {
          argMap: {
            'managed_zone': managedZone,
            'name': name,
-           if (project != null) 'project': project,
-           if (rrdatas != null) 'rrdatas': rrdatas,
-           if (ttl != null) 'ttl': ttl,
+           'project': ?project,
+           'rrdatas': ?rrdatas,
+           'ttl': ?ttl,
            'type': type,
            if (routingPolicy != null)
              'routing_policy': TfArg.literal([routingPolicy.encode()]),

@@ -34,8 +34,8 @@ final class GooglePubsubTopicIamBinding extends Resource {
            'topic': topic.encodeAs('id'),
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

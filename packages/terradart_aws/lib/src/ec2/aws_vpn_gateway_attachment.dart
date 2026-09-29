@@ -24,7 +24,7 @@ final class AwsVpnGatewayAttachment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'vpc_id': vpcId.encodeAs('id'),
            'vpn_gateway_id': vpnGatewayId,
          },

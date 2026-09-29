@@ -28,7 +28,7 @@ final class GoogleSqlSslCert extends Resource {
          argMap: {
            'common_name': commonName,
            'instance': instance,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

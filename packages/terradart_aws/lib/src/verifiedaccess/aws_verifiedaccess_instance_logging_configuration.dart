@@ -36,13 +36,11 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogs {
   final VerifiedaccessInstanceLoggingConfigurationAccessLogsS3? s3;
 
   Map<String, Object?> encode() => {
-    if (includeTrustContext != null)
-      'include_trust_context': includeTrustContext!.toTfJson(),
-    if (logVersion != null) 'log_version': logVersion!.toTfJson(),
-    if (cloudwatchLogs != null) 'cloudwatch_logs': cloudwatchLogs!.encode(),
-    if (kinesisDataFirehose != null)
-      'kinesis_data_firehose': kinesisDataFirehose!.encode(),
-    if (s3 != null) 's3': s3!.encode(),
+    'include_trust_context': ?includeTrustContext?.toTfJson(),
+    'log_version': ?logVersion?.toTfJson(),
+    'cloudwatch_logs': ?cloudwatchLogs?.encode(),
+    'kinesis_data_firehose': ?kinesisDataFirehose?.encode(),
+    's3': ?s3?.encode(),
   };
 }
 
@@ -61,7 +59,7 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogsCloudwatchLogs {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
+    'log_group': ?logGroup?.encodeAs('name').toTfJson(),
   };
 }
 
@@ -79,7 +77,7 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogsKinesisDataFireh
   final TfArg<bool> enabled;
 
   Map<String, Object?> encode() => {
-    if (deliveryStream != null) 'delivery_stream': deliveryStream!.toTfJson(),
+    'delivery_stream': ?deliveryStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
   };
 }
@@ -104,11 +102,10 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogsS3 {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketOwner != null) 'bucket_owner': bucketOwner!.toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_owner': ?bucketOwner?.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -129,7 +126,7 @@ final class AwsVerifiedaccessInstanceLoggingConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'verifiedaccess_instance_id': verifiedaccessInstanceId,
            'access_logs': TfArg.literal(accessLogs.encode()),
          },

@@ -56,12 +56,10 @@ final class VmwareenginePrivateCloudManagementCluster {
 
   Map<String, Object?> encode() => {
     'cluster_id': clusterId.toTfJson(),
-    if (autoscalingSettings != null)
-      'autoscaling_settings': autoscalingSettings!.encode(),
+    'autoscaling_settings': ?autoscalingSettings?.encode(),
     if (nodeTypeConfigs != null)
       'node_type_configs': [for (final e in nodeTypeConfigs!) e.encode()],
-    if (stretchedClusterConfig != null)
-      'stretched_cluster_config': stretchedClusterConfig!.encode(),
+    'stretched_cluster_config': ?stretchedClusterConfig?.encode(),
   };
 }
 
@@ -88,11 +86,9 @@ final class VmwareenginePrivateCloudManagementClusterAutoscalingSettings {
   autoscalingPolicies;
 
   Map<String, Object?> encode() => {
-    if (coolDownPeriod != null) 'cool_down_period': coolDownPeriod!.toTfJson(),
-    if (maxClusterNodeCount != null)
-      'max_cluster_node_count': maxClusterNodeCount!.toTfJson(),
-    if (minClusterNodeCount != null)
-      'min_cluster_node_count': minClusterNodeCount!.toTfJson(),
+    'cool_down_period': ?coolDownPeriod?.toTfJson(),
+    'max_cluster_node_count': ?maxClusterNodeCount?.toTfJson(),
+    'min_cluster_node_count': ?minClusterNodeCount?.toTfJson(),
     'autoscaling_policies': [for (final e in autoscalingPolicies) e.encode()],
   };
 }
@@ -129,11 +125,9 @@ final class VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscal
     'autoscale_policy_id': autoscalePolicyId.toTfJson(),
     'node_type_id': nodeTypeId.toTfJson(),
     'scale_out_size': scaleOutSize.toTfJson(),
-    if (consumedMemoryThresholds != null)
-      'consumed_memory_thresholds': consumedMemoryThresholds!.encode(),
-    if (cpuThresholds != null) 'cpu_thresholds': cpuThresholds!.encode(),
-    if (storageThresholds != null)
-      'storage_thresholds': storageThresholds!.encode(),
+    'consumed_memory_thresholds': ?consumedMemoryThresholds?.encode(),
+    'cpu_thresholds': ?cpuThresholds?.encode(),
+    'storage_thresholds': ?storageThresholds?.encode(),
   };
 }
 
@@ -211,8 +205,7 @@ final class VmwareenginePrivateCloudManagementClusterNodeTypeConfigs {
   final TfArg<String> nodeTypeId;
 
   Map<String, Object?> encode() => {
-    if (customCoreCount != null)
-      'custom_core_count': customCoreCount!.toTfJson(),
+    'custom_core_count': ?customCoreCount?.toTfJson(),
     'node_count': nodeCount.toTfJson(),
     'node_type_id': nodeTypeId.toTfJson(),
   };
@@ -232,10 +225,8 @@ final class VmwareenginePrivateCloudManagementClusterStretchedClusterConfig {
   final TfArg<String>? secondaryLocation;
 
   Map<String, Object?> encode() => {
-    if (preferredLocation != null)
-      'preferred_location': preferredLocation!.toTfJson(),
-    if (secondaryLocation != null)
-      'secondary_location': secondaryLocation!.toTfJson(),
+    'preferred_location': ?preferredLocation?.toTfJson(),
+    'secondary_location': ?secondaryLocation?.toTfJson(),
   };
 }
 
@@ -254,8 +245,7 @@ final class VmwareenginePrivateCloudNetworkConfig {
 
   Map<String, Object?> encode() => {
     'management_cidr': managementCidr.toTfJson(),
-    if (vmwareEngineNetwork != null)
-      'vmware_engine_network': vmwareEngineNetwork!.toTfJson(),
+    'vmware_engine_network': ?vmwareEngineNetwork?.toTfJson(),
   };
 }
 
@@ -301,14 +291,12 @@ final class GoogleVmwareenginePrivateCloud extends Resource {
            'location': location,
            'management_cluster': TfArg.literal(managementCluster.encode()),
            'network_config': TfArg.literal(networkConfig.encode()),
-           if (description != null) 'description': description,
-           if (type != null) 'type': type,
-           if (deletionDelayHours != null)
-             'deletion_delay_hours': deletionDelayHours,
-           if (sendDeletionDelayHoursIfZero != null)
-             'send_deletion_delay_hours_if_zero': sendDeletionDelayHoursIfZero,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'type': ?type,
+           'deletion_delay_hours': ?deletionDelayHours,
+           'send_deletion_delay_hours_if_zero': ?sendDeletionDelayHoursIfZero,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

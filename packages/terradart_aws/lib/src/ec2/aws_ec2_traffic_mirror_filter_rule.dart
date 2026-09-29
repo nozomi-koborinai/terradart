@@ -41,8 +41,8 @@ final class Ec2TrafficMirrorFilterRuleDestinationPortRange {
   final TfArg<num>? toPort;
 
   Map<String, Object?> encode() => {
-    if (fromPort != null) 'from_port': fromPort!.toTfJson(),
-    if (toPort != null) 'to_port': toPort!.toTfJson(),
+    'from_port': ?fromPort?.toTfJson(),
+    'to_port': ?toPort?.toTfJson(),
   };
 }
 
@@ -57,8 +57,8 @@ final class Ec2TrafficMirrorFilterRuleSourcePortRange {
   final TfArg<num>? toPort;
 
   Map<String, Object?> encode() => {
-    if (fromPort != null) 'from_port': fromPort!.toTfJson(),
-    if (toPort != null) 'to_port': toPort!.toTfJson(),
+    'from_port': ?fromPort?.toTfJson(),
+    'to_port': ?toPort?.toTfJson(),
   };
 }
 
@@ -86,10 +86,10 @@ final class AwsEc2TrafficMirrorFilterRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'destination_cidr_block': destinationCidrBlock,
-           if (protocol != null) 'protocol': protocol,
-           if (region != null) 'region': region,
+           'protocol': ?protocol,
+           'region': ?region,
            'rule_action': ruleAction,
            'rule_number': ruleNumber,
            'source_cidr_block': sourceCidrBlock,

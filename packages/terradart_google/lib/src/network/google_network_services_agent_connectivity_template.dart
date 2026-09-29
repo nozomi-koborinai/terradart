@@ -40,11 +40,9 @@ final class NetworkServicesAgentConnectivityTemplateEgressNetworkConfig {
   dnsPeeringConfig;
 
   Map<String, Object?> encode() => {
-    if (networkAttachment != null)
-      'network_attachment': networkAttachment!.toTfJson(),
-    if (vpcEgress != null) 'vpc_egress': vpcEgress!.toTfJson(),
-    if (dnsPeeringConfig != null)
-      'dns_peering_config': dnsPeeringConfig!.encode(),
+    'network_attachment': ?networkAttachment?.toTfJson(),
+    'vpc_egress': ?vpcEgress?.toTfJson(),
+    'dns_peering_config': ?dnsPeeringConfig?.encode(),
   };
 }
 
@@ -108,13 +106,13 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
          terraformType: tfType,
          argMap: {
            'access_path': accessPath,
-           if (accessTypes != null) 'access_types': accessTypes,
+           'access_types': ?accessTypes,
            'agent_connectivity_template_id': agentConnectivityTemplateId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (egressNetworkConfig != null)
              'egress_network_config': TfArg.literal(
                egressNetworkConfig.encode(),

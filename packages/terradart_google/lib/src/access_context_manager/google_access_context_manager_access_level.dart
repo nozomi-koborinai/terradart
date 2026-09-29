@@ -88,8 +88,7 @@ final class AccessContextManagerAccessLevelBasic {
   final List<AccessContextManagerAccessLevelBasicConditions> conditions;
 
   Map<String, Object?> encode() => {
-    if (combiningFunction != null)
-      'combining_function': combiningFunction!.toTfJson(),
+    'combining_function': ?combiningFunction?.toTfJson(),
     'conditions': [for (final e in conditions) e.encode()],
   };
 }
@@ -138,13 +137,12 @@ final class AccessContextManagerAccessLevelBasicConditions {
   vpcNetworkSources;
 
   Map<String, Object?> encode() => {
-    if (ipSubnetworks != null) 'ip_subnetworks': ipSubnetworks!.toTfJson(),
-    if (members != null) 'members': members!.toTfJson(),
-    if (negate != null) 'negate': negate!.toTfJson(),
-    if (regions != null) 'regions': regions!.toTfJson(),
-    if (requiredAccessLevels != null)
-      'required_access_levels': requiredAccessLevels!.toTfJson(),
-    if (devicePolicy != null) 'device_policy': devicePolicy!.encode(),
+    'ip_subnetworks': ?ipSubnetworks?.toTfJson(),
+    'members': ?members?.toTfJson(),
+    'negate': ?negate?.toTfJson(),
+    'regions': ?regions?.toTfJson(),
+    'required_access_levels': ?requiredAccessLevels?.toTfJson(),
+    'device_policy': ?devicePolicy?.encode(),
     if (vpcNetworkSources != null)
       'vpc_network_sources': [for (final e in vpcNetworkSources!) e.encode()],
   };
@@ -197,12 +195,9 @@ final class AccessContextManagerAccessLevelBasicConditionsDevicePolicy {
       'allowed_encryption_statuses': [
         for (final e in allowedEncryptionStatuses!) e.toTfJson(),
       ],
-    if (requireAdminApproval != null)
-      'require_admin_approval': requireAdminApproval!.toTfJson(),
-    if (requireCorpOwned != null)
-      'require_corp_owned': requireCorpOwned!.toTfJson(),
-    if (requireScreenLock != null)
-      'require_screen_lock': requireScreenLock!.toTfJson(),
+    'require_admin_approval': ?requireAdminApproval?.toTfJson(),
+    'require_corp_owned': ?requireCorpOwned?.toTfJson(),
+    'require_screen_lock': ?requireScreenLock?.toTfJson(),
     if (osConstraints != null)
       'os_constraints': [for (final e in osConstraints!) e.encode()],
   };
@@ -258,10 +253,9 @@ final class AccessContextManagerAccessLevelBasicConditionsDevicePolicyOsConstrai
   final TfArg<bool>? requireVerifiedChromeOs;
 
   Map<String, Object?> encode() => {
-    if (minimumVersion != null) 'minimum_version': minimumVersion!.toTfJson(),
+    'minimum_version': ?minimumVersion?.toTfJson(),
     'os_type': osType.toTfJson(),
-    if (requireVerifiedChromeOs != null)
-      'require_verified_chrome_os': requireVerifiedChromeOs!.toTfJson(),
+    'require_verified_chrome_os': ?requireVerifiedChromeOs?.toTfJson(),
   };
 }
 
@@ -294,9 +288,7 @@ final class AccessContextManagerAccessLevelBasicConditionsVpcNetworkSources {
   final AccessContextManagerAccessLevelBasicConditionsVpcNetworkSourcesVpcSubnetwork?
   vpcSubnetwork;
 
-  Map<String, Object?> encode() => {
-    if (vpcSubnetwork != null) 'vpc_subnetwork': vpcSubnetwork!.encode(),
-  };
+  Map<String, Object?> encode() => {'vpc_subnetwork': ?vpcSubnetwork?.encode()};
 }
 
 /// Typed helper for the `basic.conditions.vpc_network_sources.vpc_subnetwork` block of
@@ -314,8 +306,7 @@ final class AccessContextManagerAccessLevelBasicConditionsVpcNetworkSourcesVpcSu
 
   Map<String, Object?> encode() => {
     'network': network.toTfJson(),
-    if (vpcIpSubnetworks != null)
-      'vpc_ip_subnetworks': vpcIpSubnetworks!.toTfJson(),
+    'vpc_ip_subnetworks': ?vpcIpSubnetworks?.toTfJson(),
   };
 }
 
@@ -350,10 +341,10 @@ final class AccessContextManagerAccessLevelCustomExpr {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -382,9 +373,9 @@ final class GoogleAccessContextManagerAccessLevel extends Resource {
            'name': name,
            'parent': parent,
            'title': title,
-           if (description != null) 'description': description,
+           'description': ?description,
            ...?definition?.argMap,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

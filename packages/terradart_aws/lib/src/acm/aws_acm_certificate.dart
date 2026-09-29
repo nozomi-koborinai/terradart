@@ -125,10 +125,9 @@ final class AcmCertificateOptions {
   final TfArg<AcmCertificateOptionsExport>? export;
 
   Map<String, Object?> encode() => {
-    if (certificateTransparencyLoggingPreference != null)
-      'certificate_transparency_logging_preference':
-          certificateTransparencyLoggingPreference!.toTfJson(),
-    if (export != null) 'export': export!.toTfJson(),
+    'certificate_transparency_logging_preference':
+        ?certificateTransparencyLoggingPreference?.toTfJson(),
+    'export': ?export?.toTfJson(),
   };
 }
 
@@ -200,21 +199,17 @@ final class AwsAcmCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (certificateAuthorityArn != null)
-             'certificate_authority_arn': certificateAuthorityArn,
-           if (certificateBody != null) 'certificate_body': certificateBody,
-           if (certificateChain != null) 'certificate_chain': certificateChain,
+           'certificate_authority_arn': ?certificateAuthorityArn,
+           'certificate_body': ?certificateBody,
+           'certificate_chain': ?certificateChain,
            ...source.argMap,
-           if (earlyRenewalDuration != null)
-             'early_renewal_duration': earlyRenewalDuration,
-           if (keyAlgorithm != null) 'key_algorithm': keyAlgorithm,
-           if (privateKeyWoVersion != null)
-             'private_key_wo_version': privateKeyWoVersion,
-           if (region != null) 'region': region,
-           if (subjectAlternativeNames != null)
-             'subject_alternative_names': subjectAlternativeNames,
-           if (tags != null) 'tags': tags,
-           if (validationMethod != null) 'validation_method': validationMethod,
+           'early_renewal_duration': ?earlyRenewalDuration,
+           'key_algorithm': ?keyAlgorithm,
+           'private_key_wo_version': ?privateKeyWoVersion,
+           'region': ?region,
+           'subject_alternative_names': ?subjectAlternativeNames,
+           'tags': ?tags,
+           'validation_method': ?validationMethod,
            if (options != null) 'options': TfArg.literal(options.encode()),
            if (validationOption != null)
              'validation_option': TfArg.literal([

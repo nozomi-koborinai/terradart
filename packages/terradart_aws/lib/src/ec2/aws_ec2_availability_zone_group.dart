@@ -34,7 +34,7 @@ final class AwsEc2AvailabilityZoneGroup extends Resource {
          argMap: {
            'group_name': groupName,
            'opt_in_status': optInStatus,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

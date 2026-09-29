@@ -37,9 +37,7 @@ final class S3controlAccessGrantAccessGrantsLocationConfiguration {
 
   final TfArg<String>? s3SubPrefix;
 
-  Map<String, Object?> encode() => {
-    if (s3SubPrefix != null) 's3_sub_prefix': s3SubPrefix!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'s3_sub_prefix': ?s3SubPrefix?.toTfJson()};
 }
 
 /// Typed helper for the `grantee` block of
@@ -95,11 +93,11 @@ final class AwsS3controlAccessGrant extends Resource {
          terraformType: tfType,
          argMap: {
            'access_grants_location_id': accessGrantsLocationId,
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'permission': permission,
-           if (region != null) 'region': region,
-           if (s3PrefixType != null) 's3_prefix_type': s3PrefixType,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           's3_prefix_type': ?s3PrefixType,
+           'tags': ?tags,
            if (accessGrantsLocationConfiguration != null)
              'access_grants_location_configuration': TfArg.literal([
                for (final e in accessGrantsLocationConfiguration) e.encode(),

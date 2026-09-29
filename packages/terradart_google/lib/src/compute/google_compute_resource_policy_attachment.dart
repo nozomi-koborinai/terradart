@@ -38,9 +38,9 @@ final class GoogleComputeResourcePolicyAttachment extends Resource {
          argMap: {
            'instance': instance,
            'name': name,
-           if (zone != null) 'zone': zone,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'zone': ?zone,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

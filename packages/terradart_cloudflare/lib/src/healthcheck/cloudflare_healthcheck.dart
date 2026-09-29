@@ -63,15 +63,14 @@ final class HealthcheckHttpConfig {
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (allowInsecure != null) 'allow_insecure': allowInsecure!.toTfJson(),
-    if (expectedBody != null) 'expected_body': expectedBody!.toTfJson(),
-    if (expectedCodes != null) 'expected_codes': expectedCodes!.toTfJson(),
-    if (followRedirects != null)
-      'follow_redirects': followRedirects!.toTfJson(),
-    if (header != null) 'header': header!.toTfJson(),
-    if (method != null) 'method': method!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'allow_insecure': ?allowInsecure?.toTfJson(),
+    'expected_body': ?expectedBody?.toTfJson(),
+    'expected_codes': ?expectedCodes?.toTfJson(),
+    'follow_redirects': ?followRedirects?.toTfJson(),
+    'header': ?header?.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -96,8 +95,8 @@ final class HealthcheckTcpConfig {
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -146,16 +145,15 @@ final class CloudflareHealthcheck extends Resource {
              'check_regions': TfArg.literal([
                for (final e in checkRegions) e.toTfJson(),
              ]),
-           if (consecutiveFails != null) 'consecutive_fails': consecutiveFails,
-           if (consecutiveSuccesses != null)
-             'consecutive_successes': consecutiveSuccesses,
-           if (description != null) 'description': description,
-           if (interval != null) 'interval': interval,
+           'consecutive_fails': ?consecutiveFails,
+           'consecutive_successes': ?consecutiveSuccesses,
+           'description': ?description,
+           'interval': ?interval,
            'name': name,
-           if (retries != null) 'retries': retries,
-           if (suspended != null) 'suspended': suspended,
-           if (timeout != null) 'timeout': timeout,
-           if (type != null) 'type': type,
+           'retries': ?retries,
+           'suspended': ?suspended,
+           'timeout': ?timeout,
+           'type': ?type,
            'zone_id': zoneId.encodeAs('id'),
            if (httpConfig != null)
              'http_config': TfArg.literal(httpConfig.encode()),

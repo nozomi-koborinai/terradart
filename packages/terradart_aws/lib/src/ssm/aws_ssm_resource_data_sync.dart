@@ -38,12 +38,11 @@ final class SsmResourceDataSyncS3Destination {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'region': region.toTfJson(),
-    if (syncFormat != null) 'sync_format': syncFormat!.toTfJson(),
-    if (destinationDataSharing != null)
-      'destination_data_sharing': destinationDataSharing!.encode(),
+    'sync_format': ?syncFormat?.toTfJson(),
+    'destination_data_sharing': ?destinationDataSharing?.encode(),
   };
 }
 
@@ -70,8 +69,7 @@ final class SsmResourceDataSyncS3DestinationDestinationDataSharing {
   destinationDataSharingType;
 
   Map<String, Object?> encode() => {
-    if (destinationDataSharingType != null)
-      'destination_data_sharing_type': destinationDataSharingType!.toTfJson(),
+    'destination_data_sharing_type': ?destinationDataSharingType?.toTfJson(),
   };
 }
 
@@ -104,7 +102,7 @@ final class AwsSsmResourceDataSync extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            's3_destination': TfArg.literal(s3Destination.encode()),
          },
        );

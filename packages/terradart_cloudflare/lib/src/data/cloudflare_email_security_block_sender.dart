@@ -31,11 +31,11 @@ final class DataEmailSecurityBlockSenderFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (pattern != null) 'pattern': pattern!.toTfJson(),
-    if (patternType != null) 'pattern_type': patternType!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'pattern': ?pattern?.toTfJson(),
+    'pattern_type': ?patternType?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -90,7 +90,7 @@ final class DataCloudflareEmailSecurityBlockSender extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (patternId != null) 'pattern_id': patternId,
+           'pattern_id': ?patternId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

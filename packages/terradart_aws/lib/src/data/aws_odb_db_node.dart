@@ -22,7 +22,7 @@ final class DataAwsOdbDbNode extends Data {
          argMap: {
            'cloud_vm_cluster_id': cloudVmClusterId,
            'id': id,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

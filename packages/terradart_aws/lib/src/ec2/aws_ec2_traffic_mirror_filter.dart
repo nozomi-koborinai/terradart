@@ -32,13 +32,13 @@ final class AwsEc2TrafficMirrorFilter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            if (networkServices != null)
              'network_services': TfArg.literal([
                for (final e in networkServices) e.toTfJson(),
              ]),
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

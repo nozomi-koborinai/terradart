@@ -20,7 +20,7 @@ final class AwsSesEmailIdentity extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'email': email, if (region != null) 'region': region},
+         argMap: {'email': email, 'region': ?region},
        );
 
   @override

@@ -29,11 +29,11 @@ final class DataCloudflareSecretsStoreSecrets extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
-           if (scopes != null) 'scopes': scopes,
-           if (search != null) 'search': search,
+           'direction': ?direction,
+           'max_items': ?maxItems,
+           'order': ?order,
+           'scopes': ?scopes,
+           'search': ?search,
            'store_id': storeId,
          },
        );

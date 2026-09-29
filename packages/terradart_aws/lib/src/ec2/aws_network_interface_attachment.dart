@@ -26,9 +26,9 @@ final class AwsNetworkInterfaceAttachment extends Resource {
          argMap: {
            'device_index': deviceIndex,
            'instance_id': instanceId,
-           if (networkCardIndex != null) 'network_card_index': networkCardIndex,
+           'network_card_index': ?networkCardIndex,
            'network_interface_id': networkInterfaceId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

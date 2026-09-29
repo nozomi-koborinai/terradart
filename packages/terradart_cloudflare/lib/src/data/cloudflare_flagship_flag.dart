@@ -16,9 +16,7 @@ final class DataFlagshipFlagFilter {
 
   final TfArg<String>? limit;
 
-  Map<String, Object?> encode() => {
-    if (limit != null) 'limit': limit!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'limit': ?limit?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_flagship_flag`.
@@ -42,7 +40,7 @@ final class DataCloudflareFlagshipFlag extends Data {
          argMap: {
            'account_id': accountId,
            'app_id': appId,
-           if (flagKey != null) 'flag_key': flagKey,
+           'flag_key': ?flagKey,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

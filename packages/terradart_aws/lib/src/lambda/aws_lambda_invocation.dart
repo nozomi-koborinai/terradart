@@ -41,12 +41,12 @@ final class AwsLambdaInvocation extends Resource {
          argMap: {
            'function_name': functionName.encodeAs('function_name'),
            'input': input,
-           if (lifecycleScope != null) 'lifecycle_scope': lifecycleScope,
-           if (qualifier != null) 'qualifier': qualifier,
-           if (region != null) 'region': region,
-           if (tenantId != null) 'tenant_id': tenantId,
-           if (terraformKey != null) 'terraform_key': terraformKey,
-           if (triggers != null) 'triggers': triggers,
+           'lifecycle_scope': ?lifecycleScope,
+           'qualifier': ?qualifier,
+           'region': ?region,
+           'tenant_id': ?tenantId,
+           'terraform_key': ?terraformKey,
+           'triggers': ?triggers,
          },
        );
 

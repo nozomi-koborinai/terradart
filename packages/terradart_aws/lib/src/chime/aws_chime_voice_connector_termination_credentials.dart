@@ -45,7 +45,7 @@ final class AwsChimeVoiceConnectorTerminationCredentials extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'voice_connector_id': voiceConnectorId,
            'credentials': TfArg.literal([
              for (final e in credentials) e.encode(),

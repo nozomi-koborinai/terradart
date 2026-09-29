@@ -47,7 +47,7 @@ final class GoogleDialogflowEncryptionSpec extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'encryption_spec': TfArg.literal(encryptionSpec.encode()),
          },
        );

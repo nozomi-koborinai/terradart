@@ -13,7 +13,8 @@
 ///
 /// Recognised encodings (all observed in the committed google registry):
 ///
-/// - `encode() => { 'key': field..., if (x != null) 'key': x!..., }` and the
+/// - `encode() => { 'key': field..., 'key': ?x?..., if (x != null) 'key':
+///   x!..., }` and the
 ///   list-of-one form `=> [ { ... } ]`, with or without `<String, Object?>`
 ///   type arguments and `const`.
 /// - `blockKey: value` entries, where `blockKey` is the class's own
@@ -81,7 +82,7 @@ final class ExtractedField {
   final bool keyedEncoding;
 
   /// The attribute a reference field's entry encodes
-  /// (`network!.encodeAs('id')` → `id`).
+  /// (`?network?.encodeAs('id')` → `id`).
   final String? encodedAttribute;
 }
 

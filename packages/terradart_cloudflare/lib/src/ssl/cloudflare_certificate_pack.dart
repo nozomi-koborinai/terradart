@@ -64,9 +64,8 @@ final class CloudflareCertificatePack extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate_authority': certificateAuthority,
-           if (cloudflareBranding != null)
-             'cloudflare_branding': cloudflareBranding,
-           if (hosts != null) 'hosts': hosts,
+           'cloudflare_branding': ?cloudflareBranding,
+           'hosts': ?hosts,
            'type': type,
            'validation_method': validationMethod,
            'validity_days': validityDays,

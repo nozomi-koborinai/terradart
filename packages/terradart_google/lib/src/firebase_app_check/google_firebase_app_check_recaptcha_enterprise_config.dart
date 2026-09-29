@@ -59,8 +59,8 @@ final class GoogleFirebaseAppCheckRecaptchaEnterpriseConfig extends Resource {
          argMap: {
            'app_id': appId,
            'site_key': siteKey,
-           if (tokenTtl != null) 'token_ttl': tokenTtl,
-           if (project != null) 'project': project,
+           'token_ttl': ?tokenTtl,
+           'project': ?project,
          },
        );
 

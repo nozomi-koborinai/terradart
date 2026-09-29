@@ -27,12 +27,12 @@ final class AwsNetworkmanagerConnection extends Resource {
          terraformType: tfType,
          argMap: {
            'connected_device_id': connectedDeviceId,
-           if (connectedLinkId != null) 'connected_link_id': connectedLinkId,
-           if (description != null) 'description': description,
+           'connected_link_id': ?connectedLinkId,
+           'description': ?description,
            'device_id': deviceId,
            'global_network_id': globalNetworkId,
-           if (linkId != null) 'link_id': linkId,
-           if (tags != null) 'tags': tags,
+           'link_id': ?linkId,
+           'tags': ?tags,
          },
        );
 

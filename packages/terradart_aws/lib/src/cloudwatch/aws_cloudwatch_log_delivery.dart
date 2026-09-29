@@ -28,12 +28,11 @@ final class AwsCloudwatchLogDelivery extends Resource {
          argMap: {
            'delivery_destination_arn': deliveryDestinationArn,
            'delivery_source_name': deliverySourceName,
-           if (fieldDelimiter != null) 'field_delimiter': fieldDelimiter,
-           if (recordFields != null) 'record_fields': recordFields,
-           if (region != null) 'region': region,
-           if (s3DeliveryConfiguration != null)
-             's3_delivery_configuration': s3DeliveryConfiguration,
-           if (tags != null) 'tags': tags,
+           'field_delimiter': ?fieldDelimiter,
+           'record_fields': ?recordFields,
+           'region': ?region,
+           's3_delivery_configuration': ?s3DeliveryConfiguration,
+           'tags': ?tags,
          },
        );
 

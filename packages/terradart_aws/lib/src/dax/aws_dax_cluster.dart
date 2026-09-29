@@ -28,9 +28,7 @@ final class DaxClusterServerSideEncryption {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_dax_cluster`.
@@ -62,26 +60,20 @@ final class AwsDaxCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZones != null)
-             'availability_zones': availabilityZones,
-           if (clusterEndpointEncryptionType != null)
-             'cluster_endpoint_encryption_type': clusterEndpointEncryptionType,
+           'availability_zones': ?availabilityZones,
+           'cluster_endpoint_encryption_type': ?clusterEndpointEncryptionType,
            'cluster_name': clusterName,
-           if (description != null) 'description': description,
+           'description': ?description,
            'iam_role_arn': iamRoleArn.encodeAs('arn'),
-           if (maintenanceWindow != null)
-             'maintenance_window': maintenanceWindow,
+           'maintenance_window': ?maintenanceWindow,
            'node_type': nodeType,
-           if (notificationTopicArn != null)
-             'notification_topic_arn': notificationTopicArn,
-           if (parameterGroupName != null)
-             'parameter_group_name': parameterGroupName,
-           if (region != null) 'region': region,
+           'notification_topic_arn': ?notificationTopicArn,
+           'parameter_group_name': ?parameterGroupName,
+           'region': ?region,
            'replication_factor': replicationFactor,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (subnetGroupName != null) 'subnet_group_name': subnetGroupName,
-           if (tags != null) 'tags': tags,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'subnet_group_name': ?subnetGroupName,
+           'tags': ?tags,
            if (serverSideEncryption != null)
              'server_side_encryption': TfArg.literal(
                serverSideEncryption.encode(),

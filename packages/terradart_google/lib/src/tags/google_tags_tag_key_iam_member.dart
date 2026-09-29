@@ -26,7 +26,7 @@ final class GoogleTagsTagKeyIamMember extends Resource {
            'tag_key': tagKey,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

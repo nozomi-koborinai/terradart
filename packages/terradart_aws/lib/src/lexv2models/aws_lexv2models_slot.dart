@@ -16,8 +16,7 @@ final class Lexv2modelsSlotMultipleValuesSetting {
   final TfArg<bool>? allowMultipleValues;
 
   Map<String, Object?> encode() => {
-    if (allowMultipleValues != null)
-      'allow_multiple_values': allowMultipleValues!.toTfJson(),
+    'allow_multiple_values': ?allowMultipleValues?.toTfJson(),
   };
 }
 
@@ -50,7 +49,7 @@ final class Lexv2modelsSlotSubSlotSetting {
   final List<Lexv2modelsSlotSubSlotSettingSlotSpecification>? slotSpecification;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     if (slotSpecification != null)
       'slot_specification': [for (final e in slotSpecification!) e.encode()],
   };
@@ -195,10 +194,9 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   promptAttemptsSpecification;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'max_retries': maxRetries.toTfJson(),
-    if (messageSelectionStrategy != null)
-      'message_selection_strategy': messageSelectionStrategy!.toTfJson(),
+    'message_selection_strategy': ?messageSelectionStrategy?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
     if (promptAttemptsSpecification != null)
@@ -313,8 +311,8 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -444,8 +442,8 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -528,7 +526,7 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   textInputSpecification;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'map_block_key': mapBlockKey.toTfJson(),
     if (allowedInputTypes != null)
       'allowed_input_types': [for (final e in allowedInputTypes!) e.encode()],
@@ -696,7 +694,7 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   waitingResponse;
 
   Map<String, Object?> encode() => {
-    if (active != null) 'active': active!.toTfJson(),
+    'active': ?active?.toTfJson(),
     if (continueResponse != null)
       'continue_response': [for (final e in continueResponse!) e.encode()],
     if (stillWaitingResponse != null)
@@ -725,7 +723,7 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -836,8 +834,8 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -967,8 +965,8 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -1042,7 +1040,7 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'frequency_in_seconds': frequencyInSeconds.toTfJson(),
     'timeout_in_seconds': timeoutInSeconds.toTfJson(),
     if (messageGroup != null)
@@ -1155,8 +1153,8 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -1286,8 +1284,8 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -1355,7 +1353,7 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -1466,8 +1464,8 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -1597,8 +1595,8 @@ final class Lexv2modelsSlotSubSlotSettingSlotSpecificationValueElicitationSettin
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -1765,10 +1763,9 @@ final class Lexv2modelsSlotValueElicitationSettingPromptSpecification {
   promptAttemptsSpecification;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'max_retries': maxRetries.toTfJson(),
-    if (messageSelectionStrategy != null)
-      'message_selection_strategy': messageSelectionStrategy!.toTfJson(),
+    'message_selection_strategy': ?messageSelectionStrategy?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
     if (promptAttemptsSpecification != null)
@@ -1883,8 +1880,8 @@ final class Lexv2modelsSlotValueElicitationSettingPromptSpecificationMessageGrou
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2014,8 +2011,8 @@ final class Lexv2modelsSlotValueElicitationSettingPromptSpecificationMessageGrou
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2098,7 +2095,7 @@ final class Lexv2modelsSlotValueElicitationSettingPromptSpecificationPromptAttem
   textInputSpecification;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'map_block_key': mapBlockKey.toTfJson(),
     if (allowedInputTypes != null)
       'allowed_input_types': [for (final e in allowedInputTypes!) e.encode()],
@@ -2281,7 +2278,7 @@ final class Lexv2modelsSlotValueElicitationSettingWaitAndContinueSpecification {
   waitingResponse;
 
   Map<String, Object?> encode() => {
-    if (active != null) 'active': active!.toTfJson(),
+    'active': ?active?.toTfJson(),
     if (continueResponse != null)
       'continue_response': [for (final e in continueResponse!) e.encode()],
     if (stillWaitingResponse != null)
@@ -2310,7 +2307,7 @@ final class Lexv2modelsSlotValueElicitationSettingWaitAndContinueSpecificationCo
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -2421,8 +2418,8 @@ final class Lexv2modelsSlotValueElicitationSettingWaitAndContinueSpecificationCo
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2552,8 +2549,8 @@ final class Lexv2modelsSlotValueElicitationSettingWaitAndContinueSpecificationCo
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2627,7 +2624,7 @@ final class Lexv2modelsSlotValueElicitationSettingWaitAndContinueSpecificationSt
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'frequency_in_seconds': frequencyInSeconds.toTfJson(),
     'timeout_in_seconds': timeoutInSeconds.toTfJson(),
     if (messageGroup != null)
@@ -2740,8 +2737,8 @@ final class Lexv2modelsSlotValueElicitationSettingWaitAndContinueSpecificationSt
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2871,8 +2868,8 @@ final class Lexv2modelsSlotValueElicitationSettingWaitAndContinueSpecificationSt
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2940,7 +2937,7 @@ final class Lexv2modelsSlotValueElicitationSettingWaitAndContinueSpecificationWa
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -3051,8 +3048,8 @@ final class Lexv2modelsSlotValueElicitationSettingWaitAndContinueSpecificationWa
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -3182,8 +3179,8 @@ final class Lexv2modelsSlotValueElicitationSettingWaitAndContinueSpecificationWa
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -3261,12 +3258,12 @@ final class AwsLexv2modelsSlot extends Resource {
          argMap: {
            'bot_id': botId,
            'bot_version': botVersion,
-           if (description != null) 'description': description,
+           'description': ?description,
            'intent_id': intentId,
            'locale_id': localeId,
            'name': name,
-           if (region != null) 'region': region,
-           if (slotTypeId != null) 'slot_type_id': slotTypeId,
+           'region': ?region,
+           'slot_type_id': ?slotTypeId,
            if (multipleValuesSetting != null)
              'multiple_values_setting': TfArg.literal([
                for (final e in multipleValuesSetting) e.encode(),

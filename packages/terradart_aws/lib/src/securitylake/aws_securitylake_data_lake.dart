@@ -31,8 +31,7 @@ final class SecuritylakeDataLakeConfiguration {
   replicationConfiguration;
 
   Map<String, Object?> encode() => {
-    if (encryptionConfiguration != null)
-      'encryption_configuration': encryptionConfiguration!.toTfJson(),
+    'encryption_configuration': ?encryptionConfiguration?.toTfJson(),
     'region': region.toTfJson(),
     if (lifecycleConfiguration != null)
       'lifecycle_configuration': [
@@ -78,7 +77,7 @@ final class SecuritylakeDataLakeConfigurationLifecycleConfigurationExpiration {
 
   final TfArg<num>? days;
 
-  Map<String, Object?> encode() => {if (days != null) 'days': days!.toTfJson()};
+  Map<String, Object?> encode() => {'days': ?days?.toTfJson()};
 }
 
 /// Typed helper for the `configuration.lifecycle_configuration.transition` block of
@@ -95,8 +94,8 @@ final class SecuritylakeDataLakeConfigurationLifecycleConfigurationTransition {
   final TfArg<String>? storageClass;
 
   Map<String, Object?> encode() => {
-    if (days != null) 'days': days!.toTfJson(),
-    if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
+    'days': ?days?.toTfJson(),
+    'storage_class': ?storageClass?.toTfJson(),
   };
 }
 
@@ -114,8 +113,8 @@ final class SecuritylakeDataLakeConfigurationReplicationConfiguration {
   final RefTo<AwsIamRole>? roleArn;
 
   Map<String, Object?> encode() => {
-    if (regions != null) 'regions': regions!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
+    'regions': ?regions?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -137,8 +136,8 @@ final class AwsSecuritylakeDataLake extends Resource {
          terraformType: tfType,
          argMap: {
            'meta_store_manager_role_arn': metaStoreManagerRoleArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (configuration != null)
              'configuration': TfArg.literal([
                for (final e in configuration) e.encode(),

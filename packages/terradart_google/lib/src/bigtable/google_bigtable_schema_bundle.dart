@@ -63,12 +63,12 @@ final class GoogleBigtableSchemaBundle extends Resource {
          terraformType: tfType,
          argMap: {
            'schema_bundle_id': schemaBundleId,
-           if (instance != null) 'instance': instance,
-           if (table != null) 'table': table,
+           'instance': ?instance,
+           'table': ?table,
            'proto_schema': TfArg.literal([protoSchema.toArgMap()]),
-           if (ignoreWarnings != null) 'ignore_warnings': ignoreWarnings,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'ignore_warnings': ?ignoreWarnings,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

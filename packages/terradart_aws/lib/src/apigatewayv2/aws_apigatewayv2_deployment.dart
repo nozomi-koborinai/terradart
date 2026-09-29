@@ -24,9 +24,9 @@ final class AwsApigatewayv2Deployment extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (triggers != null) 'triggers': triggers,
+           'description': ?description,
+           'region': ?region,
+           'triggers': ?triggers,
          },
        );
 

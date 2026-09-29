@@ -29,8 +29,8 @@ final class CloudflareLeakedCredentialCheckRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (password != null) 'password': password,
-           if (username != null) 'username': username,
+           'password': ?password,
+           'username': ?username,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

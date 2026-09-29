@@ -116,10 +116,10 @@ final class AwsBillingView extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (sourceViews != null) 'source_views': sourceViews,
-           if (tags != null) 'tags': tags,
+           'source_views': ?sourceViews,
+           'tags': ?tags,
            if (dataFilterExpression != null)
              'data_filter_expression': TfArg.literal([
                for (final e in dataFilterExpression) e.encode(),

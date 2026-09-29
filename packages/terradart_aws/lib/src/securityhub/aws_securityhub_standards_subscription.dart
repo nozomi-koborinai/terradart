@@ -20,10 +20,7 @@ final class AwsSecurityhubStandardsSubscription extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'standards_arn': standardsArn,
-         },
+         argMap: {'region': ?region, 'standards_arn': standardsArn},
        );
 
   @override

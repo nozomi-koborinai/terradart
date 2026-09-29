@@ -34,13 +34,13 @@ final class GoogleServiceUsageConsumerQuotaOverride extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (dimensions != null) 'dimensions': dimensions,
-           if (force != null) 'force': force,
+           'deletion_policy': ?deletionPolicy,
+           'dimensions': ?dimensions,
+           'force': ?force,
            'limit': limit,
            'metric': metric,
            'override_value': overrideValue,
-           if (project != null) 'project': project,
+           'project': ?project,
            'service': service,
          },
        );

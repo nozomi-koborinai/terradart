@@ -36,13 +36,13 @@ final class DataAwsCodecatalystDevEnvironment extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (alias != null) 'alias': alias,
-           if (creatorId != null) 'creator_id': creatorId,
+           'alias': ?alias,
+           'creator_id': ?creatorId,
            'env_id': envId,
            'project_name': projectName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'space_name': spaceName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (repositories != null)
              'repositories': TfArg.literal([
                for (final e in repositories) e.encode(),

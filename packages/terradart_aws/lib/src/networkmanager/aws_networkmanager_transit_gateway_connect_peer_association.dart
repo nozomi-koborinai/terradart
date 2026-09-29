@@ -28,7 +28,7 @@ final class AwsNetworkmanagerTransitGatewayConnectPeerAssociation
          argMap: {
            'device_id': deviceId,
            'global_network_id': globalNetworkId,
-           if (linkId != null) 'link_id': linkId,
+           'link_id': ?linkId,
            'transit_gateway_connect_peer_arn': transitGatewayConnectPeerArn,
          },
        );

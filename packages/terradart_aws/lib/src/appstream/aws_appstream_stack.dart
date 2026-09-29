@@ -22,7 +22,7 @@ final class AppstreamStackAccessEndpoints {
 
   Map<String, Object?> encode() => {
     'endpoint_type': endpointType.toTfJson(),
-    if (vpceId != null) 'vpce_id': vpceId!.toTfJson(),
+    'vpce_id': ?vpceId?.toTfJson(),
   };
 }
 
@@ -50,7 +50,7 @@ final class AppstreamStackApplicationSettings {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (settingsGroup != null) 'settings_group': settingsGroup!.toTfJson(),
+    'settings_group': ?settingsGroup?.toTfJson(),
   };
 }
 
@@ -72,9 +72,8 @@ final class AppstreamStackStorageConnectors {
 
   Map<String, Object?> encode() => {
     'connector_type': connectorType.toTfJson(),
-    if (domains != null) 'domains': domains!.toTfJson(),
-    if (resourceIdentifier != null)
-      'resource_identifier': resourceIdentifier!.toTfJson(),
+    'domains': ?domains?.toTfJson(),
+    'resource_identifier': ?resourceIdentifier?.toTfJson(),
   };
 }
 
@@ -99,8 +98,7 @@ final class AppstreamStackStreamingExperienceSettings {
   preferredProtocol;
 
   Map<String, Object?> encode() => {
-    if (preferredProtocol != null)
-      'preferred_protocol': preferredProtocol!.toTfJson(),
+    'preferred_protocol': ?preferredProtocol?.toTfJson(),
   };
 }
 
@@ -188,14 +186,14 @@ final class AwsAppstreamStack extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
-           if (embedHostDomains != null) 'embed_host_domains': embedHostDomains,
-           if (feedbackUrl != null) 'feedback_url': feedbackUrl,
+           'description': ?description,
+           'display_name': ?displayName,
+           'embed_host_domains': ?embedHostDomains,
+           'feedback_url': ?feedbackUrl,
            'name': name,
-           if (redirectUrl != null) 'redirect_url': redirectUrl,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'redirect_url': ?redirectUrl,
+           'region': ?region,
+           'tags': ?tags,
            if (accessEndpoints != null)
              'access_endpoints': TfArg.literal([
                for (final e in accessEndpoints) e.encode(),

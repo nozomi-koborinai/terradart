@@ -50,12 +50,12 @@ final class AwsServicecatalogConstraint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
-           if (description != null) 'description': description,
+           'accept_language': ?acceptLanguage,
+           'description': ?description,
            'parameters': parameters,
            'portfolio_id': portfolioId,
            'product_id': productId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'type': type,
          },
        );

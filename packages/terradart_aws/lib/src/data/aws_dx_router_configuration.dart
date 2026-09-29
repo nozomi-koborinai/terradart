@@ -20,7 +20,7 @@ final class DataAwsDxRouterConfiguration extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'router_type_identifier': routerTypeIdentifier,
            'virtual_interface_id': virtualInterfaceId,
          },

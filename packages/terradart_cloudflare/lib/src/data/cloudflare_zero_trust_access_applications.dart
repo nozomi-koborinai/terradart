@@ -29,14 +29,14 @@ final class DataCloudflareZeroTrustAccessApplications extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (aud != null) 'aud': aud,
-           if (domain != null) 'domain': domain,
-           if (exact != null) 'exact': exact,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
-           if (search != null) 'search': search,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'aud': ?aud,
+           'domain': ?domain,
+           'exact': ?exact,
+           'max_items': ?maxItems,
+           'name': ?name,
+           'search': ?search,
+           'zone_id': ?zoneId,
          },
        );
 

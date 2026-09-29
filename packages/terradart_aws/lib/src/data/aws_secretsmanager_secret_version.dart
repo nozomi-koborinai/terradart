@@ -25,10 +25,10 @@ final class DataAwsSecretsmanagerSecretVersion extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'secret_id': secretId,
-           if (versionId != null) 'version_id': versionId,
-           if (versionStage != null) 'version_stage': versionStage,
+           'version_id': ?versionId,
+           'version_stage': ?versionStage,
          },
        );
 

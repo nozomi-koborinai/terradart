@@ -28,11 +28,11 @@ final class GoogleObservabilityBucket extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket_id': bucketId,
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
+           'description': ?description,
+           'display_name': ?displayName,
            'location': location,
-           if (project != null) 'project': project,
-           if (cmekSettings != null) 'cmek_settings': cmekSettings,
+           'project': ?project,
+           'cmek_settings': ?cmekSettings,
          },
        );
 

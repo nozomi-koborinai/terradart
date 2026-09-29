@@ -96,10 +96,7 @@ final class GoogleMonitoringDashboard extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'dashboard_json': dashboardJson,
-           if (project != null) 'project': project,
-         },
+         argMap: {'dashboard_json': dashboardJson, 'project': ?project},
        );
 
   @override

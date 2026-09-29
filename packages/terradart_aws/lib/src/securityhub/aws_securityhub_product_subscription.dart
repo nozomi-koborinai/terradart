@@ -20,10 +20,7 @@ final class AwsSecurityhubProductSubscription extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'product_arn': productArn,
-           if (region != null) 'region': region,
-         },
+         argMap: {'product_arn': productArn, 'region': ?region},
        );
 
   @override

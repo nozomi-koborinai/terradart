@@ -31,7 +31,7 @@ final class GoogleBigtableTableIamPolicy extends Resource {
            'instance_name': instanceName,
            'table': table,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

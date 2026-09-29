@@ -57,17 +57,14 @@ final class AwsVpclatticeResourceGateway extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (ipv4AddressesPerEni != null)
-             'ipv4_addresses_per_eni': ipv4AddressesPerEni,
+           'ip_address_type': ?ipAddressType,
+           'ipv4_addresses_per_eni': ?ipv4AddressesPerEni,
            'name': name,
-           if (region != null) 'region': region,
-           if (resourceConfigDnsResolution != null)
-             'resource_config_dns_resolution': resourceConfigDnsResolution,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
+           'region': ?region,
+           'resource_config_dns_resolution': ?resourceConfigDnsResolution,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

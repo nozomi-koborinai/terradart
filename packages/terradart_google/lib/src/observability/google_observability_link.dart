@@ -31,12 +31,12 @@ final class GoogleObservabilityLink extends Resource {
          argMap: {
            'bucket': bucket,
            'dataset': dataset,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'display_name': ?displayName,
            'link_id': linkId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

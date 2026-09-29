@@ -79,7 +79,7 @@ final class AwsRoute53ZoneAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'vpc_id': vpcId.encodeAs('id'),
-           if (vpcRegion != null) 'vpc_region': vpcRegion,
+           'vpc_region': ?vpcRegion,
            'zone_id': zoneId,
          },
        );

@@ -35,8 +35,8 @@ final class GoogleBinaryAuthorizationAttestorIamBinding extends Resource {
            'attestor': attestor,
            'role': role,
            'members': members,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

@@ -107,14 +107,13 @@ final class AwsCurReportDefinition extends Resource {
            ]),
            'compression': compression,
            'format': format,
-           if (refreshClosedReports != null)
-             'refresh_closed_reports': refreshClosedReports,
+           'refresh_closed_reports': ?refreshClosedReports,
            'report_name': reportName,
-           if (reportVersioning != null) 'report_versioning': reportVersioning,
+           'report_versioning': ?reportVersioning,
            's3_bucket': s3Bucket.encodeAs('id'),
            's3_prefix': s3Prefix,
            's3_region': s3Region,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'time_unit': timeUnit,
          },
        );

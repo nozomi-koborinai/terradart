@@ -44,18 +44,15 @@ final class AwsChatbotSlackChannelConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'configuration_name': configurationName,
-           if (guardrailPolicyArns != null)
-             'guardrail_policy_arns': guardrailPolicyArns,
+           'guardrail_policy_arns': ?guardrailPolicyArns,
            'iam_role_arn': iamRoleArn.encodeAs('arn'),
-           if (loggingLevel != null) 'logging_level': loggingLevel,
-           if (region != null) 'region': region,
+           'logging_level': ?loggingLevel,
+           'region': ?region,
            'slack_channel_id': slackChannelId,
            'slack_team_id': slackTeamId,
-           if (snsTopicArns != null)
-             'sns_topic_arns': snsTopicArns.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
-           if (userAuthorizationRequired != null)
-             'user_authorization_required': userAuthorizationRequired,
+           'sns_topic_arns': ?snsTopicArns?.encodeAs('arn'),
+           'tags': ?tags,
+           'user_authorization_required': ?userAuthorizationRequired,
          },
        );
 

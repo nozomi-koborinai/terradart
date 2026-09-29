@@ -79,7 +79,7 @@ final class EcsTaskDefinitionPlacementConstraints {
   final TfArg<EcsTaskDefinitionPlacementConstraintsType> type;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -111,8 +111,8 @@ final class EcsTaskDefinitionProxyConfiguration {
 
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -140,10 +140,8 @@ final class EcsTaskDefinitionRuntimePlatform {
   operatingSystemFamily;
 
   Map<String, Object?> encode() => {
-    if (cpuArchitecture != null)
-      'cpu_architecture': cpuArchitecture!.toTfJson(),
-    if (operatingSystemFamily != null)
-      'operating_system_family': operatingSystemFamily!.toTfJson(),
+    'cpu_architecture': ?cpuArchitecture?.toTfJson(),
+    'operating_system_family': ?operatingSystemFamily?.toTfJson(),
   };
 }
 
@@ -210,19 +208,14 @@ final class EcsTaskDefinitionVolume {
   s3filesVolumeConfiguration;
 
   Map<String, Object?> encode() => {
-    if (configureAtLaunch != null)
-      'configure_at_launch': configureAtLaunch!.toTfJson(),
-    if (hostPath != null) 'host_path': hostPath!.toTfJson(),
+    'configure_at_launch': ?configureAtLaunch?.toTfJson(),
+    'host_path': ?hostPath?.toTfJson(),
     'name': name.toTfJson(),
-    if (dockerVolumeConfiguration != null)
-      'docker_volume_configuration': dockerVolumeConfiguration!.encode(),
-    if (efsVolumeConfiguration != null)
-      'efs_volume_configuration': efsVolumeConfiguration!.encode(),
-    if (fsxWindowsFileServerVolumeConfiguration != null)
-      'fsx_windows_file_server_volume_configuration':
-          fsxWindowsFileServerVolumeConfiguration!.encode(),
-    if (s3filesVolumeConfiguration != null)
-      's3files_volume_configuration': s3filesVolumeConfiguration!.encode(),
+    'docker_volume_configuration': ?dockerVolumeConfiguration?.encode(),
+    'efs_volume_configuration': ?efsVolumeConfiguration?.encode(),
+    'fsx_windows_file_server_volume_configuration':
+        ?fsxWindowsFileServerVolumeConfiguration?.encode(),
+    's3files_volume_configuration': ?s3filesVolumeConfiguration?.encode(),
   };
 }
 
@@ -249,11 +242,11 @@ final class EcsTaskDefinitionVolumeDockerVolumeConfiguration {
   final TfArg<EcsTaskDefinitionVolumeDockerVolumeConfigurationScope>? scope;
 
   Map<String, Object?> encode() => {
-    if (autoprovision != null) 'autoprovision': autoprovision!.toTfJson(),
-    if (driver != null) 'driver': driver!.toTfJson(),
-    if (driverOpts != null) 'driver_opts': driverOpts!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
+    'autoprovision': ?autoprovision?.toTfJson(),
+    'driver': ?driver?.toTfJson(),
+    'driver_opts': ?driverOpts?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
   };
 }
 
@@ -296,13 +289,10 @@ final class EcsTaskDefinitionVolumeEfsVolumeConfiguration {
 
   Map<String, Object?> encode() => {
     'file_system_id': fileSystemId.toTfJson(),
-    if (rootDirectory != null) 'root_directory': rootDirectory!.toTfJson(),
-    if (transitEncryption != null)
-      'transit_encryption': transitEncryption!.toTfJson(),
-    if (transitEncryptionPort != null)
-      'transit_encryption_port': transitEncryptionPort!.toTfJson(),
-    if (authorizationConfig != null)
-      'authorization_config': authorizationConfig!.encode(),
+    'root_directory': ?rootDirectory?.toTfJson(),
+    'transit_encryption': ?transitEncryption?.toTfJson(),
+    'transit_encryption_port': ?transitEncryptionPort?.toTfJson(),
+    'authorization_config': ?authorizationConfig?.encode(),
   };
 }
 
@@ -336,8 +326,8 @@ final class EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfig {
   iam;
 
   Map<String, Object?> encode() => {
-    if (accessPointId != null) 'access_point_id': accessPointId!.toTfJson(),
-    if (iam != null) 'iam': iam!.toTfJson(),
+    'access_point_id': ?accessPointId?.toTfJson(),
+    'iam': ?iam?.toTfJson(),
   };
 }
 
@@ -417,11 +407,10 @@ final class EcsTaskDefinitionVolumeS3filesVolumeConfiguration {
   final TfArg<num>? transitEncryptionPort;
 
   Map<String, Object?> encode() => {
-    if (accessPointArn != null) 'access_point_arn': accessPointArn!.toTfJson(),
+    'access_point_arn': ?accessPointArn?.toTfJson(),
     'file_system_arn': fileSystemArn.toTfJson(),
-    if (rootDirectory != null) 'root_directory': rootDirectory!.toTfJson(),
-    if (transitEncryptionPort != null)
-      'transit_encryption_port': transitEncryptionPort!.toTfJson(),
+    'root_directory': ?rootDirectory?.toTfJson(),
+    'transit_encryption_port': ?transitEncryptionPort?.toTfJson(),
   };
 }
 
@@ -460,26 +449,23 @@ final class AwsEcsTaskDefinition extends Resource {
          terraformType: tfType,
          argMap: {
            'container_definitions': containerDefinitions,
-           if (cpu != null) 'cpu': cpu,
-           if (enableFaultInjection != null)
-             'enable_fault_injection': enableFaultInjection,
-           if (executionRoleArn != null)
-             'execution_role_arn': executionRoleArn.encodeAs('arn'),
+           'cpu': ?cpu,
+           'enable_fault_injection': ?enableFaultInjection,
+           'execution_role_arn': ?executionRoleArn?.encodeAs('arn'),
            'family': family,
-           if (ipcMode != null) 'ipc_mode': ipcMode,
-           if (memory != null) 'memory': memory,
-           if (networkMode != null) 'network_mode': networkMode,
-           if (pidMode != null) 'pid_mode': pidMode,
-           if (region != null) 'region': region,
+           'ipc_mode': ?ipcMode,
+           'memory': ?memory,
+           'network_mode': ?networkMode,
+           'pid_mode': ?pidMode,
+           'region': ?region,
            if (requiresCompatibilities != null)
              'requires_compatibilities': TfArg.literal([
                for (final e in requiresCompatibilities) e.toTfJson(),
              ]),
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (tags != null) 'tags': tags,
-           if (taskRoleArn != null)
-             'task_role_arn': taskRoleArn.encodeAs('arn'),
-           if (trackLatest != null) 'track_latest': trackLatest,
+           'skip_destroy': ?skipDestroy,
+           'tags': ?tags,
+           'task_role_arn': ?taskRoleArn?.encodeAs('arn'),
+           'track_latest': ?trackLatest,
            if (ephemeralStorage != null)
              'ephemeral_storage': TfArg.literal(ephemeralStorage.encode()),
            if (placementConstraints != null)

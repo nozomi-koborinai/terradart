@@ -239,20 +239,18 @@ final class AwsRoute extends Resource {
          terraformType: tfType,
          argMap: {
            ...?carrierIpv6?.argMap,
-           if (coreNetworkArn != null) 'core_network_arn': coreNetworkArn,
+           'core_network_arn': ?coreNetworkArn,
            ...?ipv4Egress?.argMap,
            ...?prefixListEndpoint?.argMap,
-           if (gatewayId != null) 'gateway_id': gatewayId,
-           if (localGatewayId != null) 'local_gateway_id': localGatewayId,
-           if (natGatewayId != null) 'nat_gateway_id': natGatewayId,
-           if (networkInterfaceId != null)
-             'network_interface_id': networkInterfaceId,
-           if (odbNetworkArn != null) 'odb_network_arn': odbNetworkArn,
-           if (region != null) 'region': region,
+           'gateway_id': ?gatewayId,
+           'local_gateway_id': ?localGatewayId,
+           'nat_gateway_id': ?natGatewayId,
+           'network_interface_id': ?networkInterfaceId,
+           'odb_network_arn': ?odbNetworkArn,
+           'region': ?region,
            'route_table_id': routeTableId,
-           if (transitGatewayId != null) 'transit_gateway_id': transitGatewayId,
-           if (vpcPeeringConnectionId != null)
-             'vpc_peering_connection_id': vpcPeeringConnectionId,
+           'transit_gateway_id': ?transitGatewayId,
+           'vpc_peering_connection_id': ?vpcPeeringConnectionId,
          },
        );
 

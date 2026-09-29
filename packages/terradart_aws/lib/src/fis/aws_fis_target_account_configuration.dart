@@ -27,10 +27,10 @@ final class AwsFisTargetAccountConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (description != null) 'description': description,
+           'description': ?description,
            'experiment_template_id': experimentTemplateId,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
          },
        );
 

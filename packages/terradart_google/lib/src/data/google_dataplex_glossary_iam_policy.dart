@@ -25,8 +25,8 @@ final class DataGoogleDataplexGlossaryIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'glossary_id': glossaryId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

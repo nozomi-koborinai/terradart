@@ -28,10 +28,10 @@ final class AwsWorkspaceswebNetworkSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_group_ids': securityGroupIds.encodeAs('id'),
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

@@ -25,7 +25,7 @@ final class AwsVpcSecurityGroupVpcAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_group_id': securityGroupId.encodeAs('id'),
            'vpc_id': vpcId.encodeAs('id'),
          },

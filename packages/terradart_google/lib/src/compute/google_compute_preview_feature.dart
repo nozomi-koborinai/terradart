@@ -25,9 +25,7 @@ final class ComputePreviewFeatureRolloutOperation {
 
   final ComputePreviewFeatureRolloutOperationRolloutInput? rolloutInput;
 
-  Map<String, Object?> encode() => {
-    if (rolloutInput != null) 'rollout_input': rolloutInput!.encode(),
-  };
+  Map<String, Object?> encode() => {'rollout_input': ?rolloutInput?.encode()};
 }
 
 /// Typed helper for the `rollout_operation.rollout_input` block of
@@ -96,7 +94,7 @@ final class GoogleComputePreviewFeature extends Resource {
            'activation_status': activationStatus,
            if (rolloutOperation != null)
              'rollout_operation': TfArg.literal(rolloutOperation.encode()),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

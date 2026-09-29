@@ -19,11 +19,7 @@ final class DataAwsOutpostsAsset extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'arn': arn,
-           'asset_id': assetId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'arn': arn, 'asset_id': assetId, 'region': ?region},
        );
 
   @override

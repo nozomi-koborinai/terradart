@@ -37,16 +37,15 @@ final class AwsPinpointApnsSandboxChannel extends Resource {
          terraformType: tfType,
          argMap: {
            'application_id': applicationId,
-           if (bundleId != null) 'bundle_id': bundleId,
-           if (certificate != null) 'certificate': certificate,
-           if (defaultAuthenticationMethod != null)
-             'default_authentication_method': defaultAuthenticationMethod,
-           if (enabled != null) 'enabled': enabled,
-           if (privateKey != null) 'private_key': privateKey,
-           if (region != null) 'region': region,
-           if (teamId != null) 'team_id': teamId,
-           if (tokenKey != null) 'token_key': tokenKey,
-           if (tokenKeyId != null) 'token_key_id': tokenKeyId,
+           'bundle_id': ?bundleId,
+           'certificate': ?certificate,
+           'default_authentication_method': ?defaultAuthenticationMethod,
+           'enabled': ?enabled,
+           'private_key': ?privateKey,
+           'region': ?region,
+           'team_id': ?teamId,
+           'token_key': ?tokenKey,
+           'token_key_id': ?tokenKeyId,
          },
        );
 

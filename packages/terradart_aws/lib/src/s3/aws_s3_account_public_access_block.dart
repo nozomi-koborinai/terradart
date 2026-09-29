@@ -24,13 +24,11 @@ final class AwsS3AccountPublicAccessBlock extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (blockPublicAcls != null) 'block_public_acls': blockPublicAcls,
-           if (blockPublicPolicy != null)
-             'block_public_policy': blockPublicPolicy,
-           if (ignorePublicAcls != null) 'ignore_public_acls': ignorePublicAcls,
-           if (restrictPublicBuckets != null)
-             'restrict_public_buckets': restrictPublicBuckets,
+           'account_id': ?accountId,
+           'block_public_acls': ?blockPublicAcls,
+           'block_public_policy': ?blockPublicPolicy,
+           'ignore_public_acls': ?ignorePublicAcls,
+           'restrict_public_buckets': ?restrictPublicBuckets,
          },
        );
 

@@ -32,8 +32,8 @@ final class GoogleIamWorkforcePoolIamBinding extends Resource {
            'workforce_pool_id': workforcePoolId,
            'role': role,
            'members': members,
-           if (location != null) 'location': location,
-           if (condition != null) 'condition': condition,
+           'location': ?location,
+           'condition': ?condition,
          },
        );
 

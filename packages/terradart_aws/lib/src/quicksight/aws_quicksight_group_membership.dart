@@ -24,11 +24,11 @@ final class AwsQuicksightGroupMembership extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'group_name': groupName,
            'member_name': memberName,
-           if (namespace != null) 'namespace': namespace,
-           if (region != null) 'region': region,
+           'namespace': ?namespace,
+           'region': ?region,
          },
        );
 

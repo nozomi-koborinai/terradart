@@ -22,9 +22,9 @@ final class AwsApiGatewayClientCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

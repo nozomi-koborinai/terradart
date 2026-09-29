@@ -31,8 +31,8 @@ final class GoogleApiGatewayGatewayIamPolicy extends Resource {
          argMap: {
            'gateway': gateway,
            'policy_data': policyData,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

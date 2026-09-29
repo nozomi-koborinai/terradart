@@ -25,9 +25,9 @@ final class DataGoogleVertexAiReasoningEngineQuery extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (classMethod != null) 'class_method': classMethod,
-           if (input != null) 'input': input,
-           if (project != null) 'project': project,
+           'class_method': ?classMethod,
+           'input': ?input,
+           'project': ?project,
            'reasoning_engine_id': reasoningEngineId,
            'region': region,
          },

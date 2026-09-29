@@ -25,8 +25,8 @@ final class DataGoogleDataplexDataProductIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'data_product_id': dataProductId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

@@ -43,8 +43,8 @@ final class AwsS3controlMultiRegionAccessPointPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (region != null) 'region': region,
+           'account_id': ?accountId,
+           'region': ?region,
            'details': TfArg.literal(details.encode()),
          },
        );

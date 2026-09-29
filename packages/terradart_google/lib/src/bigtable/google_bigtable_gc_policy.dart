@@ -100,11 +100,11 @@ final class GoogleBigtableGcPolicy extends Resource {
            'table': table,
            'column_family': columnFamily,
            policy.blockKey: TfArg.literal([policy.encode()]),
-           if (gcRules != null) 'gc_rules': gcRules,
-           if (mode != null) 'mode': mode,
-           if (ignoreWarnings != null) 'ignore_warnings': ignoreWarnings,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'gc_rules': ?gcRules,
+           'mode': ?mode,
+           'ignore_warnings': ?ignoreWarnings,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

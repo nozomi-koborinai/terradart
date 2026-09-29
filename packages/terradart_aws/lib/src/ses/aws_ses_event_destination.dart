@@ -217,12 +217,12 @@ final class AwsSesEventDestination extends Resource {
          terraformType: tfType,
          argMap: {
            'configuration_set_name': configurationSetName,
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'matching_types': TfArg.literal([
              for (final e in matchingTypes) e.toTfJson(),
            ]),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            ...?destination?.argMap,
          },
        );

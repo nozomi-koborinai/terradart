@@ -155,12 +155,11 @@ final class AwsBedrockagentcoreApiKeyCredentialProvider extends Resource {
          terraformType: tfType,
          argMap: {
            ...apiKey.argMap,
-           if (apiKeySecretSource != null)
-             'api_key_secret_source': apiKeySecretSource,
-           if (apiKeyWoVersion != null) 'api_key_wo_version': apiKeyWoVersion,
+           'api_key_secret_source': ?apiKeySecretSource,
+           'api_key_wo_version': ?apiKeyWoVersion,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

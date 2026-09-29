@@ -52,11 +52,11 @@ final class GoogleDiscoveryEngineCmekConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'cmek_config_id': cmekConfigId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'kms_key': kmsKey.encodeAs('id'),
            'location': location,
-           if (project != null) 'project': project,
-           if (setDefault != null) 'set_default': setDefault,
+           'project': ?project,
+           'set_default': ?setDefault,
            if (singleRegionKeys != null)
              'single_region_keys': TfArg.literal([
                for (final e in singleRegionKeys) e.encode(),

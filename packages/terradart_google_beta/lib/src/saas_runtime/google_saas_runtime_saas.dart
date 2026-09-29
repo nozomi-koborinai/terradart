@@ -15,7 +15,7 @@ final class SaasRuntimeSaasLocations {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Factory wrapper for `google_saas_runtime_saas`.
@@ -43,11 +43,11 @@ final class GoogleSaasRuntimeSaas extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'saas_id': saasId,
            if (locations != null)
              'locations': TfArg.literal([

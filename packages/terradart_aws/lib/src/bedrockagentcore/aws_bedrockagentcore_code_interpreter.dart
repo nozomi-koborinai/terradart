@@ -130,12 +130,11 @@ final class AwsBedrockagentcoreCodeInterpreter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (executionRoleArn != null)
-             'execution_role_arn': executionRoleArn.encodeAs('arn'),
+           'description': ?description,
+           'execution_role_arn': ?executionRoleArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (certificate != null)
              'certificate': TfArg.literal([
                for (final e in certificate) e.encode(),

@@ -58,13 +58,13 @@ final class GoogleComputeHaVpnGateway extends Resource {
          argMap: {
            'name': name,
            'network': network.encodeAs('id'),
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
-           if (gatewayIpVersion != null) 'gateway_ip_version': gatewayIpVersion,
-           if (stackType != null) 'stack_type': stackType,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'description': ?description,
+           'gateway_ip_version': ?gatewayIpVersion,
+           'stack_type': ?stackType,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

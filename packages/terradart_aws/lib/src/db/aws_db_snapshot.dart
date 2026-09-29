@@ -26,9 +26,9 @@ final class AwsDbSnapshot extends Resource {
          argMap: {
            'db_instance_identifier': dbInstanceIdentifier,
            'db_snapshot_identifier': dbSnapshotIdentifier,
-           if (region != null) 'region': region,
-           if (sharedAccounts != null) 'shared_accounts': sharedAccounts,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'shared_accounts': ?sharedAccounts,
+           'tags': ?tags,
          },
        );
 

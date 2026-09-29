@@ -25,12 +25,12 @@ final class GoogleEventarcPipelineIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
+           'location': ?location,
            'member': member,
            'pipeline_id': pipelineId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'role': role,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

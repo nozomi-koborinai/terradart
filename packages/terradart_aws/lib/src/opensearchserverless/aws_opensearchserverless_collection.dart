@@ -28,16 +28,15 @@ final class AwsOpensearchserverlessCollection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (collectionGroupName != null)
-             'collection_group_name': collectionGroupName,
-           if (description != null) 'description': description,
-           if (encryptionConfig != null) 'encryption_config': encryptionConfig,
+           'collection_group_name': ?collectionGroupName,
+           'description': ?description,
+           'encryption_config': ?encryptionConfig,
            'name': name,
-           if (region != null) 'region': region,
-           if (standbyReplicas != null) 'standby_replicas': standbyReplicas,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
-           if (vectorOptions != null) 'vector_options': vectorOptions,
+           'region': ?region,
+           'standby_replicas': ?standbyReplicas,
+           'tags': ?tags,
+           'type': ?type,
+           'vector_options': ?vectorOptions,
          },
        );
 

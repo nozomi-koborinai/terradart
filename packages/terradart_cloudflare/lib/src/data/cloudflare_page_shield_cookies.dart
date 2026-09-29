@@ -23,7 +23,7 @@ final class DataCloudflarePageShieldCookies extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'cookie_id': cookieId, if (zoneId != null) 'zone_id': zoneId},
+         argMap: {'cookie_id': cookieId, 'zone_id': ?zoneId},
        );
 
   @override

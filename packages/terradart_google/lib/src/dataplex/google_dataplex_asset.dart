@@ -34,13 +34,11 @@ final class DataplexAssetDiscoverySpec {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (excludePatterns != null)
-      'exclude_patterns': excludePatterns!.toTfJson(),
-    if (includePatterns != null)
-      'include_patterns': includePatterns!.toTfJson(),
-    if (schedule != null) 'schedule': schedule!.toTfJson(),
-    if (csvOptions != null) 'csv_options': csvOptions!.encode(),
-    if (jsonOptions != null) 'json_options': jsonOptions!.encode(),
+    'exclude_patterns': ?excludePatterns?.toTfJson(),
+    'include_patterns': ?includePatterns?.toTfJson(),
+    'schedule': ?schedule?.toTfJson(),
+    'csv_options': ?csvOptions?.encode(),
+    'json_options': ?jsonOptions?.encode(),
   };
 }
 
@@ -64,11 +62,10 @@ final class DataplexAssetDiscoverySpecCsvOptions {
   final TfArg<num>? headerRows;
 
   Map<String, Object?> encode() => {
-    if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
-    if (disableTypeInference != null)
-      'disable_type_inference': disableTypeInference!.toTfJson(),
-    if (encoding != null) 'encoding': encoding!.toTfJson(),
-    if (headerRows != null) 'header_rows': headerRows!.toTfJson(),
+    'delimiter': ?delimiter?.toTfJson(),
+    'disable_type_inference': ?disableTypeInference?.toTfJson(),
+    'encoding': ?encoding?.toTfJson(),
+    'header_rows': ?headerRows?.toTfJson(),
   };
 }
 
@@ -86,9 +83,8 @@ final class DataplexAssetDiscoverySpecJsonOptions {
   final TfArg<String>? encoding;
 
   Map<String, Object?> encode() => {
-    if (disableTypeInference != null)
-      'disable_type_inference': disableTypeInference!.toTfJson(),
-    if (encoding != null) 'encoding': encoding!.toTfJson(),
+    'disable_type_inference': ?disableTypeInference?.toTfJson(),
+    'encoding': ?encoding?.toTfJson(),
   };
 }
 
@@ -109,8 +105,8 @@ final class DataplexAssetResourceSpec {
   final TfArg<DataplexAssetResourceSpecType> type;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (readAccessMode != null) 'read_access_mode': readAccessMode!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'read_access_mode': ?readAccessMode?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -163,13 +159,13 @@ final class GoogleDataplexAsset extends Resource {
            'dataplex_zone': dataplexZone,
            'lake': lake,
            'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
+           'display_name': ?displayName,
+           'description': ?description,
            'discovery_spec': TfArg.literal(discoverySpec.encode()),
            'resource_spec': TfArg.literal(resourceSpec.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

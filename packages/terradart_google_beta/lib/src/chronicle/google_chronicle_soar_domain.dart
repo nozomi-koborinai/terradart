@@ -30,12 +30,12 @@ final class GoogleChronicleSoarDomain extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
            'environments_json': environmentsJson,
            'instance': instance,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

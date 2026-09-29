@@ -20,11 +20,7 @@ final class DataAwsElasticsearchDomain extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'domain_name': domainName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'domain_name': domainName, 'region': ?region, 'tags': ?tags},
        );
 
   @override

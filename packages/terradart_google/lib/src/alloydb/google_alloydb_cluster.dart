@@ -189,11 +189,10 @@ final class GoogleAlloydbCluster extends Resource {
              'maintenance_update_policy': TfArg.literal([
                maintenanceUpdatePolicy.toArgMap(),
              ]),
-           if (clusterType != null) 'cluster_type': clusterType,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
+           'cluster_type': ?clusterType,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'deletion_protection': ?deletionProtection,
          },
        );
 

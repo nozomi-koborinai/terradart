@@ -63,9 +63,9 @@ final class GoogleMigrationCenterImportDataFile extends Resource {
            'import_job': importJob,
            'import_data_file_id': importDataFileId,
            'format': format,
-           if (displayName != null) 'display_name': displayName,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

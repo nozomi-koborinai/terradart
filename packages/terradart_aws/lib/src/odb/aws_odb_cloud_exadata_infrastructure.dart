@@ -45,15 +45,14 @@ final class OdbCloudExadataInfrastructureMaintenanceWindow {
 
   Map<String, Object?> encode() => {
     'custom_action_timeout_in_mins': customActionTimeoutInMins.toTfJson(),
-    if (daysOfWeek != null) 'days_of_week': daysOfWeek!.toTfJson(),
-    if (hoursOfDay != null) 'hours_of_day': hoursOfDay!.toTfJson(),
+    'days_of_week': ?daysOfWeek?.toTfJson(),
+    'hours_of_day': ?hoursOfDay?.toTfJson(),
     'is_custom_action_timeout_enabled': isCustomActionTimeoutEnabled.toTfJson(),
-    if (leadTimeInWeeks != null)
-      'lead_time_in_weeks': leadTimeInWeeks!.toTfJson(),
-    if (months != null) 'months': months!.toTfJson(),
+    'lead_time_in_weeks': ?leadTimeInWeeks?.toTfJson(),
+    'months': ?months?.toTfJson(),
     'patching_mode': patchingMode.toTfJson(),
     'preference': preference.toTfJson(),
-    if (weeksOfMonth != null) 'weeks_of_month': weeksOfMonth!.toTfJson(),
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 
@@ -108,20 +107,17 @@ final class AwsOdbCloudExadataInfrastructure extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
+           'availability_zone': ?availabilityZone,
            'availability_zone_id': availabilityZoneId,
-           if (computeCount != null) 'compute_count': computeCount,
-           if (customerContactsToSendToOci != null)
-             'customer_contacts_to_send_to_oci': customerContactsToSendToOci,
-           if (databaseServerType != null)
-             'database_server_type': databaseServerType,
+           'compute_count': ?computeCount,
+           'customer_contacts_to_send_to_oci': ?customerContactsToSendToOci,
+           'database_server_type': ?databaseServerType,
            'display_name': displayName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'shape': shape,
-           if (storageCount != null) 'storage_count': storageCount,
-           if (storageServerType != null)
-             'storage_server_type': storageServerType,
-           if (tags != null) 'tags': tags,
+           'storage_count': ?storageCount,
+           'storage_server_type': ?storageServerType,
+           'tags': ?tags,
            if (maintenanceWindow != null)
              'maintenance_window': TfArg.literal([
                for (final e in maintenanceWindow) e.encode(),

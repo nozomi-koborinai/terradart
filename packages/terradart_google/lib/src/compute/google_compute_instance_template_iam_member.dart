@@ -27,8 +27,8 @@ final class GoogleComputeInstanceTemplateIamMember extends Resource {
            'name': name,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

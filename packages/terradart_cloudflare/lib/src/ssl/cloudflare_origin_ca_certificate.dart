@@ -37,8 +37,7 @@ final class CloudflareOriginCaCertificate extends Resource {
            'csr': csr,
            'hostnames': hostnames,
            'request_type': requestType,
-           if (requestedValidity != null)
-             'requested_validity': requestedValidity,
+           'requested_validity': ?requestedValidity,
          },
        );
 

@@ -18,10 +18,7 @@ final class DataGoogleNetblockIpRanges extends Data {
     TfArg<String>? rangeType,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (rangeType != null) 'range_type': rangeType},
-       );
+  }) : super(terraformType: tfType, argMap: {'range_type': ?rangeType});
 
   @override
   Set<String> get sensitiveFields => _googleNetblockIpRangesSensitive;

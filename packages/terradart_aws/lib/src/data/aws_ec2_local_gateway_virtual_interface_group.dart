@@ -42,9 +42,9 @@ final class DataAwsEc2LocalGatewayVirtualInterfaceGroup extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (localGatewayId != null) 'local_gateway_id': localGatewayId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'local_gateway_id': ?localGatewayId,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

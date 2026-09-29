@@ -19,9 +19,8 @@ final class DataAwsCloudwatchLogGroups extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (logGroupNamePrefix != null)
-             'log_group_name_prefix': logGroupNamePrefix,
-           if (region != null) 'region': region,
+           'log_group_name_prefix': ?logGroupNamePrefix,
+           'region': ?region,
          },
        );
 

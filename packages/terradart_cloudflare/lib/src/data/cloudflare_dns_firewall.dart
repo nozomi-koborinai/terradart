@@ -23,10 +23,7 @@ final class DataCloudflareDnsFirewall extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'dns_firewall_id': dnsFirewallId,
-         },
+         argMap: {'account_id': ?accountId, 'dns_firewall_id': dnsFirewallId},
        );
 
   @override

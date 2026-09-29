@@ -16,7 +16,7 @@ final class DataD1DatabaseFilter {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_d1_database`.
@@ -38,9 +38,9 @@ final class DataCloudflareD1Database extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (databaseId != null) 'database_id': databaseId,
-           if (fields != null) 'fields': fields,
+           'account_id': ?accountId,
+           'database_id': ?databaseId,
+           'fields': ?fields,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

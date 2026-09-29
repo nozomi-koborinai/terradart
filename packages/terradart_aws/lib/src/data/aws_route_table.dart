@@ -42,12 +42,12 @@ final class DataAwsRouteTable extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (gatewayId != null) 'gateway_id': gatewayId,
-           if (region != null) 'region': region,
-           if (routeTableId != null) 'route_table_id': routeTableId,
-           if (subnetId != null) 'subnet_id': subnetId,
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
+           'gateway_id': ?gatewayId,
+           'region': ?region,
+           'route_table_id': ?routeTableId,
+           'subnet_id': ?subnetId,
+           'tags': ?tags,
+           'vpc_id': ?vpcId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

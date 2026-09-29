@@ -43,10 +43,10 @@ final class CloudAssetProjectFeedCondition {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -140,15 +140,15 @@ final class GoogleCloudAssetProjectFeed extends Resource {
          terraformType: tfType,
          argMap: {
            'feed_id': feedId,
-           if (assetTypes != null) 'asset_types': assetTypes,
-           if (assetNames != null) 'asset_names': assetNames,
-           if (contentType != null) 'content_type': contentType,
+           'asset_types': ?assetTypes,
+           'asset_names': ?assetNames,
+           'content_type': ?contentType,
            'feed_output_config': TfArg.literal(feedOutputConfig.encode()),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           if (billingProject != null) 'billing_project': billingProject,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'billing_project': ?billingProject,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -47,21 +47,18 @@ final class AwsChatbotTeamsChannelConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'channel_id': channelId,
-           if (channelName != null) 'channel_name': channelName,
+           'channel_name': ?channelName,
            'configuration_name': configurationName,
-           if (guardrailPolicyArns != null)
-             'guardrail_policy_arns': guardrailPolicyArns,
+           'guardrail_policy_arns': ?guardrailPolicyArns,
            'iam_role_arn': iamRoleArn.encodeAs('arn'),
-           if (loggingLevel != null) 'logging_level': loggingLevel,
-           if (region != null) 'region': region,
-           if (snsTopicArns != null)
-             'sns_topic_arns': snsTopicArns.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'logging_level': ?loggingLevel,
+           'region': ?region,
+           'sns_topic_arns': ?snsTopicArns?.encodeAs('arn'),
+           'tags': ?tags,
            'team_id': teamId,
-           if (teamName != null) 'team_name': teamName,
+           'team_name': ?teamName,
            'tenant_id': tenantId,
-           if (userAuthorizationRequired != null)
-             'user_authorization_required': userAuthorizationRequired,
+           'user_authorization_required': ?userAuthorizationRequired,
          },
        );
 

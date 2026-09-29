@@ -26,7 +26,7 @@ final class AwsSesv2EmailIdentityPolicy extends Resource {
            'email_identity': emailIdentity,
            'policy': policy,
            'policy_name': policyName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

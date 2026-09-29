@@ -52,12 +52,12 @@ final class AwsAppintegrationsDataIntegration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'kms_key': kmsKey.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'source_uri': sourceUri,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'schedule_config': TfArg.literal(scheduleConfig.encode()),
          },
        );

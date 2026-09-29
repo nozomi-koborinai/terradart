@@ -27,10 +27,10 @@ final class AwsDbInstanceAutomatedBackupsReplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (preSignedUrl != null) 'pre_signed_url': preSignedUrl,
-           if (region != null) 'region': region,
-           if (retentionPeriod != null) 'retention_period': retentionPeriod,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'pre_signed_url': ?preSignedUrl,
+           'region': ?region,
+           'retention_period': ?retentionPeriod,
            'source_db_instance_arn': sourceDbInstanceArn,
          },
        );

@@ -25,9 +25,8 @@ final class ContactCenterInsightsAssessmentRuleSampleRule {
   final ContactCenterInsightsAssessmentRuleSampleRuleSample? sample;
 
   Map<String, Object?> encode() => {
-    if (conversationFilter != null)
-      'conversation_filter': conversationFilter!.toTfJson(),
-    if (dimension != null) 'dimension': dimension!.toTfJson(),
+    'conversation_filter': ?conversationFilter?.toTfJson(),
+    'dimension': ?dimension?.toTfJson(),
     ...?sample?.encode(),
   };
 }
@@ -110,10 +109,10 @@ final class ContactCenterInsightsAssessmentRuleScheduleInfo {
   final TfArg<String>? timeZone;
 
   Map<String, Object?> encode() => {
-    if (endTime != null) 'end_time': endTime!.toTfJson(),
-    if (schedule != null) 'schedule': schedule!.toTfJson(),
-    if (startTime != null) 'start_time': startTime!.toTfJson(),
-    if (timeZone != null) 'time_zone': timeZone!.toTfJson(),
+    'end_time': ?endTime?.toTfJson(),
+    'schedule': ?schedule?.toTfJson(),
+    'start_time': ?startTime?.toTfJson(),
+    'time_zone': ?timeZone?.toTfJson(),
   };
 }
 
@@ -151,15 +150,15 @@ final class GoogleContactCenterInsightsAssessmentRule extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (assessmentRuleId != null) 'assessment_rule_id': assessmentRuleId,
-           if (displayName != null) 'display_name': displayName,
-           if (active != null) 'active': active,
+           'assessment_rule_id': ?assessmentRuleId,
+           'display_name': ?displayName,
+           'active': ?active,
            if (sampleRule != null)
              'sample_rule': TfArg.literal(sampleRule.encode()),
            if (scheduleInfo != null)
              'schedule_info': TfArg.literal(scheduleInfo.encode()),
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

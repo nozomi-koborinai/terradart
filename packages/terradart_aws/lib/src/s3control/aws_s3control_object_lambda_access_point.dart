@@ -37,8 +37,7 @@ final class S3controlObjectLambdaAccessPointConfiguration {
   Map<String, Object?> encode() => {
     if (allowedFeatures != null)
       'allowed_features': [for (final e in allowedFeatures!) e.toTfJson()],
-    if (cloudWatchMetricsEnabled != null)
-      'cloud_watch_metrics_enabled': cloudWatchMetricsEnabled!.toTfJson(),
+    'cloud_watch_metrics_enabled': ?cloudWatchMetricsEnabled?.toTfJson(),
     'supporting_access_point': supportingAccessPoint.toTfJson(),
     'transformation_configuration': [
       for (final e in transformationConfiguration) e.encode(),
@@ -130,8 +129,7 @@ final class S3controlObjectLambdaAccessPointConfigurationTransformationConfigura
 
   Map<String, Object?> encode() => {
     'function_arn': functionArn.encodeAs('arn').toTfJson(),
-    if (functionPayload != null)
-      'function_payload': functionPayload!.toTfJson(),
+    'function_payload': ?functionPayload?.toTfJson(),
   };
 }
 
@@ -152,9 +150,9 @@ final class AwsS3controlObjectLambdaAccessPoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'configuration': TfArg.literal(configuration.encode()),
          },
        );

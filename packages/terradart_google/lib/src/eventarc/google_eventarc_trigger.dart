@@ -411,15 +411,13 @@ final class GoogleEventarcTrigger extends Resource {
            'destination': TfArg.literal([destination.toArgMap()]),
            if (transport != null)
              'transport': TfArg.literal([transport.toArgMap()]),
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('email'),
-           if (channel != null) 'channel': channel,
-           if (eventDataContentType != null)
-             'event_data_content_type': eventDataContentType,
+           'service_account': ?serviceAccount?.encodeAs('email'),
+           'channel': ?channel,
+           'event_data_content_type': ?eventDataContentType,
            if (retryPolicy != null)
              'retry_policy': TfArg.literal([retryPolicy.toArgMap()]),
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

@@ -23,9 +23,8 @@ final class MoqRelayConfig {
   final MoqRelayConfigUpstreams? upstreams;
 
   Map<String, Object?> encode() => {
-    if (lingeringSubscribe != null)
-      'lingering_subscribe': lingeringSubscribe!.encode(),
-    if (upstreams != null) 'upstreams': upstreams!.encode(),
+    'lingering_subscribe': ?lingeringSubscribe?.encode(),
+    'upstreams': ?upstreams?.encode(),
   };
 }
 
@@ -40,8 +39,8 @@ final class MoqRelayConfigLingeringSubscribe {
   final TfArg<num>? maxTimeoutMs;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (maxTimeoutMs != null) 'max_timeout_ms': maxTimeoutMs!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'max_timeout_ms': ?maxTimeoutMs?.toTfJson(),
   };
 }
 
@@ -56,7 +55,7 @@ final class MoqRelayConfigUpstreams {
   final List<MoqRelayConfigUpstreamsUpstreams>? upstreams;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (upstreams != null)
       'upstreams': [for (final e in upstreams!) e.encode()],
   };
@@ -70,7 +69,7 @@ final class MoqRelayConfigUpstreamsUpstreams {
 
   final TfArg<String>? url;
 
-  Map<String, Object?> encode() => {if (url != null) 'url': url!.toTfJson()};
+  Map<String, Object?> encode() => {'url': ?url?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_moq_relay`.

@@ -31,14 +31,10 @@ final class VertexAiFeaturestoreEntitytypeMonitoringConfig {
   snapshotAnalysis;
 
   Map<String, Object?> encode() => {
-    if (categoricalThresholdConfig != null)
-      'categorical_threshold_config': categoricalThresholdConfig!.encode(),
-    if (importFeaturesAnalysis != null)
-      'import_features_analysis': importFeaturesAnalysis!.encode(),
-    if (numericalThresholdConfig != null)
-      'numerical_threshold_config': numericalThresholdConfig!.encode(),
-    if (snapshotAnalysis != null)
-      'snapshot_analysis': snapshotAnalysis!.encode(),
+    'categorical_threshold_config': ?categoricalThresholdConfig?.encode(),
+    'import_features_analysis': ?importFeaturesAnalysis?.encode(),
+    'numerical_threshold_config': ?numericalThresholdConfig?.encode(),
+    'snapshot_analysis': ?snapshotAnalysis?.encode(),
   };
 }
 
@@ -69,9 +65,8 @@ final class VertexAiFeaturestoreEntitytypeMonitoringConfigImportFeaturesAnalysis
   final TfArg<String>? state;
 
   Map<String, Object?> encode() => {
-    if (anomalyDetectionBaseline != null)
-      'anomaly_detection_baseline': anomalyDetectionBaseline!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
+    'anomaly_detection_baseline': ?anomalyDetectionBaseline?.toTfJson(),
+    'state': ?state?.toTfJson(),
   };
 }
 
@@ -105,10 +100,9 @@ final class VertexAiFeaturestoreEntitytypeMonitoringConfigSnapshotAnalysis {
   final TfArg<num>? stalenessDays;
 
   Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (monitoringIntervalDays != null)
-      'monitoring_interval_days': monitoringIntervalDays!.toTfJson(),
-    if (stalenessDays != null) 'staleness_days': stalenessDays!.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'monitoring_interval_days': ?monitoringIntervalDays?.toTfJson(),
+    'staleness_days': ?stalenessDays?.toTfJson(),
   };
 }
 
@@ -156,11 +150,11 @@ final class GoogleVertexAiFeaturestoreEntitytype extends Resource {
          terraformType: tfType,
          argMap: {
            'featurestore': featurestore,
-           if (name != null) 'name': name,
-           if (description != null) 'description': description,
+           'name': ?name,
+           'description': ?description,
            if (monitoringConfig != null)
              'monitoring_config': TfArg.literal(monitoringConfig.encode()),
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
          },
        );
 

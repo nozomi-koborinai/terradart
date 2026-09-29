@@ -24,9 +24,9 @@ final class AwsCodeartifactDomain extends Resource {
          terraformType: tfType,
          argMap: {
            'domain': domain,
-           if (encryptionKey != null) 'encryption_key': encryptionKey,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'encryption_key': ?encryptionKey,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -27,11 +27,10 @@ final class GoogleEventarcGoogleChannelConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cryptoKeyName != null)
-             'crypto_key_name': cryptoKeyName.encodeAs('id'),
+           'crypto_key_name': ?cryptoKeyName?.encodeAs('id'),
            'location': location,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

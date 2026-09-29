@@ -42,15 +42,11 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfig {
   s3Config;
 
   Map<String, Object?> encode() => {
-    if (embeddingDataDeliveryEnabled != null)
-      'embedding_data_delivery_enabled': embeddingDataDeliveryEnabled!
-          .toTfJson(),
-    if (imageDataDeliveryEnabled != null)
-      'image_data_delivery_enabled': imageDataDeliveryEnabled!.toTfJson(),
-    if (textDataDeliveryEnabled != null)
-      'text_data_delivery_enabled': textDataDeliveryEnabled!.toTfJson(),
-    if (videoDataDeliveryEnabled != null)
-      'video_data_delivery_enabled': videoDataDeliveryEnabled!.toTfJson(),
+    'embedding_data_delivery_enabled': ?embeddingDataDeliveryEnabled
+        ?.toTfJson(),
+    'image_data_delivery_enabled': ?imageDataDeliveryEnabled?.toTfJson(),
+    'text_data_delivery_enabled': ?textDataDeliveryEnabled?.toTfJson(),
+    'video_data_delivery_enabled': ?videoDataDeliveryEnabled?.toTfJson(),
     if (cloudwatchConfig != null)
       'cloudwatch_config': [for (final e in cloudwatchConfig!) e.encode()],
     if (s3Config != null) 's3_config': [for (final e in s3Config!) e.encode()],
@@ -101,7 +97,7 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchCon
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
+    'key_prefix': ?keyPrefix?.toTfJson(),
   };
 }
 
@@ -120,7 +116,7 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfigS3Config {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
+    'key_prefix': ?keyPrefix?.toTfJson(),
   };
 }
 
@@ -141,7 +137,7 @@ final class AwsBedrockModelInvocationLoggingConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (loggingConfig != null)
              'logging_config': TfArg.literal([
                for (final e in loggingConfig) e.encode(),

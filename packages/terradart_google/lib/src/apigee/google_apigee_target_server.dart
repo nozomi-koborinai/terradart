@@ -58,18 +58,16 @@ final class ApigeeTargetServerSSlInfo {
   final ApigeeTargetServerSSlInfoCommonName? commonName;
 
   Map<String, Object?> encode() => {
-    if (ciphers != null) 'ciphers': ciphers!.toTfJson(),
-    if (clientAuthEnabled != null)
-      'client_auth_enabled': clientAuthEnabled!.toTfJson(),
+    'ciphers': ?ciphers?.toTfJson(),
+    'client_auth_enabled': ?clientAuthEnabled?.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (enforce != null) 'enforce': enforce!.toTfJson(),
-    if (ignoreValidationErrors != null)
-      'ignore_validation_errors': ignoreValidationErrors!.toTfJson(),
-    if (keyAlias != null) 'key_alias': keyAlias!.toTfJson(),
-    if (keyStore != null) 'key_store': keyStore!.toTfJson(),
-    if (protocols != null) 'protocols': protocols!.toTfJson(),
-    if (trustStore != null) 'trust_store': trustStore!.toTfJson(),
-    if (commonName != null) 'common_name': commonName!.encode(),
+    'enforce': ?enforce?.toTfJson(),
+    'ignore_validation_errors': ?ignoreValidationErrors?.toTfJson(),
+    'key_alias': ?keyAlias?.toTfJson(),
+    'key_store': ?keyStore?.toTfJson(),
+    'protocols': ?protocols?.toTfJson(),
+    'trust_store': ?trustStore?.toTfJson(),
+    'common_name': ?commonName?.encode(),
   };
 }
 
@@ -84,8 +82,8 @@ final class ApigeeTargetServerSSlInfoCommonName {
   final TfArg<bool>? wildcardMatch;
 
   Map<String, Object?> encode() => {
-    if (value != null) 'value': value!.toTfJson(),
-    if (wildcardMatch != null) 'wildcard_match': wildcardMatch!.toTfJson(),
+    'value': ?value?.toTfJson(),
+    'wildcard_match': ?wildcardMatch?.toTfJson(),
   };
 }
 
@@ -127,11 +125,11 @@ final class GoogleApigeeTargetServer extends Resource {
            'env_id': envId,
            'host': host,
            'port': port,
-           if (description != null) 'description': description,
-           if (isEnabled != null) 'is_enabled': isEnabled,
-           if (protocol != null) 'protocol': protocol,
+           'description': ?description,
+           'is_enabled': ?isEnabled,
+           'protocol': ?protocol,
            if (sSlInfo != null) 's_sl_info': TfArg.literal(sSlInfo.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

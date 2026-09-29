@@ -30,7 +30,7 @@ final class GoogleLoggingLogViewIamPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (location != null) 'location': location,
+           'location': ?location,
            'name': name,
            'parent': parent,
            'policy_data': policyData,

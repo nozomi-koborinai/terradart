@@ -21,11 +21,7 @@ final class AwsLightsailLbHttpsRedirectionPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'enabled': enabled,
-           'lb_name': lbName,
-           if (region != null) 'region': region,
-         },
+         argMap: {'enabled': enabled, 'lb_name': lbName, 'region': ?region},
        );
 
   @override

@@ -213,11 +213,10 @@ final class OsConfigPatchDeploymentInstanceFilter {
   final List<OsConfigPatchDeploymentInstanceFilterGroupLabels>? groupLabels;
 
   Map<String, Object?> encode() => {
-    if (all != null) 'all': all!.toTfJson(),
-    if (instanceNamePrefixes != null)
-      'instance_name_prefixes': instanceNamePrefixes!.toTfJson(),
-    if (instances != null) 'instances': instances!.toTfJson(),
-    if (zones != null) 'zones': zones!.toTfJson(),
+    'all': ?all?.toTfJson(),
+    'instance_name_prefixes': ?instanceNamePrefixes?.toTfJson(),
+    'instances': ?instances?.toTfJson(),
+    'zones': ?zones?.toTfJson(),
     if (groupLabels != null)
       'group_labels': [for (final e in groupLabels!) e.encode()],
   };
@@ -274,18 +273,16 @@ final class OsConfigPatchDeploymentPatchConfig {
   final OsConfigPatchDeploymentPatchConfigZypper? zypper;
 
   Map<String, Object?> encode() => {
-    if (migInstancesAllowed != null)
-      'mig_instances_allowed': migInstancesAllowed!.toTfJson(),
-    if (rebootConfig != null) 'reboot_config': rebootConfig!.toTfJson(),
-    if (skipUnpatchableVms != null)
-      'skip_unpatchable_vms': skipUnpatchableVms!.toTfJson(),
-    if (apt != null) 'apt': apt!.encode(),
-    if (goo != null) 'goo': goo!.encode(),
-    if (postStep != null) 'post_step': postStep!.encode(),
-    if (preStep != null) 'pre_step': preStep!.encode(),
-    if (windowsUpdate != null) 'windows_update': windowsUpdate!.encode(),
-    if (yum != null) 'yum': yum!.encode(),
-    if (zypper != null) 'zypper': zypper!.encode(),
+    'mig_instances_allowed': ?migInstancesAllowed?.toTfJson(),
+    'reboot_config': ?rebootConfig?.toTfJson(),
+    'skip_unpatchable_vms': ?skipUnpatchableVms?.toTfJson(),
+    'apt': ?apt?.encode(),
+    'goo': ?goo?.encode(),
+    'post_step': ?postStep?.encode(),
+    'pre_step': ?preStep?.encode(),
+    'windows_update': ?windowsUpdate?.encode(),
+    'yum': ?yum?.encode(),
+    'zypper': ?zypper?.encode(),
   };
 }
 
@@ -317,10 +314,9 @@ final class OsConfigPatchDeploymentPatchConfigApt {
   final TfArg<OsConfigPatchDeploymentPatchConfigAptType>? type;
 
   Map<String, Object?> encode() => {
-    if (excludes != null) 'excludes': excludes!.toTfJson(),
-    if (exclusivePackages != null)
-      'exclusive_packages': exclusivePackages!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'excludes': ?excludes?.toTfJson(),
+    'exclusive_packages': ?exclusivePackages?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -361,10 +357,8 @@ final class OsConfigPatchDeploymentPatchConfigPostStep {
   windowsExecStepConfig;
 
   Map<String, Object?> encode() => {
-    if (linuxExecStepConfig != null)
-      'linux_exec_step_config': linuxExecStepConfig!.encode(),
-    if (windowsExecStepConfig != null)
-      'windows_exec_step_config': windowsExecStepConfig!.encode(),
+    'linux_exec_step_config': ?linuxExecStepConfig?.encode(),
+    'windows_exec_step_config': ?windowsExecStepConfig?.encode(),
   };
 }
 
@@ -389,9 +383,8 @@ final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfig {
   script;
 
   Map<String, Object?> encode() => {
-    if (allowedSuccessCodes != null)
-      'allowed_success_codes': allowedSuccessCodes!.toTfJson(),
-    if (interpreter != null) 'interpreter': interpreter!.toTfJson(),
+    'allowed_success_codes': ?allowedSuccessCodes?.toTfJson(),
+    'interpreter': ?interpreter?.toTfJson(),
     ...script.encode(),
   };
 }
@@ -512,9 +505,8 @@ final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig {
   script;
 
   Map<String, Object?> encode() => {
-    if (allowedSuccessCodes != null)
-      'allowed_success_codes': allowedSuccessCodes!.toTfJson(),
-    if (interpreter != null) 'interpreter': interpreter!.toTfJson(),
+    'allowed_success_codes': ?allowedSuccessCodes?.toTfJson(),
+    'interpreter': ?interpreter?.toTfJson(),
     ...script.encode(),
   };
 }
@@ -630,10 +622,8 @@ final class OsConfigPatchDeploymentPatchConfigPreStep {
   windowsExecStepConfig;
 
   Map<String, Object?> encode() => {
-    if (linuxExecStepConfig != null)
-      'linux_exec_step_config': linuxExecStepConfig!.encode(),
-    if (windowsExecStepConfig != null)
-      'windows_exec_step_config': windowsExecStepConfig!.encode(),
+    'linux_exec_step_config': ?linuxExecStepConfig?.encode(),
+    'windows_exec_step_config': ?windowsExecStepConfig?.encode(),
   };
 }
 
@@ -658,9 +648,8 @@ final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfig {
   script;
 
   Map<String, Object?> encode() => {
-    if (allowedSuccessCodes != null)
-      'allowed_success_codes': allowedSuccessCodes!.toTfJson(),
-    if (interpreter != null) 'interpreter': interpreter!.toTfJson(),
+    'allowed_success_codes': ?allowedSuccessCodes?.toTfJson(),
+    'interpreter': ?interpreter?.toTfJson(),
     ...script.encode(),
   };
 }
@@ -779,9 +768,8 @@ final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig {
   script;
 
   Map<String, Object?> encode() => {
-    if (allowedSuccessCodes != null)
-      'allowed_success_codes': allowedSuccessCodes!.toTfJson(),
-    if (interpreter != null) 'interpreter': interpreter!.toTfJson(),
+    'allowed_success_codes': ?allowedSuccessCodes?.toTfJson(),
+    'interpreter': ?interpreter?.toTfJson(),
     ...script.encode(),
   };
 }
@@ -903,9 +891,8 @@ final class OsConfigPatchDeploymentPatchConfigWindowsUpdate {
   Map<String, Object?> encode() => {
     if (classifications != null)
       'classifications': [for (final e in classifications!) e.toTfJson()],
-    if (excludes != null) 'excludes': excludes!.toTfJson(),
-    if (exclusivePatches != null)
-      'exclusive_patches': exclusivePatches!.toTfJson(),
+    'excludes': ?excludes?.toTfJson(),
+    'exclusive_patches': ?exclusivePatches?.toTfJson(),
   };
 }
 
@@ -949,11 +936,10 @@ final class OsConfigPatchDeploymentPatchConfigYum {
   final TfArg<bool>? security;
 
   Map<String, Object?> encode() => {
-    if (excludes != null) 'excludes': excludes!.toTfJson(),
-    if (exclusivePackages != null)
-      'exclusive_packages': exclusivePackages!.toTfJson(),
-    if (minimal != null) 'minimal': minimal!.toTfJson(),
-    if (security != null) 'security': security!.toTfJson(),
+    'excludes': ?excludes?.toTfJson(),
+    'exclusive_packages': ?exclusivePackages?.toTfJson(),
+    'minimal': ?minimal?.toTfJson(),
+    'security': ?security?.toTfJson(),
   };
 }
 
@@ -983,13 +969,12 @@ final class OsConfigPatchDeploymentPatchConfigZypper {
   final TfArg<bool>? withUpdate;
 
   Map<String, Object?> encode() => {
-    if (categories != null) 'categories': categories!.toTfJson(),
-    if (excludes != null) 'excludes': excludes!.toTfJson(),
-    if (exclusivePatches != null)
-      'exclusive_patches': exclusivePatches!.toTfJson(),
-    if (severities != null) 'severities': severities!.toTfJson(),
-    if (withOptional != null) 'with_optional': withOptional!.toTfJson(),
-    if (withUpdate != null) 'with_update': withUpdate!.toTfJson(),
+    'categories': ?categories?.toTfJson(),
+    'excludes': ?excludes?.toTfJson(),
+    'exclusive_patches': ?exclusivePatches?.toTfJson(),
+    'severities': ?severities?.toTfJson(),
+    'with_optional': ?withOptional?.toTfJson(),
+    'with_update': ?withUpdate?.toTfJson(),
   };
 }
 
@@ -1144,14 +1129,14 @@ final class GoogleOsConfigPatchDeployment extends Resource {
          terraformType: tfType,
          argMap: {
            'patch_deployment_id': patchDeploymentId,
-           if (description != null) 'description': description,
+           'description': ?description,
            'instance_filter': TfArg.literal(instanceFilter.encode()),
            if (patchConfig != null)
              'patch_config': TfArg.literal(patchConfig.encode()),
-           if (duration != null) 'duration': duration,
+           'duration': ?duration,
            if (rollout != null) 'rollout': TfArg.literal(rollout.encode()),
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
            schedule.blockKey: TfArg.literal(schedule.encode()),
          },
        );

@@ -51,8 +51,8 @@ final class GoogleStorageHmacKey extends Resource {
          terraformType: tfType,
          argMap: {
            'service_account_email': serviceAccountEmail.encodeAs('email'),
-           if (state != null) 'state': state,
-           if (project != null) 'project': project,
+           'state': ?state,
+           'project': ?project,
          },
        );
 

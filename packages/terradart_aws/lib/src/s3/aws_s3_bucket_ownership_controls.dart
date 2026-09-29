@@ -50,7 +50,7 @@ final class AwsS3BucketOwnershipControls extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (region != null) 'region': region,
+           'region': ?region,
            'rule': TfArg.literal(rule.encode()),
          },
        );

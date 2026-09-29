@@ -15,10 +15,7 @@ final class DataCloudflareIpRanges extends Data {
     TfArg<String>? networks,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (networks != null) 'networks': networks},
-       );
+  }) : super(terraformType: tfType, argMap: {'networks': ?networks});
 
   @override
   Set<String> get sensitiveFields => _cloudflareIpRangesSensitive;

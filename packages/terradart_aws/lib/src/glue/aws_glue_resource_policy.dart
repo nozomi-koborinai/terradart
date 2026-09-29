@@ -32,9 +32,9 @@ final class AwsGlueResourcePolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enableHybrid != null) 'enable_hybrid': enableHybrid,
+           'enable_hybrid': ?enableHybrid,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

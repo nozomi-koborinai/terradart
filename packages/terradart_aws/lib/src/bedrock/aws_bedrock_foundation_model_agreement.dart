@@ -24,7 +24,7 @@ final class AwsBedrockFoundationModelAgreement extends Resource {
          argMap: {
            'model_id': modelId,
            'offer_token': offerToken,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

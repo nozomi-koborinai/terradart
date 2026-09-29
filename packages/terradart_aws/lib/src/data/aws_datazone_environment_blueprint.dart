@@ -24,7 +24,7 @@ final class DataAwsDatazoneEnvironmentBlueprint extends Data {
            'domain_id': domainId,
            'managed': managed,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

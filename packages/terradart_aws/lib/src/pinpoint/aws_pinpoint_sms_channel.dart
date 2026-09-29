@@ -25,10 +25,10 @@ final class AwsPinpointSmsChannel extends Resource {
          terraformType: tfType,
          argMap: {
            'application_id': applicationId,
-           if (enabled != null) 'enabled': enabled,
-           if (region != null) 'region': region,
-           if (senderId != null) 'sender_id': senderId,
-           if (shortCode != null) 'short_code': shortCode,
+           'enabled': ?enabled,
+           'region': ?region,
+           'sender_id': ?senderId,
+           'short_code': ?shortCode,
          },
        );
 

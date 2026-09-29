@@ -25,10 +25,10 @@ final class GoogleIapWebBackendServiceIamMember extends Resource {
          terraformType: tfType,
          argMap: {
            'member': member,
-           if (project != null) 'project': project,
+           'project': ?project,
            'role': role,
            'web_backend_service': webBackendService,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

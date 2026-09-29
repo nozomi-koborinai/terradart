@@ -20,8 +20,8 @@ final class AddressMapMemberships {
   final TfArg<AddressMapMembershipsKind>? kind;
 
   Map<String, Object?> encode() => {
-    if (identifier != null) 'identifier': identifier!.toTfJson(),
-    if (kind != null) 'kind': kind!.toTfJson(),
+    'identifier': ?identifier?.toTfJson(),
+    'kind': ?kind?.toTfJson(),
   };
 }
 
@@ -59,10 +59,10 @@ final class CloudflareAddressMap extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (defaultSni != null) 'default_sni': defaultSni,
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
-           if (ips != null) 'ips': ips,
+           'default_sni': ?defaultSni,
+           'description': ?description,
+           'enabled': ?enabled,
+           'ips': ?ips,
            if (memberships != null)
              'memberships': TfArg.literal([
                for (final e in memberships) e.encode(),

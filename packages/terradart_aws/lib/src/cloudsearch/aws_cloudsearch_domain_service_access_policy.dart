@@ -25,7 +25,7 @@ final class AwsCloudsearchDomainServiceAccessPolicy extends Resource {
          argMap: {
            'access_policy': accessPolicy,
            'domain_name': domainName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

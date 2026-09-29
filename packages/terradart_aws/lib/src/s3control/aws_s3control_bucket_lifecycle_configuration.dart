@@ -33,12 +33,11 @@ final class S3controlBucketLifecycleConfigurationRule {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
-    if (abortIncompleteMultipartUpload != null)
-      'abort_incomplete_multipart_upload': abortIncompleteMultipartUpload!
-          .encode(),
-    if (expiration != null) 'expiration': expiration!.encode(),
-    if (filter != null) 'filter': filter!.encode(),
+    'status': ?status?.toTfJson(),
+    'abort_incomplete_multipart_upload': ?abortIncompleteMultipartUpload
+        ?.encode(),
+    'expiration': ?expiration?.encode(),
+    'filter': ?filter?.encode(),
   };
 }
 
@@ -74,10 +73,9 @@ final class S3controlBucketLifecycleConfigurationRuleExpiration {
   final TfArg<bool>? expiredObjectDeleteMarker;
 
   Map<String, Object?> encode() => {
-    if (date != null) 'date': date!.toTfJson(),
-    if (days != null) 'days': days!.toTfJson(),
-    if (expiredObjectDeleteMarker != null)
-      'expired_object_delete_marker': expiredObjectDeleteMarker!.toTfJson(),
+    'date': ?date?.toTfJson(),
+    'days': ?days?.toTfJson(),
+    'expired_object_delete_marker': ?expiredObjectDeleteMarker?.toTfJson(),
   };
 }
 
@@ -95,8 +93,8 @@ final class S3controlBucketLifecycleConfigurationRuleFilter {
   final TfArg<Map<String, String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -117,7 +115,7 @@ final class AwsS3controlBucketLifecycleConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rule': TfArg.literal([for (final e in rule) e.encode()]),
          },
        );

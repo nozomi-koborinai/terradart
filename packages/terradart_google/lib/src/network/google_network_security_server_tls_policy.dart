@@ -55,15 +55,14 @@ final class GoogleNetworkSecurityServerTlsPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (allowOpen != null) 'allow_open': allowOpen,
-           if (serverCertificate != null)
-             'server_certificate': serverCertificate,
-           if (mtlsPolicy != null) 'mtls_policy': mtlsPolicy,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'description': ?description,
+           'allow_open': ?allowOpen,
+           'server_certificate': ?serverCertificate,
+           'mtls_policy': ?mtlsPolicy,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

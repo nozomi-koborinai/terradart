@@ -24,7 +24,7 @@ final class AwsIamSamlProvider extends Resource {
          argMap: {
            'name': name,
            'saml_metadata_document': samlMetadataDocument,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

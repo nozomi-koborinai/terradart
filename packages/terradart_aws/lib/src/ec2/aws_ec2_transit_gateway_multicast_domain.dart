@@ -63,13 +63,11 @@ final class AwsEc2TransitGatewayMulticastDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoAcceptSharedAssociations != null)
-             'auto_accept_shared_associations': autoAcceptSharedAssociations,
-           if (igmpv2Support != null) 'igmpv2_support': igmpv2Support,
-           if (region != null) 'region': region,
-           if (staticSourcesSupport != null)
-             'static_sources_support': staticSourcesSupport,
-           if (tags != null) 'tags': tags,
+           'auto_accept_shared_associations': ?autoAcceptSharedAssociations,
+           'igmpv2_support': ?igmpv2Support,
+           'region': ?region,
+           'static_sources_support': ?staticSourcesSupport,
+           'tags': ?tags,
            'transit_gateway_id': transitGatewayId,
          },
        );

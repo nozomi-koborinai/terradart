@@ -19,7 +19,7 @@ final class S3DirectoryBucketLocation {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -44,11 +44,11 @@ final class AwsS3DirectoryBucket extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (dataRedundancy != null) 'data_redundancy': dataRedundancy,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'data_redundancy': ?dataRedundancy,
+           'force_destroy': ?forceDestroy,
+           'region': ?region,
+           'tags': ?tags,
+           'type': ?type,
            if (location != null)
              'location': TfArg.literal([for (final e in location) e.encode()]),
          },

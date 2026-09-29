@@ -30,17 +30,15 @@ final class AppwriteAuthUser extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (email != null) 'email': email,
-           if (emailVerification != null)
-             'email_verification': emailVerification,
-           if (labels != null) 'labels': labels,
-           if (name != null) 'name': name,
-           if (password != null) 'password': password,
-           if (phone != null) 'phone': phone,
-           if (phoneVerification != null)
-             'phone_verification': phoneVerification,
-           if (projectId != null) 'project_id': projectId,
-           if (status != null) 'status': status,
+           'email': ?email,
+           'email_verification': ?emailVerification,
+           'labels': ?labels,
+           'name': ?name,
+           'password': ?password,
+           'phone': ?phone,
+           'phone_verification': ?phoneVerification,
+           'project_id': ?projectId,
+           'status': ?status,
          },
        );
 

@@ -31,7 +31,7 @@ final class EmailRoutingCatchAllActions {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -90,10 +90,10 @@ final class CloudflareEmailRoutingCatchAll extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
-           if (name != null) 'name': name,
-           if (ownerWorkerTag != null) 'owner_worker_tag': ownerWorkerTag,
-           if (source != null) 'source': source,
+           'enabled': ?enabled,
+           'name': ?name,
+           'owner_worker_tag': ?ownerWorkerTag,
+           'source': ?source,
            'zone_id': zoneId.encodeAs('id'),
            'actions': TfArg.literal([for (final e in actions) e.encode()]),
            'matchers': TfArg.literal([for (final e in matchers) e.encode()]),

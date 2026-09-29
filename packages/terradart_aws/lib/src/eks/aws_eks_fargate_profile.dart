@@ -20,7 +20,7 @@ final class EksFargateProfileSelector {
   final TfArg<String> namespace;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
     'namespace': namespace.toTfJson(),
   };
 }
@@ -48,9 +48,9 @@ final class AwsEksFargateProfile extends Resource {
            'cluster_name': clusterName,
            'fargate_profile_name': fargateProfileName,
            'pod_execution_role_arn': podExecutionRoleArn,
-           if (region != null) 'region': region,
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
+           'tags': ?tags,
            'selector': TfArg.literal([for (final e in selector) e.encode()]),
          },
        );

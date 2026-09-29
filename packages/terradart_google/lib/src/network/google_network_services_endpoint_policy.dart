@@ -145,14 +145,13 @@ final class GoogleNetworkServicesEndpointPolicy extends Resource {
              'traffic_port_selector': TfArg.literal(
                trafficPortSelector.encode(),
              ),
-           if (authorizationPolicy != null)
-             'authorization_policy': authorizationPolicy,
-           if (clientTlsPolicy != null) 'client_tls_policy': clientTlsPolicy,
-           if (serverTlsPolicy != null) 'server_tls_policy': serverTlsPolicy,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'authorization_policy': ?authorizationPolicy,
+           'client_tls_policy': ?clientTlsPolicy,
+           'server_tls_policy': ?serverTlsPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

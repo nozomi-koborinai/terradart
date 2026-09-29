@@ -88,9 +88,9 @@ final class SecurityhubAutomationRuleV2ActionFindingFieldsUpdate {
   final TfArg<num>? statusId;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
-    if (severityId != null) 'severity_id': severityId!.toTfJson(),
-    if (statusId != null) 'status_id': statusId!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
+    'severity_id': ?severityId?.toTfJson(),
+    'status_id': ?statusId?.toTfJson(),
   };
 }
 
@@ -131,11 +131,11 @@ final class AwsSecurityhubAutomationRuleV2 extends Resource {
          terraformType: tfType,
          argMap: {
            'description': description,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rule_name': ruleName,
            'rule_order': ruleOrder,
-           if (ruleStatus != null) 'rule_status': ruleStatus,
-           if (tags != null) 'tags': tags,
+           'rule_status': ?ruleStatus,
+           'tags': ?tags,
            if (action != null)
              'action': TfArg.literal([for (final e in action) e.encode()]),
            if (criteria != null)

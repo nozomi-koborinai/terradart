@@ -21,8 +21,8 @@ final class AppautoscalingScheduledActionScalableTargetAction {
   final TfArg<String>? minCapacity;
 
   Map<String, Object?> encode() => {
-    if (maxCapacity != null) 'max_capacity': maxCapacity!.toTfJson(),
-    if (minCapacity != null) 'min_capacity': minCapacity!.toTfJson(),
+    'max_capacity': ?maxCapacity?.toTfJson(),
+    'min_capacity': ?minCapacity?.toTfJson(),
   };
 }
 
@@ -50,15 +50,15 @@ final class AwsAppautoscalingScheduledAction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (endTime != null) 'end_time': endTime,
+           'end_time': ?endTime,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_id': resourceId,
            'scalable_dimension': scalableDimension,
            'schedule': schedule,
            'service_namespace': serviceNamespace,
-           if (startTime != null) 'start_time': startTime,
-           if (timezone != null) 'timezone': timezone,
+           'start_time': ?startTime,
+           'timezone': ?timezone,
            'scalable_target_action': TfArg.literal(
              scalableTargetAction.encode(),
            ),

@@ -23,11 +23,11 @@ final class DataAwsEcrImage extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (imageDigest != null) 'image_digest': imageDigest,
-           if (imageTag != null) 'image_tag': imageTag,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (region != null) 'region': region,
-           if (registryId != null) 'registry_id': registryId,
+           'image_digest': ?imageDigest,
+           'image_tag': ?imageTag,
+           'most_recent': ?mostRecent,
+           'region': ?region,
+           'registry_id': ?registryId,
            'repository_name': repositoryName,
          },
        );

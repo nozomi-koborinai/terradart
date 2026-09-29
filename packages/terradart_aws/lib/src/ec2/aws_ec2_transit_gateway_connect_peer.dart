@@ -26,13 +26,12 @@ final class AwsEc2TransitGatewayConnectPeer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bgpAsn != null) 'bgp_asn': bgpAsn,
+           'bgp_asn': ?bgpAsn,
            'inside_cidr_blocks': insideCidrBlocks,
            'peer_address': peerAddress,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (transitGatewayAddress != null)
-             'transit_gateway_address': transitGatewayAddress,
+           'region': ?region,
+           'tags': ?tags,
+           'transit_gateway_address': ?transitGatewayAddress,
            'transit_gateway_attachment_id': transitGatewayAttachmentId,
          },
        );

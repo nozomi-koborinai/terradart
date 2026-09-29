@@ -30,14 +30,14 @@ final class DataCloudflareEmailSecurityTrustedDomainsList extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (isRecent != null) 'is_recent': isRecent,
-           if (isSimilarity != null) 'is_similarity': isSimilarity,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
-           if (pattern != null) 'pattern': pattern,
-           if (search != null) 'search': search,
+           'account_id': ?accountId,
+           'direction': ?direction,
+           'is_recent': ?isRecent,
+           'is_similarity': ?isSimilarity,
+           'max_items': ?maxItems,
+           'order': ?order,
+           'pattern': ?pattern,
+           'search': ?search,
          },
        );
 

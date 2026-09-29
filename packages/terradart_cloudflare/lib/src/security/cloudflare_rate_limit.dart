@@ -22,9 +22,9 @@ final class RateLimitAction {
   final RateLimitActionResponse? response;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
-    if (response != null) 'response': response!.encode(),
+    'mode': ?mode?.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
+    'response': ?response?.encode(),
   };
 }
 
@@ -52,8 +52,8 @@ final class RateLimitActionResponse {
   final TfArg<String>? contentType;
 
   Map<String, Object?> encode() => {
-    if (body != null) 'body': body!.toTfJson(),
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
+    'body': ?body?.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
   };
 }
 
@@ -71,8 +71,8 @@ final class RateLimitMatch {
 
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
-    if (request != null) 'request': request!.encode(),
-    if (response != null) 'response': response!.encode(),
+    'request': ?request?.encode(),
+    'response': ?response?.encode(),
   };
 }
 
@@ -89,9 +89,9 @@ final class RateLimitMatchHeaders {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (op != null) 'op': op!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'op': ?op?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -119,8 +119,8 @@ final class RateLimitMatchRequest {
 
   Map<String, Object?> encode() => {
     if (methods != null) 'methods': [for (final e in methods!) e.toTfJson()],
-    if (schemes != null) 'schemes': schemes!.toTfJson(),
-    if (url != null) 'url': url!.toTfJson(),
+    'schemes': ?schemes?.toTfJson(),
+    'url': ?url?.toTfJson(),
   };
 }
 
@@ -148,7 +148,7 @@ final class RateLimitMatchResponse {
   final TfArg<bool>? originTraffic;
 
   Map<String, Object?> encode() => {
-    if (originTraffic != null) 'origin_traffic': originTraffic!.toTfJson(),
+    'origin_traffic': ?originTraffic?.toTfJson(),
   };
 }
 
@@ -176,7 +176,7 @@ final class CloudflareRateLimit extends Resource {
          terraformType: tfType,
          argMap: {
            'period': period,
-           if (rateLimitId != null) 'rate_limit_id': rateLimitId,
+           'rate_limit_id': ?rateLimitId,
            'threshold': threshold,
            'zone_id': zoneId.encodeAs('id'),
            'action': TfArg.literal(action.encode()),

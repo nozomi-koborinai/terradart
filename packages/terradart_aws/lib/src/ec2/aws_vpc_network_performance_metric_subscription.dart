@@ -45,10 +45,10 @@ final class AwsVpcNetworkPerformanceMetricSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            'destination': destination,
-           if (metric != null) 'metric': metric,
-           if (region != null) 'region': region,
+           'metric': ?metric,
+           'region': ?region,
            'source': source,
-           if (statistic != null) 'statistic': statistic,
+           'statistic': ?statistic,
          },
        );
 

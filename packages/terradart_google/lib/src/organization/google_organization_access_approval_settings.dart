@@ -23,8 +23,7 @@ final class OrganizationAccessApprovalSettingsEnrolledServices {
 
   Map<String, Object?> encode() => {
     'cloud_product': cloudProduct.toTfJson(),
-    if (enrollmentLevel != null)
-      'enrollment_level': enrollmentLevel!.toTfJson(),
+    'enrollment_level': ?enrollmentLevel?.toTfJson(),
   };
 }
 
@@ -57,10 +56,9 @@ final class GoogleOrganizationAccessApprovalSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (activeKeyVersion != null) 'active_key_version': activeKeyVersion,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (notificationEmails != null)
-             'notification_emails': notificationEmails,
+           'active_key_version': ?activeKeyVersion,
+           'deletion_policy': ?deletionPolicy,
+           'notification_emails': ?notificationEmails,
            'organization_id': organizationId,
            'enrolled_services': TfArg.literal([
              for (final e in enrolledServices) e.encode(),

@@ -26,11 +26,11 @@ final class GoogleCloudbuildv2ConnectionIamMember extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
+           'location': ?location,
            'role': role,
            'member': member,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

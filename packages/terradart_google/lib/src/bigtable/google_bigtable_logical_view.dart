@@ -47,11 +47,10 @@ final class GoogleBigtableLogicalView extends Resource {
          argMap: {
            'logical_view_id': logicalViewId,
            'query': query,
-           if (instance != null) 'instance': instance,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'instance': ?instance,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

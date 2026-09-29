@@ -60,11 +60,10 @@ final class GoogleActiveDirectoryDomainTrust extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'domain': domain,
-           if (project != null) 'project': project,
-           if (selectiveAuthentication != null)
-             'selective_authentication': selectiveAuthentication,
+           'project': ?project,
+           'selective_authentication': ?selectiveAuthentication,
            'target_dns_ip_addresses': targetDnsIpAddresses,
            'target_domain_name': targetDomainName,
            'trust_direction': trustDirection,

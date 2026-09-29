@@ -75,7 +75,7 @@ final class BedrockagentcoreBrowserEnterprisePolicy {
   final List<BedrockagentcoreBrowserEnterprisePolicyLocation>? location;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     if (location != null) 'location': [for (final e in location!) e.encode()],
   };
 }
@@ -122,7 +122,7 @@ final class BedrockagentcoreBrowserEnterprisePolicyLocationS3 {
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'prefix': prefix.toTfJson(),
-    if (versionId != null) 'version_id': versionId!.toTfJson(),
+    'version_id': ?versionId?.toTfJson(),
   };
 }
 
@@ -190,7 +190,7 @@ final class BedrockagentcoreBrowserRecording {
   final List<BedrockagentcoreBrowserRecordingS3Location>? s3Location;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (s3Location != null)
       's3_location': [for (final e in s3Location!) e.encode()],
   };
@@ -238,12 +238,11 @@ final class AwsBedrockagentcoreBrowser extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (executionRoleArn != null)
-             'execution_role_arn': executionRoleArn.encodeAs('arn'),
+           'description': ?description,
+           'execution_role_arn': ?executionRoleArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (browserSigning != null)
              'browser_signing': TfArg.literal([
                for (final e in browserSigning) e.encode(),

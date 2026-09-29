@@ -20,10 +20,7 @@ final class DataAwsCloudwatchContributorManagedInsightRules extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'resource_arn': resourceArn,
-         },
+         argMap: {'region': ?region, 'resource_arn': resourceArn},
        );
 
   @override

@@ -48,12 +48,11 @@ final class AwsCloudhsmV2Cluster extends Resource {
          terraformType: tfType,
          argMap: {
            'hsm_type': hsmType,
-           if (mode != null) 'mode': mode,
-           if (region != null) 'region': region,
-           if (sourceBackupIdentifier != null)
-             'source_backup_identifier': sourceBackupIdentifier,
+           'mode': ?mode,
+           'region': ?region,
+           'source_backup_identifier': ?sourceBackupIdentifier,
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

@@ -21,11 +21,7 @@ final class AwsS3controlBucketPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'bucket': bucket,
-           'policy': policy,
-           if (region != null) 'region': region,
-         },
+         argMap: {'bucket': bucket, 'policy': policy, 'region': ?region},
        );
 
   @override

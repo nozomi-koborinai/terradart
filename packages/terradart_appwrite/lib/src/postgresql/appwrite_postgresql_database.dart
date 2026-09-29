@@ -89,40 +89,29 @@ final class AppwritePostgresqlDatabase extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (idleTimeoutMinutes != null)
-             'idle_timeout_minutes': idleTimeoutMinutes,
-           if (maintenanceWindowDay != null)
-             'maintenance_window_day': maintenanceWindowDay,
-           if (maintenanceWindowHourUtc != null)
-             'maintenance_window_hour_utc': maintenanceWindowHourUtc,
+           'idle_timeout_minutes': ?idleTimeoutMinutes,
+           'maintenance_window_day': ?maintenanceWindowDay,
+           'maintenance_window_hour_utc': ?maintenanceWindowHourUtc,
            'name': name,
-           if (networkIdleTimeoutSeconds != null)
-             'network_idle_timeout_seconds': networkIdleTimeoutSeconds,
-           if (networkIpAllowlist != null)
-             'network_ip_allowlist': networkIpAllowlist,
-           if (pitr != null) 'pitr': pitr,
-           if (pitrRetentionDays != null)
-             'pitr_retention_days': pitrRetentionDays,
-           if (projectId != null) 'project_id': projectId,
-           if (replicas != null) 'replicas': replicas,
-           if (specification != null) 'specification': specification,
-           if (sqlApiAllowedStatements != null)
-             'sql_api_allowed_statements': sqlApiAllowedStatements,
-           if (sqlApiEnabled != null) 'sql_api_enabled': sqlApiEnabled,
-           if (sqlApiMaxBytes != null) 'sql_api_max_bytes': sqlApiMaxBytes,
-           if (sqlApiMaxRows != null) 'sql_api_max_rows': sqlApiMaxRows,
-           if (sqlApiTimeoutSeconds != null)
-             'sql_api_timeout_seconds': sqlApiTimeoutSeconds,
-           if (status != null) 'status': status,
-           if (storageAutoscaling != null)
-             'storage_autoscaling': storageAutoscaling,
-           if (storageAutoscalingMaxGb != null)
-             'storage_autoscaling_max_gb': storageAutoscalingMaxGb,
-           if (storageAutoscalingThresholdPercent != null)
-             'storage_autoscaling_threshold_percent':
-                 storageAutoscalingThresholdPercent,
-           if (syncMode != null) 'sync_mode': syncMode,
-           if (version != null) 'version': version,
+           'network_idle_timeout_seconds': ?networkIdleTimeoutSeconds,
+           'network_ip_allowlist': ?networkIpAllowlist,
+           'pitr': ?pitr,
+           'pitr_retention_days': ?pitrRetentionDays,
+           'project_id': ?projectId,
+           'replicas': ?replicas,
+           'specification': ?specification,
+           'sql_api_allowed_statements': ?sqlApiAllowedStatements,
+           'sql_api_enabled': ?sqlApiEnabled,
+           'sql_api_max_bytes': ?sqlApiMaxBytes,
+           'sql_api_max_rows': ?sqlApiMaxRows,
+           'sql_api_timeout_seconds': ?sqlApiTimeoutSeconds,
+           'status': ?status,
+           'storage_autoscaling': ?storageAutoscaling,
+           'storage_autoscaling_max_gb': ?storageAutoscalingMaxGb,
+           'storage_autoscaling_threshold_percent':
+               ?storageAutoscalingThresholdPercent,
+           'sync_mode': ?syncMode,
+           'version': ?version,
          },
        );
 

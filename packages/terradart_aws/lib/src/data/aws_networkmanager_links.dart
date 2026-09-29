@@ -23,10 +23,10 @@ final class DataAwsNetworkmanagerLinks extends Data {
          terraformType: tfType,
          argMap: {
            'global_network_id': globalNetworkId,
-           if (providerName != null) 'provider_name': providerName,
-           if (siteId != null) 'site_id': siteId,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'provider_name': ?providerName,
+           'site_id': ?siteId,
+           'tags': ?tags,
+           'type': ?type,
          },
        );
 

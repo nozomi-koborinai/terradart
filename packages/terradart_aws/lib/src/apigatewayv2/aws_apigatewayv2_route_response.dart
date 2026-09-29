@@ -26,10 +26,9 @@ final class AwsApigatewayv2RouteResponse extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (modelSelectionExpression != null)
-             'model_selection_expression': modelSelectionExpression,
-           if (region != null) 'region': region,
-           if (responseModels != null) 'response_models': responseModels,
+           'model_selection_expression': ?modelSelectionExpression,
+           'region': ?region,
+           'response_models': ?responseModels,
            'route_id': routeId,
            'route_response_key': routeResponseKey,
          },

@@ -38,8 +38,8 @@ final class DeploymentManagerDeploymentLabels {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -81,8 +81,8 @@ final class DeploymentManagerDeploymentTargetImports {
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (content != null) 'content': content!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'content': ?content?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -118,13 +118,13 @@ final class GoogleDeploymentManagerDeployment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (createPolicy != null) 'create_policy': createPolicy,
-           if (deletePolicy != null) 'delete_policy': deletePolicy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'create_policy': ?createPolicy,
+           'delete_policy': ?deletePolicy,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'name': name,
-           if (preview != null) 'preview': preview,
-           if (project != null) 'project': project,
+           'preview': ?preview,
+           'project': ?project,
            if (labels != null)
              'labels': TfArg.literal([for (final e in labels) e.encode()]),
            'target': TfArg.literal(target.encode()),

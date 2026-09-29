@@ -32,7 +32,7 @@ final class GoogleProjectServiceIdentity extends Resource {
   }) : super(
          terraformType: tfType,
          provider: provider ?? 'google-beta',
-         argMap: {'service': service, if (project != null) 'project': project},
+         argMap: {'service': service, 'project': ?project},
        );
 
   @override

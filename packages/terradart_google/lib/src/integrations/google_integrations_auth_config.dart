@@ -69,7 +69,7 @@ final class IntegrationsAuthConfigClientCertificate {
 
   Map<String, Object?> encode() => {
     'encrypted_private_key': encryptedPrivateKey.toTfJson(),
-    if (passphrase != null) 'passphrase': passphrase!.toTfJson(),
+    'passphrase': ?passphrase?.toTfJson(),
     'ssl_certificate': sslCertificate.toTfJson(),
   };
 }
@@ -282,8 +282,8 @@ final class IntegrationsAuthConfigDecryptedCredentialAuthToken {
   final TfArg<String>? type;
 
   Map<String, Object?> encode() => {
-    if (token != null) 'token': token!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'token': ?token?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -304,9 +304,9 @@ final class IntegrationsAuthConfigDecryptedCredentialJwt {
   final TfArg<String>? secret;
 
   Map<String, Object?> encode() => {
-    if (jwtHeader != null) 'jwt_header': jwtHeader!.toTfJson(),
-    if (jwtPayload != null) 'jwt_payload': jwtPayload!.toTfJson(),
-    if (secret != null) 'secret': secret!.toTfJson(),
+    'jwt_header': ?jwtHeader?.toTfJson(),
+    'jwt_payload': ?jwtPayload?.toTfJson(),
+    'secret': ?secret?.toTfJson(),
   };
 }
 
@@ -333,11 +333,11 @@ final class IntegrationsAuthConfigDecryptedCredentialOauth2AuthorizationCode {
   final TfArg<String>? tokenEndpoint;
 
   Map<String, Object?> encode() => {
-    if (authEndpoint != null) 'auth_endpoint': authEndpoint!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
+    'auth_endpoint': ?authEndpoint?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
   };
 }
 
@@ -371,12 +371,12 @@ final class IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentials {
   tokenParams;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (requestType != null) 'request_type': requestType!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (tokenParams != null) 'token_params': tokenParams!.encode(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'request_type': ?requestType?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'token_params': ?tokenParams?.encode(),
   };
 }
 
@@ -429,8 +429,8 @@ final class IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentialsToke
   value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.encode(),
-    if (value != null) 'value': value!.encode(),
+    'key': ?key?.encode(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -445,9 +445,7 @@ final class IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentialsToke
   final IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentialsTokenParamsEntriesKeyLiteralValue?
   literalValue;
 
-  Map<String, Object?> encode() => {
-    if (literalValue != null) 'literal_value': literalValue!.encode(),
-  };
+  Map<String, Object?> encode() => {'literal_value': ?literalValue?.encode()};
 }
 
 /// Typed helper for the `decrypted_credential.oauth2_client_credentials.token_params.entries.key.literal_value` block of
@@ -460,9 +458,7 @@ final class IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentialsToke
 
   final TfArg<String>? stringValue;
 
-  Map<String, Object?> encode() => {
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'string_value': ?stringValue?.toTfJson()};
 }
 
 /// Typed helper for the `decrypted_credential.oauth2_client_credentials.token_params.entries.value` block of
@@ -476,9 +472,7 @@ final class IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentialsToke
   final IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentialsTokenParamsEntriesValueLiteralValue?
   literalValue;
 
-  Map<String, Object?> encode() => {
-    if (literalValue != null) 'literal_value': literalValue!.encode(),
-  };
+  Map<String, Object?> encode() => {'literal_value': ?literalValue?.encode()};
 }
 
 /// Typed helper for the `decrypted_credential.oauth2_client_credentials.token_params.entries.value.literal_value` block of
@@ -491,9 +485,7 @@ final class IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentialsToke
 
   final TfArg<String>? stringValue;
 
-  Map<String, Object?> encode() => {
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'string_value': ?stringValue?.toTfJson()};
 }
 
 /// Typed helper for the `decrypted_credential.oidc_token` block of
@@ -510,11 +502,8 @@ final class IntegrationsAuthConfigDecryptedCredentialOidcToken {
   final RefTo<GoogleServiceAccount>? serviceAccountEmail;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!
-          .encodeAs('email')
-          .toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
   };
 }
 
@@ -532,9 +521,8 @@ final class IntegrationsAuthConfigDecryptedCredentialServiceAccountCredentials {
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
   Map<String, Object?> encode() => {
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
   };
 }
 
@@ -552,8 +540,8 @@ final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword {
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (password != null) 'password': password!.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -619,20 +607,18 @@ final class GoogleIntegrationsAuthConfig extends Resource {
          argMap: {
            'display_name': displayName,
            'location': location,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (decryptedCredential != null)
              'decrypted_credential': TfArg.literal(
                decryptedCredential.encode(),
              ),
            if (clientCertificate != null)
              'client_certificate': TfArg.literal(clientCertificate.encode()),
-           if (visibility != null) 'visibility': visibility,
-           if (expiryNotificationDuration != null)
-             'expiry_notification_duration': expiryNotificationDuration,
-           if (overrideValidTime != null)
-             'override_valid_time': overrideValidTime,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'visibility': ?visibility,
+           'expiry_notification_duration': ?expiryNotificationDuration,
+           'override_valid_time': ?overrideValidTime,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

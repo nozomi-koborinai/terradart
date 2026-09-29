@@ -152,8 +152,7 @@ final class CloudRunV2WorkerPoolBinaryAuthorization {
   final CloudRunV2WorkerPoolBinaryAuthorizationPolicy? policy;
 
   Map<String, Object?> encode() => {
-    if (breakglassJustification != null)
-      'breakglass_justification': breakglassJustification!.toTfJson(),
+    'breakglass_justification': ?breakglassJustification?.toTfJson(),
     ...?policy?.encode(),
   };
 }
@@ -245,17 +244,16 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (client != null) 'client': client,
-           if (clientVersion != null) 'client_version': clientVersion,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (launchStage != null) 'launch_stage': launchStage,
+           'annotations': ?annotations,
+           'client': ?client,
+           'client_version': ?clientVersion,
+           'deletion_protection': ?deletionProtection,
+           'description': ?description,
+           'labels': ?labels,
+           'launch_stage': ?launchStage,
            'location': location,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (binaryAuthorization != null)
              'binary_authorization': TfArg.literal(
                binaryAuthorization.encode(),

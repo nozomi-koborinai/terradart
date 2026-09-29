@@ -32,13 +32,13 @@ final class CloudflareZeroTrustResourceLibraryApplication extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (categoryId != null) 'category_id': categoryId,
-           if (hostnames != null) 'hostnames': hostnames,
-           if (humanId != null) 'human_id': humanId,
-           if (ipSubnets != null) 'ip_subnets': ipSubnets,
-           if (name != null) 'name': name,
-           if (portProtocols != null) 'port_protocols': portProtocols,
-           if (supportDomains != null) 'support_domains': supportDomains,
+           'category_id': ?categoryId,
+           'hostnames': ?hostnames,
+           'human_id': ?humanId,
+           'ip_subnets': ?ipSubnets,
+           'name': ?name,
+           'port_protocols': ?portProtocols,
+           'support_domains': ?supportDomains,
          },
        );
 

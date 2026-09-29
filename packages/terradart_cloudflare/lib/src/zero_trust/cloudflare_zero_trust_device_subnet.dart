@@ -31,8 +31,8 @@ final class CloudflareZeroTrustDeviceSubnet extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (comment != null) 'comment': comment,
-           if (isDefaultNetwork != null) 'is_default_network': isDefaultNetwork,
+           'comment': ?comment,
+           'is_default_network': ?isDefaultNetwork,
            'name': name,
            'network': network,
          },

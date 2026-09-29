@@ -27,7 +27,7 @@ final class AwsRedshiftserverlessCustomDomainAssociation extends Resource {
          argMap: {
            'custom_domain_certificate_arn': customDomainCertificateArn,
            'custom_domain_name': customDomainName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'workgroup_name': workgroupName,
          },
        );

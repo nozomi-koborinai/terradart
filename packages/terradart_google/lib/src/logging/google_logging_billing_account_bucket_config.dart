@@ -74,10 +74,10 @@ final class GoogleLoggingBillingAccountBucketConfig extends Resource {
          argMap: {
            'billing_account': billingAccount,
            'bucket_id': bucketId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'location': location,
-           if (retentionDays != null) 'retention_days': retentionDays,
+           'retention_days': ?retentionDays,
            if (cmekSettings != null)
              'cmek_settings': TfArg.literal(cmekSettings.encode()),
            if (indexConfigs != null)

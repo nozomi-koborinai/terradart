@@ -19,8 +19,8 @@ final class DataAccountTokenFilter {
   final TfArg<bool>? includeExpired;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (includeExpired != null) 'include_expired': includeExpired!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'include_expired': ?includeExpired?.toTfJson(),
   };
 }
 
@@ -52,8 +52,8 @@ final class DataCloudflareAccountToken extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (tokenId != null) 'token_id': tokenId,
+           'account_id': ?accountId,
+           'token_id': ?tokenId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

@@ -25,12 +25,10 @@ final class AwsApiGatewayRequestValidator extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rest_api_id': restApiId,
-           if (validateRequestBody != null)
-             'validate_request_body': validateRequestBody,
-           if (validateRequestParameters != null)
-             'validate_request_parameters': validateRequestParameters,
+           'validate_request_body': ?validateRequestBody,
+           'validate_request_parameters': ?validateRequestParameters,
          },
        );
 

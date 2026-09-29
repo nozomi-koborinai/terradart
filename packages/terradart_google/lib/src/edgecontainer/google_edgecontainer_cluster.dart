@@ -161,7 +161,7 @@ final class EdgecontainerClusterControlPlaneEncryption {
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -214,8 +214,8 @@ final class EdgecontainerClusterMaintenancePolicyMaintenanceExclusions {
   window;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (window != null) 'window': window!.encode(),
+    'id': ?id?.toTfJson(),
+    'window': ?window?.encode(),
   };
 }
 
@@ -233,8 +233,8 @@ final class EdgecontainerClusterMaintenancePolicyMaintenanceExclusionsWindow {
   final TfArg<String>? startTime;
 
   Map<String, Object?> encode() => {
-    if (endTime != null) 'end_time': endTime!.toTfJson(),
-    if (startTime != null) 'start_time': startTime!.toTfJson(),
+    'end_time': ?endTime?.toTfJson(),
+    'start_time': ?startTime?.toTfJson(),
   };
 }
 
@@ -269,8 +269,8 @@ final class EdgecontainerClusterMaintenancePolicyWindowRecurringWindow {
   window;
 
   Map<String, Object?> encode() => {
-    if (recurrence != null) 'recurrence': recurrence!.toTfJson(),
-    if (window != null) 'window': window!.encode(),
+    'recurrence': ?recurrence?.toTfJson(),
+    'window': ?window?.encode(),
   };
 }
 
@@ -288,8 +288,8 @@ final class EdgecontainerClusterMaintenancePolicyWindowRecurringWindowWindow {
   final TfArg<String>? startTime;
 
   Map<String, Object?> encode() => {
-    if (endTime != null) 'end_time': endTime!.toTfJson(),
-    if (startTime != null) 'start_time': startTime!.toTfJson(),
+    'end_time': ?endTime?.toTfJson(),
+    'start_time': ?startTime?.toTfJson(),
   };
 }
 
@@ -314,11 +314,9 @@ final class EdgecontainerClusterNetworking {
 
   Map<String, Object?> encode() => {
     'cluster_ipv4_cidr_blocks': clusterIpv4CidrBlocks.toTfJson(),
-    if (clusterIpv6CidrBlocks != null)
-      'cluster_ipv6_cidr_blocks': clusterIpv6CidrBlocks!.toTfJson(),
+    'cluster_ipv6_cidr_blocks': ?clusterIpv6CidrBlocks?.toTfJson(),
     'services_ipv4_cidr_blocks': servicesIpv4CidrBlocks.toTfJson(),
-    if (servicesIpv6CidrBlocks != null)
-      'services_ipv6_cidr_blocks': servicesIpv6CidrBlocks!.toTfJson(),
+    'services_ipv6_cidr_blocks': ?servicesIpv6CidrBlocks?.toTfJson(),
   };
 }
 
@@ -330,9 +328,7 @@ final class EdgecontainerClusterSystemAddonsConfig {
 
   final EdgecontainerClusterSystemAddonsConfigIngress? ingress;
 
-  Map<String, Object?> encode() => {
-    if (ingress != null) 'ingress': ingress!.encode(),
-  };
+  Map<String, Object?> encode() => {'ingress': ?ingress?.encode()};
 }
 
 /// Typed helper for the `system_addons_config.ingress` block of
@@ -349,8 +345,8 @@ final class EdgecontainerClusterSystemAddonsConfigIngress {
   final TfArg<String>? ipv4Vip;
 
   Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (ipv4Vip != null) 'ipv4_vip': ipv4Vip!.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'ipv4_vip': ?ipv4Vip?.toTfJson(),
   };
 }
 
@@ -440,14 +436,13 @@ final class GoogleEdgecontainerCluster extends Resource {
              'maintenance_policy': TfArg.literal(maintenancePolicy.encode()),
            if (systemAddonsConfig != null)
              'system_addons_config': TfArg.literal(systemAddonsConfig.encode()),
-           if (externalLoadBalancerIpv4AddressPools != null)
-             'external_load_balancer_ipv4_address_pools':
-                 externalLoadBalancerIpv4AddressPools,
-           if (targetVersion != null) 'target_version': targetVersion,
-           if (releaseChannel != null) 'release_channel': releaseChannel,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'external_load_balancer_ipv4_address_pools':
+               ?externalLoadBalancerIpv4AddressPools,
+           'target_version': ?targetVersion,
+           'release_channel': ?releaseChannel,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            'control_plane': TfArg.literal(controlPlane.encode()),
          },
        );

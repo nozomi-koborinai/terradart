@@ -238,13 +238,12 @@ final class GoogleApiGatewayApiConfig extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'api': api,
-           if (apiConfigId != null) 'api_config_id': apiConfigId,
-           if (apiConfigIdPrefix != null)
-             'api_config_id_prefix': apiConfigIdPrefix,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'api_config_id': ?apiConfigId,
+           'api_config_id_prefix': ?apiConfigIdPrefix,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'project': ?project,
            if (gatewayConfig != null)
              'gateway_config': TfArg.literal(gatewayConfig.encode()),
            ...spec.argMap,

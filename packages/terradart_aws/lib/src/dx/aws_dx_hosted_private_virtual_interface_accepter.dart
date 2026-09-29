@@ -93,12 +93,10 @@ final class AwsDxHostedPrivateVirtualInterfaceAccepter extends Resource {
          terraformType: tfType,
          argMap: {
            ...gatewayId.argMap,
-           if (prefixPoolAllocatedCountIpv4 != null)
-             'prefix_pool_allocated_count_ipv4': prefixPoolAllocatedCountIpv4,
-           if (prefixPoolAllocatedCountIpv6 != null)
-             'prefix_pool_allocated_count_ipv6': prefixPoolAllocatedCountIpv6,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'prefix_pool_allocated_count_ipv4': ?prefixPoolAllocatedCountIpv4,
+           'prefix_pool_allocated_count_ipv6': ?prefixPoolAllocatedCountIpv6,
+           'region': ?region,
+           'tags': ?tags,
            'virtual_interface_id': virtualInterfaceId,
          },
        );

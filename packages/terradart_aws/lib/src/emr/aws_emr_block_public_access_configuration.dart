@@ -46,7 +46,7 @@ final class AwsEmrBlockPublicAccessConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'block_public_security_group_rules': blockPublicSecurityGroupRules,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (permittedPublicSecurityGroupRuleRange != null)
              'permitted_public_security_group_rule_range': TfArg.literal([
                for (final e in permittedPublicSecurityGroupRuleRange)

@@ -31,9 +31,9 @@ final class AwsMskVpcConnection extends Resource {
          argMap: {
            'authentication': authentication,
            'client_subnets': clientSubnets,
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_groups': securityGroups.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'target_cluster_arn': targetClusterArn,
            'vpc_id': vpcId.encodeAs('id'),
          },

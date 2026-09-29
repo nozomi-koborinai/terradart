@@ -20,10 +20,7 @@ final class GoogleSccNotificationServiceAccount extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (organization != null) 'organization': organization,
-           if (project != null) 'project': project,
-         },
+         argMap: {'organization': ?organization, 'project': ?project},
        );
 
   @override

@@ -25,15 +25,13 @@ final class AwsDxGatewayAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowedPrefixes != null) 'allowed_prefixes': allowedPrefixes,
-           if (associatedGatewayId != null)
-             'associated_gateway_id': associatedGatewayId,
-           if (associatedGatewayOwnerAccountId != null)
-             'associated_gateway_owner_account_id':
-                 associatedGatewayOwnerAccountId,
+           'allowed_prefixes': ?allowedPrefixes,
+           'associated_gateway_id': ?associatedGatewayId,
+           'associated_gateway_owner_account_id':
+               ?associatedGatewayOwnerAccountId,
            'dx_gateway_id': dxGatewayId,
-           if (proposalId != null) 'proposal_id': proposalId,
-           if (region != null) 'region': region,
+           'proposal_id': ?proposalId,
+           'region': ?region,
          },
        );
 

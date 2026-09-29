@@ -43,8 +43,8 @@ final class AwsApiGatewayDomainNameAccessAssociation extends Resource {
            'access_association_source': accessAssociationSource,
            'access_association_source_type': accessAssociationSourceType,
            'domain_name_arn': domainNameArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

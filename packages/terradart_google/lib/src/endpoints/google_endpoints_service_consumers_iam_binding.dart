@@ -34,7 +34,7 @@ final class GoogleEndpointsServiceConsumersIamBinding extends Resource {
            'consumer_project': consumerProject,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

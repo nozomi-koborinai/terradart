@@ -25,9 +25,9 @@ final class GlobalacceleratorCrossAccountAttachmentResource {
   final TfArg<String>? region;
 
   Map<String, Object?> encode() => {
-    if (cidrBlock != null) 'cidr_block': cidrBlock!.toTfJson(),
-    if (endpointId != null) 'endpoint_id': endpointId!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'cidr_block': ?cidrBlock?.toTfJson(),
+    'endpoint_id': ?endpointId?.toTfJson(),
+    'region': ?region?.toTfJson(),
   };
 }
 
@@ -49,8 +49,8 @@ final class AwsGlobalacceleratorCrossAccountAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (principals != null) 'principals': principals,
-           if (tags != null) 'tags': tags,
+           'principals': ?principals,
+           'tags': ?tags,
            if (resource != null)
              'resource': TfArg.literal([for (final e in resource) e.encode()]),
          },

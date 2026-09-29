@@ -21,10 +21,7 @@ final class DataAwsEcrAuthorizationToken extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (registryId != null) 'registry_id': registryId,
-         },
+         argMap: {'region': ?region, 'registry_id': ?registryId},
        );
 
   @override

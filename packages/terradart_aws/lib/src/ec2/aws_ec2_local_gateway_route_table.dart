@@ -35,8 +35,8 @@ final class AwsEc2LocalGatewayRouteTable extends Resource {
          argMap: {
            'local_gateway_id': localGatewayId,
            'mode': mode,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

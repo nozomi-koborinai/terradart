@@ -28,13 +28,11 @@ final class AwsGuarddutyMember extends Resource {
          argMap: {
            'account_id': accountId,
            'detector_id': detectorId,
-           if (disableEmailNotification != null)
-             'disable_email_notification': disableEmailNotification,
+           'disable_email_notification': ?disableEmailNotification,
            'email': email,
-           if (invitationMessage != null)
-             'invitation_message': invitationMessage,
-           if (invite != null) 'invite': invite,
-           if (region != null) 'region': region,
+           'invitation_message': ?invitationMessage,
+           'invite': ?invite,
+           'region': ?region,
          },
        );
 

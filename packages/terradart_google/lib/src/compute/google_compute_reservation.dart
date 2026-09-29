@@ -18,8 +18,8 @@ final class ComputeReservationDeleteAfterDuration {
   final TfArg<String>? seconds;
 
   Map<String, Object?> encode() => {
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -32,8 +32,7 @@ final class ComputeReservationParams {
   final TfArg<Map<String, String>>? resourceManagerTags;
 
   Map<String, Object?> encode() => {
-    if (resourceManagerTags != null)
-      'resource_manager_tags': resourceManagerTags!.toTfJson(),
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
 }
 
@@ -47,8 +46,7 @@ final class ComputeReservationReservationSharingPolicy {
   serviceShareType;
 
   Map<String, Object?> encode() => {
-    if (serviceShareType != null)
-      'service_share_type': serviceShareType!.toTfJson(),
+    'service_share_type': ?serviceShareType?.toTfJson(),
   };
 }
 
@@ -76,7 +74,7 @@ final class ComputeReservationShareSettings {
   final List<ComputeReservationShareSettingsProjectMap>? projectMap;
 
   Map<String, Object?> encode() => {
-    if (shareType != null) 'share_type': shareType!.toTfJson(),
+    'share_type': ?shareType?.toTfJson(),
     if (projectMap != null)
       'project_map': [for (final e in projectMap!) e.encode()],
   };
@@ -107,7 +105,7 @@ final class ComputeReservationShareSettingsProjectMap {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
   };
 }
 
@@ -215,7 +213,7 @@ final class ComputeReservationSpecificReservationInstanceProperties {
 
   Map<String, Object?> encode() => {
     'machine_type': machineType.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
     if (guestAccelerators != null)
       'guest_accelerators': [for (final e in guestAccelerators!) e.encode()],
     if (localSsds != null)
@@ -260,7 +258,7 @@ final class ComputeReservationSpecificReservationInstancePropertiesLocalSsds {
 
   Map<String, Object?> encode() => {
     'disk_size_gb': diskSizeGb.toTfJson(),
-    if (interface != null) 'interface': interface!.toTfJson(),
+    'interface': ?interface?.toTfJson(),
   };
 }
 
@@ -328,9 +326,8 @@ final class GoogleComputeReservation extends Resource {
            'name': name,
            'zone': zone,
            'specific_reservation': TfArg.literal(specificReservation.encode()),
-           if (description != null) 'description': description,
-           if (specificReservationRequired != null)
-             'specific_reservation_required': specificReservationRequired,
+           'description': ?description,
+           'specific_reservation_required': ?specificReservationRequired,
            if (shareSettings != null)
              'share_settings': TfArg.literal(shareSettings.encode()),
            if (reservationSharingPolicy != null)
@@ -338,13 +335,13 @@ final class GoogleComputeReservation extends Resource {
                reservationSharingPolicy.encode(),
              ),
            if (params != null) 'params': TfArg.literal(params.encode()),
-           if (deleteAtTime != null) 'delete_at_time': deleteAtTime,
+           'delete_at_time': ?deleteAtTime,
            if (deleteAfterDuration != null)
              'delete_after_duration': TfArg.literal(
                deleteAfterDuration.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

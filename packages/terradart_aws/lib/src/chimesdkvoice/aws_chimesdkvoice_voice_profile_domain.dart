@@ -43,10 +43,10 @@ final class AwsChimesdkvoiceVoiceProfileDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'server_side_encryption_configuration': TfArg.literal(
              serverSideEncryptionConfiguration.encode(),
            ),

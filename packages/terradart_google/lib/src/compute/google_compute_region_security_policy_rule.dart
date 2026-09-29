@@ -160,14 +160,14 @@ final class GoogleComputeRegionSecurityPolicyRule extends Resource {
          terraformType: tfType,
          argMap: {
            'action': action,
-           if (description != null) 'description': description,
-           if (preview != null) 'preview': preview,
+           'description': ?description,
+           'preview': ?preview,
            'priority': priority,
-           if (project != null) 'project': project,
+           'project': ?project,
            'region': region,
            'security_policy': securityPolicy,
            if (match != null) 'match': TfArg.literal([match.toArgMap()]),
-           if (networkMatch != null) 'network_match': networkMatch,
+           'network_match': ?networkMatch,
            if (preconfiguredWafConfig != null)
              'preconfigured_waf_config': TfArg.literal([
                preconfiguredWafConfig.toArgMap(),

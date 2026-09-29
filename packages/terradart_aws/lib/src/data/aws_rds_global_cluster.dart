@@ -19,10 +19,7 @@ final class DataAwsRdsGlobalCluster extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'identifier': identifier,
-           if (region != null) 'region': region,
-         },
+         argMap: {'identifier': identifier, 'region': ?region},
        );
 
   @override

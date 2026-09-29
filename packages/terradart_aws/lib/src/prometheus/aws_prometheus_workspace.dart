@@ -41,10 +41,10 @@ final class AwsPrometheusWorkspace extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (alias != null) 'alias': alias,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'alias': ?alias,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
+           'region': ?region,
+           'tags': ?tags,
            if (loggingConfiguration != null)
              'logging_configuration': TfArg.literal(
                loggingConfiguration.encode(),

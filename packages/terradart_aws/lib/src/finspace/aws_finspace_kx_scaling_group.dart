@@ -29,8 +29,8 @@ final class AwsFinspaceKxScalingGroup extends Resource {
            'environment_id': environmentId,
            'host_type': hostType,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -32,17 +32,15 @@ final class DataCloudflareEmailSecurityDomains extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (activeDeliveryMode != null)
-             'active_delivery_mode': activeDeliveryMode,
-           if (allowedDeliveryMode != null)
-             'allowed_delivery_mode': allowedDeliveryMode,
-           if (direction != null) 'direction': direction,
-           if (domain != null) 'domain': domain,
-           if (integrationId != null) 'integration_id': integrationId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
-           if (search != null) 'search': search,
-           if (status != null) 'status': status,
+           'active_delivery_mode': ?activeDeliveryMode,
+           'allowed_delivery_mode': ?allowedDeliveryMode,
+           'direction': ?direction,
+           'domain': ?domain,
+           'integration_id': ?integrationId,
+           'max_items': ?maxItems,
+           'order': ?order,
+           'search': ?search,
+           'status': ?status,
          },
        );
 

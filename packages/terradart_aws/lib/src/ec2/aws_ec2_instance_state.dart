@@ -33,9 +33,9 @@ final class AwsEc2InstanceState extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (force != null) 'force': force,
+           'force': ?force,
            'instance_id': instanceId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'state': state,
          },
        );

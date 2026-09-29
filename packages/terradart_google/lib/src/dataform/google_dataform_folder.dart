@@ -49,9 +49,9 @@ final class GoogleDataformFolder extends Resource {
          argMap: {
            'display_name': displayName,
            'region': region,
-           if (containingFolder != null) 'containing_folder': containingFolder,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'containing_folder': ?containingFolder,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

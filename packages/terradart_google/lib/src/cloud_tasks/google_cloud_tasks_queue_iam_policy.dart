@@ -31,7 +31,7 @@ final class GoogleCloudTasksQueueIamPolicy extends Resource {
            'name': name,
            'location': location,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

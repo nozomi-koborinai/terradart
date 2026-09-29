@@ -23,9 +23,9 @@ final class DataAwsLambdaFunction extends Data {
          terraformType: tfType,
          argMap: {
            'function_name': functionName,
-           if (qualifier != null) 'qualifier': qualifier,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'qualifier': ?qualifier,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

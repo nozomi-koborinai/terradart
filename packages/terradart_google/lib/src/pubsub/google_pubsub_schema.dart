@@ -69,9 +69,9 @@ final class GooglePubsubSchema extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (type != null) 'type': type,
-           if (definition != null) 'definition': definition,
-           if (project != null) 'project': project,
+           'type': ?type,
+           'definition': ?definition,
+           'project': ?project,
          },
        );
 

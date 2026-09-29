@@ -22,8 +22,8 @@ final class GlobalacceleratorCustomRoutingListenerPortRange {
   final TfArg<num>? toPort;
 
   Map<String, Object?> encode() => {
-    if (fromPort != null) 'from_port': fromPort!.toTfJson(),
-    if (toPort != null) 'to_port': toPort!.toTfJson(),
+    'from_port': ?fromPort?.toTfJson(),
+    'to_port': ?toPort?.toTfJson(),
   };
 }
 

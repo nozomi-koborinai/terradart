@@ -33,8 +33,7 @@ final class GkeonpremBareMetalAdminClusterClusterOperations {
   final TfArg<bool>? enableApplicationLogs;
 
   Map<String, Object?> encode() => {
-    if (enableApplicationLogs != null)
-      'enable_application_logs': enableApplicationLogs!.toTfJson(),
+    'enable_application_logs': ?enableApplicationLogs?.toTfJson(),
   };
 }
 
@@ -121,9 +120,8 @@ final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig
   taints;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (operatingSystem != null)
-      'operating_system': operatingSystem!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'operating_system': ?operatingSystem?.toTfJson(),
     if (nodeConfigs != null)
       'node_configs': [for (final e in nodeConfigs!) e.encode()],
     if (taints != null) 'taints': [for (final e in taints!) e.encode()],
@@ -144,8 +142,8 @@ final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig
   final TfArg<String>? nodeIp;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (nodeIp != null) 'node_ip': nodeIp!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'node_ip': ?nodeIp?.toTfJson(),
   };
 }
 
@@ -169,9 +167,9 @@ final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (effect != null) 'effect': effect!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'effect': ?effect?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -210,8 +208,8 @@ final class GkeonpremBareMetalAdminClusterLoadBalancer {
   final GkeonpremBareMetalAdminClusterLoadBalancerVipConfig vipConfig;
 
   Map<String, Object?> encode() => {
-    if (bgpLbConfig != null) 'bgp_lb_config': bgpLbConfig!.encode(),
-    if (manualLbConfig != null) 'manual_lb_config': manualLbConfig!.encode(),
+    'bgp_lb_config': ?bgpLbConfig?.encode(),
+    'manual_lb_config': ?manualLbConfig?.encode(),
     'port_config': portConfig.encode(),
     'vip_config': vipConfig.encode(),
   };
@@ -242,13 +240,12 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfig {
   loadBalancerNodePoolConfig;
 
   Map<String, Object?> encode() => {
-    if (asn != null) 'asn': asn!.toTfJson(),
+    'asn': ?asn?.toTfJson(),
     if (addressPools != null)
       'address_pools': [for (final e in addressPools!) e.encode()],
     if (bgpPeerConfigs != null)
       'bgp_peer_configs': [for (final e in bgpPeerConfigs!) e.encode()],
-    if (loadBalancerNodePoolConfig != null)
-      'load_balancer_node_pool_config': loadBalancerNodePoolConfig!.encode(),
+    'load_balancer_node_pool_config': ?loadBalancerNodePoolConfig?.encode(),
   };
 }
 
@@ -272,10 +269,10 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigAddressPools {
   final TfArg<String>? pool;
 
   Map<String, Object?> encode() => {
-    if (addresses != null) 'addresses': addresses!.toTfJson(),
-    if (avoidBuggyIps != null) 'avoid_buggy_ips': avoidBuggyIps!.toTfJson(),
-    if (manualAssign != null) 'manual_assign': manualAssign!.toTfJson(),
-    if (pool != null) 'pool': pool!.toTfJson(),
+    'addresses': ?addresses?.toTfJson(),
+    'avoid_buggy_ips': ?avoidBuggyIps?.toTfJson(),
+    'manual_assign': ?manualAssign?.toTfJson(),
+    'pool': ?pool?.toTfJson(),
   };
 }
 
@@ -296,10 +293,9 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigBgpPeerConfigs 
   final TfArg<String>? ipAddress;
 
   Map<String, Object?> encode() => {
-    if (asn != null) 'asn': asn!.toTfJson(),
-    if (controlPlaneNodes != null)
-      'control_plane_nodes': controlPlaneNodes!.toTfJson(),
-    if (ipAddress != null) 'ip_address': ipAddress!.toTfJson(),
+    'asn': ?asn?.toTfJson(),
+    'control_plane_nodes': ?controlPlaneNodes?.toTfJson(),
+    'ip_address': ?ipAddress?.toTfJson(),
   };
 }
 
@@ -315,7 +311,7 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNod
   nodePoolConfig;
 
   Map<String, Object?> encode() => {
-    if (nodePoolConfig != null) 'node_pool_config': nodePoolConfig!.encode(),
+    'node_pool_config': ?nodePoolConfig?.encode(),
   };
 }
 
@@ -349,10 +345,9 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNod
   taints;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (operatingSystem != null)
-      'operating_system': operatingSystem!.toTfJson(),
-    if (kubeletConfig != null) 'kubelet_config': kubeletConfig!.encode(),
+    'labels': ?labels?.toTfJson(),
+    'operating_system': ?operatingSystem?.toTfJson(),
+    'kubelet_config': ?kubeletConfig?.encode(),
     if (nodeConfigs != null)
       'node_configs': [for (final e in nodeConfigs!) e.encode()],
     if (taints != null) 'taints': [for (final e in taints!) e.encode()],
@@ -376,11 +371,9 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNod
   final TfArg<bool>? serializeImagePullsDisabled;
 
   Map<String, Object?> encode() => {
-    if (registryBurst != null) 'registry_burst': registryBurst!.toTfJson(),
-    if (registryPullQps != null)
-      'registry_pull_qps': registryPullQps!.toTfJson(),
-    if (serializeImagePullsDisabled != null)
-      'serialize_image_pulls_disabled': serializeImagePullsDisabled!.toTfJson(),
+    'registry_burst': ?registryBurst?.toTfJson(),
+    'registry_pull_qps': ?registryPullQps?.toTfJson(),
+    'serialize_image_pulls_disabled': ?serializeImagePullsDisabled?.toTfJson(),
   };
 }
 
@@ -398,8 +391,8 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNod
   final TfArg<String>? nodeIp;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (nodeIp != null) 'node_ip': nodeIp!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'node_ip': ?nodeIp?.toTfJson(),
   };
 }
 
@@ -420,9 +413,9 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNod
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (effect != null) 'effect': effect!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'effect': ?effect?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -503,12 +496,10 @@ final class GkeonpremBareMetalAdminClusterNetworkConfig {
   multipleNetworkInterfacesConfig;
 
   Map<String, Object?> encode() => {
-    if (advancedNetworking != null)
-      'advanced_networking': advancedNetworking!.toTfJson(),
-    if (islandModeCidr != null) 'island_mode_cidr': islandModeCidr!.encode(),
-    if (multipleNetworkInterfacesConfig != null)
-      'multiple_network_interfaces_config': multipleNetworkInterfacesConfig!
-          .encode(),
+    'advanced_networking': ?advancedNetworking?.toTfJson(),
+    'island_mode_cidr': ?islandModeCidr?.encode(),
+    'multiple_network_interfaces_config': ?multipleNetworkInterfacesConfig
+        ?.encode(),
   };
 }
 
@@ -541,9 +532,7 @@ final class GkeonpremBareMetalAdminClusterNetworkConfigMultipleNetworkInterfaces
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `node_access_config` block of
@@ -554,9 +543,7 @@ final class GkeonpremBareMetalAdminClusterNodeAccessConfig {
 
   final TfArg<String>? loginUser;
 
-  Map<String, Object?> encode() => {
-    if (loginUser != null) 'login_user': loginUser!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'login_user': ?loginUser?.toTfJson()};
 }
 
 /// Typed helper for the `node_config` block of
@@ -568,7 +555,7 @@ final class GkeonpremBareMetalAdminClusterNodeConfig {
   final TfArg<num>? maxPodsPerNode;
 
   Map<String, Object?> encode() => {
-    if (maxPodsPerNode != null) 'max_pods_per_node': maxPodsPerNode!.toTfJson(),
+    'max_pods_per_node': ?maxPodsPerNode?.toTfJson(),
   };
 }
 
@@ -583,7 +570,7 @@ final class GkeonpremBareMetalAdminClusterProxy {
   final TfArg<String> uri;
 
   Map<String, Object?> encode() => {
-    if (noProxy != null) 'no_proxy': noProxy!.toTfJson(),
+    'no_proxy': ?noProxy?.toTfJson(),
     'uri': uri.toTfJson(),
   };
 }
@@ -597,9 +584,7 @@ final class GkeonpremBareMetalAdminClusterSecurityConfig {
   final GkeonpremBareMetalAdminClusterSecurityConfigAuthorization?
   authorization;
 
-  Map<String, Object?> encode() => {
-    if (authorization != null) 'authorization': authorization!.encode(),
-  };
+  Map<String, Object?> encode() => {'authorization': ?authorization?.encode()};
 }
 
 /// Typed helper for the `security_config.authorization` block of
@@ -686,8 +671,7 @@ final class GkeonpremBareMetalAdminClusterStorageLvpShareConfig {
   final GkeonpremBareMetalAdminClusterStorageLvpShareConfigLvpConfig lvpConfig;
 
   Map<String, Object?> encode() => {
-    if (sharedPathPvCount != null)
-      'shared_path_pv_count': sharedPathPvCount!.toTfJson(),
+    'shared_path_pv_count': ?sharedPathPvCount?.toTfJson(),
     'lvp_config': lvpConfig.encode(),
   };
 }
@@ -755,8 +739,8 @@ final class GoogleGkeonpremBareMetalAdminCluster extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (bareMetalVersion != null) 'bare_metal_version': bareMetalVersion,
-           if (description != null) 'description': description,
+           'bare_metal_version': ?bareMetalVersion,
+           'description': ?description,
            if (networkConfig != null)
              'network_config': TfArg.literal(networkConfig.encode()),
            if (controlPlane != null)
@@ -775,8 +759,8 @@ final class GoogleGkeonpremBareMetalAdminCluster extends Resource {
            if (clusterOperations != null)
              'cluster_operations': TfArg.literal(clusterOperations.encode()),
            if (proxy != null) 'proxy': TfArg.literal(proxy.encode()),
-           if (annotations != null) 'annotations': annotations,
-           if (project != null) 'project': project,
+           'annotations': ?annotations,
+           'project': ?project,
          },
        );
 

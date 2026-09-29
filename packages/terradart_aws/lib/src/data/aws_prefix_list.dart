@@ -38,9 +38,9 @@ final class DataAwsPrefixList extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (prefixListId != null) 'prefix_list_id': prefixListId,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'prefix_list_id': ?prefixListId,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

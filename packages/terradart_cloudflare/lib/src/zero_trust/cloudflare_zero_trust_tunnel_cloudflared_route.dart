@@ -32,10 +32,10 @@ final class CloudflareZeroTrustTunnelCloudflaredRoute extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'network': network,
            'tunnel_id': tunnelId,
-           if (virtualNetworkId != null) 'virtual_network_id': virtualNetworkId,
+           'virtual_network_id': ?virtualNetworkId,
          },
        );
 

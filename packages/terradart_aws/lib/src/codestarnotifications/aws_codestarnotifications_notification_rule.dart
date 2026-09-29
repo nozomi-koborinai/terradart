@@ -43,7 +43,7 @@ final class CodestarnotificationsNotificationRuleTarget {
 
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -71,10 +71,10 @@ final class AwsCodestarnotificationsNotificationRule extends Resource {
            'detail_type': detailType,
            'event_type_ids': eventTypeIds,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource': resource,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
+           'status': ?status,
+           'tags': ?tags,
            if (target != null)
              'target': TfArg.literal([for (final e in target) e.encode()]),
          },

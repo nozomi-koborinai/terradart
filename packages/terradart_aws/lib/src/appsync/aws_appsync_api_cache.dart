@@ -62,11 +62,9 @@ final class AwsAppsyncApiCache extends Resource {
          argMap: {
            'api_caching_behavior': apiCachingBehavior,
            'api_id': apiId,
-           if (atRestEncryptionEnabled != null)
-             'at_rest_encryption_enabled': atRestEncryptionEnabled,
-           if (region != null) 'region': region,
-           if (transitEncryptionEnabled != null)
-             'transit_encryption_enabled': transitEncryptionEnabled,
+           'at_rest_encryption_enabled': ?atRestEncryptionEnabled,
+           'region': ?region,
+           'transit_encryption_enabled': ?transitEncryptionEnabled,
            'ttl': ttl,
            'type': type,
          },

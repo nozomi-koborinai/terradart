@@ -25,8 +25,8 @@ final class AwsSpotDatafeedSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (prefix != null) 'prefix': prefix,
-           if (region != null) 'region': region,
+           'prefix': ?prefix,
+           'region': ?region,
          },
        );
 

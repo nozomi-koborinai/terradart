@@ -24,7 +24,7 @@ final class DataAwsConnectInstanceStorageConfig extends Data {
          argMap: {
            'association_id': associationId,
            'instance_id': instanceId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_type': resourceType,
          },
        );

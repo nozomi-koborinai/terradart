@@ -26,7 +26,7 @@ final class AwsSsoadminPermissionSetInlinePolicy extends Resource {
            'inline_policy': inlinePolicy,
            'instance_arn': instanceArn,
            'permission_set_arn': permissionSetArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

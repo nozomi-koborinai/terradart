@@ -34,28 +34,22 @@ final class DataAwsRoute extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (carrierGatewayId != null) 'carrier_gateway_id': carrierGatewayId,
-           if (coreNetworkArn != null) 'core_network_arn': coreNetworkArn,
-           if (destinationCidrBlock != null)
-             'destination_cidr_block': destinationCidrBlock,
-           if (destinationIpv6CidrBlock != null)
-             'destination_ipv6_cidr_block': destinationIpv6CidrBlock,
-           if (destinationPrefixListId != null)
-             'destination_prefix_list_id': destinationPrefixListId,
-           if (egressOnlyGatewayId != null)
-             'egress_only_gateway_id': egressOnlyGatewayId,
-           if (gatewayId != null) 'gateway_id': gatewayId,
-           if (instanceId != null) 'instance_id': instanceId,
-           if (localGatewayId != null) 'local_gateway_id': localGatewayId,
-           if (natGatewayId != null) 'nat_gateway_id': natGatewayId,
-           if (networkInterfaceId != null)
-             'network_interface_id': networkInterfaceId,
-           if (odbNetworkArn != null) 'odb_network_arn': odbNetworkArn,
-           if (region != null) 'region': region,
+           'carrier_gateway_id': ?carrierGatewayId,
+           'core_network_arn': ?coreNetworkArn,
+           'destination_cidr_block': ?destinationCidrBlock,
+           'destination_ipv6_cidr_block': ?destinationIpv6CidrBlock,
+           'destination_prefix_list_id': ?destinationPrefixListId,
+           'egress_only_gateway_id': ?egressOnlyGatewayId,
+           'gateway_id': ?gatewayId,
+           'instance_id': ?instanceId,
+           'local_gateway_id': ?localGatewayId,
+           'nat_gateway_id': ?natGatewayId,
+           'network_interface_id': ?networkInterfaceId,
+           'odb_network_arn': ?odbNetworkArn,
+           'region': ?region,
            'route_table_id': routeTableId,
-           if (transitGatewayId != null) 'transit_gateway_id': transitGatewayId,
-           if (vpcPeeringConnectionId != null)
-             'vpc_peering_connection_id': vpcPeeringConnectionId,
+           'transit_gateway_id': ?transitGatewayId,
+           'vpc_peering_connection_id': ?vpcPeeringConnectionId,
          },
        );
 

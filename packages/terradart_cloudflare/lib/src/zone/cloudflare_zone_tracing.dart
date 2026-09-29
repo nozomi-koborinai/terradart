@@ -39,13 +39,12 @@ final class CloudflareZoneTracing extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (destinations != null) 'destinations': destinations,
-           if (enabled != null) 'enabled': enabled,
-           if (forwardContext != null) 'forward_context': forwardContext,
-           if (persist != null) 'persist': persist,
-           if (propagationPolicy != null)
-             'propagation_policy': propagationPolicy,
-           if (samplingRatio != null) 'sampling_ratio': samplingRatio,
+           'destinations': ?destinations,
+           'enabled': ?enabled,
+           'forward_context': ?forwardContext,
+           'persist': ?persist,
+           'propagation_policy': ?propagationPolicy,
+           'sampling_ratio': ?samplingRatio,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

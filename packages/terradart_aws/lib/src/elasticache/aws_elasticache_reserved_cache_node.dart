@@ -23,10 +23,10 @@ final class AwsElasticacheReservedCacheNode extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cacheNodeCount != null) 'cache_node_count': cacheNodeCount,
-           if (region != null) 'region': region,
+           'cache_node_count': ?cacheNodeCount,
+           'region': ?region,
            'reserved_cache_nodes_offering_id': reservedCacheNodesOfferingId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

@@ -43,9 +43,9 @@ final class GoogleChronicleDataTableRow extends Resource {
            'values': values,
            'location': location,
            'instance': instance,
-           if (rowTimeToLive != null) 'row_time_to_live': rowTimeToLive,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'row_time_to_live': ?rowTimeToLive,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

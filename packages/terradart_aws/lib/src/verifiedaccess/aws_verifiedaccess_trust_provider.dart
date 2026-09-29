@@ -52,9 +52,7 @@ final class VerifiedaccessTrustProviderDeviceOptions {
 
   final TfArg<String>? tenantId;
 
-  Map<String, Object?> encode() => {
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'tenant_id': ?tenantId?.toTfJson()};
 }
 
 /// Typed helper for the `native_application_oidc_options` block of
@@ -89,17 +87,14 @@ final class VerifiedaccessTrustProviderNativeApplicationOidcOptions {
   final TfArg<String>? userInfoEndpoint;
 
   Map<String, Object?> encode() => {
-    if (authorizationEndpoint != null)
-      'authorization_endpoint': authorizationEndpoint!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
+    'authorization_endpoint': ?authorizationEndpoint?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (publicSigningKeyEndpoint != null)
-      'public_signing_key_endpoint': publicSigningKeyEndpoint!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (userInfoEndpoint != null)
-      'user_info_endpoint': userInfoEndpoint!.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'public_signing_key_endpoint': ?publicSigningKeyEndpoint?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'user_info_endpoint': ?userInfoEndpoint?.toTfJson(),
   };
 }
 
@@ -132,15 +127,13 @@ final class VerifiedaccessTrustProviderOidcOptions {
   final TfArg<String>? userInfoEndpoint;
 
   Map<String, Object?> encode() => {
-    if (authorizationEndpoint != null)
-      'authorization_endpoint': authorizationEndpoint!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
+    'authorization_endpoint': ?authorizationEndpoint?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (userInfoEndpoint != null)
-      'user_info_endpoint': userInfoEndpoint!.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'user_info_endpoint': ?userInfoEndpoint?.toTfJson(),
   };
 }
 
@@ -158,9 +151,8 @@ final class VerifiedaccessTrustProviderSseSpecification {
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (customerManagedKeyEnabled != null)
-      'customer_managed_key_enabled': customerManagedKeyEnabled!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'customer_managed_key_enabled': ?customerManagedKeyEnabled?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -192,15 +184,13 @@ final class AwsVerifiedaccessTrustProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (deviceTrustProviderType != null)
-             'device_trust_provider_type': deviceTrustProviderType,
+           'description': ?description,
+           'device_trust_provider_type': ?deviceTrustProviderType,
            'policy_reference_name': policyReferenceName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'trust_provider_type': trustProviderType,
-           if (userTrustProviderType != null)
-             'user_trust_provider_type': userTrustProviderType,
+           'user_trust_provider_type': ?userTrustProviderType,
            if (deviceOptions != null)
              'device_options': TfArg.literal(deviceOptions.encode()),
            if (nativeApplicationOidcOptions != null)

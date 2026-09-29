@@ -77,28 +77,24 @@ final class AwsOdbNetwork extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
+           'availability_zone': ?availabilityZone,
            'availability_zone_id': availabilityZoneId,
            'backup_subnet_cidr': backupSubnetCidr,
            'client_subnet_cidr': clientSubnetCidr,
-           if (crossRegionS3RestoreSourcesAccess != null)
-             'cross_region_s3_restore_sources_access':
-                 crossRegionS3RestoreSourcesAccess,
-           if (customDomainName != null) 'custom_domain_name': customDomainName,
-           if (defaultDnsPrefix != null) 'default_dns_prefix': defaultDnsPrefix,
-           if (deleteAssociatedResources != null)
-             'delete_associated_resources': deleteAssociatedResources,
+           'cross_region_s3_restore_sources_access':
+               ?crossRegionS3RestoreSourcesAccess,
+           'custom_domain_name': ?customDomainName,
+           'default_dns_prefix': ?defaultDnsPrefix,
+           'delete_associated_resources': ?deleteAssociatedResources,
            'display_name': displayName,
-           if (kmsAccess != null) 'kms_access': kmsAccess,
-           if (kmsPolicyDocument != null)
-             'kms_policy_document': kmsPolicyDocument,
-           if (region != null) 'region': region,
+           'kms_access': ?kmsAccess,
+           'kms_policy_document': ?kmsPolicyDocument,
+           'region': ?region,
            's3_access': s3Access,
-           if (s3PolicyDocument != null) 's3_policy_document': s3PolicyDocument,
-           if (stsAccess != null) 'sts_access': stsAccess,
-           if (stsPolicyDocument != null)
-             'sts_policy_document': stsPolicyDocument,
-           if (tags != null) 'tags': tags,
+           's3_policy_document': ?s3PolicyDocument,
+           'sts_access': ?stsAccess,
+           'sts_policy_document': ?stsPolicyDocument,
+           'tags': ?tags,
            'zero_etl_access': zeroEtlAccess,
          },
        );

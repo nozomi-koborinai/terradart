@@ -33,12 +33,12 @@ final class DataprocGdcSparkApplicationPysparkApplicationConfig {
   final TfArg<List<Object?>>? pythonFileUris;
 
   Map<String, Object?> encode() => {
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
     'main_python_file_uri': mainPythonFileUri.toTfJson(),
-    if (pythonFileUris != null) 'python_file_uris': pythonFileUris!.toTfJson(),
+    'python_file_uris': ?pythonFileUris?.toTfJson(),
   };
 }
 
@@ -68,12 +68,12 @@ final class DataprocGdcSparkApplicationSparkApplicationConfig {
   final TfArg<String>? mainJarFileUri;
 
   Map<String, Object?> encode() => {
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (mainClass != null) 'main_class': mainClass!.toTfJson(),
-    if (mainJarFileUri != null) 'main_jar_file_uri': mainJarFileUri!.toTfJson(),
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'main_class': ?mainClass?.toTfJson(),
+    'main_jar_file_uri': ?mainJarFileUri?.toTfJson(),
   };
 }
 
@@ -97,9 +97,9 @@ final class DataprocGdcSparkApplicationSparkRApplicationConfig {
   final TfArg<String> mainRFileUri;
 
   Map<String, Object?> encode() => {
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
     'main_r_file_uri': mainRFileUri.toTfJson(),
   };
 }
@@ -125,11 +125,10 @@ final class DataprocGdcSparkApplicationSparkSqlApplicationConfig {
   queryList;
 
   Map<String, Object?> encode() => {
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (queryFileUri != null) 'query_file_uri': queryFileUri!.toTfJson(),
-    if (scriptVariables != null)
-      'script_variables': scriptVariables!.toTfJson(),
-    if (queryList != null) 'query_list': queryList!.encode(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'query_file_uri': ?queryFileUri?.toTfJson(),
+    'script_variables': ?scriptVariables?.toTfJson(),
+    'query_list': ?queryList?.encode(),
   };
 }
 
@@ -182,20 +181,19 @@ final class GoogleDataprocGdcSparkApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (applicationEnvironment != null)
-             'application_environment': applicationEnvironment,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (dependencyImages != null) 'dependency_images': dependencyImages,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
+           'annotations': ?annotations,
+           'application_environment': ?applicationEnvironment,
+           'deletion_policy': ?deletionPolicy,
+           'dependency_images': ?dependencyImages,
+           'display_name': ?displayName,
+           'labels': ?labels,
            'location': location,
-           if (namespace != null) 'namespace': namespace,
-           if (project != null) 'project': project,
-           if (properties != null) 'properties': properties,
+           'namespace': ?namespace,
+           'project': ?project,
+           'properties': ?properties,
            'serviceinstance': serviceinstance,
            'spark_application_id': sparkApplicationId,
-           if (version != null) 'version': version,
+           'version': ?version,
            if (sparkApplicationConfig != null)
              'spark_application_config': TfArg.literal(
                sparkApplicationConfig.encode(),

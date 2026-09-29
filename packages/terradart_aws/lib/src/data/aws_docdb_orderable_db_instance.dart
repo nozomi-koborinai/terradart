@@ -24,14 +24,13 @@ final class DataAwsDocdbOrderableDbInstance extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (engine != null) 'engine': engine,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (instanceClass != null) 'instance_class': instanceClass,
-           if (licenseModel != null) 'license_model': licenseModel,
-           if (preferredInstanceClasses != null)
-             'preferred_instance_classes': preferredInstanceClasses,
-           if (region != null) 'region': region,
-           if (vpc != null) 'vpc': vpc,
+           'engine': ?engine,
+           'engine_version': ?engineVersion,
+           'instance_class': ?instanceClass,
+           'license_model': ?licenseModel,
+           'preferred_instance_classes': ?preferredInstanceClasses,
+           'region': ?region,
+           'vpc': ?vpc,
          },
        );
 

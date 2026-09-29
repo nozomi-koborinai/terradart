@@ -22,10 +22,10 @@ final class DataAwsKmsCiphertext extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (context != null) 'context': context,
+           'context': ?context,
            'key_id': keyId,
            'plaintext': plaintext,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

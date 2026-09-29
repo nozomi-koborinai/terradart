@@ -32,8 +32,8 @@ final class VectorSearchIndexDedicatedInfrastructure {
   autoscalingSpec;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (autoscalingSpec != null) 'autoscaling_spec': autoscalingSpec!.encode(),
+    'mode': ?mode?.toTfJson(),
+    'autoscaling_spec': ?autoscalingSpec?.encode(),
   };
 }
 
@@ -62,10 +62,8 @@ final class VectorSearchIndexDedicatedInfrastructureAutoscalingSpec {
   final TfArg<num>? minReplicaCount;
 
   Map<String, Object?> encode() => {
-    if (maxReplicaCount != null)
-      'max_replica_count': maxReplicaCount!.toTfJson(),
-    if (minReplicaCount != null)
-      'min_replica_count': minReplicaCount!.toTfJson(),
+    'max_replica_count': ?maxReplicaCount?.toTfJson(),
+    'min_replica_count': ?minReplicaCount?.toTfJson(),
   };
 }
 
@@ -78,8 +76,7 @@ final class VectorSearchIndexDenseScann {
   final TfArg<VectorSearchIndexDenseScannFeatureNormType>? featureNormType;
 
   Map<String, Object?> encode() => {
-    if (featureNormType != null)
-      'feature_norm_type': featureNormType!.toTfJson(),
+    'feature_norm_type': ?featureNormType?.toTfJson(),
   };
 }
 
@@ -141,20 +138,20 @@ final class GoogleVectorSearchIndex extends Resource {
            'collection_id': collectionId,
            'index_id': indexId,
            'index_field': indexField,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (distanceMetric != null) 'distance_metric': distanceMetric,
-           if (filterFields != null) 'filter_fields': filterFields,
-           if (storeFields != null) 'store_fields': storeFields,
+           'display_name': ?displayName,
+           'description': ?description,
+           'distance_metric': ?distanceMetric,
+           'filter_fields': ?filterFields,
+           'store_fields': ?storeFields,
            if (denseScann != null)
              'dense_scann': TfArg.literal(denseScann.encode()),
            if (dedicatedInfrastructure != null)
              'dedicated_infrastructure': TfArg.literal(
                dedicatedInfrastructure.encode(),
              ),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -27,16 +27,14 @@ final class AwsRdsShardGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (computeRedundancy != null)
-             'compute_redundancy': computeRedundancy,
+           'compute_redundancy': ?computeRedundancy,
            'db_cluster_identifier': dbClusterIdentifier,
            'db_shard_group_identifier': dbShardGroupIdentifier,
            'max_acu': maxAcu,
-           if (minAcu != null) 'min_acu': minAcu,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'min_acu': ?minAcu,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

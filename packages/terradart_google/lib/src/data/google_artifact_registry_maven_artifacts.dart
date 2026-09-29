@@ -24,7 +24,7 @@ final class DataGoogleArtifactRegistryMavenArtifacts extends Data {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'repository_id': repositoryId,
          },
        );

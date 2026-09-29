@@ -18,7 +18,7 @@ final class WorkspacesIpGroupRules {
   final TfArg<String> source;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'source': source.toTfJson(),
   };
 }
@@ -41,10 +41,10 @@ final class AwsWorkspacesIpGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (rules != null)
              'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },

@@ -23,8 +23,7 @@ final class DataGoogleKmsSecret extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalAuthenticatedData != null)
-             'additional_authenticated_data': additionalAuthenticatedData,
+           'additional_authenticated_data': ?additionalAuthenticatedData,
            'ciphertext': ciphertext,
            'crypto_key': cryptoKey,
          },

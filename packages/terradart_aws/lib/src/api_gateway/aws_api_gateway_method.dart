@@ -31,19 +31,16 @@ final class AwsApiGatewayMethod extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (apiKeyRequired != null) 'api_key_required': apiKeyRequired,
+           'api_key_required': ?apiKeyRequired,
            'authorization': authorization,
-           if (authorizationScopes != null)
-             'authorization_scopes': authorizationScopes,
-           if (authorizerId != null) 'authorizer_id': authorizerId,
+           'authorization_scopes': ?authorizationScopes,
+           'authorizer_id': ?authorizerId,
            'http_method': httpMethod,
-           if (operationName != null) 'operation_name': operationName,
-           if (region != null) 'region': region,
-           if (requestModels != null) 'request_models': requestModels,
-           if (requestParameters != null)
-             'request_parameters': requestParameters,
-           if (requestValidatorId != null)
-             'request_validator_id': requestValidatorId,
+           'operation_name': ?operationName,
+           'region': ?region,
+           'request_models': ?requestModels,
+           'request_parameters': ?requestParameters,
+           'request_validator_id': ?requestValidatorId,
            'resource_id': resourceId,
            'rest_api_id': restApiId,
          },

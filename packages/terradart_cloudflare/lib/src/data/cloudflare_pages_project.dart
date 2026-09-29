@@ -31,10 +31,7 @@ final class DataCloudflarePagesProject extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'project_name': projectName,
-         },
+         argMap: {'account_id': ?accountId, 'project_name': projectName},
        );
 
   @override

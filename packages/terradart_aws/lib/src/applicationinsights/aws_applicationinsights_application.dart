@@ -37,18 +37,15 @@ final class AwsApplicationinsightsApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoConfigEnabled != null)
-             'auto_config_enabled': autoConfigEnabled,
-           if (autoCreate != null) 'auto_create': autoCreate,
-           if (cweMonitorEnabled != null)
-             'cwe_monitor_enabled': cweMonitorEnabled,
-           if (groupingType != null) 'grouping_type': groupingType,
-           if (opsCenterEnabled != null) 'ops_center_enabled': opsCenterEnabled,
-           if (opsItemSnsTopicArn != null)
-             'ops_item_sns_topic_arn': opsItemSnsTopicArn,
-           if (region != null) 'region': region,
+           'auto_config_enabled': ?autoConfigEnabled,
+           'auto_create': ?autoCreate,
+           'cwe_monitor_enabled': ?cweMonitorEnabled,
+           'grouping_type': ?groupingType,
+           'ops_center_enabled': ?opsCenterEnabled,
+           'ops_item_sns_topic_arn': ?opsItemSnsTopicArn,
+           'region': ?region,
            'resource_group_name': resourceGroupName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

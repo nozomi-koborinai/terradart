@@ -26,10 +26,10 @@ final class AwsRouteTable extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (propagatingVgws != null) 'propagating_vgws': propagatingVgws,
-           if (region != null) 'region': region,
-           if (route != null) 'route': route,
-           if (tags != null) 'tags': tags,
+           'propagating_vgws': ?propagatingVgws,
+           'region': ?region,
+           'route': ?route,
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

@@ -29,13 +29,10 @@ final class ModelArmorTemplateFilterConfig {
   final ModelArmorTemplateFilterConfigSdpSettings? sdpSettings;
 
   Map<String, Object?> encode() => {
-    if (maliciousUriFilterSettings != null)
-      'malicious_uri_filter_settings': maliciousUriFilterSettings!.encode(),
-    if (piAndJailbreakFilterSettings != null)
-      'pi_and_jailbreak_filter_settings': piAndJailbreakFilterSettings!
-          .encode(),
-    if (raiSettings != null) 'rai_settings': raiSettings!.encode(),
-    if (sdpSettings != null) 'sdp_settings': sdpSettings!.encode(),
+    'malicious_uri_filter_settings': ?maliciousUriFilterSettings?.encode(),
+    'pi_and_jailbreak_filter_settings': ?piAndJailbreakFilterSettings?.encode(),
+    'rai_settings': ?raiSettings?.encode(),
+    'sdp_settings': ?sdpSettings?.encode(),
   };
 }
 
@@ -50,8 +47,7 @@ final class ModelArmorTemplateFilterConfigMaliciousUriFilterSettings {
   final TfArg<String>? filterEnforcement;
 
   Map<String, Object?> encode() => {
-    if (filterEnforcement != null)
-      'filter_enforcement': filterEnforcement!.toTfJson(),
+    'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
 }
 
@@ -69,10 +65,8 @@ final class ModelArmorTemplateFilterConfigPiAndJailbreakFilterSettings {
   final TfArg<String>? filterEnforcement;
 
   Map<String, Object?> encode() => {
-    if (confidenceLevel != null)
-      'confidence_level': confidenceLevel!.toTfJson(),
-    if (filterEnforcement != null)
-      'filter_enforcement': filterEnforcement!.toTfJson(),
+    'confidence_level': ?confidenceLevel?.toTfJson(),
+    'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
 }
 
@@ -103,8 +97,7 @@ final class ModelArmorTemplateFilterConfigRaiSettingsRaiFilters {
   final TfArg<String> filterType;
 
   Map<String, Object?> encode() => {
-    if (confidenceLevel != null)
-      'confidence_level': confidenceLevel!.toTfJson(),
+    'confidence_level': ?confidenceLevel?.toTfJson(),
     'filter_type': filterType.toTfJson(),
   };
 }
@@ -190,10 +183,8 @@ final class ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfig {
   final TfArg<String>? inspectTemplate;
 
   Map<String, Object?> encode() => {
-    if (deidentifyTemplate != null)
-      'deidentify_template': deidentifyTemplate!.toTfJson(),
-    if (inspectTemplate != null)
-      'inspect_template': inspectTemplate!.toTfJson(),
+    'deidentify_template': ?deidentifyTemplate?.toTfJson(),
+    'inspect_template': ?inspectTemplate?.toTfJson(),
   };
 }
 
@@ -208,8 +199,7 @@ final class ModelArmorTemplateFilterConfigSdpSettingsBasicConfig {
   final TfArg<String>? filterEnforcement;
 
   Map<String, Object?> encode() => {
-    if (filterEnforcement != null)
-      'filter_enforcement': filterEnforcement!.toTfJson(),
+    'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
 }
 
@@ -253,31 +243,20 @@ final class ModelArmorTemplateTemplateMetadata {
   multiLanguageDetection;
 
   Map<String, Object?> encode() => {
-    if (customLlmResponseSafetyErrorCode != null)
-      'custom_llm_response_safety_error_code': customLlmResponseSafetyErrorCode!
-          .toTfJson(),
-    if (customLlmResponseSafetyErrorMessage != null)
-      'custom_llm_response_safety_error_message':
-          customLlmResponseSafetyErrorMessage!.toTfJson(),
-    if (customPromptSafetyErrorCode != null)
-      'custom_prompt_safety_error_code': customPromptSafetyErrorCode!
-          .toTfJson(),
-    if (customPromptSafetyErrorMessage != null)
-      'custom_prompt_safety_error_message': customPromptSafetyErrorMessage!
-          .toTfJson(),
-    if (enforcementType != null)
-      'enforcement_type': enforcementType!.toTfJson(),
-    if (ignorePartialInvocationFailures != null)
-      'ignore_partial_invocation_failures': ignorePartialInvocationFailures!
-          .toTfJson(),
-    if (logSanitizeOperations != null)
-      'log_sanitize_operations': logSanitizeOperations!.toTfJson(),
-    if (logTemplateOperations != null)
-      'log_template_operations': logTemplateOperations!.toTfJson(),
-    if (filterVersionSelector != null)
-      'filter_version_selector': filterVersionSelector!.encode(),
-    if (multiLanguageDetection != null)
-      'multi_language_detection': multiLanguageDetection!.encode(),
+    'custom_llm_response_safety_error_code': ?customLlmResponseSafetyErrorCode
+        ?.toTfJson(),
+    'custom_llm_response_safety_error_message':
+        ?customLlmResponseSafetyErrorMessage?.toTfJson(),
+    'custom_prompt_safety_error_code': ?customPromptSafetyErrorCode?.toTfJson(),
+    'custom_prompt_safety_error_message': ?customPromptSafetyErrorMessage
+        ?.toTfJson(),
+    'enforcement_type': ?enforcementType?.toTfJson(),
+    'ignore_partial_invocation_failures': ?ignorePartialInvocationFailures
+        ?.toTfJson(),
+    'log_sanitize_operations': ?logSanitizeOperations?.toTfJson(),
+    'log_template_operations': ?logTemplateOperations?.toTfJson(),
+    'filter_version_selector': ?filterVersionSelector?.encode(),
+    'multi_language_detection': ?multiLanguageDetection?.encode(),
   };
 }
 
@@ -418,9 +397,9 @@ final class GoogleModelArmorTemplate extends Resource {
            'filter_config': TfArg.literal(filterConfig.encode()),
            if (templateMetadata != null)
              'template_metadata': TfArg.literal(templateMetadata.encode()),
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

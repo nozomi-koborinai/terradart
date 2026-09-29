@@ -34,7 +34,7 @@ final class GoogleBeyondcorpSecurityGatewayApplicationIamPolicy
            'security_gateway_id': securityGatewayId,
            'application_id': applicationId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

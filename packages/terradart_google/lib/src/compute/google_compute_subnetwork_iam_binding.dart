@@ -36,9 +36,9 @@ final class GoogleComputeSubnetworkIamBinding extends Resource {
            'subnetwork': subnetwork.encodeAs('id'),
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'region': ?region,
+           'project': ?project,
          },
        );
 

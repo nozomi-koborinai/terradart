@@ -97,7 +97,7 @@ final class AwsEmrStudioSessionMapping extends Resource {
          argMap: {
            ...identity.argMap,
            'identity_type': identityType,
-           if (region != null) 'region': region,
+           'region': ?region,
            'session_policy_arn': sessionPolicyArn,
            'studio_id': studioId,
          },

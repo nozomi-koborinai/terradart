@@ -271,8 +271,8 @@ final class GoogleDnsManagedZone extends Resource {
          argMap: {
            'name': name,
            'dns_name': dnsName,
-           if (description != null) 'description': description,
-           if (visibility != null) 'visibility': visibility,
+           'description': ?description,
+           'visibility': ?visibility,
            if (privateVisibilityConfig != null)
              'private_visibility_config': TfArg.literal([
                privateVisibilityConfig.toArgMap(),
@@ -287,9 +287,9 @@ final class GoogleDnsManagedZone extends Resource {
              'cloud_logging_config': TfArg.literal([
                cloudLoggingConfig.toArgMap(),
              ]),
-           if (labels != null) 'labels': labels,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'force_destroy': ?forceDestroy,
+           'project': ?project,
          },
        );
 

@@ -24,9 +24,9 @@ final class DataAwsCodeartifactAuthorizationToken extends Data {
          terraformType: tfType,
          argMap: {
            'domain': domain,
-           if (domainOwner != null) 'domain_owner': domainOwner,
-           if (durationSeconds != null) 'duration_seconds': durationSeconds,
-           if (region != null) 'region': region,
+           'domain_owner': ?domainOwner,
+           'duration_seconds': ?durationSeconds,
+           'region': ?region,
          },
        );
 

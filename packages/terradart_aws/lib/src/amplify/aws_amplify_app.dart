@@ -63,23 +63,16 @@ final class AmplifyAppAutoBranchCreationConfig {
   final TfArg<AmplifyAppAutoBranchCreationConfigStage>? stage;
 
   Map<String, Object?> encode() => {
-    if (basicAuthCredentials != null)
-      'basic_auth_credentials': basicAuthCredentials!.toTfJson(),
-    if (buildSpec != null) 'build_spec': buildSpec!.toTfJson(),
-    if (enableAutoBuild != null)
-      'enable_auto_build': enableAutoBuild!.toTfJson(),
-    if (enableBasicAuth != null)
-      'enable_basic_auth': enableBasicAuth!.toTfJson(),
-    if (enablePerformanceMode != null)
-      'enable_performance_mode': enablePerformanceMode!.toTfJson(),
-    if (enablePullRequestPreview != null)
-      'enable_pull_request_preview': enablePullRequestPreview!.toTfJson(),
-    if (environmentVariables != null)
-      'environment_variables': environmentVariables!.toTfJson(),
-    if (framework != null) 'framework': framework!.toTfJson(),
-    if (pullRequestEnvironmentName != null)
-      'pull_request_environment_name': pullRequestEnvironmentName!.toTfJson(),
-    if (stage != null) 'stage': stage!.toTfJson(),
+    'basic_auth_credentials': ?basicAuthCredentials?.toTfJson(),
+    'build_spec': ?buildSpec?.toTfJson(),
+    'enable_auto_build': ?enableAutoBuild?.toTfJson(),
+    'enable_basic_auth': ?enableBasicAuth?.toTfJson(),
+    'enable_performance_mode': ?enablePerformanceMode?.toTfJson(),
+    'enable_pull_request_preview': ?enablePullRequestPreview?.toTfJson(),
+    'environment_variables': ?environmentVariables?.toTfJson(),
+    'framework': ?framework?.toTfJson(),
+    'pull_request_environment_name': ?pullRequestEnvironmentName?.toTfJson(),
+    'stage': ?stage?.toTfJson(),
   };
 }
 
@@ -137,9 +130,9 @@ final class AmplifyAppCustomRule {
   final TfArg<String> target;
 
   Map<String, Object?> encode() => {
-    if (condition != null) 'condition': condition!.toTfJson(),
+    'condition': ?condition?.toTfJson(),
     'source': source.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'status': ?status?.toTfJson(),
     'target': target.toTfJson(),
   };
 }
@@ -166,8 +159,7 @@ final class AmplifyAppJobConfig {
   final TfArg<AmplifyAppJobConfigBuildComputeType>? buildComputeType;
 
   Map<String, Object?> encode() => {
-    if (buildComputeType != null)
-      'build_compute_type': buildComputeType!.toTfJson(),
+    'build_compute_type': ?buildComputeType?.toTfJson(),
   };
 }
 
@@ -218,32 +210,25 @@ final class AwsAmplifyApp extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessToken != null) 'access_token': accessToken,
-           if (autoBranchCreationPatterns != null)
-             'auto_branch_creation_patterns': autoBranchCreationPatterns,
-           if (basicAuthCredentials != null)
-             'basic_auth_credentials': basicAuthCredentials,
-           if (buildSpec != null) 'build_spec': buildSpec,
-           if (computeRoleArn != null) 'compute_role_arn': computeRoleArn,
-           if (customHeaders != null) 'custom_headers': customHeaders,
-           if (description != null) 'description': description,
-           if (enableAutoBranchCreation != null)
-             'enable_auto_branch_creation': enableAutoBranchCreation,
-           if (enableBasicAuth != null) 'enable_basic_auth': enableBasicAuth,
-           if (enableBranchAutoBuild != null)
-             'enable_branch_auto_build': enableBranchAutoBuild,
-           if (enableBranchAutoDeletion != null)
-             'enable_branch_auto_deletion': enableBranchAutoDeletion,
-           if (environmentVariables != null)
-             'environment_variables': environmentVariables,
-           if (iamServiceRoleArn != null)
-             'iam_service_role_arn': iamServiceRoleArn.encodeAs('arn'),
+           'access_token': ?accessToken,
+           'auto_branch_creation_patterns': ?autoBranchCreationPatterns,
+           'basic_auth_credentials': ?basicAuthCredentials,
+           'build_spec': ?buildSpec,
+           'compute_role_arn': ?computeRoleArn,
+           'custom_headers': ?customHeaders,
+           'description': ?description,
+           'enable_auto_branch_creation': ?enableAutoBranchCreation,
+           'enable_basic_auth': ?enableBasicAuth,
+           'enable_branch_auto_build': ?enableBranchAutoBuild,
+           'enable_branch_auto_deletion': ?enableBranchAutoDeletion,
+           'environment_variables': ?environmentVariables,
+           'iam_service_role_arn': ?iamServiceRoleArn?.encodeAs('arn'),
            'name': name,
-           if (oauthToken != null) 'oauth_token': oauthToken,
-           if (platform != null) 'platform': platform,
-           if (region != null) 'region': region,
-           if (repository != null) 'repository': repository,
-           if (tags != null) 'tags': tags,
+           'oauth_token': ?oauthToken,
+           'platform': ?platform,
+           'region': ?region,
+           'repository': ?repository,
+           'tags': ?tags,
            if (autoBranchCreationConfig != null)
              'auto_branch_creation_config': TfArg.literal(
                autoBranchCreationConfig.encode(),

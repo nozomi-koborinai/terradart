@@ -130,8 +130,8 @@ final class FsxOntapFileSystemDiskIopsConfiguration {
   final TfArg<FsxOntapFileSystemDiskIopsConfigurationMode>? mode;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
   };
 }
 
@@ -177,29 +177,24 @@ final class AwsFsxOntapFileSystem extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (automaticBackupRetentionDays != null)
-             'automatic_backup_retention_days': automaticBackupRetentionDays,
-           if (dailyAutomaticBackupStartTime != null)
-             'daily_automatic_backup_start_time': dailyAutomaticBackupStartTime,
+           'automatic_backup_retention_days': ?automaticBackupRetentionDays,
+           'daily_automatic_backup_start_time': ?dailyAutomaticBackupStartTime,
            'deployment_type': deploymentType,
-           if (endpointIpAddressRange != null)
-             'endpoint_ip_address_range': endpointIpAddressRange,
-           if (fsxAdminPassword != null) 'fsx_admin_password': fsxAdminPassword,
-           if (haPairs != null) 'ha_pairs': haPairs,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (networkType != null) 'network_type': networkType,
+           'endpoint_ip_address_range': ?endpointIpAddressRange,
+           'fsx_admin_password': ?fsxAdminPassword,
+           'ha_pairs': ?haPairs,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'network_type': ?networkType,
            'preferred_subnet_id': preferredSubnetId,
-           if (region != null) 'region': region,
-           if (routeTableIds != null) 'route_table_ids': routeTableIds,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
+           'region': ?region,
+           'route_table_ids': ?routeTableIds,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
            'storage_capacity': storageCapacity,
-           if (storageType != null) 'storage_type': storageType,
+           'storage_type': ?storageType,
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            ...throughputCapacity.argMap,
-           if (weeklyMaintenanceStartTime != null)
-             'weekly_maintenance_start_time': weeklyMaintenanceStartTime,
+           'weekly_maintenance_start_time': ?weeklyMaintenanceStartTime,
            if (diskIopsConfiguration != null)
              'disk_iops_configuration': TfArg.literal(
                diskIopsConfiguration.encode(),

@@ -22,10 +22,10 @@ final class DataAwsServicecatalogConstraint extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
-           if (description != null) 'description': description,
+           'accept_language': ?acceptLanguage,
+           'description': ?description,
            'id': id,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

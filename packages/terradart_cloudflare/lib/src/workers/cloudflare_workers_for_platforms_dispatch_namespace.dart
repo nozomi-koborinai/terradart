@@ -28,10 +28,7 @@ final class CloudflareWorkersForPlatformsDispatchNamespace extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'account_id': accountId.encodeAs('id'),
-           if (name != null) 'name': name,
-         },
+         argMap: {'account_id': accountId.encodeAs('id'), 'name': ?name},
        );
 
   @override

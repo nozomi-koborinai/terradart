@@ -143,8 +143,8 @@ final class OpensearchserverlessSecurityConfigIamFederationOptions {
   final TfArg<String>? userAttribute;
 
   Map<String, Object?> encode() => {
-    if (groupAttribute != null) 'group_attribute': groupAttribute!.toTfJson(),
-    if (userAttribute != null) 'user_attribute': userAttribute!.toTfJson(),
+    'group_attribute': ?groupAttribute?.toTfJson(),
+    'user_attribute': ?userAttribute?.toTfJson(),
   };
 }
 
@@ -171,9 +171,9 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptions {
   userAttribute;
 
   Map<String, Object?> encode() => {
-    if (groupAttribute != null) 'group_attribute': groupAttribute!.toTfJson(),
+    'group_attribute': ?groupAttribute?.toTfJson(),
     'instance_arn': instanceArn.toTfJson(),
-    if (userAttribute != null) 'user_attribute': userAttribute!.toTfJson(),
+    'user_attribute': ?userAttribute?.toTfJson(),
   };
 }
 
@@ -224,10 +224,10 @@ final class OpensearchserverlessSecurityConfigSamlOptions {
   final TfArg<String>? userAttribute;
 
   Map<String, Object?> encode() => {
-    if (groupAttribute != null) 'group_attribute': groupAttribute!.toTfJson(),
+    'group_attribute': ?groupAttribute?.toTfJson(),
     'metadata': metadata.toTfJson(),
-    if (sessionTimeout != null) 'session_timeout': sessionTimeout!.toTfJson(),
-    if (userAttribute != null) 'user_attribute': userAttribute!.toTfJson(),
+    'session_timeout': ?sessionTimeout?.toTfJson(),
+    'user_attribute': ?userAttribute?.toTfJson(),
   };
 }
 
@@ -249,9 +249,9 @@ final class AwsOpensearchserverlessSecurityConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'type': type,
            ...options.argMap,
          },

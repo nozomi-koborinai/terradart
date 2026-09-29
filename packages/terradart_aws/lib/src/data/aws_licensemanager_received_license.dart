@@ -18,10 +18,7 @@ final class DataAwsLicensemanagerReceivedLicense extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'license_arn': licenseArn,
-           if (region != null) 'region': region,
-         },
+         argMap: {'license_arn': licenseArn, 'region': ?region},
        );
 
   @override

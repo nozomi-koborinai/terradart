@@ -41,12 +41,11 @@ final class AwsS3filesMountTarget extends Resource {
          terraformType: tfType,
          argMap: {
            'file_system_id': fileSystemId,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (ipv4Address != null) 'ipv4_address': ipv4Address,
-           if (ipv6Address != null) 'ipv6_address': ipv6Address,
-           if (region != null) 'region': region,
-           if (securityGroups != null)
-             'security_groups': securityGroups.encodeAs('id'),
+           'ip_address_type': ?ipAddressType,
+           'ipv4_address': ?ipv4Address,
+           'ipv6_address': ?ipv6Address,
+           'region': ?region,
+           'security_groups': ?securityGroups?.encodeAs('id'),
            'subnet_id': subnetId.encodeAs('id'),
          },
        );

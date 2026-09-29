@@ -26,7 +26,7 @@ final class DataCloudflareZeroTrustDlpDataTags extends Data {
          argMap: {
            'account_id': accountId,
            'category_id': categoryId,
-           if (maxItems != null) 'max_items': maxItems,
+           'max_items': ?maxItems,
          },
        );
 

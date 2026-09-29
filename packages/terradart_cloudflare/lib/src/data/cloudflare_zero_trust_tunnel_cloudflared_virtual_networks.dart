@@ -31,12 +31,12 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetworks
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (isDefault != null) 'is_default': isDefault,
-           if (isDefaultNetwork != null) 'is_default_network': isDefaultNetwork,
-           if (isDeleted != null) 'is_deleted': isDeleted,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
+           'account_id': ?accountId,
+           'is_default': ?isDefault,
+           'is_default_network': ?isDefaultNetwork,
+           'is_deleted': ?isDeleted,
+           'max_items': ?maxItems,
+           'name': ?name,
          },
        );
 

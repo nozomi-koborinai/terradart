@@ -39,8 +39,8 @@ final class GoogleBigqueryReservationAssignment extends Resource {
          argMap: {
            'assignee': assignee,
            'job_type': jobType,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
            'reservation': reservation,
          },
        );

@@ -36,7 +36,7 @@ final class GoogleApigeeSpace extends Resource {
            'space_id': spaceId,
            'org_id': orgId,
            'display_name': displayName,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

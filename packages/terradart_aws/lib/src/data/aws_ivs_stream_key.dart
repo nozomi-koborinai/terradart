@@ -19,11 +19,7 @@ final class DataAwsIvsStreamKey extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'channel_arn': channelArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'channel_arn': channelArn, 'region': ?region, 'tags': ?tags},
        );
 
   @override

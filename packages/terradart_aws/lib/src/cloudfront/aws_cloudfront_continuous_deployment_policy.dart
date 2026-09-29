@@ -22,7 +22,7 @@ final class CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNames {
   final TfArg<num> quantity;
 
   Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
+    'items': ?items?.toTfJson(),
     'quantity': quantity.toTfJson(),
   };
 }

@@ -26,11 +26,11 @@ final class DataGoogleComputeRegionInstanceTemplate extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (filter != null) 'filter': filter,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (name != null) 'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'filter': ?filter,
+           'most_recent': ?mostRecent,
+           'name': ?name,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

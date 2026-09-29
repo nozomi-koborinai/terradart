@@ -354,19 +354,16 @@ final class GoogleComputeBackendBucket extends Resource {
          argMap: {
            'name': name,
            'bucket_name': bucketName.encodeAs('name'),
-           if (description != null) 'description': description,
-           if (enableCdn != null) 'enable_cdn': enableCdn,
-           if (compressionMode != null) 'compression_mode': compressionMode,
-           if (customResponseHeaders != null)
-             'custom_response_headers': customResponseHeaders,
-           if (edgeSecurityPolicy != null)
-             'edge_security_policy': edgeSecurityPolicy,
-           if (loadBalancingScheme != null)
-             'load_balancing_scheme': loadBalancingScheme,
+           'description': ?description,
+           'enable_cdn': ?enableCdn,
+           'compression_mode': ?compressionMode,
+           'custom_response_headers': ?customResponseHeaders,
+           'edge_security_policy': ?edgeSecurityPolicy,
+           'load_balancing_scheme': ?loadBalancingScheme,
            if (cdnPolicy != null)
              'cdn_policy': TfArg.literal([cdnPolicy.toArgMap()]),
            if (params != null) 'params': TfArg.literal([params.toArgMap()]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -24,10 +24,10 @@ final class DataGoogleBillingAccount extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (billingAccount != null) 'billing_account': billingAccount,
-           if (displayName != null) 'display_name': displayName,
-           if (lookupProjects != null) 'lookup_projects': lookupProjects,
-           if (open != null) 'open': open,
+           'billing_account': ?billingAccount,
+           'display_name': ?displayName,
+           'lookup_projects': ?lookupProjects,
+           'open': ?open,
          },
        );
 

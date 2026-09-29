@@ -23,8 +23,8 @@ final class LambdaFunctionEventInvokeConfigDestinationConfig {
   final LambdaFunctionEventInvokeConfigDestinationConfigOnSuccess? onSuccess;
 
   Map<String, Object?> encode() => {
-    if (onFailure != null) 'on_failure': onFailure!.encode(),
-    if (onSuccess != null) 'on_success': onSuccess!.encode(),
+    'on_failure': ?onFailure?.encode(),
+    'on_success': ?onSuccess?.encode(),
   };
 }
 
@@ -74,12 +74,10 @@ final class AwsLambdaFunctionEventInvokeConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'function_name': functionName.encodeAs('function_name'),
-           if (maximumEventAgeInSeconds != null)
-             'maximum_event_age_in_seconds': maximumEventAgeInSeconds,
-           if (maximumRetryAttempts != null)
-             'maximum_retry_attempts': maximumRetryAttempts,
-           if (qualifier != null) 'qualifier': qualifier,
-           if (region != null) 'region': region,
+           'maximum_event_age_in_seconds': ?maximumEventAgeInSeconds,
+           'maximum_retry_attempts': ?maximumRetryAttempts,
+           'qualifier': ?qualifier,
+           'region': ?region,
            if (destinationConfig != null)
              'destination_config': TfArg.literal(destinationConfig.encode()),
          },

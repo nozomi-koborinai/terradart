@@ -29,17 +29,15 @@ final class AwsWorkmailOrganization extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deleteDirectory != null) 'delete_directory': deleteDirectory,
-           if (deleteIdentityCenterApplication != null)
-             'delete_identity_center_application':
-                 deleteIdentityCenterApplication,
-           if (directoryId != null) 'directory_id': directoryId,
-           if (interoperabilityEnabled != null)
-             'interoperability_enabled': interoperabilityEnabled,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'delete_directory': ?deleteDirectory,
+           'delete_identity_center_application':
+               ?deleteIdentityCenterApplication,
+           'directory_id': ?directoryId,
+           'interoperability_enabled': ?interoperabilityEnabled,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'organization_alias': organizationAlias,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

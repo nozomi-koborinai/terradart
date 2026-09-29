@@ -48,10 +48,8 @@ final class KmsGrantConstraints {
   final TfArg<Map<String, String>>? encryptionContextSubset;
 
   Map<String, Object?> encode() => {
-    if (encryptionContextEquals != null)
-      'encryption_context_equals': encryptionContextEquals!.toTfJson(),
-    if (encryptionContextSubset != null)
-      'encryption_context_subset': encryptionContextSubset!.toTfJson(),
+    'encryption_context_equals': ?encryptionContextEquals?.toTfJson(),
+    'encryption_context_subset': ?encryptionContextSubset?.toTfJson(),
   };
 }
 
@@ -77,18 +75,16 @@ final class AwsKmsGrant extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (grantCreationTokens != null)
-             'grant_creation_tokens': grantCreationTokens,
+           'grant_creation_tokens': ?grantCreationTokens,
            'grantee_principal': granteePrincipal,
            'key_id': keyId.encodeAs('key_id'),
-           if (name != null) 'name': name,
+           'name': ?name,
            'operations': TfArg.literal([
              for (final e in operations) e.toTfJson(),
            ]),
-           if (region != null) 'region': region,
-           if (retireOnDelete != null) 'retire_on_delete': retireOnDelete,
-           if (retiringPrincipal != null)
-             'retiring_principal': retiringPrincipal,
+           'region': ?region,
+           'retire_on_delete': ?retireOnDelete,
+           'retiring_principal': ?retiringPrincipal,
            if (constraints != null)
              'constraints': TfArg.literal([
                for (final e in constraints) e.encode(),

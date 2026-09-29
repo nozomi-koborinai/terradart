@@ -23,9 +23,9 @@ final class DataAwsApiGatewayDomainName extends Data {
          terraformType: tfType,
          argMap: {
            'domain_name': domainName,
-           if (domainNameId != null) 'domain_name_id': domainNameId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'domain_name_id': ?domainNameId,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

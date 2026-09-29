@@ -23,9 +23,9 @@ final class DataGoogleProjectIamCustomRoles extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (project != null) 'project': project,
-           if (showDeleted != null) 'show_deleted': showDeleted,
-           if (view != null) 'view': view,
+           'project': ?project,
+           'show_deleted': ?showDeleted,
+           'view': ?view,
          },
        );
 

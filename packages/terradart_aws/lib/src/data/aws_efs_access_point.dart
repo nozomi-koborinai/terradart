@@ -22,8 +22,8 @@ final class DataAwsEfsAccessPoint extends Data {
          terraformType: tfType,
          argMap: {
            'access_point_id': accessPointId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

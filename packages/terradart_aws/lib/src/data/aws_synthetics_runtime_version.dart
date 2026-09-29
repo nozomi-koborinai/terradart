@@ -21,10 +21,10 @@ final class DataAwsSyntheticsRuntimeVersion extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (latest != null) 'latest': latest,
+           'latest': ?latest,
            'prefix': prefix,
-           if (region != null) 'region': region,
-           if (version != null) 'version': version,
+           'region': ?region,
+           'version': ?version,
          },
        );
 

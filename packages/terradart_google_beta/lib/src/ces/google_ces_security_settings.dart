@@ -22,9 +22,8 @@ final class CesSecuritySettingsEndpointControlPolicy {
   enforcementScope;
 
   Map<String, Object?> encode() => {
-    if (allowedOrigins != null) 'allowed_origins': allowedOrigins!.toTfJson(),
-    if (enforcementScope != null)
-      'enforcement_scope': enforcementScope!.toTfJson(),
+    'allowed_origins': ?allowedOrigins?.toTfJson(),
+    'enforcement_scope': ?enforcementScope?.toTfJson(),
   };
 }
 
@@ -62,7 +61,7 @@ final class GoogleCesSecuritySettings extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (endpointControlPolicy != null)
              'endpoint_control_policy': TfArg.literal(
                endpointControlPolicy.encode(),

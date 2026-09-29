@@ -30,8 +30,8 @@ final class GoogleDataCatalogEntryGroupIamPolicy extends Resource {
          argMap: {
            'entry_group': entryGroup,
            'policy_data': policyData,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'project': ?project,
          },
        );
 

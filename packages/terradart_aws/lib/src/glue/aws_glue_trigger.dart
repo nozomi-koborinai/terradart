@@ -45,14 +45,12 @@ final class GlueTriggerActions {
   final GlueTriggerActionsNotificationProperty? notificationProperty;
 
   Map<String, Object?> encode() => {
-    if (arguments != null) 'arguments': arguments!.toTfJson(),
-    if (crawlerName != null) 'crawler_name': crawlerName!.toTfJson(),
-    if (jobName != null) 'job_name': jobName!.toTfJson(),
-    if (securityConfiguration != null)
-      'security_configuration': securityConfiguration!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
-    if (notificationProperty != null)
-      'notification_property': notificationProperty!.encode(),
+    'arguments': ?arguments?.toTfJson(),
+    'crawler_name': ?crawlerName?.toTfJson(),
+    'job_name': ?jobName?.toTfJson(),
+    'security_configuration': ?securityConfiguration?.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
+    'notification_property': ?notificationProperty?.encode(),
   };
 }
 
@@ -65,8 +63,7 @@ final class GlueTriggerActionsNotificationProperty {
   final TfArg<num>? notifyDelayAfter;
 
   Map<String, Object?> encode() => {
-    if (notifyDelayAfter != null)
-      'notify_delay_after': notifyDelayAfter!.toTfJson(),
+    'notify_delay_after': ?notifyDelayAfter?.toTfJson(),
   };
 }
 
@@ -85,7 +82,7 @@ final class GlueTriggerEventBatchingCondition {
 
   Map<String, Object?> encode() => {
     'batch_size': batchSize.toTfJson(),
-    if (batchWindow != null) 'batch_window': batchWindow!.toTfJson(),
+    'batch_window': ?batchWindow?.toTfJson(),
   };
 }
 
@@ -100,7 +97,7 @@ final class GlueTriggerPredicate {
   final List<GlueTriggerPredicateConditions> conditions;
 
   Map<String, Object?> encode() => {
-    if (logical != null) 'logical': logical!.toTfJson(),
+    'logical': ?logical?.toTfJson(),
     'conditions': [for (final e in conditions) e.encode()],
   };
 }
@@ -138,12 +135,11 @@ final class GlueTriggerPredicateConditions {
   final TfArg<GlueTriggerPredicateConditionsState>? state;
 
   Map<String, Object?> encode() => {
-    if (crawlState != null) 'crawl_state': crawlState!.toTfJson(),
-    if (crawlerName != null) 'crawler_name': crawlerName!.toTfJson(),
-    if (jobName != null) 'job_name': jobName!.toTfJson(),
-    if (logicalOperator != null)
-      'logical_operator': logicalOperator!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
+    'crawl_state': ?crawlState?.toTfJson(),
+    'crawler_name': ?crawlerName?.toTfJson(),
+    'job_name': ?jobName?.toTfJson(),
+    'logical_operator': ?logicalOperator?.toTfJson(),
+    'state': ?state?.toTfJson(),
   };
 }
 
@@ -213,15 +209,15 @@ final class AwsGlueTrigger extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
+           'description': ?description,
+           'enabled': ?enabled,
            'name': name,
-           if (region != null) 'region': region,
-           if (schedule != null) 'schedule': schedule,
-           if (startOnCreation != null) 'start_on_creation': startOnCreation,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'schedule': ?schedule,
+           'start_on_creation': ?startOnCreation,
+           'tags': ?tags,
            'type': type,
-           if (workflowName != null) 'workflow_name': workflowName,
+           'workflow_name': ?workflowName,
            'actions': TfArg.literal([for (final e in actions) e.encode()]),
            if (eventBatchingCondition != null)
              'event_batching_condition': TfArg.literal([

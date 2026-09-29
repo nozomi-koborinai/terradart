@@ -38,9 +38,8 @@ final class ComputeRolloutPlanWaves {
   final ComputeRolloutPlanWavesValidation validation;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (orchestrationOptions != null)
-      'orchestration_options': orchestrationOptions!.encode(),
+    'display_name': ?displayName?.toTfJson(),
+    'orchestration_options': ?orchestrationOptions?.encode(),
     'selectors': [for (final e in selectors) e.encode()],
     'validation': validation.encode(),
   };
@@ -63,11 +62,9 @@ final class ComputeRolloutPlanWavesOrchestrationOptions {
   final List<ComputeRolloutPlanWavesOrchestrationOptionsDelays>? delays;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentLocations != null)
-      'max_concurrent_locations': maxConcurrentLocations!.toTfJson(),
-    if (maxConcurrentResourcesPerLocation != null)
-      'max_concurrent_resources_per_location':
-          maxConcurrentResourcesPerLocation!.toTfJson(),
+    'max_concurrent_locations': ?maxConcurrentLocations?.toTfJson(),
+    'max_concurrent_resources_per_location': ?maxConcurrentResourcesPerLocation
+        ?.toTfJson(),
     if (delays != null) 'delays': [for (final e in delays!) e.encode()],
   };
 }
@@ -90,9 +87,9 @@ final class ComputeRolloutPlanWavesOrchestrationOptionsDelays {
   final TfArg<ComputeRolloutPlanWavesOrchestrationOptionsDelaysType>? type;
 
   Map<String, Object?> encode() => {
-    if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
-    if (duration != null) 'duration': duration!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'delimiter': ?delimiter?.toTfJson(),
+    'duration': ?duration?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -139,10 +136,8 @@ final class ComputeRolloutPlanWavesSelectors {
   resourceHierarchySelector;
 
   Map<String, Object?> encode() => {
-    if (locationSelector != null)
-      'location_selector': locationSelector!.encode(),
-    if (resourceHierarchySelector != null)
-      'resource_hierarchy_selector': resourceHierarchySelector!.encode(),
+    'location_selector': ?locationSelector?.encode(),
+    'resource_hierarchy_selector': ?resourceHierarchySelector?.encode(),
   };
 }
 
@@ -157,8 +152,7 @@ final class ComputeRolloutPlanWavesSelectorsLocationSelector {
   final TfArg<List<Object?>>? includedLocations;
 
   Map<String, Object?> encode() => {
-    if (includedLocations != null)
-      'included_locations': includedLocations!.toTfJson(),
+    'included_locations': ?includedLocations?.toTfJson(),
   };
 }
 
@@ -179,12 +173,9 @@ final class ComputeRolloutPlanWavesSelectorsResourceHierarchySelector {
   final TfArg<List<Object?>>? includedProjects;
 
   Map<String, Object?> encode() => {
-    if (includedFolders != null)
-      'included_folders': includedFolders!.toTfJson(),
-    if (includedOrganizations != null)
-      'included_organizations': includedOrganizations!.toTfJson(),
-    if (includedProjects != null)
-      'included_projects': includedProjects!.toTfJson(),
+    'included_folders': ?includedFolders?.toTfJson(),
+    'included_organizations': ?includedOrganizations?.toTfJson(),
+    'included_projects': ?includedProjects?.toTfJson(),
   };
 }
 
@@ -204,8 +195,7 @@ final class ComputeRolloutPlanWavesValidation {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (timeBasedValidationMetadata != null)
-      'time_based_validation_metadata': timeBasedValidationMetadata!.encode(),
+    'time_based_validation_metadata': ?timeBasedValidationMetadata?.encode(),
   };
 }
 
@@ -219,9 +209,7 @@ final class ComputeRolloutPlanWavesValidationTimeBasedValidationMetadata {
 
   final TfArg<String>? waitDuration;
 
-  Map<String, Object?> encode() => {
-    if (waitDuration != null) 'wait_duration': waitDuration!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'wait_duration': ?waitDuration?.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_rollout_plan`.
@@ -263,11 +251,11 @@ final class GoogleComputeRolloutPlan extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (locationScope != null) 'location_scope': locationScope,
-           if (description != null) 'description': description,
+           'location_scope': ?locationScope,
+           'description': ?description,
            'waves': TfArg.literal([for (final e in waves) e.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

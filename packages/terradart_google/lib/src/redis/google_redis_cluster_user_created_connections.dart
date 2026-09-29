@@ -36,9 +36,7 @@ final class RedisClusterUserCreatedConnectionsClusterEndpointsConnections {
   final RedisClusterUserCreatedConnectionsClusterEndpointsConnectionsPscConnection?
   pscConnection;
 
-  Map<String, Object?> encode() => {
-    if (pscConnection != null) 'psc_connection': pscConnection!.encode(),
-  };
+  Map<String, Object?> encode() => {'psc_connection': ?pscConnection?.encode()};
 }
 
 /// Typed helper for the `cluster_endpoints.connections.psc_connection` block of
@@ -70,7 +68,7 @@ final class RedisClusterUserCreatedConnectionsClusterEndpointsConnectionsPscConn
     'address': address.toTfJson(),
     'forwarding_rule': forwardingRule.toTfJson(),
     'network': network.encodeAs('id').toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
     'psc_connection_id': pscConnectionId.toTfJson(),
     'service_attachment': serviceAttachment.toTfJson(),
   };
@@ -121,8 +119,8 @@ final class GoogleRedisClusterUserCreatedConnections extends Resource {
              'cluster_endpoints': TfArg.literal([
                for (final e in clusterEndpoints) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

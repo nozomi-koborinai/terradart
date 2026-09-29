@@ -30,9 +30,7 @@ final class NetworkServicesServiceLbPoliciesAutoCapacityDrain {
 
   final TfArg<bool>? enable;
 
-  Map<String, Object?> encode() => {
-    if (enable != null) 'enable': enable!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enable': ?enable?.toTfJson()};
 }
 
 /// Typed helper for the `failover_config` block of
@@ -68,9 +66,8 @@ final class NetworkServicesServiceLbPoliciesIsolationConfig {
   isolationMode;
 
   Map<String, Object?> encode() => {
-    if (isolationGranularity != null)
-      'isolation_granularity': isolationGranularity!.toTfJson(),
-    if (isolationMode != null) 'isolation_mode': isolationMode!.toTfJson(),
+    'isolation_granularity': ?isolationGranularity?.toTfJson(),
+    'isolation_mode': ?isolationMode?.toTfJson(),
   };
 }
 
@@ -129,14 +126,13 @@ final class GoogleNetworkServicesServiceLbPolicies extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (loadBalancingAlgorithm != null)
-             'load_balancing_algorithm': loadBalancingAlgorithm,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'load_balancing_algorithm': ?loadBalancingAlgorithm,
            'location': location,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (autoCapacityDrain != null)
              'auto_capacity_drain': TfArg.literal(autoCapacityDrain.encode()),
            if (failoverConfig != null)

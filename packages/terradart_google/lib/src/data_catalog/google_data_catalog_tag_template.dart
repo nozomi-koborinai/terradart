@@ -155,11 +155,11 @@ final class GoogleDataCatalogTagTemplate extends Resource {
          argMap: {
            'tag_template_id': tagTemplateId,
            'fields': TfArg.literal([for (final f in fields) f.encode()]),
-           if (displayName != null) 'display_name': displayName,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
-           if (forceDelete != null) 'force_delete': forceDelete,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'display_name': ?displayName,
+           'region': ?region,
+           'project': ?project,
+           'force_delete': ?forceDelete,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

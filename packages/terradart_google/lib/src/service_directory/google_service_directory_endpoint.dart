@@ -30,11 +30,11 @@ final class GoogleServiceDirectoryEndpoint extends Resource {
          argMap: {
            'endpoint_id': endpointId,
            'service': service,
-           if (address != null) 'address': address,
-           if (port != null) 'port': port,
-           if (network != null) 'network': network,
-           if (metadata != null) 'metadata': metadata,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'address': ?address,
+           'port': ?port,
+           'network': ?network,
+           'metadata': ?metadata,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

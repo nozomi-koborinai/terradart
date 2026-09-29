@@ -18,10 +18,7 @@ final class DataAwsLocationTrackerAssociations extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'tracker_name': trackerName,
-         },
+         argMap: {'region': ?region, 'tracker_name': trackerName},
        );
 
   @override

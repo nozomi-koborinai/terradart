@@ -24,8 +24,8 @@ final class AwsAthenaCapacityReservation extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'target_dpus': targetDpus,
          },
        );

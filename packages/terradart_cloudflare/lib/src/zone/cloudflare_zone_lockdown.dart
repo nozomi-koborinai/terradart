@@ -20,8 +20,8 @@ final class ZoneLockdownConfigurations {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (target != null) 'target': target!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'target': ?target?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -58,9 +58,9 @@ final class CloudflareZoneLockdown extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (paused != null) 'paused': paused,
-           if (priority != null) 'priority': priority,
+           'description': ?description,
+           'paused': ?paused,
+           'priority': ?priority,
            'urls': urls,
            'zone_id': zoneId.encodeAs('id'),
            'configurations': TfArg.literal([

@@ -26,12 +26,11 @@ final class AwsDetectiveMember extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (disableEmailNotification != null)
-             'disable_email_notification': disableEmailNotification,
+           'disable_email_notification': ?disableEmailNotification,
            'email_address': emailAddress,
            'graph_arn': graphArn,
-           if (message != null) 'message': message,
-           if (region != null) 'region': region,
+           'message': ?message,
+           'region': ?region,
          },
        );
 

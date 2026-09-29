@@ -17,7 +17,7 @@ final class CloudwatchEventBusDeadLetterConfig {
 
   final TfArg<String>? arn;
 
-  Map<String, Object?> encode() => {if (arn != null) 'arn': arn!.toTfJson()};
+  Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
 /// Typed helper for the `log_config` block of
@@ -31,8 +31,8 @@ final class CloudwatchEventBusLogConfig {
   final TfArg<CloudwatchEventBusLogConfigLevel>? level;
 
   Map<String, Object?> encode() => {
-    if (includeDetail != null) 'include_detail': includeDetail!.toTfJson(),
-    if (level != null) 'level': level!.toTfJson(),
+    'include_detail': ?includeDetail?.toTfJson(),
+    'level': ?level?.toTfJson(),
   };
 }
 
@@ -79,13 +79,12 @@ final class AwsCloudwatchEventBus extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (eventSourceName != null) 'event_source_name': eventSourceName,
-           if (kmsKeyIdentifier != null)
-             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
+           'description': ?description,
+           'event_source_name': ?eventSourceName,
+           'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (deadLetterConfig != null)
              'dead_letter_config': TfArg.literal(deadLetterConfig.encode()),
            if (logConfig != null)

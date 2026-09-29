@@ -27,7 +27,7 @@ final class AwsPinpointEventStream extends Resource {
          argMap: {
            'application_id': applicationId,
            'destination_stream_arn': destinationStreamArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
          },
        );

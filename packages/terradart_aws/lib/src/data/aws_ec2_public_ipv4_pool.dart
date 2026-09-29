@@ -19,11 +19,7 @@ final class DataAwsEc2PublicIpv4Pool extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'pool_id': poolId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'pool_id': poolId, 'region': ?region, 'tags': ?tags},
        );
 
   @override

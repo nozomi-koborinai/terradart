@@ -19,11 +19,7 @@ final class DataAwsIpRanges extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (regions != null) 'regions': regions,
-           'services': services,
-           if (url != null) 'url': url,
-         },
+         argMap: {'regions': ?regions, 'services': services, 'url': ?url},
        );
 
   @override

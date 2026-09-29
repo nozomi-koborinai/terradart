@@ -24,7 +24,7 @@ final class AwsDxGateway extends Resource {
          argMap: {
            'amazon_side_asn': amazonSideAsn,
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

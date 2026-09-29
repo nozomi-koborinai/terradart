@@ -50,10 +50,9 @@ final class AwsCloudwatchLogAccountPolicy extends Resource {
            'policy_document': policyDocument,
            'policy_name': policyName,
            'policy_type': policyType,
-           if (region != null) 'region': region,
-           if (scope != null) 'scope': scope,
-           if (selectionCriteria != null)
-             'selection_criteria': selectionCriteria,
+           'region': ?region,
+           'scope': ?scope,
+           'selection_criteria': ?selectionCriteria,
          },
        );
 

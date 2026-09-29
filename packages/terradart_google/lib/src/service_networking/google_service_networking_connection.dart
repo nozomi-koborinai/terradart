@@ -78,9 +78,8 @@ final class GoogleServiceNetworkingConnection extends Resource {
            'network': network.encodeAs('id'),
            'service': service,
            'reserved_peering_ranges': reservedPeeringRanges,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (updateOnCreationFail != null)
-             'update_on_creation_fail': updateOnCreationFail,
+           'deletion_policy': ?deletionPolicy,
+           'update_on_creation_fail': ?updateOnCreationFail,
          },
        );
 

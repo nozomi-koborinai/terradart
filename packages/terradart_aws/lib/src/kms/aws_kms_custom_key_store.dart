@@ -71,23 +71,17 @@ final class AwsKmsCustomKeyStore extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cloudHsmClusterId != null)
-             'cloud_hsm_cluster_id': cloudHsmClusterId,
+           'cloud_hsm_cluster_id': ?cloudHsmClusterId,
            'custom_key_store_name': customKeyStoreName,
-           if (customKeyStoreType != null)
-             'custom_key_store_type': customKeyStoreType,
-           if (keyStorePassword != null) 'key_store_password': keyStorePassword,
-           if (region != null) 'region': region,
-           if (trustAnchorCertificate != null)
-             'trust_anchor_certificate': trustAnchorCertificate,
-           if (xksProxyConnectivity != null)
-             'xks_proxy_connectivity': xksProxyConnectivity,
-           if (xksProxyUriEndpoint != null)
-             'xks_proxy_uri_endpoint': xksProxyUriEndpoint,
-           if (xksProxyUriPath != null) 'xks_proxy_uri_path': xksProxyUriPath,
-           if (xksProxyVpcEndpointServiceName != null)
-             'xks_proxy_vpc_endpoint_service_name':
-                 xksProxyVpcEndpointServiceName,
+           'custom_key_store_type': ?customKeyStoreType,
+           'key_store_password': ?keyStorePassword,
+           'region': ?region,
+           'trust_anchor_certificate': ?trustAnchorCertificate,
+           'xks_proxy_connectivity': ?xksProxyConnectivity,
+           'xks_proxy_uri_endpoint': ?xksProxyUriEndpoint,
+           'xks_proxy_uri_path': ?xksProxyUriPath,
+           'xks_proxy_vpc_endpoint_service_name':
+               ?xksProxyVpcEndpointServiceName,
            if (xksProxyAuthenticationCredential != null)
              'xks_proxy_authentication_credential': TfArg.literal(
                xksProxyAuthenticationCredential.encode(),

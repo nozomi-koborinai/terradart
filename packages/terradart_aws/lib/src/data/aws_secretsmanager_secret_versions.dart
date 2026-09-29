@@ -20,9 +20,8 @@ final class DataAwsSecretsmanagerSecretVersions extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (includeDeprecated != null)
-             'include_deprecated': includeDeprecated,
-           if (region != null) 'region': region,
+           'include_deprecated': ?includeDeprecated,
+           'region': ?region,
            'secret_id': secretId,
          },
        );

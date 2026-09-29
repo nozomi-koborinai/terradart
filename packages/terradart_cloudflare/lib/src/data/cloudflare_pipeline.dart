@@ -23,10 +23,7 @@ final class DataCloudflarePipeline extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'pipeline_id': pipelineId,
-         },
+         argMap: {'account_id': ?accountId, 'pipeline_id': pipelineId},
        );
 
   @override

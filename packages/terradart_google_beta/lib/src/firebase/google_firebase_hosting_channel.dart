@@ -92,11 +92,10 @@ final class GoogleFirebaseHostingChannel extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'channel_id': channelId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            ...?expiration?.argMap,
-           if (labels != null) 'labels': labels,
-           if (retainedReleaseCount != null)
-             'retained_release_count': retainedReleaseCount,
+           'labels': ?labels,
+           'retained_release_count': ?retainedReleaseCount,
            'site_id': siteId,
          },
        );

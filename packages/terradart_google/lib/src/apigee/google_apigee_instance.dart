@@ -19,7 +19,7 @@ final class ApigeeInstanceAccessLoggingConfig {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
+    'filter': ?filter?.toTfJson(),
   };
 }
 
@@ -75,19 +75,17 @@ final class GoogleApigeeInstance extends Resource {
            'name': name,
            'location': location,
            'org_id': orgId,
-           if (peeringCidrRange != null) 'peering_cidr_range': peeringCidrRange,
-           if (ipRange != null) 'ip_range': ipRange,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (diskEncryptionKeyName != null)
-             'disk_encryption_key_name': diskEncryptionKeyName,
-           if (consumerAcceptList != null)
-             'consumer_accept_list': consumerAcceptList,
+           'peering_cidr_range': ?peeringCidrRange,
+           'ip_range': ?ipRange,
+           'display_name': ?displayName,
+           'description': ?description,
+           'disk_encryption_key_name': ?diskEncryptionKeyName,
+           'consumer_accept_list': ?consumerAcceptList,
            if (accessLoggingConfig != null)
              'access_logging_config': TfArg.literal(
                accessLoggingConfig.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

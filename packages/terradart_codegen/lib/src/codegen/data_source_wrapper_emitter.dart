@@ -400,7 +400,7 @@ class DataSourceWrapperEmitter {
     if (isRequired) {
       return "'$snakeName': $camel,";
     }
-    return "if ($camel != null) '$snakeName': $camel,";
+    return "'$snakeName': ?$camel,";
   }
 
   Map<String, dynamic> _requireRawSchema(String terraformType) {

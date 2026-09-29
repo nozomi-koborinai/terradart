@@ -112,34 +112,29 @@ final class GoogleComputeInterconnectAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (type != null) 'type': type,
-           if (interconnect != null) 'interconnect': interconnect,
-           if (router != null) 'router': router,
-           if (region != null) 'region': region,
-           if (bandwidth != null) 'bandwidth': bandwidth,
-           if (vlanTag8021q != null) 'vlan_tag8021q': vlanTag8021q,
-           if (mtu != null) 'mtu': mtu,
-           if (encryption != null) 'encryption': encryption,
-           if (stackType != null) 'stack_type': stackType,
-           if (edgeAvailabilityDomain != null)
-             'edge_availability_domain': edgeAvailabilityDomain,
-           if (candidateSubnets != null) 'candidate_subnets': candidateSubnets,
-           if (candidateCloudRouterIpAddress != null)
-             'candidate_cloud_router_ip_address': candidateCloudRouterIpAddress,
-           if (candidateCustomerRouterIpAddress != null)
-             'candidate_customer_router_ip_address':
-                 candidateCustomerRouterIpAddress,
-           if (candidateCloudRouterIpv6Address != null)
-             'candidate_cloud_router_ipv6_address':
-                 candidateCloudRouterIpv6Address,
-           if (candidateCustomerRouterIpv6Address != null)
-             'candidate_customer_router_ipv6_address':
-                 candidateCustomerRouterIpv6Address,
-           if (adminEnabled != null) 'admin_enabled': adminEnabled,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'type': ?type,
+           'interconnect': ?interconnect,
+           'router': ?router,
+           'region': ?region,
+           'bandwidth': ?bandwidth,
+           'vlan_tag8021q': ?vlanTag8021q,
+           'mtu': ?mtu,
+           'encryption': ?encryption,
+           'stack_type': ?stackType,
+           'edge_availability_domain': ?edgeAvailabilityDomain,
+           'candidate_subnets': ?candidateSubnets,
+           'candidate_cloud_router_ip_address': ?candidateCloudRouterIpAddress,
+           'candidate_customer_router_ip_address':
+               ?candidateCustomerRouterIpAddress,
+           'candidate_cloud_router_ipv6_address':
+               ?candidateCloudRouterIpv6Address,
+           'candidate_customer_router_ipv6_address':
+               ?candidateCustomerRouterIpv6Address,
+           'admin_enabled': ?adminEnabled,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

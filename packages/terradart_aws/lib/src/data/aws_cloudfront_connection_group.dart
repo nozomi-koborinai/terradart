@@ -18,9 +18,7 @@ final class DataAwsCloudfrontConnectionGroup extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (routingEndpoint != null) 'routing_endpoint': routingEndpoint,
-         },
+         argMap: {'routing_endpoint': ?routingEndpoint},
        );
 
   @override

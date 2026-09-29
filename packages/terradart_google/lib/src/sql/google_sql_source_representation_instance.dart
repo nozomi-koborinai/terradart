@@ -39,19 +39,18 @@ final class GoogleSqlSourceRepresentationInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (caCertificate != null) 'ca_certificate': caCertificate,
-           if (clientCertificate != null)
-             'client_certificate': clientCertificate,
-           if (clientKey != null) 'client_key': clientKey,
+           'ca_certificate': ?caCertificate,
+           'client_certificate': ?clientCertificate,
+           'client_key': ?clientKey,
            'database_version': databaseVersion,
-           if (dumpFilePath != null) 'dump_file_path': dumpFilePath,
+           'dump_file_path': ?dumpFilePath,
            'host': host,
            'name': name,
-           if (password != null) 'password': password,
-           if (port != null) 'port': port,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (username != null) 'username': username,
+           'password': ?password,
+           'port': ?port,
+           'project': ?project,
+           'region': ?region,
+           'username': ?username,
          },
        );
 

@@ -18,10 +18,7 @@ final class DataAwsDbEventCategories extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (sourceType != null) 'source_type': sourceType,
-         },
+         argMap: {'region': ?region, 'source_type': ?sourceType},
        );
 
   @override

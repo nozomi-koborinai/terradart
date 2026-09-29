@@ -69,12 +69,12 @@ final class GoogleIamOauthClient extends Resource {
            'allowed_grant_types': allowedGrantTypes,
            'allowed_redirect_uris': allowedRedirectUris,
            'allowed_scopes': allowedScopes,
-           if (clientType != null) 'client_type': clientType,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'client_type': ?clientType,
+           'display_name': ?displayName,
+           'description': ?description,
+           'disabled': ?disabled,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

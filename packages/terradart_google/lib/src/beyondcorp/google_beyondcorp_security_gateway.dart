@@ -22,7 +22,7 @@ final class BeyondcorpSecurityGatewayHubs {
 
   Map<String, Object?> encode() => {
     'region': region.toTfJson(),
-    if (internetGateway != null) 'internet_gateway': internetGateway!.encode(),
+    'internet_gateway': ?internetGateway?.encode(),
   };
 }
 
@@ -68,15 +68,11 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfig {
   contextualHeaders;
 
   Map<String, Object?> encode() => {
-    if (allowedClientHeaders != null)
-      'allowed_client_headers': allowedClientHeaders!.toTfJson(),
-    if (clientIp != null) 'client_ip': clientIp!.toTfJson(),
-    if (gatewayIdentity != null)
-      'gateway_identity': gatewayIdentity!.toTfJson(),
-    if (metadataHeaders != null)
-      'metadata_headers': metadataHeaders!.toTfJson(),
-    if (contextualHeaders != null)
-      'contextual_headers': contextualHeaders!.encode(),
+    'allowed_client_headers': ?allowedClientHeaders?.toTfJson(),
+    'client_ip': ?clientIp?.toTfJson(),
+    'gateway_identity': ?gatewayIdentity?.toTfJson(),
+    'metadata_headers': ?metadataHeaders?.toTfJson(),
+    'contextual_headers': ?contextualHeaders?.encode(),
   };
 }
 
@@ -106,10 +102,10 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeaders {
   userInfo;
 
   Map<String, Object?> encode() => {
-    if (outputType != null) 'output_type': outputType!.toTfJson(),
-    if (deviceInfo != null) 'device_info': deviceInfo!.encode(),
-    if (groupInfo != null) 'group_info': groupInfo!.encode(),
-    if (userInfo != null) 'user_info': userInfo!.encode(),
+    'output_type': ?outputType?.toTfJson(),
+    'device_info': ?deviceInfo?.encode(),
+    'group_info': ?groupInfo?.encode(),
+    'user_info': ?userInfo?.encode(),
   };
 }
 
@@ -140,9 +136,7 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersDeviceI
   >?
   outputType;
 
-  Map<String, Object?> encode() => {
-    if (outputType != null) 'output_type': outputType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
 /// `output_type` — derived from the provider schema description.
@@ -172,9 +166,7 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersGroupIn
   >?
   outputType;
 
-  Map<String, Object?> encode() => {
-    if (outputType != null) 'output_type': outputType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
 /// `output_type` — derived from the provider schema description.
@@ -204,9 +196,7 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersUserInf
   >?
   outputType;
 
-  Map<String, Object?> encode() => {
-    if (outputType != null) 'output_type': outputType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
 /// `output_type` — derived from the provider schema description.
@@ -231,9 +221,7 @@ final class BeyondcorpSecurityGatewayServiceDiscovery {
 
   final BeyondcorpSecurityGatewayServiceDiscoveryApiGateway? apiGateway;
 
-  Map<String, Object?> encode() => {
-    if (apiGateway != null) 'api_gateway': apiGateway!.encode(),
-  };
+  Map<String, Object?> encode() => {'api_gateway': ?apiGateway?.encode()};
 }
 
 /// Typed helper for the `service_discovery.api_gateway` block of
@@ -248,8 +236,7 @@ final class BeyondcorpSecurityGatewayServiceDiscoveryApiGateway {
   resourceOverride;
 
   Map<String, Object?> encode() => {
-    if (resourceOverride != null)
-      'resource_override': resourceOverride!.encode(),
+    'resource_override': ?resourceOverride?.encode(),
   };
 }
 
@@ -263,7 +250,7 @@ final class BeyondcorpSecurityGatewayServiceDiscoveryApiGatewayResourceOverride 
 
   final TfArg<String>? path;
 
-  Map<String, Object?> encode() => {if (path != null) 'path': path!.toTfJson()};
+  Map<String, Object?> encode() => {'path': ?path?.toTfJson()};
 }
 
 /// Factory wrapper for `google_beyondcorp_security_gateway`.
@@ -302,8 +289,8 @@ final class GoogleBeyondcorpSecurityGateway extends Resource {
          terraformType: tfType,
          argMap: {
            'security_gateway_id': securityGatewayId,
-           if (location != null) 'location': location,
-           if (displayName != null) 'display_name': displayName,
+           'location': ?location,
+           'display_name': ?displayName,
            if (hubs != null)
              'hubs': TfArg.literal([for (final e in hubs) e.encode()]),
            if (logging != null) 'logging': TfArg.literal(logging.encode()),
@@ -313,8 +300,8 @@ final class GoogleBeyondcorpSecurityGateway extends Resource {
              ),
            if (serviceDiscovery != null)
              'service_discovery': TfArg.literal(serviceDiscovery.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

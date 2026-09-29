@@ -24,8 +24,8 @@ final class DataAwsEksNodeGroup extends Data {
          argMap: {
            'cluster_name': clusterName,
            'node_group_name': nodeGroupName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

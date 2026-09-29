@@ -38,9 +38,9 @@ final class DataAwsEc2Hosts extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (outpostArn != null) 'outpost_arn': outpostArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'outpost_arn': ?outpostArn,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },
