@@ -115,6 +115,17 @@ MongoDB, MySQL or PostgreSQL), `table_id` / `related_table_id`, `bucket_id`,
 | `bucketId: .ref(bucket.id)` | `bucketId: bucket.ref` |
 | `projectId: .literal('my-project')` | unchanged (`RefTo.literal`) |
 
+**Breaking (`terradart_google_beta`)** — a beta-only resource argument that
+names a GA resource takes the `terradart_google` `RefTo` type
+(`RefTo<GoogleComputeNetwork>`, `RefTo<GoogleComputeSubnetwork>`,
+`RefTo<GoogleKmsCryptoKey>`, `RefTo<GoogleServiceAccount>`,
+`RefTo<GoogleStorageBucket>`, `RefTo<GoogleBigqueryDataset>`), so
+`terradart_google_beta` now depends on `terradart_google`. Pass the GA
+block's `ref` (`network: vpc.ref`) or `.literal('...')`; the arguments emit
+the attribute the matching GA argument emits (`name` for
+`google_dataflow_flex_template_job.network`, `self_link` for its
+`subnetwork`, as on `google_dataflow_job`).
+
 ### Sealed arguments are built with dot shorthands
 
 **Breaking (`terradart_aws`, every package with a derived sealed type)** —

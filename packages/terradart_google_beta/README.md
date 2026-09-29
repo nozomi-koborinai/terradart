@@ -6,7 +6,7 @@
 
 Curated factory wrappers for **beta-only** Google Cloud resources ([`hashicorp/google-beta`](https://registry.terraform.io/providers/hashicorp/google-beta)) for Dart-first Terraform stacks.
 
-The **beta-only** catalog is filled (**112 resource factories**, schema pin tracking the weekly GA bump). Types that also exist in GA live in [`terradart_google`](https://pub.dev/packages/terradart_google). Both packages share `terradart_core` and compose seamlessly in one `Stack`.
+The **beta-only** catalog is filled (**112 resource factories**, schema pin tracking the weekly GA bump). Types that also exist in GA live in [`terradart_google`](https://pub.dev/packages/terradart_google). It depends on `terradart_google`: an argument that names a GA resource takes its `ref` (`network: vpc.ref`), so both compose in one `Stack`.
 
 ## Installation
 

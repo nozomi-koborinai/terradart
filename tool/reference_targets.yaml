@@ -22,6 +22,11 @@
 # A resource's entry also covers the same input of its data source; key a
 # data-source-only input `data.<type>.<path>`.
 #
+# A section entry `- inherit: <provider source>` takes that section's rules
+# for a lane whose inputs name the other lane's resources (google-beta →
+# `terradart_google`, `referencesFrom:` in tool/providers.yaml). Its own
+# `attributes` / `exclude` replace the inherited rules' entries.
+#
 # wrap fails on an entry the schema no longer supports: a rule that matches
 # no input, an `attributes` or `exclude` entry the rule does not match, an
 # attribute the target (or its data source) does not export, or an input two
@@ -293,3 +298,13 @@ appwrite/appwrite:
     attribute: id
     slots: '^database_id$'
     types: '^appwrite_postgresql_'
+
+hashicorp/google-beta:
+  - inherit: hashicorp/google
+    attributes:
+      # As on google_dataflow_job.
+      google_dataflow_flex_template_job.network: name
+      google_dataflow_flex_template_job.subnetwork: self_link
+    exclude:
+      # A dataset the subscription creates.
+      - google_bigquery_analytics_hub_data_exchange_subscription.destination_dataset.dataset_reference.dataset_id

@@ -55,9 +55,16 @@ void main() {
       });
 
       test('every helper, enum and sealed variant reference resolves', () {
+        // google-beta references GA types (`--reference-lane`).
+        final referenced = [
+          manifest,
+          if (manifest.package == 'terradart_google_beta')
+            manifestForPackage('terradart_google')!,
+        ];
         final resourceClasses = {
-          for (final e in manifest.entries)
-            if (e.kind == CatalogKind.resource) e.className,
+          for (final m in referenced)
+            for (final e in m.entries)
+              if (e.kind == CatalogKind.resource) e.className,
         };
         void checkSlots(List<MigrateSlot> slots, String where) {
           for (final s in slots) {

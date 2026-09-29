@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_dataform_repository_workflow_config`.
 const Set<String> _googleDataformRepositoryWorkflowConfigSensitive = <String>{};
 
@@ -24,7 +27,7 @@ final class DataformRepositoryWorkflowConfigInvocationConfig {
 
   final TfArg<List<Object?>>? includedTags;
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final TfArg<bool>? transitiveDependenciesIncluded;
 
@@ -37,7 +40,7 @@ final class DataformRepositoryWorkflowConfigInvocationConfig {
     'fully_refresh_incremental_tables_enabled':
         ?fullyRefreshIncrementalTablesEnabled?.toTfJson(),
     'included_tags': ?includedTags?.toTfJson(),
-    'service_account': ?serviceAccount?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
     'transitive_dependencies_included': ?transitiveDependenciesIncluded
         ?.toTfJson(),
     'transitive_dependents_included': ?transitiveDependentsIncluded?.toTfJson(),

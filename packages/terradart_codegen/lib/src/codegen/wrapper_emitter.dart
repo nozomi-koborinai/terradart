@@ -255,14 +255,14 @@ class WrapperEmitter {
         if (override?.prelude?.contains('RefTo<${ref.className}>') ?? false)
           ref,
     ];
-    final refImports = {
+    final refImports = referenceImports([
       for (final ref in [
         ...topLevelRefs.values,
         ...nestedRefs.values,
         ...preludeRefs,
       ])
-        if (ref.target != def.terraformType) ref.import,
-    }.toList()..sort();
+        if (ref.target != def.terraformType) ref,
+    ]);
     if (refImports.isNotEmpty) {
       buf.writeln();
       refImports.forEach(buf.writeln);
