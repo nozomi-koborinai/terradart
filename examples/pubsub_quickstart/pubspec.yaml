@@ -3,7 +3,7 @@ description: Smallest terradart end-to-end example -- Pub/Sub topic + push subsc
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

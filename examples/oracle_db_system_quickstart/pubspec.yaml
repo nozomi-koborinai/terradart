@@ -3,7 +3,7 @@ description: terradart example — Oracle Base Database DB System on ODB network
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

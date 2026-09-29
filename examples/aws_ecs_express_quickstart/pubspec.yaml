@@ -3,7 +3,7 @@ description: A Dart HTTP server on ECS Express Mode -- an ECR repository for its
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

@@ -3,7 +3,7 @@ description: Firebase Remote Config quickstart -- parameters, conditions, and pa
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

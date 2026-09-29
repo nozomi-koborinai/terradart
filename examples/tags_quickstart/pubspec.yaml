@@ -3,7 +3,7 @@ description: Resource Manager Tags end-to-end example -- project-scoped tag key 
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

@@ -3,7 +3,7 @@ description: Service Directory end-to-end example -- a namespace, a service, an 
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

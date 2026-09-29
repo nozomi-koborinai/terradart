@@ -3,7 +3,7 @@ description: GKE Hub fleet team-management example -- a fleet scope, namespace, 
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

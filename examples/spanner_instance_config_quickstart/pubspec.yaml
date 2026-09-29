@@ -3,7 +3,7 @@ description: Cloud Spanner user-managed instance config quickstart (no instance)
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

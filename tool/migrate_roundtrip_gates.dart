@@ -174,7 +174,7 @@ Future<bool> runMigrateRoundtripGates(
 name: terradart_migrate_roundtrip
 publish_to: none
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 dependencies:
 $deps
 dependency_overrides:

@@ -3,7 +3,7 @@ description: Phase 4.5 Wave 0 quickstart -- VPC network + external IP address wi
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

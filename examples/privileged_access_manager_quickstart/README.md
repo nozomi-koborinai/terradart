@@ -19,7 +19,7 @@ Privileged Access Manager only works on a project that belongs to an organizatio
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project that belongs to an organization. Privileged Access
   Manager rejects org-less projects (`ORGLESS_RESOURCE`).

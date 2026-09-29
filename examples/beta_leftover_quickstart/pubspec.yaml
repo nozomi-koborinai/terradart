@@ -3,7 +3,7 @@ description: Apply-excluded leftover of beta-only curated factories (synth + ter
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

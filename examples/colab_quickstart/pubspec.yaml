@@ -3,7 +3,7 @@ description: Colab Enterprise end-to-end example — runtime template, template 
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

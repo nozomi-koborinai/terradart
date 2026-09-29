@@ -6,7 +6,7 @@ deployment + a STOPPED v2 policy orchestrator) and Binary Authorization
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with `osconfig.googleapis.com` and
   `binaryauthorization.googleapis.com` enabled (the stack enables both)

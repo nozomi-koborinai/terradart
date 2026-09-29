@@ -367,7 +367,7 @@ description: Migrated from `$module` by terradart-migrate $packageVersion.
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 dependencies:
 $deps

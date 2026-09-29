@@ -8,7 +8,7 @@ The folder- and organization-level log sinks need a real organization id and fol
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the BigQuery API and Cloud Logging API enabled and credentials configured (`gcloud auth application-default login`).
 

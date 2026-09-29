@@ -13,7 +13,7 @@ Needs an existing Chronicle (Google SecOps) instance; the placeholder instance U
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with Chronicle (Google SecOps) enabled and an instance ID
 

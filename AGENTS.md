@@ -250,7 +250,7 @@ When a resource can't be applied on a plain standalone project — org-only (Sha
 
 ## Cursor Cloud specific instructions
 
-Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; most packages require ^3.6, `terradart_migrate` requires ^3.10) from the official apt repo and **Terraform** (≥ 1.11) from HashiCorp apt, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot.
+Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; every package requires ^3.10) from the official apt repo and **Terraform** (≥ 1.11) from HashiCorp apt, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot.
 
 There is no long-running dev server for core work. Primary flows:
 

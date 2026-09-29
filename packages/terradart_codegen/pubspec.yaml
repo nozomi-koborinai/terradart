@@ -13,7 +13,7 @@ topics:
   - google-cloud
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 # Upstream Magic Modules test fixtures include reCAPTCHA site keys that trip
 # pub.dev's secret scanner (false positive: "AWS Secret Key").

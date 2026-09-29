@@ -9,7 +9,7 @@ API keys are soft-deleted for 30 days. Applying again with the same key name aft
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project (the stack enables `apikeys.googleapis.com`,
   `recaptchaenterprise.googleapis.com`, and `networkmanagement.googleapis.com`)

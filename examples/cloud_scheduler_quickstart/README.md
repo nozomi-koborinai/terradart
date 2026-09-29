@@ -4,7 +4,7 @@ Provisions a `google_cloud_scheduler_job` with a Pub/Sub target. **The point of 
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Pub/Sub and Cloud Scheduler APIs enabled.
 

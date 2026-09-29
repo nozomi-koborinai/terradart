@@ -15,7 +15,7 @@ Creates the project's `(default)` Firestore database. A project has only one, so
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 
 ## Layout

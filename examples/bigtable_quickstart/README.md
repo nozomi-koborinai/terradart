@@ -8,7 +8,7 @@ The Bigtable instance is a production instance billed per node-hour while it exi
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project (the stack enables `bigtableadmin.googleapis.com` via `Apis.enable`).
 

@@ -3,7 +3,7 @@ description: Monitoring quickstart — Wave 3 + Wave 12 (channel, uptime, SLO, d
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

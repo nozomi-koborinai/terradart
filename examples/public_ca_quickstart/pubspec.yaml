@@ -3,7 +3,7 @@ description: Public CA external account binding (EAB) key for ACME.
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

@@ -3,7 +3,7 @@ description: A Flutter Web build hosted on a private S3 bucket behind CloudFront
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

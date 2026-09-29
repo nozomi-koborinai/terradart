@@ -8,7 +8,7 @@ The project must already be registered with Firebase. Enabling `firebase.googlea
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Firebase Remote Config API enabled.
 

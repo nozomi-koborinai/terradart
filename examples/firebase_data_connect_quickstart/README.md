@@ -8,7 +8,7 @@ The project must already be registered with Firebase. Enabling `firebase.googlea
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Firebase Data Connect API enabled. A pre-provisioned Cloud SQL instance is typically wired in via child resources (`google_firebase_data_connect_schema`, `_connector`) not curated in Wave 4.
 

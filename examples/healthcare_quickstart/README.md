@@ -8,7 +8,7 @@ returns 404 Method not found on terradart-validate; see
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with credentials configured (`gcloud auth application-default login`). The Cloud Healthcare API is enabled by the stack.
 

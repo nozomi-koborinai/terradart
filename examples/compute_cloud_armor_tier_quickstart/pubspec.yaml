@@ -3,7 +3,7 @@ description: Compute Engine project Cloud Armor tier quickstart (CA_STANDARD).
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

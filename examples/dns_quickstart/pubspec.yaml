@@ -3,7 +3,7 @@ description: Phase 4.5 Wave 2 quickstart -- private DNS zone with typed peering_
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

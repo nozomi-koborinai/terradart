@@ -3,7 +3,7 @@ description: Parameter Manager end-to-end example -- a global and a regional app
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

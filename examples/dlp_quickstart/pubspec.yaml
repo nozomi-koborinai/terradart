@@ -3,7 +3,7 @@ description: Sensitive Data Protection (DLP) end-to-end example — inspect / de
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

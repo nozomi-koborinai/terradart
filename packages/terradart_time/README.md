@@ -1,7 +1,7 @@
 # terradart_time
 
 [![pub: terradart_time](https://img.shields.io/pub/v/terradart_time.svg?label=pub%3A%20time)](https://pub.dev/packages/terradart_time)
-[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.6-blue.svg)](https://dart.dev)
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
 
 `TimeProvider` and `TimeSleep` for the [`hashicorp/time`](https://registry.terraform.io/providers/hashicorp/time) Terraform provider, for Dart-first Terraform stacks on any cloud.
