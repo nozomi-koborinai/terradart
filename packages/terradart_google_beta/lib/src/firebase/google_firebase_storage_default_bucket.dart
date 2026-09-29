@@ -7,6 +7,9 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseStorageDefaultBucketSensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_storage_default_bucket`.
+///
+/// A resource that manages the creation of the default Google Cloud Storage
+/// bucket for a Firebase project.
 final class GoogleFirebaseStorageDefaultBucket extends Resource {
   static const String tfType = 'google_firebase_storage_default_bucket';
 
@@ -32,4 +35,14 @@ final class GoogleFirebaseStorageDefaultBucket extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleFirebaseStorageDefaultBucketSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `bucket` attribute.
+  TfRef<List<Map<String, Object?>>> get bucket =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'bucket');
 }

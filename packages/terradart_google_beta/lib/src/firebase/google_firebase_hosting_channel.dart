@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseHostingChannelSensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_hosting_channel`.
+///
+/// A `Channel` represents a stream of releases for a site. All sites have a
+/// default `live` channel that serves content to the Firebase-provided
+/// subdomains and any connected custom domains.
 final class GoogleFirebaseHostingChannel extends Resource {
   static const String tfType = 'google_firebase_hosting_channel';
 
@@ -40,4 +44,18 @@ final class GoogleFirebaseHostingChannel extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseHostingChannelSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 }

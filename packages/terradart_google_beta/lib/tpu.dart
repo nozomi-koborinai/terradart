@@ -4,5 +4,20 @@
 library;
 
 export 'src/tpu/google_tpu_v2_queued_resource.dart'
-    show GoogleTpuV2QueuedResource;
-export 'src/tpu/google_tpu_v2_vm.dart' show GoogleTpuV2Vm;
+    show
+        GoogleTpuV2QueuedResource,
+        TpuV2QueuedResourceTpu,
+        TpuV2QueuedResourceTpuNodeSpec,
+        TpuV2QueuedResourceTpuNodeSpecNode,
+        TpuV2QueuedResourceTpuNodeSpecNodeNetworkConfig;
+export 'src/tpu/google_tpu_v2_vm.dart'
+    show
+        GoogleTpuV2Vm,
+        TpuV2VmAcceleratorConfig,
+        TpuV2VmDataDisks,
+        TpuV2VmDataDisksMode,
+        TpuV2VmNetworkConfig,
+        TpuV2VmNetworkConfigs,
+        TpuV2VmSchedulingConfig,
+        TpuV2VmServiceAccount,
+        TpuV2VmShieldedInstanceConfig;

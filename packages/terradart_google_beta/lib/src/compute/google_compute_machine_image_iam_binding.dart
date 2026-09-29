@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_machine_image_iam_binding`.
 const Set<String> _googleComputeMachineImageIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_compute_machine_image_iam_binding` (derived from provider schema).
+@immutable
+final class ComputeMachineImageIamBindingCondition {
+  const ComputeMachineImageIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    if (description != null) 'description': description!.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_compute_machine_image_iam_binding`.
 ///
@@ -21,7 +45,7 @@ final class GoogleComputeMachineImageIamBinding extends Resource {
     required TfArg<List<String>> members,
     TfArg<String>? project,
     required TfArg<String> role,
-    TfArg<Map<String, dynamic>>? condition,
+    ComputeMachineImageIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -34,11 +58,18 @@ final class GoogleComputeMachineImageIamBinding extends Resource {
            'members': members,
            if (project != null) 'project': project,
            'role': role,
-           if (condition != null) 'condition': condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 
   @override
   Set<String> get sensitiveFields =>
       _googleComputeMachineImageIamBindingSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

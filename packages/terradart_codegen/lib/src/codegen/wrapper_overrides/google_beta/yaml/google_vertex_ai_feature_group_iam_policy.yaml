@@ -4,6 +4,10 @@
 outputDir: vertex_ai
 
 deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Authoritative IAM policy for a Vertex Ai Feature Group.

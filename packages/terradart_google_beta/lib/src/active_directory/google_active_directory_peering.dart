@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleActiveDirectoryPeeringSensitive = <String>{};
 
 /// Factory wrapper for `google_active_directory_peering`.
+///
+/// Creates a Peering for Managed AD instance.
 final class GoogleActiveDirectoryPeering extends Resource {
   static const String tfType = 'google_active_directory_peering';
 
@@ -41,4 +43,18 @@ final class GoogleActiveDirectoryPeering extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleActiveDirectoryPeeringSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 }

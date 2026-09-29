@@ -8,6 +8,10 @@ const Set<String> _googleFirebaseAiLogicPromptTemplateLockSensitive =
     <String>{};
 
 /// Factory wrapper for `google_firebase_ai_logic_prompt_template_lock`.
+///
+/// A resource that manages the lock state of a PromptTemplate. When this
+/// resource is created, the template is locked. When this resource is deleted,
+/// the template is unlocked.
 final class GoogleFirebaseAiLogicPromptTemplateLock extends Resource {
   static const String tfType = 'google_firebase_ai_logic_prompt_template_lock';
 
@@ -38,4 +42,13 @@ final class GoogleFirebaseAiLogicPromptTemplateLock extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleFirebaseAiLogicPromptTemplateLockSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `locked` attribute.
+  TfRef<bool> get locked => TfRef.attribute<bool>(this, 'locked');
 }

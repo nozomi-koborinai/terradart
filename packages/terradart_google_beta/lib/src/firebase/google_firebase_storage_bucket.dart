@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseStorageBucketSensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_storage_bucket`.
+///
+/// An association between a Firebase project and a Google Cloud Storage bucket.
+/// This association enables integration of Cloud Storage buckets with Firebase
+/// such as Firebase SDKS, Authentication, and Security Rules.
 final class GoogleFirebaseStorageBucket extends Resource {
   static const String tfType = 'google_firebase_storage_bucket';
 
@@ -31,4 +35,10 @@ final class GoogleFirebaseStorageBucket extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseStorageBucketSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

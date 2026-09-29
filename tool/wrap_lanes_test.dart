@@ -45,6 +45,7 @@ void main() {
         '--overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml '
         '--resource-provider google-beta '
+        '--mm-hints '
         '--migrate-manifest '
         '../terradart_migrate/lib/src/manifest/google_beta.g.dart '
         '--check',
@@ -195,6 +196,64 @@ providers:
       expect(staleHints(appwrite.schemaDir), isEmpty);
     });
 
+    test('mmHints: true adds --mm-hints to wrap and regen', () {
+      final x = parseWrapLanes('$lane    mmHints: true\n').single;
+      expect(WrapGate.wrap.args(x), contains('--mm-hints'));
+      expect(WrapGate.regen.args(x), contains('--mm-hints'));
+      expect(WrapGate.lint.args(x), isNot(contains('--mm-hints')));
+      expect(parseWrapLanes(lane).single.mmHints, isFalse);
+    });
+
+    test('rejects mmHints beside providerEnums', () {
+      expect(
+        () => parseWrapLanes(
+          '$lane    mmHints: true\n    providerEnums: true\n',
+        ),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            'lane x: mmHints and providerEnums are exclusive hint sources',
+          ),
+        ),
+      );
+    });
+
+    test('mmSync needs both coordinates', () {
+      final x = parseWrapLanes(
+        '$lane    mmSync:\n      providerRepo: acme/terraform-x\n'
+        '      servicesDir: x/services\n',
+      ).single;
+      expect(
+        x.mmSync,
+        (providerRepo: 'acme/terraform-x', servicesDir: 'x/services'),
+      );
+      expect(parseWrapLanes(lane).single.mmSync, isNull);
+      expect(
+        () => parseWrapLanes(
+          '$lane    mmSync:\n      providerRepo: acme/terraform-x\n',
+        ),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            'lane x: mmSync needs providerRepo and servicesDir strings',
+          ),
+        ),
+      );
+    });
+
+    test('the committed google-beta lane syncs current MM YAML', () {
+      final beta = parseWrapLanes(File(providersPath).readAsStringSync())
+          .singleWhere((l) => l.name == 'google-beta');
+      expect(beta.mmHints, isTrue);
+      expect(
+        beta.mmSync?.providerRepo,
+        'hashicorp/terraform-provider-google-beta',
+      );
+      expect(staleMmSync(beta.schemaDir), isEmpty);
+    });
+
     test('the committed aws lane re-extracts hints from its repo', () {
       final aws = parseWrapLanes(File(providersPath).readAsStringSync())
           .singleWhere((l) => l.name == 'aws');
@@ -227,6 +286,44 @@ providers:
       hint('c.yaml', '5.0.0');
       File(p.join(dir.path, 'hints', 'README.md')).writeAsStringSync('x');
       expect(staleHints(dir.path), ['b.yaml: 5.1.0', 'c.yaml: 5.0.0']);
+    });
+  });
+
+  group('staleMmSync', () {
+    late Directory dir;
+    setUp(() {
+      dir = Directory.systemTemp.createTempSync('mm_sync_');
+      File(p.join(dir.path, 'provider_version.txt'))
+          .writeAsStringSync('8.4.0\n');
+      File(p.join(dir.path, 'schema.json')).writeAsStringSync(
+        '{"provider_schemas": {"registry.terraform.io/hashicorp/x": '
+        '{"resource_schemas": {"x_a": {}, "x_b": {}}}}}',
+      );
+    });
+    tearDown(() => dir.deleteSync(recursive: true));
+
+    void record(String version, List<String> types) =>
+        File(p.join(dir.path, mmSourcesFile)).writeAsStringSync(
+          'provider_version: $version\nupstream_ref: abc\nfiles:\n'
+          '${[for (final t in types) '  $t: null\n'].join()}',
+        );
+
+    test('is empty when the record matches the fixture', () {
+      record('8.4.0', ['x_a', 'x_b']);
+      expect(staleMmSync(dir.path), isEmpty);
+    });
+
+    test('names a missing record', () {
+      expect(staleMmSync(dir.path), ['$mmSourcesFile is missing']);
+    });
+
+    test('names another release and a changed resource set', () {
+      record('8.3.0', ['x_a', 'x_c']);
+      expect(staleMmSync(dir.path), [
+        '$mmSourcesFile records provider 8.3.0, the fixture is 8.4.0',
+        '$mmSourcesFile lacks x_b',
+        '$mmSourcesFile lists x_c, absent from schema.json',
+      ]);
     });
   });
 

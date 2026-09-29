@@ -47,6 +47,7 @@ void main() {
       {for (final e in providerRulesById.entries) e.key: e.value.providerId},
       {
         'hashicorp/google': 'hashicorp/google',
+        'hashicorp/google-beta': 'hashicorp/google-beta',
         'cloudflare/cloudflare': 'cloudflare/cloudflare',
         'hashicorp/aws': 'hashicorp/aws',
       },

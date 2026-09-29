@@ -4,4 +4,8 @@
 library;
 
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_subscription.dart'
-    show GoogleBigqueryAnalyticsHubDataExchangeSubscription;
+    show
+        BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDataset,
+        BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDatasetDatasetReference,
+        BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy,
+        GoogleBigqueryAnalyticsHubDataExchangeSubscription;

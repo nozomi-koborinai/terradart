@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseWebAppSensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_web_app`.
+///
+/// A Google Cloud Firebase web application instance
 final class GoogleFirebaseWebApp extends Resource {
   static const String tfType = 'google_firebase_web_app';
 
@@ -33,4 +35,17 @@ final class GoogleFirebaseWebApp extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseWebAppSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `app_urls` attribute.
+  TfRef<List<String>> get appUrls =>
+      TfRef.attribute<List<String>>(this, 'app_urls');
 }

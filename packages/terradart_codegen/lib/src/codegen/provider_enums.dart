@@ -29,7 +29,9 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// [off] is every lane's default and changes nothing.
 final class ProviderEnums {
   const ProviderEnums._({required this.enabled, required this.hints})
-      : exactlyOneGroups = const {};
+      : exactlyOneGroups = const {},
+        caseInsensitive = false,
+        availableValuesDialect = false;
 
   /// The gate closed: no enrichment, the default description resolver.
   static const ProviderEnums off = ProviderEnums._(enabled: false, hints: {});
@@ -39,7 +41,30 @@ final class ProviderEnums {
   const ProviderEnums.on({
     this.hints = const <String, Map<String, List<String>>>{},
     this.exactlyOneGroups = const <String, List<List<String>>>{},
+    this.caseInsensitive = true,
+    this.availableValuesDialect = true,
   }) : enabled = true;
+
+  /// `wrap --mm-hints`: the same gate with Magic Modules YAML as the hint
+  /// source — each resource's `enum_values` by path and its
+  /// `exactly_one_of` groups ([MmResourceOverrides.exactlyOneOfPaths]).
+  /// Magic Modules validators match case-sensitively, and the google
+  /// schema's `Available values:` prose has no validator behind it, so the
+  /// description dialects stay the ones every lane reads.
+  factory ProviderEnums.fromMm(Map<String, MmResourceOverrides> mm) =>
+      ProviderEnums.on(
+        hints: {
+          for (final MapEntry(:key, :value) in mm.entries)
+            key: value.enumValuesByPath,
+        },
+        exactlyOneGroups: {
+          for (final MapEntry(:key, :value) in mm.entries)
+            if (value.exactlyOneOfPaths.isNotEmpty)
+              key: value.exactlyOneOfPaths,
+        },
+        caseInsensitive: false,
+        availableValuesDialect: false,
+      );
 
   /// Reads `<sourceDir>/hints/*.yaml` (a missing directory means no hints).
   ///
@@ -96,6 +121,15 @@ final class ProviderEnums {
   final bool enabled;
   final Map<String, Map<String, List<String>>> hints;
 
+  /// Whether the provider matches enum values case-insensitively (its
+  /// validators are `OneOfCaseInsensitive`), recorded in the migration
+  /// manifest.
+  final bool caseInsensitive;
+
+  /// Whether the resolver also reads the `Available values:` description
+  /// dialect ([parseAvailableValues]).
+  final bool availableValuesDialect;
+
   /// Terraform type → the input sets the provider requires exactly one of,
   /// each a list of dotted paths from the resource root that share one
   /// parent block (`hints/*.yaml` `exactly_one_of_groups`).
@@ -136,7 +170,7 @@ final class ProviderEnums {
     return (path, description) =>
         typeHints[path.join('.')] ??
         parseEnumValuesFromDescription(description) ??
-        parseAvailableValues(description);
+        (availableValuesDialect ? parseAvailableValues(description) : null);
   }
 
   /// [ir] with `enumValues` filled on every top-level string or

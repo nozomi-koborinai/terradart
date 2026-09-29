@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeRegionNetworkPolicySensitive = <String>{};
 
 /// Factory wrapper for `google_compute_region_network_policy`.
+///
+/// The Compute NetworkFirewallPolicy resource
 final class GoogleComputeRegionNetworkPolicy extends Resource {
   static const String tfType = 'google_compute_region_network_policy';
 
@@ -35,4 +37,33 @@ final class GoogleComputeRegionNetworkPolicy extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleComputeRegionNetworkPolicySensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `associations` attribute.
+  TfRef<List<Map<String, Object?>>> get associations =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'associations');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `region_network_policy_id` attribute.
+  TfRef<String> get regionNetworkPolicyId =>
+      TfRef.attribute<String>(this, 'region_network_policy_id');
+
+  /// Reference to `rule_tuple_count` attribute.
+  TfRef<num> get ruleTupleCount =>
+      TfRef.attribute<num>(this, 'rule_tuple_count');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `self_link_with_id` attribute.
+  TfRef<String> get selfLinkWithId =>
+      TfRef.attribute<String>(this, 'self_link_with_id');
 }

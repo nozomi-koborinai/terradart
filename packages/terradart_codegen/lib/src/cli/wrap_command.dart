@@ -121,6 +121,14 @@ class WrapCommand extends Command<int> {
             '<source>/hints/*.yaml (extracted from the provider source) and '
             'the `Available values:` description dialect. Off for lanes '
             'whose schema carries that dialect without a validator behind it.',
+      )
+      ..addFlag(
+        'mm-hints',
+        negatable: false,
+        help: 'The --provider-enums gate with the Magic Modules YAML of '
+            '<source>/mm as the hint source: its enum_values type the '
+            '`deriveEnums` inputs and its exactly_one_of groups feed '
+            '`deriveExactlyOne`. Exclusive with --provider-enums.',
       );
   }
 
@@ -231,9 +239,18 @@ class WrapCommand extends Command<int> {
         ? baseIr
         : const IrMerger().merge(base: baseIr, overrides: mmOverrides);
 
-    // 1c. `--provider-enums`: hints + the `Available values:` dialect.
+    // 1c. `--provider-enums`: hints + the `Available values:` dialect;
+    //     `--mm-hints`: the MM YAML loaded above as the hints.
     final ProviderEnums providerEnums;
-    if (results['provider-enums'] as bool) {
+    if (results['mm-hints'] as bool) {
+      if (results['provider-enums'] as bool) {
+        stderr.writeln(
+          'terradart wrap: --mm-hints and --provider-enums are exclusive.',
+        );
+        return CliExitCodes.dataError;
+      }
+      providerEnums = ProviderEnums.fromMm(mmOverrides);
+    } else if (results['provider-enums'] as bool) {
       try {
         providerEnums = ProviderEnums.load(
           source,
@@ -528,7 +545,8 @@ class WrapCommand extends Command<int> {
             },
           ),
           package: migratePackage!,
-          caseInsensitiveEnums: providerEnums.enabled,
+          caseInsensitiveEnums:
+              providerEnums.enabled && providerEnums.caseInsensitive,
         );
         buffer[p.relative(migrateManifestPath, from: output)] =
             formatter.format(manifestRaw);

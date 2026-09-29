@@ -1,0 +1,163 @@
+# Copyright 2024 Google Inc.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+name: MachineImage
+description: |
+  Represents a Machine Image resource. Machine images store all the configuration,
+  metadata, permissions, and data from one or more disks required to create a
+  Virtual machine (VM) instance.
+references:
+  guides:
+    Official Documentation: https://cloud.google.com/compute/docs/machine-images
+  api: https://cloud.google.com/compute/docs/reference/rest/beta/machineImages
+base_url: projects/{{project}}/global/machineImages
+min_version: beta
+immutable: true
+has_self_link: true
+generate_list_resource: true
+collection_url_key: items
+iam_policy:
+  allowed_iam_role: roles/compute.admin
+  parent_resource_attribute: machine_image
+  custom_import_state_id_funcs: ""
+  iam_conditions_request_type: QUERY_PARAM
+  min_version: beta
+kind: compute#machineImage
+id_format: projects/{{project}}/global/machineImages/{{name}}
+async:
+  operation:
+    base_url: '{{op_id}}'
+samples:
+  - name: machine_image_basic
+    primary_resource_id: image
+    steps:
+      - name: machine_image_basic
+        resource_id_vars:
+          image_name: my-image
+          vm_name: my-vm
+  - name: compute_machine_image_kms
+    primary_resource_id: image
+    bootstrap_iam:
+      - member: serviceAccount:service-{project_number}@compute-system.iam.gserviceaccount.com
+        role: roles/cloudkms.cryptoKeyEncrypterDecrypter
+    steps:
+      - name: compute_machine_image_kms
+        resource_id_vars:
+          image_name: my-image
+          key_name: key
+          keyring_name: keyring
+          vm_name: my-vm
+        test_vars_overrides:
+          # for backward compatible
+          key_name: '"key" + randomSuffix'
+          # for backward compatible
+          keyring_name: '"keyring" + randomSuffix'
+  - name: machine_image_resource_manager_tags
+    primary_resource_id: image
+    steps:
+      - name: machine_image_resource_manager_tags
+        resource_id_vars:
+          image_name: my-image
+          vm_name: my-vm
+          tag_key: tagkey
+          tag_value: tagvalue
+        test_vars_overrides:
+          'tag_key': '"tf-test-key-" + acctest.RandString(t, 10)'
+          'tag_value': '"tf-test-value-" + acctest.RandString(t, 10)'
+properties:
+  - name: name
+    type: String
+    required: true
+    description: Name of the resource.
+    min_version: beta
+  - name: description
+    type: String
+    description: A text description of the resource.
+    min_version: beta
+  - name: sourceInstance
+    type: ResourceRef
+    required: true
+    description: The source instance used to create the machine image. You can provide this as a partial or full URL to the resource.
+    min_version: beta
+    resource: Instance
+    imports: selfLink
+    custom_expand: templates/terraform/custom_expand/resourceref_with_validation.go.tmpl
+  - name: storageLocations
+    type: Array
+    description: |
+      The regional or multi-regional Cloud Storage bucket location where the machine image is stored.
+    output: true
+    min_version: beta
+    item_type:
+      type: String
+  - name: guestFlush
+    type: Boolean
+    description: |
+      Specify this to create an application consistent machine image by informing the OS to prepare for the snapshot process.
+      Currently only supported on Windows instances using the Volume Shadow Copy Service (VSS).
+    min_version: beta
+  - name: machineImageEncryptionKey
+    type: NestedObject
+    description: |
+      Encrypts the machine image using a customer-supplied encryption key.
+
+      After you encrypt a machine image with a customer-supplied key, you must
+      provide the same key if you use the machine image later (e.g. to create a
+      instance from the image)
+    min_version: beta
+    immutable: true
+    properties:
+      - name: rawKey
+        type: String
+        description: |
+          Specifies a 256-bit customer-supplied encryption key, encoded in
+          RFC 4648 base64 to either encrypt or decrypt this resource.
+        min_version: beta
+        sensitive: true
+      - name: sha256
+        type: String
+        description: |
+          The RFC 4648 base64 encoded SHA-256 hash of the
+          customer-supplied encryption key that protects this resource.
+        output: true
+        min_version: beta
+      - name: kmsKeyName
+        type: String
+        description: |
+          The name of the encryption key that is stored in Google Cloud KMS.
+        min_version: beta
+        diff_suppress_func: tpgresource.CompareCryptoKeyVersions
+      - name: kmsKeyServiceAccount
+        type: String
+        description: |
+          The service account used for the encryption request for the given KMS key.
+          If absent, the Compute Engine Service Agent service account is used.
+        min_version: beta
+  - name: 'params'
+    type: NestedObject
+    ignore_read: true
+    immutable: true
+    min_version: beta
+    description: |
+      Additional params passed with the request, but not persisted as part of resource payload.
+    properties:
+      - name: 'resourceManagerTags'
+        type: KeyValuePairs
+        description: |
+          Resource manager tags to be bound to the machine image. Tag keys and values have the
+          same definition as resource manager tags. Keys must be in the format tagKeys/{tag_key_id},
+          and values are in the format tagValues/456.
+        api_name: resourceManagerTags
+        min_version: beta
+        ignore_read: true

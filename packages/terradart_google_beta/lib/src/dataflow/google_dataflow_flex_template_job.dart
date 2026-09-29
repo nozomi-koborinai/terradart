@@ -89,4 +89,27 @@ final class GoogleDataflowFlexTemplateJob extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleDataflowFlexTemplateJobSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `job_id` attribute.
+  TfRef<String> get jobId => TfRef.attribute<String>(this, 'job_id');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }
