@@ -8,6 +8,7 @@
 - `terradart wrap --mm-groups` (a lane's `mmGroups: true` in `tool/providers.yaml`, now set on the google GA lane): the Magic Modules `exactly_one_of` / `conflicts` / `at_least_one_of` groups of `--mm-hints` feed `deriveExactlyOne` while enum typing stays the merged IR's. Exclusive with `--mm-hints` and `--provider-enums`. No GA override sets `deriveExactlyOne` yet, so generated output is unchanged.
 - `deriveExactlyOne` takes a group member that a custom slot holds as an optional hand-written helper (`Helper? x` with `if (x != null) '<key>': TfArg.literal(...)`) as a variant that keeps the helper type, instead of leaving the group unsealed; it also rewrites `argMapOrder` along with `paramOrder`.
 - `GoogleProviderRules` scaffolds `deriveExactlyOne: true` on new google resources (`wrap-init`, and so the weekly bump's new types).
+- `deriveExactlyOne` leaves a group of more than `maxExactlyOneMembers` (16) members unsealed and prints why, at resource level and in nested helpers: its joined name would be unusable (`google_chronicle_feed` `details` has 75). No aws / cloudflare / beta group is that large, so their output is unchanged.
 
 ## 0.30.0 - 2026-09-28
 

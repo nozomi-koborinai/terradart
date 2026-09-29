@@ -358,8 +358,7 @@ final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfig {
   const OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfig({
     this.allowedSuccessCodes,
     this.interpreter,
-    this.localPath,
-    this.gcsObject,
+    required this.localPathOrGcsObject,
   });
 
   final TfArg<List<Object?>>? allowedSuccessCodes;
@@ -369,18 +368,61 @@ final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfig {
   >?
   interpreter;
 
-  final TfArg<String>? localPath;
-
-  final OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject?
-  gcsObject;
+  final OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObject
+  localPathOrGcsObject;
 
   Map<String, Object?> encode() => {
     if (allowedSuccessCodes != null)
       'allowed_success_codes': allowedSuccessCodes!.toTfJson(),
     if (interpreter != null) 'interpreter': interpreter!.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
-    if (gcsObject != null) 'gcs_object': gcsObject!.encode(),
+    ...localPathOrGcsObject.encode(),
   };
+}
+
+/// Exactly one of `local_path`, `gcs_object` on the `patch_config.post_step.linux_exec_step_config` block of `google_os_config_patch_deployment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObject();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `local_path` (one of the [OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObject] choices).
+final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOption
+    extends
+        OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOption({
+    required this.localPath,
+  });
+
+  final TfArg<String> localPath;
+
+  @override
+  String get blockKey => 'local_path';
+
+  @override
+  Map<String, Object?> encode() => {'local_path': localPath.toTfJson()};
+}
+
+/// Sets `gcs_object` (one of the [OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObject] choices).
+final class OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectOption
+    extends
+        OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectOption({
+    required this.gcsObject,
+  });
+
+  final OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject
+  gcsObject;
+
+  @override
+  String get blockKey => 'gcs_object';
+
+  @override
+  Map<String, Object?> encode() => {'gcs_object': gcsObject.encode()};
 }
 
 /// `interpreter` — derived from the provider schema description.
@@ -426,8 +468,7 @@ final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig {
   const OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig({
     this.allowedSuccessCodes,
     this.interpreter,
-    this.localPath,
-    this.gcsObject,
+    required this.localPathOrGcsObject,
   });
 
   final TfArg<List<Object?>>? allowedSuccessCodes;
@@ -437,18 +478,61 @@ final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig {
   >?
   interpreter;
 
-  final TfArg<String>? localPath;
-
-  final OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject?
-  gcsObject;
+  final OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObject
+  localPathOrGcsObject;
 
   Map<String, Object?> encode() => {
     if (allowedSuccessCodes != null)
       'allowed_success_codes': allowedSuccessCodes!.toTfJson(),
     if (interpreter != null) 'interpreter': interpreter!.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
-    if (gcsObject != null) 'gcs_object': gcsObject!.encode(),
+    ...localPathOrGcsObject.encode(),
   };
+}
+
+/// Exactly one of `local_path`, `gcs_object` on the `patch_config.post_step.windows_exec_step_config` block of `google_os_config_patch_deployment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObject();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `local_path` (one of the [OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObject] choices).
+final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOption
+    extends
+        OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOption({
+    required this.localPath,
+  });
+
+  final TfArg<String> localPath;
+
+  @override
+  String get blockKey => 'local_path';
+
+  @override
+  Map<String, Object?> encode() => {'local_path': localPath.toTfJson()};
+}
+
+/// Sets `gcs_object` (one of the [OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObject] choices).
+final class OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectOption
+    extends
+        OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectOption({
+    required this.gcsObject,
+  });
+
+  final OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject
+  gcsObject;
+
+  @override
+  String get blockKey => 'gcs_object';
+
+  @override
+  Map<String, Object?> encode() => {'gcs_object': gcsObject.encode()};
 }
 
 /// `interpreter` — derived from the provider schema description.
@@ -517,8 +601,7 @@ final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfig {
   const OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfig({
     this.allowedSuccessCodes,
     this.interpreter,
-    this.localPath,
-    this.gcsObject,
+    required this.localPathOrGcsObject,
   });
 
   final TfArg<List<Object?>>? allowedSuccessCodes;
@@ -528,18 +611,61 @@ final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfig {
   >?
   interpreter;
 
-  final TfArg<String>? localPath;
-
-  final OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject?
-  gcsObject;
+  final OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObject
+  localPathOrGcsObject;
 
   Map<String, Object?> encode() => {
     if (allowedSuccessCodes != null)
       'allowed_success_codes': allowedSuccessCodes!.toTfJson(),
     if (interpreter != null) 'interpreter': interpreter!.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
-    if (gcsObject != null) 'gcs_object': gcsObject!.encode(),
+    ...localPathOrGcsObject.encode(),
   };
+}
+
+/// Exactly one of `local_path`, `gcs_object` on the `patch_config.pre_step.linux_exec_step_config` block of `google_os_config_patch_deployment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObject();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `local_path` (one of the [OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObject] choices).
+final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOption
+    extends
+        OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOption({
+    required this.localPath,
+  });
+
+  final TfArg<String> localPath;
+
+  @override
+  String get blockKey => 'local_path';
+
+  @override
+  Map<String, Object?> encode() => {'local_path': localPath.toTfJson()};
+}
+
+/// Sets `gcs_object` (one of the [OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObject] choices).
+final class OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectOption
+    extends
+        OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectOption({
+    required this.gcsObject,
+  });
+
+  final OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject
+  gcsObject;
+
+  @override
+  String get blockKey => 'gcs_object';
+
+  @override
+  Map<String, Object?> encode() => {'gcs_object': gcsObject.encode()};
 }
 
 /// `interpreter` — derived from the provider schema description.
@@ -585,8 +711,7 @@ final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig {
   const OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig({
     this.allowedSuccessCodes,
     this.interpreter,
-    this.localPath,
-    this.gcsObject,
+    required this.localPathOrGcsObject,
   });
 
   final TfArg<List<Object?>>? allowedSuccessCodes;
@@ -596,18 +721,61 @@ final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig {
   >?
   interpreter;
 
-  final TfArg<String>? localPath;
-
-  final OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject?
-  gcsObject;
+  final OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObject
+  localPathOrGcsObject;
 
   Map<String, Object?> encode() => {
     if (allowedSuccessCodes != null)
       'allowed_success_codes': allowedSuccessCodes!.toTfJson(),
     if (interpreter != null) 'interpreter': interpreter!.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
-    if (gcsObject != null) 'gcs_object': gcsObject!.encode(),
+    ...localPathOrGcsObject.encode(),
   };
+}
+
+/// Exactly one of `local_path`, `gcs_object` on the `patch_config.pre_step.windows_exec_step_config` block of `google_os_config_patch_deployment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObject();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `local_path` (one of the [OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObject] choices).
+final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOption
+    extends
+        OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOption({
+    required this.localPath,
+  });
+
+  final TfArg<String> localPath;
+
+  @override
+  String get blockKey => 'local_path';
+
+  @override
+  Map<String, Object?> encode() => {'local_path': localPath.toTfJson()};
+}
+
+/// Sets `gcs_object` (one of the [OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObject] choices).
+final class OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectOption
+    extends
+        OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObject {
+  const OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectOption({
+    required this.gcsObject,
+  });
+
+  final OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject
+  gcsObject;
+
+  @override
+  String get blockKey => 'gcs_object';
+
+  @override
+  Map<String, Object?> encode() => {'gcs_object': gcsObject.encode()};
 }
 
 /// `interpreter` — derived from the provider schema description.
@@ -792,18 +960,56 @@ enum OsConfigPatchDeploymentRolloutMode implements TerraformEnum {
 @immutable
 final class OsConfigPatchDeploymentRolloutDisruptionBudget {
   const OsConfigPatchDeploymentRolloutDisruptionBudget({
-    this.fixed,
-    this.percentage,
+    required this.fixedOrPercentage,
   });
 
-  final TfArg<num>? fixed;
+  final OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOrPercentage
+  fixedOrPercentage;
 
-  final TfArg<num>? percentage;
+  Map<String, Object?> encode() => {...fixedOrPercentage.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (fixed != null) 'fixed': fixed!.toTfJson(),
-    if (percentage != null) 'percentage': percentage!.toTfJson(),
-  };
+/// Exactly one of `fixed`, `percentage` on the `rollout.disruption_budget` block of `google_os_config_patch_deployment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOrPercentage {
+  const OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOrPercentage();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `fixed` (one of the [OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOrPercentage] choices).
+final class OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOption
+    extends OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOrPercentage {
+  const OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOption({
+    required this.fixed,
+  });
+
+  final TfArg<num> fixed;
+
+  @override
+  String get blockKey => 'fixed';
+
+  @override
+  Map<String, Object?> encode() => {'fixed': fixed.toTfJson()};
+}
+
+/// Sets `percentage` (one of the [OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOrPercentage] choices).
+final class OsConfigPatchDeploymentRolloutDisruptionBudgetPercentageOption
+    extends OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOrPercentage {
+  const OsConfigPatchDeploymentRolloutDisruptionBudgetPercentageOption({
+    required this.percentage,
+  });
+
+  final TfArg<num> percentage;
+
+  @override
+  String get blockKey => 'percentage';
+
+  @override
+  Map<String, Object?> encode() => {'percentage': percentage.toTfJson()};
 }
 
 /// Factory wrapper for `google_os_config_patch_deployment`.

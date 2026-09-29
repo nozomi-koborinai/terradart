@@ -200,8 +200,8 @@ WrapperOverride _derive(
     final group = members;
     final label = '$type [${group.join(', ')}]';
     final slot = exactlyOneSlotName(group);
-    String? reason;
-    if (order.contains(slot) || slots.containsKey(slot)) {
+    String? reason = exactlyOneTooLarge(group);
+    if (reason == null && (order.contains(slot) || slots.containsKey(slot))) {
       reason = 'the slot name $slot is taken';
     }
     final variants = <ExactlyOneVariant>[];

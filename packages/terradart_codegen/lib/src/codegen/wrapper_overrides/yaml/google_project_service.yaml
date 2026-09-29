@@ -1,5 +1,6 @@
 outputDir: project
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

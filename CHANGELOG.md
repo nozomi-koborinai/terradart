@@ -48,6 +48,14 @@ Per-package changelogs live alongside each package and are the system of record 
   `GoogleClouddeployCustomTargetType`, `GoogleCloudRunV2WorkerPool` and
   `GoogleVertexAiRagCorpus` take typed nested helpers instead of map
   literals. See `MIGRATING.md`.
+- **`terradart_google` security, identity, billing and operations input
+  groups are sealed types** (**breaking**) — 13 Magic Modules groups on 8
+  resources (4 nullable, 9 required), e.g.
+  `GoogleAccessContextManagerAccessLevel(basicOrCustom: ...)`. Every
+  `terradart_google` resource override now sets `deriveExactlyOne`
+  (`yaml_loader_test.dart` enforces it), and a group of more than 16
+  members stays unsealed on every lane (`maxExactlyOneMembers`). See
+  `MIGRATING.md`.
 - **Minimum Dart SDK is 3.10** (**breaking**) — every package, example,
   and cookbook stack declares `sdk: ^3.10.0` (was `^3.6.0`;
   `terradart_hcl` and `terradart_migrate` already required 3.10). The

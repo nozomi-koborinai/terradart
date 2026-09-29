@@ -119,6 +119,30 @@ kind, KNN / ANN, API key source), `GoogleVertexAiReasoningEngine`
 (container / source-code spec, image / Python spec) and
 `GoogleWorkbenchInstance`.
 
+Security, identity, billing and operations (13 groups on 8 resources):
+
+| Before | After |
+|--------|-------|
+| `GoogleAccessContextManagerAccessLevel(basic: AccessContextManagerAccessLevelBasic(...), ...)` | `GoogleAccessContextManagerAccessLevel(basicOrCustom: AccessContextManagerAccessLevelBasicOption(basic: AccessContextManagerAccessLevelBasic(...)), ...)` |
+| `GooglePrivatecaCertificate(pemCsr: TfArg.literal(...), ...)` | `GooglePrivatecaCertificate(pemCsrOrConfig: PrivatecaCertificatePemCsrOption(pemCsr: TfArg.literal(...)), ...)` |
+| `BillingBudgetAmount(lastPeriodAmount: TfArg.literal(true))` | `BillingBudgetAmount(specifiedAmountOrLastPeriodAmount: BillingBudgetAmountLastPeriodAmountOption(lastPeriodAmount: TfArg.literal(true)))` |
+| `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(unstructured: ...)` | `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(notMandatoryOrUnstructured: PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructuredOption(unstructured: ...))` |
+
+`GooglePrivatecaCertificate`'s `config` keeps its helper class inside
+`PrivatecaCertificateConfigOption`. The other groups:
+`GoogleChronicleParserExtension` (`cbn_snippet` / `field_extractors` /
+`dynamic_parsing`), `GoogleCloudSecurityComplianceFrameworkDeployment`
+(existing target resource / creation config, folder / project creation),
+`GoogleContactCenterInsightsAssessmentRule` (`sample_percentage` /
+`sample_row`), and `GoogleOsConfigPatchDeployment` (the four pre / post step
+`local_path` / `gcs_object` choices and the disruption budget's `fixed` /
+`percentage`).
+
+Every `terradart_google` resource override now derives its Magic Modules
+groups, and a later MM group seals on the weekly schema bump. A group of
+more than 16 members stays unsealed (`GoogleChronicleFeed`'s 75 `details`
+feed kinds).
+
 ### `terradart_cloudflare` exactly-one inputs are sealed types
 
 **Breaking (`terradart_cloudflare`)** — 13 input groups across 5 resources

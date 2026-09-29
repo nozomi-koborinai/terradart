@@ -52,12 +52,14 @@ final class AccessControlsStack extends Stack {
         name: TfArg.literal('us_only'),
         parent: TfArg.ref(policy.name),
         title: TfArg.literal('US-only access'),
-        basic: AccessContextManagerAccessLevelBasic(
-          conditions: [
-            AccessContextManagerAccessLevelBasicConditions(
-              regions: TfArg.literal(['US']),
-            ),
-          ],
+        basicOrCustom: AccessContextManagerAccessLevelBasicOption(
+          basic: AccessContextManagerAccessLevelBasic(
+            conditions: [
+              AccessContextManagerAccessLevelBasicConditions(
+                regions: TfArg.literal(['US']),
+              ),
+            ],
+          ),
         ),
         dependsOn: [ResourceDependency(policy)],
       ),
@@ -123,12 +125,14 @@ final class AccessControlsStack extends Stack {
         name: TfArg.literal('chromeos_no_lock'),
         parent: TfArg.ref(policy.name),
         title: TfArg.literal('chromeos_no_lock'),
-        basic: AccessContextManagerAccessLevelBasic(
-          conditions: [
-            AccessContextManagerAccessLevelBasicConditions(
-              regions: TfArg.literal(['US']),
-            ),
-          ],
+        basicOrCustom: AccessContextManagerAccessLevelBasicOption(
+          basic: AccessContextManagerAccessLevelBasic(
+            conditions: [
+              AccessContextManagerAccessLevelBasicConditions(
+                regions: TfArg.literal(['US']),
+              ),
+            ],
+          ),
         ),
         lifecycle: const LifecycleOptions(
           ignoreChanges: ['basic[0].conditions'],

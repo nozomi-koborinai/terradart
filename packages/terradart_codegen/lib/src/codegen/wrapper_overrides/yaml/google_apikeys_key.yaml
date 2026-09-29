@@ -1,6 +1,7 @@
 outputDir: apikeys
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

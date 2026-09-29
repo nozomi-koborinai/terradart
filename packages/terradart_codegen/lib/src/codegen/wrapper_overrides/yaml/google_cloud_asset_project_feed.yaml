@@ -1,5 +1,6 @@
 outputDir: cloud_asset
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true

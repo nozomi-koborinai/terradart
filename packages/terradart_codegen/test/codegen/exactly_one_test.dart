@@ -247,6 +247,70 @@ void main() {
     );
   });
 
+  test('a group larger than maxExactlyOneMembers stays unsealed', () {
+    final names = [for (var i = 0; i < 17; i++) 'm$i'];
+    final derived = deriveExactlyOneSlots(
+      {
+        'aws_thing': const WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+        ),
+      },
+      {
+        'aws_thing': ResourceDef(
+          terraformType: 'aws_thing',
+          root: BlockDef(attributes: [for (final n in names) _attr(n)]),
+        ),
+      },
+      providerEnums: ProviderEnums.on(
+        exactlyOneGroups: {
+          'aws_thing': [names],
+        },
+      ),
+      rawSchemas: const {},
+    );
+    expect(derived.skipped, [
+      'aws_thing [${names.join(', ')}]: the group has 17 members, more '
+          'than 16 a sealed name joins',
+    ]);
+    expect(derived.overrides['aws_thing']!.customSlots, isNull);
+
+    final specs = collectNestedTypes(
+      resourceBlock: {
+        'block_types': {
+          'settings': {
+            'nesting_mode': 'list',
+            'max_items': 1,
+            'block': {
+              'attributes': {
+                for (final n in names) n: {'type': 'string', 'optional': true},
+              },
+            },
+          },
+        },
+      },
+      resourcePrefix: 'Thing',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      exactlyOneGroups: {
+        'settings': [names],
+      },
+    );
+    expect(
+      renderNestedTypes(specs, resourceTerraformType: 'aws_thing'),
+      isNot(contains('sealed class')),
+    );
+    expect(
+      unsealedNestedGroups(specs, {
+        'settings': [names],
+      }),
+      [
+        'settings [${names.join(', ')}]: the group has 17 members, more '
+            'than 16 a sealed name joins',
+      ],
+    );
+  });
+
   test('unsealedNestedGroups follows shared helpers to every copy', () {
     Map<String, dynamic> settings() => {
       'nesting_mode': 'list',

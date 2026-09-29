@@ -1,6 +1,7 @@
 outputDir: kms
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 paramOrder:
   - key_ring_id

@@ -1,5 +1,6 @@
 outputDir: iam
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Defines a project-level custom IAM role: a named bundle of low-level

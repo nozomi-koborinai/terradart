@@ -919,6 +919,30 @@ deriveClassDoc: true
         expect(loaded.dataSources.keys, contains('google_compute_network'));
       });
 
+      test('every google resource override opts into the sealed groups its '
+          '--mm-groups lane feeds', () {
+        final loaded = loadWrapperOverrides(
+          rootDir: p.absolute(
+            'lib',
+            'src',
+            'codegen',
+            'wrapper_overrides',
+            'yaml',
+          ),
+        );
+        final missing = [
+          for (final MapEntry(key: type, value: o) in loaded.resources.entries)
+            if (!o.deriveExactlyOne) type,
+        ];
+        expect(
+          missing,
+          isEmpty,
+          reason:
+              'Set deriveExactlyOne (wrap-init fills it for '
+              'hashicorp/google).',
+        );
+      });
+
       test(
         'IAM binding/policy overrides document authoritative replace semantics '
         '(AGENTS.md Generation Policy)',
