@@ -625,7 +625,10 @@ class XVmNic {
       expect(derived.skipped, isEmpty);
       expect(derived.skippedAtMostOne, isEmpty);
       expect(derived.typedReferences, ['google_x_nic.network']);
-      expect(emitter.typedReferences, ['google_x_nic.peer.network']);
+      expect(emitter.typedReferences, [
+        'google_x_nic.network',
+        'google_x_nic.peer.network',
+      ]);
       expect(
         src,
         contains("import '../x/google_x_network.dart' show GoogleXNetwork;"),
