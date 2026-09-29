@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_compute_region_backend_bucket`.
 const Set<String> _googleComputeRegionBackendBucketSensitive = <String>{};
 
@@ -39,7 +42,7 @@ final class GoogleComputeRegionBackendBucket extends Resource {
 
   GoogleComputeRegionBackendBucket({
     required super.localName,
-    required TfArg<String> bucketName,
+    required RefTo<GoogleStorageBucket> bucketName,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<ComputeRegionBackendBucketLoadBalancingScheme>? loadBalancingScheme,
@@ -54,7 +57,7 @@ final class GoogleComputeRegionBackendBucket extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'bucket_name': bucketName,
+           'bucket_name': bucketName.encodeAs('name'),
            'deletion_policy': ?deletionPolicy,
            'description': ?description,
            'load_balancing_scheme': ?loadBalancingScheme,

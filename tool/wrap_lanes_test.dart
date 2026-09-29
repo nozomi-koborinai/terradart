@@ -50,6 +50,9 @@ void main() {
         '--barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml '
         '--resource-provider google-beta '
         '--mm-hints '
+        '--reference-targets ../../tool/reference_targets.yaml '
+        '--typed-references '
+        '--reference-lane test/fixtures/wrap/source=../terradart_google/lib/src '
         '--migrate-manifest '
         '../terradart_migrate/lib/src/manifest/google_beta.g.dart '
         '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
@@ -163,6 +166,33 @@ providers:
       expect(WrapGate.wrap.args(x), contains('--provider-enums'));
       expect(WrapGate.regen.args(x), contains('--provider-enums'));
       expect(WrapGate.lint.args(x), isNot(contains('--provider-enums')));
+    });
+
+    test('referencesFrom names another lane with references', () {
+      const other = '''
+  y:
+    source: example/y
+    schemaDir: fixtures/source_y
+    outputPackage: packages/terradart_y
+    overridesRoot: overrides/y/yaml
+    barrelsManifest: barrels_y.yaml
+    migrateManifest: manifest/y.g.dart
+    references: typed
+    referencesFrom: x
+''';
+      final lanes = parseWrapLanes('$lane$other');
+      expect(lanes.last.referenceLane?.name, 'x');
+      expect(lanes.first.referenceLane, isNull);
+      expect(
+        () => parseWrapLanes('$lane${other.replaceFirst(': x', ': z')}'),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            contains('lane y: referencesFrom must name another lane'),
+          ),
+        ),
+      );
     });
 
     test('providerEnums defaults to off', () {

@@ -169,6 +169,15 @@ class WrapCommand extends Command<int> {
             'entry that no longer matches the schema.',
         valueHelp: 'FILE',
       )
+      ..addOption(
+        'reference-lane',
+        help:
+            'Another lane whose resources the ledger\'s `inherit:` rules '
+            'target, as `<source dir>=<wrapper output>` (the google GA '
+            'schema and `packages/terradart_google/lib/src` for google-beta). '
+            'Its schema checks the attributes; its package is imported.',
+        valueHelp: 'DIR=DIR',
+      )
       ..addFlag(
         'typed-references',
         negatable: false,
@@ -448,8 +457,35 @@ class WrapCommand extends Command<int> {
         schemaSrc,
         schemasKey: 'data_source_schemas',
       );
+      ExternalTargets? external;
+      if (results['reference-lane'] case final String lane) {
+        final [laneSource, laneOutput, ...] = [...lane.split('='), '', ''];
+        final laneSchema = File(p.join(laneSource, 'schema.json'));
+        final package = _pubspecName(laneOutput);
+        if (laneOutput.isEmpty || !laneSchema.existsSync() || package == null) {
+          stderr.writeln(
+            'terradart wrap: --reference-lane "$lane" needs '
+            '<source>/schema.json and <output>/../../pubspec.yaml.',
+          );
+          return CliExitCodes.dataError;
+        }
+        final laneSrc = laneSchema.readAsStringSync();
+        external = (
+          resourceSchemas: _rawSchemaBlocks(
+            laneSrc,
+            schemasKey: 'resource_schemas',
+          ),
+          dataSourceSchemas: _rawSchemaBlocks(
+            laneSrc,
+            schemasKey: 'data_source_schemas',
+          ),
+          dirs: _generatedResourceDirs(laneOutput),
+          package: package,
+        );
+      }
       final resolution = resolveReferences(
         rules: rules,
+        external: external,
         resourceSchemas: _rawSchemaBlocks(
           schemaSrc,
           schemasKey: 'resource_schemas',

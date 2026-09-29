@@ -15,9 +15,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'authorized_network',
           dartName: 'authorizedNetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -2311,9 +2312,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket_name',
           dartName: 'bucketName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleStorageBucket',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -2930,9 +2932,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'kms_key_name',
           dartName: 'kmsKeyName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleKmsCryptoKey',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -2972,9 +2975,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network',
           dartName: 'network',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'num_workers',
@@ -3021,9 +3025,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service_account_email',
           dartName: 'serviceAccountEmail',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleServiceAccount',
+          attribute: 'email',
         ),
         MigrateSlot(
           tfName: 'skip_wait_on_job_termination',
@@ -3042,9 +3047,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'subnetwork',
           dartName: 'subnetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'temp_location',
@@ -9856,9 +9862,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'kms_key_self_link',
           dartName: 'kmsKeySelfLink',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleKmsCryptoKey',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'kms_key_service_account',
@@ -9896,9 +9903,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network',
           dartName: 'network',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'network_attachment',
@@ -9945,9 +9953,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'subnetwork',
           dartName: 'subnetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'subnetwork_project',
@@ -10465,9 +10474,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'email',
           dartName: 'email',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleServiceAccount',
+          attribute: 'email',
         ),
         MigrateSlot(
           tfName: 'scopes',
@@ -10512,9 +10522,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'kms_key_name',
               dartName: 'kmsKeyName',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.reference,
               required: false,
-              dartType: 'String',
+              dartType: 'GoogleKmsCryptoKey',
+              attribute: 'id',
             ),
             MigrateSlot(
               tfName: 'kms_key_service_account',
@@ -10616,9 +10627,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'kms_key_name',
           dartName: 'kmsKeyName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleKmsCryptoKey',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'kms_key_service_account',
@@ -11032,9 +11044,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service_account',
           dartName: 'serviceAccount',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleServiceAccount',
+          attribute: 'email',
         ),
         MigrateSlot(
           tfName: 'transitive_dependencies_included',
@@ -12014,9 +12027,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleStorageBucket',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'generation',
@@ -13315,9 +13329,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network',
           dartName: 'network',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'queue_count',
@@ -13329,9 +13344,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'subnetwork',
           dartName: 'subnetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'id',
         ),
       ],
     ),
@@ -13422,9 +13438,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network',
           dartName: 'network',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'queue_count',
@@ -13436,9 +13453,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'subnetwork',
           dartName: 'subnetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'id',
         ),
       ],
     ),
@@ -13477,9 +13495,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network',
           dartName: 'network',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'queue_count',
@@ -13491,9 +13510,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'subnetwork',
           dartName: 'subnetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'id',
         ),
       ],
     ),
@@ -13545,9 +13565,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'email',
           dartName: 'email',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleServiceAccount',
+          attribute: 'email',
         ),
         MigrateSlot(
           tfName: 'scope',
@@ -13888,9 +13909,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'kms_key_name',
           dartName: 'kmsKeyName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleKmsCryptoKey',
+          attribute: 'id',
         ),
       ],
     ),

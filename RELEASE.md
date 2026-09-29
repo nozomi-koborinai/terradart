@@ -48,7 +48,7 @@ Watch `publish.yml` on GitHub Actions. The workflow ships the 10 packages in 8 p
 1. **`publish-no-deps`** job: `terradart_core`, in parallel with the **`publish-hcl`** job: `terradart_hcl` (neither has terradart_* dependencies; `terradart_hcl` has a job of its own so a failure there holds back only `terradart_migrate`).
 2. **`publish-codegen`** job: `terradart_codegen` (depends on `terradart_core`), in parallel with the **`publish-time`** job: `terradart_time` (depends on `terradart_core`).
 3. **`publish-google`** job: `terradart_google` (depends on `terradart_core` + `terradart_time`, dev-depends on `terradart_codegen`).
-4. **`publish-google-beta`** job: `terradart_google_beta` (depends on `terradart_core`).
+4. **`publish-google-beta`** job: `terradart_google_beta` (depends on `terradart_core` + `terradart_google`, whose GA types its reference inputs name).
 5. **`publish-appwrite`** job: `terradart_appwrite` (depends on `terradart_core`).
 6. **`publish-cloudflare`** job: `terradart_cloudflare` (depends on `terradart_core`).
 7. **`publish-aws`** job: `terradart_aws` (depends on `terradart_core`).
