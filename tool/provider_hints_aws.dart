@@ -633,10 +633,7 @@ _FuncScan _scanFunc(
         !_isPunct(t, i - 1, '.') &&
         self.funcs.containsKey(tok.text)) {
       final key = keyBefore(i - 1);
-      final call = (
-        path: [...openKeys(), if (key != null) key],
-        callee: tok.text,
-      );
+      final call = (path: [...openKeys(), ?key], callee: tok.text);
       scan.calls.add(call);
     }
     if (tok.kind == GoTok.punct) {

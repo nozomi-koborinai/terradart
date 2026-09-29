@@ -64,9 +64,7 @@ final class AwsLambdaStack extends Stack {
 
     final role = AwsIamRole(
       localName: 'hello',
-      nameOrNamePrefix: IamRoleNameOption(
-        name: TfArg.literal(_functionName),
-      ),
+      nameOrNamePrefix: IamRoleNameOption(name: TfArg.literal(_functionName)),
       assumeRolePolicy: TfArg.ref(trust.json),
     );
     add(role);

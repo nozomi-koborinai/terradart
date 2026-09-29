@@ -473,9 +473,9 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
         'north,south',
       });
       Set<String> atMostOne(String type) => {
-            for (final g in scan.byType[type]!.atMostOne)
-              g.map((m) => m.join('.')).join(','),
-          };
+        for (final g in scan.byType[type]!.atMostOne)
+          g.map((m) => m.join('.')).join(','),
+      };
       expect(atMostOne('aws_widget'), {'name,name_prefix'});
       expect(atMostOne('aws_widget_gadget'), {'down,up', 'ratio,weight'});
       expect(scan.unsealed, isEmpty);
