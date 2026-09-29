@@ -20,7 +20,7 @@ void main() {
       GooglePubsubSubscription(
         localName: 'orders_push',
         name: TfArg.literal('orders-push'),
-        topic: TfArg.ref(orders.id),
+        topic: orders.ref,
         delivery: const .pushConfig(
           PubsubSubscriptionPushConfig(
             pushEndpoint: TfArgLiteral<String>('https://app.example.com/push'),

@@ -12,7 +12,7 @@ void main() {
       final sub = GooglePubsubSubscription(
         localName: 'orders_worker',
         name: TfArg.literal('orders-worker'),
-        topic: TfArg.ref(topic.id),
+        topic: topic.ref,
         ackDeadlineSeconds: TfArg.literal(60),
       );
       expect(
@@ -35,7 +35,7 @@ void main() {
       final sub = GooglePubsubSubscription(
         localName: 'orders_push',
         name: TfArg.literal('orders-push'),
-        topic: TfArg.ref(topic.id),
+        topic: topic.ref,
         delivery: const .pushConfig(
           PubsubSubscriptionPushConfig(
             pushEndpoint: TfArgLiteral<String>('https://example.com/push'),
@@ -66,7 +66,7 @@ void main() {
       final sub = GooglePubsubSubscription(
         localName: 's',
         name: TfArg.literal('s'),
-        topic: TfArg.ref(topic.id),
+        topic: topic.ref,
         deadLetterPolicy: PubsubSubscriptionDeadLetterPolicy(
           deadLetterTopic: TfArg.ref(dlq.id),
           maxDeliveryAttempts: TfArg.literal(5),
@@ -97,7 +97,7 @@ void main() {
       final sub = GooglePubsubSubscription(
         localName: 'sub',
         name: TfArg.literal('sub'),
-        topic: TfArg.ref(topic.id),
+        topic: topic.ref,
       );
       expect(
         sub.nameRef.interpolation,
