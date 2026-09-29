@@ -452,7 +452,7 @@ hashicorp/google:
       'format_version': '1.0',
       'provider_schemas': {
         'registry.terraform.io/hashicorp/google': {
-          'resource_schemas': const {},
+          'resource_schemas': const <String, Object?>{},
           'data_source_schemas': {
             'google_x_vm': {'block': block},
           },
