@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_glue_security_configuration`.
 const Set<String> _awsGlueSecurityConfigurationSensitive = <String>{};
 
@@ -47,12 +49,12 @@ final class GlueSecurityConfigurationEncryptionConfigurationCloudwatchEncryption
   >?
   cloudwatchEncryptionMode;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
     if (cloudwatchEncryptionMode != null)
       'cloudwatch_encryption_mode': cloudwatchEncryptionMode!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -83,12 +85,12 @@ final class GlueSecurityConfigurationEncryptionConfigurationJobBookmarksEncrypti
   >?
   jobBookmarksEncryptionMode;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
     if (jobBookmarksEncryptionMode != null)
       'job_bookmarks_encryption_mode': jobBookmarksEncryptionMode!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -114,7 +116,7 @@ final class GlueSecurityConfigurationEncryptionConfigurationS3Encryption {
     this.s3EncryptionMode,
   });
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<
     GlueSecurityConfigurationEncryptionConfigurationS3EncryptionS3EncryptionMode
@@ -122,7 +124,7 @@ final class GlueSecurityConfigurationEncryptionConfigurationS3Encryption {
   s3EncryptionMode;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (s3EncryptionMode != null)
       's3_encryption_mode': s3EncryptionMode!.toTfJson(),
   };

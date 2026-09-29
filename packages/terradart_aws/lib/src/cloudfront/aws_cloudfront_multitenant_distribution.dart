@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_cloudfront_multitenant_distribution`.
 const Set<String> _awsCloudfrontMultitenantDistributionSensitive = <String>{};
 
@@ -236,12 +238,12 @@ final class CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociat
 
   final TfArg<bool>? includeBody;
 
-  final TfArg<String> lambdaFunctionArn;
+  final RefTo<AwsLambdaFunction> lambdaFunctionArn;
 
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     if (includeBody != null) 'include_body': includeBody!.toTfJson(),
-    'lambda_function_arn': lambdaFunctionArn.toTfJson(),
+    'lambda_function_arn': lambdaFunctionArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -504,12 +506,12 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionA
 
   final TfArg<bool>? includeBody;
 
-  final TfArg<String> lambdaFunctionArn;
+  final RefTo<AwsLambdaFunction> lambdaFunctionArn;
 
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     if (includeBody != null) 'include_body': includeBody!.toTfJson(),
-    'lambda_function_arn': lambdaFunctionArn.toTfJson(),
+    'lambda_function_arn': lambdaFunctionArn.encodeAs('arn').toTfJson(),
   };
 }
 

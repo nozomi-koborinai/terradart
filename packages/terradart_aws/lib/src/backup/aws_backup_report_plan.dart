@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_backup_report_plan`.
 const Set<String> _awsBackupReportPlanSensitive = <String>{};
 
@@ -19,13 +21,13 @@ final class BackupReportPlanReportDeliveryChannel {
 
   final List<TfArg<BackupReportPlanReportDeliveryChannelFormats>>? formats;
 
-  final TfArg<String> s3BucketName;
+  final RefTo<AwsS3Bucket> s3BucketName;
 
   final TfArg<String>? s3KeyPrefix;
 
   Map<String, Object?> encode() => {
     if (formats != null) 'formats': [for (final e in formats!) e.toTfJson()],
-    's3_bucket_name': s3BucketName.toTfJson(),
+    's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix!.toTfJson(),
   };
 }

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_dnssec`.
 const Set<String> _cloudflareZoneDnssecSensitive = <String>{};
 
@@ -30,7 +32,7 @@ final class CloudflareZoneDnssec extends Resource {
     TfArg<bool>? dnssecPresigned,
     TfArg<bool>? dnssecUseNsec3,
     TfArg<ZoneDnssecStatus>? status,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -43,7 +45,7 @@ final class CloudflareZoneDnssec extends Resource {
            if (dnssecPresigned != null) 'dnssec_presigned': dnssecPresigned,
            if (dnssecUseNsec3 != null) 'dnssec_use_nsec3': dnssecUseNsec3,
            if (status != null) 'status': status,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

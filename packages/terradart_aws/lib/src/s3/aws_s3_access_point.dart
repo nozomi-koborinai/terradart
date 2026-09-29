@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_access_point`.
 const Set<String> _awsS3AccessPointSensitive = <String>{};
 
@@ -44,9 +47,9 @@ final class S3AccessPointPublicAccessBlockConfiguration {
 final class S3AccessPointVpcConfiguration {
   const S3AccessPointVpcConfiguration({required this.vpcId});
 
-  final TfArg<String> vpcId;
+  final RefTo<AwsVpc> vpcId;
 
-  Map<String, Object?> encode() => {'vpc_id': vpcId.toTfJson()};
+  Map<String, Object?> encode() => {'vpc_id': vpcId.encodeAs('id').toTfJson()};
 }
 
 /// Factory wrapper for `aws_s3_access_point`.
@@ -56,7 +59,7 @@ final class AwsS3AccessPoint extends Resource {
   AwsS3AccessPoint({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? bucketAccountId,
     required TfArg<String> name,
     TfArg<String>? policy,
@@ -72,7 +75,7 @@ final class AwsS3AccessPoint extends Resource {
          terraformType: tfType,
          argMap: {
            if (accountId != null) 'account_id': accountId,
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (bucketAccountId != null) 'bucket_account_id': bucketAccountId,
            'name': name,
            if (policy != null) 'policy': policy,

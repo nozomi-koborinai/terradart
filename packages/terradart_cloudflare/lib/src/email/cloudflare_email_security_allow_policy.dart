@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_email_security_allow_policy`.
 const Set<String> _cloudflareEmailSecurityAllowPolicySensitive = <String>{};
 
@@ -28,7 +30,7 @@ final class CloudflareEmailSecurityAllowPolicy extends Resource {
 
   CloudflareEmailSecurityAllowPolicy({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comments,
     required TfArg<bool> isAcceptableSender,
     required TfArg<bool> isExemptRecipient,
@@ -47,7 +49,7 @@ final class CloudflareEmailSecurityAllowPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (comments != null) 'comments': comments,
            'is_acceptable_sender': isAcceptableSender,
            'is_exempt_recipient': isExemptRecipient,

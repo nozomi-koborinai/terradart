@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_macie2_classification_export_configuration`.
 const Set<String> _awsMacie2ClassificationExportConfigurationSensitive =
     <String>{};
@@ -18,16 +21,16 @@ final class Macie2ClassificationExportConfigurationS3Destination {
     required this.kmsKeyArn,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? keyPrefix;
 
-  final TfArg<String> kmsKeyArn;
+  final RefTo<AwsKmsKey> kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
-    'kms_key_arn': kmsKeyArn.toTfJson(),
+    'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
   };
 }
 

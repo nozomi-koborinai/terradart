@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cloudfront_realtime_log_config`.
 const Set<String> _awsCloudfrontRealtimeLogConfigSensitive = <String>{};
 
@@ -45,12 +47,12 @@ final class CloudfrontRealtimeLogConfigEndpointKinesisStreamConfig {
     required this.streamArn,
   });
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> streamArn;
 
   Map<String, Object?> encode() => {
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'stream_arn': streamArn.toTfJson(),
   };
 }

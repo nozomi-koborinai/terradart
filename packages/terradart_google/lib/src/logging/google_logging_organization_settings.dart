@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_logging_organization_settings`.
 const Set<String> _googleLoggingOrganizationSettingsSensitive = <String>{};
 
@@ -25,7 +27,7 @@ final class GoogleLoggingOrganizationSettings extends Resource {
   GoogleLoggingOrganizationSettings({
     required super.localName,
     TfArg<bool>? disableDefaultSink,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required TfArg<String> organization,
     TfArg<String>? storageLocation,
     super.lifecycle,
@@ -37,7 +39,7 @@ final class GoogleLoggingOrganizationSettings extends Resource {
          argMap: {
            if (disableDefaultSink != null)
              'disable_default_sink': disableDefaultSink,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            'organization': organization,
            if (storageLocation != null) 'storage_location': storageLocation,
          },

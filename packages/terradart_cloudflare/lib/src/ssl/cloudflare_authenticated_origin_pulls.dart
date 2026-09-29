@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_authenticated_origin_pulls`.
 const Set<String> _cloudflareAuthenticatedOriginPullsSensitive = <String>{
   'private_key',
@@ -38,7 +40,7 @@ final class CloudflareAuthenticatedOriginPulls extends Resource {
 
   CloudflareAuthenticatedOriginPulls({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required List<AuthenticatedOriginPullsConfig> config,
     super.lifecycle,
     super.dependsOn,
@@ -47,7 +49,7 @@ final class CloudflareAuthenticatedOriginPulls extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'config': TfArg.literal([for (final e in config) e.encode()]),
          },
        );

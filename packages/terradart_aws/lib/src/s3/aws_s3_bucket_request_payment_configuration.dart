@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_request_payment_configuration`.
 const Set<String> _awsS3BucketRequestPaymentConfigurationSensitive = <String>{};
 
@@ -22,7 +24,7 @@ final class AwsS3BucketRequestPaymentConfiguration extends Resource {
 
   AwsS3BucketRequestPaymentConfiguration({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     required TfArg<S3BucketRequestPaymentConfigurationPayer> payer,
     TfArg<String>? region,
@@ -33,7 +35,7 @@ final class AwsS3BucketRequestPaymentConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (expectedBucketOwner != null)
              'expected_bucket_owner': expectedBucketOwner,
            'payer': payer,

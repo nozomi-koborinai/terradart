@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_pages_domain`.
 const Set<String> _cloudflarePagesDomainSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflarePagesDomain extends Resource {
 
   CloudflarePagesDomain({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<String> projectName,
     super.lifecycle,
@@ -26,7 +28,7 @@ final class CloudflarePagesDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'name': name,
            'project_name': projectName,
          },

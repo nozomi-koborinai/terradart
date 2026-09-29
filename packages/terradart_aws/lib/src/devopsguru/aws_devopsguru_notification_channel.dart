@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_devopsguru_notification_channel`.
 const Set<String> _awsDevopsguruNotificationChannelSensitive = <String>{};
 
@@ -59,9 +61,11 @@ enum DevopsguruNotificationChannelFiltersSeverities implements TerraformEnum {
 final class DevopsguruNotificationChannelSns {
   const DevopsguruNotificationChannelSns({required this.topicArn});
 
-  final TfArg<String> topicArn;
+  final RefTo<AwsSnsTopic> topicArn;
 
-  Map<String, Object?> encode() => {'topic_arn': topicArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'topic_arn': topicArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_devopsguru_notification_channel`.

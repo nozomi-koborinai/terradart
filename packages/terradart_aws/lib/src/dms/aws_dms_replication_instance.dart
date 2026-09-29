@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_dms_replication_instance`.
 const Set<String> _awsDmsReplicationInstanceSensitive = <String>{};
 
@@ -53,7 +56,7 @@ final class AwsDmsReplicationInstance extends Resource {
     TfArg<String>? availabilityZone,
     TfArg<String>? dnsNameServers,
     TfArg<String>? engineVersion,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<bool>? multiAz,
     TfArg<DmsReplicationInstanceNetworkType>? networkType,
     TfArg<String>? preferredMaintenanceWindow,
@@ -63,7 +66,7 @@ final class AwsDmsReplicationInstance extends Resource {
     required TfArg<String> replicationInstanceId,
     TfArg<String>? replicationSubnetGroupId,
     TfArg<Map<String, String>>? tags,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     DmsReplicationInstanceKerberosAuthenticationSettings?
     kerberosAuthenticationSettings,
     super.lifecycle,
@@ -82,7 +85,7 @@ final class AwsDmsReplicationInstance extends Resource {
            if (availabilityZone != null) 'availability_zone': availabilityZone,
            if (dnsNameServers != null) 'dns_name_servers': dnsNameServers,
            if (engineVersion != null) 'engine_version': engineVersion,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (multiAz != null) 'multi_az': multiAz,
            if (networkType != null) 'network_type': networkType,
            if (preferredMaintenanceWindow != null)
@@ -96,7 +99,7 @@ final class AwsDmsReplicationInstance extends Resource {
              'replication_subnet_group_id': replicationSubnetGroupId,
            if (tags != null) 'tags': tags,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
            if (kerberosAuthenticationSettings != null)
              'kerberos_authentication_settings': TfArg.literal(
                kerberosAuthenticationSettings.encode(),

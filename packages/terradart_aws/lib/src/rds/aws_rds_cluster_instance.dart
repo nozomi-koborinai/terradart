@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_rds_cluster_instance`.
 const Set<String> _awsRdsClusterInstanceSensitive = <String>{};
 
@@ -95,7 +97,7 @@ final class AwsRdsClusterInstance extends Resource {
     TfArg<num>? monitoringInterval,
     TfArg<String>? monitoringRoleArn,
     TfArg<bool>? performanceInsightsEnabled,
-    TfArg<String>? performanceInsightsKmsKeyId,
+    RefTo<AwsKmsKey>? performanceInsightsKmsKeyId,
     TfArg<num>? performanceInsightsRetentionPeriod,
     TfArg<String>? preferredBackupWindow,
     TfArg<String>? preferredMaintenanceWindow,
@@ -137,7 +139,8 @@ final class AwsRdsClusterInstance extends Resource {
            if (performanceInsightsEnabled != null)
              'performance_insights_enabled': performanceInsightsEnabled,
            if (performanceInsightsKmsKeyId != null)
-             'performance_insights_kms_key_id': performanceInsightsKmsKeyId,
+             'performance_insights_kms_key_id': performanceInsightsKmsKeyId
+                 .encodeAs('arn'),
            if (performanceInsightsRetentionPeriod != null)
              'performance_insights_retention_period':
                  performanceInsightsRetentionPeriod,

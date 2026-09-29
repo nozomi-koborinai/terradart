@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_default_network_acl`.
 const Set<String> _awsDefaultNetworkAclSensitive = <String>{};
 
@@ -109,7 +111,7 @@ final class AwsDefaultNetworkAcl extends Resource {
     required super.localName,
     required TfArg<String> defaultNetworkAclId,
     TfArg<String>? region,
-    TfArg<List<String>>? subnetIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     List<DefaultNetworkAclEgress>? egress,
     List<DefaultNetworkAclIngress>? ingress,
@@ -122,7 +124,7 @@ final class AwsDefaultNetworkAcl extends Resource {
          argMap: {
            'default_network_acl_id': defaultNetworkAclId,
            if (region != null) 'region': region,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (egress != null)
              'egress': TfArg.literal([for (final e in egress) e.encode()]),

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_cloud_asset_project_feed`.
 const Set<String> _googleCloudAssetProjectFeedSensitive = <String>{};
 
@@ -72,9 +74,9 @@ final class CloudAssetProjectFeedFeedOutputConfigPubsubDestination {
     required this.topic,
   });
 
-  final TfArg<String> topic;
+  final RefTo<GooglePubsubTopic> topic;
 
-  Map<String, Object?> encode() => {'topic': topic.toTfJson()};
+  Map<String, Object?> encode() => {'topic': topic.encodeAs('id').toTfJson()};
 }
 
 /// Factory wrapper for `google_cloud_asset_project_feed`.

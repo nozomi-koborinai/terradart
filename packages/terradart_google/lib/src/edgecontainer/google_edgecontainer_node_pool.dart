@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_edgecontainer_node_pool`.
 const Set<String> _googleEdgecontainerNodePoolSensitive = <String>{};
 
@@ -13,10 +15,10 @@ const Set<String> _googleEdgecontainerNodePoolSensitive = <String>{};
 final class EdgecontainerNodePoolLocalDiskEncryption {
   const EdgecontainerNodePoolLocalDiskEncryption({this.kmsKey});
 
-  final TfArg<String>? kmsKey;
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
   };
 }
 

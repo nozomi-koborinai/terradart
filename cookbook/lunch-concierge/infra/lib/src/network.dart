@@ -33,7 +33,7 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
       localName: 'lunch_subnet',
       name: .literal(subnetName),
       region: .literal(region),
-      network: .ref(vpc.selfLink),
+      network: vpc.ref,
       ipCidrRange: .literal(subnetCidr),
       privateIpGoogleAccess: .literal(true),
       dependsOn: [ResourceDependency(vpc)],
@@ -47,7 +47,7 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
       addressType: .literal(.internal),
       purpose: .literal(.vpcPeering),
       prefixLength: .literal(16),
-      network: .ref(vpc.selfLink),
+      network: vpc.ref,
       dependsOn: [ResourceDependency(vpc)],
     ),
   );
@@ -55,7 +55,7 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
   final psaConnection = stack.add(
     GoogleServiceNetworkingConnection(
       localName: 'psa',
-      network: .ref(vpc.selfLink),
+      network: vpc.ref,
       service: .literal('servicenetworking.googleapis.com'),
       reservedPeeringRanges: .literal([psaRange.nameRef.interpolation]),
       dependsOn: [...apiDeps, ResourceDependency(psaRange)],

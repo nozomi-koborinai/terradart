@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+
 /// Sensitive field paths for `google_bigquery_routine`.
 const Set<String> _googleBigqueryRoutineSensitive = <String>{};
 
@@ -269,7 +271,7 @@ final class GoogleBigqueryRoutine extends Resource {
 
   GoogleBigqueryRoutine({
     required super.localName,
-    required TfArg<String> datasetId,
+    required RefTo<GoogleBigqueryDataset> datasetId,
     required TfArg<String> routineId,
     required TfArg<BigqueryRoutineType> routineType,
     required TfArg<String> definitionBody,
@@ -292,7 +294,7 @@ final class GoogleBigqueryRoutine extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId,
+           'dataset_id': datasetId.encodeAs('dataset_id'),
            'routine_id': routineId,
            'routine_type': routineType,
            'definition_body': definitionBody,

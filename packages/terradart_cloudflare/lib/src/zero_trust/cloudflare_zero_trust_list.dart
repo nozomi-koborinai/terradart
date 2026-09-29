@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_list`.
 const Set<String> _cloudflareZeroTrustListSensitive = <String>{};
 
@@ -46,7 +48,7 @@ final class CloudflareZeroTrustList extends Resource {
 
   CloudflareZeroTrustList({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<ZeroTrustListType> type,
@@ -58,7 +60,7 @@ final class CloudflareZeroTrustList extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (description != null) 'description': description,
            'name': name,
            'type': type,

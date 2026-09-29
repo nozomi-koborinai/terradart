@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_appintegrations_data_integration`.
 const Set<String> _awsAppintegrationsDataIntegrationSensitive = <String>{};
 
@@ -37,7 +39,7 @@ final class AwsAppintegrationsDataIntegration extends Resource {
   AwsAppintegrationsDataIntegration({
     required super.localName,
     TfArg<String>? description,
-    required TfArg<String> kmsKey,
+    required RefTo<AwsKmsKey> kmsKey,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> sourceUri,
@@ -51,7 +53,7 @@ final class AwsAppintegrationsDataIntegration extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           'kms_key': kmsKey,
+           'kms_key': kmsKey.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            'source_uri': sourceUri,

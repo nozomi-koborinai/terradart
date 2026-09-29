@@ -78,7 +78,7 @@ final class ProdStack extends Stack {
     add(
       GoogleStorageBucketIamMember(
         localName: r'assets_public',
-        bucket: .ref(assets.nameRef),
+        bucket: assets.ref,
         role: .literal(r'roles/storage.objectViewer'),
         member: .literal(r'allUsers'),
       ),
@@ -170,7 +170,7 @@ final class ProdStack extends Stack {
     add(
       GoogleStorageBucketIamBinding(
         localName: r'backups_admins',
-        bucket: .ref(backups.nameRef),
+        bucket: backups.ref,
         role: .literal(r'roles/storage.objectAdmin'),
         members: .literal([saWorker.member.interpolation]),
       ),
@@ -178,7 +178,7 @@ final class ProdStack extends Stack {
     add(
       GoogleStorageBucketIamMember(
         localName: r'uploads_admin',
-        bucket: .ref(uploads.nameRef),
+        bucket: uploads.ref,
         role: .literal(r'roles/storage.objectAdmin'),
         member: .ref(saWorker.member),
       ),
@@ -186,7 +186,7 @@ final class ProdStack extends Stack {
     add(
       GoogleStorageBucketIamMember(
         localName: r'uploads_reader',
-        bucket: .ref(uploads.nameRef),
+        bucket: uploads.ref,
         role: .literal(r'roles/storage.objectViewer'),
         member: .ref(saBff.member),
       ),
@@ -210,7 +210,7 @@ final class ProdStack extends Stack {
     add(
       GoogleServiceAccountIamMember(
         localName: r'agent_user',
-        serviceAccountId: .ref(saAdkAgent.id),
+        serviceAccountId: .arg(.ref(saAdkAgent.id)),
         role: .literal(r'roles/iam.serviceAccountUser'),
         member: .ref(saBff.member),
       ),

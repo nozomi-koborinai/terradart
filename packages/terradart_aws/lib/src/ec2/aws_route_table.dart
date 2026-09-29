@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_route_table`.
 const Set<String> _awsRouteTableSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class AwsRouteTable extends Resource {
     TfArg<String>? region,
     TfArg<List<Map<String, Object?>>>? route,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,7 +30,7 @@ final class AwsRouteTable extends Resource {
            if (region != null) 'region': region,
            if (route != null) 'route': route,
            if (tags != null) 'tags': tags,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

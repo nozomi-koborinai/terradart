@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_apprunner_service`.
 const Set<String> _awsApprunnerServiceSensitive = <String>{};
 
@@ -13,9 +15,11 @@ const Set<String> _awsApprunnerServiceSensitive = <String>{};
 final class ApprunnerServiceEncryptionConfiguration {
   const ApprunnerServiceEncryptionConfiguration({required this.kmsKey});
 
-  final TfArg<String> kmsKey;
+  final RefTo<AwsKmsKey> kmsKey;
 
-  Map<String, Object?> encode() => {'kms_key': kmsKey.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key': kmsKey.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `health_check_configuration` block of

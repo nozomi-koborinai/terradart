@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_risk_behavior`.
 const Set<String> _cloudflareZeroTrustRiskBehaviorSensitive = <String>{};
 
@@ -47,7 +49,7 @@ final class CloudflareZeroTrustRiskBehavior extends Resource {
 
   CloudflareZeroTrustRiskBehavior({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required Map<String, ZeroTrustRiskBehaviorBehaviors> behaviors,
     super.lifecycle,
     super.dependsOn,
@@ -56,7 +58,7 @@ final class CloudflareZeroTrustRiskBehavior extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'behaviors': TfArg.literal({
              for (final e in behaviors.entries) e.key: e.value.encode(),
            }),

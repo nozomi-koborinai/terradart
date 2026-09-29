@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+
 /// Sensitive field paths for `aws_cloudwatch_log_metric_filter`.
 const Set<String> _awsCloudwatchLogMetricFilterSensitive = <String>{};
 
@@ -85,7 +87,7 @@ final class AwsCloudwatchLogMetricFilter extends Resource {
   AwsCloudwatchLogMetricFilter({
     required super.localName,
     TfArg<bool>? applyOnTransformedLogs,
-    required TfArg<String> logGroupName,
+    required RefTo<AwsCloudwatchLogGroup> logGroupName,
     required TfArg<String> name,
     required TfArg<String> pattern,
     TfArg<String>? region,
@@ -99,7 +101,7 @@ final class AwsCloudwatchLogMetricFilter extends Resource {
          argMap: {
            if (applyOnTransformedLogs != null)
              'apply_on_transformed_logs': applyOnTransformedLogs,
-           'log_group_name': logGroupName,
+           'log_group_name': logGroupName.encodeAs('name'),
            'name': name,
            'pattern': pattern,
            if (region != null) 'region': region,

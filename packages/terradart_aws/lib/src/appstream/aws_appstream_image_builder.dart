@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_appstream_image_builder`.
 const Set<String> _awsAppstreamImageBuilderSensitive = <String>{};
 
@@ -121,14 +125,14 @@ final class AppstreamImageBuilderDomainJoinInfo {
 final class AppstreamImageBuilderVpcConfig {
   const AppstreamImageBuilderVpcConfig({this.securityGroupIds, this.subnetIds});
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>>? subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -142,7 +146,7 @@ final class AwsAppstreamImageBuilder extends Resource {
     TfArg<String>? description,
     TfArg<String>? displayName,
     TfArg<bool>? enableDefaultInternetAccess,
-    TfArg<String>? iamRoleArn,
+    RefTo<AwsIamRole>? iamRoleArn,
     required AppstreamImageBuilderImage image,
     required TfArg<String> instanceType,
     required TfArg<String> name,
@@ -164,7 +168,7 @@ final class AwsAppstreamImageBuilder extends Resource {
            if (displayName != null) 'display_name': displayName,
            if (enableDefaultInternetAccess != null)
              'enable_default_internet_access': enableDefaultInternetAccess,
-           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn,
+           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn.encodeAs('arn'),
            ...image.argMap,
            'instance_type': instanceType,
            'name': name,

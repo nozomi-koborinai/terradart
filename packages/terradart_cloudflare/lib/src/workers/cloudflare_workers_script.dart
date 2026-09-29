@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_workers_script`.
 const Set<String> _cloudflareWorkersScriptSensitive = <String>{
   'assets.jwt',
@@ -1048,7 +1050,7 @@ final class CloudflareWorkersScript extends Resource {
 
   CloudflareWorkersScript({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? bodyPart,
     TfArg<String>? compatibilityDate,
     TfArg<List<String>>? compatibilityFlags,
@@ -1081,7 +1083,7 @@ final class CloudflareWorkersScript extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (bodyPart != null) 'body_part': bodyPart,
            if (compatibilityDate != null)
              'compatibility_date': compatibilityDate,

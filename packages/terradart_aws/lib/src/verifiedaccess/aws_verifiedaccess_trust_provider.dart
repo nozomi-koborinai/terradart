@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_verifiedaccess_trust_provider`.
 const Set<String> _awsVerifiedaccessTrustProviderSensitive = <String>{
   'native_application_oidc_options.client_secret',
@@ -153,12 +155,12 @@ final class VerifiedaccessTrustProviderSseSpecification {
 
   final TfArg<bool>? customerManagedKeyEnabled;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
     if (customerManagedKeyEnabled != null)
       'customer_managed_key_enabled': customerManagedKeyEnabled!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 

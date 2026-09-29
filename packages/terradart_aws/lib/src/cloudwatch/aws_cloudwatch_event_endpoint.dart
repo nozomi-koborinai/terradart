@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cloudwatch_event_endpoint`.
 const Set<String> _awsCloudwatchEventEndpointSensitive = <String>{};
 
@@ -110,7 +112,7 @@ final class AwsCloudwatchEventEndpoint extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     required List<CloudwatchEventEndpointEventBus> eventBus,
     CloudwatchEventEndpointReplicationConfig? replicationConfig,
     required CloudwatchEventEndpointRoutingConfig routingConfig,
@@ -124,7 +126,7 @@ final class AwsCloudwatchEventEndpoint extends Resource {
            if (description != null) 'description': description,
            'name': name,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            'event_bus': TfArg.literal([for (final e in eventBus) e.encode()]),
            if (replicationConfig != null)
              'replication_config': TfArg.literal(replicationConfig.encode()),

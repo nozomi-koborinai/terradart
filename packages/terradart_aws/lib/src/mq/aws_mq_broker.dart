@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_mq_broker`.
 const Set<String> _awsMqBrokerSensitive = <String>{
   'ldap_server_metadata.service_account_password',
@@ -84,12 +88,12 @@ final class MqBrokerConfiguration {
 final class MqBrokerEncryptionOptions {
   const MqBrokerEncryptionOptions({this.kmsKeyId, this.useAwsOwnedKey});
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<bool>? useAwsOwnedKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (useAwsOwnedKey != null) 'use_aws_owned_key': useAwsOwnedKey!.toTfJson(),
   };
 }
@@ -260,9 +264,9 @@ final class AwsMqBroker extends Resource {
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
     TfArg<List<String>>? resourceShareArns,
-    TfArg<List<String>>? securityGroups,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
     TfArg<MqBrokerStorageType>? storageType,
-    TfArg<List<String>>? subnetIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     MqBrokerConfiguration? configuration,
     MqBrokerEncryptionOptions? encryptionOptions,
@@ -297,9 +301,10 @@ final class AwsMqBroker extends Resource {
            if (region != null) 'region': region,
            if (resourceShareArns != null)
              'resource_share_arns': resourceShareArns,
-           if (securityGroups != null) 'security_groups': securityGroups,
+           if (securityGroups != null)
+             'security_groups': securityGroups.encodeAs('id'),
            if (storageType != null) 'storage_type': storageType,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),

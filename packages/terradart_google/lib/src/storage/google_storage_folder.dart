@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_folder`.
 const Set<String> _googleStorageFolderSensitive = <String>{};
 
@@ -35,7 +37,7 @@ final class GoogleStorageFolder extends Resource {
 
   GoogleStorageFolder({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> name,
     TfArg<bool>? forceDestroy,
     TfArg<String>? deletionPolicy,
@@ -46,7 +48,7 @@ final class GoogleStorageFolder extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('name'),
            'name': name,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

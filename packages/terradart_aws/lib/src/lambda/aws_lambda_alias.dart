@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_lambda_alias`.
 const Set<String> _awsLambdaAliasSensitive = <String>{};
 
@@ -28,7 +30,7 @@ final class AwsLambdaAlias extends Resource {
   AwsLambdaAlias({
     required super.localName,
     TfArg<String>? description,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> functionVersion,
     required TfArg<String> name,
     TfArg<String>? region,
@@ -41,7 +43,7 @@ final class AwsLambdaAlias extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            'function_version': functionVersion,
            'name': name,
            if (region != null) 'region': region,

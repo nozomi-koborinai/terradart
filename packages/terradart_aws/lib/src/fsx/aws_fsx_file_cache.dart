@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_fsx_file_cache`.
 const Set<String> _awsFsxFileCacheSensitive = <String>{};
 
@@ -141,11 +145,11 @@ final class AwsFsxFileCache extends Resource {
     TfArg<bool>? copyTagsToDataRepositoryAssociations,
     required TfArg<FsxFileCacheFileCacheType> fileCacheType,
     required TfArg<String> fileCacheTypeVersion,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     required TfArg<num> storageCapacity,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     List<FsxFileCacheDataRepositoryAssociation>? dataRepositoryAssociation,
     List<FsxFileCacheLustreConfiguration>? lustreConfiguration,
@@ -161,11 +165,12 @@ final class AwsFsxFileCache extends Resource {
                  copyTagsToDataRepositoryAssociations,
            'file_cache_type': fileCacheType,
            'file_cache_type_version': fileCacheTypeVersion,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            'storage_capacity': storageCapacity,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (dataRepositoryAssociation != null)
              'data_repository_association': TfArg.literal([

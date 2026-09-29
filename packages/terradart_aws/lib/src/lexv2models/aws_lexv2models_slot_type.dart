@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_lexv2models_slot_type`.
 const Set<String> _awsLexv2modelsSlotTypeSensitive = <String>{};
 
@@ -84,15 +87,15 @@ final class Lexv2modelsSlotTypeExternalSourceSettingGrammarSlotTypeSettingSource
     required this.s3ObjectKey,
   });
 
-  final TfArg<String> kmsKeyArn;
+  final RefTo<AwsKmsKey> kmsKeyArn;
 
-  final TfArg<String> s3BucketName;
+  final RefTo<AwsS3Bucket> s3BucketName;
 
   final TfArg<String> s3ObjectKey;
 
   Map<String, Object?> encode() => {
-    'kms_key_arn': kmsKeyArn.toTfJson(),
-    's3_bucket_name': s3BucketName.toTfJson(),
+    'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
+    's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     's3_object_key': s3ObjectKey.toTfJson(),
   };
 }

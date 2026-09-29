@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_network_connectivity_policy_based_route`.
 const Set<String> _googleNetworkConnectivityPolicyBasedRouteSensitive =
     <String>{};
@@ -266,7 +268,7 @@ final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
   GoogleNetworkConnectivityPolicyBasedRoute({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     required NetworkConnectivityPolicyBasedRouteFilter filter,
     required NetworkConnectivityPolicyBasedRouteNextHop nextHop,
     NetworkConnectivityPolicyBasedRouteScope? scope,
@@ -283,7 +285,7 @@ final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'network': network,
+           'network': network.encodeAs('id'),
            'filter': TfArg.literal(filter.encode()),
            ...?scope?.argMap,
            if (priority != null) 'priority': priority,

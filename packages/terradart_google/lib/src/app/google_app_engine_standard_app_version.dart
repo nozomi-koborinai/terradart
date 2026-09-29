@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_app_engine_standard_app_version`.
 const Set<String> _googleAppEngineStandardAppVersionSensitive = <String>{};
 
@@ -384,7 +386,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     TfArg<bool>? deleteServiceOnDestroy,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? noopOnDestroy,
-    TfArg<String>? serviceAccount,
+    RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<bool>? threadsafe,
     TfArg<List<String>>? inboundServices,
     TfArg<String>? project,
@@ -417,7 +419,8 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
              'delete_service_on_destroy': deleteServiceOnDestroy,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (noopOnDestroy != null) 'noop_on_destroy': noopOnDestroy,
-           if (serviceAccount != null) 'service_account': serviceAccount,
+           if (serviceAccount != null)
+             'service_account': serviceAccount.encodeAs('email'),
            if (threadsafe != null) 'threadsafe': threadsafe,
            if (inboundServices != null) 'inbound_services': inboundServices,
            if (project != null) 'project': project,

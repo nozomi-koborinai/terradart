@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_bucket_iam_binding`.
 const Set<String> _googleStorageBucketIamBindingSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class GoogleStorageBucketIamBinding extends Resource {
 
   GoogleStorageBucketIamBinding({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<Map<String, dynamic>>? condition,
@@ -29,7 +31,7 @@ final class GoogleStorageBucketIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null) 'condition': condition,

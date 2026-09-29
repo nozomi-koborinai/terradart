@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_pinpointsmsvoicev2_event_destination`.
 const Set<String> _awsPinpointsmsvoicev2EventDestinationSensitive = <String>{};
 
@@ -194,13 +198,13 @@ final class Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestination {
     required this.logGroupArn,
   });
 
-  final TfArg<String> iamRoleArn;
+  final RefTo<AwsIamRole> iamRoleArn;
 
-  final TfArg<String> logGroupArn;
+  final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
   Map<String, Object?> encode() => {
-    'iam_role_arn': iamRoleArn.toTfJson(),
-    'log_group_arn': logGroupArn.toTfJson(),
+    'iam_role_arn': iamRoleArn.encodeAs('arn').toTfJson(),
+    'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -215,11 +219,11 @@ final class Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestination {
 
   final TfArg<String> deliveryStreamArn;
 
-  final TfArg<String> iamRoleArn;
+  final RefTo<AwsIamRole> iamRoleArn;
 
   Map<String, Object?> encode() => {
     'delivery_stream_arn': deliveryStreamArn.toTfJson(),
-    'iam_role_arn': iamRoleArn.toTfJson(),
+    'iam_role_arn': iamRoleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -231,9 +235,11 @@ final class Pinpointsmsvoicev2EventDestinationSnsDestination {
     required this.topicArn,
   });
 
-  final TfArg<String> topicArn;
+  final RefTo<AwsSnsTopic> topicArn;
 
-  Map<String, Object?> encode() => {'topic_arn': topicArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'topic_arn': topicArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_pinpointsmsvoicev2_event_destination`.

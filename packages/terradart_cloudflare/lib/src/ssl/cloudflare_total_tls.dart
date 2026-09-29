@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_total_tls`.
 const Set<String> _cloudflareTotalTlsSensitive = <String>{};
 
@@ -29,7 +31,7 @@ final class CloudflareTotalTls extends Resource {
     required super.localName,
     TfArg<TotalTlsCertificateAuthority>? certificateAuthority,
     required TfArg<bool> enabled,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -40,7 +42,7 @@ final class CloudflareTotalTls extends Resource {
            if (certificateAuthority != null)
              'certificate_authority': certificateAuthority,
            'enabled': enabled,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

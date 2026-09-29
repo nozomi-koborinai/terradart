@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_insights_dataset_config`.
 const Set<String> _googleStorageInsightsDatasetConfigSensitive = <String>{};
 
@@ -129,12 +131,13 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageBucketsCloudStorageBu
     this.bucketPrefixRegex,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<GoogleStorageBucket>? bucketName;
 
   final TfArg<String>? bucketPrefixRegex;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('name').toTfJson(),
     if (bucketPrefixRegex != null)
       'bucket_prefix_regex': bucketPrefixRegex!.toTfJson(),
   };
@@ -201,12 +204,13 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageBucketsCloudStorageBu
     this.bucketPrefixRegex,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<GoogleStorageBucket>? bucketName;
 
   final TfArg<String>? bucketPrefixRegex;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('name').toTfJson(),
     if (bucketPrefixRegex != null)
       'bucket_prefix_regex': bucketPrefixRegex!.toTfJson(),
   };

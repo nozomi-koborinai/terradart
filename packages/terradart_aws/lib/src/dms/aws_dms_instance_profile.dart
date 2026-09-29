@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_dms_instance_profile`.
 const Set<String> _awsDmsInstanceProfileSensitive = <String>{};
 
@@ -25,14 +28,14 @@ final class AwsDmsInstanceProfile extends Resource {
     required super.localName,
     TfArg<String>? availabilityZone,
     TfArg<String>? description,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<String>? name,
     TfArg<DmsInstanceProfileNetworkType>? networkType,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
     TfArg<String>? subnetGroupIdentifier,
     TfArg<Map<String, String>>? tags,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -42,7 +45,7 @@ final class AwsDmsInstanceProfile extends Resource {
          argMap: {
            if (availabilityZone != null) 'availability_zone': availabilityZone,
            if (description != null) 'description': description,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (name != null) 'name': name,
            if (networkType != null) 'network_type': networkType,
            if (publiclyAccessible != null)
@@ -52,7 +55,7 @@ final class AwsDmsInstanceProfile extends Resource {
              'subnet_group_identifier': subnetGroupIdentifier,
            if (tags != null) 'tags': tags,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
          },
        );
 

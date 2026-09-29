@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_r2_bucket_sippy`.
 const Set<String> _cloudflareR2BucketSippySensitive = <String>{
   'destination.secret_access_key',
@@ -139,7 +141,7 @@ final class CloudflareR2BucketSippy extends Resource {
 
   CloudflareR2BucketSippy({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     TfArg<R2BucketSippyJurisdiction>? jurisdiction,
     R2BucketSippyDestination? destination,
@@ -151,7 +153,7 @@ final class CloudflareR2BucketSippy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
            if (jurisdiction != null) 'jurisdiction': jurisdiction,
            if (destination != null)

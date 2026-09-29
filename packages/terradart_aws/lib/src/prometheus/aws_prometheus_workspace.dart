@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_prometheus_workspace`.
 const Set<String> _awsPrometheusWorkspaceSensitive = <String>{};
 
@@ -13,9 +16,11 @@ const Set<String> _awsPrometheusWorkspaceSensitive = <String>{};
 final class PrometheusWorkspaceLoggingConfiguration {
   const PrometheusWorkspaceLoggingConfiguration({required this.logGroupArn});
 
-  final TfArg<String> logGroupArn;
+  final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
-  Map<String, Object?> encode() => {'log_group_arn': logGroupArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_prometheus_workspace`.
@@ -25,7 +30,7 @@ final class AwsPrometheusWorkspace extends Resource {
   AwsPrometheusWorkspace({
     required super.localName,
     TfArg<String>? alias,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     PrometheusWorkspaceLoggingConfiguration? loggingConfiguration,
@@ -37,7 +42,7 @@ final class AwsPrometheusWorkspace extends Resource {
          terraformType: tfType,
          argMap: {
            if (alias != null) 'alias': alias,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (loggingConfiguration != null)

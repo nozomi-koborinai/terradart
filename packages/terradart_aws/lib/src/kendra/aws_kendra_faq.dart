@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_kendra_faq`.
 const Set<String> _awsKendraFaqSensitive = <String>{};
 
@@ -24,12 +27,12 @@ enum KendraFaqFileFormat implements TerraformEnum {
 final class KendraFaqS3Path {
   const KendraFaqS3Path({required this.bucket, required this.key});
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> key;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),
   };
 }
@@ -46,7 +49,7 @@ final class AwsKendraFaq extends Resource {
     TfArg<String>? languageCode,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required KendraFaqS3Path s3Path,
     super.lifecycle,
@@ -62,7 +65,7 @@ final class AwsKendraFaq extends Resource {
            if (languageCode != null) 'language_code': languageCode,
            'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            's3_path': TfArg.literal(s3Path.encode()),
          },

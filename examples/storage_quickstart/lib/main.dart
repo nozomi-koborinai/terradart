@@ -102,7 +102,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageBucketObject(
         localName: 'config',
-        bucket: .ref(assets.nameRef),
+        bucket: assets.ref,
         name: .literal('config/app.json'),
         body: .source(source: .literal('./config/app.json')),
         contentType: .literal('application/json'),
@@ -126,7 +126,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageBucketIamMember(
         localName: 'assets_reader_binding',
-        bucket: .ref(assets.nameRef),
+        bucket: assets.ref,
         role: .literal('roles/storage.objectViewer'),
         member: .ref(reader.iamMember),
       ),
@@ -145,7 +145,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageBucketIamBinding(
         localName: 'assets_admin_binding',
-        bucket: .ref(assets.nameRef),
+        bucket: assets.ref,
         role: .literal('roles/storage.objectAdmin'),
         members: .literal([assetsAdmin.iamMember.interpolation]),
         dependsOn: [ResourceDependency(assetsAdmin)],
@@ -155,7 +155,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageHmacKey(
         localName: 'interop_hmac',
-        serviceAccountEmail: .ref(reader.email),
+        serviceAccountEmail: reader.ref,
         dependsOn: [ResourceDependency(reader)],
       ),
     );
@@ -163,7 +163,7 @@ final class AssetsStack extends Stack {
     final managedFolder = add(
       GoogleStorageManagedFolder(
         localName: 'config_folder',
-        bucket: .ref(assets.nameRef),
+        bucket: assets.ref,
         name: .literal('config/'),
       ),
     );
@@ -172,7 +172,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageFolder(
         localName: 'reports_folder',
-        bucket: .ref(assets.nameRef),
+        bucket: assets.ref,
         name: .literal('reports/'),
         forceDestroy: .literal(true),
       ),
@@ -181,7 +181,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageManagedFolderIamMember(
         localName: 'config_folder_viewer',
-        bucket: .ref(assets.nameRef),
+        bucket: assets.ref,
         managedFolder: .ref(managedFolder.nameRef),
         role: .literal('roles/storage.objectViewer'),
         member: .ref(reader.iamMember),
@@ -231,7 +231,7 @@ final class AssetsStack extends Stack {
     final legacyObject = add(
       GoogleStorageBucketObject(
         localName: 'legacy_readme',
-        bucket: .ref(legacy.nameRef),
+        bucket: legacy.ref,
         name: .literal('readme.txt'),
         body: .source(source: .literal('./legacy/readme.txt')),
         contentType: .literal('text/plain'),
@@ -243,7 +243,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageBucketAccessControl(
         localName: 'legacy_bucket_reader',
-        bucket: .ref(legacy.nameRef),
+        bucket: legacy.ref,
         entity: .literal('allAuthenticatedUsers'),
         role: .literal(.reader),
         dependsOn: [ResourceDependency(legacy)],
@@ -253,7 +253,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageDefaultObjectAccessControl(
         localName: 'legacy_default_reader',
-        bucket: .ref(legacy.nameRef),
+        bucket: legacy.ref,
         entity: .literal('allAuthenticatedUsers'),
         role: .literal(.reader),
         dependsOn: [ResourceDependency(legacy)],
@@ -263,7 +263,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageObjectAccessControl(
         localName: 'legacy_object_reader',
-        bucket: .ref(legacy.nameRef),
+        bucket: legacy.ref,
         object: .literal('readme.txt'),
         entity: .literal('allAuthenticatedUsers'),
         role: .literal(.reader),
@@ -297,8 +297,8 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageNotification(
         localName: 'assets_object_events',
-        bucket: .ref(assets.nameRef),
-        topic: .ref(objectEventsTopic.id),
+        bucket: assets.ref,
+        topic: objectEventsTopic.ref,
         payloadFormat: .literal(.jsonApiV1),
         eventTypes: const [
           StorageNotificationEventType.objectFinalize,

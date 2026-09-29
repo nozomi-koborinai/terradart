@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_rds_cluster_activity_stream`.
 const Set<String> _awsRdsClusterActivityStreamSensitive = <String>{};
 
@@ -23,7 +25,7 @@ final class AwsRdsClusterActivityStream extends Resource {
   AwsRdsClusterActivityStream({
     required super.localName,
     TfArg<bool>? engineNativeAuditFieldsIncluded,
-    required TfArg<String> kmsKeyId,
+    required RefTo<AwsKmsKey> kmsKeyId,
     required TfArg<RdsClusterActivityStreamMode> mode,
     TfArg<String>? region,
     required TfArg<String> resourceArn,
@@ -37,7 +39,7 @@ final class AwsRdsClusterActivityStream extends Resource {
            if (engineNativeAuditFieldsIncluded != null)
              'engine_native_audit_fields_included':
                  engineNativeAuditFieldsIncluded,
-           'kms_key_id': kmsKeyId,
+           'kms_key_id': kmsKeyId.encodeAs('arn'),
            'mode': mode,
            if (region != null) 'region': region,
            'resource_arn': resourceArn,

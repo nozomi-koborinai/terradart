@@ -38,7 +38,7 @@ final class NetworkConnectivityStack extends Stack {
         localName: 'aws_cci',
         name: .literal('terradart-aws-transport'),
         region: .literal(region),
-        network: .ref(vpc.nameRef),
+        network: vpc.ref,
         description: .literal('Sample Partner CCI transport'),
         remoteProfile: .literal(
           'https://networkconnectivity.googleapis.com/v1/projects/$projectId/locations/$region/remoteTransportProfiles/aws-us-east-1',

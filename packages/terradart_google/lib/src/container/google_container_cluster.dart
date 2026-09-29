@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_container_cluster`.
 const Set<String> _googleContainerClusterSensitive = <String>{
   'master_auth.client_key',
@@ -57,7 +60,7 @@ final class GoogleContainerCluster extends Resource {
     TfArg<String>? minMasterVersion,
     TfArg<String>? monitoringService,
     required TfArg<String> name,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     TfArg<String>? networkingMode,
     TfArg<List<String>>? nodeLocations,
     TfArg<String>? nodeVersion,
@@ -65,7 +68,7 @@ final class GoogleContainerCluster extends Resource {
     TfArg<String>? project,
     TfArg<bool>? removeDefaultNodePool,
     TfArg<Map<String, String>>? resourceLabels,
-    TfArg<String>? subnetwork,
+    RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<Map<String, dynamic>>? addonsConfig,
     TfArg<Map<String, dynamic>>? anonymousAuthenticationConfig,
     TfArg<Map<String, dynamic>>? authenticatorGroupsConfig,
@@ -156,7 +159,7 @@ final class GoogleContainerCluster extends Resource {
            if (monitoringService != null)
              'monitoring_service': monitoringService,
            'name': name,
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            if (networkingMode != null) 'networking_mode': networkingMode,
            if (nodeLocations != null) 'node_locations': nodeLocations,
            if (nodeVersion != null) 'node_version': nodeVersion,
@@ -166,7 +169,7 @@ final class GoogleContainerCluster extends Resource {
            if (removeDefaultNodePool != null)
              'remove_default_node_pool': removeDefaultNodePool,
            if (resourceLabels != null) 'resource_labels': resourceLabels,
-           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
            if (addonsConfig != null) 'addons_config': addonsConfig,
            if (anonymousAuthenticationConfig != null)
              'anonymous_authentication_config': anonymousAuthenticationConfig,

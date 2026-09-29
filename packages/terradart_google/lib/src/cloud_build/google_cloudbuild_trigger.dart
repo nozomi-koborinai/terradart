@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_cloudbuild_trigger`.
 const Set<String> _googleCloudbuildTriggerSensitive = <String>{};
 
@@ -1093,7 +1095,7 @@ final class GoogleCloudbuildTrigger extends Resource {
     TfArg<String>? description,
     TfArg<List<String>>? tags,
     TfArg<bool>? disabled,
-    TfArg<String>? serviceAccount,
+    RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<CloudBuildTriggerIncludeBuildLogs>? includeBuildLogs,
     TfArg<String>? filter,
     TfArg<Map<String, String>>? substitutions,
@@ -1122,7 +1124,8 @@ final class GoogleCloudbuildTrigger extends Resource {
            if (description != null) 'description': description,
            if (tags != null) 'tags': tags,
            if (disabled != null) 'disabled': disabled,
-           if (serviceAccount != null) 'service_account': serviceAccount,
+           if (serviceAccount != null)
+             'service_account': serviceAccount.encodeAs('name'),
            if (includeBuildLogs != null) 'include_build_logs': includeBuildLogs,
            if (filter != null) 'filter': filter,
            if (substitutions != null) 'substitutions': substitutions,

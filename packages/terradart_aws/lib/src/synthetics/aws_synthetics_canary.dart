@@ -4,6 +4,12 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_synthetics_canary`.
 const Set<String> _awsSyntheticsCanarySensitive = <String>{};
 
@@ -32,11 +38,11 @@ final class SyntheticsCanaryArtifactConfigS3Encryption {
   final TfArg<SyntheticsCanaryArtifactConfigS3EncryptionEncryptionMode>?
   encryptionMode;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
     if (encryptionMode != null) 'encryption_mode': encryptionMode!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -134,16 +140,16 @@ final class SyntheticsCanaryVpcConfig {
 
   final TfArg<bool>? ipv6AllowedForDualStack;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>>? subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
     if (ipv6AllowedForDualStack != null)
       'ipv6_allowed_for_dual_stack': ipv6AllowedForDualStack!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -155,14 +161,14 @@ final class AwsSyntheticsCanary extends Resource {
     required super.localName,
     required TfArg<String> artifactS3Location,
     TfArg<bool>? deleteLambda,
-    required TfArg<String> executionRoleArn,
+    required RefTo<AwsIamRole> executionRoleArn,
     TfArg<num>? failureRetentionPeriod,
     required TfArg<String> handler,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> runtimeVersion,
-    TfArg<String>? s3Bucket,
+    RefTo<AwsS3Bucket>? s3Bucket,
     TfArg<String>? s3Key,
     TfArg<String>? s3Version,
     TfArg<bool>? startCanary,
@@ -182,15 +188,15 @@ final class AwsSyntheticsCanary extends Resource {
          argMap: {
            'artifact_s3_location': artifactS3Location,
            if (deleteLambda != null) 'delete_lambda': deleteLambda,
-           'execution_role_arn': executionRoleArn,
+           'execution_role_arn': executionRoleArn.encodeAs('arn'),
            if (failureRetentionPeriod != null)
              'failure_retention_period': failureRetentionPeriod,
            'handler': handler,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            'runtime_version': runtimeVersion,
-           if (s3Bucket != null) 's3_bucket': s3Bucket,
+           if (s3Bucket != null) 's3_bucket': s3Bucket.encodeAs('id'),
            if (s3Key != null) 's3_key': s3Key,
            if (s3Version != null) 's3_version': s3Version,
            if (startCanary != null) 'start_canary': startCanary,

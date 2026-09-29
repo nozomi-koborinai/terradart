@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_dataexchange_revision_assets`.
 const Set<String> _awsDataexchangeRevisionAssetsSensitive = <String>{};
 
@@ -72,7 +75,7 @@ final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSo
     this.kmsKeysToGrant,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<List<Object?>>? keyPrefixes;
 
@@ -84,7 +87,7 @@ final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSo
   kmsKeysToGrant;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (keyPrefixes != null) 'key_prefixes': keyPrefixes!.toTfJson(),
     if (keys != null) 'keys': keys!.toTfJson(),
     if (kmsKeysToGrant != null)
@@ -100,9 +103,11 @@ final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSo
     required this.kmsKeyArn,
   });
 
-  final TfArg<String> kmsKeyArn;
+  final RefTo<AwsKmsKey> kmsKeyArn;
 
-  Map<String, Object?> encode() => {'kms_key_arn': kmsKeyArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `asset.import_assets_from_s3` block of
@@ -129,12 +134,12 @@ final class DataexchangeRevisionAssetsAssetImportAssetsFromS3AssetSource {
     required this.key,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> key;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),
   };
 }

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_notification`.
 const Set<String> _googleStorageNotificationSensitive = <String>{};
 
@@ -116,8 +119,8 @@ final class GoogleStorageNotification extends Resource {
 
   GoogleStorageNotification({
     required super.localName,
-    required TfArg<String> bucket,
-    required TfArg<String> topic,
+    required RefTo<GoogleStorageBucket> bucket,
+    required RefTo<GooglePubsubTopic> topic,
     required TfArg<StorageNotificationPayloadFormat> payloadFormat,
     List<StorageNotificationEventType>? eventTypes,
     TfArg<String>? objectNamePrefix,
@@ -129,8 +132,8 @@ final class GoogleStorageNotification extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
-           'topic': topic,
+           'bucket': bucket.encodeAs('name'),
+           'topic': topic.encodeAs('id'),
            'payload_format': payloadFormat,
            if (eventTypes != null)
              'event_types': TfArg.literal(

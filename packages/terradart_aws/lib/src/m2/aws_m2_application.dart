@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_m2_application`.
 const Set<String> _awsM2ApplicationSensitive = <String>{};
 
@@ -87,10 +90,10 @@ final class AwsM2Application extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<M2ApplicationEngineType> engineType,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     TfArg<Map<String, String>>? tags,
     List<M2ApplicationDefinition>? definition,
     super.lifecycle,
@@ -102,10 +105,10 @@ final class AwsM2Application extends Resource {
          argMap: {
            if (description != null) 'description': description,
            'engine_type': engineType,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (definition != null)
              'definition': TfArg.literal([

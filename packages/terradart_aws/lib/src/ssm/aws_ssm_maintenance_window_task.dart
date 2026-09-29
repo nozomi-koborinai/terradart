@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_ssm_maintenance_window_task`.
 const Set<String> _awsSsmMaintenanceWindowTaskSensitive = <String>{
   'task_invocation_parameters.lambda_parameters.payload',
@@ -185,7 +188,7 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
 
   final TfArg<String>? outputS3KeyPrefix;
 
-  final TfArg<String>? serviceRoleArn;
+  final RefTo<AwsIamRole>? serviceRoleArn;
 
   final TfArg<num>? timeoutSeconds;
 
@@ -210,7 +213,8 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
     if (outputS3Bucket != null) 'output_s3_bucket': outputS3Bucket!.toTfJson(),
     if (outputS3KeyPrefix != null)
       'output_s3_key_prefix': outputS3KeyPrefix!.toTfJson(),
-    if (serviceRoleArn != null) 'service_role_arn': serviceRoleArn!.toTfJson(),
+    if (serviceRoleArn != null)
+      'service_role_arn': serviceRoleArn!.encodeAs('arn').toTfJson(),
     if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
     if (cloudwatchConfig != null)
       'cloudwatch_config': cloudwatchConfig!.encode(),
@@ -243,13 +247,15 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
     this.cloudwatchOutputEnabled,
   });
 
-  final TfArg<String>? cloudwatchLogGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? cloudwatchLogGroupName;
 
   final TfArg<bool>? cloudwatchOutputEnabled;
 
   Map<String, Object?> encode() => {
     if (cloudwatchLogGroupName != null)
-      'cloudwatch_log_group_name': cloudwatchLogGroupName!.toTfJson(),
+      'cloudwatch_log_group_name': cloudwatchLogGroupName!
+          .encodeAs('name')
+          .toTfJson(),
     if (cloudwatchOutputEnabled != null)
       'cloudwatch_output_enabled': cloudwatchOutputEnabled!.toTfJson(),
   };
@@ -372,7 +378,7 @@ final class AwsSsmMaintenanceWindowTask extends Resource {
     TfArg<String>? name,
     TfArg<num>? priority,
     TfArg<String>? region,
-    TfArg<String>? serviceRoleArn,
+    RefTo<AwsIamRole>? serviceRoleArn,
     required TfArg<String> taskArn,
     required TfArg<SsmMaintenanceWindowTaskTaskType> taskType,
     required TfArg<String> windowId,
@@ -392,7 +398,8 @@ final class AwsSsmMaintenanceWindowTask extends Resource {
            if (name != null) 'name': name,
            if (priority != null) 'priority': priority,
            if (region != null) 'region': region,
-           if (serviceRoleArn != null) 'service_role_arn': serviceRoleArn,
+           if (serviceRoleArn != null)
+             'service_role_arn': serviceRoleArn.encodeAs('arn'),
            'task_arn': taskArn,
            'task_type': taskType,
            'window_id': windowId,

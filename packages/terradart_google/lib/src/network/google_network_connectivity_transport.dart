@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_network_connectivity_transport`.
 const Set<String> _googleNetworkConnectivityTransportSensitive = <String>{};
 
@@ -58,7 +60,7 @@ final class GoogleNetworkConnectivityTransport extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> region,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     required TfArg<String> remoteProfile,
     TfArg<String>? description,
     TfArg<String>? bandwidth,
@@ -79,7 +81,7 @@ final class GoogleNetworkConnectivityTransport extends Resource {
          argMap: {
            'name': name,
            'region': region,
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            'remote_profile': remoteProfile,
            if (description != null) 'description': description,
            if (bandwidth != null) 'bandwidth': bandwidth,

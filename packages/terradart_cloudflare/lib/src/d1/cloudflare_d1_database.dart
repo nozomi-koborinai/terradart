@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_d1_database`.
 const Set<String> _cloudflareD1DatabaseSensitive = <String>{};
 
@@ -80,7 +82,7 @@ final class CloudflareD1Database extends Resource {
 
   CloudflareD1Database({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     List<TfArg<D1DatabaseFields>>? fields,
     TfArg<D1DatabaseJurisdiction>? jurisdiction,
     required TfArg<String> name,
@@ -93,7 +95,7 @@ final class CloudflareD1Database extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (fields != null)
              'fields': TfArg.literal([for (final e in fields) e.toTfJson()]),
            if (jurisdiction != null) 'jurisdiction': jurisdiction,

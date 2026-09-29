@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_clouddeploy_automation`.
 const Set<String> _googleClouddeployAutomationSensitive = <String>{};
 
@@ -53,7 +55,7 @@ final class GoogleClouddeployAutomation extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> deliveryPipeline,
-    required TfArg<String> serviceAccount,
+    required RefTo<GoogleServiceAccount> serviceAccount,
     required TfArg<Map<String, dynamic>> selector,
     required TfArg<List<Map<String, dynamic>>> rules,
     TfArg<bool>? suspended,
@@ -72,7 +74,7 @@ final class GoogleClouddeployAutomation extends Resource {
            'name': name,
            'location': location,
            'delivery_pipeline': deliveryPipeline,
-           'service_account': serviceAccount,
+           'service_account': serviceAccount.encodeAs('email'),
            'selector': selector,
            'rules': rules,
            if (suspended != null) 'suspended': suspended,

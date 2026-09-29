@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_stream_webhook`.
 const Set<String> _cloudflareStreamWebhookSensitive = <String>{'secret'};
 
@@ -16,7 +18,7 @@ final class CloudflareStreamWebhook extends Resource {
 
   CloudflareStreamWebhook({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? notificationUrl,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +27,7 @@ final class CloudflareStreamWebhook extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (notificationUrl != null) 'notification_url': notificationUrl,
          },
        );

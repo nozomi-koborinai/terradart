@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_dex_rule`.
 const Set<String> _cloudflareZeroTrustDexRuleSensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class CloudflareZeroTrustDexRule extends Resource {
 
   CloudflareZeroTrustDexRule({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<String> match,
     required TfArg<String> name,
@@ -28,7 +30,7 @@ final class CloudflareZeroTrustDexRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (description != null) 'description': description,
            'match': match,
            'name': name,

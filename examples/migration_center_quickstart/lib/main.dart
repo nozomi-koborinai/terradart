@@ -73,7 +73,7 @@ final class MigrationCenterStack extends Stack {
         location: .literal(location),
         discoveryClientId: .literal('terradart-discovery'),
         source: .ref(discoverySource.nameRef),
-        serviceAccount: .ref(discoverySa.email),
+        serviceAccount: discoverySa.ref,
         displayName: .literal('TerraDart discovery client'),
         dependsOn: [
           ...apiDeps,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_lockdown`.
 const Set<String> _cloudflareZoneLockdownSensitive = <String>{};
 
@@ -47,7 +49,7 @@ final class CloudflareZoneLockdown extends Resource {
     TfArg<bool>? paused,
     TfArg<num>? priority,
     required TfArg<List<String>> urls,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required List<ZoneLockdownConfigurations> configurations,
     super.lifecycle,
     super.dependsOn,
@@ -60,7 +62,7 @@ final class CloudflareZoneLockdown extends Resource {
            if (paused != null) 'paused': paused,
            if (priority != null) 'priority': priority,
            'urls': urls,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'configurations': TfArg.literal([
              for (final e in configurations) e.encode(),
            ]),

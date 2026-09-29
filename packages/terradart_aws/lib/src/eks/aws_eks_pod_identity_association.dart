@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_eks_pod_identity_association`.
 const Set<String> _awsEksPodIdentityAssociationSensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class AwsEksPodIdentityAssociation extends Resource {
     required TfArg<String> namespace,
     TfArg<String>? policy,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     required TfArg<String> serviceAccount,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? targetRoleArn,
@@ -34,7 +36,7 @@ final class AwsEksPodIdentityAssociation extends Resource {
            'namespace': namespace,
            if (policy != null) 'policy': policy,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            'service_account': serviceAccount,
            if (tags != null) 'tags': tags,
            if (targetRoleArn != null) 'target_role_arn': targetRoleArn,

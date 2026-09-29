@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_accelerate_configuration`.
 const Set<String> _awsS3BucketAccelerateConfigurationSensitive = <String>{};
 
@@ -22,7 +24,7 @@ final class AwsS3BucketAccelerateConfiguration extends Resource {
 
   AwsS3BucketAccelerateConfiguration({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
     required TfArg<S3BucketAccelerateConfigurationStatus> status,
@@ -33,7 +35,7 @@ final class AwsS3BucketAccelerateConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (expectedBucketOwner != null)
              'expected_bucket_owner': expectedBucketOwner,
            if (region != null) 'region': region,

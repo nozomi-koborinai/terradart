@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+
 /// Sensitive field paths for `aws_cloudwatch_log_transformer`.
 const Set<String> _awsCloudwatchLogTransformerSensitive = <String>{};
 
@@ -776,7 +778,7 @@ final class AwsCloudwatchLogTransformer extends Resource {
 
   AwsCloudwatchLogTransformer({
     required super.localName,
-    required TfArg<String> logGroupArn,
+    required RefTo<AwsCloudwatchLogGroup> logGroupArn,
     TfArg<String>? region,
     List<CloudwatchLogTransformerTransformerConfig>? transformerConfig,
     super.lifecycle,
@@ -786,7 +788,7 @@ final class AwsCloudwatchLogTransformer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'log_group_arn': logGroupArn,
+           'log_group_arn': logGroupArn.encodeAs('arn'),
            if (region != null) 'region': region,
            if (transformerConfig != null)
              'transformer_config': TfArg.literal([

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_memcache_instance`.
 const Set<String> _googleMemcacheInstanceSensitive = <String>{};
 
@@ -111,7 +113,7 @@ final class GoogleMemcacheInstance extends Resource {
     required TfArg<num> nodeCount,
     required MemcacheInstanceNodeConfig nodeConfig,
     TfArg<String>? region,
-    TfArg<String>? authorizedNetwork,
+    RefTo<GoogleComputeNetwork>? authorizedNetwork,
     TfArg<MemcacheInstanceVersion>? memcacheVersion,
     TfArg<String>? displayName,
     MemcacheInstanceMaintenancePolicy? maintenancePolicy,
@@ -129,7 +131,7 @@ final class GoogleMemcacheInstance extends Resource {
            'node_config': TfArg.literal([nodeConfig.toArgMap()]),
            if (region != null) 'region': region,
            if (authorizedNetwork != null)
-             'authorized_network': authorizedNetwork,
+             'authorized_network': authorizedNetwork.encodeAs('id'),
            if (memcacheVersion != null) 'memcache_version': memcacheVersion,
            if (displayName != null) 'display_name': displayName,
            if (maintenancePolicy != null)

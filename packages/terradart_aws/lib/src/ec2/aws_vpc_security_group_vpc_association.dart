@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_vpc_security_group_vpc_association`.
 const Set<String> _awsVpcSecurityGroupVpcAssociationSensitive = <String>{};
 
@@ -13,8 +16,8 @@ final class AwsVpcSecurityGroupVpcAssociation extends Resource {
   AwsVpcSecurityGroupVpcAssociation({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> securityGroupId,
-    required TfArg<String> vpcId,
+    required RefTo<AwsSecurityGroup> securityGroupId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -23,8 +26,8 @@ final class AwsVpcSecurityGroupVpcAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            if (region != null) 'region': region,
-           'security_group_id': securityGroupId,
-           'vpc_id': vpcId,
+           'security_group_id': securityGroupId.encodeAs('id'),
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

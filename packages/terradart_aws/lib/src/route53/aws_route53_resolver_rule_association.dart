@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_route53_resolver_rule_association`.
 const Set<String> _awsRoute53ResolverRuleAssociationSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsRoute53ResolverRuleAssociation extends Resource {
     TfArg<String>? name,
     TfArg<String>? region,
     required TfArg<String> resolverRuleId,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,7 +28,7 @@ final class AwsRoute53ResolverRuleAssociation extends Resource {
            if (name != null) 'name': name,
            if (region != null) 'region': region,
            'resolver_rule_id': resolverRuleId,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_fis_experiment_template`.
 const Set<String> _awsFisExperimentTemplateSensitive = <String>{};
 
@@ -221,12 +225,12 @@ final class FisExperimentTemplateExperimentReportConfigurationOutputsS3Configura
     this.prefix,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
 }
@@ -264,9 +268,11 @@ final class FisExperimentTemplateLogConfigurationCloudwatchLogsConfiguration {
     required this.logGroupArn,
   });
 
-  final TfArg<String> logGroupArn;
+  final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
-  Map<String, Object?> encode() => {'log_group_arn': logGroupArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `log_configuration.s3_configuration` block of
@@ -278,12 +284,12 @@ final class FisExperimentTemplateLogConfigurationS3Configuration {
     this.prefix,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
 }
@@ -390,7 +396,7 @@ final class AwsFisExperimentTemplate extends Resource {
     required super.localName,
     required TfArg<String> description,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required List<FisExperimentTemplateAction> action,
     FisExperimentTemplateExperimentOptions? experimentOptions,
@@ -408,7 +414,7 @@ final class AwsFisExperimentTemplate extends Resource {
          argMap: {
            'description': description,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            'action': TfArg.literal([for (final e in action) e.encode()]),
            if (experimentOptions != null)

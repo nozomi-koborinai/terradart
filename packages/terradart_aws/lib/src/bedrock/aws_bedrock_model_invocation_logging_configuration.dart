@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_bedrock_model_invocation_logging_configuration`.
 const Set<String> _awsBedrockModelInvocationLoggingConfigurationSensitive =
     <String>{};
@@ -63,9 +67,9 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchCon
     this.largeDataDeliveryS3Config,
   });
 
-  final TfArg<String> logGroupName;
+  final RefTo<AwsCloudwatchLogGroup> logGroupName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final List<
     BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchConfigLargeDataDeliveryS3Config
@@ -73,8 +77,8 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchCon
   largeDataDeliveryS3Config;
 
   Map<String, Object?> encode() => {
-    'log_group_name': logGroupName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'log_group_name': logGroupName.encodeAs('name').toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (largeDataDeliveryS3Config != null)
       'large_data_delivery_s3_config': [
         for (final e in largeDataDeliveryS3Config!) e.encode(),
@@ -91,12 +95,12 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchCon
     this.keyPrefix,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? keyPrefix;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
   };
 }
@@ -110,12 +114,12 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfigS3Config {
     this.keyPrefix,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? keyPrefix;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
   };
 }

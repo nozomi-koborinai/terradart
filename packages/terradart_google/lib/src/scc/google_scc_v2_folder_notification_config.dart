@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_scc_v2_folder_notification_config`.
 const Set<String> _googleSccV2FolderNotificationConfigSensitive = <String>{};
 
@@ -37,7 +39,7 @@ final class GoogleSccV2FolderNotificationConfig extends Resource {
     TfArg<String>? description,
     required TfArg<String> folder,
     TfArg<String>? location,
-    required TfArg<String> pubsubTopic,
+    required RefTo<GooglePubsubTopic> pubsubTopic,
     required SccV2FolderNotificationConfigStreamingConfig streamingConfig,
     super.lifecycle,
     super.dependsOn,
@@ -51,7 +53,7 @@ final class GoogleSccV2FolderNotificationConfig extends Resource {
            if (description != null) 'description': description,
            'folder': folder,
            if (location != null) 'location': location,
-           'pubsub_topic': pubsubTopic,
+           'pubsub_topic': pubsubTopic.encodeAs('id'),
            'streaming_config': TfArg.literal(streamingConfig.encode()),
          },
        );

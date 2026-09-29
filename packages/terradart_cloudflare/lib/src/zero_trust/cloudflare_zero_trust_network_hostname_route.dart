@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_network_hostname_route`.
 const Set<String> _cloudflareZeroTrustNetworkHostnameRouteSensitive =
     <String>{};
@@ -18,7 +20,7 @@ final class CloudflareZeroTrustNetworkHostnameRoute extends Resource {
 
   CloudflareZeroTrustNetworkHostnameRoute({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comment,
     TfArg<String>? hostname,
     TfArg<String>? tunnelId,
@@ -29,7 +31,7 @@ final class CloudflareZeroTrustNetworkHostnameRoute extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (comment != null) 'comment': comment,
            if (hostname != null) 'hostname': hostname,
            if (tunnelId != null) 'tunnel_id': tunnelId,

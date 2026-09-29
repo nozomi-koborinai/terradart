@@ -61,7 +61,7 @@ final class DataprocMetastoreStack extends Stack {
       hiveMetastoreConfig: DataprocMetastoreServiceHiveMetastoreConfig(
         version: .literal('3.1.2'),
       ),
-      network: .ref(network.id),
+      network: network.ref,
       dependsOn: [...apiDeps, ResourceDependency(network)],
     );
     add(service);

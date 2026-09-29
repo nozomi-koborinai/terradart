@@ -4,6 +4,13 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_kinesis_firehose_delivery_stream`.
 const Set<String> _awsKinesisFirehoseDeliveryStreamSensitive = <String>{
   'http_endpoint_configuration.access_key',
@@ -171,7 +178,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
 
   final TfArg<num>? retryDuration;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<
     KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
@@ -201,7 +208,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
     if (indexRotationPeriod != null)
       'index_rotation_period': indexRotationPeriod!.toTfJson(),
     if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
     if (typeName != null) 'type_name': typeName!.toTfJson(),
     if (cloudwatchLoggingOptions != null)
@@ -312,13 +319,14 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationCloudwatchLog
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -404,7 +412,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configurati
     this.cloudwatchLoggingOptions,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -414,17 +422,17 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configurati
 
   final TfArg<String>? errorOutputPrefix;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3ConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -432,9 +440,9 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configurati
       'compression_format': compressionFormat!.toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
   };
@@ -452,13 +460,14 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configurati
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -473,16 +482,16 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationVpcConfig {
     required this.subnetIds,
   });
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    'role_arn': roleArn.toTfJson(),
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -509,7 +518,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
     this.s3BackupConfiguration,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -526,11 +535,11 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
 
   final TfArg<String>? fileExtension;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode>?
   s3BackupMode;
@@ -551,7 +560,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
   s3BackupConfiguration;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -561,9 +570,9 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
     if (fileExtension != null) 'file_extension': fileExtension!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
@@ -621,13 +630,14 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCloudwatchLoggin
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -1066,7 +1076,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 
   final TfArg<String>? region;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> tableName;
 
@@ -1076,7 +1086,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
     if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
     'database_name': databaseName.toTfJson(),
     if (region != null) 'region': region!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_name': tableName.toTfJson(),
     if (versionId != null) 'version_id': versionId!.toTfJson(),
   };
@@ -1182,7 +1192,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigur
     this.cloudwatchLoggingOptions,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -1192,17 +1202,17 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigur
 
   final TfArg<String>? errorOutputPrefix;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -1210,9 +1220,9 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigur
       'compression_format': compressionFormat!.toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
   };
@@ -1230,13 +1240,14 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigur
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -1271,7 +1282,7 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
 
   final TfArg<num>? retryDuration;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<
     KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
@@ -1302,7 +1313,7 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
     if (name != null) 'name': name!.toTfJson(),
     if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
     'url': url.toTfJson(),
     if (cloudwatchLoggingOptions != null)
@@ -1342,13 +1353,14 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationCloudwatchLogg
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -1477,7 +1489,7 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3Configuratio
     this.cloudwatchLoggingOptions,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -1487,17 +1499,17 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3Configuratio
 
   final TfArg<String>? errorOutputPrefix;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3ConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -1505,9 +1517,9 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3Configuratio
       'compression_format': compressionFormat!.toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
   };
@@ -1525,13 +1537,14 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3Configuratio
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -1548,13 +1561,13 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationSecretsManager
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<String>? secretArn;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
   };
 }
@@ -1587,7 +1600,7 @@ final class KinesisFirehoseDeliveryStreamIcebergConfiguration {
 
   final TfArg<num>? retryDuration;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<KinesisFirehoseDeliveryStreamIcebergConfigurationS3BackupMode>?
   s3BackupMode;
@@ -1613,7 +1626,7 @@ final class KinesisFirehoseDeliveryStreamIcebergConfiguration {
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
     'catalog_arn': catalogArn.toTfJson(),
     if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
@@ -1652,13 +1665,14 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationCloudwatchLoggingOp
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -1772,7 +1786,7 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationS3Configuration {
     this.cloudwatchLoggingOptions,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -1782,17 +1796,17 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationS3Configuration {
 
   final TfArg<String>? errorOutputPrefix;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final KinesisFirehoseDeliveryStreamIcebergConfigurationS3ConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -1800,9 +1814,9 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationS3Configuration {
       'compression_format': compressionFormat!.toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
   };
@@ -1820,13 +1834,14 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationS3ConfigurationClou
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -1842,11 +1857,11 @@ final class KinesisFirehoseDeliveryStreamKinesisSourceConfiguration {
 
   final TfArg<String> kinesisStreamArn;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'kinesis_stream_arn': kinesisStreamArn.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1893,11 +1908,11 @@ final class KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationCon
   >
   connectivity;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'connectivity': connectivity.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1950,7 +1965,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
 
   final TfArg<num>? retryDuration;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<KinesisFirehoseDeliveryStreamOpensearchConfigurationS3BackupMode>?
   s3BackupMode;
@@ -1981,7 +1996,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
     if (indexRotationPeriod != null)
       'index_rotation_period': indexRotationPeriod!.toTfJson(),
     if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
     if (typeName != null) 'type_name': typeName!.toTfJson(),
     if (cloudwatchLoggingOptions != null)
@@ -2094,13 +2109,14 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationCloudwatchLoggin
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -2217,7 +2233,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationS3Configuration 
     this.cloudwatchLoggingOptions,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -2227,17 +2243,17 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationS3Configuration 
 
   final TfArg<String>? errorOutputPrefix;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final KinesisFirehoseDeliveryStreamOpensearchConfigurationS3ConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -2245,9 +2261,9 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationS3Configuration 
       'compression_format': compressionFormat!.toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
   };
@@ -2265,13 +2281,14 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationS3ConfigurationC
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -2286,16 +2303,16 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationVpcConfig {
     required this.subnetIds,
   });
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    'role_arn': roleArn.toTfJson(),
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -2327,7 +2344,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration {
 
   final TfArg<num>? retryDuration;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<
     KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3BackupMode
@@ -2353,7 +2370,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration {
     'collection_endpoint': collectionEndpoint.toTfJson(),
     'index_name': indexName.toTfJson(),
     if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
@@ -2389,13 +2406,14 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationCloudw
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -2481,7 +2499,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3Conf
     this.cloudwatchLoggingOptions,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -2491,17 +2509,17 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3Conf
 
   final TfArg<String>? errorOutputPrefix;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3ConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -2509,9 +2527,9 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3Conf
       'compression_format': compressionFormat!.toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
   };
@@ -2529,13 +2547,14 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3Conf
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -2550,16 +2569,16 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationVpcCon
     required this.subnetIds,
   });
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    'role_arn': roleArn.toTfJson(),
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -2596,7 +2615,7 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfiguration {
 
   final TfArg<num>? retryDuration;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupMode>?
   s3BackupMode;
@@ -2626,7 +2645,7 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfiguration {
     'data_table_name': dataTableName.toTfJson(),
     if (password != null) 'password': password!.toTfJson(),
     if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
     if (username != null) 'username': username!.toTfJson(),
     if (cloudwatchLoggingOptions != null)
@@ -2666,13 +2685,14 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationCloudwatchLoggingO
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -2758,7 +2778,7 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurat
     this.cloudwatchLoggingOptions,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -2768,17 +2788,17 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurat
 
   final TfArg<String>? errorOutputPrefix;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -2786,9 +2806,9 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurat
       'compression_format': compressionFormat!.toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
   };
@@ -2806,13 +2826,14 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurat
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -2833,7 +2854,7 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3Configuration {
     this.cloudwatchLoggingOptions,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -2843,17 +2864,17 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3Configuration {
 
   final TfArg<String>? errorOutputPrefix;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final KinesisFirehoseDeliveryStreamRedshiftConfigurationS3ConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -2861,9 +2882,9 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3Configuration {
       'compression_format': compressionFormat!.toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
   };
@@ -2881,13 +2902,14 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3ConfigurationClo
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -2904,13 +2926,13 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationSecretsManagerConf
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<String>? secretArn;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
   };
 }
@@ -2927,14 +2949,14 @@ final class KinesisFirehoseDeliveryStreamServerSideEncryption {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? keyArn;
+  final RefTo<AwsKmsKey>? keyArn;
 
   final TfArg<KinesisFirehoseDeliveryStreamServerSideEncryptionKeyType>?
   keyType;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (keyArn != null) 'key_arn': keyArn!.toTfJson(),
+    if (keyArn != null) 'key_arn': keyArn!.encodeAs('arn').toTfJson(),
     if (keyType != null) 'key_type': keyType!.toTfJson(),
   };
 }
@@ -3003,7 +3025,7 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 
   final TfArg<num>? retryDuration;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3BackupMode>?
   s3BackupMode;
@@ -3047,7 +3069,7 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
       'metadata_column_name': metadataColumnName!.toTfJson(),
     if (privateKey != null) 'private_key': privateKey!.toTfJson(),
     if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
     'schema': schema.toTfJson(),
     'table': table.toTfJson(),
@@ -3105,13 +3127,14 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationCloudwatchLogging
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -3197,7 +3220,7 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3Configuration {
     this.cloudwatchLoggingOptions,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -3207,17 +3230,17 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3Configuration {
 
   final TfArg<String>? errorOutputPrefix;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3ConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -3225,9 +3248,9 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3Configuration {
       'compression_format': compressionFormat!.toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
   };
@@ -3245,13 +3268,14 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3ConfigurationCl
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -3268,13 +3292,13 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationSecretsManagerCon
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<String>? secretArn;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
   };
 }
@@ -3422,13 +3446,14 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationCloudwatchLoggingOpt
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -3514,7 +3539,7 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationS3Configuration {
     this.cloudwatchLoggingOptions,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<num>? bufferingInterval;
 
@@ -3524,17 +3549,17 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationS3Configuration {
 
   final TfArg<String>? errorOutputPrefix;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final KinesisFirehoseDeliveryStreamSplunkConfigurationS3ConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
@@ -3542,9 +3567,9 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationS3Configuration {
       'compression_format': compressionFormat!.toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (cloudwatchLoggingOptions != null)
       'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
   };
@@ -3562,13 +3587,14 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationS3ConfigurationCloud
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logGroupName;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
 
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null) 'log_group_name': logGroupName!.toTfJson(),
+    if (logGroupName != null)
+      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
     if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
   };
 }
@@ -3585,13 +3611,13 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationSecretsManagerConfig
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<String>? secretArn;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
   };
 }

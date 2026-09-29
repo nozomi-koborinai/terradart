@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_magic_wan_gre_tunnel`.
 const Set<String> _cloudflareMagicWanGreTunnelSensitive = <String>{};
 
@@ -119,7 +121,7 @@ final class CloudflareMagicWanGreTunnel extends Resource {
 
   CloudflareMagicWanGreTunnel({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? automaticReturnRouting,
     required TfArg<String> cloudflareGreEndpoint,
     required TfArg<String> customerGreEndpoint,
@@ -138,7 +140,7 @@ final class CloudflareMagicWanGreTunnel extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (automaticReturnRouting != null)
              'automatic_return_routing': automaticReturnRouting,
            'cloudflare_gre_endpoint': cloudflareGreEndpoint,

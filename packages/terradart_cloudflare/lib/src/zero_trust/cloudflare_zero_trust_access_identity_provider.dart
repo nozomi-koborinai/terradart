@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_identity_provider`.
 const Set<String> _cloudflareZeroTrustAccessIdentityProviderSensitive =
     <String>{'config.client_secret', 'scim_config.secret'};
@@ -267,12 +270,12 @@ final class CloudflareZeroTrustAccessIdentityProvider extends Resource {
 
   CloudflareZeroTrustAccessIdentityProvider({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> name,
     TfArg<bool>? readOnly,
     TfArg<String>? samlCertificateSetId,
     required TfArg<ZeroTrustAccessIdentityProviderType> type,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     required ZeroTrustAccessIdentityProviderConfig config,
     ZeroTrustAccessIdentityProviderScimConfig? scimConfig,
     super.lifecycle,
@@ -282,13 +285,13 @@ final class CloudflareZeroTrustAccessIdentityProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
            'name': name,
            if (readOnly != null) 'read_only': readOnly,
            if (samlCertificateSetId != null)
              'saml_certificate_set_id': samlCertificateSetId,
            'type': type,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
            'config': TfArg.literal(config.encode()),
            if (scimConfig != null)
              'scim_config': TfArg.literal(scimConfig.encode()),

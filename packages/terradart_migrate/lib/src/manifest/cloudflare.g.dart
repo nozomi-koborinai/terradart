@@ -15,9 +15,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'mode',
@@ -36,9 +37,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'configuration',
@@ -373,9 +375,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'enforce_dns_only',
@@ -426,9 +429,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -584,9 +588,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'email',
@@ -827,9 +832,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'frequency',
@@ -924,9 +930,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'expires_on',
@@ -1133,9 +1140,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'default_sni',
@@ -1287,9 +1295,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'authentication',
@@ -1629,9 +1638,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'gateway_id',
@@ -1755,9 +1765,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ai_gateway_id',
@@ -2276,9 +2287,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -2396,9 +2408,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'cf_api_id',
@@ -2555,9 +2568,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'auth_id_characteristics',
@@ -2621,9 +2635,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -2754,9 +2769,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -2856,9 +2872,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3010,9 +3027,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3095,9 +3113,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3373,9 +3392,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3437,9 +3457,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3494,9 +3515,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'config',
@@ -3675,9 +3697,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3810,9 +3833,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3932,9 +3956,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4116,9 +4141,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4285,9 +4311,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'asn',
@@ -4513,9 +4540,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'app_id',
@@ -4616,9 +4644,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'key_id',
@@ -4733,9 +4762,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4823,9 +4853,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4970,9 +5001,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -5187,9 +5219,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'rules',
@@ -5248,9 +5281,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'content',
@@ -5414,9 +5448,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'page',
@@ -5524,9 +5559,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'content',
@@ -5660,9 +5696,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -5914,9 +5951,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'app_protocol',
@@ -6104,9 +6142,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -6156,9 +6195,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'body',
@@ -6220,9 +6260,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -6262,9 +6303,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'common_name',
@@ -6339,9 +6381,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -6520,9 +6563,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ssl',
@@ -6628,9 +6672,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -6793,9 +6838,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -6930,9 +6976,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -6958,9 +7005,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -7066,9 +7114,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'identifier',
@@ -7094,9 +7143,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -7275,9 +7325,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'geo_restrictions',
@@ -7455,9 +7506,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'fields',
@@ -7649,9 +7701,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'cidr',
@@ -7747,9 +7800,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'deprecate_any_requests',
@@ -7949,9 +8003,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -8289,9 +8344,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ip_range',
@@ -8397,9 +8453,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -8499,9 +8556,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -8582,9 +8640,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ip',
@@ -8697,9 +8756,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'algo',
@@ -8788,9 +8848,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'email',
@@ -8951,9 +9012,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'actions',
@@ -9025,9 +9087,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -9127,9 +9190,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'actions',
@@ -9244,9 +9308,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -9404,9 +9469,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'comments',
@@ -9617,9 +9683,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'comments',
@@ -9804,9 +9871,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'allowed_delivery_modes',
@@ -10181,9 +10249,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'comments',
@@ -10351,9 +10420,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'comments',
@@ -10578,9 +10648,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -10700,9 +10771,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'extractor',
@@ -10785,9 +10857,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'body',
@@ -10910,9 +10983,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'action',
@@ -11050,9 +11124,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -11155,9 +11230,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'app_id',
@@ -11381,9 +11457,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -11516,9 +11593,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'http_config',
@@ -11691,9 +11769,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -11793,9 +11872,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'integration',
@@ -11941,9 +12021,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'creator',
@@ -12068,9 +12149,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'id',
@@ -12238,9 +12320,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'tunnel',
@@ -12356,9 +12439,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -12404,9 +12488,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -12480,9 +12565,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -12609,9 +12695,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'asn',
@@ -12900,9 +12987,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'adaptive_routing',
@@ -13068,9 +13156,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'allow_insecure',
@@ -13299,9 +13388,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -13429,9 +13519,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'check_regions',
@@ -13740,9 +13831,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -13903,9 +13995,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'dataset',
@@ -14001,9 +14094,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'output_options',
@@ -14164,9 +14258,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'destination_conf',
@@ -14178,9 +14273,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -14206,9 +14302,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'default_sampling',
@@ -14282,9 +14379,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'automatic_advertisement',
@@ -14461,9 +14559,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -14585,9 +14684,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'activated',
@@ -14765,9 +14865,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'connector_id',
@@ -14877,9 +14978,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -15038,9 +15140,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bond_id',
@@ -15219,9 +15322,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -15395,9 +15499,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -15526,9 +15631,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'automatic_return_routing',
@@ -15659,9 +15765,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'automatic_return_routing',
@@ -15805,9 +15912,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -15901,9 +16009,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'managed_request_headers',
@@ -15955,9 +16064,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -16108,9 +16218,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ca',
@@ -16287,9 +16398,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -16374,9 +16486,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'alert_interval',
@@ -16506,9 +16619,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -16629,9 +16743,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'allowed_cors_origins',
@@ -16962,9 +17077,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -17396,9 +17512,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -17481,9 +17598,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -17563,9 +17681,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'actions',
@@ -18083,9 +18202,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -18366,9 +18486,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -18504,9 +18625,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -18695,9 +18817,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -18787,9 +18910,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -18938,9 +19062,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -19108,9 +19233,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'enforcement_rules',
@@ -19158,9 +19284,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'jurisdiction',
@@ -19278,9 +19405,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'dead_letter_queue',
@@ -19449,9 +19577,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'jurisdiction',
@@ -19547,9 +19676,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bucket_name',
@@ -19609,9 +19739,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bucket_name',
@@ -19697,9 +19828,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bucket_name',
@@ -19759,9 +19891,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bucket_name',
@@ -19821,9 +19954,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bucket_name',
@@ -19894,9 +20028,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bucket_name',
@@ -19943,9 +20078,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -20017,9 +20153,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bucket_name',
@@ -20083,9 +20220,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bucket_name',
@@ -20148,9 +20286,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'action',
@@ -20242,9 +20381,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -20335,9 +20475,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -20392,9 +20533,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'auto_renew',
@@ -20707,9 +20849,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -20810,9 +20953,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -20945,9 +21089,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -20988,9 +21133,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'force',
@@ -21075,9 +21221,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'comment',
@@ -21297,9 +21444,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'include_recipient_counts',
@@ -21497,9 +21645,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'include_resources',
@@ -21649,9 +21798,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'meta',
@@ -21936,9 +22086,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'metadata',
@@ -22030,9 +22181,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'rules',
@@ -22112,9 +22264,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'metadata',
@@ -22274,9 +22427,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'dns',
@@ -22475,9 +22629,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'begin_verification',
@@ -22600,9 +22755,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'allowed_origins',
@@ -22875,9 +23031,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'audio_identifier',
@@ -22945,9 +23102,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'file',
@@ -23028,9 +23186,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'identifier',
@@ -23074,9 +23233,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -23124,9 +23284,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'default_creator',
@@ -23261,9 +23422,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'identifier',
@@ -23412,9 +23574,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'notification_url',
@@ -23601,9 +23764,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -23686,9 +23850,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'credentials',
@@ -23831,9 +23996,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'position',
@@ -24012,9 +24178,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -24064,9 +24231,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bot_fight_mode',
@@ -24333,9 +24501,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -24384,9 +24553,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -24596,9 +24766,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'configuration',
@@ -24706,9 +24877,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -24795,9 +24967,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'direction',
@@ -24943,9 +25116,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'credential_set_id',
@@ -25040,9 +25214,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -25145,9 +25320,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -25374,9 +25550,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'additional_routes',
@@ -25670,9 +25847,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -25849,9 +26027,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'rules',
@@ -25930,9 +26109,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -26029,9 +26209,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -26130,9 +26311,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'host',
@@ -26193,9 +26375,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'auto_install',
@@ -26354,9 +26537,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'force',
@@ -26504,9 +26688,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'compatibility_date',
@@ -26864,9 +27049,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'script_name',
@@ -26923,9 +27109,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'environment',
@@ -26951,9 +27138,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'zone_name',
@@ -27102,9 +27290,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'force',
@@ -27261,9 +27450,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -27415,9 +27605,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'expiration',
@@ -27508,9 +27699,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'jurisdiction',
@@ -27640,9 +27832,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -27712,9 +27905,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'body_part',
@@ -28012,9 +28206,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -28111,9 +28306,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'class_name',
@@ -28323,9 +28519,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'allow_code_mode',
@@ -28522,9 +28719,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'auth_credentials',
@@ -28798,9 +28996,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'allow_authenticate_via_warp',
@@ -29007,9 +29206,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'cors_headers',
@@ -29338,9 +29538,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'contract_version',
@@ -29447,9 +29648,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'is_default',
@@ -29468,9 +29670,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'exclude',
@@ -29601,9 +29804,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -29636,9 +29840,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'config',
@@ -29760,9 +29965,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'hostname',
@@ -30019,9 +30225,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'key_rotation_interval_days',
@@ -30087,9 +30294,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'associated_hostnames',
@@ -30115,9 +30323,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -30222,16 +30431,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'settings',
@@ -30332,9 +30543,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'approval_required',
@@ -30548,9 +30760,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'client_secret_version',
@@ -30590,9 +30803,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -30727,9 +30941,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'app_id',
@@ -30741,9 +30956,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -30833,9 +31049,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -30931,9 +31148,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'applies_to_all_integrations',
@@ -31090,9 +31308,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'authentication_type',
@@ -31234,9 +31453,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'icmp_proxy_enabled',
@@ -31294,9 +31514,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'allow_mode_switch',
@@ -31665,9 +31886,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'policy_id',
@@ -31767,9 +31989,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'allow_mode_switch',
@@ -32067,9 +32290,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -32102,9 +32326,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'domains',
@@ -32160,9 +32385,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -32276,9 +32502,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -32438,9 +32665,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -32534,9 +32762,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'interval',
@@ -32637,9 +32866,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -32775,9 +33005,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'disable_for_time',
@@ -32916,9 +33147,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'comment',
@@ -33034,9 +33266,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -33172,9 +33405,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -33382,9 +33616,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -33538,9 +33773,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ai_context_enabled',
@@ -33822,9 +34058,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'data_tags',
@@ -33962,9 +34199,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'category_id',
@@ -34083,9 +34321,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -34207,9 +34446,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'case_sensitive',
@@ -34394,9 +34634,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -34579,9 +34820,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -34748,9 +34990,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -34894,9 +35137,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ai_context_enabled',
@@ -35025,9 +35269,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -35142,9 +35387,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -35240,9 +35486,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'level_ids',
@@ -35332,9 +35579,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ai_context_analysis',
@@ -35396,9 +35644,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'client_default',
@@ -35676,9 +35925,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'activate',
@@ -35850,9 +36100,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'redact_pii',
@@ -35906,9 +36157,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'contents',
@@ -36086,9 +36338,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'action',
@@ -36331,9 +36584,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ips',
@@ -36489,9 +36743,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'settings',
@@ -36553,9 +36808,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -36730,9 +36986,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'comment',
@@ -36917,9 +37174,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'allow_authenticate_via_warp',
@@ -37022,9 +37280,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'custom_pages',
@@ -37175,9 +37434,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'category_id',
@@ -37538,9 +37798,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'behaviors',
@@ -37579,9 +37840,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'active',
@@ -37719,9 +37981,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'config_src',
@@ -37880,9 +38143,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'source',
@@ -37957,9 +38221,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'comment',
@@ -38187,9 +38452,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'comment',
@@ -38440,9 +38706,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ha',
@@ -38586,9 +38853,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ha_mode',
@@ -38999,9 +39267,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -39053,9 +39322,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -39110,9 +39380,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -39209,9 +39480,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'zone_mode',
@@ -39327,9 +39599,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -39461,9 +39734,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -39537,9 +39811,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'configurations',
@@ -39735,9 +40010,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -39817,9 +40093,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'rate_plan',
@@ -39942,9 +40219,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -40000,9 +40278,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareZone',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'rules',
@@ -49986,9 +50265,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'bucket',
@@ -59961,9 +60241,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
       ],
     ),
@@ -59985,9 +60266,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'integration_uid',
@@ -60554,9 +60836,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
       ],
     ),
@@ -60578,9 +60861,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'integration_uid',
@@ -61147,9 +61431,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
       ],
     ),
@@ -61171,9 +61456,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'integration_uid',
@@ -62171,9 +62457,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
       ],
     ),
@@ -62195,9 +62482,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'integration_uid',
@@ -62764,9 +63052,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
       ],
     ),
@@ -62788,9 +63077,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'integration_uid',
@@ -63384,9 +63674,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
       ],
     ),
@@ -63408,9 +63699,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'account_id',
           dartName: 'accountId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudflareAccount',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'integration_uid',

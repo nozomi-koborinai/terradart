@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_customerprofiles_domain`.
 const Set<String> _awsCustomerprofilesDomainSensitive = <String>{};
 
@@ -137,12 +139,12 @@ final class CustomerprofilesDomainMatchingExportingConfigS3Exporting {
     this.s3KeyName,
   });
 
-  final TfArg<String> s3BucketName;
+  final RefTo<AwsS3Bucket> s3BucketName;
 
   final TfArg<String>? s3KeyName;
 
   Map<String, Object?> encode() => {
-    's3_bucket_name': s3BucketName.toTfJson(),
+    's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     if (s3KeyName != null) 's3_key_name': s3KeyName!.toTfJson(),
   };
 }
@@ -352,12 +354,12 @@ final class CustomerprofilesDomainRuleBasedMatchingExportingConfigS3Exporting {
     this.s3KeyName,
   });
 
-  final TfArg<String> s3BucketName;
+  final RefTo<AwsS3Bucket> s3BucketName;
 
   final TfArg<String>? s3KeyName;
 
   Map<String, Object?> encode() => {
-    's3_bucket_name': s3BucketName.toTfJson(),
+    's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     if (s3KeyName != null) 's3_key_name': s3KeyName!.toTfJson(),
   };
 }

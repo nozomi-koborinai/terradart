@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_auditmanager_assessment_delegation`.
 const Set<String> _awsAuditmanagerAssessmentDelegationSensitive = <String>{};
 
@@ -26,7 +28,7 @@ final class AwsAuditmanagerAssessmentDelegation extends Resource {
     TfArg<String>? comment,
     required TfArg<String> controlSetId,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     required TfArg<AuditmanagerAssessmentDelegationRoleType> roleType,
     super.lifecycle,
     super.dependsOn,
@@ -39,7 +41,7 @@ final class AwsAuditmanagerAssessmentDelegation extends Resource {
            if (comment != null) 'comment': comment,
            'control_set_id': controlSetId,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            'role_type': roleType,
          },
        );

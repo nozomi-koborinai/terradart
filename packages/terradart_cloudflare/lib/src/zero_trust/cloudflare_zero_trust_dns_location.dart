@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_dns_location`.
 const Set<String> _cloudflareZeroTrustDnsLocationSensitive = <String>{};
 
@@ -184,7 +186,7 @@ final class CloudflareZeroTrustDnsLocation extends Resource {
 
   CloudflareZeroTrustDnsLocation({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? clientDefault,
     TfArg<String>? dnsDestinationIpsId,
     TfArg<bool>? ecsSupport,
@@ -199,7 +201,7 @@ final class CloudflareZeroTrustDnsLocation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (clientDefault != null) 'client_default': clientDefault,
            if (dnsDestinationIpsId != null)
              'dns_destination_ips_id': dnsDestinationIpsId,

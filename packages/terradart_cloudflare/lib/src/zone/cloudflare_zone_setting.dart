@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_setting`.
 const Set<String> _cloudflareZoneSettingSensitive = <String>{};
 
@@ -19,7 +21,7 @@ final class CloudflareZoneSetting extends Resource {
     TfArg<bool>? enabled,
     required TfArg<String> settingId,
     required TfArg<Object?> value,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -30,7 +32,7 @@ final class CloudflareZoneSetting extends Resource {
            if (enabled != null) 'enabled': enabled,
            'setting_id': settingId,
            'value': value,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

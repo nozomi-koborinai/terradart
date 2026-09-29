@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_web3_hostname`.
 const Set<String> _cloudflareWeb3HostnameSensitive = <String>{};
 
@@ -31,7 +33,7 @@ final class CloudflareWeb3Hostname extends Resource {
     TfArg<String>? dnslink,
     required TfArg<String> name,
     required TfArg<Web3HostnameTarget> target,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -43,7 +45,7 @@ final class CloudflareWeb3Hostname extends Resource {
            if (dnslink != null) 'dnslink': dnslink,
            'name': name,
            'target': target,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

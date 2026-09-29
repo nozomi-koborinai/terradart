@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_appconfig_configuration_profile`.
 const Set<String> _awsAppconfigConfigurationProfileSensitive = <String>{
   'validator.content',
@@ -56,7 +58,7 @@ final class AwsAppconfigConfigurationProfile extends Resource {
     required super.localName,
     required TfArg<String> applicationId,
     TfArg<String>? description,
-    TfArg<String>? kmsKeyIdentifier,
+    RefTo<AwsKmsKey>? kmsKeyIdentifier,
     required TfArg<String> locationUri,
     required TfArg<String> name,
     TfArg<String>? region,
@@ -73,7 +75,8 @@ final class AwsAppconfigConfigurationProfile extends Resource {
          argMap: {
            'application_id': applicationId,
            if (description != null) 'description': description,
-           if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
+           if (kmsKeyIdentifier != null)
+             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
            'location_uri': locationUri,
            'name': name,
            if (region != null) 'region': region,

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_workstations_workstation_cluster`.
 const Set<String> _googleWorkstationsWorkstationClusterSensitive = <String>{};
 
@@ -71,8 +74,8 @@ final class GoogleWorkstationsWorkstationCluster extends Resource {
     required super.localName,
     required TfArg<String> workstationClusterId,
     TfArg<String>? location,
-    required TfArg<String> network,
-    required TfArg<String> subnetwork,
+    required RefTo<GoogleComputeNetwork> network,
+    required RefTo<GoogleComputeSubnetwork> subnetwork,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? annotations,
@@ -90,8 +93,8 @@ final class GoogleWorkstationsWorkstationCluster extends Resource {
          argMap: {
            'workstation_cluster_id': workstationClusterId,
            if (location != null) 'location': location,
-           'network': network,
-           'subnetwork': subnetwork,
+           'network': network.encodeAs('id'),
+           'subnetwork': subnetwork.encodeAs('id'),
            if (displayName != null) 'display_name': displayName,
            if (labels != null) 'labels': labels,
            if (annotations != null) 'annotations': annotations,

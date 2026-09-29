@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_dialogflow_encryption_spec`.
 const Set<String> _googleDialogflowEncryptionSpecSensitive = <String>{};
 
@@ -13,9 +15,11 @@ const Set<String> _googleDialogflowEncryptionSpecSensitive = <String>{};
 final class DialogflowEncryptionSpecEncryptionSpec {
   const DialogflowEncryptionSpecEncryptionSpec({required this.kmsKey});
 
-  final TfArg<String> kmsKey;
+  final RefTo<GoogleKmsCryptoKey> kmsKey;
 
-  Map<String, Object?> encode() => {'kms_key': kmsKey.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key': kmsKey.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_dialogflow_encryption_spec`.

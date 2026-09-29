@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_ecs_cluster`.
 const Set<String> _awsEcsClusterSensitive = <String>{};
 
@@ -40,7 +43,7 @@ final class EcsClusterConfigurationExecuteCommandConfiguration {
     this.logConfiguration,
   });
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<EcsClusterConfigurationExecuteCommandConfigurationLogging>?
   logging;
@@ -49,7 +52,7 @@ final class EcsClusterConfigurationExecuteCommandConfiguration {
   logConfiguration;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (logging != null) 'logging': logging!.toTfJson(),
     if (logConfiguration != null)
       'log_configuration': logConfiguration!.encode(),
@@ -88,7 +91,7 @@ final class EcsClusterConfigurationExecuteCommandConfigurationLogConfiguration {
 
   final TfArg<bool>? s3BucketEncryptionEnabled;
 
-  final TfArg<String>? s3BucketName;
+  final RefTo<AwsS3Bucket>? s3BucketName;
 
   final TfArg<String>? s3KeyPrefix;
 
@@ -99,7 +102,8 @@ final class EcsClusterConfigurationExecuteCommandConfigurationLogConfiguration {
       'cloud_watch_log_group_name': cloudWatchLogGroupName!.toTfJson(),
     if (s3BucketEncryptionEnabled != null)
       's3_bucket_encryption_enabled': s3BucketEncryptionEnabled!.toTfJson(),
-    if (s3BucketName != null) 's3_bucket_name': s3BucketName!.toTfJson(),
+    if (s3BucketName != null)
+      's3_bucket_name': s3BucketName!.encodeAs('id').toTfJson(),
     if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix!.toTfJson(),
   };
 }
@@ -115,13 +119,13 @@ final class EcsClusterConfigurationManagedStorageConfiguration {
 
   final TfArg<String>? fargateEphemeralStorageKmsKeyId;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   Map<String, Object?> encode() => {
     if (fargateEphemeralStorageKmsKeyId != null)
       'fargate_ephemeral_storage_kms_key_id': fargateEphemeralStorageKmsKeyId!
           .toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
   };
 }
 

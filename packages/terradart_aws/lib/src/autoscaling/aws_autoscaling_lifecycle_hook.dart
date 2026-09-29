@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_autoscaling_lifecycle_hook`.
 const Set<String> _awsAutoscalingLifecycleHookSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class AwsAutoscalingLifecycleHook extends Resource {
     TfArg<String>? notificationMetadata,
     TfArg<String>? notificationTargetArn,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -59,7 +61,7 @@ final class AwsAutoscalingLifecycleHook extends Resource {
            if (notificationTargetArn != null)
              'notification_target_arn': notificationTargetArn,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
          },
        );
 

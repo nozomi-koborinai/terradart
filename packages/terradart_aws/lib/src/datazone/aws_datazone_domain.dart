@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_datazone_domain`.
 const Set<String> _awsDatazoneDomainSensitive = <String>{};
 
@@ -52,10 +55,10 @@ final class AwsDatazoneDomain extends Resource {
     TfArg<String>? description,
     required TfArg<String> domainExecutionRole,
     TfArg<DatazoneDomainDomainVersion>? domainVersion,
-    TfArg<String>? kmsKeyIdentifier,
+    RefTo<AwsKmsKey>? kmsKeyIdentifier,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? serviceRole,
+    RefTo<AwsIamRole>? serviceRole,
     TfArg<bool>? skipDeletionCheck,
     TfArg<Map<String, String>>? tags,
     List<DatazoneDomainSingleSignOn>? singleSignOn,
@@ -69,10 +72,11 @@ final class AwsDatazoneDomain extends Resource {
            if (description != null) 'description': description,
            'domain_execution_role': domainExecutionRole,
            if (domainVersion != null) 'domain_version': domainVersion,
-           if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
+           if (kmsKeyIdentifier != null)
+             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
-           if (serviceRole != null) 'service_role': serviceRole,
+           if (serviceRole != null) 'service_role': serviceRole.encodeAs('arn'),
            if (skipDeletionCheck != null)
              'skip_deletion_check': skipDeletionCheck,
            if (tags != null) 'tags': tags,

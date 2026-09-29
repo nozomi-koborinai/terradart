@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_ai_search_instance`.
 const Set<String> _cloudflareAiSearchInstanceSensitive = <String>{};
 
@@ -503,7 +505,7 @@ final class CloudflareAiSearchInstance extends Resource {
 
   CloudflareAiSearchInstance({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? aiGatewayId,
     TfArg<String>? aisearchModel,
     TfArg<bool>? cache,
@@ -546,7 +548,7 @@ final class CloudflareAiSearchInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (aiGatewayId != null) 'ai_gateway_id': aiGatewayId,
            if (aisearchModel != null) 'aisearch_model': aisearchModel,
            if (cache != null) 'cache': cache,

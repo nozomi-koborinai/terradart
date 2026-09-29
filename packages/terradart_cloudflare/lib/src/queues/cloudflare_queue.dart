@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_queue`.
 const Set<String> _cloudflareQueueSensitive = <String>{};
 
@@ -53,7 +55,7 @@ final class CloudflareQueue extends Resource {
 
   CloudflareQueue({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<QueueJurisdiction>? jurisdiction,
     required TfArg<String> queueName,
     QueueSettings? settings,
@@ -64,7 +66,7 @@ final class CloudflareQueue extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (jurisdiction != null) 'jurisdiction': jurisdiction,
            'queue_name': queueName,
            if (settings != null) 'settings': TfArg.literal(settings.encode()),

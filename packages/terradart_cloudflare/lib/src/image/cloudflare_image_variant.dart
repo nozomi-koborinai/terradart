@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_image_variant`.
 const Set<String> _cloudflareImageVariantSensitive = <String>{};
 
@@ -68,7 +70,7 @@ final class CloudflareImageVariant extends Resource {
 
   CloudflareImageVariant({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> id,
     TfArg<bool>? neverRequireSignedUrls,
     required ImageVariantOptions options,
@@ -79,7 +81,7 @@ final class CloudflareImageVariant extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'id': id,
            if (neverRequireSignedUrls != null)
              'never_require_signed_urls': neverRequireSignedUrls,

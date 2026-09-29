@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_ssm_parameter`.
 const Set<String> _awsSsmParameterSensitive = <String>{'value', 'value_wo'};
 
@@ -127,7 +129,7 @@ final class AwsSsmParameter extends Resource {
     TfArg<SsmParameterDataType>? dataType,
     TfArg<String>? description,
     required SsmParameterValue value,
-    TfArg<String>? keyId,
+    RefTo<AwsKmsKey>? keyId,
     required TfArg<String> name,
     TfArg<bool>? overwrite,
     TfArg<String>? region,
@@ -147,7 +149,7 @@ final class AwsSsmParameter extends Resource {
            if (dataType != null) 'data_type': dataType,
            if (description != null) 'description': description,
            ...value.argMap,
-           if (keyId != null) 'key_id': keyId,
+           if (keyId != null) 'key_id': keyId.encodeAs('arn'),
            'name': name,
            if (overwrite != null) 'overwrite': overwrite,
            if (region != null) 'region': region,

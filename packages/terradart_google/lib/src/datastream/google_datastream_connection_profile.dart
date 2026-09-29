@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_datastream_connection_profile`.
 const Set<String> _googleDatastreamConnectionProfileSensitive = <String>{
   'forward_ssh_connectivity.password',
@@ -202,12 +204,12 @@ final class DatastreamConnectionProfileGcsProfile {
     this.rootPath,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String>? rootPath;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     if (rootPath != null) 'root_path': rootPath!.toTfJson(),
   };
 }

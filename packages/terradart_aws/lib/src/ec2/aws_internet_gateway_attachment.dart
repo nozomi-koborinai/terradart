@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_internet_gateway_attachment`.
 const Set<String> _awsInternetGatewayAttachmentSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsInternetGatewayAttachment extends Resource {
     required super.localName,
     required TfArg<String> internetGatewayId,
     TfArg<String>? region,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -24,7 +26,7 @@ final class AwsInternetGatewayAttachment extends Resource {
          argMap: {
            'internet_gateway_id': internetGatewayId,
            if (region != null) 'region': region,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

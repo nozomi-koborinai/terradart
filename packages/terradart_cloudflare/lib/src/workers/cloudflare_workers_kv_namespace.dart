@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_workers_kv_namespace`.
 const Set<String> _cloudflareWorkersKvNamespaceSensitive = <String>{};
 
@@ -27,7 +29,7 @@ final class CloudflareWorkersKvNamespace extends Resource {
 
   CloudflareWorkersKvNamespace({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<WorkersKvNamespaceJurisdiction>? jurisdiction,
     required TfArg<String> title,
     super.lifecycle,
@@ -37,7 +39,7 @@ final class CloudflareWorkersKvNamespace extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (jurisdiction != null) 'jurisdiction': jurisdiction,
            'title': title,
          },

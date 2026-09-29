@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_magic_network_monitoring_rule`.
 const Set<String> _cloudflareMagicNetworkMonitoringRuleSensitive = <String>{};
 
@@ -76,7 +78,7 @@ final class CloudflareMagicNetworkMonitoringRule extends Resource {
 
   CloudflareMagicNetworkMonitoringRule({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<bool> automaticAdvertisement,
     TfArg<num>? bandwidthThreshold,
     TfArg<MagicNetworkMonitoringRuleDuration>? duration,
@@ -94,7 +96,7 @@ final class CloudflareMagicNetworkMonitoringRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'automatic_advertisement': automaticAdvertisement,
            if (bandwidthThreshold != null)
              'bandwidth_threshold': bandwidthThreshold,

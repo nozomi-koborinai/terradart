@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_network_security_intercept_endpoint_group_association`.
 const Set<String>
 _googleNetworkSecurityInterceptEndpointGroupAssociationSensitive = <String>{};
@@ -35,7 +37,7 @@ final class GoogleNetworkSecurityInterceptEndpointGroupAssociation
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> interceptEndpointGroup,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? interceptEndpointGroupAssociationId,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
@@ -49,7 +51,7 @@ final class GoogleNetworkSecurityInterceptEndpointGroupAssociation
          argMap: {
            'location': location,
            'intercept_endpoint_group': interceptEndpointGroup,
-           'network': network,
+           'network': network.encodeAs('id'),
            if (interceptEndpointGroupAssociationId != null)
              'intercept_endpoint_group_association_id':
                  interceptEndpointGroupAssociationId,

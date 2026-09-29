@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_bedrockagentcore_token_vault_cmk`.
 const Set<String> _awsBedrockagentcoreTokenVaultCmkSensitive = <String>{};
 
@@ -18,11 +20,11 @@ final class BedrockagentcoreTokenVaultCmkKmsConfiguration {
 
   final TfArg<BedrockagentcoreTokenVaultCmkKmsConfigurationKeyType> keyType;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
     'key_type': keyType.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 

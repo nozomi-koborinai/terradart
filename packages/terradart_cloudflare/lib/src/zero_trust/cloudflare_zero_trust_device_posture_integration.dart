@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_device_posture_integration`.
 const Set<String> _cloudflareZeroTrustDevicePostureIntegrationSensitive =
     <String>{
@@ -83,7 +85,7 @@ final class CloudflareZeroTrustDevicePostureIntegration extends Resource {
 
   CloudflareZeroTrustDevicePostureIntegration({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> interval,
     required TfArg<String> name,
     required TfArg<ZeroTrustDevicePostureIntegrationType> type,
@@ -95,7 +97,7 @@ final class CloudflareZeroTrustDevicePostureIntegration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'interval': interval,
            'name': name,
            'type': type,

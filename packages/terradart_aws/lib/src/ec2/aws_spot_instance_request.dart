@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_spot_instance_request`.
 const Set<String> _awsSpotInstanceRequestSensitive = <String>{};
 
@@ -452,7 +456,7 @@ final class SpotInstanceRequestEbsBlockDevice {
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? snapshotId;
 
@@ -472,7 +476,7 @@ final class SpotInstanceRequestEbsBlockDevice {
     'device_name': deviceName.toTfJson(),
     if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
     if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     if (tagsAll != null) 'tags_all': tagsAll!.toTfJson(),
@@ -793,7 +797,7 @@ final class SpotInstanceRequestRootBlockDevice {
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -810,7 +814,7 @@ final class SpotInstanceRequestRootBlockDevice {
       'delete_on_termination': deleteOnTermination!.toTfJson(),
     if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
     if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     if (tagsAll != null) 'tags_all': tagsAll!.toTfJson(),
     if (throughput != null) 'throughput': throughput!.toTfJson(),
@@ -915,11 +919,11 @@ final class AwsSpotInstanceRequest extends Resource {
     TfArg<String>? privateIp,
     TfArg<String>? region,
     TfArg<List<String>>? secondaryPrivateIps,
-    TfArg<List<String>>? securityGroups,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
     TfArg<bool>? sourceDestCheck,
     TfArg<String>? spotPrice,
     TfArg<String>? spotType,
-    TfArg<String>? subnetId,
+    RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
     TfArg<SpotInstanceRequestTenancy>? tenancy,
     SpotInstanceRequestUserData? userData,
@@ -927,7 +931,7 @@ final class AwsSpotInstanceRequest extends Resource {
     TfArg<String>? validFrom,
     TfArg<String>? validUntil,
     TfArg<Map<String, String>>? volumeTags,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     TfArg<bool>? waitForFulfillment,
     SpotInstanceRequestCapacityReservationSpecification?
     capacityReservationSpecification,
@@ -985,11 +989,12 @@ final class AwsSpotInstanceRequest extends Resource {
            if (region != null) 'region': region,
            if (secondaryPrivateIps != null)
              'secondary_private_ips': secondaryPrivateIps,
-           if (securityGroups != null) 'security_groups': securityGroups,
+           if (securityGroups != null)
+             'security_groups': securityGroups.encodeAs('name'),
            if (sourceDestCheck != null) 'source_dest_check': sourceDestCheck,
            if (spotPrice != null) 'spot_price': spotPrice,
            if (spotType != null) 'spot_type': spotType,
-           if (subnetId != null) 'subnet_id': subnetId,
+           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (tenancy != null) 'tenancy': tenancy,
            ...?userData?.argMap,
@@ -999,7 +1004,7 @@ final class AwsSpotInstanceRequest extends Resource {
            if (validUntil != null) 'valid_until': validUntil,
            if (volumeTags != null) 'volume_tags': volumeTags,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
            if (waitForFulfillment != null)
              'wait_for_fulfillment': waitForFulfillment,
            if (capacityReservationSpecification != null)

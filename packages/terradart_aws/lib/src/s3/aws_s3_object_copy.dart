@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_object_copy`.
 const Set<String> _awsS3ObjectCopySensitive = <String>{
   'customer_key',
@@ -277,7 +280,7 @@ final class AwsS3ObjectCopy extends Resource {
   AwsS3ObjectCopy({
     required super.localName,
     S3ObjectCopyAccess? access,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? bucketKeyEnabled,
     TfArg<String>? cacheControl,
     TfArg<S3ObjectCopyChecksumAlgorithm>? checksumAlgorithm,
@@ -298,7 +301,7 @@ final class AwsS3ObjectCopy extends Resource {
     TfArg<bool>? forceDestroy,
     required TfArg<String> key,
     TfArg<String>? kmsEncryptionContext,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<Map<String, String>>? metadata,
     TfArg<S3ObjectCopyMetadataDirective>? metadataDirective,
     TfArg<S3ObjectCopyObjectLockLegalHoldStatus>? objectLockLegalHoldStatus,
@@ -324,7 +327,7 @@ final class AwsS3ObjectCopy extends Resource {
          terraformType: tfType,
          argMap: {
            ...?access?.argMap,
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (bucketKeyEnabled != null) 'bucket_key_enabled': bucketKeyEnabled,
            if (cacheControl != null) 'cache_control': cacheControl,
            if (checksumAlgorithm != null)
@@ -353,7 +356,7 @@ final class AwsS3ObjectCopy extends Resource {
            'key': key,
            if (kmsEncryptionContext != null)
              'kms_encryption_context': kmsEncryptionContext,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (metadata != null) 'metadata': metadata,
            if (metadataDirective != null)
              'metadata_directive': metadataDirective,

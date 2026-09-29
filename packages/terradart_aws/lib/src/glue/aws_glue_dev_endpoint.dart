@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_glue_dev_endpoint`.
 const Set<String> _awsGlueDevEndpointSensitive = <String>{};
 
@@ -96,10 +100,10 @@ final class AwsGlueDevEndpoint extends Resource {
     TfArg<num>? numberOfWorkers,
     GlueDevEndpointPublicKey? publicKey,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<String>? securityConfiguration,
-    TfArg<List<String>>? securityGroupIds,
-    TfArg<String>? subnetId,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
+    RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
     TfArg<GlueDevEndpointWorkerType>? workerType,
     super.lifecycle,
@@ -119,11 +123,12 @@ final class AwsGlueDevEndpoint extends Resource {
            if (numberOfWorkers != null) 'number_of_workers': numberOfWorkers,
            ...?publicKey?.argMap,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (securityConfiguration != null)
              'security_configuration': securityConfiguration,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
-           if (subnetId != null) 'subnet_id': subnetId,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
+           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (workerType != null) 'worker_type': workerType,
          },

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_cleanrooms_membership`.
 const Set<String> _awsCleanroomsMembershipSensitive = <String>{};
 
@@ -26,13 +29,13 @@ final class CleanroomsMembershipDefaultResultConfiguration {
     this.outputConfiguration,
   });
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final List<CleanroomsMembershipDefaultResultConfigurationOutputConfiguration>?
   outputConfiguration;
 
   Map<String, Object?> encode() => {
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (outputConfiguration != null)
       'output_configuration': [
         for (final e in outputConfiguration!) e.encode(),
@@ -68,14 +71,14 @@ final class CleanroomsMembershipDefaultResultConfigurationOutputConfigurationS3 
     required this.resultFormat,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String>? keyPrefix;
 
   final TfArg<String> resultFormat;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
     'result_format': resultFormat.toTfJson(),
   };

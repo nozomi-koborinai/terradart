@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_storagegateway_nfs_file_share`.
 const Set<String> _awsStoragegatewayNfsFileShareSensitive = <String>{};
 
@@ -102,14 +105,14 @@ final class AwsStoragegatewayNfsFileShare extends Resource {
     required TfArg<String> gatewayArn,
     TfArg<bool>? guessMimeTypeEnabled,
     TfArg<bool>? kmsEncrypted,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> locationArn,
     TfArg<String>? notificationPolicy,
     TfArg<StoragegatewayNfsFileShareObjectAcl>? objectAcl,
     TfArg<bool>? readOnly,
     TfArg<String>? region,
     TfArg<bool>? requesterPays,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<StoragegatewayNfsFileShareSquash>? squash,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? vpcEndpointDnsName,
@@ -133,7 +136,7 @@ final class AwsStoragegatewayNfsFileShare extends Resource {
            if (guessMimeTypeEnabled != null)
              'guess_mime_type_enabled': guessMimeTypeEnabled,
            if (kmsEncrypted != null) 'kms_encrypted': kmsEncrypted,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'location_arn': locationArn,
            if (notificationPolicy != null)
              'notification_policy': notificationPolicy,
@@ -141,7 +144,7 @@ final class AwsStoragegatewayNfsFileShare extends Resource {
            if (readOnly != null) 'read_only': readOnly,
            if (region != null) 'region': region,
            if (requesterPays != null) 'requester_pays': requesterPays,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (squash != null) 'squash': squash,
            if (tags != null) 'tags': tags,
            if (vpcEndpointDnsName != null)

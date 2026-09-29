@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_kms_key_policy`.
 const Set<String> _awsKmsKeyPolicySensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsKmsKeyPolicy extends Resource {
   AwsKmsKeyPolicy({
     required super.localName,
     TfArg<bool>? bypassPolicyLockoutSafetyCheck,
-    required TfArg<String> keyId,
+    required RefTo<AwsKmsKey> keyId,
     required TfArg<String> policy,
     TfArg<String>? region,
     super.lifecycle,
@@ -26,7 +28,7 @@ final class AwsKmsKeyPolicy extends Resource {
            if (bypassPolicyLockoutSafetyCheck != null)
              'bypass_policy_lockout_safety_check':
                  bypassPolicyLockoutSafetyCheck,
-           'key_id': keyId,
+           'key_id': keyId.encodeAs('key_id'),
            'policy': policy,
            if (region != null) 'region': region,
          },

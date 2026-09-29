@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_shield_drt_access_role_arn_association`.
 const Set<String> _awsShieldDrtAccessRoleArnAssociationSensitive = <String>{};
 
@@ -12,12 +14,15 @@ final class AwsShieldDrtAccessRoleArnAssociation extends Resource {
 
   AwsShieldDrtAccessRoleArnAssociation({
     required super.localName,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'role_arn': roleArn});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'role_arn': roleArn.encodeAs('arn')},
+       );
 
   @override
   Set<String> get sensitiveFields =>

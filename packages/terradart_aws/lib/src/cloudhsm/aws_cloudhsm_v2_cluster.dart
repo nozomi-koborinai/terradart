@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_cloudhsm_v2_cluster`.
 const Set<String> _awsCloudhsmV2ClusterSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class AwsCloudhsmV2Cluster extends Resource {
     TfArg<CloudhsmV2ClusterMode>? mode,
     TfArg<String>? region,
     TfArg<String>? sourceBackupIdentifier,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -50,7 +52,7 @@ final class AwsCloudhsmV2Cluster extends Resource {
            if (region != null) 'region': region,
            if (sourceBackupIdentifier != null)
              'source_backup_identifier': sourceBackupIdentifier,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
          },
        );

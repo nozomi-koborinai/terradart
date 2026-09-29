@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_lambda_layer_version`.
 const Set<String> _awsLambdaLayerVersionSensitive = <String>{};
 
@@ -89,7 +91,7 @@ final class AwsLambdaLayerVersion extends Resource {
     required TfArg<String> layerName,
     TfArg<String>? licenseInfo,
     TfArg<String>? region,
-    TfArg<String>? s3Bucket,
+    RefTo<AwsS3Bucket>? s3Bucket,
     TfArg<String>? s3Key,
     TfArg<String>? s3ObjectVersion,
     TfArg<bool>? skipDestroy,
@@ -114,7 +116,7 @@ final class AwsLambdaLayerVersion extends Resource {
            'layer_name': layerName,
            if (licenseInfo != null) 'license_info': licenseInfo,
            if (region != null) 'region': region,
-           if (s3Bucket != null) 's3_bucket': s3Bucket,
+           if (s3Bucket != null) 's3_bucket': s3Bucket.encodeAs('id'),
            if (s3Key != null) 's3_key': s3Key,
            if (s3ObjectVersion != null) 's3_object_version': s3ObjectVersion,
            if (skipDestroy != null) 'skip_destroy': skipDestroy,

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_lex_bot_alias`.
 const Set<String> _awsLexBotAliasSensitive = <String>{};
 
@@ -16,12 +19,12 @@ final class LexBotAliasConversationLogs {
     this.logSettings,
   });
 
-  final TfArg<String> iamRoleArn;
+  final RefTo<AwsIamRole> iamRoleArn;
 
   final List<LexBotAliasConversationLogsLogSettings>? logSettings;
 
   Map<String, Object?> encode() => {
-    'iam_role_arn': iamRoleArn.toTfJson(),
+    'iam_role_arn': iamRoleArn.encodeAs('arn').toTfJson(),
     if (logSettings != null)
       'log_settings': [for (final e in logSettings!) e.encode()],
   };
@@ -40,7 +43,7 @@ final class LexBotAliasConversationLogsLogSettings {
 
   final TfArg<String> destination;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String> logType;
 
@@ -48,7 +51,7 @@ final class LexBotAliasConversationLogsLogSettings {
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     'log_type': logType.toTfJson(),
     'resource_arn': resourceArn.toTfJson(),
   };

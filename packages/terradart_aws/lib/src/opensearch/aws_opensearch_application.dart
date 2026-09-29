@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_opensearch_application`.
 const Set<String> _awsOpensearchApplicationSensitive = <String>{};
 
@@ -90,7 +92,7 @@ final class AwsOpensearchApplication extends Resource {
 
   AwsOpensearchApplication({
     required super.localName,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -105,7 +107,7 @@ final class AwsOpensearchApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

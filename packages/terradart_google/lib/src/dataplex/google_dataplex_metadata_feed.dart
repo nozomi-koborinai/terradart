@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_dataplex_metadata_feed`.
 const Set<String> _googleDataplexMetadataFeedSensitive = <String>{};
 
@@ -67,7 +69,7 @@ final class GoogleDataplexMetadataFeed extends Resource {
     required TfArg<String> location,
     required DataplexMetadataFeedScope scope,
     DataplexMetadataFeedFilters? filters,
-    TfArg<String>? pubsubTopic,
+    RefTo<GooglePubsubTopic>? pubsubTopic,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -82,7 +84,7 @@ final class GoogleDataplexMetadataFeed extends Resource {
            'location': location,
            'scope': TfArg.literal(scope.encode()),
            if (filters != null) 'filters': TfArg.literal(filters.encode()),
-           if (pubsubTopic != null) 'pubsub_topic': pubsubTopic,
+           if (pubsubTopic != null) 'pubsub_topic': pubsubTopic.encodeAs('id'),
            if (labels != null) 'labels': labels,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,

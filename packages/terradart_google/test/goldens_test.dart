@@ -33,7 +33,7 @@ void main() {
     stack.add(
       GooglePubsubTopicIamMember(
         localName: 'orders_publisher',
-        topic: TfArg.ref(orders.nameRef),
+        topic: orders.ref.pinned('name'),
         role: TfArg.literal('roles/pubsub.publisher'),
         member: TfArg.literal(
           'serviceAccount:publisher@demo.iam.gserviceaccount.com',
@@ -59,7 +59,7 @@ void main() {
       GooglePubsubSubscription(
         localName: 'orders_worker',
         name: TfArg.literal('orders-worker'),
-        topic: TfArg.ref(orders.id),
+        topic: orders.ref,
       ),
     );
     stack.add(

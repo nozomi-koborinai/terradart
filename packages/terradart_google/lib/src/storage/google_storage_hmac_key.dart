@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_storage_hmac_key`.
 const Set<String> _googleStorageHmacKeySensitive = <String>{'secret'};
 
@@ -38,7 +40,7 @@ final class GoogleStorageHmacKey extends Resource {
 
   GoogleStorageHmacKey({
     required super.localName,
-    required TfArg<String> serviceAccountEmail,
+    required RefTo<GoogleServiceAccount> serviceAccountEmail,
     TfArg<StorageHmacKeyState>? state,
     TfArg<String>? project,
     super.lifecycle,
@@ -48,7 +50,7 @@ final class GoogleStorageHmacKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service_account_email': serviceAccountEmail,
+           'service_account_email': serviceAccountEmail.encodeAs('email'),
            if (state != null) 'state': state,
            if (project != null) 'project': project,
          },

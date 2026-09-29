@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_ai_gateway`.
 const Set<String> _cloudflareAiGatewaySensitive = <String>{};
 
@@ -809,7 +811,7 @@ final class CloudflareAiGateway extends Resource {
 
   CloudflareAiGateway({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? authentication,
     TfArg<bool>? byokOnly,
     required TfArg<bool> cacheInvalidateOnUpdate,
@@ -842,7 +844,7 @@ final class CloudflareAiGateway extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (authentication != null) 'authentication': authentication,
            if (byokOnly != null) 'byok_only': byokOnly,
            'cache_invalidate_on_update': cacheInvalidateOnUpdate,

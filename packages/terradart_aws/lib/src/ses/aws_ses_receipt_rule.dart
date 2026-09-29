@@ -4,6 +4,12 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_ses_receipt_rule`.
 const Set<String> _awsSesReceiptRuleSensitive = <String>{};
 
@@ -63,7 +69,7 @@ final class SesReceiptRuleBounceAction {
 
   final TfArg<String>? statusCode;
 
-  final TfArg<String>? topicArn;
+  final RefTo<AwsSnsTopic>? topicArn;
 
   Map<String, Object?> encode() => {
     'message': message.toTfJson(),
@@ -71,7 +77,7 @@ final class SesReceiptRuleBounceAction {
     'sender': sender.toTfJson(),
     'smtp_reply_code': smtpReplyCode.toTfJson(),
     if (statusCode != null) 'status_code': statusCode!.toTfJson(),
-    if (topicArn != null) 'topic_arn': topicArn!.toTfJson(),
+    if (topicArn != null) 'topic_arn': topicArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -86,19 +92,19 @@ final class SesReceiptRuleLambdaAction {
     this.topicArn,
   });
 
-  final TfArg<String> functionArn;
+  final RefTo<AwsLambdaFunction> functionArn;
 
   final TfArg<SesReceiptRuleLambdaActionInvocationType>? invocationType;
 
   final TfArg<num> position;
 
-  final TfArg<String>? topicArn;
+  final RefTo<AwsSnsTopic>? topicArn;
 
   Map<String, Object?> encode() => {
-    'function_arn': functionArn.toTfJson(),
+    'function_arn': functionArn.encodeAs('arn').toTfJson(),
     if (invocationType != null) 'invocation_type': invocationType!.toTfJson(),
     'position': position.toTfJson(),
-    if (topicArn != null) 'topic_arn': topicArn!.toTfJson(),
+    if (topicArn != null) 'topic_arn': topicArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -125,26 +131,27 @@ final class SesReceiptRuleS3Action {
     this.topicArn,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
-  final TfArg<String>? iamRoleArn;
+  final RefTo<AwsIamRole>? iamRoleArn;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? objectKeyPrefix;
 
   final TfArg<num> position;
 
-  final TfArg<String>? topicArn;
+  final RefTo<AwsSnsTopic>? topicArn;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
-    if (iamRoleArn != null) 'iam_role_arn': iamRoleArn!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
+    if (iamRoleArn != null)
+      'iam_role_arn': iamRoleArn!.encodeAs('arn').toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (objectKeyPrefix != null)
       'object_key_prefix': objectKeyPrefix!.toTfJson(),
     'position': position.toTfJson(),
-    if (topicArn != null) 'topic_arn': topicArn!.toTfJson(),
+    if (topicArn != null) 'topic_arn': topicArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -162,12 +169,12 @@ final class SesReceiptRuleSnsAction {
 
   final TfArg<num> position;
 
-  final TfArg<String> topicArn;
+  final RefTo<AwsSnsTopic> topicArn;
 
   Map<String, Object?> encode() => {
     if (encoding != null) 'encoding': encoding!.toTfJson(),
     'position': position.toTfJson(),
-    'topic_arn': topicArn.toTfJson(),
+    'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -195,12 +202,12 @@ final class SesReceiptRuleStopAction {
 
   final TfArg<SesReceiptRuleStopActionScope> scope;
 
-  final TfArg<String>? topicArn;
+  final RefTo<AwsSnsTopic>? topicArn;
 
   Map<String, Object?> encode() => {
     'position': position.toTfJson(),
     'scope': scope.toTfJson(),
-    if (topicArn != null) 'topic_arn': topicArn!.toTfJson(),
+    if (topicArn != null) 'topic_arn': topicArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -227,12 +234,12 @@ final class SesReceiptRuleWorkmailAction {
 
   final TfArg<num> position;
 
-  final TfArg<String>? topicArn;
+  final RefTo<AwsSnsTopic>? topicArn;
 
   Map<String, Object?> encode() => {
     'organization_arn': organizationArn.toTfJson(),
     'position': position.toTfJson(),
-    if (topicArn != null) 'topic_arn': topicArn!.toTfJson(),
+    if (topicArn != null) 'topic_arn': topicArn!.encodeAs('arn').toTfJson(),
   };
 }
 

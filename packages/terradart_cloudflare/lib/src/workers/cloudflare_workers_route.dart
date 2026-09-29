@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_workers_route`.
 const Set<String> _cloudflareWorkersRouteSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class CloudflareWorkersRoute extends Resource {
     required super.localName,
     required TfArg<String> pattern,
     TfArg<String>? script,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,7 +30,7 @@ final class CloudflareWorkersRoute extends Resource {
          argMap: {
            'pattern': pattern,
            if (script != null) 'script': script,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

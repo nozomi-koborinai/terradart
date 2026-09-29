@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_appflow_flow`.
 const Set<String> _awsAppflowFlowSensitive = <String>{};
 
@@ -207,14 +211,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
     this.failOnFirstDestinationError,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketPrefix;
 
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (failOnFirstDestinationError != null)
       'fail_on_first_destination_error': failOnFirstDestinationError!
@@ -272,14 +277,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesEventB
     this.failOnFirstDestinationError,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketPrefix;
 
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (failOnFirstDestinationError != null)
       'fail_on_first_destination_error': failOnFirstDestinationError!
@@ -318,14 +324,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesHoneyc
     this.failOnFirstDestinationError,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketPrefix;
 
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (failOnFirstDestinationError != null)
       'fail_on_first_destination_error': failOnFirstDestinationError!
@@ -373,14 +380,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesMarket
     this.failOnFirstDestinationError,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketPrefix;
 
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (failOnFirstDestinationError != null)
       'fail_on_first_destination_error': failOnFirstDestinationError!
@@ -427,14 +435,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshi
     this.failOnFirstDestinationError,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketPrefix;
 
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (failOnFirstDestinationError != null)
       'fail_on_first_destination_error': failOnFirstDestinationError!
@@ -452,7 +461,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3 {
     this.s3OutputFormatConfig,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? bucketPrefix;
 
@@ -460,7 +469,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3 {
   s3OutputFormatConfig;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (s3OutputFormatConfig != null)
       's3_output_format_config': s3OutputFormatConfig!.encode(),
@@ -709,14 +718,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesf
     this.failOnFirstDestinationError,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketPrefix;
 
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (failOnFirstDestinationError != null)
       'fail_on_first_destination_error': failOnFirstDestinationError!
@@ -789,14 +799,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
     this.failOnFirstDestinationError,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketPrefix;
 
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (failOnFirstDestinationError != null)
       'fail_on_first_destination_error': failOnFirstDestinationError!
@@ -813,12 +824,13 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
     this.bucketPrefix,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketPrefix;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
   };
 }
@@ -862,14 +874,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowfl
     this.failOnFirstDestinationError,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketPrefix;
 
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (failOnFirstDestinationError != null)
       'fail_on_first_destination_error': failOnFirstDestinationError!
@@ -887,7 +900,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
     required this.s3OutputFormatConfig,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? bucketPrefix;
 
@@ -895,7 +908,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
   s3OutputFormatConfig;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     's3_output_format_config': s3OutputFormatConfig.encode(),
   };
@@ -1112,14 +1125,15 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendes
     this.failOnFirstDestinationError,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<String>? bucketPrefix;
 
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (failOnFirstDestinationError != null)
       'fail_on_first_destination_error': failOnFirstDestinationError!
@@ -1152,13 +1166,13 @@ final class AppflowFlowMetadataCatalogConfigGlueDataCatalog {
 
   final TfArg<String> databaseName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> tablePrefix;
 
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_prefix': tablePrefix.toTfJson(),
   };
 }
@@ -1436,7 +1450,7 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3 {
     this.s3InputFormatConfig,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String> bucketPrefix;
 
@@ -1444,7 +1458,7 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3 {
   s3InputFormatConfig;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': bucketPrefix.toTfJson(),
     if (s3InputFormatConfig != null)
       's3_input_format_config': s3InputFormatConfig!.encode(),
@@ -2295,7 +2309,7 @@ final class AwsAppflowFlow extends Resource {
   AwsAppflowFlow({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? kmsArn,
+    RefTo<AwsKmsKey>? kmsArn,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -2312,7 +2326,7 @@ final class AwsAppflowFlow extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (kmsArn != null) 'kms_arn': kmsArn,
+           if (kmsArn != null) 'kms_arn': kmsArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

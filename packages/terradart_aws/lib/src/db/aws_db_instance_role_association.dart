@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_db_instance_role_association`.
 const Set<String> _awsDbInstanceRoleAssociationSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsDbInstanceRoleAssociation extends Resource {
     required TfArg<String> dbInstanceIdentifier,
     required TfArg<String> featureName,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,7 +28,7 @@ final class AwsDbInstanceRoleAssociation extends Resource {
            'db_instance_identifier': dbInstanceIdentifier,
            'feature_name': featureName,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
          },
        );
 

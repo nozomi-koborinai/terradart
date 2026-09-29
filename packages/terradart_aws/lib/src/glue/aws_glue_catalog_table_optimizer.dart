@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_glue_catalog_table_optimizer`.
 const Set<String> _awsGlueCatalogTableOptimizerSensitive = <String>{};
 
@@ -32,7 +34,7 @@ final class GlueCatalogTableOptimizerConfiguration {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final List<GlueCatalogTableOptimizerConfigurationCompactionConfiguration>?
   compactionConfiguration;
@@ -47,7 +49,7 @@ final class GlueCatalogTableOptimizerConfiguration {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (compactionConfiguration != null)
       'compaction_configuration': [
         for (final e in compactionConfiguration!) e.encode(),

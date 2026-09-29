@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_managed_transforms`.
 const Set<String> _cloudflareManagedTransformsSensitive = <String>{};
 
@@ -68,7 +70,7 @@ final class CloudflareManagedTransforms extends Resource {
 
   CloudflareManagedTransforms({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     List<ManagedTransformsManagedRequestHeaders>? managedRequestHeaders,
     List<ManagedTransformsManagedResponseHeaders>? managedResponseHeaders,
     super.lifecycle,
@@ -78,7 +80,7 @@ final class CloudflareManagedTransforms extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (managedRequestHeaders != null)
              'managed_request_headers': TfArg.literal([
                for (final e in managedRequestHeaders) e.encode(),

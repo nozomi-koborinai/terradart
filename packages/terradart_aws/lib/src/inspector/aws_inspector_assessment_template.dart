@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_inspector_assessment_template`.
 const Set<String> _awsInspectorAssessmentTemplateSensitive = <String>{};
 
@@ -18,11 +20,11 @@ final class InspectorAssessmentTemplateEventSubscription {
 
   final TfArg<InspectorAssessmentTemplateEventSubscriptionEvent> event;
 
-  final TfArg<String> topicArn;
+  final RefTo<AwsSnsTopic> topicArn;
 
   Map<String, Object?> encode() => {
     'event': event.toTfJson(),
-    'topic_arn': topicArn.toTfJson(),
+    'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };
 }
 

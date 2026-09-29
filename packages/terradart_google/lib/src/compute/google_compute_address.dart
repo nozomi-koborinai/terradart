@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_address`.
 const Set<String> _googleComputeAddressSensitive = <String>{};
 
@@ -99,8 +102,8 @@ final class GoogleComputeAddress extends Resource {
     TfArg<NetworkTier>? networkTier,
     TfArg<IpVersion>? ipVersion,
     TfArg<Ipv6EndpointType>? ipv6EndpointType,
-    TfArg<String>? network,
-    TfArg<String>? subnetwork,
+    RefTo<GoogleComputeNetwork>? network,
+    RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<String>? ipCollection,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? description,
@@ -121,8 +124,8 @@ final class GoogleComputeAddress extends Resource {
            if (networkTier != null) 'network_tier': networkTier,
            if (ipVersion != null) 'ip_version': ipVersion,
            if (ipv6EndpointType != null) 'ipv6_endpoint_type': ipv6EndpointType,
-           if (network != null) 'network': network,
-           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (network != null) 'network': network.encodeAs('id'),
+           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
            if (ipCollection != null) 'ip_collection': ipCollection,
            if (labels != null) 'labels': labels,
            if (description != null) 'description': description,

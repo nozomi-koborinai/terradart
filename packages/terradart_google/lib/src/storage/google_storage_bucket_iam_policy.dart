@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_bucket_iam_policy`.
 const Set<String> _googleStorageBucketIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleStorageBucketIamPolicy extends Resource {
 
   GoogleStorageBucketIamPolicy({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +27,7 @@ final class GoogleStorageBucketIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'bucket': bucket, 'policy_data': policyData},
+         argMap: {'bucket': bucket.encodeAs('name'), 'policy_data': policyData},
        );
 
   @override

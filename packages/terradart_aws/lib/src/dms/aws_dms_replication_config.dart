@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_dms_replication_config`.
 const Set<String> _awsDmsReplicationConfigSensitive = <String>{};
 
@@ -38,7 +41,7 @@ final class DmsReplicationConfigComputeConfig {
 
   final TfArg<String>? dnsNameServers;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<num>? maxCapacityUnits;
 
@@ -50,13 +53,13 @@ final class DmsReplicationConfigComputeConfig {
 
   final TfArg<String> replicationSubnetGroupId;
 
-  final TfArg<List<Object?>>? vpcSecurityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds;
 
   Map<String, Object?> encode() => {
     if (availabilityZone != null)
       'availability_zone': availabilityZone!.toTfJson(),
     if (dnsNameServers != null) 'dns_name_servers': dnsNameServers!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (maxCapacityUnits != null)
       'max_capacity_units': maxCapacityUnits!.toTfJson(),
     if (minCapacityUnits != null)
@@ -66,7 +69,7 @@ final class DmsReplicationConfigComputeConfig {
       'preferred_maintenance_window': preferredMaintenanceWindow!.toTfJson(),
     'replication_subnet_group_id': replicationSubnetGroupId.toTfJson(),
     if (vpcSecurityGroupIds != null)
-      'vpc_security_group_ids': vpcSecurityGroupIds!.toTfJson(),
+      'vpc_security_group_ids': vpcSecurityGroupIds!.encodeAs('id').toTfJson(),
   };
 }
 

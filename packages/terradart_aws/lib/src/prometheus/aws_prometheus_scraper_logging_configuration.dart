@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+
 /// Sensitive field paths for `aws_prometheus_scraper_logging_configuration`.
 const Set<String> _awsPrometheusScraperLoggingConfigurationSensitive =
     <String>{};
@@ -49,9 +51,11 @@ final class PrometheusScraperLoggingConfigurationLoggingDestinationCloudwatchLog
     required this.logGroupArn,
   });
 
-  final TfArg<String> logGroupArn;
+  final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
-  Map<String, Object?> encode() => {'log_group_arn': logGroupArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_prometheus_scraper_logging_configuration`.

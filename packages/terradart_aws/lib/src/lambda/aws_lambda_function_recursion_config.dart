@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_lambda_function_recursion_config`.
 const Set<String> _awsLambdaFunctionRecursionConfigSensitive = <String>{};
 
@@ -22,7 +24,7 @@ final class AwsLambdaFunctionRecursionConfig extends Resource {
 
   AwsLambdaFunctionRecursionConfig({
     required super.localName,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     required TfArg<LambdaFunctionRecursionConfigRecursiveLoop> recursiveLoop,
     TfArg<String>? region,
     super.lifecycle,
@@ -32,7 +34,7 @@ final class AwsLambdaFunctionRecursionConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            'recursive_loop': recursiveLoop,
            if (region != null) 'region': region,
          },

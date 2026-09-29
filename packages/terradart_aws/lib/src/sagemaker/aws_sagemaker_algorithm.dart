@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_algorithm`.
 const Set<String> _awsSagemakerAlgorithmSensitive = <String>{};
 
@@ -1819,14 +1821,14 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
   >?
   compressionType;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String> s3OutputPath;
 
   Map<String, Object?> encode() => {
     if (compressionType != null)
       'compression_type': compressionType!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
 }
@@ -2531,14 +2533,14 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
   >?
   assembleWith;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String> s3OutputPath;
 
   Map<String, Object?> encode() => {
     if (accept != null) 'accept': accept!.toTfJson(),
     if (assembleWith != null) 'assemble_with': assembleWith!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
 }

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_mailmanager_ingress_point`.
 const Set<String> _awsMailmanagerIngressPointSensitive = <String>{
   'ingress_point_configuration.smtp_password_wo',
@@ -108,12 +110,12 @@ final class MailmanagerIngressPointIngressPointConfigurationTlsAuthConfiguration
 
   final TfArg<String>? crlContent;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
     'ca_content': caContent.toTfJson(),
     if (crlContent != null) 'crl_content': crlContent!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 

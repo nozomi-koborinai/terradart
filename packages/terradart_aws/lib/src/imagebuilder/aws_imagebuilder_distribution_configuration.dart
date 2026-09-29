@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_imagebuilder_distribution_configuration`.
 const Set<String> _awsImagebuilderDistributionConfigurationSensitive =
     <String>{};
@@ -94,7 +98,7 @@ final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConf
 
   final TfArg<String>? description;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? name;
 
@@ -106,7 +110,7 @@ final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConf
   Map<String, Object?> encode() => {
     if (amiTags != null) 'ami_tags': amiTags!.toTfJson(),
     if (description != null) 'description': description!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (name != null) 'name': name!.toTfJson(),
     if (targetAccountIds != null)
       'target_account_ids': targetAccountIds!.toTfJson(),
@@ -318,16 +322,16 @@ final class ImagebuilderDistributionConfigurationDistributionS3ExportConfigurati
   >
   diskImageFormat;
 
-  final TfArg<String> roleName;
+  final RefTo<AwsIamRole> roleName;
 
-  final TfArg<String> s3Bucket;
+  final RefTo<AwsS3Bucket> s3Bucket;
 
   final TfArg<String>? s3Prefix;
 
   Map<String, Object?> encode() => {
     'disk_image_format': diskImageFormat.toTfJson(),
-    'role_name': roleName.toTfJson(),
-    's3_bucket': s3Bucket.toTfJson(),
+    'role_name': roleName.encodeAs('name').toTfJson(),
+    's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     if (s3Prefix != null) 's3_prefix': s3Prefix!.toTfJson(),
   };
 }

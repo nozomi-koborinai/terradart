@@ -111,7 +111,7 @@ providers:
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml
     resourceProvider: null
     migrateManifest: packages/terradart_migrate/lib/src/manifest/google.g.dart
-    references: check
+    references: typed
     bump:
       mode: auto
       repo: hashicorp/terraform-provider-google
@@ -157,7 +157,7 @@ providers:
     resourceProvider: null # cloudflare_ prefix collides with nothing
     migrateManifest: packages/terradart_migrate/lib/src/manifest/cloudflare.g.dart
     providerEnums: true
-    references: check
+    references: typed
     bump:
       mode: pr-only # minor releases ship breaking changes
       repo: cloudflare/terraform-provider-cloudflare
@@ -178,7 +178,7 @@ providers:
     resourceProvider: null # aws_ prefix collides with nothing
     migrateManifest: packages/terradart_migrate/lib/src/manifest/aws.g.dart
     providerEnums: true
-    references: check
+    references: typed
     bump:
       mode: auto
       repo: hashicorp/terraform-provider-aws

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_intelligent_tiering_configuration`.
 const Set<String> _awsS3BucketIntelligentTieringConfigurationSensitive =
     <String>{};
@@ -74,7 +76,7 @@ final class AwsS3BucketIntelligentTieringConfiguration extends Resource {
 
   AwsS3BucketIntelligentTieringConfiguration({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<S3BucketIntelligentTieringConfigurationStatus>? status,
@@ -87,7 +89,7 @@ final class AwsS3BucketIntelligentTieringConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            'name': name,
            if (region != null) 'region': region,
            if (status != null) 'status': status,

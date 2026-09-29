@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_timestreamwrite_database`.
 const Set<String> _awsTimestreamwriteDatabaseSensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsTimestreamwriteDatabase extends Resource {
   AwsTimestreamwriteDatabase({
     required super.localName,
     required TfArg<String> databaseName,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -24,7 +26,7 @@ final class AwsTimestreamwriteDatabase extends Resource {
          terraformType: tfType,
          argMap: {
            'database_name': databaseName,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

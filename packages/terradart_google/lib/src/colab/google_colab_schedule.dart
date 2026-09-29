@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_colab_schedule`.
 const Set<String> _googleColabScheduleSensitive = <String>{};
 
@@ -58,7 +62,7 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJob {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<String>? pipelineSpec;
 
@@ -66,7 +70,7 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJob {
 
   final TfArg<List<Object?>>? reservedIpRanges;
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final TfArg<String>? templateUri;
 
@@ -82,13 +86,14 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJob {
   Map<String, Object?> encode() => {
     if (displayName != null) 'display_name': displayName!.toTfJson(),
     if (labels != null) 'labels': labels!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
     if (pipelineSpec != null) 'pipeline_spec': pipelineSpec!.toTfJson(),
     if (preflightValidations != null)
       'preflight_validations': preflightValidations!.toTfJson(),
     if (reservedIpRanges != null)
       'reserved_ip_ranges': reservedIpRanges!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
     if (templateUri != null) 'template_uri': templateUri!.toTfJson(),
     if (encryptionSpec != null) 'encryption_spec': encryptionSpec!.encode(),
     if (pscInterfaceConfig != null)
@@ -105,9 +110,11 @@ final class ColabScheduleCreatePipelineJobRequestPipelineJobEncryptionSpec {
     required this.kmsKeyName,
   });
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `create_pipeline_job_request.pipeline_job.psc_interface_config` block of

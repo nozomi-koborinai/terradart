@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_database_migration_service_connection_profile`.
 const Set<String> _googleDatabaseMigrationServiceConnectionProfileSensitive =
     <String>{
@@ -57,7 +59,7 @@ final class DatabaseMigrationServiceConnectionProfileAlloydbSettings {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<String> vpcNetwork;
+  final RefTo<GoogleComputeNetwork> vpcNetwork;
 
   final DatabaseMigrationServiceConnectionProfileAlloydbSettingsInitialUser
   initialUser;
@@ -67,7 +69,7 @@ final class DatabaseMigrationServiceConnectionProfileAlloydbSettings {
 
   Map<String, Object?> encode() => {
     if (labels != null) 'labels': labels!.toTfJson(),
-    'vpc_network': vpcNetwork.toTfJson(),
+    'vpc_network': vpcNetwork.encodeAs('id').toTfJson(),
     'initial_user': initialUser.encode(),
     if (primaryInstanceSettings != null)
       'primary_instance_settings': primaryInstanceSettings!.encode(),

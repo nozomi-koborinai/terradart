@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_vpc_encryption_control`.
 const Set<String> _awsVpcEncryptionControlSensitive = <String>{};
 
@@ -31,7 +33,7 @@ final class AwsVpcEncryptionControl extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? virtualPrivateGatewayExclusion,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     TfArg<String>? vpcLatticeExclusion,
     TfArg<String>? vpcPeeringExclusion,
     super.lifecycle,
@@ -57,7 +59,7 @@ final class AwsVpcEncryptionControl extends Resource {
            if (virtualPrivateGatewayExclusion != null)
              'virtual_private_gateway_exclusion':
                  virtualPrivateGatewayExclusion,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
            if (vpcLatticeExclusion != null)
              'vpc_lattice_exclusion': vpcLatticeExclusion,
            if (vpcPeeringExclusion != null)

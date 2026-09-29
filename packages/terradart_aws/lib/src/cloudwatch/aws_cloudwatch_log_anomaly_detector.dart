@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_cloudwatch_log_anomaly_detector`.
 const Set<String> _awsCloudwatchLogAnomalyDetectorSensitive = <String>{};
 
@@ -31,7 +33,7 @@ final class AwsCloudwatchLogAnomalyDetector extends Resource {
     required TfArg<bool> enabled,
     TfArg<CloudwatchLogAnomalyDetectorEvaluationFrequency>? evaluationFrequency,
     TfArg<String>? filterPattern,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<List<String>> logGroupArnList,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -49,7 +51,7 @@ final class AwsCloudwatchLogAnomalyDetector extends Resource {
            if (evaluationFrequency != null)
              'evaluation_frequency': evaluationFrequency,
            if (filterPattern != null) 'filter_pattern': filterPattern,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'log_group_arn_list': logGroupArnList,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_appflow_connector_profile`.
 const Set<String> _awsAppflowConnectorProfileSensitive = <String>{
   'connector_profile_config.connector_profile_credentials.amplitude.secret_key',
@@ -1195,7 +1199,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
     required this.roleArn,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? bucketPrefix;
 
@@ -1207,17 +1211,17 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 
   final TfArg<String>? databaseUrl;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (clusterIdentifier != null)
       'cluster_identifier': clusterIdentifier!.toTfJson(),
     if (dataApiRoleArn != null) 'data_api_role_arn': dataApiRoleArn!.toTfJson(),
     if (databaseName != null) 'database_name': databaseName!.toTfJson(),
     if (databaseUrl != null) 'database_url': databaseUrl!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1362,7 +1366,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 
   final TfArg<String>? accountName;
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? bucketPrefix;
 
@@ -1376,7 +1380,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 
   Map<String, Object?> encode() => {
     if (accountName != null) 'account_name': accountName!.toTfJson(),
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (privateLinkServiceName != null)
       'private_link_service_name': privateLinkServiceName!.toTfJson(),
@@ -1430,7 +1434,7 @@ final class AwsAppflowConnectorProfile extends Resource {
     required TfArg<AppflowConnectorProfileConnectionMode> connectionMode,
     TfArg<String>? connectorLabel,
     required TfArg<AppflowConnectorProfileConnectorType> connectorType,
-    TfArg<String>? kmsArn,
+    RefTo<AwsKmsKey>? kmsArn,
     required TfArg<String> name,
     TfArg<String>? region,
     required AppflowConnectorProfileConnectorProfileConfig
@@ -1445,7 +1449,7 @@ final class AwsAppflowConnectorProfile extends Resource {
            'connection_mode': connectionMode,
            if (connectorLabel != null) 'connector_label': connectorLabel,
            'connector_type': connectorType,
-           if (kmsArn != null) 'kms_arn': kmsArn,
+           if (kmsArn != null) 'kms_arn': kmsArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            'connector_profile_config': TfArg.literal(

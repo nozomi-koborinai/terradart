@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_appsync_datasource`.
 const Set<String> _awsAppsyncDatasourceSensitive = <String>{};
 
@@ -190,9 +193,11 @@ final class AppsyncDatasourceHttpConfigAuthorizationConfigAwsIamConfig {
 final class AppsyncDatasourceLambdaConfig {
   const AppsyncDatasourceLambdaConfig({required this.functionArn});
 
-  final TfArg<String> functionArn;
+  final RefTo<AwsLambdaFunction> functionArn;
 
-  Map<String, Object?> encode() => {'function_arn': functionArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'function_arn': functionArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `opensearchservice_config` block of
@@ -288,7 +293,7 @@ final class AwsAppsyncDatasource extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? serviceRoleArn,
+    RefTo<AwsIamRole>? serviceRoleArn,
     required TfArg<AppsyncDatasourceType> type,
     AppsyncDatasourceDynamodbConfig? dynamodbConfig,
     AppsyncDatasourceElasticsearchConfig? elasticsearchConfig,
@@ -308,7 +313,8 @@ final class AwsAppsyncDatasource extends Resource {
            if (description != null) 'description': description,
            'name': name,
            if (region != null) 'region': region,
-           if (serviceRoleArn != null) 'service_role_arn': serviceRoleArn,
+           if (serviceRoleArn != null)
+             'service_role_arn': serviceRoleArn.encodeAs('arn'),
            'type': type,
            if (dynamodbConfig != null)
              'dynamodb_config': TfArg.literal(dynamodbConfig.encode()),

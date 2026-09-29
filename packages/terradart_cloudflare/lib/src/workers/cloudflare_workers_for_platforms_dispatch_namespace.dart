@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_workers_for_platforms_dispatch_namespace`.
 const Set<String> _cloudflareWorkersForPlatformsDispatchNamespaceSensitive =
     <String>{};
@@ -18,7 +20,7 @@ final class CloudflareWorkersForPlatformsDispatchNamespace extends Resource {
 
   CloudflareWorkersForPlatformsDispatchNamespace({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? name,
     super.lifecycle,
     super.dependsOn,
@@ -26,7 +28,10 @@ final class CloudflareWorkersForPlatformsDispatchNamespace extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, if (name != null) 'name': name},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           if (name != null) 'name': name,
+         },
        );
 
   @override

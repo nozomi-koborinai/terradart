@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_cur_report_definition`.
 const Set<String> _awsCurReportDefinitionSensitive = <String>{};
 
@@ -84,7 +86,7 @@ final class AwsCurReportDefinition extends Resource {
     TfArg<bool>? refreshClosedReports,
     required TfArg<String> reportName,
     TfArg<CurReportDefinitionReportVersioning>? reportVersioning,
-    required TfArg<String> s3Bucket,
+    required RefTo<AwsS3Bucket> s3Bucket,
     required TfArg<String> s3Prefix,
     required TfArg<String> s3Region,
     TfArg<Map<String, String>>? tags,
@@ -109,7 +111,7 @@ final class AwsCurReportDefinition extends Resource {
              'refresh_closed_reports': refreshClosedReports,
            'report_name': reportName,
            if (reportVersioning != null) 'report_versioning': reportVersioning,
-           's3_bucket': s3Bucket,
+           's3_bucket': s3Bucket.encodeAs('id'),
            's3_prefix': s3Prefix,
            's3_region': s3Region,
            if (tags != null) 'tags': tags,

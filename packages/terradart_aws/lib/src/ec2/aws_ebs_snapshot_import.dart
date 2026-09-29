@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_ebs_snapshot_import`.
 const Set<String> _awsEbsSnapshotImportSensitive = <String>{};
 
@@ -127,12 +131,12 @@ final class EbsSnapshotImportDiskContainerUserBucket {
     required this.s3Key,
   });
 
-  final TfArg<String> s3Bucket;
+  final RefTo<AwsS3Bucket> s3Bucket;
 
   final TfArg<String> s3Key;
 
   Map<String, Object?> encode() => {
-    's3_bucket': s3Bucket.toTfJson(),
+    's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     's3_key': s3Key.toTfJson(),
   };
 }
@@ -145,10 +149,10 @@ final class AwsEbsSnapshotImport extends Resource {
     required super.localName,
     TfArg<String>? description,
     TfArg<bool>? encrypted,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<bool>? permanentRestore,
     TfArg<String>? region,
-    TfArg<String>? roleName,
+    RefTo<AwsIamRole>? roleName,
     TfArg<String>? storageTier,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? temporaryRestoreDays,
@@ -163,10 +167,10 @@ final class AwsEbsSnapshotImport extends Resource {
          argMap: {
            if (description != null) 'description': description,
            if (encrypted != null) 'encrypted': encrypted,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (permanentRestore != null) 'permanent_restore': permanentRestore,
            if (region != null) 'region': region,
-           if (roleName != null) 'role_name': roleName,
+           if (roleName != null) 'role_name': roleName.encodeAs('name'),
            if (storageTier != null) 'storage_tier': storageTier,
            if (tags != null) 'tags': tags,
            if (temporaryRestoreDays != null)

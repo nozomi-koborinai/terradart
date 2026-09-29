@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_global_forwarding_rule`.
 const Set<String> _googleComputeGlobalForwardingRuleSensitive = <String>{};
 
@@ -312,8 +315,8 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
     TfArg<GlobalForwardingRuleIpVersion>? ipVersion,
     TfArg<String>? portRange,
     TfArg<GlobalForwardingRuleLoadBalancingScheme>? loadBalancingScheme,
-    TfArg<String>? network,
-    TfArg<String>? subnetwork,
+    RefTo<GoogleComputeNetwork>? network,
+    RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<GlobalForwardingRuleNetworkTier>? networkTier,
     TfArg<List<String>>? sourceIpRanges,
     List<ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilter>?
@@ -344,8 +347,8 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
            if (portRange != null) 'port_range': portRange,
            if (loadBalancingScheme != null)
              'load_balancing_scheme': loadBalancingScheme,
-           if (network != null) 'network': network,
-           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (network != null) 'network': network.encodeAs('id'),
+           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
            if (networkTier != null) 'network_tier': networkTier,
            if (sourceIpRanges != null) 'source_ip_ranges': sourceIpRanges,
            if (metadataFilters != null)

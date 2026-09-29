@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_ecs_daemon_task_definition`.
 const Set<String> _awsEcsDaemonTaskDefinitionSensitive = <String>{};
 
@@ -686,12 +688,12 @@ final class AwsEcsDaemonTaskDefinition extends Resource {
   AwsEcsDaemonTaskDefinition({
     required super.localName,
     TfArg<String>? cpu,
-    TfArg<String>? executionRoleArn,
+    RefTo<AwsIamRole>? executionRoleArn,
     required TfArg<String> family,
     TfArg<String>? memory,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? taskRoleArn,
+    RefTo<AwsIamRole>? taskRoleArn,
     List<EcsDaemonTaskDefinitionContainerDefinition>? containerDefinition,
     List<EcsDaemonTaskDefinitionVolume>? volume,
     super.lifecycle,
@@ -702,12 +704,14 @@ final class AwsEcsDaemonTaskDefinition extends Resource {
          terraformType: tfType,
          argMap: {
            if (cpu != null) 'cpu': cpu,
-           if (executionRoleArn != null) 'execution_role_arn': executionRoleArn,
+           if (executionRoleArn != null)
+             'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'family': family,
            if (memory != null) 'memory': memory,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           if (taskRoleArn != null) 'task_role_arn': taskRoleArn,
+           if (taskRoleArn != null)
+             'task_role_arn': taskRoleArn.encodeAs('arn'),
            if (containerDefinition != null)
              'container_definition': TfArg.literal([
                for (final e in containerDefinition) e.encode(),

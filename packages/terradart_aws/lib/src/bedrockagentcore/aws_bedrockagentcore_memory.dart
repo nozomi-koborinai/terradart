@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_bedrockagentcore_memory`.
 const Set<String> _awsBedrockagentcoreMemorySensitive = <String>{};
 
@@ -146,7 +148,7 @@ final class AwsBedrockagentcoreMemory extends Resource {
   AwsBedrockagentcoreMemory({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? encryptionKeyArn,
+    RefTo<AwsKmsKey>? encryptionKeyArn,
     required TfArg<num> eventExpiryDuration,
     TfArg<String>? memoryExecutionRoleArn,
     required TfArg<String> name,
@@ -163,7 +165,8 @@ final class AwsBedrockagentcoreMemory extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (encryptionKeyArn != null) 'encryption_key_arn': encryptionKeyArn,
+           if (encryptionKeyArn != null)
+             'encryption_key_arn': encryptionKeyArn.encodeAs('arn'),
            'event_expiry_duration': eventExpiryDuration,
            if (memoryExecutionRoleArn != null)
              'memory_execution_role_arn': memoryExecutionRoleArn,

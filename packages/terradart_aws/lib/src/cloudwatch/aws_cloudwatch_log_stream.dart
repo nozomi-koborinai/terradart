@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+
 /// Sensitive field paths for `aws_cloudwatch_log_stream`.
 const Set<String> _awsCloudwatchLogStreamSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsCloudwatchLogStream extends Resource {
 
   AwsCloudwatchLogStream({
     required super.localName,
-    required TfArg<String> logGroupName,
+    required RefTo<AwsCloudwatchLogGroup> logGroupName,
     required TfArg<String> name,
     TfArg<String>? region,
     super.lifecycle,
@@ -22,7 +24,7 @@ final class AwsCloudwatchLogStream extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'log_group_name': logGroupName,
+           'log_group_name': logGroupName.encodeAs('name'),
            'name': name,
            if (region != null) 'region': region,
          },

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_filter`.
 const Set<String> _cloudflareFilterSensitive = <String>{};
 
@@ -43,7 +45,7 @@ final class CloudflareFilter extends Resource {
     TfArg<String>? expression,
     TfArg<bool>? paused,
     TfArg<String>? ref,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required List<FilterBody> body,
     super.lifecycle,
     super.dependsOn,
@@ -56,7 +58,7 @@ final class CloudflareFilter extends Resource {
            if (expression != null) 'expression': expression,
            if (paused != null) 'paused': paused,
            if (ref != null) 'ref': ref,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'body': TfArg.literal([for (final e in body) e.encode()]),
          },
        );

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_vpc_ipv6_cidr_block_association`.
 const Set<String> _awsVpcIpv6CidrBlockAssociationSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class AwsVpcIpv6CidrBlockAssociation extends Resource {
     TfArg<num>? ipv6NetmaskLength,
     TfArg<String>? ipv6Pool,
     TfArg<String>? region,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -34,7 +36,7 @@ final class AwsVpcIpv6CidrBlockAssociation extends Resource {
              'ipv6_netmask_length': ipv6NetmaskLength,
            if (ipv6Pool != null) 'ipv6_pool': ipv6Pool,
            if (region != null) 'region': region,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

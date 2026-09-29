@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_group`.
 const Set<String> _cloudflareZeroTrustAccessGroupSensitive = <String>{};
 
@@ -204,10 +207,10 @@ final class ZeroTrustAccessGroupExcludeCertificate {
 final class ZeroTrustAccessGroupExcludeCloudflareAccountMember {
   const ZeroTrustAccessGroupExcludeCloudflareAccountMember({this.accountId});
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -231,12 +234,12 @@ final class ZeroTrustAccessGroupExcludeDevicePosture {
     required this.integrationUid,
   });
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -712,10 +715,10 @@ final class ZeroTrustAccessGroupIncludeCertificate {
 final class ZeroTrustAccessGroupIncludeCloudflareAccountMember {
   const ZeroTrustAccessGroupIncludeCloudflareAccountMember({this.accountId});
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -739,12 +742,12 @@ final class ZeroTrustAccessGroupIncludeDevicePosture {
     required this.integrationUid,
   });
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -1220,10 +1223,10 @@ final class ZeroTrustAccessGroupRequireCertificate {
 final class ZeroTrustAccessGroupRequireCloudflareAccountMember {
   const ZeroTrustAccessGroupRequireCloudflareAccountMember({this.accountId});
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -1247,12 +1250,12 @@ final class ZeroTrustAccessGroupRequireDevicePosture {
     required this.integrationUid,
   });
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -1542,10 +1545,10 @@ final class CloudflareZeroTrustAccessGroup extends Resource {
 
   CloudflareZeroTrustAccessGroup({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<bool>? isDefault,
     required TfArg<String> name,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     List<ZeroTrustAccessGroupExclude>? exclude,
     required List<ZeroTrustAccessGroupInclude> include,
     List<ZeroTrustAccessGroupRequire>? require,
@@ -1556,10 +1559,10 @@ final class CloudflareZeroTrustAccessGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
            if (isDefault != null) 'is_default': isDefault,
            'name': name,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
            if (exclude != null)
              'exclude': TfArg.literal([for (final e in exclude) e.encode()]),
            'include': TfArg.literal([for (final e in include) e.encode()]),

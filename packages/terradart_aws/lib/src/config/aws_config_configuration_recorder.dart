@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_config_configuration_recorder`.
 const Set<String> _awsConfigConfigurationRecorderSensitive = <String>{};
 
@@ -175,7 +177,7 @@ final class AwsConfigConfigurationRecorder extends Resource {
     required super.localName,
     TfArg<String>? name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     ConfigConfigurationRecorderRecordingGroup? recordingGroup,
     ConfigConfigurationRecorderRecordingMode? recordingMode,
     super.lifecycle,
@@ -187,7 +189,7 @@ final class AwsConfigConfigurationRecorder extends Resource {
          argMap: {
            if (name != null) 'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (recordingGroup != null)
              'recording_group': TfArg.literal(recordingGroup.encode()),
            if (recordingMode != null)

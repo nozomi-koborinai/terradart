@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_ecs_task_definition`.
 const Set<String> _awsEcsTaskDefinitionSensitive = <String>{};
 
@@ -432,7 +434,7 @@ final class AwsEcsTaskDefinition extends Resource {
     required TfArg<String> containerDefinitions,
     TfArg<String>? cpu,
     TfArg<bool>? enableFaultInjection,
-    TfArg<String>? executionRoleArn,
+    RefTo<AwsIamRole>? executionRoleArn,
     required TfArg<String> family,
     TfArg<EcsTaskDefinitionIpcMode>? ipcMode,
     TfArg<String>? memory,
@@ -443,7 +445,7 @@ final class AwsEcsTaskDefinition extends Resource {
     requiresCompatibilities,
     TfArg<bool>? skipDestroy,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? taskRoleArn,
+    RefTo<AwsIamRole>? taskRoleArn,
     TfArg<bool>? trackLatest,
     EcsTaskDefinitionEphemeralStorage? ephemeralStorage,
     List<EcsTaskDefinitionPlacementConstraints>? placementConstraints,
@@ -461,7 +463,8 @@ final class AwsEcsTaskDefinition extends Resource {
            if (cpu != null) 'cpu': cpu,
            if (enableFaultInjection != null)
              'enable_fault_injection': enableFaultInjection,
-           if (executionRoleArn != null) 'execution_role_arn': executionRoleArn,
+           if (executionRoleArn != null)
+             'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'family': family,
            if (ipcMode != null) 'ipc_mode': ipcMode,
            if (memory != null) 'memory': memory,
@@ -474,7 +477,8 @@ final class AwsEcsTaskDefinition extends Resource {
              ]),
            if (skipDestroy != null) 'skip_destroy': skipDestroy,
            if (tags != null) 'tags': tags,
-           if (taskRoleArn != null) 'task_role_arn': taskRoleArn,
+           if (taskRoleArn != null)
+             'task_role_arn': taskRoleArn.encodeAs('arn'),
            if (trackLatest != null) 'track_latest': trackLatest,
            if (ephemeralStorage != null)
              'ephemeral_storage': TfArg.literal(ephemeralStorage.encode()),

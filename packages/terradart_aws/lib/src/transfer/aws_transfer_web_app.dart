@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_transfer_web_app`.
 const Set<String> _awsTransferWebAppSensitive = <String>{};
 
@@ -40,17 +45,17 @@ final class TransferWebAppEndpointDetailsVpc {
     required this.vpcId,
   });
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
-  final TfArg<String> vpcId;
+  final RefTo<AwsVpc> vpcId;
 
   Map<String, Object?> encode() => {
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
-    'vpc_id': vpcId.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
+    'vpc_id': vpcId.encodeAs('id').toTfJson(),
   };
 }
 
@@ -82,11 +87,11 @@ final class TransferWebAppIdentityProviderDetailsIdentityCenterConfig {
 
   final TfArg<String>? instanceArn;
 
-  final TfArg<String>? role;
+  final RefTo<AwsIamRole>? role;
 
   Map<String, Object?> encode() => {
     if (instanceArn != null) 'instance_arn': instanceArn!.toTfJson(),
-    if (role != null) 'role': role!.toTfJson(),
+    if (role != null) 'role': role!.encodeAs('arn').toTfJson(),
   };
 }
 

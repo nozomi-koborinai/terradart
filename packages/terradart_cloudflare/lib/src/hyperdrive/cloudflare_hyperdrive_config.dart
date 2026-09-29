@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_hyperdrive_config`.
 const Set<String> _cloudflareHyperdriveConfigSensitive = <String>{
   'origin.access_client_secret',
@@ -128,7 +130,7 @@ final class CloudflareHyperdriveConfig extends Resource {
 
   CloudflareHyperdriveConfig({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? integration,
     required TfArg<String> name,
     TfArg<num>? originConnectionLimit,
@@ -142,7 +144,7 @@ final class CloudflareHyperdriveConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (integration != null) 'integration': integration,
            'name': name,
            if (originConnectionLimit != null)

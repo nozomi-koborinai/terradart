@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_kendra_query_suggestions_block_list`.
 const Set<String> _awsKendraQuerySuggestionsBlockListSensitive = <String>{};
 
@@ -16,12 +19,12 @@ final class KendraQuerySuggestionsBlockListSourceS3Path {
     required this.key,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> key;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),
   };
 }
@@ -36,7 +39,7 @@ final class AwsKendraQuerySuggestionsBlockList extends Resource {
     required TfArg<String> indexId,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required KendraQuerySuggestionsBlockListSourceS3Path sourceS3Path,
     super.lifecycle,
@@ -50,7 +53,7 @@ final class AwsKendraQuerySuggestionsBlockList extends Resource {
            'index_id': indexId,
            'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            'source_s3_path': TfArg.literal(sourceS3Path.encode()),
          },

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_workmail_organization`.
 const Set<String> _awsWorkmailOrganizationSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class AwsWorkmailOrganization extends Resource {
     TfArg<bool>? deleteIdentityCenterApplication,
     TfArg<String>? directoryId,
     TfArg<bool>? interoperabilityEnabled,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> organizationAlias,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -34,7 +36,7 @@ final class AwsWorkmailOrganization extends Resource {
            if (directoryId != null) 'directory_id': directoryId,
            if (interoperabilityEnabled != null)
              'interoperability_enabled': interoperabilityEnabled,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'organization_alias': organizationAlias,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

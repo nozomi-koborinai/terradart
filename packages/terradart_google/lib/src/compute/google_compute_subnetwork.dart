@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_compute_subnetwork`.
 const Set<String> _googleComputeSubnetworkSensitive = <String>{};
 
@@ -245,7 +247,7 @@ final class GoogleComputeSubnetwork extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? ipCidrRange,
     TfArg<SubnetworkPurpose>? purpose,
     TfArg<SubnetworkRole>? role,
@@ -273,7 +275,7 @@ final class GoogleComputeSubnetwork extends Resource {
          argMap: {
            'name': name,
            if (region != null) 'region': region,
-           'network': network,
+           'network': network.encodeAs('id'),
            if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange,
            if (purpose != null) 'purpose': purpose,
            if (role != null) 'role': role,

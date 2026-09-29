@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_dns_firewall`.
 const Set<String> _cloudflareDnsFirewallSensitive = <String>{};
 
@@ -37,7 +39,7 @@ final class CloudflareDnsFirewall extends Resource {
 
   CloudflareDnsFirewall({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? deprecateAnyRequests,
     TfArg<num>? dnsFirewallIpCount,
     TfArg<bool>? ecsFallback,
@@ -56,7 +58,7 @@ final class CloudflareDnsFirewall extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (deprecateAnyRequests != null)
              'deprecate_any_requests': deprecateAnyRequests,
            if (dnsFirewallIpCount != null)

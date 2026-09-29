@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_evidently_project`.
 const Set<String> _awsEvidentlyProjectSensitive = <String>{};
 
@@ -80,10 +83,10 @@ final class EvidentlyProjectDataDeliveryDataDeliveryS3Destination
 final class EvidentlyProjectDataDeliveryCloudwatchLogs {
   const EvidentlyProjectDataDeliveryCloudwatchLogs({this.logGroup});
 
-  final TfArg<String>? logGroup;
+  final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
   Map<String, Object?> encode() => {
-    if (logGroup != null) 'log_group': logGroup!.toTfJson(),
+    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
   };
 }
 
@@ -93,12 +96,12 @@ final class EvidentlyProjectDataDeliveryCloudwatchLogs {
 final class EvidentlyProjectDataDeliveryS3Destination {
   const EvidentlyProjectDataDeliveryS3Destination({this.bucket, this.prefix});
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
 }

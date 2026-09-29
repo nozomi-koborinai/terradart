@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_lexv2models_bot`.
 const Set<String> _awsLexv2modelsBotSensitive = <String>{};
 
@@ -69,7 +71,7 @@ final class AwsLexv2modelsBot extends Resource {
     required TfArg<num> idleSessionTtlInSeconds,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<Map<String, String>>? testBotAliasTags,
     TfArg<Lexv2modelsBotType>? type,
@@ -86,7 +88,7 @@ final class AwsLexv2modelsBot extends Resource {
            'idle_session_ttl_in_seconds': idleSessionTtlInSeconds,
            'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (testBotAliasTags != null)
              'test_bot_alias_tags': testBotAliasTags,

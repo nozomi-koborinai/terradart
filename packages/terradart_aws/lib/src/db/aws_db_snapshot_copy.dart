@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_db_snapshot_copy`.
 const Set<String> _awsDbSnapshotCopySensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsDbSnapshotCopy extends Resource {
     required super.localName,
     TfArg<bool>? copyTags,
     TfArg<String>? destinationRegion,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? optionGroupName,
     TfArg<String>? presignedUrl,
     TfArg<String>? region,
@@ -33,7 +35,7 @@ final class AwsDbSnapshotCopy extends Resource {
            if (copyTags != null) 'copy_tags': copyTags,
            if (destinationRegion != null)
              'destination_region': destinationRegion,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (optionGroupName != null) 'option_group_name': optionGroupName,
            if (presignedUrl != null) 'presigned_url': presignedUrl,
            if (region != null) 'region': region,

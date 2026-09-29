@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_ses_identity_notification_topic`.
 const Set<String> _awsSesIdentityNotificationTopicSensitive = <String>{};
 
@@ -28,7 +30,7 @@ final class AwsSesIdentityNotificationTopic extends Resource {
     required TfArg<SesIdentityNotificationTopicNotificationType>
     notificationType,
     TfArg<String>? region,
-    TfArg<String>? topicArn,
+    RefTo<AwsSnsTopic>? topicArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -41,7 +43,7 @@ final class AwsSesIdentityNotificationTopic extends Resource {
              'include_original_headers': includeOriginalHeaders,
            'notification_type': notificationType,
            if (region != null) 'region': region,
-           if (topicArn != null) 'topic_arn': topicArn,
+           if (topicArn != null) 'topic_arn': topicArn.encodeAs('arn'),
          },
        );
 

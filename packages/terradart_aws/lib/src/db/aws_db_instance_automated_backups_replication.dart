@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_db_instance_automated_backups_replication`.
 const Set<String> _awsDbInstanceAutomatedBackupsReplicationSensitive =
     <String>{};
@@ -13,7 +15,7 @@ final class AwsDbInstanceAutomatedBackupsReplication extends Resource {
 
   AwsDbInstanceAutomatedBackupsReplication({
     required super.localName,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? preSignedUrl,
     TfArg<String>? region,
     TfArg<num>? retentionPeriod,
@@ -25,7 +27,7 @@ final class AwsDbInstanceAutomatedBackupsReplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (preSignedUrl != null) 'pre_signed_url': preSignedUrl,
            if (region != null) 'region': region,
            if (retentionPeriod != null) 'retention_period': retentionPeriod,

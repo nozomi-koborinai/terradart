@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_imagebuilder_container_recipe`.
 const Set<String> _awsImagebuilderContainerRecipeSensitive = <String>{};
 
@@ -210,7 +212,7 @@ final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEb
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? snapshotId;
 
@@ -228,7 +230,7 @@ final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEb
       'delete_on_termination': deleteOnTermination!.toTfJson(),
     if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
     if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
     if (throughput != null) 'throughput': throughput!.toTfJson(),
     if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
@@ -292,7 +294,7 @@ final class AwsImagebuilderContainerRecipe extends Resource {
     required TfArg<ImagebuilderContainerRecipeContainerType> containerType,
     TfArg<String>? description,
     required ImagebuilderContainerRecipeDockerfileTemplate dockerfileTemplate,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     required TfArg<String> parentImage,
     TfArg<ImagebuilderContainerRecipePlatformOverride>? platformOverride,
@@ -313,7 +315,7 @@ final class AwsImagebuilderContainerRecipe extends Resource {
            'container_type': containerType,
            if (description != null) 'description': description,
            ...dockerfileTemplate.argMap,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            'parent_image': parentImage,
            if (platformOverride != null) 'platform_override': platformOverride,

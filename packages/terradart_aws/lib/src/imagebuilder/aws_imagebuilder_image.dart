@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+
 /// Sensitive field paths for `aws_imagebuilder_image`.
 const Set<String> _awsImagebuilderImageSensitive = <String>{};
 
@@ -143,9 +145,11 @@ final class ImagebuilderImageImageTestsConfiguration {
 final class ImagebuilderImageLoggingConfiguration {
   const ImagebuilderImageLoggingConfiguration({required this.logGroupName});
 
-  final TfArg<String> logGroupName;
+  final RefTo<AwsCloudwatchLogGroup> logGroupName;
 
-  Map<String, Object?> encode() => {'log_group_name': logGroupName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'log_group_name': logGroupName.encodeAs('name').toTfJson(),
+  };
 }
 
 /// Typed helper for the `workflow` block of

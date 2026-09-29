@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_eks_addon`.
 const Set<String> _awsEksAddonSensitive = <String>{};
 
@@ -50,12 +52,12 @@ final class EksAddonPodIdentityAssociation {
     required this.serviceAccount,
   });
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> serviceAccount;
 
   Map<String, Object?> encode() => {
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'service_account': serviceAccount.toTfJson(),
   };
 }

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_snippet`.
 const Set<String> _cloudflareSnippetSensitive = <String>{};
 
@@ -30,7 +32,7 @@ final class CloudflareSnippet extends Resource {
     required super.localName,
     required TfArg<List<Map<String, Object?>>> files,
     required TfArg<String> snippetName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required SnippetMetadata metadata,
     super.lifecycle,
     super.dependsOn,
@@ -41,7 +43,7 @@ final class CloudflareSnippet extends Resource {
          argMap: {
            'files': files,
            'snippet_name': snippetName,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'metadata': TfArg.literal(metadata.encode()),
          },
        );

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_athena_workgroup`.
 const Set<String> _awsAthenaWorkgroupSensitive = <String>{};
 
@@ -110,10 +113,10 @@ final class AthenaWorkgroupConfigurationCustomerContentEncryptionConfiguration {
     this.kmsKey,
   });
 
-  final TfArg<String>? kmsKey;
+  final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -181,10 +184,10 @@ final class AthenaWorkgroupConfigurationManagedQueryResultsConfigurationEncrypti
     this.kmsKey,
   });
 
-  final TfArg<String>? kmsKey;
+  final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -231,7 +234,7 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLogging
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? logGroup;
+  final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
   final TfArg<String>? logStreamNamePrefix;
 
@@ -242,7 +245,7 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLogging
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.toTfJson(),
+    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
     if (logStreamNamePrefix != null)
       'log_stream_name_prefix': logStreamNamePrefix!.toTfJson(),
     if (logType != null) 'log_type': [for (final e in logType!) e.encode()],
@@ -279,11 +282,11 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationManagedLoggingCon
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? kmsKey;
+  final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -299,13 +302,13 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationS3LoggingConfigur
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? kmsKey;
+  final RefTo<AwsKmsKey>? kmsKey;
 
   final TfArg<String>? logLocation;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
     if (logLocation != null) 'log_location': logLocation!.toTfJson(),
   };
 }
@@ -423,12 +426,12 @@ final class AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurati
   >?
   encryptionOption;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
     if (encryptionOption != null)
       'encryption_option': encryptionOption!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_keyspaces_table`.
 const Set<String> _awsKeyspacesTableSensitive = <String>{};
 
@@ -86,13 +88,13 @@ final class KeyspacesTableEncryptionSpecification {
     this.type,
   });
 
-  final TfArg<String>? kmsKeyIdentifier;
+  final RefTo<AwsKmsKey>? kmsKeyIdentifier;
 
   final TfArg<KeyspacesTableEncryptionSpecificationType>? type;
 
   Map<String, Object?> encode() => {
     if (kmsKeyIdentifier != null)
-      'kms_key_identifier': kmsKeyIdentifier!.toTfJson(),
+      'kms_key_identifier': kmsKeyIdentifier!.encodeAs('arn').toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
 }

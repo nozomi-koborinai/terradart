@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_vertex_ai_persistent_resource`.
 const Set<String> _googleVertexAiPersistentResourceSensitive = <String>{};
 
@@ -13,9 +16,11 @@ const Set<String> _googleVertexAiPersistentResourceSensitive = <String>{};
 final class VertexAiPersistentResourceEncryptionSpec {
   const VertexAiPersistentResourceEncryptionSpec({required this.kmsKeyName});
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `psc_interface_config` block of
@@ -220,7 +225,7 @@ final class GoogleVertexAiPersistentResource extends Resource {
     TfArg<String>? location,
     TfArg<String>? displayName,
     required List<VertexAiPersistentResourceResourcePools> resourcePools,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     TfArg<List<String>>? reservedIpRanges,
     VertexAiPersistentResourceEncryptionSpec? encryptionSpec,
     VertexAiPersistentResourcePscInterfaceConfig? pscInterfaceConfig,
@@ -241,7 +246,7 @@ final class GoogleVertexAiPersistentResource extends Resource {
            'resource_pools': TfArg.literal([
              for (final e in resourcePools) e.encode(),
            ]),
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            if (reservedIpRanges != null) 'reserved_ip_ranges': reservedIpRanges,
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),

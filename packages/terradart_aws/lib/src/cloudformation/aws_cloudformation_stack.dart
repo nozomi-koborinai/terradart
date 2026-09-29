@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cloudformation_stack`.
 const Set<String> _awsCloudformationStackSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class AwsCloudformationStack extends Resource {
     required super.localName,
     List<TfArg<CloudformationStackCapabilities>>? capabilities,
     TfArg<bool>? disableRollback,
-    TfArg<String>? iamRoleArn,
+    RefTo<AwsIamRole>? iamRoleArn,
     required TfArg<String> name,
     TfArg<List<String>>? notificationArns,
     TfArg<CloudformationStackOnFailure>? onFailure,
@@ -60,7 +62,7 @@ final class AwsCloudformationStack extends Resource {
                for (final e in capabilities) e.toTfJson(),
              ]),
            if (disableRollback != null) 'disable_rollback': disableRollback,
-           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn,
+           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn.encodeAs('arn'),
            'name': name,
            if (notificationArns != null) 'notification_arns': notificationArns,
            if (onFailure != null) 'on_failure': onFailure,

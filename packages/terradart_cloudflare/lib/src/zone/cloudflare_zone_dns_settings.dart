@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_dns_settings`.
 const Set<String> _cloudflareZoneDnsSettingsSensitive = <String>{};
 
@@ -115,7 +117,7 @@ final class CloudflareZoneDnsSettings extends Resource {
     TfArg<bool>? multiProvider,
     TfArg<num>? nsTtl,
     TfArg<bool>? secondaryOverrides,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     TfArg<ZoneDnsSettingsZoneMode>? zoneMode,
     ZoneDnsSettingsInternalDns? internalDns,
     ZoneDnsSettingsNameservers? nameservers,
@@ -133,7 +135,7 @@ final class CloudflareZoneDnsSettings extends Resource {
            if (nsTtl != null) 'ns_ttl': nsTtl,
            if (secondaryOverrides != null)
              'secondary_overrides': secondaryOverrides,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (zoneMode != null) 'zone_mode': zoneMode,
            if (internalDns != null)
              'internal_dns': TfArg.literal(internalDns.encode()),

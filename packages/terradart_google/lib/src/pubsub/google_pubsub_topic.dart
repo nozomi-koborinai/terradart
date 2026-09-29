@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_pubsub_topic`.
 const Set<String> _googlePubsubTopicSensitive = <String>{};
 
@@ -99,7 +101,7 @@ final class GooglePubsubTopic extends Resource {
   GooglePubsubTopic({
     required super.localName,
     required TfArg<String> name,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, dynamic>>? messageStoragePolicy,
     PubsubTopicSchemaSettings? schemaSettings,
@@ -116,7 +118,7 @@ final class GooglePubsubTopic extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            if (labels != null) 'labels': labels,
            if (messageStoragePolicy != null)
              'message_storage_policy': messageStoragePolicy,

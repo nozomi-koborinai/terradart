@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_efs_replication_configuration`.
 const Set<String> _awsEfsReplicationConfigurationSensitive = <String>{};
 
@@ -22,7 +24,7 @@ final class EfsReplicationConfigurationDestination {
 
   final TfArg<String>? fileSystemId;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? region;
 
@@ -30,7 +32,7 @@ final class EfsReplicationConfigurationDestination {
     if (availabilityZoneName != null)
       'availability_zone_name': availabilityZoneName!.toTfJson(),
     if (fileSystemId != null) 'file_system_id': fileSystemId!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (region != null) 'region': region!.toTfJson(),
   };
 }

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_pages_project`.
 const Set<String> _cloudflarePagesProjectSensitive = <String>{
   'build_config.web_analytics_token',
@@ -955,7 +957,7 @@ final class CloudflarePagesProject extends Resource {
 
   CloudflarePagesProject({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<String> productionBranch,
     PagesProjectBuildConfig? buildConfig,
@@ -968,7 +970,7 @@ final class CloudflarePagesProject extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'name': name,
            'production_branch': productionBranch,
            if (buildConfig != null)

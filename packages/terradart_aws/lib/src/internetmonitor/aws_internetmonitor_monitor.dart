@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_internetmonitor_monitor`.
 const Set<String> _awsInternetmonitorMonitorSensitive = <String>{};
 
@@ -61,7 +63,7 @@ final class InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config {
     this.logDeliveryStatus,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? bucketPrefix;
 
@@ -71,7 +73,7 @@ final class InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config {
   logDeliveryStatus;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (logDeliveryStatus != null)
       'log_delivery_status': logDeliveryStatus!.toTfJson(),

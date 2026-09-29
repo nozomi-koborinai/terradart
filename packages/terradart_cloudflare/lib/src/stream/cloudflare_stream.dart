@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_stream`.
 const Set<String> _cloudflareStreamSensitive = <String>{};
 
@@ -44,7 +46,7 @@ final class CloudflareStream extends Resource {
 
   CloudflareStream({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<List<String>>? allowedOrigins,
     TfArg<String>? creator,
     TfArg<bool>? directUser,
@@ -64,7 +66,7 @@ final class CloudflareStream extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (allowedOrigins != null) 'allowed_origins': allowedOrigins,
            if (creator != null) 'creator': creator,
            if (directUser != null) 'direct_user': directUser,

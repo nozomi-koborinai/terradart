@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_prometheus_scraper`.
 const Set<String> _awsPrometheusScraperSensitive = <String>{};
 
@@ -80,12 +84,13 @@ final class PrometheusScraperRoleConfiguration {
     this.targetRoleArn,
   });
 
-  final TfArg<String>? sourceRoleArn;
+  final RefTo<AwsIamRole>? sourceRoleArn;
 
   final TfArg<String>? targetRoleArn;
 
   Map<String, Object?> encode() => {
-    if (sourceRoleArn != null) 'source_role_arn': sourceRoleArn!.toTfJson(),
+    if (sourceRoleArn != null)
+      'source_role_arn': sourceRoleArn!.encodeAs('arn').toTfJson(),
     if (targetRoleArn != null) 'target_role_arn': targetRoleArn!.toTfJson(),
   };
 }
@@ -118,15 +123,15 @@ final class PrometheusScraperSourceEks {
 
   final TfArg<String> clusterArn;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -139,13 +144,13 @@ final class PrometheusScraperSourceVpc {
     required this.subnetIds,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 

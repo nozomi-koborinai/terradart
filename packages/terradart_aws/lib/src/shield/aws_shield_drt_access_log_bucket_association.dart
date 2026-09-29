@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_shield_drt_access_log_bucket_association`.
 const Set<String> _awsShieldDrtAccessLogBucketAssociationSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsShieldDrtAccessLogBucketAssociation extends Resource {
 
   AwsShieldDrtAccessLogBucketAssociation({
     required super.localName,
-    required TfArg<String> logBucket,
+    required RefTo<AwsS3Bucket> logBucket,
     required TfArg<String> roleArnAssociationId,
     super.lifecycle,
     super.dependsOn,
@@ -21,7 +23,7 @@ final class AwsShieldDrtAccessLogBucketAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'log_bucket': logBucket,
+           'log_bucket': logBucket.encodeAs('id'),
            'role_arn_association_id': roleArnAssociationId,
          },
        );

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cloudwatch_metric_stream`.
 const Set<String> _awsCloudwatchMetricStreamSensitive = <String>{};
 
@@ -240,7 +242,7 @@ final class AwsCloudwatchMetricStream extends Resource {
     CloudwatchMetricStreamName? name,
     required TfArg<CloudwatchMetricStreamOutputFormat> outputFormat,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     CloudwatchMetricStreamFilter? filter,
     List<CloudwatchMetricStreamStatisticsConfiguration>?
@@ -258,7 +260,7 @@ final class AwsCloudwatchMetricStream extends Resource {
            ...?name?.argMap,
            'output_format': outputFormat,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            ...?filter?.argMap,
            if (statisticsConfiguration != null)

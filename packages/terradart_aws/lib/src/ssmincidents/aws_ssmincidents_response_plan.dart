@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_ssmincidents_response_plan`.
 const Set<String> _awsSsmincidentsResponsePlanSensitive = <String>{};
 
@@ -40,7 +43,7 @@ final class SsmincidentsResponsePlanActionSsmAutomation {
 
   final TfArg<Map<String, String>>? dynamicParameters;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String>? targetAccount;
 
@@ -52,7 +55,7 @@ final class SsmincidentsResponsePlanActionSsmAutomation {
       'document_version': documentVersion!.toTfJson(),
     if (dynamicParameters != null)
       'dynamic_parameters': dynamicParameters!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (targetAccount != null) 'target_account': targetAccount!.toTfJson(),
     if (parameter != null)
       'parameter': [for (final e in parameter!) e.encode()],
@@ -123,9 +126,11 @@ final class SsmincidentsResponsePlanIncidentTemplateNotificationTarget {
     required this.snsTopicArn,
   });
 
-  final TfArg<String> snsTopicArn;
+  final RefTo<AwsSnsTopic> snsTopicArn;
 
-  Map<String, Object?> encode() => {'sns_topic_arn': snsTopicArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'sns_topic_arn': snsTopicArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `integration` block of

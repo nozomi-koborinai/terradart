@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+
 /// Sensitive field paths for `aws_vpc_endpoint_security_group_association`.
 const Set<String> _awsVpcEndpointSecurityGroupAssociationSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsVpcEndpointSecurityGroupAssociation extends Resource {
     required super.localName,
     TfArg<String>? region,
     TfArg<bool>? replaceDefaultAssociation,
-    required TfArg<String> securityGroupId,
+    required RefTo<AwsSecurityGroup> securityGroupId,
     required TfArg<String> vpcEndpointId,
     super.lifecycle,
     super.dependsOn,
@@ -26,7 +28,7 @@ final class AwsVpcEndpointSecurityGroupAssociation extends Resource {
            if (region != null) 'region': region,
            if (replaceDefaultAssociation != null)
              'replace_default_association': replaceDefaultAssociation,
-           'security_group_id': securityGroupId,
+           'security_group_id': securityGroupId.encodeAs('id'),
            'vpc_endpoint_id': vpcEndpointId,
          },
        );

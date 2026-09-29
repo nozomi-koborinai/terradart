@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_cloud9_environment_ec2`.
 const Set<String> _awsCloud9EnvironmentEc2Sensitive = <String>{};
 
@@ -58,7 +60,7 @@ final class AwsCloud9EnvironmentEc2 extends Resource {
     required TfArg<String> name,
     TfArg<String>? ownerArn,
     TfArg<String>? region,
-    TfArg<String>? subnetId,
+    RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -76,7 +78,7 @@ final class AwsCloud9EnvironmentEc2 extends Resource {
            'name': name,
            if (ownerArn != null) 'owner_arn': ownerArn,
            if (region != null) 'region': region,
-           if (subnetId != null) 'subnet_id': subnetId,
+           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
            if (tags != null) 'tags': tags,
          },
        );

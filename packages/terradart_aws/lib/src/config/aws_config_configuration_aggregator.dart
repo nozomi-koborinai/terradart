@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_config_configuration_aggregator`.
 const Set<String> _awsConfigConfigurationAggregatorSensitive = <String>{};
 
@@ -126,12 +128,12 @@ final class ConfigConfigurationAggregatorOrganizationAggregationSource {
 
   final TfArg<List<Object?>>? regions;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     if (allRegions != null) 'all_regions': allRegions!.toTfJson(),
     if (regions != null) 'regions': regions!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 

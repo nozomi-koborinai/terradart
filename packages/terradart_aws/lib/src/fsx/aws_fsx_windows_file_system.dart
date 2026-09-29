@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_fsx_windows_file_system`.
 const Set<String> _awsFsxWindowsFileSystemSensitive = <String>{
   'self_managed_active_directory.password',
@@ -274,15 +278,15 @@ final class AwsFsxWindowsFileSystem extends Resource {
     TfArg<String>? dailyAutomaticBackupStartTime,
     TfArg<FsxWindowsFileSystemDeploymentType>? deploymentType,
     TfArg<Map<String, String>>? finalBackupTags,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<FsxWindowsFileSystemNetworkType>? networkType,
     TfArg<String>? preferredSubnetId,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<bool>? skipFinalBackup,
     TfArg<num>? storageCapacity,
     TfArg<FsxWindowsFileSystemStorageType>? storageType,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     required TfArg<num> throughputCapacity,
     TfArg<String>? weeklyMaintenanceStartTime,
@@ -306,16 +310,17 @@ final class AwsFsxWindowsFileSystem extends Resource {
              'daily_automatic_backup_start_time': dailyAutomaticBackupStartTime,
            if (deploymentType != null) 'deployment_type': deploymentType,
            if (finalBackupTags != null) 'final_backup_tags': finalBackupTags,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (networkType != null) 'network_type': networkType,
            if (preferredSubnetId != null)
              'preferred_subnet_id': preferredSubnetId,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            if (skipFinalBackup != null) 'skip_final_backup': skipFinalBackup,
            if (storageCapacity != null) 'storage_capacity': storageCapacity,
            if (storageType != null) 'storage_type': storageType,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            'throughput_capacity': throughputCapacity,
            if (weeklyMaintenanceStartTime != null)

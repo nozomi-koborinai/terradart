@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_custom_profile`.
 const Set<String> _cloudflareZeroTrustDlpCustomProfileSensitive = <String>{};
 
@@ -161,7 +163,7 @@ final class CloudflareZeroTrustDlpCustomProfile extends Resource {
 
   CloudflareZeroTrustDlpCustomProfile({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? aiContextEnabled,
     TfArg<num>? allowedMatchCount,
     TfArg<String>? confidenceThreshold,
@@ -181,7 +183,7 @@ final class CloudflareZeroTrustDlpCustomProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (aiContextEnabled != null) 'ai_context_enabled': aiContextEnabled,
            if (allowedMatchCount != null)
              'allowed_match_count': allowedMatchCount,

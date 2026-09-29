@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_url_normalization_settings`.
 const Set<String> _cloudflareUrlNormalizationSettingsSensitive = <String>{};
 
@@ -52,14 +54,18 @@ final class CloudflareUrlNormalizationSettings extends Resource {
     required super.localName,
     required TfArg<UrlNormalizationSettingsScope> scope,
     required TfArg<UrlNormalizationSettingsType> type,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'scope': scope, 'type': type, 'zone_id': zoneId},
+         argMap: {
+           'scope': scope,
+           'type': type,
+           'zone_id': zoneId.encodeAs('id'),
+         },
        );
 
   @override

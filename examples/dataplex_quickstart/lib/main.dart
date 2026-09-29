@@ -238,7 +238,7 @@ final class DataplexCatalogStack extends Stack {
     final feedPublisher = add(
       GooglePubsubTopicIamMember(
         localName: 'catalog_changes_dataplex_agent',
-        topic: .ref(catalogChangesTopic.nameRef),
+        topic: catalogChangesTopic.ref,
         role: .literal('roles/pubsub.publisher'),
         member: .literal(
           'serviceAccount:service-${current.number.interpolation}'
@@ -256,7 +256,7 @@ final class DataplexCatalogStack extends Stack {
     final feedViewer = add(
       GooglePubsubTopicIamMember(
         localName: 'catalog_changes_dataplex_agent_viewer',
-        topic: .ref(catalogChangesTopic.nameRef),
+        topic: catalogChangesTopic.ref,
         role: .literal('roles/pubsub.viewer'),
         member: .literal(
           'serviceAccount:service-${current.number.interpolation}'
@@ -300,7 +300,7 @@ final class DataplexCatalogStack extends Stack {
                 '/entryTypes/terradart-dataset',
           ]),
         ),
-        pubsubTopic: .ref(catalogChangesTopic.id),
+        pubsubTopic: catalogChangesTopic.ref,
         dependsOn: [
           ResourceDependency(catalogChangesTopic),
           ResourceDependency(feedIamReady),

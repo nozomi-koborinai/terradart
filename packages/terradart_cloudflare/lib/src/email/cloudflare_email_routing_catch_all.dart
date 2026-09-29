@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_email_routing_catch_all`.
 const Set<String> _cloudflareEmailRoutingCatchAllSensitive = <String>{};
 
@@ -78,7 +80,7 @@ final class CloudflareEmailRoutingCatchAll extends Resource {
     TfArg<String>? name,
     TfArg<String>? ownerWorkerTag,
     TfArg<EmailRoutingCatchAllSource>? source,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required List<EmailRoutingCatchAllActions> actions,
     required List<EmailRoutingCatchAllMatchers> matchers,
     super.lifecycle,
@@ -92,7 +94,7 @@ final class CloudflareEmailRoutingCatchAll extends Resource {
            if (name != null) 'name': name,
            if (ownerWorkerTag != null) 'owner_worker_tag': ownerWorkerTag,
            if (source != null) 'source': source,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'actions': TfArg.literal([for (final e in actions) e.encode()]),
            'matchers': TfArg.literal([for (final e in matchers) e.encode()]),
          },

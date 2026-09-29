@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_compute_backend_bucket`.
 const Set<String> _googleComputeBackendBucketSensitive = <String>{};
 
@@ -333,7 +335,7 @@ final class GoogleComputeBackendBucket extends Resource {
   GoogleComputeBackendBucket({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> bucketName,
+    required RefTo<GoogleStorageBucket> bucketName,
     TfArg<String>? description,
     TfArg<bool>? enableCdn,
     TfArg<BackendBucketCompressionMode>? compressionMode,
@@ -351,7 +353,7 @@ final class GoogleComputeBackendBucket extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'bucket_name': bucketName,
+           'bucket_name': bucketName.encodeAs('name'),
            if (description != null) 'description': description,
            if (enableCdn != null) 'enable_cdn': enableCdn,
            if (compressionMode != null) 'compression_mode': compressionMode,

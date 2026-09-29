@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_address_map`.
 const Set<String> _cloudflareAddressMapSensitive = <String>{};
 
@@ -43,7 +45,7 @@ final class CloudflareAddressMap extends Resource {
 
   CloudflareAddressMap({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? defaultSni,
     TfArg<String>? description,
     TfArg<bool>? enabled,
@@ -56,7 +58,7 @@ final class CloudflareAddressMap extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (defaultSni != null) 'default_sni': defaultSni,
            if (description != null) 'description': description,
            if (enabled != null) 'enabled': enabled,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_discovery_engine_data_connector`.
 const Set<String> _googleDiscoveryEngineDataConnectorSensitive = <String>{};
 
@@ -175,7 +177,7 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
     TfArg<String>? incrementalRefreshInterval,
     TfArg<bool>? incrementalSyncDisabled,
     TfArg<String>? jsonParams,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> refreshInterval,
@@ -205,7 +207,7 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
            if (incrementalSyncDisabled != null)
              'incremental_sync_disabled': incrementalSyncDisabled,
            if (jsonParams != null) 'json_params': jsonParams,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            'location': location,
            if (project != null) 'project': project,
            'refresh_interval': refreshInterval,

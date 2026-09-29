@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_healthcare_fhir_store`.
 const Set<String> _googleHealthcareFhirStoreSensitive = <String>{};
 
@@ -38,9 +40,11 @@ enum HealthcareFhirStoreVersion implements TerraformEnum {
 final class HealthcareFhirStoreNotificationConfig {
   const HealthcareFhirStoreNotificationConfig({required this.pubsubTopic});
 
-  final TfArg<String> pubsubTopic;
+  final RefTo<GooglePubsubTopic> pubsubTopic;
 
-  Map<String, Object?> encode() => {'pubsub_topic': pubsubTopic.toTfJson()};
+  Map<String, Object?> encode() => {
+    'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `notification_configs` block of
@@ -53,14 +57,14 @@ final class HealthcareFhirStoreNotificationConfigs {
     this.sendPreviousResourceOnDelete,
   });
 
-  final TfArg<String> pubsubTopic;
+  final RefTo<GooglePubsubTopic> pubsubTopic;
 
   final TfArg<bool>? sendFullResource;
 
   final TfArg<bool>? sendPreviousResourceOnDelete;
 
   Map<String, Object?> encode() => {
-    'pubsub_topic': pubsubTopic.toTfJson(),
+    'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
     if (sendFullResource != null)
       'send_full_resource': sendFullResource!.toTfJson(),
     if (sendPreviousResourceOnDelete != null)

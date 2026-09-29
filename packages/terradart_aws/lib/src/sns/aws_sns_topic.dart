@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sns_topic`.
 const Set<String> _awsSnsTopicSensitive = <String>{};
 
@@ -27,7 +29,7 @@ final class AwsSnsTopic extends Resource {
     TfArg<String>? httpFailureFeedbackRoleArn,
     TfArg<String>? httpSuccessFeedbackRoleArn,
     TfArg<num>? httpSuccessFeedbackSampleRate,
-    TfArg<String>? kmsMasterKeyId,
+    RefTo<AwsKmsKey>? kmsMasterKeyId,
     TfArg<String>? lambdaFailureFeedbackRoleArn,
     TfArg<String>? lambdaSuccessFeedbackRoleArn,
     TfArg<num>? lambdaSuccessFeedbackSampleRate,
@@ -80,7 +82,8 @@ final class AwsSnsTopic extends Resource {
              'http_success_feedback_role_arn': httpSuccessFeedbackRoleArn,
            if (httpSuccessFeedbackSampleRate != null)
              'http_success_feedback_sample_rate': httpSuccessFeedbackSampleRate,
-           if (kmsMasterKeyId != null) 'kms_master_key_id': kmsMasterKeyId,
+           if (kmsMasterKeyId != null)
+             'kms_master_key_id': kmsMasterKeyId.encodeAs('arn'),
            if (lambdaFailureFeedbackRoleArn != null)
              'lambda_failure_feedback_role_arn': lambdaFailureFeedbackRoleArn,
            if (lambdaSuccessFeedbackRoleArn != null)

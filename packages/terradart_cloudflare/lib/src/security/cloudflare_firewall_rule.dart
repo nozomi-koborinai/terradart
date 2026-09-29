@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_firewall_rule`.
 const Set<String> _cloudflareFirewallRuleSensitive = <String>{};
 
@@ -92,7 +94,7 @@ final class CloudflareFirewallRule extends Resource {
 
   CloudflareFirewallRule({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required FirewallRuleAction action,
     required FirewallRuleFilter filter,
     super.lifecycle,
@@ -102,7 +104,7 @@ final class CloudflareFirewallRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'action': TfArg.literal(action.encode()),
            'filter': TfArg.literal(filter.encode()),
          },
