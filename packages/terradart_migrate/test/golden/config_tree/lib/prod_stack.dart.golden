@@ -38,66 +38,61 @@ final class ProdStack extends Stack {
     // Production environment root module — same shape as dev, with an extra bucket
     // and an authoritative IAM binding.
     addData(
-      GoogleProject(
-        localName: r'current',
-        projectId: TfArg.variable(r'project_id'),
-      ),
+      GoogleProject(localName: r'current', projectId: .variable(r'project_id')),
     );
     add(
       GoogleProjectService(
         localName: r'run',
-        service: TfArg.literal(r'run.googleapis.com'),
+        service: .literal(r'run.googleapis.com'),
       ),
     );
     add(
       GoogleArtifactRegistryRepository(
         localName: r'images',
-        repositoryId: TfArg.literal(r'app-images'),
-        format: TfArg.literal(r'DOCKER'),
-        location: TfArg.variable(r'region'),
+        repositoryId: .literal(r'app-images'),
+        format: .literal(r'DOCKER'),
+        location: .variable(r'region'),
       ),
     );
     final assets = add(
       GoogleStorageBucket(
         localName: r'assets',
-        name: TfArg.literal(r'app-prod-assets'),
-        location: TfArg.variable(r'region'),
+        name: .literal(r'app-prod-assets'),
+        location: .variable(r'region'),
       ),
     );
     final uploads = add(
       GoogleStorageBucket(
         localName: r'uploads',
-        name: TfArg.literal(r'app-prod-uploads'),
-        location: TfArg.variable(r'region'),
+        name: .literal(r'app-prod-uploads'),
+        location: .variable(r'region'),
       ),
     );
     final backups = add(
       GoogleStorageBucket(
         localName: r'backups',
-        name: TfArg.literal(r'app-prod-backups'),
-        location: TfArg.variable(r'region'),
+        name: .literal(r'app-prod-backups'),
+        location: .variable(r'region'),
       ),
     );
     add(
       GoogleStorageBucketIamMember(
         localName: r'assets_public',
-        bucket: TfArg.ref(assets.nameRef),
-        role: TfArg.literal(r'roles/storage.objectViewer'),
-        member: TfArg.literal(r'allUsers'),
+        bucket: .ref(assets.nameRef),
+        role: .literal(r'roles/storage.objectViewer'),
+        member: .literal(r'allUsers'),
       ),
     );
     add(
       GoogleCloudRunV2Job(
         localName: r'db_migrate',
-        name: TfArg.literal(r'app-db-migrate'),
-        location: TfArg.variable(r'region'),
+        name: .literal(r'app-db-migrate'),
+        location: .variable(r'region'),
         template: CloudRunV2JobTemplate(
           template: CloudRunV2JobTaskTemplate(
             containers: [
               CloudRunV2JobContainer(
-                image: TfArg.literal(
-                  r'gcr.io/example-project/db-migrate:latest',
-                ),
+                image: .literal(r'gcr.io/example-project/db-migrate:latest'),
               ),
             ],
           ),
@@ -108,28 +103,28 @@ final class ProdStack extends Stack {
       ServiceAccountModule(
         localName: r'sa_bff',
         source: r'../modules/service_account',
-        accountId: TfArg.literal(r'app-bff-sa'),
+        accountId: .literal(r'app-bff-sa'),
       ),
     );
     final saWorker = addModule(
       ServiceAccountModule(
         localName: r'sa_worker',
         source: r'../modules/service_account',
-        accountId: TfArg.literal(r'app-worker-sa'),
+        accountId: .literal(r'app-worker-sa'),
       ),
     );
     final saAdkAgent = addModule(
       ServiceAccountModule(
         localName: r'sa_adk_agent',
         source: r'../modules/service_account',
-        accountId: TfArg.literal(r'app-agent-sa'),
+        accountId: .literal(r'app-agent-sa'),
       ),
     );
     addModule(
       ServiceAccountModule(
         localName: r'sa_github_actions',
         source: r'../modules/service_account',
-        accountId: TfArg.literal(r'app-gha-sa'),
+        accountId: .literal(r'app-gha-sa'),
       ),
     );
     addModule(
@@ -142,28 +137,28 @@ final class ProdStack extends Stack {
       CloudRunModule(
         localName: r'cloud_run_bff',
         source: r'../modules/cloud_run',
-        name: TfArg.literal(r'app-bff'),
+        name: .literal(r'app-bff'),
       ),
     );
     addModule(
       CloudRunModule(
         localName: r'cloud_run_worker',
         source: r'../modules/cloud_run',
-        name: TfArg.literal(r'app-worker'),
+        name: .literal(r'app-worker'),
       ),
     );
     addModule(
       CloudSqlModule(
         localName: r'cloud_sql',
         source: r'../modules/cloud_sql',
-        instanceName: TfArg.literal(r'app-postgres-prod'),
+        instanceName: .literal(r'app-postgres-prod'),
       ),
     );
     addModule(
       PubsubModule(
         localName: r'pubsub_webhook',
         source: r'../modules/pubsub',
-        topic: TfArg.literal(r'app-webhook-events'),
+        topic: .literal(r'app-webhook-events'),
       ),
     );
     addModule(
@@ -175,49 +170,49 @@ final class ProdStack extends Stack {
     add(
       GoogleStorageBucketIamBinding(
         localName: r'backups_admins',
-        bucket: TfArg.ref(backups.nameRef),
-        role: TfArg.literal(r'roles/storage.objectAdmin'),
-        members: TfArg.literal([saWorker.member.interpolation]),
+        bucket: .ref(backups.nameRef),
+        role: .literal(r'roles/storage.objectAdmin'),
+        members: .literal([saWorker.member.interpolation]),
       ),
     );
     add(
       GoogleStorageBucketIamMember(
         localName: r'uploads_admin',
-        bucket: TfArg.ref(uploads.nameRef),
-        role: TfArg.literal(r'roles/storage.objectAdmin'),
-        member: TfArg.ref(saWorker.member),
+        bucket: .ref(uploads.nameRef),
+        role: .literal(r'roles/storage.objectAdmin'),
+        member: .ref(saWorker.member),
       ),
     );
     add(
       GoogleStorageBucketIamMember(
         localName: r'uploads_reader',
-        bucket: TfArg.ref(uploads.nameRef),
-        role: TfArg.literal(r'roles/storage.objectViewer'),
-        member: TfArg.ref(saBff.member),
+        bucket: .ref(uploads.nameRef),
+        role: .literal(r'roles/storage.objectViewer'),
+        member: .ref(saBff.member),
       ),
     );
     add(
       GoogleCloudRunV2ServiceIamMember(
         localName: r'bff_invoker',
-        name: TfArg.ref(cloudRunBff.serviceName),
-        role: TfArg.literal(r'roles/run.invoker'),
-        member: TfArg.literal(r'allUsers'),
+        name: .ref(cloudRunBff.serviceName),
+        role: .literal(r'roles/run.invoker'),
+        member: .literal(r'allUsers'),
       ),
     );
     add(
       GoogleProjectIamMember(
         localName: r'worker_token_creator',
-        project: TfArg.variable(r'project_id'),
-        role: TfArg.literal(r'roles/iam.serviceAccountTokenCreator'),
-        member: TfArg.ref(saWorker.member),
+        project: .variable(r'project_id'),
+        role: .literal(r'roles/iam.serviceAccountTokenCreator'),
+        member: .ref(saWorker.member),
       ),
     );
     add(
       GoogleServiceAccountIamMember(
         localName: r'agent_user',
-        serviceAccountId: TfArg.ref(saAdkAgent.id),
-        role: TfArg.literal(r'roles/iam.serviceAccountUser'),
-        member: TfArg.ref(saBff.member),
+        serviceAccountId: .ref(saAdkAgent.id),
+        role: .literal(r'roles/iam.serviceAccountUser'),
+        member: .ref(saBff.member),
       ),
     );
   }

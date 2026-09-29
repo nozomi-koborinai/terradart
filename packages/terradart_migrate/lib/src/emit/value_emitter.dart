@@ -123,7 +123,8 @@ final class ValueEmitter {
 
   /// Environment expression → the Dart source of *this* environment's value,
   /// where the literal is not what [dartValue] would write: an enum member
-  /// (`SqlDatabaseVersion.postgres15`), not the wire string it came from.
+  /// (`.postgres15`, an `Env` field typed as the enum), not the wire string
+  /// it came from.
   final Map<String, String> envValueSources = {};
 
   /// `--lift-workspace`: `terraform.workspace` becomes the Stack's
@@ -137,13 +138,42 @@ final class ValueEmitter {
   final Set<String> usedTargets = {};
   final Set<String> usedVariables = {};
 
+  /// Whether the slot being emitted fills a parameter whose static type
+  /// Dart can resolve a dot shorthand against (`.literal(...)`, `.ref(...)`,
+  /// an enum's `.member`). A module call's `inputs` map is `Object?`-valued,
+  /// so [emitSlot] spells the class out.
+  var _typed = true;
+
+  /// `TfArg.<call>`, or the `.<call>` shorthand in a typed position.
+  String _arg(String call) => _typed ? '.$call' : 'TfArg.$call';
+
+  /// `RefTo.<call>`, or the `.<call>` shorthand in a typed position.
+  String _refTo(String call) => _typed ? '.$call' : 'RefTo.$call';
+
+  /// `$enumName.$member`, or the `.$member` shorthand in a typed position.
+  String _enumMember(String enumName, String member) =>
+      _typed ? '.$member' : '$enumName.$member';
+
+  T _inPosition<T>(bool typed, T Function() emit) {
+    final outer = _typed;
+    _typed = typed;
+    try {
+      return emit();
+    } finally {
+      _typed = outer;
+    }
+  }
+
   // ---------------------------------------------------------------------
   // Slots
   // ---------------------------------------------------------------------
 
   /// Constructor arguments for [slots] read from [level]: positional
   /// arguments first, then `name: value`. Claims what it consumes.
-  List<String> emitArgs(List<MigrateSlot> slots, BodyLevel level) {
+  List<String> emitArgs(List<MigrateSlot> slots, BodyLevel level) =>
+      _inPosition(true, () => _emitArgs(slots, level));
+
+  List<String> _emitArgs(List<MigrateSlot> slots, BodyLevel level) {
     final positional = <String>[];
     final named = <String>[];
     MigrateSlot? mergedPassthrough;
@@ -186,8 +216,10 @@ final class ValueEmitter {
   /// The Dart expression for one [slot] read from [level], claiming what it
   /// consumes; `null` when the value is absent and the slot is optional.
   /// For a caller that assembles its own argument list — a module call's
-  /// `inputs` map, whose keys are the module's variables.
-  String? emitSlot(MigrateSlot slot, BodyLevel level) => _emitSlot(slot, level);
+  /// `inputs` map, whose keys are the module's variables and whose values
+  /// have no static type to resolve a dot shorthand against.
+  String? emitSlot(MigrateSlot slot, BodyLevel level) =>
+      _inPosition(false, () => _emitSlot(slot, level));
 
   String? _emitSlot(MigrateSlot slot, BodyLevel level) {
     final path = '${level.path}${slot.tfName}';
@@ -204,6 +236,7 @@ final class ValueEmitter {
           );
         case MigrateSlotKind.scalar ||
             MigrateSlotKind.enumValue ||
+            MigrateSlotKind.reference ||
             MigrateSlotKind.passthrough:
           throw MigrateBlocker(
             'argument "${level.path}${slot.dartName}": merged '
@@ -251,6 +284,7 @@ final class ValueEmitter {
     return switch (slot.kind) {
       MigrateSlotKind.scalar => _scalar(slot, value, path: path),
       MigrateSlotKind.enumValue => _enum(slot, value, path: path),
+      MigrateSlotKind.reference => _reference(slot, value, path: path),
       MigrateSlotKind.helper =>
         slot.repeated
             ? _helperList(slot.helper!, value, path: path)
@@ -336,9 +370,9 @@ final class ValueEmitter {
       final envExpr = envValues[path];
       if (envExpr != null) {
         envSlotTypes[envExpr] = type;
-        return slot.wrapped ? 'TfArg.literal($envExpr)' : envExpr;
+        return slot.wrapped ? _arg('literal($envExpr)') : envExpr;
       }
-      return slot.wrapped ? 'TfArg.literal($constant)' : constant;
+      return slot.wrapped ? _arg('literal($constant)') : constant;
     }
     if (!slot.wrapped) {
       throw MigrateBlocker(
@@ -369,7 +403,7 @@ final class ValueEmitter {
       });
       if (lifted != null) {
         if (read) usedWorkspace = true;
-        return 'TfArg.literal($lifted)';
+        return _arg('literal($lifted)');
       }
       if (template.contains(_workspace)) {
         ctx.warnings.add(
@@ -379,7 +413,7 @@ final class ValueEmitter {
       }
     }
     usedVariables.addAll(templateVariableNames(template));
-    return 'TfArg.expression(${dartString(template)})';
+    return _arg('expression(${dartString(template)})');
   }
 
   static const _workspace = r'${terraform.workspace}';
@@ -507,17 +541,19 @@ final class ValueEmitter {
     switch (classifyTraversal(t)) {
       case VariableReference(:final name):
         usedVariables.add(name);
-        return 'TfArg.variable(${dartString(name)})';
+        return _arg('variable(${dartString(name)})');
       case BlockReference(:final address, :final attribute):
         final target = ctx.targets[address];
         if (target == null || attribute.isEmpty) return null;
         usedTargets.add(address);
         final getter = target.getter(attribute);
         if (getter != null && getter.dartType == type) {
-          return 'TfArg.ref(${target.dartName}.${getter.dartName})';
+          return _arg('ref(${target.dartName}.${getter.dartName})');
         }
-        return 'TfArg.ref(TfRef.attribute<$type>('
-            '${target.dartName}, ${dartString(attribute)}))';
+        return _arg(
+          'ref(TfRef.attribute<$type>('
+          '${target.dartName}, ${dartString(attribute)}))',
+        );
       case ModuleReference(:final address, :final attribute):
         final target = ctx.moduleTargets[address];
         if (target == null || attribute.isEmpty) return null;
@@ -526,10 +562,12 @@ final class ValueEmitter {
         // A module output carries no declared type, so the wrapper's getter
         // is always `TfRef<String>`; anything else spells the ref out.
         if (getter != null && type == 'String') {
-          return 'TfArg.ref(${target.dartName}.${getter.dartName})';
+          return _arg('ref(${target.dartName}.${getter.dartName})');
         }
-        return 'TfArg.ref(TfRef.attribute<$type>('
-            '${target.dartName}, ${dartString(attribute)}))';
+        return _arg(
+          'ref(TfRef.attribute<$type>('
+          '${target.dartName}, ${dartString(attribute)}))',
+        );
       case OtherReference():
         // `terraform.workspace` has a name of its own; everything else the
         // migrator does not resolve stays a verbatim expression.
@@ -542,9 +580,9 @@ final class ValueEmitter {
           // template. Only where the argument is a string, of course.
           if (liftWorkspace && (type == 'String' || type == 'Object?')) {
             usedWorkspace = true;
-            return 'TfArg.literal(workspace)';
+            return _arg('literal(workspace)');
           }
-          return 'TfArg.workspace<$type>()';
+          return _typed ? '.workspace()' : 'TfArg.workspace<$type>()';
         }
         return null;
     }
@@ -593,6 +631,116 @@ final class ValueEmitter {
   }
 
   // ---------------------------------------------------------------------
+  // Typed references
+  // ---------------------------------------------------------------------
+
+  /// A `RefTo<C>` argument, or a `TfArg<List<RefTo<C>>>` when [slot] is
+  /// repeated: a literal list holds one reference per element, anything
+  /// else is the whole list (`var.subnet_ids`, a splat).
+  String _reference(MigrateSlot slot, Expr value, {required String path}) {
+    if (!slot.repeated) return _referenceValue(slot, value, path: path);
+    if (value is TupleExpr) {
+      final items = [
+        for (final e in value.elements) _referenceValue(slot, e, path: path),
+      ];
+      return _arg('literal([${items.join(', ')}])');
+    }
+    if (value is LiteralExpr || value.constantString != null) {
+      throw MigrateBlocker(
+        'argument "$path" expects a list of references but is a '
+        '${_describe(value)}',
+      );
+    }
+    if (value is ObjectExpr) {
+      throw MigrateBlocker(
+        'argument "$path" expects a list of references but is an object',
+      );
+    }
+    if (singleReference(value) case final ref?) {
+      if (classifyTraversal(ref) case VariableReference(:final name)) {
+        usedVariables.add(name);
+        return _arg('variable(${dartString(name)})');
+      }
+    }
+    return _expression(value);
+  }
+
+  /// One `RefTo<C>`: the block's `ref` when [value] reads a migrated block
+  /// of `C` (pinned when it reads another attribute than the argument
+  /// emits), else the value wrapped as it is — the migrated Stack
+  /// synthesizes what the source said either way.
+  String _referenceValue(MigrateSlot slot, Expr value, {required String path}) {
+    final className = slot.dartType!;
+    final ref = singleReference(value);
+    if (ref != null) {
+      final c = classifyTraversal(ref);
+      if (c is BlockReference && c.attribute.isNotEmpty) {
+        final target = ctx.targets[c.address];
+        if (target != null && _reads(target, className)) {
+          usedTargets.add(c.address);
+          final attribute = c.attribute;
+          return attribute == slot.attribute
+              ? '${target.dartName}.ref'
+              : '${target.dartName}.ref.pinned(${dartString(attribute)})';
+        }
+        if (target != null) {
+          ctx.warnings.add(
+            'argument "$path" names a $className but reads ${c.address}, '
+            'a ${target.entry.className}; it stays an unchecked RefTo.arg',
+          );
+        }
+      }
+      final arg = _refArg(ref, type: 'String');
+      if (arg != null) {
+        return _asRefTo(arg, 'variable(');
+      }
+    }
+    final text = constantText(value);
+    if (text != null) {
+      if (sensitivePaths.contains(path)) {
+        throw MigrateBlocker(
+          'argument "$path" is sensitive: its value is not copied into Dart '
+          '(pass it as a variable)',
+        );
+      }
+      final envExpr = envValues[path];
+      if (envExpr != null) {
+        envSlotTypes[envExpr] = 'String';
+        return _refTo('literal($envExpr)');
+      }
+      return _refTo('literal(${dartString(text)})');
+    }
+    if (value is LiteralExpr || value is TupleExpr || value is ObjectExpr) {
+      throw MigrateBlocker(
+        'argument "$path" expects a reference to a $className but is a '
+        '${_describe(value)}',
+      );
+    }
+    return _asRefTo(_expression(value), 'expression(');
+  }
+
+  /// [arg] (a `TfArg<String>` this emitter wrote) as a `RefTo`: the `RefTo`
+  /// factory of the same name when [arg] is a [call] of [TfArg] — a
+  /// variable or an expression — else `RefTo.arg(...)` around it.
+  String _asRefTo(String arg, String call) {
+    final prefix = _arg(call);
+    return arg.startsWith(prefix)
+        ? _refTo('$call${arg.substring(prefix.length)}')
+        : _refTo('arg($arg)');
+  }
+
+  /// Whether [target]'s `ref` is a `RefTo<className>`: the resource itself,
+  /// or a data source reading that resource type.
+  static bool _reads(EmitTarget target, String className) {
+    if (!target.isData) return target.entry.className == className;
+    final resource = target.manifest.entryFor(
+      target.entry.tfType,
+      CatalogKind.resource,
+    );
+    return resource?.className == className;
+  }
+
+  // ---------------------------------------------------------------------
   // Enums, helpers, sealed choices, passthrough
   // ---------------------------------------------------------------------
 
@@ -631,7 +779,7 @@ final class ValueEmitter {
         );
       }
       final exact = members[raw];
-      if (exact != null) return '$enumName.$exact';
+      if (exact != null) return _enumMember(enumName, exact);
       final folded = _caseInsensitiveMember(members, raw);
       if (folded == null) {
         throw MigrateBlocker(
@@ -643,12 +791,12 @@ final class ValueEmitter {
         'synthesizes as "${folded.key}" (the provider matches enum values '
         'case-insensitively)',
       );
-      return '$enumName.${folded.value}';
+      return _enumMember(enumName, folded.value);
     }
 
     // `TfArg<E>` (wrapped) takes an expression verbatim; a bare `E` cannot.
     String wrapped(Expr e) =>
-        isExpression(e) ? _expression(e) : 'TfArg.literal(${member(e)})';
+        isExpression(e) ? _expression(e) : _arg('literal(${member(e)})');
     String bare(Expr e) {
       if (isExpression(e)) {
         throw MigrateBlocker(
@@ -680,7 +828,7 @@ final class ValueEmitter {
     if (envExpr != null) {
       envSlotTypes[envExpr] = enumName;
       envValueSources[envExpr] = member(value);
-      return slot.wrapped ? 'TfArg.literal($envExpr)' : envExpr;
+      return slot.wrapped ? _arg('literal($envExpr)') : envExpr;
     }
     final ref = singleReference(value);
     if (ref != null) {
@@ -864,7 +1012,7 @@ final class ValueEmitter {
     final literal = _isEmptyCollection(payload)
         ? _typedEmpty(type, payload)
         : dartValue(payload);
-    return slot.wrapped ? 'TfArg.literal($literal)' : literal;
+    return slot.wrapped ? _arg('literal($literal)') : literal;
   }
 
   static bool _isEmptyCollection(Object? json) =>

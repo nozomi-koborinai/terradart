@@ -9,7 +9,15 @@
 library;
 
 /// Mirrors the runtime `MigrateSlotKind` enum (rendered by name).
-enum MigrateSlotKind { scalar, enumValue, helper, sealed, passthrough, manual }
+enum MigrateSlotKind {
+  scalar,
+  enumValue,
+  reference,
+  helper,
+  sealed,
+  passthrough,
+  manual,
+}
 
 final class MigrateSlotData {
   const MigrateSlotData({
@@ -25,6 +33,7 @@ final class MigrateSlotData {
     this.dartType,
     this.helper,
     this.variants,
+    this.attribute,
     this.reason,
   });
 
@@ -40,6 +49,7 @@ final class MigrateSlotData {
   final String? dartType;
   final String? helper;
   final Map<String, String>? variants;
+  final String? attribute;
   final String? reason;
 }
 

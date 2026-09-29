@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `RefToList` — `encodeAs` on a `TfArg<List<RefTo<R>>>`: a literal list encodes element by element, a whole-list value (`TfArg.variable('subnet_ids')`) passes through.
 - `RefTo<R>` — a reference to a resource of type `R`, for arguments that name another resource. An extension type over a record, so `R` is checked at compile time and erased at run time. A generated `ref` getter returns one (`RefTo.of`), the argument that takes it picks the attribute it emits (`encodeAs('self_link')`), `pinned('id')` keeps a given attribute, and `RefTo.literal` / `RefTo.variable` / `RefTo.expression` / `RefTo.arg` carry values from outside the Stack (dot shorthands: `.literal('...')`). No argument takes one yet.
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). Source is formatted in the Dart 3.7+ tall style.
 - Dartdoc on `TfAddressed.tfAddress` and `Resource.tfAddress`, which every factory inherits. No API changes.

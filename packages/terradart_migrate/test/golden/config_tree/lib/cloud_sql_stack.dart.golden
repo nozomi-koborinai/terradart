@@ -15,26 +15,24 @@ final class CloudSqlStack extends Stack {
     final thisSqlDatabaseInstance = add(
       GoogleSqlDatabaseInstance(
         localName: r'this',
-        databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
-        name: TfArg.variable(r'instance_name'),
-        region: TfArg.literal(r'asia-northeast1'),
-        settings: SqlDatabaseInstanceSettings(
-          tier: TfArg.literal(r'db-f1-micro'),
-        ),
+        databaseVersion: .literal(.postgres15),
+        name: .variable(r'instance_name'),
+        region: .literal(r'asia-northeast1'),
+        settings: SqlDatabaseInstanceSettings(tier: .literal(r'db-f1-micro')),
       ),
     );
     add(
       GoogleSqlDatabase(
         localName: r'app',
-        name: TfArg.literal(r'app'),
-        instance: TfArg.ref(thisSqlDatabaseInstance.nameRef),
+        name: .literal(r'app'),
+        instance: .ref(thisSqlDatabaseInstance.nameRef),
       ),
     );
     add(
       GoogleSqlUser(
         localName: r'app',
-        name: TfArg.literal(r'app'),
-        instance: TfArg.ref(thisSqlDatabaseInstance.nameRef),
+        name: .literal(r'app'),
+        instance: .ref(thisSqlDatabaseInstance.nameRef),
       ),
     );
   }

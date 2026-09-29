@@ -375,6 +375,45 @@ void main() {
         await tmpOut.delete(recursive: true);
       }
     });
+
+    test(
+      '--only never takes a reference target from a data-source wrapper',
+      () async {
+        final tmpOut = await Directory.systemTemp.createTemp('refs_only_');
+        try {
+          File(p.join(_libSrcOut(tmpOut), 'data', 'google_pubsub_topic.dart'))
+            ..createSync(recursive: true)
+            ..writeAsStringSync(generatedOrphan);
+          final ledger = File(p.join(tmpOut.path, 'refs.yaml'))
+            ..writeAsStringSync('''
+hashicorp/google:
+  - target: google_pubsub_topic
+    attribute: id
+    slots: '^topic\$'
+''');
+          final err = StringBuffer();
+          final code = await IOOverrides.runZoned(
+            () => buildCliRunner().run(
+              wrapArgs(tmpOut, [
+                '--only',
+                'google_pubsub_subscription',
+                '--reference-targets',
+                ledger.path,
+                '--typed-references',
+              ]),
+            ),
+            stderr: () => _BufferSink(err),
+          );
+          expect(code, CliExitCodes.dataError);
+          expect(
+            err.toString(),
+            contains('google_pubsub_topic: target is not a curated resource'),
+          );
+        } finally {
+          await tmpOut.delete(recursive: true);
+        }
+      },
+    );
   });
 
   group('WrapCommand --force', () {
@@ -1681,6 +1720,32 @@ deriveExactlyOne: true
       expect(code, CliExitCodes.dataError);
       expect(err, contains('--mm-hints and --mm-groups are exclusive'));
     });
+
+    test('--typed-references needs --reference-targets', () async {
+      final (code, err) = await wrap(const ['--typed-references']);
+      expect(code, CliExitCodes.dataError);
+      expect(err, contains('--typed-references needs --reference-targets'));
+    });
+
+    test(
+      '--reference-targets fails on a ledger entry the lane lacks',
+      () async {
+        final ledger = File(p.join(tmp.path, 'refs.yaml'))
+          ..writeAsStringSync('''
+hashicorp/google-beta:
+  - target: google_missing
+    attribute: id
+    slots: '^uri\$'
+''');
+        final (code, err) = await wrap(['--reference-targets', ledger.path]);
+        expect(code, CliExitCodes.dataError);
+        expect(err, contains('[E406]'));
+        expect(
+          err,
+          contains('google_missing: target is not a curated resource'),
+        );
+      },
+    );
   });
 }
 

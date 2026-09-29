@@ -32,6 +32,7 @@ void main() {
         '--overrides-root lib/src/codegen/wrapper_overrides/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels.yaml '
         '--mm-groups '
+        '--reference-targets ../../tool/reference_targets.yaml '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart '
         '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
         '--check',
@@ -73,6 +74,7 @@ void main() {
         '--overrides-root lib/src/codegen/wrapper_overrides/cloudflare/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels_cloudflare.yaml '
         '--provider-enums '
+        '--reference-targets ../../tool/reference_targets.yaml '
         '--migrate-manifest '
         '../terradart_migrate/lib/src/manifest/cloudflare.g.dart '
         '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
@@ -89,6 +91,7 @@ void main() {
         '--overrides-root lib/src/codegen/wrapper_overrides/aws/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels_aws.yaml '
         '--provider-enums '
+        '--reference-targets ../../tool/reference_targets.yaml '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/aws.g.dart '
         '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
         '--check',
@@ -234,6 +237,24 @@ providers:
       expect(parseWrapLanes(lane).single.mmGroups, isFalse);
       expect(
         () => parseWrapLanes('$lane    mmGroups: true\n    mmHints: true\n'),
+        throwsA(isA<FormatException>()),
+      );
+    });
+
+    test('references: check passes the ledger, typed also types it', () {
+      final check = parseWrapLanes('$lane    references: check\n').single;
+      final args = WrapGate.wrap.args(check);
+      expect(
+        args[args.indexOf('--reference-targets') + 1],
+        '../../tool/reference_targets.yaml',
+      );
+      expect(args, isNot(contains('--typed-references')));
+      final typed = parseWrapLanes('$lane    references: typed\n').single;
+      expect(WrapGate.regen.args(typed), contains('--typed-references'));
+      expect(WrapGate.lint.args(typed), isNot(contains('--reference-targets')));
+      expect(parseWrapLanes(lane).single.references, isNull);
+      expect(
+        () => parseWrapLanes('$lane    references: yes\n'),
         throwsA(isA<FormatException>()),
       );
     });

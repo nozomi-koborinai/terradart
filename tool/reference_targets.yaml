@@ -1,0 +1,251 @@
+# tool/reference_targets.yaml — which string inputs name another resource.
+#
+# `terradart wrap --reference-targets` reads the section of the lane's
+# provider source. Each rule types every curated resource input whose dotted
+# path (from the resource root, `network_interface.subnetwork`) matches
+# `slots` as `RefTo<Target>` — `TfArg<List<RefTo<Target>>>` for a list — and
+# encodes it as `attribute` of the referenced block. The rules are name
+# patterns on purpose: a resource a later provider pin adds gets typed
+# references by the weekly schema bump with no edit here.
+#
+# Fields:
+#   target:     the referenced resource type; must be curated in the lane
+#   attribute:  the attribute an input emits by default
+#   slots:      regex over the input's dotted path
+#   attributes: (optional) `<resource>.<path>: attribute` for an input that
+#               takes another attribute of the target (a bare `name`)
+#   exclude:    (optional) `<resource>.<path>` inputs the pattern matches but
+#               that name something else; they stay strings
+#
+# wrap fails on an entry the schema no longer supports: a rule that matches
+# no input, an `attributes` or `exclude` entry the rule does not match, an
+# attribute the target (or its data source) does not export, or an input two
+# rules match. Enum-typed inputs, inputs an override types by hand and
+# members of a sealed group stay as they are.
+
+hashicorp/google:
+  - target: google_compute_network
+    attribute: id
+    slots: '(^|\.)(network|network_self_link|network_uri|vpc_network|authorized_network|consumer_network|peer_network)$'
+    attributes:
+      google_cloudfunctions2_function.service_config.direct_vpc_network_interface.network: name
+      google_compute_network_peering_routes_config.network: name
+      google_container_cluster.node_pool.network_config.additional_node_network_configs.network: name
+      google_container_node_pool.network_config.additional_node_network_configs.network: name
+      google_data_fusion_instance.network_config.network: name
+      google_data_pipeline_pipeline.workload.dataflow_flex_template_request.launch_parameter.environment.network: name
+      google_data_pipeline_pipeline.workload.dataflow_launch_template_request.launch_parameters.environment.network: name
+      google_dataflow_job.network: name
+      google_filestore_instance.networks.network: name
+      google_service_networking_peered_dns_domain.network: name
+      google_service_networking_vpc_service_controls.network: name
+    exclude:
+      # A subnetwork's network under an access level is a VPC in any project.
+      - google_access_context_manager_access_level.basic.conditions.vpc_network_sources.vpc_subnetwork.network
+      - google_access_context_manager_access_level_condition.vpc_network_sources.vpc_subnetwork.network
+      - google_access_context_manager_access_levels.access_levels.basic.conditions.vpc_network_sources.vpc_subnetwork.network
+      # An Ethereum environment.
+      - google_blockchain_node_engine_blockchain_nodes.ethereum_details.network
+      # Distributed Cloud Edge, Hypercompute and VMware Engine networks.
+      - google_edgenetwork_interconnect_attachment.network
+      - google_edgenetwork_subnet.network
+      - google_hypercomputecluster_cluster.network_resources.config.new_network.network
+      - google_vmwareengine_network_peering.peer_network
+      # A Service Directory endpoint takes the network by project number.
+      - google_service_directory_endpoint.network
+  - target: google_compute_subnetwork
+    attribute: id
+    slots: '(^|\.)(subnetwork|subnet|subnetwork_self_link|subnetwork_uri)$'
+    attributes:
+      google_cloudfunctions2_function.service_config.direct_vpc_network_interface.subnetwork: name
+      google_container_cluster.node_pool.network_config.additional_node_network_configs.subnetwork: name
+      google_container_cluster.node_pool.network_config.additional_pod_network_configs.subnetwork: name
+      google_container_node_pool.network_config.additional_node_network_configs.subnetwork: name
+      google_container_node_pool.network_config.additional_pod_network_configs.subnetwork: name
+      google_data_pipeline_pipeline.workload.dataflow_flex_template_request.launch_parameter.environment.subnetwork: self_link
+      google_data_pipeline_pipeline.workload.dataflow_launch_template_request.launch_parameters.environment.subnetwork: self_link
+      google_dataflow_job.subnetwork: self_link
+    exclude:
+      # A free CIDR range for peering.
+      - google_database_migration_service_private_connection.vpc_peering_config.subnet
+      - google_datastream_private_connection.vpc_peering_config.subnet
+      # A VMware Engine subnet.
+      - google_vmwareengine_cluster.datastore_mount_config.datastore_network.subnet
+  - target: google_service_account
+    attribute: email
+    slots: '(^|\.)(service_account|service_account_email|service_account_id|service_accounts?\.email)$'
+    attributes:
+      google_cloud_run_v2_service.build_config.service_account: name
+      google_cloudbuild_trigger.service_account: name
+      google_cloudfunctions2_function.build_config.service_account: name
+      google_config_deployment.service_account: name
+      google_service_account_iam_binding.service_account_id: name
+      google_service_account_iam_member.service_account_id: name
+      google_service_account_iam_policy.service_account_id: name
+      google_service_account_key.service_account_id: name
+  - target: google_kms_crypto_key
+    attribute: id
+    slots: '(^|\.)(kms_key_name|kms_key|crypto_key|crypto_key_name|kms_key_self_link|encryption_key_name)$|^database_encryption\.key_name$'
+    exclude:
+      # How transferred objects keep their key, not a key.
+      - google_storage_transfer_job.replication_spec.transfer_options.metadata_options.kms_key
+      - google_storage_transfer_job.transfer_spec.transfer_options.metadata_options.kms_key
+  - target: google_storage_bucket
+    attribute: name
+    slots: '(^|\.)(bucket|bucket_name|gcs_bucket)$'
+    exclude:
+      # Amazon S3 buckets.
+      - google_data_loss_prevention_discovery_config.targets.other_cloud_target.filter.single_resource.amazon_s3_bucket.bucket_name
+      - google_oracle_database_goldengate_connection.properties.iceberg_connection_properties.storage.amazon_s3_iceberg_storage.bucket
+      - google_storage_transfer_job.transfer_spec.aws_s3_compatible_data_source.bucket_name
+      - google_storage_transfer_job.transfer_spec.aws_s3_data_source.bucket_name
+      # Cloud Logging and Observability buckets.
+      - google_logging_linked_dataset.bucket
+      - google_logging_log_view.bucket
+      - google_logging_log_view_iam_binding.bucket
+      - google_logging_log_view_iam_member.bucket
+      - google_logging_log_view_iam_policy.bucket
+      - google_logging_metric.bucket_name
+      - google_observability_link.bucket
+      # A bucket the resource creates.
+      - google_hypercomputecluster_cluster.storage_resources.config.new_bucket.bucket
+      # A `gs://` URL.
+      - google_sql_database_instance.settings.sql_server_audit_config.bucket
+  - target: google_pubsub_topic
+    attribute: id
+    slots: '(^|\.)(topic|pubsub_topic|topic_name)$'
+    exclude:
+      # Kafka topics Pub/Sub imports from.
+      - google_pubsub_topic.ingestion_data_source_settings.aws_msk.topic
+      - google_pubsub_topic.ingestion_data_source_settings.confluent_cloud.topic
+      # A Pub/Sub Lite topic.
+      - google_pubsub_lite_subscription.topic
+  - target: google_bigquery_dataset
+    attribute: dataset_id
+    slots: '(^|\.)dataset_id$'
+    attributes:
+      google_datastream_stream.destination_config.bigquery_destination_config.single_target_dataset.dataset_id: id
+    exclude:
+      # A dataset the subscription creates.
+      - google_bigquery_analytics_hub_listing_subscription.destination_dataset.dataset_reference.dataset_id
+      # Cloud Healthcare datasets.
+      - google_healthcare_dataset_iam_binding.dataset_id
+      - google_healthcare_dataset_iam_member.dataset_id
+      - google_healthcare_dataset_iam_policy.dataset_id
+
+hashicorp/aws:
+  - target: aws_iam_role
+    attribute: arn
+    slots: '(^|\.)(role_arn|execution_role_arn|task_role_arn|service_role_arn|iam_role_arn|service_role|iam_service_role_arn|invocation_role_arn|job_role_arn|source_role_arn)$'
+  - target: aws_iam_role
+    attribute: name
+    slots: '(^|\.)(role|roles|role_name|iam_role_name)$'
+    attributes:
+      aws_elastictranscoder_pipeline.role: arn
+      aws_guardduty_malware_protection_plan.role: arn
+      aws_lambda_function.role: arn
+      aws_s3_bucket.replication_configuration.role: arn
+      aws_s3_bucket_replication_configuration.role: arn
+      aws_s3tables_table_bucket_replication.role: arn
+      aws_s3tables_table_replication.role: arn
+      aws_transfer_access.role: arn
+      aws_transfer_user.role: arn
+      aws_transfer_web_app.identity_provider_details.identity_center_config.role: arn
+    exclude:
+      # Chat message roles (user / assistant).
+      - aws_bedrockagent_flow.definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.message.role
+      - aws_bedrockagent_prompt.variant.template_configuration.chat.message.role
+      # Kubernetes, Grafana, QuickSight and LDAP roles.
+      - aws_eks_capability.configuration.argo_cd.rbac_role_mapping.role
+      - aws_grafana_role_association.role
+      - aws_mq_broker.ldap_server_metadata.role_name
+      - aws_quicksight_analysis.definition.column_configurations.role
+      - aws_quicksight_analysis.definition.sheets.visuals.pivot_table_visual.conditional_formatting.conditional_formatting_options.cell.scope.role
+      - aws_quicksight_dashboard.definition.column_configurations.role
+      - aws_quicksight_dashboard.definition.sheets.visuals.pivot_table_visual.conditional_formatting.conditional_formatting_options.cell.scope.role
+      - aws_quicksight_role_custom_permission.role
+      - aws_quicksight_role_membership.role
+      - aws_quicksight_template.definition.column_configurations.role
+      - aws_quicksight_template.definition.sheets.visuals.pivot_table_visual.conditional_formatting.conditional_formatting_options.cell.scope.role
+      # The role Organizations creates in the new account.
+      - aws_organizations_account.role_name
+  - target: aws_kms_key
+    attribute: arn
+    slots: '(^|\.)(kms_key_id|kms_key_arn|kms_master_key_id|kms_key|kms_arn|kms_key_identifier|encryption_key_arn|sse_kms_key_id|kms_encryption_key_arn|master_key_id|performance_insights_kms_key_id|kms_id|key_arn|key_id)$'
+    attributes:
+      aws_kms_ciphertext.key_id: key_id
+      aws_kms_grant.key_id: key_id
+      aws_kms_key_policy.key_id: key_id
+    exclude:
+      # An API Gateway API key.
+      - aws_api_gateway_usage_plan_key.key_id
+      # A Payment Cryptography key.
+      - aws_paymentcryptography_key_alias.key_arn
+  - target: aws_s3_bucket
+    attribute: id
+    slots: '(^|\.)(bucket|bucket_name|s3_bucket|s3_bucket_name|target_bucket|log_bucket|logging_bucket|source_bucket)$'
+    attributes:
+      aws_cloudfront_distribution.logging_config.bucket: bucket_domain_name
+      aws_s3_bucket.replication_configuration.rules.destination.bucket: arn
+      aws_s3_bucket_replication_configuration.rule.destination.bucket: arn
+    exclude:
+      # Lightsail, Outposts, directory and InfluxDB buckets; other object storage.
+      - aws_datasync_location_object_storage.bucket_name
+      - aws_lightsail_bucket_access_key.bucket_name
+      - aws_lightsail_bucket_resource_access.bucket_name
+      - aws_s3_directory_bucket.bucket
+      - aws_s3control_bucket.bucket
+      - aws_s3control_bucket_lifecycle_configuration.bucket
+      - aws_s3control_bucket_policy.bucket
+      - aws_timestreaminfluxdb_db_cluster.bucket
+      - aws_timestreaminfluxdb_db_instance.bucket
+  - target: aws_s3_bucket
+    attribute: arn
+    slots: '(^|\.)(bucket_arn|s3_bucket_arn|target_bucket_arn|source_bucket_arn|destination_bucket_arn)$'
+  - target: aws_subnet
+    attribute: id
+    slots: '(^|\.)(subnet_id|subnet_ids|subnets)$'
+  - target: aws_security_group
+    attribute: id
+    slots: '(^|\.)(security_group_id|security_group_ids|vpc_security_group_ids|security_groups|source_security_group_id|referenced_security_group_id)$'
+    attributes:
+      aws_instance.security_groups: name
+      aws_spot_instance_request.security_groups: name
+  - target: aws_vpc
+    attribute: id
+    slots: '(^|\.)(vpc_id|peer_vpc_id)$'
+  - target: aws_cloudwatch_log_group
+    attribute: name
+    slots: '(^|\.)(log_group_name|cloudwatch_log_group_name|log_group)$'
+  - target: aws_cloudwatch_log_group
+    attribute: arn
+    slots: '(^|\.)(log_group_arn|cloudwatch_log_group_arn|cloudwatch_logs_log_group_arn)$'
+  - target: aws_sns_topic
+    attribute: arn
+    slots: '(^|\.)(topic_arn|sns_topic_arn|sns_topic|sns_topic_arns|topic_arns)$'
+    exclude:
+      # An MSK topic.
+      - aws_msk_channel.topic_configuration.topic_arn
+  - target: aws_lambda_function
+    attribute: function_name
+    slots: '(^|\.)function_name$'
+  - target: aws_lambda_function
+    attribute: arn
+    slots: '(^|\.)(lambda_function_arn|function_arn|lambda_arn)$'
+    attributes:
+      aws_cloudfront_distribution.default_cache_behavior.lambda_function_association.lambda_arn: qualified_arn
+      aws_cloudfront_distribution.ordered_cache_behavior.lambda_function_association.lambda_arn: qualified_arn
+    exclude:
+      # CloudFront Functions.
+      - aws_cloudfront_distribution.default_cache_behavior.function_association.function_arn
+      - aws_cloudfront_distribution.ordered_cache_behavior.function_association.function_arn
+      - aws_cloudfront_multitenant_distribution.cache_behavior.function_association.function_arn
+      - aws_cloudfront_multitenant_distribution.default_cache_behavior.function_association.function_arn
+
+cloudflare/cloudflare:
+  - target: cloudflare_account
+    attribute: id
+    slots: '(^|\.)account_id$'
+  - target: cloudflare_zone
+    attribute: id
+    slots: '(^|\.)(zone_id|zone_ids)$'

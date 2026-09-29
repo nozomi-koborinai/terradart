@@ -10,6 +10,8 @@ import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
 import 'provider_enums.dart';
+import 'references/reference_slots.dart';
+import 'references/reference_targets.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
@@ -52,10 +54,20 @@ class WrapperEmitter {
     this.rawResourceSchemas = const {},
     this.resourceProvider,
     this.providerEnums = ProviderEnums.off,
+    this.references = const {},
   });
 
   /// The `--provider-enums` gate; supplies the nested helpers' enum values.
   final ProviderEnums providerEnums;
+
+  /// `--typed-references`: resource type → dotted input path → the
+  /// resource that input references. A matched string input is typed
+  /// `RefTo<Target>` unless the override already types it.
+  final Map<String, Map<String, ResolvedReference>> references;
+
+  /// `<resource type>.<path>` of every input the last [emit] typed as a
+  /// reference.
+  final List<String> typedReferences = [];
 
   final Map<String, WrapperOverride> overrides;
 
@@ -105,6 +117,7 @@ class WrapperEmitter {
     // `customSlotKeys` before it renders the prelude section — customSlots
     // itself doesn't depend on anything emitted in between.
     final customSlots = override?.customSlots ?? const <String, CustomSlot>{};
+    final refs = references[def.terraformType] ?? const {};
 
     final nestedTypeSpecs = (override?.deriveNestedTypes ?? false)
         ? collectNestedTypes(
@@ -124,8 +137,40 @@ class WrapperEmitter {
               override,
             ),
             sealedNames: override?.sealedNames,
+            references: (path) => refs[path.join('.')],
           )
         : const <NestedBlockSpec>[];
+
+    final paramOrder = orderedConstructorParams(def, override?.paramOrder);
+    final dartTypeOverrides =
+        override?.dartTypeOverrides ?? const <String, String>{};
+    final topLevelRefs = <String, ResolvedReference>{
+      for (final name in paramOrder)
+        if (refs[name] case final ref?)
+          if (!customSlots.containsKey(name) &&
+              !dartTypeOverrides.containsKey(name))
+            name: ref,
+    };
+    final nestedRefs = <String, ResolvedReference>{};
+    void collectNestedRefs(NestedBlockSpec spec, List<String> at) {
+      for (final attr in spec.attrs) {
+        final ref = attr.reference;
+        if (ref != null) nestedRefs[[...at, attr.tfName].join('.')] = ref;
+      }
+      for (final child in spec.children) {
+        collectNestedRefs(child, [...at, child.tfName]);
+      }
+    }
+
+    for (final spec in nestedTypeSpecs) {
+      collectNestedRefs(spec, [spec.tfName]);
+    }
+    typedReferences
+      ..clear()
+      ..addAll([
+        for (final path in [...topLevelRefs.keys, ...nestedRefs.keys])
+          '${def.terraformType}.$path',
+      ]);
 
     // Imports. `extraImports` is emitted FIRST so that `package:meta` (the
     // common case for hand-written helper classes that decorate themselves
@@ -153,6 +198,14 @@ class WrapperEmitter {
       buf.writeln(imp);
     }
     buf.writeln("import 'package:terradart_core/terradart_core.dart';");
+    final refImports = {
+      for (final ref in [...topLevelRefs.values, ...nestedRefs.values])
+        if (ref.target != def.terraformType) ref.import,
+    }.toList()..sort();
+    if (refImports.isNotEmpty) {
+      buf.writeln();
+      refImports.forEach(buf.writeln);
+    }
     buf.writeln();
 
     // File-private sensitive const, emitted inline (replacing the previous
@@ -246,10 +299,7 @@ class WrapperEmitter {
     // paramOrder are silently skipped — this is how virtual-fan-out
     // suppresses the schema's individual `pubsub_target` /
     // `http_target` / `app_engine_http_target` blocks.
-    final paramOrder = orderedConstructorParams(def, override?.paramOrder);
     final argMapOrder = override?.argMapOrder ?? paramOrder;
-    final dartTypeOverrides =
-        override?.dartTypeOverrides ?? const <String, String>{};
     final deprecations = override?.deprecatedParams ?? const <String, String>{};
     final paramsByName = _paramsByName(
       def,
@@ -262,6 +312,19 @@ class WrapperEmitter {
       requiredOverrides,
       dartTypeOverrides,
     );
+    for (final MapEntry(key: name, value: ref) in topLevelRefs.entries) {
+      final attr = def.root.attributes.firstWhere((a) => a.name == name);
+      final isRequired =
+          attr.constraints.required || requiredOverrides.contains(name);
+      final slot = referenceSlot(
+        tfName: name,
+        dartName: snakeToDartIdent(name),
+        reference: ref,
+        required: isRequired,
+      );
+      paramsByName[name] = _deprecated(slot.param, deprecations[name]);
+      argMapByName[name] = slot.argMapEntry;
+    }
     for (final entry in customSlots.entries) {
       paramsByName[entry.key] = entry.value.paramDeclaration;
       argMapByName[entry.key] = entry.value.argMapEntry;
@@ -494,9 +557,13 @@ class WrapperEmitter {
     final base = isEnumListType(dartType)
         ? '$modifier$dartType$nullSuffix $dartName'
         : '${modifier}TfArg<$dartType>$nullSuffix $dartName';
-    if (deprecation == null) return base;
+    return _deprecated(base, deprecation);
+  }
+
+  static String _deprecated(String param, String? deprecation) {
+    if (deprecation == null) return param;
     final escaped = deprecation.replaceAll(r'\', r'\\').replaceAll("'", r"\'");
-    return "@Deprecated('$escaped') $base";
+    return "@Deprecated('$escaped') $param";
   }
 
   /// Renders `[required] TfArg<Map|List<Map>>[?] camelName` for a nested

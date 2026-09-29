@@ -23,6 +23,11 @@ enum MigrateSlotKind {
   /// [MigrateManifest.enums] maps each raw Terraform value to its member.
   enumValue,
 
+  /// A `RefTo<C>` reference to another resource (a `TfArg<List<RefTo<C>>>`
+  /// when [MigrateSlot.repeated]). [MigrateSlot.dartType] is the target
+  /// class `C` and [MigrateSlot.attribute] the attribute the slot emits.
+  reference,
+
   /// A typed nested helper class passed bare (never `TfArg`-wrapped).
   /// [MigrateSlot.helper] names it; [MigrateManifest.helpers] holds its
   /// own slots.
@@ -59,6 +64,7 @@ final class MigrateSlot {
     this.dartType,
     this.helper,
     this.variants,
+    this.attribute,
     this.reason,
   });
 
@@ -79,7 +85,8 @@ final class MigrateSlot {
   final bool required;
 
   /// Whether the Dart parameter is a `List<...>` of the element described by
-  /// [kind] (a repeated nested block, or a list of enum members).
+  /// [kind] (a repeated nested block, or a list of enum members), or a list
+  /// of references for a [MigrateSlotKind.reference].
   final bool repeated;
 
   /// Whether the Dart parameter is a `Map<String, ...>` of the helper
@@ -126,6 +133,10 @@ final class MigrateSlot {
   /// key or starts with `<key>.` — or otherwise from the block under the
   /// key, which the parent's argMap put there.
   final Map<String, String>? variants;
+
+  /// The target attribute a [MigrateSlotKind.reference] slot emits for a
+  /// reference that is not pinned (`id`, `self_link`, `arn`).
+  final String? attribute;
 
   /// Why the slot is [MigrateSlotKind.manual].
   final String? reason;

@@ -1,0 +1,367 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:dart_style/dart_style.dart';
+import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/migrate/migrate_entry_builder.dart';
+import 'package:terradart_codegen/src/codegen/migrate/migrate_manifest_data.dart';
+import 'package:terradart_codegen/src/codegen/references/reference_targets.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/parser/schema_parser.dart';
+import 'package:test/test.dart';
+
+const _schema = {
+  'format_version': '1.0',
+  'provider_schemas': {
+    'registry.terraform.io/hashicorp/google': {
+      'resource_schemas': {
+        'google_x_network': {
+          'block': {
+            'attributes': {
+              'name': {'type': 'string', 'required': true},
+              'id': {'type': 'string', 'optional': true, 'computed': true},
+              'self_link': {'type': 'string', 'computed': true},
+            },
+          },
+        },
+        'google_x_vm': {
+          'block': {
+            'attributes': {
+              'name': {'type': 'string', 'required': true},
+              'network': {'type': 'string', 'optional': true},
+              'networks': {
+                'type': ['list', 'string'],
+                'optional': true,
+              },
+              'network_count': {'type': 'number', 'optional': true},
+              'network_tier': {'type': 'string', 'computed': true},
+            },
+            'block_types': {
+              'nic': {
+                'nesting_mode': 'list',
+                'block': {
+                  'attributes': {
+                    'network': {'type': 'string', 'required': true},
+                  },
+                },
+              },
+              'timeouts': {
+                'nesting_mode': 'single',
+                'block': {
+                  'attributes': {
+                    'network': {'type': 'string', 'optional': true},
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      'data_source_schemas': {
+        'google_x_network': {
+          'block': {
+            'attributes': {
+              'name': {'type': 'string', 'required': true},
+              'self_link': {'type': 'string', 'computed': true},
+            },
+          },
+        },
+      },
+    },
+  },
+};
+
+Map<String, Map<String, dynamic>> _blocks(String key) {
+  final provider =
+      (_schema['provider_schemas']!
+              as Map)['registry.terraform.io/hashicorp/google']
+          as Map;
+  return {
+    for (final e in (provider[key] as Map).entries)
+      e.key as String: ((e.value as Map)['block'] as Map)
+          .cast<String, dynamic>(),
+  };
+}
+
+ReferenceRule _rule({
+  String attribute = 'self_link',
+  Map<String, String> attributes = const {},
+  Set<String> exclude = const {},
+}) => ReferenceRule(
+  target: 'google_x_network',
+  attribute: attribute,
+  slots: RegExp(r'(^|\.)(network|networks)$'),
+  attributes: attributes,
+  exclude: exclude,
+);
+
+ReferenceResolution _resolve(
+  List<ReferenceRule> rules, {
+  Iterable<String> curated = const ['google_x_network', 'google_x_vm'],
+  bool withData = true,
+  bool complete = true,
+}) => resolveReferences(
+  rules: rules,
+  resourceSchemas: _blocks('resource_schemas'),
+  curated: curated,
+  targetDirs: {for (final t in curated) t: 'x'},
+  dataSourceSchemas: withData ? _blocks('data_source_schemas') : const {},
+  complete: complete,
+);
+
+void main() {
+  group('stringInputs', () {
+    test('lists string inputs by dotted path, skipping timeouts', () {
+      expect(stringInputs(_blocks('resource_schemas')['google_x_vm']!), {
+        'name': false,
+        'network': false,
+        'networks': true,
+        'nic.network': false,
+      });
+    });
+
+    test('walks plugin-framework nested_type objects', () {
+      expect(
+        stringInputs({
+          'attributes': {
+            'config': {
+              'optional': true,
+              'nested_type': {
+                'nesting_mode': 'single',
+                'attributes': {
+                  'zone_id': {'type': 'string', 'required': true},
+                },
+              },
+            },
+          },
+        }),
+        {'config.zone_id': false},
+      );
+    });
+  });
+
+  group('resolveReferences', () {
+    test('types every matched input with the rule attribute', () {
+      final r = _resolve([_rule()]);
+      expect(r.errors, isEmpty);
+      final vm = r.byResource['google_x_vm']!;
+      expect(vm.keys, unorderedEquals(['network', 'networks', 'nic.network']));
+      expect(vm['network']!.dartType, 'RefTo<GoogleXNetwork>');
+      expect(vm['networks']!.dartType, 'TfArg<List<RefTo<GoogleXNetwork>>>');
+      expect(vm['network']!.attribute, 'self_link');
+      expect(
+        vm['network']!.import,
+        "import '../x/google_x_network.dart' show GoogleXNetwork;",
+      );
+      expect(r.slotCount, 3);
+    });
+
+    test('applies attributes and exclude entries', () {
+      final r = _resolve([
+        _rule(
+          attributes: {'google_x_vm.networks': 'name'},
+          exclude: {'google_x_vm.nic.network'},
+        ),
+      ]);
+      expect(r.errors, isEmpty);
+      final vm = r.byResource['google_x_vm']!;
+      expect(vm.keys, unorderedEquals(['network', 'networks']));
+      expect(vm['networks']!.attribute, 'name');
+    });
+
+    test("skips the target's own top-level inputs", () {
+      final r = _resolve([
+        ReferenceRule(
+          target: 'google_x_network',
+          attribute: 'self_link',
+          slots: RegExp(r'^name$'),
+        ),
+      ]);
+      expect(r.byResource['google_x_network'], isNull);
+      expect(r.byResource['google_x_vm']!.keys, ['name']);
+    });
+
+    test('reports a target outside the lane or a missing attribute', () {
+      expect(_resolve([_rule()], curated: const ['google_x_vm']).errors, [
+        'google_x_network: target is not a curated resource',
+      ]);
+      expect(
+        _resolve([_rule(attribute: 'arn')]).errors.single,
+        contains('emits "arn", which the target does not export'),
+      );
+      expect(
+        _resolve([_rule(attribute: 'id')]).errors.single,
+        contains('data source DataGoogleXNetwork does not export'),
+      );
+      expect(
+        _resolve([_rule(attribute: 'id')], withData: false).errors,
+        isEmpty,
+      );
+    });
+
+    test('reports stale ledger entries and inputs claimed twice', () {
+      final errors = _resolve([
+        _rule(
+          attributes: {'google_x_vm.gone': 'name'},
+          exclude: {'google_x_vm.also_gone'},
+        ),
+      ]).errors;
+      expect(errors, hasLength(2));
+      expect(errors[0], contains('attributes entry "google_x_vm.gone"'));
+      expect(errors[1], contains('exclude entry "google_x_vm.also_gone"'));
+
+      expect(
+        _resolve([
+          ReferenceRule(
+            target: 'google_x_network',
+            attribute: 'self_link',
+            slots: RegExp(r'^nothing$'),
+          ),
+        ]).errors,
+        ['google_x_network: the rule matches no curated input'],
+      );
+      expect(
+        _resolve([_rule(), _rule()]).errors,
+        contains(
+          'google_x_vm.network: matched by both google_x_network and '
+          'google_x_network',
+        ),
+      );
+    });
+
+    test('a partial run does not report entries it cannot see', () {
+      expect(
+        _resolve([
+          _rule(attributes: {'google_other.network': 'name'}),
+        ], complete: false).errors,
+        isEmpty,
+      );
+    });
+  });
+
+  group('loadReferenceRules', () {
+    late Directory tmp;
+    setUp(() => tmp = Directory.systemTemp.createTempSync('refs'));
+    tearDown(() => tmp.deleteSync(recursive: true));
+
+    String write(String yaml) {
+      final path = p.join(tmp.path, 'refs.yaml');
+      File(path).writeAsStringSync(yaml);
+      return path;
+    }
+
+    test('reads the section of one provider source', () {
+      final path = write('''
+hashicorp/google:
+  - target: google_x_network
+    attribute: id
+    slots: '^network\$'
+    attributes:
+      google_x_vm.network: self_link
+    exclude:
+      - google_x_vm.nic.network
+cloudflare/cloudflare:
+  - target: cloudflare_zone
+    attribute: id
+    slots: '^zone_id\$'
+''');
+      final rules = loadReferenceRules(path, 'hashicorp/google');
+      expect(rules.single.target, 'google_x_network');
+      expect(rules.single.attributes, {'google_x_vm.network': 'self_link'});
+      expect(rules.single.exclude, {'google_x_vm.nic.network'});
+      expect(loadReferenceRules(path, 'hashicorp/aws'), isEmpty);
+    });
+
+    test('rejects an unknown key', () {
+      final path = write('''
+hashicorp/google:
+  - target: google_x_network
+    attribute: id
+    slot: network
+''');
+      expect(
+        () => loadReferenceRules(path, 'hashicorp/google'),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            contains('unknown key "slot"'),
+          ),
+        ),
+      );
+    });
+  });
+
+  group('typed emission', () {
+    final ir = const SchemaJsonParser().parseString(jsonEncode(_schema));
+    const override = WrapperOverride(
+      outputDir: 'compute',
+      deriveNestedTypes: true,
+    );
+    final references = _resolve([
+      _rule(attributes: {'google_x_vm.nic.network': 'name'}),
+    ]).byResource;
+    final emitter = WrapperEmitter(
+      overrides: const {'google_x_vm': override},
+      rawResourceSchemas: {
+        'google_x_vm': _blocks('resource_schemas')['google_x_vm']!,
+      },
+      references: references,
+    );
+    final src =
+        DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        ).format(
+          emitter.emit(
+            ir.resources['google_x_vm']!,
+            providerSource: 'hashicorp/google',
+          ),
+        );
+
+    test('types top-level and nested inputs and imports the target', () {
+      expect(
+        src,
+        contains("import '../x/google_x_network.dart' show GoogleXNetwork;"),
+      );
+      expect(src, contains('RefTo<GoogleXNetwork>? network'));
+      expect(src, contains('TfArg<List<RefTo<GoogleXNetwork>>>? networks'));
+      expect(src, contains("'network': network.encodeAs('self_link')"));
+      expect(src, contains("'networks': networks.encodeAs('self_link')"));
+      expect(src, contains('final RefTo<GoogleXNetwork> network;'));
+      expect(src, contains("'network': network.encodeAs('name').toTfJson()"));
+      expect(src, contains('TfArg<num>? networkCount'));
+      expect(emitter.typedReferences, [
+        'google_x_vm.network',
+        'google_x_vm.networks',
+        'google_x_vm.nic.network',
+      ]);
+    });
+
+    test('records reference slots in the migration manifest', () {
+      final b = buildMigrateEntry(
+        tfType: 'google_x_vm',
+        override: override,
+        def: ir.resources['google_x_vm']!,
+        kind: 'resource',
+        emittedSource: src,
+        rawSchemaBlock: _blocks('resource_schemas')['google_x_vm'],
+        references: references['google_x_vm']!,
+      );
+      MigrateSlotData slot(List<MigrateSlotData> slots, String name) =>
+          slots.singleWhere((s) => s.dartName == name);
+      final network = slot(b.entry.slots, 'network');
+      expect(network.kind, MigrateSlotKind.reference);
+      expect(network.dartType, 'GoogleXNetwork');
+      expect(network.attribute, 'self_link');
+      expect(network.repeated, isFalse);
+      final networks = slot(b.entry.slots, 'networks');
+      expect(networks.kind, MigrateSlotKind.reference);
+      expect(networks.repeated, isTrue);
+      final nic = b.helpers.single;
+      final field = slot(nic.slots, 'network');
+      expect(field.kind, MigrateSlotKind.reference);
+      expect(field.attribute, 'name');
+    });
+  });
+}

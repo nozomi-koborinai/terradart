@@ -58,6 +58,13 @@
 #                    wrap gate on it.
 #     providerRepo:  GitHub repo of the provider's Go source
 #     servicesDir:   its services directory (`<svc>/resource_<name>.go`)
+#   references:      (optional) what wrap does with tool/reference_targets.yaml,
+#                    the ledger of string inputs that name another curated
+#                    resource (wrap --reference-targets):
+#                    check — fail on a ledger entry the schema no longer
+#                            matches; inputs stay strings
+#                    typed — also type every matched input `RefTo<Target>`
+#                            (wrap --typed-references)
 #   bump:            (optional) the weekly schema bump's coordinates for
 #                    the lane; a lane without it is never bumped by the
 #                    workflow (google-beta rides the google bump at the
@@ -104,6 +111,7 @@ providers:
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml
     resourceProvider: null
     migrateManifest: packages/terradart_migrate/lib/src/manifest/google.g.dart
+    references: check
     bump:
       mode: auto
       repo: hashicorp/terraform-provider-google
@@ -149,6 +157,7 @@ providers:
     resourceProvider: null # cloudflare_ prefix collides with nothing
     migrateManifest: packages/terradart_migrate/lib/src/manifest/cloudflare.g.dart
     providerEnums: true
+    references: check
     bump:
       mode: pr-only # minor releases ship breaking changes
       repo: cloudflare/terraform-provider-cloudflare
@@ -169,6 +178,7 @@ providers:
     resourceProvider: null # aws_ prefix collides with nothing
     migrateManifest: packages/terradart_migrate/lib/src/manifest/aws.g.dart
     providerEnums: true
+    references: check
     bump:
       mode: auto
       repo: hashicorp/terraform-provider-aws

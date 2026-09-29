@@ -154,8 +154,8 @@ final class AppStack extends Stack {
       ) {
     final assets = add(GoogleStorageBucket(
       localName: 'assets',
-      name: TfArg.literal(env.assetsName),   // "app-dev-assets" / "app-prod-assets"
-      location: TfArg.variable('region'),
+      name: .literal(env.assetsName),   // "app-dev-assets" / "app-prod-assets"
+      location: .variable('region'),
     ));
     if (env.isProd) {
       add(GoogleStorageBucket(localName: 'backups', ...));
@@ -180,7 +180,7 @@ enum Env {
 
 ### The workspace as a parameter
 
-`--lift-workspace` turns `terraform.workspace` into a `workspace` parameter on the Stack: a bare reference becomes `TfArg.literal(workspace)`, a template around it becomes Dart interpolation (`TfArg.literal('orders-$workspace')`), and one inside a list or map becomes the value. `dart run bin/infra.dart --workspace prod` then synthesizes for that workspace by name. It is opt-in because it moves the decision: the JSON names a workspace instead of leaving `${terraform.workspace}` for `terraform workspace select`, so it is faithful for the workspace it names and only that one. A template mixing the workspace with another reference stays a Terraform expression, with a warning naming it.
+`--lift-workspace` turns `terraform.workspace` into a `workspace` parameter on the Stack: a bare reference becomes `.literal(workspace)`, a template around it becomes Dart interpolation (`.literal('orders-$workspace')`), and one inside a list or map becomes the value. `dart run bin/infra.dart --workspace prod` then synthesizes for that workspace by name. It is opt-in because it moves the decision: the JSON names a workspace instead of leaving `${terraform.workspace}` for `terraform workspace select`, so it is faithful for the workspace it names and only that one. A template mixing the workspace with another reference stays a Terraform expression, with a warning naming it.
 
 ## Options
 

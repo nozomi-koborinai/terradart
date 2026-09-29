@@ -6,6 +6,7 @@ import '../dart_type_writer.dart';
 import '../naming.dart';
 import '../nested_types/nested_type_collector.dart';
 import '../provider_enums.dart';
+import '../references/reference_targets.dart';
 import '../universal_invariants/enum_extractor.dart';
 import '../wrapper_overrides/wrapper_override.dart';
 import 'helper_class_extractor.dart';
@@ -47,6 +48,7 @@ final class MigrateEntryInput {
     this.enumValues = descriptionEnumValues,
     this.exactlyOneGroups = const {},
     this.atMostOneGroups = const {},
+    this.references = const {},
   });
 
   final String tfType;
@@ -74,6 +76,9 @@ final class MigrateEntryInput {
   /// The nested at-most-one groups, likewise
   /// (`ProviderEnums.nestedAtMostOneGroups`).
   final Map<String, List<List<String>>> atMostOneGroups;
+
+  /// The type's reference inputs the wrapper emitter typed, by dotted path.
+  final Map<String, ResolvedReference> references;
 }
 
 /// Builds every factory's recipe against one package-wide symbol table.
@@ -120,6 +125,7 @@ List<MigrateEntryBuild> buildMigrateEntries(
         enumValues: inputs[i].enumValues,
         exactlyOneGroups: inputs[i].exactlyOneGroups,
         atMostOneGroups: inputs[i].atMostOneGroups,
+        references: inputs[i].references,
         context: ctx,
         fileHelpers: perFileHelpers[i],
         fileEnums: perFileEnums[i],
@@ -142,6 +148,7 @@ MigrateEntryBuild buildMigrateEntry({
   EnumValuesResolver enumValues = descriptionEnumValues,
   Map<String, List<List<String>>> exactlyOneGroups = const {},
   Map<String, List<List<String>>> atMostOneGroups = const {},
+  Map<String, ResolvedReference> references = const {},
   ShapeContext? context,
   HelperExtraction? fileHelpers,
   List<EmittedEnum>? fileEnums,
@@ -188,6 +195,7 @@ MigrateEntryBuild buildMigrateEntry({
       exactlyOneGroups: exactlyOneGroups,
       atMostOneGroups: atMostOneGroups,
       sealedNames: override.sealedNames,
+      references: (path) => references[path.join('.')],
     );
     for (final s in collected) {
       specs[s.tfName] = s;
@@ -237,7 +245,13 @@ MigrateEntryBuild buildMigrateEntry({
       );
     } else if (attr != null) {
       slots.add(
-        _attributeSlot(attr, requiredOverrides, dartTypeOverrides, ctx),
+        _attributeSlot(
+          attr,
+          requiredOverrides,
+          dartTypeOverrides,
+          ctx,
+          reference: references[name],
+        ),
       );
     } else if (block != null) {
       slots.add(_passthroughSlot(block, requiredOverrides));
@@ -304,8 +318,22 @@ MigrateSlotData _attributeSlot(
   Attribute attr,
   Set<String> requiredOverrides,
   Map<String, String> dartTypeOverrides,
-  ShapeContext ctx,
-) {
+  ShapeContext ctx, {
+  ResolvedReference? reference,
+}) {
+  final required =
+      attr.constraints.required || requiredOverrides.contains(attr.name);
+  if (reference != null && !dartTypeOverrides.containsKey(attr.name)) {
+    return MigrateSlotData(
+      tfName: attr.name,
+      dartName: snakeToDartIdent(attr.name),
+      kind: MigrateSlotKind.reference,
+      required: required,
+      repeated: reference.list,
+      dartType: reference.className,
+      attribute: reference.attribute,
+    );
+  }
   final payload = dartTypeOverrides[attr.name] ?? writeDartType(attr.type);
   final shape = resolveEnumPayload(
     classifyDartType(
@@ -318,8 +346,7 @@ MigrateSlotData _attributeSlot(
     shape,
     tfName: attr.name,
     dartName: snakeToDartIdent(attr.name),
-    required:
-        attr.constraints.required || requiredOverrides.contains(attr.name),
+    required: required,
   );
 }
 
@@ -346,6 +373,19 @@ MigrateHelperData _helper(ExtractedHelper h, ShapeContext ctx) {
   final slots = <MigrateSlotData>[];
   for (final f in h.fields) {
     var shape = resolveEnumPayload(classifyDartType(f.typeSource, ctx), ctx);
+    if (shape.kind == MigrateSlotKind.reference) {
+      final attribute = f.encodedAttribute;
+      shape = attribute == null
+          ? const SlotShape.manual(
+              'reference field does not encode through encodeAs',
+            )
+          : SlotShape(
+              kind: MigrateSlotKind.reference,
+              dartType: shape.dartType,
+              repeated: shape.repeated,
+              attribute: attribute,
+            );
+    }
     if (f.merged) shape = mergedShape(shape);
     if (shape.keyed && !f.keyedEncoding) shape = unkeyedMapShape(f.typeSource);
     slots.add(
@@ -388,6 +428,7 @@ MigrateSlotData _fromShape(
     dartType: shape.dartType,
     helper: shape.helper,
     variants: shape.variants,
+    attribute: shape.attribute,
     reason: shape.reason,
   );
 }
