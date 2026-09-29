@@ -55,16 +55,15 @@ enum RulesetPhase implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.accountId(...)`.
-sealed class RulesetAccountIdOrZoneId {
-  const RulesetAccountIdOrZoneId();
+sealed class RulesetScope {
+  const RulesetScope();
 
   /// Sets `account_id`.
-  const factory RulesetAccountIdOrZoneId.accountId(TfArg<String> accountId) =
-      RulesetAccountIdOrZoneIdAccountId;
+  const factory RulesetScope.accountId(TfArg<String> accountId) =
+      RulesetScopeAccountId;
 
   /// Sets `zone_id`.
-  const factory RulesetAccountIdOrZoneId.zoneId(TfArg<String> zoneId) =
-      RulesetAccountIdOrZoneIdZoneId;
+  const factory RulesetScope.zoneId(TfArg<String> zoneId) = RulesetScopeZoneId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -76,9 +75,9 @@ sealed class RulesetAccountIdOrZoneId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RulesetAccountIdOrZoneId.accountId] choice: sets `account_id`.
-final class RulesetAccountIdOrZoneIdAccountId extends RulesetAccountIdOrZoneId {
-  const RulesetAccountIdOrZoneIdAccountId(this.accountId);
+/// The [RulesetScope.accountId] choice: sets `account_id`.
+final class RulesetScopeAccountId extends RulesetScope {
+  const RulesetScopeAccountId(this.accountId);
 
   final TfArg<String> accountId;
 
@@ -92,9 +91,9 @@ final class RulesetAccountIdOrZoneIdAccountId extends RulesetAccountIdOrZoneId {
   Map<String, TfArg<Object?>> get argMap => {'account_id': accountId};
 }
 
-/// The [RulesetAccountIdOrZoneId.zoneId] choice: sets `zone_id`.
-final class RulesetAccountIdOrZoneIdZoneId extends RulesetAccountIdOrZoneId {
-  const RulesetAccountIdOrZoneIdZoneId(this.zoneId);
+/// The [RulesetScope.zoneId] choice: sets `zone_id`.
+final class RulesetScopeZoneId extends RulesetScope {
+  const RulesetScopeZoneId(this.zoneId);
 
   final TfArg<String> zoneId;
 
@@ -191,7 +190,7 @@ enum RulesetRulesAction implements TerraformEnum {
 final class RulesetRulesActionParameters {
   const RulesetRulesActionParameters({
     this.additionalCacheablePorts,
-    this.assetNameOrContent,
+    this.body,
     this.automaticHttpsRewrites,
     this.bic,
     this.cache,
@@ -201,7 +200,7 @@ final class RulesetRulesActionParameters {
     this.disableRum,
     this.disableZaraz,
     this.emailObfuscation,
-    this.valuesOrExpression,
+    this.value,
     this.fonts,
     this.hostHeader,
     this.hotlinkProtection,
@@ -239,7 +238,7 @@ final class RulesetRulesActionParameters {
     this.cacheReserve,
     this.cookieFields,
     this.edgeTtl,
-    this.fromListOrFromValue,
+    this.source,
     this.headers,
     this.immutable,
     this.matchedData,
@@ -271,7 +270,7 @@ final class RulesetRulesActionParameters {
 
   final TfArg<List<Object?>>? additionalCacheablePorts;
 
-  final RulesetRulesActionParametersAssetNameOrContent? assetNameOrContent;
+  final RulesetRulesActionParametersBody? body;
 
   final TfArg<bool>? automaticHttpsRewrites;
 
@@ -291,7 +290,7 @@ final class RulesetRulesActionParameters {
 
   final TfArg<bool>? emailObfuscation;
 
-  final RulesetRulesActionParametersValuesOrExpression? valuesOrExpression;
+  final RulesetRulesActionParametersValue? value;
 
   final TfArg<bool>? fonts;
 
@@ -369,7 +368,7 @@ final class RulesetRulesActionParameters {
 
   final RulesetRulesActionParametersEdgeTtl? edgeTtl;
 
-  final RulesetRulesActionParametersFromListOrFromValue? fromListOrFromValue;
+  final RulesetRulesActionParametersSource? source;
 
   final Map<String, RulesetRulesActionParametersHeaders>? headers;
 
@@ -429,7 +428,7 @@ final class RulesetRulesActionParameters {
   Map<String, Object?> encode() => {
     if (additionalCacheablePorts != null)
       'additional_cacheable_ports': additionalCacheablePorts!.toTfJson(),
-    ...?assetNameOrContent?.encode(),
+    ...?body?.encode(),
     if (automaticHttpsRewrites != null)
       'automatic_https_rewrites': automaticHttpsRewrites!.toTfJson(),
     if (bic != null) 'bic': bic!.toTfJson(),
@@ -442,7 +441,7 @@ final class RulesetRulesActionParameters {
     if (disableZaraz != null) 'disable_zaraz': disableZaraz!.toTfJson(),
     if (emailObfuscation != null)
       'email_obfuscation': emailObfuscation!.toTfJson(),
-    ...?valuesOrExpression?.encode(),
+    ...?value?.encode(),
     if (fonts != null) 'fonts': fonts!.toTfJson(),
     if (hostHeader != null) 'host_header': hostHeader!.toTfJson(),
     if (hotlinkProtection != null)
@@ -492,7 +491,7 @@ final class RulesetRulesActionParameters {
     if (cookieFields != null)
       'cookie_fields': [for (final e in cookieFields!) e.encode()],
     if (edgeTtl != null) 'edge_ttl': edgeTtl!.encode(),
-    ...?fromListOrFromValue?.encode(),
+    ...?source?.encode(),
     if (headers != null)
       'headers': {for (final e in headers!.entries) e.key: e.value.encode()},
     if (immutable != null) 'immutable': immutable!.encode(),
@@ -537,18 +536,18 @@ final class RulesetRulesActionParameters {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.assetName(...)`.
-sealed class RulesetRulesActionParametersAssetNameOrContent {
-  const RulesetRulesActionParametersAssetNameOrContent();
+sealed class RulesetRulesActionParametersBody {
+  const RulesetRulesActionParametersBody();
 
   /// Sets `asset_name`.
-  const factory RulesetRulesActionParametersAssetNameOrContent.assetName(
+  const factory RulesetRulesActionParametersBody.assetName(
     TfArg<String> assetName,
-  ) = RulesetRulesActionParametersAssetNameOrContentAssetName;
+  ) = RulesetRulesActionParametersBodyAssetName;
 
   /// Sets `content`.
-  const factory RulesetRulesActionParametersAssetNameOrContent.content(
+  const factory RulesetRulesActionParametersBody.content(
     TfArg<String> content,
-  ) = RulesetRulesActionParametersAssetNameOrContentContent;
+  ) = RulesetRulesActionParametersBodyContent;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -556,10 +555,10 @@ sealed class RulesetRulesActionParametersAssetNameOrContent {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersAssetNameOrContent.assetName] choice: sets `asset_name`.
-final class RulesetRulesActionParametersAssetNameOrContentAssetName
-    extends RulesetRulesActionParametersAssetNameOrContent {
-  const RulesetRulesActionParametersAssetNameOrContentAssetName(this.assetName);
+/// The [RulesetRulesActionParametersBody.assetName] choice: sets `asset_name`.
+final class RulesetRulesActionParametersBodyAssetName
+    extends RulesetRulesActionParametersBody {
+  const RulesetRulesActionParametersBodyAssetName(this.assetName);
 
   final TfArg<String> assetName;
 
@@ -570,10 +569,10 @@ final class RulesetRulesActionParametersAssetNameOrContentAssetName
   Map<String, Object?> encode() => {'asset_name': assetName.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersAssetNameOrContent.content] choice: sets `content`.
-final class RulesetRulesActionParametersAssetNameOrContentContent
-    extends RulesetRulesActionParametersAssetNameOrContent {
-  const RulesetRulesActionParametersAssetNameOrContentContent(this.content);
+/// The [RulesetRulesActionParametersBody.content] choice: sets `content`.
+final class RulesetRulesActionParametersBodyContent
+    extends RulesetRulesActionParametersBody {
+  const RulesetRulesActionParametersBodyContent(this.content);
 
   final TfArg<String> content;
 
@@ -589,18 +588,18 @@ final class RulesetRulesActionParametersAssetNameOrContentContent
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.fromList(...)`.
-sealed class RulesetRulesActionParametersFromListOrFromValue {
-  const RulesetRulesActionParametersFromListOrFromValue();
+sealed class RulesetRulesActionParametersSource {
+  const RulesetRulesActionParametersSource();
 
   /// Sets `from_list`.
-  const factory RulesetRulesActionParametersFromListOrFromValue.fromList(
+  const factory RulesetRulesActionParametersSource.fromList(
     RulesetRulesActionParametersFromList fromList,
-  ) = RulesetRulesActionParametersFromListOrFromValueFromList;
+  ) = RulesetRulesActionParametersSourceFromList;
 
   /// Sets `from_value`.
-  const factory RulesetRulesActionParametersFromListOrFromValue.fromValue(
+  const factory RulesetRulesActionParametersSource.fromValue(
     RulesetRulesActionParametersFromValue fromValue,
-  ) = RulesetRulesActionParametersFromListOrFromValueFromValue;
+  ) = RulesetRulesActionParametersSourceFromValue;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -608,10 +607,10 @@ sealed class RulesetRulesActionParametersFromListOrFromValue {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersFromListOrFromValue.fromList] choice: sets `from_list`.
-final class RulesetRulesActionParametersFromListOrFromValueFromList
-    extends RulesetRulesActionParametersFromListOrFromValue {
-  const RulesetRulesActionParametersFromListOrFromValueFromList(this.fromList);
+/// The [RulesetRulesActionParametersSource.fromList] choice: sets `from_list`.
+final class RulesetRulesActionParametersSourceFromList
+    extends RulesetRulesActionParametersSource {
+  const RulesetRulesActionParametersSourceFromList(this.fromList);
 
   final RulesetRulesActionParametersFromList fromList;
 
@@ -622,12 +621,10 @@ final class RulesetRulesActionParametersFromListOrFromValueFromList
   Map<String, Object?> encode() => {'from_list': fromList.encode()};
 }
 
-/// The [RulesetRulesActionParametersFromListOrFromValue.fromValue] choice: sets `from_value`.
-final class RulesetRulesActionParametersFromListOrFromValueFromValue
-    extends RulesetRulesActionParametersFromListOrFromValue {
-  const RulesetRulesActionParametersFromListOrFromValueFromValue(
-    this.fromValue,
-  );
+/// The [RulesetRulesActionParametersSource.fromValue] choice: sets `from_value`.
+final class RulesetRulesActionParametersSourceFromValue
+    extends RulesetRulesActionParametersSource {
+  const RulesetRulesActionParametersSourceFromValue(this.fromValue);
 
   final RulesetRulesActionParametersFromValue fromValue;
 
@@ -643,18 +640,18 @@ final class RulesetRulesActionParametersFromListOrFromValueFromValue
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.values(...)`.
-sealed class RulesetRulesActionParametersValuesOrExpression {
-  const RulesetRulesActionParametersValuesOrExpression();
+sealed class RulesetRulesActionParametersValue {
+  const RulesetRulesActionParametersValue();
 
   /// Sets `values`.
-  const factory RulesetRulesActionParametersValuesOrExpression.values(
+  const factory RulesetRulesActionParametersValue.values(
     TfArg<List<Object?>> values,
-  ) = RulesetRulesActionParametersValuesOrExpressionValues;
+  ) = RulesetRulesActionParametersValueValues;
 
   /// Sets `expression`.
-  const factory RulesetRulesActionParametersValuesOrExpression.expression(
+  const factory RulesetRulesActionParametersValue.expression(
     TfArg<String> expression,
-  ) = RulesetRulesActionParametersValuesOrExpressionExpression;
+  ) = RulesetRulesActionParametersValueExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -662,10 +659,10 @@ sealed class RulesetRulesActionParametersValuesOrExpression {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersValuesOrExpression.values] choice: sets `values`.
-final class RulesetRulesActionParametersValuesOrExpressionValues
-    extends RulesetRulesActionParametersValuesOrExpression {
-  const RulesetRulesActionParametersValuesOrExpressionValues(this.values);
+/// The [RulesetRulesActionParametersValue.values] choice: sets `values`.
+final class RulesetRulesActionParametersValueValues
+    extends RulesetRulesActionParametersValue {
+  const RulesetRulesActionParametersValueValues(this.values);
 
   final TfArg<List<Object?>> values;
 
@@ -676,12 +673,10 @@ final class RulesetRulesActionParametersValuesOrExpressionValues
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersValuesOrExpression.expression] choice: sets `expression`.
-final class RulesetRulesActionParametersValuesOrExpressionExpression
-    extends RulesetRulesActionParametersValuesOrExpression {
-  const RulesetRulesActionParametersValuesOrExpressionExpression(
-    this.expression,
-  );
+/// The [RulesetRulesActionParametersValue.expression] choice: sets `expression`.
+final class RulesetRulesActionParametersValueExpression
+    extends RulesetRulesActionParametersValue {
+  const RulesetRulesActionParametersValueExpression(this.expression);
 
   final TfArg<String> expression;
 
@@ -1543,16 +1538,16 @@ final class RulesetRulesActionParametersFromValueTargetUrlTargetUrlExpression
 @immutable
 final class RulesetRulesActionParametersHeaders {
   const RulesetRulesActionParametersHeaders({
-    this.valueOrExpression,
+    this.value,
     required this.operation,
   });
 
-  final RulesetRulesActionParametersHeadersValueOrExpression? valueOrExpression;
+  final RulesetRulesActionParametersHeadersValue? value;
 
   final TfArg<RulesetRulesActionParametersHeadersOperation> operation;
 
   Map<String, Object?> encode() => {
-    ...?valueOrExpression?.encode(),
+    ...?value?.encode(),
     'operation': operation.toTfJson(),
   };
 }
@@ -1562,18 +1557,18 @@ final class RulesetRulesActionParametersHeaders {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class RulesetRulesActionParametersHeadersValueOrExpression {
-  const RulesetRulesActionParametersHeadersValueOrExpression();
+sealed class RulesetRulesActionParametersHeadersValue {
+  const RulesetRulesActionParametersHeadersValue();
 
   /// Sets `value`.
-  const factory RulesetRulesActionParametersHeadersValueOrExpression.value(
+  const factory RulesetRulesActionParametersHeadersValue.value(
     TfArg<String> value,
-  ) = RulesetRulesActionParametersHeadersValueOrExpressionValue;
+  ) = RulesetRulesActionParametersHeadersValueValue;
 
   /// Sets `expression`.
-  const factory RulesetRulesActionParametersHeadersValueOrExpression.expression(
+  const factory RulesetRulesActionParametersHeadersValue.expression(
     TfArg<String> expression,
-  ) = RulesetRulesActionParametersHeadersValueOrExpressionExpression;
+  ) = RulesetRulesActionParametersHeadersValueExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1581,10 +1576,10 @@ sealed class RulesetRulesActionParametersHeadersValueOrExpression {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersHeadersValueOrExpression.value] choice: sets `value`.
-final class RulesetRulesActionParametersHeadersValueOrExpressionValue
-    extends RulesetRulesActionParametersHeadersValueOrExpression {
-  const RulesetRulesActionParametersHeadersValueOrExpressionValue(this.value);
+/// The [RulesetRulesActionParametersHeadersValue.value] choice: sets `value`.
+final class RulesetRulesActionParametersHeadersValueValue
+    extends RulesetRulesActionParametersHeadersValue {
+  const RulesetRulesActionParametersHeadersValueValue(this.value);
 
   final TfArg<String> value;
 
@@ -1595,12 +1590,10 @@ final class RulesetRulesActionParametersHeadersValueOrExpressionValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersHeadersValueOrExpression.expression] choice: sets `expression`.
-final class RulesetRulesActionParametersHeadersValueOrExpressionExpression
-    extends RulesetRulesActionParametersHeadersValueOrExpression {
-  const RulesetRulesActionParametersHeadersValueOrExpressionExpression(
-    this.expression,
-  );
+/// The [RulesetRulesActionParametersHeadersValue.expression] choice: sets `expression`.
+final class RulesetRulesActionParametersHeadersValueExpression
+    extends RulesetRulesActionParametersHeadersValue {
+  const RulesetRulesActionParametersHeadersValueExpression(this.expression);
 
   final TfArg<String> expression;
 
@@ -2646,7 +2639,7 @@ final class CloudflareRuleset extends Resource {
 
   CloudflareRuleset({
     required super.localName,
-    required RulesetAccountIdOrZoneId accountIdOrZoneId,
+    required RulesetScope scope,
     TfArg<String>? description,
     required TfArg<RulesetKind> kind,
     required TfArg<String> name,
@@ -2659,7 +2652,7 @@ final class CloudflareRuleset extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...accountIdOrZoneId.argMap,
+           ...scope.argMap,
            if (description != null) 'description': description,
            'kind': kind,
            'name': name,

@@ -8,9 +8,9 @@ export 'src/dns/cloudflare_dns_firewall.dart'
 export 'src/dns/cloudflare_dns_record.dart'
     show
         CloudflareDnsRecord,
-        DnsRecordContentOrData,
-        DnsRecordContentOrDataContent,
-        DnsRecordContentOrDataData,
+        DnsRecordContent,
+        DnsRecordContentContent,
+        DnsRecordContentData,
         DnsRecordData,
         DnsRecordDataLatDirection,
         DnsRecordDataLongDirection,

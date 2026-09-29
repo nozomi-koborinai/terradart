@@ -7,26 +7,4 @@
 # `sealedNames: {"<members>": <concept>}` to the override and
 # re-running wrap, which drops the entry. `wrap --check` fails
 # on a missing or stale entry.
-cloudflare_account_member:
-  "policies, roles": "awaiting-name: cloudflare/cloudflare 5.26.0"
-cloudflare_dns_record:
-  "content, data": "awaiting-name: cloudflare/cloudflare 5.26.0"
-cloudflare_list:
-  "items.asn, items.hostname, items.ip, items.redirect": "awaiting-name: cloudflare/cloudflare 5.26.0"
-cloudflare_ruleset:
-  "account_id, zone_id": "awaiting-name: cloudflare/cloudflare 5.26.0"
-  "rules.action_parameters.asset_name, rules.action_parameters.content": "awaiting-name: cloudflare/cloudflare 5.26.0"
-  "rules.action_parameters.expression, rules.action_parameters.values": "awaiting-name: cloudflare/cloudflare 5.26.0"
-  "rules.action_parameters.from_list, rules.action_parameters.from_value": "awaiting-name: cloudflare/cloudflare 5.26.0"
-  "rules.action_parameters.headers.expression, rules.action_parameters.headers.value": "awaiting-name: cloudflare/cloudflare 5.26.0"
-cloudflare_worker_version:
-  "assets.directory, assets.jwt": "awaiting-name: cloudflare/cloudflare 5.26.0"
-cloudflare_workers_script:
-  "assets.directory, assets.jwt": "awaiting-name: cloudflare/cloudflare 5.26.0"
-cloudflare_zero_trust_access_application:
-  "destinations, self_hosted_domains": "awaiting-name: cloudflare/cloudflare 5.26.0"
-  "policies.id, policies.include": "awaiting-name: cloudflare/cloudflare 5.26.0"
-cloudflare_zero_trust_device_custom_profile:
-  "exclude, include": "awaiting-name: cloudflare/cloudflare 5.26.0"
-cloudflare_zero_trust_device_default_profile:
-  "exclude, include": "awaiting-name: cloudflare/cloudflare 5.26.0"
+{}

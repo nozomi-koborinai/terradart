@@ -23,14 +23,14 @@ enum ListKind implements TerraformEnum {
 /// `cloudflare_list` (derived from provider schema).
 @immutable
 final class ListItems {
-  const ListItems({this.asnOrIpOrHostnameOrRedirect, this.comment});
+  const ListItems({this.value, this.comment});
 
-  final ListItemsAsnOrIpOrHostnameOrRedirect? asnOrIpOrHostnameOrRedirect;
+  final ListItemsValue? value;
 
   final TfArg<String>? comment;
 
   Map<String, Object?> encode() => {
-    ...?asnOrIpOrHostnameOrRedirect?.encode(),
+    ...?value?.encode(),
     if (comment != null) 'comment': comment!.toTfJson(),
   };
 }
@@ -40,26 +40,22 @@ final class ListItems {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.asn(...)`.
-sealed class ListItemsAsnOrIpOrHostnameOrRedirect {
-  const ListItemsAsnOrIpOrHostnameOrRedirect();
+sealed class ListItemsValue {
+  const ListItemsValue();
 
   /// Sets `asn`.
-  const factory ListItemsAsnOrIpOrHostnameOrRedirect.asn(TfArg<num> asn) =
-      ListItemsAsnOrIpOrHostnameOrRedirectAsn;
+  const factory ListItemsValue.asn(TfArg<num> asn) = ListItemsValueAsn;
 
   /// Sets `ip`.
-  const factory ListItemsAsnOrIpOrHostnameOrRedirect.ip(TfArg<String> ip) =
-      ListItemsAsnOrIpOrHostnameOrRedirectIp;
+  const factory ListItemsValue.ip(TfArg<String> ip) = ListItemsValueIp;
 
   /// Sets `hostname`.
-  const factory ListItemsAsnOrIpOrHostnameOrRedirect.hostname(
-    ListItemsHostname hostname,
-  ) = ListItemsAsnOrIpOrHostnameOrRedirectHostname;
+  const factory ListItemsValue.hostname(ListItemsHostname hostname) =
+      ListItemsValueHostname;
 
   /// Sets `redirect`.
-  const factory ListItemsAsnOrIpOrHostnameOrRedirect.redirect(
-    ListItemsRedirect redirect,
-  ) = ListItemsAsnOrIpOrHostnameOrRedirectRedirect;
+  const factory ListItemsValue.redirect(ListItemsRedirect redirect) =
+      ListItemsValueRedirect;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -67,10 +63,9 @@ sealed class ListItemsAsnOrIpOrHostnameOrRedirect {
   Map<String, Object?> encode();
 }
 
-/// The [ListItemsAsnOrIpOrHostnameOrRedirect.asn] choice: sets `asn`.
-final class ListItemsAsnOrIpOrHostnameOrRedirectAsn
-    extends ListItemsAsnOrIpOrHostnameOrRedirect {
-  const ListItemsAsnOrIpOrHostnameOrRedirectAsn(this.asn);
+/// The [ListItemsValue.asn] choice: sets `asn`.
+final class ListItemsValueAsn extends ListItemsValue {
+  const ListItemsValueAsn(this.asn);
 
   final TfArg<num> asn;
 
@@ -81,10 +76,9 @@ final class ListItemsAsnOrIpOrHostnameOrRedirectAsn
   Map<String, Object?> encode() => {'asn': asn.toTfJson()};
 }
 
-/// The [ListItemsAsnOrIpOrHostnameOrRedirect.ip] choice: sets `ip`.
-final class ListItemsAsnOrIpOrHostnameOrRedirectIp
-    extends ListItemsAsnOrIpOrHostnameOrRedirect {
-  const ListItemsAsnOrIpOrHostnameOrRedirectIp(this.ip);
+/// The [ListItemsValue.ip] choice: sets `ip`.
+final class ListItemsValueIp extends ListItemsValue {
+  const ListItemsValueIp(this.ip);
 
   final TfArg<String> ip;
 
@@ -95,10 +89,9 @@ final class ListItemsAsnOrIpOrHostnameOrRedirectIp
   Map<String, Object?> encode() => {'ip': ip.toTfJson()};
 }
 
-/// The [ListItemsAsnOrIpOrHostnameOrRedirect.hostname] choice: sets `hostname`.
-final class ListItemsAsnOrIpOrHostnameOrRedirectHostname
-    extends ListItemsAsnOrIpOrHostnameOrRedirect {
-  const ListItemsAsnOrIpOrHostnameOrRedirectHostname(this.hostname);
+/// The [ListItemsValue.hostname] choice: sets `hostname`.
+final class ListItemsValueHostname extends ListItemsValue {
+  const ListItemsValueHostname(this.hostname);
 
   final ListItemsHostname hostname;
 
@@ -109,10 +102,9 @@ final class ListItemsAsnOrIpOrHostnameOrRedirectHostname
   Map<String, Object?> encode() => {'hostname': hostname.encode()};
 }
 
-/// The [ListItemsAsnOrIpOrHostnameOrRedirect.redirect] choice: sets `redirect`.
-final class ListItemsAsnOrIpOrHostnameOrRedirectRedirect
-    extends ListItemsAsnOrIpOrHostnameOrRedirect {
-  const ListItemsAsnOrIpOrHostnameOrRedirectRedirect(this.redirect);
+/// The [ListItemsValue.redirect] choice: sets `redirect`.
+final class ListItemsValueRedirect extends ListItemsValue {
+  const ListItemsValueRedirect(this.redirect);
 
   final ListItemsRedirect redirect;
 

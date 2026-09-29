@@ -72,9 +72,6 @@ export 'src/zero_trust/cloudflare_zero_trust_access_application.dart'
         ZeroTrustAccessApplicationPoliciesExcludeOkta,
         ZeroTrustAccessApplicationPoliciesExcludeSaml,
         ZeroTrustAccessApplicationPoliciesExcludeServiceToken,
-        ZeroTrustAccessApplicationPoliciesIdOrInclude,
-        ZeroTrustAccessApplicationPoliciesIdOrIncludeId,
-        ZeroTrustAccessApplicationPoliciesIdOrIncludeInclude,
         ZeroTrustAccessApplicationPoliciesInclude,
         ZeroTrustAccessApplicationPoliciesIncludeAnyValidServiceToken,
         ZeroTrustAccessApplicationPoliciesIncludeAuthContext,
@@ -102,6 +99,9 @@ export 'src/zero_trust/cloudflare_zero_trust_access_application.dart'
         ZeroTrustAccessApplicationPoliciesIncludeServiceToken,
         ZeroTrustAccessApplicationPoliciesMfaConfig,
         ZeroTrustAccessApplicationPoliciesMfaConfigAllowedAuthenticators,
+        ZeroTrustAccessApplicationPoliciesPolicy,
+        ZeroTrustAccessApplicationPoliciesPolicyId,
+        ZeroTrustAccessApplicationPoliciesPolicyInclude,
         ZeroTrustAccessApplicationPoliciesRequire,
         ZeroTrustAccessApplicationPoliciesRequireAnyValidServiceToken,
         ZeroTrustAccessApplicationPoliciesRequireAuthContext,
@@ -147,11 +147,11 @@ export 'src/zero_trust/cloudflare_zero_trust_access_application.dart'
         ZeroTrustAccessApplicationScimConfigMappings,
         ZeroTrustAccessApplicationScimConfigMappingsOperations,
         ZeroTrustAccessApplicationScimConfigMappingsStrictness,
-        ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations,
-        ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsDestinations,
-        ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsSelfHostedDomains,
         ZeroTrustAccessApplicationTargetCriteria,
         ZeroTrustAccessApplicationTargetCriteriaProtocol,
+        ZeroTrustAccessApplicationTargets,
+        ZeroTrustAccessApplicationTargetsDestinations,
+        ZeroTrustAccessApplicationTargetsSelfHostedDomains,
         ZeroTrustAccessApplicationType;
 export 'src/zero_trust/cloudflare_zero_trust_access_custom_page.dart'
     show CloudflareZeroTrustAccessCustomPage, ZeroTrustAccessCustomPageType;
@@ -387,13 +387,13 @@ export 'src/zero_trust/cloudflare_zero_trust_device_custom_profile.dart'
         ZeroTrustDeviceCustomProfileBrowserExtensionConfigProxyControl,
         ZeroTrustDeviceCustomProfileDnsSearchSuffixes,
         ZeroTrustDeviceCustomProfileExclude,
-        ZeroTrustDeviceCustomProfileExcludeOrInclude,
-        ZeroTrustDeviceCustomProfileExcludeOrIncludeExclude,
-        ZeroTrustDeviceCustomProfileExcludeOrIncludeInclude,
         ZeroTrustDeviceCustomProfileGlobalAcceleration,
         ZeroTrustDeviceCustomProfileInclude,
         ZeroTrustDeviceCustomProfileProfileType,
         ZeroTrustDeviceCustomProfileServiceModeV2,
+        ZeroTrustDeviceCustomProfileSplitTunnel,
+        ZeroTrustDeviceCustomProfileSplitTunnelExclude,
+        ZeroTrustDeviceCustomProfileSplitTunnelInclude,
         ZeroTrustDeviceCustomProfileVirtualNetworks;
 export 'src/zero_trust/cloudflare_zero_trust_device_custom_profile_local_domain_fallback.dart'
     show
@@ -404,12 +404,12 @@ export 'src/zero_trust/cloudflare_zero_trust_device_default_profile.dart'
         CloudflareZeroTrustDeviceDefaultProfile,
         ZeroTrustDeviceDefaultProfileDnsSearchSuffixes,
         ZeroTrustDeviceDefaultProfileExclude,
-        ZeroTrustDeviceDefaultProfileExcludeOrInclude,
-        ZeroTrustDeviceDefaultProfileExcludeOrIncludeExclude,
-        ZeroTrustDeviceDefaultProfileExcludeOrIncludeInclude,
         ZeroTrustDeviceDefaultProfileGlobalAcceleration,
         ZeroTrustDeviceDefaultProfileInclude,
         ZeroTrustDeviceDefaultProfileServiceModeV2,
+        ZeroTrustDeviceDefaultProfileSplitTunnel,
+        ZeroTrustDeviceDefaultProfileSplitTunnelExclude,
+        ZeroTrustDeviceDefaultProfileSplitTunnelInclude,
         ZeroTrustDeviceDefaultProfileVirtualNetworks;
 export 'src/zero_trust/cloudflare_zero_trust_device_default_profile_certificates.dart'
     show CloudflareZeroTrustDeviceDefaultProfileCertificates;
