@@ -237,15 +237,11 @@ final class FirestoreSeededDataStack extends Stack {
         fields: [
           FirestoreIndexIndexField(
             fieldPath: TfArg.literal('monthly_usd'),
-            spec: const FirestoreIndexIndexFieldOrder(
-              FirestoreIndexOrder.ascending,
-            ),
+            spec: const .order(FirestoreIndexOrder.ascending),
           ),
           FirestoreIndexIndexField(
             fieldPath: TfArg.literal('label'),
-            spec: const FirestoreIndexIndexFieldOrder(
-              FirestoreIndexOrder.ascending,
-            ),
+            spec: const .order(FirestoreIndexOrder.ascending),
           ),
         ],
       ),
@@ -257,7 +253,7 @@ final class FirestoreSeededDataStack extends Stack {
         localName: 'daily',
         database: TfArg.ref(db.nameRef),
         retention: TfArg.literal('604800s'),
-        recurrence: const FirestoreBackupScheduleDailyRecurrence(),
+        recurrence: const .daily(),
         dependsOn: [ResourceDependency(db)],
       ),
     );

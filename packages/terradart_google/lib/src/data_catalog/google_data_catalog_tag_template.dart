@@ -23,6 +23,16 @@ enum DataCatalogTagTemplatePrimitiveType implements TerraformEnum {
 /// Field value type — exactly one of primitive / enum.
 sealed class DataCatalogTagTemplateFieldType {
   const DataCatalogTagTemplateFieldType();
+
+  /// `type.primitive_type` variant.
+  const factory DataCatalogTagTemplateFieldType.primitiveType(
+    DataCatalogTagTemplatePrimitiveType primitiveType,
+  ) = DataCatalogTagTemplatePrimitiveFieldType;
+
+  /// `type.enum_type` variant.
+  const factory DataCatalogTagTemplateFieldType.enumType({
+    required List<DataCatalogTagTemplateEnumAllowedValue> allowedValues,
+  }) = DataCatalogTagTemplateEnumFieldType;
   Map<String, Object?> encode();
 }
 

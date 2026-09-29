@@ -26,25 +26,19 @@ GoogleCloudRunV2Service buildCloudRunService({
         env: [
           CloudRunV2ServiceEnvVar(
             name: TfArg.literal('DB_INSTANCE'),
-            source: CloudRunV2ServiceEnvVarFromLiteral(
-              TfArg.ref(sqlInstance.connectionName),
-            ),
+            source: .value(TfArg.ref(sqlInstance.connectionName)),
           ),
           CloudRunV2ServiceEnvVar(
             name: TfArg.literal('DB_NAME'),
-            source: CloudRunV2ServiceEnvVarFromLiteral(
-              TfArg.ref(sqlDatabase.nameRef),
-            ),
+            source: .value(TfArg.ref(sqlDatabase.nameRef)),
           ),
           CloudRunV2ServiceEnvVar(
             name: TfArg.literal('DB_USER'),
-            source: CloudRunV2ServiceEnvVarFromLiteral(
-              TfArg.literal('coffee_app'),
-            ),
+            source: .value(TfArg.literal('coffee_app')),
           ),
           CloudRunV2ServiceEnvVar(
             name: TfArg.literal('DB_PASSWORD'),
-            source: CloudRunV2ServiceEnvVarFromSecret(
+            source: .secret(
               secret: TfArg.ref(dbPasswordSecret.id),
               version: TfArg.literal('latest'),
             ),

@@ -21,6 +21,16 @@ enum AppEngineFlexibleAppVersionServingStatus implements TerraformEnum {
 sealed class AppEngineFlexibleAppVersionScaling {
   const AppEngineFlexibleAppVersionScaling();
 
+  /// `automatic_scaling` block — request/latency-driven autoscaling.
+  const factory AppEngineFlexibleAppVersionScaling.automaticScaling({
+    required TfArg<int> minTotalInstances,
+  }) = AppEngineFlexibleAppVersionAutomaticScalingMode;
+
+  /// `manual_scaling` block — fixed instance count.
+  const factory AppEngineFlexibleAppVersionScaling.manualScaling({
+    required TfArg<int> instances,
+  }) = AppEngineFlexibleAppVersionManualScalingMode;
+
   String get blockKey;
 
   Map<String, Object?> encode();

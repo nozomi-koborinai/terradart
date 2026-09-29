@@ -17,6 +17,17 @@ const Set<String> _googleVertexAiFeatureOnlineStoreSensitive = <String>{};
 sealed class VertexAiFeatureOnlineStoreStorage {
   const VertexAiFeatureOnlineStoreStorage();
 
+  /// `bigtable` storage — Cloud Bigtable instance with required autoscaling.
+  const factory VertexAiFeatureOnlineStoreStorage.bigtable({
+    required VertexAiFeatureOnlineStoreBigtableAutoScaling autoScaling,
+    TfArg<bool>? enableDirectBigtableAccess,
+    TfArg<String>? zone,
+  }) = VertexAiFeatureOnlineStoreBigtable;
+
+  /// `optimized` storage — empty object (`allow_empty_object` in MM).
+  const factory VertexAiFeatureOnlineStoreStorage.optimized() =
+      VertexAiFeatureOnlineStoreOptimized;
+
   /// Terraform nested-block key (`bigtable` or `optimized`).
   String get blockKey;
 

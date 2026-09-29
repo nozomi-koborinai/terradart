@@ -141,9 +141,7 @@ final class FirebaseAppBackendStack extends Stack {
               env: [
                 CloudRunV2ServiceEnvVar(
                   name: TfArg.literal('UPLOAD_BUCKET_NAME'),
-                  source: CloudRunV2ServiceEnvVarFromLiteral(
-                    TfArg.ref(uploadsBucket.nameRef),
-                  ),
+                  source: .value(TfArg.ref(uploadsBucket.nameRef)),
                 ),
               ],
             ),

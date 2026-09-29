@@ -51,11 +51,11 @@ final class MessagesStack extends Stack {
         fields: [
           FirestoreIndexIndexField(
             fieldPath: TfArg.literal('user_id'),
-            spec: FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),
+            spec: .order(FirestoreIndexOrder.ascending),
           ),
           FirestoreIndexIndexField(
             fieldPath: TfArg.literal('created_at'),
-            spec: FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.descending),
+            spec: .order(FirestoreIndexOrder.descending),
           ),
         ],
       ),
@@ -78,7 +78,7 @@ final class MessagesStack extends Stack {
         localName: 'daily_backup',
         database: TfArg.ref(db.nameRef),
         retention: TfArg.literal('604800s'),
-        recurrence: const FirestoreBackupScheduleDailyRecurrence(),
+        recurrence: const .daily(),
       ),
     );
   }

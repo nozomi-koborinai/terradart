@@ -19,6 +19,15 @@ const Set<String> _googleFirestoreBackupScheduleSensitive = <String>{};
 sealed class FirestoreBackupScheduleBackupRecurrence {
   const FirestoreBackupScheduleBackupRecurrence();
 
+  /// `daily_recurrence` block.
+  const factory FirestoreBackupScheduleBackupRecurrence.daily() =
+      FirestoreBackupScheduleDailyRecurrence;
+
+  /// `weekly_recurrence` block.
+  const factory FirestoreBackupScheduleBackupRecurrence.weekly({
+    BackupDayOfWeek? day,
+  }) = FirestoreBackupScheduleWeeklyRecurrence;
+
   /// argMap key under which this recurrence is emitted
   /// (`daily_recurrence` or `weekly_recurrence`).
   String get blockKey;

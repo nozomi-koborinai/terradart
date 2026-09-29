@@ -51,7 +51,7 @@ final class DataCatalogStack extends Stack {
         localName: 'custom_entry',
         entryGroup: TfArg.ref(group.id),
         entryId: TfArg.literal('terradart_entry'),
-        entryKind: DataCatalogEntryCustomType(
+        entryKind: .customType(
           userSpecifiedType: TfArg.literal('terradart_custom_type'),
         ),
         userSpecifiedSystem: TfArg.literal('TerraDart'),
@@ -92,7 +92,7 @@ final class DataCatalogStack extends Stack {
             fieldId: TfArg.literal('source'),
             displayName: TfArg.literal('Source of data asset'),
             isRequired: TfArg.literal(true),
-            type: const DataCatalogTagTemplatePrimitiveFieldType(
+            type: const .primitiveType(
               DataCatalogTagTemplatePrimitiveType.string,
             ),
           ),
@@ -110,7 +110,7 @@ final class DataCatalogStack extends Stack {
         fields: [
           DataCatalogTagField(
             fieldName: TfArg.literal('source'),
-            value: DataCatalogTagStringValue(TfArg.literal('terradart-smoke')),
+            value: .stringValue(TfArg.literal('terradart-smoke')),
           ),
         ],
         deletionPolicy: TfArg.literal('DELETE'),

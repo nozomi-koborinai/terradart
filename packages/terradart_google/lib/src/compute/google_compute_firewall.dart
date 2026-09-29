@@ -39,6 +39,18 @@ enum FirewallLogMetadata implements TerraformEnum {
 
 sealed class ComputeFirewallRulePolicy {
   const ComputeFirewallRulePolicy();
+
+  const factory ComputeFirewallRulePolicy.allow({
+    required TfArg<String> protocol,
+    List<String>? ports,
+    List<ComputeFirewallFirewallAllowRule> additionalRules,
+  }) = ComputeFirewallAllowPolicy;
+
+  const factory ComputeFirewallRulePolicy.deny({
+    required TfArg<String> protocol,
+    List<String>? ports,
+    List<ComputeFirewallFirewallDenyRule> additionalRules,
+  }) = ComputeFirewallDenyPolicy;
   String get blockKey;
   List<Map<String, Object?>> encode();
 }

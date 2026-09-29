@@ -28,6 +28,16 @@ enum ComputeSnapshotSnapshotType implements TerraformEnum {
 sealed class ComputeSnapshotSource {
   const ComputeSnapshotSource();
 
+  /// Create the snapshot from a Persistent Disk (name or self-link).
+  const factory ComputeSnapshotSource.disk({
+    required TfArg<String> sourceDisk,
+  }) = ComputeSnapshotDiskSource;
+
+  /// Create the snapshot from a zonal Instant Snapshot (name or self-link).
+  const factory ComputeSnapshotSource.instantSnapshot({
+    required TfArg<String> sourceInstantSnapshot,
+  }) = ComputeSnapshotInstantSource;
+
   /// Terraform attribute name (`source_disk` or `source_instant_snapshot`).
   String get blockKey;
 

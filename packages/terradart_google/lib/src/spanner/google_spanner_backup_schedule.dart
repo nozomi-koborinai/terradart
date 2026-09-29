@@ -11,6 +11,14 @@ const Set<String> _googleSpannerBackupScheduleSensitive = <String>{};
 sealed class SpannerBackupScheduleBackupSpec {
   const SpannerBackupScheduleBackupSpec();
 
+  /// `full_backup_spec` — schedule creates only full backups.
+  const factory SpannerBackupScheduleBackupSpec.fullBackupSpec() =
+      SpannerBackupScheduleFullBackupSpec;
+
+  /// `incremental_backup_spec` — schedule creates incremental backup chains.
+  const factory SpannerBackupScheduleBackupSpec.incrementalBackupSpec() =
+      SpannerBackupScheduleIncrementalBackupSpec;
+
   /// argMap key (`full_backup_spec` or `incremental_backup_spec`).
   String get blockKey;
 

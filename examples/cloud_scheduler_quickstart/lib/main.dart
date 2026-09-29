@@ -52,7 +52,7 @@ final class NightlyCleanupStack extends Stack {
         // (projects/.../topics/nightly-cleanup), which is `topic.id`.
         // Using `topic.nameRef` would emit only the bare name and fail
         // at apply time. The PubsubTarget's class doc spells this out.
-        target: CloudSchedulerJobPubsubTarget(
+        target: .pubsubTarget(
           topicName: TfArg.ref(topic.id),
           // Pub/Sub Scheduler accepts base64-encoded data here. The
           // provider expects pre-encoded text; "Y2xlYW51cA==" is base64

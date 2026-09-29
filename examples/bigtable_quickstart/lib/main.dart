@@ -64,7 +64,7 @@ final class EventsStack extends Stack {
         instanceName: TfArg.ref(instance.nameRef),
         table: TfArg.ref(table.nameRef),
         columnFamily: TfArg.literal('cf1'),
-        policy: BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
+        policy: .maxAge(days: TfArg.literal(7)),
         dependsOn: [ResourceDependency(table)],
       ),
     );
@@ -106,9 +106,7 @@ final class EventsStack extends Stack {
         localName: 'routing',
         appProfileId: TfArg.literal('quickstart-routing'),
         instance: TfArg.ref(instance.nameRef),
-        routing: BigtableAppProfileSingleClusterRouting(
-          clusterId: TfArg.literal('events-c1'),
-        ),
+        routing: .singleClusterRouting(clusterId: TfArg.literal('events-c1')),
         ignoreWarnings: TfArg.literal(true),
         dependsOn: [ResourceDependency(instance)],
       ),

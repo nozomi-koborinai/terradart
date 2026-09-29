@@ -179,6 +179,23 @@ enum MonitoringUptimeCheckResourceType implements TerraformEnum {
 sealed class MonitoringUptimeCheckConfigTarget {
   const MonitoringUptimeCheckConfigTarget();
 
+  /// `monitored_resource` block (max=1).
+  const factory MonitoringUptimeCheckConfigTarget.monitoredResource({
+    required TfArg<String> type,
+    required Map<String, String> labels,
+  }) = MonitoringUptimeCheckConfigMonitoredResource;
+
+  /// `resource_group` block (max=1).
+  const factory MonitoringUptimeCheckConfigTarget.resourceGroup({
+    TfArg<String>? groupId,
+    MonitoringUptimeCheckResourceType? resourceType,
+  }) = MonitoringUptimeCheckConfigResourceGroup;
+
+  /// `synthetic_monitor` block (max=1).
+  const factory MonitoringUptimeCheckConfigTarget.syntheticMonitor({
+    required MonitoringUptimeCheckConfigCloudFunctionV2 cloudFunctionV2,
+  }) = MonitoringUptimeCheckConfigSyntheticMonitor;
+
   String get blockKey;
 
   List<Map<String, Object?>> encode();
@@ -280,6 +297,17 @@ class MonitoringUptimeCheckConfigHttpAuthInfo {
 /// provider's ExactlyOneOf (8.0) holds at compile time.
 sealed class MonitoringUptimeCheckConfigHttpAuthPassword {
   const MonitoringUptimeCheckConfigHttpAuthPassword();
+
+  /// Write-only password (Terraform 1.11+): the provider sends [passwordWo] but never stores it in Terraform state.
+  const factory MonitoringUptimeCheckConfigHttpAuthPassword.writeOnly({
+    required TfArg<String> passwordWo,
+    TfArg<String>? passwordWoVersion,
+  }) = MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword;
+
+  /// **Sensitive.** Plaintext password — masked in rendered Terraform JSON but stored in Terraform state; prefer [MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword].
+  const factory MonitoringUptimeCheckConfigHttpAuthPassword.plaintext({
+    required TfArg<String> password,
+  }) = MonitoringUptimeCheckConfigHttpAuthPlaintextPassword;
 
   /// The key that tells the variants apart.
   String get blockKey;

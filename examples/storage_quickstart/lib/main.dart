@@ -104,9 +104,7 @@ final class AssetsStack extends Stack {
         localName: 'config',
         bucket: TfArg.ref(assets.nameRef),
         name: TfArg.literal('config/app.json'),
-        body: StorageBucketObjectBucketObjectFromSource(
-          source: TfArg.literal('./config/app.json'),
-        ),
+        body: .source(source: TfArg.literal('./config/app.json')),
         contentType: TfArg.literal('application/json'),
         storageClass: TfArg.literal(BucketObjectStorageClass.standard),
       ),
@@ -210,7 +208,7 @@ final class AssetsStack extends Stack {
             ),
           ],
         ),
-        operation: StorageBatchOperationsJobPutMetadata(
+        operation: .putMetadata(
           customMetadata: TfArg.literal({'managed-by': 'terradart'}),
         ),
         dependsOn: [ResourceDependency(assets)],
@@ -235,9 +233,7 @@ final class AssetsStack extends Stack {
         localName: 'legacy_readme',
         bucket: TfArg.ref(legacy.nameRef),
         name: TfArg.literal('readme.txt'),
-        body: StorageBucketObjectBucketObjectFromSource(
-          source: TfArg.literal('./legacy/readme.txt'),
-        ),
+        body: .source(source: TfArg.literal('./legacy/readme.txt')),
         contentType: TfArg.literal('text/plain'),
         storageClass: TfArg.literal(BucketObjectStorageClass.standard),
         dependsOn: [ResourceDependency(legacy)],

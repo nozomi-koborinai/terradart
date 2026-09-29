@@ -91,9 +91,7 @@ final class DlpStack extends Stack {
         storedInfoTypeId: TfArg.literal('terradart-patient-id'),
         displayName: TfArg.literal('terradart-patient-id'),
         description: TfArg.literal('Quickstart regex stored info type'),
-        definition: DataLossPreventionStoredInfoTypeRegex(
-          pattern: TfArg.literal(r'patient-\d{4}'),
-        ),
+        definition: .regex(pattern: TfArg.literal(r'patient-\d{4}')),
         dependsOn: [ResourceDependency(apiDlp)],
       ),
     );

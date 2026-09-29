@@ -77,7 +77,7 @@ final class IamShowcaseStack extends Stack {
           'google.subject': 'assertion.repository',
           'attribute.repository_owner': 'assertion.repository_owner',
         }),
-        trustSource: IamWorkloadIdentityPoolProviderOidcTrust(
+        trustSource: .oidc(
           allowedAudiences: [TfArg.literal('https://github.com/my-org')],
           issuerUri: TfArg.literal(
             'https://token.actions.githubusercontent.com',
@@ -493,7 +493,7 @@ final class IamShowcaseStack extends Stack {
         location: TfArg.literal('global'),
         workforcePoolId: TfArg.literal('terradart-wf'),
         providerId: TfArg.literal('terradart-oidc'),
-        trustSource: IamWorkforcePoolProviderOidcTrust(
+        trustSource: .oidc(
           issuerUri: TfArg.literal('https://accounts.google.com'),
           clientId: TfArg.literal('client.apps.googleusercontent.com'),
         ),

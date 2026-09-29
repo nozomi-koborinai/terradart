@@ -16,6 +16,21 @@ const Set<String> _googleOsConfigPatchDeploymentSensitive = <String>{};
 sealed class OsConfigPatchDeploymentSchedule {
   const OsConfigPatchDeploymentSchedule();
 
+  /// `one_time_schedule` block — run the patch job once at [executeTime].
+  const factory OsConfigPatchDeploymentSchedule.oneTime({
+    required TfArg<String> executeTime,
+  }) = OsConfigPatchDeploymentOneTimeSchedule;
+
+  /// `recurring_schedule` block — run patch jobs on a cadence.
+  const factory OsConfigPatchDeploymentSchedule.recurring({
+    required OsConfigPatchDeploymentRecurringScheduleTimeZone timeZone,
+    TfArg<String>? startTime,
+    TfArg<String>? endTime,
+    OsConfigPatchDeploymentRecurringScheduleTimeOfDay? timeOfDay,
+    OsConfigPatchDeploymentRecurringScheduleWeekly? weekly,
+    OsConfigPatchDeploymentRecurringScheduleMonthly? monthly,
+  }) = OsConfigPatchDeploymentRecurringSchedule;
+
   String get blockKey;
 
   List<Map<String, Object?>> encode();

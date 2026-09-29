@@ -38,9 +38,7 @@ final class HttpFunctionStack extends Stack {
       localName: 'fn_source_zip',
       bucket: TfArg.ref(sourceBucket.nameRef),
       name: TfArg.literal('hello-http.zip'),
-      body: StorageBucketObjectBucketObjectFromSource(
-        source: TfArg.literal('./hello-http.zip'),
-      ),
+      body: .source(source: TfArg.literal('./hello-http.zip')),
     );
     add(sourceObject);
 
@@ -62,7 +60,7 @@ final class HttpFunctionStack extends Stack {
         buildConfig: Cloudfunctions2FunctionBuildConfig(
           runtime: TfArg.literal('python311'),
           entryPoint: TfArg.literal('hello'),
-          source: StorageSource(
+          source: .storageSource(
             bucket: TfArg.ref(sourceBucket.nameRef),
             object: TfArg.ref(sourceObject.nameRef),
           ),
