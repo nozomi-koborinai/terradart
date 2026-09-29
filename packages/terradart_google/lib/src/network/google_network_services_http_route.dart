@@ -373,21 +373,16 @@ final class NetworkServicesHttpRouteRulesActionUrlRewrite {
 @immutable
 final class NetworkServicesHttpRouteRulesMatches {
   const NetworkServicesHttpRouteRulesMatches({
-    this.fullPathMatch,
+    required this.fullPathMatchOrPrefixMatchOrRegexMatch,
     this.ignoreCase,
-    this.prefixMatch,
-    this.regexMatch,
     this.headers,
     this.queryParameters,
   });
 
-  final TfArg<String>? fullPathMatch;
+  final NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatch
+  fullPathMatchOrPrefixMatchOrRegexMatch;
 
   final TfArg<bool>? ignoreCase;
-
-  final TfArg<String>? prefixMatch;
-
-  final TfArg<String>? regexMatch;
 
   final List<NetworkServicesHttpRouteRulesMatchesHeaders>? headers;
 
@@ -395,14 +390,76 @@ final class NetworkServicesHttpRouteRulesMatches {
   queryParameters;
 
   Map<String, Object?> encode() => {
-    if (fullPathMatch != null) 'full_path_match': fullPathMatch!.toTfJson(),
+    ...fullPathMatchOrPrefixMatchOrRegexMatch.encode(),
     if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefixMatch != null) 'prefix_match': prefixMatch!.toTfJson(),
-    if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
     if (queryParameters != null)
       'query_parameters': [for (final e in queryParameters!) e.encode()],
   };
+}
+
+/// Exactly one of `full_path_match`, `prefix_match`, `regex_match` on the `rules.matches` block of `google_network_services_http_route`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatch {
+  const NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatch();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `full_path_match` (one of the [NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesFullPathMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatch {
+  const NetworkServicesHttpRouteRulesMatchesFullPathMatchOption({
+    required this.fullPathMatch,
+  });
+
+  final TfArg<String> fullPathMatch;
+
+  @override
+  String get blockKey => 'full_path_match';
+
+  @override
+  Map<String, Object?> encode() => {
+    'full_path_match': fullPathMatch.toTfJson(),
+  };
+}
+
+/// Sets `prefix_match` (one of the [NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesPrefixMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatch {
+  const NetworkServicesHttpRouteRulesMatchesPrefixMatchOption({
+    required this.prefixMatch,
+  });
+
+  final TfArg<String> prefixMatch;
+
+  @override
+  String get blockKey => 'prefix_match';
+
+  @override
+  Map<String, Object?> encode() => {'prefix_match': prefixMatch.toTfJson()};
+}
+
+/// Sets `regex_match` (one of the [NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesRegexMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatch {
+  const NetworkServicesHttpRouteRulesMatchesRegexMatchOption({
+    required this.regexMatch,
+  });
+
+  final TfArg<String> regexMatch;
+
+  @override
+  String get blockKey => 'regex_match';
+
+  @override
+  Map<String, Object?> encode() => {'regex_match': regexMatch.toTfJson()};
 }
 
 /// Typed helper for the `rules.matches.headers` block of
@@ -410,42 +467,137 @@ final class NetworkServicesHttpRouteRulesMatches {
 @immutable
 final class NetworkServicesHttpRouteRulesMatchesHeaders {
   const NetworkServicesHttpRouteRulesMatchesHeaders({
-    this.exactMatch,
+    required this.exactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch,
     this.header,
     this.invertMatch,
-    this.prefixMatch,
-    this.presentMatch,
-    this.regexMatch,
-    this.suffixMatch,
-    this.rangeMatch,
   });
 
-  final TfArg<String>? exactMatch;
+  final NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch
+  exactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch;
 
   final TfArg<String>? header;
 
   final TfArg<bool>? invertMatch;
 
-  final TfArg<String>? prefixMatch;
-
-  final TfArg<bool>? presentMatch;
-
-  final TfArg<String>? regexMatch;
-
-  final TfArg<String>? suffixMatch;
-
-  final NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch? rangeMatch;
-
   Map<String, Object?> encode() => {
-    if (exactMatch != null) 'exact_match': exactMatch!.toTfJson(),
+    ...exactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch
+        .encode(),
     if (header != null) 'header': header!.toTfJson(),
     if (invertMatch != null) 'invert_match': invertMatch!.toTfJson(),
-    if (prefixMatch != null) 'prefix_match': prefixMatch!.toTfJson(),
-    if (presentMatch != null) 'present_match': presentMatch!.toTfJson(),
-    if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
-    if (suffixMatch != null) 'suffix_match': suffixMatch!.toTfJson(),
-    if (rangeMatch != null) 'range_match': rangeMatch!.encode(),
   };
+}
+
+/// Exactly one of `exact_match`, `regex_match`, `prefix_match`, `present_match`, `suffix_match`, `range_match` on the `rules.matches.headers` block of `google_network_services_http_route`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch {
+  const NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `exact_match` (one of the [NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch {
+  const NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOption({
+    required this.exactMatch,
+  });
+
+  final TfArg<String> exactMatch;
+
+  @override
+  String get blockKey => 'exact_match';
+
+  @override
+  Map<String, Object?> encode() => {'exact_match': exactMatch.toTfJson()};
+}
+
+/// Sets `regex_match` (one of the [NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesHeadersRegexMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch {
+  const NetworkServicesHttpRouteRulesMatchesHeadersRegexMatchOption({
+    required this.regexMatch,
+  });
+
+  final TfArg<String> regexMatch;
+
+  @override
+  String get blockKey => 'regex_match';
+
+  @override
+  Map<String, Object?> encode() => {'regex_match': regexMatch.toTfJson()};
+}
+
+/// Sets `prefix_match` (one of the [NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesHeadersPrefixMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch {
+  const NetworkServicesHttpRouteRulesMatchesHeadersPrefixMatchOption({
+    required this.prefixMatch,
+  });
+
+  final TfArg<String> prefixMatch;
+
+  @override
+  String get blockKey => 'prefix_match';
+
+  @override
+  Map<String, Object?> encode() => {'prefix_match': prefixMatch.toTfJson()};
+}
+
+/// Sets `present_match` (one of the [NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesHeadersPresentMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch {
+  const NetworkServicesHttpRouteRulesMatchesHeadersPresentMatchOption({
+    required this.presentMatch,
+  });
+
+  final TfArg<bool> presentMatch;
+
+  @override
+  String get blockKey => 'present_match';
+
+  @override
+  Map<String, Object?> encode() => {'present_match': presentMatch.toTfJson()};
+}
+
+/// Sets `suffix_match` (one of the [NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesHeadersSuffixMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch {
+  const NetworkServicesHttpRouteRulesMatchesHeadersSuffixMatchOption({
+    required this.suffixMatch,
+  });
+
+  final TfArg<String> suffixMatch;
+
+  @override
+  String get blockKey => 'suffix_match';
+
+  @override
+  Map<String, Object?> encode() => {'suffix_match': suffixMatch.toTfJson()};
+}
+
+/// Sets `range_match` (one of the [NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesHeadersRangeMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch {
+  const NetworkServicesHttpRouteRulesMatchesHeadersRangeMatchOption({
+    required this.rangeMatch,
+  });
+
+  final NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch rangeMatch;
+
+  @override
+  String get blockKey => 'range_match';
+
+  @override
+  Map<String, Object?> encode() => {'range_match': rangeMatch.encode()};
 }
 
 /// Typed helper for the `rules.matches.headers.range_match` block of
@@ -472,26 +624,81 @@ final class NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch {
 @immutable
 final class NetworkServicesHttpRouteRulesMatchesQueryParameters {
   const NetworkServicesHttpRouteRulesMatchesQueryParameters({
-    this.exactMatch,
-    this.presentMatch,
+    required this.exactMatchOrRegexMatchOrPresentMatch,
     this.queryParameter,
-    this.regexMatch,
   });
 
-  final TfArg<String>? exactMatch;
-
-  final TfArg<bool>? presentMatch;
+  final NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatch
+  exactMatchOrRegexMatchOrPresentMatch;
 
   final TfArg<String>? queryParameter;
 
-  final TfArg<String>? regexMatch;
-
   Map<String, Object?> encode() => {
-    if (exactMatch != null) 'exact_match': exactMatch!.toTfJson(),
-    if (presentMatch != null) 'present_match': presentMatch!.toTfJson(),
+    ...exactMatchOrRegexMatchOrPresentMatch.encode(),
     if (queryParameter != null) 'query_parameter': queryParameter!.toTfJson(),
-    if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
   };
+}
+
+/// Exactly one of `exact_match`, `regex_match`, `present_match` on the `rules.matches.query_parameters` block of `google_network_services_http_route`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatch {
+  const NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatch();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `exact_match` (one of the [NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatch {
+  const NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOption({
+    required this.exactMatch,
+  });
+
+  final TfArg<String> exactMatch;
+
+  @override
+  String get blockKey => 'exact_match';
+
+  @override
+  Map<String, Object?> encode() => {'exact_match': exactMatch.toTfJson()};
+}
+
+/// Sets `regex_match` (one of the [NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesQueryParametersRegexMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatch {
+  const NetworkServicesHttpRouteRulesMatchesQueryParametersRegexMatchOption({
+    required this.regexMatch,
+  });
+
+  final TfArg<String> regexMatch;
+
+  @override
+  String get blockKey => 'regex_match';
+
+  @override
+  Map<String, Object?> encode() => {'regex_match': regexMatch.toTfJson()};
+}
+
+/// Sets `present_match` (one of the [NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatch] choices).
+final class NetworkServicesHttpRouteRulesMatchesQueryParametersPresentMatchOption
+    extends
+        NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatch {
+  const NetworkServicesHttpRouteRulesMatchesQueryParametersPresentMatchOption({
+    required this.presentMatch,
+  });
+
+  final TfArg<bool> presentMatch;
+
+  @override
+  String get blockKey => 'present_match';
+
+  @override
+  Map<String, Object?> encode() => {'present_match': presentMatch.toTfJson()};
 }
 
 /// Factory wrapper for `google_network_services_http_route`.

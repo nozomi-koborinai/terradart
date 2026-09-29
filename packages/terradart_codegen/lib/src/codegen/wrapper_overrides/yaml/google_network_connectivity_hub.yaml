@@ -1,5 +1,6 @@
 outputDir: network
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 # policy_mode (PRESET/CUSTOM) and preset_topology (MESH/STAR) are optional+computed

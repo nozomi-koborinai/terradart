@@ -76,6 +76,69 @@ final class NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice
   String get blockKey => 'next_hop_other_routes';
 }
 
+/// At most one of `virtual_machine`, `interconnect_attachment` on `google_network_connectivity_policy_based_route`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment {
+  const NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `virtual_machine` (one of the [NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment] choices).
+final class NetworkConnectivityPolicyBasedRouteVirtualMachineOption
+    extends
+        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment {
+  const NetworkConnectivityPolicyBasedRouteVirtualMachineOption({
+    required this.virtualMachine,
+  });
+
+  final NetworkConnectivityPolicyBasedRouteVirtualMachine virtualMachine;
+
+  @override
+  String get blockKey => 'virtual_machine';
+
+  @override
+  Map<String, Object?> encode() => {'virtual_machine': virtualMachine.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'virtual_machine': TfArg.literal(virtualMachine.encode()),
+  };
+}
+
+/// Sets `interconnect_attachment` (one of the [NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment] choices).
+final class NetworkConnectivityPolicyBasedRouteInterconnectAttachmentOption
+    extends
+        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment {
+  const NetworkConnectivityPolicyBasedRouteInterconnectAttachmentOption({
+    required this.interconnectAttachment,
+  });
+
+  final NetworkConnectivityPolicyBasedRouteInterconnectAttachment
+  interconnectAttachment;
+
+  @override
+  String get blockKey => 'interconnect_attachment';
+
+  @override
+  Map<String, Object?> encode() => {
+    'interconnect_attachment': interconnectAttachment.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'interconnect_attachment': TfArg.literal(interconnectAttachment.encode()),
+  };
+}
+
 /// Typed helper for the `filter` block of
 /// `google_network_connectivity_policy_based_route` (derived from provider schema).
 @immutable
@@ -153,8 +216,8 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 /// over ordinary VPC routes when it matches.
 ///
 /// Pass exactly one [nextHop] variant (`ilbIp` or `otherRoutes`). Scope
-/// installation with optional [virtualMachine] tags and/or
-/// [interconnectAttachment] (provider `conflicts` — do not set both).
+/// installation with at most one of VM tags or an interconnect attachment
+/// ([virtualMachineOrInterconnectAttachment]).
 ///
 /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for PBR
 /// (Network Connectivity Center `7BEB-7A51-4223` `list_skus` keywords
@@ -179,9 +242,12 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 ///       NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
 ///     ),
 ///   ),
-///   virtualMachine: NetworkConnectivityPolicyBasedRouteVirtualMachine(
-///     tags: TfArg.literal(['terradart-pbr']),
-///   ),
+///   virtualMachineOrInterconnectAttachment:
+///       NetworkConnectivityPolicyBasedRouteVirtualMachineOption(
+///         virtualMachine: NetworkConnectivityPolicyBasedRouteVirtualMachine(
+///           tags: TfArg.literal(['terradart-pbr']),
+///         ),
+///       ),
 /// );
 /// ```
 final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
@@ -193,9 +259,8 @@ final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
     required TfArg<String> network,
     required NetworkConnectivityPolicyBasedRouteFilter filter,
     required NetworkConnectivityPolicyBasedRouteNextHop nextHop,
-    NetworkConnectivityPolicyBasedRouteVirtualMachine? virtualMachine,
-    NetworkConnectivityPolicyBasedRouteInterconnectAttachment?
-    interconnectAttachment,
+    NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment?
+    virtualMachineOrInterconnectAttachment,
     TfArg<num>? priority,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
@@ -211,12 +276,7 @@ final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
            'name': name,
            'network': network,
            'filter': TfArg.literal(filter.encode()),
-           if (virtualMachine != null)
-             'virtual_machine': TfArg.literal(virtualMachine.encode()),
-           if (interconnectAttachment != null)
-             'interconnect_attachment': TfArg.literal(
-               interconnectAttachment.encode(),
-             ),
+           ...?virtualMachineOrInterconnectAttachment?.argMap,
            if (priority != null) 'priority': priority,
            if (description != null) 'description': description,
            if (labels != null) 'labels': labels,

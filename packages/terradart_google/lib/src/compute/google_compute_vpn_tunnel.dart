@@ -6,6 +6,66 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_vpn_tunnel`.
 const Set<String> _googleComputeVpnTunnelSensitive = <String>{'shared_secret'};
 
+/// At most one of `peer_external_gateway`, `peer_gcp_gateway` on `google_compute_vpn_tunnel`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
+  const ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `peer_external_gateway` (one of the [ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway] choices).
+final class ComputeVpnTunnelPeerExternalGatewayOption
+    extends ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
+  const ComputeVpnTunnelPeerExternalGatewayOption({
+    required this.peerExternalGateway,
+  });
+
+  final TfArg<String> peerExternalGateway;
+
+  @override
+  String get blockKey => 'peer_external_gateway';
+
+  @override
+  Map<String, Object?> encode() => {
+    'peer_external_gateway': peerExternalGateway.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'peer_external_gateway': peerExternalGateway,
+  };
+}
+
+/// Sets `peer_gcp_gateway` (one of the [ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway] choices).
+final class ComputeVpnTunnelPeerGcpGatewayOption
+    extends ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
+  const ComputeVpnTunnelPeerGcpGatewayOption({required this.peerGcpGateway});
+
+  final TfArg<String> peerGcpGateway;
+
+  @override
+  String get blockKey => 'peer_gcp_gateway';
+
+  @override
+  Map<String, Object?> encode() => {
+    'peer_gcp_gateway': peerGcpGateway.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'peer_gcp_gateway': peerGcpGateway,
+  };
+}
+
 /// Factory wrapper for `google_compute_vpn_tunnel`.
 ///
 /// VPN tunnel resource.
@@ -23,8 +83,8 @@ final class GoogleComputeVpnTunnel extends Resource {
     TfArg<String>? vpnGateway,
     TfArg<num>? vpnGatewayInterface,
     TfArg<String>? peerIp,
-    TfArg<String>? peerGcpGateway,
-    TfArg<String>? peerExternalGateway,
+    ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway?
+    peerExternalGatewayOrPeerGcpGateway,
     TfArg<num>? peerExternalGatewayInterface,
     TfArg<String>? sharedSecret,
     TfArg<String>? sharedSecretWo,
@@ -51,9 +111,7 @@ final class GoogleComputeVpnTunnel extends Resource {
            if (vpnGatewayInterface != null)
              'vpn_gateway_interface': vpnGatewayInterface,
            if (peerIp != null) 'peer_ip': peerIp,
-           if (peerGcpGateway != null) 'peer_gcp_gateway': peerGcpGateway,
-           if (peerExternalGateway != null)
-             'peer_external_gateway': peerExternalGateway,
+           ...?peerExternalGatewayOrPeerGcpGateway?.argMap,
            if (peerExternalGatewayInterface != null)
              'peer_external_gateway_interface': peerExternalGatewayInterface,
            if (sharedSecret != null) 'shared_secret': sharedSecret,

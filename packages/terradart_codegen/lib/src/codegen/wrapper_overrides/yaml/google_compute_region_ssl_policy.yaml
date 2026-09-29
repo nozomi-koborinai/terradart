@@ -1,5 +1,6 @@
 outputDir: compute
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 dartTypeOverrides:

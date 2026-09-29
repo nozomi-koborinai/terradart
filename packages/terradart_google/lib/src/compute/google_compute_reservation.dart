@@ -117,23 +117,67 @@ final class ComputeReservationShareSettingsProjectMap {
 final class ComputeReservationSpecificReservation {
   const ComputeReservationSpecificReservation({
     required this.count,
-    this.sourceInstanceTemplate,
-    this.instanceProperties,
+    required this.instancePropertiesOrSourceInstanceTemplate,
   });
 
   final TfArg<num> count;
 
-  final TfArg<String>? sourceInstanceTemplate;
-
-  final ComputeReservationSpecificReservationInstanceProperties?
-  instanceProperties;
+  final ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate
+  instancePropertiesOrSourceInstanceTemplate;
 
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
-    if (sourceInstanceTemplate != null)
-      'source_instance_template': sourceInstanceTemplate!.toTfJson(),
-    if (instanceProperties != null)
-      'instance_properties': instanceProperties!.encode(),
+    ...instancePropertiesOrSourceInstanceTemplate.encode(),
+  };
+}
+
+/// Exactly one of `instance_properties`, `source_instance_template` on the `specific_reservation` block of `google_compute_reservation`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate {
+  const ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `instance_properties` (one of the [ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate] choices).
+final class ComputeReservationSpecificReservationInstancePropertiesOption
+    extends
+        ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate {
+  const ComputeReservationSpecificReservationInstancePropertiesOption({
+    required this.instanceProperties,
+  });
+
+  final ComputeReservationSpecificReservationInstanceProperties
+  instanceProperties;
+
+  @override
+  String get blockKey => 'instance_properties';
+
+  @override
+  Map<String, Object?> encode() => {
+    'instance_properties': instanceProperties.encode(),
+  };
+}
+
+/// Sets `source_instance_template` (one of the [ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate] choices).
+final class ComputeReservationSpecificReservationSourceInstanceTemplateOption
+    extends
+        ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate {
+  const ComputeReservationSpecificReservationSourceInstanceTemplateOption({
+    required this.sourceInstanceTemplate,
+  });
+
+  final TfArg<String> sourceInstanceTemplate;
+
+  @override
+  String get blockKey => 'source_instance_template';
+
+  @override
+  Map<String, Object?> encode() => {
+    'source_instance_template': sourceInstanceTemplate.toTfJson(),
   };
 }
 
