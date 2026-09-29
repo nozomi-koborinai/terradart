@@ -15,10 +15,10 @@ export 'src/rds/aws_rds_cluster.dart'
         RdsClusterEnabledCloudwatchLogsExports,
         RdsClusterEngineLifecycleSupport,
         RdsClusterEngineMode,
-        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo,
-        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword,
-        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword,
-        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo,
+        RdsClusterMasterPassword,
+        RdsClusterMasterPasswordManageMasterUserPassword,
+        RdsClusterMasterPasswordMasterPassword,
+        RdsClusterMasterPasswordMasterPasswordWo,
         RdsClusterNetworkType,
         RdsClusterRestoreToPointInTime,
         RdsClusterRestoreToPointInTimeRestoreType,
@@ -62,9 +62,9 @@ export 'src/rds/aws_rds_cluster_snapshot_copy.dart'
 export 'src/rds/aws_rds_custom_db_engine_version.dart'
     show
         AwsRdsCustomDbEngineVersion,
-        RdsCustomDbEngineVersionFilenameOrManifest,
-        RdsCustomDbEngineVersionFilenameOrManifestFilename,
-        RdsCustomDbEngineVersionFilenameOrManifestManifest,
+        RdsCustomDbEngineVersionManifest,
+        RdsCustomDbEngineVersionManifestFilename,
+        RdsCustomDbEngineVersionManifestManifest,
         RdsCustomDbEngineVersionStatus;
 export 'src/rds/aws_rds_export_task.dart' show AwsRdsExportTask;
 export 'src/rds/aws_rds_global_cluster.dart'

@@ -80,7 +80,7 @@ final class AwsStaticSiteStack extends Stack {
 
     final cert = AwsAcmCertificate(
       localName: 'site',
-      domainNameOrPrivateKeyOrPrivateKeyWo: .domainName(
+      source: .domainName(
         TfArg.literal(siteDomain),
       ),
       validationMethod: TfArg.literal(AcmCertificateValidationMethod.dns),
@@ -96,7 +96,7 @@ final class AwsStaticSiteStack extends Stack {
       zoneId: TfArg.ref(zone.id),
       name: TfArg.expression('\${$option.resource_record_name}'),
       type: TfArg.expression('\${$option.resource_record_type}'),
-      aliasOrRecords: .records(
+      target: .records(
         TfArg.literal(['\${$option.resource_record_value}']),
       ),
       ttl: TfArg.literal(60),
@@ -215,7 +215,7 @@ final class AwsStaticSiteStack extends Stack {
           zoneId: TfArg.ref(zone.id),
           name: TfArg.literal(siteDomain),
           type: TfArg.literal(type),
-          aliasOrRecords: .alias(
+          target: .alias(
             Route53RecordAlias(
               name: TfArg.ref(distribution.domainName),
               zoneId: TfArg.ref(distribution.hostedZoneId),

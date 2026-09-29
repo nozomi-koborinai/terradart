@@ -22,18 +22,18 @@ enum LaunchTemplateInstanceInitiatedShutdownBehavior implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.defaultVersion(...)`.
-sealed class LaunchTemplateDefaultVersionOrUpdateDefaultVersion {
-  const LaunchTemplateDefaultVersionOrUpdateDefaultVersion();
+sealed class LaunchTemplateDefaultVersion {
+  const LaunchTemplateDefaultVersion();
 
   /// Sets `default_version`.
-  const factory LaunchTemplateDefaultVersionOrUpdateDefaultVersion.defaultVersion(
+  const factory LaunchTemplateDefaultVersion.defaultVersion(
     TfArg<num> defaultVersion,
-  ) = LaunchTemplateDefaultVersionOrUpdateDefaultVersionDefaultVersion;
+  ) = LaunchTemplateDefaultVersionDefaultVersion;
 
   /// Sets `update_default_version`.
-  const factory LaunchTemplateDefaultVersionOrUpdateDefaultVersion.updateDefaultVersion(
+  const factory LaunchTemplateDefaultVersion.updateDefaultVersion(
     TfArg<bool> updateDefaultVersion,
-  ) = LaunchTemplateDefaultVersionOrUpdateDefaultVersionUpdateDefaultVersion;
+  ) = LaunchTemplateDefaultVersionUpdateDefaultVersion;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,12 +45,10 @@ sealed class LaunchTemplateDefaultVersionOrUpdateDefaultVersion {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LaunchTemplateDefaultVersionOrUpdateDefaultVersion.defaultVersion] choice: sets `default_version`.
-final class LaunchTemplateDefaultVersionOrUpdateDefaultVersionDefaultVersion
-    extends LaunchTemplateDefaultVersionOrUpdateDefaultVersion {
-  const LaunchTemplateDefaultVersionOrUpdateDefaultVersionDefaultVersion(
-    this.defaultVersion,
-  );
+/// The [LaunchTemplateDefaultVersion.defaultVersion] choice: sets `default_version`.
+final class LaunchTemplateDefaultVersionDefaultVersion
+    extends LaunchTemplateDefaultVersion {
+  const LaunchTemplateDefaultVersionDefaultVersion(this.defaultVersion);
 
   final TfArg<num> defaultVersion;
 
@@ -66,10 +64,10 @@ final class LaunchTemplateDefaultVersionOrUpdateDefaultVersionDefaultVersion
   Map<String, TfArg<Object?>> get argMap => {'default_version': defaultVersion};
 }
 
-/// The [LaunchTemplateDefaultVersionOrUpdateDefaultVersion.updateDefaultVersion] choice: sets `update_default_version`.
-final class LaunchTemplateDefaultVersionOrUpdateDefaultVersionUpdateDefaultVersion
-    extends LaunchTemplateDefaultVersionOrUpdateDefaultVersion {
-  const LaunchTemplateDefaultVersionOrUpdateDefaultVersionUpdateDefaultVersion(
+/// The [LaunchTemplateDefaultVersion.updateDefaultVersion] choice: sets `update_default_version`.
+final class LaunchTemplateDefaultVersionUpdateDefaultVersion
+    extends LaunchTemplateDefaultVersion {
+  const LaunchTemplateDefaultVersionUpdateDefaultVersion(
     this.updateDefaultVersion,
   );
 
@@ -217,18 +215,18 @@ final class LaunchTemplateNameNamePrefix extends LaunchTemplateName {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.securityGroupNames(...)`.
-sealed class LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds {
-  const LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds();
+sealed class LaunchTemplateSecurityGroups {
+  const LaunchTemplateSecurityGroups();
 
   /// Sets `security_group_names`.
-  const factory LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds.securityGroupNames(
+  const factory LaunchTemplateSecurityGroups.securityGroupNames(
     TfArg<List<String>> securityGroupNames,
-  ) = LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsSecurityGroupNames;
+  ) = LaunchTemplateSecurityGroupsSecurityGroupNames;
 
   /// Sets `vpc_security_group_ids`.
-  const factory LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds.vpcSecurityGroupIds(
+  const factory LaunchTemplateSecurityGroups.vpcSecurityGroupIds(
     TfArg<List<String>> vpcSecurityGroupIds,
-  ) = LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsVpcSecurityGroupIds;
+  ) = LaunchTemplateSecurityGroupsVpcSecurityGroupIds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -240,12 +238,10 @@ sealed class LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds.securityGroupNames] choice: sets `security_group_names`.
-final class LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsSecurityGroupNames
-    extends LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds {
-  const LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsSecurityGroupNames(
-    this.securityGroupNames,
-  );
+/// The [LaunchTemplateSecurityGroups.securityGroupNames] choice: sets `security_group_names`.
+final class LaunchTemplateSecurityGroupsSecurityGroupNames
+    extends LaunchTemplateSecurityGroups {
+  const LaunchTemplateSecurityGroupsSecurityGroupNames(this.securityGroupNames);
 
   final TfArg<List<String>> securityGroupNames;
 
@@ -263,10 +259,10 @@ final class LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsSecurityGroupNa
   };
 }
 
-/// The [LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds.vpcSecurityGroupIds] choice: sets `vpc_security_group_ids`.
-final class LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsVpcSecurityGroupIds
-    extends LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds {
-  const LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsVpcSecurityGroupIds(
+/// The [LaunchTemplateSecurityGroups.vpcSecurityGroupIds] choice: sets `vpc_security_group_ids`.
+final class LaunchTemplateSecurityGroupsVpcSecurityGroupIds
+    extends LaunchTemplateSecurityGroups {
+  const LaunchTemplateSecurityGroupsVpcSecurityGroupIds(
     this.vpcSecurityGroupIds,
   );
 
@@ -2053,8 +2049,7 @@ final class AwsLaunchTemplate extends Resource {
 
   AwsLaunchTemplate({
     required super.localName,
-    LaunchTemplateDefaultVersionOrUpdateDefaultVersion?
-    defaultVersionOrUpdateDefaultVersion,
+    LaunchTemplateDefaultVersion? defaultVersion,
     TfArg<String>? description,
     TfArg<bool>? disableApiStop,
     TfArg<bool>? disableApiTermination,
@@ -2068,8 +2063,7 @@ final class AwsLaunchTemplate extends Resource {
     LaunchTemplateName? name,
     TfArg<String>? ramDiskId,
     TfArg<String>? region,
-    LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds?
-    securityGroupNamesOrVpcSecurityGroupIds,
+    LaunchTemplateSecurityGroups? securityGroups,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? userData,
     List<LaunchTemplateBlockDeviceMappings>? blockDeviceMappings,
@@ -2098,7 +2092,7 @@ final class AwsLaunchTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?defaultVersionOrUpdateDefaultVersion?.argMap,
+           ...?defaultVersion?.argMap,
            if (description != null) 'description': description,
            if (disableApiStop != null) 'disable_api_stop': disableApiStop,
            if (disableApiTermination != null)
@@ -2114,7 +2108,7 @@ final class AwsLaunchTemplate extends Resource {
            ...?name?.argMap,
            if (ramDiskId != null) 'ram_disk_id': ramDiskId,
            if (region != null) 'region': region,
-           ...?securityGroupNamesOrVpcSecurityGroupIds?.argMap,
+           ...?securityGroups?.argMap,
            if (tags != null) 'tags': tags,
            if (userData != null) 'user_data': userData,
            if (blockDeviceMappings != null)

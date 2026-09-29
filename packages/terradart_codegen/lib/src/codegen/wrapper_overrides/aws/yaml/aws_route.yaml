@@ -4,3 +4,8 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "carrier_gateway_id, destination_ipv6_cidr_block": carrier_ipv6
+  "destination_cidr_block, egress_only_gateway_id": ipv4_egress
+  "destination_prefix_list_id, vpc_endpoint_id": prefix_list_endpoint

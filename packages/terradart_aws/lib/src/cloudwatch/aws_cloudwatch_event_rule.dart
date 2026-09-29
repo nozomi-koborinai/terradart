@@ -24,18 +24,17 @@ enum CloudwatchEventRuleState implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.isEnabled(...)`.
-sealed class CloudwatchEventRuleIsEnabledOrState {
-  const CloudwatchEventRuleIsEnabledOrState();
+sealed class CloudwatchEventRuleStatus {
+  const CloudwatchEventRuleStatus();
 
   /// Sets `is_enabled`.
-  const factory CloudwatchEventRuleIsEnabledOrState.isEnabled(
-    TfArg<bool> isEnabled,
-  ) = CloudwatchEventRuleIsEnabledOrStateIsEnabled;
+  const factory CloudwatchEventRuleStatus.isEnabled(TfArg<bool> isEnabled) =
+      CloudwatchEventRuleStatusIsEnabled;
 
   /// Sets `state`.
-  const factory CloudwatchEventRuleIsEnabledOrState.state(
+  const factory CloudwatchEventRuleStatus.state(
     TfArg<CloudwatchEventRuleState> state,
-  ) = CloudwatchEventRuleIsEnabledOrStateState;
+  ) = CloudwatchEventRuleStatusState;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,10 +46,10 @@ sealed class CloudwatchEventRuleIsEnabledOrState {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudwatchEventRuleIsEnabledOrState.isEnabled] choice: sets `is_enabled`.
-final class CloudwatchEventRuleIsEnabledOrStateIsEnabled
-    extends CloudwatchEventRuleIsEnabledOrState {
-  const CloudwatchEventRuleIsEnabledOrStateIsEnabled(this.isEnabled);
+/// The [CloudwatchEventRuleStatus.isEnabled] choice: sets `is_enabled`.
+final class CloudwatchEventRuleStatusIsEnabled
+    extends CloudwatchEventRuleStatus {
+  const CloudwatchEventRuleStatusIsEnabled(this.isEnabled);
 
   final TfArg<bool> isEnabled;
 
@@ -64,10 +63,9 @@ final class CloudwatchEventRuleIsEnabledOrStateIsEnabled
   Map<String, TfArg<Object?>> get argMap => {'is_enabled': isEnabled};
 }
 
-/// The [CloudwatchEventRuleIsEnabledOrState.state] choice: sets `state`.
-final class CloudwatchEventRuleIsEnabledOrStateState
-    extends CloudwatchEventRuleIsEnabledOrState {
-  const CloudwatchEventRuleIsEnabledOrStateState(this.state);
+/// The [CloudwatchEventRuleStatus.state] choice: sets `state`.
+final class CloudwatchEventRuleStatusState extends CloudwatchEventRuleStatus {
+  const CloudwatchEventRuleStatusState(this.state);
 
   final TfArg<CloudwatchEventRuleState> state;
 
@@ -149,7 +147,7 @@ final class AwsCloudwatchEventRule extends Resource {
     TfArg<String>? eventBusName,
     TfArg<String>? eventPattern,
     TfArg<bool>? forceDestroy,
-    CloudwatchEventRuleIsEnabledOrState? isEnabledOrState,
+    CloudwatchEventRuleStatus? status,
     CloudwatchEventRuleName? name,
     TfArg<String>? region,
     TfArg<String>? roleArn,
@@ -166,7 +164,7 @@ final class AwsCloudwatchEventRule extends Resource {
            if (eventBusName != null) 'event_bus_name': eventBusName,
            if (eventPattern != null) 'event_pattern': eventPattern,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
-           ...?isEnabledOrState?.argMap,
+           ...?status?.argMap,
            ...?name?.argMap,
            if (region != null) 'region': region,
            if (roleArn != null) 'role_arn': roleArn,

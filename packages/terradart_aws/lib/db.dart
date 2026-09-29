@@ -22,11 +22,11 @@ export 'src/db/aws_db_instance.dart'
         DbInstanceIdentifier,
         DbInstanceIdentifierIdentifier,
         DbInstanceIdentifierIdentifierPrefix,
-        DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo,
-        DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword,
-        DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword,
-        DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo,
         DbInstanceNetworkType,
+        DbInstancePassword,
+        DbInstancePasswordManageMasterUserPassword,
+        DbInstancePasswordPassword,
+        DbInstancePasswordPasswordWo,
         DbInstanceReplicaMode,
         DbInstanceRestoreToPointInTime,
         DbInstanceRestoreToPointInTimeTime,
@@ -74,9 +74,9 @@ export 'src/db/aws_db_proxy_endpoint.dart'
 export 'src/db/aws_db_proxy_target.dart'
     show
         AwsDbProxyTarget,
-        DbProxyTargetDb,
-        DbProxyTargetDbDbClusterIdentifier,
-        DbProxyTargetDbDbInstanceIdentifier;
+        DbProxyTargetTarget,
+        DbProxyTargetTargetDbClusterIdentifier,
+        DbProxyTargetTargetDbInstanceIdentifier;
 export 'src/db/aws_db_snapshot.dart' show AwsDbSnapshot;
 export 'src/db/aws_db_snapshot_copy.dart' show AwsDbSnapshotCopy;
 export 'src/db/aws_db_subnet_group.dart'

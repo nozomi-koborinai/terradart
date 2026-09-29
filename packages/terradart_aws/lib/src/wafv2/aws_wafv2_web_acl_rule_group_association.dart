@@ -21,18 +21,18 @@ enum Wafv2WebAclRuleGroupAssociationOverrideAction implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.managedRuleGroup(...)`.
-sealed class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference {
-  const Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference();
+sealed class Wafv2WebAclRuleGroupAssociationRuleGroup {
+  const Wafv2WebAclRuleGroupAssociationRuleGroup();
 
   /// Sets `managed_rule_group`.
-  const factory Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference.managedRuleGroup(
+  const factory Wafv2WebAclRuleGroupAssociationRuleGroup.managedRuleGroup(
     List<Wafv2WebAclRuleGroupAssociationManagedRuleGroup> managedRuleGroup,
-  ) = Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceManagedRuleGroup;
+  ) = Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup;
 
   /// Sets `rule_group_reference`.
-  const factory Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference.ruleGroupReference(
+  const factory Wafv2WebAclRuleGroupAssociationRuleGroup.ruleGroupReference(
     List<Wafv2WebAclRuleGroupAssociationRuleGroupReference> ruleGroupReference,
-  ) = Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceRuleGroupReference;
+  ) = Wafv2WebAclRuleGroupAssociationRuleGroupRuleGroupReference;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,11 +44,10 @@ sealed class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference.managedRuleGroup] choice: sets `managed_rule_group`.
-final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceManagedRuleGroup
-    extends
-        Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference {
-  const Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceManagedRuleGroup(
+/// The [Wafv2WebAclRuleGroupAssociationRuleGroup.managedRuleGroup] choice: sets `managed_rule_group`.
+final class Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup
+    extends Wafv2WebAclRuleGroupAssociationRuleGroup {
+  const Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup(
     this.managedRuleGroup,
   );
 
@@ -70,11 +69,10 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceM
   };
 }
 
-/// The [Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference.ruleGroupReference] choice: sets `rule_group_reference`.
-final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceRuleGroupReference
-    extends
-        Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference {
-  const Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceRuleGroupReference(
+/// The [Wafv2WebAclRuleGroupAssociationRuleGroup.ruleGroupReference] choice: sets `rule_group_reference`.
+final class Wafv2WebAclRuleGroupAssociationRuleGroupRuleGroupReference
+    extends Wafv2WebAclRuleGroupAssociationRuleGroup {
+  const Wafv2WebAclRuleGroupAssociationRuleGroupRuleGroupReference(
     this.ruleGroupReference,
   );
 
@@ -1603,8 +1601,7 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     required TfArg<String> webAclArn,
-    required Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference
-    managedRuleGroupOrRuleGroupReference,
+    required Wafv2WebAclRuleGroupAssociationRuleGroup ruleGroup,
     List<Wafv2WebAclRuleGroupAssociationVisibilityConfig>? visibilityConfig,
     super.lifecycle,
     super.dependsOn,
@@ -1618,7 +1615,7 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
            if (region != null) 'region': region,
            'rule_name': ruleName,
            'web_acl_arn': webAclArn,
-           ...managedRuleGroupOrRuleGroupReference.argMap,
+           ...ruleGroup.argMap,
            if (visibilityConfig != null)
              'visibility_config': TfArg.literal([
                for (final e in visibilityConfig) e.encode(),

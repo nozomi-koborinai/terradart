@@ -34,24 +34,24 @@ enum KinesisFirehoseDeliveryStreamDestination implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.kinesisSourceConfiguration(...)`.
-sealed class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
-  const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption();
+sealed class KinesisFirehoseDeliveryStreamSource {
+  const KinesisFirehoseDeliveryStreamSource();
 
   /// Sets `kinesis_source_configuration`.
-  const factory KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.kinesisSourceConfiguration(
+  const factory KinesisFirehoseDeliveryStreamSource.kinesisSourceConfiguration(
     KinesisFirehoseDeliveryStreamKinesisSourceConfiguration
     kinesisSourceConfiguration,
-  ) = KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionKinesisSourceConfiguration;
+  ) = KinesisFirehoseDeliveryStreamSourceKinesisSourceConfiguration;
 
   /// Sets `msk_source_configuration`.
-  const factory KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.mskSourceConfiguration(
+  const factory KinesisFirehoseDeliveryStreamSource.mskSourceConfiguration(
     KinesisFirehoseDeliveryStreamMskSourceConfiguration mskSourceConfiguration,
-  ) = KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionMskSourceConfiguration;
+  ) = KinesisFirehoseDeliveryStreamSourceMskSourceConfiguration;
 
   /// Sets `server_side_encryption`.
-  const factory KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.serverSideEncryption(
+  const factory KinesisFirehoseDeliveryStreamSource.serverSideEncryption(
     KinesisFirehoseDeliveryStreamServerSideEncryption serverSideEncryption,
-  ) = KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionServerSideEncryption;
+  ) = KinesisFirehoseDeliveryStreamSourceServerSideEncryption;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -63,11 +63,10 @@ sealed class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceC
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.kinesisSourceConfiguration] choice: sets `kinesis_source_configuration`.
-final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionKinesisSourceConfiguration
-    extends
-        KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
-  const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionKinesisSourceConfiguration(
+/// The [KinesisFirehoseDeliveryStreamSource.kinesisSourceConfiguration] choice: sets `kinesis_source_configuration`.
+final class KinesisFirehoseDeliveryStreamSourceKinesisSourceConfiguration
+    extends KinesisFirehoseDeliveryStreamSource {
+  const KinesisFirehoseDeliveryStreamSourceKinesisSourceConfiguration(
     this.kinesisSourceConfiguration,
   );
 
@@ -90,11 +89,10 @@ final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceCo
   };
 }
 
-/// The [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.mskSourceConfiguration] choice: sets `msk_source_configuration`.
-final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionMskSourceConfiguration
-    extends
-        KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
-  const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionMskSourceConfiguration(
+/// The [KinesisFirehoseDeliveryStreamSource.mskSourceConfiguration] choice: sets `msk_source_configuration`.
+final class KinesisFirehoseDeliveryStreamSourceMskSourceConfiguration
+    extends KinesisFirehoseDeliveryStreamSource {
+  const KinesisFirehoseDeliveryStreamSourceMskSourceConfiguration(
     this.mskSourceConfiguration,
   );
 
@@ -115,11 +113,10 @@ final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceCo
   };
 }
 
-/// The [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.serverSideEncryption] choice: sets `server_side_encryption`.
-final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionServerSideEncryption
-    extends
-        KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
-  const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionServerSideEncryption(
+/// The [KinesisFirehoseDeliveryStreamSource.serverSideEncryption] choice: sets `server_side_encryption`.
+final class KinesisFirehoseDeliveryStreamSourceServerSideEncryption
+    extends KinesisFirehoseDeliveryStreamSource {
+  const KinesisFirehoseDeliveryStreamSourceServerSideEncryption(
     this.serverSideEncryption,
   );
 
@@ -146,7 +143,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
   const KinesisFirehoseDeliveryStreamElasticsearchConfiguration({
     this.bufferingInterval,
     this.bufferingSize,
-    this.clusterEndpointOrDomainArn,
+    this.domain,
     required this.indexName,
     this.indexRotationPeriod,
     this.retryDuration,
@@ -163,8 +160,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
 
   final TfArg<num>? bufferingSize;
 
-  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn?
-  clusterEndpointOrDomainArn;
+  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain? domain;
 
   final TfArg<String> indexName;
 
@@ -200,7 +196,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    ...?clusterEndpointOrDomainArn?.encode(),
+    ...?domain?.encode(),
     'index_name': indexName.toTfJson(),
     if (indexRotationPeriod != null)
       'index_rotation_period': indexRotationPeriod!.toTfJson(),
@@ -222,18 +218,18 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clusterEndpoint(...)`.
-sealed class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn();
+sealed class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain {
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain();
 
   /// Sets `cluster_endpoint`.
-  const factory KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn.clusterEndpoint(
+  const factory KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain.clusterEndpoint(
     TfArg<String> clusterEndpoint,
-  ) = KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnClusterEndpoint;
+  ) = KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainClusterEndpoint;
 
   /// Sets `domain_arn`.
-  const factory KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn.domainArn(
+  const factory KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain.domainArn(
     TfArg<String> domainArn,
-  ) = KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnDomainArn;
+  ) = KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainDomainArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -241,11 +237,10 @@ sealed class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpo
   Map<String, Object?> encode();
 }
 
-/// The [KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn.clusterEndpoint] choice: sets `cluster_endpoint`.
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnClusterEndpoint
-    extends
-        KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnClusterEndpoint(
+/// The [KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain.clusterEndpoint] choice: sets `cluster_endpoint`.
+final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainClusterEndpoint
+    extends KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain {
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainClusterEndpoint(
     this.clusterEndpoint,
   );
 
@@ -260,11 +255,10 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpoi
   };
 }
 
-/// The [KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn.domainArn] choice: sets `domain_arn`.
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnDomainArn
-    extends
-        KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnDomainArn(
+/// The [KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain.domainArn] choice: sets `domain_arn`.
+final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainDomainArn
+    extends KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain {
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainDomainArn(
     this.domainArn,
   );
 
@@ -1927,7 +1921,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
   const KinesisFirehoseDeliveryStreamOpensearchConfiguration({
     this.bufferingInterval,
     this.bufferingSize,
-    this.clusterEndpointOrDomainArn,
+    this.domain,
     required this.indexName,
     this.indexRotationPeriod,
     this.retryDuration,
@@ -1945,8 +1939,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
 
   final TfArg<num>? bufferingSize;
 
-  final KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn?
-  clusterEndpointOrDomainArn;
+  final KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain? domain;
 
   final TfArg<String> indexName;
 
@@ -1983,7 +1976,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    ...?clusterEndpointOrDomainArn?.encode(),
+    ...?domain?.encode(),
     'index_name': indexName.toTfJson(),
     if (indexRotationPeriod != null)
       'index_rotation_period': indexRotationPeriod!.toTfJson(),
@@ -2007,18 +2000,18 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clusterEndpoint(...)`.
-sealed class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn();
+sealed class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain {
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain();
 
   /// Sets `cluster_endpoint`.
-  const factory KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn.clusterEndpoint(
+  const factory KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain.clusterEndpoint(
     TfArg<String> clusterEndpoint,
-  ) = KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnClusterEndpoint;
+  ) = KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainClusterEndpoint;
 
   /// Sets `domain_arn`.
-  const factory KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn.domainArn(
+  const factory KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain.domainArn(
     TfArg<String> domainArn,
-  ) = KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnDomainArn;
+  ) = KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainDomainArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -2026,11 +2019,10 @@ sealed class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpoint
   Map<String, Object?> encode();
 }
 
-/// The [KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn.clusterEndpoint] choice: sets `cluster_endpoint`.
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnClusterEndpoint
-    extends
-        KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnClusterEndpoint(
+/// The [KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain.clusterEndpoint] choice: sets `cluster_endpoint`.
+final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainClusterEndpoint
+    extends KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain {
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainClusterEndpoint(
     this.clusterEndpoint,
   );
 
@@ -2045,11 +2037,10 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointO
   };
 }
 
-/// The [KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn.domainArn] choice: sets `domain_arn`.
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnDomainArn
-    extends
-        KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnDomainArn(
+/// The [KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain.domainArn] choice: sets `domain_arn`.
+final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainDomainArn
+    extends KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain {
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainDomainArn(
     this.domainArn,
   );
 
@@ -3625,8 +3616,7 @@ final class AwsKinesisFirehoseDeliveryStream extends Resource {
     KinesisFirehoseDeliveryStreamHttpEndpointConfiguration?
     httpEndpointConfiguration,
     KinesisFirehoseDeliveryStreamIcebergConfiguration? icebergConfiguration,
-    KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption?
-    kinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption,
+    KinesisFirehoseDeliveryStreamSource? source,
     KinesisFirehoseDeliveryStreamOpensearchConfiguration?
     opensearchConfiguration,
     KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration?
@@ -3664,8 +3654,7 @@ final class AwsKinesisFirehoseDeliveryStream extends Resource {
              'iceberg_configuration': TfArg.literal(
                icebergConfiguration.encode(),
              ),
-           ...?kinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption
-               ?.argMap,
+           ...?source?.argMap,
            if (opensearchConfiguration != null)
              'opensearch_configuration': TfArg.literal(
                opensearchConfiguration.encode(),

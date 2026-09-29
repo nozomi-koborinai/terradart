@@ -23,18 +23,18 @@ enum RbinRuleResourceType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.excludeResourceTags(...)`.
-sealed class RbinRuleExcludeResourceTagsOrResourceTags {
-  const RbinRuleExcludeResourceTagsOrResourceTags();
+sealed class RbinRuleTagFilter {
+  const RbinRuleTagFilter();
 
   /// Sets `exclude_resource_tags`.
-  const factory RbinRuleExcludeResourceTagsOrResourceTags.excludeResourceTags(
+  const factory RbinRuleTagFilter.excludeResourceTags(
     List<RbinRuleExcludeResourceTags> excludeResourceTags,
-  ) = RbinRuleExcludeResourceTagsOrResourceTagsExcludeResourceTags;
+  ) = RbinRuleTagFilterExcludeResourceTags;
 
   /// Sets `resource_tags`.
-  const factory RbinRuleExcludeResourceTagsOrResourceTags.resourceTags(
+  const factory RbinRuleTagFilter.resourceTags(
     List<RbinRuleResourceTags> resourceTags,
-  ) = RbinRuleExcludeResourceTagsOrResourceTagsResourceTags;
+  ) = RbinRuleTagFilterResourceTags;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,12 +46,9 @@ sealed class RbinRuleExcludeResourceTagsOrResourceTags {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RbinRuleExcludeResourceTagsOrResourceTags.excludeResourceTags] choice: sets `exclude_resource_tags`.
-final class RbinRuleExcludeResourceTagsOrResourceTagsExcludeResourceTags
-    extends RbinRuleExcludeResourceTagsOrResourceTags {
-  const RbinRuleExcludeResourceTagsOrResourceTagsExcludeResourceTags(
-    this.excludeResourceTags,
-  );
+/// The [RbinRuleTagFilter.excludeResourceTags] choice: sets `exclude_resource_tags`.
+final class RbinRuleTagFilterExcludeResourceTags extends RbinRuleTagFilter {
+  const RbinRuleTagFilterExcludeResourceTags(this.excludeResourceTags);
 
   final List<RbinRuleExcludeResourceTags> excludeResourceTags;
 
@@ -71,12 +68,9 @@ final class RbinRuleExcludeResourceTagsOrResourceTagsExcludeResourceTags
   };
 }
 
-/// The [RbinRuleExcludeResourceTagsOrResourceTags.resourceTags] choice: sets `resource_tags`.
-final class RbinRuleExcludeResourceTagsOrResourceTagsResourceTags
-    extends RbinRuleExcludeResourceTagsOrResourceTags {
-  const RbinRuleExcludeResourceTagsOrResourceTagsResourceTags(
-    this.resourceTags,
-  );
+/// The [RbinRuleTagFilter.resourceTags] choice: sets `resource_tags`.
+final class RbinRuleTagFilterResourceTags extends RbinRuleTagFilter {
+  const RbinRuleTagFilterResourceTags(this.resourceTags);
 
   final List<RbinRuleResourceTags> resourceTags;
 
@@ -215,8 +209,7 @@ final class AwsRbinRule extends Resource {
     TfArg<String>? region,
     required TfArg<RbinRuleResourceType> resourceType,
     TfArg<Map<String, String>>? tags,
-    RbinRuleExcludeResourceTagsOrResourceTags?
-    excludeResourceTagsOrResourceTags,
+    RbinRuleTagFilter? tagFilter,
     RbinRuleLockConfiguration? lockConfiguration,
     required RbinRuleRetentionPeriod retentionPeriod,
     super.lifecycle,
@@ -230,7 +223,7 @@ final class AwsRbinRule extends Resource {
            if (region != null) 'region': region,
            'resource_type': resourceType,
            if (tags != null) 'tags': tags,
-           ...?excludeResourceTagsOrResourceTags?.argMap,
+           ...?tagFilter?.argMap,
            if (lockConfiguration != null)
              'lock_configuration': TfArg.literal(lockConfiguration.encode()),
            'retention_period': TfArg.literal(retentionPeriod.encode()),

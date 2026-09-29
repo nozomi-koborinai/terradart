@@ -149,23 +149,21 @@ final class DbInstanceIdentifierIdentifierPrefix extends DbInstanceIdentifier {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.manageMasterUserPassword(...)`.
-sealed class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
-  const DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo();
+sealed class DbInstancePassword {
+  const DbInstancePassword();
 
   /// Sets `manage_master_user_password`.
-  const factory DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.manageMasterUserPassword(
+  const factory DbInstancePassword.manageMasterUserPassword(
     TfArg<bool> manageMasterUserPassword,
-  ) = DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword;
+  ) = DbInstancePasswordManageMasterUserPassword;
 
   /// Sets `password`.
-  const factory DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.password(
-    TfArg<String> password,
-  ) = DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword;
+  const factory DbInstancePassword.password(TfArg<String> password) =
+      DbInstancePasswordPassword;
 
   /// Sets `password_wo`.
-  const factory DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.passwordWo(
-    TfArg<String> passwordWo,
-  ) = DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo;
+  const factory DbInstancePassword.passwordWo(TfArg<String> passwordWo) =
+      DbInstancePasswordPasswordWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -177,10 +175,10 @@ sealed class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.manageMasterUserPassword] choice: sets `manage_master_user_password`.
-final class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword
-    extends DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
-  const DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword(
+/// The [DbInstancePassword.manageMasterUserPassword] choice: sets `manage_master_user_password`.
+final class DbInstancePasswordManageMasterUserPassword
+    extends DbInstancePassword {
+  const DbInstancePasswordManageMasterUserPassword(
     this.manageMasterUserPassword,
   );
 
@@ -200,12 +198,9 @@ final class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMaster
   };
 }
 
-/// The [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.password] choice: sets `password`.
-final class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword
-    extends DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
-  const DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword(
-    this.password,
-  );
+/// The [DbInstancePassword.password] choice: sets `password`.
+final class DbInstancePasswordPassword extends DbInstancePassword {
+  const DbInstancePasswordPassword(this.password);
 
   final TfArg<String> password;
 
@@ -219,12 +214,9 @@ final class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword
   Map<String, TfArg<Object?>> get argMap => {'password': password};
 }
 
-/// The [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.passwordWo] choice: sets `password_wo`.
-final class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo
-    extends DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
-  const DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo(
-    this.passwordWo,
-  );
+/// The [DbInstancePassword.passwordWo] choice: sets `password_wo`.
+final class DbInstancePasswordPasswordWo extends DbInstancePassword {
+  const DbInstancePasswordPasswordWo(this.passwordWo);
 
   final TfArg<String> passwordWo;
 
@@ -413,8 +405,7 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? kmsKeyId,
     TfArg<String>? licenseModel,
     TfArg<String>? maintenanceWindow,
-    DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo?
-    manageMasterUserPasswordOrPasswordOrPasswordWo,
+    DbInstancePassword? password,
     TfArg<String>? masterUserSecretKmsKeyId,
     TfArg<num>? maxAllocatedStorage,
     TfArg<num>? monitoringInterval,
@@ -512,7 +503,7 @@ final class AwsDbInstance extends Resource {
            if (licenseModel != null) 'license_model': licenseModel,
            if (maintenanceWindow != null)
              'maintenance_window': maintenanceWindow,
-           ...?manageMasterUserPasswordOrPasswordOrPasswordWo?.argMap,
+           ...?password?.argMap,
            if (masterUserSecretKmsKeyId != null)
              'master_user_secret_kms_key_id': masterUserSecretKmsKeyId,
            if (maxAllocatedStorage != null)

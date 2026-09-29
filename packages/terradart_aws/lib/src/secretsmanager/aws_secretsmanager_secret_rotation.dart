@@ -31,17 +31,16 @@ final class SecretsmanagerSecretRotationExternalSecretRotationMetadata {
 @immutable
 final class SecretsmanagerSecretRotationRotationRules {
   const SecretsmanagerSecretRotationRotationRules({
-    required this.automaticallyAfterDaysOrScheduleExpression,
+    required this.schedule,
     this.duration,
   });
 
-  final SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression
-  automaticallyAfterDaysOrScheduleExpression;
+  final SecretsmanagerSecretRotationRotationRulesSchedule schedule;
 
   final TfArg<String>? duration;
 
   Map<String, Object?> encode() => {
-    ...automaticallyAfterDaysOrScheduleExpression.encode(),
+    ...schedule.encode(),
     if (duration != null) 'duration': duration!.toTfJson(),
   };
 }
@@ -50,18 +49,18 @@ final class SecretsmanagerSecretRotationRotationRules {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.automaticallyAfterDays(...)`.
-sealed class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression {
-  const SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression();
+sealed class SecretsmanagerSecretRotationRotationRulesSchedule {
+  const SecretsmanagerSecretRotationRotationRulesSchedule();
 
   /// Sets `automatically_after_days`.
-  const factory SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression.automaticallyAfterDays(
+  const factory SecretsmanagerSecretRotationRotationRulesSchedule.automaticallyAfterDays(
     TfArg<num> automaticallyAfterDays,
-  ) = SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionAutomaticallyAfterDays;
+  ) = SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterDays;
 
   /// Sets `schedule_expression`.
-  const factory SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression.scheduleExpression(
+  const factory SecretsmanagerSecretRotationRotationRulesSchedule.scheduleExpression(
     TfArg<String> scheduleExpression,
-  ) = SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionScheduleExpression;
+  ) = SecretsmanagerSecretRotationRotationRulesScheduleScheduleExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -69,11 +68,10 @@ sealed class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrSc
   Map<String, Object?> encode();
 }
 
-/// The [SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression.automaticallyAfterDays] choice: sets `automatically_after_days`.
-final class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionAutomaticallyAfterDays
-    extends
-        SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression {
-  const SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionAutomaticallyAfterDays(
+/// The [SecretsmanagerSecretRotationRotationRulesSchedule.automaticallyAfterDays] choice: sets `automatically_after_days`.
+final class SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterDays
+    extends SecretsmanagerSecretRotationRotationRulesSchedule {
+  const SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterDays(
     this.automaticallyAfterDays,
   );
 
@@ -88,11 +86,10 @@ final class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrSch
   };
 }
 
-/// The [SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression.scheduleExpression] choice: sets `schedule_expression`.
-final class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionScheduleExpression
-    extends
-        SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression {
-  const SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionScheduleExpression(
+/// The [SecretsmanagerSecretRotationRotationRulesSchedule.scheduleExpression] choice: sets `schedule_expression`.
+final class SecretsmanagerSecretRotationRotationRulesScheduleScheduleExpression
+    extends SecretsmanagerSecretRotationRotationRulesSchedule {
+  const SecretsmanagerSecretRotationRotationRulesScheduleScheduleExpression(
     this.scheduleExpression,
   );
 

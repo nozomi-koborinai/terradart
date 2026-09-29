@@ -36,8 +36,8 @@ export 'src/pinpoint/aws_pinpoint_event_stream.dart'
 export 'src/pinpoint/aws_pinpoint_gcm_channel.dart'
     show
         AwsPinpointGcmChannel,
-        PinpointGcmChannelApiKeyOrServiceJson,
-        PinpointGcmChannelApiKeyOrServiceJsonApiKey,
-        PinpointGcmChannelApiKeyOrServiceJsonServiceJson,
+        PinpointGcmChannelCredentials,
+        PinpointGcmChannelCredentialsApiKey,
+        PinpointGcmChannelCredentialsServiceJson,
         PinpointGcmChannelDefaultAuthenticationMethod;
 export 'src/pinpoint/aws_pinpoint_sms_channel.dart' show AwsPinpointSmsChannel;

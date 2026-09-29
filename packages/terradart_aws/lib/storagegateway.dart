@@ -14,9 +14,9 @@ export 'src/storagegateway/aws_storagegateway_file_system_association.dart'
 export 'src/storagegateway/aws_storagegateway_gateway.dart'
     show
         AwsStoragegatewayGateway,
-        StoragegatewayGatewayActivationKeyOrGatewayIpAddress,
-        StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey,
-        StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress,
+        StoragegatewayGatewayActivation,
+        StoragegatewayGatewayActivationActivationKey,
+        StoragegatewayGatewayActivationGatewayIpAddress,
         StoragegatewayGatewayGatewayType,
         StoragegatewayGatewayMaintenanceStartTime,
         StoragegatewayGatewayMediumChangerType,

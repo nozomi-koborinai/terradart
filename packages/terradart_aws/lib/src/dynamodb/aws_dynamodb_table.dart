@@ -45,28 +45,28 @@ enum DynamodbTableTableClass implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.importTable(...)`.
-sealed class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
-  const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn();
+sealed class DynamodbTableSource {
+  const DynamodbTableSource();
 
   /// Sets `import_table`.
-  const factory DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.importTable(
+  const factory DynamodbTableSource.importTable(
     DynamodbTableImportTable importTable,
-  ) = DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnImportTable;
+  ) = DynamodbTableSourceImportTable;
 
   /// Sets `restore_backup_arn`.
-  const factory DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreBackupArn(
+  const factory DynamodbTableSource.restoreBackupArn(
     TfArg<String> restoreBackupArn,
-  ) = DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreBackupArn;
+  ) = DynamodbTableSourceRestoreBackupArn;
 
   /// Sets `restore_source_name`.
-  const factory DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreSourceName(
+  const factory DynamodbTableSource.restoreSourceName(
     TfArg<String> restoreSourceName,
-  ) = DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceName;
+  ) = DynamodbTableSourceRestoreSourceName;
 
   /// Sets `restore_source_table_arn`.
-  const factory DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreSourceTableArn(
+  const factory DynamodbTableSource.restoreSourceTableArn(
     TfArg<String> restoreSourceTableArn,
-  ) = DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceTableArn;
+  ) = DynamodbTableSourceRestoreSourceTableArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -78,13 +78,9 @@ sealed class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRest
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.importTable] choice: sets `import_table`.
-final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnImportTable
-    extends
-        DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
-  const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnImportTable(
-    this.importTable,
-  );
+/// The [DynamodbTableSource.importTable] choice: sets `import_table`.
+final class DynamodbTableSourceImportTable extends DynamodbTableSource {
+  const DynamodbTableSourceImportTable(this.importTable);
 
   final DynamodbTableImportTable importTable;
 
@@ -100,13 +96,9 @@ final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrResto
   };
 }
 
-/// The [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreBackupArn] choice: sets `restore_backup_arn`.
-final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreBackupArn
-    extends
-        DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
-  const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreBackupArn(
-    this.restoreBackupArn,
-  );
+/// The [DynamodbTableSource.restoreBackupArn] choice: sets `restore_backup_arn`.
+final class DynamodbTableSourceRestoreBackupArn extends DynamodbTableSource {
+  const DynamodbTableSourceRestoreBackupArn(this.restoreBackupArn);
 
   final TfArg<String> restoreBackupArn;
 
@@ -124,13 +116,9 @@ final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrResto
   };
 }
 
-/// The [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreSourceName] choice: sets `restore_source_name`.
-final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceName
-    extends
-        DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
-  const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceName(
-    this.restoreSourceName,
-  );
+/// The [DynamodbTableSource.restoreSourceName] choice: sets `restore_source_name`.
+final class DynamodbTableSourceRestoreSourceName extends DynamodbTableSource {
+  const DynamodbTableSourceRestoreSourceName(this.restoreSourceName);
 
   final TfArg<String> restoreSourceName;
 
@@ -148,13 +136,10 @@ final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrResto
   };
 }
 
-/// The [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreSourceTableArn] choice: sets `restore_source_table_arn`.
-final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceTableArn
-    extends
-        DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
-  const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceTableArn(
-    this.restoreSourceTableArn,
-  );
+/// The [DynamodbTableSource.restoreSourceTableArn] choice: sets `restore_source_table_arn`.
+final class DynamodbTableSourceRestoreSourceTableArn
+    extends DynamodbTableSource {
+  const DynamodbTableSourceRestoreSourceTableArn(this.restoreSourceTableArn);
 
   final TfArg<String> restoreSourceTableArn;
 
@@ -651,8 +636,7 @@ final class AwsDynamodbTable extends Resource {
     TfArg<String>? rangeKey,
     TfArg<num>? readCapacity,
     TfArg<String>? region,
-    DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn?
-    importTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn,
+    DynamodbTableSource? source,
     TfArg<String>? restoreDateTime,
     TfArg<bool>? restoreToLatestTime,
     TfArg<bool>? streamEnabled,
@@ -685,8 +669,7 @@ final class AwsDynamodbTable extends Resource {
            if (rangeKey != null) 'range_key': rangeKey,
            if (readCapacity != null) 'read_capacity': readCapacity,
            if (region != null) 'region': region,
-           ...?importTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn
-               ?.argMap,
+           ...?source?.argMap,
            if (restoreDateTime != null) 'restore_date_time': restoreDateTime,
            if (restoreToLatestTime != null)
              'restore_to_latest_time': restoreToLatestTime,

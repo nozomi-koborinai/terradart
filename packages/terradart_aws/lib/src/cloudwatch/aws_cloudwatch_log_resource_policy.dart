@@ -10,18 +10,18 @@ const Set<String> _awsCloudwatchLogResourcePolicySensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.policyName(...)`.
-sealed class CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
-  const CloudwatchLogResourcePolicyPolicyNameOrResourceArn();
+sealed class CloudwatchLogResourcePolicyScope {
+  const CloudwatchLogResourcePolicyScope();
 
   /// Sets `policy_name`.
-  const factory CloudwatchLogResourcePolicyPolicyNameOrResourceArn.policyName(
+  const factory CloudwatchLogResourcePolicyScope.policyName(
     TfArg<String> policyName,
-  ) = CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName;
+  ) = CloudwatchLogResourcePolicyScopePolicyName;
 
   /// Sets `resource_arn`.
-  const factory CloudwatchLogResourcePolicyPolicyNameOrResourceArn.resourceArn(
+  const factory CloudwatchLogResourcePolicyScope.resourceArn(
     TfArg<String> resourceArn,
-  ) = CloudwatchLogResourcePolicyPolicyNameOrResourceArnResourceArn;
+  ) = CloudwatchLogResourcePolicyScopeResourceArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,12 +33,10 @@ sealed class CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudwatchLogResourcePolicyPolicyNameOrResourceArn.policyName] choice: sets `policy_name`.
-final class CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName
-    extends CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
-  const CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName(
-    this.policyName,
-  );
+/// The [CloudwatchLogResourcePolicyScope.policyName] choice: sets `policy_name`.
+final class CloudwatchLogResourcePolicyScopePolicyName
+    extends CloudwatchLogResourcePolicyScope {
+  const CloudwatchLogResourcePolicyScopePolicyName(this.policyName);
 
   final TfArg<String> policyName;
 
@@ -52,12 +50,10 @@ final class CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName
   Map<String, TfArg<Object?>> get argMap => {'policy_name': policyName};
 }
 
-/// The [CloudwatchLogResourcePolicyPolicyNameOrResourceArn.resourceArn] choice: sets `resource_arn`.
-final class CloudwatchLogResourcePolicyPolicyNameOrResourceArnResourceArn
-    extends CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
-  const CloudwatchLogResourcePolicyPolicyNameOrResourceArnResourceArn(
-    this.resourceArn,
-  );
+/// The [CloudwatchLogResourcePolicyScope.resourceArn] choice: sets `resource_arn`.
+final class CloudwatchLogResourcePolicyScopeResourceArn
+    extends CloudwatchLogResourcePolicyScope {
+  const CloudwatchLogResourcePolicyScopeResourceArn(this.resourceArn);
 
   final TfArg<String> resourceArn;
 
@@ -78,8 +74,7 @@ final class AwsCloudwatchLogResourcePolicy extends Resource {
   AwsCloudwatchLogResourcePolicy({
     required super.localName,
     required TfArg<String> policyDocument,
-    required CloudwatchLogResourcePolicyPolicyNameOrResourceArn
-    policyNameOrResourceArn,
+    required CloudwatchLogResourcePolicyScope scope,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
@@ -89,7 +84,7 @@ final class AwsCloudwatchLogResourcePolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_document': policyDocument,
-           ...policyNameOrResourceArn.argMap,
+           ...scope.argMap,
            if (region != null) 'region': region,
          },
        );

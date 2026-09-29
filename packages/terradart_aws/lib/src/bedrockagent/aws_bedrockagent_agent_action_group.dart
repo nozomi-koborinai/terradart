@@ -38,19 +38,19 @@ enum BedrockagentAgentActionGroupParentActionGroupSignature
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.description(...)`.
-sealed class BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature {
-  const BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature();
+sealed class BedrockagentAgentActionGroupDefinition {
+  const BedrockagentAgentActionGroupDefinition();
 
   /// Sets `description`.
-  const factory BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature.description(
+  const factory BedrockagentAgentActionGroupDefinition.description(
     TfArg<String> description,
-  ) = BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureDescription;
+  ) = BedrockagentAgentActionGroupDefinitionDescription;
 
   /// Sets `parent_action_group_signature`.
-  const factory BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature.parentActionGroupSignature(
+  const factory BedrockagentAgentActionGroupDefinition.parentActionGroupSignature(
     TfArg<BedrockagentAgentActionGroupParentActionGroupSignature>
     parentActionGroupSignature,
-  ) = BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureParentActionGroupSignature;
+  ) = BedrockagentAgentActionGroupDefinitionParentActionGroupSignature;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -62,13 +62,10 @@ sealed class BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature.description] choice: sets `description`.
-final class BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureDescription
-    extends
-        BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature {
-  const BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureDescription(
-    this.description,
-  );
+/// The [BedrockagentAgentActionGroupDefinition.description] choice: sets `description`.
+final class BedrockagentAgentActionGroupDefinitionDescription
+    extends BedrockagentAgentActionGroupDefinition {
+  const BedrockagentAgentActionGroupDefinitionDescription(this.description);
 
   final TfArg<String> description;
 
@@ -82,11 +79,10 @@ final class BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureD
   Map<String, TfArg<Object?>> get argMap => {'description': description};
 }
 
-/// The [BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature.parentActionGroupSignature] choice: sets `parent_action_group_signature`.
-final class BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureParentActionGroupSignature
-    extends
-        BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature {
-  const BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureParentActionGroupSignature(
+/// The [BedrockagentAgentActionGroupDefinition.parentActionGroupSignature] choice: sets `parent_action_group_signature`.
+final class BedrockagentAgentActionGroupDefinitionParentActionGroupSignature
+    extends BedrockagentAgentActionGroupDefinition {
+  const BedrockagentAgentActionGroupDefinitionParentActionGroupSignature(
     this.parentActionGroupSignature,
   );
 
@@ -340,8 +336,7 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
     TfArg<BedrockagentAgentActionGroupActionGroupState>? actionGroupState,
     required TfArg<String> agentId,
     required TfArg<String> agentVersion,
-    BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature?
-    descriptionOrParentActionGroupSignature,
+    BedrockagentAgentActionGroupDefinition? definition,
     TfArg<bool>? prepareAgent,
     TfArg<String>? region,
     TfArg<bool>? skipResourceInUseCheck,
@@ -359,7 +354,7 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
            if (actionGroupState != null) 'action_group_state': actionGroupState,
            'agent_id': agentId,
            'agent_version': agentVersion,
-           ...?descriptionOrParentActionGroupSignature?.argMap,
+           ...?definition?.argMap,
            if (prepareAgent != null) 'prepare_agent': prepareAgent,
            if (region != null) 'region': region,
            if (skipResourceInUseCheck != null)

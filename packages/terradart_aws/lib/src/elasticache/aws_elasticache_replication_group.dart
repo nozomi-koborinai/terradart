@@ -91,23 +91,23 @@ enum ElasticacheReplicationGroupTransitEncryptionMode implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.authToken(...)`.
-sealed class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
-  const ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds();
+sealed class ElasticacheReplicationGroupAuth {
+  const ElasticacheReplicationGroupAuth();
 
   /// Sets `auth_token`.
-  const factory ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.authToken(
+  const factory ElasticacheReplicationGroupAuth.authToken(
     TfArg<String> authToken,
-  ) = ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthToken;
+  ) = ElasticacheReplicationGroupAuthAuthToken;
 
   /// Sets `auth_token_wo`.
-  const factory ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.authTokenWo(
+  const factory ElasticacheReplicationGroupAuth.authTokenWo(
     TfArg<String> authTokenWo,
-  ) = ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthTokenWo;
+  ) = ElasticacheReplicationGroupAuthAuthTokenWo;
 
   /// Sets `user_group_ids`.
-  const factory ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.userGroupIds(
+  const factory ElasticacheReplicationGroupAuth.userGroupIds(
     TfArg<List<String>> userGroupIds,
-  ) = ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserGroupIds;
+  ) = ElasticacheReplicationGroupAuthUserGroupIds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -119,12 +119,10 @@ sealed class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.authToken] choice: sets `auth_token`.
-final class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthToken
-    extends ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
-  const ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthToken(
-    this.authToken,
-  );
+/// The [ElasticacheReplicationGroupAuth.authToken] choice: sets `auth_token`.
+final class ElasticacheReplicationGroupAuthAuthToken
+    extends ElasticacheReplicationGroupAuth {
+  const ElasticacheReplicationGroupAuthAuthToken(this.authToken);
 
   final TfArg<String> authToken;
 
@@ -138,12 +136,10 @@ final class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthT
   Map<String, TfArg<Object?>> get argMap => {'auth_token': authToken};
 }
 
-/// The [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.authTokenWo] choice: sets `auth_token_wo`.
-final class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthTokenWo
-    extends ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
-  const ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthTokenWo(
-    this.authTokenWo,
-  );
+/// The [ElasticacheReplicationGroupAuth.authTokenWo] choice: sets `auth_token_wo`.
+final class ElasticacheReplicationGroupAuthAuthTokenWo
+    extends ElasticacheReplicationGroupAuth {
+  const ElasticacheReplicationGroupAuthAuthTokenWo(this.authTokenWo);
 
   final TfArg<String> authTokenWo;
 
@@ -157,12 +153,10 @@ final class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthT
   Map<String, TfArg<Object?>> get argMap => {'auth_token_wo': authTokenWo};
 }
 
-/// The [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.userGroupIds] choice: sets `user_group_ids`.
-final class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserGroupIds
-    extends ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
-  const ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserGroupIds(
-    this.userGroupIds,
-  );
+/// The [ElasticacheReplicationGroupAuth.userGroupIds] choice: sets `user_group_ids`.
+final class ElasticacheReplicationGroupAuthUserGroupIds
+    extends ElasticacheReplicationGroupAuth {
+  const ElasticacheReplicationGroupAuthUserGroupIds(this.userGroupIds);
 
   final TfArg<List<String>> userGroupIds;
 
@@ -181,19 +175,19 @@ final class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserG
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.nodeGroupConfiguration(...)`.
-sealed class ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs {
-  const ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs();
+sealed class ElasticacheReplicationGroupTopology {
+  const ElasticacheReplicationGroupTopology();
 
   /// Sets `node_group_configuration`.
-  const factory ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs.nodeGroupConfiguration(
+  const factory ElasticacheReplicationGroupTopology.nodeGroupConfiguration(
     List<ElasticacheReplicationGroupNodeGroupConfiguration>
     nodeGroupConfiguration,
-  ) = ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsNodeGroupConfiguration;
+  ) = ElasticacheReplicationGroupTopologyNodeGroupConfiguration;
 
   /// Sets `preferred_cache_cluster_azs`.
-  const factory ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs.preferredCacheClusterAzs(
+  const factory ElasticacheReplicationGroupTopology.preferredCacheClusterAzs(
     TfArg<List<String>> preferredCacheClusterAzs,
-  ) = ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsPreferredCacheClusterAzs;
+  ) = ElasticacheReplicationGroupTopologyPreferredCacheClusterAzs;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -205,11 +199,10 @@ sealed class ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheCl
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs.nodeGroupConfiguration] choice: sets `node_group_configuration`.
-final class ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsNodeGroupConfiguration
-    extends
-        ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs {
-  const ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsNodeGroupConfiguration(
+/// The [ElasticacheReplicationGroupTopology.nodeGroupConfiguration] choice: sets `node_group_configuration`.
+final class ElasticacheReplicationGroupTopologyNodeGroupConfiguration
+    extends ElasticacheReplicationGroupTopology {
+  const ElasticacheReplicationGroupTopologyNodeGroupConfiguration(
     this.nodeGroupConfiguration,
   );
 
@@ -234,11 +227,10 @@ final class ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClu
   };
 }
 
-/// The [ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs.preferredCacheClusterAzs] choice: sets `preferred_cache_cluster_azs`.
-final class ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsPreferredCacheClusterAzs
-    extends
-        ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs {
-  const ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsPreferredCacheClusterAzs(
+/// The [ElasticacheReplicationGroupTopology.preferredCacheClusterAzs] choice: sets `preferred_cache_cluster_azs`.
+final class ElasticacheReplicationGroupTopologyPreferredCacheClusterAzs
+    extends ElasticacheReplicationGroupTopology {
+  const ElasticacheReplicationGroupTopologyPreferredCacheClusterAzs(
     this.preferredCacheClusterAzs,
   );
 
@@ -380,8 +372,7 @@ final class AwsElasticacheReplicationGroup extends Resource {
     required super.localName,
     TfArg<bool>? applyImmediately,
     TfArg<String>? atRestEncryptionEnabled,
-    ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds?
-    authTokenOrAuthTokenWoOrUserGroupIds,
+    ElasticacheReplicationGroupAuth? auth,
     TfArg<ElasticacheReplicationGroupAuthTokenUpdateStrategy>?
     authTokenUpdateStrategy,
     TfArg<num>? authTokenWoVersion,
@@ -406,8 +397,7 @@ final class AwsElasticacheReplicationGroup extends Resource {
     TfArg<num>? numNodeGroups,
     TfArg<String>? parameterGroupName,
     TfArg<num>? port,
-    ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs?
-    nodeGroupConfigurationOrPreferredCacheClusterAzs,
+    ElasticacheReplicationGroupTopology? topology,
     TfArg<String>? region,
     TfArg<num>? replicasPerNodeGroup,
     required TfArg<String> replicationGroupId,
@@ -434,7 +424,7 @@ final class AwsElasticacheReplicationGroup extends Resource {
            if (applyImmediately != null) 'apply_immediately': applyImmediately,
            if (atRestEncryptionEnabled != null)
              'at_rest_encryption_enabled': atRestEncryptionEnabled,
-           ...?authTokenOrAuthTokenWoOrUserGroupIds?.argMap,
+           ...?auth?.argMap,
            if (authTokenUpdateStrategy != null)
              'auth_token_update_strategy': authTokenUpdateStrategy,
            if (authTokenWoVersion != null)
@@ -468,7 +458,7 @@ final class AwsElasticacheReplicationGroup extends Resource {
            if (parameterGroupName != null)
              'parameter_group_name': parameterGroupName,
            if (port != null) 'port': port,
-           ...?nodeGroupConfigurationOrPreferredCacheClusterAzs?.argMap,
+           ...?topology?.argMap,
            if (region != null) 'region': region,
            if (replicasPerNodeGroup != null)
              'replicas_per_node_group': replicasPerNodeGroup,

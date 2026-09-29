@@ -160,30 +160,22 @@ void main() {
     // ...and an unrelated sibling block is unaffected by the customSlot skip.
     expect(withCustomSlot.any((s) => s.tfName == 'custom'), isTrue);
 
-    // ...and NESTED ('conditions', a child two levels down): `basic` itself
-    // must still be collected (with its own attrs intact), but with
-    // `conditions` entirely gone from both `children` AND
-    // `excludedChildren` — true invisibility, unlike excludedPaths.
-    final withNestedCustomSlot = collectNestedTypes(
+    // ...but a key naming no top-level field is a virtual slot (a sealed
+    // concept name) that owns no block: a nested `conditions` block keeps
+    // its helper.
+    final withVirtualSlot = collectNestedTypes(
       resourceBlock: block,
       resourcePrefix: resourcePrefix,
       customSlotKeys: const {'conditions'},
       excludedPaths: const {},
     );
-    final basicWithNestedCustomSlot = withNestedCustomSlot.firstWhere(
+    final basicWithVirtualSlot = withVirtualSlot.firstWhere(
       (s) => s.tfName == 'basic',
     );
     expect(
-      basicWithNestedCustomSlot.attrs.any(
-        (a) => a.tfName == 'combining_function',
-      ),
+      basicWithVirtualSlot.children.any((c) => c.tfName == 'conditions'),
       isTrue,
     );
-    expect(
-      basicWithNestedCustomSlot.children.any((c) => c.tfName == 'conditions'),
-      isFalse,
-    );
-    expect(basicWithNestedCustomSlot.excludedChildren, isEmpty);
   });
 
   test('google_os_config_patch_deployment: a list(string) attr with an enum '

@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "auth_parameters.api_key, auth_parameters.basic, auth_parameters.oauth": auth

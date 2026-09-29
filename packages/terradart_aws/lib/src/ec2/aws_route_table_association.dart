@@ -10,18 +10,16 @@ const Set<String> _awsRouteTableAssociationSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.gatewayId(...)`.
-sealed class RouteTableAssociationGatewayIdOrSubnetId {
-  const RouteTableAssociationGatewayIdOrSubnetId();
+sealed class RouteTableAssociationTarget {
+  const RouteTableAssociationTarget();
 
   /// Sets `gateway_id`.
-  const factory RouteTableAssociationGatewayIdOrSubnetId.gatewayId(
-    TfArg<String> gatewayId,
-  ) = RouteTableAssociationGatewayIdOrSubnetIdGatewayId;
+  const factory RouteTableAssociationTarget.gatewayId(TfArg<String> gatewayId) =
+      RouteTableAssociationTargetGatewayId;
 
   /// Sets `subnet_id`.
-  const factory RouteTableAssociationGatewayIdOrSubnetId.subnetId(
-    TfArg<String> subnetId,
-  ) = RouteTableAssociationGatewayIdOrSubnetIdSubnetId;
+  const factory RouteTableAssociationTarget.subnetId(TfArg<String> subnetId) =
+      RouteTableAssociationTargetSubnetId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +31,10 @@ sealed class RouteTableAssociationGatewayIdOrSubnetId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RouteTableAssociationGatewayIdOrSubnetId.gatewayId] choice: sets `gateway_id`.
-final class RouteTableAssociationGatewayIdOrSubnetIdGatewayId
-    extends RouteTableAssociationGatewayIdOrSubnetId {
-  const RouteTableAssociationGatewayIdOrSubnetIdGatewayId(this.gatewayId);
+/// The [RouteTableAssociationTarget.gatewayId] choice: sets `gateway_id`.
+final class RouteTableAssociationTargetGatewayId
+    extends RouteTableAssociationTarget {
+  const RouteTableAssociationTargetGatewayId(this.gatewayId);
 
   final TfArg<String> gatewayId;
 
@@ -50,10 +48,10 @@ final class RouteTableAssociationGatewayIdOrSubnetIdGatewayId
   Map<String, TfArg<Object?>> get argMap => {'gateway_id': gatewayId};
 }
 
-/// The [RouteTableAssociationGatewayIdOrSubnetId.subnetId] choice: sets `subnet_id`.
-final class RouteTableAssociationGatewayIdOrSubnetIdSubnetId
-    extends RouteTableAssociationGatewayIdOrSubnetId {
-  const RouteTableAssociationGatewayIdOrSubnetIdSubnetId(this.subnetId);
+/// The [RouteTableAssociationTarget.subnetId] choice: sets `subnet_id`.
+final class RouteTableAssociationTargetSubnetId
+    extends RouteTableAssociationTarget {
+  const RouteTableAssociationTargetSubnetId(this.subnetId);
 
   final TfArg<String> subnetId;
 
@@ -73,7 +71,7 @@ final class AwsRouteTableAssociation extends Resource {
 
   AwsRouteTableAssociation({
     required super.localName,
-    required RouteTableAssociationGatewayIdOrSubnetId gatewayIdOrSubnetId,
+    required RouteTableAssociationTarget target,
     TfArg<String>? region,
     required TfArg<String> routeTableId,
     super.lifecycle,
@@ -83,7 +81,7 @@ final class AwsRouteTableAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...gatewayIdOrSubnetId.argMap,
+           ...target.argMap,
            if (region != null) 'region': region,
            'route_table_id': routeTableId,
          },

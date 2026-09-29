@@ -21,18 +21,16 @@ enum VpcInstanceTenancy implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.cidrBlock(...)`.
-sealed class VpcCidrBlockOrIpv4NetmaskLength {
-  const VpcCidrBlockOrIpv4NetmaskLength();
+sealed class VpcIpv4Cidr {
+  const VpcIpv4Cidr();
 
   /// Sets `cidr_block`.
-  const factory VpcCidrBlockOrIpv4NetmaskLength.cidrBlock(
-    TfArg<String> cidrBlock,
-  ) = VpcCidrBlockOrIpv4NetmaskLengthCidrBlock;
+  const factory VpcIpv4Cidr.cidrBlock(TfArg<String> cidrBlock) =
+      VpcIpv4CidrCidrBlock;
 
   /// Sets `ipv4_netmask_length`.
-  const factory VpcCidrBlockOrIpv4NetmaskLength.ipv4NetmaskLength(
-    TfArg<num> ipv4NetmaskLength,
-  ) = VpcCidrBlockOrIpv4NetmaskLengthIpv4NetmaskLength;
+  const factory VpcIpv4Cidr.ipv4NetmaskLength(TfArg<num> ipv4NetmaskLength) =
+      VpcIpv4CidrIpv4NetmaskLength;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +42,9 @@ sealed class VpcCidrBlockOrIpv4NetmaskLength {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VpcCidrBlockOrIpv4NetmaskLength.cidrBlock] choice: sets `cidr_block`.
-final class VpcCidrBlockOrIpv4NetmaskLengthCidrBlock
-    extends VpcCidrBlockOrIpv4NetmaskLength {
-  const VpcCidrBlockOrIpv4NetmaskLengthCidrBlock(this.cidrBlock);
+/// The [VpcIpv4Cidr.cidrBlock] choice: sets `cidr_block`.
+final class VpcIpv4CidrCidrBlock extends VpcIpv4Cidr {
+  const VpcIpv4CidrCidrBlock(this.cidrBlock);
 
   final TfArg<String> cidrBlock;
 
@@ -61,12 +58,9 @@ final class VpcCidrBlockOrIpv4NetmaskLengthCidrBlock
   Map<String, TfArg<Object?>> get argMap => {'cidr_block': cidrBlock};
 }
 
-/// The [VpcCidrBlockOrIpv4NetmaskLength.ipv4NetmaskLength] choice: sets `ipv4_netmask_length`.
-final class VpcCidrBlockOrIpv4NetmaskLengthIpv4NetmaskLength
-    extends VpcCidrBlockOrIpv4NetmaskLength {
-  const VpcCidrBlockOrIpv4NetmaskLengthIpv4NetmaskLength(
-    this.ipv4NetmaskLength,
-  );
+/// The [VpcIpv4Cidr.ipv4NetmaskLength] choice: sets `ipv4_netmask_length`.
+final class VpcIpv4CidrIpv4NetmaskLength extends VpcIpv4Cidr {
+  const VpcIpv4CidrIpv4NetmaskLength(this.ipv4NetmaskLength);
 
   final TfArg<num> ipv4NetmaskLength;
 
@@ -91,7 +85,7 @@ final class AwsVpc extends Resource {
   AwsVpc({
     required super.localName,
     TfArg<bool>? assignGeneratedIpv6CidrBlock,
-    VpcCidrBlockOrIpv4NetmaskLength? cidrBlockOrIpv4NetmaskLength,
+    VpcIpv4Cidr? ipv4Cidr,
     TfArg<bool>? enableDnsHostnames,
     TfArg<bool>? enableDnsSupport,
     TfArg<bool>? enableNetworkAddressUsageMetrics,
@@ -112,7 +106,7 @@ final class AwsVpc extends Resource {
          argMap: {
            if (assignGeneratedIpv6CidrBlock != null)
              'assign_generated_ipv6_cidr_block': assignGeneratedIpv6CidrBlock,
-           ...?cidrBlockOrIpv4NetmaskLength?.argMap,
+           ...?ipv4Cidr?.argMap,
            if (enableDnsHostnames != null)
              'enable_dns_hostnames': enableDnsHostnames,
            if (enableDnsSupport != null) 'enable_dns_support': enableDnsSupport,

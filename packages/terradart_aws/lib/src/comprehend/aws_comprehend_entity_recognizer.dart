@@ -95,25 +95,23 @@ final class ComprehendEntityRecognizerVersionNameVersionNamePrefix
 final class ComprehendEntityRecognizerInputDataConfig {
   const ComprehendEntityRecognizerInputDataConfig({
     this.dataFormat,
-    required this.annotationsOrEntityList,
-    required this.augmentedManifestsOrDocuments,
+    required this.labels,
+    required this.source,
     required this.entityTypes,
   });
 
   final TfArg<ComprehendEntityRecognizerInputDataConfigDataFormat>? dataFormat;
 
-  final ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList
-  annotationsOrEntityList;
+  final ComprehendEntityRecognizerInputDataConfigLabels labels;
 
-  final ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments
-  augmentedManifestsOrDocuments;
+  final ComprehendEntityRecognizerInputDataConfigSource source;
 
   final List<ComprehendEntityRecognizerInputDataConfigEntityTypes> entityTypes;
 
   Map<String, Object?> encode() => {
     if (dataFormat != null) 'data_format': dataFormat!.toTfJson(),
-    ...annotationsOrEntityList.encode(),
-    ...augmentedManifestsOrDocuments.encode(),
+    ...labels.encode(),
+    ...source.encode(),
     'entity_types': [for (final e in entityTypes) e.encode()],
   };
 }
@@ -122,18 +120,18 @@ final class ComprehendEntityRecognizerInputDataConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.annotations(...)`.
-sealed class ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList {
-  const ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList();
+sealed class ComprehendEntityRecognizerInputDataConfigLabels {
+  const ComprehendEntityRecognizerInputDataConfigLabels();
 
   /// Sets `annotations`.
-  const factory ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList.annotations(
+  const factory ComprehendEntityRecognizerInputDataConfigLabels.annotations(
     ComprehendEntityRecognizerInputDataConfigAnnotations annotations,
-  ) = ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListAnnotations;
+  ) = ComprehendEntityRecognizerInputDataConfigLabelsAnnotations;
 
   /// Sets `entity_list`.
-  const factory ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList.entityList(
+  const factory ComprehendEntityRecognizerInputDataConfigLabels.entityList(
     ComprehendEntityRecognizerInputDataConfigEntityList entityList,
-  ) = ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListEntityList;
+  ) = ComprehendEntityRecognizerInputDataConfigLabelsEntityList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -141,10 +139,10 @@ sealed class ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList {
   Map<String, Object?> encode();
 }
 
-/// The [ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList.annotations] choice: sets `annotations`.
-final class ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListAnnotations
-    extends ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList {
-  const ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListAnnotations(
+/// The [ComprehendEntityRecognizerInputDataConfigLabels.annotations] choice: sets `annotations`.
+final class ComprehendEntityRecognizerInputDataConfigLabelsAnnotations
+    extends ComprehendEntityRecognizerInputDataConfigLabels {
+  const ComprehendEntityRecognizerInputDataConfigLabelsAnnotations(
     this.annotations,
   );
 
@@ -157,10 +155,10 @@ final class ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListAnno
   Map<String, Object?> encode() => {'annotations': annotations.encode()};
 }
 
-/// The [ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList.entityList] choice: sets `entity_list`.
-final class ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListEntityList
-    extends ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList {
-  const ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListEntityList(
+/// The [ComprehendEntityRecognizerInputDataConfigLabels.entityList] choice: sets `entity_list`.
+final class ComprehendEntityRecognizerInputDataConfigLabelsEntityList
+    extends ComprehendEntityRecognizerInputDataConfigLabels {
+  const ComprehendEntityRecognizerInputDataConfigLabelsEntityList(
     this.entityList,
   );
 
@@ -177,19 +175,19 @@ final class ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListEnti
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.augmentedManifests(...)`.
-sealed class ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments {
-  const ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments();
+sealed class ComprehendEntityRecognizerInputDataConfigSource {
+  const ComprehendEntityRecognizerInputDataConfigSource();
 
   /// Sets `augmented_manifests`.
-  const factory ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments.augmentedManifests(
+  const factory ComprehendEntityRecognizerInputDataConfigSource.augmentedManifests(
     List<ComprehendEntityRecognizerInputDataConfigAugmentedManifests>
     augmentedManifests,
-  ) = ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsAugmentedManifests;
+  ) = ComprehendEntityRecognizerInputDataConfigSourceAugmentedManifests;
 
   /// Sets `documents`.
-  const factory ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments.documents(
+  const factory ComprehendEntityRecognizerInputDataConfigSource.documents(
     ComprehendEntityRecognizerInputDataConfigDocuments documents,
-  ) = ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsDocuments;
+  ) = ComprehendEntityRecognizerInputDataConfigSourceDocuments;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -197,11 +195,10 @@ sealed class ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocume
   Map<String, Object?> encode();
 }
 
-/// The [ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments.augmentedManifests] choice: sets `augmented_manifests`.
-final class ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsAugmentedManifests
-    extends
-        ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments {
-  const ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsAugmentedManifests(
+/// The [ComprehendEntityRecognizerInputDataConfigSource.augmentedManifests] choice: sets `augmented_manifests`.
+final class ComprehendEntityRecognizerInputDataConfigSourceAugmentedManifests
+    extends ComprehendEntityRecognizerInputDataConfigSource {
+  const ComprehendEntityRecognizerInputDataConfigSourceAugmentedManifests(
     this.augmentedManifests,
   );
 
@@ -217,11 +214,10 @@ final class ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumen
   };
 }
 
-/// The [ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments.documents] choice: sets `documents`.
-final class ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsDocuments
-    extends
-        ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments {
-  const ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsDocuments(
+/// The [ComprehendEntityRecognizerInputDataConfigSource.documents] choice: sets `documents`.
+final class ComprehendEntityRecognizerInputDataConfigSourceDocuments
+    extends ComprehendEntityRecognizerInputDataConfigSource {
+  const ComprehendEntityRecognizerInputDataConfigSourceDocuments(
     this.documents,
   );
 

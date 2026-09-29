@@ -33,9 +33,9 @@ export 'src/cognito/aws_cognito_managed_login_branding.dart'
         CognitoManagedLoginBrandingAssetCategory,
         CognitoManagedLoginBrandingAssetColorMode,
         CognitoManagedLoginBrandingAssetExtension,
-        CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues,
-        CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings,
-        CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues;
+        CognitoManagedLoginBrandingStyle,
+        CognitoManagedLoginBrandingStyleSettings,
+        CognitoManagedLoginBrandingStyleUseCognitoProvidedValues;
 export 'src/cognito/aws_cognito_managed_user_pool_client.dart'
     show
         AwsCognitoManagedUserPoolClient,
@@ -79,9 +79,9 @@ export 'src/cognito/aws_cognito_user.dart'
         AwsCognitoUser,
         CognitoUserDesiredDeliveryMediums,
         CognitoUserMessageAction,
-        CognitoUserPasswordOrTemporaryPassword,
-        CognitoUserPasswordOrTemporaryPasswordPassword,
-        CognitoUserPasswordOrTemporaryPasswordTemporaryPassword;
+        CognitoUserPassword,
+        CognitoUserPasswordPassword,
+        CognitoUserPasswordTemporaryPassword;
 export 'src/cognito/aws_cognito_user_group.dart' show AwsCognitoUserGroup;
 export 'src/cognito/aws_cognito_user_in_group.dart' show AwsCognitoUserInGroup;
 export 'src/cognito/aws_cognito_user_pool.dart'
@@ -93,9 +93,6 @@ export 'src/cognito/aws_cognito_user_pool.dart'
         CognitoUserPoolAdminCreateUserConfig,
         CognitoUserPoolAdminCreateUserConfigInviteMessageTemplate,
         CognitoUserPoolAliasAttributes,
-        CognitoUserPoolAttributes,
-        CognitoUserPoolAttributesAliasAttributes,
-        CognitoUserPoolAttributesUsernameAttributes,
         CognitoUserPoolAutoVerifiedAttributes,
         CognitoUserPoolDeletionProtection,
         CognitoUserPoolDeviceConfiguration,
@@ -115,6 +112,9 @@ export 'src/cognito/aws_cognito_user_pool.dart'
         CognitoUserPoolSchemaAttributeDataType,
         CognitoUserPoolSchemaNumberAttributeConstraints,
         CognitoUserPoolSchemaStringAttributeConstraints,
+        CognitoUserPoolSignInAttributes,
+        CognitoUserPoolSignInAttributesAliasAttributes,
+        CognitoUserPoolSignInAttributesUsernameAttributes,
         CognitoUserPoolSignInPolicy,
         CognitoUserPoolSignInPolicyAllowedFirstAuthFactors,
         CognitoUserPoolSmsConfiguration,

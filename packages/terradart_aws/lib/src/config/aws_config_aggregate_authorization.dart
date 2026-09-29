@@ -10,18 +10,18 @@ const Set<String> _awsConfigAggregateAuthorizationSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.authorizedAwsRegion(...)`.
-sealed class ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion {
-  const ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion();
+sealed class ConfigAggregateAuthorizationRegion {
+  const ConfigAggregateAuthorizationRegion();
 
   /// Sets `authorized_aws_region`.
-  const factory ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion.authorizedAwsRegion(
+  const factory ConfigAggregateAuthorizationRegion.authorizedAwsRegion(
     TfArg<String> authorizedAwsRegion,
-  ) = ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion;
+  ) = ConfigAggregateAuthorizationRegionAuthorizedAwsRegion;
 
   /// Sets `region`.
-  const factory ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion.region(
+  const factory ConfigAggregateAuthorizationRegion.region(
     TfArg<String> region,
-  ) = ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion;
+  ) = ConfigAggregateAuthorizationRegionRegion;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +33,10 @@ sealed class ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion.authorizedAwsRegion] choice: sets `authorized_aws_region`.
-final class ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion
-    extends ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion {
-  const ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion(
+/// The [ConfigAggregateAuthorizationRegion.authorizedAwsRegion] choice: sets `authorized_aws_region`.
+final class ConfigAggregateAuthorizationRegionAuthorizedAwsRegion
+    extends ConfigAggregateAuthorizationRegion {
+  const ConfigAggregateAuthorizationRegionAuthorizedAwsRegion(
     this.authorizedAwsRegion,
   );
 
@@ -56,12 +56,10 @@ final class ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAws
   };
 }
 
-/// The [ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion.region] choice: sets `region`.
-final class ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion
-    extends ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion {
-  const ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion(
-    this.region,
-  );
+/// The [ConfigAggregateAuthorizationRegion.region] choice: sets `region`.
+final class ConfigAggregateAuthorizationRegionRegion
+    extends ConfigAggregateAuthorizationRegion {
+  const ConfigAggregateAuthorizationRegionRegion(this.region);
 
   final TfArg<String> region;
 
@@ -82,8 +80,7 @@ final class AwsConfigAggregateAuthorization extends Resource {
   AwsConfigAggregateAuthorization({
     required super.localName,
     required TfArg<String> accountId,
-    required ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion
-    authorizedAwsRegionOrRegion,
+    required ConfigAggregateAuthorizationRegion region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -93,7 +90,7 @@ final class AwsConfigAggregateAuthorization extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           ...authorizedAwsRegionOrRegion.argMap,
+           ...region.argMap,
            if (tags != null) 'tags': tags,
          },
        );

@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "default_version, update_default_version": default_version
+  "security_group_names, vpc_security_group_ids": security_groups

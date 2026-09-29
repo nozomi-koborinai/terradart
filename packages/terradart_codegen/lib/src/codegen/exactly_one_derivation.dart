@@ -144,6 +144,15 @@ deriveExactlyOneSlots(
   );
 }
 
+/// The meta-arguments every factory constructor takes besides its inputs.
+const _metaParams = {
+  'local_name',
+  'lifecycle',
+  'depends_on',
+  'provider',
+  'timeouts',
+};
+
 final _optionalHelperParam = RegExp(r'^([A-Za-z_][\w<>, ]*)\?\s+(\w+)$');
 
 /// The variant for group member [tfName] when a custom slot holds it as an
@@ -292,7 +301,8 @@ WrapperOverride _derive(
     String? clashes(String concept) {
       if (!group.contains(concept) &&
               (order.contains(concept) || slots.containsKey(concept)) ||
-          chosenSlots.contains(concept)) {
+          chosenSlots.contains(concept) ||
+          _metaParams.contains(concept)) {
         return 'the slot $concept is taken';
       }
       final sealed = prefix + snakeToPascal(concept);

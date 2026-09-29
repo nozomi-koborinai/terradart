@@ -23,18 +23,18 @@ enum CodebuildWebhookBuildType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.branchFilter(...)`.
-sealed class CodebuildWebhookBranchFilterOrFilterGroup {
-  const CodebuildWebhookBranchFilterOrFilterGroup();
+sealed class CodebuildWebhookFilter {
+  const CodebuildWebhookFilter();
 
   /// Sets `branch_filter`.
-  const factory CodebuildWebhookBranchFilterOrFilterGroup.branchFilter(
+  const factory CodebuildWebhookFilter.branchFilter(
     TfArg<String> branchFilter,
-  ) = CodebuildWebhookBranchFilterOrFilterGroupBranchFilter;
+  ) = CodebuildWebhookFilterBranchFilter;
 
   /// Sets `filter_group`.
-  const factory CodebuildWebhookBranchFilterOrFilterGroup.filterGroup(
+  const factory CodebuildWebhookFilter.filterGroup(
     List<CodebuildWebhookFilterGroup> filterGroup,
-  ) = CodebuildWebhookBranchFilterOrFilterGroupFilterGroup;
+  ) = CodebuildWebhookFilterFilterGroup;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,12 +46,9 @@ sealed class CodebuildWebhookBranchFilterOrFilterGroup {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CodebuildWebhookBranchFilterOrFilterGroup.branchFilter] choice: sets `branch_filter`.
-final class CodebuildWebhookBranchFilterOrFilterGroupBranchFilter
-    extends CodebuildWebhookBranchFilterOrFilterGroup {
-  const CodebuildWebhookBranchFilterOrFilterGroupBranchFilter(
-    this.branchFilter,
-  );
+/// The [CodebuildWebhookFilter.branchFilter] choice: sets `branch_filter`.
+final class CodebuildWebhookFilterBranchFilter extends CodebuildWebhookFilter {
+  const CodebuildWebhookFilterBranchFilter(this.branchFilter);
 
   final TfArg<String> branchFilter;
 
@@ -65,10 +62,9 @@ final class CodebuildWebhookBranchFilterOrFilterGroupBranchFilter
   Map<String, TfArg<Object?>> get argMap => {'branch_filter': branchFilter};
 }
 
-/// The [CodebuildWebhookBranchFilterOrFilterGroup.filterGroup] choice: sets `filter_group`.
-final class CodebuildWebhookBranchFilterOrFilterGroupFilterGroup
-    extends CodebuildWebhookBranchFilterOrFilterGroup {
-  const CodebuildWebhookBranchFilterOrFilterGroupFilterGroup(this.filterGroup);
+/// The [CodebuildWebhookFilter.filterGroup] choice: sets `filter_group`.
+final class CodebuildWebhookFilterFilterGroup extends CodebuildWebhookFilter {
+  const CodebuildWebhookFilterFilterGroup(this.filterGroup);
 
   final List<CodebuildWebhookFilterGroup> filterGroup;
 
@@ -243,7 +239,7 @@ final class AwsCodebuildWebhook extends Resource {
 
   AwsCodebuildWebhook({
     required super.localName,
-    CodebuildWebhookBranchFilterOrFilterGroup? branchFilterOrFilterGroup,
+    CodebuildWebhookFilter? filter,
     TfArg<CodebuildWebhookBuildType>? buildType,
     TfArg<bool>? manualCreation,
     required TfArg<String> projectName,
@@ -257,7 +253,7 @@ final class AwsCodebuildWebhook extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?branchFilterOrFilterGroup?.argMap,
+           ...?filter?.argMap,
            if (buildType != null) 'build_type': buildType,
            if (manualCreation != null) 'manual_creation': manualCreation,
            'project_name': projectName,

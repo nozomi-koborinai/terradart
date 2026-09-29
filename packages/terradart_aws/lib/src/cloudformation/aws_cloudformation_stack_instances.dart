@@ -22,18 +22,18 @@ enum CloudformationStackInstancesCallAs implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.accounts(...)`.
-sealed class CloudformationStackInstancesAccountsOrDeploymentTargets {
-  const CloudformationStackInstancesAccountsOrDeploymentTargets();
+sealed class CloudformationStackInstancesTargets {
+  const CloudformationStackInstancesTargets();
 
   /// Sets `accounts`.
-  const factory CloudformationStackInstancesAccountsOrDeploymentTargets.accounts(
+  const factory CloudformationStackInstancesTargets.accounts(
     TfArg<List<String>> accounts,
-  ) = CloudformationStackInstancesAccountsOrDeploymentTargetsAccounts;
+  ) = CloudformationStackInstancesTargetsAccounts;
 
   /// Sets `deployment_targets`.
-  const factory CloudformationStackInstancesAccountsOrDeploymentTargets.deploymentTargets(
+  const factory CloudformationStackInstancesTargets.deploymentTargets(
     CloudformationStackInstancesDeploymentTargets deploymentTargets,
-  ) = CloudformationStackInstancesAccountsOrDeploymentTargetsDeploymentTargets;
+  ) = CloudformationStackInstancesTargetsDeploymentTargets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,12 +45,10 @@ sealed class CloudformationStackInstancesAccountsOrDeploymentTargets {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudformationStackInstancesAccountsOrDeploymentTargets.accounts] choice: sets `accounts`.
-final class CloudformationStackInstancesAccountsOrDeploymentTargetsAccounts
-    extends CloudformationStackInstancesAccountsOrDeploymentTargets {
-  const CloudformationStackInstancesAccountsOrDeploymentTargetsAccounts(
-    this.accounts,
-  );
+/// The [CloudformationStackInstancesTargets.accounts] choice: sets `accounts`.
+final class CloudformationStackInstancesTargetsAccounts
+    extends CloudformationStackInstancesTargets {
+  const CloudformationStackInstancesTargetsAccounts(this.accounts);
 
   final TfArg<List<String>> accounts;
 
@@ -64,10 +62,10 @@ final class CloudformationStackInstancesAccountsOrDeploymentTargetsAccounts
   Map<String, TfArg<Object?>> get argMap => {'accounts': accounts};
 }
 
-/// The [CloudformationStackInstancesAccountsOrDeploymentTargets.deploymentTargets] choice: sets `deployment_targets`.
-final class CloudformationStackInstancesAccountsOrDeploymentTargetsDeploymentTargets
-    extends CloudformationStackInstancesAccountsOrDeploymentTargets {
-  const CloudformationStackInstancesAccountsOrDeploymentTargetsDeploymentTargets(
+/// The [CloudformationStackInstancesTargets.deploymentTargets] choice: sets `deployment_targets`.
+final class CloudformationStackInstancesTargetsDeploymentTargets
+    extends CloudformationStackInstancesTargets {
+  const CloudformationStackInstancesTargetsDeploymentTargets(
     this.deploymentTargets,
   );
 
@@ -307,8 +305,7 @@ final class AwsCloudformationStackInstances extends Resource {
 
   AwsCloudformationStackInstances({
     required super.localName,
-    CloudformationStackInstancesAccountsOrDeploymentTargets?
-    accountsOrDeploymentTargets,
+    CloudformationStackInstancesTargets? targets,
     TfArg<CloudformationStackInstancesCallAs>? callAs,
     TfArg<Map<String, String>>? parameterOverrides,
     TfArg<String>? region,
@@ -323,7 +320,7 @@ final class AwsCloudformationStackInstances extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?accountsOrDeploymentTargets?.argMap,
+           ...?targets?.argMap,
            if (callAs != null) 'call_as': callAs,
            if (parameterOverrides != null)
              'parameter_overrides': parameterOverrides,

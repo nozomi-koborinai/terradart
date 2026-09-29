@@ -10,18 +10,17 @@ const Set<String> _awsEipAssociationSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.instanceId(...)`.
-sealed class EipAssociationInstanceIdOrNetworkInterfaceId {
-  const EipAssociationInstanceIdOrNetworkInterfaceId();
+sealed class EipAssociationTarget {
+  const EipAssociationTarget();
 
   /// Sets `instance_id`.
-  const factory EipAssociationInstanceIdOrNetworkInterfaceId.instanceId(
-    TfArg<String> instanceId,
-  ) = EipAssociationInstanceIdOrNetworkInterfaceIdInstanceId;
+  const factory EipAssociationTarget.instanceId(TfArg<String> instanceId) =
+      EipAssociationTargetInstanceId;
 
   /// Sets `network_interface_id`.
-  const factory EipAssociationInstanceIdOrNetworkInterfaceId.networkInterfaceId(
+  const factory EipAssociationTarget.networkInterfaceId(
     TfArg<String> networkInterfaceId,
-  ) = EipAssociationInstanceIdOrNetworkInterfaceIdNetworkInterfaceId;
+  ) = EipAssociationTargetNetworkInterfaceId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class EipAssociationInstanceIdOrNetworkInterfaceId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [EipAssociationInstanceIdOrNetworkInterfaceId.instanceId] choice: sets `instance_id`.
-final class EipAssociationInstanceIdOrNetworkInterfaceIdInstanceId
-    extends EipAssociationInstanceIdOrNetworkInterfaceId {
-  const EipAssociationInstanceIdOrNetworkInterfaceIdInstanceId(this.instanceId);
+/// The [EipAssociationTarget.instanceId] choice: sets `instance_id`.
+final class EipAssociationTargetInstanceId extends EipAssociationTarget {
+  const EipAssociationTargetInstanceId(this.instanceId);
 
   final TfArg<String> instanceId;
 
@@ -50,12 +48,10 @@ final class EipAssociationInstanceIdOrNetworkInterfaceIdInstanceId
   Map<String, TfArg<Object?>> get argMap => {'instance_id': instanceId};
 }
 
-/// The [EipAssociationInstanceIdOrNetworkInterfaceId.networkInterfaceId] choice: sets `network_interface_id`.
-final class EipAssociationInstanceIdOrNetworkInterfaceIdNetworkInterfaceId
-    extends EipAssociationInstanceIdOrNetworkInterfaceId {
-  const EipAssociationInstanceIdOrNetworkInterfaceIdNetworkInterfaceId(
-    this.networkInterfaceId,
-  );
+/// The [EipAssociationTarget.networkInterfaceId] choice: sets `network_interface_id`.
+final class EipAssociationTargetNetworkInterfaceId
+    extends EipAssociationTarget {
+  const EipAssociationTargetNetworkInterfaceId(this.networkInterfaceId);
 
   final TfArg<String> networkInterfaceId;
 
@@ -81,8 +77,7 @@ final class AwsEipAssociation extends Resource {
     required super.localName,
     TfArg<String>? allocationId,
     TfArg<bool>? allowReassociation,
-    required EipAssociationInstanceIdOrNetworkInterfaceId
-    instanceIdOrNetworkInterfaceId,
+    required EipAssociationTarget target,
     TfArg<String>? privateIpAddress,
     TfArg<String>? publicIp,
     TfArg<String>? region,
@@ -96,7 +91,7 @@ final class AwsEipAssociation extends Resource {
            if (allocationId != null) 'allocation_id': allocationId,
            if (allowReassociation != null)
              'allow_reassociation': allowReassociation,
-           ...instanceIdOrNetworkInterfaceId.argMap,
+           ...target.argMap,
            if (privateIpAddress != null) 'private_ip_address': privateIpAddress,
            if (publicIp != null) 'public_ip': publicIp,
            if (region != null) 'region': region,

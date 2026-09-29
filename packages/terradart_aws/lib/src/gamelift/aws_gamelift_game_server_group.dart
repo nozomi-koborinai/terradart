@@ -187,14 +187,14 @@ enum GameliftGameServerGroupInstanceDefinitionInstanceType
 /// `aws_gamelift_game_server_group` (derived from provider schema).
 @immutable
 final class GameliftGameServerGroupLaunchTemplate {
-  const GameliftGameServerGroupLaunchTemplate({this.idOrName, this.version});
+  const GameliftGameServerGroupLaunchTemplate({this.template, this.version});
 
-  final GameliftGameServerGroupLaunchTemplateIdOrName? idOrName;
+  final GameliftGameServerGroupLaunchTemplateTemplate? template;
 
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    ...?idOrName?.encode(),
+    ...?template?.encode(),
     if (version != null) 'version': version!.toTfJson(),
   };
 }
@@ -204,18 +204,18 @@ final class GameliftGameServerGroupLaunchTemplate {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.id(...)`.
-sealed class GameliftGameServerGroupLaunchTemplateIdOrName {
-  const GameliftGameServerGroupLaunchTemplateIdOrName();
+sealed class GameliftGameServerGroupLaunchTemplateTemplate {
+  const GameliftGameServerGroupLaunchTemplateTemplate();
 
   /// Sets `id`.
-  const factory GameliftGameServerGroupLaunchTemplateIdOrName.id(
+  const factory GameliftGameServerGroupLaunchTemplateTemplate.id(
     TfArg<String> id,
-  ) = GameliftGameServerGroupLaunchTemplateIdOrNameId;
+  ) = GameliftGameServerGroupLaunchTemplateTemplateId;
 
   /// Sets `name`.
-  const factory GameliftGameServerGroupLaunchTemplateIdOrName.name(
+  const factory GameliftGameServerGroupLaunchTemplateTemplate.name(
     TfArg<String> name,
-  ) = GameliftGameServerGroupLaunchTemplateIdOrNameName;
+  ) = GameliftGameServerGroupLaunchTemplateTemplateName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -223,10 +223,10 @@ sealed class GameliftGameServerGroupLaunchTemplateIdOrName {
   Map<String, Object?> encode();
 }
 
-/// The [GameliftGameServerGroupLaunchTemplateIdOrName.id] choice: sets `id`.
-final class GameliftGameServerGroupLaunchTemplateIdOrNameId
-    extends GameliftGameServerGroupLaunchTemplateIdOrName {
-  const GameliftGameServerGroupLaunchTemplateIdOrNameId(this.id);
+/// The [GameliftGameServerGroupLaunchTemplateTemplate.id] choice: sets `id`.
+final class GameliftGameServerGroupLaunchTemplateTemplateId
+    extends GameliftGameServerGroupLaunchTemplateTemplate {
+  const GameliftGameServerGroupLaunchTemplateTemplateId(this.id);
 
   final TfArg<String> id;
 
@@ -237,10 +237,10 @@ final class GameliftGameServerGroupLaunchTemplateIdOrNameId
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// The [GameliftGameServerGroupLaunchTemplateIdOrName.name] choice: sets `name`.
-final class GameliftGameServerGroupLaunchTemplateIdOrNameName
-    extends GameliftGameServerGroupLaunchTemplateIdOrName {
-  const GameliftGameServerGroupLaunchTemplateIdOrNameName(this.name);
+/// The [GameliftGameServerGroupLaunchTemplateTemplate.name] choice: sets `name`.
+final class GameliftGameServerGroupLaunchTemplateTemplateName
+    extends GameliftGameServerGroupLaunchTemplateTemplate {
+  const GameliftGameServerGroupLaunchTemplateTemplateName(this.name);
 
   final TfArg<String> name;
 

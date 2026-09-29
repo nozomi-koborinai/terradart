@@ -10,18 +10,16 @@ const Set<String> _awsServicequotasTemplateSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.awsRegion(...)`.
-sealed class ServicequotasTemplateAwsRegionOrRegion {
-  const ServicequotasTemplateAwsRegionOrRegion();
+sealed class ServicequotasTemplateRegion {
+  const ServicequotasTemplateRegion();
 
   /// Sets `aws_region`.
-  const factory ServicequotasTemplateAwsRegionOrRegion.awsRegion(
-    TfArg<String> awsRegion,
-  ) = ServicequotasTemplateAwsRegionOrRegionAwsRegion;
+  const factory ServicequotasTemplateRegion.awsRegion(TfArg<String> awsRegion) =
+      ServicequotasTemplateRegionAwsRegion;
 
   /// Sets `region`.
-  const factory ServicequotasTemplateAwsRegionOrRegion.region(
-    TfArg<String> region,
-  ) = ServicequotasTemplateAwsRegionOrRegionRegion;
+  const factory ServicequotasTemplateRegion.region(TfArg<String> region) =
+      ServicequotasTemplateRegionRegion;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +31,10 @@ sealed class ServicequotasTemplateAwsRegionOrRegion {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ServicequotasTemplateAwsRegionOrRegion.awsRegion] choice: sets `aws_region`.
-final class ServicequotasTemplateAwsRegionOrRegionAwsRegion
-    extends ServicequotasTemplateAwsRegionOrRegion {
-  const ServicequotasTemplateAwsRegionOrRegionAwsRegion(this.awsRegion);
+/// The [ServicequotasTemplateRegion.awsRegion] choice: sets `aws_region`.
+final class ServicequotasTemplateRegionAwsRegion
+    extends ServicequotasTemplateRegion {
+  const ServicequotasTemplateRegionAwsRegion(this.awsRegion);
 
   final TfArg<String> awsRegion;
 
@@ -50,10 +48,10 @@ final class ServicequotasTemplateAwsRegionOrRegionAwsRegion
   Map<String, TfArg<Object?>> get argMap => {'aws_region': awsRegion};
 }
 
-/// The [ServicequotasTemplateAwsRegionOrRegion.region] choice: sets `region`.
-final class ServicequotasTemplateAwsRegionOrRegionRegion
-    extends ServicequotasTemplateAwsRegionOrRegion {
-  const ServicequotasTemplateAwsRegionOrRegionRegion(this.region);
+/// The [ServicequotasTemplateRegion.region] choice: sets `region`.
+final class ServicequotasTemplateRegionRegion
+    extends ServicequotasTemplateRegion {
+  const ServicequotasTemplateRegionRegion(this.region);
 
   final TfArg<String> region;
 
@@ -73,7 +71,7 @@ final class AwsServicequotasTemplate extends Resource {
 
   AwsServicequotasTemplate({
     required super.localName,
-    required ServicequotasTemplateAwsRegionOrRegion awsRegionOrRegion,
+    required ServicequotasTemplateRegion region,
     required TfArg<String> quotaCode,
     required TfArg<String> serviceCode,
     required TfArg<num> value,
@@ -84,7 +82,7 @@ final class AwsServicequotasTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...awsRegionOrRegion.argMap,
+           ...region.argMap,
            'quota_code': quotaCode,
            'service_code': serviceCode,
            'value': value,
