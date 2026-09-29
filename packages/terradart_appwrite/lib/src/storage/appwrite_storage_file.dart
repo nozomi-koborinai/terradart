@@ -41,6 +41,10 @@ final class AppwriteStorageFile extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteStorageFileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteStorageFile>`.
+  RefTo<AppwriteStorageFile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

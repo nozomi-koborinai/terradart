@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../security/cloudflare_user_agent_blocking_rule.dart';
 
 /// Sensitive field paths for `cloudflare_user_agent_blocking_rule`.
 const Set<String> _cloudflareUserAgentBlockingRuleSensitive = <String>{};
@@ -56,6 +57,11 @@ final class DataCloudflareUserAgentBlockingRule extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareUserAgentBlockingRuleSensitive;
+
+  /// A reference to the `cloudflare_user_agent_blocking_rule` this data source reads, for
+  /// arguments typed `RefTo<CloudflareUserAgentBlockingRule>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareUserAgentBlockingRule> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

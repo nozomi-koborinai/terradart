@@ -262,6 +262,10 @@ final class AwsSagemakerWorkteam extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerWorkteamSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerWorkteam>`.
+  RefTo<AwsSagemakerWorkteam> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

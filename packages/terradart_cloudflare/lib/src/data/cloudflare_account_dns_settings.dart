@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account_dns_settings.dart';
 
 /// Sensitive field paths for `cloudflare_account_dns_settings`.
 const Set<String> _cloudflareAccountDnsSettingsSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareAccountDnsSettings extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareAccountDnsSettingsSensitive;
+
+  /// A reference to the `cloudflare_account_dns_settings` this data source reads, for
+  /// arguments typed `RefTo<CloudflareAccountDnsSettings>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareAccountDnsSettings> get ref => RefTo.read(this);
 
   /// Reference to `enforce_dns_only` attribute.
   TfRef<bool> get enforceDnsOnly =>

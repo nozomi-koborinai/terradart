@@ -115,6 +115,10 @@ final class GoogleVmwareengineExternalAccessRule extends Resource {
   Set<String> get sensitiveFields =>
       _googleVmwareengineExternalAccessRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVmwareengineExternalAccessRule>`.
+  RefTo<GoogleVmwareengineExternalAccessRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

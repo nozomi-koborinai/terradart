@@ -52,4 +52,8 @@ final class AwsEc2DefaultCreditSpecification extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsEc2DefaultCreditSpecificationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2DefaultCreditSpecification>`.
+  RefTo<AwsEc2DefaultCreditSpecification> get ref => RefTo.of(this);
 }

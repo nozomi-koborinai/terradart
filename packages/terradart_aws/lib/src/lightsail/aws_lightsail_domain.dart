@@ -29,6 +29,10 @@ final class AwsLightsailDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLightsailDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLightsailDomain>`.
+  RefTo<AwsLightsailDomain> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

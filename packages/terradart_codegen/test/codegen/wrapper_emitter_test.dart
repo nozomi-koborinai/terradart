@@ -457,6 +457,21 @@ void main() {
       expect(out.trimRight(), endsWith('}'));
     });
 
+    test('every resource carries a typed ref getter', () {
+      final emitter = WrapperEmitter(overrides: overrides);
+      const def = ResourceDef(
+        terraformType: 'google_emitter_test_resource',
+        root: BlockDef(attributes: [], nestedBlocks: []),
+      );
+      final out = emitter.emit(def, providerSource: 'hashicorp/google');
+      expect(
+        out,
+        contains(
+          'RefTo<GoogleEmitterTestResource> get ref => RefTo.of(this);',
+        ),
+      );
+    });
+
     test('emit does not curate TfRef getters for other resources yet', () {
       // Phase 2.1 limits TfRef hard-coding to google_pubsub_topic. Other
       // resources fall through silently until Phase 3 introduces the

@@ -101,6 +101,10 @@ final class AwsOamLink extends Resource {
   @override
   Set<String> get sensitiveFields => _awsOamLinkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOamLink>`.
+  RefTo<AwsOamLink> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

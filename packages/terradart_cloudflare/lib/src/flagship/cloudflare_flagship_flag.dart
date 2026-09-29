@@ -507,6 +507,10 @@ final class CloudflareFlagshipFlag extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareFlagshipFlagSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareFlagshipFlag>`.
+  RefTo<CloudflareFlagshipFlag> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

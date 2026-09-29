@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../stream/cloudflare_stream_audio_track.dart';
 
 /// Sensitive field paths for `cloudflare_stream_audio_track`.
 const Set<String> _cloudflareStreamAudioTrackSensitive = <String>{};
@@ -27,4 +28,9 @@ final class DataCloudflareStreamAudioTrack extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareStreamAudioTrackSensitive;
+
+  /// A reference to the `cloudflare_stream_audio_track` this data source reads, for
+  /// arguments typed `RefTo<CloudflareStreamAudioTrack>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareStreamAudioTrack> get ref => RefTo.read(this);
 }

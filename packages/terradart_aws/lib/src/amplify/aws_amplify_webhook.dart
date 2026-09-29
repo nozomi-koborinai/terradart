@@ -33,6 +33,10 @@ final class AwsAmplifyWebhook extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAmplifyWebhookSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAmplifyWebhook>`.
+  RefTo<AwsAmplifyWebhook> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

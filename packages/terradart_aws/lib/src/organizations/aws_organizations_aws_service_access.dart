@@ -25,6 +25,10 @@ final class AwsOrganizationsAwsServiceAccess extends Resource {
   @override
   Set<String> get sensitiveFields => _awsOrganizationsAwsServiceAccessSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOrganizationsAwsServiceAccess>`.
+  RefTo<AwsOrganizationsAwsServiceAccess> get ref => RefTo.of(this);
+
   /// Reference to `date_enabled` attribute.
   TfRef<String> get dateEnabled =>
       TfRef.attribute<String>(this, 'date_enabled');

@@ -71,6 +71,10 @@ final class GoogleChronicleCustomList extends Resource {
   @override
   Set<String> get sensitiveFields => _googleChronicleCustomListSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleCustomList>`.
+  RefTo<GoogleChronicleCustomList> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ssl/cloudflare_custom_origin_trust_store.dart';
 
 /// Sensitive field paths for `cloudflare_custom_origin_trust_store`.
 const Set<String> _cloudflareCustomOriginTrustStoreSensitive = <String>{};
@@ -50,6 +51,11 @@ final class DataCloudflareCustomOriginTrustStore extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareCustomOriginTrustStoreSensitive;
+
+  /// A reference to the `cloudflare_custom_origin_trust_store` this data source reads, for
+  /// arguments typed `RefTo<CloudflareCustomOriginTrustStore>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareCustomOriginTrustStore> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

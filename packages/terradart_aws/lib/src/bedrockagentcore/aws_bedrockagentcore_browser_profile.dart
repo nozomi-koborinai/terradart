@@ -34,6 +34,10 @@ final class AwsBedrockagentcoreBrowserProfile extends Resource {
   Set<String> get sensitiveFields =>
       _awsBedrockagentcoreBrowserProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreBrowserProfile>`.
+  RefTo<AwsBedrockagentcoreBrowserProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

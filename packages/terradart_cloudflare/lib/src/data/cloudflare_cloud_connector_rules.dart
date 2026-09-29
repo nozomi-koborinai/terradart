@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloud_connector/cloudflare_cloud_connector_rules.dart';
 
 /// Sensitive field paths for `cloudflare_cloud_connector_rules`.
 const Set<String> _cloudflareCloudConnectorRulesSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataCloudflareCloudConnectorRules extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareCloudConnectorRulesSensitive;
+
+  /// A reference to the `cloudflare_cloud_connector_rules` this data source reads, for
+  /// arguments typed `RefTo<CloudflareCloudConnectorRules>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareCloudConnectorRules> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

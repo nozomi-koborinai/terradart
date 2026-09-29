@@ -148,6 +148,10 @@ final class GoogleComputeVpnTunnel extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeVpnTunnelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeVpnTunnel>`.
+  RefTo<GoogleComputeVpnTunnel> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

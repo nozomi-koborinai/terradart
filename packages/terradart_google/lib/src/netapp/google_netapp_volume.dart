@@ -667,6 +667,10 @@ final class GoogleNetappVolume extends Resource {
   @override
   Set<String> get sensitiveFields => _googleNetappVolumeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetappVolume>`.
+  RefTo<GoogleNetappVolume> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

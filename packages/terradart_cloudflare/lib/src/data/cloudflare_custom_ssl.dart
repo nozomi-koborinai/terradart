@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ssl/cloudflare_custom_ssl.dart';
 
 /// Sensitive field paths for `cloudflare_custom_ssl`.
 const Set<String> _cloudflareCustomSslSensitive = <String>{};
@@ -74,6 +75,11 @@ final class DataCloudflareCustomSsl extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareCustomSslSensitive;
+
+  /// A reference to the `cloudflare_custom_ssl` this data source reads, for
+  /// arguments typed `RefTo<CloudflareCustomSsl>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareCustomSsl> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -76,6 +76,10 @@ final class GoogleMigrationCenterSource extends Resource {
   @override
   Set<String> get sensitiveFields => _googleMigrationCenterSourceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleMigrationCenterSource>`.
+  RefTo<GoogleMigrationCenterSource> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

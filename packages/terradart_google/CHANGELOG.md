@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource will take. Additive.
 - **Breaking** — compute and networking input groups the Magic Modules YAML declares mutually exclusive are sealed types: 16 groups on 13 resources (`exactly_one_of` → a required sealed argument or helper field, `conflicts` → a nullable one), e.g. `GoogleComputeTargetHttpsProxy(certificateManagerCertificatesOrSslCertificates: ComputeTargetHttpsProxySslCertificatesOption(...))`. Every compute / network / DNS / service-networking / certificate-manager / VMware Engine / edge override sets `deriveExactlyOne`, so a later MM group seals on the weekly bump. See [MIGRATING.md](../../MIGRATING.md).
 
 - **Breaking** — data, storage, database and observability input groups the Magic Modules YAML declares mutually exclusive are sealed types: 35 groups on 20 resources, e.g. `GooglePubsubSubscription(bigqueryConfigOrPushConfigOrCloudStorageConfig: PubsubSubscriptionPushConfigOption(...))`, and `GoogleBigqueryDatasetAccess`'s eight principal / target inputs become one required argument whose `view` / `dataset` / `routine` variants keep their helper classes. Every data, storage, database, analytics and observability override (391 of them, BigQuery through Pub/Sub, Spanner, Dataplex, Dataproc, Healthcare, Logging and Monitoring) sets `deriveExactlyOne`, so a later MM group seals on the weekly bump. See [MIGRATING.md](../../MIGRATING.md).

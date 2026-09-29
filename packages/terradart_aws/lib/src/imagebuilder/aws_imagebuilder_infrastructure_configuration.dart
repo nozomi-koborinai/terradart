@@ -229,6 +229,10 @@ final class AwsImagebuilderInfrastructureConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsImagebuilderInfrastructureConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsImagebuilderInfrastructureConfiguration>`.
+  RefTo<AwsImagebuilderInfrastructureConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

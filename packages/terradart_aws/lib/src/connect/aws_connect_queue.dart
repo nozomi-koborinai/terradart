@@ -84,6 +84,10 @@ final class AwsConnectQueue extends Resource {
   @override
   Set<String> get sensitiveFields => _awsConnectQueueSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsConnectQueue>`.
+  RefTo<AwsConnectQueue> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

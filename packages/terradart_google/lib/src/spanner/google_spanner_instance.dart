@@ -102,6 +102,10 @@ final class GoogleSpannerInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSpannerInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSpannerInstance>`.
+  RefTo<GoogleSpannerInstance> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

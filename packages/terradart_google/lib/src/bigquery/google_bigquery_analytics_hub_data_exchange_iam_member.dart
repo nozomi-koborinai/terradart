@@ -40,6 +40,11 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleBigqueryAnalyticsHubDataExchangeIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryAnalyticsHubDataExchangeIamMember>`.
+  RefTo<GoogleBigqueryAnalyticsHubDataExchangeIamMember> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

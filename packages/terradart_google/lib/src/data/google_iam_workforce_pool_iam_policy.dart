@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../iam/google_iam_workforce_pool_iam_policy.dart';
 
 /// Sensitive field paths for `google_iam_workforce_pool_iam_policy`.
 const Set<String> _googleIamWorkforcePoolIamPolicySensitive = <String>{};
@@ -29,6 +30,11 @@ final class DataGoogleIamWorkforcePoolIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleIamWorkforcePoolIamPolicySensitive;
+
+  /// A reference to the `google_iam_workforce_pool_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleIamWorkforcePoolIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleIamWorkforcePoolIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

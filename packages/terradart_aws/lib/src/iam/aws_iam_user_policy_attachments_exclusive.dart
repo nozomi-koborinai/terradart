@@ -26,4 +26,8 @@ final class AwsIamUserPolicyAttachmentsExclusive extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsIamUserPolicyAttachmentsExclusiveSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIamUserPolicyAttachmentsExclusive>`.
+  RefTo<AwsIamUserPolicyAttachmentsExclusive> get ref => RefTo.of(this);
 }

@@ -62,6 +62,11 @@ final class AwsServerlessapplicationrepositoryCloudformationStack
   Set<String> get sensitiveFields =>
       _awsServerlessapplicationrepositoryCloudformationStackSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServerlessapplicationrepositoryCloudformationStack>`.
+  RefTo<AwsServerlessapplicationrepositoryCloudformationStack> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -292,6 +292,11 @@ final class GoogleStorageControlProjectIntelligenceConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleStorageControlProjectIntelligenceConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleStorageControlProjectIntelligenceConfig>`.
+  RefTo<GoogleStorageControlProjectIntelligenceConfig> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

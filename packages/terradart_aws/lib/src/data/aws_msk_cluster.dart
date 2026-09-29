@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../msk/aws_msk_cluster.dart';
 
 /// Sensitive field paths for `aws_msk_cluster`.
 const Set<String> _awsMskClusterSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsMskCluster extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsMskClusterSensitive;
+
+  /// A reference to the `aws_msk_cluster` this data source reads, for
+  /// arguments typed `RefTo<AwsMskCluster>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsMskCluster> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

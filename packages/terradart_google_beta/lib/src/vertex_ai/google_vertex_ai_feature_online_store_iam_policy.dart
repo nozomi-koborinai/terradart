@@ -42,6 +42,10 @@ final class GoogleVertexAiFeatureOnlineStoreIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleVertexAiFeatureOnlineStoreIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVertexAiFeatureOnlineStoreIamPolicy>`.
+  RefTo<GoogleVertexAiFeatureOnlineStoreIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

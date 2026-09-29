@@ -31,6 +31,10 @@ final class AwsVpnGatewayRoutePropagation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpnGatewayRoutePropagationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpnGatewayRoutePropagation>`.
+  RefTo<AwsVpnGatewayRoutePropagation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

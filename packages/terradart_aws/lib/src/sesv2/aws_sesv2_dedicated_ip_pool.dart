@@ -43,6 +43,10 @@ final class AwsSesv2DedicatedIpPool extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesv2DedicatedIpPoolSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesv2DedicatedIpPool>`.
+  RefTo<AwsSesv2DedicatedIpPool> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

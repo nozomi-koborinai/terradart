@@ -47,6 +47,10 @@ final class GoogleLoggingOrganizationSettings extends Resource {
   Set<String> get sensitiveFields =>
       _googleLoggingOrganizationSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleLoggingOrganizationSettings>`.
+  RefTo<GoogleLoggingOrganizationSettings> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

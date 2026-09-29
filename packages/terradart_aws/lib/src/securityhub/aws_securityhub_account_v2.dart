@@ -29,6 +29,10 @@ final class AwsSecurityhubAccountV2 extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecurityhubAccountV2Sensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityhubAccountV2>`.
+  RefTo<AwsSecurityhubAccountV2> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

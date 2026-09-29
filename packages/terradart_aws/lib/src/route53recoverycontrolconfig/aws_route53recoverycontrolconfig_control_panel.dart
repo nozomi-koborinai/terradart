@@ -33,6 +33,10 @@ final class AwsRoute53recoverycontrolconfigControlPanel extends Resource {
   Set<String> get sensitiveFields =>
       _awsRoute53recoverycontrolconfigControlPanelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53recoverycontrolconfigControlPanel>`.
+  RefTo<AwsRoute53recoverycontrolconfigControlPanel> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

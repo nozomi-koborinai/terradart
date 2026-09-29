@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_region_instance_template.dart';
 
 /// Sensitive field paths for `google_compute_region_instance_template`.
 const Set<String> _googleComputeRegionInstanceTemplateSensitive = <String>{};
@@ -36,6 +37,11 @@ final class DataGoogleComputeRegionInstanceTemplate extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeRegionInstanceTemplateSensitive;
+
+  /// A reference to the `google_compute_region_instance_template` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeRegionInstanceTemplate>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComputeRegionInstanceTemplate> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

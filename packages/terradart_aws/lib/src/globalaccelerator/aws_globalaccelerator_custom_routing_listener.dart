@@ -51,6 +51,10 @@ final class AwsGlobalacceleratorCustomRoutingListener extends Resource {
   Set<String> get sensitiveFields =>
       _awsGlobalacceleratorCustomRoutingListenerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlobalacceleratorCustomRoutingListener>`.
+  RefTo<AwsGlobalacceleratorCustomRoutingListener> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

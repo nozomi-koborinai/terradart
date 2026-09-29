@@ -35,6 +35,10 @@ final class GoogleSpannerInstanceIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSpannerInstanceIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSpannerInstanceIamMember>`.
+  RefTo<GoogleSpannerInstanceIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

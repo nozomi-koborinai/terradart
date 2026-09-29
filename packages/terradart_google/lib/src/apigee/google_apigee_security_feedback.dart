@@ -105,6 +105,10 @@ final class GoogleApigeeSecurityFeedback extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApigeeSecurityFeedbackSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeSecurityFeedback>`.
+  RefTo<GoogleApigeeSecurityFeedback> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../sourcerepo/google_sourcerepo_repository.dart';
 
 /// Sensitive field paths for `google_sourcerepo_repository`.
 const Set<String> _googleSourcerepoRepositorySensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleSourcerepoRepository extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleSourcerepoRepositorySensitive;
+
+  /// A reference to the `google_sourcerepo_repository` this data source reads, for
+  /// arguments typed `RefTo<GoogleSourcerepoRepository>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleSourcerepoRepository> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

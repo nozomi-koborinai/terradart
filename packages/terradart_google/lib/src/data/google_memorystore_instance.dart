@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../memorystore/google_memorystore_instance.dart';
 
 /// Sensitive field paths for `google_memorystore_instance`.
 const Set<String> _googleMemorystoreInstanceSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleMemorystoreInstance extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleMemorystoreInstanceSensitive;
+
+  /// A reference to the `google_memorystore_instance` this data source reads, for
+  /// arguments typed `RefTo<GoogleMemorystoreInstance>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleMemorystoreInstance> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

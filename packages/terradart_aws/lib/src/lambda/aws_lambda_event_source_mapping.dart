@@ -783,6 +783,10 @@ final class AwsLambdaEventSourceMapping extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLambdaEventSourceMappingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdaEventSourceMapping>`.
+  RefTo<AwsLambdaEventSourceMapping> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

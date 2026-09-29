@@ -35,6 +35,10 @@ final class GoogleSqlSslCert extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSqlSslCertSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSqlSslCert>`.
+  RefTo<GoogleSqlSslCert> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

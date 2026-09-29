@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../transforms/cloudflare_managed_transforms.dart';
 
 /// Sensitive field paths for `cloudflare_managed_transforms`.
 const Set<String> _cloudflareManagedTransformsSensitive = <String>{};
@@ -39,6 +40,11 @@ final class DataCloudflareManagedTransforms extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareManagedTransformsSensitive;
+
+  /// A reference to the `cloudflare_managed_transforms` this data source reads, for
+  /// arguments typed `RefTo<CloudflareManagedTransforms>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareManagedTransforms> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

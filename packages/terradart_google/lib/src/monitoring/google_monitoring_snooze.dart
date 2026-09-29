@@ -41,4 +41,8 @@ final class GoogleMonitoringSnooze extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleMonitoringSnoozeSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleMonitoringSnooze>`.
+  RefTo<GoogleMonitoringSnooze> get ref => RefTo.of(this);
 }

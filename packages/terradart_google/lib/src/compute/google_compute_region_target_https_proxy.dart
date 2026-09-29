@@ -205,6 +205,10 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeRegionTargetHttpsProxySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionTargetHttpsProxy>`.
+  RefTo<GoogleComputeRegionTargetHttpsProxy> get ref => RefTo.of(this);
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');

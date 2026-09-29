@@ -90,6 +90,10 @@ final class AwsKmsExternalKey extends Resource {
   @override
   Set<String> get sensitiveFields => _awsKmsExternalKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsKmsExternalKey>`.
+  RefTo<AwsKmsExternalKey> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

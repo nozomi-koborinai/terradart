@@ -50,6 +50,10 @@ final class GoogleApigeeApi extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApigeeApiSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeApi>`.
+  RefTo<GoogleApigeeApi> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

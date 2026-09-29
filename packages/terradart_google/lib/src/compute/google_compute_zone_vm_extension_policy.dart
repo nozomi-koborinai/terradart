@@ -36,6 +36,10 @@ final class GoogleComputeZoneVmExtensionPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeZoneVmExtensionPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeZoneVmExtensionPolicy>`.
+  RefTo<GoogleComputeZoneVmExtensionPolicy> get ref => RefTo.of(this);
+
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

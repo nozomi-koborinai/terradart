@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../email/cloudflare_email_security_block_sender.dart';
 
 /// Sensitive field paths for `cloudflare_email_security_block_sender`.
 const Set<String> _cloudflareEmailSecurityBlockSenderSensitive = <String>{};
@@ -97,6 +98,11 @@ final class DataCloudflareEmailSecurityBlockSender extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareEmailSecurityBlockSenderSensitive;
+
+  /// A reference to the `cloudflare_email_security_block_sender` this data source reads, for
+  /// arguments typed `RefTo<CloudflareEmailSecurityBlockSender>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareEmailSecurityBlockSender> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

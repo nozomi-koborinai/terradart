@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../security/cloudflare_bot_management.dart';
 
 /// Sensitive field paths for `cloudflare_bot_management`.
 const Set<String> _cloudflareBotManagementSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareBotManagement extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareBotManagementSensitive;
+
+  /// A reference to the `cloudflare_bot_management` this data source reads, for
+  /// arguments typed `RefTo<CloudflareBotManagement>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareBotManagement> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

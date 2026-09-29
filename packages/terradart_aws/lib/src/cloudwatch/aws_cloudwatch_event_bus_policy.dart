@@ -31,6 +31,10 @@ final class AwsCloudwatchEventBusPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudwatchEventBusPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchEventBusPolicy>`.
+  RefTo<AwsCloudwatchEventBusPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

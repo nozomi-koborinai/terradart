@@ -37,6 +37,10 @@ final class AwsNetworkAcl extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNetworkAclSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkAcl>`.
+  RefTo<AwsNetworkAcl> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

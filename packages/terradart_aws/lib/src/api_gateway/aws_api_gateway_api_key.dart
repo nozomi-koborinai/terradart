@@ -39,6 +39,10 @@ final class AwsApiGatewayApiKey extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApiGatewayApiKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayApiKey>`.
+  RefTo<AwsApiGatewayApiKey> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

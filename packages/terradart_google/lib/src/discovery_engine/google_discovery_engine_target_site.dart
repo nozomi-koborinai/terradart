@@ -74,6 +74,10 @@ final class GoogleDiscoveryEngineTargetSite extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDiscoveryEngineTargetSiteSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDiscoveryEngineTargetSite>`.
+  RefTo<GoogleDiscoveryEngineTargetSite> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

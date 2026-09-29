@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../route53/aws_route53_resolver_endpoint.dart';
 
 /// Sensitive field paths for `aws_route53_resolver_endpoint`.
 const Set<String> _awsRoute53ResolverEndpointSensitive = <String>{};
@@ -50,6 +51,11 @@ final class DataAwsRoute53ResolverEndpoint extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsRoute53ResolverEndpointSensitive;
+
+  /// A reference to the `aws_route53_resolver_endpoint` this data source reads, for
+  /// arguments typed `RefTo<AwsRoute53ResolverEndpoint>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsRoute53ResolverEndpoint> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

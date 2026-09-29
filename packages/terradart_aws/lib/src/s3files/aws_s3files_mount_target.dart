@@ -50,6 +50,10 @@ final class AwsS3filesMountTarget extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3filesMountTargetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3filesMountTarget>`.
+  RefTo<AwsS3filesMountTarget> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

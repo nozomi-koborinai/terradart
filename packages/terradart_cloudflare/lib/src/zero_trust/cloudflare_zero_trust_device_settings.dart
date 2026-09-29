@@ -60,4 +60,8 @@ final class CloudflareZeroTrustDeviceSettings extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceSettingsSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDeviceSettings>`.
+  RefTo<CloudflareZeroTrustDeviceSettings> get ref => RefTo.of(this);
 }

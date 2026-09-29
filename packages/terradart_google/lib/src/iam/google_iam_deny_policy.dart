@@ -155,6 +155,10 @@ final class GoogleIamDenyPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIamDenyPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIamDenyPolicy>`.
+  RefTo<GoogleIamDenyPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

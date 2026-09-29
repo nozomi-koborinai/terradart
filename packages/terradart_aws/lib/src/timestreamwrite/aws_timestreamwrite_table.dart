@@ -219,6 +219,10 @@ final class AwsTimestreamwriteTable extends Resource {
   @override
   Set<String> get sensitiveFields => _awsTimestreamwriteTableSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsTimestreamwriteTable>`.
+  RefTo<AwsTimestreamwriteTable> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

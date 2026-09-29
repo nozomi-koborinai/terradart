@@ -47,6 +47,10 @@ final class AwsLambdaRuntimeManagementConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLambdaRuntimeManagementConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdaRuntimeManagementConfig>`.
+  RefTo<AwsLambdaRuntimeManagementConfig> get ref => RefTo.of(this);
+
   /// Reference to `function_arn` attribute.
   TfRef<String> get functionArn =>
       TfRef.attribute<String>(this, 'function_arn');

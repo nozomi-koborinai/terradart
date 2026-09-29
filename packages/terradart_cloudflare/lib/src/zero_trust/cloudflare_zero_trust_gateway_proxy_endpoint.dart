@@ -45,6 +45,10 @@ final class CloudflareZeroTrustGatewayProxyEndpoint extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustGatewayProxyEndpointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustGatewayProxyEndpoint>`.
+  RefTo<CloudflareZeroTrustGatewayProxyEndpoint> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -1326,4 +1326,8 @@ final class GoogleDataLossPreventionContentPolicy extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleDataLossPreventionContentPolicySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataLossPreventionContentPolicy>`.
+  RefTo<GoogleDataLossPreventionContentPolicy> get ref => RefTo.of(this);
 }

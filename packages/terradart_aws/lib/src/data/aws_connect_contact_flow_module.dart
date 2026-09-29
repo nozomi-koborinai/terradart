@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../connect/aws_connect_contact_flow_module.dart';
 
 /// Sensitive field paths for `aws_connect_contact_flow_module`.
 const Set<String> _awsConnectContactFlowModuleSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataAwsConnectContactFlowModule extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsConnectContactFlowModuleSensitive;
+
+  /// A reference to the `aws_connect_contact_flow_module` this data source reads, for
+  /// arguments typed `RefTo<AwsConnectContactFlowModule>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsConnectContactFlowModule> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

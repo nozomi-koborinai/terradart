@@ -63,6 +63,10 @@ final class GoogleKmsSecretCiphertext extends Resource {
   @override
   Set<String> get sensitiveFields => _googleKmsSecretCiphertextSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleKmsSecretCiphertext>`.
+  RefTo<GoogleKmsSecretCiphertext> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

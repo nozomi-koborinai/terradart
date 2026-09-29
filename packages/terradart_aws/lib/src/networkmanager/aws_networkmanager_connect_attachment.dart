@@ -63,6 +63,10 @@ final class AwsNetworkmanagerConnectAttachment extends Resource {
   Set<String> get sensitiveFields =>
       _awsNetworkmanagerConnectAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkmanagerConnectAttachment>`.
+  RefTo<AwsNetworkmanagerConnectAttachment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

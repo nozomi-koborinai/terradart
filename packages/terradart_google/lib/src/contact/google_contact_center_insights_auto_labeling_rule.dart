@@ -93,6 +93,10 @@ final class GoogleContactCenterInsightsAutoLabelingRule extends Resource {
   Set<String> get sensitiveFields =>
       _googleContactCenterInsightsAutoLabelingRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleContactCenterInsightsAutoLabelingRule>`.
+  RefTo<GoogleContactCenterInsightsAutoLabelingRule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

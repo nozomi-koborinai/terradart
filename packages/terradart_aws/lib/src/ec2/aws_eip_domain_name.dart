@@ -31,6 +31,10 @@ final class AwsEipDomainName extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEipDomainNameSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEipDomainName>`.
+  RefTo<AwsEipDomainName> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../s3files/aws_s3files_mount_target.dart';
 
 /// Sensitive field paths for `aws_s3files_mount_target`.
 const Set<String> _awsS3filesMountTargetSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsS3filesMountTarget extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsS3filesMountTargetSensitive;
+
+  /// A reference to the `aws_s3files_mount_target` this data source reads, for
+  /// arguments typed `RefTo<AwsS3filesMountTarget>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsS3filesMountTarget> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

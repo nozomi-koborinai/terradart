@@ -1001,6 +1001,10 @@ final class AwsMacie2ClassificationJob extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMacie2ClassificationJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMacie2ClassificationJob>`.
+  RefTo<AwsMacie2ClassificationJob> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

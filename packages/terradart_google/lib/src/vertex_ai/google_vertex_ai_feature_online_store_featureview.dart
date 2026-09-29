@@ -180,6 +180,10 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureview extends Resource {
   Set<String> get sensitiveFields =>
       _googleVertexAiFeatureOnlineStoreFeatureviewSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVertexAiFeatureOnlineStoreFeatureview>`.
+  RefTo<GoogleVertexAiFeatureOnlineStoreFeatureview> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

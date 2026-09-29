@@ -65,6 +65,10 @@ final class AppwriteFunctionDeployment extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteFunctionDeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteFunctionDeployment>`.
+  RefTo<AppwriteFunctionDeployment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

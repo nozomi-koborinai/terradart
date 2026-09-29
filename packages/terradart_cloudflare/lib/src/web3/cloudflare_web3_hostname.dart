@@ -50,6 +50,10 @@ final class CloudflareWeb3Hostname extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareWeb3HostnameSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareWeb3Hostname>`.
+  RefTo<CloudflareWeb3Hostname> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

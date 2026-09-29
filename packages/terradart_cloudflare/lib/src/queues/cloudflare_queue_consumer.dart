@@ -136,6 +136,10 @@ final class CloudflareQueueConsumer extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareQueueConsumerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareQueueConsumer>`.
+  RefTo<CloudflareQueueConsumer> get ref => RefTo.of(this);
+
   /// Reference to `consumer_id` attribute.
   TfRef<String> get consumerId => TfRef.attribute<String>(this, 'consumer_id');
 

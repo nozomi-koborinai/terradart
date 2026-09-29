@@ -57,6 +57,10 @@ final class AwsIotAuthorizer extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIotAuthorizerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIotAuthorizer>`.
+  RefTo<AwsIotAuthorizer> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_dlp_sensitivity_level_order.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_sensitivity_level_order`.
 const Set<String> _cloudflareZeroTrustDlpSensitivityLevelOrderSensitive =
@@ -33,6 +34,12 @@ final class DataCloudflareZeroTrustDlpSensitivityLevelOrder extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDlpSensitivityLevelOrderSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_dlp_sensitivity_level_order` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustDlpSensitivityLevelOrder>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZeroTrustDlpSensitivityLevelOrder> get ref =>
+      RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

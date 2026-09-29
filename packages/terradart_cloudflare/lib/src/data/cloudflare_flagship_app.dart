@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../flagship/cloudflare_flagship_app.dart';
 
 /// Sensitive field paths for `cloudflare_flagship_app`.
 const Set<String> _cloudflareFlagshipAppSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareFlagshipApp extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareFlagshipAppSensitive;
+
+  /// A reference to the `cloudflare_flagship_app` this data source reads, for
+  /// arguments typed `RefTo<CloudflareFlagshipApp>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareFlagshipApp> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

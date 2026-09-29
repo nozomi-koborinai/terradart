@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../apigee/google_apigee_environment_iam_policy.dart';
 
 /// Sensitive field paths for `google_apigee_environment_iam_policy`.
 const Set<String> _googleApigeeEnvironmentIamPolicySensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataGoogleApigeeEnvironmentIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleApigeeEnvironmentIamPolicySensitive;
+
+  /// A reference to the `google_apigee_environment_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleApigeeEnvironmentIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleApigeeEnvironmentIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

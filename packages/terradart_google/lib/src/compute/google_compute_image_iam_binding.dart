@@ -40,6 +40,10 @@ final class GoogleComputeImageIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeImageIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeImageIamBinding>`.
+  RefTo<GoogleComputeImageIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

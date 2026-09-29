@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../project/google_project_organization_policy.dart';
 
 /// Sensitive field paths for `google_project_organization_policy`.
 const Set<String> _googleProjectOrganizationPolicySensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleProjectOrganizationPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleProjectOrganizationPolicySensitive;
+
+  /// A reference to the `google_project_organization_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleProjectOrganizationPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleProjectOrganizationPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

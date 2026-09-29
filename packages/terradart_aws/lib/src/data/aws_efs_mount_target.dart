@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../efs/aws_efs_mount_target.dart';
 
 /// Sensitive field paths for `aws_efs_mount_target`.
 const Set<String> _awsEfsMountTargetSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsEfsMountTarget extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEfsMountTargetSensitive;
+
+  /// A reference to the `aws_efs_mount_target` this data source reads, for
+  /// arguments typed `RefTo<AwsEfsMountTarget>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsEfsMountTarget> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

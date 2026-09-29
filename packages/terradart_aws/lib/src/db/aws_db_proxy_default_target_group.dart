@@ -87,6 +87,10 @@ final class AwsDbProxyDefaultTargetGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDbProxyDefaultTargetGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDbProxyDefaultTargetGroup>`.
+  RefTo<AwsDbProxyDefaultTargetGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

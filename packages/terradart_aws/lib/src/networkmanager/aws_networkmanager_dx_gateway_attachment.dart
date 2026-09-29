@@ -37,6 +37,10 @@ final class AwsNetworkmanagerDxGatewayAttachment extends Resource {
   Set<String> get sensitiveFields =>
       _awsNetworkmanagerDxGatewayAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkmanagerDxGatewayAttachment>`.
+  RefTo<AwsNetworkmanagerDxGatewayAttachment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

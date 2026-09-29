@@ -89,4 +89,8 @@ final class AwsPrometheusScraperLoggingConfiguration extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsPrometheusScraperLoggingConfigurationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPrometheusScraperLoggingConfiguration>`.
+  RefTo<AwsPrometheusScraperLoggingConfiguration> get ref => RefTo.of(this);
 }

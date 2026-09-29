@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../workers/cloudflare_worker_version.dart';
 
 /// Sensitive field paths for `cloudflare_worker_version`.
 const Set<String> _cloudflareWorkerVersionSensitive = <String>{
@@ -39,6 +40,11 @@ final class DataCloudflareWorkerVersion extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareWorkerVersionSensitive;
+
+  /// A reference to the `cloudflare_worker_version` this data source reads, for
+  /// arguments typed `RefTo<CloudflareWorkerVersion>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareWorkerVersion> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

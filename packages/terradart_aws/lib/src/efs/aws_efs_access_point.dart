@@ -100,6 +100,10 @@ final class AwsEfsAccessPoint extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEfsAccessPointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEfsAccessPoint>`.
+  RefTo<AwsEfsAccessPoint> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

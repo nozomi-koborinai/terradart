@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../opensearchserverless/aws_opensearchserverless_collection.dart';
 
 /// Sensitive field paths for `aws_opensearchserverless_collection`.
 const Set<String> _awsOpensearchserverlessCollectionSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataAwsOpensearchserverlessCollection extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsOpensearchserverlessCollectionSensitive;
+
+  /// A reference to the `aws_opensearchserverless_collection` this data source reads, for
+  /// arguments typed `RefTo<AwsOpensearchserverlessCollection>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsOpensearchserverlessCollection> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

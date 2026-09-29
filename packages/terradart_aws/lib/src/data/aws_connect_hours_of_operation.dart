@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../connect/aws_connect_hours_of_operation.dart';
 
 /// Sensitive field paths for `aws_connect_hours_of_operation`.
 const Set<String> _awsConnectHoursOfOperationSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataAwsConnectHoursOfOperation extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsConnectHoursOfOperationSensitive;
+
+  /// A reference to the `aws_connect_hours_of_operation` this data source reads, for
+  /// arguments typed `RefTo<AwsConnectHoursOfOperation>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsConnectHoursOfOperation> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

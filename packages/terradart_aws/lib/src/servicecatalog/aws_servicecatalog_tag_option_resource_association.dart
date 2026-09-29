@@ -34,6 +34,11 @@ final class AwsServicecatalogTagOptionResourceAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsServicecatalogTagOptionResourceAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicecatalogTagOptionResourceAssociation>`.
+  RefTo<AwsServicecatalogTagOptionResourceAssociation> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -262,6 +262,10 @@ final class AwsWafv2WebAclLoggingConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsWafv2WebAclLoggingConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafv2WebAclLoggingConfiguration>`.
+  RefTo<AwsWafv2WebAclLoggingConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -110,6 +110,10 @@ final class AwsNetworkmanagerCoreNetwork extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNetworkmanagerCoreNetworkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkmanagerCoreNetwork>`.
+  RefTo<AwsNetworkmanagerCoreNetwork> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

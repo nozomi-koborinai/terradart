@@ -389,6 +389,10 @@ final class AwsFinspaceKxCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFinspaceKxClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFinspaceKxCluster>`.
+  RefTo<AwsFinspaceKxCluster> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

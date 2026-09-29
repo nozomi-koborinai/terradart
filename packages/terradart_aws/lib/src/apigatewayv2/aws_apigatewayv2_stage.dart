@@ -174,6 +174,10 @@ final class AwsApigatewayv2Stage extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApigatewayv2StageSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApigatewayv2Stage>`.
+  RefTo<AwsApigatewayv2Stage> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

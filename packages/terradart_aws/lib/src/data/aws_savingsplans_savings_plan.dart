@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../savingsplans/aws_savingsplans_savings_plan.dart';
 
 /// Sensitive field paths for `aws_savingsplans_savings_plan`.
 const Set<String> _awsSavingsplansSavingsPlanSensitive = <String>{};
@@ -19,6 +20,11 @@ final class DataAwsSavingsplansSavingsPlan extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSavingsplansSavingsPlanSensitive;
+
+  /// A reference to the `aws_savingsplans_savings_plan` this data source reads, for
+  /// arguments typed `RefTo<AwsSavingsplansSavingsPlan>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsSavingsplansSavingsPlan> get ref => RefTo.read(this);
 
   /// Reference to `commitment` attribute.
   TfRef<String> get commitment => TfRef.attribute<String>(this, 'commitment');

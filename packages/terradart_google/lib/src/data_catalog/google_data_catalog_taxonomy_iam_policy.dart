@@ -39,6 +39,10 @@ final class GoogleDataCatalogTaxonomyIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataCatalogTaxonomyIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataCatalogTaxonomyIamPolicy>`.
+  RefTo<GoogleDataCatalogTaxonomyIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

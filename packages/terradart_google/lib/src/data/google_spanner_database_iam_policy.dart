@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../spanner/google_spanner_database_iam_policy.dart';
 
 /// Sensitive field paths for `google_spanner_database_iam_policy`.
 const Set<String> _googleSpannerDatabaseIamPolicySensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleSpannerDatabaseIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleSpannerDatabaseIamPolicySensitive;
+
+  /// A reference to the `google_spanner_database_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleSpannerDatabaseIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleSpannerDatabaseIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

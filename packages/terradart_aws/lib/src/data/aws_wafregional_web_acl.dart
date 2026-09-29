@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../wafregional/aws_wafregional_web_acl.dart';
 
 /// Sensitive field paths for `aws_wafregional_web_acl`.
 const Set<String> _awsWafregionalWebAclSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsWafregionalWebAcl extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsWafregionalWebAclSensitive;
+
+  /// A reference to the `aws_wafregional_web_acl` this data source reads, for
+  /// arguments typed `RefTo<AwsWafregionalWebAcl>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsWafregionalWebAcl> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

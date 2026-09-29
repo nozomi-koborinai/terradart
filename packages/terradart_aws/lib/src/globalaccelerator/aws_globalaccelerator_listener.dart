@@ -70,6 +70,10 @@ final class AwsGlobalacceleratorListener extends Resource {
   @override
   Set<String> get sensitiveFields => _awsGlobalacceleratorListenerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlobalacceleratorListener>`.
+  RefTo<AwsGlobalacceleratorListener> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

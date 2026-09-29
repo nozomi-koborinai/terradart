@@ -31,6 +31,10 @@ final class AwsVpclatticeResourcePolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpclatticeResourcePolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpclatticeResourcePolicy>`.
+  RefTo<AwsVpclatticeResourcePolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

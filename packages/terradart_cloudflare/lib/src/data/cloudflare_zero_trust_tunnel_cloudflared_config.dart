@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_tunnel_cloudflared_config.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_tunnel_cloudflared_config`.
 const Set<String> _cloudflareZeroTrustTunnelCloudflaredConfigSensitive =
@@ -32,6 +33,11 @@ final class DataCloudflareZeroTrustTunnelCloudflaredConfig extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustTunnelCloudflaredConfigSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_tunnel_cloudflared_config` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustTunnelCloudflaredConfig>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZeroTrustTunnelCloudflaredConfig> get ref => RefTo.read(this);
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');

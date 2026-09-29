@@ -111,6 +111,10 @@ final class CloudflareFirewallRule extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareFirewallRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareFirewallRule>`.
+  RefTo<CloudflareFirewallRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -38,6 +38,10 @@ final class GoogleEndpointsServiceConsumersIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleEndpointsServiceConsumersIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleEndpointsServiceConsumersIamPolicy>`.
+  RefTo<GoogleEndpointsServiceConsumersIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

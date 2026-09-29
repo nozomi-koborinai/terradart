@@ -171,6 +171,10 @@ final class AwsWafWebAcl extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWafWebAclSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafWebAcl>`.
+  RefTo<AwsWafWebAcl> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

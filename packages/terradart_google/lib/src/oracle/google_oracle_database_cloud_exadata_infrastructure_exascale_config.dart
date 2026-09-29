@@ -64,6 +64,11 @@ final class GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseCloudExadataInfrastructureExascaleConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig>`.
+  RefTo<GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

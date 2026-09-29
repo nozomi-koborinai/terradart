@@ -35,4 +35,8 @@ final class AwsQuicksightUserCustomPermission extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsQuicksightUserCustomPermissionSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsQuicksightUserCustomPermission>`.
+  RefTo<AwsQuicksightUserCustomPermission> get ref => RefTo.of(this);
 }

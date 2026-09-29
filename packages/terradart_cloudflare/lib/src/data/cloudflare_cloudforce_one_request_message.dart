@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloudforce_one/cloudflare_cloudforce_one_request_message.dart';
 
 /// Sensitive field paths for `cloudflare_cloudforce_one_request_message`.
 const Set<String> _cloudflareCloudforceOneRequestMessageSensitive = <String>{};
@@ -43,6 +44,11 @@ final class DataCloudflareCloudforceOneRequestMessage extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareCloudforceOneRequestMessageSensitive;
+
+  /// A reference to the `cloudflare_cloudforce_one_request_message` this data source reads, for
+  /// arguments typed `RefTo<CloudflareCloudforceOneRequestMessage>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareCloudforceOneRequestMessage> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

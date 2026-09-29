@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../webhooks/appwrite_webhook.dart';
 
 /// Sensitive field paths for `appwrite_webhook`.
 const Set<String> _appwriteWebhookSensitive = <String>{};
@@ -25,6 +26,11 @@ final class DataAppwriteWebhook extends Data {
 
   @override
   Set<String> get sensitiveFields => _appwriteWebhookSensitive;
+
+  /// A reference to the `appwrite_webhook` this data source reads, for
+  /// arguments typed `RefTo<AppwriteWebhook>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AppwriteWebhook> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

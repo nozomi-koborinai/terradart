@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../connect/aws_connect_lambda_function_association.dart';
 
 /// Sensitive field paths for `aws_connect_lambda_function_association`.
 const Set<String> _awsConnectLambdaFunctionAssociationSensitive = <String>{};
@@ -29,6 +30,11 @@ final class DataAwsConnectLambdaFunctionAssociation extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsConnectLambdaFunctionAssociationSensitive;
+
+  /// A reference to the `aws_connect_lambda_function_association` this data source reads, for
+  /// arguments typed `RefTo<AwsConnectLambdaFunctionAssociation>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsConnectLambdaFunctionAssociation> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

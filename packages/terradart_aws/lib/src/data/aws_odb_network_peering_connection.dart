@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../odb/aws_odb_network_peering_connection.dart';
 
 /// Sensitive field paths for `aws_odb_network_peering_connection`.
 const Set<String> _awsOdbNetworkPeeringConnectionSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsOdbNetworkPeeringConnection extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsOdbNetworkPeeringConnectionSensitive;
+
+  /// A reference to the `aws_odb_network_peering_connection` this data source reads, for
+  /// arguments typed `RefTo<AwsOdbNetworkPeeringConnection>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsOdbNetworkPeeringConnection> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

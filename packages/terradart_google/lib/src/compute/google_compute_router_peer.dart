@@ -179,6 +179,10 @@ final class GoogleComputeRouterPeer extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeRouterPeerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRouterPeer>`.
+  RefTo<GoogleComputeRouterPeer> get ref => RefTo.of(this);
+
   /// Reference to `is_advertised_route_priority_set` attribute.
   TfRef<bool> get isAdvertisedRoutePrioritySet =>
       TfRef.attribute<bool>(this, 'is_advertised_route_priority_set');

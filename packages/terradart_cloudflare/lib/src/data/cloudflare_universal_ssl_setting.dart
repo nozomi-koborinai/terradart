@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ssl/cloudflare_universal_ssl_setting.dart';
 
 /// Sensitive field paths for `cloudflare_universal_ssl_setting`.
 const Set<String> _cloudflareUniversalSslSettingSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareUniversalSslSetting extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareUniversalSslSettingSensitive;
+
+  /// A reference to the `cloudflare_universal_ssl_setting` this data source reads, for
+  /// arguments typed `RefTo<CloudflareUniversalSslSetting>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareUniversalSslSetting> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -39,6 +39,10 @@ final class AwsMskVpcConnection extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMskVpcConnectionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMskVpcConnection>`.
+  RefTo<AwsMskVpcConnection> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

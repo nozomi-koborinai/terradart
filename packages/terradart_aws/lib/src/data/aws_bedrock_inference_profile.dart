@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../bedrock/aws_bedrock_inference_profile.dart';
 
 /// Sensitive field paths for `aws_bedrock_inference_profile`.
 const Set<String> _awsBedrockInferenceProfileSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsBedrockInferenceProfile extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsBedrockInferenceProfileSensitive;
+
+  /// A reference to the `aws_bedrock_inference_profile` this data source reads, for
+  /// arguments typed `RefTo<AwsBedrockInferenceProfile>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsBedrockInferenceProfile> get ref => RefTo.read(this);
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');

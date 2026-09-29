@@ -64,6 +64,10 @@ final class GoogleGeminiCodeToolsSettingBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleGeminiCodeToolsSettingBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGeminiCodeToolsSettingBinding>`.
+  RefTo<GoogleGeminiCodeToolsSettingBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

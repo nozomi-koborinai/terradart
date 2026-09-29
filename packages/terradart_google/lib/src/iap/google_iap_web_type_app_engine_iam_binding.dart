@@ -42,6 +42,10 @@ final class GoogleIapWebTypeAppEngineIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleIapWebTypeAppEngineIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapWebTypeAppEngineIamBinding>`.
+  RefTo<GoogleIapWebTypeAppEngineIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

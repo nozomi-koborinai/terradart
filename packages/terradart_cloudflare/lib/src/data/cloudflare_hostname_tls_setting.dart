@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ssl/cloudflare_hostname_tls_setting.dart';
 
 /// Sensitive field paths for `cloudflare_hostname_tls_setting`.
 const Set<String> _cloudflareHostnameTlsSettingSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataCloudflareHostnameTlsSetting extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareHostnameTlsSettingSensitive;
+
+  /// A reference to the `cloudflare_hostname_tls_setting` this data source reads, for
+  /// arguments typed `RefTo<CloudflareHostnameTlsSetting>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareHostnameTlsSetting> get ref => RefTo.read(this);
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');

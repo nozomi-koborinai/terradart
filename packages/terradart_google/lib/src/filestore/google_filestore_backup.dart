@@ -59,6 +59,10 @@ final class GoogleFilestoreBackup extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFilestoreBackupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFilestoreBackup>`.
+  RefTo<GoogleFilestoreBackup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

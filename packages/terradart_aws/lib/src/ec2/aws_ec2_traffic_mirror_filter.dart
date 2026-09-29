@@ -45,6 +45,10 @@ final class AwsEc2TrafficMirrorFilter extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2TrafficMirrorFilterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2TrafficMirrorFilter>`.
+  RefTo<AwsEc2TrafficMirrorFilter> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

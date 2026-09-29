@@ -34,4 +34,9 @@ final class AwsServicecatalogappregistryAttributeGroupAssociation
   @override
   Set<String> get sensitiveFields =>
       _awsServicecatalogappregistryAttributeGroupAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicecatalogappregistryAttributeGroupAssociation>`.
+  RefTo<AwsServicecatalogappregistryAttributeGroupAssociation> get ref =>
+      RefTo.of(this);
 }

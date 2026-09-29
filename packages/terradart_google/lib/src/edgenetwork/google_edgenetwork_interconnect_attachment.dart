@@ -64,6 +64,10 @@ final class GoogleEdgenetworkInterconnectAttachment extends Resource {
   Set<String> get sensitiveFields =>
       _googleEdgenetworkInterconnectAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleEdgenetworkInterconnectAttachment>`.
+  RefTo<GoogleEdgenetworkInterconnectAttachment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

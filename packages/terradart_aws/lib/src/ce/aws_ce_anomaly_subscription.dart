@@ -578,6 +578,10 @@ final class AwsCeAnomalySubscription extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCeAnomalySubscriptionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCeAnomalySubscription>`.
+  RefTo<AwsCeAnomalySubscription> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

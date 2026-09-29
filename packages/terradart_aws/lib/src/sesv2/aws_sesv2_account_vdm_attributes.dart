@@ -108,6 +108,10 @@ final class AwsSesv2AccountVdmAttributes extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesv2AccountVdmAttributesSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesv2AccountVdmAttributes>`.
+  RefTo<AwsSesv2AccountVdmAttributes> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

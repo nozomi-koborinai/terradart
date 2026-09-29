@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dx/aws_dx_connection.dart';
 
 /// Sensitive field paths for `aws_dx_connection`.
 const Set<String> _awsDxConnectionSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsDxConnection extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsDxConnectionSensitive;
+
+  /// A reference to the `aws_dx_connection` this data source reads, for
+  /// arguments typed `RefTo<AwsDxConnection>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsDxConnection> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

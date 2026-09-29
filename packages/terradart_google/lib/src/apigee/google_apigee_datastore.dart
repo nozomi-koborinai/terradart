@@ -87,6 +87,10 @@ final class GoogleApigeeDatastore extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApigeeDatastoreSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeDatastore>`.
+  RefTo<GoogleApigeeDatastore> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

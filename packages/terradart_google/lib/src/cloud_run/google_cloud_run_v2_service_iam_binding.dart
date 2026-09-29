@@ -43,6 +43,10 @@ final class GoogleCloudRunV2ServiceIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudRunV2ServiceIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudRunV2ServiceIamBinding>`.
+  RefTo<GoogleCloudRunV2ServiceIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

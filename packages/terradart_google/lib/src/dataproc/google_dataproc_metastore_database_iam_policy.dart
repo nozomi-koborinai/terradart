@@ -42,6 +42,10 @@ final class GoogleDataprocMetastoreDatabaseIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataprocMetastoreDatabaseIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataprocMetastoreDatabaseIamPolicy>`.
+  RefTo<GoogleDataprocMetastoreDatabaseIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

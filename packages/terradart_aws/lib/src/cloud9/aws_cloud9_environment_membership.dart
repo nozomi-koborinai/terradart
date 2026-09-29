@@ -44,6 +44,10 @@ final class AwsCloud9EnvironmentMembership extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloud9EnvironmentMembershipSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloud9EnvironmentMembership>`.
+  RefTo<AwsCloud9EnvironmentMembership> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

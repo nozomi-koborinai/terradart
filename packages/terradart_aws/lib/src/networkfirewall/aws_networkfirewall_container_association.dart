@@ -95,6 +95,10 @@ final class AwsNetworkfirewallContainerAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsNetworkfirewallContainerAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkfirewallContainerAssociation>`.
+  RefTo<AwsNetworkfirewallContainerAssociation> get ref => RefTo.of(this);
+
   /// Reference to `container_association_arn` attribute.
   TfRef<String> get containerAssociationArn =>
       TfRef.attribute<String>(this, 'container_association_arn');

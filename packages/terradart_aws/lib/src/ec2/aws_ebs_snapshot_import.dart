@@ -183,6 +183,10 @@ final class AwsEbsSnapshotImport extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEbsSnapshotImportSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEbsSnapshotImport>`.
+  RefTo<AwsEbsSnapshotImport> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

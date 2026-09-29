@@ -44,6 +44,11 @@ final class CloudflareZeroTrustResourceLibraryApplication extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustResourceLibraryApplicationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustResourceLibraryApplication>`.
+  RefTo<CloudflareZeroTrustResourceLibraryApplication> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

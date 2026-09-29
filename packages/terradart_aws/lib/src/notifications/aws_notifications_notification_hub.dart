@@ -24,4 +24,8 @@ final class AwsNotificationsNotificationHub extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsNotificationsNotificationHubSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNotificationsNotificationHub>`.
+  RefTo<AwsNotificationsNotificationHub> get ref => RefTo.of(this);
 }

@@ -82,4 +82,8 @@ final class AwsPrometheusQueryLoggingConfiguration extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsPrometheusQueryLoggingConfigurationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPrometheusQueryLoggingConfiguration>`.
+  RefTo<AwsPrometheusQueryLoggingConfiguration> get ref => RefTo.of(this);
 }

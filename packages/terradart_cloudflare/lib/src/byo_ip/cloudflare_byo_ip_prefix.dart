@@ -44,6 +44,10 @@ final class CloudflareByoIpPrefix extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareByoIpPrefixSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareByoIpPrefix>`.
+  RefTo<CloudflareByoIpPrefix> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

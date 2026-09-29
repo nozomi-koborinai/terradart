@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone_lockdown.dart';
 
 /// Sensitive field paths for `cloudflare_zone_lockdown`.
 const Set<String> _cloudflareZoneLockdownSensitive = <String>{};
@@ -81,6 +82,11 @@ final class DataCloudflareZoneLockdown extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneLockdownSensitive;
+
+  /// A reference to the `cloudflare_zone_lockdown` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZoneLockdown>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZoneLockdown> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

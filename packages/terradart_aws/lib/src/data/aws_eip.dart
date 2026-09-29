@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_eip.dart';
 
 /// Sensitive field paths for `aws_eip`.
 const Set<String> _awsEipSensitive = <String>{};
@@ -48,6 +49,11 @@ final class DataAwsEip extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEipSensitive;
+
+  /// A reference to the `aws_eip` this data source reads, for
+  /// arguments typed `RefTo<AwsEip>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsEip> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

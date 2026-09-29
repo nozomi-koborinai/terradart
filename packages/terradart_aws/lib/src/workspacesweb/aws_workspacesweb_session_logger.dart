@@ -226,6 +226,10 @@ final class AwsWorkspaceswebSessionLogger extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkspaceswebSessionLoggerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebSessionLogger>`.
+  RefTo<AwsWorkspaceswebSessionLogger> get ref => RefTo.of(this);
+
   /// Reference to `associated_portal_arns` attribute.
   TfRef<List<String>> get associatedPortalArns =>
       TfRef.attribute<List<String>>(this, 'associated_portal_arns');

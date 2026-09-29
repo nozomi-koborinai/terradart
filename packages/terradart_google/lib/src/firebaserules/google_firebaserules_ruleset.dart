@@ -114,6 +114,10 @@ final class GoogleFirebaserulesRuleset extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaserulesRulesetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaserulesRuleset>`.
+  RefTo<GoogleFirebaserulesRuleset> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

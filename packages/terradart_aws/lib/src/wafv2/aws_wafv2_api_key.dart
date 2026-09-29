@@ -43,6 +43,10 @@ final class AwsWafv2ApiKey extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWafv2ApiKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafv2ApiKey>`.
+  RefTo<AwsWafv2ApiKey> get ref => RefTo.of(this);
+
   /// Reference to `api_key` attribute.
   TfRef<String> get apiKey => TfRef.attribute<String>(this, 'api_key');
 }

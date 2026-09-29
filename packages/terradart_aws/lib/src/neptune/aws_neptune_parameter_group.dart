@@ -135,6 +135,10 @@ final class AwsNeptuneParameterGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNeptuneParameterGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNeptuneParameterGroup>`.
+  RefTo<AwsNeptuneParameterGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

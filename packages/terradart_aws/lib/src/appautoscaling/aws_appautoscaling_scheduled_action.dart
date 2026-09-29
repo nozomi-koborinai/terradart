@@ -68,6 +68,10 @@ final class AwsAppautoscalingScheduledAction extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppautoscalingScheduledActionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppautoscalingScheduledAction>`.
+  RefTo<AwsAppautoscalingScheduledAction> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

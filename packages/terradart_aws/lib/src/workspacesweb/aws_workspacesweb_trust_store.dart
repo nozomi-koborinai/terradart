@@ -46,6 +46,10 @@ final class AwsWorkspaceswebTrustStore extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkspaceswebTrustStoreSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebTrustStore>`.
+  RefTo<AwsWorkspaceswebTrustStore> get ref => RefTo.of(this);
+
   /// Reference to `associated_portal_arns` attribute.
   TfRef<List<String>> get associatedPortalArns =>
       TfRef.attribute<List<String>>(this, 'associated_portal_arns');

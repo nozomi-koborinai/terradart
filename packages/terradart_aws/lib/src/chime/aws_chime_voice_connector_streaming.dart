@@ -80,6 +80,10 @@ final class AwsChimeVoiceConnectorStreaming extends Resource {
   @override
   Set<String> get sensitiveFields => _awsChimeVoiceConnectorStreamingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsChimeVoiceConnectorStreaming>`.
+  RefTo<AwsChimeVoiceConnectorStreaming> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

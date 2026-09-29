@@ -65,6 +65,10 @@ final class AwsServicecatalogPortfolioShare extends Resource {
   @override
   Set<String> get sensitiveFields => _awsServicecatalogPortfolioShareSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicecatalogPortfolioShare>`.
+  RefTo<AwsServicecatalogPortfolioShare> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

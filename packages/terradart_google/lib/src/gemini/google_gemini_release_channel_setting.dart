@@ -38,6 +38,10 @@ final class GoogleGeminiReleaseChannelSetting extends Resource {
   Set<String> get sensitiveFields =>
       _googleGeminiReleaseChannelSettingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGeminiReleaseChannelSetting>`.
+  RefTo<GoogleGeminiReleaseChannelSetting> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

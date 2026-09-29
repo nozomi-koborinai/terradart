@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/aws_account_primary_contact.dart';
 
 /// Sensitive field paths for `aws_account_primary_contact`.
 const Set<String> _awsAccountPrimaryContactSensitive = <String>{};
@@ -22,6 +23,11 @@ final class DataAwsAccountPrimaryContact extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsAccountPrimaryContactSensitive;
+
+  /// A reference to the `aws_account_primary_contact` this data source reads, for
+  /// arguments typed `RefTo<AwsAccountPrimaryContact>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsAccountPrimaryContact> get ref => RefTo.read(this);
 
   /// Reference to `address_line_1` attribute.
   TfRef<String> get addressLine1 =>

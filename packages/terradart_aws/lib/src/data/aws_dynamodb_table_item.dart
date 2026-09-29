@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dynamodb/aws_dynamodb_table_item.dart';
 
 /// Sensitive field paths for `aws_dynamodb_table_item`.
 const Set<String> _awsDynamodbTableItemSensitive = <String>{};
@@ -34,6 +35,11 @@ final class DataAwsDynamodbTableItem extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsDynamodbTableItemSensitive;
+
+  /// A reference to the `aws_dynamodb_table_item` this data source reads, for
+  /// arguments typed `RefTo<AwsDynamodbTableItem>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsDynamodbTableItem> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../firestore/google_firestore_document.dart';
 
 /// Sensitive field paths for `google_firestore_document`.
 const Set<String> _googleFirestoreDocumentSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataGoogleFirestoreDocument extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleFirestoreDocumentSensitive;
+
+  /// A reference to the `google_firestore_document` this data source reads, for
+  /// arguments typed `RefTo<GoogleFirestoreDocument>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleFirestoreDocument> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

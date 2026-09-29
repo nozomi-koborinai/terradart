@@ -31,6 +31,10 @@ final class AwsSesv2Tenant extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesv2TenantSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesv2Tenant>`.
+  RefTo<AwsSesv2Tenant> get ref => RefTo.of(this);
+
   /// Reference to `sending_status` attribute.
   TfRef<String> get sendingStatus =>
       TfRef.attribute<String>(this, 'sending_status');

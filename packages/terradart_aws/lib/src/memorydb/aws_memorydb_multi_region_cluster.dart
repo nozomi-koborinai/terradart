@@ -68,6 +68,10 @@ final class AwsMemorydbMultiRegionCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMemorydbMultiRegionClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMemorydbMultiRegionCluster>`.
+  RefTo<AwsMemorydbMultiRegionCluster> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

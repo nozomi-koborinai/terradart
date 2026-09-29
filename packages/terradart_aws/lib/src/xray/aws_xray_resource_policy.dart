@@ -36,6 +36,10 @@ final class AwsXrayResourcePolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsXrayResourcePolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsXrayResourcePolicy>`.
+  RefTo<AwsXrayResourcePolicy> get ref => RefTo.of(this);
+
   /// Reference to `last_updated_time` attribute.
   TfRef<String> get lastUpdatedTime =>
       TfRef.attribute<String>(this, 'last_updated_time');

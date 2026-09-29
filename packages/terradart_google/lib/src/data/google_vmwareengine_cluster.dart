@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../vmwareengine/google_vmwareengine_cluster.dart';
 
 /// Sensitive field paths for `google_vmwareengine_cluster`.
 const Set<String> _googleVmwareengineClusterSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataGoogleVmwareengineCluster extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleVmwareengineClusterSensitive;
+
+  /// A reference to the `google_vmwareengine_cluster` this data source reads, for
+  /// arguments typed `RefTo<GoogleVmwareengineCluster>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleVmwareengineCluster> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

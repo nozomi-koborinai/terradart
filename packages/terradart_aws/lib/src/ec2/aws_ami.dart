@@ -205,6 +205,10 @@ final class AwsAmi extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAmiSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAmi>`.
+  RefTo<AwsAmi> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

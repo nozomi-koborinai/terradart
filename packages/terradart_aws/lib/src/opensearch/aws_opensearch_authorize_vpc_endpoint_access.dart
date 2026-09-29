@@ -33,6 +33,10 @@ final class AwsOpensearchAuthorizeVpcEndpointAccess extends Resource {
   Set<String> get sensitiveFields =>
       _awsOpensearchAuthorizeVpcEndpointAccessSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOpensearchAuthorizeVpcEndpointAccess>`.
+  RefTo<AwsOpensearchAuthorizeVpcEndpointAccess> get ref => RefTo.of(this);
+
   /// Reference to `authorized_principal` attribute.
   TfRef<List<Map<String, Object?>>> get authorizedPrincipal =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'authorized_principal');

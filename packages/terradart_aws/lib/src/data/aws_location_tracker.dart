@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../location/aws_location_tracker.dart';
 
 /// Sensitive field paths for `aws_location_tracker`.
 const Set<String> _awsLocationTrackerSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsLocationTracker extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLocationTrackerSensitive;
+
+  /// A reference to the `aws_location_tracker` this data source reads, for
+  /// arguments typed `RefTo<AwsLocationTracker>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsLocationTracker> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

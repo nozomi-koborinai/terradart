@@ -88,6 +88,10 @@ final class CloudflareStream extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareStreamSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareStream>`.
+  RefTo<CloudflareStream> get ref => RefTo.of(this);
+
   /// Reference to `clipped_from` attribute.
   TfRef<String> get clippedFrom =>
       TfRef.attribute<String>(this, 'clipped_from');

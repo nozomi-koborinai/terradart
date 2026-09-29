@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_region_ssl_certificate.dart';
 
 /// Sensitive field paths for `google_compute_region_ssl_certificate`.
 const Set<String> _googleComputeRegionSslCertificateSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataGoogleComputeRegionSslCertificate extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeRegionSslCertificateSensitive;
+
+  /// A reference to the `google_compute_region_ssl_certificate` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeRegionSslCertificate>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComputeRegionSslCertificate> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

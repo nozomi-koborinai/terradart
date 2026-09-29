@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../biglake/google_biglake_iceberg_namespace_iam_policy.dart';
 
 /// Sensitive field paths for `google_biglake_iceberg_namespace_iam_policy`.
 const Set<String> _googleBiglakeIcebergNamespaceIamPolicySensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataGoogleBiglakeIcebergNamespaceIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleBiglakeIcebergNamespaceIamPolicySensitive;
+
+  /// A reference to the `google_biglake_iceberg_namespace_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleBiglakeIcebergNamespaceIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleBiglakeIcebergNamespaceIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

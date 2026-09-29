@@ -162,6 +162,10 @@ final class AwsSignerSigningProfile extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSignerSigningProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSignerSigningProfile>`.
+  RefTo<AwsSignerSigningProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

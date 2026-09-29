@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ses/aws_ses_active_receipt_rule_set.dart';
 
 /// Sensitive field paths for `aws_ses_active_receipt_rule_set`.
 const Set<String> _awsSesActiveReceiptRuleSetSensitive = <String>{};
@@ -22,6 +23,11 @@ final class DataAwsSesActiveReceiptRuleSet extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSesActiveReceiptRuleSetSensitive;
+
+  /// A reference to the `aws_ses_active_receipt_rule_set` this data source reads, for
+  /// arguments typed `RefTo<AwsSesActiveReceiptRuleSet>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsSesActiveReceiptRuleSet> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -100,6 +100,10 @@ final class AwsLbTrustStore extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLbTrustStoreSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLbTrustStore>`.
+  RefTo<AwsLbTrustStore> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

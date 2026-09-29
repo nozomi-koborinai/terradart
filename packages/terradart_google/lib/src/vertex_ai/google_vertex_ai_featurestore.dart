@@ -175,6 +175,10 @@ final class GoogleVertexAiFeaturestore extends Resource {
   @override
   Set<String> get sensitiveFields => _googleVertexAiFeaturestoreSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVertexAiFeaturestore>`.
+  RefTo<GoogleVertexAiFeaturestore> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

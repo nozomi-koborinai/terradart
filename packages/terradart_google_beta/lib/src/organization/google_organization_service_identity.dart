@@ -35,6 +35,10 @@ final class GoogleOrganizationServiceIdentity extends Resource {
   Set<String> get sensitiveFields =>
       _googleOrganizationServiceIdentitySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleOrganizationServiceIdentity>`.
+  RefTo<GoogleOrganizationServiceIdentity> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

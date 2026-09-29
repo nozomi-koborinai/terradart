@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../turnstile/cloudflare_turnstile_widget.dart';
 
 /// Sensitive field paths for `cloudflare_turnstile_widget`.
 const Set<String> _cloudflareTurnstileWidgetSensitive = <String>{'secret'};
@@ -76,6 +77,11 @@ final class DataCloudflareTurnstileWidget extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareTurnstileWidgetSensitive;
+
+  /// A reference to the `cloudflare_turnstile_widget` this data source reads, for
+  /// arguments typed `RefTo<CloudflareTurnstileWidget>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareTurnstileWidget> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

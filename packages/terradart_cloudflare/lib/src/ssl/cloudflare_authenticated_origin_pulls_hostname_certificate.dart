@@ -37,6 +37,11 @@ final class CloudflareAuthenticatedOriginPullsHostnameCertificate
   Set<String> get sensitiveFields =>
       _cloudflareAuthenticatedOriginPullsHostnameCertificateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareAuthenticatedOriginPullsHostnameCertificate>`.
+  RefTo<CloudflareAuthenticatedOriginPullsHostnameCertificate> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

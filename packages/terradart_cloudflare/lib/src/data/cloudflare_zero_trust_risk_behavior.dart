@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_risk_behavior.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_risk_behavior`.
 const Set<String> _cloudflareZeroTrustRiskBehaviorSensitive = <String>{};
@@ -26,4 +27,9 @@ final class DataCloudflareZeroTrustRiskBehavior extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustRiskBehaviorSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_risk_behavior` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustRiskBehavior>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZeroTrustRiskBehavior> get ref => RefTo.read(this);
 }

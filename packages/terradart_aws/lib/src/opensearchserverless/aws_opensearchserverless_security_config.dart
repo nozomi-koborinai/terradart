@@ -268,6 +268,10 @@ final class AwsOpensearchserverlessSecurityConfig extends Resource {
   Set<String> get sensitiveFields =>
       _awsOpensearchserverlessSecurityConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOpensearchserverlessSecurityConfig>`.
+  RefTo<AwsOpensearchserverlessSecurityConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

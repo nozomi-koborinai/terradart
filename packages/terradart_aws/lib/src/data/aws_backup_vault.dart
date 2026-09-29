@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../backup/aws_backup_vault.dart';
 
 /// Sensitive field paths for `aws_backup_vault`.
 const Set<String> _awsBackupVaultSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsBackupVault extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsBackupVaultSensitive;
+
+  /// A reference to the `aws_backup_vault` this data source reads, for
+  /// arguments typed `RefTo<AwsBackupVault>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsBackupVault> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

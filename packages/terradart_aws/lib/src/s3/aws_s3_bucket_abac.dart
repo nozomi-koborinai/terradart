@@ -48,4 +48,8 @@ final class AwsS3BucketAbac extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsS3BucketAbacSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketAbac>`.
+  RefTo<AwsS3BucketAbac> get ref => RefTo.of(this);
 }

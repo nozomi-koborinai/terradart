@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../discovery_engine/google_discovery_engine_search_engine_iam_policy.dart';
 
 /// Sensitive field paths for `google_discovery_engine_search_engine_iam_policy`.
 const Set<String> _googleDiscoveryEngineSearchEngineIamPolicySensitive =
@@ -36,6 +37,11 @@ final class DataGoogleDiscoveryEngineSearchEngineIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleDiscoveryEngineSearchEngineIamPolicySensitive;
+
+  /// A reference to the `google_discovery_engine_search_engine_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleDiscoveryEngineSearchEngineIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleDiscoveryEngineSearchEngineIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

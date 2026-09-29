@@ -76,6 +76,10 @@ final class CloudflareR2Bucket extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareR2BucketSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareR2Bucket>`.
+  RefTo<CloudflareR2Bucket> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

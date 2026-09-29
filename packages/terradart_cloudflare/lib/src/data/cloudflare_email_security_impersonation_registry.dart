@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../email/cloudflare_email_security_impersonation_registry.dart';
 
 /// Sensitive field paths for `cloudflare_email_security_impersonation_registry`.
 const Set<String> _cloudflareEmailSecurityImpersonationRegistrySensitive =
@@ -105,6 +106,12 @@ final class DataCloudflareEmailSecurityImpersonationRegistry extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareEmailSecurityImpersonationRegistrySensitive;
+
+  /// A reference to the `cloudflare_email_security_impersonation_registry` this data source reads, for
+  /// arguments typed `RefTo<CloudflareEmailSecurityImpersonationRegistry>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareEmailSecurityImpersonationRegistry> get ref =>
+      RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

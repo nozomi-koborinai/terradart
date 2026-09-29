@@ -64,6 +64,10 @@ final class GoogleCloudbuildv2Repository extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudbuildv2RepositorySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudbuildv2Repository>`.
+  RefTo<GoogleCloudbuildv2Repository> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

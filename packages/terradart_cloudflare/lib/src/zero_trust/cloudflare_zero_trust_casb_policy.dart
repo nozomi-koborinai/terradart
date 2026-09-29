@@ -97,6 +97,10 @@ final class CloudflareZeroTrustCasbPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustCasbPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustCasbPolicy>`.
+  RefTo<CloudflareZeroTrustCasbPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

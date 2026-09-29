@@ -117,6 +117,10 @@ final class GoogleDataformRepositoryWorkflowConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataformRepositoryWorkflowConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataformRepositoryWorkflowConfig>`.
+  RefTo<GoogleDataformRepositoryWorkflowConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

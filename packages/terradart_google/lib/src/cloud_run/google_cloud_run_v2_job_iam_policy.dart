@@ -38,6 +38,10 @@ final class GoogleCloudRunV2JobIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudRunV2JobIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudRunV2JobIamPolicy>`.
+  RefTo<GoogleCloudRunV2JobIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

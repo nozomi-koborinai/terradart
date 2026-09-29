@@ -152,6 +152,10 @@ final class CloudflareTokenValidationConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareTokenValidationConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareTokenValidationConfig>`.
+  RefTo<CloudflareTokenValidationConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

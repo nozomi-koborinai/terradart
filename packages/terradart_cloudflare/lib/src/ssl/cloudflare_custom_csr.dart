@@ -65,6 +65,10 @@ final class CloudflareCustomCsr extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareCustomCsrSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareCustomCsr>`.
+  RefTo<CloudflareCustomCsr> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

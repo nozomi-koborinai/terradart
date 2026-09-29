@@ -51,4 +51,8 @@ final class CloudflareSchemaValidationOperationSettings extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareSchemaValidationOperationSettingsSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareSchemaValidationOperationSettings>`.
+  RefTo<CloudflareSchemaValidationOperationSettings> get ref => RefTo.of(this);
 }

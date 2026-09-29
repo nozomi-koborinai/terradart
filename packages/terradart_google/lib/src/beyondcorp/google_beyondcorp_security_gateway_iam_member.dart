@@ -39,6 +39,10 @@ final class GoogleBeyondcorpSecurityGatewayIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleBeyondcorpSecurityGatewayIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBeyondcorpSecurityGatewayIamMember>`.
+  RefTo<GoogleBeyondcorpSecurityGatewayIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

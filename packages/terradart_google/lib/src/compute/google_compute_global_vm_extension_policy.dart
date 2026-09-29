@@ -217,6 +217,10 @@ final class GoogleComputeGlobalVmExtensionPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeGlobalVmExtensionPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeGlobalVmExtensionPolicy>`.
+  RefTo<GoogleComputeGlobalVmExtensionPolicy> get ref => RefTo.of(this);
+
   /// Reference to `kind` attribute.
   TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
 

@@ -45,6 +45,10 @@ final class GoogleServiceNetworkingPeeredDnsDomain extends Resource {
   Set<String> get sensitiveFields =>
       _googleServiceNetworkingPeeredDnsDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleServiceNetworkingPeeredDnsDomain>`.
+  RefTo<GoogleServiceNetworkingPeeredDnsDomain> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

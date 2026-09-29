@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../elasticsearch/aws_elasticsearch_domain.dart';
 
 /// Sensitive field paths for `aws_elasticsearch_domain`.
 const Set<String> _awsElasticsearchDomainSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsElasticsearchDomain extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsElasticsearchDomainSensitive;
+
+  /// A reference to the `aws_elasticsearch_domain` this data source reads, for
+  /// arguments typed `RefTo<AwsElasticsearchDomain>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsElasticsearchDomain> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

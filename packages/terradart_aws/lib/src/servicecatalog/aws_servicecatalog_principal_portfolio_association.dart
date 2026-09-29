@@ -67,6 +67,11 @@ final class AwsServicecatalogPrincipalPortfolioAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsServicecatalogPrincipalPortfolioAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicecatalogPrincipalPortfolioAssociation>`.
+  RefTo<AwsServicecatalogPrincipalPortfolioAssociation> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

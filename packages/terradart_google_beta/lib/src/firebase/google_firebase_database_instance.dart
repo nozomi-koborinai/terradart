@@ -70,6 +70,10 @@ final class GoogleFirebaseDatabaseInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaseDatabaseInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseDatabaseInstance>`.
+  RefTo<GoogleFirebaseDatabaseInstance> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

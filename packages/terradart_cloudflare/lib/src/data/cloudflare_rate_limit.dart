@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../security/cloudflare_rate_limit.dart';
 
 /// Sensitive field paths for `cloudflare_rate_limit`.
 const Set<String> _cloudflareRateLimitSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataCloudflareRateLimit extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareRateLimitSensitive;
+
+  /// A reference to the `cloudflare_rate_limit` this data source reads, for
+  /// arguments typed `RefTo<CloudflareRateLimit>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareRateLimit> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

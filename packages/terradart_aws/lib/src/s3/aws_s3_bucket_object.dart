@@ -291,6 +291,10 @@ final class AwsS3BucketObject extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3BucketObjectSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketObject>`.
+  RefTo<AwsS3BucketObject> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

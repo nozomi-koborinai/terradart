@@ -80,6 +80,10 @@ final class GoogleMigrationCenterReportConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleMigrationCenterReportConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleMigrationCenterReportConfig>`.
+  RefTo<GoogleMigrationCenterReportConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

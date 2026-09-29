@@ -33,6 +33,10 @@ final class AwsDatapipelinePipeline extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDatapipelinePipelineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatapipelinePipeline>`.
+  RefTo<AwsDatapipelinePipeline> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

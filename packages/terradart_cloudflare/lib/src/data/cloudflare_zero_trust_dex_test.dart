@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_dex_test.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_dex_test`.
 const Set<String> _cloudflareZeroTrustDexTestSensitive = <String>{};
@@ -74,6 +75,11 @@ final class DataCloudflareZeroTrustDexTest extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustDexTestSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_dex_test` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustDexTest>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZeroTrustDexTest> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

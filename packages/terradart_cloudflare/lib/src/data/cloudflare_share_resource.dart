@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../share/cloudflare_share_resource.dart';
 
 /// Sensitive field paths for `cloudflare_share_resource`.
 const Set<String> _cloudflareShareResourceSensitive = <String>{};
@@ -73,6 +74,11 @@ final class DataCloudflareShareResource extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareShareResourceSensitive;
+
+  /// A reference to the `cloudflare_share_resource` this data source reads, for
+  /// arguments typed `RefTo<CloudflareShareResource>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareShareResource> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

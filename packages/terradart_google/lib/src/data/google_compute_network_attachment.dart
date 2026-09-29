@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_network_attachment.dart';
 
 /// Sensitive field paths for `google_compute_network_attachment`.
 const Set<String> _googleComputeNetworkAttachmentSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleComputeNetworkAttachment extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleComputeNetworkAttachmentSensitive;
+
+  /// A reference to the `google_compute_network_attachment` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeNetworkAttachment>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComputeNetworkAttachment> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

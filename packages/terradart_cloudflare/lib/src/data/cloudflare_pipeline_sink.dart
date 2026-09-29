@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../pipeline/cloudflare_pipeline_sink.dart';
 
 /// Sensitive field paths for `cloudflare_pipeline_sink`.
 const Set<String> _cloudflarePipelineSinkSensitive = <String>{};
@@ -49,6 +50,11 @@ final class DataCloudflarePipelineSink extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflarePipelineSinkSensitive;
+
+  /// A reference to the `cloudflare_pipeline_sink` this data source reads, for
+  /// arguments typed `RefTo<CloudflarePipelineSink>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflarePipelineSink> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

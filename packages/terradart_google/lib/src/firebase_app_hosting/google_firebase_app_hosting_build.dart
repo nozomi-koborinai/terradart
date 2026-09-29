@@ -163,6 +163,10 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaseAppHostingBuildSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppHostingBuild>`.
+  RefTo<GoogleFirebaseAppHostingBuild> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/builds/{build_id}`).
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

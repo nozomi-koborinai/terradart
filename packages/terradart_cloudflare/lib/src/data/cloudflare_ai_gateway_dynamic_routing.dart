@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ai/cloudflare_ai_gateway_dynamic_routing.dart';
 
 /// Sensitive field paths for `cloudflare_ai_gateway_dynamic_routing`.
 const Set<String> _cloudflareAiGatewayDynamicRoutingSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataCloudflareAiGatewayDynamicRouting extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareAiGatewayDynamicRoutingSensitive;
+
+  /// A reference to the `cloudflare_ai_gateway_dynamic_routing` this data source reads, for
+  /// arguments typed `RefTo<CloudflareAiGatewayDynamicRouting>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareAiGatewayDynamicRouting> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

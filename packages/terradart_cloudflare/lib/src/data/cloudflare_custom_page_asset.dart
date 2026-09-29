@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../pages/cloudflare_custom_page_asset.dart';
 
 /// Sensitive field paths for `cloudflare_custom_page_asset`.
 const Set<String> _cloudflareCustomPageAssetSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataCloudflareCustomPageAsset extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareCustomPageAssetSensitive;
+
+  /// A reference to the `cloudflare_custom_page_asset` this data source reads, for
+  /// arguments typed `RefTo<CloudflareCustomPageAsset>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareCustomPageAsset> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -51,6 +51,10 @@ final class CloudflareZeroTrustRiskScoringIntegration extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustRiskScoringIntegrationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustRiskScoringIntegration>`.
+  RefTo<CloudflareZeroTrustRiskScoringIntegration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

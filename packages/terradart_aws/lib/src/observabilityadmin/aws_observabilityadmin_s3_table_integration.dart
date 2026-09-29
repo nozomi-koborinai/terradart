@@ -72,6 +72,10 @@ final class AwsObservabilityadminS3TableIntegration extends Resource {
   Set<String> get sensitiveFields =>
       _awsObservabilityadminS3TableIntegrationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsObservabilityadminS3TableIntegration>`.
+  RefTo<AwsObservabilityadminS3TableIntegration> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

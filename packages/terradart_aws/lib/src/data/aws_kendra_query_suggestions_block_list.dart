@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../kendra/aws_kendra_query_suggestions_block_list.dart';
 
 /// Sensitive field paths for `aws_kendra_query_suggestions_block_list`.
 const Set<String> _awsKendraQuerySuggestionsBlockListSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataAwsKendraQuerySuggestionsBlockList extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsKendraQuerySuggestionsBlockListSensitive;
+
+  /// A reference to the `aws_kendra_query_suggestions_block_list` this data source reads, for
+  /// arguments typed `RefTo<AwsKendraQuerySuggestionsBlockList>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsKendraQuerySuggestionsBlockList> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

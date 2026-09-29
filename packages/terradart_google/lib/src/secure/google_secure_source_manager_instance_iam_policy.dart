@@ -43,6 +43,10 @@ final class GoogleSecureSourceManagerInstanceIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleSecureSourceManagerInstanceIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSecureSourceManagerInstanceIamPolicy>`.
+  RefTo<GoogleSecureSourceManagerInstanceIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

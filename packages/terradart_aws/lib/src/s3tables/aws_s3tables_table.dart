@@ -121,6 +121,10 @@ final class AwsS3tablesTable extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3tablesTableSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3tablesTable>`.
+  RefTo<AwsS3tablesTable> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

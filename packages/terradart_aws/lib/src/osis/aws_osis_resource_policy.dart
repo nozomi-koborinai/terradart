@@ -30,4 +30,8 @@ final class AwsOsisResourcePolicy extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsOsisResourcePolicySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOsisResourcePolicy>`.
+  RefTo<AwsOsisResourcePolicy> get ref => RefTo.of(this);
 }

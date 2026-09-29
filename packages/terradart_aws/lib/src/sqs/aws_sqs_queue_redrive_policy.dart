@@ -31,6 +31,10 @@ final class AwsSqsQueueRedrivePolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSqsQueueRedrivePolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSqsQueueRedrivePolicy>`.
+  RefTo<AwsSqsQueueRedrivePolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

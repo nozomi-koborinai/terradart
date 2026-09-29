@@ -57,10 +57,17 @@ class DataSourceWrapperEmitter {
     required this.overrides,
     this.rawDataSourceSchemas = const {},
     this.providerEnums = ProviderEnums.off,
+    this.resourceDirs = const {},
   });
 
   /// The `--provider-enums` gate; supplies the nested helpers' enum values.
   final ProviderEnums providerEnums;
+
+  /// Terraform type → `outputDir` of every resource wrapper the same wrap
+  /// run emits. A data source whose type is in it reads that resource, so its
+  /// wrapper imports the resource's file and carries the resource's `ref`
+  /// getter.
+  final Map<String, String> resourceDirs;
 
   /// `Map<terraformType, override>` for data source entries.
   /// Keys must match [ResourceDef.terraformType].
@@ -137,6 +144,19 @@ class DataSourceWrapperEmitter {
       buf.writeln(imp);
     }
     buf.writeln("import 'package:terradart_core/terradart_core.dart';");
+    final twinDir = resourceDirs[def.terraformType];
+    final twinClass = twinDir == null ? null : snakeToPascal(def.terraformType);
+    final derivedGetters = override.deriveOutputGetters
+        ? emitDerivedOutputGetters(def)
+        : '';
+    final emitsRef =
+        twinClass != null &&
+        !RegExp(
+          r'\bget ref\b',
+        ).hasMatch('$derivedGetters${override.extraGetters ?? ''}');
+    if (emitsRef) {
+      buf.writeln("import '../$twinDir/${def.terraformType}.dart';");
+    }
     buf.writeln();
 
     // File-leading comment block: a verbatim narrative comment that lives
@@ -268,15 +288,18 @@ class DataSourceWrapperEmitter {
     buf.writeln('  @override');
     buf.writeln('  Set<String> get sensitiveFields => $sensitiveConst;');
 
+    if (emitsRef) {
+      buf
+        ..writeln()
+        ..write(emitDataSourceRefGetter(def.terraformType, twinClass));
+    }
+
     // Phase A3: derive output-attribute getters (nameRef, id, pure
     // computed-only) from the IR when the override opts in via
     // `deriveOutputGetters: true`. Mirrors WrapperEmitter's path exactly.
-    if (override.deriveOutputGetters) {
-      final derived = emitDerivedOutputGetters(def);
-      if (derived.isNotEmpty) {
-        buf.writeln();
-        buf.write(derived);
-      }
+    if (derivedGetters.isNotEmpty) {
+      buf.writeln();
+      buf.write(derivedGetters);
     }
 
     // Extra getters (TfRef shortcuts). Same verbatim-with-trailing-newline

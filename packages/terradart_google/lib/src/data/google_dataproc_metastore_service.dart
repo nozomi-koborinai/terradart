@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dataproc/google_dataproc_metastore_service.dart';
 
 /// Sensitive field paths for `google_dataproc_metastore_service`.
 const Set<String> _googleDataprocMetastoreServiceSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleDataprocMetastoreService extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleDataprocMetastoreServiceSensitive;
+
+  /// A reference to the `google_dataproc_metastore_service` this data source reads, for
+  /// arguments typed `RefTo<GoogleDataprocMetastoreService>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleDataprocMetastoreService> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

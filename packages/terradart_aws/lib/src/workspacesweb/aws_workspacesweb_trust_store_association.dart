@@ -31,4 +31,8 @@ final class AwsWorkspaceswebTrustStoreAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsWorkspaceswebTrustStoreAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebTrustStoreAssociation>`.
+  RefTo<AwsWorkspaceswebTrustStoreAssociation> get ref => RefTo.of(this);
 }

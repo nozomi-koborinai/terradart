@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../image/cloudflare_image.dart';
 
 /// Sensitive field paths for `cloudflare_image`.
 const Set<String> _cloudflareImageSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataCloudflareImage extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareImageSensitive;
+
+  /// A reference to the `cloudflare_image` this data source reads, for
+  /// arguments typed `RefTo<CloudflareImage>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareImage> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

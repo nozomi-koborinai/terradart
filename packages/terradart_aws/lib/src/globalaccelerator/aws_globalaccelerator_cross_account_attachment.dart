@@ -60,6 +60,10 @@ final class AwsGlobalacceleratorCrossAccountAttachment extends Resource {
   Set<String> get sensitiveFields =>
       _awsGlobalacceleratorCrossAccountAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlobalacceleratorCrossAccountAttachment>`.
+  RefTo<AwsGlobalacceleratorCrossAccountAttachment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -50,6 +50,10 @@ final class GoogleGkeBackupRestoreChannel extends Resource {
   @override
   Set<String> get sensitiveFields => _googleGkeBackupRestoreChannelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeBackupRestoreChannel>`.
+  RefTo<GoogleGkeBackupRestoreChannel> get ref => RefTo.of(this);
+
   /// Reference to `destination_project_id` attribute.
   TfRef<String> get destinationProjectId =>
       TfRef.attribute<String>(this, 'destination_project_id');

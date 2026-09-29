@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloud_run/google_cloud_run_v2_worker_pool.dart';
 
 /// Sensitive field paths for `google_cloud_run_v2_worker_pool`.
 const Set<String> _googleCloudRunV2WorkerPoolSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleCloudRunV2WorkerPool extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleCloudRunV2WorkerPoolSensitive;
+
+  /// A reference to the `google_cloud_run_v2_worker_pool` this data source reads, for
+  /// arguments typed `RefTo<GoogleCloudRunV2WorkerPool>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleCloudRunV2WorkerPool> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

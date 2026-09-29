@@ -52,6 +52,10 @@ final class AwsAppstreamUser extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppstreamUserSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppstreamUser>`.
+  RefTo<AwsAppstreamUser> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

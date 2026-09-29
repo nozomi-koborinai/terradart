@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_subnet.dart';
 
 /// Sensitive field paths for `aws_subnet`.
 const Set<String> _awsSubnetSensitive = <String>{};
@@ -61,6 +62,11 @@ final class DataAwsSubnet extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSubnetSensitive;
+
+  /// A reference to the `aws_subnet` this data source reads, for
+  /// arguments typed `RefTo<AwsSubnet>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsSubnet> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

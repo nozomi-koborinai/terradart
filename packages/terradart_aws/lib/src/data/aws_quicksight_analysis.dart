@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../quicksight/aws_quicksight_analysis.dart';
 
 /// Sensitive field paths for `aws_quicksight_analysis`.
 const Set<String> _awsQuicksightAnalysisSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsQuicksightAnalysis extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsQuicksightAnalysisSensitive;
+
+  /// A reference to the `aws_quicksight_analysis` this data source reads, for
+  /// arguments typed `RefTo<AwsQuicksightAnalysis>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsQuicksightAnalysis> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -78,6 +78,10 @@ final class GoogleNetworkSecurityFirewallEndpoint extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkSecurityFirewallEndpointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkSecurityFirewallEndpoint>`.
+  RefTo<GoogleNetworkSecurityFirewallEndpoint> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

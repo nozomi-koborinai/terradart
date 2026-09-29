@@ -44,6 +44,10 @@ final class GoogleColabRuntimeTemplateIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleColabRuntimeTemplateIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleColabRuntimeTemplateIamBinding>`.
+  RefTo<GoogleColabRuntimeTemplateIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

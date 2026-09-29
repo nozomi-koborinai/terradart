@@ -56,6 +56,10 @@ final class GoogleVertexAiMetadataStore extends Resource {
   @override
   Set<String> get sensitiveFields => _googleVertexAiMetadataStoreSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVertexAiMetadataStore>`.
+  RefTo<GoogleVertexAiMetadataStore> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

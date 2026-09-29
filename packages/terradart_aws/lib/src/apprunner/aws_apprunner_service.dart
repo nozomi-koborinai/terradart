@@ -594,6 +594,10 @@ final class AwsApprunnerService extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApprunnerServiceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApprunnerService>`.
+  RefTo<AwsApprunnerService> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

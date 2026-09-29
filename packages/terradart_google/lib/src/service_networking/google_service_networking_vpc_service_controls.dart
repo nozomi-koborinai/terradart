@@ -63,6 +63,10 @@ final class GoogleServiceNetworkingVpcServiceControls extends Resource {
   Set<String> get sensitiveFields =>
       _googleServiceNetworkingVpcServiceControlsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleServiceNetworkingVpcServiceControls>`.
+  RefTo<GoogleServiceNetworkingVpcServiceControls> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

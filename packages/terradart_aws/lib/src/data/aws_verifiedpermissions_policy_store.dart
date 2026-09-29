@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../verifiedpermissions/aws_verifiedpermissions_policy_store.dart';
 
 /// Sensitive field paths for `aws_verifiedpermissions_policy_store`.
 const Set<String> _awsVerifiedpermissionsPolicyStoreSensitive = <String>{};
@@ -24,6 +25,11 @@ final class DataAwsVerifiedpermissionsPolicyStore extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsVerifiedpermissionsPolicyStoreSensitive;
+
+  /// A reference to the `aws_verifiedpermissions_policy_store` this data source reads, for
+  /// arguments typed `RefTo<AwsVerifiedpermissionsPolicyStore>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsVerifiedpermissionsPolicyStore> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

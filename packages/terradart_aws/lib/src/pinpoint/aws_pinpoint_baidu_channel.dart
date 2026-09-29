@@ -38,6 +38,10 @@ final class AwsPinpointBaiduChannel extends Resource {
   @override
   Set<String> get sensitiveFields => _awsPinpointBaiduChannelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointBaiduChannel>`.
+  RefTo<AwsPinpointBaiduChannel> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

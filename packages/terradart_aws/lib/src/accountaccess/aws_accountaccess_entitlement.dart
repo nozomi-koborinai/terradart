@@ -108,6 +108,10 @@ final class AwsAccountaccessEntitlement extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAccountaccessEntitlementSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAccountaccessEntitlement>`.
+  RefTo<AwsAccountaccessEntitlement> get ref => RefTo.of(this);
+
   /// Reference to `entitlement_id` attribute.
   TfRef<String> get entitlementId =>
       TfRef.attribute<String>(this, 'entitlement_id');

@@ -30,6 +30,10 @@ final class CloudflareUniversalSslSetting extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareUniversalSslSettingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareUniversalSslSetting>`.
+  RefTo<CloudflareUniversalSslSetting> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

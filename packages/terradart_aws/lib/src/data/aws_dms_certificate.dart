@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dms/aws_dms_certificate.dart';
 
 /// Sensitive field paths for `aws_dms_certificate`.
 const Set<String> _awsDmsCertificateSensitive = <String>{
@@ -31,6 +32,11 @@ final class DataAwsDmsCertificate extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsDmsCertificateSensitive;
+
+  /// A reference to the `aws_dms_certificate` this data source reads, for
+  /// arguments typed `RefTo<AwsDmsCertificate>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsDmsCertificate> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

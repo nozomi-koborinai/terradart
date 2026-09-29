@@ -48,6 +48,10 @@ final class AwsEc2InstanceConnectEndpoint extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2InstanceConnectEndpointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2InstanceConnectEndpoint>`.
+  RefTo<AwsEc2InstanceConnectEndpoint> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

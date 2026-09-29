@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../s3/aws_s3_bucket_notification.dart';
 
 /// Sensitive field paths for `aws_s3_bucket_notification`.
 const Set<String> _awsS3BucketNotificationSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsS3BucketNotification extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsS3BucketNotificationSensitive;
+
+  /// A reference to the `aws_s3_bucket_notification` this data source reads, for
+  /// arguments typed `RefTo<AwsS3BucketNotification>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsS3BucketNotification> get ref => RefTo.read(this);
 
   /// Reference to `eventbridge` attribute.
   TfRef<bool> get eventbridge => TfRef.attribute<bool>(this, 'eventbridge');

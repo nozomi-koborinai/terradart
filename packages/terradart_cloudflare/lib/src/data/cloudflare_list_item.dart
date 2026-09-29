@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../rules/cloudflare_list_item.dart';
 
 /// Sensitive field paths for `cloudflare_list_item`.
 const Set<String> _cloudflareListItemSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataCloudflareListItem extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareListItemSensitive;
+
+  /// A reference to the `cloudflare_list_item` this data source reads, for
+  /// arguments typed `RefTo<CloudflareListItem>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareListItem> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -92,6 +92,10 @@ final class CloudflareR2BucketEventNotification extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareR2BucketEventNotificationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareR2BucketEventNotification>`.
+  RefTo<CloudflareR2BucketEventNotification> get ref => RefTo.of(this);
+
   /// Reference to `queue_name` attribute.
   TfRef<String> get queueName => TfRef.attribute<String>(this, 'queue_name');
 }

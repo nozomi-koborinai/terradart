@@ -77,6 +77,10 @@ final class GoogleCloudIdentityGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudIdentityGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudIdentityGroup>`.
+  RefTo<GoogleCloudIdentityGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -26,6 +26,10 @@ final class AwsLightsailStaticIp extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLightsailStaticIpSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLightsailStaticIp>`.
+  RefTo<AwsLightsailStaticIp> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

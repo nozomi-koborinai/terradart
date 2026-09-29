@@ -33,6 +33,10 @@ final class AwsDynamodbTag extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDynamodbTagSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDynamodbTag>`.
+  RefTo<AwsDynamodbTag> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

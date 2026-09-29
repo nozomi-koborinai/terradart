@@ -198,4 +198,8 @@ final class AwsArczonalshiftZonalAutoshiftConfiguration extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsArczonalshiftZonalAutoshiftConfigurationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsArczonalshiftZonalAutoshiftConfiguration>`.
+  RefTo<AwsArczonalshiftZonalAutoshiftConfiguration> get ref => RefTo.of(this);
 }

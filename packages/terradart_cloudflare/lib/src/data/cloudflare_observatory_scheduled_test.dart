@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../observatory/cloudflare_observatory_scheduled_test.dart';
 
 /// Sensitive field paths for `cloudflare_observatory_scheduled_test`.
 const Set<String> _cloudflareObservatoryScheduledTestSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataCloudflareObservatoryScheduledTest extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareObservatoryScheduledTestSensitive;
+
+  /// A reference to the `cloudflare_observatory_scheduled_test` this data source reads, for
+  /// arguments typed `RefTo<CloudflareObservatoryScheduledTest>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareObservatoryScheduledTest> get ref => RefTo.read(this);
 
   /// Reference to `frequency` attribute.
   TfRef<String> get frequency => TfRef.attribute<String>(this, 'frequency');

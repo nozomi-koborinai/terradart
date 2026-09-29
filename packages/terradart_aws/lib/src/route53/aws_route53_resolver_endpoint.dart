@@ -109,6 +109,10 @@ final class AwsRoute53ResolverEndpoint extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRoute53ResolverEndpointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53ResolverEndpoint>`.
+  RefTo<AwsRoute53ResolverEndpoint> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -876,6 +876,10 @@ final class AwsGlueCatalogTable extends Resource {
   @override
   Set<String> get sensitiveFields => _awsGlueCatalogTableSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlueCatalogTable>`.
+  RefTo<AwsGlueCatalogTable> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

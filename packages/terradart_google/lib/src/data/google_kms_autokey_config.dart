@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../kms/google_kms_autokey_config.dart';
 
 /// Sensitive field paths for `google_kms_autokey_config`.
 const Set<String> _googleKmsAutokeyConfigSensitive = <String>{};
@@ -22,6 +23,11 @@ final class DataGoogleKmsAutokeyConfig extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleKmsAutokeyConfigSensitive;
+
+  /// A reference to the `google_kms_autokey_config` this data source reads, for
+  /// arguments typed `RefTo<GoogleKmsAutokeyConfig>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleKmsAutokeyConfig> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

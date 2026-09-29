@@ -33,6 +33,10 @@ final class AwsVpcIpamPreviewNextCidr extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpcIpamPreviewNextCidrSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcIpamPreviewNextCidr>`.
+  RefTo<AwsVpcIpamPreviewNextCidr> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -148,6 +148,10 @@ final class AwsApigatewayv2DomainName extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApigatewayv2DomainNameSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApigatewayv2DomainName>`.
+  RefTo<AwsApigatewayv2DomainName> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

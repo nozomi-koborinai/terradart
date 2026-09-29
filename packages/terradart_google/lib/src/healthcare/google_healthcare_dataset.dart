@@ -36,6 +36,10 @@ final class GoogleHealthcareDataset extends Resource {
   @override
   Set<String> get sensitiveFields => _googleHealthcareDatasetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleHealthcareDataset>`.
+  RefTo<GoogleHealthcareDataset> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

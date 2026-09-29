@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dns/cloudflare_dns_zone_transfers_acl.dart';
 
 /// Sensitive field paths for `cloudflare_dns_zone_transfers_acl`.
 const Set<String> _cloudflareDnsZoneTransfersAclSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataCloudflareDnsZoneTransfersAcl extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareDnsZoneTransfersAclSensitive;
+
+  /// A reference to the `cloudflare_dns_zone_transfers_acl` this data source reads, for
+  /// arguments typed `RefTo<CloudflareDnsZoneTransfersAcl>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareDnsZoneTransfersAcl> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

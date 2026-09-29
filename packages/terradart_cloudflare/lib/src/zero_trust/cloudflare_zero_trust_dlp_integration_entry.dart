@@ -38,6 +38,10 @@ final class CloudflareZeroTrustDlpIntegrationEntry extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDlpIntegrationEntrySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDlpIntegrationEntry>`.
+  RefTo<CloudflareZeroTrustDlpIntegrationEntry> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -69,6 +69,10 @@ final class GoogleVertexAiFeatureGroupIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleVertexAiFeatureGroupIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVertexAiFeatureGroupIamBinding>`.
+  RefTo<GoogleVertexAiFeatureGroupIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

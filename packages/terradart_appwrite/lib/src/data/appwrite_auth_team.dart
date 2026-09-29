@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../auth/appwrite_auth_team.dart';
 
 /// Sensitive field paths for `appwrite_auth_team`.
 const Set<String> _appwriteAuthTeamSensitive = <String>{};
@@ -25,6 +26,11 @@ final class DataAppwriteAuthTeam extends Data {
 
   @override
   Set<String> get sensitiveFields => _appwriteAuthTeamSensitive;
+
+  /// A reference to the `appwrite_auth_team` this data source reads, for
+  /// arguments typed `RefTo<AppwriteAuthTeam>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AppwriteAuthTeam> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

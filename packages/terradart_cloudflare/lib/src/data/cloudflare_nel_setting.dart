@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../nel/cloudflare_nel_setting.dart';
 
 /// Sensitive field paths for `cloudflare_nel_setting`.
 const Set<String> _cloudflareNelSettingSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataCloudflareNelSetting extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareNelSettingSensitive;
+
+  /// A reference to the `cloudflare_nel_setting` this data source reads, for
+  /// arguments typed `RefTo<CloudflareNelSetting>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareNelSetting> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

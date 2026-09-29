@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../security/cloudflare_leaked_credential_check_rule.dart';
 
 /// Sensitive field paths for `cloudflare_leaked_credential_check_rule`.
 const Set<String> _cloudflareLeakedCredentialCheckRuleSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataCloudflareLeakedCredentialCheckRule extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareLeakedCredentialCheckRuleSensitive;
+
+  /// A reference to the `cloudflare_leaked_credential_check_rule` this data source reads, for
+  /// arguments typed `RefTo<CloudflareLeakedCredentialCheckRule>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareLeakedCredentialCheckRule> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

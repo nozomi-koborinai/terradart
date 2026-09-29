@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_oauth_client.dart';
 
 /// Sensitive field paths for `cloudflare_oauth_client`.
 const Set<String> _cloudflareOauthClientSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareOauthClient extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareOauthClientSensitive;
+
+  /// A reference to the `cloudflare_oauth_client` this data source reads, for
+  /// arguments typed `RefTo<CloudflareOauthClient>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareOauthClient> get ref => RefTo.read(this);
 
   /// Reference to `allowed_cors_origins` attribute.
   TfRef<List<String>> get allowedCorsOrigins =>

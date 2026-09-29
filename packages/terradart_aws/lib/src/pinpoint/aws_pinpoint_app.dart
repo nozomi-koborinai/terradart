@@ -180,6 +180,10 @@ final class AwsPinpointApp extends Resource {
   @override
   Set<String> get sensitiveFields => _awsPinpointAppSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointApp>`.
+  RefTo<AwsPinpointApp> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

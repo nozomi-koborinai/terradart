@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cognito/aws_cognito_user_pool.dart';
 
 /// Sensitive field paths for `aws_cognito_user_pool`.
 const Set<String> _awsCognitoUserPoolSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsCognitoUserPool extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsCognitoUserPoolSensitive;
+
+  /// A reference to the `aws_cognito_user_pool` this data source reads, for
+  /// arguments typed `RefTo<AwsCognitoUserPool>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsCognitoUserPool> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

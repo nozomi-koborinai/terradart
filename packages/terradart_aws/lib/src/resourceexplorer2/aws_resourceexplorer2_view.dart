@@ -66,6 +66,10 @@ final class AwsResourceexplorer2View extends Resource {
   @override
   Set<String> get sensitiveFields => _awsResourceexplorer2ViewSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsResourceexplorer2View>`.
+  RefTo<AwsResourceexplorer2View> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

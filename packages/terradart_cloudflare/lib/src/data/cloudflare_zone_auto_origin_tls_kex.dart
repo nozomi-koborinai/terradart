@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone_auto_origin_tls_kex.dart';
 
 /// Sensitive field paths for `cloudflare_zone_auto_origin_tls_kex`.
 const Set<String> _cloudflareZoneAutoOriginTlsKexSensitive = <String>{};
@@ -19,6 +20,11 @@ final class DataCloudflareZoneAutoOriginTlsKex extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneAutoOriginTlsKexSensitive;
+
+  /// A reference to the `cloudflare_zone_auto_origin_tls_kex` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZoneAutoOriginTlsKex>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZoneAutoOriginTlsKex> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dms/aws_dms_endpoint.dart';
 
 /// Sensitive field paths for `aws_dms_endpoint`.
 const Set<String> _awsDmsEndpointSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsDmsEndpoint extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsDmsEndpointSensitive;
+
+  /// A reference to the `aws_dms_endpoint` this data source reads, for
+  /// arguments typed `RefTo<AwsDmsEndpoint>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsDmsEndpoint> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

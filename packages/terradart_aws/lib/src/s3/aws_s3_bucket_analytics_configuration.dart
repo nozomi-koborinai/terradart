@@ -164,6 +164,10 @@ final class AwsS3BucketAnalyticsConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsS3BucketAnalyticsConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketAnalyticsConfiguration>`.
+  RefTo<AwsS3BucketAnalyticsConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

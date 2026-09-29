@@ -197,6 +197,10 @@ final class AwsTranscribeLanguageModel extends Resource {
   @override
   Set<String> get sensitiveFields => _awsTranscribeLanguageModelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsTranscribeLanguageModel>`.
+  RefTo<AwsTranscribeLanguageModel> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

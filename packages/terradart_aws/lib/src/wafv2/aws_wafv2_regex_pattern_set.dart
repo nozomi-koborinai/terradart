@@ -123,6 +123,10 @@ final class AwsWafv2RegexPatternSet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWafv2RegexPatternSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafv2RegexPatternSet>`.
+  RefTo<AwsWafv2RegexPatternSet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

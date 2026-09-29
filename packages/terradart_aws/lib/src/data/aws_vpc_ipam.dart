@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_vpc_ipam.dart';
 
 /// Sensitive field paths for `aws_vpc_ipam`.
 const Set<String> _awsVpcIpamSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsVpcIpam extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsVpcIpamSensitive;
+
+  /// A reference to the `aws_vpc_ipam` this data source reads, for
+  /// arguments typed `RefTo<AwsVpcIpam>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsVpcIpam> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

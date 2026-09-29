@@ -268,6 +268,10 @@ final class GoogleDiscoveryEngineControl extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDiscoveryEngineControlSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDiscoveryEngineControl>`.
+  RefTo<GoogleDiscoveryEngineControl> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

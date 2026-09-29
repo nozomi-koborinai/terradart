@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_vpc.dart';
 
 /// Sensitive field paths for `aws_vpc`.
 const Set<String> _awsVpcSensitive = <String>{};
@@ -54,6 +55,11 @@ final class DataAwsVpc extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsVpcSensitive;
+
+  /// A reference to the `aws_vpc` this data source reads, for
+  /// arguments typed `RefTo<AwsVpc>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsVpc> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

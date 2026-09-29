@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ai/cloudflare_ai_gateway.dart';
 
 /// Sensitive field paths for `cloudflare_ai_gateway`.
 const Set<String> _cloudflareAiGatewaySensitive = <String>{};
@@ -44,6 +45,11 @@ final class DataCloudflareAiGateway extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareAiGatewaySensitive;
+
+  /// A reference to the `cloudflare_ai_gateway` this data source reads, for
+  /// arguments typed `RefTo<CloudflareAiGateway>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareAiGateway> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

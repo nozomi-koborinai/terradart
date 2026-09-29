@@ -41,6 +41,10 @@ final class GoogleApigeeEnvironmentIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleApigeeEnvironmentIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeEnvironmentIamBinding>`.
+  RefTo<GoogleApigeeEnvironmentIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

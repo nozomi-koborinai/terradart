@@ -31,6 +31,10 @@ final class AwsS3controlAccessPointPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3controlAccessPointPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3controlAccessPointPolicy>`.
+  RefTo<AwsS3controlAccessPointPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

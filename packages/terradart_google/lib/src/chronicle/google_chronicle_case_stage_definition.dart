@@ -39,4 +39,8 @@ final class GoogleChronicleCaseStageDefinition extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleChronicleCaseStageDefinitionSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleCaseStageDefinition>`.
+  RefTo<GoogleChronicleCaseStageDefinition> get ref => RefTo.of(this);
 }

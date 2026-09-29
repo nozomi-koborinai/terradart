@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../logging/google_logging_organization_settings.dart';
 
 /// Sensitive field paths for `google_logging_organization_settings`.
 const Set<String> _googleLoggingOrganizationSettingsSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataGoogleLoggingOrganizationSettings extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleLoggingOrganizationSettingsSensitive;
+
+  /// A reference to the `google_logging_organization_settings` this data source reads, for
+  /// arguments typed `RefTo<GoogleLoggingOrganizationSettings>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleLoggingOrganizationSettings> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

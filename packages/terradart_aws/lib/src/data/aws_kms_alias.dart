@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../kms/aws_kms_alias.dart';
 
 /// Sensitive field paths for `aws_kms_alias`.
 const Set<String> _awsKmsAliasSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsKmsAlias extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsKmsAliasSensitive;
+
+  /// A reference to the `aws_kms_alias` this data source reads, for
+  /// arguments typed `RefTo<AwsKmsAlias>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsKmsAlias> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -41,6 +41,10 @@ final class CloudflareContentScanning extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareContentScanningSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareContentScanning>`.
+  RefTo<CloudflareContentScanning> get ref => RefTo.of(this);
+
   /// Reference to `modified` attribute.
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');
 }

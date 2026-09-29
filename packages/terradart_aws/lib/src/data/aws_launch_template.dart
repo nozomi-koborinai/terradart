@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_launch_template.dart';
 
 /// Sensitive field paths for `aws_launch_template`.
 const Set<String> _awsLaunchTemplateSensitive = <String>{};
@@ -48,6 +49,11 @@ final class DataAwsLaunchTemplate extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLaunchTemplateSensitive;
+
+  /// A reference to the `aws_launch_template` this data source reads, for
+  /// arguments typed `RefTo<AwsLaunchTemplate>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsLaunchTemplate> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

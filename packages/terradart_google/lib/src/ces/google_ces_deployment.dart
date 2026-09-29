@@ -292,6 +292,10 @@ final class GoogleCesDeployment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCesDeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCesDeployment>`.
+  RefTo<GoogleCesDeployment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

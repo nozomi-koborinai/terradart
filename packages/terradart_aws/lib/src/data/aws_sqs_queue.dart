@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../sqs/aws_sqs_queue.dart';
 
 /// Sensitive field paths for `aws_sqs_queue`.
 const Set<String> _awsSqsQueueSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsSqsQueue extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSqsQueueSensitive;
+
+  /// A reference to the `aws_sqs_queue` this data source reads, for
+  /// arguments typed `RefTo<AwsSqsQueue>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsSqsQueue> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

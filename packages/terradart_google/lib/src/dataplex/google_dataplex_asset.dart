@@ -176,6 +176,10 @@ final class GoogleDataplexAsset extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexAssetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexAsset>`.
+  RefTo<GoogleDataplexAsset> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

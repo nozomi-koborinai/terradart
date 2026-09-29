@@ -34,6 +34,10 @@ final class AwsLakeformationIdentityCenterConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsLakeformationIdentityCenterConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLakeformationIdentityCenterConfiguration>`.
+  RefTo<AwsLakeformationIdentityCenterConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `application_arn` attribute.
   TfRef<String> get applicationArn =>
       TfRef.attribute<String>(this, 'application_arn');

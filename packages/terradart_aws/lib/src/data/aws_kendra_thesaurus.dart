@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../kendra/aws_kendra_thesaurus.dart';
 
 /// Sensitive field paths for `aws_kendra_thesaurus`.
 const Set<String> _awsKendraThesaurusSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsKendraThesaurus extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsKendraThesaurusSensitive;
+
+  /// A reference to the `aws_kendra_thesaurus` this data source reads, for
+  /// arguments typed `RefTo<AwsKendraThesaurus>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsKendraThesaurus> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../vertex_ai/google_vertex_ai_index.dart';
 
 /// Sensitive field paths for `google_vertex_ai_index`.
 const Set<String> _googleVertexAiIndexSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleVertexAiIndex extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleVertexAiIndexSensitive;
+
+  /// A reference to the `google_vertex_ai_index` this data source reads, for
+  /// arguments typed `RefTo<GoogleVertexAiIndex>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleVertexAiIndex> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

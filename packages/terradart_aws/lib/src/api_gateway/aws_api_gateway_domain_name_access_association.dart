@@ -52,6 +52,10 @@ final class AwsApiGatewayDomainNameAccessAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsApiGatewayDomainNameAccessAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayDomainNameAccessAssociation>`.
+  RefTo<AwsApiGatewayDomainNameAccessAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

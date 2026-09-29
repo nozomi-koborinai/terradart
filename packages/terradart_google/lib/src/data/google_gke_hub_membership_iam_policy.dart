@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../container/google_gke_hub_membership_iam_policy.dart';
 
 /// Sensitive field paths for `google_gke_hub_membership_iam_policy`.
 const Set<String> _googleGkeHubMembershipIamPolicySensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleGkeHubMembershipIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleGkeHubMembershipIamPolicySensitive;
+
+  /// A reference to the `google_gke_hub_membership_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleGkeHubMembershipIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleGkeHubMembershipIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -243,6 +243,10 @@ final class AwsCodebuildFleet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCodebuildFleetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCodebuildFleet>`.
+  RefTo<AwsCodebuildFleet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

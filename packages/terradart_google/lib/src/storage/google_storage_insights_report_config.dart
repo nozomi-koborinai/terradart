@@ -294,6 +294,10 @@ final class GoogleStorageInsightsReportConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleStorageInsightsReportConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleStorageInsightsReportConfig>`.
+  RefTo<GoogleStorageInsightsReportConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

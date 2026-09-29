@@ -35,6 +35,10 @@ final class AwsRoute53TrafficPolicyInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRoute53TrafficPolicyInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53TrafficPolicyInstance>`.
+  RefTo<AwsRoute53TrafficPolicyInstance> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

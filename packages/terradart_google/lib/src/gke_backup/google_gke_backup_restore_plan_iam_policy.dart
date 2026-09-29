@@ -41,6 +41,10 @@ final class GoogleGkeBackupRestorePlanIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleGkeBackupRestorePlanIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeBackupRestorePlanIamPolicy>`.
+  RefTo<GoogleGkeBackupRestorePlanIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

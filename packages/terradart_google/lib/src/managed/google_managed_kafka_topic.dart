@@ -63,6 +63,10 @@ final class GoogleManagedKafkaTopic extends Resource {
   @override
   Set<String> get sensitiveFields => _googleManagedKafkaTopicSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleManagedKafkaTopic>`.
+  RefTo<GoogleManagedKafkaTopic> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

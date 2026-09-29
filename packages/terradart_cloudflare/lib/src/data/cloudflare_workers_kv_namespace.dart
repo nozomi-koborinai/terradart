@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../workers/cloudflare_workers_kv_namespace.dart';
 
 /// Sensitive field paths for `cloudflare_workers_kv_namespace`.
 const Set<String> _cloudflareWorkersKvNamespaceSensitive = <String>{};
@@ -69,6 +70,11 @@ final class DataCloudflareWorkersKvNamespace extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareWorkersKvNamespaceSensitive;
+
+  /// A reference to the `cloudflare_workers_kv_namespace` this data source reads, for
+  /// arguments typed `RefTo<CloudflareWorkersKvNamespace>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareWorkersKvNamespace> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

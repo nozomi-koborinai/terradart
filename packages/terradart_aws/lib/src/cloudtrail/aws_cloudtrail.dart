@@ -319,6 +319,10 @@ final class AwsCloudtrail extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudtrailSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudtrail>`.
+  RefTo<AwsCloudtrail> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dms/aws_dms_replication_subnet_group.dart';
 
 /// Sensitive field paths for `aws_dms_replication_subnet_group`.
 const Set<String> _awsDmsReplicationSubnetGroupSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsDmsReplicationSubnetGroup extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsDmsReplicationSubnetGroupSensitive;
+
+  /// A reference to the `aws_dms_replication_subnet_group` this data source reads, for
+  /// arguments typed `RefTo<AwsDmsReplicationSubnetGroup>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsDmsReplicationSubnetGroup> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

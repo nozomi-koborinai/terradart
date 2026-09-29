@@ -42,6 +42,10 @@ final class GoogleContainerAnalysisNoteIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleContainerAnalysisNoteIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleContainerAnalysisNoteIamBinding>`.
+  RefTo<GoogleContainerAnalysisNoteIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

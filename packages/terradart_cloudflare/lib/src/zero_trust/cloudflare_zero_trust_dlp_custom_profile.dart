@@ -211,6 +211,10 @@ final class CloudflareZeroTrustDlpCustomProfile extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDlpCustomProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDlpCustomProfile>`.
+  RefTo<CloudflareZeroTrustDlpCustomProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

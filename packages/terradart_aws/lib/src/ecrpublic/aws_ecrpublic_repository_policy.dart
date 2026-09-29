@@ -31,6 +31,10 @@ final class AwsEcrpublicRepositoryPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEcrpublicRepositoryPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEcrpublicRepositoryPolicy>`.
+  RefTo<AwsEcrpublicRepositoryPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

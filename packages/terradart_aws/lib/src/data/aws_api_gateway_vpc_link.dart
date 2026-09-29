@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../api_gateway/aws_api_gateway_vpc_link.dart';
 
 /// Sensitive field paths for `aws_api_gateway_vpc_link`.
 const Set<String> _awsApiGatewayVpcLinkSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsApiGatewayVpcLink extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsApiGatewayVpcLinkSensitive;
+
+  /// A reference to the `aws_api_gateway_vpc_link` this data source reads, for
+  /// arguments typed `RefTo<AwsApiGatewayVpcLink>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsApiGatewayVpcLink> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

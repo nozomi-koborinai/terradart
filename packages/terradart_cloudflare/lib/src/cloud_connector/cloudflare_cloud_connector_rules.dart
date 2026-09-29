@@ -95,6 +95,10 @@ final class CloudflareCloudConnectorRules extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareCloudConnectorRulesSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareCloudConnectorRules>`.
+  RefTo<CloudflareCloudConnectorRules> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -82,6 +82,10 @@ final class AwsCloudfrontRealtimeLogConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudfrontRealtimeLogConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudfrontRealtimeLogConfig>`.
+  RefTo<AwsCloudfrontRealtimeLogConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

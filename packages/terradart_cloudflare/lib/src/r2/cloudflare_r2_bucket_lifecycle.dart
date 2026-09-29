@@ -264,4 +264,8 @@ final class CloudflareR2BucketLifecycle extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareR2BucketLifecycleSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareR2BucketLifecycle>`.
+  RefTo<CloudflareR2BucketLifecycle> get ref => RefTo.of(this);
 }

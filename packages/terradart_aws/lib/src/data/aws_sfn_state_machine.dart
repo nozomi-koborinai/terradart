@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../sfn/aws_sfn_state_machine.dart';
 
 /// Sensitive field paths for `aws_sfn_state_machine`.
 const Set<String> _awsSfnStateMachineSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsSfnStateMachine extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSfnStateMachineSensitive;
+
+  /// A reference to the `aws_sfn_state_machine` this data source reads, for
+  /// arguments typed `RefTo<AwsSfnStateMachine>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsSfnStateMachine> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -38,6 +38,10 @@ final class GoogleBigqueryConnectionIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleBigqueryConnectionIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryConnectionIamMember>`.
+  RefTo<GoogleBigqueryConnectionIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

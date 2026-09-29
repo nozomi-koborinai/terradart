@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../calls/cloudflare_calls_sfu_app.dart';
 
 /// Sensitive field paths for `cloudflare_calls_sfu_app`.
 const Set<String> _cloudflareCallsSfuAppSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareCallsSfuApp extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareCallsSfuAppSensitive;
+
+  /// A reference to the `cloudflare_calls_sfu_app` this data source reads, for
+  /// arguments typed `RefTo<CloudflareCallsSfuApp>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareCallsSfuApp> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

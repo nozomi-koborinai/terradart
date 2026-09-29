@@ -146,6 +146,10 @@ final class AwsSecurityhubAutomationRuleV2 extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecurityhubAutomationRuleV2Sensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityhubAutomationRuleV2>`.
+  RefTo<AwsSecurityhubAutomationRuleV2> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

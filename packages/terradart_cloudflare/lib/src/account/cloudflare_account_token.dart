@@ -129,6 +129,10 @@ final class CloudflareAccountToken extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareAccountTokenSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareAccountToken>`.
+  RefTo<CloudflareAccountToken> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

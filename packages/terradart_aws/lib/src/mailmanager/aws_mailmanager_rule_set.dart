@@ -2237,6 +2237,10 @@ final class AwsMailmanagerRuleSet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMailmanagerRuleSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMailmanagerRuleSet>`.
+  RefTo<AwsMailmanagerRuleSet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

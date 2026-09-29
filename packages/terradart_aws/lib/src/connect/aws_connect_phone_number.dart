@@ -299,6 +299,10 @@ final class AwsConnectPhoneNumber extends Resource {
   @override
   Set<String> get sensitiveFields => _awsConnectPhoneNumberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsConnectPhoneNumber>`.
+  RefTo<AwsConnectPhoneNumber> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

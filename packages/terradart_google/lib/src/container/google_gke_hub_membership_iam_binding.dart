@@ -42,6 +42,10 @@ final class GoogleGkeHubMembershipIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleGkeHubMembershipIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeHubMembershipIamBinding>`.
+  RefTo<GoogleGkeHubMembershipIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

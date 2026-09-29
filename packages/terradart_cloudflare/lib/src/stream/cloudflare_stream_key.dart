@@ -26,6 +26,10 @@ final class CloudflareStreamKey extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareStreamKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareStreamKey>`.
+  RefTo<CloudflareStreamKey> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

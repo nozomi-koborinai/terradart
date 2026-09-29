@@ -29,4 +29,8 @@ final class AwsMacie2OrganizationConfiguration extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsMacie2OrganizationConfigurationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMacie2OrganizationConfiguration>`.
+  RefTo<AwsMacie2OrganizationConfiguration> get ref => RefTo.of(this);
 }

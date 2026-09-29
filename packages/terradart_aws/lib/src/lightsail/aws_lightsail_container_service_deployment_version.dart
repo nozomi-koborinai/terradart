@@ -132,6 +132,11 @@ final class AwsLightsailContainerServiceDeploymentVersion extends Resource {
   Set<String> get sensitiveFields =>
       _awsLightsailContainerServiceDeploymentVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLightsailContainerServiceDeploymentVersion>`.
+  RefTo<AwsLightsailContainerServiceDeploymentVersion> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

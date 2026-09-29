@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../web3/cloudflare_web3_hostname.dart';
 
 /// Sensitive field paths for `cloudflare_web3_hostname`.
 const Set<String> _cloudflareWeb3HostnameSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataCloudflareWeb3Hostname extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareWeb3HostnameSensitive;
+
+  /// A reference to the `cloudflare_web3_hostname` this data source reads, for
+  /// arguments typed `RefTo<CloudflareWeb3Hostname>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareWeb3Hostname> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

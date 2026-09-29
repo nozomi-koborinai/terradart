@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ssmcontacts/aws_ssmcontacts_contact.dart';
 
 /// Sensitive field paths for `aws_ssmcontacts_contact`.
 const Set<String> _awsSsmcontactsContactSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsSsmcontactsContact extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSsmcontactsContactSensitive;
+
+  /// A reference to the `aws_ssmcontacts_contact` this data source reads, for
+  /// arguments typed `RefTo<AwsSsmcontactsContact>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsSsmcontactsContact> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

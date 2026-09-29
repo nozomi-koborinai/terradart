@@ -39,6 +39,10 @@ final class GoogleDataplexTaskIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexTaskIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexTaskIamMember>`.
+  RefTo<GoogleDataplexTaskIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

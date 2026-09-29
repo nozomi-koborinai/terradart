@@ -45,6 +45,10 @@ final class GoogleApigeeNatAddress extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApigeeNatAddressSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeNatAddress>`.
+  RefTo<GoogleApigeeNatAddress> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

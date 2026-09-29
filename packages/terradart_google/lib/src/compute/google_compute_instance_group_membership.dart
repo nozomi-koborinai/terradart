@@ -53,6 +53,10 @@ final class GoogleComputeInstanceGroupMembership extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeInstanceGroupMembershipSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeInstanceGroupMembership>`.
+  RefTo<GoogleComputeInstanceGroupMembership> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

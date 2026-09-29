@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dataplex/google_dataplex_entry_type_iam_policy.dart';
 
 /// Sensitive field paths for `google_dataplex_entry_type_iam_policy`.
 const Set<String> _googleDataplexEntryTypeIamPolicySensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleDataplexEntryTypeIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleDataplexEntryTypeIamPolicySensitive;
+
+  /// A reference to the `google_dataplex_entry_type_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleDataplexEntryTypeIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleDataplexEntryTypeIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

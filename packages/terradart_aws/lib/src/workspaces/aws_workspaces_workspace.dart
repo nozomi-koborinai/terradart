@@ -132,6 +132,10 @@ final class AwsWorkspacesWorkspace extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkspacesWorkspaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspacesWorkspace>`.
+  RefTo<AwsWorkspacesWorkspace> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -60,6 +60,10 @@ final class AwsDatasyncLocationObjectStorage extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDatasyncLocationObjectStorageSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatasyncLocationObjectStorage>`.
+  RefTo<AwsDatasyncLocationObjectStorage> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

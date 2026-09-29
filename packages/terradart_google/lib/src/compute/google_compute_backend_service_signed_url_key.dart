@@ -44,6 +44,10 @@ final class GoogleComputeBackendServiceSignedUrlKey extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeBackendServiceSignedUrlKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeBackendServiceSignedUrlKey>`.
+  RefTo<GoogleComputeBackendServiceSignedUrlKey> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -532,6 +532,10 @@ final class GoogleChronicleDashboardChart extends Resource {
   @override
   Set<String> get sensitiveFields => _googleChronicleDashboardChartSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleDashboardChart>`.
+  RefTo<GoogleChronicleDashboardChart> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

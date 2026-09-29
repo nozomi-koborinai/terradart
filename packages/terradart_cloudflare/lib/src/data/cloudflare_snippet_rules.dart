@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../snippet/cloudflare_snippet_rules.dart';
 
 /// Sensitive field paths for `cloudflare_snippet_rules`.
 const Set<String> _cloudflareSnippetRulesSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataCloudflareSnippetRules extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareSnippetRulesSensitive;
+
+  /// A reference to the `cloudflare_snippet_rules` this data source reads, for
+  /// arguments typed `RefTo<CloudflareSnippetRules>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareSnippetRules> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -37,6 +37,10 @@ final class AwsNeptunegraphPrivateGraphEndpoint extends Resource {
   Set<String> get sensitiveFields =>
       _awsNeptunegraphPrivateGraphEndpointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNeptunegraphPrivateGraphEndpoint>`.
+  RefTo<AwsNeptunegraphPrivateGraphEndpoint> get ref => RefTo.of(this);
+
   /// Reference to `private_graph_endpoint_identifier` attribute.
   TfRef<String> get privateGraphEndpointIdentifier =>
       TfRef.attribute<String>(this, 'private_graph_endpoint_identifier');

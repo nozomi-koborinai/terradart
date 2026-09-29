@@ -59,6 +59,10 @@ final class AwsEmrBlockPublicAccessConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsEmrBlockPublicAccessConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEmrBlockPublicAccessConfiguration>`.
+  RefTo<AwsEmrBlockPublicAccessConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

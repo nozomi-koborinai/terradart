@@ -82,6 +82,10 @@ final class AwsMskconnectCustomPlugin extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMskconnectCustomPluginSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMskconnectCustomPlugin>`.
+  RefTo<AwsMskconnectCustomPlugin> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

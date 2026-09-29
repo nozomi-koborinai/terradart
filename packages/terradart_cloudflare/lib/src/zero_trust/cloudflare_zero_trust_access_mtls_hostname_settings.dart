@@ -63,6 +63,11 @@ final class CloudflareZeroTrustAccessMtlsHostnameSettings extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustAccessMtlsHostnameSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustAccessMtlsHostnameSettings>`.
+  RefTo<CloudflareZeroTrustAccessMtlsHostnameSettings> get ref =>
+      RefTo.of(this);
+
   /// Reference to `china_network` attribute.
   TfRef<bool> get chinaNetwork => TfRef.attribute<bool>(this, 'china_network');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../rules/cloudflare_url_normalization_settings.dart';
 
 /// Sensitive field paths for `cloudflare_url_normalization_settings`.
 const Set<String> _cloudflareUrlNormalizationSettingsSensitive = <String>{};
@@ -40,6 +41,11 @@ final class DataCloudflareUrlNormalizationSettings extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareUrlNormalizationSettingsSensitive;
+
+  /// A reference to the `cloudflare_url_normalization_settings` this data source reads, for
+  /// arguments typed `RefTo<CloudflareUrlNormalizationSettings>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareUrlNormalizationSettings> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

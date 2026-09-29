@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_region_instant_snapshot_iam_policy.dart';
 
 /// Sensitive field paths for `google_compute_region_instant_snapshot_iam_policy`.
 const Set<String> _googleComputeRegionInstantSnapshotIamPolicySensitive =
@@ -34,6 +35,12 @@ final class DataGoogleComputeRegionInstantSnapshotIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeRegionInstantSnapshotIamPolicySensitive;
+
+  /// A reference to the `google_compute_region_instant_snapshot_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeRegionInstantSnapshotIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComputeRegionInstantSnapshotIamPolicy> get ref =>
+      RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -51,6 +51,10 @@ final class AwsPinpointsmsvoicev2ConfigurationSet extends Resource {
   Set<String> get sensitiveFields =>
       _awsPinpointsmsvoicev2ConfigurationSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointsmsvoicev2ConfigurationSet>`.
+  RefTo<AwsPinpointsmsvoicev2ConfigurationSet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

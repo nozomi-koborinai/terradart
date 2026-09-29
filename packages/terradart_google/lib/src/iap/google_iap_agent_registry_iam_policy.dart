@@ -37,6 +37,10 @@ final class GoogleIapAgentRegistryIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIapAgentRegistryIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapAgentRegistryIamPolicy>`.
+  RefTo<GoogleIapAgentRegistryIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

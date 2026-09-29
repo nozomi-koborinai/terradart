@@ -103,6 +103,10 @@ final class AwsSecurityGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecurityGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityGroup>`.
+  RefTo<AwsSecurityGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

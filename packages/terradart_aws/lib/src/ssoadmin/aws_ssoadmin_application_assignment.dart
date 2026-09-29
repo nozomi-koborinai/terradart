@@ -43,6 +43,10 @@ final class AwsSsoadminApplicationAssignment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSsoadminApplicationAssignmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSsoadminApplicationAssignment>`.
+  RefTo<AwsSsoadminApplicationAssignment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../lambda/aws_lambda_alias.dart';
 
 /// Sensitive field paths for `aws_lambda_alias`.
 const Set<String> _awsLambdaAliasSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsLambdaAlias extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLambdaAliasSensitive;
+
+  /// A reference to the `aws_lambda_alias` this data source reads, for
+  /// arguments typed `RefTo<AwsLambdaAlias>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsLambdaAlias> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

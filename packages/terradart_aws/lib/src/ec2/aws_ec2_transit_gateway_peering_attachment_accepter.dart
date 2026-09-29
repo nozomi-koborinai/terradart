@@ -34,6 +34,11 @@ final class AwsEc2TransitGatewayPeeringAttachmentAccepter extends Resource {
   Set<String> get sensitiveFields =>
       _awsEc2TransitGatewayPeeringAttachmentAccepterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2TransitGatewayPeeringAttachmentAccepter>`.
+  RefTo<AwsEc2TransitGatewayPeeringAttachmentAccepter> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

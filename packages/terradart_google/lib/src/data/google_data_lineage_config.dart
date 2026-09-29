@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dataplex/google_data_lineage_config.dart';
 
 /// Sensitive field paths for `google_data_lineage_config`.
 const Set<String> _googleDataLineageConfigSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleDataLineageConfig extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleDataLineageConfigSensitive;
+
+  /// A reference to the `google_data_lineage_config` this data source reads, for
+  /// arguments typed `RefTo<GoogleDataLineageConfig>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleDataLineageConfig> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

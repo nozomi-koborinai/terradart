@@ -326,4 +326,8 @@ final class AwsRoute53RecordsExclusive extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsRoute53RecordsExclusiveSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53RecordsExclusive>`.
+  RefTo<AwsRoute53RecordsExclusive> get ref => RefTo.of(this);
 }

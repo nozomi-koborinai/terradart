@@ -53,6 +53,10 @@ final class AwsAutoscalingTrafficSourceAttachment extends Resource {
   Set<String> get sensitiveFields =>
       _awsAutoscalingTrafficSourceAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAutoscalingTrafficSourceAttachment>`.
+  RefTo<AwsAutoscalingTrafficSourceAttachment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

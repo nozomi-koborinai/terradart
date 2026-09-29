@@ -123,6 +123,50 @@ void main() {
       );
     });
 
+    test('a data source with a resource twin carries its ref getter', () {
+      const override = WrapperOverride(
+        kind: WrapperOverrideKind.dataSource,
+        outputDir: 'data',
+        schemaStubBodyMode: SchemaStubBodyMode.bare,
+        paramOrder: ['project_id'],
+      );
+      String emit({required Map<String, String> resourceDirs, String? extra}) =>
+          DataSourceWrapperEmitter(
+            overrides: {
+              'google_project': extra == null
+                  ? override
+                  : WrapperOverride(
+                      kind: WrapperOverrideKind.dataSource,
+                      outputDir: 'data',
+                      schemaStubBodyMode: SchemaStubBodyMode.bare,
+                      paramOrder: const ['project_id'],
+                      extraGetters: extra,
+                    ),
+            },
+            resourceDirs: resourceDirs,
+          ).emit(_googleProject, providerSource: 'hashicorp/google');
+
+      final twin = emit(resourceDirs: {'google_project': 'resourcemanager'});
+      expect(
+        twin,
+        contains("import '../resourcemanager/google_project.dart';"),
+      );
+      expect(
+        twin,
+        contains('RefTo<GoogleProject> get ref => RefTo.read(this);'),
+      );
+
+      final orphan = emit(resourceDirs: const {});
+      expect(orphan, isNot(contains('RefTo')));
+
+      final taken = emit(
+        resourceDirs: {'google_project': 'resourcemanager'},
+        extra:
+            "  TfRef<String> get ref => TfRef.attribute<String>(this, 'ref');\n",
+      );
+      expect(taken, isNot(contains('RefTo')));
+    });
+
     // L2b-4 — extends Data, not Resource.
     //
     // Plan 5.X (v0.5.0-dev): `Data<S>` / `Resource<S>` generics are gone,

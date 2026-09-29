@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_access_ai_controls_mcp_server.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_ai_controls_mcp_server`.
 const Set<String> _cloudflareZeroTrustAccessAiControlsMcpServerSensitive =
@@ -47,6 +48,12 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpServer extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustAccessAiControlsMcpServerSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_access_ai_controls_mcp_server` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustAccessAiControlsMcpServer>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZeroTrustAccessAiControlsMcpServer> get ref =>
+      RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

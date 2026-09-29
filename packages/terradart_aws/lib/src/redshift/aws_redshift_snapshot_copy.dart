@@ -39,6 +39,10 @@ final class AwsRedshiftSnapshotCopy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRedshiftSnapshotCopySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftSnapshotCopy>`.
+  RefTo<AwsRedshiftSnapshotCopy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

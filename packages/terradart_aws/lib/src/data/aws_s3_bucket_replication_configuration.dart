@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../s3/aws_s3_bucket_replication_configuration.dart';
 
 /// Sensitive field paths for `aws_s3_bucket_replication_configuration`.
 const Set<String> _awsS3BucketReplicationConfigurationSensitive = <String>{};
@@ -24,6 +25,11 @@ final class DataAwsS3BucketReplicationConfiguration extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsS3BucketReplicationConfigurationSensitive;
+
+  /// A reference to the `aws_s3_bucket_replication_configuration` this data source reads, for
+  /// arguments typed `RefTo<AwsS3BucketReplicationConfiguration>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsS3BucketReplicationConfiguration> get ref => RefTo.read(this);
 
   /// Reference to `role` attribute.
   TfRef<String> get role => TfRef.attribute<String>(this, 'role');

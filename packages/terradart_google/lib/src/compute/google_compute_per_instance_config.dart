@@ -243,6 +243,10 @@ final class GoogleComputePerInstanceConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputePerInstanceConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputePerInstanceConfig>`.
+  RefTo<GoogleComputePerInstanceConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

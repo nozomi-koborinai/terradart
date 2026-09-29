@@ -143,6 +143,10 @@ final class AwsDocdbClusterInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDocdbClusterInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDocdbClusterInstance>`.
+  RefTo<AwsDocdbClusterInstance> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

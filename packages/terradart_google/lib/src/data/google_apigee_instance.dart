@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../apigee/google_apigee_instance.dart';
 
 /// Sensitive field paths for `google_apigee_instance`.
 const Set<String> _googleApigeeInstanceSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataGoogleApigeeInstance extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleApigeeInstanceSensitive;
+
+  /// A reference to the `google_apigee_instance` this data source reads, for
+  /// arguments typed `RefTo<GoogleApigeeInstance>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleApigeeInstance> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

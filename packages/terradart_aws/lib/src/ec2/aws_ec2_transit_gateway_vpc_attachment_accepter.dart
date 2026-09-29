@@ -42,6 +42,10 @@ final class AwsEc2TransitGatewayVpcAttachmentAccepter extends Resource {
   Set<String> get sensitiveFields =>
       _awsEc2TransitGatewayVpcAttachmentAccepterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2TransitGatewayVpcAttachmentAccepter>`.
+  RefTo<AwsEc2TransitGatewayVpcAttachmentAccepter> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

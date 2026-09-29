@@ -35,6 +35,10 @@ final class AwsLocationRouteCalculator extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLocationRouteCalculatorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLocationRouteCalculator>`.
+  RefTo<AwsLocationRouteCalculator> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

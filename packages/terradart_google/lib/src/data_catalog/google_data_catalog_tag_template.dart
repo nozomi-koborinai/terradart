@@ -156,6 +156,10 @@ final class GoogleDataCatalogTagTemplate extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataCatalogTagTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataCatalogTagTemplate>`.
+  RefTo<GoogleDataCatalogTagTemplate> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

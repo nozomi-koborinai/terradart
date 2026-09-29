@@ -46,4 +46,9 @@ final class GoogleBigqueryDataTransferDataSourceEnrollment extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleBigqueryDataTransferDataSourceEnrollmentSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryDataTransferDataSourceEnrollment>`.
+  RefTo<GoogleBigqueryDataTransferDataSourceEnrollment> get ref =>
+      RefTo.of(this);
 }

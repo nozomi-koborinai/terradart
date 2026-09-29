@@ -38,4 +38,8 @@ final class GoogleBiglakeHiveCatalog extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleBiglakeHiveCatalogSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBiglakeHiveCatalog>`.
+  RefTo<GoogleBiglakeHiveCatalog> get ref => RefTo.of(this);
 }

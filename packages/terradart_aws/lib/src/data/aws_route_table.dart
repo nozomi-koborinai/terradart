@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_route_table.dart';
 
 /// Sensitive field paths for `aws_route_table`.
 const Set<String> _awsRouteTableSensitive = <String>{};
@@ -54,6 +55,11 @@ final class DataAwsRouteTable extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsRouteTableSensitive;
+
+  /// A reference to the `aws_route_table` this data source reads, for
+  /// arguments typed `RefTo<AwsRouteTable>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsRouteTable> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

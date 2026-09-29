@@ -37,6 +37,10 @@ final class CloudflareStreamCaptionLanguage extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareStreamCaptionLanguageSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareStreamCaptionLanguage>`.
+  RefTo<CloudflareStreamCaptionLanguage> get ref => RefTo.of(this);
+
   /// Reference to `generated` attribute.
   TfRef<bool> get generated => TfRef.attribute<bool>(this, 'generated');
 

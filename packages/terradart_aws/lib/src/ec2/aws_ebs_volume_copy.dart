@@ -54,6 +54,10 @@ final class AwsEbsVolumeCopy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEbsVolumeCopySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEbsVolumeCopy>`.
+  RefTo<AwsEbsVolumeCopy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

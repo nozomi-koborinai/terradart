@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../parameter_manager/google_parameter_manager_parameter_version.dart';
 
 /// Sensitive field paths for `google_parameter_manager_parameter_version`.
 const Set<String> _googleParameterManagerParameterVersionSensitive = <String>{
@@ -34,6 +35,11 @@ final class DataGoogleParameterManagerParameterVersion extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleParameterManagerParameterVersionSensitive;
+
+  /// A reference to the `google_parameter_manager_parameter_version` this data source reads, for
+  /// arguments typed `RefTo<GoogleParameterManagerParameterVersion>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleParameterManagerParameterVersion> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

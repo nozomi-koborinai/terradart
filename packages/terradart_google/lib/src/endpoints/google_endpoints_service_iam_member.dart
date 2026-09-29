@@ -33,6 +33,10 @@ final class GoogleEndpointsServiceIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleEndpointsServiceIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleEndpointsServiceIamMember>`.
+  RefTo<GoogleEndpointsServiceIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

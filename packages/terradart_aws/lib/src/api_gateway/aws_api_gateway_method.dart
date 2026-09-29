@@ -52,6 +52,10 @@ final class AwsApiGatewayMethod extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApiGatewayMethodSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayMethod>`.
+  RefTo<AwsApiGatewayMethod> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

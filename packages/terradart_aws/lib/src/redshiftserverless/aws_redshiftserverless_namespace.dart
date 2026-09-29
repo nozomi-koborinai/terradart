@@ -176,6 +176,10 @@ final class AwsRedshiftserverlessNamespace extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRedshiftserverlessNamespaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftserverlessNamespace>`.
+  RefTo<AwsRedshiftserverlessNamespace> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

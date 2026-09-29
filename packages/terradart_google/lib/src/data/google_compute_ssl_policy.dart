@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_ssl_policy.dart';
 
 /// Sensitive field paths for `google_compute_ssl_policy`.
 const Set<String> _googleComputeSslPolicySensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleComputeSslPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleComputeSslPolicySensitive;
+
+  /// A reference to the `google_compute_ssl_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeSslPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComputeSslPolicy> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

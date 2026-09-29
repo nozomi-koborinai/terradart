@@ -82,6 +82,10 @@ final class GoogleProjectIamCustomRole extends Resource {
   @override
   Set<String> get sensitiveFields => _googleProjectIamCustomRoleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleProjectIamCustomRole>`.
+  RefTo<GoogleProjectIamCustomRole> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute (full role path
   /// `projects/{project}/roles/{roleId}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

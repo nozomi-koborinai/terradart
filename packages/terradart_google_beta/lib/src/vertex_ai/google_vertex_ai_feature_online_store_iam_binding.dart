@@ -71,6 +71,10 @@ final class GoogleVertexAiFeatureOnlineStoreIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleVertexAiFeatureOnlineStoreIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVertexAiFeatureOnlineStoreIamBinding>`.
+  RefTo<GoogleVertexAiFeatureOnlineStoreIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

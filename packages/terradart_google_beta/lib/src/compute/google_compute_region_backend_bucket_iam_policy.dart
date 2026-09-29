@@ -42,6 +42,10 @@ final class GoogleComputeRegionBackendBucketIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeRegionBackendBucketIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionBackendBucketIamPolicy>`.
+  RefTo<GoogleComputeRegionBackendBucketIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

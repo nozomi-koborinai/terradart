@@ -32,6 +32,10 @@ final class AwsDetectiveOrganizationConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsDetectiveOrganizationConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDetectiveOrganizationConfiguration>`.
+  RefTo<AwsDetectiveOrganizationConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

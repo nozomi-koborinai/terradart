@@ -34,4 +34,8 @@ final class AwsTransferWebAppCustomization extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsTransferWebAppCustomizationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsTransferWebAppCustomization>`.
+  RefTo<AwsTransferWebAppCustomization> get ref => RefTo.of(this);
 }

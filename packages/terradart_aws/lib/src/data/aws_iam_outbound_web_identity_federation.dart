@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../iam/aws_iam_outbound_web_identity_federation.dart';
 
 /// Sensitive field paths for `aws_iam_outbound_web_identity_federation`.
 const Set<String> _awsIamOutboundWebIdentityFederationSensitive = <String>{};
@@ -19,6 +20,11 @@ final class DataAwsIamOutboundWebIdentityFederation extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsIamOutboundWebIdentityFederationSensitive;
+
+  /// A reference to the `aws_iam_outbound_web_identity_federation` this data source reads, for
+  /// arguments typed `RefTo<AwsIamOutboundWebIdentityFederation>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsIamOutboundWebIdentityFederation> get ref => RefTo.read(this);
 
   /// Reference to `issuer_identifier` attribute.
   TfRef<String> get issuerIdentifier =>

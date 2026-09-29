@@ -36,6 +36,10 @@ final class GooglePubsubSchemaIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googlePubsubSchemaIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GooglePubsubSchemaIamPolicy>`.
+  RefTo<GooglePubsubSchemaIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../regional/cloudflare_regional_hostname.dart';
 
 /// Sensitive field paths for `cloudflare_regional_hostname`.
 const Set<String> _cloudflareRegionalHostnameSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareRegionalHostname extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareRegionalHostnameSensitive;
+
+  /// A reference to the `cloudflare_regional_hostname` this data source reads, for
+  /// arguments typed `RefTo<CloudflareRegionalHostname>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareRegionalHostname> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -34,6 +34,10 @@ final class GoogleServiceAccountIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleServiceAccountIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleServiceAccountIamPolicy>`.
+  RefTo<GoogleServiceAccountIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -92,6 +92,10 @@ final class GoogleDiscoveryEngineAclConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDiscoveryEngineAclConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDiscoveryEngineAclConfig>`.
+  RefTo<GoogleDiscoveryEngineAclConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

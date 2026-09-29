@@ -31,6 +31,10 @@ final class AwsProxyProtocolPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsProxyProtocolPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsProxyProtocolPolicy>`.
+  RefTo<AwsProxyProtocolPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

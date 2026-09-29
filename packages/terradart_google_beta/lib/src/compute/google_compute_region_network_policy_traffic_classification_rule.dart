@@ -275,6 +275,11 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
   Set<String> get sensitiveFields =>
       _googleComputeRegionNetworkPolicyTrafficClassificationRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionNetworkPolicyTrafficClassificationRule>`.
+  RefTo<GoogleComputeRegionNetworkPolicyTrafficClassificationRule> get ref =>
+      RefTo.of(this);
+
   /// Reference to `kind` attribute.
   TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
 

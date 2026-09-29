@@ -79,6 +79,10 @@ final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleBigqueryDatapolicyDataPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryDatapolicyDataPolicy>`.
+  RefTo<GoogleBigqueryDatapolicyDataPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../servicecatalog/aws_servicecatalog_portfolio.dart';
 
 /// Sensitive field paths for `aws_servicecatalog_portfolio`.
 const Set<String> _awsServicecatalogPortfolioSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsServicecatalogPortfolio extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsServicecatalogPortfolioSensitive;
+
+  /// A reference to the `aws_servicecatalog_portfolio` this data source reads, for
+  /// arguments typed `RefTo<AwsServicecatalogPortfolio>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsServicecatalogPortfolio> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

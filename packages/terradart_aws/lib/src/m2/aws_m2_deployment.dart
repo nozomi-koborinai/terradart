@@ -37,6 +37,10 @@ final class AwsM2Deployment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsM2DeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsM2Deployment>`.
+  RefTo<AwsM2Deployment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

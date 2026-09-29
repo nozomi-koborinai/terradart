@@ -33,6 +33,10 @@ final class AwsAppsyncApiKey extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppsyncApiKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppsyncApiKey>`.
+  RefTo<AwsAppsyncApiKey> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

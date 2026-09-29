@@ -33,6 +33,10 @@ final class AwsFsxOpenzfsSnapshot extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFsxOpenzfsSnapshotSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFsxOpenzfsSnapshot>`.
+  RefTo<AwsFsxOpenzfsSnapshot> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

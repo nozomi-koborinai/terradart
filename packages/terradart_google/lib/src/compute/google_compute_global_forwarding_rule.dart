@@ -374,6 +374,10 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeGlobalForwardingRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeGlobalForwardingRule>`.
+  RefTo<GoogleComputeGlobalForwardingRule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

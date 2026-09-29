@@ -32,6 +32,10 @@ final class AwsVpcSecurityGroupVpcAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsVpcSecurityGroupVpcAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcSecurityGroupVpcAssociation>`.
+  RefTo<AwsVpcSecurityGroupVpcAssociation> get ref => RefTo.of(this);
+
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 }

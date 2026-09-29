@@ -116,4 +116,8 @@ final class AwsEc2AllowedImagesSettings extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsEc2AllowedImagesSettingsSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2AllowedImagesSettings>`.
+  RefTo<AwsEc2AllowedImagesSettings> get ref => RefTo.of(this);
 }

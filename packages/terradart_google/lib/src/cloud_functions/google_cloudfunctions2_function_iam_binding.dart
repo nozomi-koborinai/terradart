@@ -45,6 +45,10 @@ final class GoogleCloudfunctions2FunctionIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudfunctions2FunctionIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudfunctions2FunctionIamBinding>`.
+  RefTo<GoogleCloudfunctions2FunctionIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

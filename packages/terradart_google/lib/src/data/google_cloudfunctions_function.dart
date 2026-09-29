@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloudfunctions/google_cloudfunctions_function.dart';
 
 /// Sensitive field paths for `google_cloudfunctions_function`.
 const Set<String> _googleCloudfunctionsFunctionSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleCloudfunctionsFunction extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleCloudfunctionsFunctionSensitive;
+
+  /// A reference to the `google_cloudfunctions_function` this data source reads, for
+  /// arguments typed `RefTo<GoogleCloudfunctionsFunction>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleCloudfunctionsFunction> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -54,6 +54,10 @@ final class AwsMacie2Member extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMacie2MemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMacie2Member>`.
+  RefTo<AwsMacie2Member> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

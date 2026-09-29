@@ -63,6 +63,10 @@ final class AwsRedshiftLogging extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRedshiftLoggingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftLogging>`.
+  RefTo<AwsRedshiftLogging> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

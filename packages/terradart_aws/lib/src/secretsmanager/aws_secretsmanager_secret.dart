@@ -126,6 +126,10 @@ final class AwsSecretsmanagerSecret extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecretsmanagerSecretSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecretsmanagerSecret>`.
+  RefTo<AwsSecretsmanagerSecret> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

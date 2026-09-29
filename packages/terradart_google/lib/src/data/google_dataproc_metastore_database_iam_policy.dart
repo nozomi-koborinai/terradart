@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dataproc/google_dataproc_metastore_database_iam_policy.dart';
 
 /// Sensitive field paths for `google_dataproc_metastore_database_iam_policy`.
 const Set<String> _googleDataprocMetastoreDatabaseIamPolicySensitive =
@@ -35,6 +36,11 @@ final class DataGoogleDataprocMetastoreDatabaseIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleDataprocMetastoreDatabaseIamPolicySensitive;
+
+  /// A reference to the `google_dataproc_metastore_database_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleDataprocMetastoreDatabaseIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleDataprocMetastoreDatabaseIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

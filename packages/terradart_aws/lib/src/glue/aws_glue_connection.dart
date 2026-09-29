@@ -267,6 +267,10 @@ final class AwsGlueConnection extends Resource {
   @override
   Set<String> get sensitiveFields => _awsGlueConnectionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlueConnection>`.
+  RefTo<AwsGlueConnection> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

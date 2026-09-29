@@ -52,6 +52,10 @@ final class GoogleBackupDrBackupPlanAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _googleBackupDrBackupPlanAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBackupDrBackupPlanAssociation>`.
+  RefTo<GoogleBackupDrBackupPlanAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

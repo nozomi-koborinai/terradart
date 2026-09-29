@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_ec2_transit_gateway_multicast_domain.dart';
 
 /// Sensitive field paths for `aws_ec2_transit_gateway_multicast_domain`.
 const Set<String> _awsEc2TransitGatewayMulticastDomainSensitive = <String>{};
@@ -54,6 +55,11 @@ final class DataAwsEc2TransitGatewayMulticastDomain extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsEc2TransitGatewayMulticastDomainSensitive;
+
+  /// A reference to the `aws_ec2_transit_gateway_multicast_domain` this data source reads, for
+  /// arguments typed `RefTo<AwsEc2TransitGatewayMulticastDomain>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsEc2TransitGatewayMulticastDomain> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -60,6 +60,10 @@ final class CloudflareLoadBalancerMonitorGroup extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareLoadBalancerMonitorGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareLoadBalancerMonitorGroup>`.
+  RefTo<CloudflareLoadBalancerMonitorGroup> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

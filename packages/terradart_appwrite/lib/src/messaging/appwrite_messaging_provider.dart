@@ -114,6 +114,10 @@ final class AppwriteMessagingProvider extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteMessagingProviderSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteMessagingProvider>`.
+  RefTo<AppwriteMessagingProvider> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -68,6 +68,10 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDiscoveryEngineDataStoreSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDiscoveryEngineDataStore>`.
+  RefTo<GoogleDiscoveryEngineDataStore> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

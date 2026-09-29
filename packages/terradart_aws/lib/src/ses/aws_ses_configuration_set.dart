@@ -78,6 +78,10 @@ final class AwsSesConfigurationSet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesConfigurationSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesConfigurationSet>`.
+  RefTo<AwsSesConfigurationSet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

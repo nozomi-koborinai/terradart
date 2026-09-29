@@ -21,4 +21,8 @@ final class AwsBedrockUseCaseForModelAccess extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsBedrockUseCaseForModelAccessSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockUseCaseForModelAccess>`.
+  RefTo<AwsBedrockUseCaseForModelAccess> get ref => RefTo.of(this);
 }

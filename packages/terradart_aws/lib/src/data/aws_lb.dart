@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../elb/aws_lb.dart';
 
 /// Sensitive field paths for `aws_lb`.
 const Set<String> _awsLbSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsLb extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLbSensitive;
+
+  /// A reference to the `aws_lb` this data source reads, for
+  /// arguments typed `RefTo<AwsLb>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsLb> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

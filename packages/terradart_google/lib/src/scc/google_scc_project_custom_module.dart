@@ -207,6 +207,10 @@ final class GoogleSccProjectCustomModule extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSccProjectCustomModuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccProjectCustomModule>`.
+  RefTo<GoogleSccProjectCustomModule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

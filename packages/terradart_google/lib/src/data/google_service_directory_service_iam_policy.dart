@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../service_directory/google_service_directory_service_iam_policy.dart';
 
 /// Sensitive field paths for `google_service_directory_service_iam_policy`.
 const Set<String> _googleServiceDirectoryServiceIamPolicySensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataGoogleServiceDirectoryServiceIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleServiceDirectoryServiceIamPolicySensitive;
+
+  /// A reference to the `google_service_directory_service_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleServiceDirectoryServiceIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleServiceDirectoryServiceIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -129,6 +129,10 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustAccessAiControlsMcpServerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustAccessAiControlsMcpServer>`.
+  RefTo<CloudflareZeroTrustAccessAiControlsMcpServer> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

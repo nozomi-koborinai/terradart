@@ -47,6 +47,11 @@ final class GoogleBigqueryDatapolicyv2DataPolicyIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleBigqueryDatapolicyv2DataPolicyIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryDatapolicyv2DataPolicyIamBinding>`.
+  RefTo<GoogleBigqueryDatapolicyv2DataPolicyIamBinding> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -41,6 +41,10 @@ final class AwsXrayEncryptionConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _awsXrayEncryptionConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsXrayEncryptionConfig>`.
+  RefTo<AwsXrayEncryptionConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

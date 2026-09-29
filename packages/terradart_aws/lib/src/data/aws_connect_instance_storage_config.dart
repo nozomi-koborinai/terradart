@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../connect/aws_connect_instance_storage_config.dart';
 
 /// Sensitive field paths for `aws_connect_instance_storage_config`.
 const Set<String> _awsConnectInstanceStorageConfigSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsConnectInstanceStorageConfig extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsConnectInstanceStorageConfigSensitive;
+
+  /// A reference to the `aws_connect_instance_storage_config` this data source reads, for
+  /// arguments typed `RefTo<AwsConnectInstanceStorageConfig>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsConnectInstanceStorageConfig> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

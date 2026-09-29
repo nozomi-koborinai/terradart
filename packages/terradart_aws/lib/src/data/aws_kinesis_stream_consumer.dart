@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../kinesis/aws_kinesis_stream_consumer.dart';
 
 /// Sensitive field paths for `aws_kinesis_stream_consumer`.
 const Set<String> _awsKinesisStreamConsumerSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataAwsKinesisStreamConsumer extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsKinesisStreamConsumerSensitive;
+
+  /// A reference to the `aws_kinesis_stream_consumer` this data source reads, for
+  /// arguments typed `RefTo<AwsKinesisStreamConsumer>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsKinesisStreamConsumer> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

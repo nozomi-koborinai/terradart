@@ -68,6 +68,10 @@ final class CloudflareMagicTransitConnector extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareMagicTransitConnectorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareMagicTransitConnector>`.
+  RefTo<CloudflareMagicTransitConnector> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

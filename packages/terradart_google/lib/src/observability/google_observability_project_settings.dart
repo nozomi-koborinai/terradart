@@ -36,4 +36,8 @@ final class GoogleObservabilityProjectSettings extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleObservabilityProjectSettingsSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleObservabilityProjectSettings>`.
+  RefTo<GoogleObservabilityProjectSettings> get ref => RefTo.of(this);
 }

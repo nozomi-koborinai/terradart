@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../glue/aws_glue_data_catalog_encryption_settings.dart';
 
 /// Sensitive field paths for `aws_glue_data_catalog_encryption_settings`.
 const Set<String> _awsGlueDataCatalogEncryptionSettingsSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataAwsGlueDataCatalogEncryptionSettings extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsGlueDataCatalogEncryptionSettingsSensitive;
+
+  /// A reference to the `aws_glue_data_catalog_encryption_settings` this data source reads, for
+  /// arguments typed `RefTo<AwsGlueDataCatalogEncryptionSettings>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsGlueDataCatalogEncryptionSettings> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

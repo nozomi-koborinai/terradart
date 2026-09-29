@@ -2364,6 +2364,10 @@ final class AwsWafv2WebAclRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWafv2WebAclRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafv2WebAclRule>`.
+  RefTo<AwsWafv2WebAclRule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

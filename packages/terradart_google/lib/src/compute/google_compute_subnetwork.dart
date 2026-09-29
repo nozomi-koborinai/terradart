@@ -310,6 +310,10 @@ final class GoogleComputeSubnetwork extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeSubnetworkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeSubnetwork>`.
+  RefTo<GoogleComputeSubnetwork> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

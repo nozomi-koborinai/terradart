@@ -31,6 +31,10 @@ final class GoogleHealthcareDatasetIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleHealthcareDatasetIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleHealthcareDatasetIamPolicy>`.
+  RefTo<GoogleHealthcareDatasetIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

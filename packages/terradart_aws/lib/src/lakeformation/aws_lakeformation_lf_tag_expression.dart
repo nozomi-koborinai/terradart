@@ -60,6 +60,10 @@ final class AwsLakeformationLfTagExpression extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLakeformationLfTagExpressionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLakeformationLfTagExpression>`.
+  RefTo<AwsLakeformationLfTagExpression> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

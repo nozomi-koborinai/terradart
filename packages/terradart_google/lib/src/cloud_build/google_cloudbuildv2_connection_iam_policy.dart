@@ -39,6 +39,10 @@ final class GoogleCloudbuildv2ConnectionIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudbuildv2ConnectionIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudbuildv2ConnectionIamPolicy>`.
+  RefTo<GoogleCloudbuildv2ConnectionIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

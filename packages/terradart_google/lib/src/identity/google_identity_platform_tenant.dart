@@ -65,6 +65,10 @@ final class GoogleIdentityPlatformTenant extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIdentityPlatformTenantSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIdentityPlatformTenant>`.
+  RefTo<GoogleIdentityPlatformTenant> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

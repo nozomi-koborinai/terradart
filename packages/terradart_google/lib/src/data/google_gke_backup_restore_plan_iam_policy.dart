@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../gke_backup/google_gke_backup_restore_plan_iam_policy.dart';
 
 /// Sensitive field paths for `google_gke_backup_restore_plan_iam_policy`.
 const Set<String> _googleGkeBackupRestorePlanIamPolicySensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataGoogleGkeBackupRestorePlanIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleGkeBackupRestorePlanIamPolicySensitive;
+
+  /// A reference to the `google_gke_backup_restore_plan_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleGkeBackupRestorePlanIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleGkeBackupRestorePlanIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../vpclattice/aws_vpclattice_listener.dart';
 
 /// Sensitive field paths for `aws_vpclattice_listener`.
 const Set<String> _awsVpclatticeListenerSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsVpclatticeListener extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsVpclatticeListenerSensitive;
+
+  /// A reference to the `aws_vpclattice_listener` this data source reads, for
+  /// arguments typed `RefTo<AwsVpclatticeListener>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsVpclatticeListener> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

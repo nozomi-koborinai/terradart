@@ -41,6 +41,10 @@ final class AwsS3BucketPublicAccessBlock extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3BucketPublicAccessBlockSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketPublicAccessBlock>`.
+  RefTo<AwsS3BucketPublicAccessBlock> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../pubsub/google_pubsub_schema_iam_policy.dart';
 
 /// Sensitive field paths for `google_pubsub_schema_iam_policy`.
 const Set<String> _googlePubsubSchemaIamPolicySensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGooglePubsubSchemaIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googlePubsubSchemaIamPolicySensitive;
+
+  /// A reference to the `google_pubsub_schema_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GooglePubsubSchemaIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GooglePubsubSchemaIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

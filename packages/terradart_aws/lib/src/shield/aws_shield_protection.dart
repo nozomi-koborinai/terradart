@@ -31,6 +31,10 @@ final class AwsShieldProtection extends Resource {
   @override
   Set<String> get sensitiveFields => _awsShieldProtectionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsShieldProtection>`.
+  RefTo<AwsShieldProtection> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

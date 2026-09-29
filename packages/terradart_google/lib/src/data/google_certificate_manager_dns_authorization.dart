@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../certificate_manager/google_certificate_manager_dns_authorization.dart';
 
 /// Sensitive field paths for `google_certificate_manager_dns_authorization`.
 const Set<String> _googleCertificateManagerDnsAuthorizationSensitive =
@@ -35,6 +36,11 @@ final class DataGoogleCertificateManagerDnsAuthorization extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleCertificateManagerDnsAuthorizationSensitive;
+
+  /// A reference to the `google_certificate_manager_dns_authorization` this data source reads, for
+  /// arguments typed `RefTo<GoogleCertificateManagerDnsAuthorization>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleCertificateManagerDnsAuthorization> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

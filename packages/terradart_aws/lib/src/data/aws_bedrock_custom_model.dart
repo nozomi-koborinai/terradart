@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../bedrock/aws_bedrock_custom_model.dart';
 
 /// Sensitive field paths for `aws_bedrock_custom_model`.
 const Set<String> _awsBedrockCustomModelSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsBedrockCustomModel extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsBedrockCustomModelSensitive;
+
+  /// A reference to the `aws_bedrock_custom_model` this data source reads, for
+  /// arguments typed `RefTo<AwsBedrockCustomModel>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsBedrockCustomModel> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

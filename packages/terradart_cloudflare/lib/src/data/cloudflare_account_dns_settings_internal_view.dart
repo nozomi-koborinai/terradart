@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account_dns_settings_internal_view.dart';
 
 /// Sensitive field paths for `cloudflare_account_dns_settings_internal_view`.
 const Set<String> _cloudflareAccountDnsSettingsInternalViewSensitive =
@@ -129,6 +130,11 @@ final class DataCloudflareAccountDnsSettingsInternalView extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareAccountDnsSettingsInternalViewSensitive;
+
+  /// A reference to the `cloudflare_account_dns_settings_internal_view` this data source reads, for
+  /// arguments typed `RefTo<CloudflareAccountDnsSettingsInternalView>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareAccountDnsSettingsInternalView> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -37,6 +37,10 @@ final class GoogleContainerAnalysisNoteIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleContainerAnalysisNoteIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleContainerAnalysisNoteIamPolicy>`.
+  RefTo<GoogleContainerAnalysisNoteIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -68,6 +68,10 @@ final class CloudflareR2CustomDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareR2CustomDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareR2CustomDomain>`.
+  RefTo<CloudflareR2CustomDomain> get ref => RefTo.of(this);
+
   /// Reference to `zone_name` attribute.
   TfRef<String> get zoneName => TfRef.attribute<String>(this, 'zone_name');
 }

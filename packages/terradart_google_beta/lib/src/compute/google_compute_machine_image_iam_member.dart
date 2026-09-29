@@ -62,6 +62,10 @@ final class GoogleComputeMachineImageIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeMachineImageIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeMachineImageIamMember>`.
+  RefTo<GoogleComputeMachineImageIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

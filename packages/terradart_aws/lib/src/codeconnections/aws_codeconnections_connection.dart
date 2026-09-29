@@ -111,6 +111,10 @@ final class AwsCodeconnectionsConnection extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCodeconnectionsConnectionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCodeconnectionsConnection>`.
+  RefTo<AwsCodeconnectionsConnection> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

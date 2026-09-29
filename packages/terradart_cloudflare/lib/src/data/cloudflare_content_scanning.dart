@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../security/cloudflare_content_scanning.dart';
 
 /// Sensitive field paths for `cloudflare_content_scanning`.
 const Set<String> _cloudflareContentScanningSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareContentScanning extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareContentScanningSensitive;
+
+  /// A reference to the `cloudflare_content_scanning` this data source reads, for
+  /// arguments typed `RefTo<CloudflareContentScanning>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareContentScanning> get ref => RefTo.read(this);
 
   /// Reference to `modified` attribute.
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');

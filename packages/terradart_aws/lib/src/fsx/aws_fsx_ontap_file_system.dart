@@ -206,6 +206,10 @@ final class AwsFsxOntapFileSystem extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFsxOntapFileSystemSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFsxOntapFileSystem>`.
+  RefTo<AwsFsxOntapFileSystem> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

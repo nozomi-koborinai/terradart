@@ -32,6 +32,10 @@ final class AwsOrganizationsOrganizationalUnit extends Resource {
   Set<String> get sensitiveFields =>
       _awsOrganizationsOrganizationalUnitSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOrganizationsOrganizationalUnit>`.
+  RefTo<AwsOrganizationsOrganizationalUnit> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

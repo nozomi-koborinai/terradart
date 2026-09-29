@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../workers/cloudflare_workers_route.dart';
 
 /// Sensitive field paths for `cloudflare_workers_route`.
 const Set<String> _cloudflareWorkersRouteSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareWorkersRoute extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareWorkersRouteSensitive;
+
+  /// A reference to the `cloudflare_workers_route` this data source reads, for
+  /// arguments typed `RefTo<CloudflareWorkersRoute>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareWorkersRoute> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

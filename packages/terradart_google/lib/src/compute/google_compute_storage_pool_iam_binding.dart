@@ -43,6 +43,10 @@ final class GoogleComputeStoragePoolIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeStoragePoolIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeStoragePoolIamBinding>`.
+  RefTo<GoogleComputeStoragePoolIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

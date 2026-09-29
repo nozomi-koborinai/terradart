@@ -31,6 +31,10 @@ final class AwsRoute53profilesProfile extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRoute53profilesProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53profilesProfile>`.
+  RefTo<AwsRoute53profilesProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

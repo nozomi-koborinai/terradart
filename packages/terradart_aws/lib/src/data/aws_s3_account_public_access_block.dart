@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../s3/aws_s3_account_public_access_block.dart';
 
 /// Sensitive field paths for `aws_s3_account_public_access_block`.
 const Set<String> _awsS3AccountPublicAccessBlockSensitive = <String>{};
@@ -22,6 +23,11 @@ final class DataAwsS3AccountPublicAccessBlock extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsS3AccountPublicAccessBlockSensitive;
+
+  /// A reference to the `aws_s3_account_public_access_block` this data source reads, for
+  /// arguments typed `RefTo<AwsS3AccountPublicAccessBlock>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsS3AccountPublicAccessBlock> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

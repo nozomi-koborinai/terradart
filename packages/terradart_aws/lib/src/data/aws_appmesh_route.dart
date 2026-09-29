@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../appmesh/aws_appmesh_route.dart';
 
 /// Sensitive field paths for `aws_appmesh_route`.
 const Set<String> _awsAppmeshRouteSensitive = <String>{};
@@ -34,6 +35,11 @@ final class DataAwsAppmeshRoute extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsAppmeshRouteSensitive;
+
+  /// A reference to the `aws_appmesh_route` this data source reads, for
+  /// arguments typed `RefTo<AwsAppmeshRoute>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsAppmeshRoute> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

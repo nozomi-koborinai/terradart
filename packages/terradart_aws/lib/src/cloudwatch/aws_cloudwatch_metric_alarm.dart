@@ -589,6 +589,10 @@ final class AwsCloudwatchMetricAlarm extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudwatchMetricAlarmSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchMetricAlarm>`.
+  RefTo<AwsCloudwatchMetricAlarm> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

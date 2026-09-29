@@ -62,6 +62,10 @@ final class AwsEcsClusterCapacityProviders extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEcsClusterCapacityProvidersSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEcsClusterCapacityProviders>`.
+  RefTo<AwsEcsClusterCapacityProviders> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

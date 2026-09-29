@@ -41,6 +41,10 @@ final class CloudflareGoogleTagGateway extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareGoogleTagGatewaySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareGoogleTagGateway>`.
+  RefTo<CloudflareGoogleTagGateway> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

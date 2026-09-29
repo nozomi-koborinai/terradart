@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../workspaces/aws_workspaces_directory.dart';
 
 /// Sensitive field paths for `aws_workspaces_directory`.
 const Set<String> _awsWorkspacesDirectorySensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsWorkspacesDirectory extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsWorkspacesDirectorySensitive;
+
+  /// A reference to the `aws_workspaces_directory` this data source reads, for
+  /// arguments typed `RefTo<AwsWorkspacesDirectory>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsWorkspacesDirectory> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

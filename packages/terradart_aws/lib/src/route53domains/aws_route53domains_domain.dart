@@ -1144,6 +1144,10 @@ final class AwsRoute53domainsDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRoute53domainsDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53domainsDomain>`.
+  RefTo<AwsRoute53domainsDomain> get ref => RefTo.of(this);
+
   /// Reference to `abuse_contact_email` attribute.
   TfRef<String> get abuseContactEmail =>
       TfRef.attribute<String>(this, 'abuse_contact_email');

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../oracle/google_oracle_database_cloud_vm_cluster.dart';
 
 /// Sensitive field paths for `google_oracle_database_cloud_vm_cluster`.
 const Set<String> _googleOracleDatabaseCloudVmClusterSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataGoogleOracleDatabaseCloudVmCluster extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseCloudVmClusterSensitive;
+
+  /// A reference to the `google_oracle_database_cloud_vm_cluster` this data source reads, for
+  /// arguments typed `RefTo<GoogleOracleDatabaseCloudVmCluster>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleOracleDatabaseCloudVmCluster> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

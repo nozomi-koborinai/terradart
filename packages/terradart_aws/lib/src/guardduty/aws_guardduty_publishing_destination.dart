@@ -47,6 +47,10 @@ final class AwsGuarddutyPublishingDestination extends Resource {
   Set<String> get sensitiveFields =>
       _awsGuarddutyPublishingDestinationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGuarddutyPublishingDestination>`.
+  RefTo<AwsGuarddutyPublishingDestination> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

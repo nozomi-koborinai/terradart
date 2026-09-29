@@ -48,6 +48,10 @@ final class AwsIamServiceSpecificCredential extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIamServiceSpecificCredentialSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIamServiceSpecificCredential>`.
+  RefTo<AwsIamServiceSpecificCredential> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

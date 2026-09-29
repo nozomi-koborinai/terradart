@@ -2106,6 +2106,10 @@ final class AwsBedrockagentFlow extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockagentFlowSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentFlow>`.
+  RefTo<AwsBedrockagentFlow> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

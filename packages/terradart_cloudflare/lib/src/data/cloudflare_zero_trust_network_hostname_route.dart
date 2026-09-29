@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_network_hostname_route.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_network_hostname_route`.
 const Set<String> _cloudflareZeroTrustNetworkHostnameRouteSensitive =
@@ -71,6 +72,11 @@ final class DataCloudflareZeroTrustNetworkHostnameRoute extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustNetworkHostnameRouteSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_network_hostname_route` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustNetworkHostnameRoute>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZeroTrustNetworkHostnameRoute> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

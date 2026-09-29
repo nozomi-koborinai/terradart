@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../magic/cloudflare_magic_transit_site_wan.dart';
 
 /// Sensitive field paths for `cloudflare_magic_transit_site_wan`.
 const Set<String> _cloudflareMagicTransitSiteWanSensitive = <String>{};
@@ -29,6 +30,11 @@ final class DataCloudflareMagicTransitSiteWan extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareMagicTransitSiteWanSensitive;
+
+  /// A reference to the `cloudflare_magic_transit_site_wan` this data source reads, for
+  /// arguments typed `RefTo<CloudflareMagicTransitSiteWan>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareMagicTransitSiteWan> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

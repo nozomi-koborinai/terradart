@@ -54,6 +54,11 @@ final class GoogleIdentityPlatformDefaultSupportedIdpConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleIdentityPlatformDefaultSupportedIdpConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIdentityPlatformDefaultSupportedIdpConfig>`.
+  RefTo<GoogleIdentityPlatformDefaultSupportedIdpConfig> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

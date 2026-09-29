@@ -159,6 +159,10 @@ final class CloudflareMagicWanGreTunnel extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareMagicWanGreTunnelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareMagicWanGreTunnel>`.
+  RefTo<CloudflareMagicWanGreTunnel> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -82,6 +82,10 @@ final class AwsSesv2EmailIdentity extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesv2EmailIdentitySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesv2EmailIdentity>`.
+  RefTo<AwsSesv2EmailIdentity> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

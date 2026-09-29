@@ -38,6 +38,10 @@ final class GoogleClouddeployTargetIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleClouddeployTargetIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleClouddeployTargetIamPolicy>`.
+  RefTo<GoogleClouddeployTargetIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

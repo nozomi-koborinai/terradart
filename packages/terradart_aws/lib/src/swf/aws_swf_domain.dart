@@ -95,6 +95,10 @@ final class AwsSwfDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSwfDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSwfDomain>`.
+  RefTo<AwsSwfDomain> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

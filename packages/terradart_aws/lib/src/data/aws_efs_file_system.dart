@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../efs/aws_efs_file_system.dart';
 
 /// Sensitive field paths for `aws_efs_file_system`.
 const Set<String> _awsEfsFileSystemSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsEfsFileSystem extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEfsFileSystemSensitive;
+
+  /// A reference to the `aws_efs_file_system` this data source reads, for
+  /// arguments typed `RefTo<AwsEfsFileSystem>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsEfsFileSystem> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

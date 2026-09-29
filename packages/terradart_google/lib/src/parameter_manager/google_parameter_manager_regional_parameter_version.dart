@@ -41,6 +41,11 @@ final class GoogleParameterManagerRegionalParameterVersion extends Resource {
   Set<String> get sensitiveFields =>
       _googleParameterManagerRegionalParameterVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleParameterManagerRegionalParameterVersion>`.
+  RefTo<GoogleParameterManagerRegionalParameterVersion> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

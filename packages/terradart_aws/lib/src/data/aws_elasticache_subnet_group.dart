@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../elasticache/aws_elasticache_subnet_group.dart';
 
 /// Sensitive field paths for `aws_elasticache_subnet_group`.
 const Set<String> _awsElasticacheSubnetGroupSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsElasticacheSubnetGroup extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsElasticacheSubnetGroupSensitive;
+
+  /// A reference to the `aws_elasticache_subnet_group` this data source reads, for
+  /// arguments typed `RefTo<AwsElasticacheSubnetGroup>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsElasticacheSubnetGroup> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

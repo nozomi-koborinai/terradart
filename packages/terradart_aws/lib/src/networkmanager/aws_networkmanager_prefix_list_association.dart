@@ -31,4 +31,8 @@ final class AwsNetworkmanagerPrefixListAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsNetworkmanagerPrefixListAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkmanagerPrefixListAssociation>`.
+  RefTo<AwsNetworkmanagerPrefixListAssociation> get ref => RefTo.of(this);
 }

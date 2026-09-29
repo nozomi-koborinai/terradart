@@ -200,6 +200,10 @@ final class AwsImagebuilderImageRecipe extends Resource {
   @override
   Set<String> get sensitiveFields => _awsImagebuilderImageRecipeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsImagebuilderImageRecipe>`.
+  RefTo<AwsImagebuilderImageRecipe> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

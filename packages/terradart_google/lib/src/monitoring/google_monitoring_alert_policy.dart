@@ -700,6 +700,10 @@ final class GoogleMonitoringAlertPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleMonitoringAlertPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleMonitoringAlertPolicy>`.
+  RefTo<GoogleMonitoringAlertPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

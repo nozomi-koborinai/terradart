@@ -548,6 +548,10 @@ final class AwsElasticsearchDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _awsElasticsearchDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsElasticsearchDomain>`.
+  RefTo<AwsElasticsearchDomain> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -285,6 +285,10 @@ final class AwsDatasyncLocationHdfs extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDatasyncLocationHdfsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatasyncLocationHdfs>`.
+  RefTo<AwsDatasyncLocationHdfs> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

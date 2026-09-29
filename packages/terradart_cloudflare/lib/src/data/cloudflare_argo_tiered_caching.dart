@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../argo/cloudflare_argo_tiered_caching.dart';
 
 /// Sensitive field paths for `cloudflare_argo_tiered_caching`.
 const Set<String> _cloudflareArgoTieredCachingSensitive = <String>{};
@@ -22,6 +23,11 @@ final class DataCloudflareArgoTieredCaching extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareArgoTieredCachingSensitive;
+
+  /// A reference to the `cloudflare_argo_tiered_caching` this data source reads, for
+  /// arguments typed `RefTo<CloudflareArgoTieredCaching>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareArgoTieredCaching> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

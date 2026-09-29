@@ -111,6 +111,10 @@ final class AwsEc2CapacityReservation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2CapacityReservationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2CapacityReservation>`.
+  RefTo<AwsEc2CapacityReservation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

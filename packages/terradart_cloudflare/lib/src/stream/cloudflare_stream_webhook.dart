@@ -33,6 +33,10 @@ final class CloudflareStreamWebhook extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareStreamWebhookSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareStreamWebhook>`.
+  RefTo<CloudflareStreamWebhook> get ref => RefTo.of(this);
+
   /// Reference to `modified` attribute.
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');
 

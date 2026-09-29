@@ -42,6 +42,10 @@ final class AwsVpnConcentrator extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpnConcentratorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpnConcentrator>`.
+  RefTo<AwsVpnConcentrator> get ref => RefTo.of(this);
+
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');

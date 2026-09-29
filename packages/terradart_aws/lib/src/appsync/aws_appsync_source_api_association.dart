@@ -168,6 +168,10 @@ final class AwsAppsyncSourceApiAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppsyncSourceApiAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppsyncSourceApiAssociation>`.
+  RefTo<AwsAppsyncSourceApiAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

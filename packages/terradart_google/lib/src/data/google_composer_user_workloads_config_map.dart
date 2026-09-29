@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../composer/google_composer_user_workloads_config_map.dart';
 
 /// Sensitive field paths for `google_composer_user_workloads_config_map`.
 const Set<String> _googleComposerUserWorkloadsConfigMapSensitive = <String>{};
@@ -34,6 +35,11 @@ final class DataGoogleComposerUserWorkloadsConfigMap extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleComposerUserWorkloadsConfigMapSensitive;
+
+  /// A reference to the `google_composer_user_workloads_config_map` this data source reads, for
+  /// arguments typed `RefTo<GoogleComposerUserWorkloadsConfigMap>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComposerUserWorkloadsConfigMap> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

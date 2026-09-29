@@ -1144,6 +1144,10 @@ final class GoogleOsConfigPatchDeployment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleOsConfigPatchDeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleOsConfigPatchDeployment>`.
+  RefTo<GoogleOsConfigPatchDeployment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

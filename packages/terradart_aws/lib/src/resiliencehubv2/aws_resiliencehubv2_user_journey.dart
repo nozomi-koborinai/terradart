@@ -35,6 +35,10 @@ final class AwsResiliencehubv2UserJourney extends Resource {
   @override
   Set<String> get sensitiveFields => _awsResiliencehubv2UserJourneySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsResiliencehubv2UserJourney>`.
+  RefTo<AwsResiliencehubv2UserJourney> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

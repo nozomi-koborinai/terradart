@@ -42,6 +42,10 @@ final class GoogleAccessContextManagerIngressPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleAccessContextManagerIngressPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAccessContextManagerIngressPolicy>`.
+  RefTo<GoogleAccessContextManagerIngressPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

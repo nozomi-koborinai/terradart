@@ -48,6 +48,10 @@ final class GoogleApigeeSharedflowDeployment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApigeeSharedflowDeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeSharedflowDeployment>`.
+  RefTo<GoogleApigeeSharedflowDeployment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

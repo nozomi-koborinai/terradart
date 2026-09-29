@@ -1144,6 +1144,10 @@ final class GoogleCloudbuildTrigger extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudbuildTriggerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudbuildTrigger>`.
+  RefTo<GoogleCloudbuildTrigger> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

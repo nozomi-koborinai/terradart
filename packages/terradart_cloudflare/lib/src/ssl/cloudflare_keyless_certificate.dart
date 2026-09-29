@@ -87,6 +87,10 @@ final class CloudflareKeylessCertificate extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareKeylessCertificateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareKeylessCertificate>`.
+  RefTo<CloudflareKeylessCertificate> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

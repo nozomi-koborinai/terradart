@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../email/cloudflare_email_security_trusted_domains.dart';
 
 /// Sensitive field paths for `cloudflare_email_security_trusted_domains`.
 const Set<String> _cloudflareEmailSecurityTrustedDomainsSensitive = <String>{};
@@ -89,6 +90,11 @@ final class DataCloudflareEmailSecurityTrustedDomains extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareEmailSecurityTrustedDomainsSensitive;
+
+  /// A reference to the `cloudflare_email_security_trusted_domains` this data source reads, for
+  /// arguments typed `RefTo<CloudflareEmailSecurityTrustedDomains>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareEmailSecurityTrustedDomains> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

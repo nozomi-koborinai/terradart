@@ -70,6 +70,10 @@ final class GoogleAlloydbUser extends Resource {
   @override
   Set<String> get sensitiveFields => _googleAlloydbUserSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAlloydbUser>`.
+  RefTo<GoogleAlloydbUser> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

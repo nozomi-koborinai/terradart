@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../email/cloudflare_email_routing_rule.dart';
 
 /// Sensitive field paths for `cloudflare_email_routing_rule`.
 const Set<String> _cloudflareEmailRoutingRuleSensitive = <String>{};
@@ -46,6 +47,11 @@ final class DataCloudflareEmailRoutingRule extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareEmailRoutingRuleSensitive;
+
+  /// A reference to the `cloudflare_email_routing_rule` this data source reads, for
+  /// arguments typed `RefTo<CloudflareEmailRoutingRule>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareEmailRoutingRule> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

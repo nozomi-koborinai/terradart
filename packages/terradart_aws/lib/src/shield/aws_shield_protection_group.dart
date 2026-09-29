@@ -135,6 +135,10 @@ final class AwsShieldProtectionGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsShieldProtectionGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsShieldProtectionGroup>`.
+  RefTo<AwsShieldProtectionGroup> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

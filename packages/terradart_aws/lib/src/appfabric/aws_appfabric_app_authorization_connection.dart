@@ -57,6 +57,10 @@ final class AwsAppfabricAppAuthorizationConnection extends Resource {
   Set<String> get sensitiveFields =>
       _awsAppfabricAppAuthorizationConnectionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppfabricAppAuthorizationConnection>`.
+  RefTo<AwsAppfabricAppAuthorizationConnection> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

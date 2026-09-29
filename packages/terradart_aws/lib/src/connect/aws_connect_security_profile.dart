@@ -37,6 +37,10 @@ final class AwsConnectSecurityProfile extends Resource {
   @override
   Set<String> get sensitiveFields => _awsConnectSecurityProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsConnectSecurityProfile>`.
+  RefTo<AwsConnectSecurityProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -50,6 +50,10 @@ final class AwsBedrockInferenceProfile extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockInferenceProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockInferenceProfile>`.
+  RefTo<AwsBedrockInferenceProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

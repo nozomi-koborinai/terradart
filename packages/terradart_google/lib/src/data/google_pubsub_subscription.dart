@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../pubsub/google_pubsub_subscription.dart';
 
 /// Sensitive field paths for `google_pubsub_subscription`.
 const Set<String> _googlePubsubSubscriptionSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGooglePubsubSubscription extends Data {
 
   @override
   Set<String> get sensitiveFields => _googlePubsubSubscriptionSensitive;
+
+  /// A reference to the `google_pubsub_subscription` this data source reads, for
+  /// arguments typed `RefTo<GooglePubsubSubscription>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GooglePubsubSubscription> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

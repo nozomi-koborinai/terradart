@@ -61,6 +61,10 @@ final class GoogleIamWorkloadIdentityPoolNamespace extends Resource {
   Set<String> get sensitiveFields =>
       _googleIamWorkloadIdentityPoolNamespaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIamWorkloadIdentityPoolNamespace>`.
+  RefTo<GoogleIamWorkloadIdentityPoolNamespace> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

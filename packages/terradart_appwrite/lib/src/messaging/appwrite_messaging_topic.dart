@@ -33,6 +33,10 @@ final class AppwriteMessagingTopic extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteMessagingTopicSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteMessagingTopic>`.
+  RefTo<AppwriteMessagingTopic> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

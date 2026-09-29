@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../email/cloudflare_email_routing_catch_all.dart';
 
 /// Sensitive field paths for `cloudflare_email_routing_catch_all`.
 const Set<String> _cloudflareEmailRoutingCatchAllSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareEmailRoutingCatchAll extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareEmailRoutingCatchAllSensitive;
+
+  /// A reference to the `cloudflare_email_routing_catch_all` this data source reads, for
+  /// arguments typed `RefTo<CloudflareEmailRoutingCatchAll>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareEmailRoutingCatchAll> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

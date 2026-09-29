@@ -3005,6 +3005,10 @@ final class AwsArcregionswitchPlan extends Resource {
   @override
   Set<String> get sensitiveFields => _awsArcregionswitchPlanSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsArcregionswitchPlan>`.
+  RefTo<AwsArcregionswitchPlan> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

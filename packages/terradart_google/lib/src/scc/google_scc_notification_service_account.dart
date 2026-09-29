@@ -29,4 +29,8 @@ final class GoogleSccNotificationServiceAccount extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleSccNotificationServiceAccountSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccNotificationServiceAccount>`.
+  RefTo<GoogleSccNotificationServiceAccount> get ref => RefTo.of(this);
 }

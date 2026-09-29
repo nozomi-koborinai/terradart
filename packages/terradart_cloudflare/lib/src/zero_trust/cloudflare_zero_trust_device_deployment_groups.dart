@@ -57,6 +57,10 @@ final class CloudflareZeroTrustDeviceDeploymentGroups extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceDeploymentGroupsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDeviceDeploymentGroups>`.
+  RefTo<CloudflareZeroTrustDeviceDeploymentGroups> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../r2/cloudflare_r2_bucket.dart';
 
 /// Sensitive field paths for `cloudflare_r2_bucket`.
 const Set<String> _cloudflareR2BucketSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareR2Bucket extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareR2BucketSensitive;
+
+  /// A reference to the `cloudflare_r2_bucket` this data source reads, for
+  /// arguments typed `RefTo<CloudflareR2Bucket>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareR2Bucket> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

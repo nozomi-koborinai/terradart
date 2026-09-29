@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../storage_control/google_storage_control_organization_intelligence_config.dart';
 
 /// Sensitive field paths for `google_storage_control_organization_intelligence_config`.
 const Set<String> _googleStorageControlOrganizationIntelligenceConfigSensitive =
@@ -26,6 +27,12 @@ final class DataGoogleStorageControlOrganizationIntelligenceConfig
   @override
   Set<String> get sensitiveFields =>
       _googleStorageControlOrganizationIntelligenceConfigSensitive;
+
+  /// A reference to the `google_storage_control_organization_intelligence_config` this data source reads, for
+  /// arguments typed `RefTo<GoogleStorageControlOrganizationIntelligenceConfig>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleStorageControlOrganizationIntelligenceConfig> get ref =>
+      RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

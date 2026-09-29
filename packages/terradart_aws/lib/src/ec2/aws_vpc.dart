@@ -136,6 +136,10 @@ final class AwsVpc extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpcSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpc>`.
+  RefTo<AwsVpc> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../tags/google_tags_tag_value.dart';
 
 /// Sensitive field paths for `google_tags_tag_value`.
 const Set<String> _googleTagsTagValueSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleTagsTagValue extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleTagsTagValueSensitive;
+
+  /// A reference to the `google_tags_tag_value` this data source reads, for
+  /// arguments typed `RefTo<GoogleTagsTagValue>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleTagsTagValue> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -31,6 +31,10 @@ final class AwsS3tablesNamespace extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3tablesNamespaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3tablesNamespace>`.
+  RefTo<AwsS3tablesNamespace> get ref => RefTo.of(this);
+
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 

@@ -43,6 +43,10 @@ final class AppwriteProjectKey extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteProjectKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteProjectKey>`.
+  RefTo<AppwriteProjectKey> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

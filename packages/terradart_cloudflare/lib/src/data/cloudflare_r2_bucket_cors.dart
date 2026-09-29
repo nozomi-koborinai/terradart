@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../r2/cloudflare_r2_bucket_cors.dart';
 
 /// Sensitive field paths for `cloudflare_r2_bucket_cors`.
 const Set<String> _cloudflareR2BucketCorsSensitive = <String>{};
@@ -23,4 +24,9 @@ final class DataCloudflareR2BucketCors extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareR2BucketCorsSensitive;
+
+  /// A reference to the `cloudflare_r2_bucket_cors` this data source reads, for
+  /// arguments typed `RefTo<CloudflareR2BucketCors>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareR2BucketCors> get ref => RefTo.read(this);
 }

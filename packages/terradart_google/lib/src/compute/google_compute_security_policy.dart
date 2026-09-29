@@ -867,6 +867,10 @@ final class GoogleComputeSecurityPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeSecurityPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeSecurityPolicy>`.
+  RefTo<GoogleComputeSecurityPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

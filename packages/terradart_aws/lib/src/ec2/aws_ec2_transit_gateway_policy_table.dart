@@ -31,6 +31,10 @@ final class AwsEc2TransitGatewayPolicyTable extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2TransitGatewayPolicyTableSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2TransitGatewayPolicyTable>`.
+  RefTo<AwsEc2TransitGatewayPolicyTable> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

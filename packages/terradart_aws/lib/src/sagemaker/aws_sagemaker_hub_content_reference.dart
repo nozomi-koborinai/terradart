@@ -37,6 +37,10 @@ final class AwsSagemakerHubContentReference extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerHubContentReferenceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerHubContentReference>`.
+  RefTo<AwsSagemakerHubContentReference> get ref => RefTo.of(this);
+
   /// Reference to `hub_arn` attribute.
   TfRef<String> get hubArn => TfRef.attribute<String>(this, 'hub_arn');
 

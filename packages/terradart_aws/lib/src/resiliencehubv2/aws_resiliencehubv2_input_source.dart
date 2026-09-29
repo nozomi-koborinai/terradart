@@ -108,6 +108,10 @@ final class AwsResiliencehubv2InputSource extends Resource {
   @override
   Set<String> get sensitiveFields => _awsResiliencehubv2InputSourceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsResiliencehubv2InputSource>`.
+  RefTo<AwsResiliencehubv2InputSource> get ref => RefTo.of(this);
+
   /// Reference to `input_source_id` attribute.
   TfRef<String> get inputSourceId =>
       TfRef.attribute<String>(this, 'input_source_id');

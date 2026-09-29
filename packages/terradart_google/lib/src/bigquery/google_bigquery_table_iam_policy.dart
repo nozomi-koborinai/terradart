@@ -38,6 +38,10 @@ final class GoogleBigqueryTableIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryTableIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryTableIamPolicy>`.
+  RefTo<GoogleBigqueryTableIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -29,6 +29,10 @@ final class AwsDetectiveGraph extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDetectiveGraphSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDetectiveGraph>`.
+  RefTo<AwsDetectiveGraph> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

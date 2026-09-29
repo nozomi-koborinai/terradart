@@ -104,6 +104,10 @@ final class GoogleCloudRunDomainMapping extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudRunDomainMappingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudRunDomainMapping>`.
+  RefTo<GoogleCloudRunDomainMapping> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

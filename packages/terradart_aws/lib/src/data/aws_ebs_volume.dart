@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_ebs_volume.dart';
 
 /// Sensitive field paths for `aws_ebs_volume`.
 const Set<String> _awsEbsVolumeSensitive = <String>{};
@@ -48,6 +49,11 @@ final class DataAwsEbsVolume extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEbsVolumeSensitive;
+
+  /// A reference to the `aws_ebs_volume` this data source reads, for
+  /// arguments typed `RefTo<AwsEbsVolume>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsEbsVolume> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

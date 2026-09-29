@@ -256,4 +256,8 @@ final class AwsGlueCatalogTableOptimizer extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsGlueCatalogTableOptimizerSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlueCatalogTableOptimizer>`.
+  RefTo<AwsGlueCatalogTableOptimizer> get ref => RefTo.of(this);
 }

@@ -36,4 +36,8 @@ final class GoogleObservabilityFolderSettings extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleObservabilityFolderSettingsSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleObservabilityFolderSettings>`.
+  RefTo<GoogleObservabilityFolderSettings> get ref => RefTo.of(this);
 }

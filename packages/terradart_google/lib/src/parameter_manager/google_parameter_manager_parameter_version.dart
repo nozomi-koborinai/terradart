@@ -40,6 +40,10 @@ final class GoogleParameterManagerParameterVersion extends Resource {
   Set<String> get sensitiveFields =>
       _googleParameterManagerParameterVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleParameterManagerParameterVersion>`.
+  RefTo<GoogleParameterManagerParameterVersion> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

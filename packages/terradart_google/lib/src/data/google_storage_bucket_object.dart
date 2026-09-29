@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../storage/google_storage_bucket_object.dart';
 
 /// Sensitive field paths for `google_storage_bucket_object`.
 const Set<String> _googleStorageBucketObjectSensitive = <String>{};
@@ -29,6 +30,11 @@ final class DataGoogleStorageBucketObject extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleStorageBucketObjectSensitive;
+
+  /// A reference to the `google_storage_bucket_object` this data source reads, for
+  /// arguments typed `RefTo<GoogleStorageBucketObject>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleStorageBucketObject> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

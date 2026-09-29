@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../elasticache/aws_elasticache_user.dart';
 
 /// Sensitive field paths for `aws_elasticache_user`.
 const Set<String> _awsElasticacheUserSensitive = <String>{'passwords'};
@@ -59,6 +60,11 @@ final class DataAwsElasticacheUser extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsElasticacheUserSensitive;
+
+  /// A reference to the `aws_elasticache_user` this data source reads, for
+  /// arguments typed `RefTo<AwsElasticacheUser>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsElasticacheUser> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

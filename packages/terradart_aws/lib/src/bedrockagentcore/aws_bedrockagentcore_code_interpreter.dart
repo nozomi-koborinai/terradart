@@ -146,6 +146,10 @@ final class AwsBedrockagentcoreCodeInterpreter extends Resource {
   Set<String> get sensitiveFields =>
       _awsBedrockagentcoreCodeInterpreterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreCodeInterpreter>`.
+  RefTo<AwsBedrockagentcoreCodeInterpreter> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

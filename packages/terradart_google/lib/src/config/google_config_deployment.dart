@@ -197,6 +197,10 @@ final class GoogleConfigDeployment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleConfigDeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleConfigDeployment>`.
+  RefTo<GoogleConfigDeployment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

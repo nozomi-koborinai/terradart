@@ -31,6 +31,10 @@ final class AwsRoute53recoveryreadinessCell extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRoute53recoveryreadinessCellSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53recoveryreadinessCell>`.
+  RefTo<AwsRoute53recoveryreadinessCell> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

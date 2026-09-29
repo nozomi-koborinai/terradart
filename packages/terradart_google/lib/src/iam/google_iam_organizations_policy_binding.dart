@@ -98,6 +98,10 @@ final class GoogleIamOrganizationsPolicyBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleIamOrganizationsPolicyBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIamOrganizationsPolicyBinding>`.
+  RefTo<GoogleIamOrganizationsPolicyBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

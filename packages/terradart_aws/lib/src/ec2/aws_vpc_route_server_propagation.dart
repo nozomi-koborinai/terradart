@@ -30,4 +30,8 @@ final class AwsVpcRouteServerPropagation extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsVpcRouteServerPropagationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcRouteServerPropagation>`.
+  RefTo<AwsVpcRouteServerPropagation> get ref => RefTo.of(this);
 }

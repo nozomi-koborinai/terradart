@@ -118,6 +118,10 @@ final class AwsLambdamicrovmsMicrovm extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLambdamicrovmsMicrovmSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdamicrovmsMicrovm>`.
+  RefTo<AwsLambdamicrovmsMicrovm> get ref => RefTo.of(this);
+
   /// Reference to `endpoint` attribute.
   TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
 

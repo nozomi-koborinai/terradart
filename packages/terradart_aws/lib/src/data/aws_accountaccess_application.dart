@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../accountaccess/aws_accountaccess_application.dart';
 
 /// Sensitive field paths for `aws_accountaccess_application`.
 const Set<String> _awsAccountaccessApplicationSensitive = <String>{};
@@ -29,6 +30,11 @@ final class DataAwsAccountaccessApplication extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsAccountaccessApplicationSensitive;
+
+  /// A reference to the `aws_accountaccess_application` this data source reads, for
+  /// arguments typed `RefTo<AwsAccountaccessApplication>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsAccountaccessApplication> get ref => RefTo.read(this);
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');

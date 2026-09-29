@@ -1385,6 +1385,10 @@ final class AwsBedrockagentcoreOauth2CredentialProvider extends Resource {
   Set<String> get sensitiveFields =>
       _awsBedrockagentcoreOauth2CredentialProviderSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreOauth2CredentialProvider>`.
+  RefTo<AwsBedrockagentcoreOauth2CredentialProvider> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

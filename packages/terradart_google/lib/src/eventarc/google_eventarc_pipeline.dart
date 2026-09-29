@@ -55,6 +55,10 @@ final class GoogleEventarcPipeline extends Resource {
   @override
   Set<String> get sensitiveFields => _googleEventarcPipelineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleEventarcPipeline>`.
+  RefTo<GoogleEventarcPipeline> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

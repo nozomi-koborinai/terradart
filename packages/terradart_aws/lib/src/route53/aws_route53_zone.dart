@@ -124,6 +124,10 @@ final class AwsRoute53Zone extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRoute53ZoneSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53Zone>`.
+  RefTo<AwsRoute53Zone> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

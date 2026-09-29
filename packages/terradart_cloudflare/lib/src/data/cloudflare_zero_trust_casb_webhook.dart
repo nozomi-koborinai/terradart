@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_casb_webhook.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_casb_webhook`.
 const Set<String> _cloudflareZeroTrustCasbWebhookSensitive = <String>{
@@ -29,6 +30,11 @@ final class DataCloudflareZeroTrustCasbWebhook extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustCasbWebhookSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_casb_webhook` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustCasbWebhook>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZeroTrustCasbWebhook> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

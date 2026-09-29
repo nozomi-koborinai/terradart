@@ -53,6 +53,10 @@ final class AwsLambdaAlias extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLambdaAliasSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdaAlias>`.
+  RefTo<AwsLambdaAlias> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -40,6 +40,10 @@ final class CloudflareArgoSmartRouting extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareArgoSmartRoutingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareArgoSmartRouting>`.
+  RefTo<CloudflareArgoSmartRouting> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

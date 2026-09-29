@@ -584,6 +584,10 @@ final class GoogleMemorystoreInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleMemorystoreInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleMemorystoreInstance>`.
+  RefTo<GoogleMemorystoreInstance> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

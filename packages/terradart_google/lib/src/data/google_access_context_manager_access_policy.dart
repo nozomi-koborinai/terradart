@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../access_context_manager/google_access_context_manager_access_policy.dart';
 
 /// Sensitive field paths for `google_access_context_manager_access_policy`.
 const Set<String> _googleAccessContextManagerAccessPolicySensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataGoogleAccessContextManagerAccessPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleAccessContextManagerAccessPolicySensitive;
+
+  /// A reference to the `google_access_context_manager_access_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleAccessContextManagerAccessPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleAccessContextManagerAccessPolicy> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

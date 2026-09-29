@@ -82,6 +82,10 @@ final class AwsS3vectorsIndex extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3vectorsIndexSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3vectorsIndex>`.
+  RefTo<AwsS3vectorsIndex> get ref => RefTo.of(this);
+
   /// Reference to `creation_time` attribute.
   TfRef<String> get creationTime =>
       TfRef.attribute<String>(this, 'creation_time');

@@ -299,6 +299,10 @@ final class AwsWorkspaceswebUserSettings extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkspaceswebUserSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebUserSettings>`.
+  RefTo<AwsWorkspaceswebUserSettings> get ref => RefTo.of(this);
+
   /// Reference to `associated_portal_arns` attribute.
   TfRef<List<String>> get associatedPortalArns =>
       TfRef.attribute<List<String>>(this, 'associated_portal_arns');

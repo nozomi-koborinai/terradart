@@ -104,6 +104,10 @@ final class GoogleCloudbuildBitbucketServerConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudbuildBitbucketServerConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudbuildBitbucketServerConfig>`.
+  RefTo<GoogleCloudbuildBitbucketServerConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

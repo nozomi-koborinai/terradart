@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cache/cloudflare_regional_tiered_cache.dart';
 
 /// Sensitive field paths for `cloudflare_regional_tiered_cache`.
 const Set<String> _cloudflareRegionalTieredCacheSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareRegionalTieredCache extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareRegionalTieredCacheSensitive;
+
+  /// A reference to the `cloudflare_regional_tiered_cache` this data source reads, for
+  /// arguments typed `RefTo<CloudflareRegionalTieredCache>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareRegionalTieredCache> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

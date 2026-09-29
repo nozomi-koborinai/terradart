@@ -51,6 +51,10 @@ final class CloudflareZoneTracing extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareZoneTracingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZoneTracing>`.
+  RefTo<CloudflareZoneTracing> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

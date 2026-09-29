@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../fsx/aws_fsx_ontap_file_system.dart';
 
 /// Sensitive field paths for `aws_fsx_ontap_file_system`.
 const Set<String> _awsFsxOntapFileSystemSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsFsxOntapFileSystem extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsFsxOntapFileSystemSensitive;
+
+  /// A reference to the `aws_fsx_ontap_file_system` this data source reads, for
+  /// arguments typed `RefTo<AwsFsxOntapFileSystem>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsFsxOntapFileSystem> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

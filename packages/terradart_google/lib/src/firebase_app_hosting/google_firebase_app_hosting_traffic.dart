@@ -235,6 +235,10 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaseAppHostingTrafficSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppHostingTraffic>`.
+  RefTo<GoogleFirebaseAppHostingTraffic> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/traffic`).
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

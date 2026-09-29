@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_firewall_policy_iam_policy.dart';
 
 /// Sensitive field paths for `google_compute_firewall_policy_iam_policy`.
 const Set<String> _googleComputeFirewallPolicyIamPolicySensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataGoogleComputeFirewallPolicyIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeFirewallPolicyIamPolicySensitive;
+
+  /// A reference to the `google_compute_firewall_policy_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeFirewallPolicyIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComputeFirewallPolicyIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

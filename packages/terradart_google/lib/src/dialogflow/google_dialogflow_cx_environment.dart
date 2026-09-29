@@ -67,6 +67,10 @@ final class GoogleDialogflowCxEnvironment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDialogflowCxEnvironmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDialogflowCxEnvironment>`.
+  RefTo<GoogleDialogflowCxEnvironment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

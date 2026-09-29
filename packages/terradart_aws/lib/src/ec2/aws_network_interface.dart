@@ -387,6 +387,10 @@ final class AwsNetworkInterface extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNetworkInterfaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkInterface>`.
+  RefTo<AwsNetworkInterface> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

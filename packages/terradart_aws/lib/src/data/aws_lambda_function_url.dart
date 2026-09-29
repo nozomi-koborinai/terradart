@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../lambda/aws_lambda_function_url.dart';
 
 /// Sensitive field paths for `aws_lambda_function_url`.
 const Set<String> _awsLambdaFunctionUrlSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsLambdaFunctionUrl extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLambdaFunctionUrlSensitive;
+
+  /// A reference to the `aws_lambda_function_url` this data source reads, for
+  /// arguments typed `RefTo<AwsLambdaFunctionUrl>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsLambdaFunctionUrl> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

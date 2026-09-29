@@ -42,6 +42,10 @@ final class GoogleSpannerDatabaseIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSpannerDatabaseIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSpannerDatabaseIamBinding>`.
+  RefTo<GoogleSpannerDatabaseIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

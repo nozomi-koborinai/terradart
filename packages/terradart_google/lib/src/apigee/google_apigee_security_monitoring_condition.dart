@@ -78,6 +78,10 @@ final class GoogleApigeeSecurityMonitoringCondition extends Resource {
   Set<String> get sensitiveFields =>
       _googleApigeeSecurityMonitoringConditionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeSecurityMonitoringCondition>`.
+  RefTo<GoogleApigeeSecurityMonitoringCondition> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

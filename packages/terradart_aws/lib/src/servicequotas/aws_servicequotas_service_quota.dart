@@ -33,6 +33,10 @@ final class AwsServicequotasServiceQuota extends Resource {
   @override
   Set<String> get sensitiveFields => _awsServicequotasServiceQuotaSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicequotasServiceQuota>`.
+  RefTo<AwsServicequotasServiceQuota> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

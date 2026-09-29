@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../oracle/google_oracle_database_exascale_db_storage_vault.dart';
 
 /// Sensitive field paths for `google_oracle_database_exascale_db_storage_vault`.
 const Set<String> _googleOracleDatabaseExascaleDbStorageVaultSensitive =
@@ -34,6 +35,11 @@ final class DataGoogleOracleDatabaseExascaleDbStorageVault extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseExascaleDbStorageVaultSensitive;
+
+  /// A reference to the `google_oracle_database_exascale_db_storage_vault` this data source reads, for
+  /// arguments typed `RefTo<GoogleOracleDatabaseExascaleDbStorageVault>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleOracleDatabaseExascaleDbStorageVault> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

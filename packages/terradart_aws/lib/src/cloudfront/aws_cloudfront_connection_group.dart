@@ -38,6 +38,10 @@ final class AwsCloudfrontConnectionGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudfrontConnectionGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudfrontConnectionGroup>`.
+  RefTo<AwsCloudfrontConnectionGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

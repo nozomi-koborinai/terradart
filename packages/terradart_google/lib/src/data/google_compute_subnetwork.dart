@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_subnetwork.dart';
 
 /// Sensitive field paths for `google_compute_subnetwork`.
 const Set<String> _googleComputeSubnetworkSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataGoogleComputeSubnetwork extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleComputeSubnetworkSensitive;
+
+  /// A reference to the `google_compute_subnetwork` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeSubnetwork>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComputeSubnetwork> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -45,4 +45,8 @@ final class AwsPinpointsmsvoicev2Keyword extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsPinpointsmsvoicev2KeywordSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointsmsvoicev2Keyword>`.
+  RefTo<AwsPinpointsmsvoicev2Keyword> get ref => RefTo.of(this);
 }

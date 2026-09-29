@@ -40,6 +40,10 @@ final class CloudflareZeroTrustGatewayPacfile extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustGatewayPacfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustGatewayPacfile>`.
+  RefTo<CloudflareZeroTrustGatewayPacfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

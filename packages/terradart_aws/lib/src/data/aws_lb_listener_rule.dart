@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../elb/aws_lb_listener_rule.dart';
 
 /// Sensitive field paths for `aws_lb_listener_rule`.
 const Set<String> _awsLbListenerRuleSensitive = <String>{};
@@ -357,6 +358,11 @@ final class DataAwsLbListenerRule extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLbListenerRuleSensitive;
+
+  /// A reference to the `aws_lb_listener_rule` this data source reads, for
+  /// arguments typed `RefTo<AwsLbListenerRule>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsLbListenerRule> get ref => RefTo.read(this);
 
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../network/google_network_connectivity_hub_iam_policy.dart';
 
 /// Sensitive field paths for `google_network_connectivity_hub_iam_policy`.
 const Set<String> _googleNetworkConnectivityHubIamPolicySensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataGoogleNetworkConnectivityHubIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleNetworkConnectivityHubIamPolicySensitive;
+
+  /// A reference to the `google_network_connectivity_hub_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleNetworkConnectivityHubIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleNetworkConnectivityHubIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

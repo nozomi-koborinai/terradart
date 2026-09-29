@@ -62,6 +62,10 @@ final class GoogleContactCenterInsightsQaScorecard extends Resource {
   Set<String> get sensitiveFields =>
       _googleContactCenterInsightsQaScorecardSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleContactCenterInsightsQaScorecard>`.
+  RefTo<GoogleContactCenterInsightsQaScorecard> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

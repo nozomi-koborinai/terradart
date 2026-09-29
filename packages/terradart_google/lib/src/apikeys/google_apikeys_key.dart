@@ -49,6 +49,10 @@ final class GoogleApikeysKey extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApikeysKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApikeysKey>`.
+  RefTo<GoogleApikeysKey> get ref => RefTo.of(this);
+
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 

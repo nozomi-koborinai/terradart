@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../organizations/aws_organizations_policy.dart';
 
 /// Sensitive field paths for `aws_organizations_policy`.
 const Set<String> _awsOrganizationsPolicySensitive = <String>{};
@@ -19,6 +20,11 @@ final class DataAwsOrganizationsPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsOrganizationsPolicySensitive;
+
+  /// A reference to the `aws_organizations_policy` this data source reads, for
+  /// arguments typed `RefTo<AwsOrganizationsPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsOrganizationsPolicy> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

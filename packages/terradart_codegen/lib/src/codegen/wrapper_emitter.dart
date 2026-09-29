@@ -348,6 +348,13 @@ class WrapperEmitter {
       buf.writeln('  bool get supportsDeletionProtection => true;');
     }
 
+    final extraGetterNames = _extraGetterNames(override?.extraGetters);
+    if (!extraGetterNames.contains('ref')) {
+      buf
+        ..writeln()
+        ..write(emitResourceRefGetter(pascal));
+    }
+
     // Phase A3: derive output-attribute getters (nameRef, id, pure
     // computed-only) from the IR when the override opts in via
     // `deriveOutputGetters: true`. Hand-written `extraGetters` remain for
@@ -359,7 +366,7 @@ class WrapperEmitter {
     if (override?.deriveOutputGetters ?? false) {
       final derived = emitDerivedOutputGetters(
         def,
-        excludeNames: _extraGetterNames(override?.extraGetters),
+        excludeNames: extraGetterNames,
       );
       if (derived.isNotEmpty) {
         buf.writeln();

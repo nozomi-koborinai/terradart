@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../auditmanager/aws_auditmanager_framework.dart';
 
 /// Sensitive field paths for `aws_auditmanager_framework`.
 const Set<String> _awsAuditmanagerFrameworkSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsAuditmanagerFramework extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsAuditmanagerFrameworkSensitive;
+
+  /// A reference to the `aws_auditmanager_framework` this data source reads, for
+  /// arguments typed `RefTo<AwsAuditmanagerFramework>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsAuditmanagerFramework> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

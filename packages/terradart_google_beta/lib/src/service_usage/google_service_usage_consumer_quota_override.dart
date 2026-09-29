@@ -49,6 +49,10 @@ final class GoogleServiceUsageConsumerQuotaOverride extends Resource {
   Set<String> get sensitiveFields =>
       _googleServiceUsageConsumerQuotaOverrideSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleServiceUsageConsumerQuotaOverride>`.
+  RefTo<GoogleServiceUsageConsumerQuotaOverride> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

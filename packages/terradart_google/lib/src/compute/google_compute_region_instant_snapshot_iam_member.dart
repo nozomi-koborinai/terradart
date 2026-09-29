@@ -40,6 +40,10 @@ final class GoogleComputeRegionInstantSnapshotIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeRegionInstantSnapshotIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionInstantSnapshotIamMember>`.
+  RefTo<GoogleComputeRegionInstantSnapshotIamMember> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

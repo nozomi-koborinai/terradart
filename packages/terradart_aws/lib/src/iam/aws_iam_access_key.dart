@@ -45,6 +45,10 @@ final class AwsIamAccessKey extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIamAccessKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIamAccessKey>`.
+  RefTo<AwsIamAccessKey> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

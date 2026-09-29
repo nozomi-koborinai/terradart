@@ -98,6 +98,10 @@ final class GoogleBigqueryAnalyticsHubQueryTemplate extends Resource {
   Set<String> get sensitiveFields =>
       _googleBigqueryAnalyticsHubQueryTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryAnalyticsHubQueryTemplate>`.
+  RefTo<GoogleBigqueryAnalyticsHubQueryTemplate> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

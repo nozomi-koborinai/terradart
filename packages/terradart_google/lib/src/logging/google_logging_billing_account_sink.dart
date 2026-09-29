@@ -97,6 +97,10 @@ final class GoogleLoggingBillingAccountSink extends Resource {
   @override
   Set<String> get sensitiveFields => _googleLoggingBillingAccountSinkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleLoggingBillingAccountSink>`.
+  RefTo<GoogleLoggingBillingAccountSink> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -34,4 +34,9 @@ final class AwsWorkspaceswebUserAccessLoggingSettingsAssociation
   @override
   Set<String> get sensitiveFields =>
       _awsWorkspaceswebUserAccessLoggingSettingsAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebUserAccessLoggingSettingsAssociation>`.
+  RefTo<AwsWorkspaceswebUserAccessLoggingSettingsAssociation> get ref =>
+      RefTo.of(this);
 }

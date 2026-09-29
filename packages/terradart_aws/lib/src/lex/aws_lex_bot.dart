@@ -194,6 +194,10 @@ final class AwsLexBot extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLexBotSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLexBot>`.
+  RefTo<AwsLexBot> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

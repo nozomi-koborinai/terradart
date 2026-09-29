@@ -33,6 +33,10 @@ final class AwsMediaPackagev2ChannelGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMediaPackagev2ChannelGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMediaPackagev2ChannelGroup>`.
+  RefTo<AwsMediaPackagev2ChannelGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

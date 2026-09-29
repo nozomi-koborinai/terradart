@@ -561,6 +561,10 @@ final class GoogleWorkbenchInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleWorkbenchInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleWorkbenchInstance>`.
+  RefTo<GoogleWorkbenchInstance> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

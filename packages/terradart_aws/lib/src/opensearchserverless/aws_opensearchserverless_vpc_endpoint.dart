@@ -36,6 +36,10 @@ final class AwsOpensearchserverlessVpcEndpoint extends Resource {
   Set<String> get sensitiveFields =>
       _awsOpensearchserverlessVpcEndpointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOpensearchserverlessVpcEndpoint>`.
+  RefTo<AwsOpensearchserverlessVpcEndpoint> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

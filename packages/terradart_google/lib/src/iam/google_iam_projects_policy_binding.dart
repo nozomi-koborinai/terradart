@@ -97,6 +97,10 @@ final class GoogleIamProjectsPolicyBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIamProjectsPolicyBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIamProjectsPolicyBinding>`.
+  RefTo<GoogleIamProjectsPolicyBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../stream/cloudflare_stream_caption_language.dart';
 
 /// Sensitive field paths for `cloudflare_stream_caption_language`.
 const Set<String> _cloudflareStreamCaptionLanguageSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataCloudflareStreamCaptionLanguage extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareStreamCaptionLanguageSensitive;
+
+  /// A reference to the `cloudflare_stream_caption_language` this data source reads, for
+  /// arguments typed `RefTo<CloudflareStreamCaptionLanguage>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareStreamCaptionLanguage> get ref => RefTo.read(this);
 
   /// Reference to `generated` attribute.
   TfRef<bool> get generated => TfRef.attribute<bool>(this, 'generated');

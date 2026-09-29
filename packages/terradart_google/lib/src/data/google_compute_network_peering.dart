@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_network_peering.dart';
 
 /// Sensitive field paths for `google_compute_network_peering`.
 const Set<String> _googleComputeNetworkPeeringSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataGoogleComputeNetworkPeering extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleComputeNetworkPeeringSensitive;
+
+  /// A reference to the `google_compute_network_peering` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeNetworkPeering>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComputeNetworkPeering> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

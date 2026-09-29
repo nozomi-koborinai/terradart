@@ -36,6 +36,10 @@ final class CloudflareZeroTrustAccessKeyConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustAccessKeyConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustAccessKeyConfiguration>`.
+  RefTo<CloudflareZeroTrustAccessKeyConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

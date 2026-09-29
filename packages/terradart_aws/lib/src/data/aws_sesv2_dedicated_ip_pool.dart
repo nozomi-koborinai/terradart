@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../sesv2/aws_sesv2_dedicated_ip_pool.dart';
 
 /// Sensitive field paths for `aws_sesv2_dedicated_ip_pool`.
 const Set<String> _awsSesv2DedicatedIpPoolSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsSesv2DedicatedIpPool extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSesv2DedicatedIpPoolSensitive;
+
+  /// A reference to the `aws_sesv2_dedicated_ip_pool` this data source reads, for
+  /// arguments typed `RefTo<AwsSesv2DedicatedIpPool>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsSesv2DedicatedIpPool> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

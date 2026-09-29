@@ -391,6 +391,10 @@ final class AwsBatchComputeEnvironment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBatchComputeEnvironmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBatchComputeEnvironment>`.
+  RefTo<AwsBatchComputeEnvironment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

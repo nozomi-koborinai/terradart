@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_ec2_local_gateway_route_table.dart';
 
 /// Sensitive field paths for `aws_ec2_local_gateway_route_table`.
 const Set<String> _awsEc2LocalGatewayRouteTableSensitive = <String>{};
@@ -58,6 +59,11 @@ final class DataAwsEc2LocalGatewayRouteTable extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEc2LocalGatewayRouteTableSensitive;
+
+  /// A reference to the `aws_ec2_local_gateway_route_table` this data source reads, for
+  /// arguments typed `RefTo<AwsEc2LocalGatewayRouteTable>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsEc2LocalGatewayRouteTable> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../api_shield/cloudflare_token_validation_rules.dart';
 
 /// Sensitive field paths for `cloudflare_token_validation_rules`.
 const Set<String> _cloudflareTokenValidationRulesSensitive = <String>{};
@@ -80,6 +81,11 @@ final class DataCloudflareTokenValidationRules extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareTokenValidationRulesSensitive;
+
+  /// A reference to the `cloudflare_token_validation_rules` this data source reads, for
+  /// arguments typed `RefTo<CloudflareTokenValidationRules>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareTokenValidationRules> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../servicecatalogappregistry/aws_servicecatalogappregistry_application.dart';
 
 /// Sensitive field paths for `aws_servicecatalogappregistry_application`.
 const Set<String> _awsServicecatalogappregistryApplicationSensitive =
@@ -25,6 +26,11 @@ final class DataAwsServicecatalogappregistryApplication extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsServicecatalogappregistryApplicationSensitive;
+
+  /// A reference to the `aws_servicecatalogappregistry_application` this data source reads, for
+  /// arguments typed `RefTo<AwsServicecatalogappregistryApplication>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsServicecatalogappregistryApplication> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

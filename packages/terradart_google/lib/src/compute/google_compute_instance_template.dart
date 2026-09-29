@@ -1003,6 +1003,10 @@ final class GoogleComputeInstanceTemplate extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeInstanceTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeInstanceTemplate>`.
+  RefTo<GoogleComputeInstanceTemplate> get ref => RefTo.of(this);
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');

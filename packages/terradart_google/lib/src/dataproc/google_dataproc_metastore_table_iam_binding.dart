@@ -47,6 +47,10 @@ final class GoogleDataprocMetastoreTableIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataprocMetastoreTableIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataprocMetastoreTableIamBinding>`.
+  RefTo<GoogleDataprocMetastoreTableIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

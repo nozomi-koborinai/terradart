@@ -25,6 +25,10 @@ final class AwsFmsAdminAccount extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFmsAdminAccountSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFmsAdminAccount>`.
+  RefTo<AwsFmsAdminAccount> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -197,6 +197,10 @@ final class GoogleDiscoveryEngineChatEngine extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDiscoveryEngineChatEngineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDiscoveryEngineChatEngine>`.
+  RefTo<GoogleDiscoveryEngineChatEngine> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -63,6 +63,10 @@ final class AwsStoragegatewayFileSystemAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsStoragegatewayFileSystemAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsStoragegatewayFileSystemAssociation>`.
+  RefTo<AwsStoragegatewayFileSystemAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

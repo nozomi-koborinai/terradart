@@ -33,4 +33,8 @@ final class AwsWorkspaceswebIpAccessSettingsAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsWorkspaceswebIpAccessSettingsAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebIpAccessSettingsAssociation>`.
+  RefTo<AwsWorkspaceswebIpAccessSettingsAssociation> get ref => RefTo.of(this);
 }

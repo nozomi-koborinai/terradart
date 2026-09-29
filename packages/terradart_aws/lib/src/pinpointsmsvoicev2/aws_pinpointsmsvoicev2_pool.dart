@@ -64,6 +64,10 @@ final class AwsPinpointsmsvoicev2Pool extends Resource {
   @override
   Set<String> get sensitiveFields => _awsPinpointsmsvoicev2PoolSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointsmsvoicev2Pool>`.
+  RefTo<AwsPinpointsmsvoicev2Pool> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

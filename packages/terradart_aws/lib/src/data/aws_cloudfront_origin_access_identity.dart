@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloudfront/aws_cloudfront_origin_access_identity.dart';
 
 /// Sensitive field paths for `aws_cloudfront_origin_access_identity`.
 const Set<String> _awsCloudfrontOriginAccessIdentitySensitive = <String>{};
@@ -20,6 +21,11 @@ final class DataAwsCloudfrontOriginAccessIdentity extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsCloudfrontOriginAccessIdentitySensitive;
+
+  /// A reference to the `aws_cloudfront_origin_access_identity` this data source reads, for
+  /// arguments typed `RefTo<AwsCloudfrontOriginAccessIdentity>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsCloudfrontOriginAccessIdentity> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

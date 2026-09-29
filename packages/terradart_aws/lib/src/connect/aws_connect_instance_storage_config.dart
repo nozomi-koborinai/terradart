@@ -254,6 +254,10 @@ final class AwsConnectInstanceStorageConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _awsConnectInstanceStorageConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsConnectInstanceStorageConfig>`.
+  RefTo<AwsConnectInstanceStorageConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -60,6 +60,10 @@ final class AwsSesv2MultiRegionEndpoint extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesv2MultiRegionEndpointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesv2MultiRegionEndpoint>`.
+  RefTo<AwsSesv2MultiRegionEndpoint> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

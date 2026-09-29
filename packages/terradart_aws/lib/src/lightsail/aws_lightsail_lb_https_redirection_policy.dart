@@ -32,6 +32,10 @@ final class AwsLightsailLbHttpsRedirectionPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _awsLightsailLbHttpsRedirectionPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLightsailLbHttpsRedirectionPolicy>`.
+  RefTo<AwsLightsailLbHttpsRedirectionPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -33,6 +33,10 @@ final class AwsRoute53recoveryreadinessReadinessCheck extends Resource {
   Set<String> get sensitiveFields =>
       _awsRoute53recoveryreadinessReadinessCheckSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53recoveryreadinessReadinessCheck>`.
+  RefTo<AwsRoute53recoveryreadinessReadinessCheck> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

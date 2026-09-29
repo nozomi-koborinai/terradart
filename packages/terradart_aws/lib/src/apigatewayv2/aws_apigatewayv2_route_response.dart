@@ -38,6 +38,10 @@ final class AwsApigatewayv2RouteResponse extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApigatewayv2RouteResponseSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApigatewayv2RouteResponse>`.
+  RefTo<AwsApigatewayv2RouteResponse> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

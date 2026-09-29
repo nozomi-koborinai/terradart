@@ -55,6 +55,10 @@ final class AwsSfnAlias extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSfnAliasSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSfnAlias>`.
+  RefTo<AwsSfnAlias> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

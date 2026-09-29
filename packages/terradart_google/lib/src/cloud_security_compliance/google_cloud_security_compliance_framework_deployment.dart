@@ -459,6 +459,11 @@ final class GoogleCloudSecurityComplianceFrameworkDeployment extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudSecurityComplianceFrameworkDeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudSecurityComplianceFrameworkDeployment>`.
+  RefTo<GoogleCloudSecurityComplianceFrameworkDeployment> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

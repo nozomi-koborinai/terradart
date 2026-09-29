@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../service_discovery/aws_service_discovery_service.dart';
 
 /// Sensitive field paths for `aws_service_discovery_service`.
 const Set<String> _awsServiceDiscoveryServiceSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsServiceDiscoveryService extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsServiceDiscoveryServiceSensitive;
+
+  /// A reference to the `aws_service_discovery_service` this data source reads, for
+  /// arguments typed `RefTo<AwsServiceDiscoveryService>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsServiceDiscoveryService> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

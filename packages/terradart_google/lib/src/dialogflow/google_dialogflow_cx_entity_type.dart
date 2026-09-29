@@ -115,6 +115,10 @@ final class GoogleDialogflowCxEntityType extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDialogflowCxEntityTypeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDialogflowCxEntityType>`.
+  RefTo<GoogleDialogflowCxEntityType> get ref => RefTo.of(this);
+
   /// Reference to `kind` attribute.
   TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
 

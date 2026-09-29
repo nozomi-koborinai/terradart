@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../load_balancer/cloudflare_load_balancer_monitor.dart';
 
 /// Sensitive field paths for `cloudflare_load_balancer_monitor`.
 const Set<String> _cloudflareLoadBalancerMonitorSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataCloudflareLoadBalancerMonitor extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareLoadBalancerMonitorSensitive;
+
+  /// A reference to the `cloudflare_load_balancer_monitor` this data source reads, for
+  /// arguments typed `RefTo<CloudflareLoadBalancerMonitor>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareLoadBalancerMonitor> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

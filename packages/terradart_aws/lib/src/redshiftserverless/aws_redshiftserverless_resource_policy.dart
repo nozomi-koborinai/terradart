@@ -32,6 +32,10 @@ final class AwsRedshiftserverlessResourcePolicy extends Resource {
   Set<String> get sensitiveFields =>
       _awsRedshiftserverlessResourcePolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftserverlessResourcePolicy>`.
+  RefTo<AwsRedshiftserverlessResourcePolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

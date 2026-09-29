@@ -40,6 +40,10 @@ final class CloudflareCloudforceOneRequestAsset extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareCloudforceOneRequestAssetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareCloudforceOneRequestAsset>`.
+  RefTo<CloudflareCloudforceOneRequestAsset> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

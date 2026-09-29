@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../connect/aws_connect_bot_association.dart';
 
 /// Sensitive field paths for `aws_connect_bot_association`.
 const Set<String> _awsConnectBotAssociationSensitive = <String>{};
@@ -45,6 +46,11 @@ final class DataAwsConnectBotAssociation extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsConnectBotAssociationSensitive;
+
+  /// A reference to the `aws_connect_bot_association` this data source reads, for
+  /// arguments typed `RefTo<AwsConnectBotAssociation>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsConnectBotAssociation> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

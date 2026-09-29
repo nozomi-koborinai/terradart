@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../codeguruprofiler/aws_codeguruprofiler_profiling_group.dart';
 
 /// Sensitive field paths for `aws_codeguruprofiler_profiling_group`.
 const Set<String> _awsCodeguruprofilerProfilingGroupSensitive = <String>{};
@@ -24,6 +25,11 @@ final class DataAwsCodeguruprofilerProfilingGroup extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsCodeguruprofilerProfilingGroupSensitive;
+
+  /// A reference to the `aws_codeguruprofiler_profiling_group` this data source reads, for
+  /// arguments typed `RefTo<AwsCodeguruprofilerProfilingGroup>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsCodeguruprofilerProfilingGroup> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

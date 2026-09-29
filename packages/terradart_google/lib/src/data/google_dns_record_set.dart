@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dns/google_dns_record_set.dart';
 
 /// Sensitive field paths for `google_dns_record_set`.
 const Set<String> _googleDnsRecordSetSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataGoogleDnsRecordSet extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleDnsRecordSetSensitive;
+
+  /// A reference to the `google_dns_record_set` this data source reads, for
+  /// arguments typed `RefTo<GoogleDnsRecordSet>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleDnsRecordSet> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

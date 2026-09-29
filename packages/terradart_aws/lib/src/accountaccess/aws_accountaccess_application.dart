@@ -63,6 +63,10 @@ final class AwsAccountaccessApplication extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAccountaccessApplicationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAccountaccessApplication>`.
+  RefTo<AwsAccountaccessApplication> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

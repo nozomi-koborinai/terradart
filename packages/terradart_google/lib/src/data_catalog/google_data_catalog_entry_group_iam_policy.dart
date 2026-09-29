@@ -39,6 +39,10 @@ final class GoogleDataCatalogEntryGroupIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataCatalogEntryGroupIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataCatalogEntryGroupIamPolicy>`.
+  RefTo<GoogleDataCatalogEntryGroupIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

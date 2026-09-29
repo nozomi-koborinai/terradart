@@ -62,6 +62,10 @@ final class AwsInspector2OrganizationConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsInspector2OrganizationConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsInspector2OrganizationConfiguration>`.
+  RefTo<AwsInspector2OrganizationConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -39,6 +39,10 @@ final class GoogleDataFusionInstanceIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataFusionInstanceIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataFusionInstanceIamPolicy>`.
+  RefTo<GoogleDataFusionInstanceIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

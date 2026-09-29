@@ -509,6 +509,10 @@ final class AwsWorkspacesDirectory extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkspacesDirectorySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspacesDirectory>`.
+  RefTo<AwsWorkspacesDirectory> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

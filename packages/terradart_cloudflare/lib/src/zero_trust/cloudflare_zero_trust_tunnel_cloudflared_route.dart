@@ -41,6 +41,10 @@ final class CloudflareZeroTrustTunnelCloudflaredRoute extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustTunnelCloudflaredRouteSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustTunnelCloudflaredRoute>`.
+  RefTo<CloudflareZeroTrustTunnelCloudflaredRoute> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

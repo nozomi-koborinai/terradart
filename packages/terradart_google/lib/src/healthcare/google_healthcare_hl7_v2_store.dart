@@ -91,6 +91,10 @@ final class GoogleHealthcareHl7V2Store extends Resource {
   @override
   Set<String> get sensitiveFields => _googleHealthcareHl7V2StoreSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleHealthcareHl7V2Store>`.
+  RefTo<GoogleHealthcareHl7V2Store> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

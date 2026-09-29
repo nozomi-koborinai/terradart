@@ -56,6 +56,10 @@ final class GoogleChronicleEnvironmentGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _googleChronicleEnvironmentGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleEnvironmentGroup>`.
+  RefTo<GoogleChronicleEnvironmentGroup> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

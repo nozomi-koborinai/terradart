@@ -36,6 +36,10 @@ final class CloudflareZeroTrustDlpDataTagCategory extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDlpDataTagCategorySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDlpDataTagCategory>`.
+  RefTo<CloudflareZeroTrustDlpDataTagCategory> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

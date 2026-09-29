@@ -67,6 +67,10 @@ final class GoogleOracleDatabaseGoldengateDeployment extends Resource {
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseGoldengateDeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleOracleDatabaseGoldengateDeployment>`.
+  RefTo<GoogleOracleDatabaseGoldengateDeployment> get ref => RefTo.of(this);
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 

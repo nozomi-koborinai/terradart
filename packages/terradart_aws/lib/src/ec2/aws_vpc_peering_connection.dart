@@ -75,6 +75,10 @@ final class AwsVpcPeeringConnection extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpcPeeringConnectionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcPeeringConnection>`.
+  RefTo<AwsVpcPeeringConnection> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

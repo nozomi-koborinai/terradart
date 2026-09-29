@@ -534,6 +534,10 @@ final class GoogleDataplexDatascan extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexDatascanSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexDatascan>`.
+  RefTo<GoogleDataplexDatascan> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

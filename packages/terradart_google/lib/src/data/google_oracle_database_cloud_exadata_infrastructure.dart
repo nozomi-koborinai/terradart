@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../oracle/google_oracle_database_cloud_exadata_infrastructure.dart';
 
 /// Sensitive field paths for `google_oracle_database_cloud_exadata_infrastructure`.
 const Set<String> _googleOracleDatabaseCloudExadataInfrastructureSensitive =
@@ -34,6 +35,12 @@ final class DataGoogleOracleDatabaseCloudExadataInfrastructure extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseCloudExadataInfrastructureSensitive;
+
+  /// A reference to the `google_oracle_database_cloud_exadata_infrastructure` this data source reads, for
+  /// arguments typed `RefTo<GoogleOracleDatabaseCloudExadataInfrastructure>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleOracleDatabaseCloudExadataInfrastructure> get ref =>
+      RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

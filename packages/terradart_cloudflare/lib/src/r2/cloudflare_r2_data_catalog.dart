@@ -30,6 +30,10 @@ final class CloudflareR2DataCatalog extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareR2DataCatalogSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareR2DataCatalog>`.
+  RefTo<CloudflareR2DataCatalog> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

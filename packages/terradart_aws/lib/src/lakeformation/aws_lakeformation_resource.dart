@@ -42,6 +42,10 @@ final class AwsLakeformationResource extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLakeformationResourceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLakeformationResource>`.
+  RefTo<AwsLakeformationResource> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

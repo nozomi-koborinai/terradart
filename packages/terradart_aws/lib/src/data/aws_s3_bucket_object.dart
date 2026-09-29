@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../s3/aws_s3_bucket_object.dart';
 
 /// Sensitive field paths for `aws_s3_bucket_object`.
 const Set<String> _awsS3BucketObjectSensitive = <String>{};
@@ -34,6 +35,11 @@ final class DataAwsS3BucketObject extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsS3BucketObjectSensitive;
+
+  /// A reference to the `aws_s3_bucket_object` this data source reads, for
+  /// arguments typed `RefTo<AwsS3BucketObject>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsS3BucketObject> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

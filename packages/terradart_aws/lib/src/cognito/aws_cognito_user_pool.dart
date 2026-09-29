@@ -1028,6 +1028,10 @@ final class AwsCognitoUserPool extends Resource {
   @override
   bool get supportsDeletionProtection => true;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCognitoUserPool>`.
+  RefTo<AwsCognitoUserPool> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

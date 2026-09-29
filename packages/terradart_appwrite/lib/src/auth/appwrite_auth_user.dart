@@ -47,6 +47,10 @@ final class AppwriteAuthUser extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteAuthUserSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteAuthUser>`.
+  RefTo<AppwriteAuthUser> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

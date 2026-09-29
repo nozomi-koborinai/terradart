@@ -53,6 +53,10 @@ final class AwsEksAccessEntry extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEksAccessEntrySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEksAccessEntry>`.
+  RefTo<AwsEksAccessEntry> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

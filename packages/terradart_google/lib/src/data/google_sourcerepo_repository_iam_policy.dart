@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../sourcerepo/google_sourcerepo_repository_iam_policy.dart';
 
 /// Sensitive field paths for `google_sourcerepo_repository_iam_policy`.
 const Set<String> _googleSourcerepoRepositoryIamPolicySensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataGoogleSourcerepoRepositoryIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleSourcerepoRepositoryIamPolicySensitive;
+
+  /// A reference to the `google_sourcerepo_repository_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleSourcerepoRepositoryIamPolicy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleSourcerepoRepositoryIamPolicy> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

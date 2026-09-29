@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../codecommit/aws_codecommit_repository.dart';
 
 /// Sensitive field paths for `aws_codecommit_repository`.
 const Set<String> _awsCodecommitRepositorySensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsCodecommitRepository extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsCodecommitRepositorySensitive;
+
+  /// A reference to the `aws_codecommit_repository` this data source reads, for
+  /// arguments typed `RefTo<AwsCodecommitRepository>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsCodecommitRepository> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

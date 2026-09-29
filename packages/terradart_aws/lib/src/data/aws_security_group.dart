@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_security_group.dart';
 
 /// Sensitive field paths for `aws_security_group`.
 const Set<String> _awsSecurityGroupSensitive = <String>{};
@@ -50,6 +51,11 @@ final class DataAwsSecurityGroup extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSecurityGroupSensitive;
+
+  /// A reference to the `aws_security_group` this data source reads, for
+  /// arguments typed `RefTo<AwsSecurityGroup>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsSecurityGroup> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

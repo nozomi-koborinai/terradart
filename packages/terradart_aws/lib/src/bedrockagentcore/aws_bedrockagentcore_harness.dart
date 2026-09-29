@@ -1468,6 +1468,10 @@ final class AwsBedrockagentcoreHarness extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockagentcoreHarnessSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreHarness>`.
+  RefTo<AwsBedrockagentcoreHarness> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

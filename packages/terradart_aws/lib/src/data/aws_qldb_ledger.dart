@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../qldb/aws_qldb_ledger.dart';
 
 /// Sensitive field paths for `aws_qldb_ledger`.
 const Set<String> _awsQldbLedgerSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsQldbLedger extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsQldbLedgerSensitive;
+
+  /// A reference to the `aws_qldb_ledger` this data source reads, for
+  /// arguments typed `RefTo<AwsQldbLedger>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsQldbLedger> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

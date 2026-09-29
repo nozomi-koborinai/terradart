@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../privileged_access_manager/google_privileged_access_manager_entitlement.dart';
 
 /// Sensitive field paths for `google_privileged_access_manager_entitlement`.
 const Set<String> _googlePrivilegedAccessManagerEntitlementSensitive =
@@ -33,6 +34,11 @@ final class DataGooglePrivilegedAccessManagerEntitlement extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googlePrivilegedAccessManagerEntitlementSensitive;
+
+  /// A reference to the `google_privileged_access_manager_entitlement` this data source reads, for
+  /// arguments typed `RefTo<GooglePrivilegedAccessManagerEntitlement>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GooglePrivilegedAccessManagerEntitlement> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

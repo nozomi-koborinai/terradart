@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone_hold.dart';
 
 /// Sensitive field paths for `cloudflare_zone_hold`.
 const Set<String> _cloudflareZoneHoldSensitive = <String>{};
@@ -37,6 +38,11 @@ final class DataCloudflareZoneHold extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneHoldSensitive;
+
+  /// A reference to the `cloudflare_zone_hold` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZoneHold>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZoneHold> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

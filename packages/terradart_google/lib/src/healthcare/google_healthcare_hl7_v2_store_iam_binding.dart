@@ -40,6 +40,10 @@ final class GoogleHealthcareHl7V2StoreIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleHealthcareHl7V2StoreIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleHealthcareHl7V2StoreIamBinding>`.
+  RefTo<GoogleHealthcareHl7V2StoreIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

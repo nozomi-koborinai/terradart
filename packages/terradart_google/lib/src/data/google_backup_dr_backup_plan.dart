@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../backup_dr/google_backup_dr_backup_plan.dart';
 
 /// Sensitive field paths for `google_backup_dr_backup_plan`.
 const Set<String> _googleBackupDrBackupPlanSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleBackupDrBackupPlan extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleBackupDrBackupPlanSensitive;
+
+  /// A reference to the `google_backup_dr_backup_plan` this data source reads, for
+  /// arguments typed `RefTo<GoogleBackupDrBackupPlan>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleBackupDrBackupPlan> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

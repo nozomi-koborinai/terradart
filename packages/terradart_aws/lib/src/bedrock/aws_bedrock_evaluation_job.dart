@@ -1326,6 +1326,10 @@ final class AwsBedrockEvaluationJob extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockEvaluationJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockEvaluationJob>`.
+  RefTo<AwsBedrockEvaluationJob> get ref => RefTo.of(this);
+
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 

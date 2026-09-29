@@ -41,6 +41,10 @@ final class GoogleIapAppEngineVersionIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleIapAppEngineVersionIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapAppEngineVersionIamPolicy>`.
+  RefTo<GoogleIapAppEngineVersionIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

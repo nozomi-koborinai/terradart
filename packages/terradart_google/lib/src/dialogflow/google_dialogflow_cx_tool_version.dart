@@ -363,6 +363,10 @@ final class GoogleDialogflowCxToolVersion extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDialogflowCxToolVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDialogflowCxToolVersion>`.
+  RefTo<GoogleDialogflowCxToolVersion> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

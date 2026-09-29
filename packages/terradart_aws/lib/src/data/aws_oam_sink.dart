@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../oam/aws_oam_sink.dart';
 
 /// Sensitive field paths for `aws_oam_sink`.
 const Set<String> _awsOamSinkSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsOamSink extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsOamSinkSensitive;
+
+  /// A reference to the `aws_oam_sink` this data source reads, for
+  /// arguments typed `RefTo<AwsOamSink>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsOamSink> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

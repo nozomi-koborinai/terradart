@@ -46,6 +46,10 @@ final class GoogleSecretManagerRegionalSecretIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleSecretManagerRegionalSecretIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSecretManagerRegionalSecretIamBinding>`.
+  RefTo<GoogleSecretManagerRegionalSecretIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

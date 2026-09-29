@@ -137,6 +137,10 @@ final class AwsS3BucketNotification extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3BucketNotificationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketNotification>`.
+  RefTo<AwsS3BucketNotification> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

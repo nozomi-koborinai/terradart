@@ -943,6 +943,10 @@ final class GoogleStorageTransferJob extends Resource {
   @override
   Set<String> get sensitiveFields => _googleStorageTransferJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleStorageTransferJob>`.
+  RefTo<GoogleStorageTransferJob> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

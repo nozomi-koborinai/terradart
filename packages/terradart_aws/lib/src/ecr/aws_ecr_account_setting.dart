@@ -56,6 +56,10 @@ final class AwsEcrAccountSetting extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEcrAccountSettingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEcrAccountSetting>`.
+  RefTo<AwsEcrAccountSetting> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

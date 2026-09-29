@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../stream/cloudflare_stream_live_input.dart';
 
 /// Sensitive field paths for `cloudflare_stream_live_input`.
 const Set<String> _cloudflareStreamLiveInputSensitive = <String>{
@@ -41,6 +42,11 @@ final class DataCloudflareStreamLiveInput extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareStreamLiveInputSensitive;
+
+  /// A reference to the `cloudflare_stream_live_input` this data source reads, for
+  /// arguments typed `RefTo<CloudflareStreamLiveInput>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareStreamLiveInput> get ref => RefTo.read(this);
 
   /// Reference to `created` attribute.
   TfRef<String> get created => TfRef.attribute<String>(this, 'created');

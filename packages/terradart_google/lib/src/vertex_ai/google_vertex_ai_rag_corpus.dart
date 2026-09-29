@@ -488,4 +488,8 @@ final class GoogleVertexAiRagCorpus extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleVertexAiRagCorpusSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVertexAiRagCorpus>`.
+  RefTo<GoogleVertexAiRagCorpus> get ref => RefTo.of(this);
 }

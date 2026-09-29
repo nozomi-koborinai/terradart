@@ -42,6 +42,10 @@ final class GoogleSourcerepoRepositoryIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleSourcerepoRepositoryIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSourcerepoRepositoryIamBinding>`.
+  RefTo<GoogleSourcerepoRepositoryIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

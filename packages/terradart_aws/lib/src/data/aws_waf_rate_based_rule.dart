@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../waf/aws_waf_rate_based_rule.dart';
 
 /// Sensitive field paths for `aws_waf_rate_based_rule`.
 const Set<String> _awsWafRateBasedRuleSensitive = <String>{};
@@ -19,6 +20,11 @@ final class DataAwsWafRateBasedRule extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsWafRateBasedRuleSensitive;
+
+  /// A reference to the `aws_waf_rate_based_rule` this data source reads, for
+  /// arguments typed `RefTo<AwsWafRateBasedRule>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsWafRateBasedRule> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

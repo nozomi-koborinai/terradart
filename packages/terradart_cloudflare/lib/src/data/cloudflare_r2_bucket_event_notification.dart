@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../r2/cloudflare_r2_bucket_event_notification.dart';
 
 /// Sensitive field paths for `cloudflare_r2_bucket_event_notification`.
 const Set<String> _cloudflareR2BucketEventNotificationSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataCloudflareR2BucketEventNotification extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareR2BucketEventNotificationSensitive;
+
+  /// A reference to the `cloudflare_r2_bucket_event_notification` this data source reads, for
+  /// arguments typed `RefTo<CloudflareR2BucketEventNotification>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareR2BucketEventNotification> get ref => RefTo.read(this);
 
   /// Reference to `queue_name` attribute.
   TfRef<String> get queueName => TfRef.attribute<String>(this, 'queue_name');

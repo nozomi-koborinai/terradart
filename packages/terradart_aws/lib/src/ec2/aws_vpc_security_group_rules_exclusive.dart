@@ -33,4 +33,8 @@ final class AwsVpcSecurityGroupRulesExclusive extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsVpcSecurityGroupRulesExclusiveSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcSecurityGroupRulesExclusive>`.
+  RefTo<AwsVpcSecurityGroupRulesExclusive> get ref => RefTo.of(this);
 }

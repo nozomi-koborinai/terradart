@@ -36,6 +36,10 @@ final class AwsVpcIpv4CidrBlockAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpcIpv4CidrBlockAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcIpv4CidrBlockAssociation>`.
+  RefTo<AwsVpcIpv4CidrBlockAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

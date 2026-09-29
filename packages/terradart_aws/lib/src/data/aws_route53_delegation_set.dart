@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../route53/aws_route53_delegation_set.dart';
 
 /// Sensitive field paths for `aws_route53_delegation_set`.
 const Set<String> _awsRoute53DelegationSetSensitive = <String>{};
@@ -19,6 +20,11 @@ final class DataAwsRoute53DelegationSet extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsRoute53DelegationSetSensitive;
+
+  /// A reference to the `aws_route53_delegation_set` this data source reads, for
+  /// arguments typed `RefTo<AwsRoute53DelegationSet>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsRoute53DelegationSet> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

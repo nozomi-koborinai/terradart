@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../parameter_manager/google_parameter_manager_regional_parameter_version.dart';
 
 /// Sensitive field paths for `google_parameter_manager_regional_parameter_version`.
 const Set<String> _googleParameterManagerRegionalParameterVersionSensitive =
@@ -36,6 +37,12 @@ final class DataGoogleParameterManagerRegionalParameterVersion extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleParameterManagerRegionalParameterVersionSensitive;
+
+  /// A reference to the `google_parameter_manager_regional_parameter_version` this data source reads, for
+  /// arguments typed `RefTo<GoogleParameterManagerRegionalParameterVersion>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleParameterManagerRegionalParameterVersion> get ref =>
+      RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../dns/cloudflare_dns_record.dart';
 
 /// Sensitive field paths for `cloudflare_dns_record`.
 const Set<String> _cloudflareDnsRecordSensitive = <String>{};
@@ -295,6 +296,11 @@ final class DataCloudflareDnsRecord extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareDnsRecordSensitive;
+
+  /// A reference to the `cloudflare_dns_record` this data source reads, for
+  /// arguments typed `RefTo<CloudflareDnsRecord>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareDnsRecord> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

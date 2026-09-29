@@ -72,6 +72,10 @@ final class GoogleComputePublicAdvertisedPrefix extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputePublicAdvertisedPrefixSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputePublicAdvertisedPrefix>`.
+  RefTo<GoogleComputePublicAdvertisedPrefix> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

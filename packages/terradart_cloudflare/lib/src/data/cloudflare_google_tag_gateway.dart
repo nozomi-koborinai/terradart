@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../google_tag/cloudflare_google_tag_gateway.dart';
 
 /// Sensitive field paths for `cloudflare_google_tag_gateway`.
 const Set<String> _cloudflareGoogleTagGatewaySensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataCloudflareGoogleTagGateway extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareGoogleTagGatewaySensitive;
+
+  /// A reference to the `cloudflare_google_tag_gateway` this data source reads, for
+  /// arguments typed `RefTo<CloudflareGoogleTagGateway>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareGoogleTagGateway> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

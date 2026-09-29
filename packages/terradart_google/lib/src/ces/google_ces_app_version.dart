@@ -64,6 +64,10 @@ final class GoogleCesAppVersion extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCesAppVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCesAppVersion>`.
+  RefTo<GoogleCesAppVersion> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

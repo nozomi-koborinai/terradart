@@ -2646,6 +2646,10 @@ final class AwsSecurityhubInsight extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecurityhubInsightSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityhubInsight>`.
+  RefTo<AwsSecurityhubInsight> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

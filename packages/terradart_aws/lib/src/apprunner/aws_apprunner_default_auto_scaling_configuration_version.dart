@@ -33,6 +33,11 @@ final class AwsApprunnerDefaultAutoScalingConfigurationVersion
   Set<String> get sensitiveFields =>
       _awsApprunnerDefaultAutoScalingConfigurationVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApprunnerDefaultAutoScalingConfigurationVersion>`.
+  RefTo<AwsApprunnerDefaultAutoScalingConfigurationVersion> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

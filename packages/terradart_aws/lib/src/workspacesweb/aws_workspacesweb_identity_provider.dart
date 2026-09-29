@@ -53,6 +53,10 @@ final class AwsWorkspaceswebIdentityProvider extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkspaceswebIdentityProviderSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebIdentityProvider>`.
+  RefTo<AwsWorkspaceswebIdentityProvider> get ref => RefTo.of(this);
+
   /// Reference to `identity_provider_arn` attribute.
   TfRef<String> get identityProviderArn =>
       TfRef.attribute<String>(this, 'identity_provider_arn');

@@ -45,6 +45,10 @@ final class AwsQuicksightIngestion extends Resource {
   @override
   Set<String> get sensitiveFields => _awsQuicksightIngestionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsQuicksightIngestion>`.
+  RefTo<AwsQuicksightIngestion> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

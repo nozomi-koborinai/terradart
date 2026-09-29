@@ -232,6 +232,10 @@ final class AwsSesEventDestination extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesEventDestinationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesEventDestination>`.
+  RefTo<AwsSesEventDestination> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

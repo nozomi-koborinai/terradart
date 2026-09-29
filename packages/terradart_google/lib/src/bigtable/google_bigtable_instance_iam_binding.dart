@@ -40,6 +40,10 @@ final class GoogleBigtableInstanceIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigtableInstanceIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigtableInstanceIamBinding>`.
+  RefTo<GoogleBigtableInstanceIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

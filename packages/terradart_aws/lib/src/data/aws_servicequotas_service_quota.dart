@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../servicequotas/aws_servicequotas_service_quota.dart';
 
 /// Sensitive field paths for `aws_servicequotas_service_quota`.
 const Set<String> _awsServicequotasServiceQuotaSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsServicequotasServiceQuota extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsServicequotasServiceQuotaSensitive;
+
+  /// A reference to the `aws_servicequotas_service_quota` this data source reads, for
+  /// arguments typed `RefTo<AwsServicequotasServiceQuota>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsServicequotasServiceQuota> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -63,6 +63,10 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareEmailSecurityImpersonationRegistrySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareEmailSecurityImpersonationRegistry>`.
+  RefTo<CloudflareEmailSecurityImpersonationRegistry> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

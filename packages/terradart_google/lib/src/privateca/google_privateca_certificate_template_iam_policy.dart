@@ -41,6 +41,10 @@ final class GooglePrivatecaCertificateTemplateIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googlePrivatecaCertificateTemplateIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GooglePrivatecaCertificateTemplateIamPolicy>`.
+  RefTo<GooglePrivatecaCertificateTemplateIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

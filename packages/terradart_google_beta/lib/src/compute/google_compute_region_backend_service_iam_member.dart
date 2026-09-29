@@ -66,6 +66,10 @@ final class GoogleComputeRegionBackendServiceIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeRegionBackendServiceIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionBackendServiceIamMember>`.
+  RefTo<GoogleComputeRegionBackendServiceIamMember> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

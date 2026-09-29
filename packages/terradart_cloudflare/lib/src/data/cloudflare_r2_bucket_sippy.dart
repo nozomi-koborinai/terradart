@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../r2/cloudflare_r2_bucket_sippy.dart';
 
 /// Sensitive field paths for `cloudflare_r2_bucket_sippy`.
 const Set<String> _cloudflareR2BucketSippySensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataCloudflareR2BucketSippy extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareR2BucketSippySensitive;
+
+  /// A reference to the `cloudflare_r2_bucket_sippy` this data source reads, for
+  /// arguments typed `RefTo<CloudflareR2BucketSippy>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareR2BucketSippy> get ref => RefTo.read(this);
 
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');

@@ -63,6 +63,10 @@ final class GoogleSccV2OrganizationNotificationConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleSccV2OrganizationNotificationConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccV2OrganizationNotificationConfig>`.
+  RefTo<GoogleSccV2OrganizationNotificationConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

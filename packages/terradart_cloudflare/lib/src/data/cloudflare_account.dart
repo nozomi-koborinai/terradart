@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart';
 
 /// Sensitive field paths for `cloudflare_account`.
 const Set<String> _cloudflareAccountSensitive = <String>{};
@@ -67,6 +68,11 @@ final class DataCloudflareAccount extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareAccountSensitive;
+
+  /// A reference to the `cloudflare_account` this data source reads, for
+  /// arguments typed `RefTo<CloudflareAccount>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareAccount> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../certificate_manager/google_certificate_manager_certificate_map.dart';
 
 /// Sensitive field paths for `google_certificate_manager_certificate_map`.
 const Set<String> _googleCertificateManagerCertificateMapSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataGoogleCertificateManagerCertificateMap extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleCertificateManagerCertificateMapSensitive;
+
+  /// A reference to the `google_certificate_manager_certificate_map` this data source reads, for
+  /// arguments typed `RefTo<GoogleCertificateManagerCertificateMap>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleCertificateManagerCertificateMap> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

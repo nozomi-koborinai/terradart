@@ -122,6 +122,11 @@ final class GoogleBigqueryAnalyticsHubDataExchangeSubscription
   Set<String> get sensitiveFields =>
       _googleBigqueryAnalyticsHubDataExchangeSubscriptionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryAnalyticsHubDataExchangeSubscription>`.
+  RefTo<GoogleBigqueryAnalyticsHubDataExchangeSubscription> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

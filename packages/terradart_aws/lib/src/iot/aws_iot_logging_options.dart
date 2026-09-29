@@ -46,6 +46,10 @@ final class AwsIotLoggingOptions extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIotLoggingOptionsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIotLoggingOptions>`.
+  RefTo<AwsIotLoggingOptions> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

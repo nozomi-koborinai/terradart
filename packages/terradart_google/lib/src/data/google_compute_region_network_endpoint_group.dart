@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_region_network_endpoint_group.dart';
 
 /// Sensitive field paths for `google_compute_region_network_endpoint_group`.
 const Set<String> _googleComputeRegionNetworkEndpointGroupSensitive =
@@ -35,6 +36,11 @@ final class DataGoogleComputeRegionNetworkEndpointGroup extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeRegionNetworkEndpointGroupSensitive;
+
+  /// A reference to the `google_compute_region_network_endpoint_group` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeRegionNetworkEndpointGroup>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComputeRegionNetworkEndpointGroup> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

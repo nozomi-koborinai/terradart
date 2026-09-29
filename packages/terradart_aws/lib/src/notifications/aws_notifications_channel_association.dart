@@ -29,4 +29,8 @@ final class AwsNotificationsChannelAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsNotificationsChannelAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNotificationsChannelAssociation>`.
+  RefTo<AwsNotificationsChannelAssociation> get ref => RefTo.of(this);
 }

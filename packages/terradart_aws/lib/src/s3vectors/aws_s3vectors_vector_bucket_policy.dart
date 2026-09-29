@@ -30,4 +30,8 @@ final class AwsS3vectorsVectorBucketPolicy extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsS3vectorsVectorBucketPolicySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3vectorsVectorBucketPolicy>`.
+  RefTo<AwsS3vectorsVectorBucketPolicy> get ref => RefTo.of(this);
 }

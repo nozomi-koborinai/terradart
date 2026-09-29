@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_vpn_gateway.dart';
 
 /// Sensitive field paths for `aws_vpn_gateway`.
 const Set<String> _awsVpnGatewaySensitive = <String>{};
@@ -54,6 +55,11 @@ final class DataAwsVpnGateway extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsVpnGatewaySensitive;
+
+  /// A reference to the `aws_vpn_gateway` this data source reads, for
+  /// arguments typed `RefTo<AwsVpnGateway>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsVpnGateway> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -75,6 +75,10 @@ final class GoogleVmwareengineNetwork extends Resource {
   @override
   Set<String> get sensitiveFields => _googleVmwareengineNetworkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVmwareengineNetwork>`.
+  RefTo<GoogleVmwareengineNetwork> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

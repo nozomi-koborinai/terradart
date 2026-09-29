@@ -119,6 +119,10 @@ final class AwsCloudwatchLogGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudwatchLogGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchLogGroup>`.
+  RefTo<AwsCloudwatchLogGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

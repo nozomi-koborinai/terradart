@@ -44,6 +44,10 @@ final class CloudflareR2ManagedDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareR2ManagedDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareR2ManagedDomain>`.
+  RefTo<CloudflareR2ManagedDomain> get ref => RefTo.of(this);
+
   /// Reference to `bucket_id` attribute.
   TfRef<String> get bucketId => TfRef.attribute<String>(this, 'bucket_id');
 

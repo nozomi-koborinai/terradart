@@ -136,6 +136,10 @@ final class GoogleChronicleDataTable extends Resource {
   @override
   Set<String> get sensitiveFields => _googleChronicleDataTableSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleDataTable>`.
+  RefTo<GoogleChronicleDataTable> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

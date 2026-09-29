@@ -40,4 +40,8 @@ final class GoogleGeminiGibqObservabilitySetting extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleGeminiGibqObservabilitySettingSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGeminiGibqObservabilitySetting>`.
+  RefTo<GoogleGeminiGibqObservabilitySetting> get ref => RefTo.of(this);
 }

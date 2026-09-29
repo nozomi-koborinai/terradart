@@ -51,6 +51,10 @@ final class AwsPinpointsmsvoicev2SenderId extends Resource {
   @override
   Set<String> get sensitiveFields => _awsPinpointsmsvoicev2SenderIdSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointsmsvoicev2SenderId>`.
+  RefTo<AwsPinpointsmsvoicev2SenderId> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

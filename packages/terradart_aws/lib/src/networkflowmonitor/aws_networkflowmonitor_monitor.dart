@@ -108,6 +108,10 @@ final class AwsNetworkflowmonitorMonitor extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNetworkflowmonitorMonitorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkflowmonitorMonitor>`.
+  RefTo<AwsNetworkflowmonitorMonitor> get ref => RefTo.of(this);
+
   /// Reference to `monitor_arn` attribute.
   TfRef<String> get monitorArn => TfRef.attribute<String>(this, 'monitor_arn');
 

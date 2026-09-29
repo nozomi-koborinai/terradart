@@ -135,6 +135,11 @@ final class AwsVerifiedaccessInstanceLoggingConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsVerifiedaccessInstanceLoggingConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVerifiedaccessInstanceLoggingConfiguration>`.
+  RefTo<AwsVerifiedaccessInstanceLoggingConfiguration> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

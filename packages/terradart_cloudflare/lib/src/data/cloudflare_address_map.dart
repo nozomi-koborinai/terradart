@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../address_map/cloudflare_address_map.dart';
 
 /// Sensitive field paths for `cloudflare_address_map`.
 const Set<String> _cloudflareAddressMapSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataCloudflareAddressMap extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareAddressMapSensitive;
+
+  /// A reference to the `cloudflare_address_map` this data source reads, for
+  /// arguments typed `RefTo<CloudflareAddressMap>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareAddressMap> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

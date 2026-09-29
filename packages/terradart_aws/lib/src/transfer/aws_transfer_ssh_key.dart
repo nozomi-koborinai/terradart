@@ -33,6 +33,10 @@ final class AwsTransferSshKey extends Resource {
   @override
   Set<String> get sensitiveFields => _awsTransferSshKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsTransferSshKey>`.
+  RefTo<AwsTransferSshKey> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

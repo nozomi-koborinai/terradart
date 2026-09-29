@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../custom_hostname/cloudflare_custom_hostname_fallback_origin.dart';
 
 /// Sensitive field paths for `cloudflare_custom_hostname_fallback_origin`.
 const Set<String> _cloudflareCustomHostnameFallbackOriginSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareCustomHostnameFallbackOrigin extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareCustomHostnameFallbackOriginSensitive;
+
+  /// A reference to the `cloudflare_custom_hostname_fallback_origin` this data source reads, for
+  /// arguments typed `RefTo<CloudflareCustomHostnameFallbackOrigin>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareCustomHostnameFallbackOrigin> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -43,6 +43,10 @@ final class GoogleComputeRegionDiskIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeRegionDiskIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionDiskIamBinding>`.
+  RefTo<GoogleComputeRegionDiskIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

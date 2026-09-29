@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_device_managed_networks.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_device_managed_networks`.
 const Set<String> _cloudflareZeroTrustDeviceManagedNetworksSensitive =
@@ -28,6 +29,11 @@ final class DataCloudflareZeroTrustDeviceManagedNetworks extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceManagedNetworksSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_device_managed_networks` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustDeviceManagedNetworks>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareZeroTrustDeviceManagedNetworks> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

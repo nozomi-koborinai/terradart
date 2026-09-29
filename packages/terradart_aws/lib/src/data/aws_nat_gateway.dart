@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_nat_gateway.dart';
 
 /// Sensitive field paths for `aws_nat_gateway`.
 const Set<String> _awsNatGatewaySensitive = <String>{};
@@ -52,6 +53,11 @@ final class DataAwsNatGateway extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsNatGatewaySensitive;
+
+  /// A reference to the `aws_nat_gateway` this data source reads, for
+  /// arguments typed `RefTo<AwsNatGateway>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsNatGateway> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

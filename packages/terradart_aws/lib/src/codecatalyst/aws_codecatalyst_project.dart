@@ -33,6 +33,10 @@ final class AwsCodecatalystProject extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCodecatalystProjectSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCodecatalystProject>`.
+  RefTo<AwsCodecatalystProject> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

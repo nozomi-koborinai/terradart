@@ -77,6 +77,10 @@ final class GoogleParallelstoreInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleParallelstoreInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleParallelstoreInstance>`.
+  RefTo<GoogleParallelstoreInstance> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

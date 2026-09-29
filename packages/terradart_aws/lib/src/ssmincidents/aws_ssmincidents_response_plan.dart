@@ -203,6 +203,10 @@ final class AwsSsmincidentsResponsePlan extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSsmincidentsResponsePlanSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSsmincidentsResponsePlan>`.
+  RefTo<AwsSsmincidentsResponsePlan> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

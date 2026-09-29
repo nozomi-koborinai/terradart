@@ -95,4 +95,8 @@ final class AwsS3filesSynchronizationConfiguration extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsS3filesSynchronizationConfigurationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3filesSynchronizationConfiguration>`.
+  RefTo<AwsS3filesSynchronizationConfiguration> get ref => RefTo.of(this);
 }

@@ -42,6 +42,10 @@ final class GoogleDataplexLakeIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexLakeIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexLakeIamBinding>`.
+  RefTo<GoogleDataplexLakeIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -40,6 +40,10 @@ final class AwsEc2TransitGatewayConnectPeer extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2TransitGatewayConnectPeerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2TransitGatewayConnectPeer>`.
+  RefTo<AwsEc2TransitGatewayConnectPeer> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

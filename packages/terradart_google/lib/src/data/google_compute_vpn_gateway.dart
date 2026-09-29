@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_vpn_gateway.dart';
 
 /// Sensitive field paths for `google_compute_vpn_gateway`.
 const Set<String> _googleComputeVpnGatewaySensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleComputeVpnGateway extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleComputeVpnGatewaySensitive;
+
+  /// A reference to the `google_compute_vpn_gateway` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeVpnGateway>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<GoogleComputeVpnGateway> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

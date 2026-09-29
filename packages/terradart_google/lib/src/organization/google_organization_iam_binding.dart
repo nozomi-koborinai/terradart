@@ -38,6 +38,10 @@ final class GoogleOrganizationIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleOrganizationIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleOrganizationIamBinding>`.
+  RefTo<GoogleOrganizationIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

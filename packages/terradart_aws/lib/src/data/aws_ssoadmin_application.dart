@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ssoadmin/aws_ssoadmin_application.dart';
 
 /// Sensitive field paths for `aws_ssoadmin_application`.
 const Set<String> _awsSsoadminApplicationSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsSsoadminApplication extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSsoadminApplicationSensitive;
+
+  /// A reference to the `aws_ssoadmin_application` this data source reads, for
+  /// arguments typed `RefTo<AwsSsoadminApplication>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsSsoadminApplication> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

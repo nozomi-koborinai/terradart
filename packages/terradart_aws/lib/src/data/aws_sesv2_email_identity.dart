@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../sesv2/aws_sesv2_email_identity.dart';
 
 /// Sensitive field paths for `aws_sesv2_email_identity`.
 const Set<String> _awsSesv2EmailIdentitySensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsSesv2EmailIdentity extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSesv2EmailIdentitySensitive;
+
+  /// A reference to the `aws_sesv2_email_identity` this data source reads, for
+  /// arguments typed `RefTo<AwsSesv2EmailIdentity>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsSesv2EmailIdentity> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

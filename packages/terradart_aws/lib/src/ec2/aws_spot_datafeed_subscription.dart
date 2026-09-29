@@ -31,6 +31,10 @@ final class AwsSpotDatafeedSubscription extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSpotDatafeedSubscriptionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSpotDatafeedSubscription>`.
+  RefTo<AwsSpotDatafeedSubscription> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

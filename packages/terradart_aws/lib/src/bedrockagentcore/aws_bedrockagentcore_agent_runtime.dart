@@ -837,6 +837,10 @@ final class AwsBedrockagentcoreAgentRuntime extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockagentcoreAgentRuntimeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreAgentRuntime>`.
+  RefTo<AwsBedrockagentcoreAgentRuntime> get ref => RefTo.of(this);
+
   /// Reference to `agent_runtime_arn` attribute.
   TfRef<String> get agentRuntimeArn =>
       TfRef.attribute<String>(this, 'agent_runtime_arn');

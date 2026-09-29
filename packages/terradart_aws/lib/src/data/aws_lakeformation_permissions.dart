@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../lakeformation/aws_lakeformation_permissions.dart';
 
 /// Sensitive field paths for `aws_lakeformation_permissions`.
 const Set<String> _awsLakeformationPermissionsSensitive = <String>{};
@@ -242,6 +243,11 @@ final class DataAwsLakeformationPermissions extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLakeformationPermissionsSensitive;
+
+  /// A reference to the `aws_lakeformation_permissions` this data source reads, for
+  /// arguments typed `RefTo<AwsLakeformationPermissions>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsLakeformationPermissions> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -53,6 +53,10 @@ final class CloudflarePageShieldPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflarePageShieldPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflarePageShieldPolicy>`.
+  RefTo<CloudflarePageShieldPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

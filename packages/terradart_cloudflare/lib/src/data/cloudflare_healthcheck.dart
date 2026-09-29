@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../healthcheck/cloudflare_healthcheck.dart';
 
 /// Sensitive field paths for `cloudflare_healthcheck`.
 const Set<String> _cloudflareHealthcheckSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataCloudflareHealthcheck extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareHealthcheckSensitive;
+
+  /// A reference to the `cloudflare_healthcheck` this data source reads, for
+  /// arguments typed `RefTo<CloudflareHealthcheck>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareHealthcheck> get ref => RefTo.read(this);
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

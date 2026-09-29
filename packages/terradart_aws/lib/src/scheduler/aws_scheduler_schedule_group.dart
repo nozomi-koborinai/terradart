@@ -93,6 +93,10 @@ final class AwsSchedulerScheduleGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSchedulerScheduleGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSchedulerScheduleGroup>`.
+  RefTo<AwsSchedulerScheduleGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

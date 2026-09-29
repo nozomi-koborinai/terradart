@@ -647,6 +647,10 @@ final class GoogleDatastreamConnectionProfile extends Resource {
   Set<String> get sensitiveFields =>
       _googleDatastreamConnectionProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDatastreamConnectionProfile>`.
+  RefTo<GoogleDatastreamConnectionProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../workers/cloudflare_workers_script_subdomain.dart';
 
 /// Sensitive field paths for `cloudflare_workers_script_subdomain`.
 const Set<String> _cloudflareWorkersScriptSubdomainSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareWorkersScriptSubdomain extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareWorkersScriptSubdomainSensitive;
+
+  /// A reference to the `cloudflare_workers_script_subdomain` this data source reads, for
+  /// arguments typed `RefTo<CloudflareWorkersScriptSubdomain>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareWorkersScriptSubdomain> get ref => RefTo.read(this);
 
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');

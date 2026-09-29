@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../iam/aws_iam_user.dart';
 
 /// Sensitive field paths for `aws_iam_user`.
 const Set<String> _awsIamUserSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsIamUser extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsIamUserSensitive;
+
+  /// A reference to the `aws_iam_user` this data source reads, for
+  /// arguments typed `RefTo<AwsIamUser>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<AwsIamUser> get ref => RefTo.read(this);
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

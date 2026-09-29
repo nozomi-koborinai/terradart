@@ -59,6 +59,10 @@ final class AwsApiGatewayAuthorizer extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApiGatewayAuthorizerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayAuthorizer>`.
+  RefTo<AwsApiGatewayAuthorizer> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

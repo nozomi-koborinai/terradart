@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../registrar/cloudflare_registrar_domain.dart';
 
 /// Sensitive field paths for `cloudflare_registrar_domain`.
 const Set<String> _cloudflareRegistrarDomainSensitive = <String>{};
@@ -23,4 +24,9 @@ final class DataCloudflareRegistrarDomain extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareRegistrarDomainSensitive;
+
+  /// A reference to the `cloudflare_registrar_domain` this data source reads, for
+  /// arguments typed `RefTo<CloudflareRegistrarDomain>`.
+  // ignore: invalid_use_of_internal_member
+  RefTo<CloudflareRegistrarDomain> get ref => RefTo.read(this);
 }

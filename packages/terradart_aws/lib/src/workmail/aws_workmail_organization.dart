@@ -44,6 +44,10 @@ final class AwsWorkmailOrganization extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkmailOrganizationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkmailOrganization>`.
+  RefTo<AwsWorkmailOrganization> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

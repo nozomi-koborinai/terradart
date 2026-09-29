@@ -13,6 +13,7 @@ void main() {
       AttributeRef,
       DataRef,
       ResourceRef,
+      RefTo,
       TfAddressed,
       Resource,
       ResourceKind,
