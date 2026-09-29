@@ -30,3 +30,6 @@ paramOrder:
   - data
   - settings
   - private_routing
+
+sealedNames:
+  "content, data": content
