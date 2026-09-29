@@ -318,8 +318,9 @@ _layout(NestedBlockSpec spec) {
     for (final g in spec.atMostOne) (g, true),
   ]) {
     final ms = [for (final name in group) byName[name]];
-    String? reason;
+    String? reason = exactlyOneTooLarge(group);
     for (final (i, m) in ms.indexed) {
+      if (reason != null) break;
       if (m == null) {
         reason = '${group[i]} is not an input of this block';
       } else if (m.required) {

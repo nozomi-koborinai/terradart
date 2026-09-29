@@ -22,6 +22,18 @@ typedef ExactlyOneVariant = ({
   String? deprecation,
 });
 
+/// The most members a sealed group joins into its names; a larger group
+/// (`google_chronicle_feed` `details`, 75 feed kinds) stays unsealed until a
+/// human names it.
+const maxExactlyOneMembers = 16;
+
+/// Why [members] is too large to seal, or null when it is not.
+String? exactlyOneTooLarge(List<String> members) =>
+    members.length > maxExactlyOneMembers
+    ? 'the group has ${members.length} members, more than '
+          '$maxExactlyOneMembers a sealed name joins'
+    : null;
+
 /// Snake-case name of the slot or field that holds one of [members]
 /// (`filename_or_image_uri`).
 String exactlyOneSlotName(List<String> members) => members.join('_or_');
