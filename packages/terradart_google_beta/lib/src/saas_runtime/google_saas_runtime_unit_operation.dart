@@ -27,7 +27,7 @@ final class SaasRuntimeUnitOperationProvision {
   final List<SaasRuntimeUnitOperationProvisionInputVariables>? inputVariables;
 
   Map<String, Object?> encode() => {
-    if (release != null) 'release': release!.toTfJson(),
+    'release': ?release?.toTfJson(),
     if (inputVariables != null)
       'input_variables': [for (final e in inputVariables!) e.encode()],
   };
@@ -50,8 +50,8 @@ final class SaasRuntimeUnitOperationProvisionInputVariables {
   final TfArg<String> variable;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
     'variable': variable.toTfJson(),
   };
 }
@@ -67,7 +67,7 @@ final class SaasRuntimeUnitOperationUpgrade {
   final List<SaasRuntimeUnitOperationUpgradeInputVariables>? inputVariables;
 
   Map<String, Object?> encode() => {
-    if (release != null) 'release': release!.toTfJson(),
+    'release': ?release?.toTfJson(),
     if (inputVariables != null)
       'input_variables': [for (final e in inputVariables!) e.encode()],
   };
@@ -90,8 +90,8 @@ final class SaasRuntimeUnitOperationUpgradeInputVariables {
   final TfArg<String> variable;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
     'variable': variable.toTfJson(),
   };
 }
@@ -125,15 +125,14 @@ final class GoogleSaasRuntimeUnitOperation extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'unit': unit,
            'unit_operation_id': unitOperationId,
-           if (waitForCompletion != null)
-             'wait_for_completion': waitForCompletion,
+           'wait_for_completion': ?waitForCompletion,
            if (deprovision != null)
              'deprovision': TfArg.literal(deprovision.encode()),
            if (provision != null)

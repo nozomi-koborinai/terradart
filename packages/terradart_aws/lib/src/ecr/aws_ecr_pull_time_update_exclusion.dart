@@ -20,10 +20,7 @@ final class AwsEcrPullTimeUpdateExclusion extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'principal_arn': principalArn,
-           if (region != null) 'region': region,
-         },
+         argMap: {'principal_arn': principalArn, 'region': ?region},
        );
 
   @override

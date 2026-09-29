@@ -23,10 +23,10 @@ final class DataAwsApiGatewayExport extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accepts != null) 'accepts': accepts,
+           'accepts': ?accepts,
            'export_type': exportType,
-           if (parameters != null) 'parameters': parameters,
-           if (region != null) 'region': region,
+           'parameters': ?parameters,
+           'region': ?region,
            'rest_api_id': restApiId,
            'stage_name': stageName,
          },

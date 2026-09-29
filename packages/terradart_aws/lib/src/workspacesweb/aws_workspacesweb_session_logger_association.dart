@@ -24,7 +24,7 @@ final class AwsWorkspaceswebSessionLoggerAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'portal_arn': portalArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'session_logger_arn': sessionLoggerArn,
          },
        );

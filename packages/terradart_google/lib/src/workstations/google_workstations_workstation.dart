@@ -69,14 +69,13 @@ final class GoogleWorkstationsWorkstation extends Resource {
            'workstation_config_id': workstationConfigId,
            'workstation_cluster_id': workstationClusterId,
            'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
-           if (env != null) 'env': env,
-           if (sourceWorkstation != null)
-             'source_workstation': sourceWorkstation,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'annotations': ?annotations,
+           'env': ?env,
+           'source_workstation': ?sourceWorkstation,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

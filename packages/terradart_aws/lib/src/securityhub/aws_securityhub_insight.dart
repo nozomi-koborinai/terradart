@@ -776,9 +776,9 @@ final class SecurityhubInsightFiltersConfidence {
   final TfArg<String>? lte;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
   };
 }
 
@@ -799,9 +799,9 @@ final class SecurityhubInsightFiltersCreatedAt {
   final SecurityhubInsightFiltersCreatedAtDateRange? dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -837,9 +837,9 @@ final class SecurityhubInsightFiltersCriticality {
   final TfArg<String>? lte;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
   };
 }
 
@@ -879,9 +879,9 @@ final class SecurityhubInsightFiltersFindingProviderFieldsConfidence {
   final TfArg<String>? lte;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
   };
 }
 
@@ -902,9 +902,9 @@ final class SecurityhubInsightFiltersFindingProviderFieldsCriticality {
   final TfArg<String>? lte;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
   };
 }
 
@@ -1020,9 +1020,9 @@ final class SecurityhubInsightFiltersFirstObservedAt {
   final SecurityhubInsightFiltersFirstObservedAtDateRange? dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -1111,9 +1111,9 @@ final class SecurityhubInsightFiltersLastObservedAt {
   final SecurityhubInsightFiltersLastObservedAtDateRange? dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -1270,9 +1270,9 @@ final class SecurityhubInsightFiltersNetworkDestinationPort {
   final TfArg<String>? lte;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
   };
 }
 
@@ -1391,9 +1391,9 @@ final class SecurityhubInsightFiltersNetworkSourcePort {
   final TfArg<String>? lte;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
   };
 }
 
@@ -1433,9 +1433,9 @@ final class SecurityhubInsightFiltersNoteUpdatedAt {
   final SecurityhubInsightFiltersNoteUpdatedAtDateRange? dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -1494,9 +1494,9 @@ final class SecurityhubInsightFiltersProcessLaunchedAt {
   final SecurityhubInsightFiltersProcessLaunchedAtDateRange? dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -1555,9 +1555,9 @@ final class SecurityhubInsightFiltersProcessParentPid {
   final TfArg<String>? lte;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
   };
 }
 
@@ -1593,9 +1593,9 @@ final class SecurityhubInsightFiltersProcessPid {
   final TfArg<String>? lte;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
   };
 }
 
@@ -1616,9 +1616,9 @@ final class SecurityhubInsightFiltersProcessTerminatedAt {
   final SecurityhubInsightFiltersProcessTerminatedAtDateRange? dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -1879,9 +1879,9 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceLaunchedAt {
   dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -1979,9 +1979,9 @@ final class SecurityhubInsightFiltersResourceAwsIamAccessKeyCreatedAt {
   dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -2136,9 +2136,9 @@ final class SecurityhubInsightFiltersResourceContainerLaunchedAt {
   dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -2377,9 +2377,9 @@ final class SecurityhubInsightFiltersThreatIntelIndicatorLastObservedAt {
   dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -2533,9 +2533,9 @@ final class SecurityhubInsightFiltersUpdatedAt {
   final SecurityhubInsightFiltersUpdatedAtDateRange? dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
-    if (dateRange != null) 'date_range': dateRange!.encode(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
+    'date_range': ?dateRange?.encode(),
   };
 }
 
@@ -2638,7 +2638,7 @@ final class AwsSecurityhubInsight extends Resource {
          argMap: {
            'group_by_attribute': groupByAttribute,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'filters': TfArg.literal(filters.encode()),
          },
        );

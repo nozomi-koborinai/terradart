@@ -116,8 +116,7 @@ final class VertexAiIndexEndpointPrivateServiceConnectConfig {
 
   Map<String, Object?> encode() => {
     'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),
-    if (projectAllowlist != null)
-      'project_allowlist': projectAllowlist!.toTfJson(),
+    'project_allowlist': ?projectAllowlist?.toTfJson(),
     if (pscAutomationConfigs != null)
       'psc_automation_configs': [
         for (final e in pscAutomationConfigs!) e.encode(),
@@ -194,16 +193,15 @@ final class GoogleVertexAiIndexEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
+           'region': ?region,
+           'description': ?description,
            ...?connectivity?.argMap,
-           if (publicEndpointEnabled != null)
-             'public_endpoint_enabled': publicEndpointEnabled,
+           'public_endpoint_enabled': ?publicEndpointEnabled,
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

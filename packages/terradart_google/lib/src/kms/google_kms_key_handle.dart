@@ -52,7 +52,7 @@ final class GoogleKmsKeyHandle extends Resource {
            'name': name,
            'location': location,
            'resource_type_selector': resourceTypeSelector,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -123,9 +123,8 @@ final class FsxOntapVolumeAggregateConfiguration {
   final TfArg<num>? constituentsPerAggregate;
 
   Map<String, Object?> encode() => {
-    if (aggregates != null) 'aggregates': aggregates!.toTfJson(),
-    if (constituentsPerAggregate != null)
-      'constituents_per_aggregate': constituentsPerAggregate!.toTfJson(),
+    'aggregates': ?aggregates?.toTfJson(),
+    'constituents_per_aggregate': ?constituentsPerAggregate?.toTfJson(),
   };
 }
 
@@ -156,15 +155,12 @@ final class FsxOntapVolumeSnaplockConfiguration {
   final FsxOntapVolumeSnaplockConfigurationRetentionPeriod? retentionPeriod;
 
   Map<String, Object?> encode() => {
-    if (auditLogVolume != null) 'audit_log_volume': auditLogVolume!.toTfJson(),
-    if (privilegedDelete != null)
-      'privileged_delete': privilegedDelete!.toTfJson(),
+    'audit_log_volume': ?auditLogVolume?.toTfJson(),
+    'privileged_delete': ?privilegedDelete?.toTfJson(),
     'snaplock_type': snaplockType.toTfJson(),
-    if (volumeAppendModeEnabled != null)
-      'volume_append_mode_enabled': volumeAppendModeEnabled!.toTfJson(),
-    if (autocommitPeriod != null)
-      'autocommit_period': autocommitPeriod!.encode(),
-    if (retentionPeriod != null) 'retention_period': retentionPeriod!.encode(),
+    'volume_append_mode_enabled': ?volumeAppendModeEnabled?.toTfJson(),
+    'autocommit_period': ?autocommitPeriod?.encode(),
+    'retention_period': ?retentionPeriod?.encode(),
   };
 }
 
@@ -206,8 +202,8 @@ final class FsxOntapVolumeSnaplockConfigurationAutocommitPeriod {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -248,12 +244,9 @@ final class FsxOntapVolumeSnaplockConfigurationRetentionPeriod {
   minimumRetention;
 
   Map<String, Object?> encode() => {
-    if (defaultRetention != null)
-      'default_retention': defaultRetention!.encode(),
-    if (maximumRetention != null)
-      'maximum_retention': maximumRetention!.encode(),
-    if (minimumRetention != null)
-      'minimum_retention': minimumRetention!.encode(),
+    'default_retention': ?defaultRetention?.encode(),
+    'maximum_retention': ?maximumRetention?.encode(),
+    'minimum_retention': ?minimumRetention?.encode(),
   };
 }
 
@@ -274,8 +267,8 @@ final class FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetention {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -315,8 +308,8 @@ final class FsxOntapVolumeSnaplockConfigurationRetentionPeriodMaximumRetention {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -356,8 +349,8 @@ final class FsxOntapVolumeSnaplockConfigurationRetentionPeriodMinimumRetention {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -391,8 +384,8 @@ final class FsxOntapVolumeTieringPolicy {
   final TfArg<FsxOntapVolumeTieringPolicyName>? name;
 
   Map<String, Object?> encode() => {
-    if (coolingPeriod != null) 'cooling_period': coolingPeriod!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'cooling_period': ?coolingPeriod?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -440,26 +433,23 @@ final class AwsFsxOntapVolume extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bypassSnaplockEnterpriseRetention != null)
-             'bypass_snaplock_enterprise_retention':
-                 bypassSnaplockEnterpriseRetention,
-           if (copyTagsToBackups != null)
-             'copy_tags_to_backups': copyTagsToBackups,
-           if (finalBackupTags != null) 'final_backup_tags': finalBackupTags,
-           if (junctionPath != null) 'junction_path': junctionPath,
+           'bypass_snaplock_enterprise_retention':
+               ?bypassSnaplockEnterpriseRetention,
+           'copy_tags_to_backups': ?copyTagsToBackups,
+           'final_backup_tags': ?finalBackupTags,
+           'junction_path': ?junctionPath,
            'name': name,
-           if (ontapVolumeType != null) 'ontap_volume_type': ontapVolumeType,
-           if (region != null) 'region': region,
-           if (securityStyle != null) 'security_style': securityStyle,
+           'ontap_volume_type': ?ontapVolumeType,
+           'region': ?region,
+           'security_style': ?securityStyle,
            ...size.argMap,
-           if (skipFinalBackup != null) 'skip_final_backup': skipFinalBackup,
-           if (snapshotPolicy != null) 'snapshot_policy': snapshotPolicy,
-           if (storageEfficiencyEnabled != null)
-             'storage_efficiency_enabled': storageEfficiencyEnabled,
+           'skip_final_backup': ?skipFinalBackup,
+           'snapshot_policy': ?snapshotPolicy,
+           'storage_efficiency_enabled': ?storageEfficiencyEnabled,
            'storage_virtual_machine_id': storageVirtualMachineId,
-           if (tags != null) 'tags': tags,
-           if (volumeStyle != null) 'volume_style': volumeStyle,
-           if (volumeType != null) 'volume_type': volumeType,
+           'tags': ?tags,
+           'volume_style': ?volumeStyle,
+           'volume_type': ?volumeType,
            if (aggregateConfiguration != null)
              'aggregate_configuration': TfArg.literal(
                aggregateConfiguration.encode(),

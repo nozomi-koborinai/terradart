@@ -22,9 +22,9 @@ final class DataAwsQuicksightUser extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
-           if (namespace != null) 'namespace': namespace,
-           if (region != null) 'region': region,
+           'aws_account_id': ?awsAccountId,
+           'namespace': ?namespace,
+           'region': ?region,
            'user_name': userName,
          },
        );

@@ -102,10 +102,9 @@ final class AwsNetworkfirewallLoggingConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enableMonitoringDashboard != null)
-             'enable_monitoring_dashboard': enableMonitoringDashboard,
+           'enable_monitoring_dashboard': ?enableMonitoringDashboard,
            'firewall_arn': firewallArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'logging_configuration': TfArg.literal(
              loggingConfiguration.encode(),
            ),

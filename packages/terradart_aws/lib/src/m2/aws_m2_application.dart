@@ -87,13 +87,13 @@ final class AwsM2Application extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'engine_type': engineType,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
+           'tags': ?tags,
            if (definition != null)
              'definition': TfArg.literal([
                for (final e in definition) e.encode(),

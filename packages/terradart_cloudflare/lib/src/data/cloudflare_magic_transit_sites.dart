@@ -25,9 +25,9 @@ final class DataCloudflareMagicTransitSites extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (connectorid != null) 'connectorid': connectorid,
-           if (maxItems != null) 'max_items': maxItems,
+           'account_id': ?accountId,
+           'connectorid': ?connectorid,
+           'max_items': ?maxItems,
          },
        );
 

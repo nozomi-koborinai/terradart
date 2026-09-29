@@ -68,10 +68,10 @@ final class CloudflareR2Bucket extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
-           if (location != null) 'location': location,
+           'jurisdiction': ?jurisdiction,
+           'location': ?location,
            'name': name,
-           if (storageClass != null) 'storage_class': storageClass,
+           'storage_class': ?storageClass,
          },
        );
 

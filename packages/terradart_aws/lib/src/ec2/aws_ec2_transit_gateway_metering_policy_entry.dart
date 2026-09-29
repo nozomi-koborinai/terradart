@@ -92,28 +92,22 @@ final class AwsEc2TransitGatewayMeteringPolicyEntry extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (destinationCidrBlock != null)
-             'destination_cidr_block': destinationCidrBlock,
-           if (destinationPortRange != null)
-             'destination_port_range': destinationPortRange,
-           if (destinationTransitGatewayAttachmentId != null)
-             'destination_transit_gateway_attachment_id':
-                 destinationTransitGatewayAttachmentId,
-           if (destinationTransitGatewayAttachmentType != null)
-             'destination_transit_gateway_attachment_type':
-                 destinationTransitGatewayAttachmentType,
+           'destination_cidr_block': ?destinationCidrBlock,
+           'destination_port_range': ?destinationPortRange,
+           'destination_transit_gateway_attachment_id':
+               ?destinationTransitGatewayAttachmentId,
+           'destination_transit_gateway_attachment_type':
+               ?destinationTransitGatewayAttachmentType,
            'metered_account': meteredAccount,
            'policy_rule_number': policyRuleNumber,
-           if (protocol != null) 'protocol': protocol,
-           if (region != null) 'region': region,
-           if (sourceCidrBlock != null) 'source_cidr_block': sourceCidrBlock,
-           if (sourcePortRange != null) 'source_port_range': sourcePortRange,
-           if (sourceTransitGatewayAttachmentId != null)
-             'source_transit_gateway_attachment_id':
-                 sourceTransitGatewayAttachmentId,
-           if (sourceTransitGatewayAttachmentType != null)
-             'source_transit_gateway_attachment_type':
-                 sourceTransitGatewayAttachmentType,
+           'protocol': ?protocol,
+           'region': ?region,
+           'source_cidr_block': ?sourceCidrBlock,
+           'source_port_range': ?sourcePortRange,
+           'source_transit_gateway_attachment_id':
+               ?sourceTransitGatewayAttachmentId,
+           'source_transit_gateway_attachment_type':
+               ?sourceTransitGatewayAttachmentType,
            'transit_gateway_metering_policy_id': transitGatewayMeteringPolicyId,
          },
        );

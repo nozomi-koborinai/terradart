@@ -36,9 +36,8 @@ final class AwsS3BucketAccelerateConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (region != null) 'region': region,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'region': ?region,
            'status': status,
          },
        );

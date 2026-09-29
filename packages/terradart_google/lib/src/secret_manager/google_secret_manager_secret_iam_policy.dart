@@ -29,7 +29,7 @@ final class GoogleSecretManagerSecretIamPolicy extends Resource {
          argMap: {
            'secret_id': secretId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

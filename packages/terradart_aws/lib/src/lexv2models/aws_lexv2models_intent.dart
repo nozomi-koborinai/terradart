@@ -27,7 +27,7 @@ final class Lexv2modelsIntentClosingSetting {
   final List<Lexv2modelsIntentClosingSettingNextStep>? nextStep;
 
   Map<String, Object?> encode() => {
-    if (active != null) 'active': active!.toTfJson(),
+    'active': ?active?.toTfJson(),
     if (closingResponse != null)
       'closing_response': [for (final e in closingResponse!) e.encode()],
     if (conditional != null)
@@ -51,7 +51,7 @@ final class Lexv2modelsIntentClosingSettingClosingResponse {
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -160,8 +160,8 @@ final class Lexv2modelsIntentClosingSettingClosingResponseMessageGroupMessageIma
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -291,8 +291,8 @@ final class Lexv2modelsIntentClosingSettingClosingResponseMessageGroupVariationI
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -445,8 +445,7 @@ final class Lexv2modelsIntentClosingSettingConditionalConditionalBranchNextStep 
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -470,9 +469,8 @@ final class Lexv2modelsIntentClosingSettingConditionalConditionalBranchNextStepD
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -494,7 +492,7 @@ final class Lexv2modelsIntentClosingSettingConditionalConditionalBranchNextStepI
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -520,7 +518,7 @@ final class Lexv2modelsIntentClosingSettingConditionalConditionalBranchNextStepI
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -536,8 +534,7 @@ final class Lexv2modelsIntentClosingSettingConditionalConditionalBranchNextStepI
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -558,7 +555,7 @@ final class Lexv2modelsIntentClosingSettingConditionalConditionalBranchResponse 
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -669,8 +666,8 @@ final class Lexv2modelsIntentClosingSettingConditionalConditionalBranchResponseM
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -800,8 +797,8 @@ final class Lexv2modelsIntentClosingSettingConditionalConditionalBranchResponseM
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -896,8 +893,7 @@ final class Lexv2modelsIntentClosingSettingConditionalDefaultBranchNextStep {
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -921,9 +917,8 @@ final class Lexv2modelsIntentClosingSettingConditionalDefaultBranchNextStepDialo
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -945,7 +940,7 @@ final class Lexv2modelsIntentClosingSettingConditionalDefaultBranchNextStepInten
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -971,7 +966,7 @@ final class Lexv2modelsIntentClosingSettingConditionalDefaultBranchNextStepInten
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -987,8 +982,7 @@ final class Lexv2modelsIntentClosingSettingConditionalDefaultBranchNextStepInten
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -1009,7 +1003,7 @@ final class Lexv2modelsIntentClosingSettingConditionalDefaultBranchResponse {
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -1120,8 +1114,8 @@ final class Lexv2modelsIntentClosingSettingConditionalDefaultBranchResponseMessa
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -1251,8 +1245,8 @@ final class Lexv2modelsIntentClosingSettingConditionalDefaultBranchResponseMessa
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -1320,8 +1314,7 @@ final class Lexv2modelsIntentClosingSettingNextStep {
   final List<Lexv2modelsIntentClosingSettingNextStepIntent>? intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -1345,9 +1338,8 @@ final class Lexv2modelsIntentClosingSettingNextStepDialogAction {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -1363,7 +1355,7 @@ final class Lexv2modelsIntentClosingSettingNextStepIntent {
   final List<Lexv2modelsIntentClosingSettingNextStepIntentSlot>? slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -1386,7 +1378,7 @@ final class Lexv2modelsIntentClosingSettingNextStepIntentSlot {
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -1402,8 +1394,7 @@ final class Lexv2modelsIntentClosingSettingNextStepIntentSlotValue {
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -1465,7 +1456,7 @@ final class Lexv2modelsIntentConfirmationSetting {
   promptSpecification;
 
   Map<String, Object?> encode() => {
-    if (active != null) 'active': active!.toTfJson(),
+    'active': ?active?.toTfJson(),
     if (codeHook != null) 'code_hook': [for (final e in codeHook!) e.encode()],
     if (confirmationConditional != null)
       'confirmation_conditional': [
@@ -1533,8 +1524,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHook {
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
     'enable_code_hook_invocation': enableCodeHookInvocation.toTfJson(),
-    if (invocationLabel != null)
-      'invocation_label': invocationLabel!.toTfJson(),
+    'invocation_label': ?invocationLabel?.toTfJson(),
     if (postCodeHookSpecification != null)
       'post_code_hook_specification': [
         for (final e in postCodeHookSpecification!) e.encode(),
@@ -1731,8 +1721,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -1756,9 +1745,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -1780,7 +1768,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -1806,7 +1794,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -1822,8 +1810,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -1844,7 +1831,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -1955,8 +1942,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2086,8 +2073,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2186,8 +2173,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -2211,9 +2197,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -2235,7 +2220,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -2261,7 +2246,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -2277,8 +2262,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -2299,7 +2283,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -2410,8 +2394,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2541,8 +2525,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2616,8 +2600,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -2641,9 +2624,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -2665,7 +2647,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -2691,7 +2673,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -2707,8 +2689,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -2729,7 +2710,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -2840,8 +2821,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -2971,8 +2952,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -3129,8 +3110,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -3154,9 +3134,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -3178,7 +3157,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -3204,7 +3183,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -3220,8 +3199,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -3242,7 +3220,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -3353,8 +3331,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -3484,8 +3462,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -3584,8 +3562,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -3609,9 +3586,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -3633,7 +3609,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -3659,7 +3635,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -3675,8 +3651,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -3697,7 +3672,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -3808,8 +3783,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -3939,8 +3914,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -4014,8 +3989,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -4039,9 +4013,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -4063,7 +4036,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -4089,7 +4062,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -4105,8 +4078,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -4127,7 +4099,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -4238,8 +4210,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -4369,8 +4341,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -4527,8 +4499,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -4552,9 +4523,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -4576,7 +4546,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -4602,7 +4572,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -4618,8 +4588,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -4640,7 +4609,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -4751,8 +4720,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -4882,8 +4851,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -4982,8 +4951,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -5007,9 +4975,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -5031,7 +4998,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -5057,7 +5024,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -5073,8 +5040,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -5095,7 +5061,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -5206,8 +5172,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -5337,8 +5303,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -5412,8 +5378,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -5437,9 +5402,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -5461,7 +5425,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -5487,7 +5451,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -5503,8 +5467,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -5525,7 +5488,7 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -5636,8 +5599,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -5767,8 +5730,8 @@ final class Lexv2modelsIntentConfirmationSettingCodeHookPostCodeHookSpecificatio
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -5925,8 +5888,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalCondition
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -5950,9 +5912,8 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalCondition
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -5974,7 +5935,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalCondition
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -6000,7 +5961,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalCondition
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -6016,8 +5977,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalCondition
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -6038,7 +5998,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalCondition
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -6149,8 +6109,8 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalCondition
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -6280,8 +6240,8 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalCondition
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -6380,8 +6340,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalDefaultBr
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -6405,9 +6364,8 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalDefaultBr
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -6429,7 +6387,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalDefaultBr
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -6455,7 +6413,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalDefaultBr
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -6471,8 +6429,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalDefaultBr
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -6493,7 +6450,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalDefaultBr
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -6604,8 +6561,8 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalDefaultBr
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -6735,8 +6692,8 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationConditionalDefaultBr
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -6808,8 +6765,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationNextStep {
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -6833,9 +6789,8 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationNextStepDialogAction
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -6857,7 +6812,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationNextStepIntent {
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -6883,7 +6838,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationNextStepIntentSlot {
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -6899,8 +6854,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationNextStepIntentSlotVa
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -6921,7 +6875,7 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationResponse {
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -7032,8 +6986,8 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationResponseMessageGroup
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -7163,8 +7117,8 @@ final class Lexv2modelsIntentConfirmationSettingConfirmationResponseMessageGroup
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -7321,8 +7275,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalConditiona
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -7346,9 +7299,8 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalConditiona
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -7370,7 +7322,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalConditiona
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -7396,7 +7348,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalConditiona
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -7412,8 +7364,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalConditiona
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -7434,7 +7385,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalConditiona
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -7545,8 +7496,8 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalConditiona
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -7676,8 +7627,8 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalConditiona
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -7776,8 +7727,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalDefaultBra
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -7801,9 +7751,8 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalDefaultBra
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -7825,7 +7774,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalDefaultBra
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -7851,7 +7800,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalDefaultBra
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -7867,8 +7816,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalDefaultBra
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -7889,7 +7837,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalDefaultBra
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -8000,8 +7948,8 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalDefaultBra
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -8131,8 +8079,8 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationConditionalDefaultBra
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -8204,8 +8152,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationNextStep {
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -8229,9 +8176,8 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationNextStepDialogAction 
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -8251,7 +8197,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationNextStepIntent {
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -8277,7 +8223,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationNextStepIntentSlot {
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -8293,8 +8239,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationNextStepIntentSlotVal
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -8315,7 +8260,7 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationResponse {
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -8426,8 +8371,8 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationResponseMessageGroupM
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -8557,8 +8502,8 @@ final class Lexv2modelsIntentConfirmationSettingDeclinationResponseMessageGroupV
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -8623,10 +8568,8 @@ final class Lexv2modelsIntentConfirmationSettingElicitationCodeHook {
   final TfArg<String>? invocationLabel;
 
   Map<String, Object?> encode() => {
-    if (enableCodeHookInvocation != null)
-      'enable_code_hook_invocation': enableCodeHookInvocation!.toTfJson(),
-    if (invocationLabel != null)
-      'invocation_label': invocationLabel!.toTfJson(),
+    'enable_code_hook_invocation': ?enableCodeHookInvocation?.toTfJson(),
+    'invocation_label': ?invocationLabel?.toTfJson(),
   };
 }
 
@@ -8736,8 +8679,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalConditionalBra
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -8761,9 +8703,8 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalConditionalBra
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -8785,7 +8726,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalConditionalBra
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -8811,7 +8752,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalConditionalBra
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -8827,8 +8768,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalConditionalBra
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -8849,7 +8789,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalConditionalBra
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -8960,8 +8900,8 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalConditionalBra
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -9091,8 +9031,8 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalConditionalBra
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -9191,8 +9131,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalDefaultBranchN
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -9216,9 +9155,8 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalDefaultBranchN
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -9240,7 +9178,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalDefaultBranchN
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -9266,7 +9204,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalDefaultBranchN
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -9282,8 +9220,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalDefaultBranchN
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -9304,7 +9241,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalDefaultBranchR
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -9415,8 +9352,8 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalDefaultBranchR
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -9546,8 +9483,8 @@ final class Lexv2modelsIntentConfirmationSettingFailureConditionalDefaultBranchR
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -9616,8 +9553,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureNextStep {
   final List<Lexv2modelsIntentConfirmationSettingFailureNextStepIntent>? intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -9641,9 +9577,8 @@ final class Lexv2modelsIntentConfirmationSettingFailureNextStepDialogAction {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -9663,7 +9598,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureNextStepIntent {
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -9689,7 +9624,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureNextStepIntentSlot {
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -9705,8 +9640,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureNextStepIntentSlotValue {
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -9725,7 +9659,7 @@ final class Lexv2modelsIntentConfirmationSettingFailureResponse {
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -9836,8 +9770,8 @@ final class Lexv2modelsIntentConfirmationSettingFailureResponseMessageGroupMessa
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -9967,8 +9901,8 @@ final class Lexv2modelsIntentConfirmationSettingFailureResponseMessageGroupVaria
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -10048,10 +9982,9 @@ final class Lexv2modelsIntentConfirmationSettingPromptSpecification {
   promptAttemptsSpecification;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'max_retries': maxRetries.toTfJson(),
-    if (messageSelectionStrategy != null)
-      'message_selection_strategy': messageSelectionStrategy!.toTfJson(),
+    'message_selection_strategy': ?messageSelectionStrategy?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
     if (promptAttemptsSpecification != null)
@@ -10166,8 +10099,8 @@ final class Lexv2modelsIntentConfirmationSettingPromptSpecificationMessageGroupM
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -10297,8 +10230,8 @@ final class Lexv2modelsIntentConfirmationSettingPromptSpecificationMessageGroupV
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -10381,7 +10314,7 @@ final class Lexv2modelsIntentConfirmationSettingPromptSpecificationPromptAttempt
   textInputSpecification;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'map_block_key': mapBlockKey.toTfJson(),
     if (allowedInputTypes != null)
       'allowed_input_types': [for (final e in allowedInputTypes!) e.encode()],
@@ -10544,7 +10477,7 @@ final class Lexv2modelsIntentFulfillmentCodeHook {
   postFulfillmentStatusSpecification;
 
   Map<String, Object?> encode() => {
-    if (active != null) 'active': active!.toTfJson(),
+    'active': ?active?.toTfJson(),
     'enabled': enabled.toTfJson(),
     if (fulfillmentUpdatesSpecification != null)
       'fulfillment_updates_specification': [
@@ -10584,8 +10517,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookFulfillmentUpdatesSpecification 
 
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
-    if (timeoutInSeconds != null)
-      'timeout_in_seconds': timeoutInSeconds!.toTfJson(),
+    'timeout_in_seconds': ?timeoutInSeconds?.toTfJson(),
     if (startResponse != null)
       'start_response': [for (final e in startResponse!) e.encode()],
     if (updateResponse != null)
@@ -10613,8 +10545,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookFulfillmentUpdatesSpecificationS
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
-    if (delayInSeconds != null) 'delay_in_seconds': delayInSeconds!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
+    'delay_in_seconds': ?delayInSeconds?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -10725,8 +10657,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookFulfillmentUpdatesSpecificationS
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -10856,8 +10788,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookFulfillmentUpdatesSpecificationS
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -10928,7 +10860,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookFulfillmentUpdatesSpecificationU
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'frequency_in_seconds': frequencyInSeconds.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
@@ -11040,8 +10972,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookFulfillmentUpdatesSpecificationU
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -11171,8 +11103,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookFulfillmentUpdatesSpecificationU
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -11412,8 +11344,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -11437,9 +11368,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -11461,7 +11391,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -11487,7 +11417,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -11503,8 +11433,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -11525,7 +11454,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -11636,8 +11565,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -11767,8 +11696,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -11867,8 +11796,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -11892,9 +11820,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -11916,7 +11843,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -11942,7 +11869,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -11958,8 +11885,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -11980,7 +11906,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -12091,8 +12017,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -12222,8 +12148,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -12297,8 +12223,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -12322,9 +12247,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -12346,7 +12270,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -12372,7 +12296,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -12388,8 +12312,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -12410,7 +12333,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -12521,8 +12444,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -12652,8 +12575,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -12810,8 +12733,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -12835,9 +12757,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -12859,7 +12780,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -12885,7 +12806,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -12901,8 +12822,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -12923,7 +12843,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -13034,8 +12954,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -13165,8 +13085,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -13265,8 +13185,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -13290,9 +13209,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -13314,7 +13232,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -13340,7 +13258,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -13356,8 +13274,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -13378,7 +13295,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -13489,8 +13406,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -13620,8 +13537,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -13695,8 +13612,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -13720,9 +13636,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -13744,7 +13659,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -13770,7 +13685,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -13786,8 +13701,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -13808,7 +13722,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -13919,8 +13833,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -14050,8 +13964,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -14208,8 +14122,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -14233,9 +14146,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -14257,7 +14169,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -14283,7 +14195,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -14299,8 +14211,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -14321,7 +14232,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -14432,8 +14343,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -14563,8 +14474,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -14663,8 +14574,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -14688,9 +14598,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -14712,7 +14621,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -14738,7 +14647,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -14754,8 +14663,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -14776,7 +14684,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -14887,8 +14795,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -15018,8 +14926,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -15093,8 +15001,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -15118,9 +15025,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -15142,7 +15048,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -15168,7 +15074,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -15184,8 +15090,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -15206,7 +15111,7 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -15317,8 +15222,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -15448,8 +15353,8 @@ final class Lexv2modelsIntentFulfillmentCodeHookPostFulfillmentStatusSpecificati
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -15555,8 +15460,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHook {
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
     'enable_code_hook_invocation': enableCodeHookInvocation.toTfJson(),
-    if (invocationLabel != null)
-      'invocation_label': invocationLabel!.toTfJson(),
+    'invocation_label': ?invocationLabel?.toTfJson(),
     if (postCodeHookSpecification != null)
       'post_code_hook_specification': [
         for (final e in postCodeHookSpecification!) e.encode(),
@@ -15753,8 +15657,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -15778,9 +15681,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -15802,7 +15704,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -15828,7 +15730,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -15844,8 +15746,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -15866,7 +15767,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -15977,8 +15878,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -16108,8 +16009,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -16208,8 +16109,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -16233,9 +16133,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -16257,7 +16156,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -16283,7 +16182,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -16299,8 +16198,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -16321,7 +16219,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -16432,8 +16330,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -16563,8 +16461,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -16638,8 +16536,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -16663,9 +16560,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -16687,7 +16583,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -16713,7 +16609,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -16729,8 +16625,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -16751,7 +16646,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -16862,8 +16757,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -16993,8 +16888,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -17151,8 +17046,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -17176,9 +17070,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -17200,7 +17093,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -17226,7 +17119,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -17242,8 +17135,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -17264,7 +17156,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -17375,8 +17267,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -17506,8 +17398,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -17606,8 +17498,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -17631,9 +17522,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -17655,7 +17545,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -17681,7 +17571,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -17697,8 +17587,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -17719,7 +17608,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -17830,8 +17719,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -17961,8 +17850,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -18036,8 +17925,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -18061,9 +17949,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -18085,7 +17972,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -18111,7 +17998,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -18127,8 +18014,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -18149,7 +18035,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -18260,8 +18146,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -18391,8 +18277,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -18549,8 +18435,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -18574,9 +18459,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -18598,7 +18482,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -18624,7 +18508,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -18640,8 +18524,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -18662,7 +18545,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -18773,8 +18656,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -18904,8 +18787,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -19004,8 +18887,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -19029,9 +18911,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -19053,7 +18934,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -19079,7 +18960,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -19095,8 +18976,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -19117,7 +18997,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -19228,8 +19108,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -19359,8 +19239,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -19434,8 +19314,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -19459,9 +19338,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -19483,7 +19361,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -19509,7 +19387,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -19525,8 +19403,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -19547,7 +19424,7 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -19658,8 +19535,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -19789,8 +19666,8 @@ final class Lexv2modelsIntentInitialResponseSettingCodeHookPostCodeHookSpecifica
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -19945,8 +19822,7 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalConditionalBranchN
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -19970,9 +19846,8 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalConditionalBranchN
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -19994,7 +19869,7 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalConditionalBranchN
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -20020,7 +19895,7 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalConditionalBranchN
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -20036,8 +19911,7 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalConditionalBranchN
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -20058,7 +19932,7 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalConditionalBranchR
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -20169,8 +20043,8 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalConditionalBranchR
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -20300,8 +20174,8 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalConditionalBranchR
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -20400,8 +20274,7 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalDefaultBranchNextS
   intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -20425,9 +20298,8 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalDefaultBranchNextS
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -20449,7 +20321,7 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalDefaultBranchNextS
   slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -20475,7 +20347,7 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalDefaultBranchNextS
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -20491,8 +20363,7 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalDefaultBranchNextS
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -20513,7 +20384,7 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalDefaultBranchRespo
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -20624,8 +20495,8 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalDefaultBranchRespo
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -20755,8 +20626,8 @@ final class Lexv2modelsIntentInitialResponseSettingConditionalDefaultBranchRespo
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -20824,7 +20695,7 @@ final class Lexv2modelsIntentInitialResponseSettingInitialResponse {
   messageGroup;
 
   Map<String, Object?> encode() => {
-    if (allowInterrupt != null) 'allow_interrupt': allowInterrupt!.toTfJson(),
+    'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
       'message_group': [for (final e in messageGroup!) e.encode()],
   };
@@ -20935,8 +20806,8 @@ final class Lexv2modelsIntentInitialResponseSettingInitialResponseMessageGroupMe
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -21066,8 +20937,8 @@ final class Lexv2modelsIntentInitialResponseSettingInitialResponseMessageGroupVa
   button;
 
   Map<String, Object?> encode() => {
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (subtitle != null) 'subtitle': subtitle!.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'subtitle': ?subtitle?.toTfJson(),
     'title': title.toTfJson(),
     if (button != null) 'button': [for (final e in button!) e.encode()],
   };
@@ -21136,8 +21007,7 @@ final class Lexv2modelsIntentInitialResponseSettingNextStep {
   final List<Lexv2modelsIntentInitialResponseSettingNextStepIntent>? intent;
 
   Map<String, Object?> encode() => {
-    if (sessionAttributes != null)
-      'session_attributes': sessionAttributes!.toTfJson(),
+    'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
       'dialog_action': [for (final e in dialogAction!) e.encode()],
     if (intent != null) 'intent': [for (final e in intent!) e.encode()],
@@ -21161,9 +21031,8 @@ final class Lexv2modelsIntentInitialResponseSettingNextStepDialogAction {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (slotToElicit != null) 'slot_to_elicit': slotToElicit!.toTfJson(),
-    if (suppressNextMessage != null)
-      'suppress_next_message': suppressNextMessage!.toTfJson(),
+    'slot_to_elicit': ?slotToElicit?.toTfJson(),
+    'suppress_next_message': ?suppressNextMessage?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -21182,7 +21051,7 @@ final class Lexv2modelsIntentInitialResponseSettingNextStepIntent {
   final List<Lexv2modelsIntentInitialResponseSettingNextStepIntentSlot>? slot;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
   };
 }
@@ -21206,7 +21075,7 @@ final class Lexv2modelsIntentInitialResponseSettingNextStepIntentSlot {
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (shape != null) 'shape': shape!.toTfJson(),
+    'shape': ?shape?.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
 }
@@ -21222,8 +21091,7 @@ final class Lexv2modelsIntentInitialResponseSettingNextStepIntentSlotValue {
   final TfArg<String>? interpretedValue;
 
   Map<String, Object?> encode() => {
-    if (interpretedValue != null)
-      'interpreted_value': interpretedValue!.toTfJson(),
+    'interpreted_value': ?interpretedValue?.toTfJson(),
   };
 }
 
@@ -21256,10 +21124,8 @@ final class Lexv2modelsIntentKendraConfiguration {
 
   Map<String, Object?> encode() => {
     'kendra_index': kendraIndex.toTfJson(),
-    if (queryFilterString != null)
-      'query_filter_string': queryFilterString!.toTfJson(),
-    if (queryFilterStringEnabled != null)
-      'query_filter_string_enabled': queryFilterStringEnabled!.toTfJson(),
+    'query_filter_string': ?queryFilterString?.toTfJson(),
+    'query_filter_string_enabled': ?queryFilterStringEnabled?.toTfJson(),
   };
 }
 
@@ -21336,9 +21202,9 @@ final class Lexv2modelsIntentQnaIntentConfigurationBedrockModelConfiguration {
   guardrail;
 
   Map<String, Object?> encode() => {
-    if (customPrompt != null) 'custom_prompt': customPrompt!.toTfJson(),
+    'custom_prompt': ?customPrompt?.toTfJson(),
     'model_arn': modelArn.toTfJson(),
-    if (traceStatus != null) 'trace_status': traceStatus!.toTfJson(),
+    'trace_status': ?traceStatus?.toTfJson(),
     if (guardrail != null)
       'guardrail': [for (final e in guardrail!) e.encode()],
   };
@@ -21425,7 +21291,7 @@ final class Lexv2modelsIntentQnaIntentConfigurationDataSourceConfigurationBedroc
 
   Map<String, Object?> encode() => {
     'bedrock_knowledge_base_arn': bedrockKnowledgeBaseArn.toTfJson(),
-    if (exactResponse != null) 'exact_response': exactResponse!.toTfJson(),
+    'exact_response': ?exactResponse?.toTfJson(),
     if (exactResponseFields != null)
       'exact_response_fields': [
         for (final e in exactResponseFields!) e.encode(),
@@ -21443,9 +21309,7 @@ final class Lexv2modelsIntentQnaIntentConfigurationDataSourceConfigurationBedroc
 
   final TfArg<String>? answerField;
 
-  Map<String, Object?> encode() => {
-    if (answerField != null) 'answer_field': answerField!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'answer_field': ?answerField?.toTfJson()};
 }
 
 /// Typed helper for the `qna_intent_configuration.data_source_configuration.kendra_configuration` block of
@@ -21468,12 +21332,10 @@ final class Lexv2modelsIntentQnaIntentConfigurationDataSourceConfigurationKendra
   final TfArg<bool>? queryFilterStringEnabled;
 
   Map<String, Object?> encode() => {
-    if (exactResponse != null) 'exact_response': exactResponse!.toTfJson(),
+    'exact_response': ?exactResponse?.toTfJson(),
     'kendra_index': kendraIndex.toTfJson(),
-    if (queryFilterString != null)
-      'query_filter_string': queryFilterString!.toTfJson(),
-    if (queryFilterStringEnabled != null)
-      'query_filter_string_enabled': queryFilterStringEnabled!.toTfJson(),
+    'query_filter_string': ?queryFilterString?.toTfJson(),
+    'query_filter_string_enabled': ?queryFilterStringEnabled?.toTfJson(),
   };
 }
 
@@ -21504,8 +21366,8 @@ final class Lexv2modelsIntentQnaIntentConfigurationDataSourceConfigurationOpense
 
   Map<String, Object?> encode() => {
     'domain_endpoint': domainEndpoint.toTfJson(),
-    if (exactResponse != null) 'exact_response': exactResponse!.toTfJson(),
-    if (includeFields != null) 'include_fields': includeFields!.toTfJson(),
+    'exact_response': ?exactResponse?.toTfJson(),
+    'include_fields': ?includeFields?.toTfJson(),
     'index_name': indexName.toTfJson(),
     if (exactResponseFields != null)
       'exact_response_fields': [
@@ -21596,12 +21458,11 @@ final class AwsLexv2modelsIntent extends Resource {
          argMap: {
            'bot_id': botId,
            'bot_version': botVersion,
-           if (description != null) 'description': description,
+           'description': ?description,
            'locale_id': localeId,
            'name': name,
-           if (parentIntentSignature != null)
-             'parent_intent_signature': parentIntentSignature,
-           if (region != null) 'region': region,
+           'parent_intent_signature': ?parentIntentSignature,
+           'region': ?region,
            if (closingSetting != null)
              'closing_setting': TfArg.literal([
                for (final e in closingSetting) e.encode(),

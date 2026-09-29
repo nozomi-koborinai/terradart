@@ -40,7 +40,7 @@ final class ZeroTrustTunnelWarpConnectorConfigConfig {
   vipsPrevious;
 
   Map<String, Object?> encode() => {
-    if (fnrId != null) 'fnr_id': fnrId!.toTfJson(),
+    'fnr_id': ?fnrId?.toTfJson(),
     if (vips != null) 'vips': [for (final e in vips!) e.encode()],
     if (vipsPrevious != null)
       'vips_previous': [for (final e in vipsPrevious!) e.encode()],

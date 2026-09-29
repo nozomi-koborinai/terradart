@@ -25,16 +25,13 @@ final class AwsQuicksightIpRestriction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'enabled': enabled,
-           if (ipRestrictionRuleMap != null)
-             'ip_restriction_rule_map': ipRestrictionRuleMap,
-           if (region != null) 'region': region,
-           if (vpcEndpointIdRestrictionRuleMap != null)
-             'vpc_endpoint_id_restriction_rule_map':
-                 vpcEndpointIdRestrictionRuleMap,
-           if (vpcIdRestrictionRuleMap != null)
-             'vpc_id_restriction_rule_map': vpcIdRestrictionRuleMap,
+           'ip_restriction_rule_map': ?ipRestrictionRuleMap,
+           'region': ?region,
+           'vpc_endpoint_id_restriction_rule_map':
+               ?vpcEndpointIdRestrictionRuleMap,
+           'vpc_id_restriction_rule_map': ?vpcIdRestrictionRuleMap,
          },
        );
 

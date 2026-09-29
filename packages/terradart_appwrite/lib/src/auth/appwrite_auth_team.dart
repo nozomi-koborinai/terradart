@@ -23,11 +23,7 @@ final class AppwriteAuthTeam extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (projectId != null) 'project_id': projectId,
-           if (roles != null) 'roles': roles,
-         },
+         argMap: {'name': name, 'project_id': ?projectId, 'roles': ?roles},
        );
 
   @override

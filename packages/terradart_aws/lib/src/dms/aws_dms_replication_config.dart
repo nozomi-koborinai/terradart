@@ -56,20 +56,15 @@ final class DmsReplicationConfigComputeConfig {
   final TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds;
 
   Map<String, Object?> encode() => {
-    if (availabilityZone != null)
-      'availability_zone': availabilityZone!.toTfJson(),
-    if (dnsNameServers != null) 'dns_name_servers': dnsNameServers!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (maxCapacityUnits != null)
-      'max_capacity_units': maxCapacityUnits!.toTfJson(),
-    if (minCapacityUnits != null)
-      'min_capacity_units': minCapacityUnits!.toTfJson(),
-    if (multiAz != null) 'multi_az': multiAz!.toTfJson(),
-    if (preferredMaintenanceWindow != null)
-      'preferred_maintenance_window': preferredMaintenanceWindow!.toTfJson(),
+    'availability_zone': ?availabilityZone?.toTfJson(),
+    'dns_name_servers': ?dnsNameServers?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'max_capacity_units': ?maxCapacityUnits?.toTfJson(),
+    'min_capacity_units': ?minCapacityUnits?.toTfJson(),
+    'multi_az': ?multiAz?.toTfJson(),
+    'preferred_maintenance_window': ?preferredMaintenanceWindow?.toTfJson(),
     'replication_subnet_group_id': replicationSubnetGroupId.toTfJson(),
-    if (vpcSecurityGroupIds != null)
-      'vpc_security_group_ids': vpcSecurityGroupIds!.encodeAs('id').toTfJson(),
+    'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -98,19 +93,16 @@ final class AwsDmsReplicationConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'replication_config_identifier': replicationConfigIdentifier,
-           if (replicationSettings != null)
-             'replication_settings': replicationSettings,
+           'replication_settings': ?replicationSettings,
            'replication_type': replicationType,
-           if (resourceIdentifier != null)
-             'resource_identifier': resourceIdentifier,
+           'resource_identifier': ?resourceIdentifier,
            'source_endpoint_arn': sourceEndpointArn,
-           if (startReplication != null) 'start_replication': startReplication,
-           if (supplementalSettings != null)
-             'supplemental_settings': supplementalSettings,
+           'start_replication': ?startReplication,
+           'supplemental_settings': ?supplementalSettings,
            'table_mappings': tableMappings,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'target_endpoint_arn': targetEndpointArn,
            'compute_config': TfArg.literal(computeConfig.encode()),
          },

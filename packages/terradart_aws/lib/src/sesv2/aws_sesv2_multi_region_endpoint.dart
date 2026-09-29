@@ -50,8 +50,8 @@ final class AwsSesv2MultiRegionEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'endpoint_name': endpointName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (details != null)
              'details': TfArg.literal([for (final e in details) e.encode()]),
          },

@@ -39,12 +39,12 @@ final class GoogleAppEngineFirewallRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (priority != null) 'priority': priority,
+           'priority': ?priority,
            'action': action,
            'source_range': sourceRange,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

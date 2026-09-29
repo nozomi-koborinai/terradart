@@ -25,9 +25,9 @@ final class DataGoogleDataprocAutoscalingPolicyIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
+           'location': ?location,
            'policy_id': policyId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

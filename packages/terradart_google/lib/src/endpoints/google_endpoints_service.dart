@@ -50,12 +50,11 @@ final class GoogleEndpointsService extends Resource {
          terraformType: tfType,
          argMap: {
            'service_name': serviceName,
-           if (openapiConfig != null) 'openapi_config': openapiConfig,
-           if (grpcConfig != null) 'grpc_config': grpcConfig,
-           if (protocOutputBase64 != null)
-             'protoc_output_base64': protocOutputBase64,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'openapi_config': ?openapiConfig,
+           'grpc_config': ?grpcConfig,
+           'protoc_output_base64': ?protocOutputBase64,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -37,14 +37,13 @@ final class GoogleApigeeEnvironmentDebugmask extends Resource {
          terraformType: tfType,
          argMap: {
            'env_id': envId,
-           if (faultXPaths != null) 'fault_x_paths': faultXPaths,
-           if (namespaces != null) 'namespaces': namespaces,
-           if (requestJsonPaths != null) 'request_json_paths': requestJsonPaths,
-           if (requestXPaths != null) 'request_x_paths': requestXPaths,
-           if (responseJsonPaths != null)
-             'response_json_paths': responseJsonPaths,
-           if (responseXPaths != null) 'response_x_paths': responseXPaths,
-           if (variables != null) 'variables': variables,
+           'fault_x_paths': ?faultXPaths,
+           'namespaces': ?namespaces,
+           'request_json_paths': ?requestJsonPaths,
+           'request_x_paths': ?requestXPaths,
+           'response_json_paths': ?responseJsonPaths,
+           'response_x_paths': ?responseXPaths,
+           'variables': ?variables,
          },
        );
 

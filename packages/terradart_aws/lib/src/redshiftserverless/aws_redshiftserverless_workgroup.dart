@@ -44,7 +44,7 @@ final class RedshiftserverlessWorkgroupPricePerformanceTarget {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (level != null) 'level': level!.toTfJson(),
+    'level': ?level?.toTfJson(),
   };
 }
 
@@ -75,20 +75,17 @@ final class AwsRedshiftserverlessWorkgroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (baseCapacity != null) 'base_capacity': baseCapacity,
-           if (enhancedVpcRouting != null)
-             'enhanced_vpc_routing': enhancedVpcRouting,
-           if (maxCapacity != null) 'max_capacity': maxCapacity,
+           'base_capacity': ?baseCapacity,
+           'enhanced_vpc_routing': ?enhancedVpcRouting,
+           'max_capacity': ?maxCapacity,
            'namespace_name': namespaceName,
-           if (port != null) 'port': port,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (trackName != null) 'track_name': trackName,
+           'port': ?port,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
+           'tags': ?tags,
+           'track_name': ?trackName,
            'workgroup_name': workgroupName,
            if (configParameter != null)
              'config_parameter': TfArg.literal([

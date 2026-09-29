@@ -225,7 +225,7 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
            'backend': backend,
            'location': location,
            ...routing.argMap,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

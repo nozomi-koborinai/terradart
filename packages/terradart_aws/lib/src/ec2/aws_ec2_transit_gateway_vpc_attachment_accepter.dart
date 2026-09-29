@@ -26,15 +26,13 @@ final class AwsEc2TransitGatewayVpcAttachmentAccepter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'transit_gateway_attachment_id': transitGatewayAttachmentId,
-           if (transitGatewayDefaultRouteTableAssociation != null)
-             'transit_gateway_default_route_table_association':
-                 transitGatewayDefaultRouteTableAssociation,
-           if (transitGatewayDefaultRouteTablePropagation != null)
-             'transit_gateway_default_route_table_propagation':
-                 transitGatewayDefaultRouteTablePropagation,
+           'transit_gateway_default_route_table_association':
+               ?transitGatewayDefaultRouteTableAssociation,
+           'transit_gateway_default_route_table_propagation':
+               ?transitGatewayDefaultRouteTablePropagation,
          },
        );
 

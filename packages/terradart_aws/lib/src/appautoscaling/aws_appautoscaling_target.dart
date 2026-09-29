@@ -26,12 +26,9 @@ final class AppautoscalingTargetSuspendedState {
   final TfArg<bool>? scheduledScalingSuspended;
 
   Map<String, Object?> encode() => {
-    if (dynamicScalingInSuspended != null)
-      'dynamic_scaling_in_suspended': dynamicScalingInSuspended!.toTfJson(),
-    if (dynamicScalingOutSuspended != null)
-      'dynamic_scaling_out_suspended': dynamicScalingOutSuspended!.toTfJson(),
-    if (scheduledScalingSuspended != null)
-      'scheduled_scaling_suspended': scheduledScalingSuspended!.toTfJson(),
+    'dynamic_scaling_in_suspended': ?dynamicScalingInSuspended?.toTfJson(),
+    'dynamic_scaling_out_suspended': ?dynamicScalingOutSuspended?.toTfJson(),
+    'scheduled_scaling_suspended': ?scheduledScalingSuspended?.toTfJson(),
   };
 }
 
@@ -59,12 +56,12 @@ final class AwsAppautoscalingTarget extends Resource {
          argMap: {
            'max_capacity': maxCapacity,
            'min_capacity': minCapacity,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_id': resourceId,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
+           'role_arn': ?roleArn?.encodeAs('arn'),
            'scalable_dimension': scalableDimension,
            'service_namespace': serviceNamespace,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (suspendedState != null)
              'suspended_state': TfArg.literal(suspendedState.encode()),
          },

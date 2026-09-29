@@ -131,7 +131,7 @@ final class GooglePrivatecaCaPool extends Resource {
            'name': name,
            'location': location,
            'tier': tier,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
          },
        );
 

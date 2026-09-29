@@ -55,9 +55,8 @@ final class ComputeRegionCommitmentLicenseResource {
   final TfArg<String> license;
 
   Map<String, Object?> encode() => {
-    if (amount != null) 'amount': amount!.toTfJson(),
-    if (coresPerLicense != null)
-      'cores_per_license': coresPerLicense!.toTfJson(),
+    'amount': ?amount?.toTfJson(),
+    'cores_per_license': ?coresPerLicense?.toTfJson(),
     'license': license.toTfJson(),
   };
 }
@@ -71,8 +70,7 @@ final class ComputeRegionCommitmentParams {
   final TfArg<Map<String, String>>? resourceManagerTags;
 
   Map<String, Object?> encode() => {
-    if (resourceManagerTags != null)
-      'resource_manager_tags': resourceManagerTags!.toTfJson(),
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
 }
 
@@ -93,10 +91,9 @@ final class ComputeRegionCommitmentResources {
   final TfArg<String>? type;
 
   Map<String, Object?> encode() => {
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
-    if (amount != null) 'amount': amount!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
+    'amount': ?amount?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -150,21 +147,20 @@ final class GoogleComputeRegionCommitment extends Resource {
          argMap: {
            'name': name,
            'plan': plan,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (resources != null)
              'resources': TfArg.literal([
                for (final e in resources) e.encode(),
              ]),
-           if (type != null) 'type': type,
-           if (category != null) 'category': category,
-           if (description != null) 'description': description,
-           if (autoRenew != null) 'auto_renew': autoRenew,
-           if (existingReservations != null)
-             'existing_reservations': existingReservations,
+           'type': ?type,
+           'category': ?category,
+           'description': ?description,
+           'auto_renew': ?autoRenew,
+           'existing_reservations': ?existingReservations,
            if (licenseResource != null)
              'license_resource': TfArg.literal(licenseResource.encode()),
            if (params != null) 'params': TfArg.literal(params.encode()),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

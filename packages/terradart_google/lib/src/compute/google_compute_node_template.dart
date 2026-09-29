@@ -96,10 +96,8 @@ final class ComputeNodeTemplateAccelerators {
   final TfArg<String>? acceleratorType;
 
   Map<String, Object?> encode() => {
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.toTfJson(),
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
   };
 }
 
@@ -120,9 +118,9 @@ final class ComputeNodeTemplateDisks {
   final TfArg<String>? diskType;
 
   Map<String, Object?> encode() => {
-    if (diskCount != null) 'disk_count': diskCount!.toTfJson(),
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    'disk_count': ?diskCount?.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
   };
 }
 
@@ -137,8 +135,8 @@ final class ComputeNodeTemplateNodeTypeFlexibility {
   final TfArg<String>? memory;
 
   Map<String, Object?> encode() => {
-    if (cpus != null) 'cpus': cpus!.toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
+    'cpus': ?cpus?.toTfJson(),
+    'memory': ?memory?.toTfJson(),
   };
 }
 
@@ -204,12 +202,10 @@ final class GoogleComputeNodeTemplate extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            ...?nodeType?.argMap,
-           if (cpuOvercommitType != null)
-             'cpu_overcommit_type': cpuOvercommitType,
-           if (nodeAffinityLabels != null)
-             'node_affinity_labels': nodeAffinityLabels,
+           'cpu_overcommit_type': ?cpuOvercommitType,
+           'node_affinity_labels': ?nodeAffinityLabels,
            if (accelerators != null)
              'accelerators': TfArg.literal([
                for (final e in accelerators) e.encode(),
@@ -218,8 +214,8 @@ final class GoogleComputeNodeTemplate extends Resource {
              'disks': TfArg.literal([for (final e in disks) e.encode()]),
            if (serverBinding != null)
              'server_binding': TfArg.literal(serverBinding.encode()),
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

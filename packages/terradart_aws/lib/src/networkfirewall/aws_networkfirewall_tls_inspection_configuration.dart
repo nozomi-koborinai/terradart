@@ -58,8 +58,7 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
   serverCertificate;
 
   Map<String, Object?> encode() => {
-    if (certificateAuthorityArn != null)
-      'certificate_authority_arn': certificateAuthorityArn!.toTfJson(),
+    'certificate_authority_arn': ?certificateAuthorityArn?.toTfJson(),
     if (checkCertificateRevocationStatus != null)
       'check_certificate_revocation_status': [
         for (final e in checkCertificateRevocationStatus!) e.encode(),
@@ -90,10 +89,8 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
   unknownStatusAction;
 
   Map<String, Object?> encode() => {
-    if (revokedStatusAction != null)
-      'revoked_status_action': revokedStatusAction!.toTfJson(),
-    if (unknownStatusAction != null)
-      'unknown_status_action': unknownStatusAction!.toTfJson(),
+    'revoked_status_action': ?revokedStatusAction?.toTfJson(),
+    'unknown_status_action': ?unknownStatusAction?.toTfJson(),
   };
 }
 
@@ -249,9 +246,7 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
 
   final TfArg<String>? resourceArn;
 
-  Map<String, Object?> encode() => {
-    if (resourceArn != null) 'resource_arn': resourceArn!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'resource_arn': ?resourceArn?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_networkfirewall_tls_inspection_configuration`.
@@ -275,12 +270,11 @@ final class AwsNetworkfirewallTlsInspectionConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (encryptionConfiguration != null)
-             'encryption_configuration': encryptionConfiguration,
+           'description': ?description,
+           'encryption_configuration': ?encryptionConfiguration,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (tlsInspectionConfiguration != null)
              'tls_inspection_configuration': TfArg.literal([
                for (final e in tlsInspectionConfiguration) e.encode(),

@@ -19,8 +19,8 @@ final class DataElasticacheUserAuthenticationMode {
   final TfArg<String>? type;
 
   Map<String, Object?> encode() => {
-    if (passwordCount != null) 'password_count': passwordCount!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'password_count': ?passwordCount?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -43,14 +43,13 @@ final class DataAwsElasticacheUser extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessString != null) 'access_string': accessString,
-           if (engine != null) 'engine': engine,
-           if (noPasswordRequired != null)
-             'no_password_required': noPasswordRequired,
-           if (passwords != null) 'passwords': passwords,
-           if (region != null) 'region': region,
+           'access_string': ?accessString,
+           'engine': ?engine,
+           'no_password_required': ?noPasswordRequired,
+           'passwords': ?passwords,
+           'region': ?region,
            'user_id': userId,
-           if (userName != null) 'user_name': userName,
+           'user_name': ?userName,
            if (authenticationMode != null)
              'authentication_mode': TfArg.literal([
                for (final e in authenticationMode) e.encode(),

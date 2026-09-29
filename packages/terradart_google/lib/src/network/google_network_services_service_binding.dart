@@ -39,10 +39,10 @@ final class GoogleNetworkServicesServiceBinding extends Resource {
          argMap: {
            'name': name,
            'service': service,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

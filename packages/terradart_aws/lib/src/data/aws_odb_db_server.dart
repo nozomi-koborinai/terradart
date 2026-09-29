@@ -22,7 +22,7 @@ final class DataAwsOdbDbServer extends Data {
          argMap: {
            'cloud_exadata_infrastructure_id': cloudExadataInfrastructureId,
            'id': id,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

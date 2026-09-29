@@ -33,8 +33,8 @@ final class DataAwsDynamodbTable extends Data {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (serverSideEncryption != null)
              'server_side_encryption': TfArg.literal(
                serverSideEncryption.encode(),

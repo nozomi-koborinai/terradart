@@ -52,10 +52,8 @@ final class TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (encryptionOption != null)
-      'encryption_option': encryptionOption!.toTfJson(),
-    if (objectKeyPrefix != null)
-      'object_key_prefix': objectKeyPrefix!.toTfJson(),
+    'encryption_option': ?encryptionOption?.toTfJson(),
+    'object_key_prefix': ?objectKeyPrefix?.toTfJson(),
   };
 }
 
@@ -491,8 +489,7 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
 
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
-    if (measureNameColumn != null)
-      'measure_name_column': measureNameColumn!.toTfJson(),
+    'measure_name_column': ?measureNameColumn?.toTfJson(),
     'table_name': tableName.toTfJson(),
     'time_column': timeColumn.toTfJson(),
     if (dimensionMapping != null)
@@ -571,11 +568,10 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
   multiMeasureAttributeMapping;
 
   Map<String, Object?> encode() => {
-    if (measureName != null) 'measure_name': measureName!.toTfJson(),
+    'measure_name': ?measureName?.toTfJson(),
     'measure_value_type': measureValueType.toTfJson(),
-    if (sourceColumn != null) 'source_column': sourceColumn!.toTfJson(),
-    if (targetMeasureName != null)
-      'target_measure_name': targetMeasureName!.toTfJson(),
+    'source_column': ?sourceColumn?.toTfJson(),
+    'target_measure_name': ?targetMeasureName?.toTfJson(),
     if (multiMeasureAttributeMapping != null)
       'multi_measure_attribute_mapping': [
         for (final e in multiMeasureAttributeMapping!) e.encode(),
@@ -621,9 +617,8 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
   Map<String, Object?> encode() => {
     'measure_value_type': measureValueType.toTfJson(),
     'source_column': sourceColumn.toTfJson(),
-    if (targetMultiMeasureAttributeName != null)
-      'target_multi_measure_attribute_name': targetMultiMeasureAttributeName!
-          .toTfJson(),
+    'target_multi_measure_attribute_name': ?targetMultiMeasureAttributeName
+        ?.toTfJson(),
   };
 }
 
@@ -660,8 +655,7 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
   multiMeasureAttributeMapping;
 
   Map<String, Object?> encode() => {
-    if (targetMultiMeasureName != null)
-      'target_multi_measure_name': targetMultiMeasureName!.toTfJson(),
+    'target_multi_measure_name': ?targetMultiMeasureName?.toTfJson(),
     if (multiMeasureAttributeMapping != null)
       'multi_measure_attribute_mapping': [
         for (final e in multiMeasureAttributeMapping!) e.encode(),
@@ -691,9 +685,8 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
   Map<String, Object?> encode() => {
     'measure_value_type': measureValueType.toTfJson(),
     'source_column': sourceColumn.toTfJson(),
-    if (targetMultiMeasureAttributeName != null)
-      'target_multi_measure_attribute_name': targetMultiMeasureAttributeName!
-          .toTfJson(),
+    'target_multi_measure_attribute_name': ?targetMultiMeasureAttributeName
+        ?.toTfJson(),
   };
 }
 
@@ -742,11 +735,11 @@ final class AwsTimestreamqueryScheduledQuery extends Resource {
          terraformType: tfType,
          argMap: {
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
            'query_string': queryString,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (errorReportConfiguration != null)
              'error_report_configuration': TfArg.literal([
                for (final e in errorReportConfiguration) e.encode(),

@@ -22,10 +22,10 @@ final class DataAwsSsmDocument extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (documentFormat != null) 'document_format': documentFormat,
-           if (documentVersion != null) 'document_version': documentVersion,
+           'document_format': ?documentFormat,
+           'document_version': ?documentVersion,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

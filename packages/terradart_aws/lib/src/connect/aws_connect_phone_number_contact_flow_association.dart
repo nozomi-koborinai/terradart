@@ -28,7 +28,7 @@ final class AwsConnectPhoneNumberContactFlowAssociation extends Resource {
            'contact_flow_id': contactFlowId,
            'instance_id': instanceId,
            'phone_number_id': phoneNumberId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

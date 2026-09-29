@@ -61,9 +61,9 @@ final class GoogleCertificateManagerDnsAuthorization extends Resource {
          argMap: {
            'name': name,
            'domain': domain,
-           if (description != null) 'description': description,
-           if (location != null) 'location': location,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'location': ?location,
+           'labels': ?labels,
          },
        );
 

@@ -33,12 +33,12 @@ final class GoogleLoggingLogViewIamBinding extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (location != null) 'location': location,
+           'location': ?location,
            'name': name,
            'parent': parent,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

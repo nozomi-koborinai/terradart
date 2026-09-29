@@ -100,17 +100,13 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
   trustedKeyGroups;
 
   Map<String, Object?> encode() => {
-    if (cachePolicyId != null) 'cache_policy_id': cachePolicyId!.toTfJson(),
-    if (compress != null) 'compress': compress!.toTfJson(),
-    if (fieldLevelEncryptionId != null)
-      'field_level_encryption_id': fieldLevelEncryptionId!.toTfJson(),
-    if (originRequestPolicyId != null)
-      'origin_request_policy_id': originRequestPolicyId!.toTfJson(),
+    'cache_policy_id': ?cachePolicyId?.toTfJson(),
+    'compress': ?compress?.toTfJson(),
+    'field_level_encryption_id': ?fieldLevelEncryptionId?.toTfJson(),
+    'origin_request_policy_id': ?originRequestPolicyId?.toTfJson(),
     'path_pattern': pathPattern.toTfJson(),
-    if (realtimeLogConfigArn != null)
-      'realtime_log_config_arn': realtimeLogConfigArn!.toTfJson(),
-    if (responseHeadersPolicyId != null)
-      'response_headers_policy_id': responseHeadersPolicyId!.toTfJson(),
+    'realtime_log_config_arn': ?realtimeLogConfigArn?.toTfJson(),
+    'response_headers_policy_id': ?responseHeadersPolicyId?.toTfJson(),
     'target_origin_id': targetOriginId.toTfJson(),
     'viewer_protocol_policy': viewerProtocolPolicy.toTfJson(),
     if (allowedMethods != null)
@@ -242,7 +238,7 @@ final class CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociat
 
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
-    if (includeBody != null) 'include_body': includeBody!.toTfJson(),
+    'include_body': ?includeBody?.toTfJson(),
     'lambda_function_arn': lambdaFunctionArn.encodeAs('arn').toTfJson(),
   };
 }
@@ -276,8 +272,8 @@ final class CloudfrontMultitenantDistributionCacheBehaviorTrustedKeyGroups {
   final TfArg<List<Object?>>? items;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (items != null) 'items': items!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'items': ?items?.toTfJson(),
   };
 }
 
@@ -301,12 +297,10 @@ final class CloudfrontMultitenantDistributionCustomErrorResponse {
   final TfArg<String>? responsePagePath;
 
   Map<String, Object?> encode() => {
-    if (errorCachingMinTtl != null)
-      'error_caching_min_ttl': errorCachingMinTtl!.toTfJson(),
+    'error_caching_min_ttl': ?errorCachingMinTtl?.toTfJson(),
     'error_code': errorCode.toTfJson(),
-    if (responseCode != null) 'response_code': responseCode!.toTfJson(),
-    if (responsePagePath != null)
-      'response_page_path': responsePagePath!.toTfJson(),
+    'response_code': ?responseCode?.toTfJson(),
+    'response_page_path': ?responsePagePath?.toTfJson(),
   };
 }
 
@@ -369,16 +363,12 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehavior {
   trustedKeyGroups;
 
   Map<String, Object?> encode() => {
-    if (cachePolicyId != null) 'cache_policy_id': cachePolicyId!.toTfJson(),
-    if (compress != null) 'compress': compress!.toTfJson(),
-    if (fieldLevelEncryptionId != null)
-      'field_level_encryption_id': fieldLevelEncryptionId!.toTfJson(),
-    if (originRequestPolicyId != null)
-      'origin_request_policy_id': originRequestPolicyId!.toTfJson(),
-    if (realtimeLogConfigArn != null)
-      'realtime_log_config_arn': realtimeLogConfigArn!.toTfJson(),
-    if (responseHeadersPolicyId != null)
-      'response_headers_policy_id': responseHeadersPolicyId!.toTfJson(),
+    'cache_policy_id': ?cachePolicyId?.toTfJson(),
+    'compress': ?compress?.toTfJson(),
+    'field_level_encryption_id': ?fieldLevelEncryptionId?.toTfJson(),
+    'origin_request_policy_id': ?originRequestPolicyId?.toTfJson(),
+    'realtime_log_config_arn': ?realtimeLogConfigArn?.toTfJson(),
+    'response_headers_policy_id': ?responseHeadersPolicyId?.toTfJson(),
     'target_origin_id': targetOriginId.toTfJson(),
     'viewer_protocol_policy': viewerProtocolPolicy.toTfJson(),
     if (allowedMethods != null)
@@ -510,7 +500,7 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionA
 
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
-    if (includeBody != null) 'include_body': includeBody!.toTfJson(),
+    'include_body': ?includeBody?.toTfJson(),
     'lambda_function_arn': lambdaFunctionArn.encodeAs('arn').toTfJson(),
   };
 }
@@ -544,8 +534,8 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehaviorTrustedKeyGroup
   final TfArg<List<Object?>>? items;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (items != null) 'items': items!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'items': ?items?.toTfJson(),
   };
 }
 
@@ -592,17 +582,13 @@ final class CloudfrontMultitenantDistributionOrigin {
   vpcOriginConfig;
 
   Map<String, Object?> encode() => {
-    if (connectionAttempts != null)
-      'connection_attempts': connectionAttempts!.toTfJson(),
-    if (connectionTimeout != null)
-      'connection_timeout': connectionTimeout!.toTfJson(),
+    'connection_attempts': ?connectionAttempts?.toTfJson(),
+    'connection_timeout': ?connectionTimeout?.toTfJson(),
     'domain_name': domainName.toTfJson(),
     'id': id.toTfJson(),
-    if (originAccessControlId != null)
-      'origin_access_control_id': originAccessControlId!.toTfJson(),
-    if (originPath != null) 'origin_path': originPath!.toTfJson(),
-    if (responseCompletionTimeout != null)
-      'response_completion_timeout': responseCompletionTimeout!.toTfJson(),
+    'origin_access_control_id': ?originAccessControlId?.toTfJson(),
+    'origin_path': ?originPath?.toTfJson(),
+    'response_completion_timeout': ?responseCompletionTimeout?.toTfJson(),
     if (customHeader != null)
       'custom_header': [for (final e in customHeader!) e.encode()],
     if (customOriginConfig != null)
@@ -681,12 +667,10 @@ final class CloudfrontMultitenantDistributionOriginCustomOriginConfig {
   Map<String, Object?> encode() => {
     'http_port': httpPort.toTfJson(),
     'https_port': httpsPort.toTfJson(),
-    if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
-    if (originKeepaliveTimeout != null)
-      'origin_keepalive_timeout': originKeepaliveTimeout!.toTfJson(),
+    'ip_address_type': ?ipAddressType?.toTfJson(),
+    'origin_keepalive_timeout': ?originKeepaliveTimeout?.toTfJson(),
     'origin_protocol_policy': originProtocolPolicy.toTfJson(),
-    if (originReadTimeout != null)
-      'origin_read_timeout': originReadTimeout!.toTfJson(),
+    'origin_read_timeout': ?originReadTimeout?.toTfJson(),
     'origin_ssl_protocols': [for (final e in originSslProtocols) e.toTfJson()],
     if (originMtlsConfig != null)
       'origin_mtls_config': [for (final e in originMtlsConfig!) e.encode()],
@@ -766,8 +750,7 @@ final class CloudfrontMultitenantDistributionOriginOriginShield {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (originShieldRegion != null)
-      'origin_shield_region': originShieldRegion!.toTfJson(),
+    'origin_shield_region': ?originShieldRegion?.toTfJson(),
   };
 }
 
@@ -788,10 +771,8 @@ final class CloudfrontMultitenantDistributionOriginVpcOriginConfig {
   final TfArg<String> vpcOriginId;
 
   Map<String, Object?> encode() => {
-    if (originKeepaliveTimeout != null)
-      'origin_keepalive_timeout': originKeepaliveTimeout!.toTfJson(),
-    if (originReadTimeout != null)
-      'origin_read_timeout': originReadTimeout!.toTfJson(),
+    'origin_keepalive_timeout': ?originKeepaliveTimeout?.toTfJson(),
+    'origin_read_timeout': ?originReadTimeout?.toTfJson(),
     'vpc_origin_id': vpcOriginId.toTfJson(),
   };
 }
@@ -879,7 +860,7 @@ final class CloudfrontMultitenantDistributionRestrictionsGeoRestriction {
   restrictionType;
 
   Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
+    'items': ?items?.toTfJson(),
     'restriction_type': restrictionType.toTfJson(),
   };
 }
@@ -976,8 +957,8 @@ final class CloudfrontMultitenantDistributionTenantConfigParameterDefinitionDefi
   final TfArg<bool> required;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
-    if (defaultValue != null) 'default_value': defaultValue!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
+    'default_value': ?defaultValue?.toTfJson(),
     'required': required.toTfJson(),
   };
 }
@@ -1008,15 +989,10 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
   sslSupportMethod;
 
   Map<String, Object?> encode() => {
-    if (acmCertificateArn != null)
-      'acm_certificate_arn': acmCertificateArn!.toTfJson(),
-    if (cloudfrontDefaultCertificate != null)
-      'cloudfront_default_certificate': cloudfrontDefaultCertificate!
-          .toTfJson(),
-    if (minimumProtocolVersion != null)
-      'minimum_protocol_version': minimumProtocolVersion!.toTfJson(),
-    if (sslSupportMethod != null)
-      'ssl_support_method': sslSupportMethod!.toTfJson(),
+    'acm_certificate_arn': ?acmCertificateArn?.toTfJson(),
+    'cloudfront_default_certificate': ?cloudfrontDefaultCertificate?.toTfJson(),
+    'minimum_protocol_version': ?minimumProtocolVersion?.toTfJson(),
+    'ssl_support_method': ?sslSupportMethod?.toTfJson(),
   };
 }
 
@@ -1086,12 +1062,11 @@ final class AwsCloudfrontMultitenantDistribution extends Resource {
          terraformType: tfType,
          argMap: {
            'comment': comment,
-           if (defaultRootObject != null)
-             'default_root_object': defaultRootObject,
+           'default_root_object': ?defaultRootObject,
            'enabled': enabled,
-           if (httpVersion != null) 'http_version': httpVersion,
-           if (tags != null) 'tags': tags,
-           if (webAclId != null) 'web_acl_id': webAclId,
+           'http_version': ?httpVersion,
+           'tags': ?tags,
+           'web_acl_id': ?webAclId,
            if (activeTrustedKeyGroups != null)
              'active_trusted_key_groups': TfArg.literal([
                for (final e in activeTrustedKeyGroups) e.encode(),

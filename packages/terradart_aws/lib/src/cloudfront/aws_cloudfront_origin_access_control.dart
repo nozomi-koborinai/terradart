@@ -63,7 +63,7 @@ final class AwsCloudfrontOriginAccessControl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
            'origin_access_control_origin_type': originAccessControlOriginType,
            'signing_behavior': signingBehavior,

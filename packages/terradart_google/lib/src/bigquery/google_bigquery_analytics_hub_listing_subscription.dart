@@ -31,9 +31,8 @@ final class GoogleBigqueryAnalyticsHubListingSubscription extends Resource {
            'data_exchange_id': dataExchangeId,
            'listing_id': listingId,
            'location': location,
-           if (project != null) 'project': project,
-           if (destinationDataset != null)
-             'destination_dataset': destinationDataset,
+           'project': ?project,
+           'destination_dataset': ?destinationDataset,
          },
        );
 

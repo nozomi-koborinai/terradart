@@ -18,8 +18,7 @@ final class LambdaAliasRoutingConfig {
   final TfArg<Map<String, num>>? additionalVersionWeights;
 
   Map<String, Object?> encode() => {
-    if (additionalVersionWeights != null)
-      'additional_version_weights': additionalVersionWeights!.toTfJson(),
+    'additional_version_weights': ?additionalVersionWeights?.toTfJson(),
   };
 }
 
@@ -42,11 +41,11 @@ final class AwsLambdaAlias extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'function_name': functionName.encodeAs('function_name'),
            'function_version': functionVersion,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (routingConfig != null)
              'routing_config': TfArg.literal(routingConfig.encode()),
          },

@@ -58,12 +58,12 @@ final class AwsDatasyncLocationS3 extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (agentArns != null) 'agent_arns': agentArns,
-           if (region != null) 'region': region,
+           'agent_arns': ?agentArns,
+           'region': ?region,
            's3_bucket_arn': s3BucketArn.encodeAs('arn'),
-           if (s3StorageClass != null) 's3_storage_class': s3StorageClass,
+           's3_storage_class': ?s3StorageClass,
            'subdirectory': subdirectory,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            's3_config': TfArg.literal(s3Config.encode()),
          },
        );

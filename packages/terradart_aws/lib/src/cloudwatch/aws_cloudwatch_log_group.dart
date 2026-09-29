@@ -103,15 +103,14 @@ final class AwsCloudwatchLogGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionProtectionEnabled != null)
-             'deletion_protection_enabled': deletionProtectionEnabled,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (logGroupClass != null) 'log_group_class': logGroupClass,
+           'deletion_protection_enabled': ?deletionProtectionEnabled,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'log_group_class': ?logGroupClass,
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (retentionInDays != null) 'retention_in_days': retentionInDays,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'retention_in_days': ?retentionInDays,
+           'skip_destroy': ?skipDestroy,
+           'tags': ?tags,
          },
        );
 

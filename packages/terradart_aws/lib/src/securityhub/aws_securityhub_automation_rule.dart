@@ -29,7 +29,7 @@ final class SecurityhubAutomationRuleActions {
   findingFieldsUpdate;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     if (findingFieldsUpdate != null)
       'finding_fields_update': [
         for (final e in findingFieldsUpdate!) e.encode(),
@@ -89,13 +89,11 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdate {
   workflow;
 
   Map<String, Object?> encode() => {
-    if (confidence != null) 'confidence': confidence!.toTfJson(),
-    if (criticality != null) 'criticality': criticality!.toTfJson(),
-    if (types != null) 'types': types!.toTfJson(),
-    if (userDefinedFields != null)
-      'user_defined_fields': userDefinedFields!.toTfJson(),
-    if (verificationState != null)
-      'verification_state': verificationState!.toTfJson(),
+    'confidence': ?confidence?.toTfJson(),
+    'criticality': ?criticality?.toTfJson(),
+    'types': ?types?.toTfJson(),
+    'user_defined_fields': ?userDefinedFields?.toTfJson(),
+    'verification_state': ?verificationState?.toTfJson(),
     if (note != null) 'note': [for (final e in note!) e.encode()],
     if (relatedFindings != null)
       'related_findings': [for (final e in relatedFindings!) e.encode()],
@@ -172,8 +170,8 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverity {
   final TfArg<num>? product;
 
   Map<String, Object?> encode() => {
-    if (label != null) 'label': label!.toTfJson(),
-    if (product != null) 'product': product!.toTfJson(),
+    'label': ?label?.toTfJson(),
+    'product': ?product?.toTfJson(),
   };
 }
 
@@ -206,9 +204,7 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflow {
   >?
   status;
 
-  Map<String, Object?> encode() => {
-    if (status != null) 'status': status!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
@@ -701,11 +697,11 @@ final class SecurityhubAutomationRuleCriteriaConfidence {
   final TfArg<num>? lte;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (gt != null) 'gt': gt!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lt != null) 'lt': lt!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'gt': ?gt?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lt': ?lt?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
   };
 }
 
@@ -726,8 +722,8 @@ final class SecurityhubAutomationRuleCriteriaCreatedAt {
   final List<SecurityhubAutomationRuleCriteriaCreatedAtDateRange>? dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
     if (dateRange != null)
       'date_range': [for (final e in dateRange!) e.encode()],
   };
@@ -787,11 +783,11 @@ final class SecurityhubAutomationRuleCriteriaCriticality {
   final TfArg<num>? lte;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (gt != null) 'gt': gt!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lt != null) 'lt': lt!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'gt': ?gt?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lt': ?lt?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
   };
 }
 
@@ -851,8 +847,8 @@ final class SecurityhubAutomationRuleCriteriaFirstObservedAt {
   dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
     if (dateRange != null)
       'date_range': [for (final e in dateRange!) e.encode()],
   };
@@ -980,8 +976,8 @@ final class SecurityhubAutomationRuleCriteriaLastObservedAt {
   dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
     if (dateRange != null)
       'date_range': [for (final e in dateRange!) e.encode()],
   };
@@ -1074,8 +1070,8 @@ final class SecurityhubAutomationRuleCriteriaNoteUpdatedAt {
   dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
     if (dateRange != null)
       'date_range': [for (final e in dateRange!) e.encode()],
   };
@@ -1808,8 +1804,8 @@ final class SecurityhubAutomationRuleCriteriaUpdatedAt {
   final List<SecurityhubAutomationRuleCriteriaUpdatedAtDateRange>? dateRange;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
     if (dateRange != null)
       'date_range': [for (final e in dateRange!) e.encode()],
   };
@@ -1984,12 +1980,12 @@ final class AwsSecurityhubAutomationRule extends Resource {
          terraformType: tfType,
          argMap: {
            'description': description,
-           if (isTerminal != null) 'is_terminal': isTerminal,
-           if (region != null) 'region': region,
+           'is_terminal': ?isTerminal,
+           'region': ?region,
            'rule_name': ruleName,
            'rule_order': ruleOrder,
-           if (ruleStatus != null) 'rule_status': ruleStatus,
-           if (tags != null) 'tags': tags,
+           'rule_status': ?ruleStatus,
+           'tags': ?tags,
            if (actions != null)
              'actions': TfArg.literal([for (final e in actions) e.encode()]),
            if (criteria != null)

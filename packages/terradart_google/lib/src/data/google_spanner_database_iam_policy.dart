@@ -26,7 +26,7 @@ final class DataGoogleSpannerDatabaseIamPolicy extends Data {
          argMap: {
            'database': database,
            'instance': instance,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

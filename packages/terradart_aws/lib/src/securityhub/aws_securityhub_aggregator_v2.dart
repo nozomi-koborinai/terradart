@@ -23,10 +23,10 @@ final class AwsSecurityhubAggregatorV2 extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (linkedRegions != null) 'linked_regions': linkedRegions,
-           if (region != null) 'region': region,
+           'linked_regions': ?linkedRegions,
+           'region': ?region,
            'region_linking_mode': regionLinkingMode,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

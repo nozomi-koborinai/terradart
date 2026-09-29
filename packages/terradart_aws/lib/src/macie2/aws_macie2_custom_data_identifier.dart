@@ -88,15 +88,14 @@ final class AwsMacie2CustomDataIdentifier extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (ignoreWords != null) 'ignore_words': ignoreWords,
-           if (keywords != null) 'keywords': keywords,
-           if (maximumMatchDistance != null)
-             'maximum_match_distance': maximumMatchDistance,
+           'description': ?description,
+           'ignore_words': ?ignoreWords,
+           'keywords': ?keywords,
+           'maximum_match_distance': ?maximumMatchDistance,
            ...?name?.argMap,
-           if (regex != null) 'regex': regex,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'regex': ?regex,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

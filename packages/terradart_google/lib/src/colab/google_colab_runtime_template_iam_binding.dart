@@ -34,9 +34,9 @@ final class GoogleColabRuntimeTemplateIamBinding extends Resource {
            'runtime_template': runtimeTemplate,
            'role': role,
            'members': members,
-           if (location != null) 'location': location,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

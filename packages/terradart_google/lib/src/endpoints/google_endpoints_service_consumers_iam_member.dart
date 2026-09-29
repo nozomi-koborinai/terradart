@@ -29,7 +29,7 @@ final class GoogleEndpointsServiceConsumersIamMember extends Resource {
            'consumer_project': consumerProject,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

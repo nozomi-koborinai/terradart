@@ -66,10 +66,9 @@ final class MailmanagerIngressPointIngressPointConfiguration {
   tlsAuthConfiguration;
 
   Map<String, Object?> encode() => {
-    if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
-    if (smtpPasswordWo != null) 'smtp_password_wo': smtpPasswordWo!.toTfJson(),
-    if (smtpPasswordWoVersion != null)
-      'smtp_password_wo_version': smtpPasswordWoVersion!.toTfJson(),
+    'secret_arn': ?secretArn?.toTfJson(),
+    'smtp_password_wo': ?smtpPasswordWo?.toTfJson(),
+    'smtp_password_wo_version': ?smtpPasswordWoVersion?.toTfJson(),
     if (tlsAuthConfiguration != null)
       'tls_auth_configuration': [
         for (final e in tlsAuthConfiguration!) e.encode(),
@@ -114,8 +113,8 @@ final class MailmanagerIngressPointIngressPointConfigurationTlsAuthConfiguration
 
   Map<String, Object?> encode() => {
     'ca_content': caContent.toTfJson(),
-    if (crlContent != null) 'crl_content': crlContent!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'crl_content': ?crlContent?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -219,11 +218,11 @@ final class AwsMailmanagerIngressPoint extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rule_set_id': ruleSetId,
-           if (statusToUpdate != null) 'status_to_update': statusToUpdate,
-           if (tags != null) 'tags': tags,
-           if (tlsPolicy != null) 'tls_policy': tlsPolicy,
+           'status_to_update': ?statusToUpdate,
+           'tags': ?tags,
+           'tls_policy': ?tlsPolicy,
            'traffic_policy_id': trafficPolicyId,
            'type': type,
            if (ingressPointConfiguration != null)

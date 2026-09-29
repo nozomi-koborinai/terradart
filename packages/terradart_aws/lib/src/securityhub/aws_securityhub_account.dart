@@ -33,13 +33,10 @@ final class AwsSecurityhubAccount extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoEnableControls != null)
-             'auto_enable_controls': autoEnableControls,
-           if (controlFindingGenerator != null)
-             'control_finding_generator': controlFindingGenerator,
-           if (enableDefaultStandards != null)
-             'enable_default_standards': enableDefaultStandards,
-           if (region != null) 'region': region,
+           'auto_enable_controls': ?autoEnableControls,
+           'control_finding_generator': ?controlFindingGenerator,
+           'enable_default_standards': ?enableDefaultStandards,
+           'region': ?region,
          },
        );
 

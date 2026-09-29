@@ -169,8 +169,7 @@ final class CloudwatchLogTransformerTransformerConfigAddKeysEntry {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (overwriteIfExists != null)
-      'overwrite_if_exists': overwriteIfExists!.toTfJson(),
+    'overwrite_if_exists': ?overwriteIfExists?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -205,8 +204,7 @@ final class CloudwatchLogTransformerTransformerConfigCopyValueEntry {
   final TfArg<String> target;
 
   Map<String, Object?> encode() => {
-    if (overwriteIfExists != null)
-      'overwrite_if_exists': overwriteIfExists!.toTfJson(),
+    'overwrite_if_exists': ?overwriteIfExists?.toTfJson(),
     'source': source.toTfJson(),
     'target': target.toTfJson(),
   };
@@ -232,10 +230,10 @@ final class CloudwatchLogTransformerTransformerConfigCsv {
   final TfArg<String>? source;
 
   Map<String, Object?> encode() => {
-    if (columns != null) 'columns': columns!.toTfJson(),
-    if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
-    if (quoteCharacter != null) 'quote_character': quoteCharacter!.toTfJson(),
-    if (source != null) 'source': source!.toTfJson(),
+    'columns': ?columns?.toTfJson(),
+    'delimiter': ?delimiter?.toTfJson(),
+    'quote_character': ?quoteCharacter?.toTfJson(),
+    'source': ?source?.toTfJson(),
   };
 }
 
@@ -268,13 +266,13 @@ final class CloudwatchLogTransformerTransformerConfigDateTimeConverter {
   final TfArg<String>? targetTimezone;
 
   Map<String, Object?> encode() => {
-    if (locale != null) 'locale': locale!.toTfJson(),
+    'locale': ?locale?.toTfJson(),
     'match_patterns': matchPatterns.toTfJson(),
     'source': source.toTfJson(),
-    if (sourceTimezone != null) 'source_timezone': sourceTimezone!.toTfJson(),
+    'source_timezone': ?sourceTimezone?.toTfJson(),
     'target': target.toTfJson(),
-    if (targetFormat != null) 'target_format': targetFormat!.toTfJson(),
-    if (targetTimezone != null) 'target_timezone': targetTimezone!.toTfJson(),
+    'target_format': ?targetFormat?.toTfJson(),
+    'target_timezone': ?targetTimezone?.toTfJson(),
   };
 }
 
@@ -306,7 +304,7 @@ final class CloudwatchLogTransformerTransformerConfigGrok {
 
   Map<String, Object?> encode() => {
     'match': match.toTfJson(),
-    if (source != null) 'source': source!.toTfJson(),
+    'source': ?source?.toTfJson(),
   };
 }
 
@@ -339,13 +337,12 @@ final class CloudwatchLogTransformerTransformerConfigListToMap {
   final TfArg<String>? valueKey;
 
   Map<String, Object?> encode() => {
-    if (flatten != null) 'flatten': flatten!.toTfJson(),
-    if (flattenedElement != null)
-      'flattened_element': flattenedElement!.toTfJson(),
+    'flatten': ?flatten?.toTfJson(),
+    'flattened_element': ?flattenedElement?.toTfJson(),
     'key': key.toTfJson(),
     'source': source.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
-    if (valueKey != null) 'value_key': valueKey!.toTfJson(),
+    'target': ?target?.toTfJson(),
+    'value_key': ?valueKey?.toTfJson(),
   };
 }
 
@@ -405,8 +402,7 @@ final class CloudwatchLogTransformerTransformerConfigMoveKeysEntry {
   final TfArg<String> target;
 
   Map<String, Object?> encode() => {
-    if (overwriteIfExists != null)
-      'overwrite_if_exists': overwriteIfExists!.toTfJson(),
+    'overwrite_if_exists': ?overwriteIfExists?.toTfJson(),
     'source': source.toTfJson(),
     'target': target.toTfJson(),
   };
@@ -420,9 +416,7 @@ final class CloudwatchLogTransformerTransformerConfigParseCloudfront {
 
   final TfArg<String>? source;
 
-  Map<String, Object?> encode() => {
-    if (source != null) 'source': source!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'source': ?source?.toTfJson()};
 }
 
 /// Typed helper for the `transformer_config.parse_json` block of
@@ -439,8 +433,8 @@ final class CloudwatchLogTransformerTransformerConfigParseJson {
   final TfArg<String>? source;
 
   Map<String, Object?> encode() => {
-    if (destination != null) 'destination': destination!.toTfJson(),
-    if (source != null) 'source': source!.toTfJson(),
+    'destination': ?destination?.toTfJson(),
+    'source': ?source?.toTfJson(),
   };
 }
 
@@ -473,15 +467,13 @@ final class CloudwatchLogTransformerTransformerConfigParseKeyValue {
   final TfArg<String>? source;
 
   Map<String, Object?> encode() => {
-    if (destination != null) 'destination': destination!.toTfJson(),
-    if (fieldDelimiter != null) 'field_delimiter': fieldDelimiter!.toTfJson(),
-    if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
-    if (keyValueDelimiter != null)
-      'key_value_delimiter': keyValueDelimiter!.toTfJson(),
-    if (nonMatchValue != null) 'non_match_value': nonMatchValue!.toTfJson(),
-    if (overwriteIfExists != null)
-      'overwrite_if_exists': overwriteIfExists!.toTfJson(),
-    if (source != null) 'source': source!.toTfJson(),
+    'destination': ?destination?.toTfJson(),
+    'field_delimiter': ?fieldDelimiter?.toTfJson(),
+    'key_prefix': ?keyPrefix?.toTfJson(),
+    'key_value_delimiter': ?keyValueDelimiter?.toTfJson(),
+    'non_match_value': ?nonMatchValue?.toTfJson(),
+    'overwrite_if_exists': ?overwriteIfExists?.toTfJson(),
+    'source': ?source?.toTfJson(),
   };
 }
 
@@ -493,9 +485,7 @@ final class CloudwatchLogTransformerTransformerConfigParsePostgres {
 
   final TfArg<String>? source;
 
-  Map<String, Object?> encode() => {
-    if (source != null) 'source': source!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'source': ?source?.toTfJson()};
 }
 
 /// Typed helper for the `transformer_config.parse_route53` block of
@@ -506,9 +496,7 @@ final class CloudwatchLogTransformerTransformerConfigParseRoute53 {
 
   final TfArg<String>? source;
 
-  Map<String, Object?> encode() => {
-    if (source != null) 'source': source!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'source': ?source?.toTfJson()};
 }
 
 /// Typed helper for the `transformer_config.parse_to_ocsf` block of
@@ -532,7 +520,7 @@ final class CloudwatchLogTransformerTransformerConfigParseToOcsf {
   Map<String, Object?> encode() => {
     'event_source': eventSource.toTfJson(),
     'ocsf_version': ocsfVersion.toTfJson(),
-    if (source != null) 'source': source!.toTfJson(),
+    'source': ?source?.toTfJson(),
   };
 }
 
@@ -573,9 +561,7 @@ final class CloudwatchLogTransformerTransformerConfigParseVpc {
 
   final TfArg<String>? source;
 
-  Map<String, Object?> encode() => {
-    if (source != null) 'source': source!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'source': ?source?.toTfJson()};
 }
 
 /// Typed helper for the `transformer_config.parse_waf` block of
@@ -586,9 +572,7 @@ final class CloudwatchLogTransformerTransformerConfigParseWaf {
 
   final TfArg<String>? source;
 
-  Map<String, Object?> encode() => {
-    if (source != null) 'source': source!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'source': ?source?.toTfJson()};
 }
 
 /// Typed helper for the `transformer_config.rename_keys` block of
@@ -622,8 +606,7 @@ final class CloudwatchLogTransformerTransformerConfigRenameKeysEntry {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (overwriteIfExists != null)
-      'overwrite_if_exists': overwriteIfExists!.toTfJson(),
+    'overwrite_if_exists': ?overwriteIfExists?.toTfJson(),
     'rename_to': renameTo.toTfJson(),
   };
 }
@@ -789,7 +772,7 @@ final class AwsCloudwatchLogTransformer extends Resource {
          terraformType: tfType,
          argMap: {
            'log_group_arn': logGroupArn.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'region': ?region,
            if (transformerConfig != null)
              'transformer_config': TfArg.literal([
                for (final e in transformerConfig) e.encode(),

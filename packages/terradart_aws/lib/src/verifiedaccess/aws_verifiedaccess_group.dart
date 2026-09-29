@@ -23,9 +23,8 @@ final class VerifiedaccessGroupSseConfiguration {
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (customerManagedKeyEnabled != null)
-      'customer_managed_key_enabled': customerManagedKeyEnabled!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'customer_managed_key_enabled': ?customerManagedKeyEnabled?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -48,10 +47,10 @@ final class AwsVerifiedaccessGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (policyDocument != null) 'policy_document': policyDocument,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'policy_document': ?policyDocument,
+           'region': ?region,
+           'tags': ?tags,
            'verifiedaccess_instance_id': verifiedaccessInstanceId,
            if (sseConfiguration != null)
              'sse_configuration': TfArg.literal(sseConfiguration.encode()),

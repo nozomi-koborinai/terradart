@@ -23,11 +23,10 @@ final class AwsS3controlAccessGrantsInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (identityCenterArn != null)
-             'identity_center_arn': identityCenterArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'account_id': ?accountId,
+           'identity_center_arn': ?identityCenterArn,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

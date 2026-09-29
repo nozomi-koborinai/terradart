@@ -43,10 +43,10 @@ final class GoogleLoggingLogView extends Resource {
          argMap: {
            'bucket': bucket,
            'name': name,
-           if (filter != null) 'filter': filter,
-           if (description != null) 'description': description,
-           if (location != null) 'location': location,
-           if (parent != null) 'parent': parent,
+           'filter': ?filter,
+           'description': ?description,
+           'location': ?location,
+           'parent': ?parent,
          },
        );
 

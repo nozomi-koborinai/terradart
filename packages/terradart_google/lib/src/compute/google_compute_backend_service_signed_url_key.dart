@@ -35,8 +35,8 @@ final class GoogleComputeBackendServiceSignedUrlKey extends Resource {
            'name': name,
            'backend_service': backendService,
            'key_value': keyValue,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

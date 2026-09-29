@@ -24,12 +24,11 @@ final class AwsEc2NetworkInsightsAnalysis extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (filterInArns != null) 'filter_in_arns': filterInArns,
+           'filter_in_arns': ?filterInArns,
            'network_insights_path_id': networkInsightsPathId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (waitForCompletion != null)
-             'wait_for_completion': waitForCompletion,
+           'region': ?region,
+           'tags': ?tags,
+           'wait_for_completion': ?waitForCompletion,
          },
        );
 

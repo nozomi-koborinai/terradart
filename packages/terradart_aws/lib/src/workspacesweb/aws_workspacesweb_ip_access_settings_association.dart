@@ -26,7 +26,7 @@ final class AwsWorkspaceswebIpAccessSettingsAssociation extends Resource {
          argMap: {
            'ip_access_settings_arn': ipAccessSettingsArn,
            'portal_arn': portalArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

@@ -162,10 +162,10 @@ final class GoogleDataCatalogTag extends Resource {
          terraformType: tfType,
          argMap: {
            'template': template,
-           if (parent != null) 'parent': parent,
+           'parent': ?parent,
            'fields': TfArg.literal([for (final f in fields) f.encode()]),
-           if (column != null) 'column': column,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'column': ?column,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

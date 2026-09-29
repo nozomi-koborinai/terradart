@@ -1189,22 +1189,19 @@ final class GoogleCloudRunV2Service extends Resource {
              'binary_authorization': TfArg.literal([
                binaryAuthorization.toArgMap(),
              ]),
-           if (ingress != null) 'ingress': ingress,
-           if (launchStage != null) 'launch_stage': launchStage,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
-           if (customAudiences != null) 'custom_audiences': customAudiences,
-           if (client != null) 'client': client,
-           if (clientVersion != null) 'client_version': clientVersion,
-           if (defaultUriDisabled != null)
-             'default_uri_disabled': defaultUriDisabled,
-           if (invokerIamDisabled != null)
-             'invoker_iam_disabled': invokerIamDisabled,
-           if (iapEnabled != null) 'iap_enabled': iapEnabled,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'ingress': ?ingress,
+           'launch_stage': ?launchStage,
+           'description': ?description,
+           'labels': ?labels,
+           'annotations': ?annotations,
+           'custom_audiences': ?customAudiences,
+           'client': ?client,
+           'client_version': ?clientVersion,
+           'default_uri_disabled': ?defaultUriDisabled,
+           'invoker_iam_disabled': ?invokerIamDisabled,
+           'iap_enabled': ?iapEnabled,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

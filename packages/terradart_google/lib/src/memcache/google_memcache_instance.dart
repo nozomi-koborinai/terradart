@@ -129,18 +129,16 @@ final class GoogleMemcacheInstance extends Resource {
            'name': name,
            'node_count': nodeCount,
            'node_config': TfArg.literal([nodeConfig.toArgMap()]),
-           if (region != null) 'region': region,
-           if (authorizedNetwork != null)
-             'authorized_network': authorizedNetwork.encodeAs('id'),
-           if (memcacheVersion != null) 'memcache_version': memcacheVersion,
-           if (displayName != null) 'display_name': displayName,
+           'region': ?region,
+           'authorized_network': ?authorizedNetwork?.encodeAs('id'),
+           'memcache_version': ?memcacheVersion,
+           'display_name': ?displayName,
            if (maintenancePolicy != null)
              'maintenance_policy': TfArg.literal([
                maintenancePolicy.toArgMap(),
              ]),
-           if (labels != null) 'labels': labels,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
+           'labels': ?labels,
+           'deletion_protection': ?deletionProtection,
          },
        );
 

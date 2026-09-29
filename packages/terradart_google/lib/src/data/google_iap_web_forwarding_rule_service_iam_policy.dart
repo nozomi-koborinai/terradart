@@ -26,7 +26,7 @@ final class DataGoogleIapWebForwardingRuleServiceIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'forwarding_rule_service_name': forwardingRuleServiceName,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

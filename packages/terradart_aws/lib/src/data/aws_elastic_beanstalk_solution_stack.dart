@@ -20,9 +20,9 @@ final class DataAwsElasticBeanstalkSolutionStack extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (mostRecent != null) 'most_recent': mostRecent,
+           'most_recent': ?mostRecent,
            'name_regex': nameRegex,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

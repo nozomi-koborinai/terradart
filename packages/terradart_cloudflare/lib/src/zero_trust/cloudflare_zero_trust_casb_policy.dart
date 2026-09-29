@@ -87,11 +87,11 @@ final class CloudflareZeroTrustCasbPolicy extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'applies_to_all_integrations': appliesToAllIntegrations,
-           if (description != null) 'description': description,
+           'description': ?description,
            'display_name': displayName,
            'enabled': enabled,
            'finding_type_id': findingTypeId,
-           if (integrationIds != null) 'integration_ids': integrationIds,
+           'integration_ids': ?integrationIds,
            'actions': TfArg.literal(actions.encode()),
          },
        );

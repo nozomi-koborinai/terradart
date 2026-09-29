@@ -19,8 +19,8 @@ final class DataAccountFilter {
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -61,7 +61,7 @@ final class DataCloudflareAccount extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

@@ -34,7 +34,7 @@ final class AwsWafv2ApiKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'scope': scope,
            'token_domains': tokenDomains,
          },

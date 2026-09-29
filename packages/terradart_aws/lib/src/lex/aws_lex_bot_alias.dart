@@ -51,7 +51,7 @@ final class LexBotAliasConversationLogsLogSettings {
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'log_type': logType.toTfJson(),
     'resource_arn': resourceArn.toTfJson(),
   };
@@ -78,9 +78,9 @@ final class AwsLexBotAlias extends Resource {
          argMap: {
            'bot_name': botName,
            'bot_version': botVersion,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (conversationLogs != null)
              'conversation_logs': TfArg.literal(conversationLogs.encode()),
          },

@@ -84,22 +84,22 @@ final class DlmLifecyclePolicyPolicyDetails {
   final List<DlmLifecyclePolicyPolicyDetailsSchedule>? schedule;
 
   Map<String, Object?> encode() => {
-    if (copyTags != null) 'copy_tags': copyTags!.toTfJson(),
-    if (createInterval != null) 'create_interval': createInterval!.toTfJson(),
-    if (extendDeletion != null) 'extend_deletion': extendDeletion!.toTfJson(),
-    if (policyLanguage != null) 'policy_language': policyLanguage!.toTfJson(),
-    if (policyType != null) 'policy_type': policyType!.toTfJson(),
+    'copy_tags': ?copyTags?.toTfJson(),
+    'create_interval': ?createInterval?.toTfJson(),
+    'extend_deletion': ?extendDeletion?.toTfJson(),
+    'policy_language': ?policyLanguage?.toTfJson(),
+    'policy_type': ?policyType?.toTfJson(),
     if (resourceLocations != null)
       'resource_locations': [for (final e in resourceLocations!) e.toTfJson()],
-    if (resourceType != null) 'resource_type': resourceType!.toTfJson(),
+    'resource_type': ?resourceType?.toTfJson(),
     if (resourceTypes != null)
       'resource_types': [for (final e in resourceTypes!) e.toTfJson()],
-    if (retainInterval != null) 'retain_interval': retainInterval!.toTfJson(),
-    if (targetTags != null) 'target_tags': targetTags!.toTfJson(),
-    if (action != null) 'action': action!.encode(),
-    if (eventSource != null) 'event_source': eventSource!.encode(),
-    if (exclusions != null) 'exclusions': exclusions!.encode(),
-    if (parameters != null) 'parameters': parameters!.encode(),
+    'retain_interval': ?retainInterval?.toTfJson(),
+    'target_tags': ?targetTags?.toTfJson(),
+    'action': ?action?.encode(),
+    'event_source': ?eventSource?.encode(),
+    'exclusions': ?exclusions?.encode(),
+    'parameters': ?parameters?.encode(),
     if (schedule != null) 'schedule': [for (final e in schedule!) e.encode()],
   };
 }
@@ -197,7 +197,7 @@ final class DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopy {
   Map<String, Object?> encode() => {
     'target': target.toTfJson(),
     'encryption_configuration': encryptionConfiguration.encode(),
-    if (retainRule != null) 'retain_rule': retainRule!.encode(),
+    'retain_rule': ?retainRule?.encode(),
   };
 }
 
@@ -215,8 +215,8 @@ final class DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyEncryptionConfig
   final TfArg<bool>? encrypted;
 
   Map<String, Object?> encode() => {
-    if (cmkArn != null) 'cmk_arn': cmkArn!.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
+    'cmk_arn': ?cmkArn?.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
   };
 }
 
@@ -338,11 +338,9 @@ final class DlmLifecyclePolicyPolicyDetailsExclusions {
   final TfArg<List<Object?>>? excludeVolumeTypes;
 
   Map<String, Object?> encode() => {
-    if (excludeBootVolumes != null)
-      'exclude_boot_volumes': excludeBootVolumes!.toTfJson(),
-    if (excludeTags != null) 'exclude_tags': excludeTags!.toTfJson(),
-    if (excludeVolumeTypes != null)
-      'exclude_volume_types': excludeVolumeTypes!.toTfJson(),
+    'exclude_boot_volumes': ?excludeBootVolumes?.toTfJson(),
+    'exclude_tags': ?excludeTags?.toTfJson(),
+    'exclude_volume_types': ?excludeVolumeTypes?.toTfJson(),
   };
 }
 
@@ -363,11 +361,9 @@ final class DlmLifecyclePolicyPolicyDetailsParameters {
   final TfArg<bool>? noReboot;
 
   Map<String, Object?> encode() => {
-    if (excludeBootVolume != null)
-      'exclude_boot_volume': excludeBootVolume!.toTfJson(),
-    if (excludeDataVolumeTags != null)
-      'exclude_data_volume_tags': excludeDataVolumeTags!.toTfJson(),
-    if (noReboot != null) 'no_reboot': noReboot!.toTfJson(),
+    'exclude_boot_volume': ?excludeBootVolume?.toTfJson(),
+    'exclude_data_volume_tags': ?excludeDataVolumeTags?.toTfJson(),
+    'no_reboot': ?noReboot?.toTfJson(),
   };
 }
 
@@ -413,20 +409,20 @@ final class DlmLifecyclePolicyPolicyDetailsSchedule {
   final DlmLifecyclePolicyPolicyDetailsScheduleShareRule? shareRule;
 
   Map<String, Object?> encode() => {
-    if (copyTags != null) 'copy_tags': copyTags!.toTfJson(),
+    'copy_tags': ?copyTags?.toTfJson(),
     'name': name.toTfJson(),
-    if (tagsToAdd != null) 'tags_to_add': tagsToAdd!.toTfJson(),
-    if (variableTags != null) 'variable_tags': variableTags!.toTfJson(),
-    if (archiveRule != null) 'archive_rule': archiveRule!.encode(),
+    'tags_to_add': ?tagsToAdd?.toTfJson(),
+    'variable_tags': ?variableTags?.toTfJson(),
+    'archive_rule': ?archiveRule?.encode(),
     'create_rule': createRule.encode(),
     if (crossRegionCopyRule != null)
       'cross_region_copy_rule': [
         for (final e in crossRegionCopyRule!) e.encode(),
       ],
-    if (deprecateRule != null) 'deprecate_rule': deprecateRule!.encode(),
-    if (fastRestoreRule != null) 'fast_restore_rule': fastRestoreRule!.encode(),
+    'deprecate_rule': ?deprecateRule?.encode(),
+    'fast_restore_rule': ?fastRestoreRule?.encode(),
     'retain_rule': retainRule.encode(),
-    if (shareRule != null) 'share_rule': shareRule!.encode(),
+    'share_rule': ?shareRule?.encode(),
   };
 }
 
@@ -482,9 +478,9 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleR
   intervalUnit;
 
   Map<String, Object?> encode() => {
-    if (count != null) 'count': count!.toTfJson(),
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (intervalUnit != null) 'interval_unit': intervalUnit!.toTfJson(),
+    'count': ?count?.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'interval_unit': ?intervalUnit?.toTfJson(),
   };
 }
 
@@ -531,12 +527,12 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRule {
   final DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScripts? scripts;
 
   Map<String, Object?> encode() => {
-    if (cronExpression != null) 'cron_expression': cronExpression!.toTfJson(),
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (intervalUnit != null) 'interval_unit': intervalUnit!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (times != null) 'times': times!.toTfJson(),
-    if (scripts != null) 'scripts': scripts!.encode(),
+    'cron_expression': ?cronExpression?.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'interval_unit': ?intervalUnit?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'times': ?times?.toTfJson(),
+    'scripts': ?scripts?.encode(),
   };
 }
 
@@ -598,16 +594,12 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScripts {
   stages;
 
   Map<String, Object?> encode() => {
-    if (executeOperationOnScriptFailure != null)
-      'execute_operation_on_script_failure': executeOperationOnScriptFailure!
-          .toTfJson(),
+    'execute_operation_on_script_failure': ?executeOperationOnScriptFailure
+        ?.toTfJson(),
     'execution_handler': executionHandler.toTfJson(),
-    if (executionHandlerService != null)
-      'execution_handler_service': executionHandlerService!.toTfJson(),
-    if (executionTimeout != null)
-      'execution_timeout': executionTimeout!.toTfJson(),
-    if (maximumRetryCount != null)
-      'maximum_retry_count': maximumRetryCount!.toTfJson(),
+    'execution_handler_service': ?executionHandlerService?.toTfJson(),
+    'execution_timeout': ?executionTimeout?.toTfJson(),
+    'maximum_retry_count': ?maximumRetryCount?.toTfJson(),
     if (stages != null) 'stages': [for (final e in stages!) e.toTfJson()],
   };
 }
@@ -668,13 +660,13 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRule {
   retainRule;
 
   Map<String, Object?> encode() => {
-    if (cmkArn != null) 'cmk_arn': cmkArn!.toTfJson(),
-    if (copyTags != null) 'copy_tags': copyTags!.toTfJson(),
+    'cmk_arn': ?cmkArn?.toTfJson(),
+    'copy_tags': ?copyTags?.toTfJson(),
     'encrypted': encrypted.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
-    if (targetRegion != null) 'target_region': targetRegion!.toTfJson(),
-    if (deprecateRule != null) 'deprecate_rule': deprecateRule!.encode(),
-    if (retainRule != null) 'retain_rule': retainRule!.encode(),
+    'target': ?target?.toTfJson(),
+    'target_region': ?targetRegion?.toTfJson(),
+    'deprecate_rule': ?deprecateRule?.encode(),
+    'retain_rule': ?retainRule?.encode(),
   };
 }
 
@@ -770,9 +762,9 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRule {
   intervalUnit;
 
   Map<String, Object?> encode() => {
-    if (count != null) 'count': count!.toTfJson(),
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (intervalUnit != null) 'interval_unit': intervalUnit!.toTfJson(),
+    'count': ?count?.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'interval_unit': ?intervalUnit?.toTfJson(),
   };
 }
 
@@ -815,9 +807,9 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRule {
 
   Map<String, Object?> encode() => {
     'availability_zones': availabilityZones.toTfJson(),
-    if (count != null) 'count': count!.toTfJson(),
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (intervalUnit != null) 'interval_unit': intervalUnit!.toTfJson(),
+    'count': ?count?.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'interval_unit': ?intervalUnit?.toTfJson(),
   };
 }
 
@@ -854,9 +846,9 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleRetainRule {
   intervalUnit;
 
   Map<String, Object?> encode() => {
-    if (count != null) 'count': count!.toTfJson(),
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (intervalUnit != null) 'interval_unit': intervalUnit!.toTfJson(),
+    'count': ?count?.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'interval_unit': ?intervalUnit?.toTfJson(),
   };
 }
 
@@ -896,10 +888,8 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleShareRule {
 
   Map<String, Object?> encode() => {
     'target_accounts': targetAccounts.toTfJson(),
-    if (unshareInterval != null)
-      'unshare_interval': unshareInterval!.toTfJson(),
-    if (unshareIntervalUnit != null)
-      'unshare_interval_unit': unshareIntervalUnit!.toTfJson(),
+    'unshare_interval': ?unshareInterval?.toTfJson(),
+    'unshare_interval_unit': ?unshareIntervalUnit?.toTfJson(),
   };
 }
 
@@ -938,12 +928,12 @@ final class AwsDlmLifecyclePolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultPolicy != null) 'default_policy': defaultPolicy,
+           'default_policy': ?defaultPolicy,
            'description': description,
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
-           if (region != null) 'region': region,
-           if (state != null) 'state': state,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'state': ?state,
+           'tags': ?tags,
            'policy_details': TfArg.literal(policyDetails.encode()),
          },
        );

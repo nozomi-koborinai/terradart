@@ -26,7 +26,7 @@ final class GoogleFirebaseProject extends Resource {
   }) : super(
          terraformType: tfType,
          provider: provider ?? 'google-beta',
-         argMap: {if (project != null) 'project': project},
+         argMap: {'project': ?project},
        );
 
   @override

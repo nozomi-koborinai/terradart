@@ -50,8 +50,8 @@ final class GoogleStorageFolder extends Resource {
          argMap: {
            'bucket': bucket.encodeAs('name'),
            'name': name,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'force_destroy': ?forceDestroy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

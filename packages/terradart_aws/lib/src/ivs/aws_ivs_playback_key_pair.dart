@@ -23,10 +23,10 @@ final class AwsIvsPlaybackKeyPair extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
+           'name': ?name,
            'public_key': publicKey,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

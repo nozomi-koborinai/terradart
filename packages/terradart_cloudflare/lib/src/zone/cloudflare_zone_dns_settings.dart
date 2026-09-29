@@ -29,8 +29,7 @@ final class ZoneDnsSettingsInternalDns {
   final TfArg<String>? referenceZoneId;
 
   Map<String, Object?> encode() => {
-    if (referenceZoneId != null)
-      'reference_zone_id': referenceZoneId!.toTfJson(),
+    'reference_zone_id': ?referenceZoneId?.toTfJson(),
   };
 }
 
@@ -45,8 +44,8 @@ final class ZoneDnsSettingsNameservers {
   final TfArg<ZoneDnsSettingsNameserversType>? type;
 
   Map<String, Object?> encode() => {
-    if (nsSet != null) 'ns_set': nsSet!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'ns_set': ?nsSet?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -91,13 +90,13 @@ final class ZoneDnsSettingsSoa {
   final TfArg<num>? ttl;
 
   Map<String, Object?> encode() => {
-    if (expire != null) 'expire': expire!.toTfJson(),
-    if (minTtl != null) 'min_ttl': minTtl!.toTfJson(),
-    if (mname != null) 'mname': mname!.toTfJson(),
-    if (refresh != null) 'refresh': refresh!.toTfJson(),
-    if (retry != null) 'retry': retry!.toTfJson(),
-    if (rname != null) 'rname': rname!.toTfJson(),
-    if (ttl != null) 'ttl': ttl!.toTfJson(),
+    'expire': ?expire?.toTfJson(),
+    'min_ttl': ?minTtl?.toTfJson(),
+    'mname': ?mname?.toTfJson(),
+    'refresh': ?refresh?.toTfJson(),
+    'retry': ?retry?.toTfJson(),
+    'rname': ?rname?.toTfJson(),
+    'ttl': ?ttl?.toTfJson(),
   };
 }
 
@@ -129,14 +128,13 @@ final class CloudflareZoneDnsSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (flattenAllCnames != null) 'flatten_all_cnames': flattenAllCnames,
-           if (foundationDns != null) 'foundation_dns': foundationDns,
-           if (multiProvider != null) 'multi_provider': multiProvider,
-           if (nsTtl != null) 'ns_ttl': nsTtl,
-           if (secondaryOverrides != null)
-             'secondary_overrides': secondaryOverrides,
+           'flatten_all_cnames': ?flattenAllCnames,
+           'foundation_dns': ?foundationDns,
+           'multi_provider': ?multiProvider,
+           'ns_ttl': ?nsTtl,
+           'secondary_overrides': ?secondaryOverrides,
            'zone_id': zoneId.encodeAs('id'),
-           if (zoneMode != null) 'zone_mode': zoneMode,
+           'zone_mode': ?zoneMode,
            if (internalDns != null)
              'internal_dns': TfArg.literal(internalDns.encode()),
            if (nameservers != null)

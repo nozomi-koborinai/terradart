@@ -72,36 +72,25 @@ final class AthenaWorkgroupConfiguration {
   final AthenaWorkgroupConfigurationResultConfiguration? resultConfiguration;
 
   Map<String, Object?> encode() => {
-    if (bytesScannedCutoffPerQuery != null)
-      'bytes_scanned_cutoff_per_query': bytesScannedCutoffPerQuery!.toTfJson(),
-    if (enableMinimumEncryptionConfiguration != null)
-      'enable_minimum_encryption_configuration':
-          enableMinimumEncryptionConfiguration!.toTfJson(),
-    if (enforceWorkgroupConfiguration != null)
-      'enforce_workgroup_configuration': enforceWorkgroupConfiguration!
-          .toTfJson(),
-    if (executionRole != null) 'execution_role': executionRole!.toTfJson(),
-    if (publishCloudwatchMetricsEnabled != null)
-      'publish_cloudwatch_metrics_enabled': publishCloudwatchMetricsEnabled!
-          .toTfJson(),
-    if (requesterPaysEnabled != null)
-      'requester_pays_enabled': requesterPaysEnabled!.toTfJson(),
-    if (customerContentEncryptionConfiguration != null)
-      'customer_content_encryption_configuration':
-          customerContentEncryptionConfiguration!.encode(),
-    if (engineVersion != null) 'engine_version': engineVersion!.encode(),
-    if (identityCenterConfiguration != null)
-      'identity_center_configuration': identityCenterConfiguration!.encode(),
-    if (managedQueryResultsConfiguration != null)
-      'managed_query_results_configuration': managedQueryResultsConfiguration!
-          .encode(),
-    if (monitoringConfiguration != null)
-      'monitoring_configuration': monitoringConfiguration!.encode(),
-    if (queryResultsS3AccessGrantsConfiguration != null)
-      'query_results_s3_access_grants_configuration':
-          queryResultsS3AccessGrantsConfiguration!.encode(),
-    if (resultConfiguration != null)
-      'result_configuration': resultConfiguration!.encode(),
+    'bytes_scanned_cutoff_per_query': ?bytesScannedCutoffPerQuery?.toTfJson(),
+    'enable_minimum_encryption_configuration':
+        ?enableMinimumEncryptionConfiguration?.toTfJson(),
+    'enforce_workgroup_configuration': ?enforceWorkgroupConfiguration
+        ?.toTfJson(),
+    'execution_role': ?executionRole?.toTfJson(),
+    'publish_cloudwatch_metrics_enabled': ?publishCloudwatchMetricsEnabled
+        ?.toTfJson(),
+    'requester_pays_enabled': ?requesterPaysEnabled?.toTfJson(),
+    'customer_content_encryption_configuration':
+        ?customerContentEncryptionConfiguration?.encode(),
+    'engine_version': ?engineVersion?.encode(),
+    'identity_center_configuration': ?identityCenterConfiguration?.encode(),
+    'managed_query_results_configuration': ?managedQueryResultsConfiguration
+        ?.encode(),
+    'monitoring_configuration': ?monitoringConfiguration?.encode(),
+    'query_results_s3_access_grants_configuration':
+        ?queryResultsS3AccessGrantsConfiguration?.encode(),
+    'result_configuration': ?resultConfiguration?.encode(),
   };
 }
 
@@ -116,7 +105,7 @@ final class AthenaWorkgroupConfigurationCustomerContentEncryptionConfiguration {
   final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -129,8 +118,7 @@ final class AthenaWorkgroupConfigurationEngineVersion {
   final TfArg<String>? selectedEngineVersion;
 
   Map<String, Object?> encode() => {
-    if (selectedEngineVersion != null)
-      'selected_engine_version': selectedEngineVersion!.toTfJson(),
+    'selected_engine_version': ?selectedEngineVersion?.toTfJson(),
   };
 }
 
@@ -148,10 +136,8 @@ final class AthenaWorkgroupConfigurationIdentityCenterConfiguration {
   final TfArg<String>? identityCenterInstanceArn;
 
   Map<String, Object?> encode() => {
-    if (enableIdentityCenter != null)
-      'enable_identity_center': enableIdentityCenter!.toTfJson(),
-    if (identityCenterInstanceArn != null)
-      'identity_center_instance_arn': identityCenterInstanceArn!.toTfJson(),
+    'enable_identity_center': ?enableIdentityCenter?.toTfJson(),
+    'identity_center_instance_arn': ?identityCenterInstanceArn?.toTfJson(),
   };
 }
 
@@ -170,9 +156,8 @@ final class AthenaWorkgroupConfigurationManagedQueryResultsConfiguration {
   encryptionConfiguration;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (encryptionConfiguration != null)
-      'encryption_configuration': encryptionConfiguration!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'encryption_configuration': ?encryptionConfiguration?.encode(),
   };
 }
 
@@ -187,7 +172,7 @@ final class AthenaWorkgroupConfigurationManagedQueryResultsConfigurationEncrypti
   final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -211,13 +196,10 @@ final class AthenaWorkgroupConfigurationMonitoringConfiguration {
   s3LoggingConfiguration;
 
   Map<String, Object?> encode() => {
-    if (cloudWatchLoggingConfiguration != null)
-      'cloud_watch_logging_configuration': cloudWatchLoggingConfiguration!
-          .encode(),
-    if (managedLoggingConfiguration != null)
-      'managed_logging_configuration': managedLoggingConfiguration!.encode(),
-    if (s3LoggingConfiguration != null)
-      's3_logging_configuration': s3LoggingConfiguration!.encode(),
+    'cloud_watch_logging_configuration': ?cloudWatchLoggingConfiguration
+        ?.encode(),
+    'managed_logging_configuration': ?managedLoggingConfiguration?.encode(),
+    's3_logging_configuration': ?s3LoggingConfiguration?.encode(),
   };
 }
 
@@ -245,9 +227,8 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLogging
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
-    if (logStreamNamePrefix != null)
-      'log_stream_name_prefix': logStreamNamePrefix!.toTfJson(),
+    'log_group': ?logGroup?.encodeAs('name').toTfJson(),
+    'log_stream_name_prefix': ?logStreamNamePrefix?.toTfJson(),
     if (logType != null) 'log_type': [for (final e in logType!) e.encode()],
   };
 }
@@ -286,7 +267,7 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationManagedLoggingCon
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -308,8 +289,8 @@ final class AthenaWorkgroupConfigurationMonitoringConfigurationS3LoggingConfigur
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
-    if (logLocation != null) 'log_location': logLocation!.toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
+    'log_location': ?logLocation?.toTfJson(),
   };
 }
 
@@ -334,8 +315,7 @@ final class AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfiguration 
 
   Map<String, Object?> encode() => {
     'authentication_type': authenticationType.toTfJson(),
-    if (createUserLevelPrefix != null)
-      'create_user_level_prefix': createUserLevelPrefix!.toTfJson(),
+    'create_user_level_prefix': ?createUserLevelPrefix?.toTfJson(),
     'enable_s3_access_grants': enableS3AccessGrants.toTfJson(),
   };
 }
@@ -374,13 +354,10 @@ final class AthenaWorkgroupConfigurationResultConfiguration {
   encryptionConfiguration;
 
   Map<String, Object?> encode() => {
-    if (expectedBucketOwner != null)
-      'expected_bucket_owner': expectedBucketOwner!.toTfJson(),
-    if (outputLocation != null) 'output_location': outputLocation!.toTfJson(),
-    if (aclConfiguration != null)
-      'acl_configuration': aclConfiguration!.encode(),
-    if (encryptionConfiguration != null)
-      'encryption_configuration': encryptionConfiguration!.encode(),
+    'expected_bucket_owner': ?expectedBucketOwner?.toTfJson(),
+    'output_location': ?outputLocation?.toTfJson(),
+    'acl_configuration': ?aclConfiguration?.encode(),
+    'encryption_configuration': ?encryptionConfiguration?.encode(),
   };
 }
 
@@ -429,9 +406,8 @@ final class AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurati
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (encryptionOption != null)
-      'encryption_option': encryptionOption!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'encryption_option': ?encryptionOption?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -469,12 +445,12 @@ final class AwsAthenaWorkgroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'description': ?description,
+           'force_destroy': ?forceDestroy,
            'name': name,
-           if (region != null) 'region': region,
-           if (state != null) 'state': state,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'state': ?state,
+           'tags': ?tags,
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),
          },

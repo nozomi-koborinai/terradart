@@ -26,9 +26,9 @@ final class DataCloudflareApiShieldSchema extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (omitSource != null) 'omit_source': omitSource,
+           'omit_source': ?omitSource,
            'schema_id': schemaId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'zone_id': ?zoneId,
          },
        );
 

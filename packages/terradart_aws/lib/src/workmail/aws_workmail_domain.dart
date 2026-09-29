@@ -24,7 +24,7 @@ final class AwsWorkmailDomain extends Resource {
          argMap: {
            'domain_name': domainName,
            'organization_id': organizationId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

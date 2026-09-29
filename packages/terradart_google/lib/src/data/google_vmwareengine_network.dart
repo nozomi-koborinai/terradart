@@ -23,11 +23,7 @@ final class DataGoogleVmwareengineNetwork extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'location': location,
-           'name': name,
-           if (project != null) 'project': project,
-         },
+         argMap: {'location': location, 'name': name, 'project': ?project},
        );
 
   @override

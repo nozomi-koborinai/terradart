@@ -85,10 +85,10 @@ final class AwsMemorydbSnapshot extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_name': clusterName,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

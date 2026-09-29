@@ -18,10 +18,7 @@ final class DataAwsElasticacheServiceUpdates extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
-         },
+         argMap: {'region': ?region, 'status': ?status},
        );
 
   @override

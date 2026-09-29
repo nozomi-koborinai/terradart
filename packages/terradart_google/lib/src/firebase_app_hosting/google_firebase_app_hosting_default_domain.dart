@@ -54,8 +54,8 @@ final class GoogleFirebaseAppHostingDefaultDomain extends Resource {
            'backend': backend,
            'location': location,
            'domain_id': domainId,
-           if (disabled != null) 'disabled': disabled,
-           if (project != null) 'project': project,
+           'disabled': ?disabled,
+           'project': ?project,
          },
        );
 

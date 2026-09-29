@@ -24,8 +24,8 @@ final class GameliftAliasRoutingStrategy {
   final TfArg<GameliftAliasRoutingStrategyType> type;
 
   Map<String, Object?> encode() => {
-    if (fleetId != null) 'fleet_id': fleetId!.toTfJson(),
-    if (message != null) 'message': message!.toTfJson(),
+    'fleet_id': ?fleetId?.toTfJson(),
+    'message': ?message?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -58,10 +58,10 @@ final class AwsGameliftAlias extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'routing_strategy': TfArg.literal(routingStrategy.encode()),
          },
        );

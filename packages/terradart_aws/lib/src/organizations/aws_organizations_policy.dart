@@ -47,11 +47,11 @@ final class AwsOrganizationsPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'content': content,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'skip_destroy': ?skipDestroy,
+           'tags': ?tags,
+           'type': ?type,
          },
        );
 

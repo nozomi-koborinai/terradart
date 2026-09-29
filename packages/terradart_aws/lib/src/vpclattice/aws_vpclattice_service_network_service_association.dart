@@ -25,10 +25,10 @@ final class AwsVpclatticeServiceNetworkServiceAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_identifier': serviceIdentifier,
            'service_network_identifier': serviceNetworkIdentifier,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

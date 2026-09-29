@@ -31,8 +31,8 @@ final class GoogleIapTunnelInstanceIamPolicy extends Resource {
          argMap: {
            'instance': instance,
            'policy_data': policyData,
-           if (zone != null) 'zone': zone,
-           if (project != null) 'project': project,
+           'zone': ?zone,
+           'project': ?project,
          },
        );
 

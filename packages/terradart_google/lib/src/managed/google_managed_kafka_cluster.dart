@@ -18,9 +18,7 @@ final class ManagedKafkaClusterBrokerCapacityConfig {
 
   final TfArg<String>? diskSizeGib;
 
-  Map<String, Object?> encode() => {
-    if (diskSizeGib != null) 'disk_size_gib': diskSizeGib!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'disk_size_gib': ?diskSizeGib?.toTfJson()};
 }
 
 /// Typed helper for the `capacity_config` block of
@@ -53,7 +51,7 @@ final class ManagedKafkaClusterGcpConfig {
   final ManagedKafkaClusterGcpConfigAccessConfig accessConfig;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
     'access_config': accessConfig.encode(),
   };
 }
@@ -75,8 +73,7 @@ final class ManagedKafkaClusterGcpConfigAccessConfig {
 
   Map<String, Object?> encode() => {
     'network_configs': [for (final e in networkConfigs) e.encode()],
-    if (publicClusterConfig != null)
-      'public_cluster_config': publicClusterConfig!.encode(),
+    'public_cluster_config': ?publicClusterConfig?.encode(),
   };
 }
 
@@ -116,7 +113,7 @@ final class ManagedKafkaClusterRebalanceConfig {
 
   final TfArg<String>? mode;
 
-  Map<String, Object?> encode() => {if (mode != null) 'mode': mode!.toTfJson()};
+  Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// Typed helper for the `tls_config` block of
@@ -133,9 +130,8 @@ final class ManagedKafkaClusterTlsConfig {
   final ManagedKafkaClusterTlsConfigTrustConfig? trustConfig;
 
   Map<String, Object?> encode() => {
-    if (sslPrincipalMappingRules != null)
-      'ssl_principal_mapping_rules': sslPrincipalMappingRules!.toTfJson(),
-    if (trustConfig != null) 'trust_config': trustConfig!.encode(),
+    'ssl_principal_mapping_rules': ?sslPrincipalMappingRules?.toTfJson(),
+    'trust_config': ?trustConfig?.encode(),
   };
 }
 
@@ -231,7 +227,7 @@ final class GoogleManagedKafkaCluster extends Resource {
            'location': location,
            'capacity_config': TfArg.literal(capacityConfig.encode()),
            'gcp_config': TfArg.literal(gcpConfig.encode()),
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            if (brokerCapacityConfig != null)
              'broker_capacity_config': TfArg.literal(
                brokerCapacityConfig.encode(),
@@ -240,8 +236,8 @@ final class GoogleManagedKafkaCluster extends Resource {
              'rebalance_config': TfArg.literal(rebalanceConfig.encode()),
            if (tlsConfig != null)
              'tls_config': TfArg.literal(tlsConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

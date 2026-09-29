@@ -26,7 +26,7 @@ final class AwsLightsailDiskAttachment extends Resource {
            'disk_name': diskName,
            'disk_path': diskPath,
            'instance_name': instanceName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

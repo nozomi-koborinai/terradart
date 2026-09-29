@@ -80,7 +80,7 @@ final class AwsKmsAlias extends Resource {
          terraformType: tfType,
          argMap: {
            ...?name?.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            'target_key_id': targetKeyId,
          },
        );

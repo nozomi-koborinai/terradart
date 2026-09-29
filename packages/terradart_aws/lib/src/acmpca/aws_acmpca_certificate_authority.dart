@@ -165,22 +165,19 @@ final class AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSubject {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (commonName != null) 'common_name': commonName!.toTfJson(),
-    if (country != null) 'country': country!.toTfJson(),
-    if (distinguishedNameQualifier != null)
-      'distinguished_name_qualifier': distinguishedNameQualifier!.toTfJson(),
-    if (generationQualifier != null)
-      'generation_qualifier': generationQualifier!.toTfJson(),
-    if (givenName != null) 'given_name': givenName!.toTfJson(),
-    if (initials != null) 'initials': initials!.toTfJson(),
-    if (locality != null) 'locality': locality!.toTfJson(),
-    if (organization != null) 'organization': organization!.toTfJson(),
-    if (organizationalUnit != null)
-      'organizational_unit': organizationalUnit!.toTfJson(),
-    if (pseudonym != null) 'pseudonym': pseudonym!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
-    if (surname != null) 'surname': surname!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'common_name': ?commonName?.toTfJson(),
+    'country': ?country?.toTfJson(),
+    'distinguished_name_qualifier': ?distinguishedNameQualifier?.toTfJson(),
+    'generation_qualifier': ?generationQualifier?.toTfJson(),
+    'given_name': ?givenName?.toTfJson(),
+    'initials': ?initials?.toTfJson(),
+    'locality': ?locality?.toTfJson(),
+    'organization': ?organization?.toTfJson(),
+    'organizational_unit': ?organizationalUnit?.toTfJson(),
+    'pseudonym': ?pseudonym?.toTfJson(),
+    'state': ?state?.toTfJson(),
+    'surname': ?surname?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -200,10 +197,8 @@ final class AcmpcaCertificateAuthorityRevocationConfiguration {
   ocspConfiguration;
 
   Map<String, Object?> encode() => {
-    if (crlConfiguration != null)
-      'crl_configuration': crlConfiguration!.encode(),
-    if (ocspConfiguration != null)
-      'ocsp_configuration': ocspConfiguration!.encode(),
+    'crl_configuration': ?crlConfiguration?.encode(),
+    'ocsp_configuration': ?ocspConfiguration?.encode(),
   };
 }
 
@@ -236,14 +231,12 @@ final class AcmpcaCertificateAuthorityRevocationConfigurationCrlConfiguration {
   s3ObjectAcl;
 
   Map<String, Object?> encode() => {
-    if (customCname != null) 'custom_cname': customCname!.toTfJson(),
-    if (customPath != null) 'custom_path': customPath!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (expirationInDays != null)
-      'expiration_in_days': expirationInDays!.toTfJson(),
-    if (s3BucketName != null)
-      's3_bucket_name': s3BucketName!.encodeAs('id').toTfJson(),
-    if (s3ObjectAcl != null) 's3_object_acl': s3ObjectAcl!.toTfJson(),
+    'custom_cname': ?customCname?.toTfJson(),
+    'custom_path': ?customPath?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'expiration_in_days': ?expirationInDays?.toTfJson(),
+    's3_bucket_name': ?s3BucketName?.encodeAs('id').toTfJson(),
+    's3_object_acl': ?s3ObjectAcl?.toTfJson(),
   };
 }
 
@@ -275,8 +268,7 @@ final class AcmpcaCertificateAuthorityRevocationConfigurationOcspConfiguration {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (ocspCustomCname != null)
-      'ocsp_custom_cname': ocspCustomCname!.toTfJson(),
+    'ocsp_custom_cname': ?ocspCustomCname?.toTfJson(),
   };
 }
 
@@ -304,15 +296,13 @@ final class AwsAcmpcaCertificateAuthority extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
-           if (keyStorageSecurityStandard != null)
-             'key_storage_security_standard': keyStorageSecurityStandard,
-           if (permanentDeletionTimeInDays != null)
-             'permanent_deletion_time_in_days': permanentDeletionTimeInDays,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
-           if (usageMode != null) 'usage_mode': usageMode,
+           'enabled': ?enabled,
+           'key_storage_security_standard': ?keyStorageSecurityStandard,
+           'permanent_deletion_time_in_days': ?permanentDeletionTimeInDays,
+           'region': ?region,
+           'tags': ?tags,
+           'type': ?type,
+           'usage_mode': ?usageMode,
            'certificate_authority_configuration': TfArg.literal(
              certificateAuthorityConfiguration.encode(),
            ),

@@ -31,11 +31,11 @@ final class LightsailContainerServiceDeploymentVersionContainer {
   final TfArg<Map<String, String>>? ports;
 
   Map<String, Object?> encode() => {
-    if (command != null) 'command': command!.toTfJson(),
+    'command': ?command?.toTfJson(),
     'container_name': containerName.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
+    'environment': ?environment?.toTfJson(),
     'image': image.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
+    'ports': ?ports?.toTfJson(),
   };
 }
 
@@ -89,15 +89,12 @@ final class LightsailContainerServiceDeploymentVersionPublicEndpointHealthCheck 
   final TfArg<num>? unhealthyThreshold;
 
   Map<String, Object?> encode() => {
-    if (healthyThreshold != null)
-      'healthy_threshold': healthyThreshold!.toTfJson(),
-    if (intervalSeconds != null)
-      'interval_seconds': intervalSeconds!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (successCodes != null) 'success_codes': successCodes!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (unhealthyThreshold != null)
-      'unhealthy_threshold': unhealthyThreshold!.toTfJson(),
+    'healthy_threshold': ?healthyThreshold?.toTfJson(),
+    'interval_seconds': ?intervalSeconds?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'success_codes': ?successCodes?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
+    'unhealthy_threshold': ?unhealthyThreshold?.toTfJson(),
   };
 }
 
@@ -120,7 +117,7 @@ final class AwsLightsailContainerServiceDeploymentVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_name': serviceName,
            'container': TfArg.literal([for (final e in container) e.encode()]),
            if (publicEndpoint != null)

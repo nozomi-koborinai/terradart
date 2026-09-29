@@ -24,7 +24,7 @@ final class AwsRoute53ResolverQueryLogConfigAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'resolver_query_log_config_id': resolverQueryLogConfigId,
            'resource_id': resourceId,
          },

@@ -42,8 +42,8 @@ final class GoogleApigeeSharedflow extends Resource {
            'name': name,
            'org_id': orgId,
            'config_bundle': configBundle,
-           if (detectMd5hash != null) 'detect_md5hash': detectMd5hash,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'detect_md5hash': ?detectMd5hash,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

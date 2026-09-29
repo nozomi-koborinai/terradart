@@ -48,13 +48,10 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfiguration {
   metricSpecification;
 
   Map<String, Object?> encode() => {
-    if (maxCapacityBreachBehavior != null)
-      'max_capacity_breach_behavior': maxCapacityBreachBehavior!.toTfJson(),
-    if (maxCapacityBuffer != null)
-      'max_capacity_buffer': maxCapacityBuffer!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (schedulingBufferTime != null)
-      'scheduling_buffer_time': schedulingBufferTime!.toTfJson(),
+    'max_capacity_breach_behavior': ?maxCapacityBreachBehavior?.toTfJson(),
+    'max_capacity_buffer': ?maxCapacityBuffer?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'scheduling_buffer_time': ?schedulingBufferTime?.toTfJson(),
     'metric_specification': [for (final e in metricSpecification) e.encode()],
   };
 }
@@ -121,24 +118,18 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   Map<String, Object?> encode() => {
     'target_value': targetValue.toTfJson(),
-    if (customizedCapacityMetricSpecification != null)
-      'customized_capacity_metric_specification':
-          customizedCapacityMetricSpecification!.encode(),
-    if (customizedLoadMetricSpecification != null)
-      'customized_load_metric_specification': customizedLoadMetricSpecification!
-          .encode(),
-    if (customizedScalingMetricSpecification != null)
-      'customized_scaling_metric_specification':
-          customizedScalingMetricSpecification!.encode(),
-    if (predefinedLoadMetricSpecification != null)
-      'predefined_load_metric_specification': predefinedLoadMetricSpecification!
-          .encode(),
-    if (predefinedMetricPairSpecification != null)
-      'predefined_metric_pair_specification': predefinedMetricPairSpecification!
-          .encode(),
-    if (predefinedScalingMetricSpecification != null)
-      'predefined_scaling_metric_specification':
-          predefinedScalingMetricSpecification!.encode(),
+    'customized_capacity_metric_specification':
+        ?customizedCapacityMetricSpecification?.encode(),
+    'customized_load_metric_specification': ?customizedLoadMetricSpecification
+        ?.encode(),
+    'customized_scaling_metric_specification':
+        ?customizedScalingMetricSpecification?.encode(),
+    'predefined_load_metric_specification': ?predefinedLoadMetricSpecification
+        ?.encode(),
+    'predefined_metric_pair_specification': ?predefinedMetricPairSpecification
+        ?.encode(),
+    'predefined_scaling_metric_specification':
+        ?predefinedScalingMetricSpecification?.encode(),
   };
 }
 
@@ -184,11 +175,11 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
   metricStat;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'id': id.toTfJson(),
-    if (label != null) 'label': label!.toTfJson(),
-    if (returnData != null) 'return_data': returnData!.toTfJson(),
-    if (metricStat != null) 'metric_stat': metricStat!.encode(),
+    'label': ?label?.toTfJson(),
+    'return_data': ?returnData?.toTfJson(),
+    'metric_stat': ?metricStat?.encode(),
   };
 }
 
@@ -211,7 +202,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   Map<String, Object?> encode() => {
     'stat': stat.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
     'metric': metric.encode(),
   };
 }
@@ -236,8 +227,8 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
   dimension;
 
   Map<String, Object?> encode() => {
-    if (metricName != null) 'metric_name': metricName!.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'metric_name': ?metricName?.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
     if (dimension != null)
       'dimension': [for (final e in dimension!) e.encode()],
   };
@@ -304,11 +295,11 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
   metricStat;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'id': id.toTfJson(),
-    if (label != null) 'label': label!.toTfJson(),
-    if (returnData != null) 'return_data': returnData!.toTfJson(),
-    if (metricStat != null) 'metric_stat': metricStat!.encode(),
+    'label': ?label?.toTfJson(),
+    'return_data': ?returnData?.toTfJson(),
+    'metric_stat': ?metricStat?.encode(),
   };
 }
 
@@ -331,7 +322,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   Map<String, Object?> encode() => {
     'stat': stat.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
     'metric': metric.encode(),
   };
 }
@@ -356,8 +347,8 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
   dimension;
 
   Map<String, Object?> encode() => {
-    if (metricName != null) 'metric_name': metricName!.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'metric_name': ?metricName?.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
     if (dimension != null)
       'dimension': [for (final e in dimension!) e.encode()],
   };
@@ -424,11 +415,11 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
   metricStat;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'id': id.toTfJson(),
-    if (label != null) 'label': label!.toTfJson(),
-    if (returnData != null) 'return_data': returnData!.toTfJson(),
-    if (metricStat != null) 'metric_stat': metricStat!.encode(),
+    'label': ?label?.toTfJson(),
+    'return_data': ?returnData?.toTfJson(),
+    'metric_stat': ?metricStat?.encode(),
   };
 }
 
@@ -451,7 +442,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   Map<String, Object?> encode() => {
     'stat': stat.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
     'metric': metric.encode(),
   };
 }
@@ -476,8 +467,8 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
   dimension;
 
   Map<String, Object?> encode() => {
-    if (metricName != null) 'metric_name': metricName!.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'metric_name': ?metricName?.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
     if (dimension != null)
       'dimension': [for (final e in dimension!) e.encode()],
   };
@@ -517,7 +508,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   Map<String, Object?> encode() => {
     'predefined_metric_type': predefinedMetricType.toTfJson(),
-    if (resourceLabel != null) 'resource_label': resourceLabel!.toTfJson(),
+    'resource_label': ?resourceLabel?.toTfJson(),
   };
 }
 
@@ -536,7 +527,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   Map<String, Object?> encode() => {
     'predefined_metric_type': predefinedMetricType.toTfJson(),
-    if (resourceLabel != null) 'resource_label': resourceLabel!.toTfJson(),
+    'resource_label': ?resourceLabel?.toTfJson(),
   };
 }
 
@@ -555,7 +546,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
 
   Map<String, Object?> encode() => {
     'predefined_metric_type': predefinedMetricType.toTfJson(),
-    if (resourceLabel != null) 'resource_label': resourceLabel!.toTfJson(),
+    'resource_label': ?resourceLabel?.toTfJson(),
   };
 }
 
@@ -587,12 +578,10 @@ final class AppautoscalingPolicyStepScalingPolicyConfiguration {
   stepAdjustment;
 
   Map<String, Object?> encode() => {
-    if (adjustmentType != null) 'adjustment_type': adjustmentType!.toTfJson(),
-    if (cooldown != null) 'cooldown': cooldown!.toTfJson(),
-    if (metricAggregationType != null)
-      'metric_aggregation_type': metricAggregationType!.toTfJson(),
-    if (minAdjustmentMagnitude != null)
-      'min_adjustment_magnitude': minAdjustmentMagnitude!.toTfJson(),
+    'adjustment_type': ?adjustmentType?.toTfJson(),
+    'cooldown': ?cooldown?.toTfJson(),
+    'metric_aggregation_type': ?metricAggregationType?.toTfJson(),
+    'min_adjustment_magnitude': ?minAdjustmentMagnitude?.toTfJson(),
     if (stepAdjustment != null)
       'step_adjustment': [for (final e in stepAdjustment!) e.encode()],
   };
@@ -643,10 +632,8 @@ final class AppautoscalingPolicyStepScalingPolicyConfigurationStepAdjustment {
   final TfArg<num> scalingAdjustment;
 
   Map<String, Object?> encode() => {
-    if (metricIntervalLowerBound != null)
-      'metric_interval_lower_bound': metricIntervalLowerBound!.toTfJson(),
-    if (metricIntervalUpperBound != null)
-      'metric_interval_upper_bound': metricIntervalUpperBound!.toTfJson(),
+    'metric_interval_lower_bound': ?metricIntervalLowerBound?.toTfJson(),
+    'metric_interval_upper_bound': ?metricIntervalUpperBound?.toTfJson(),
     'scaling_adjustment': scalingAdjustment.toTfJson(),
   };
 }
@@ -675,11 +662,9 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration {
   metricSpecification;
 
   Map<String, Object?> encode() => {
-    if (disableScaleIn != null) 'disable_scale_in': disableScaleIn!.toTfJson(),
-    if (scaleInCooldown != null)
-      'scale_in_cooldown': scaleInCooldown!.toTfJson(),
-    if (scaleOutCooldown != null)
-      'scale_out_cooldown': scaleOutCooldown!.toTfJson(),
+    'disable_scale_in': ?disableScaleIn?.toTfJson(),
+    'scale_in_cooldown': ?scaleInCooldown?.toTfJson(),
+    'scale_out_cooldown': ?scaleOutCooldown?.toTfJson(),
     'target_value': targetValue.toTfJson(),
     ...?metricSpecification?.encode(),
   };
@@ -786,10 +771,10 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
   metrics;
 
   Map<String, Object?> encode() => {
-    if (metricName != null) 'metric_name': metricName!.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-    if (statistic != null) 'statistic': statistic!.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'metric_name': ?metricName?.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
+    'statistic': ?statistic?.toTfJson(),
+    'unit': ?unit?.toTfJson(),
     if (dimensions != null)
       'dimensions': [for (final e in dimensions!) e.encode()],
     if (metrics != null) 'metrics': [for (final e in metrics!) e.encode()],
@@ -855,11 +840,11 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
   metricStat;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'id': id.toTfJson(),
-    if (label != null) 'label': label!.toTfJson(),
-    if (returnData != null) 'return_data': returnData!.toTfJson(),
-    if (metricStat != null) 'metric_stat': metricStat!.encode(),
+    'label': ?label?.toTfJson(),
+    'return_data': ?returnData?.toTfJson(),
+    'metric_stat': ?metricStat?.encode(),
   };
 }
 
@@ -882,7 +867,7 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
 
   Map<String, Object?> encode() => {
     'stat': stat.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
     'metric': metric.encode(),
   };
 }
@@ -948,7 +933,7 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefin
 
   Map<String, Object?> encode() => {
     'predefined_metric_type': predefinedMetricType.toTfJson(),
-    if (resourceLabel != null) 'resource_label': resourceLabel!.toTfJson(),
+    'resource_label': ?resourceLabel?.toTfJson(),
   };
 }
 
@@ -978,8 +963,8 @@ final class AwsAppautoscalingPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (policyType != null) 'policy_type': policyType,
-           if (region != null) 'region': region,
+           'policy_type': ?policyType,
+           'region': ?region,
            'resource_id': resourceId,
            'scalable_dimension': scalableDimension,
            'service_namespace': serviceNamespace,

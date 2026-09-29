@@ -28,10 +28,10 @@ final class DataMoqRelayFilter {
   final TfArg<num>? perPage;
 
   Map<String, Object?> encode() => {
-    if (asc != null) 'asc': asc!.toTfJson(),
-    if (createdAfter != null) 'created_after': createdAfter!.toTfJson(),
-    if (createdBefore != null) 'created_before': createdBefore!.toTfJson(),
-    if (perPage != null) 'per_page': perPage!.toTfJson(),
+    'asc': ?asc?.toTfJson(),
+    'created_after': ?createdAfter?.toTfJson(),
+    'created_before': ?createdBefore?.toTfJson(),
+    'per_page': ?perPage?.toTfJson(),
   };
 }
 
@@ -50,7 +50,7 @@ final class DataCloudflareMoqRelay extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (relayId != null) 'relay_id': relayId,
+           'relay_id': ?relayId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

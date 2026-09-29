@@ -22,8 +22,8 @@ final class AwsIamVirtualMfaDevice extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (path != null) 'path': path,
-           if (tags != null) 'tags': tags,
+           'path': ?path,
+           'tags': ?tags,
            'virtual_mfa_device_name': virtualMfaDeviceName,
          },
        );

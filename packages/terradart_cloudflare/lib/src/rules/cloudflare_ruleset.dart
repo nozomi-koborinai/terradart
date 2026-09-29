@@ -143,16 +143,14 @@ final class RulesetRules {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (ref != null) 'ref': ref!.toTfJson(),
-    if (actionParameters != null)
-      'action_parameters': actionParameters!.encode(),
-    if (exposedCredentialCheck != null)
-      'exposed_credential_check': exposedCredentialCheck!.encode(),
-    if (logging != null) 'logging': logging!.encode(),
-    if (ratelimit != null) 'ratelimit': ratelimit!.encode(),
+    'ref': ?ref?.toTfJson(),
+    'action_parameters': ?actionParameters?.encode(),
+    'exposed_credential_check': ?exposedCredentialCheck?.encode(),
+    'logging': ?logging?.encode(),
+    'ratelimit': ?ratelimit?.encode(),
   };
 }
 
@@ -426,108 +424,92 @@ final class RulesetRulesActionParameters {
   final RulesetRulesActionParametersVary? vary;
 
   Map<String, Object?> encode() => {
-    if (additionalCacheablePorts != null)
-      'additional_cacheable_ports': additionalCacheablePorts!.toTfJson(),
+    'additional_cacheable_ports': ?additionalCacheablePorts?.toTfJson(),
     ...?body?.encode(),
-    if (automaticHttpsRewrites != null)
-      'automatic_https_rewrites': automaticHttpsRewrites!.toTfJson(),
-    if (bic != null) 'bic': bic!.toTfJson(),
-    if (cache != null) 'cache': cache!.toTfJson(),
-    if (contentConverter != null)
-      'content_converter': contentConverter!.toTfJson(),
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
-    if (disableApps != null) 'disable_apps': disableApps!.toTfJson(),
-    if (disableRum != null) 'disable_rum': disableRum!.toTfJson(),
-    if (disableZaraz != null) 'disable_zaraz': disableZaraz!.toTfJson(),
-    if (emailObfuscation != null)
-      'email_obfuscation': emailObfuscation!.toTfJson(),
+    'automatic_https_rewrites': ?automaticHttpsRewrites?.toTfJson(),
+    'bic': ?bic?.toTfJson(),
+    'cache': ?cache?.toTfJson(),
+    'content_converter': ?contentConverter?.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
+    'disable_apps': ?disableApps?.toTfJson(),
+    'disable_rum': ?disableRum?.toTfJson(),
+    'disable_zaraz': ?disableZaraz?.toTfJson(),
+    'email_obfuscation': ?emailObfuscation?.toTfJson(),
     ...?value?.encode(),
-    if (fonts != null) 'fonts': fonts!.toTfJson(),
-    if (hostHeader != null) 'host_header': hostHeader!.toTfJson(),
-    if (hotlinkProtection != null)
-      'hotlink_protection': hotlinkProtection!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (increment != null) 'increment': increment!.toTfJson(),
-    if (mirage != null) 'mirage': mirage!.toTfJson(),
-    if (operation != null) 'operation': operation!.toTfJson(),
-    if (opportunisticEncryption != null)
-      'opportunistic_encryption': opportunisticEncryption!.toTfJson(),
-    if (originCacheControl != null)
-      'origin_cache_control': originCacheControl!.toTfJson(),
-    if (originErrorPagePassthru != null)
-      'origin_error_page_passthru': originErrorPagePassthru!.toTfJson(),
+    'fonts': ?fonts?.toTfJson(),
+    'host_header': ?hostHeader?.toTfJson(),
+    'hotlink_protection': ?hotlinkProtection?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'increment': ?increment?.toTfJson(),
+    'mirage': ?mirage?.toTfJson(),
+    'operation': ?operation?.toTfJson(),
+    'opportunistic_encryption': ?opportunisticEncryption?.toTfJson(),
+    'origin_cache_control': ?originCacheControl?.toTfJson(),
+    'origin_error_page_passthru': ?originErrorPagePassthru?.toTfJson(),
     if (phases != null) 'phases': [for (final e in phases!) e.toTfJson()],
-    if (polish != null) 'polish': polish!.toTfJson(),
+    'polish': ?polish?.toTfJson(),
     if (products != null) 'products': [for (final e in products!) e.toTfJson()],
-    if (readTimeout != null) 'read_timeout': readTimeout!.toTfJson(),
-    if (redirectsForAiTraining != null)
-      'redirects_for_ai_training': redirectsForAiTraining!.toTfJson(),
-    if (requestBodyBuffering != null)
-      'request_body_buffering': requestBodyBuffering!.toTfJson(),
-    if (respectStrongEtags != null)
-      'respect_strong_etags': respectStrongEtags!.toTfJson(),
-    if (responseBodyBuffering != null)
-      'response_body_buffering': responseBodyBuffering!.toTfJson(),
-    if (rocketLoader != null) 'rocket_loader': rocketLoader!.toTfJson(),
-    if (rules != null) 'rules': rules!.toTfJson(),
-    if (ruleset != null) 'ruleset': ruleset!.toTfJson(),
-    if (rulesets != null) 'rulesets': rulesets!.toTfJson(),
-    if (securityLevel != null) 'security_level': securityLevel!.toTfJson(),
-    if (serverSideExcludes != null)
-      'server_side_excludes': serverSideExcludes!.toTfJson(),
-    if (ssl != null) 'ssl': ssl!.toTfJson(),
-    if (statusCode != null) 'status_code': statusCode!.toTfJson(),
-    if (stripEtags != null) 'strip_etags': stripEtags!.toTfJson(),
-    if (stripLastModified != null)
-      'strip_last_modified': stripLastModified!.toTfJson(),
-    if (stripSetCookie != null) 'strip_set_cookie': stripSetCookie!.toTfJson(),
-    if (sxg != null) 'sxg': sxg!.toTfJson(),
+    'read_timeout': ?readTimeout?.toTfJson(),
+    'redirects_for_ai_training': ?redirectsForAiTraining?.toTfJson(),
+    'request_body_buffering': ?requestBodyBuffering?.toTfJson(),
+    'respect_strong_etags': ?respectStrongEtags?.toTfJson(),
+    'response_body_buffering': ?responseBodyBuffering?.toTfJson(),
+    'rocket_loader': ?rocketLoader?.toTfJson(),
+    'rules': ?rules?.toTfJson(),
+    'ruleset': ?ruleset?.toTfJson(),
+    'rulesets': ?rulesets?.toTfJson(),
+    'security_level': ?securityLevel?.toTfJson(),
+    'server_side_excludes': ?serverSideExcludes?.toTfJson(),
+    'ssl': ?ssl?.toTfJson(),
+    'status_code': ?statusCode?.toTfJson(),
+    'strip_etags': ?stripEtags?.toTfJson(),
+    'strip_last_modified': ?stripLastModified?.toTfJson(),
+    'strip_set_cookie': ?stripSetCookie?.toTfJson(),
+    'sxg': ?sxg?.toTfJson(),
     if (algorithms != null)
       'algorithms': [for (final e in algorithms!) e.encode()],
-    if (autominify != null) 'autominify': autominify!.encode(),
-    if (browserTtl != null) 'browser_ttl': browserTtl!.encode(),
-    if (cacheKey != null) 'cache_key': cacheKey!.encode(),
-    if (cacheReserve != null) 'cache_reserve': cacheReserve!.encode(),
+    'autominify': ?autominify?.encode(),
+    'browser_ttl': ?browserTtl?.encode(),
+    'cache_key': ?cacheKey?.encode(),
+    'cache_reserve': ?cacheReserve?.encode(),
     if (cookieFields != null)
       'cookie_fields': [for (final e in cookieFields!) e.encode()],
-    if (edgeTtl != null) 'edge_ttl': edgeTtl!.encode(),
+    'edge_ttl': ?edgeTtl?.encode(),
     ...?source?.encode(),
     if (headers != null)
       'headers': {for (final e in headers!.entries) e.key: e.value.encode()},
-    if (immutable != null) 'immutable': immutable!.encode(),
-    if (matchedData != null) 'matched_data': matchedData!.encode(),
-    if (maxAge != null) 'max_age': maxAge!.encode(),
-    if (mustRevalidate != null) 'must_revalidate': mustRevalidate!.encode(),
-    if (mustUnderstand != null) 'must_understand': mustUnderstand!.encode(),
-    if (noCache != null) 'no_cache': noCache!.encode(),
-    if (noStore != null) 'no_store': noStore!.encode(),
-    if (noTransform != null) 'no_transform': noTransform!.encode(),
-    if (origin != null) 'origin': origin!.encode(),
-    if (originRangeRequests != null)
-      'origin_range_requests': originRangeRequests!.encode(),
-    if (overrides != null) 'overrides': overrides!.encode(),
-    if (private != null) 'private': private!.encode(),
-    if (proxyRevalidate != null) 'proxy_revalidate': proxyRevalidate!.encode(),
-    if (public != null) 'public': public!.encode(),
+    'immutable': ?immutable?.encode(),
+    'matched_data': ?matchedData?.encode(),
+    'max_age': ?maxAge?.encode(),
+    'must_revalidate': ?mustRevalidate?.encode(),
+    'must_understand': ?mustUnderstand?.encode(),
+    'no_cache': ?noCache?.encode(),
+    'no_store': ?noStore?.encode(),
+    'no_transform': ?noTransform?.encode(),
+    'origin': ?origin?.encode(),
+    'origin_range_requests': ?originRangeRequests?.encode(),
+    'overrides': ?overrides?.encode(),
+    'private': ?private?.encode(),
+    'proxy_revalidate': ?proxyRevalidate?.encode(),
+    'public': ?public?.encode(),
     if (rawResponseFields != null)
       'raw_response_fields': [for (final e in rawResponseFields!) e.encode()],
     if (requestFields != null)
       'request_fields': [for (final e in requestFields!) e.encode()],
-    if (response != null) 'response': response!.encode(),
+    'response': ?response?.encode(),
     if (responseFields != null)
       'response_fields': [for (final e in responseFields!) e.encode()],
-    if (sMaxage != null) 's_maxage': sMaxage!.encode(),
-    if (serveStale != null) 'serve_stale': serveStale!.encode(),
-    if (sni != null) 'sni': sni!.encode(),
-    if (staleIfError != null) 'stale_if_error': staleIfError!.encode(),
-    if (staleWhileRevalidate != null)
-      'stale_while_revalidate': staleWhileRevalidate!.encode(),
+    's_maxage': ?sMaxage?.encode(),
+    'serve_stale': ?serveStale?.encode(),
+    'sni': ?sni?.encode(),
+    'stale_if_error': ?staleIfError?.encode(),
+    'stale_while_revalidate': ?staleWhileRevalidate?.encode(),
     if (transformedRequestFields != null)
       'transformed_request_fields': [
         for (final e in transformedRequestFields!) e.encode(),
       ],
-    if (uri != null) 'uri': uri!.encode(),
-    if (vary != null) 'vary': vary!.encode(),
+    'uri': ?uri?.encode(),
+    'vary': ?vary?.encode(),
   };
 }
 
@@ -835,7 +817,7 @@ final class RulesetRulesActionParametersAlgorithms {
 
   final TfArg<RulesetRulesActionParametersAlgorithmsName>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// `name` — derived from the provider schema description.
@@ -865,9 +847,9 @@ final class RulesetRulesActionParametersAutominify {
   final TfArg<bool>? js;
 
   Map<String, Object?> encode() => {
-    if (css != null) 'css': css!.toTfJson(),
-    if (html != null) 'html': html!.toTfJson(),
-    if (js != null) 'js': js!.toTfJson(),
+    'css': ?css?.toTfJson(),
+    'html': ?html?.toTfJson(),
+    'js': ?js?.toTfJson(),
   };
 }
 
@@ -885,7 +867,7 @@ final class RulesetRulesActionParametersBrowserTtl {
   final TfArg<RulesetRulesActionParametersBrowserTtlMode> mode;
 
   Map<String, Object?> encode() => {
-    if (defaultCase != null) 'default': defaultCase!.toTfJson(),
+    'default': ?defaultCase?.toTfJson(),
     'mode': mode.toTfJson(),
   };
 }
@@ -922,13 +904,10 @@ final class RulesetRulesActionParametersCacheKey {
   final RulesetRulesActionParametersCacheKeyCustomKey? customKey;
 
   Map<String, Object?> encode() => {
-    if (cacheByDeviceType != null)
-      'cache_by_device_type': cacheByDeviceType!.toTfJson(),
-    if (cacheDeceptionArmor != null)
-      'cache_deception_armor': cacheDeceptionArmor!.toTfJson(),
-    if (ignoreQueryStringsOrder != null)
-      'ignore_query_strings_order': ignoreQueryStringsOrder!.toTfJson(),
-    if (customKey != null) 'custom_key': customKey!.encode(),
+    'cache_by_device_type': ?cacheByDeviceType?.toTfJson(),
+    'cache_deception_armor': ?cacheDeceptionArmor?.toTfJson(),
+    'ignore_query_strings_order': ?ignoreQueryStringsOrder?.toTfJson(),
+    'custom_key': ?customKey?.encode(),
   };
 }
 
@@ -955,11 +934,11 @@ final class RulesetRulesActionParametersCacheKeyCustomKey {
   final RulesetRulesActionParametersCacheKeyCustomKeyUser? user;
 
   Map<String, Object?> encode() => {
-    if (cookie != null) 'cookie': cookie!.encode(),
-    if (header != null) 'header': header!.encode(),
-    if (host != null) 'host': host!.encode(),
-    if (queryString != null) 'query_string': queryString!.encode(),
-    if (user != null) 'user': user!.encode(),
+    'cookie': ?cookie?.encode(),
+    'header': ?header?.encode(),
+    'host': ?host?.encode(),
+    'query_string': ?queryString?.encode(),
+    'user': ?user?.encode(),
   };
 }
 
@@ -977,8 +956,8 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyCookie {
   final TfArg<List<Object?>>? include;
 
   Map<String, Object?> encode() => {
-    if (checkPresence != null) 'check_presence': checkPresence!.toTfJson(),
-    if (include != null) 'include': include!.toTfJson(),
+    'check_presence': ?checkPresence?.toTfJson(),
+    'include': ?include?.toTfJson(),
   };
 }
 
@@ -1002,10 +981,10 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyHeader {
   final TfArg<List<Object?>>? include;
 
   Map<String, Object?> encode() => {
-    if (checkPresence != null) 'check_presence': checkPresence!.toTfJson(),
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (excludeOrigin != null) 'exclude_origin': excludeOrigin!.toTfJson(),
-    if (include != null) 'include': include!.toTfJson(),
+    'check_presence': ?checkPresence?.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exclude_origin': ?excludeOrigin?.toTfJson(),
+    'include': ?include?.toTfJson(),
   };
 }
 
@@ -1017,9 +996,7 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyHost {
 
   final TfArg<bool>? resolved;
 
-  Map<String, Object?> encode() => {
-    if (resolved != null) 'resolved': resolved!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'resolved': ?resolved?.toTfJson()};
 }
 
 /// At most one of `include`, `exclude` on the `rules.action_parameters.cache_key.custom_key.query_string` block of `cloudflare_ruleset`: the provider rejects
@@ -1205,9 +1182,9 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyUser {
   final TfArg<bool>? lang;
 
   Map<String, Object?> encode() => {
-    if (deviceType != null) 'device_type': deviceType!.toTfJson(),
-    if (geo != null) 'geo': geo!.toTfJson(),
-    if (lang != null) 'lang': lang!.toTfJson(),
+    'device_type': ?deviceType?.toTfJson(),
+    'geo': ?geo?.toTfJson(),
+    'lang': ?lang?.toTfJson(),
   };
 }
 
@@ -1226,8 +1203,7 @@ final class RulesetRulesActionParametersCacheReserve {
 
   Map<String, Object?> encode() => {
     'eligible': eligible.toTfJson(),
-    if (minimumFileSize != null)
-      'minimum_file_size': minimumFileSize!.toTfJson(),
+    'minimum_file_size': ?minimumFileSize?.toTfJson(),
   };
 }
 
@@ -1259,7 +1235,7 @@ final class RulesetRulesActionParametersEdgeTtl {
   final List<RulesetRulesActionParametersEdgeTtlStatusCodeTtl>? statusCodeTtl;
 
   Map<String, Object?> encode() => {
-    if (defaultCase != null) 'default': defaultCase!.toTfJson(),
+    'default': ?defaultCase?.toTfJson(),
     'mode': mode.toTfJson(),
     if (statusCodeTtl != null)
       'status_code_ttl': [for (final e in statusCodeTtl!) e.encode()],
@@ -1369,8 +1345,8 @@ final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange {
   final TfArg<num>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -1410,9 +1386,8 @@ final class RulesetRulesActionParametersFromValue {
   final RulesetRulesActionParametersFromValueTargetUrl targetUrl;
 
   Map<String, Object?> encode() => {
-    if (preserveQueryString != null)
-      'preserve_query_string': preserveQueryString!.toTfJson(),
-    if (statusCode != null) 'status_code': statusCode!.toTfJson(),
+    'preserve_query_string': ?preserveQueryString?.toTfJson(),
+    'status_code': ?statusCode?.toTfJson(),
     'target_url': targetUrl.encode(),
   };
 }
@@ -1566,7 +1541,7 @@ final class RulesetRulesActionParametersImmutable {
   final TfArg<RulesetRulesActionParametersImmutableOperation> operation;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
   };
 }
@@ -1609,9 +1584,9 @@ final class RulesetRulesActionParametersMaxAge {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -1639,7 +1614,7 @@ final class RulesetRulesActionParametersMustRevalidate {
   final TfArg<RulesetRulesActionParametersMustRevalidateOperation> operation;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
   };
 }
@@ -1671,7 +1646,7 @@ final class RulesetRulesActionParametersMustUnderstand {
   final TfArg<RulesetRulesActionParametersMustUnderstandOperation> operation;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
   };
 }
@@ -1706,9 +1681,9 @@ final class RulesetRulesActionParametersNoCache {
   final TfArg<List<Object?>>? qualifiers;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
-    if (qualifiers != null) 'qualifiers': qualifiers!.toTfJson(),
+    'qualifiers': ?qualifiers?.toTfJson(),
   };
 }
 
@@ -1736,7 +1711,7 @@ final class RulesetRulesActionParametersNoStore {
   final TfArg<RulesetRulesActionParametersNoStoreOperation> operation;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
   };
 }
@@ -1765,7 +1740,7 @@ final class RulesetRulesActionParametersNoTransform {
   final TfArg<RulesetRulesActionParametersNoTransformOperation> operation;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
   };
 }
@@ -1791,8 +1766,8 @@ final class RulesetRulesActionParametersOrigin {
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -1845,10 +1820,9 @@ final class RulesetRulesActionParametersOverrides {
   final List<RulesetRulesActionParametersOverridesRules>? rules;
 
   Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (sensitivityLevel != null)
-      'sensitivity_level': sensitivityLevel!.toTfJson(),
+    'action': ?action?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'sensitivity_level': ?sensitivityLevel?.toTfJson(),
     if (categories != null)
       'categories': [for (final e in categories!) e.encode()],
     if (rules != null) 'rules': [for (final e in rules!) e.encode()],
@@ -1891,11 +1865,10 @@ final class RulesetRulesActionParametersOverridesCategories {
   sensitivityLevel;
 
   Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
+    'action': ?action?.toTfJson(),
     'category': category.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (sensitivityLevel != null)
-      'sensitivity_level': sensitivityLevel!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'sensitivity_level': ?sensitivityLevel?.toTfJson(),
   };
 }
 
@@ -1938,12 +1911,11 @@ final class RulesetRulesActionParametersOverridesRules {
   sensitivityLevel;
 
   Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'action': ?action?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'id': id.toTfJson(),
-    if (scoreThreshold != null) 'score_threshold': scoreThreshold!.toTfJson(),
-    if (sensitivityLevel != null)
-      'sensitivity_level': sensitivityLevel!.toTfJson(),
+    'score_threshold': ?scoreThreshold?.toTfJson(),
+    'sensitivity_level': ?sensitivityLevel?.toTfJson(),
   };
 }
 
@@ -1979,9 +1951,9 @@ final class RulesetRulesActionParametersPrivate {
   final TfArg<List<Object?>>? qualifiers;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
-    if (qualifiers != null) 'qualifiers': qualifiers!.toTfJson(),
+    'qualifiers': ?qualifiers?.toTfJson(),
   };
 }
 
@@ -2009,7 +1981,7 @@ final class RulesetRulesActionParametersProxyRevalidate {
   final TfArg<RulesetRulesActionParametersProxyRevalidateOperation> operation;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
   };
 }
@@ -2041,7 +2013,7 @@ final class RulesetRulesActionParametersPublic {
   final TfArg<RulesetRulesActionParametersPublicOperation> operation;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
   };
 }
@@ -2071,8 +2043,7 @@ final class RulesetRulesActionParametersRawResponseFields {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (preserveDuplicates != null)
-      'preserve_duplicates': preserveDuplicates!.toTfJson(),
+    'preserve_duplicates': ?preserveDuplicates?.toTfJson(),
   };
 }
 
@@ -2125,8 +2096,7 @@ final class RulesetRulesActionParametersResponseFields {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (preserveDuplicates != null)
-      'preserve_duplicates': preserveDuplicates!.toTfJson(),
+    'preserve_duplicates': ?preserveDuplicates?.toTfJson(),
   };
 }
 
@@ -2147,9 +2117,9 @@ final class RulesetRulesActionParametersSMaxage {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -2174,8 +2144,7 @@ final class RulesetRulesActionParametersServeStale {
   final TfArg<bool>? disableStaleWhileUpdating;
 
   Map<String, Object?> encode() => {
-    if (disableStaleWhileUpdating != null)
-      'disable_stale_while_updating': disableStaleWhileUpdating!.toTfJson(),
+    'disable_stale_while_updating': ?disableStaleWhileUpdating?.toTfJson(),
   };
 }
 
@@ -2207,9 +2176,9 @@ final class RulesetRulesActionParametersStaleIfError {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -2242,9 +2211,9 @@ final class RulesetRulesActionParametersStaleWhileRevalidate {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
+    'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -2285,8 +2254,8 @@ final class RulesetRulesActionParametersUri {
   final RulesetRulesActionParametersUriQuery? query;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.encode(),
-    if (query != null) 'query': query!.encode(),
+    'path': ?path?.encode(),
+    'query': ?query?.encode(),
   };
 }
 
@@ -2451,8 +2420,8 @@ final class RulesetRulesActionParametersVaryHeaders {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (languages != null) 'languages': languages!.toTfJson(),
-    if (mediaTypes != null) 'media_types': mediaTypes!.toTfJson(),
+    'languages': ?languages?.toTfJson(),
+    'media_types': ?mediaTypes?.toTfJson(),
   };
 }
 
@@ -2494,9 +2463,7 @@ final class RulesetRulesLogging {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `rules.ratelimit` block of
@@ -2532,18 +2499,13 @@ final class RulesetRulesRatelimit {
 
   Map<String, Object?> encode() => {
     'characteristics': characteristics.toTfJson(),
-    if (countingExpression != null)
-      'counting_expression': countingExpression!.toTfJson(),
-    if (mitigationTimeout != null)
-      'mitigation_timeout': mitigationTimeout!.toTfJson(),
+    'counting_expression': ?countingExpression?.toTfJson(),
+    'mitigation_timeout': ?mitigationTimeout?.toTfJson(),
     'period': period.toTfJson(),
-    if (requestsPerPeriod != null)
-      'requests_per_period': requestsPerPeriod!.toTfJson(),
-    if (requestsToOrigin != null)
-      'requests_to_origin': requestsToOrigin!.toTfJson(),
-    if (scorePerPeriod != null) 'score_per_period': scorePerPeriod!.toTfJson(),
-    if (scoreResponseHeaderName != null)
-      'score_response_header_name': scoreResponseHeaderName!.toTfJson(),
+    'requests_per_period': ?requestsPerPeriod?.toTfJson(),
+    'requests_to_origin': ?requestsToOrigin?.toTfJson(),
+    'score_per_period': ?scorePerPeriod?.toTfJson(),
+    'score_response_header_name': ?scoreResponseHeaderName?.toTfJson(),
   };
 }
 
@@ -2567,7 +2529,7 @@ final class CloudflareRuleset extends Resource {
          terraformType: tfType,
          argMap: {
            ...scope.argMap,
-           if (description != null) 'description': description,
+           'description': ?description,
            'kind': kind,
            'name': name,
            'phase': phase,

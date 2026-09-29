@@ -24,12 +24,11 @@ final class AwsIamUser extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'force_destroy': ?forceDestroy,
            'name': name,
-           if (path != null) 'path': path,
-           if (permissionsBoundary != null)
-             'permissions_boundary': permissionsBoundary,
-           if (tags != null) 'tags': tags,
+           'path': ?path,
+           'permissions_boundary': ?permissionsBoundary,
+           'tags': ?tags,
          },
        );
 

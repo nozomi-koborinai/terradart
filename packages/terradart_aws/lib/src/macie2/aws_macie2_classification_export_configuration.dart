@@ -29,7 +29,7 @@ final class Macie2ClassificationExportConfigurationS3Destination {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
+    'key_prefix': ?keyPrefix?.toTfJson(),
     'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
   };
 }
@@ -49,7 +49,7 @@ final class AwsMacie2ClassificationExportConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            's3_destination': TfArg.literal(s3Destination.encode()),
          },
        );

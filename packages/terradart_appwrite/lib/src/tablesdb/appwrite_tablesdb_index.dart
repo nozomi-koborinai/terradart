@@ -30,9 +30,9 @@ final class AppwriteTablesdbIndex extends Resource {
          argMap: {
            'columns': columns,
            'database_id': databaseId,
-           if (key != null) 'key': key,
-           if (orders != null) 'orders': orders,
-           if (projectId != null) 'project_id': projectId,
+           'key': ?key,
+           'orders': ?orders,
+           'project_id': ?projectId,
            'table_id': tableId,
            'type': type,
          },

@@ -16,8 +16,7 @@ final class SaasRuntimeUnitMaintenance {
   final TfArg<String>? pinnedUntilTime;
 
   Map<String, Object?> encode() => {
-    if (pinnedUntilTime != null)
-      'pinned_until_time': pinnedUntilTime!.toTfJson(),
+    'pinned_until_time': ?pinnedUntilTime?.toTfJson(),
   };
 }
 
@@ -51,15 +50,15 @@ final class GoogleSaasRuntimeUnit extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
-           if (managementMode != null) 'management_mode': managementMode,
-           if (project != null) 'project': project,
-           if (tenant != null) 'tenant': tenant,
+           'management_mode': ?managementMode,
+           'project': ?project,
+           'tenant': ?tenant,
            'unit_id': unitId,
-           if (unitKind != null) 'unit_kind': unitKind,
+           'unit_kind': ?unitKind,
            if (maintenance != null)
              'maintenance': TfArg.literal(maintenance.encode()),
          },

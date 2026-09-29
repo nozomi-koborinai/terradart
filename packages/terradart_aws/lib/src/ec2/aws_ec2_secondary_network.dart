@@ -34,8 +34,8 @@ final class AwsEc2SecondaryNetwork extends Resource {
          argMap: {
            'ipv4_cidr_block': ipv4CidrBlock,
            'network_type': networkType,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

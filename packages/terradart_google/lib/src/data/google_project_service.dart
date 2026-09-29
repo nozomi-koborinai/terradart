@@ -22,7 +22,7 @@ final class DataGoogleProjectService extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (project != null) 'project': project, 'service': service},
+         argMap: {'project': ?project, 'service': service},
        );
 
   @override

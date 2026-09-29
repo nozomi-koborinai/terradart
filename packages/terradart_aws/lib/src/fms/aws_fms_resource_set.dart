@@ -30,13 +30,11 @@ final class FmsResourceSetResourceSet {
   final TfArg<String>? updateToken;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (resourceSetStatus != null)
-      'resource_set_status': resourceSetStatus!.toTfJson(),
-    if (resourceTypeList != null)
-      'resource_type_list': resourceTypeList!.toTfJson(),
-    if (updateToken != null) 'update_token': updateToken!.toTfJson(),
+    'resource_set_status': ?resourceSetStatus?.toTfJson(),
+    'resource_type_list': ?resourceTypeList?.toTfJson(),
+    'update_token': ?updateToken?.toTfJson(),
   };
 }
 
@@ -56,8 +54,8 @@ final class AwsFmsResourceSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (resourceSet != null)
              'resource_set': TfArg.literal([
                for (final e in resourceSet) e.encode(),

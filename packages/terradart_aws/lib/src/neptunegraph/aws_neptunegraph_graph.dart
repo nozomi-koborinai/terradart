@@ -83,8 +83,7 @@ final class NeptunegraphGraphVectorSearchConfiguration {
   final TfArg<num>? vectorSearchDimension;
 
   Map<String, Object?> encode() => {
-    if (vectorSearchDimension != null)
-      'vector_search_dimension': vectorSearchDimension!.toTfJson(),
+    'vector_search_dimension': ?vectorSearchDimension?.toTfJson(),
   };
 }
 
@@ -110,17 +109,14 @@ final class AwsNeptunegraphGraph extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
+           'deletion_protection': ?deletionProtection,
            ...?graphName?.argMap,
-           if (kmsKeyIdentifier != null)
-             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
+           'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn'),
            'provisioned_memory': provisionedMemory,
-           if (publicConnectivity != null)
-             'public_connectivity': publicConnectivity,
-           if (region != null) 'region': region,
-           if (replicaCount != null) 'replica_count': replicaCount,
-           if (tags != null) 'tags': tags,
+           'public_connectivity': ?publicConnectivity,
+           'region': ?region,
+           'replica_count': ?replicaCount,
+           'tags': ?tags,
            if (vectorSearchConfiguration != null)
              'vector_search_configuration': TfArg.literal([
                for (final e in vectorSearchConfiguration) e.encode(),

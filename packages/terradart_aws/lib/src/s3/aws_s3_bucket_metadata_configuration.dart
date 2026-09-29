@@ -99,7 +99,7 @@ final class S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConf
   sseAlgorithm;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),
   };
 }
@@ -163,7 +163,7 @@ final class S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfig
   sseAlgorithm;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),
   };
 }
@@ -198,7 +198,7 @@ final class S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfig
   expiration;
 
   Map<String, Object?> encode() => {
-    if (days != null) 'days': days!.toTfJson(),
+    'days': ?days?.toTfJson(),
     'expiration': expiration.toTfJson(),
   };
 }
@@ -235,9 +235,8 @@ final class AwsS3BucketMetadataConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (region != null) 'region': region,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'region': ?region,
            if (metadataConfiguration != null)
              'metadata_configuration': TfArg.literal([
                for (final e in metadataConfiguration) e.encode(),

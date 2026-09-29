@@ -245,60 +245,53 @@ final class NotificationPolicyFilters {
   final TfArg<List<Object?>>? zones;
 
   Map<String, Object?> encode() => {
-    if (actions != null) 'actions': actions!.toTfJson(),
-    if (affectedAsns != null) 'affected_asns': affectedAsns!.toTfJson(),
-    if (affectedComponents != null)
-      'affected_components': affectedComponents!.toTfJson(),
-    if (affectedLocations != null)
-      'affected_locations': affectedLocations!.toTfJson(),
-    if (airportCode != null) 'airport_code': airportCode!.toTfJson(),
-    if (alertTriggerPreferences != null)
-      'alert_trigger_preferences': alertTriggerPreferences!.toTfJson(),
-    if (alertTriggerPreferencesValue != null)
-      'alert_trigger_preferences_value': alertTriggerPreferencesValue!
-          .toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (event != null) 'event': event!.toTfJson(),
-    if (eventSource != null) 'event_source': eventSource!.toTfJson(),
-    if (eventType != null) 'event_type': eventType!.toTfJson(),
-    if (groupBy != null) 'group_by': groupBy!.toTfJson(),
-    if (healthCheckId != null) 'health_check_id': healthCheckId!.toTfJson(),
+    'actions': ?actions?.toTfJson(),
+    'affected_asns': ?affectedAsns?.toTfJson(),
+    'affected_components': ?affectedComponents?.toTfJson(),
+    'affected_locations': ?affectedLocations?.toTfJson(),
+    'airport_code': ?airportCode?.toTfJson(),
+    'alert_trigger_preferences': ?alertTriggerPreferences?.toTfJson(),
+    'alert_trigger_preferences_value': ?alertTriggerPreferencesValue
+        ?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'event': ?event?.toTfJson(),
+    'event_source': ?eventSource?.toTfJson(),
+    'event_type': ?eventType?.toTfJson(),
+    'group_by': ?groupBy?.toTfJson(),
+    'health_check_id': ?healthCheckId?.toTfJson(),
     if (incidentImpact != null)
       'incident_impact': [for (final e in incidentImpact!) e.toTfJson()],
-    if (inputId != null) 'input_id': inputId!.toTfJson(),
-    if (insightClass != null) 'insight_class': insightClass!.toTfJson(),
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (logoTag != null) 'logo_tag': logoTag!.toTfJson(),
-    if (megabitsPerSecond != null)
-      'megabits_per_second': megabitsPerSecond!.toTfJson(),
-    if (newHealth != null) 'new_health': newHealth!.toTfJson(),
-    if (newStatus != null) 'new_status': newStatus!.toTfJson(),
-    if (packetsPerSecond != null)
-      'packets_per_second': packetsPerSecond!.toTfJson(),
-    if (poolId != null) 'pool_id': poolId!.toTfJson(),
-    if (popNames != null) 'pop_names': popNames!.toTfJson(),
-    if (product != null) 'product': product!.toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (queryTag != null) 'query_tag': queryTag!.toTfJson(),
-    if (requestsPerSecond != null)
-      'requests_per_second': requestsPerSecond!.toTfJson(),
-    if (selectors != null) 'selectors': selectors!.toTfJson(),
-    if (services != null) 'services': services!.toTfJson(),
-    if (slo != null) 'slo': slo!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
-    if (targetHostname != null) 'target_hostname': targetHostname!.toTfJson(),
-    if (targetIp != null) 'target_ip': targetIp!.toTfJson(),
-    if (targetZoneName != null) 'target_zone_name': targetZoneName!.toTfJson(),
-    if (tokenId != null) 'token_id': tokenId!.toTfJson(),
+    'input_id': ?inputId?.toTfJson(),
+    'insight_class': ?insightClass?.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'logo_tag': ?logoTag?.toTfJson(),
+    'megabits_per_second': ?megabitsPerSecond?.toTfJson(),
+    'new_health': ?newHealth?.toTfJson(),
+    'new_status': ?newStatus?.toTfJson(),
+    'packets_per_second': ?packetsPerSecond?.toTfJson(),
+    'pool_id': ?poolId?.toTfJson(),
+    'pop_names': ?popNames?.toTfJson(),
+    'product': ?product?.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'query_tag': ?queryTag?.toTfJson(),
+    'requests_per_second': ?requestsPerSecond?.toTfJson(),
+    'selectors': ?selectors?.toTfJson(),
+    'services': ?services?.toTfJson(),
+    'slo': ?slo?.toTfJson(),
+    'status': ?status?.toTfJson(),
+    'target_hostname': ?targetHostname?.toTfJson(),
+    'target_ip': ?targetIp?.toTfJson(),
+    'target_zone_name': ?targetZoneName?.toTfJson(),
+    'token_id': ?tokenId?.toTfJson(),
     if (trafficExclusions != null)
       'traffic_exclusions': [for (final e in trafficExclusions!) e.toTfJson()],
-    if (tunnelId != null) 'tunnel_id': tunnelId!.toTfJson(),
-    if (tunnelName != null) 'tunnel_name': tunnelName!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (where != null) 'where': where!.toTfJson(),
-    if (zones != null) 'zones': zones!.toTfJson(),
+    'tunnel_id': ?tunnelId?.toTfJson(),
+    'tunnel_name': ?tunnelName?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'where': ?where?.toTfJson(),
+    'zones': ?zones?.toTfJson(),
   };
 }
 
@@ -355,7 +348,7 @@ final class NotificationPolicyMechanismsEmail {
 
   final TfArg<String>? id;
 
-  Map<String, Object?> encode() => {if (id != null) 'id': id!.toTfJson()};
+  Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 
 /// Typed helper for the `mechanisms.pagerduty` block of
@@ -366,7 +359,7 @@ final class NotificationPolicyMechanismsPagerduty {
 
   final TfArg<String>? id;
 
-  Map<String, Object?> encode() => {if (id != null) 'id': id!.toTfJson()};
+  Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 
 /// Typed helper for the `mechanisms.webhooks` block of
@@ -377,7 +370,7 @@ final class NotificationPolicyMechanismsWebhooks {
 
   final TfArg<String>? id;
 
-  Map<String, Object?> encode() => {if (id != null) 'id': id!.toTfJson()};
+  Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_notification_policy`.
@@ -407,10 +400,10 @@ final class CloudflareNotificationPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (alertInterval != null) 'alert_interval': alertInterval,
+           'alert_interval': ?alertInterval,
            'alert_type': alertType,
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
+           'description': ?description,
+           'enabled': ?enabled,
            'name': name,
            if (filters != null) 'filters': TfArg.literal(filters.encode()),
            'mechanisms': TfArg.literal(mechanisms.encode()),

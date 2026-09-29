@@ -23,9 +23,9 @@ final class AwsRoute53recoveryreadinessRecoveryGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cells != null) 'cells': cells,
+           'cells': ?cells,
            'recovery_group_name': recoveryGroupName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

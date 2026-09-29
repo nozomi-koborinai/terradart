@@ -24,7 +24,7 @@ final class AwsDetectiveOrganizationConfiguration extends Resource {
          argMap: {
            'auto_enable': autoEnable,
            'graph_arn': graphArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

@@ -21,8 +21,7 @@ final class AmplifyDomainAssociationCertificateSettings {
   final TfArg<AmplifyDomainAssociationCertificateSettingsType> type;
 
   Map<String, Object?> encode() => {
-    if (customCertificateArn != null)
-      'custom_certificate_arn': customCertificateArn!.toTfJson(),
+    'custom_certificate_arn': ?customCertificateArn?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -78,11 +77,9 @@ final class AwsAmplifyDomainAssociation extends Resource {
          argMap: {
            'app_id': appId,
            'domain_name': domainName,
-           if (enableAutoSubDomain != null)
-             'enable_auto_sub_domain': enableAutoSubDomain,
-           if (region != null) 'region': region,
-           if (waitForVerification != null)
-             'wait_for_verification': waitForVerification,
+           'enable_auto_sub_domain': ?enableAutoSubDomain,
+           'region': ?region,
+           'wait_for_verification': ?waitForVerification,
            if (certificateSettings != null)
              'certificate_settings': TfArg.literal(
                certificateSettings.encode(),

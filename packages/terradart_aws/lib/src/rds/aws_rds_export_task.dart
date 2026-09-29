@@ -31,13 +31,13 @@ final class AwsRdsExportTask extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (exportOnly != null) 'export_only': exportOnly,
+           'export_only': ?exportOnly,
            'export_task_identifier': exportTaskIdentifier,
            'iam_role_arn': iamRoleArn.encodeAs('arn'),
            'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'region': ?region,
            's3_bucket_name': s3BucketName.encodeAs('id'),
-           if (s3Prefix != null) 's3_prefix': s3Prefix,
+           's3_prefix': ?s3Prefix,
            'source_arn': sourceArn,
          },
        );

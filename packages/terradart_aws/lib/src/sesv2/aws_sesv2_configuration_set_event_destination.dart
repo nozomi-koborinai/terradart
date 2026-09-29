@@ -33,7 +33,7 @@ final class Sesv2ConfigurationSetEventDestinationEventDestination {
   final Sesv2ConfigurationSetEventDestinationEventDestinationTarget target;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'matching_event_types': [for (final e in matchingEventTypes) e.toTfJson()],
     ...target.encode(),
   };
@@ -338,7 +338,7 @@ final class AwsSesv2ConfigurationSetEventDestination extends Resource {
          argMap: {
            'configuration_set_name': configurationSetName,
            'event_destination_name': eventDestinationName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'event_destination': TfArg.literal(eventDestination.encode()),
          },
        );

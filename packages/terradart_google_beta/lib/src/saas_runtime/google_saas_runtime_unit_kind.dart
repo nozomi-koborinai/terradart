@@ -44,8 +44,8 @@ final class SaasRuntimeUnitKindInputVariableMappings {
 
   Map<String, Object?> encode() => {
     'variable': variable.toTfJson(),
-    if (from != null) 'from': from!.encode(),
-    if (to != null) 'to': to!.encode(),
+    'from': ?from?.encode(),
+    'to': ?to?.encode(),
   };
 }
 
@@ -86,8 +86,7 @@ final class SaasRuntimeUnitKindInputVariableMappingsTo {
 
   Map<String, Object?> encode() => {
     'dependency': dependency.toTfJson(),
-    if (ignoreForLookup != null)
-      'ignore_for_lookup': ignoreForLookup!.toTfJson(),
+    'ignore_for_lookup': ?ignoreForLookup?.toTfJson(),
     'input_variable': inputVariable.toTfJson(),
   };
 }
@@ -110,8 +109,8 @@ final class SaasRuntimeUnitKindOutputVariableMappings {
 
   Map<String, Object?> encode() => {
     'variable': variable.toTfJson(),
-    if (from != null) 'from': from!.encode(),
-    if (to != null) 'to': to!.encode(),
+    'from': ?from?.encode(),
+    'to': ?to?.encode(),
   };
 }
 
@@ -152,8 +151,7 @@ final class SaasRuntimeUnitKindOutputVariableMappingsTo {
 
   Map<String, Object?> encode() => {
     'dependency': dependency.toTfJson(),
-    if (ignoreForLookup != null)
-      'ignore_for_lookup': ignoreForLookup!.toTfJson(),
+    'ignore_for_lookup': ?ignoreForLookup?.toTfJson(),
     'input_variable': inputVariable.toTfJson(),
   };
 }
@@ -187,12 +185,12 @@ final class GoogleSaasRuntimeUnitKind extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (defaultRelease != null) 'default_release': defaultRelease,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'annotations': ?annotations,
+           'default_release': ?defaultRelease,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'saas': saas,
            'unit_kind_id': unitKindId,
            if (dependencies != null)

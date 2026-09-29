@@ -29,11 +29,11 @@ final class GoogleApiGatewayApi extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'api_id': apiId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (managedService != null) 'managed_service': managedService,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'managed_service': ?managedService,
+           'project': ?project,
          },
        );
 

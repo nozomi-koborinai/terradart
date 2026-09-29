@@ -37,10 +37,9 @@ final class QueueSettings {
   final TfArg<num>? messageRetentionPeriod;
 
   Map<String, Object?> encode() => {
-    if (deliveryDelay != null) 'delivery_delay': deliveryDelay!.toTfJson(),
-    if (deliveryPaused != null) 'delivery_paused': deliveryPaused!.toTfJson(),
-    if (messageRetentionPeriod != null)
-      'message_retention_period': messageRetentionPeriod!.toTfJson(),
+    'delivery_delay': ?deliveryDelay?.toTfJson(),
+    'delivery_paused': ?deliveryPaused?.toTfJson(),
+    'message_retention_period': ?messageRetentionPeriod?.toTfJson(),
   };
 }
 
@@ -67,7 +66,7 @@ final class CloudflareQueue extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
+           'jurisdiction': ?jurisdiction,
            'queue_name': queueName,
            if (settings != null) 'settings': TfArg.literal(settings.encode()),
          },

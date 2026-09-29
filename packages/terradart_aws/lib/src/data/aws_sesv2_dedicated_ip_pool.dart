@@ -20,11 +20,7 @@ final class DataAwsSesv2DedicatedIpPool extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'pool_name': poolName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'pool_name': poolName, 'region': ?region, 'tags': ?tags},
        );
 
   @override

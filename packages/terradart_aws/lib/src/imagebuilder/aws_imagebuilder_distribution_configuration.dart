@@ -56,14 +56,11 @@ final class ImagebuilderDistributionConfigurationDistribution {
   ssmParameterConfiguration;
 
   Map<String, Object?> encode() => {
-    if (licenseConfigurationArns != null)
-      'license_configuration_arns': licenseConfigurationArns!.toTfJson(),
+    'license_configuration_arns': ?licenseConfigurationArns?.toTfJson(),
     'region': region.toTfJson(),
-    if (amiDistributionConfiguration != null)
-      'ami_distribution_configuration': amiDistributionConfiguration!.encode(),
-    if (containerDistributionConfiguration != null)
-      'container_distribution_configuration':
-          containerDistributionConfiguration!.encode(),
+    'ami_distribution_configuration': ?amiDistributionConfiguration?.encode(),
+    'container_distribution_configuration': ?containerDistributionConfiguration
+        ?.encode(),
     if (fastLaunchConfiguration != null)
       'fast_launch_configuration': [
         for (final e in fastLaunchConfiguration!) e.encode(),
@@ -72,8 +69,7 @@ final class ImagebuilderDistributionConfigurationDistribution {
       'launch_template_configuration': [
         for (final e in launchTemplateConfiguration!) e.encode(),
       ],
-    if (s3ExportConfiguration != null)
-      's3_export_configuration': s3ExportConfiguration!.encode(),
+    's3_export_configuration': ?s3ExportConfiguration?.encode(),
     if (ssmParameterConfiguration != null)
       'ssm_parameter_configuration': [
         for (final e in ssmParameterConfiguration!) e.encode(),
@@ -108,14 +104,12 @@ final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConf
   launchPermission;
 
   Map<String, Object?> encode() => {
-    if (amiTags != null) 'ami_tags': amiTags!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (targetAccountIds != null)
-      'target_account_ids': targetAccountIds!.toTfJson(),
-    if (launchPermission != null)
-      'launch_permission': launchPermission!.encode(),
+    'ami_tags': ?amiTags?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'name': ?name?.toTfJson(),
+    'target_account_ids': ?targetAccountIds?.toTfJson(),
+    'launch_permission': ?launchPermission?.encode(),
   };
 }
 
@@ -139,12 +133,10 @@ final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConf
   final TfArg<List<Object?>>? userIds;
 
   Map<String, Object?> encode() => {
-    if (organizationArns != null)
-      'organization_arns': organizationArns!.toTfJson(),
-    if (organizationalUnitArns != null)
-      'organizational_unit_arns': organizationalUnitArns!.toTfJson(),
-    if (userGroups != null) 'user_groups': userGroups!.toTfJson(),
-    if (userIds != null) 'user_ids': userIds!.toTfJson(),
+    'organization_arns': ?organizationArns?.toTfJson(),
+    'organizational_unit_arns': ?organizationalUnitArns?.toTfJson(),
+    'user_groups': ?userGroups?.toTfJson(),
+    'user_ids': ?userIds?.toTfJson(),
   };
 }
 
@@ -166,8 +158,8 @@ final class ImagebuilderDistributionConfigurationDistributionContainerDistributi
   targetRepository;
 
   Map<String, Object?> encode() => {
-    if (containerTags != null) 'container_tags': containerTags!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'container_tags': ?containerTags?.toTfJson(),
+    'description': ?description?.toTfJson(),
     'target_repository': targetRepository.encode(),
   };
 }
@@ -233,11 +225,9 @@ final class ImagebuilderDistributionConfigurationDistributionFastLaunchConfigura
   Map<String, Object?> encode() => {
     'account_id': accountId.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (maxParallelLaunches != null)
-      'max_parallel_launches': maxParallelLaunches!.toTfJson(),
-    if (launchTemplate != null) 'launch_template': launchTemplate!.encode(),
-    if (snapshotConfiguration != null)
-      'snapshot_configuration': snapshotConfiguration!.encode(),
+    'max_parallel_launches': ?maxParallelLaunches?.toTfJson(),
+    'launch_template': ?launchTemplate?.encode(),
+    'snapshot_configuration': ?snapshotConfiguration?.encode(),
   };
 }
 
@@ -258,12 +248,9 @@ final class ImagebuilderDistributionConfigurationDistributionFastLaunchConfigura
   final TfArg<String>? launchTemplateVersion;
 
   Map<String, Object?> encode() => {
-    if (launchTemplateId != null)
-      'launch_template_id': launchTemplateId!.toTfJson(),
-    if (launchTemplateName != null)
-      'launch_template_name': launchTemplateName!.toTfJson(),
-    if (launchTemplateVersion != null)
-      'launch_template_version': launchTemplateVersion!.toTfJson(),
+    'launch_template_id': ?launchTemplateId?.toTfJson(),
+    'launch_template_name': ?launchTemplateName?.toTfJson(),
+    'launch_template_version': ?launchTemplateVersion?.toTfJson(),
   };
 }
 
@@ -278,8 +265,7 @@ final class ImagebuilderDistributionConfigurationDistributionFastLaunchConfigura
   final TfArg<num>? targetResourceCount;
 
   Map<String, Object?> encode() => {
-    if (targetResourceCount != null)
-      'target_resource_count': targetResourceCount!.toTfJson(),
+    'target_resource_count': ?targetResourceCount?.toTfJson(),
   };
 }
 
@@ -300,8 +286,8 @@ final class ImagebuilderDistributionConfigurationDistributionLaunchTemplateConfi
   final TfArg<String> launchTemplateId;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
-    if (defaultCase != null) 'default': defaultCase!.toTfJson(),
+    'account_id': ?accountId?.toTfJson(),
+    'default': ?defaultCase?.toTfJson(),
     'launch_template_id': launchTemplateId.toTfJson(),
   };
 }
@@ -332,7 +318,7 @@ final class ImagebuilderDistributionConfigurationDistributionS3ExportConfigurati
     'disk_image_format': diskImageFormat.toTfJson(),
     'role_name': roleName.encodeAs('name').toTfJson(),
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
-    if (s3Prefix != null) 's3_prefix': s3Prefix!.toTfJson(),
+    's3_prefix': ?s3Prefix?.toTfJson(),
   };
 }
 
@@ -370,8 +356,8 @@ final class ImagebuilderDistributionConfigurationDistributionSsmParameterConfigu
   final TfArg<String> parameterName;
 
   Map<String, Object?> encode() => {
-    if (amiAccountId != null) 'ami_account_id': amiAccountId!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
+    'ami_account_id': ?amiAccountId?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
     'parameter_name': parameterName.toTfJson(),
   };
 }
@@ -408,10 +394,10 @@ final class AwsImagebuilderDistributionConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'distribution': TfArg.literal([
              for (final e in distribution) e.encode(),
            ]),

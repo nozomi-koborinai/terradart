@@ -31,9 +31,9 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'data_exchange_id': dataExchangeId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

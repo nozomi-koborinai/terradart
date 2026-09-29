@@ -30,8 +30,8 @@ final class GoogleCloudfunctions2FunctionIamPolicy extends Resource {
          argMap: {
            'cloud_function': cloudFunction,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

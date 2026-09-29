@@ -49,12 +49,11 @@ final class GoogleDataCatalogTaxonomy extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (description != null) 'description': description,
-           if (activatedPolicyTypes != null)
-             'activated_policy_types': activatedPolicyTypes,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'activated_policy_types': ?activatedPolicyTypes,
+           'region': ?region,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

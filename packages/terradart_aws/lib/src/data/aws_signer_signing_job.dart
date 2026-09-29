@@ -19,7 +19,7 @@ final class DataAwsSignerSigningJob extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'job_id': jobId, if (region != null) 'region': region},
+         argMap: {'job_id': jobId, 'region': ?region},
        );
 
   @override

@@ -21,11 +21,7 @@ final class AwsConfigConfigurationRecorderStatus extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'is_enabled': isEnabled,
-           'name': name,
-           if (region != null) 'region': region,
-         },
+         argMap: {'is_enabled': isEnabled, 'name': name, 'region': ?region},
        );
 
   @override

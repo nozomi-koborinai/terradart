@@ -54,13 +54,12 @@ final class GoogleOracleDatabaseExadbVmCluster extends Resource {
            'display_name': displayName,
            'odb_subnet': odbSubnet,
            'backup_odb_subnet': backupOdbSubnet,
-           if (odbNetwork != null) 'odb_network': odbNetwork,
+           'odb_network': ?odbNetwork,
            'properties': properties,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

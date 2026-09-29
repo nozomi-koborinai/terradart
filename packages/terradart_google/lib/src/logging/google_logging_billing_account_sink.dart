@@ -42,8 +42,8 @@ final class LoggingBillingAccountSinkExclusions {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
     'filter': filter.toTfJson(),
     'name': name.toTfJson(),
   };
@@ -79,11 +79,11 @@ final class GoogleLoggingBillingAccountSink extends Resource {
          terraformType: tfType,
          argMap: {
            'billing_account': billingAccount,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'destination': destination,
-           if (disabled != null) 'disabled': disabled,
-           if (filter != null) 'filter': filter,
+           'disabled': ?disabled,
+           'filter': ?filter,
            'name': name,
            if (bigqueryOptions != null)
              'bigquery_options': TfArg.literal(bigqueryOptions.encode()),

@@ -32,7 +32,7 @@ final class ElasticacheUserAuthenticationMode {
   final TfArg<ElasticacheUserAuthenticationModeType> type;
 
   Map<String, Object?> encode() => {
-    if (passwords != null) 'passwords': passwords!.toTfJson(),
+    'passwords': ?passwords?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -74,14 +74,12 @@ final class AwsElasticacheUser extends Resource {
          argMap: {
            'access_string': accessString,
            'engine': engine,
-           if (noPasswordRequired != null)
-             'no_password_required': noPasswordRequired,
-           if (passwords != null) 'passwords': passwords,
-           if (passwordsWo != null) 'passwords_wo': passwordsWo,
-           if (passwordsWoVersion != null)
-             'passwords_wo_version': passwordsWoVersion,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'no_password_required': ?noPasswordRequired,
+           'passwords': ?passwords,
+           'passwords_wo': ?passwordsWo,
+           'passwords_wo_version': ?passwordsWoVersion,
+           'region': ?region,
+           'tags': ?tags,
            'user_id': userId,
            'user_name': userName,
            if (authenticationMode != null)

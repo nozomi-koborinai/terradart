@@ -15,9 +15,7 @@ final class AppmeshVirtualServiceSpec {
 
   final AppmeshVirtualServiceSpecProvider? provider;
 
-  Map<String, Object?> encode() => {
-    if (provider != null) 'provider': provider!.encode(),
-  };
+  Map<String, Object?> encode() => {'provider': ?provider?.encode()};
 }
 
 /// At most one of `virtual_node`, `virtual_router` on the `spec.provider` block of `aws_appmesh_virtual_service`: the provider rejects
@@ -124,10 +122,10 @@ final class AwsAppmeshVirtualService extends Resource {
          terraformType: tfType,
          argMap: {
            'mesh_name': meshName,
-           if (meshOwner != null) 'mesh_owner': meshOwner,
+           'mesh_owner': ?meshOwner,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'spec': TfArg.literal(spec.encode()),
          },
        );

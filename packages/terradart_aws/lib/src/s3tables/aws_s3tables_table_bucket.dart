@@ -25,14 +25,12 @@ final class AwsS3tablesTableBucket extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (encryptionConfiguration != null)
-             'encryption_configuration': encryptionConfiguration,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (maintenanceConfiguration != null)
-             'maintenance_configuration': maintenanceConfiguration,
+           'encryption_configuration': ?encryptionConfiguration,
+           'force_destroy': ?forceDestroy,
+           'maintenance_configuration': ?maintenanceConfiguration,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -25,9 +25,9 @@ final class AwsSsmcontactsContact extends Resource {
          terraformType: tfType,
          argMap: {
            'alias': alias,
-           if (displayName != null) 'display_name': displayName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'display_name': ?displayName,
+           'region': ?region,
+           'tags': ?tags,
            'type': type,
          },
        );

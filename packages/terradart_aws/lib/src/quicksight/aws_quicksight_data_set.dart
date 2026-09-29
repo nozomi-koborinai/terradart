@@ -36,8 +36,7 @@ final class QuicksightDataSetColumnGroups {
   geoSpatialColumnGroup;
 
   Map<String, Object?> encode() => {
-    if (geoSpatialColumnGroup != null)
-      'geo_spatial_column_group': geoSpatialColumnGroup!.encode(),
+    'geo_spatial_column_group': ?geoSpatialColumnGroup?.encode(),
   };
 }
 
@@ -78,8 +77,8 @@ final class QuicksightDataSetColumnLevelPermissionRules {
   final TfArg<List<Object?>>? principals;
 
   Map<String, Object?> encode() => {
-    if (columnNames != null) 'column_names': columnNames!.toTfJson(),
-    if (principals != null) 'principals': principals!.toTfJson(),
+    'column_names': ?columnNames?.toTfJson(),
+    'principals': ?principals?.toTfJson(),
   };
 }
 
@@ -97,11 +96,9 @@ final class QuicksightDataSetDataSetUsageConfiguration {
   final TfArg<bool>? disableUseAsImportedSource;
 
   Map<String, Object?> encode() => {
-    if (disableUseAsDirectQuerySource != null)
-      'disable_use_as_direct_query_source': disableUseAsDirectQuerySource!
-          .toTfJson(),
-    if (disableUseAsImportedSource != null)
-      'disable_use_as_imported_source': disableUseAsImportedSource!.toTfJson(),
+    'disable_use_as_direct_query_source': ?disableUseAsDirectQuerySource
+        ?.toTfJson(),
+    'disable_use_as_imported_source': ?disableUseAsImportedSource?.toTfJson(),
   };
 }
 
@@ -122,8 +119,8 @@ final class QuicksightDataSetFieldFolders {
   final TfArg<String> fieldFoldersId;
 
   Map<String, Object?> encode() => {
-    if (columns != null) 'columns': columns!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'columns': ?columns?.toTfJson(),
+    'description': ?description?.toTfJson(),
     'field_folders_id': fieldFoldersId.toTfJson(),
   };
 }
@@ -192,19 +189,13 @@ final class QuicksightDataSetLogicalTableMapDataTransforms {
   untagColumnOperation;
 
   Map<String, Object?> encode() => {
-    if (castColumnTypeOperation != null)
-      'cast_column_type_operation': castColumnTypeOperation!.encode(),
-    if (createColumnsOperation != null)
-      'create_columns_operation': createColumnsOperation!.encode(),
-    if (filterOperation != null) 'filter_operation': filterOperation!.encode(),
-    if (projectOperation != null)
-      'project_operation': projectOperation!.encode(),
-    if (renameColumnOperation != null)
-      'rename_column_operation': renameColumnOperation!.encode(),
-    if (tagColumnOperation != null)
-      'tag_column_operation': tagColumnOperation!.encode(),
-    if (untagColumnOperation != null)
-      'untag_column_operation': untagColumnOperation!.encode(),
+    'cast_column_type_operation': ?castColumnTypeOperation?.encode(),
+    'create_columns_operation': ?createColumnsOperation?.encode(),
+    'filter_operation': ?filterOperation?.encode(),
+    'project_operation': ?projectOperation?.encode(),
+    'rename_column_operation': ?renameColumnOperation?.encode(),
+    'tag_column_operation': ?tagColumnOperation?.encode(),
+    'untag_column_operation': ?untagColumnOperation?.encode(),
   };
 }
 
@@ -226,7 +217,7 @@ final class QuicksightDataSetLogicalTableMapDataTransformsCastColumnTypeOperatio
 
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
-    if (format != null) 'format': format!.toTfJson(),
+    'format': ?format?.toTfJson(),
     'new_column_type': newColumnType.toTfJson(),
   };
 }
@@ -358,10 +349,8 @@ final class QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperationTags
   columnDescription;
 
   Map<String, Object?> encode() => {
-    if (columnGeographicRole != null)
-      'column_geographic_role': columnGeographicRole!.toTfJson(),
-    if (columnDescription != null)
-      'column_description': columnDescription!.encode(),
+    'column_geographic_role': ?columnGeographicRole?.toTfJson(),
+    'column_description': ?columnDescription?.encode(),
   };
 }
 
@@ -375,7 +364,7 @@ final class QuicksightDataSetLogicalTableMapDataTransformsTagColumnOperationTags
 
   final TfArg<String>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Typed helper for the `logical_table_map.data_transforms.untag_column_operation` block of
@@ -414,10 +403,9 @@ final class QuicksightDataSetLogicalTableMapSource {
   final QuicksightDataSetLogicalTableMapSourceJoinInstruction? joinInstruction;
 
   Map<String, Object?> encode() => {
-    if (dataSetArn != null) 'data_set_arn': dataSetArn!.toTfJson(),
-    if (physicalTableId != null)
-      'physical_table_id': physicalTableId!.toTfJson(),
-    if (joinInstruction != null) 'join_instruction': joinInstruction!.encode(),
+    'data_set_arn': ?dataSetArn?.toTfJson(),
+    'physical_table_id': ?physicalTableId?.toTfJson(),
+    'join_instruction': ?joinInstruction?.encode(),
   };
 }
 
@@ -453,10 +441,8 @@ final class QuicksightDataSetLogicalTableMapSourceJoinInstruction {
     'on_clause': onClause.toTfJson(),
     'right_operand': rightOperand.toTfJson(),
     'type': type.toTfJson(),
-    if (leftJoinKeyProperties != null)
-      'left_join_key_properties': leftJoinKeyProperties!.encode(),
-    if (rightJoinKeyProperties != null)
-      'right_join_key_properties': rightJoinKeyProperties!.encode(),
+    'left_join_key_properties': ?leftJoinKeyProperties?.encode(),
+    'right_join_key_properties': ?rightJoinKeyProperties?.encode(),
   };
 }
 
@@ -470,9 +456,7 @@ final class QuicksightDataSetLogicalTableMapSourceJoinInstructionLeftJoinKeyProp
 
   final TfArg<bool>? uniqueKey;
 
-  Map<String, Object?> encode() => {
-    if (uniqueKey != null) 'unique_key': uniqueKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'unique_key': ?uniqueKey?.toTfJson()};
 }
 
 /// Typed helper for the `logical_table_map.source.join_instruction.right_join_key_properties` block of
@@ -485,9 +469,7 @@ final class QuicksightDataSetLogicalTableMapSourceJoinInstructionRightJoinKeyPro
 
   final TfArg<bool>? uniqueKey;
 
-  Map<String, Object?> encode() => {
-    if (uniqueKey != null) 'unique_key': uniqueKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'unique_key': ?uniqueKey?.toTfJson()};
 }
 
 /// Typed helper for the `permissions` block of
@@ -530,9 +512,9 @@ final class QuicksightDataSetPhysicalTableMap {
 
   Map<String, Object?> encode() => {
     'physical_table_map_id': physicalTableMapId.toTfJson(),
-    if (customSql != null) 'custom_sql': customSql!.encode(),
-    if (relationalTable != null) 'relational_table': relationalTable!.encode(),
-    if (s3Source != null) 's3_source': s3Source!.encode(),
+    'custom_sql': ?customSql?.encode(),
+    'relational_table': ?relationalTable?.encode(),
+    's3_source': ?s3Source?.encode(),
   };
 }
 
@@ -606,10 +588,10 @@ final class QuicksightDataSetPhysicalTableMapRelationalTable {
   inputColumns;
 
   Map<String, Object?> encode() => {
-    if (catalog != null) 'catalog': catalog!.toTfJson(),
+    'catalog': ?catalog?.toTfJson(),
     'data_source_arn': dataSourceArn.toTfJson(),
     'name': name.toTfJson(),
-    if (schema != null) 'schema': schema!.toTfJson(),
+    'schema': ?schema?.toTfJson(),
     'input_columns': [for (final e in inputColumns) e.encode()],
   };
 }
@@ -699,11 +681,11 @@ final class QuicksightDataSetPhysicalTableMapS3SourceUploadSettings {
   final TfArg<String>? textQualifier;
 
   Map<String, Object?> encode() => {
-    if (containsHeader != null) 'contains_header': containsHeader!.toTfJson(),
-    if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
-    if (format != null) 'format': format!.toTfJson(),
-    if (startFromRow != null) 'start_from_row': startFromRow!.toTfJson(),
-    if (textQualifier != null) 'text_qualifier': textQualifier!.toTfJson(),
+    'contains_header': ?containsHeader?.toTfJson(),
+    'delimiter': ?delimiter?.toTfJson(),
+    'format': ?format?.toTfJson(),
+    'start_from_row': ?startFromRow?.toTfJson(),
+    'text_qualifier': ?textQualifier?.toTfJson(),
   };
 }
 
@@ -800,10 +782,10 @@ final class QuicksightDataSetRowLevelPermissionDataSet {
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (formatVersion != null) 'format_version': formatVersion!.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'format_version': ?formatVersion?.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
     'permission_policy': permissionPolicy.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -822,7 +804,7 @@ final class QuicksightDataSetRowLevelPermissionTagConfiguration {
   tagRules;
 
   Map<String, Object?> encode() => {
-    if (status != null) 'status': status!.toTfJson(),
+    'status': ?status?.toTfJson(),
     'tag_rules': [for (final e in tagRules) e.encode()],
   };
 }
@@ -848,10 +830,9 @@ final class QuicksightDataSetRowLevelPermissionTagConfigurationTagRules {
 
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
-    if (matchAllValue != null) 'match_all_value': matchAllValue!.toTfJson(),
+    'match_all_value': ?matchAllValue?.toTfJson(),
     'tag_key': tagKey.toTfJson(),
-    if (tagMultiValueDelimiter != null)
-      'tag_multi_value_delimiter': tagMultiValueDelimiter!.toTfJson(),
+    'tag_multi_value_delimiter': ?tagMultiValueDelimiter?.toTfJson(),
   };
 }
 
@@ -887,13 +868,13 @@ final class AwsQuicksightDataSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'data_set_id': dataSetId,
            'import_mode': importMode,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (useAs != null) 'use_as': useAs,
+           'region': ?region,
+           'tags': ?tags,
+           'use_as': ?useAs,
            if (columnGroups != null)
              'column_groups': TfArg.literal([
                for (final e in columnGroups) e.encode(),

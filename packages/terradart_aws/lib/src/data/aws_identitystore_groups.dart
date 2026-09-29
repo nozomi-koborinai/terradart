@@ -18,10 +18,7 @@ final class DataAwsIdentitystoreGroups extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'identity_store_id': identityStoreId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'identity_store_id': identityStoreId, 'region': ?region},
        );
 
   @override

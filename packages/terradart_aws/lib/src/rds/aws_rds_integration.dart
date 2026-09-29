@@ -29,14 +29,13 @@ final class AwsRdsIntegration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalEncryptionContext != null)
-             'additional_encryption_context': additionalEncryptionContext,
-           if (dataFilter != null) 'data_filter': dataFilter,
+           'additional_encryption_context': ?additionalEncryptionContext,
+           'data_filter': ?dataFilter,
            'integration_name': integrationName,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'region': ?region,
            'source_arn': sourceArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'target_arn': targetArn,
          },
        );

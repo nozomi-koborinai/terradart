@@ -124,7 +124,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroup {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'vendor_name': vendorName.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
     if (managedRuleGroupConfigs != null)
       'managed_rule_group_configs': [
         for (final e in managedRuleGroupConfigs!) e.encode(),
@@ -215,8 +215,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
 
   Map<String, Object?> encode() => {
     'creation_path': creationPath.toTfJson(),
-    if (enableRegexInPath != null)
-      'enable_regex_in_path': enableRegexInPath!.toTfJson(),
+    'enable_regex_in_path': ?enableRegexInPath?.toTfJson(),
     'registration_page_path': registrationPagePath.toTfJson(),
     if (requestInspection != null)
       'request_inspection': [for (final e in requestInspection!) e.encode()],
@@ -487,8 +486,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
   clientSideActionConfig;
 
   Map<String, Object?> encode() => {
-    if (sensitivityToBlock != null)
-      'sensitivity_to_block': sensitivityToBlock!.toTfJson(),
+    'sensitivity_to_block': ?sensitivityToBlock?.toTfJson(),
     if (clientSideActionConfig != null)
       'client_side_action_config': [
         for (final e in clientSideActionConfig!) e.encode(),
@@ -535,7 +533,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
   exemptUriRegularExpression;
 
   Map<String, Object?> encode() => {
-    if (sensitivity != null) 'sensitivity': sensitivity!.toTfJson(),
+    'sensitivity': ?sensitivity?.toTfJson(),
     'usage_of_action': usageOfAction.toTfJson(),
     if (exemptUriRegularExpression != null)
       'exempt_uri_regular_expression': [
@@ -554,9 +552,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
 
   final TfArg<String>? regexString;
 
-  Map<String, Object?> encode() => {
-    if (regexString != null) 'regex_string': regexString!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'regex_string': ?regexString?.toTfJson()};
 }
 
 /// Typed helper for the `managed_rule_group.managed_rule_group_configs.aws_managed_rules_atp_rule_set` block of
@@ -585,8 +581,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
   responseInspection;
 
   Map<String, Object?> encode() => {
-    if (enableRegexInPath != null)
-      'enable_regex_in_path': enableRegexInPath!.toTfJson(),
+    'enable_regex_in_path': ?enableRegexInPath?.toTfJson(),
     'login_path': loginPath.toTfJson(),
     if (requestInspection != null)
       'request_inspection': [for (final e in requestInspection!) e.encode()],
@@ -791,8 +786,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupManagedRuleGroupConfi
   final TfArg<String> inspectionLevel;
 
   Map<String, Object?> encode() => {
-    if (enableMachineLearning != null)
-      'enable_machine_learning': enableMachineLearning!.toTfJson(),
+    'enable_machine_learning': ?enableMachineLearning?.toTfJson(),
     'inspection_level': inspectionLevel.toTfJson(),
   };
 }
@@ -965,8 +959,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupRuleActionOverrideAct
   responseHeader;
 
   Map<String, Object?> encode() => {
-    if (customResponseBodyKey != null)
-      'custom_response_body_key': customResponseBodyKey!.toTfJson(),
+    'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),
     'response_code': responseCode.toTfJson(),
     if (responseHeader != null)
       'response_header': [for (final e in responseHeader!) e.encode()],
@@ -1360,8 +1353,7 @@ final class Wafv2WebAclRuleGroupAssociationRuleGroupReferenceRuleActionOverrideA
   responseHeader;
 
   Map<String, Object?> encode() => {
-    if (customResponseBodyKey != null)
-      'custom_response_body_key': customResponseBodyKey!.toTfJson(),
+    'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),
     'response_code': responseCode.toTfJson(),
     if (responseHeader != null)
       'response_header': [for (final e in responseHeader!) e.encode()],
@@ -1610,9 +1602,9 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (overrideAction != null) 'override_action': overrideAction,
+           'override_action': ?overrideAction,
            'priority': priority,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rule_name': ruleName,
            'web_acl_arn': webAclArn,
            ...source.argMap,

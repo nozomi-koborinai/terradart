@@ -23,11 +23,11 @@ final class DataAwsAlbListener extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (loadBalancerArn != null) 'load_balancer_arn': loadBalancerArn,
-           if (port != null) 'port': port,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'arn': ?arn,
+           'load_balancer_arn': ?loadBalancerArn,
+           'port': ?port,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

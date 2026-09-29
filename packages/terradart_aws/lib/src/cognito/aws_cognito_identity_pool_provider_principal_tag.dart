@@ -28,9 +28,9 @@ final class AwsCognitoIdentityPoolProviderPrincipalTag extends Resource {
          argMap: {
            'identity_pool_id': identityPoolId,
            'identity_provider_name': identityProviderName,
-           if (principalTags != null) 'principal_tags': principalTags,
-           if (region != null) 'region': region,
-           if (useDefaults != null) 'use_defaults': useDefaults,
+           'principal_tags': ?principalTags,
+           'region': ?region,
+           'use_defaults': ?useDefaults,
          },
        );
 

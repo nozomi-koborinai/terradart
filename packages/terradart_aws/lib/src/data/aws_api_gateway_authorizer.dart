@@ -22,7 +22,7 @@ final class DataAwsApiGatewayAuthorizer extends Data {
          terraformType: tfType,
          argMap: {
            'authorizer_id': authorizerId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rest_api_id': restApiId,
          },
        );

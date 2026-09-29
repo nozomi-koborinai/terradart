@@ -27,7 +27,7 @@ final class AwsEc2LocalGatewayRoute extends Resource {
            'local_gateway_route_table_id': localGatewayRouteTableId,
            'local_gateway_virtual_interface_group_id':
                localGatewayVirtualInterfaceGroupId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

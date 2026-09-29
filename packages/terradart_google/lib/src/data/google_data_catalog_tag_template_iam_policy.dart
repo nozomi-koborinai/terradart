@@ -24,8 +24,8 @@ final class DataGoogleDataCatalogTagTemplateIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
            'tag_template': tagTemplate,
          },
        );

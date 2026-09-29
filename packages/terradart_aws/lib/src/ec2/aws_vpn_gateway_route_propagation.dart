@@ -22,7 +22,7 @@ final class AwsVpnGatewayRoutePropagation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'route_table_id': routeTableId,
            'vpn_gateway_id': vpnGatewayId,
          },

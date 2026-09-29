@@ -25,7 +25,7 @@ final class AwsNetworkAclAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'network_acl_id': networkAclId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'subnet_id': subnetId.encodeAs('id'),
          },
        );

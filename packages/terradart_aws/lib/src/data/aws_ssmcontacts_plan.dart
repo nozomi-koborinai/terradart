@@ -19,10 +19,7 @@ final class DataAwsSsmcontactsPlan extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'contact_id': contactId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'contact_id': contactId, 'region': ?region},
        );
 
   @override

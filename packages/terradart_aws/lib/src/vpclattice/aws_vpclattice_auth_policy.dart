@@ -24,9 +24,9 @@ final class AwsVpclatticeAuthPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_identifier': resourceIdentifier,
-           if (state != null) 'state': state,
+           'state': ?state,
          },
        );
 

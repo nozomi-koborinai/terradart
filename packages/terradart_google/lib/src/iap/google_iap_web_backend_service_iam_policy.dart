@@ -30,7 +30,7 @@ final class GoogleIapWebBackendServiceIamPolicy extends Resource {
          argMap: {
            'web_backend_service': webBackendService,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -263,12 +263,12 @@ final class AwsPinpointsmsvoicev2EventDestination extends Resource {
          terraformType: tfType,
          argMap: {
            'configuration_set_name': configurationSetName,
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'event_destination_name': eventDestinationName,
            'matching_event_types': TfArg.literal([
              for (final e in matchingEventTypes) e.toTfJson(),
            ]),
-           if (region != null) 'region': region,
+           'region': ?region,
            ...target.argMap,
          },
        );

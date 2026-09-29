@@ -161,8 +161,7 @@ final class TranscribeLanguageModelInputDataConfig {
   Map<String, Object?> encode() => {
     'data_access_role_arn': dataAccessRoleArn.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
-    if (tuningDataS3Uri != null)
-      'tuning_data_s3_uri': tuningDataS3Uri!.toTfJson(),
+    'tuning_data_s3_uri': ?tuningDataS3Uri?.toTfJson(),
   };
 }
 
@@ -188,8 +187,8 @@ final class AwsTranscribeLanguageModel extends Resource {
            'base_model_name': baseModelName,
            'language_code': languageCode,
            'model_name': modelName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'input_data_config': TfArg.literal(inputDataConfig.encode()),
          },
        );

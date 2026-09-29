@@ -131,45 +131,35 @@ final class BackupDrRestoreWorkloadComputeInstanceRestoreProperties {
   final BackupDrRestoreWorkloadComputeInstanceRestorePropertiesTags? tags;
 
   Map<String, Object?> encode() => {
-    if (canIpForward != null) 'can_ip_forward': canIpForward!.toTfJson(),
-    if (deletionProtection != null)
-      'deletion_protection': deletionProtection!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (keyRevocationActionType != null)
-      'key_revocation_action_type': keyRevocationActionType!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
+    'can_ip_forward': ?canIpForward?.toTfJson(),
+    'deletion_protection': ?deletionProtection?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'key_revocation_action_type': ?keyRevocationActionType?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
     'name': name.toTfJson(),
-    if (privateIpv6GoogleAccess != null)
-      'private_ipv6_google_access': privateIpv6GoogleAccess!.toTfJson(),
-    if (resourcePolicies != null)
-      'resource_policies': resourcePolicies!.toTfJson(),
-    if (advancedMachineFeatures != null)
-      'advanced_machine_features': advancedMachineFeatures!.encode(),
-    if (allocationAffinity != null)
-      'allocation_affinity': allocationAffinity!.encode(),
-    if (confidentialInstanceConfig != null)
-      'confidential_instance_config': confidentialInstanceConfig!.encode(),
+    'private_ipv6_google_access': ?privateIpv6GoogleAccess?.toTfJson(),
+    'resource_policies': ?resourcePolicies?.toTfJson(),
+    'advanced_machine_features': ?advancedMachineFeatures?.encode(),
+    'allocation_affinity': ?allocationAffinity?.encode(),
+    'confidential_instance_config': ?confidentialInstanceConfig?.encode(),
     if (disks != null) 'disks': [for (final e in disks!) e.encode()],
-    if (displayDevice != null) 'display_device': displayDevice!.encode(),
+    'display_device': ?displayDevice?.encode(),
     if (guestAccelerators != null)
       'guest_accelerators': [for (final e in guestAccelerators!) e.encode()],
-    if (instanceEncryptionKey != null)
-      'instance_encryption_key': instanceEncryptionKey!.encode(),
+    'instance_encryption_key': ?instanceEncryptionKey?.encode(),
     if (labels != null) 'labels': [for (final e in labels!) e.encode()],
-    if (metadata != null) 'metadata': metadata!.encode(),
+    'metadata': ?metadata?.encode(),
     if (networkInterfaces != null)
       'network_interfaces': [for (final e in networkInterfaces!) e.encode()],
-    if (networkPerformanceConfig != null)
-      'network_performance_config': networkPerformanceConfig!.encode(),
-    if (params != null) 'params': params!.encode(),
-    if (scheduling != null) 'scheduling': scheduling!.encode(),
+    'network_performance_config': ?networkPerformanceConfig?.encode(),
+    'params': ?params?.encode(),
+    'scheduling': ?scheduling?.encode(),
     if (serviceAccounts != null)
       'service_accounts': [for (final e in serviceAccounts!) e.encode()],
-    if (shieldedInstanceConfig != null)
-      'shielded_instance_config': shieldedInstanceConfig!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'shielded_instance_config': ?shieldedInstanceConfig?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -224,13 +214,10 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAdvancedMachi
   final TfArg<num>? visibleCoreCount;
 
   Map<String, Object?> encode() => {
-    if (enableNestedVirtualization != null)
-      'enable_nested_virtualization': enableNestedVirtualization!.toTfJson(),
-    if (enableUefiNetworking != null)
-      'enable_uefi_networking': enableUefiNetworking!.toTfJson(),
-    if (threadsPerCore != null) 'threads_per_core': threadsPerCore!.toTfJson(),
-    if (visibleCoreCount != null)
-      'visible_core_count': visibleCoreCount!.toTfJson(),
+    'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
+    'enable_uefi_networking': ?enableUefiNetworking?.toTfJson(),
+    'threads_per_core': ?threadsPerCore?.toTfJson(),
+    'visible_core_count': ?visibleCoreCount?.toTfJson(),
   };
 }
 
@@ -254,10 +241,9 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesAllocationAff
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (consumeAllocationType != null)
-      'consume_allocation_type': consumeAllocationType!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'consume_allocation_type': ?consumeAllocationType?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -287,8 +273,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesConfidentialI
   final TfArg<bool>? enableConfidentialCompute;
 
   Map<String, Object?> encode() => {
-    if (enableConfidentialCompute != null)
-      'enable_confidential_compute': enableConfidentialCompute!.toTfJson(),
+    'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
 }
 
@@ -361,25 +346,23 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisks {
   initializeParams;
 
   Map<String, Object?> encode() => {
-    if (autoDelete != null) 'auto_delete': autoDelete!.toTfJson(),
-    if (boot != null) 'boot': boot!.toTfJson(),
-    if (deviceName != null) 'device_name': deviceName!.toTfJson(),
-    if (diskInterface != null) 'disk_interface': diskInterface!.toTfJson(),
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (index != null) 'index': index!.toTfJson(),
-    if (kind != null) 'kind': kind!.toTfJson(),
-    if (license != null) 'license': license!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (savedState != null) 'saved_state': savedState!.toTfJson(),
-    if (source != null) 'source': source!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (diskEncryptionKey != null)
-      'disk_encryption_key': diskEncryptionKey!.encode(),
+    'auto_delete': ?autoDelete?.toTfJson(),
+    'boot': ?boot?.toTfJson(),
+    'device_name': ?deviceName?.toTfJson(),
+    'disk_interface': ?diskInterface?.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'index': ?index?.toTfJson(),
+    'kind': ?kind?.toTfJson(),
+    'license': ?license?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'saved_state': ?savedState?.toTfJson(),
+    'source': ?source?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'disk_encryption_key': ?diskEncryptionKey?.encode(),
     if (guestOsFeature != null)
       'guest_os_feature': [for (final e in guestOsFeature!) e.encode()],
-    if (initializeParams != null)
-      'initialize_params': initializeParams!.encode(),
+    'initialize_params': ?initializeParams?.encode(),
   };
 }
 
@@ -461,13 +444,10 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksDiskEncr
   final TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
-    if (kmsKeyServiceAccount != null)
-      'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
-    if (rawKey != null) 'raw_key': rawKey!.toTfJson(),
-    if (rsaEncryptedKey != null)
-      'rsa_encrypted_key': rsaEncryptedKey!.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
   };
 }
 
@@ -484,7 +464,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksGuestOsF
   >?
   type;
 
-  Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
@@ -527,8 +507,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksInitiali
   final TfArg<List<Object?>>? replicaZones;
 
   Map<String, Object?> encode() => {
-    if (diskName != null) 'disk_name': diskName!.toTfJson(),
-    if (replicaZones != null) 'replica_zones': replicaZones!.toTfJson(),
+    'disk_name': ?diskName?.toTfJson(),
+    'replica_zones': ?replicaZones?.toTfJson(),
   };
 }
 
@@ -543,7 +523,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisplayDevice
   final TfArg<bool>? enableDisplay;
 
   Map<String, Object?> encode() => {
-    if (enableDisplay != null) 'enable_display': enableDisplay!.toTfJson(),
+    'enable_display': ?enableDisplay?.toTfJson(),
   };
 }
 
@@ -561,10 +541,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesGuestAccelera
   final TfArg<String>? acceleratorType;
 
   Map<String, Object?> encode() => {
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.toTfJson(),
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
   };
 }
 
@@ -588,13 +566,10 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesInstanceEncry
   final TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
-    if (kmsKeyServiceAccount != null)
-      'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
-    if (rawKey != null) 'raw_key': rawKey!.toTfJson(),
-    if (rsaEncryptedKey != null)
-      'rsa_encrypted_key': rsaEncryptedKey!.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
   };
 }
 
@@ -613,7 +588,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesLabels {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -649,8 +624,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesMetadataItems
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -719,18 +694,16 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
   ipv6AccessConfigs;
 
   Map<String, Object?> encode() => {
-    if (internalIpv6PrefixLength != null)
-      'internal_ipv6_prefix_length': internalIpv6PrefixLength!.toTfJson(),
-    if (ipAddress != null) 'ip_address': ipAddress!.toTfJson(),
-    if (ipv6AccessType != null) 'ipv6_access_type': ipv6AccessType!.toTfJson(),
-    if (ipv6Address != null) 'ipv6_address': ipv6Address!.toTfJson(),
-    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
-    if (networkAttachment != null)
-      'network_attachment': networkAttachment!.toTfJson(),
-    if (nicType != null) 'nic_type': nicType!.toTfJson(),
-    if (queueCount != null) 'queue_count': queueCount!.toTfJson(),
-    if (stackType != null) 'stack_type': stackType!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
+    'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
+    'ip_address': ?ipAddress?.toTfJson(),
+    'ipv6_access_type': ?ipv6AccessType?.toTfJson(),
+    'ipv6_address': ?ipv6Address?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'network_attachment': ?networkAttachment?.toTfJson(),
+    'nic_type': ?nicType?.toTfJson(),
+    'queue_count': ?queueCount?.toTfJson(),
+    'stack_type': ?stackType?.toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
     if (accessConfigs != null)
       'access_configs': [for (final e in accessConfigs!) e.encode()],
     if (aliasIpRanges != null)
@@ -820,16 +793,14 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
   type;
 
   Map<String, Object?> encode() => {
-    if (externalIp != null) 'external_ip': externalIp!.toTfJson(),
-    if (externalIpv6 != null) 'external_ipv6': externalIpv6!.toTfJson(),
-    if (externalIpv6PrefixLength != null)
-      'external_ipv6_prefix_length': externalIpv6PrefixLength!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (networkTier != null) 'network_tier': networkTier!.toTfJson(),
-    if (publicPtrDomainName != null)
-      'public_ptr_domain_name': publicPtrDomainName!.toTfJson(),
-    if (setPublicPtr != null) 'set_public_ptr': setPublicPtr!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'external_ip': ?externalIp?.toTfJson(),
+    'external_ipv6': ?externalIpv6?.toTfJson(),
+    'external_ipv6_prefix_length': ?externalIpv6PrefixLength?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'network_tier': ?networkTier?.toTfJson(),
+    'public_ptr_domain_name': ?publicPtrDomainName?.toTfJson(),
+    'set_public_ptr': ?setPublicPtr?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -875,9 +846,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
   final TfArg<String>? subnetworkRangeName;
 
   Map<String, Object?> encode() => {
-    if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange!.toTfJson(),
-    if (subnetworkRangeName != null)
-      'subnetwork_range_name': subnetworkRangeName!.toTfJson(),
+    'ip_cidr_range': ?ipCidrRange?.toTfJson(),
+    'subnetwork_range_name': ?subnetworkRangeName?.toTfJson(),
   };
 }
 
@@ -919,16 +889,14 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
   type;
 
   Map<String, Object?> encode() => {
-    if (externalIp != null) 'external_ip': externalIp!.toTfJson(),
-    if (externalIpv6 != null) 'external_ipv6': externalIpv6!.toTfJson(),
-    if (externalIpv6PrefixLength != null)
-      'external_ipv6_prefix_length': externalIpv6PrefixLength!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (networkTier != null) 'network_tier': networkTier!.toTfJson(),
-    if (publicPtrDomainName != null)
-      'public_ptr_domain_name': publicPtrDomainName!.toTfJson(),
-    if (setPublicPtr != null) 'set_public_ptr': setPublicPtr!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'external_ip': ?externalIp?.toTfJson(),
+    'external_ipv6': ?externalIpv6?.toTfJson(),
+    'external_ipv6_prefix_length': ?externalIpv6PrefixLength?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'network_tier': ?networkTier?.toTfJson(),
+    'public_ptr_domain_name': ?publicPtrDomainName?.toTfJson(),
+    'set_public_ptr': ?setPublicPtr?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -974,8 +942,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkPerfor
   totalEgressBandwidthTier;
 
   Map<String, Object?> encode() => {
-    if (totalEgressBandwidthTier != null)
-      'total_egress_bandwidth_tier': totalEgressBandwidthTier!.toTfJson(),
+    'total_egress_bandwidth_tier': ?totalEgressBandwidthTier?.toTfJson(),
   };
 }
 
@@ -1029,7 +996,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesParamsResourc
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -1085,21 +1052,15 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesScheduling {
   nodeAffinities;
 
   Map<String, Object?> encode() => {
-    if (automaticRestart != null)
-      'automatic_restart': automaticRestart!.toTfJson(),
-    if (instanceTerminationAction != null)
-      'instance_termination_action': instanceTerminationAction!.toTfJson(),
-    if (minNodeCpus != null) 'min_node_cpus': minNodeCpus!.toTfJson(),
-    if (onHostMaintenance != null)
-      'on_host_maintenance': onHostMaintenance!.toTfJson(),
-    if (preemptible != null) 'preemptible': preemptible!.toTfJson(),
-    if (provisioningModel != null)
-      'provisioning_model': provisioningModel!.toTfJson(),
-    if (terminationTime != null)
-      'termination_time': terminationTime!.toTfJson(),
-    if (localSsdRecoveryTimeout != null)
-      'local_ssd_recovery_timeout': localSsdRecoveryTimeout!.encode(),
-    if (maxRunDuration != null) 'max_run_duration': maxRunDuration!.encode(),
+    'automatic_restart': ?automaticRestart?.toTfJson(),
+    'instance_termination_action': ?instanceTerminationAction?.toTfJson(),
+    'min_node_cpus': ?minNodeCpus?.toTfJson(),
+    'on_host_maintenance': ?onHostMaintenance?.toTfJson(),
+    'preemptible': ?preemptible?.toTfJson(),
+    'provisioning_model': ?provisioningModel?.toTfJson(),
+    'termination_time': ?terminationTime?.toTfJson(),
+    'local_ssd_recovery_timeout': ?localSsdRecoveryTimeout?.encode(),
+    'max_run_duration': ?maxRunDuration?.encode(),
     if (nodeAffinities != null)
       'node_affinities': [for (final e in nodeAffinities!) e.encode()],
   };
@@ -1163,8 +1124,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingLoc
   final TfArg<num>? seconds;
 
   Map<String, Object?> encode() => {
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -1182,8 +1143,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingMax
   final TfArg<num>? seconds;
 
   Map<String, Object?> encode() => {
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -1207,9 +1168,9 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesSchedulingNod
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1241,8 +1202,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesServiceAccoun
   final TfArg<List<Object?>>? scopes;
 
   Map<String, Object?> encode() => {
-    if (email != null) 'email': email!.encodeAs('email').toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
+    'email': ?email?.encodeAs('email').toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
   };
 }
 
@@ -1263,11 +1224,9 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesShieldedInsta
   final TfArg<bool>? enableVtpm;
 
   Map<String, Object?> encode() => {
-    if (enableIntegrityMonitoring != null)
-      'enable_integrity_monitoring': enableIntegrityMonitoring!.toTfJson(),
-    if (enableSecureBoot != null)
-      'enable_secure_boot': enableSecureBoot!.toTfJson(),
-    if (enableVtpm != null) 'enable_vtpm': enableVtpm!.toTfJson(),
+    'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
+    'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
+    'enable_vtpm': ?enableVtpm?.toTfJson(),
   };
 }
 
@@ -1281,9 +1240,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesTags {
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Typed helper for the `compute_instance_target_environment` block of
@@ -1304,8 +1261,7 @@ final class BackupDrRestoreWorkloadComputeInstanceTargetEnvironment {
 
   Map<String, Object?> encode() => {
     'project': project.toTfJson(),
-    if (useProjectServiceAccount != null)
-      'use_project_service_account': useProjectServiceAccount!.toTfJson(),
+    'use_project_service_account': ?useProjectServiceAccount?.toTfJson(),
     'zone': zone.toTfJson(),
   };
 }
@@ -1374,25 +1330,20 @@ final class BackupDrRestoreWorkloadDiskRestoreProperties {
   resourceManagerTags;
 
   Map<String, Object?> encode() => {
-    if (accessMode != null) 'access_mode': accessMode!.toTfJson(),
-    if (architecture != null) 'architecture': architecture!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enableConfidentialCompute != null)
-      'enable_confidential_compute': enableConfidentialCompute!.toTfJson(),
-    if (licenses != null) 'licenses': licenses!.toTfJson(),
+    'access_mode': ?accessMode?.toTfJson(),
+    'architecture': ?architecture?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
+    'licenses': ?licenses?.toTfJson(),
     'name': name.toTfJson(),
-    if (physicalBlockSizeBytes != null)
-      'physical_block_size_bytes': physicalBlockSizeBytes!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
-    if (resourcePolicy != null) 'resource_policy': resourcePolicy!.toTfJson(),
+    'physical_block_size_bytes': ?physicalBlockSizeBytes?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
+    'resource_policy': ?resourcePolicy?.toTfJson(),
     'size_gb': sizeGb.toTfJson(),
-    if (storagePool != null) 'storage_pool': storagePool!.toTfJson(),
+    'storage_pool': ?storagePool?.toTfJson(),
     'type': type.toTfJson(),
-    if (diskEncryptionKey != null)
-      'disk_encryption_key': diskEncryptionKey!.encode(),
+    'disk_encryption_key': ?diskEncryptionKey?.encode(),
     if (guestOsFeature != null)
       'guest_os_feature': [for (final e in guestOsFeature!) e.encode()],
     if (labels != null) 'labels': [for (final e in labels!) e.encode()],
@@ -1451,13 +1402,10 @@ final class BackupDrRestoreWorkloadDiskRestorePropertiesDiskEncryptionKey {
   final TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
-    if (kmsKeyServiceAccount != null)
-      'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
-    if (rawKey != null) 'raw_key': rawKey!.toTfJson(),
-    if (rsaEncryptedKey != null)
-      'rsa_encrypted_key': rsaEncryptedKey!.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
   };
 }
 
@@ -1470,7 +1418,7 @@ final class BackupDrRestoreWorkloadDiskRestorePropertiesGuestOsFeature {
   final TfArg<BackupDrRestoreWorkloadDiskRestorePropertiesGuestOsFeatureType>?
   type;
 
-  Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
@@ -1514,7 +1462,7 @@ final class BackupDrRestoreWorkloadDiskRestorePropertiesLabels {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -1533,7 +1481,7 @@ final class BackupDrRestoreWorkloadDiskRestorePropertiesResourceManagerTags {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -1555,8 +1503,7 @@ final class BackupDrRestoreWorkloadDiskTargetEnvironment {
 
   Map<String, Object?> encode() => {
     'project': project.toTfJson(),
-    if (useProjectServiceAccount != null)
-      'use_project_service_account': useProjectServiceAccount!.toTfJson(),
+    'use_project_service_account': ?useProjectServiceAccount?.toTfJson(),
     'zone': zone.toTfJson(),
   };
 }
@@ -1584,8 +1531,7 @@ final class BackupDrRestoreWorkloadRegionDiskTargetEnvironment {
     'project': project.toTfJson(),
     'region': region.toTfJson(),
     'replica_zones': replicaZones.toTfJson(),
-    if (useProjectServiceAccount != null)
-      'use_project_service_account': useProjectServiceAccount!.toTfJson(),
+    'use_project_service_account': ?useProjectServiceAccount?.toTfJson(),
   };
 }
 
@@ -1638,7 +1584,7 @@ final class GoogleBackupDrRestoreWorkload extends Resource {
            'backup_vault_id': backupVaultId,
            'data_source_id': dataSourceId,
            'backup_id': backupId,
-           if (name != null) 'name': name,
+           'name': ?name,
            if (computeInstanceRestoreProperties != null)
              'compute_instance_restore_properties': TfArg.literal(
                computeInstanceRestoreProperties.encode(),
@@ -1659,12 +1605,10 @@ final class GoogleBackupDrRestoreWorkload extends Resource {
              'region_disk_target_environment': TfArg.literal(
                regionDiskTargetEnvironment.encode(),
              ),
-           if (clearOverridesFieldMask != null)
-             'clear_overrides_field_mask': clearOverridesFieldMask,
-           if (deleteRestoredInstance != null)
-             'delete_restored_instance': deleteRestoredInstance,
-           if (requestId != null) 'request_id': requestId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'clear_overrides_field_mask': ?clearOverridesFieldMask,
+           'delete_restored_instance': ?deleteRestoredInstance,
+           'request_id': ?requestId,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

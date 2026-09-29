@@ -23,11 +23,11 @@ final class DataAwsWorkspacesWorkspace extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (directoryId != null) 'directory_id': directoryId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (userName != null) 'user_name': userName,
-           if (workspaceId != null) 'workspace_id': workspaceId,
+           'directory_id': ?directoryId,
+           'region': ?region,
+           'tags': ?tags,
+           'user_name': ?userName,
+           'workspace_id': ?workspaceId,
          },
        );
 

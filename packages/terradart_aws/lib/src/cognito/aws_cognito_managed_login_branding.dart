@@ -97,11 +97,11 @@ final class CognitoManagedLoginBrandingAsset {
   final TfArg<String>? resourceId;
 
   Map<String, Object?> encode() => {
-    if (bytes != null) 'bytes': bytes!.toTfJson(),
+    'bytes': ?bytes?.toTfJson(),
     'category': category.toTfJson(),
     'color_mode': colorMode.toTfJson(),
     'extension': extension.toTfJson(),
-    if (resourceId != null) 'resource_id': resourceId!.toTfJson(),
+    'resource_id': ?resourceId?.toTfJson(),
   };
 }
 
@@ -171,7 +171,7 @@ final class AwsCognitoManagedLoginBranding extends Resource {
          terraformType: tfType,
          argMap: {
            'client_id': clientId,
-           if (region != null) 'region': region,
+           'region': ?region,
            ...style.argMap,
            'user_pool_id': userPoolId,
            if (asset != null)

@@ -24,7 +24,7 @@ final class AwsServicequotasServiceQuota extends Resource {
          terraformType: tfType,
          argMap: {
            'quota_code': quotaCode,
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_code': serviceCode,
            'value': value,
          },

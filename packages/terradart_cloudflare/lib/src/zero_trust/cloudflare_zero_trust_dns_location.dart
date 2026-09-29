@@ -53,8 +53,8 @@ final class ZeroTrustDnsLocationEndpointsDoh {
   final List<ZeroTrustDnsLocationEndpointsDohNetworks>? networks;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (requireToken != null) 'require_token': requireToken!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'require_token': ?requireToken?.toTfJson(),
     if (networks != null) 'networks': [for (final e in networks!) e.encode()],
   };
 }
@@ -81,7 +81,7 @@ final class ZeroTrustDnsLocationEndpointsDot {
   final List<ZeroTrustDnsLocationEndpointsDotNetworks>? networks;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (networks != null) 'networks': [for (final e in networks!) e.encode()],
   };
 }
@@ -105,9 +105,7 @@ final class ZeroTrustDnsLocationEndpointsIpv4 {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `endpoints.ipv6` block of
@@ -121,7 +119,7 @@ final class ZeroTrustDnsLocationEndpointsIpv6 {
   final List<ZeroTrustDnsLocationEndpointsIpv6Networks>? networks;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (networks != null) 'networks': [for (final e in networks!) e.encode()],
   };
 }
@@ -149,7 +147,7 @@ final class ZeroTrustDnsLocationMaxTtl {
 
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
-    if (ttlSecs != null) 'ttl_secs': ttlSecs!.toTfJson(),
+    'ttl_secs': ?ttlSecs?.toTfJson(),
   };
 }
 
@@ -202,10 +200,9 @@ final class CloudflareZeroTrustDnsLocation extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (clientDefault != null) 'client_default': clientDefault,
-           if (dnsDestinationIpsId != null)
-             'dns_destination_ips_id': dnsDestinationIpsId,
-           if (ecsSupport != null) 'ecs_support': ecsSupport,
+           'client_default': ?clientDefault,
+           'dns_destination_ips_id': ?dnsDestinationIpsId,
+           'ecs_support': ?ecsSupport,
            'name': name,
            if (endpoints != null)
              'endpoints': TfArg.literal(endpoints.encode()),

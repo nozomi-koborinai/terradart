@@ -60,14 +60,14 @@ final class GoogleChronicleCaseTagDefinition extends Resource {
          argMap: {
            'can_be_case_title': canBeCaseTitle,
            'comparison_type': comparisonType,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
            'instance': instance,
            'location': location,
            'match_criteria': matchCriteria,
            'priority': priority,
-           if (project != null) 'project': project,
-           if (propertyName != null) 'property_name': propertyName,
+           'project': ?project,
+           'property_name': ?propertyName,
            'value': value,
          },
        );

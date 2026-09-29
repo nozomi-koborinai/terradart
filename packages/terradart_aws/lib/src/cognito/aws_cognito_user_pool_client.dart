@@ -70,9 +70,9 @@ final class CognitoUserPoolClientAnalyticsConfiguration {
 
   Map<String, Object?> encode() => {
     ...application.encode(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (userDataShared != null) 'user_data_shared': userDataShared!.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'user_data_shared': ?userDataShared?.toTfJson(),
   };
 }
 
@@ -148,8 +148,7 @@ final class CognitoUserPoolClientRefreshTokenRotation {
 
   Map<String, Object?> encode() => {
     'feature': feature.toTfJson(),
-    if (retryGracePeriodSeconds != null)
-      'retry_grace_period_seconds': retryGracePeriodSeconds!.toTfJson(),
+    'retry_grace_period_seconds': ?retryGracePeriodSeconds?.toTfJson(),
   };
 }
 
@@ -180,9 +179,9 @@ final class CognitoUserPoolClientTokenValidityUnits {
   final TfArg<String>? refreshToken;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
-    if (idToken != null) 'id_token': idToken!.toTfJson(),
-    if (refreshToken != null) 'refresh_token': refreshToken!.toTfJson(),
+    'access_token': ?accessToken?.toTfJson(),
+    'id_token': ?idToken?.toTfJson(),
+    'refresh_token': ?refreshToken?.toTfJson(),
   };
 }
 
@@ -224,45 +223,35 @@ final class AwsCognitoUserPoolClient extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessTokenValidity != null)
-             'access_token_validity': accessTokenValidity,
+           'access_token_validity': ?accessTokenValidity,
            if (allowedOauthFlows != null)
              'allowed_oauth_flows': TfArg.literal([
                for (final e in allowedOauthFlows) e.toTfJson(),
              ]),
-           if (allowedOauthFlowsUserPoolClient != null)
-             'allowed_oauth_flows_user_pool_client':
-                 allowedOauthFlowsUserPoolClient,
-           if (allowedOauthScopes != null)
-             'allowed_oauth_scopes': allowedOauthScopes,
-           if (authSessionValidity != null)
-             'auth_session_validity': authSessionValidity,
-           if (callbackUrls != null) 'callback_urls': callbackUrls,
-           if (defaultRedirectUri != null)
-             'default_redirect_uri': defaultRedirectUri,
-           if (enablePropagateAdditionalUserContextData != null)
-             'enable_propagate_additional_user_context_data':
-                 enablePropagateAdditionalUserContextData,
-           if (enableTokenRevocation != null)
-             'enable_token_revocation': enableTokenRevocation,
+           'allowed_oauth_flows_user_pool_client':
+               ?allowedOauthFlowsUserPoolClient,
+           'allowed_oauth_scopes': ?allowedOauthScopes,
+           'auth_session_validity': ?authSessionValidity,
+           'callback_urls': ?callbackUrls,
+           'default_redirect_uri': ?defaultRedirectUri,
+           'enable_propagate_additional_user_context_data':
+               ?enablePropagateAdditionalUserContextData,
+           'enable_token_revocation': ?enableTokenRevocation,
            if (explicitAuthFlows != null)
              'explicit_auth_flows': TfArg.literal([
                for (final e in explicitAuthFlows) e.toTfJson(),
              ]),
-           if (generateSecret != null) 'generate_secret': generateSecret,
-           if (idTokenValidity != null) 'id_token_validity': idTokenValidity,
-           if (logoutUrls != null) 'logout_urls': logoutUrls,
+           'generate_secret': ?generateSecret,
+           'id_token_validity': ?idTokenValidity,
+           'logout_urls': ?logoutUrls,
            'name': name,
-           if (preventUserExistenceErrors != null)
-             'prevent_user_existence_errors': preventUserExistenceErrors,
-           if (readAttributes != null) 'read_attributes': readAttributes,
-           if (refreshTokenValidity != null)
-             'refresh_token_validity': refreshTokenValidity,
-           if (region != null) 'region': region,
-           if (supportedIdentityProviders != null)
-             'supported_identity_providers': supportedIdentityProviders,
+           'prevent_user_existence_errors': ?preventUserExistenceErrors,
+           'read_attributes': ?readAttributes,
+           'refresh_token_validity': ?refreshTokenValidity,
+           'region': ?region,
+           'supported_identity_providers': ?supportedIdentityProviders,
            'user_pool_id': userPoolId,
-           if (writeAttributes != null) 'write_attributes': writeAttributes,
+           'write_attributes': ?writeAttributes,
            if (analyticsConfiguration != null)
              'analytics_configuration': TfArg.literal([
                for (final e in analyticsConfiguration) e.encode(),

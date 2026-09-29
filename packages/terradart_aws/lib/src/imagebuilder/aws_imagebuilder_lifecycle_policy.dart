@@ -92,9 +92,9 @@ final class ImagebuilderLifecyclePolicyPolicyDetailActionIncludeResources {
   final TfArg<bool>? snapshots;
 
   Map<String, Object?> encode() => {
-    if (amis != null) 'amis': amis!.toTfJson(),
-    if (containers != null) 'containers': containers!.toTfJson(),
-    if (snapshots != null) 'snapshots': snapshots!.toTfJson(),
+    'amis': ?amis?.toTfJson(),
+    'containers': ?containers?.toTfJson(),
+    'snapshots': ?snapshots?.toTfJson(),
   };
 }
 
@@ -112,7 +112,7 @@ final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRules {
   final List<ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmis>? amis;
 
   Map<String, Object?> encode() => {
-    if (tagMap != null) 'tag_map': tagMap!.toTfJson(),
+    'tag_map': ?tagMap?.toTfJson(),
     if (amis != null) 'amis': [for (final e in amis!) e.encode()],
   };
 }
@@ -143,10 +143,10 @@ final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmis {
   lastLaunched;
 
   Map<String, Object?> encode() => {
-    if (isPublic != null) 'is_public': isPublic!.toTfJson(),
-    if (regions != null) 'regions': regions!.toTfJson(),
-    if (sharedAccounts != null) 'shared_accounts': sharedAccounts!.toTfJson(),
-    if (tagMap != null) 'tag_map': tagMap!.toTfJson(),
+    'is_public': ?isPublic?.toTfJson(),
+    'regions': ?regions?.toTfJson(),
+    'shared_accounts': ?sharedAccounts?.toTfJson(),
+    'tag_map': ?tagMap?.toTfJson(),
     if (lastLaunched != null)
       'last_launched': [for (final e in lastLaunched!) e.encode()],
   };
@@ -209,9 +209,9 @@ final class ImagebuilderLifecyclePolicyPolicyDetailFilter {
   final TfArg<num> value;
 
   Map<String, Object?> encode() => {
-    if (retainAtLeast != null) 'retain_at_least': retainAtLeast!.toTfJson(),
+    'retain_at_least': ?retainAtLeast?.toTfJson(),
     'type': type.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -254,7 +254,7 @@ final class ImagebuilderLifecyclePolicyResourceSelection {
   final List<ImagebuilderLifecyclePolicyResourceSelectionRecipe>? recipe;
 
   Map<String, Object?> encode() => {
-    if (tagMap != null) 'tag_map': tagMap!.toTfJson(),
+    'tag_map': ?tagMap?.toTfJson(),
     if (recipe != null) 'recipe': [for (final e in recipe!) e.encode()],
   };
 }
@@ -300,13 +300,13 @@ final class AwsImagebuilderLifecyclePolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'execution_role': executionRole,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_type': resourceType,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
+           'status': ?status,
+           'tags': ?tags,
            if (policyDetail != null)
              'policy_detail': TfArg.literal([
                for (final e in policyDetail) e.encode(),

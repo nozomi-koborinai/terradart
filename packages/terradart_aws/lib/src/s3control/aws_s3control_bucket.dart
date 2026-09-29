@@ -25,8 +25,8 @@ final class AwsS3controlBucket extends Resource {
          argMap: {
            'bucket': bucket,
            'outpost_id': outpostId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

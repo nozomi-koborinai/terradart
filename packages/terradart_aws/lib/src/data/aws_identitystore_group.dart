@@ -23,8 +23,8 @@ final class DataIdentitystoreGroupAlternateIdentifier {
   uniqueAttribute;
 
   Map<String, Object?> encode() => {
-    if (externalId != null) 'external_id': externalId!.encode(),
-    if (uniqueAttribute != null) 'unique_attribute': uniqueAttribute!.encode(),
+    'external_id': ?externalId?.encode(),
+    'unique_attribute': ?uniqueAttribute?.encode(),
   };
 }
 
@@ -81,9 +81,9 @@ final class DataAwsIdentitystoreGroup extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (groupId != null) 'group_id': groupId,
+           'group_id': ?groupId,
            'identity_store_id': identityStoreId,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (alternateIdentifier != null)
              'alternate_identifier': TfArg.literal(
                alternateIdentifier.encode(),

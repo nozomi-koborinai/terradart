@@ -169,7 +169,7 @@ final class CloudwatchMetricStreamExcludeFilter {
   final TfArg<String> namespace;
 
   Map<String, Object?> encode() => {
-    if (metricNames != null) 'metric_names': metricNames!.toTfJson(),
+    'metric_names': ?metricNames?.toTfJson(),
     'namespace': namespace.toTfJson(),
   };
 }
@@ -188,7 +188,7 @@ final class CloudwatchMetricStreamIncludeFilter {
   final TfArg<String> namespace;
 
   Map<String, Object?> encode() => {
-    if (metricNames != null) 'metric_names': metricNames!.toTfJson(),
+    'metric_names': ?metricNames?.toTfJson(),
     'namespace': namespace.toTfJson(),
   };
 }
@@ -256,13 +256,12 @@ final class AwsCloudwatchMetricStream extends Resource {
          terraformType: tfType,
          argMap: {
            'firehose_arn': firehoseArn,
-           if (includeLinkedAccountsMetrics != null)
-             'include_linked_accounts_metrics': includeLinkedAccountsMetrics,
+           'include_linked_accounts_metrics': ?includeLinkedAccountsMetrics,
            ...?name?.argMap,
            'output_format': outputFormat,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            ...?filter?.argMap,
            if (statisticsConfiguration != null)
              'statistics_configuration': TfArg.literal([

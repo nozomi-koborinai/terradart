@@ -21,10 +21,7 @@ final class DataGoogleContainerAzureVersions extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
-         },
+         argMap: {'location': ?location, 'project': ?project},
        );
 
   @override

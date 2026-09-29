@@ -90,12 +90,9 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
   requesterNotifications;
 
   Map<String, Object?> encode() => {
-    if (adminNotifications != null)
-      'admin_notifications': adminNotifications!.encode(),
-    if (approverNotifications != null)
-      'approver_notifications': approverNotifications!.encode(),
-    if (requesterNotifications != null)
-      'requester_notifications': requesterNotifications!.encode(),
+    'admin_notifications': ?adminNotifications?.encode(),
+    'approver_notifications': ?approverNotifications?.encode(),
+    'requester_notifications': ?requesterNotifications?.encode(),
   };
 }
 
@@ -131,12 +128,10 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
   grantExternallyModified;
 
   Map<String, Object?> encode() => {
-    if (grantActivated != null) 'grant_activated': grantActivated!.toTfJson(),
-    if (grantActivationFailed != null)
-      'grant_activation_failed': grantActivationFailed!.toTfJson(),
-    if (grantEnded != null) 'grant_ended': grantEnded!.toTfJson(),
-    if (grantExternallyModified != null)
-      'grant_externally_modified': grantExternallyModified!.toTfJson(),
+    'grant_activated': ?grantActivated?.toTfJson(),
+    'grant_activation_failed': ?grantActivationFailed?.toTfJson(),
+    'grant_ended': ?grantEnded?.toTfJson(),
+    'grant_externally_modified': ?grantExternallyModified?.toTfJson(),
   };
 }
 
@@ -210,8 +205,7 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
   pendingApproval;
 
   Map<String, Object?> encode() => {
-    if (pendingApproval != null)
-      'pending_approval': pendingApproval!.toTfJson(),
+    'pending_approval': ?pendingApproval?.toTfJson(),
   };
 }
 
@@ -285,17 +279,14 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
   grantRevoked;
 
   Map<String, Object?> encode() => {
-    if (entitlementAssigned != null)
-      'entitlement_assigned': entitlementAssigned!.toTfJson(),
-    if (grantActivated != null) 'grant_activated': grantActivated!.toTfJson(),
-    if (grantActivationFailed != null)
-      'grant_activation_failed': grantActivationFailed!.toTfJson(),
-    if (grantDenied != null) 'grant_denied': grantDenied!.toTfJson(),
-    if (grantEnded != null) 'grant_ended': grantEnded!.toTfJson(),
-    if (grantExpired != null) 'grant_expired': grantExpired!.toTfJson(),
-    if (grantExternallyModified != null)
-      'grant_externally_modified': grantExternallyModified!.toTfJson(),
-    if (grantRevoked != null) 'grant_revoked': grantRevoked!.toTfJson(),
+    'entitlement_assigned': ?entitlementAssigned?.toTfJson(),
+    'grant_activated': ?grantActivated?.toTfJson(),
+    'grant_activation_failed': ?grantActivationFailed?.toTfJson(),
+    'grant_denied': ?grantDenied?.toTfJson(),
+    'grant_ended': ?grantEnded?.toTfJson(),
+    'grant_expired': ?grantExpired?.toTfJson(),
+    'grant_externally_modified': ?grantExternallyModified?.toTfJson(),
+    'grant_revoked': ?grantRevoked?.toTfJson(),
   };
 }
 
@@ -430,9 +421,7 @@ final class PrivilegedAccessManagerSettingsServiceAccountApproverSettings {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `google_privileged_access_manager_settings`.

@@ -58,21 +58,18 @@ final class GoogleDialogflowIntent extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (action != null) 'action': action,
-           if (defaultResponsePlatforms != null)
-             'default_response_platforms': defaultResponsePlatforms,
-           if (events != null) 'events': events,
-           if (inputContextNames != null)
-             'input_context_names': inputContextNames,
-           if (isFallback != null) 'is_fallback': isFallback,
-           if (mlDisabled != null) 'ml_disabled': mlDisabled,
-           if (parentFollowupIntentName != null)
-             'parent_followup_intent_name': parentFollowupIntentName,
-           if (priority != null) 'priority': priority,
-           if (resetContexts != null) 'reset_contexts': resetContexts,
-           if (webhookState != null) 'webhook_state': webhookState,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'action': ?action,
+           'default_response_platforms': ?defaultResponsePlatforms,
+           'events': ?events,
+           'input_context_names': ?inputContextNames,
+           'is_fallback': ?isFallback,
+           'ml_disabled': ?mlDisabled,
+           'parent_followup_intent_name': ?parentFollowupIntentName,
+           'priority': ?priority,
+           'reset_contexts': ?resetContexts,
+           'webhook_state': ?webhookState,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

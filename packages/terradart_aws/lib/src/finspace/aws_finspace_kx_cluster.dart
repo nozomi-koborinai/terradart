@@ -140,8 +140,7 @@ final class FinspaceKxClusterCode {
   Map<String, Object?> encode() => {
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     's3_key': s3Key.toTfJson(),
-    if (s3ObjectVersion != null)
-      's3_object_version': s3ObjectVersion!.toTfJson(),
+    's3_object_version': ?s3ObjectVersion?.toTfJson(),
   };
 }
 
@@ -165,9 +164,9 @@ final class FinspaceKxClusterDatabase {
   final List<FinspaceKxClusterDatabaseCacheConfigurations>? cacheConfigurations;
 
   Map<String, Object?> encode() => {
-    if (changesetId != null) 'changeset_id': changesetId!.toTfJson(),
+    'changeset_id': ?changesetId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
-    if (dataviewName != null) 'dataview_name': dataviewName!.toTfJson(),
+    'dataview_name': ?dataviewName?.toTfJson(),
     if (cacheConfigurations != null)
       'cache_configurations': [
         for (final e in cacheConfigurations!) e.encode(),
@@ -190,7 +189,7 @@ final class FinspaceKxClusterDatabaseCacheConfigurations {
 
   Map<String, Object?> encode() => {
     'cache_type': cacheType.toTfJson(),
-    if (dbPaths != null) 'db_paths': dbPaths!.toTfJson(),
+    'db_paths': ?dbPaths?.toTfJson(),
   };
 }
 
@@ -211,9 +210,9 @@ final class FinspaceKxClusterSavedownStorageConfiguration {
   final TfArg<String>? volumeName;
 
   Map<String, Object?> encode() => {
-    if (size != null) 'size': size!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (volumeName != null) 'volume_name': volumeName!.toTfJson(),
+    'size': ?size?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'volume_name': ?volumeName?.toTfJson(),
   };
 }
 
@@ -250,8 +249,8 @@ final class FinspaceKxClusterScalingGroupConfiguration {
   final TfArg<String> scalingGroupName;
 
   Map<String, Object?> encode() => {
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (memoryLimit != null) 'memory_limit': memoryLimit!.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'memory_limit': ?memoryLimit?.toTfJson(),
     'memory_reservation': memoryReservation.toTfJson(),
     'node_count': nodeCount.toTfJson(),
     'scaling_group_name': scalingGroupName.toTfJson(),
@@ -345,20 +344,17 @@ final class AwsFinspaceKxCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZoneId != null)
-             'availability_zone_id': availabilityZoneId,
+           'availability_zone_id': ?availabilityZoneId,
            'az_mode': azMode,
-           if (commandLineArguments != null)
-             'command_line_arguments': commandLineArguments,
-           if (description != null) 'description': description,
+           'command_line_arguments': ?commandLineArguments,
+           'description': ?description,
            'environment_id': environmentId,
-           if (executionRole != null) 'execution_role': executionRole,
-           if (initializationScript != null)
-             'initialization_script': initializationScript,
+           'execution_role': ?executionRole,
+           'initialization_script': ?initializationScript,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'release_label': releaseLabel,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'type': type,
            if (autoScalingConfiguration != null)
              'auto_scaling_configuration': TfArg.literal(

@@ -306,10 +306,10 @@ final class LaunchTemplateBlockDeviceMappings {
   final LaunchTemplateBlockDeviceMappingsEbs? ebs;
 
   Map<String, Object?> encode() => {
-    if (deviceName != null) 'device_name': deviceName!.toTfJson(),
-    if (noDevice != null) 'no_device': noDevice!.toTfJson(),
-    if (virtualName != null) 'virtual_name': virtualName!.toTfJson(),
-    if (ebs != null) 'ebs': ebs!.encode(),
+    'device_name': ?deviceName?.toTfJson(),
+    'no_device': ?noDevice?.toTfJson(),
+    'virtual_name': ?virtualName?.toTfJson(),
+    'ebs': ?ebs?.encode(),
   };
 }
 
@@ -348,17 +348,15 @@ final class LaunchTemplateBlockDeviceMappingsEbs {
   final TfArg<LaunchTemplateBlockDeviceMappingsEbsVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeInitializationRate != null)
-      'volume_initialization_rate': volumeInitializationRate!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'snapshot_id': ?snapshotId?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_initialization_rate': ?volumeInitializationRate?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -395,11 +393,9 @@ final class LaunchTemplateCapacityReservationSpecification {
   capacityReservationTarget;
 
   Map<String, Object?> encode() => {
-    if (capacityReservationPreference != null)
-      'capacity_reservation_preference': capacityReservationPreference!
-          .toTfJson(),
-    if (capacityReservationTarget != null)
-      'capacity_reservation_target': capacityReservationTarget!.encode(),
+    'capacity_reservation_preference': ?capacityReservationPreference
+        ?.toTfJson(),
+    'capacity_reservation_target': ?capacityReservationTarget?.encode(),
   };
 }
 
@@ -501,11 +497,10 @@ final class LaunchTemplateCpuOptions {
   final TfArg<num>? threadsPerCore;
 
   Map<String, Object?> encode() => {
-    if (amdSevSnp != null) 'amd_sev_snp': amdSevSnp!.toTfJson(),
-    if (coreCount != null) 'core_count': coreCount!.toTfJson(),
-    if (nestedVirtualization != null)
-      'nested_virtualization': nestedVirtualization!.toTfJson(),
-    if (threadsPerCore != null) 'threads_per_core': threadsPerCore!.toTfJson(),
+    'amd_sev_snp': ?amdSevSnp?.toTfJson(),
+    'core_count': ?coreCount?.toTfJson(),
+    'nested_virtualization': ?nestedVirtualization?.toTfJson(),
+    'threads_per_core': ?threadsPerCore?.toTfJson(),
   };
 }
 
@@ -537,9 +532,7 @@ final class LaunchTemplateCreditSpecification {
 
   final TfArg<LaunchTemplateCreditSpecificationCpuCredits>? cpuCredits;
 
-  Map<String, Object?> encode() => {
-    if (cpuCredits != null) 'cpu_credits': cpuCredits!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cpu_credits': ?cpuCredits?.toTfJson()};
 }
 
 /// `cpu_credits` — derived from the provider schema description.
@@ -560,9 +553,7 @@ final class LaunchTemplateEnclaveOptions {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `hibernation_options` block of
@@ -640,8 +631,8 @@ final class LaunchTemplateInstanceMarketOptions {
   final LaunchTemplateInstanceMarketOptionsSpotOptions? spotOptions;
 
   Map<String, Object?> encode() => {
-    if (marketType != null) 'market_type': marketType!.toTfJson(),
-    if (spotOptions != null) 'spot_options': spotOptions!.encode(),
+    'market_type': ?marketType?.toTfJson(),
+    'spot_options': ?spotOptions?.encode(),
   };
 }
 
@@ -684,15 +675,11 @@ final class LaunchTemplateInstanceMarketOptionsSpotOptions {
   final TfArg<String>? validUntil;
 
   Map<String, Object?> encode() => {
-    if (blockDurationMinutes != null)
-      'block_duration_minutes': blockDurationMinutes!.toTfJson(),
-    if (instanceInterruptionBehavior != null)
-      'instance_interruption_behavior': instanceInterruptionBehavior!
-          .toTfJson(),
-    if (maxPrice != null) 'max_price': maxPrice!.toTfJson(),
-    if (spotInstanceType != null)
-      'spot_instance_type': spotInstanceType!.toTfJson(),
-    if (validUntil != null) 'valid_until': validUntil!.toTfJson(),
+    'block_duration_minutes': ?blockDurationMinutes?.toTfJson(),
+    'instance_interruption_behavior': ?instanceInterruptionBehavior?.toTfJson(),
+    'max_price': ?maxPrice?.toTfJson(),
+    'spot_instance_type': ?spotInstanceType?.toTfJson(),
+    'valid_until': ?validUntil?.toTfJson(),
   };
 }
 
@@ -818,39 +805,29 @@ final class LaunchTemplateInstanceRequirements {
     if (acceleratorTypes != null)
       'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
     ...?instanceTypes?.encode(),
-    if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
-    if (burstablePerformance != null)
-      'burstable_performance': burstablePerformance!.toTfJson(),
+    'bare_metal': ?bareMetal?.toTfJson(),
+    'burstable_performance': ?burstablePerformance?.toTfJson(),
     if (cpuManufacturers != null)
       'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
     if (instanceGenerations != null)
       'instance_generations': [
         for (final e in instanceGenerations!) e.toTfJson(),
       ],
-    if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
+    'local_storage': ?localStorage?.toTfJson(),
     if (localStorageTypes != null)
       'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
     ...?price?.encode(),
-    if (onDemandMaxPricePercentageOverLowestPrice != null)
-      'on_demand_max_price_percentage_over_lowest_price':
-          onDemandMaxPricePercentageOverLowestPrice!.toTfJson(),
-    if (requireHibernateSupport != null)
-      'require_hibernate_support': requireHibernateSupport!.toTfJson(),
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.encode(),
-    if (acceleratorTotalMemoryMib != null)
-      'accelerator_total_memory_mib': acceleratorTotalMemoryMib!.encode(),
-    if (baselineEbsBandwidthMbps != null)
-      'baseline_ebs_bandwidth_mbps': baselineEbsBandwidthMbps!.encode(),
-    if (memoryGibPerVcpu != null)
-      'memory_gib_per_vcpu': memoryGibPerVcpu!.encode(),
+    'on_demand_max_price_percentage_over_lowest_price':
+        ?onDemandMaxPricePercentageOverLowestPrice?.toTfJson(),
+    'require_hibernate_support': ?requireHibernateSupport?.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.encode(),
+    'accelerator_total_memory_mib': ?acceleratorTotalMemoryMib?.encode(),
+    'baseline_ebs_bandwidth_mbps': ?baselineEbsBandwidthMbps?.encode(),
+    'memory_gib_per_vcpu': ?memoryGibPerVcpu?.encode(),
     'memory_mib': memoryMib.encode(),
-    if (networkBandwidthGbps != null)
-      'network_bandwidth_gbps': networkBandwidthGbps!.encode(),
-    if (networkInterfaceCount != null)
-      'network_interface_count': networkInterfaceCount!.encode(),
-    if (totalLocalStorageGb != null)
-      'total_local_storage_gb': totalLocalStorageGb!.encode(),
+    'network_bandwidth_gbps': ?networkBandwidthGbps?.encode(),
+    'network_interface_count': ?networkInterfaceCount?.encode(),
+    'total_local_storage_gb': ?totalLocalStorageGb?.encode(),
     'vcpu_count': vcpuCount.encode(),
   };
 }
@@ -1124,8 +1101,8 @@ final class LaunchTemplateInstanceRequirementsAcceleratorCount {
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1143,8 +1120,8 @@ final class LaunchTemplateInstanceRequirementsAcceleratorTotalMemoryMib {
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1162,8 +1139,8 @@ final class LaunchTemplateInstanceRequirementsBaselineEbsBandwidthMbps {
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1181,8 +1158,8 @@ final class LaunchTemplateInstanceRequirementsMemoryGibPerVcpu {
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1200,7 +1177,7 @@ final class LaunchTemplateInstanceRequirementsMemoryMib {
   final TfArg<num> min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
+    'max': ?max?.toTfJson(),
     'min': min.toTfJson(),
   };
 }
@@ -1219,8 +1196,8 @@ final class LaunchTemplateInstanceRequirementsNetworkBandwidthGbps {
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1238,8 +1215,8 @@ final class LaunchTemplateInstanceRequirementsNetworkInterfaceCount {
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1257,8 +1234,8 @@ final class LaunchTemplateInstanceRequirementsTotalLocalStorageGb {
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1276,7 +1253,7 @@ final class LaunchTemplateInstanceRequirementsVcpuCount {
   final TfArg<num> min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
+    'max': ?max?.toTfJson(),
     'min': min.toTfJson(),
   };
 }
@@ -1304,9 +1281,7 @@ final class LaunchTemplateMaintenanceOptions {
 
   final TfArg<LaunchTemplateMaintenanceOptionsAutoRecovery>? autoRecovery;
 
-  Map<String, Object?> encode() => {
-    if (autoRecovery != null) 'auto_recovery': autoRecovery!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'auto_recovery': ?autoRecovery?.toTfJson()};
 }
 
 /// `auto_recovery` — derived from the provider schema description.
@@ -1343,14 +1318,11 @@ final class LaunchTemplateMetadataOptions {
   instanceMetadataTags;
 
   Map<String, Object?> encode() => {
-    if (httpEndpoint != null) 'http_endpoint': httpEndpoint!.toTfJson(),
-    if (httpProtocolIpv6 != null)
-      'http_protocol_ipv6': httpProtocolIpv6!.toTfJson(),
-    if (httpPutResponseHopLimit != null)
-      'http_put_response_hop_limit': httpPutResponseHopLimit!.toTfJson(),
-    if (httpTokens != null) 'http_tokens': httpTokens!.toTfJson(),
-    if (instanceMetadataTags != null)
-      'instance_metadata_tags': instanceMetadataTags!.toTfJson(),
+    'http_endpoint': ?httpEndpoint?.toTfJson(),
+    'http_protocol_ipv6': ?httpProtocolIpv6?.toTfJson(),
+    'http_put_response_hop_limit': ?httpPutResponseHopLimit?.toTfJson(),
+    'http_tokens': ?httpTokens?.toTfJson(),
+    'instance_metadata_tags': ?instanceMetadataTags?.toTfJson(),
   };
 }
 
@@ -1403,9 +1375,7 @@ final class LaunchTemplateMonitoring {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `network_interfaces` block of
@@ -1486,43 +1456,30 @@ final class LaunchTemplateNetworkInterfaces {
   final LaunchTemplateNetworkInterfacesEnaSrdSpecification? enaSrdSpecification;
 
   Map<String, Object?> encode() => {
-    if (associateCarrierIpAddress != null)
-      'associate_carrier_ip_address': associateCarrierIpAddress!.toTfJson(),
-    if (associatePublicIpAddress != null)
-      'associate_public_ip_address': associatePublicIpAddress!.toTfJson(),
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (deviceIndex != null) 'device_index': deviceIndex!.toTfJson(),
-    if (enaQueueCount != null) 'ena_queue_count': enaQueueCount!.toTfJson(),
-    if (interfaceType != null) 'interface_type': interfaceType!.toTfJson(),
-    if (ipv4AddressCount != null)
-      'ipv4_address_count': ipv4AddressCount!.toTfJson(),
-    if (ipv4Addresses != null) 'ipv4_addresses': ipv4Addresses!.toTfJson(),
-    if (ipv4PrefixCount != null)
-      'ipv4_prefix_count': ipv4PrefixCount!.toTfJson(),
-    if (ipv4Prefixes != null) 'ipv4_prefixes': ipv4Prefixes!.toTfJson(),
-    if (ipv6AddressCount != null)
-      'ipv6_address_count': ipv6AddressCount!.toTfJson(),
-    if (ipv6Addresses != null) 'ipv6_addresses': ipv6Addresses!.toTfJson(),
-    if (ipv6PrefixCount != null)
-      'ipv6_prefix_count': ipv6PrefixCount!.toTfJson(),
-    if (ipv6Prefixes != null) 'ipv6_prefixes': ipv6Prefixes!.toTfJson(),
-    if (networkCardIndex != null)
-      'network_card_index': networkCardIndex!.toTfJson(),
-    if (networkInterfaceId != null)
-      'network_interface_id': networkInterfaceId!.toTfJson(),
-    if (primaryIpv6 != null) 'primary_ipv6': primaryIpv6!.toTfJson(),
-    if (privateIpAddress != null)
-      'private_ip_address': privateIpAddress!.toTfJson(),
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
-    if (connectionTrackingSpecification != null)
-      'connection_tracking_specification': connectionTrackingSpecification!
-          .encode(),
-    if (enaSrdSpecification != null)
-      'ena_srd_specification': enaSrdSpecification!.encode(),
+    'associate_carrier_ip_address': ?associateCarrierIpAddress?.toTfJson(),
+    'associate_public_ip_address': ?associatePublicIpAddress?.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'device_index': ?deviceIndex?.toTfJson(),
+    'ena_queue_count': ?enaQueueCount?.toTfJson(),
+    'interface_type': ?interfaceType?.toTfJson(),
+    'ipv4_address_count': ?ipv4AddressCount?.toTfJson(),
+    'ipv4_addresses': ?ipv4Addresses?.toTfJson(),
+    'ipv4_prefix_count': ?ipv4PrefixCount?.toTfJson(),
+    'ipv4_prefixes': ?ipv4Prefixes?.toTfJson(),
+    'ipv6_address_count': ?ipv6AddressCount?.toTfJson(),
+    'ipv6_addresses': ?ipv6Addresses?.toTfJson(),
+    'ipv6_prefix_count': ?ipv6PrefixCount?.toTfJson(),
+    'ipv6_prefixes': ?ipv6Prefixes?.toTfJson(),
+    'network_card_index': ?networkCardIndex?.toTfJson(),
+    'network_interface_id': ?networkInterfaceId?.toTfJson(),
+    'primary_ipv6': ?primaryIpv6?.toTfJson(),
+    'private_ip_address': ?privateIpAddress?.toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
+    'subnet_id': ?subnetId?.encodeAs('id').toTfJson(),
+    'connection_tracking_specification': ?connectionTrackingSpecification
+        ?.encode(),
+    'ena_srd_specification': ?enaSrdSpecification?.encode(),
   };
 }
 
@@ -1554,11 +1511,9 @@ final class LaunchTemplateNetworkInterfacesConnectionTrackingSpecification {
   final TfArg<num>? udpTimeout;
 
   Map<String, Object?> encode() => {
-    if (tcpEstablishedTimeout != null)
-      'tcp_established_timeout': tcpEstablishedTimeout!.toTfJson(),
-    if (udpStreamTimeout != null)
-      'udp_stream_timeout': udpStreamTimeout!.toTfJson(),
-    if (udpTimeout != null) 'udp_timeout': udpTimeout!.toTfJson(),
+    'tcp_established_timeout': ?tcpEstablishedTimeout?.toTfJson(),
+    'udp_stream_timeout': ?udpStreamTimeout?.toTfJson(),
+    'udp_timeout': ?udpTimeout?.toTfJson(),
   };
 }
 
@@ -1577,9 +1532,8 @@ final class LaunchTemplateNetworkInterfacesEnaSrdSpecification {
   enaSrdUdpSpecification;
 
   Map<String, Object?> encode() => {
-    if (enaSrdEnabled != null) 'ena_srd_enabled': enaSrdEnabled!.toTfJson(),
-    if (enaSrdUdpSpecification != null)
-      'ena_srd_udp_specification': enaSrdUdpSpecification!.encode(),
+    'ena_srd_enabled': ?enaSrdEnabled?.toTfJson(),
+    'ena_srd_udp_specification': ?enaSrdUdpSpecification?.encode(),
   };
 }
 
@@ -1594,8 +1548,7 @@ final class LaunchTemplateNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecifica
   final TfArg<bool>? enaSrdUdpEnabled;
 
   Map<String, Object?> encode() => {
-    if (enaSrdUdpEnabled != null)
-      'ena_srd_udp_enabled': enaSrdUdpEnabled!.toTfJson(),
+    'ena_srd_udp_enabled': ?enaSrdUdpEnabled?.toTfJson(),
   };
 }
 
@@ -1609,8 +1562,7 @@ final class LaunchTemplateNetworkPerformanceOptions {
   bandwidthWeighting;
 
   Map<String, Object?> encode() => {
-    if (bandwidthWeighting != null)
-      'bandwidth_weighting': bandwidthWeighting!.toTfJson(),
+    'bandwidth_weighting': ?bandwidthWeighting?.toTfJson(),
   };
 }
 
@@ -1657,15 +1609,13 @@ final class LaunchTemplatePlacement {
   final TfArg<LaunchTemplatePlacementTenancy>? tenancy;
 
   Map<String, Object?> encode() => {
-    if (affinity != null) 'affinity': affinity!.toTfJson(),
-    if (availabilityZone != null)
-      'availability_zone': availabilityZone!.toTfJson(),
+    'affinity': ?affinity?.toTfJson(),
+    'availability_zone': ?availabilityZone?.toTfJson(),
     ...?group?.encode(),
     ...?host?.encode(),
-    if (partitionNumber != null)
-      'partition_number': partitionNumber!.toTfJson(),
-    if (spreadDomain != null) 'spread_domain': spreadDomain!.toTfJson(),
-    if (tenancy != null) 'tenancy': tenancy!.toTfJson(),
+    'partition_number': ?partitionNumber?.toTfJson(),
+    'spread_domain': ?spreadDomain?.toTfJson(),
+    'tenancy': ?tenancy?.toTfJson(),
   };
 }
 
@@ -1800,13 +1750,11 @@ final class LaunchTemplatePrivateDnsNameOptions {
   final TfArg<LaunchTemplatePrivateDnsNameOptionsHostnameType>? hostnameType;
 
   Map<String, Object?> encode() => {
-    if (enableResourceNameDnsARecord != null)
-      'enable_resource_name_dns_a_record': enableResourceNameDnsARecord!
-          .toTfJson(),
-    if (enableResourceNameDnsAaaaRecord != null)
-      'enable_resource_name_dns_aaaa_record': enableResourceNameDnsAaaaRecord!
-          .toTfJson(),
-    if (hostnameType != null) 'hostname_type': hostnameType!.toTfJson(),
+    'enable_resource_name_dns_a_record': ?enableResourceNameDnsARecord
+        ?.toTfJson(),
+    'enable_resource_name_dns_aaaa_record': ?enableResourceNameDnsAaaaRecord
+        ?.toTfJson(),
+    'hostname_type': ?hostnameType?.toTfJson(),
   };
 }
 
@@ -1849,18 +1797,13 @@ final class LaunchTemplateSecondaryInterfaces {
   final TfArg<String>? secondarySubnetId;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
-    if (deviceIndex != null) 'device_index': deviceIndex!.toTfJson(),
-    if (interfaceType != null) 'interface_type': interfaceType!.toTfJson(),
-    if (networkCardIndex != null)
-      'network_card_index': networkCardIndex!.toTfJson(),
-    if (privateIpAddressCount != null)
-      'private_ip_address_count': privateIpAddressCount!.toTfJson(),
-    if (privateIpAddresses != null)
-      'private_ip_addresses': privateIpAddresses!.toTfJson(),
-    if (secondarySubnetId != null)
-      'secondary_subnet_id': secondarySubnetId!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
+    'device_index': ?deviceIndex?.toTfJson(),
+    'interface_type': ?interfaceType?.toTfJson(),
+    'network_card_index': ?networkCardIndex?.toTfJson(),
+    'private_ip_address_count': ?privateIpAddressCount?.toTfJson(),
+    'private_ip_addresses': ?privateIpAddresses?.toTfJson(),
+    'secondary_subnet_id': ?secondarySubnetId?.toTfJson(),
   };
 }
 
@@ -1884,8 +1827,8 @@ final class LaunchTemplateTagSpecifications {
   final TfArg<Map<String, String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (resourceType != null) 'resource_type': resourceType!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'resource_type': ?resourceType?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -2068,24 +2011,22 @@ final class AwsLaunchTemplate extends Resource {
          terraformType: tfType,
          argMap: {
            ...?defaultVersion?.argMap,
-           if (description != null) 'description': description,
-           if (disableApiStop != null) 'disable_api_stop': disableApiStop,
-           if (disableApiTermination != null)
-             'disable_api_termination': disableApiTermination,
-           if (ebsOptimized != null) 'ebs_optimized': ebsOptimized,
-           if (imageId != null) 'image_id': imageId,
-           if (instanceInitiatedShutdownBehavior != null)
-             'instance_initiated_shutdown_behavior':
-                 instanceInitiatedShutdownBehavior,
+           'description': ?description,
+           'disable_api_stop': ?disableApiStop,
+           'disable_api_termination': ?disableApiTermination,
+           'ebs_optimized': ?ebsOptimized,
+           'image_id': ?imageId,
+           'instance_initiated_shutdown_behavior':
+               ?instanceInitiatedShutdownBehavior,
            ...?instance?.argMap,
-           if (kernelId != null) 'kernel_id': kernelId,
-           if (keyName != null) 'key_name': keyName,
+           'kernel_id': ?kernelId,
+           'key_name': ?keyName,
            ...?name?.argMap,
-           if (ramDiskId != null) 'ram_disk_id': ramDiskId,
-           if (region != null) 'region': region,
+           'ram_disk_id': ?ramDiskId,
+           'region': ?region,
            ...?securityGroups?.argMap,
-           if (tags != null) 'tags': tags,
-           if (userData != null) 'user_data': userData,
+           'tags': ?tags,
+           'user_data': ?userData,
            if (blockDeviceMappings != null)
              'block_device_mappings': TfArg.literal([
                for (final e in blockDeviceMappings) e.encode(),

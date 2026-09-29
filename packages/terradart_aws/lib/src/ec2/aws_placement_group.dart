@@ -48,11 +48,11 @@ final class AwsPlacementGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (partitionCount != null) 'partition_count': partitionCount,
-           if (region != null) 'region': region,
-           if (spreadLevel != null) 'spread_level': spreadLevel,
+           'partition_count': ?partitionCount,
+           'region': ?region,
+           'spread_level': ?spreadLevel,
            'strategy': strategy,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

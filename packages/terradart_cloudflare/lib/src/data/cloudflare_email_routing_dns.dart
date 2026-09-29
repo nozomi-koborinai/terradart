@@ -23,10 +23,7 @@ final class DataCloudflareEmailRoutingDns extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (subdomain != null) 'subdomain': subdomain,
-           'zone_id': zoneId,
-         },
+         argMap: {'subdomain': ?subdomain, 'zone_id': zoneId},
        );
 
   @override

@@ -33,9 +33,9 @@ final class AwsGrafanaLicenseAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (grafanaToken != null) 'grafana_token': grafanaToken,
+           'grafana_token': ?grafanaToken,
            'license_type': licenseType,
-           if (region != null) 'region': region,
+           'region': ?region,
            'workspace_id': workspaceId,
          },
        );

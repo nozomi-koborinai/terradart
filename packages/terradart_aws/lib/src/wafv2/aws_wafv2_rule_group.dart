@@ -192,7 +192,7 @@ final class Wafv2RuleGroupRule {
     'name': name.toTfJson(),
     'priority': priority.toTfJson(),
     'action': action.encode(),
-    if (captchaConfig != null) 'captcha_config': captchaConfig!.encode(),
+    'captcha_config': ?captchaConfig?.encode(),
     if (ruleLabel != null)
       'rule_label': [for (final e in ruleLabel!) e.encode()],
     'statement': statement.encode(),
@@ -223,11 +223,11 @@ final class Wafv2RuleGroupRuleAction {
   final Wafv2RuleGroupRuleActionAllow? count;
 
   Map<String, Object?> encode() => {
-    if (allow != null) 'allow': allow!.encode(),
-    if (block != null) 'block': block!.encode(),
-    if (captcha != null) 'captcha': captcha!.encode(),
-    if (challenge != null) 'challenge': challenge!.encode(),
-    if (count != null) 'count': count!.encode(),
+    'allow': ?allow?.encode(),
+    'block': ?block?.encode(),
+    'captcha': ?captcha?.encode(),
+    'challenge': ?challenge?.encode(),
+    'count': ?count?.encode(),
   };
 }
 
@@ -242,8 +242,7 @@ final class Wafv2RuleGroupRuleActionAllow {
   customRequestHandling;
 
   Map<String, Object?> encode() => {
-    if (customRequestHandling != null)
-      'custom_request_handling': customRequestHandling!.encode(),
+    'custom_request_handling': ?customRequestHandling?.encode(),
   };
 }
 
@@ -293,7 +292,7 @@ final class Wafv2RuleGroupRuleActionBlock {
   final Wafv2RuleGroupRuleActionBlockCustomResponse? customResponse;
 
   Map<String, Object?> encode() => {
-    if (customResponse != null) 'custom_response': customResponse!.encode(),
+    'custom_response': ?customResponse?.encode(),
   };
 }
 
@@ -315,8 +314,7 @@ final class Wafv2RuleGroupRuleActionBlockCustomResponse {
   responseHeader;
 
   Map<String, Object?> encode() => {
-    if (customResponseBodyKey != null)
-      'custom_response_body_key': customResponseBodyKey!.toTfJson(),
+    'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),
     'response_code': responseCode.toTfJson(),
     if (responseHeader != null)
       'response_header': [for (final e in responseHeader!) e.encode()],
@@ -333,8 +331,7 @@ final class Wafv2RuleGroupRuleCaptchaConfig {
   immunityTimeProperty;
 
   Map<String, Object?> encode() => {
-    if (immunityTimeProperty != null)
-      'immunity_time_property': immunityTimeProperty!.encode(),
+    'immunity_time_property': ?immunityTimeProperty?.encode(),
   };
 }
 
@@ -348,9 +345,7 @@ final class Wafv2RuleGroupRuleCaptchaConfigImmunityTimeProperty {
 
   final TfArg<num>? immunityTime;
 
-  Map<String, Object?> encode() => {
-    if (immunityTime != null) 'immunity_time': immunityTime!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'immunity_time': ?immunityTime?.toTfJson()};
 }
 
 /// Typed helper for the `rule.rule_label` block of
@@ -418,32 +413,21 @@ final class Wafv2RuleGroupRuleStatement {
   final Wafv2RuleGroupRuleStatementXssMatchStatement? xssMatchStatement;
 
   Map<String, Object?> encode() => {
-    if (andStatement != null) 'and_statement': andStatement!.encode(),
-    if (asnMatchStatement != null)
-      'asn_match_statement': asnMatchStatement!.encode(),
-    if (byteMatchStatement != null)
-      'byte_match_statement': byteMatchStatement!.encode(),
-    if (geoMatchStatement != null)
-      'geo_match_statement': geoMatchStatement!.encode(),
-    if (ipSetReferenceStatement != null)
-      'ip_set_reference_statement': ipSetReferenceStatement!.encode(),
-    if (labelMatchStatement != null)
-      'label_match_statement': labelMatchStatement!.encode(),
-    if (notStatement != null) 'not_statement': notStatement!.encode(),
-    if (orStatement != null) 'or_statement': orStatement!.encode(),
-    if (rateBasedStatement != null)
-      'rate_based_statement': rateBasedStatement!.encode(),
-    if (regexMatchStatement != null)
-      'regex_match_statement': regexMatchStatement!.encode(),
-    if (regexPatternSetReferenceStatement != null)
-      'regex_pattern_set_reference_statement':
-          regexPatternSetReferenceStatement!.encode(),
-    if (sizeConstraintStatement != null)
-      'size_constraint_statement': sizeConstraintStatement!.encode(),
-    if (sqliMatchStatement != null)
-      'sqli_match_statement': sqliMatchStatement!.encode(),
-    if (xssMatchStatement != null)
-      'xss_match_statement': xssMatchStatement!.encode(),
+    'and_statement': ?andStatement?.encode(),
+    'asn_match_statement': ?asnMatchStatement?.encode(),
+    'byte_match_statement': ?byteMatchStatement?.encode(),
+    'geo_match_statement': ?geoMatchStatement?.encode(),
+    'ip_set_reference_statement': ?ipSetReferenceStatement?.encode(),
+    'label_match_statement': ?labelMatchStatement?.encode(),
+    'not_statement': ?notStatement?.encode(),
+    'or_statement': ?orStatement?.encode(),
+    'rate_based_statement': ?rateBasedStatement?.encode(),
+    'regex_match_statement': ?regexMatchStatement?.encode(),
+    'regex_pattern_set_reference_statement': ?regexPatternSetReferenceStatement
+        ?.encode(),
+    'size_constraint_statement': ?sizeConstraintStatement?.encode(),
+    'sqli_match_statement': ?sqliMatchStatement?.encode(),
+    'xss_match_statement': ?xssMatchStatement?.encode(),
   };
 }
 
@@ -515,30 +499,20 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatement {
   final Wafv2RuleGroupRuleStatementXssMatchStatement? xssMatchStatement;
 
   Map<String, Object?> encode() => {
-    if (andStatement != null) 'and_statement': andStatement!.encode(),
-    if (asnMatchStatement != null)
-      'asn_match_statement': asnMatchStatement!.encode(),
-    if (byteMatchStatement != null)
-      'byte_match_statement': byteMatchStatement!.encode(),
-    if (geoMatchStatement != null)
-      'geo_match_statement': geoMatchStatement!.encode(),
-    if (ipSetReferenceStatement != null)
-      'ip_set_reference_statement': ipSetReferenceStatement!.encode(),
-    if (labelMatchStatement != null)
-      'label_match_statement': labelMatchStatement!.encode(),
-    if (notStatement != null) 'not_statement': notStatement!.encode(),
-    if (orStatement != null) 'or_statement': orStatement!.encode(),
-    if (regexMatchStatement != null)
-      'regex_match_statement': regexMatchStatement!.encode(),
-    if (regexPatternSetReferenceStatement != null)
-      'regex_pattern_set_reference_statement':
-          regexPatternSetReferenceStatement!.encode(),
-    if (sizeConstraintStatement != null)
-      'size_constraint_statement': sizeConstraintStatement!.encode(),
-    if (sqliMatchStatement != null)
-      'sqli_match_statement': sqliMatchStatement!.encode(),
-    if (xssMatchStatement != null)
-      'xss_match_statement': xssMatchStatement!.encode(),
+    'and_statement': ?andStatement?.encode(),
+    'asn_match_statement': ?asnMatchStatement?.encode(),
+    'byte_match_statement': ?byteMatchStatement?.encode(),
+    'geo_match_statement': ?geoMatchStatement?.encode(),
+    'ip_set_reference_statement': ?ipSetReferenceStatement?.encode(),
+    'label_match_statement': ?labelMatchStatement?.encode(),
+    'not_statement': ?notStatement?.encode(),
+    'or_statement': ?orStatement?.encode(),
+    'regex_match_statement': ?regexMatchStatement?.encode(),
+    'regex_pattern_set_reference_statement': ?regexPatternSetReferenceStatement
+        ?.encode(),
+    'size_constraint_statement': ?sizeConstraintStatement?.encode(),
+    'sqli_match_statement': ?sqliMatchStatement?.encode(),
+    'xss_match_statement': ?xssMatchStatement?.encode(),
   };
 }
 
@@ -615,30 +589,20 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatemen
   final Wafv2RuleGroupRuleStatementXssMatchStatement? xssMatchStatement;
 
   Map<String, Object?> encode() => {
-    if (andStatement != null) 'and_statement': andStatement!.encode(),
-    if (asnMatchStatement != null)
-      'asn_match_statement': asnMatchStatement!.encode(),
-    if (byteMatchStatement != null)
-      'byte_match_statement': byteMatchStatement!.encode(),
-    if (geoMatchStatement != null)
-      'geo_match_statement': geoMatchStatement!.encode(),
-    if (ipSetReferenceStatement != null)
-      'ip_set_reference_statement': ipSetReferenceStatement!.encode(),
-    if (labelMatchStatement != null)
-      'label_match_statement': labelMatchStatement!.encode(),
-    if (notStatement != null) 'not_statement': notStatement!.encode(),
-    if (orStatement != null) 'or_statement': orStatement!.encode(),
-    if (regexMatchStatement != null)
-      'regex_match_statement': regexMatchStatement!.encode(),
-    if (regexPatternSetReferenceStatement != null)
-      'regex_pattern_set_reference_statement':
-          regexPatternSetReferenceStatement!.encode(),
-    if (sizeConstraintStatement != null)
-      'size_constraint_statement': sizeConstraintStatement!.encode(),
-    if (sqliMatchStatement != null)
-      'sqli_match_statement': sqliMatchStatement!.encode(),
-    if (xssMatchStatement != null)
-      'xss_match_statement': xssMatchStatement!.encode(),
+    'and_statement': ?andStatement?.encode(),
+    'asn_match_statement': ?asnMatchStatement?.encode(),
+    'byte_match_statement': ?byteMatchStatement?.encode(),
+    'geo_match_statement': ?geoMatchStatement?.encode(),
+    'ip_set_reference_statement': ?ipSetReferenceStatement?.encode(),
+    'label_match_statement': ?labelMatchStatement?.encode(),
+    'not_statement': ?notStatement?.encode(),
+    'or_statement': ?orStatement?.encode(),
+    'regex_match_statement': ?regexMatchStatement?.encode(),
+    'regex_pattern_set_reference_statement': ?regexPatternSetReferenceStatement
+        ?.encode(),
+    'size_constraint_statement': ?sizeConstraintStatement?.encode(),
+    'sqli_match_statement': ?sqliMatchStatement?.encode(),
+    'xss_match_statement': ?xssMatchStatement?.encode(),
   };
 }
 
@@ -703,27 +667,17 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatemen
   final Wafv2RuleGroupRuleStatementXssMatchStatement? xssMatchStatement;
 
   Map<String, Object?> encode() => {
-    if (asnMatchStatement != null)
-      'asn_match_statement': asnMatchStatement!.encode(),
-    if (byteMatchStatement != null)
-      'byte_match_statement': byteMatchStatement!.encode(),
-    if (geoMatchStatement != null)
-      'geo_match_statement': geoMatchStatement!.encode(),
-    if (ipSetReferenceStatement != null)
-      'ip_set_reference_statement': ipSetReferenceStatement!.encode(),
-    if (labelMatchStatement != null)
-      'label_match_statement': labelMatchStatement!.encode(),
-    if (regexMatchStatement != null)
-      'regex_match_statement': regexMatchStatement!.encode(),
-    if (regexPatternSetReferenceStatement != null)
-      'regex_pattern_set_reference_statement':
-          regexPatternSetReferenceStatement!.encode(),
-    if (sizeConstraintStatement != null)
-      'size_constraint_statement': sizeConstraintStatement!.encode(),
-    if (sqliMatchStatement != null)
-      'sqli_match_statement': sqliMatchStatement!.encode(),
-    if (xssMatchStatement != null)
-      'xss_match_statement': xssMatchStatement!.encode(),
+    'asn_match_statement': ?asnMatchStatement?.encode(),
+    'byte_match_statement': ?byteMatchStatement?.encode(),
+    'geo_match_statement': ?geoMatchStatement?.encode(),
+    'ip_set_reference_statement': ?ipSetReferenceStatement?.encode(),
+    'label_match_statement': ?labelMatchStatement?.encode(),
+    'regex_match_statement': ?regexMatchStatement?.encode(),
+    'regex_pattern_set_reference_statement': ?regexPatternSetReferenceStatement
+        ?.encode(),
+    'size_constraint_statement': ?sizeConstraintStatement?.encode(),
+    'sqli_match_statement': ?sqliMatchStatement?.encode(),
+    'xss_match_statement': ?xssMatchStatement?.encode(),
   };
 }
 
@@ -744,8 +698,7 @@ final class Wafv2RuleGroupRuleStatementAsnMatchStatement {
 
   Map<String, Object?> encode() => {
     'asn_list': asnList.toTfJson(),
-    if (forwardedIpConfig != null)
-      'forwarded_ip_config': forwardedIpConfig!.encode(),
+    'forwarded_ip_config': ?forwardedIpConfig?.encode(),
   };
 }
 
@@ -801,7 +754,7 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatement {
   Map<String, Object?> encode() => {
     'positional_constraint': positionalConstraint.toTfJson(),
     'search_string': searchString.toTfJson(),
-    if (fieldToMatch != null) 'field_to_match': fieldToMatch!.encode(),
+    'field_to_match': ?fieldToMatch?.encode(),
     if (preParseTextTransformation != null)
       'pre_parse_text_transformation': [
         for (final e in preParseTextTransformation!) e.encode(),
@@ -874,23 +827,21 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch {
   uriPath;
 
   Map<String, Object?> encode() => {
-    if (allQueryArguments != null)
-      'all_query_arguments': allQueryArguments!.encode(),
-    if (body != null) 'body': body!.encode(),
-    if (cookies != null) 'cookies': cookies!.encode(),
+    'all_query_arguments': ?allQueryArguments?.encode(),
+    'body': ?body?.encode(),
+    'cookies': ?cookies?.encode(),
     if (headerOrder != null)
       'header_order': [for (final e in headerOrder!) e.encode()],
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
-    if (ja3Fingerprint != null) 'ja3_fingerprint': ja3Fingerprint!.encode(),
-    if (ja4Fingerprint != null) 'ja4_fingerprint': ja4Fingerprint!.encode(),
-    if (jsonBody != null) 'json_body': jsonBody!.encode(),
-    if (method != null) 'method': method!.encode(),
-    if (queryString != null) 'query_string': queryString!.encode(),
-    if (singleHeader != null) 'single_header': singleHeader!.encode(),
-    if (singleQueryArgument != null)
-      'single_query_argument': singleQueryArgument!.encode(),
-    if (uriFragment != null) 'uri_fragment': uriFragment!.encode(),
-    if (uriPath != null) 'uri_path': uriPath!.encode(),
+    'ja3_fingerprint': ?ja3Fingerprint?.encode(),
+    'ja4_fingerprint': ?ja4Fingerprint?.encode(),
+    'json_body': ?jsonBody?.encode(),
+    'method': ?method?.encode(),
+    'query_string': ?queryString?.encode(),
+    'single_header': ?singleHeader?.encode(),
+    'single_query_argument': ?singleQueryArgument?.encode(),
+    'uri_fragment': ?uriFragment?.encode(),
+    'uri_path': ?uriPath?.encode(),
   };
 }
 
@@ -916,8 +867,7 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchBody {
   final TfArg<String>? oversizeHandling;
 
   Map<String, Object?> encode() => {
-    if (oversizeHandling != null)
-      'oversize_handling': oversizeHandling!.toTfJson(),
+    'oversize_handling': ?oversizeHandling?.toTfJson(),
   };
 }
 
@@ -967,11 +917,9 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookiesMatc
   all;
 
   Map<String, Object?> encode() => {
-    if (excludedCookies != null)
-      'excluded_cookies': excludedCookies!.toTfJson(),
-    if (includedCookies != null)
-      'included_cookies': includedCookies!.toTfJson(),
-    if (all != null) 'all': all!.encode(),
+    'excluded_cookies': ?excludedCookies?.toTfJson(),
+    'included_cookies': ?includedCookies?.toTfJson(),
+    'all': ?all?.encode(),
   };
 }
 
@@ -1035,11 +983,9 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeadersMatc
   all;
 
   Map<String, Object?> encode() => {
-    if (excludedHeaders != null)
-      'excluded_headers': excludedHeaders!.toTfJson(),
-    if (includedHeaders != null)
-      'included_headers': includedHeaders!.toTfJson(),
-    if (all != null) 'all': all!.encode(),
+    'excluded_headers': ?excludedHeaders?.toTfJson(),
+    'included_headers': ?includedHeaders?.toTfJson(),
+    'all': ?all?.encode(),
   };
 }
 
@@ -1081,11 +1027,9 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBody {
   matchPattern;
 
   Map<String, Object?> encode() => {
-    if (invalidFallbackBehavior != null)
-      'invalid_fallback_behavior': invalidFallbackBehavior!.toTfJson(),
+    'invalid_fallback_behavior': ?invalidFallbackBehavior?.toTfJson(),
     'match_scope': matchScope.toTfJson(),
-    if (oversizeHandling != null)
-      'oversize_handling': oversizeHandling!.toTfJson(),
+    'oversize_handling': ?oversizeHandling?.toTfJson(),
     'match_pattern': matchPattern.encode(),
   };
 }
@@ -1106,8 +1050,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBodyMat
   all;
 
   Map<String, Object?> encode() => {
-    if (includedPaths != null) 'included_paths': includedPaths!.toTfJson(),
-    if (all != null) 'all': all!.encode(),
+    'included_paths': ?includedPaths?.toTfJson(),
+    'all': ?all?.encode(),
   };
 }
 
@@ -1123,8 +1067,7 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchUriFragment
   final TfArg<String>? fallbackBehavior;
 
   Map<String, Object?> encode() => {
-    if (fallbackBehavior != null)
-      'fallback_behavior': fallbackBehavior!.toTfJson(),
+    'fallback_behavior': ?fallbackBehavior?.toTfJson(),
   };
 }
 
@@ -1165,8 +1108,7 @@ final class Wafv2RuleGroupRuleStatementGeoMatchStatement {
 
   Map<String, Object?> encode() => {
     'country_codes': countryCodes.toTfJson(),
-    if (forwardedIpConfig != null)
-      'forwarded_ip_config': forwardedIpConfig!.encode(),
+    'forwarded_ip_config': ?forwardedIpConfig?.encode(),
   };
 }
 
@@ -1187,8 +1129,7 @@ final class Wafv2RuleGroupRuleStatementIpSetReferenceStatement {
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (ipSetForwardedIpConfig != null)
-      'ip_set_forwarded_ip_config': ipSetForwardedIpConfig!.encode(),
+    'ip_set_forwarded_ip_config': ?ipSetForwardedIpConfig?.encode(),
   };
 }
 
@@ -1264,7 +1205,7 @@ final class Wafv2RuleGroupRuleStatementRegexMatchStatement {
 
   Map<String, Object?> encode() => {
     'regex_string': regexString.toTfJson(),
-    if (fieldToMatch != null) 'field_to_match': fieldToMatch!.encode(),
+    'field_to_match': ?fieldToMatch?.encode(),
     if (preParseTextTransformation != null)
       'pre_parse_text_transformation': [
         for (final e in preParseTextTransformation!) e.encode(),
@@ -1301,7 +1242,7 @@ final class Wafv2RuleGroupRuleStatementRegexPatternSetReferenceStatement {
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (fieldToMatch != null) 'field_to_match': fieldToMatch!.encode(),
+    'field_to_match': ?fieldToMatch?.encode(),
     if (preParseTextTransformation != null)
       'pre_parse_text_transformation': [
         for (final e in preParseTextTransformation!) e.encode(),
@@ -1342,7 +1283,7 @@ final class Wafv2RuleGroupRuleStatementSizeConstraintStatement {
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
     'size': size.toTfJson(),
-    if (fieldToMatch != null) 'field_to_match': fieldToMatch!.encode(),
+    'field_to_match': ?fieldToMatch?.encode(),
     if (preParseTextTransformation != null)
       'pre_parse_text_transformation': [
         for (final e in preParseTextTransformation!) e.encode(),
@@ -1378,9 +1319,8 @@ final class Wafv2RuleGroupRuleStatementSqliMatchStatement {
   textTransformation;
 
   Map<String, Object?> encode() => {
-    if (sensitivityLevel != null)
-      'sensitivity_level': sensitivityLevel!.toTfJson(),
-    if (fieldToMatch != null) 'field_to_match': fieldToMatch!.encode(),
+    'sensitivity_level': ?sensitivityLevel?.toTfJson(),
+    'field_to_match': ?fieldToMatch?.encode(),
     if (preParseTextTransformation != null)
       'pre_parse_text_transformation': [
         for (final e in preParseTextTransformation!) e.encode(),
@@ -1413,7 +1353,7 @@ final class Wafv2RuleGroupRuleStatementXssMatchStatement {
   textTransformation;
 
   Map<String, Object?> encode() => {
-    if (fieldToMatch != null) 'field_to_match': fieldToMatch!.encode(),
+    'field_to_match': ?fieldToMatch?.encode(),
     if (preParseTextTransformation != null)
       'pre_parse_text_transformation': [
         for (final e in preParseTextTransformation!) e.encode(),
@@ -1450,17 +1390,13 @@ final class Wafv2RuleGroupRuleStatementRateBasedStatement {
   final Wafv2RuleGroupRuleStatementAndStatementStatement? scopeDownStatement;
 
   Map<String, Object?> encode() => {
-    if (aggregateKeyType != null)
-      'aggregate_key_type': aggregateKeyType!.toTfJson(),
-    if (evaluationWindowSec != null)
-      'evaluation_window_sec': evaluationWindowSec!.toTfJson(),
+    'aggregate_key_type': ?aggregateKeyType?.toTfJson(),
+    'evaluation_window_sec': ?evaluationWindowSec?.toTfJson(),
     'limit': limit.toTfJson(),
     if (customKey != null)
       'custom_key': [for (final e in customKey!) e.encode()],
-    if (forwardedIpConfig != null)
-      'forwarded_ip_config': forwardedIpConfig!.encode(),
-    if (scopeDownStatement != null)
-      'scope_down_statement': scopeDownStatement!.encode(),
+    'forwarded_ip_config': ?forwardedIpConfig?.encode(),
+    'scope_down_statement': ?scopeDownStatement?.encode(),
   };
 }
 
@@ -1533,18 +1469,18 @@ final class Wafv2RuleGroupRuleStatementRateBasedStatementCustomKey {
   uriPath;
 
   Map<String, Object?> encode() => {
-    if (asn != null) 'asn': asn!.encode(),
-    if (cookie != null) 'cookie': cookie!.encode(),
-    if (forwardedIp != null) 'forwarded_ip': forwardedIp!.encode(),
-    if (header != null) 'header': header!.encode(),
-    if (httpMethod != null) 'http_method': httpMethod!.encode(),
-    if (ip != null) 'ip': ip!.encode(),
-    if (ja3Fingerprint != null) 'ja3_fingerprint': ja3Fingerprint!.encode(),
-    if (ja4Fingerprint != null) 'ja4_fingerprint': ja4Fingerprint!.encode(),
-    if (labelNamespace != null) 'label_namespace': labelNamespace!.encode(),
-    if (queryArgument != null) 'query_argument': queryArgument!.encode(),
-    if (queryString != null) 'query_string': queryString!.encode(),
-    if (uriPath != null) 'uri_path': uriPath!.encode(),
+    'asn': ?asn?.encode(),
+    'cookie': ?cookie?.encode(),
+    'forwarded_ip': ?forwardedIp?.encode(),
+    'header': ?header?.encode(),
+    'http_method': ?httpMethod?.encode(),
+    'ip': ?ip?.encode(),
+    'ja3_fingerprint': ?ja3Fingerprint?.encode(),
+    'ja4_fingerprint': ?ja4Fingerprint?.encode(),
+    'label_namespace': ?labelNamespace?.encode(),
+    'query_argument': ?queryArgument?.encode(),
+    'query_string': ?queryString?.encode(),
+    'uri_path': ?uriPath?.encode(),
   };
 }
 
@@ -1650,12 +1586,12 @@ final class AwsWafv2RuleGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'capacity': capacity,
-           if (description != null) 'description': description,
+           'description': ?description,
            ...?name?.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            ...?rules?.argMap,
            'scope': scope,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (customResponseBody != null)
              'custom_response_body': TfArg.literal([
                for (final e in customResponseBody) e.encode(),

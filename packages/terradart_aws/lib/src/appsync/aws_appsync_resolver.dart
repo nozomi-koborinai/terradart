@@ -90,8 +90,8 @@ final class AppsyncResolverCachingConfig {
   final TfArg<num>? ttl;
 
   Map<String, Object?> encode() => {
-    if (cachingKeys != null) 'caching_keys': cachingKeys!.toTfJson(),
-    if (ttl != null) 'ttl': ttl!.toTfJson(),
+    'caching_keys': ?cachingKeys?.toTfJson(),
+    'ttl': ?ttl?.toTfJson(),
   };
 }
 
@@ -103,9 +103,7 @@ final class AppsyncResolverPipelineConfig {
 
   final TfArg<List<Object?>>? functions;
 
-  Map<String, Object?> encode() => {
-    if (functions != null) 'functions': functions!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'functions': ?functions?.toTfJson()};
 }
 
 /// Typed helper for the `runtime` block of
@@ -154,12 +152,9 @@ final class AppsyncResolverSyncConfig {
   lambdaConflictHandlerConfig;
 
   Map<String, Object?> encode() => {
-    if (conflictDetection != null)
-      'conflict_detection': conflictDetection!.toTfJson(),
-    if (conflictHandler != null)
-      'conflict_handler': conflictHandler!.toTfJson(),
-    if (lambdaConflictHandlerConfig != null)
-      'lambda_conflict_handler_config': lambdaConflictHandlerConfig!.encode(),
+    'conflict_detection': ?conflictDetection?.toTfJson(),
+    'conflict_handler': ?conflictHandler?.toTfJson(),
+    'lambda_conflict_handler_config': ?lambdaConflictHandlerConfig?.encode(),
   };
 }
 
@@ -196,8 +191,7 @@ final class AppsyncResolverSyncConfigLambdaConflictHandlerConfig {
   final TfArg<String>? lambdaConflictHandlerArn;
 
   Map<String, Object?> encode() => {
-    if (lambdaConflictHandlerArn != null)
-      'lambda_conflict_handler_arn': lambdaConflictHandlerArn!.toTfJson(),
+    'lambda_conflict_handler_arn': ?lambdaConflictHandlerArn?.toTfJson(),
   };
 }
 
@@ -228,14 +222,14 @@ final class AwsAppsyncResolver extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (code != null) 'code': code,
+           'code': ?code,
            ...?backend?.argMap,
            'field': field,
-           if (kind != null) 'kind': kind,
-           if (maxBatchSize != null) 'max_batch_size': maxBatchSize,
-           if (region != null) 'region': region,
-           if (requestTemplate != null) 'request_template': requestTemplate,
-           if (responseTemplate != null) 'response_template': responseTemplate,
+           'kind': ?kind,
+           'max_batch_size': ?maxBatchSize,
+           'region': ?region,
+           'request_template': ?requestTemplate,
+           'response_template': ?responseTemplate,
            'type': type,
            if (cachingConfig != null)
              'caching_config': TfArg.literal(cachingConfig.encode()),

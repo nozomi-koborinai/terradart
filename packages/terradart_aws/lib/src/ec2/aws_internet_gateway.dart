@@ -24,9 +24,9 @@ final class AwsInternetGateway extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
+           'region': ?region,
+           'tags': ?tags,
+           'vpc_id': ?vpcId?.encodeAs('id'),
          },
        );
 

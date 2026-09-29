@@ -20,11 +20,7 @@ final class DataAwsAuditmanagerControl extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (region != null) 'region': region,
-           'type': type,
-         },
+         argMap: {'name': name, 'region': ?region, 'type': type},
        );
 
   @override

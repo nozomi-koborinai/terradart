@@ -58,7 +58,7 @@ final class ClouddomainsRegistrationContactSettingsAdminContact {
 
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
-    if (faxNumber != null) 'fax_number': faxNumber!.toTfJson(),
+    'fax_number': ?faxNumber?.toTfJson(),
     'phone_number': phoneNumber.toTfJson(),
     'postal_address': postalAddress.encode(),
   };
@@ -93,13 +93,12 @@ final class ClouddomainsRegistrationContactSettingsAdminContactPostalAddress {
   final TfArg<String> regionCode;
 
   Map<String, Object?> encode() => {
-    if (addressLines != null) 'address_lines': addressLines!.toTfJson(),
-    if (administrativeArea != null)
-      'administrative_area': administrativeArea!.toTfJson(),
-    if (locality != null) 'locality': locality!.toTfJson(),
-    if (organization != null) 'organization': organization!.toTfJson(),
-    if (postalCode != null) 'postal_code': postalCode!.toTfJson(),
-    if (recipients != null) 'recipients': recipients!.toTfJson(),
+    'address_lines': ?addressLines?.toTfJson(),
+    'administrative_area': ?administrativeArea?.toTfJson(),
+    'locality': ?locality?.toTfJson(),
+    'organization': ?organization?.toTfJson(),
+    'postal_code': ?postalCode?.toTfJson(),
+    'recipients': ?recipients?.toTfJson(),
     'region_code': regionCode.toTfJson(),
   };
 }
@@ -126,7 +125,7 @@ final class ClouddomainsRegistrationContactSettingsRegistrantContact {
 
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
-    if (faxNumber != null) 'fax_number': faxNumber!.toTfJson(),
+    'fax_number': ?faxNumber?.toTfJson(),
     'phone_number': phoneNumber.toTfJson(),
     'postal_address': postalAddress.encode(),
   };
@@ -161,13 +160,12 @@ final class ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddres
   final TfArg<String> regionCode;
 
   Map<String, Object?> encode() => {
-    if (addressLines != null) 'address_lines': addressLines!.toTfJson(),
-    if (administrativeArea != null)
-      'administrative_area': administrativeArea!.toTfJson(),
-    if (locality != null) 'locality': locality!.toTfJson(),
-    if (organization != null) 'organization': organization!.toTfJson(),
-    if (postalCode != null) 'postal_code': postalCode!.toTfJson(),
-    if (recipients != null) 'recipients': recipients!.toTfJson(),
+    'address_lines': ?addressLines?.toTfJson(),
+    'administrative_area': ?administrativeArea?.toTfJson(),
+    'locality': ?locality?.toTfJson(),
+    'organization': ?organization?.toTfJson(),
+    'postal_code': ?postalCode?.toTfJson(),
+    'recipients': ?recipients?.toTfJson(),
     'region_code': regionCode.toTfJson(),
   };
 }
@@ -194,7 +192,7 @@ final class ClouddomainsRegistrationContactSettingsTechnicalContact {
 
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
-    if (faxNumber != null) 'fax_number': faxNumber!.toTfJson(),
+    'fax_number': ?faxNumber?.toTfJson(),
     'phone_number': phoneNumber.toTfJson(),
     'postal_address': postalAddress.encode(),
   };
@@ -229,13 +227,12 @@ final class ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress
   final TfArg<String> regionCode;
 
   Map<String, Object?> encode() => {
-    if (addressLines != null) 'address_lines': addressLines!.toTfJson(),
-    if (administrativeArea != null)
-      'administrative_area': administrativeArea!.toTfJson(),
-    if (locality != null) 'locality': locality!.toTfJson(),
-    if (organization != null) 'organization': organization!.toTfJson(),
-    if (postalCode != null) 'postal_code': postalCode!.toTfJson(),
-    if (recipients != null) 'recipients': recipients!.toTfJson(),
+    'address_lines': ?addressLines?.toTfJson(),
+    'administrative_area': ?administrativeArea?.toTfJson(),
+    'locality': ?locality?.toTfJson(),
+    'organization': ?organization?.toTfJson(),
+    'postal_code': ?postalCode?.toTfJson(),
+    'recipients': ?recipients?.toTfJson(),
     'region_code': regionCode.toTfJson(),
   };
 }
@@ -251,7 +248,7 @@ final class ClouddomainsRegistrationDnsSettings {
   final List<ClouddomainsRegistrationDnsSettingsGlueRecords>? glueRecords;
 
   Map<String, Object?> encode() => {
-    if (customDns != null) 'custom_dns': customDns!.encode(),
+    'custom_dns': ?customDns?.encode(),
     if (glueRecords != null)
       'glue_records': [for (final e in glueRecords!) e.encode()],
   };
@@ -297,10 +294,10 @@ final class ClouddomainsRegistrationDnsSettingsCustomDnsDsRecords {
   final TfArg<num>? keyTag;
 
   Map<String, Object?> encode() => {
-    if (algorithm != null) 'algorithm': algorithm!.toTfJson(),
-    if (digest != null) 'digest': digest!.toTfJson(),
-    if (digestType != null) 'digest_type': digestType!.toTfJson(),
-    if (keyTag != null) 'key_tag': keyTag!.toTfJson(),
+    'algorithm': ?algorithm?.toTfJson(),
+    'digest': ?digest?.toTfJson(),
+    'digest_type': ?digestType?.toTfJson(),
+    'key_tag': ?keyTag?.toTfJson(),
   };
 }
 
@@ -322,8 +319,8 @@ final class ClouddomainsRegistrationDnsSettingsGlueRecords {
 
   Map<String, Object?> encode() => {
     'host_name': hostName.toTfJson(),
-    if (ipv4Addresses != null) 'ipv4_addresses': ipv4Addresses!.toTfJson(),
-    if (ipv6Addresses != null) 'ipv6_addresses': ipv6Addresses!.toTfJson(),
+    'ipv4_addresses': ?ipv4Addresses?.toTfJson(),
+    'ipv6_addresses': ?ipv6Addresses?.toTfJson(),
   };
 }
 
@@ -341,10 +338,8 @@ final class ClouddomainsRegistrationManagementSettings {
   final TfArg<String>? transferLockState;
 
   Map<String, Object?> encode() => {
-    if (preferredRenewalMethod != null)
-      'preferred_renewal_method': preferredRenewalMethod!.toTfJson(),
-    if (transferLockState != null)
-      'transfer_lock_state': transferLockState!.toTfJson(),
+    'preferred_renewal_method': ?preferredRenewalMethod?.toTfJson(),
+    'transfer_lock_state': ?transferLockState?.toTfJson(),
   };
 }
 
@@ -359,8 +354,8 @@ final class ClouddomainsRegistrationYearlyPrice {
   final TfArg<String>? units;
 
   Map<String, Object?> encode() => {
-    if (currencyCode != null) 'currency_code': currencyCode!.toTfJson(),
-    if (units != null) 'units': units!.toTfJson(),
+    'currency_code': ?currencyCode?.toTfJson(),
+    'units': ?units?.toTfJson(),
   };
 }
 
@@ -397,12 +392,12 @@ final class GoogleClouddomainsRegistration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (contactNotices != null) 'contact_notices': contactNotices,
+           'contact_notices': ?contactNotices,
            'domain_name': domainName,
-           if (domainNotices != null) 'domain_notices': domainNotices,
-           if (labels != null) 'labels': labels,
+           'domain_notices': ?domainNotices,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'contact_settings': TfArg.literal(contactSettings.encode()),
            if (dnsSettings != null)
              'dns_settings': TfArg.literal(dnsSettings.encode()),

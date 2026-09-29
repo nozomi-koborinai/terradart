@@ -35,11 +35,10 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
 
   Map<String, Object?> encode() => {
     'algorithm': algorithm.toTfJson(),
-    if (excludeVaults != null) 'exclude_vaults': excludeVaults!.toTfJson(),
+    'exclude_vaults': ?excludeVaults?.toTfJson(),
     'include_vaults': includeVaults.toTfJson(),
     'recovery_point_types': [for (final e in recoveryPointTypes) e.toTfJson()],
-    if (selectionWindowDays != null)
-      'selection_window_days': selectionWindowDays!.toTfJson(),
+    'selection_window_days': ?selectionWindowDays?.toTfJson(),
   };
 }
 
@@ -91,12 +90,11 @@ final class AwsBackupRestoreTestingPlan extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'schedule_expression': scheduleExpression,
-           if (scheduleExpressionTimezone != null)
-             'schedule_expression_timezone': scheduleExpressionTimezone,
-           if (startWindowHours != null) 'start_window_hours': startWindowHours,
-           if (tags != null) 'tags': tags,
+           'schedule_expression_timezone': ?scheduleExpressionTimezone,
+           'start_window_hours': ?startWindowHours,
+           'tags': ?tags,
            if (recoveryPointSelection != null)
              'recovery_point_selection': TfArg.literal([
                for (final e in recoveryPointSelection) e.encode(),

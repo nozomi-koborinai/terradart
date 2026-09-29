@@ -48,9 +48,9 @@ final class GoogleStorageObjectAcl extends Resource {
          argMap: {
            'bucket': bucket.encodeAs('name'),
            'object': object,
-           if (predefinedAcl != null) 'predefined_acl': predefinedAcl,
-           if (roleEntity != null) 'role_entity': roleEntity,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'predefined_acl': ?predefinedAcl,
+           'role_entity': ?roleEntity,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

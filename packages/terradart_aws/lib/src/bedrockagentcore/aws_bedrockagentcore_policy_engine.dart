@@ -26,12 +26,11 @@ final class AwsBedrockagentcorePolicyEngine extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (encryptionKeyArn != null)
-             'encryption_key_arn': encryptionKeyArn.encodeAs('arn'),
+           'description': ?description,
+           'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -27,10 +27,10 @@ final class DataGoogleParameterManagerRegionalParameterVersion extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
+           'location': ?location,
            'parameter': parameter,
            'parameter_version_id': parameterVersionId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -25,10 +25,10 @@ final class AwsVpcRouteServerEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'route_server_id': routeServerId,
            'subnet_id': subnetId.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

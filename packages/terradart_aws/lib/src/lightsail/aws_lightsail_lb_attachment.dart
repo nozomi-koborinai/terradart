@@ -24,7 +24,7 @@ final class AwsLightsailLbAttachment extends Resource {
          argMap: {
            'instance_name': instanceName,
            'lb_name': lbName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

@@ -169,17 +169,17 @@ final class GoogleChronicleNativeDashboard extends Resource {
            'location': location,
            'instance': instance,
            'display_name': displayName,
-           if (description != null) 'description': description,
-           if (access != null) 'access': access,
-           if (type != null) 'type': type,
-           if (isPinned != null) 'is_pinned': isPinned,
+           'description': ?description,
+           'access': ?access,
+           'type': ?type,
+           'is_pinned': ?isPinned,
            if (filters != null)
              'filters': TfArg.literal(
                filters.map((f) => f.toArgMap()).toList(),
              ),
-           if (charts != null) 'charts': charts,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'charts': ?charts,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

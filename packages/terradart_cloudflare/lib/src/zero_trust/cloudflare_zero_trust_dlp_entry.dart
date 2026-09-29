@@ -32,7 +32,7 @@ final class ZeroTrustDlpEntryPattern {
 
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
-    if (validation != null) 'validation': validation!.toTfJson(),
+    'validation': ?validation?.toTfJson(),
   };
 }
 
@@ -70,11 +70,11 @@ final class CloudflareZeroTrustDlpEntry extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
+           'description': ?description,
            'enabled': enabled,
            'name': name,
-           if (profileId != null) 'profile_id': profileId,
-           if (type != null) 'type': type,
+           'profile_id': ?profileId,
+           'type': ?type,
            'pattern': TfArg.literal(pattern.encode()),
          },
        );

@@ -44,8 +44,8 @@ final class GoogleComputeFirewallPolicy extends Resource {
          argMap: {
            'parent': parent,
            'short_name': shortName,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

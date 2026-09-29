@@ -38,7 +38,7 @@ final class GoogleApigeeEnvReferences extends Resource {
            'env_id': envId,
            'refers': refers,
            'resource_type': resourceType,
-           if (description != null) 'description': description,
+           'description': ?description,
          },
        );
 

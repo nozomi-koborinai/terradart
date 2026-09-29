@@ -42,7 +42,7 @@ final class R2BucketLockRules {
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'id': id.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'condition': condition.encode(),
   };
 }
@@ -64,8 +64,8 @@ final class R2BucketLockRulesCondition {
   final TfArg<R2BucketLockRulesConditionType> type;
 
   Map<String, Object?> encode() => {
-    if (date != null) 'date': date!.toTfJson(),
-    if (maxAgeSeconds != null) 'max_age_seconds': maxAgeSeconds!.toTfJson(),
+    'date': ?date?.toTfJson(),
+    'max_age_seconds': ?maxAgeSeconds?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -100,7 +100,7 @@ final class CloudflareR2BucketLock extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
+           'jurisdiction': ?jurisdiction,
            if (rules != null)
              'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },

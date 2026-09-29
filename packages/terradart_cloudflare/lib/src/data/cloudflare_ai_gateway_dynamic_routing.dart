@@ -24,11 +24,7 @@ final class DataCloudflareAiGatewayDynamicRouting extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'gateway_id': gatewayId,
-           'id': id,
-         },
+         argMap: {'account_id': ?accountId, 'gateway_id': gatewayId, 'id': id},
        );
 
   @override

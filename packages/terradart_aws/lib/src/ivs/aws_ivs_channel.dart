@@ -48,14 +48,13 @@ final class AwsIvsChannel extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (authorized != null) 'authorized': authorized,
-           if (latencyMode != null) 'latency_mode': latencyMode,
-           if (name != null) 'name': name,
-           if (recordingConfigurationArn != null)
-             'recording_configuration_arn': recordingConfigurationArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'authorized': ?authorized,
+           'latency_mode': ?latencyMode,
+           'name': ?name,
+           'recording_configuration_arn': ?recordingConfigurationArn,
+           'region': ?region,
+           'tags': ?tags,
+           'type': ?type,
          },
        );
 

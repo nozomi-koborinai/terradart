@@ -54,13 +54,12 @@ final class AwsBedrockagentAgentCollaborator extends Resource {
          terraformType: tfType,
          argMap: {
            'agent_id': agentId,
-           if (agentVersion != null) 'agent_version': agentVersion,
+           'agent_version': ?agentVersion,
            'collaboration_instruction': collaborationInstruction,
            'collaborator_name': collaboratorName,
-           if (prepareAgent != null) 'prepare_agent': prepareAgent,
-           if (region != null) 'region': region,
-           if (relayConversationHistory != null)
-             'relay_conversation_history': relayConversationHistory,
+           'prepare_agent': ?prepareAgent,
+           'region': ?region,
+           'relay_conversation_history': ?relayConversationHistory,
            if (agentDescriptor != null)
              'agent_descriptor': TfArg.literal([
                for (final e in agentDescriptor) e.encode(),

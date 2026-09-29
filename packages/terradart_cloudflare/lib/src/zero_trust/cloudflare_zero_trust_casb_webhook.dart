@@ -47,7 +47,7 @@ final class ZeroTrustCasbWebhookHeaders {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -79,8 +79,8 @@ final class CloudflareZeroTrustCasbWebhook extends Resource {
            'authentication_type': authenticationType,
            'destination_url': destinationUrl,
            'label': label,
-           if (signingSecret != null) 'signing_secret': signingSecret,
-           if (status != null) 'status': status,
+           'signing_secret': ?signingSecret,
+           'status': ?status,
            if (headers != null)
              'headers': TfArg.literal([for (final e in headers) e.encode()]),
          },

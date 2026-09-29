@@ -26,9 +26,9 @@ final class MagicTransitCf1SiteBody {
   final MagicTransitCf1SiteBodyLocation? location;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (location != null) 'location': location!.encode(),
+    'location': ?location?.encode(),
   };
 }
 
@@ -45,9 +45,9 @@ final class MagicTransitCf1SiteBodyLocation {
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (lat != null) 'lat': lat!.toTfJson(),
-    if (long != null) 'long': long!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'lat': ?lat?.toTfJson(),
+    'long': ?long?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -64,9 +64,9 @@ final class MagicTransitCf1SiteLocation {
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (lat != null) 'lat': lat!.toTfJson(),
-    if (long != null) 'long': long!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'lat': ?lat?.toTfJson(),
+    'long': ?long?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -94,8 +94,8 @@ final class CloudflareMagicTransitCf1Site extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (name != null) 'name': name,
+           'description': ?description,
+           'name': ?name,
            'body': TfArg.literal([for (final e in body) e.encode()]),
            if (location != null) 'location': TfArg.literal(location.encode()),
          },

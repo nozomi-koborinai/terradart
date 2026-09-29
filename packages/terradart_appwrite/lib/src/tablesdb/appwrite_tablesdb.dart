@@ -23,11 +23,7 @@ final class AppwriteTablesdb extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (enabled != null) 'enabled': enabled,
-           'name': name,
-           if (projectId != null) 'project_id': projectId,
-         },
+         argMap: {'enabled': ?enabled, 'name': name, 'project_id': ?projectId},
        );
 
   @override

@@ -33,10 +33,8 @@ final class InternetmonitorMonitorHealthEventsConfig {
   final TfArg<num>? performanceScoreThreshold;
 
   Map<String, Object?> encode() => {
-    if (availabilityScoreThreshold != null)
-      'availability_score_threshold': availabilityScoreThreshold!.toTfJson(),
-    if (performanceScoreThreshold != null)
-      'performance_score_threshold': performanceScoreThreshold!.toTfJson(),
+    'availability_score_threshold': ?availabilityScoreThreshold?.toTfJson(),
+    'performance_score_threshold': ?performanceScoreThreshold?.toTfJson(),
   };
 }
 
@@ -48,9 +46,7 @@ final class InternetmonitorMonitorInternetMeasurementsLogDelivery {
 
   final InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config? s3Config;
 
-  Map<String, Object?> encode() => {
-    if (s3Config != null) 's3_config': s3Config!.encode(),
-  };
+  Map<String, Object?> encode() => {'s3_config': ?s3Config?.encode()};
 }
 
 /// Typed helper for the `internet_measurements_log_delivery.s3_config` block of
@@ -74,9 +70,8 @@ final class InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (logDeliveryStatus != null)
-      'log_delivery_status': logDeliveryStatus!.toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'log_delivery_status': ?logDeliveryStatus?.toTfJson(),
   };
 }
 
@@ -116,15 +111,13 @@ final class AwsInternetmonitorMonitor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (maxCityNetworksToMonitor != null)
-             'max_city_networks_to_monitor': maxCityNetworksToMonitor,
+           'max_city_networks_to_monitor': ?maxCityNetworksToMonitor,
            'monitor_name': monitorName,
-           if (region != null) 'region': region,
-           if (resources != null) 'resources': resources,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
-           if (trafficPercentageToMonitor != null)
-             'traffic_percentage_to_monitor': trafficPercentageToMonitor,
+           'region': ?region,
+           'resources': ?resources,
+           'status': ?status,
+           'tags': ?tags,
+           'traffic_percentage_to_monitor': ?trafficPercentageToMonitor,
            if (healthEventsConfig != null)
              'health_events_config': TfArg.literal(healthEventsConfig.encode()),
            if (internetMeasurementsLogDelivery != null)

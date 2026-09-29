@@ -24,10 +24,7 @@ final class DataCloudflareLeakedCredentialCheckRule extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'detection_id': detectionId,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'detection_id': detectionId, 'zone_id': ?zoneId},
        );
 
   @override

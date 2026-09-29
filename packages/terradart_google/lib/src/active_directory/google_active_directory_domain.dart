@@ -44,14 +44,12 @@ final class GoogleActiveDirectoryDomain extends Resource {
            'domain_name': domainName,
            'locations': locations,
            'reserved_ip_range': reservedIpRange,
-           if (authorizedNetworks != null)
-             'authorized_networks': authorizedNetworks,
-           if (admin != null) 'admin': admin,
-           if (labels != null) 'labels': labels,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'authorized_networks': ?authorizedNetworks,
+           'admin': ?admin,
+           'labels': ?labels,
+           'deletion_protection': ?deletionProtection,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

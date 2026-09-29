@@ -18,10 +18,7 @@ final class AwsInspectorResourceGroup extends Resource {
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (region != null) 'region': region, 'tags': tags},
-       );
+  }) : super(terraformType: tfType, argMap: {'region': ?region, 'tags': tags});
 
   @override
   Set<String> get sensitiveFields => _awsInspectorResourceGroupSensitive;

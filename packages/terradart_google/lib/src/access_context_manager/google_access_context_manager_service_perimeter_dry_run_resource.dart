@@ -66,7 +66,7 @@ final class GoogleAccessContextManagerServicePerimeterDryRunResource
          argMap: {
            'perimeter_name': perimeterName,
            'resource': resource,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

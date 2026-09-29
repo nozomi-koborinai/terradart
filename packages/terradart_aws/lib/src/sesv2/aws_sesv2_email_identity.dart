@@ -27,12 +27,9 @@ final class Sesv2EmailIdentityDkimSigningAttributes {
   nextSigningKeyLength;
 
   Map<String, Object?> encode() => {
-    if (domainSigningPrivateKey != null)
-      'domain_signing_private_key': domainSigningPrivateKey!.toTfJson(),
-    if (domainSigningSelector != null)
-      'domain_signing_selector': domainSigningSelector!.toTfJson(),
-    if (nextSigningKeyLength != null)
-      'next_signing_key_length': nextSigningKeyLength!.toTfJson(),
+    'domain_signing_private_key': ?domainSigningPrivateKey?.toTfJson(),
+    'domain_signing_selector': ?domainSigningSelector?.toTfJson(),
+    'next_signing_key_length': ?nextSigningKeyLength?.toTfJson(),
   };
 }
 
@@ -67,11 +64,10 @@ final class AwsSesv2EmailIdentity extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (configurationSetName != null)
-             'configuration_set_name': configurationSetName,
+           'configuration_set_name': ?configurationSetName,
            'email_identity': emailIdentity,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (dkimSigningAttributes != null)
              'dkim_signing_attributes': TfArg.literal(
                dkimSigningAttributes.encode(),

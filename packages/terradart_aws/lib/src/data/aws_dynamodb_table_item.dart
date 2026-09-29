@@ -23,12 +23,10 @@ final class DataAwsDynamodbTableItem extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (expressionAttributeNames != null)
-             'expression_attribute_names': expressionAttributeNames,
+           'expression_attribute_names': ?expressionAttributeNames,
            'key': key,
-           if (projectionExpression != null)
-             'projection_expression': projectionExpression,
-           if (region != null) 'region': region,
+           'projection_expression': ?projectionExpression,
+           'region': ?region,
            'table_name': tableName,
          },
        );

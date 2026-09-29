@@ -17,9 +17,7 @@ final class DataZeroTrustAccessIdentityProviderFilter {
 
   final TfArg<String>? scimEnabled;
 
-  Map<String, Object?> encode() => {
-    if (scimEnabled != null) 'scim_enabled': scimEnabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'scim_enabled': ?scimEnabled?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_identity_provider`.
@@ -42,10 +40,9 @@ final class DataCloudflareZeroTrustAccessIdentityProvider extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (identityProviderId != null)
-             'identity_provider_id': identityProviderId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'identity_provider_id': ?identityProviderId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

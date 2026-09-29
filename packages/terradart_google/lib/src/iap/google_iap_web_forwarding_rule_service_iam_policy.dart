@@ -31,7 +31,7 @@ final class GoogleIapWebForwardingRuleServiceIamPolicy extends Resource {
          argMap: {
            'forwarding_rule_service_name': forwardingRuleServiceName,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

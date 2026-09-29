@@ -20,11 +20,7 @@ final class DataAwsApigatewayv2VpcLink extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           'vpc_link_id': vpcLinkId,
-         },
+         argMap: {'region': ?region, 'tags': ?tags, 'vpc_link_id': vpcLinkId},
        );
 
   @override

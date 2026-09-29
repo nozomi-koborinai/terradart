@@ -24,13 +24,13 @@ final class DataCloudflareZeroTrustLists extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (filter != null) 'filter': filter,
-           if (maxItems != null) 'max_items': maxItems,
-           if (orderBy != null) 'order_by': orderBy,
-           if (search != null) 'search': search,
-           if (type != null) 'type': type,
+           'account_id': ?accountId,
+           'direction': ?direction,
+           'filter': ?filter,
+           'max_items': ?maxItems,
+           'order_by': ?orderBy,
+           'search': ?search,
+           'type': ?type,
          },
        );
 

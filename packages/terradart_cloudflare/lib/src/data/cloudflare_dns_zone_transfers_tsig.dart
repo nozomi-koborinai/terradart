@@ -23,10 +23,7 @@ final class DataCloudflareDnsZoneTransfersTsig extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'tsig_id': tsigId,
-         },
+         argMap: {'account_id': ?accountId, 'tsig_id': tsigId},
        );
 
   @override

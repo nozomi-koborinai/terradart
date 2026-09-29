@@ -32,9 +32,9 @@ final class AppwriteStorageFile extends Resource {
          argMap: {
            'bucket_id': bucketId,
            'file_path': filePath,
-           if (name != null) 'name': name,
-           if (permissions != null) 'permissions': permissions,
-           if (projectId != null) 'project_id': projectId,
+           'name': ?name,
+           'permissions': ?permissions,
+           'project_id': ?projectId,
          },
        );
 

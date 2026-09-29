@@ -21,7 +21,7 @@ final class DataAwsRoute53ResolverFirewallDomainList extends Data {
          terraformType: tfType,
          argMap: {
            'firewall_domain_list_id': firewallDomainListId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

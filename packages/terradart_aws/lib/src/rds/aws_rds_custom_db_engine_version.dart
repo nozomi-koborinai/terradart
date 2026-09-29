@@ -106,22 +106,20 @@ final class AwsRdsCustomDbEngineVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (databaseInstallationFilesS3BucketName != null)
-             'database_installation_files_s3_bucket_name':
-                 databaseInstallationFilesS3BucketName,
-           if (databaseInstallationFilesS3Prefix != null)
-             'database_installation_files_s3_prefix':
-                 databaseInstallationFilesS3Prefix,
-           if (description != null) 'description': description,
+           'database_installation_files_s3_bucket_name':
+               ?databaseInstallationFilesS3BucketName,
+           'database_installation_files_s3_prefix':
+               ?databaseInstallationFilesS3Prefix,
+           'description': ?description,
            'engine': engine,
            'engine_version': engineVersion,
            ...?manifest?.argMap,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (manifestHash != null) 'manifest_hash': manifestHash,
-           if (region != null) 'region': region,
-           if (sourceImageId != null) 'source_image_id': sourceImageId,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'manifest_hash': ?manifestHash,
+           'region': ?region,
+           'source_image_id': ?sourceImageId,
+           'status': ?status,
+           'tags': ?tags,
          },
        );
 

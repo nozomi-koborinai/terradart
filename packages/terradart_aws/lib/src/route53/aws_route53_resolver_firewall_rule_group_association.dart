@@ -45,12 +45,11 @@ final class AwsRoute53ResolverFirewallRuleGroupAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'firewall_rule_group_id': firewallRuleGroupId,
-           if (mutationProtection != null)
-             'mutation_protection': mutationProtection,
+           'mutation_protection': ?mutationProtection,
            'name': name,
            'priority': priority,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

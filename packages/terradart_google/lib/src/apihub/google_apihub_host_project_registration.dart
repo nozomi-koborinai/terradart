@@ -42,7 +42,7 @@ final class GoogleApihubHostProjectRegistration extends Resource {
            'location': location,
            'host_project_registration_id': hostProjectRegistrationId,
            'gcp_project': gcpProject,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

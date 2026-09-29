@@ -34,12 +34,9 @@ final class GlobalacceleratorAcceleratorAttributes {
   final TfArg<String>? flowLogsS3Prefix;
 
   Map<String, Object?> encode() => {
-    if (flowLogsEnabled != null)
-      'flow_logs_enabled': flowLogsEnabled!.toTfJson(),
-    if (flowLogsS3Bucket != null)
-      'flow_logs_s3_bucket': flowLogsS3Bucket!.toTfJson(),
-    if (flowLogsS3Prefix != null)
-      'flow_logs_s3_prefix': flowLogsS3Prefix!.toTfJson(),
+    'flow_logs_enabled': ?flowLogsEnabled?.toTfJson(),
+    'flow_logs_s3_bucket': ?flowLogsS3Bucket?.toTfJson(),
+    'flow_logs_s3_prefix': ?flowLogsS3Prefix?.toTfJson(),
   };
 }
 
@@ -62,11 +59,11 @@ final class AwsGlobalacceleratorAccelerator extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (ipAddresses != null) 'ip_addresses': ipAddresses,
+           'enabled': ?enabled,
+           'ip_address_type': ?ipAddressType,
+           'ip_addresses': ?ipAddresses,
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (attributes != null)
              'attributes': TfArg.literal(attributes.encode()),
          },

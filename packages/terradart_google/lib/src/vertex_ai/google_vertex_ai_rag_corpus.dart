@@ -112,10 +112,9 @@ final class VertexAiRagCorpusVectorDbConfig {
   ragEmbeddingModelConfig;
 
   Map<String, Object?> encode() => {
-    if (apiAuth != null) 'api_auth': apiAuth!.encode(),
+    'api_auth': ?apiAuth?.encode(),
     ...?backend?.encode(),
-    if (ragEmbeddingModelConfig != null)
-      'rag_embedding_model_config': ragEmbeddingModelConfig!.encode(),
+    'rag_embedding_model_config': ?ragEmbeddingModelConfig?.encode(),
   };
 }
 
@@ -202,9 +201,7 @@ final class VertexAiRagCorpusVectorDbConfigApiAuth {
 
   final VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfig? apiKeyConfig;
 
-  Map<String, Object?> encode() => {
-    if (apiKeyConfig != null) 'api_key_config': apiKeyConfig!.encode(),
-  };
+  Map<String, Object?> encode() => {'api_key_config': ?apiKeyConfig?.encode()};
 }
 
 /// Exactly one of `api_key_secret_version`, `api_key_string` on the `vector_db_config.api_auth.api_key_config` block of `google_vertex_ai_rag_corpus`: the provider rejects
@@ -287,8 +284,7 @@ final class VertexAiRagCorpusVectorDbConfigRagEmbeddingModelConfig {
   vertexPredictionEndpoint;
 
   Map<String, Object?> encode() => {
-    if (vertexPredictionEndpoint != null)
-      'vertex_prediction_endpoint': vertexPredictionEndpoint!.encode(),
+    'vertex_prediction_endpoint': ?vertexPredictionEndpoint?.encode(),
   };
 }
 
@@ -370,8 +366,8 @@ final class VertexAiRagCorpusVectorDbConfigRagManagedDbAnn {
   final TfArg<num>? treeDepth;
 
   Map<String, Object?> encode() => {
-    if (leafCount != null) 'leaf_count': leafCount!.toTfJson(),
-    if (treeDepth != null) 'tree_depth': treeDepth!.toTfJson(),
+    'leaf_count': ?leafCount?.toTfJson(),
+    'tree_depth': ?treeDepth?.toTfJson(),
   };
 }
 
@@ -437,10 +433,10 @@ final class GoogleVertexAiRagCorpus extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'display_name': displayName,
-           if (project != null) 'project': project,
+           'project': ?project,
            'region': region,
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),

@@ -93,10 +93,8 @@ final class ImagebuilderImageImageScanningConfiguration {
   ecrConfiguration;
 
   Map<String, Object?> encode() => {
-    if (imageScanningEnabled != null)
-      'image_scanning_enabled': imageScanningEnabled!.toTfJson(),
-    if (ecrConfiguration != null)
-      'ecr_configuration': ecrConfiguration!.encode(),
+    'image_scanning_enabled': ?imageScanningEnabled?.toTfJson(),
+    'ecr_configuration': ?ecrConfiguration?.encode(),
   };
 }
 
@@ -114,8 +112,8 @@ final class ImagebuilderImageImageScanningConfigurationEcrConfiguration {
   final TfArg<String>? repositoryName;
 
   Map<String, Object?> encode() => {
-    if (containerTags != null) 'container_tags': containerTags!.toTfJson(),
-    if (repositoryName != null) 'repository_name': repositoryName!.toTfJson(),
+    'container_tags': ?containerTags?.toTfJson(),
+    'repository_name': ?repositoryName?.toTfJson(),
   };
 }
 
@@ -133,9 +131,8 @@ final class ImagebuilderImageImageTestsConfiguration {
   final TfArg<num>? timeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (imageTestsEnabled != null)
-      'image_tests_enabled': imageTestsEnabled!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'image_tests_enabled': ?imageTestsEnabled?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -172,8 +169,8 @@ final class ImagebuilderImageWorkflow {
   final List<ImagebuilderImageWorkflowParameter>? parameter;
 
   Map<String, Object?> encode() => {
-    if (onFailure != null) 'on_failure': onFailure!.toTfJson(),
-    if (parallelGroup != null) 'parallel_group': parallelGroup!.toTfJson(),
+    'on_failure': ?onFailure?.toTfJson(),
+    'parallel_group': ?parallelGroup?.toTfJson(),
     'workflow_arn': workflowArn.toTfJson(),
     if (parameter != null)
       'parameter': [for (final e in parameter!) e.encode()],
@@ -234,14 +231,12 @@ final class AwsImagebuilderImage extends Resource {
          terraformType: tfType,
          argMap: {
            ...recipeArn.argMap,
-           if (distributionConfigurationArn != null)
-             'distribution_configuration_arn': distributionConfigurationArn,
-           if (enhancedImageMetadataEnabled != null)
-             'enhanced_image_metadata_enabled': enhancedImageMetadataEnabled,
-           if (executionRole != null) 'execution_role': executionRole,
+           'distribution_configuration_arn': ?distributionConfigurationArn,
+           'enhanced_image_metadata_enabled': ?enhancedImageMetadataEnabled,
+           'execution_role': ?executionRole,
            'infrastructure_configuration_arn': infrastructureConfigurationArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (imageScanningConfiguration != null)
              'image_scanning_configuration': TfArg.literal(
                imageScanningConfiguration.encode(),

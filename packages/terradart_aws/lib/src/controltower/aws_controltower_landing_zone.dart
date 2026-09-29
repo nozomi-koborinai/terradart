@@ -34,12 +34,12 @@ final class AwsControltowerLandingZone extends Resource {
          terraformType: tfType,
          argMap: {
            'manifest_json': manifestJson,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (remediationTypes != null)
              'remediation_types': TfArg.literal([
                for (final e in remediationTypes) e.toTfJson(),
              ]),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'version': version,
          },
        );

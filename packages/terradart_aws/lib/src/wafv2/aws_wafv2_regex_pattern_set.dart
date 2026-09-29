@@ -105,11 +105,11 @@ final class AwsWafv2RegexPatternSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            ...?name?.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            'scope': scope,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (regularExpression != null)
              'regular_expression': TfArg.literal([
                for (final e in regularExpression) e.encode(),

@@ -27,9 +27,8 @@ final class AwsNetworkmanagerTransitGatewayRouteTableAttachment
          terraformType: tfType,
          argMap: {
            'peering_id': peeringId,
-           if (routingPolicyLabel != null)
-             'routing_policy_label': routingPolicyLabel,
-           if (tags != null) 'tags': tags,
+           'routing_policy_label': ?routingPolicyLabel,
+           'tags': ?tags,
            'transit_gateway_route_table_arn': transitGatewayRouteTableArn,
          },
        );

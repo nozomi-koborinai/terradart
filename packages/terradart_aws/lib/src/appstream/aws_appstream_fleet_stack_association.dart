@@ -23,7 +23,7 @@ final class AwsAppstreamFleetStackAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'fleet_name': fleetName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'stack_name': stackName,
          },
        );

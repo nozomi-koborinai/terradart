@@ -21,10 +21,9 @@ final class DataAwsRdsCertificate extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultForNewLaunches != null)
-             'default_for_new_launches': defaultForNewLaunches,
-           if (latestValidTill != null) 'latest_valid_till': latestValidTill,
-           if (region != null) 'region': region,
+           'default_for_new_launches': ?defaultForNewLaunches,
+           'latest_valid_till': ?latestValidTill,
+           'region': ?region,
          },
        );
 

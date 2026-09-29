@@ -86,11 +86,11 @@ final class AwsTransferHostKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            ...hostKeyBody.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            'server_id': serverId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

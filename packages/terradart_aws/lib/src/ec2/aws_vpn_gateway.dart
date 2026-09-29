@@ -26,11 +26,11 @@ final class AwsVpnGateway extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (amazonSideAsn != null) 'amazon_side_asn': amazonSideAsn,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
+           'amazon_side_asn': ?amazonSideAsn,
+           'availability_zone': ?availabilityZone,
+           'region': ?region,
+           'tags': ?tags,
+           'vpc_id': ?vpcId?.encodeAs('id'),
          },
        );
 

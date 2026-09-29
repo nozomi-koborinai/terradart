@@ -24,8 +24,8 @@ final class DataAwsAppmeshVirtualGateway extends Data {
          argMap: {
            'mesh_name': meshName,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

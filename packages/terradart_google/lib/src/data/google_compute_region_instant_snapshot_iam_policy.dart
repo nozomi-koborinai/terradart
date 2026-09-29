@@ -25,11 +25,7 @@ final class DataGoogleComputeRegionInstantSnapshotIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-         },
+         argMap: {'name': name, 'project': ?project, 'region': ?region},
        );
 
   @override

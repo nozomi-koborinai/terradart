@@ -39,12 +39,10 @@ final class Ec2NetworkInsightsPathFilterAtDestination {
   sourcePortRange;
 
   Map<String, Object?> encode() => {
-    if (destinationAddress != null)
-      'destination_address': destinationAddress!.toTfJson(),
-    if (sourceAddress != null) 'source_address': sourceAddress!.toTfJson(),
-    if (destinationPortRange != null)
-      'destination_port_range': destinationPortRange!.encode(),
-    if (sourcePortRange != null) 'source_port_range': sourcePortRange!.encode(),
+    'destination_address': ?destinationAddress?.toTfJson(),
+    'source_address': ?sourceAddress?.toTfJson(),
+    'destination_port_range': ?destinationPortRange?.encode(),
+    'source_port_range': ?sourcePortRange?.encode(),
   };
 }
 
@@ -62,8 +60,8 @@ final class Ec2NetworkInsightsPathFilterAtDestinationDestinationPortRange {
   final TfArg<num>? toPort;
 
   Map<String, Object?> encode() => {
-    if (fromPort != null) 'from_port': fromPort!.toTfJson(),
-    if (toPort != null) 'to_port': toPort!.toTfJson(),
+    'from_port': ?fromPort?.toTfJson(),
+    'to_port': ?toPort?.toTfJson(),
   };
 }
 
@@ -81,8 +79,8 @@ final class Ec2NetworkInsightsPathFilterAtDestinationSourcePortRange {
   final TfArg<num>? toPort;
 
   Map<String, Object?> encode() => {
-    if (fromPort != null) 'from_port': fromPort!.toTfJson(),
-    if (toPort != null) 'to_port': toPort!.toTfJson(),
+    'from_port': ?fromPort?.toTfJson(),
+    'to_port': ?toPort?.toTfJson(),
   };
 }
 
@@ -107,12 +105,10 @@ final class Ec2NetworkInsightsPathFilterAtSource {
   final Ec2NetworkInsightsPathFilterAtSourceSourcePortRange? sourcePortRange;
 
   Map<String, Object?> encode() => {
-    if (destinationAddress != null)
-      'destination_address': destinationAddress!.toTfJson(),
-    if (sourceAddress != null) 'source_address': sourceAddress!.toTfJson(),
-    if (destinationPortRange != null)
-      'destination_port_range': destinationPortRange!.encode(),
-    if (sourcePortRange != null) 'source_port_range': sourcePortRange!.encode(),
+    'destination_address': ?destinationAddress?.toTfJson(),
+    'source_address': ?sourceAddress?.toTfJson(),
+    'destination_port_range': ?destinationPortRange?.encode(),
+    'source_port_range': ?sourcePortRange?.encode(),
   };
 }
 
@@ -130,8 +126,8 @@ final class Ec2NetworkInsightsPathFilterAtSourceDestinationPortRange {
   final TfArg<num>? toPort;
 
   Map<String, Object?> encode() => {
-    if (fromPort != null) 'from_port': fromPort!.toTfJson(),
-    if (toPort != null) 'to_port': toPort!.toTfJson(),
+    'from_port': ?fromPort?.toTfJson(),
+    'to_port': ?toPort?.toTfJson(),
   };
 }
 
@@ -149,8 +145,8 @@ final class Ec2NetworkInsightsPathFilterAtSourceSourcePortRange {
   final TfArg<num>? toPort;
 
   Map<String, Object?> encode() => {
-    if (fromPort != null) 'from_port': fromPort!.toTfJson(),
-    if (toPort != null) 'to_port': toPort!.toTfJson(),
+    'from_port': ?fromPort?.toTfJson(),
+    'to_port': ?toPort?.toTfJson(),
   };
 }
 
@@ -177,14 +173,14 @@ final class AwsEc2NetworkInsightsPath extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (destination != null) 'destination': destination,
-           if (destinationIp != null) 'destination_ip': destinationIp,
-           if (destinationPort != null) 'destination_port': destinationPort,
+           'destination': ?destination,
+           'destination_ip': ?destinationIp,
+           'destination_port': ?destinationPort,
            'protocol': protocol,
-           if (region != null) 'region': region,
+           'region': ?region,
            'source': source,
-           if (sourceIp != null) 'source_ip': sourceIp,
-           if (tags != null) 'tags': tags,
+           'source_ip': ?sourceIp,
+           'tags': ?tags,
            if (filterAtDestination != null)
              'filter_at_destination': TfArg.literal(
                filterAtDestination.encode(),

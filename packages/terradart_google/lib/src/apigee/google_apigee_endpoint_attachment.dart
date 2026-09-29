@@ -44,7 +44,7 @@ final class GoogleApigeeEndpointAttachment extends Resource {
            'location': location,
            'org_id': orgId,
            'service_attachment': serviceAttachment,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

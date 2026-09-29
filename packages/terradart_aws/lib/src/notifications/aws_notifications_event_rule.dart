@@ -24,7 +24,7 @@ final class AwsNotificationsEventRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (eventPattern != null) 'event_pattern': eventPattern,
+           'event_pattern': ?eventPattern,
            'event_type': eventType,
            'notification_configuration_arn': notificationConfigurationArn,
            'regions': regions,

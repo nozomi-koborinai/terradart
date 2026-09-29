@@ -58,9 +58,9 @@ final class AwsRedshiftserverlessUsageLimit extends Resource {
          terraformType: tfType,
          argMap: {
            'amount': amount,
-           if (breachAction != null) 'breach_action': breachAction,
-           if (period != null) 'period': period,
-           if (region != null) 'region': region,
+           'breach_action': ?breachAction,
+           'period': ?period,
+           'region': ?region,
            'resource_arn': resourceArn,
            'usage_type': usageType,
          },

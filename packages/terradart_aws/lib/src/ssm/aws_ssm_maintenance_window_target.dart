@@ -56,10 +56,10 @@ final class AwsSsmMaintenanceWindowTarget extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (name != null) 'name': name,
-           if (ownerInformation != null) 'owner_information': ownerInformation,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'name': ?name,
+           'owner_information': ?ownerInformation,
+           'region': ?region,
            'resource_type': resourceType,
            'window_id': windowId,
            'targets': TfArg.literal([for (final e in targets) e.encode()]),

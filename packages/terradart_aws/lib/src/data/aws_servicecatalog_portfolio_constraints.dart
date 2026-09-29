@@ -21,10 +21,10 @@ final class DataAwsServicecatalogPortfolioConstraints extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
+           'accept_language': ?acceptLanguage,
            'portfolio_id': portfolioId,
-           if (productId != null) 'product_id': productId,
-           if (region != null) 'region': region,
+           'product_id': ?productId,
+           'region': ?region,
          },
        );
 

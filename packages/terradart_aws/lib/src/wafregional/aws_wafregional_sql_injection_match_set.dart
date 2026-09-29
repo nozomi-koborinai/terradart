@@ -41,7 +41,7 @@ final class WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleFieldToMatch {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (data != null) 'data': data!.toTfJson(),
+    'data': ?data?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -64,7 +64,7 @@ final class AwsWafregionalSqlInjectionMatchSet extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (sqlInjectionMatchTuple != null)
              'sql_injection_match_tuple': TfArg.literal([
                for (final e in sqlInjectionMatchTuple) e.encode(),

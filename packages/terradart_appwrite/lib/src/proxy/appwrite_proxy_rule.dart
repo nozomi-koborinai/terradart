@@ -36,9 +36,9 @@ final class AppwriteProxyRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (branch != null) 'branch': branch,
+           'branch': ?branch,
            'domain': domain,
-           if (projectId != null) 'project_id': projectId,
+           'project_id': ?projectId,
            'resource_id': resourceId,
            'type': type,
          },

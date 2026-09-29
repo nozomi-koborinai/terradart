@@ -101,14 +101,13 @@ final class AwsDocdbGlobalCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (databaseName != null) 'database_name': databaseName,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
+           'database_name': ?databaseName,
+           'deletion_protection': ?deletionProtection,
            ...source.argMap,
-           if (engineVersion != null) 'engine_version': engineVersion,
+           'engine_version': ?engineVersion,
            'global_cluster_identifier': globalClusterIdentifier,
-           if (region != null) 'region': region,
-           if (storageEncrypted != null) 'storage_encrypted': storageEncrypted,
+           'region': ?region,
+           'storage_encrypted': ?storageEncrypted,
          },
        );
 

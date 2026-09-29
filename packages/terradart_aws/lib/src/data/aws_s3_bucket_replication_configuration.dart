@@ -19,7 +19,7 @@ final class DataAwsS3BucketReplicationConfiguration extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'bucket': bucket, if (region != null) 'region': region},
+         argMap: {'bucket': bucket, 'region': ?region},
        );
 
   @override

@@ -100,30 +100,21 @@ final class GoogleComputeNetwork extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (autoCreateSubnetworks != null)
-             'auto_create_subnetworks': autoCreateSubnetworks,
-           if (routingMode != null) 'routing_mode': routingMode,
-           if (mtu != null) 'mtu': mtu,
-           if (description != null) 'description': description,
-           if (networkFirewallPolicyEnforcementOrder != null)
-             'network_firewall_policy_enforcement_order':
-                 networkFirewallPolicyEnforcementOrder,
-           if (networkProfile != null) 'network_profile': networkProfile,
-           if (enableUlaInternalIpv6 != null)
-             'enable_ula_internal_ipv6': enableUlaInternalIpv6,
-           if (deleteDefaultRoutesOnCreate != null)
-             'delete_default_routes_on_create': deleteDefaultRoutesOnCreate,
-           if (deleteBgpAlwaysCompareMed != null)
-             'delete_bgp_always_compare_med': deleteBgpAlwaysCompareMed,
-           if (bgpAlwaysCompareMed != null)
-             'bgp_always_compare_med': bgpAlwaysCompareMed,
-           if (bgpBestPathSelectionMode != null)
-             'bgp_best_path_selection_mode': bgpBestPathSelectionMode,
-           if (bgpInterRegionCost != null)
-             'bgp_inter_region_cost': bgpInterRegionCost,
-           if (internalIpv6Range != null)
-             'internal_ipv6_range': internalIpv6Range,
-           if (project != null) 'project': project,
+           'auto_create_subnetworks': ?autoCreateSubnetworks,
+           'routing_mode': ?routingMode,
+           'mtu': ?mtu,
+           'description': ?description,
+           'network_firewall_policy_enforcement_order':
+               ?networkFirewallPolicyEnforcementOrder,
+           'network_profile': ?networkProfile,
+           'enable_ula_internal_ipv6': ?enableUlaInternalIpv6,
+           'delete_default_routes_on_create': ?deleteDefaultRoutesOnCreate,
+           'delete_bgp_always_compare_med': ?deleteBgpAlwaysCompareMed,
+           'bgp_always_compare_med': ?bgpAlwaysCompareMed,
+           'bgp_best_path_selection_mode': ?bgpBestPathSelectionMode,
+           'bgp_inter_region_cost': ?bgpInterRegionCost,
+           'internal_ipv6_range': ?internalIpv6Range,
+           'project': ?project,
          },
        );
 

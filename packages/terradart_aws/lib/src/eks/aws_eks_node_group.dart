@@ -205,7 +205,7 @@ final class EksNodeGroupNodeRepairConfig {
   nodeRepairConfigOverrides;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     ...?maxParallelNodesRepaired?.encode(),
     ...?maxUnhealthyNodeThreshold?.encode(),
     if (nodeRepairConfigOverrides != null)
@@ -392,9 +392,8 @@ final class EksNodeGroupRemoteAccess {
   final TfArg<List<Object?>>? sourceSecurityGroupIds;
 
   Map<String, Object?> encode() => {
-    if (ec2SshKey != null) 'ec2_ssh_key': ec2SshKey!.toTfJson(),
-    if (sourceSecurityGroupIds != null)
-      'source_security_group_ids': sourceSecurityGroupIds!.toTfJson(),
+    'ec2_ssh_key': ?ec2SshKey?.toTfJson(),
+    'source_security_group_ids': ?sourceSecurityGroupIds?.toTfJson(),
   };
 }
 
@@ -440,7 +439,7 @@ final class EksNodeGroupTaint {
   Map<String, Object?> encode() => {
     'effect': effect.toTfJson(),
     'key': key.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -470,7 +469,7 @@ final class EksNodeGroupUpdateConfig {
 
   Map<String, Object?> encode() => {
     ...maxUnavailable.encode(),
-    if (updateStrategy != null) 'update_strategy': updateStrategy!.toTfJson(),
+    'update_strategy': ?updateStrategy?.toTfJson(),
   };
 }
 
@@ -561,11 +560,10 @@ final class EksNodeGroupWarmPoolConfig {
   final TfArg<bool>? reuseOnScaleIn;
 
   Map<String, Object?> encode() => {
-    if (maxGroupPreparedCapacity != null)
-      'max_group_prepared_capacity': maxGroupPreparedCapacity!.toTfJson(),
-    if (minSize != null) 'min_size': minSize!.toTfJson(),
-    if (poolState != null) 'pool_state': poolState!.toTfJson(),
-    if (reuseOnScaleIn != null) 'reuse_on_scale_in': reuseOnScaleIn!.toTfJson(),
+    'max_group_prepared_capacity': ?maxGroupPreparedCapacity?.toTfJson(),
+    'min_size': ?minSize?.toTfJson(),
+    'pool_state': ?poolState?.toTfJson(),
+    'reuse_on_scale_in': ?reuseOnScaleIn?.toTfJson(),
   };
 }
 
@@ -614,21 +612,20 @@ final class AwsEksNodeGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (amiType != null) 'ami_type': amiType,
-           if (capacityType != null) 'capacity_type': capacityType,
+           'ami_type': ?amiType,
+           'capacity_type': ?capacityType,
            'cluster_name': clusterName,
-           if (diskSize != null) 'disk_size': diskSize,
-           if (forceUpdateVersion != null)
-             'force_update_version': forceUpdateVersion,
-           if (instanceTypes != null) 'instance_types': instanceTypes,
-           if (labels != null) 'labels': labels,
+           'disk_size': ?diskSize,
+           'force_update_version': ?forceUpdateVersion,
+           'instance_types': ?instanceTypes,
+           'labels': ?labels,
            ...?nodeGroupName?.argMap,
            'node_role_arn': nodeRoleArn,
-           if (region != null) 'region': region,
-           if (releaseVersion != null) 'release_version': releaseVersion,
+           'region': ?region,
+           'release_version': ?releaseVersion,
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (version != null) 'version': version,
+           'tags': ?tags,
+           'version': ?version,
            if (launchTemplate != null)
              'launch_template': TfArg.literal(launchTemplate.encode()),
            if (nodeRepairConfig != null)

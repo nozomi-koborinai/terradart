@@ -28,7 +28,7 @@ final class DataGoogleOracleDatabaseExascaleDbStorageVault extends Data {
          argMap: {
            'exascale_db_storage_vault_id': exascaleDbStorageVaultId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

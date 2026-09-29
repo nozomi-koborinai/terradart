@@ -87,7 +87,7 @@ final class SagemakerEndpointConfigurationAsyncInferenceConfig {
   outputConfig;
 
   Map<String, Object?> encode() => {
-    if (clientConfig != null) 'client_config': clientConfig!.encode(),
+    'client_config': ?clientConfig?.encode(),
     'output_config': outputConfig.encode(),
   };
 }
@@ -103,9 +103,8 @@ final class SagemakerEndpointConfigurationAsyncInferenceConfigClientConfig {
   final TfArg<num>? maxConcurrentInvocationsPerInstance;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentInvocationsPerInstance != null)
-      'max_concurrent_invocations_per_instance':
-          maxConcurrentInvocationsPerInstance!.toTfJson(),
+    'max_concurrent_invocations_per_instance':
+        ?maxConcurrentInvocationsPerInstance?.toTfJson(),
   };
 }
 
@@ -130,11 +129,10 @@ final class SagemakerEndpointConfigurationAsyncInferenceConfigOutputConfig {
   notificationConfig;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (s3FailurePath != null) 's3_failure_path': s3FailurePath!.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    's3_failure_path': ?s3FailurePath?.toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
-    if (notificationConfig != null)
-      'notification_config': notificationConfig!.encode(),
+    'notification_config': ?notificationConfig?.encode(),
   };
 }
 
@@ -160,12 +158,12 @@ final class SagemakerEndpointConfigurationAsyncInferenceConfigOutputConfigNotifi
   final TfArg<String>? successTopic;
 
   Map<String, Object?> encode() => {
-    if (errorTopic != null) 'error_topic': errorTopic!.toTfJson(),
+    'error_topic': ?errorTopic?.toTfJson(),
     if (includeInferenceResponseIn != null)
       'include_inference_response_in': [
         for (final e in includeInferenceResponseIn!) e.toTfJson(),
       ],
-    if (successTopic != null) 'success_topic': successTopic!.toTfJson(),
+    'success_topic': ?successTopic?.toTfJson(),
   };
 }
 
@@ -211,11 +209,10 @@ final class SagemakerEndpointConfigurationDataCaptureConfig {
 
   Map<String, Object?> encode() => {
     'destination_s3_uri': destinationS3Uri.toTfJson(),
-    if (enableCapture != null) 'enable_capture': enableCapture!.toTfJson(),
+    'enable_capture': ?enableCapture?.toTfJson(),
     'initial_sampling_percentage': initialSamplingPercentage.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (captureContentTypeHeader != null)
-      'capture_content_type_header': captureContentTypeHeader!.encode(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'capture_content_type_header': ?captureContentTypeHeader?.encode(),
     'capture_options': [for (final e in captureOptions) e.encode()],
   };
 }
@@ -234,10 +231,8 @@ final class SagemakerEndpointConfigurationDataCaptureConfigCaptureContentTypeHea
   final TfArg<List<Object?>>? jsonContentTypes;
 
   Map<String, Object?> encode() => {
-    if (csvContentTypes != null)
-      'csv_content_types': csvContentTypes!.toTfJson(),
-    if (jsonContentTypes != null)
-      'json_content_types': jsonContentTypes!.toTfJson(),
+    'csv_content_types': ?csvContentTypes?.toTfJson(),
+    'json_content_types': ?jsonContentTypes?.toTfJson(),
   };
 }
 
@@ -337,35 +332,25 @@ final class SagemakerEndpointConfigurationProductionVariants {
   serverlessConfig;
 
   Map<String, Object?> encode() => {
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
-    if (containerStartupHealthCheckTimeoutInSeconds != null)
-      'container_startup_health_check_timeout_in_seconds':
-          containerStartupHealthCheckTimeoutInSeconds!.toTfJson(),
-    if (enableSsmAccess != null)
-      'enable_ssm_access': enableSsmAccess!.toTfJson(),
-    if (inferenceAmiVersion != null)
-      'inference_ami_version': inferenceAmiVersion!.toTfJson(),
-    if (initialInstanceCount != null)
-      'initial_instance_count': initialInstanceCount!.toTfJson(),
-    if (initialVariantWeight != null)
-      'initial_variant_weight': initialVariantWeight!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (modelDataDownloadTimeoutInSeconds != null)
-      'model_data_download_timeout_in_seconds':
-          modelDataDownloadTimeoutInSeconds!.toTfJson(),
-    if (modelName != null) 'model_name': modelName!.toTfJson(),
-    if (variantName != null) 'variant_name': variantName!.toTfJson(),
-    if (volumeSizeInGb != null) 'volume_size_in_gb': volumeSizeInGb!.toTfJson(),
-    if (capacityReservationConfig != null)
-      'capacity_reservation_config': capacityReservationConfig!.encode(),
-    if (coreDumpConfig != null) 'core_dump_config': coreDumpConfig!.encode(),
-    if (managedInstanceScaling != null)
-      'managed_instance_scaling': managedInstanceScaling!.encode(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
+    'container_startup_health_check_timeout_in_seconds':
+        ?containerStartupHealthCheckTimeoutInSeconds?.toTfJson(),
+    'enable_ssm_access': ?enableSsmAccess?.toTfJson(),
+    'inference_ami_version': ?inferenceAmiVersion?.toTfJson(),
+    'initial_instance_count': ?initialInstanceCount?.toTfJson(),
+    'initial_variant_weight': ?initialVariantWeight?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'model_data_download_timeout_in_seconds': ?modelDataDownloadTimeoutInSeconds
+        ?.toTfJson(),
+    'model_name': ?modelName?.toTfJson(),
+    'variant_name': ?variantName?.toTfJson(),
+    'volume_size_in_gb': ?volumeSizeInGb?.toTfJson(),
+    'capacity_reservation_config': ?capacityReservationConfig?.encode(),
+    'core_dump_config': ?coreDumpConfig?.encode(),
+    'managed_instance_scaling': ?managedInstanceScaling?.encode(),
     if (routingConfig != null)
       'routing_config': [for (final e in routingConfig!) e.encode()],
-    if (serverlessConfig != null)
-      'serverless_config': serverlessConfig!.encode(),
+    'serverless_config': ?serverlessConfig?.encode(),
   };
 }
 
@@ -707,11 +692,9 @@ final class SagemakerEndpointConfigurationProductionVariantsCapacityReservationC
   final TfArg<String>? mlReservationArn;
 
   Map<String, Object?> encode() => {
-    if (capacityReservationPreference != null)
-      'capacity_reservation_preference': capacityReservationPreference!
-          .toTfJson(),
-    if (mlReservationArn != null)
-      'ml_reservation_arn': mlReservationArn!.toTfJson(),
+    'capacity_reservation_preference': ?capacityReservationPreference
+        ?.toTfJson(),
+    'ml_reservation_arn': ?mlReservationArn?.toTfJson(),
   };
 }
 
@@ -742,7 +725,7 @@ final class SagemakerEndpointConfigurationProductionVariantsCoreDumpConfig {
 
   Map<String, Object?> encode() => {
     'destination_s3_uri': destinationS3Uri.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -766,11 +749,9 @@ final class SagemakerEndpointConfigurationProductionVariantsManagedInstanceScali
   status;
 
   Map<String, Object?> encode() => {
-    if (maxInstanceCount != null)
-      'max_instance_count': maxInstanceCount!.toTfJson(),
-    if (minInstanceCount != null)
-      'min_instance_count': minInstanceCount!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'max_instance_count': ?maxInstanceCount?.toTfJson(),
+    'min_instance_count': ?minInstanceCount?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -838,8 +819,7 @@ final class SagemakerEndpointConfigurationProductionVariantsServerlessConfig {
   Map<String, Object?> encode() => {
     'max_concurrency': maxConcurrency.toTfJson(),
     'memory_size_in_mb': memorySizeInMb.toTfJson(),
-    if (provisionedConcurrency != null)
-      'provisioned_concurrency': provisionedConcurrency!.toTfJson(),
+    'provisioned_concurrency': ?provisionedConcurrency?.toTfJson(),
   };
 }
 
@@ -915,35 +895,25 @@ final class SagemakerEndpointConfigurationShadowProductionVariants {
   serverlessConfig;
 
   Map<String, Object?> encode() => {
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
-    if (containerStartupHealthCheckTimeoutInSeconds != null)
-      'container_startup_health_check_timeout_in_seconds':
-          containerStartupHealthCheckTimeoutInSeconds!.toTfJson(),
-    if (enableSsmAccess != null)
-      'enable_ssm_access': enableSsmAccess!.toTfJson(),
-    if (inferenceAmiVersion != null)
-      'inference_ami_version': inferenceAmiVersion!.toTfJson(),
-    if (initialInstanceCount != null)
-      'initial_instance_count': initialInstanceCount!.toTfJson(),
-    if (initialVariantWeight != null)
-      'initial_variant_weight': initialVariantWeight!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (modelDataDownloadTimeoutInSeconds != null)
-      'model_data_download_timeout_in_seconds':
-          modelDataDownloadTimeoutInSeconds!.toTfJson(),
-    if (modelName != null) 'model_name': modelName!.toTfJson(),
-    if (variantName != null) 'variant_name': variantName!.toTfJson(),
-    if (volumeSizeInGb != null) 'volume_size_in_gb': volumeSizeInGb!.toTfJson(),
-    if (capacityReservationConfig != null)
-      'capacity_reservation_config': capacityReservationConfig!.encode(),
-    if (coreDumpConfig != null) 'core_dump_config': coreDumpConfig!.encode(),
-    if (managedInstanceScaling != null)
-      'managed_instance_scaling': managedInstanceScaling!.encode(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
+    'container_startup_health_check_timeout_in_seconds':
+        ?containerStartupHealthCheckTimeoutInSeconds?.toTfJson(),
+    'enable_ssm_access': ?enableSsmAccess?.toTfJson(),
+    'inference_ami_version': ?inferenceAmiVersion?.toTfJson(),
+    'initial_instance_count': ?initialInstanceCount?.toTfJson(),
+    'initial_variant_weight': ?initialVariantWeight?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'model_data_download_timeout_in_seconds': ?modelDataDownloadTimeoutInSeconds
+        ?.toTfJson(),
+    'model_name': ?modelName?.toTfJson(),
+    'variant_name': ?variantName?.toTfJson(),
+    'volume_size_in_gb': ?volumeSizeInGb?.toTfJson(),
+    'capacity_reservation_config': ?capacityReservationConfig?.encode(),
+    'core_dump_config': ?coreDumpConfig?.encode(),
+    'managed_instance_scaling': ?managedInstanceScaling?.encode(),
     if (routingConfig != null)
       'routing_config': [for (final e in routingConfig!) e.encode()],
-    if (serverlessConfig != null)
-      'serverless_config': serverlessConfig!.encode(),
+    'serverless_config': ?serverlessConfig?.encode(),
   };
 }
 
@@ -1285,11 +1255,9 @@ final class SagemakerEndpointConfigurationShadowProductionVariantsCapacityReserv
   final TfArg<String>? mlReservationArn;
 
   Map<String, Object?> encode() => {
-    if (capacityReservationPreference != null)
-      'capacity_reservation_preference': capacityReservationPreference!
-          .toTfJson(),
-    if (mlReservationArn != null)
-      'ml_reservation_arn': mlReservationArn!.toTfJson(),
+    'capacity_reservation_preference': ?capacityReservationPreference
+        ?.toTfJson(),
+    'ml_reservation_arn': ?mlReservationArn?.toTfJson(),
   };
 }
 
@@ -1344,11 +1312,9 @@ final class SagemakerEndpointConfigurationShadowProductionVariantsManagedInstanc
   status;
 
   Map<String, Object?> encode() => {
-    if (maxInstanceCount != null)
-      'max_instance_count': maxInstanceCount!.toTfJson(),
-    if (minInstanceCount != null)
-      'min_instance_count': minInstanceCount!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'max_instance_count': ?maxInstanceCount?.toTfJson(),
+    'min_instance_count': ?minInstanceCount?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -1416,8 +1382,7 @@ final class SagemakerEndpointConfigurationShadowProductionVariantsServerlessConf
   Map<String, Object?> encode() => {
     'max_concurrency': maxConcurrency.toTfJson(),
     'memory_size_in_mb': memorySizeInMb.toTfJson(),
-    if (provisionedConcurrency != null)
-      'provisioned_concurrency': provisionedConcurrency!.toTfJson(),
+    'provisioned_concurrency': ?provisionedConcurrency?.toTfJson(),
   };
 }
 
@@ -1445,12 +1410,11 @@ final class AwsSagemakerEndpointConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (executionRoleArn != null)
-             'execution_role_arn': executionRoleArn.encodeAs('arn'),
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'execution_role_arn': ?executionRoleArn?.encodeAs('arn'),
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (asyncInferenceConfig != null)
              'async_inference_config': TfArg.literal(
                asyncInferenceConfig.encode(),

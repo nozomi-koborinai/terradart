@@ -27,8 +27,7 @@ final class ConnectRoutingProfileMediaConcurrencies {
   Map<String, Object?> encode() => {
     'channel': channel.toTfJson(),
     'concurrency': concurrency.toTfJson(),
-    if (crossChannelBehavior != null)
-      'cross_channel_behavior': crossChannelBehavior!.encode(),
+    'cross_channel_behavior': ?crossChannelBehavior?.encode(),
   };
 }
 
@@ -137,8 +136,8 @@ final class AwsConnectRoutingProfile extends Resource {
            'description': description,
            'instance_id': instanceId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'media_concurrencies': TfArg.literal([
              for (final e in mediaConcurrencies) e.encode(),
            ]),

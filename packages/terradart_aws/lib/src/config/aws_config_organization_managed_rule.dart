@@ -47,19 +47,17 @@ final class AwsConfigOrganizationManagedRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (excludedAccounts != null) 'excluded_accounts': excludedAccounts,
-           if (inputParameters != null) 'input_parameters': inputParameters,
-           if (maximumExecutionFrequency != null)
-             'maximum_execution_frequency': maximumExecutionFrequency,
+           'description': ?description,
+           'excluded_accounts': ?excludedAccounts,
+           'input_parameters': ?inputParameters,
+           'maximum_execution_frequency': ?maximumExecutionFrequency,
            'name': name,
-           if (region != null) 'region': region,
-           if (resourceIdScope != null) 'resource_id_scope': resourceIdScope,
-           if (resourceTypesScope != null)
-             'resource_types_scope': resourceTypesScope,
+           'region': ?region,
+           'resource_id_scope': ?resourceIdScope,
+           'resource_types_scope': ?resourceTypesScope,
            'rule_identifier': ruleIdentifier,
-           if (tagKeyScope != null) 'tag_key_scope': tagKeyScope,
-           if (tagValueScope != null) 'tag_value_scope': tagValueScope,
+           'tag_key_scope': ?tagKeyScope,
+           'tag_value_scope': ?tagValueScope,
          },
        );
 

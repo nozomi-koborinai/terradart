@@ -77,9 +77,9 @@ final class ApiGatewayRestApiEndpointConfiguration {
   final TfArg<List<Object?>>? vpcEndpointIds;
 
   Map<String, Object?> encode() => {
-    if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
+    'ip_address_type': ?ipAddressType?.toTfJson(),
     'types': [for (final e in types) e.toTfJson()],
-    if (vpcEndpointIds != null) 'vpc_endpoint_ids': vpcEndpointIds!.toTfJson(),
+    'vpc_endpoint_ids': ?vpcEndpointIds?.toTfJson(),
   };
 }
 
@@ -136,24 +136,21 @@ final class AwsApiGatewayRestApi extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (apiKeySource != null) 'api_key_source': apiKeySource,
-           if (binaryMediaTypes != null) 'binary_media_types': binaryMediaTypes,
-           if (body != null) 'body': body,
-           if (description != null) 'description': description,
-           if (disableExecuteApiEndpoint != null)
-             'disable_execute_api_endpoint': disableExecuteApiEndpoint,
-           if (endpointAccessMode != null)
-             'endpoint_access_mode': endpointAccessMode,
-           if (failOnWarnings != null) 'fail_on_warnings': failOnWarnings,
-           if (minimumCompressionSize != null)
-             'minimum_compression_size': minimumCompressionSize,
+           'api_key_source': ?apiKeySource,
+           'binary_media_types': ?binaryMediaTypes,
+           'body': ?body,
+           'description': ?description,
+           'disable_execute_api_endpoint': ?disableExecuteApiEndpoint,
+           'endpoint_access_mode': ?endpointAccessMode,
+           'fail_on_warnings': ?failOnWarnings,
+           'minimum_compression_size': ?minimumCompressionSize,
            'name': name,
-           if (parameters != null) 'parameters': parameters,
-           if (policy != null) 'policy': policy,
-           if (putRestApiMode != null) 'put_rest_api_mode': putRestApiMode,
-           if (region != null) 'region': region,
-           if (securityPolicy != null) 'security_policy': securityPolicy,
-           if (tags != null) 'tags': tags,
+           'parameters': ?parameters,
+           'policy': ?policy,
+           'put_rest_api_mode': ?putRestApiMode,
+           'region': ?region,
+           'security_policy': ?securityPolicy,
+           'tags': ?tags,
            if (endpointConfiguration != null)
              'endpoint_configuration': TfArg.literal(
                endpointConfiguration.encode(),

@@ -153,10 +153,10 @@ final class GoogleCertificateManagerCertificate extends Resource {
          argMap: {
            'name': name,
            provisioning.blockKey: TfArg.literal([provisioning.encode()]),
-           if (description != null) 'description': description,
-           if (location != null) 'location': location,
-           if (scope != null) 'scope': scope,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'location': ?location,
+           'scope': ?scope,
+           'labels': ?labels,
          },
        );
 

@@ -24,10 +24,10 @@ final class DataGoogleAgentRegistryMcpServer extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (filter != null) 'filter': filter,
+           'filter': ?filter,
            'location': location,
-           if (mcpServerId != null) 'mcp_server_id': mcpServerId,
-           if (project != null) 'project': project,
+           'mcp_server_id': ?mcpServerId,
+           'project': ?project,
          },
        );
 

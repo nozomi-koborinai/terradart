@@ -38,8 +38,8 @@ final class AwsSagemakerModelCardExportJob extends Resource {
          argMap: {
            'model_card_export_job_name': modelCardExportJobName,
            'model_card_name': modelCardName,
-           if (modelCardVersion != null) 'model_card_version': modelCardVersion,
-           if (region != null) 'region': region,
+           'model_card_version': ?modelCardVersion,
+           'region': ?region,
            if (outputConfig != null)
              'output_config': TfArg.literal([
                for (final e in outputConfig) e.encode(),

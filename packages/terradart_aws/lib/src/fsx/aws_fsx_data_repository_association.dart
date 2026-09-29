@@ -21,10 +21,8 @@ final class FsxDataRepositoryAssociationS3 {
   final FsxDataRepositoryAssociationS3AutoImportPolicy? autoImportPolicy;
 
   Map<String, Object?> encode() => {
-    if (autoExportPolicy != null)
-      'auto_export_policy': autoExportPolicy!.encode(),
-    if (autoImportPolicy != null)
-      'auto_import_policy': autoImportPolicy!.encode(),
+    'auto_export_policy': ?autoExportPolicy?.encode(),
+    'auto_import_policy': ?autoImportPolicy?.encode(),
   };
 }
 
@@ -106,17 +104,14 @@ final class AwsFsxDataRepositoryAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (batchImportMetaDataOnCreate != null)
-             'batch_import_meta_data_on_create': batchImportMetaDataOnCreate,
+           'batch_import_meta_data_on_create': ?batchImportMetaDataOnCreate,
            'data_repository_path': dataRepositoryPath,
-           if (deleteDataInFilesystem != null)
-             'delete_data_in_filesystem': deleteDataInFilesystem,
+           'delete_data_in_filesystem': ?deleteDataInFilesystem,
            'file_system_id': fileSystemId,
            'file_system_path': fileSystemPath,
-           if (importedFileChunkSize != null)
-             'imported_file_chunk_size': importedFileChunkSize,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'imported_file_chunk_size': ?importedFileChunkSize,
+           'region': ?region,
+           'tags': ?tags,
            if (s3 != null) 's3': TfArg.literal(s3.encode()),
          },
        );

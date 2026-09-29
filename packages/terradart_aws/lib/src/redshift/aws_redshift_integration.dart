@@ -29,14 +29,13 @@ final class AwsRedshiftIntegration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalEncryptionContext != null)
-             'additional_encryption_context': additionalEncryptionContext,
-           if (description != null) 'description': description,
+           'additional_encryption_context': ?additionalEncryptionContext,
+           'description': ?description,
            'integration_name': integrationName,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'region': ?region,
            'source_arn': sourceArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'target_arn': targetArn,
          },
        );

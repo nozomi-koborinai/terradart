@@ -25,9 +25,9 @@ final class AwsDaxSubnetGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'subnet_ids': subnetIds.encodeAs('id'),
          },
        );

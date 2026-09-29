@@ -59,7 +59,7 @@ final class GoogleApigeeDnsZone extends Resource {
            'domain': domain,
            'description': description,
            'peering_config': TfArg.literal(peeringConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

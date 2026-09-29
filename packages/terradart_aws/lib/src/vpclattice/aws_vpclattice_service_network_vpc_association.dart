@@ -27,10 +27,8 @@ final class VpclatticeServiceNetworkVpcAssociationDnsOptions {
   final TfArg<List<Object?>>? privateDnsSpecifiedDomains;
 
   Map<String, Object?> encode() => {
-    if (privateDnsPreference != null)
-      'private_dns_preference': privateDnsPreference!.toTfJson(),
-    if (privateDnsSpecifiedDomains != null)
-      'private_dns_specified_domains': privateDnsSpecifiedDomains!.toTfJson(),
+    'private_dns_preference': ?privateDnsPreference?.toTfJson(),
+    'private_dns_specified_domains': ?privateDnsSpecifiedDomains?.toTfJson(),
   };
 }
 
@@ -69,13 +67,11 @@ final class AwsVpclatticeServiceNetworkVpcAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (privateDnsEnabled != null)
-             'private_dns_enabled': privateDnsEnabled,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
+           'private_dns_enabled': ?privateDnsEnabled,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
            'service_network_identifier': serviceNetworkIdentifier,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'vpc_identifier': vpcIdentifier,
            if (dnsOptions != null)
              'dns_options': TfArg.literal(dnsOptions.encode()),

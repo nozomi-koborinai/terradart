@@ -44,17 +44,15 @@ final class AlbListenerRuleAction {
   final AlbListenerRuleActionRedirect? redirect;
 
   Map<String, Object?> encode() => {
-    if (order != null) 'order': order!.toTfJson(),
-    if (targetGroupArn != null) 'target_group_arn': targetGroupArn!.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'target_group_arn': ?targetGroupArn?.toTfJson(),
     'type': type.toTfJson(),
-    if (authenticateCognito != null)
-      'authenticate_cognito': authenticateCognito!.encode(),
-    if (authenticateOidc != null)
-      'authenticate_oidc': authenticateOidc!.encode(),
-    if (fixedResponse != null) 'fixed_response': fixedResponse!.encode(),
-    if (forward != null) 'forward': forward!.encode(),
-    if (jwtValidation != null) 'jwt_validation': jwtValidation!.encode(),
-    if (redirect != null) 'redirect': redirect!.encode(),
+    'authenticate_cognito': ?authenticateCognito?.encode(),
+    'authenticate_oidc': ?authenticateOidc?.encode(),
+    'fixed_response': ?fixedResponse?.encode(),
+    'forward': ?forward?.encode(),
+    'jwt_validation': ?jwtValidation?.encode(),
+    'redirect': ?redirect?.encode(),
   };
 }
 
@@ -105,15 +103,12 @@ final class AlbListenerRuleActionAuthenticateCognito {
   final TfArg<String> userPoolDomain;
 
   Map<String, Object?> encode() => {
-    if (authenticationRequestExtraParams != null)
-      'authentication_request_extra_params': authenticationRequestExtraParams!
-          .toTfJson(),
-    if (onUnauthenticatedRequest != null)
-      'on_unauthenticated_request': onUnauthenticatedRequest!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (sessionCookieName != null)
-      'session_cookie_name': sessionCookieName!.toTfJson(),
-    if (sessionTimeout != null) 'session_timeout': sessionTimeout!.toTfJson(),
+    'authentication_request_extra_params': ?authenticationRequestExtraParams
+        ?.toTfJson(),
+    'on_unauthenticated_request': ?onUnauthenticatedRequest?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'session_cookie_name': ?sessionCookieName?.toTfJson(),
+    'session_timeout': ?sessionTimeout?.toTfJson(),
     'user_pool_arn': userPoolArn.toTfJson(),
     'user_pool_client_id': userPoolClientId.toTfJson(),
     'user_pool_domain': userPoolDomain.toTfJson(),
@@ -176,19 +171,16 @@ final class AlbListenerRuleActionAuthenticateOidc {
   final TfArg<String> userInfoEndpoint;
 
   Map<String, Object?> encode() => {
-    if (authenticationRequestExtraParams != null)
-      'authentication_request_extra_params': authenticationRequestExtraParams!
-          .toTfJson(),
+    'authentication_request_extra_params': ?authenticationRequestExtraParams
+        ?.toTfJson(),
     'authorization_endpoint': authorizationEndpoint.toTfJson(),
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
     'issuer': issuer.toTfJson(),
-    if (onUnauthenticatedRequest != null)
-      'on_unauthenticated_request': onUnauthenticatedRequest!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (sessionCookieName != null)
-      'session_cookie_name': sessionCookieName!.toTfJson(),
-    if (sessionTimeout != null) 'session_timeout': sessionTimeout!.toTfJson(),
+    'on_unauthenticated_request': ?onUnauthenticatedRequest?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'session_cookie_name': ?sessionCookieName?.toTfJson(),
+    'session_timeout': ?sessionTimeout?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
     'user_info_endpoint': userInfoEndpoint.toTfJson(),
   };
@@ -226,8 +218,8 @@ final class AlbListenerRuleActionFixedResponse {
 
   Map<String, Object?> encode() => {
     'content_type': contentType.toTfJson(),
-    if (messageBody != null) 'message_body': messageBody!.toTfJson(),
-    if (statusCode != null) 'status_code': statusCode!.toTfJson(),
+    'message_body': ?messageBody?.toTfJson(),
+    'status_code': ?statusCode?.toTfJson(),
   };
 }
 
@@ -258,7 +250,7 @@ final class AlbListenerRuleActionForward {
   final List<AlbListenerRuleActionForwardTargetGroup> targetGroup;
 
   Map<String, Object?> encode() => {
-    if (stickiness != null) 'stickiness': stickiness!.encode(),
+    'stickiness': ?stickiness?.encode(),
     'target_group': [for (final e in targetGroup) e.encode()],
   };
 }
@@ -278,7 +270,7 @@ final class AlbListenerRuleActionForwardStickiness {
 
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
   };
 }
 
@@ -297,7 +289,7 @@ final class AlbListenerRuleActionForwardTargetGroup {
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -389,11 +381,11 @@ final class AlbListenerRuleActionRedirect {
   final TfArg<AlbListenerRuleActionRedirectStatusCode> statusCode;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (query != null) 'query': query!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'query': ?query?.toTfJson(),
     'status_code': statusCode.toTfJson(),
   };
 }
@@ -445,14 +437,13 @@ final class AlbListenerRuleCondition {
   final AlbListenerRuleConditionSourceIp? sourceIp;
 
   Map<String, Object?> encode() => {
-    if (hostHeader != null) 'host_header': hostHeader!.encode(),
-    if (httpHeader != null) 'http_header': httpHeader!.encode(),
-    if (httpRequestMethod != null)
-      'http_request_method': httpRequestMethod!.encode(),
-    if (pathPattern != null) 'path_pattern': pathPattern!.encode(),
+    'host_header': ?hostHeader?.encode(),
+    'http_header': ?httpHeader?.encode(),
+    'http_request_method': ?httpRequestMethod?.encode(),
+    'path_pattern': ?pathPattern?.encode(),
     if (queryString != null)
       'query_string': [for (final e in queryString!) e.encode()],
-    if (sourceIp != null) 'source_ip': sourceIp!.encode(),
+    'source_ip': ?sourceIp?.encode(),
   };
 }
 
@@ -467,8 +458,8 @@ final class AlbListenerRuleConditionHostHeader {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (regexValues != null) 'regex_values': regexValues!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'regex_values': ?regexValues?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -490,8 +481,8 @@ final class AlbListenerRuleConditionHttpHeader {
 
   Map<String, Object?> encode() => {
     'http_header_name': httpHeaderName.toTfJson(),
-    if (regexValues != null) 'regex_values': regexValues!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'regex_values': ?regexValues?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -517,8 +508,8 @@ final class AlbListenerRuleConditionPathPattern {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (regexValues != null) 'regex_values': regexValues!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'regex_values': ?regexValues?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -533,7 +524,7 @@ final class AlbListenerRuleConditionQueryString {
   final TfArg<String> value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -549,8 +540,8 @@ final class AlbListenerRuleConditionSourceIp {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'ip_address_type': ?ipAddressType?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -583,10 +574,8 @@ final class AlbListenerRuleTransform {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (hostHeaderRewriteConfig != null)
-      'host_header_rewrite_config': hostHeaderRewriteConfig!.encode(),
-    if (urlRewriteConfig != null)
-      'url_rewrite_config': urlRewriteConfig!.encode(),
+    'host_header_rewrite_config': ?hostHeaderRewriteConfig?.encode(),
+    'url_rewrite_config': ?urlRewriteConfig?.encode(),
   };
 }
 
@@ -608,9 +597,7 @@ final class AlbListenerRuleTransformHostHeaderRewriteConfig {
 
   final AlbListenerRuleTransformHostHeaderRewriteConfigRewrite? rewrite;
 
-  Map<String, Object?> encode() => {
-    if (rewrite != null) 'rewrite': rewrite!.encode(),
-  };
+  Map<String, Object?> encode() => {'rewrite': ?rewrite?.encode()};
 }
 
 /// Typed helper for the `transform.host_header_rewrite_config.rewrite` block of
@@ -640,9 +627,7 @@ final class AlbListenerRuleTransformUrlRewriteConfig {
 
   final AlbListenerRuleTransformUrlRewriteConfigRewrite? rewrite;
 
-  Map<String, Object?> encode() => {
-    if (rewrite != null) 'rewrite': rewrite!.encode(),
-  };
+  Map<String, Object?> encode() => {'rewrite': ?rewrite?.encode()};
 }
 
 /// Typed helper for the `transform.url_rewrite_config.rewrite` block of
@@ -685,9 +670,9 @@ final class AwsAlbListenerRule extends Resource {
          terraformType: tfType,
          argMap: {
            'listener_arn': listenerArn,
-           if (priority != null) 'priority': priority,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'priority': ?priority,
+           'region': ?region,
+           'tags': ?tags,
            'action': TfArg.literal([for (final e in action) e.encode()]),
            'condition': TfArg.literal([for (final e in condition) e.encode()]),
            if (transform != null)

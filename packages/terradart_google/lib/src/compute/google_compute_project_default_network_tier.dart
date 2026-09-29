@@ -52,10 +52,7 @@ final class GoogleComputeProjectDefaultNetworkTier extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'network_tier': networkTier,
-           if (project != null) 'project': project,
-         },
+         argMap: {'network_tier': networkTier, 'project': ?project},
        );
 
   @override

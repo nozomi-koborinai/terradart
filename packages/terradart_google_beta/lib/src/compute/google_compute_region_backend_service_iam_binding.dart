@@ -25,7 +25,7 @@ final class ComputeRegionBackendServiceIamBindingCondition {
   final TfArg<String> title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
     'title': title.toTfJson(),
   };
@@ -59,8 +59,8 @@ final class GoogleComputeRegionBackendServiceIamBinding extends Resource {
          argMap: {
            'members': members,
            'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

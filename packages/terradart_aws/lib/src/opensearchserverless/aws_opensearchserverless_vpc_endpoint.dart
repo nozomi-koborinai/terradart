@@ -29,9 +29,8 @@ final class AwsOpensearchserverlessVpcEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
            'subnet_ids': subnetIds.encodeAs('id'),
            'vpc_id': vpcId.encodeAs('id'),
          },

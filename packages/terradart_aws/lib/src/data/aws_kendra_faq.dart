@@ -24,8 +24,8 @@ final class DataAwsKendraFaq extends Data {
          argMap: {
            'faq_id': faqId,
            'index_id': indexId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

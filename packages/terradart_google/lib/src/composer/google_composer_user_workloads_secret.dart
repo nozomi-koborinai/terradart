@@ -48,10 +48,10 @@ final class GoogleComposerUserWorkloadsSecret extends Resource {
          argMap: {
            'name': name,
            'environment': environment,
-           if (region != null) 'region': region,
-           if (data != null) 'data': data,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'data': ?data,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

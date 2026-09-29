@@ -117,12 +117,10 @@ final class CloudformationStackSetAutoDeployment {
   final TfArg<bool>? retainStacksOnAccountRemoval;
 
   Map<String, Object?> encode() => {
-    if (dependsOnStackSets != null)
-      'depends_on_stack_sets': dependsOnStackSets!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (retainStacksOnAccountRemoval != null)
-      'retain_stacks_on_account_removal': retainStacksOnAccountRemoval!
-          .toTfJson(),
+    'depends_on_stack_sets': ?dependsOnStackSets?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'retain_stacks_on_account_removal': ?retainStacksOnAccountRemoval
+        ?.toTfJson(),
   };
 }
 
@@ -134,9 +132,7 @@ final class CloudformationStackSetManagedExecution {
 
   final TfArg<bool>? active;
 
-  Map<String, Object?> encode() => {
-    if (active != null) 'active': active!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'active': ?active?.toTfJson()};
 }
 
 /// Typed helper for the `operation_preferences` block of
@@ -163,9 +159,8 @@ final class CloudformationStackSetOperationPreferences {
   Map<String, Object?> encode() => {
     ...?failureTolerance?.encode(),
     ...?maxConcurrent?.encode(),
-    if (regionConcurrencyType != null)
-      'region_concurrency_type': regionConcurrencyType!.toTfJson(),
-    if (regionOrder != null) 'region_order': regionOrder!.toTfJson(),
+    'region_concurrency_type': ?regionConcurrencyType?.toTfJson(),
+    'region_order': ?regionOrder?.toTfJson(),
   };
 }
 
@@ -329,21 +324,19 @@ final class AwsCloudformationStackSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (administrationRoleArn != null)
-             'administration_role_arn': administrationRoleArn,
-           if (callAs != null) 'call_as': callAs,
+           'administration_role_arn': ?administrationRoleArn,
+           'call_as': ?callAs,
            if (capabilities != null)
              'capabilities': TfArg.literal([
                for (final e in capabilities) e.toTfJson(),
              ]),
-           if (description != null) 'description': description,
-           if (executionRoleName != null)
-             'execution_role_name': executionRoleName,
+           'description': ?description,
+           'execution_role_name': ?executionRoleName,
            'name': name,
-           if (parameters != null) 'parameters': parameters,
-           if (permissionModel != null) 'permission_model': permissionModel,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'parameters': ?parameters,
+           'permission_model': ?permissionModel,
+           'region': ?region,
+           'tags': ?tags,
            ...?template?.argMap,
            if (autoDeployment != null)
              'auto_deployment': TfArg.literal(autoDeployment.encode()),

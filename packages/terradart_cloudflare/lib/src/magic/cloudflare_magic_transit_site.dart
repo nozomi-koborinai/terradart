@@ -20,8 +20,8 @@ final class MagicTransitSiteLocation {
   final TfArg<String>? lon;
 
   Map<String, Object?> encode() => {
-    if (lat != null) 'lat': lat!.toTfJson(),
-    if (lon != null) 'lon': lon!.toTfJson(),
+    'lat': ?lat?.toTfJson(),
+    'lon': ?lon?.toTfJson(),
   };
 }
 
@@ -51,12 +51,11 @@ final class CloudflareMagicTransitSite extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (connectorId != null) 'connector_id': connectorId,
-           if (description != null) 'description': description,
-           if (haMode != null) 'ha_mode': haMode,
+           'connector_id': ?connectorId,
+           'description': ?description,
+           'ha_mode': ?haMode,
            'name': name,
-           if (secondaryConnectorId != null)
-             'secondary_connector_id': secondaryConnectorId,
+           'secondary_connector_id': ?secondaryConnectorId,
            if (location != null) 'location': TfArg.literal(location.encode()),
          },
        );

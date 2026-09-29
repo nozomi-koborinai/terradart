@@ -20,11 +20,7 @@ final class DataAwsMskTopic extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'cluster_arn': clusterArn,
-           'name': name,
-           if (region != null) 'region': region,
-         },
+         argMap: {'cluster_arn': clusterArn, 'name': name, 'region': ?region},
        );
 
   @override

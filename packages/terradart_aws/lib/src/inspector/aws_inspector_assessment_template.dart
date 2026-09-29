@@ -64,9 +64,9 @@ final class AwsInspectorAssessmentTemplate extends Resource {
          argMap: {
            'duration': duration,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rules_package_arns': rulesPackageArns,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'target_arn': targetArn,
            if (eventSubscription != null)
              'event_subscription': TfArg.literal([

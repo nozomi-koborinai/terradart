@@ -18,10 +18,7 @@ final class DataAwsMqBrokerEngineTypes extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (engineType != null) 'engine_type': engineType,
-           if (region != null) 'region': region,
-         },
+         argMap: {'engine_type': ?engineType, 'region': ?region},
        );
 
   @override

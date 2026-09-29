@@ -26,10 +26,10 @@ final class DataGoogleBackupDrDataSources extends Data {
          terraformType: tfType,
          argMap: {
            'backup_vault_id': backupVaultId,
-           if (filter != null) 'filter': filter,
+           'filter': ?filter,
            'location': location,
-           if (orderBy != null) 'order_by': orderBy,
-           if (project != null) 'project': project,
+           'order_by': ?orderBy,
+           'project': ?project,
          },
        );
 

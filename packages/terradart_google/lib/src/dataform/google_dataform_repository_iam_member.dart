@@ -36,9 +36,9 @@ final class GoogleDataformRepositoryIamMember extends Resource {
            'repository': repository,
            'role': role,
            'member': member,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'region': ?region,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

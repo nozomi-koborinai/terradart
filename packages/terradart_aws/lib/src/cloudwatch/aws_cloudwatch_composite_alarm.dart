@@ -53,16 +53,15 @@ final class AwsCloudwatchCompositeAlarm extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (actionsEnabled != null) 'actions_enabled': actionsEnabled,
-           if (alarmActions != null) 'alarm_actions': alarmActions,
-           if (alarmDescription != null) 'alarm_description': alarmDescription,
+           'actions_enabled': ?actionsEnabled,
+           'alarm_actions': ?alarmActions,
+           'alarm_description': ?alarmDescription,
            'alarm_name': alarmName,
            'alarm_rule': alarmRule,
-           if (insufficientDataActions != null)
-             'insufficient_data_actions': insufficientDataActions,
-           if (okActions != null) 'ok_actions': okActions,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'insufficient_data_actions': ?insufficientDataActions,
+           'ok_actions': ?okActions,
+           'region': ?region,
+           'tags': ?tags,
            if (actionsSuppressor != null)
              'actions_suppressor': TfArg.literal(actionsSuppressor.encode()),
          },

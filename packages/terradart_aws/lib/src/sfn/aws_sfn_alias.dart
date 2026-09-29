@@ -43,9 +43,9 @@ final class AwsSfnAlias extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'routing_configuration': TfArg.literal([
              for (final e in routingConfiguration) e.encode(),
            ]),

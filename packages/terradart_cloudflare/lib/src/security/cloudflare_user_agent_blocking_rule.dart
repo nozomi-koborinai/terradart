@@ -33,8 +33,8 @@ final class UserAgentBlockingRuleConfiguration {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (target != null) 'target': target!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'target': ?target?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -69,9 +69,9 @@ final class CloudflareUserAgentBlockingRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'mode': mode,
-           if (paused != null) 'paused': paused,
+           'paused': ?paused,
            'zone_id': zoneId.encodeAs('id'),
            'configuration': TfArg.literal(configuration.encode()),
          },

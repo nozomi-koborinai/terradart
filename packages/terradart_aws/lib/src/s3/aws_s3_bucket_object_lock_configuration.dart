@@ -48,7 +48,7 @@ final class S3BucketObjectLockConfigurationRuleDefaultRetention {
 
   Map<String, Object?> encode() => {
     ...?period?.encode(),
-    if (mode != null) 'mode': mode!.toTfJson(),
+    'mode': ?mode?.toTfJson(),
   };
 }
 
@@ -141,12 +141,10 @@ final class AwsS3BucketObjectLockConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (objectLockEnabled != null)
-             'object_lock_enabled': objectLockEnabled,
-           if (region != null) 'region': region,
-           if (token != null) 'token': token,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'object_lock_enabled': ?objectLockEnabled,
+           'region': ?region,
+           'token': ?token,
            if (rule != null) 'rule': TfArg.literal(rule.encode()),
          },
        );

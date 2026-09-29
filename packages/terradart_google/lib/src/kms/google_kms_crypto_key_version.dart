@@ -52,10 +52,7 @@ final class GoogleKmsCryptoKeyVersion extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'crypto_key': cryptoKey.encodeAs('id'),
-           if (state != null) 'state': state,
-         },
+         argMap: {'crypto_key': cryptoKey.encodeAs('id'), 'state': ?state},
        );
 
   @override

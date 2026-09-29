@@ -31,10 +31,9 @@ final class Resiliencehubv2InputSourceResourceConfiguration {
   resourceTag;
 
   Map<String, Object?> encode() => {
-    if (cfnStackArn != null) 'cfn_stack_arn': cfnStackArn!.toTfJson(),
-    if (designFileS3Url != null)
-      'design_file_s3_url': designFileS3Url!.toTfJson(),
-    if (tfStateFileUrl != null) 'tf_state_file_url': tfStateFileUrl!.toTfJson(),
+    'cfn_stack_arn': ?cfnStackArn?.toTfJson(),
+    'design_file_s3_url': ?designFileS3Url?.toTfJson(),
+    'tf_state_file_url': ?tfStateFileUrl?.toTfJson(),
     if (eks != null) 'eks': [for (final e in eks!) e.encode()],
     if (resourceTag != null)
       'resource_tag': [for (final e in resourceTag!) e.encode()],
@@ -96,7 +95,7 @@ final class AwsResiliencehubv2InputSource extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_arn': serviceArn,
            if (resourceConfiguration != null)
              'resource_configuration': TfArg.literal([

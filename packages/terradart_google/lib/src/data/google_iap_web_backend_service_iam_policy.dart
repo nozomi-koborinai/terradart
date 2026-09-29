@@ -23,7 +23,7 @@ final class DataGoogleIapWebBackendServiceIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (project != null) 'project': project,
+           'project': ?project,
            'web_backend_service': webBackendService,
          },
        );

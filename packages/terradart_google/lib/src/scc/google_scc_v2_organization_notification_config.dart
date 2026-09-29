@@ -52,9 +52,9 @@ final class GoogleSccV2OrganizationNotificationConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'config_id': configId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (location != null) 'location': location,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'location': ?location,
            'organization': organization,
            'pubsub_topic': pubsubTopic.encodeAs('id'),
            'streaming_config': TfArg.literal(streamingConfig.encode()),

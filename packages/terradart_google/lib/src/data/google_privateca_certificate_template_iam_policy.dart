@@ -27,8 +27,8 @@ final class DataGooglePrivatecaCertificateTemplateIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'certificate_template': certificateTemplate,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

@@ -19,8 +19,8 @@ final class DataShareResourceFilter {
   final TfArg<DataShareResourceFilterStatus>? status;
 
   Map<String, Object?> encode() => {
-    if (resourceType != null) 'resource_type': resourceType!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'resource_type': ?resourceType?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -67,7 +67,7 @@ final class DataCloudflareShareResource extends Data {
          argMap: {
            'account_id': accountId,
            'share_id': shareId,
-           if (shareResourceId != null) 'share_resource_id': shareResourceId,
+           'share_resource_id': ?shareResourceId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

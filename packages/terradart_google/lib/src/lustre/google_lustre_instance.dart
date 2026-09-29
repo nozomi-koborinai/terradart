@@ -59,22 +59,17 @@ final class GoogleLustreInstance extends Resource {
            'filesystem': filesystem,
            'capacity_gib': capacityGib,
            'network': network.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (perUnitStorageThroughput != null)
-             'per_unit_storage_throughput': perUnitStorageThroughput,
-           if (gkeSupportEnabled != null)
-             'gke_support_enabled': gkeSupportEnabled,
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
-           if (placementPolicy != null) 'placement_policy': placementPolicy,
-           if (accessRulesOptions != null)
-             'access_rules_options': accessRulesOptions,
-           if (dynamicTierOptions != null)
-             'dynamic_tier_options': dynamicTierOptions,
-           if (maintenancePolicy != null)
-             'maintenance_policy': maintenancePolicy,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'per_unit_storage_throughput': ?perUnitStorageThroughput,
+           'gke_support_enabled': ?gkeSupportEnabled,
+           'kms_key': ?kmsKey?.encodeAs('id'),
+           'placement_policy': ?placementPolicy,
+           'access_rules_options': ?accessRulesOptions,
+           'dynamic_tier_options': ?dynamicTierOptions,
+           'maintenance_policy': ?maintenancePolicy,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

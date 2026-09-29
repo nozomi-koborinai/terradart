@@ -37,7 +37,7 @@ final class GoogleStorageManagedFolderIamBinding extends Resource {
            'managed_folder': managedFolder,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

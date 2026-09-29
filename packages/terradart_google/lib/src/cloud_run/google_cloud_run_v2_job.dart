@@ -824,14 +824,13 @@ final class GoogleCloudRunV2Job extends Resource {
              'binary_authorization': TfArg.literal([
                binaryAuthorization.toArgMap(),
              ]),
-           if (launchStage != null) 'launch_stage': launchStage,
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
-           if (client != null) 'client': client,
-           if (clientVersion != null) 'client_version': clientVersion,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'launch_stage': ?launchStage,
+           'labels': ?labels,
+           'annotations': ?annotations,
+           'client': ?client,
+           'client_version': ?clientVersion,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

@@ -46,10 +46,9 @@ final class Apigatewayv2DomainNameDomainNameConfiguration {
   Map<String, Object?> encode() => {
     'certificate_arn': certificateArn.toTfJson(),
     'endpoint_type': endpointType.toTfJson(),
-    if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
-    if (ownershipVerificationCertificateArn != null)
-      'ownership_verification_certificate_arn':
-          ownershipVerificationCertificateArn!.toTfJson(),
+    'ip_address_type': ?ipAddressType?.toTfJson(),
+    'ownership_verification_certificate_arn':
+        ?ownershipVerificationCertificateArn?.toTfJson(),
     'security_policy': securityPolicy.toTfJson(),
   };
 }
@@ -106,8 +105,7 @@ final class Apigatewayv2DomainNameMutualTlsAuthentication {
 
   Map<String, Object?> encode() => {
     'truststore_uri': truststoreUri.toTfJson(),
-    if (truststoreVersion != null)
-      'truststore_version': truststoreVersion!.toTfJson(),
+    'truststore_version': ?truststoreVersion?.toTfJson(),
   };
 }
 
@@ -132,9 +130,9 @@ final class AwsApigatewayv2DomainName extends Resource {
          terraformType: tfType,
          argMap: {
            'domain_name': domainName,
-           if (region != null) 'region': region,
-           if (routingMode != null) 'routing_mode': routingMode,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'routing_mode': ?routingMode,
+           'tags': ?tags,
            'domain_name_configuration': TfArg.literal(
              domainNameConfiguration.encode(),
            ),

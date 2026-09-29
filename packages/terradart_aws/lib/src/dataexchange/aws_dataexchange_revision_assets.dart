@@ -88,8 +88,8 @@ final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSo
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (keyPrefixes != null) 'key_prefixes': keyPrefixes!.toTfJson(),
-    if (keys != null) 'keys': keys!.toTfJson(),
+    'key_prefixes': ?keyPrefixes?.toTfJson(),
+    'keys': ?keys?.toTfJson(),
     if (kmsKeysToGrant != null)
       'kms_keys_to_grant': [for (final e in kmsKeysToGrant!) e.encode()],
   };
@@ -177,12 +177,12 @@ final class AwsDataexchangeRevisionAssets extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'data_set_id': dataSetId,
-           if (finalized != null) 'finalized': finalized,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'finalized': ?finalized,
+           'force_destroy': ?forceDestroy,
+           'region': ?region,
+           'tags': ?tags,
            if (asset != null)
              'asset': TfArg.literal([for (final e in asset) e.encode()]),
          },

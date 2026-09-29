@@ -24,7 +24,7 @@ final class DataGoogleKmsKeyHandles extends Data {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'resource_type_selector': resourceTypeSelector,
          },
        );

@@ -711,12 +711,12 @@ final class GoogleBigqueryConnection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (connectionId != null) 'connection_id': connectionId,
-           if (location != null) 'location': location,
-           if (friendlyName != null) 'friendly_name': friendlyName,
-           if (description != null) 'description': description,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
-           if (project != null) 'project': project,
+           'connection_id': ?connectionId,
+           'location': ?location,
+           'friendly_name': ?friendlyName,
+           'description': ?description,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'project': ?project,
            backend.blockKey: TfArg.literal(backend.encode()),
          },
        );

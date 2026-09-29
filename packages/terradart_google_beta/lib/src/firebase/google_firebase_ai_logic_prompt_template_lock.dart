@@ -30,11 +30,10 @@ final class GoogleFirebaseAiLogicPromptTemplateLock extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'location': location,
-           if (project != null) 'project': project,
-           if (regionalPropagationDisabled != null)
-             'regional_propagation_disabled': regionalPropagationDisabled,
+           'project': ?project,
+           'regional_propagation_disabled': ?regionalPropagationDisabled,
            'template_id': templateId,
          },
        );

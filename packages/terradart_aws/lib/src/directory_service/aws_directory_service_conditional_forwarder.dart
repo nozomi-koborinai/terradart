@@ -26,7 +26,7 @@ final class AwsDirectoryServiceConditionalForwarder extends Resource {
          argMap: {
            'directory_id': directoryId,
            'dns_ips': dnsIps,
-           if (region != null) 'region': region,
+           'region': ?region,
            'remote_domain_name': remoteDomainName,
          },
        );

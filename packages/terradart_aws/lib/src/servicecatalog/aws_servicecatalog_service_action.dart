@@ -41,10 +41,10 @@ final class ServicecatalogServiceActionDefinition {
   final TfArg<String> version;
 
   Map<String, Object?> encode() => {
-    if (assumeRole != null) 'assume_role': assumeRole!.toTfJson(),
+    'assume_role': ?assumeRole?.toTfJson(),
     'name': name.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'type': ?type?.toTfJson(),
     'version': version.toTfJson(),
   };
 }
@@ -76,10 +76,10 @@ final class AwsServicecatalogServiceAction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
-           if (description != null) 'description': description,
+           'accept_language': ?acceptLanguage,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'definition': TfArg.literal(definition.encode()),
          },
        );

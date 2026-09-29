@@ -19,8 +19,8 @@ final class DataSpectrumApplicationFilter {
   final TfArg<DataSpectrumApplicationFilterOrder>? order;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'order': ?order?.toTfJson(),
   };
 }
 
@@ -65,8 +65,8 @@ final class DataCloudflareSpectrumApplication extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (appId != null) 'app_id': appId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'app_id': ?appId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

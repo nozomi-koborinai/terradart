@@ -217,10 +217,8 @@ final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
   final TfArg<String> objectType;
 
   Map<String, Object?> encode() => {
-    if (exclusionFilters != null)
-      'exclusion_filters': exclusionFilters!.toTfJson(),
-    if (inclusionFilters != null)
-      'inclusion_filters': inclusionFilters!.toTfJson(),
+    'exclusion_filters': ?exclusionFilters?.toTfJson(),
+    'inclusion_filters': ?inclusionFilters?.toTfJson(),
     'object_type': objectType.toTfJson(),
   };
 }
@@ -306,8 +304,7 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
   mediaExtractionConfiguration;
 
   Map<String, Object?> encode() => {
-    if (connectorParameters != null)
-      'connector_parameters': connectorParameters!.toTfJson(),
+    'connector_parameters': ?connectorParameters?.toTfJson(),
     if (deletionProtectionConfiguration != null)
       'deletion_protection_configuration': [
         for (final e in deletionProtectionConfiguration!) e.encode(),
@@ -337,8 +334,7 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
 
   Map<String, Object?> encode() => {
     'deletion_protection_status': deletionProtectionStatus.toTfJson(),
-    if (deletionProtectionThreshold != null)
-      'deletion_protection_threshold': deletionProtectionThreshold!.toTfJson(),
+    'deletion_protection_threshold': ?deletionProtectionThreshold?.toTfJson(),
   };
 }
 
@@ -507,10 +503,8 @@ final class BedrockagentDataSourceDataSourceConfigurationS3Configuration {
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bucketOwnerAccountId != null)
-      'bucket_owner_account_id': bucketOwnerAccountId!.toTfJson(),
-    if (inclusionPrefixes != null)
-      'inclusion_prefixes': inclusionPrefixes!.toTfJson(),
+    'bucket_owner_account_id': ?bucketOwnerAccountId?.toTfJson(),
+    'inclusion_prefixes': ?inclusionPrefixes?.toTfJson(),
   };
 }
 
@@ -626,10 +620,8 @@ final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfiguration
   final TfArg<String> objectType;
 
   Map<String, Object?> encode() => {
-    if (exclusionFilters != null)
-      'exclusion_filters': exclusionFilters!.toTfJson(),
-    if (inclusionFilters != null)
-      'inclusion_filters': inclusionFilters!.toTfJson(),
+    'exclusion_filters': ?exclusionFilters?.toTfJson(),
+    'inclusion_filters': ?inclusionFilters?.toTfJson(),
     'object_type': objectType.toTfJson(),
   };
 }
@@ -784,10 +776,8 @@ final class BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration
   final TfArg<String> objectType;
 
   Map<String, Object?> encode() => {
-    if (exclusionFilters != null)
-      'exclusion_filters': exclusionFilters!.toTfJson(),
-    if (inclusionFilters != null)
-      'inclusion_filters': inclusionFilters!.toTfJson(),
+    'exclusion_filters': ?exclusionFilters?.toTfJson(),
+    'inclusion_filters': ?inclusionFilters?.toTfJson(),
     'object_type': objectType.toTfJson(),
   };
 }
@@ -829,7 +819,7 @@ final class BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration
     'domain': domain.toTfJson(),
     'host_type': hostType.toTfJson(),
     'site_urls': siteUrls.toTfJson(),
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
   };
 }
 
@@ -920,12 +910,10 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawler
   crawlerLimits;
 
   Map<String, Object?> encode() => {
-    if (exclusionFilters != null)
-      'exclusion_filters': exclusionFilters!.toTfJson(),
-    if (inclusionFilters != null)
-      'inclusion_filters': inclusionFilters!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (userAgent != null) 'user_agent': userAgent!.toTfJson(),
+    'exclusion_filters': ?exclusionFilters?.toTfJson(),
+    'inclusion_filters': ?inclusionFilters?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'user_agent': ?userAgent?.toTfJson(),
     if (crawlerLimits != null)
       'crawler_limits': [for (final e in crawlerLimits!) e.encode()],
   };
@@ -958,8 +946,8 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawler
   final TfArg<num>? rateLimit;
 
   Map<String, Object?> encode() => {
-    if (maxPages != null) 'max_pages': maxPages!.toTfJson(),
-    if (rateLimit != null) 'rate_limit': rateLimit!.toTfJson(),
+    'max_pages': ?maxPages?.toTfJson(),
+    'rate_limit': ?rateLimit?.toTfJson(),
   };
 }
 
@@ -1010,7 +998,7 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceC
 
   final TfArg<String>? url;
 
-  Map<String, Object?> encode() => {if (url != null) 'url': url!.toTfJson()};
+  Map<String, Object?> encode() => {'url': ?url?.toTfJson()};
 }
 
 /// Typed helper for the `server_side_encryption_configuration` block of
@@ -1024,7 +1012,7 @@ final class BedrockagentDataSourceServerSideEncryptionConfiguration {
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1499,8 +1487,7 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
   parsingModality;
 
   Map<String, Object?> encode() => {
-    if (parsingModality != null)
-      'parsing_modality': parsingModality!.toTfJson(),
+    'parsing_modality': ?parsingModality?.toTfJson(),
   };
 }
 
@@ -1540,8 +1527,7 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
 
   Map<String, Object?> encode() => {
     'model_arn': modelArn.toTfJson(),
-    if (parsingModality != null)
-      'parsing_modality': parsingModality!.toTfJson(),
+    'parsing_modality': ?parsingModality?.toTfJson(),
     if (parsingPrompt != null)
       'parsing_prompt': [for (final e in parsingPrompt!) e.encode()],
   };
@@ -1598,12 +1584,11 @@ final class AwsBedrockagentDataSource extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dataDeletionPolicy != null)
-             'data_deletion_policy': dataDeletionPolicy,
-           if (description != null) 'description': description,
+           'data_deletion_policy': ?dataDeletionPolicy,
+           'description': ?description,
            'knowledge_base_id': knowledgeBaseId,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (dataSourceConfiguration != null)
              'data_source_configuration': TfArg.literal([
                for (final e in dataSourceConfiguration) e.encode(),

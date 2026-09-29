@@ -145,9 +145,9 @@ final class GoogleFirestoreBackupSchedule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (database != null) 'database': database,
+           'database': ?database,
            'retention': retention,
-           if (project != null) 'project': project,
+           'project': ?project,
            recurrence.blockKey: TfArg.literal(recurrence.encode()),
          },
        );

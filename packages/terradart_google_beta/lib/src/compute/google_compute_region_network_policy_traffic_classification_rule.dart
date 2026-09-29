@@ -116,10 +116,10 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleAction {
   type;
 
   Map<String, Object?> encode() => {
-    if (dscpMode != null) 'dscp_mode': dscpMode!.toTfJson(),
-    if (dscpValue != null) 'dscp_value': dscpValue!.toTfJson(),
-    if (trafficClass != null) 'traffic_class': trafficClass!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'dscp_mode': ?dscpMode?.toTfJson(),
+    'dscp_value': ?dscpValue?.toTfJson(),
+    'traffic_class': ?trafficClass?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -185,8 +185,8 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleMatch {
   layer4Configs;
 
   Map<String, Object?> encode() => {
-    if (destIpRanges != null) 'dest_ip_ranges': destIpRanges!.toTfJson(),
-    if (srcIpRanges != null) 'src_ip_ranges': srcIpRanges!.toTfJson(),
+    'dest_ip_ranges': ?destIpRanges?.toTfJson(),
+    'src_ip_ranges': ?srcIpRanges?.toTfJson(),
     'layer4_configs': [for (final e in layer4Configs) e.encode()],
   };
 }
@@ -206,7 +206,7 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Config
 
   Map<String, Object?> encode() => {
     'ip_protocol': ipProtocol.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
+    'ports': ?ports?.toTfJson(),
   };
 }
 
@@ -220,7 +220,7 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags 
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_region_network_policy_traffic_classification_rule`.
@@ -254,14 +254,14 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'disabled': ?disabled,
            'network_policy': networkPolicy,
            'priority': priority,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (ruleName != null) 'rule_name': ruleName,
+           'project': ?project,
+           'region': ?region,
+           'rule_name': ?ruleName,
            ...?target?.argMap,
            if (action != null) 'action': TfArg.literal(action.encode()),
            'match': TfArg.literal(match.encode()),

@@ -25,10 +25,8 @@ final class BatchSchedulingPolicyFairSharePolicy {
   shareDistribution;
 
   Map<String, Object?> encode() => {
-    if (computeReservation != null)
-      'compute_reservation': computeReservation!.toTfJson(),
-    if (shareDecaySeconds != null)
-      'share_decay_seconds': shareDecaySeconds!.toTfJson(),
+    'compute_reservation': ?computeReservation?.toTfJson(),
+    'share_decay_seconds': ?shareDecaySeconds?.toTfJson(),
     if (shareDistribution != null)
       'share_distribution': [for (final e in shareDistribution!) e.encode()],
   };
@@ -49,7 +47,7 @@ final class BatchSchedulingPolicyFairSharePolicyShareDistribution {
 
   Map<String, Object?> encode() => {
     'share_identifier': shareIdentifier.toTfJson(),
-    if (weightFactor != null) 'weight_factor': weightFactor!.toTfJson(),
+    'weight_factor': ?weightFactor?.toTfJson(),
   };
 }
 
@@ -71,8 +69,8 @@ final class AwsBatchSchedulingPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (fairSharePolicy != null)
              'fair_share_policy': TfArg.literal(fairSharePolicy.encode()),
          },

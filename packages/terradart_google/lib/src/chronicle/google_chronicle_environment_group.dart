@@ -48,8 +48,8 @@ final class GoogleChronicleEnvironmentGroup extends Resource {
            'environments_ids': environmentsIds,
            'location': location,
            'instance': instance,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -24,10 +24,10 @@ final class AwsCognitoUserPoolUiCustomization extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clientId != null) 'client_id': clientId,
-           if (css != null) 'css': css,
-           if (imageFile != null) 'image_file': imageFile,
-           if (region != null) 'region': region,
+           'client_id': ?clientId,
+           'css': ?css,
+           'image_file': ?imageFile,
+           'region': ?region,
            'user_pool_id': userPoolId,
          },
        );

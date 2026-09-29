@@ -57,11 +57,11 @@ final class GoogleIamWorkloadIdentityPoolManagedIdentity extends Resource {
                workloadIdentityPoolNamespaceId,
            'workload_identity_pool_managed_identity_id':
                workloadIdentityPoolManagedIdentityId,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (attestationRules != null) 'attestation_rules': attestationRules,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'disabled': ?disabled,
+           'attestation_rules': ?attestationRules,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

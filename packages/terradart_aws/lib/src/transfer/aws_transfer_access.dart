@@ -56,7 +56,7 @@ final class TransferAccessPosixProfile {
 
   Map<String, Object?> encode() => {
     'gid': gid.toTfJson(),
-    if (secondaryGids != null) 'secondary_gids': secondaryGids!.toTfJson(),
+    'secondary_gids': ?secondaryGids?.toTfJson(),
     'uid': uid.toTfJson(),
   };
 }
@@ -84,12 +84,11 @@ final class AwsTransferAccess extends Resource {
          terraformType: tfType,
          argMap: {
            'external_id': externalId,
-           if (homeDirectory != null) 'home_directory': homeDirectory,
-           if (homeDirectoryType != null)
-             'home_directory_type': homeDirectoryType,
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
-           if (role != null) 'role': role.encodeAs('arn'),
+           'home_directory': ?homeDirectory,
+           'home_directory_type': ?homeDirectoryType,
+           'policy': ?policy,
+           'region': ?region,
+           'role': ?role?.encodeAs('arn'),
            'server_id': serverId,
            if (homeDirectoryMappings != null)
              'home_directory_mappings': TfArg.literal([

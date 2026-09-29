@@ -23,7 +23,7 @@ final class AwsSnapshotCreateVolumePermission extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'snapshot_id': snapshotId,
          },
        );

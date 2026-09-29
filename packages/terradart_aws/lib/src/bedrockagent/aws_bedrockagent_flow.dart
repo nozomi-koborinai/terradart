@@ -574,7 +574,7 @@ final class BedrockagentFlowDefinitionNodeConfigurationConditionCondition {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -660,8 +660,7 @@ final class BedrockagentFlowDefinitionNodeConfigurationKnowledgeBase {
   Map<String, Object?> encode() => {
     'knowledge_base_id': knowledgeBaseId.toTfJson(),
     'model_id': modelId.toTfJson(),
-    if (numberOfResults != null)
-      'number_of_results': numberOfResults!.toTfJson(),
+    'number_of_results': ?numberOfResults?.toTfJson(),
     if (guardrailConfiguration != null)
       'guardrail_configuration': [
         for (final e in guardrailConfiguration!) e.encode(),
@@ -730,10 +729,10 @@ final class BedrockagentFlowDefinitionNodeConfigurationKnowledgeBaseInferenceCon
   final TfArg<num>? topP;
 
   Map<String, Object?> encode() => {
-    if (maxTokens != null) 'max_tokens': maxTokens!.toTfJson(),
-    if (stopSequences != null) 'stop_sequences': stopSequences!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
-    if (topP != null) 'top_p': topP!.toTfJson(),
+    'max_tokens': ?maxTokens?.toTfJson(),
+    'stop_sequences': ?stopSequences?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'top_p': ?topP?.toTfJson(),
   };
 }
 
@@ -935,9 +934,8 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
   templateConfiguration;
 
   Map<String, Object?> encode() => {
-    if (additionalModelRequestFields != null)
-      'additional_model_request_fields': additionalModelRequestFields!
-          .toTfJson(),
+    'additional_model_request_fields': ?additionalModelRequestFields
+        ?.toTfJson(),
     'model_id': modelId.toTfJson(),
     'template_type': templateType.toTfJson(),
     if (inferenceConfiguration != null)
@@ -1002,10 +1000,10 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
   final TfArg<num>? topP;
 
   Map<String, Object?> encode() => {
-    if (maxTokens != null) 'max_tokens': maxTokens!.toTfJson(),
-    if (stopSequences != null) 'stop_sequences': stopSequences!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
-    if (topP != null) 'top_p': topP!.toTfJson(),
+    'max_tokens': ?maxTokens?.toTfJson(),
+    'stop_sequences': ?stopSequences?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'top_p': ?topP?.toTfJson(),
   };
 }
 
@@ -1507,7 +1505,7 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
   inputSchema;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
     if (inputSchema != null)
       'input_schema': [for (final e in inputSchema!) e.encode()],
@@ -1524,7 +1522,7 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
 
   final TfArg<String>? json;
 
-  Map<String, Object?> encode() => {if (json != null) 'json': json!.toTfJson()};
+  Map<String, Object?> encode() => {'json': ?json?.toTfJson()};
 }
 
 /// Exactly one of `any`, `auto`, `tool` on the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.tool_configuration.tool_choice` block of `aws_bedrockagent_flow`: the provider rejects
@@ -1874,7 +1872,7 @@ final class BedrockagentFlowDefinitionNodeInput {
   final TfArg<BedrockagentFlowDefinitionNodeInputType> type;
 
   Map<String, Object?> encode() => {
-    if (category != null) 'category': category!.toTfJson(),
+    'category': ?category?.toTfJson(),
     'expression': expression.toTfJson(),
     'name': name.toTfJson(),
     'type': type.toTfJson(),
@@ -1957,13 +1955,12 @@ final class AwsBedrockagentFlow extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customerEncryptionKeyArn != null)
-             'customer_encryption_key_arn': customerEncryptionKeyArn,
-           if (description != null) 'description': description,
+           'customer_encryption_key_arn': ?customerEncryptionKeyArn,
+           'description': ?description,
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (definition != null)
              'definition': TfArg.literal([
                for (final e in definition) e.encode(),

@@ -46,15 +46,12 @@ final class FirebaseExtensionsInstanceConfig {
   final TfArg<Map<String, String>>? systemParams;
 
   Map<String, Object?> encode() => {
-    if (allowedEventTypes != null)
-      'allowed_event_types': allowedEventTypes!.toTfJson(),
-    if (eventarcChannel != null)
-      'eventarc_channel': eventarcChannel!.toTfJson(),
+    'allowed_event_types': ?allowedEventTypes?.toTfJson(),
+    'eventarc_channel': ?eventarcChannel?.toTfJson(),
     'extension_ref': extensionRef.toTfJson(),
-    if (extensionVersion != null)
-      'extension_version': extensionVersion!.toTfJson(),
+    'extension_version': ?extensionVersion?.toTfJson(),
     'params': params.toTfJson(),
-    if (systemParams != null) 'system_params': systemParams!.toTfJson(),
+    'system_params': ?systemParams?.toTfJson(),
   };
 }
 
@@ -78,9 +75,9 @@ final class GoogleFirebaseExtensionsInstance extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'instance_id': instanceId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'config': TfArg.literal(config.encode()),
          },
        );

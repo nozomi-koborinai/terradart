@@ -59,9 +59,8 @@ final class CloudflareSchemaValidationSettings extends Resource {
          argMap: {
            'validation_default_mitigation_action':
                validationDefaultMitigationAction,
-           if (validationOverrideMitigationAction != null)
-             'validation_override_mitigation_action':
-                 validationOverrideMitigationAction,
+           'validation_override_mitigation_action':
+               ?validationOverrideMitigationAction,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

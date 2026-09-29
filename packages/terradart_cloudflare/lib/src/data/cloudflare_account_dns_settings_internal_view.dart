@@ -35,12 +35,12 @@ final class DataAccountDnsSettingsInternalViewFilter {
   final DataAccountDnsSettingsInternalViewFilterName? name;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (match != null) 'match': match!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (zoneId != null) 'zone_id': zoneId!.toTfJson(),
-    if (zoneName != null) 'zone_name': zoneName!.toTfJson(),
-    if (name != null) 'name': name!.encode(),
+    'direction': ?direction?.toTfJson(),
+    'match': ?match?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'zone_id': ?zoneId?.toTfJson(),
+    'zone_name': ?zoneName?.toTfJson(),
+    'name': ?name?.encode(),
   };
 }
 
@@ -96,10 +96,10 @@ final class DataAccountDnsSettingsInternalViewFilterName {
   final TfArg<String>? startswith;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endswith != null) 'endswith': endswith!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (startswith != null) 'startswith': startswith!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'endswith': ?endswith?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'startswith': ?startswith?.toTfJson(),
   };
 }
 
@@ -121,8 +121,8 @@ final class DataCloudflareAccountDnsSettingsInternalView extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (viewId != null) 'view_id': viewId,
+           'account_id': ?accountId,
+           'view_id': ?viewId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

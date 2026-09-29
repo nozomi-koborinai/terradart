@@ -24,7 +24,7 @@ final class AwsWorkspaceswebUserSettingsAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'portal_arn': portalArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'user_settings_arn': userSettingsArn,
          },
        );

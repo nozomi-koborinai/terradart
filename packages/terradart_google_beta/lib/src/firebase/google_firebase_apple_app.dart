@@ -29,13 +29,13 @@ final class GoogleFirebaseAppleApp extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (apiKeyId != null) 'api_key_id': apiKeyId,
-           if (appStoreId != null) 'app_store_id': appStoreId,
+           'api_key_id': ?apiKeyId,
+           'app_store_id': ?appStoreId,
            'bundle_id': bundleId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
-           if (project != null) 'project': project,
-           if (teamId != null) 'team_id': teamId,
+           'project': ?project,
+           'team_id': ?teamId,
          },
        );
 

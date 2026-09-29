@@ -31,8 +31,8 @@ final class GoogleCloudRunServiceIamPolicy extends Resource {
          argMap: {
            'service': service,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

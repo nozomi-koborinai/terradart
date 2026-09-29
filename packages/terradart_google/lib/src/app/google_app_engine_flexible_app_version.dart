@@ -97,11 +97,11 @@ final class AppEngineFlexibleAppVersionApiConfig {
   final TfArg<String>? url;
 
   Map<String, Object?> encode() => {
-    if (authFailAction != null) 'auth_fail_action': authFailAction!.toTfJson(),
-    if (login != null) 'login': login!.toTfJson(),
+    'auth_fail_action': ?authFailAction?.toTfJson(),
+    'login': ?login?.toTfJson(),
     'script': script.toTfJson(),
-    if (securityLevel != null) 'security_level': securityLevel!.toTfJson(),
-    if (url != null) 'url': url!.toTfJson(),
+    'security_level': ?securityLevel?.toTfJson(),
+    'url': ?url?.toTfJson(),
   };
 }
 
@@ -161,11 +161,10 @@ final class AppEngineFlexibleAppVersionDeployment {
   final AppEngineFlexibleAppVersionDeploymentZip? zip;
 
   Map<String, Object?> encode() => {
-    if (cloudBuildOptions != null)
-      'cloud_build_options': cloudBuildOptions!.encode(),
-    if (container != null) 'container': container!.encode(),
+    'cloud_build_options': ?cloudBuildOptions?.encode(),
+    'container': ?container?.encode(),
     if (files != null) 'files': [for (final e in files!) e.encode()],
-    if (zip != null) 'zip': zip!.encode(),
+    'zip': ?zip?.encode(),
   };
 }
 
@@ -184,8 +183,7 @@ final class AppEngineFlexibleAppVersionDeploymentCloudBuildOptions {
 
   Map<String, Object?> encode() => {
     'app_yaml_path': appYamlPath.toTfJson(),
-    if (cloudBuildTimeout != null)
-      'cloud_build_timeout': cloudBuildTimeout!.toTfJson(),
+    'cloud_build_timeout': ?cloudBuildTimeout?.toTfJson(),
   };
 }
 
@@ -218,7 +216,7 @@ final class AppEngineFlexibleAppVersionDeploymentFiles {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (sha1Sum != null) 'sha1_sum': sha1Sum!.toTfJson(),
+    'sha1_sum': ?sha1Sum?.toTfJson(),
     'source_url': sourceUrl.toTfJson(),
   };
 }
@@ -237,7 +235,7 @@ final class AppEngineFlexibleAppVersionDeploymentZip {
   final TfArg<String> sourceUrl;
 
   Map<String, Object?> encode() => {
-    if (filesCount != null) 'files_count': filesCount!.toTfJson(),
+    'files_count': ?filesCount?.toTfJson(),
     'source_url': sourceUrl.toTfJson(),
   };
 }
@@ -263,12 +261,10 @@ final class AppEngineFlexibleAppVersionEndpointsApiService {
   rolloutStrategy;
 
   Map<String, Object?> encode() => {
-    if (configId != null) 'config_id': configId!.toTfJson(),
-    if (disableTraceSampling != null)
-      'disable_trace_sampling': disableTraceSampling!.toTfJson(),
+    'config_id': ?configId?.toTfJson(),
+    'disable_trace_sampling': ?disableTraceSampling?.toTfJson(),
     'name': name.toTfJson(),
-    if (rolloutStrategy != null)
-      'rollout_strategy': rolloutStrategy!.toTfJson(),
+    'rollout_strategy': ?rolloutStrategy?.toTfJson(),
   };
 }
 
@@ -310,9 +306,8 @@ final class AppEngineFlexibleAppVersionFlexibleRuntimeSettings {
   final TfArg<String>? runtimeVersion;
 
   Map<String, Object?> encode() => {
-    if (operatingSystem != null)
-      'operating_system': operatingSystem!.toTfJson(),
-    if (runtimeVersion != null) 'runtime_version': runtimeVersion!.toTfJson(),
+    'operating_system': ?operatingSystem?.toTfJson(),
+    'runtime_version': ?runtimeVersion?.toTfJson(),
   };
 }
 
@@ -347,14 +342,13 @@ final class AppEngineFlexibleAppVersionHandlers {
   final AppEngineFlexibleAppVersionHandlersStaticFiles? staticFiles;
 
   Map<String, Object?> encode() => {
-    if (authFailAction != null) 'auth_fail_action': authFailAction!.toTfJson(),
-    if (login != null) 'login': login!.toTfJson(),
-    if (redirectHttpResponseCode != null)
-      'redirect_http_response_code': redirectHttpResponseCode!.toTfJson(),
-    if (securityLevel != null) 'security_level': securityLevel!.toTfJson(),
-    if (urlRegex != null) 'url_regex': urlRegex!.toTfJson(),
-    if (script != null) 'script': script!.encode(),
-    if (staticFiles != null) 'static_files': staticFiles!.encode(),
+    'auth_fail_action': ?authFailAction?.toTfJson(),
+    'login': ?login?.toTfJson(),
+    'redirect_http_response_code': ?redirectHttpResponseCode?.toTfJson(),
+    'security_level': ?securityLevel?.toTfJson(),
+    'url_regex': ?urlRegex?.toTfJson(),
+    'script': ?script?.encode(),
+    'static_files': ?staticFiles?.encode(),
   };
 }
 
@@ -447,16 +441,13 @@ final class AppEngineFlexibleAppVersionHandlersStaticFiles {
   final TfArg<String>? uploadPathRegex;
 
   Map<String, Object?> encode() => {
-    if (applicationReadable != null)
-      'application_readable': applicationReadable!.toTfJson(),
-    if (expiration != null) 'expiration': expiration!.toTfJson(),
-    if (httpHeaders != null) 'http_headers': httpHeaders!.toTfJson(),
-    if (mimeType != null) 'mime_type': mimeType!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (requireMatchingFile != null)
-      'require_matching_file': requireMatchingFile!.toTfJson(),
-    if (uploadPathRegex != null)
-      'upload_path_regex': uploadPathRegex!.toTfJson(),
+    'application_readable': ?applicationReadable?.toTfJson(),
+    'expiration': ?expiration?.toTfJson(),
+    'http_headers': ?httpHeaders?.toTfJson(),
+    'mime_type': ?mimeType?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'require_matching_file': ?requireMatchingFile?.toTfJson(),
+    'upload_path_regex': ?uploadPathRegex?.toTfJson(),
   };
 }
 
@@ -489,15 +480,13 @@ final class AppEngineFlexibleAppVersionLivenessCheck {
   final TfArg<String>? timeout;
 
   Map<String, Object?> encode() => {
-    if (checkInterval != null) 'check_interval': checkInterval!.toTfJson(),
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
-    if (host != null) 'host': host!.toTfJson(),
-    if (initialDelay != null) 'initial_delay': initialDelay!.toTfJson(),
+    'check_interval': ?checkInterval?.toTfJson(),
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'initial_delay': ?initialDelay?.toTfJson(),
     'path': path.toTfJson(),
-    if (successThreshold != null)
-      'success_threshold': successThreshold!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
+    'success_threshold': ?successThreshold?.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
   };
 }
 
@@ -524,12 +513,11 @@ final class AppEngineFlexibleAppVersionNetwork {
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   Map<String, Object?> encode() => {
-    if (forwardedPorts != null) 'forwarded_ports': forwardedPorts!.toTfJson(),
-    if (instanceTag != null) 'instance_tag': instanceTag!.toTfJson(),
+    'forwarded_ports': ?forwardedPorts?.toTfJson(),
+    'instance_tag': ?instanceTag?.toTfJson(),
     'name': name.toTfJson(),
-    if (sessionAffinity != null)
-      'session_affinity': sessionAffinity!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
+    'session_affinity': ?sessionAffinity?.toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -562,16 +550,13 @@ final class AppEngineFlexibleAppVersionReadinessCheck {
   final TfArg<String>? timeout;
 
   Map<String, Object?> encode() => {
-    if (appStartTimeout != null)
-      'app_start_timeout': appStartTimeout!.toTfJson(),
-    if (checkInterval != null) 'check_interval': checkInterval!.toTfJson(),
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
-    if (host != null) 'host': host!.toTfJson(),
+    'app_start_timeout': ?appStartTimeout?.toTfJson(),
+    'check_interval': ?checkInterval?.toTfJson(),
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'host': ?host?.toTfJson(),
     'path': path.toTfJson(),
-    if (successThreshold != null)
-      'success_threshold': successThreshold!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
+    'success_threshold': ?successThreshold?.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
   };
 }
 
@@ -595,9 +580,9 @@ final class AppEngineFlexibleAppVersionResources {
   final List<AppEngineFlexibleAppVersionResourcesVolumes>? volumes;
 
   Map<String, Object?> encode() => {
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (diskGb != null) 'disk_gb': diskGb!.toTfJson(),
-    if (memoryGb != null) 'memory_gb': memoryGb!.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'disk_gb': ?diskGb?.toTfJson(),
+    'memory_gb': ?memoryGb?.toTfJson(),
     if (volumes != null) 'volumes': [for (final e in volumes!) e.encode()],
   };
 }
@@ -685,34 +670,28 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
          terraformType: tfType,
          argMap: {
            'service': service,
-           if (versionId != null) 'version_id': versionId,
+           'version_id': ?versionId,
            'runtime': runtime,
-           if (runtimeApiVersion != null)
-             'runtime_api_version': runtimeApiVersion,
-           if (instanceClass != null) 'instance_class': instanceClass,
+           'runtime_api_version': ?runtimeApiVersion,
+           'instance_class': ?instanceClass,
            scaling.blockKey: TfArg.literal(scaling.encode()),
            'liveness_check': TfArg.literal(livenessCheck.encode()),
            'readiness_check': TfArg.literal(readinessCheck.encode()),
            if (vpcAccessConnector != null)
              'vpc_access_connector': TfArg.literal(vpcAccessConnector.encode()),
-           if (envVariables != null) 'env_variables': envVariables,
-           if (betaSettings != null) 'beta_settings': betaSettings,
-           if (defaultExpiration != null)
-             'default_expiration': defaultExpiration,
-           if (deleteServiceOnDestroy != null)
-             'delete_service_on_destroy': deleteServiceOnDestroy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (noopOnDestroy != null) 'noop_on_destroy': noopOnDestroy,
-           if (nobuildFilesRegex != null)
-             'nobuild_files_regex': nobuildFilesRegex,
-           if (runtimeChannel != null) 'runtime_channel': runtimeChannel,
-           if (runtimeMainExecutablePath != null)
-             'runtime_main_executable_path': runtimeMainExecutablePath,
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('email'),
-           if (servingStatus != null) 'serving_status': servingStatus,
-           if (inboundServices != null) 'inbound_services': inboundServices,
-           if (project != null) 'project': project,
+           'env_variables': ?envVariables,
+           'beta_settings': ?betaSettings,
+           'default_expiration': ?defaultExpiration,
+           'delete_service_on_destroy': ?deleteServiceOnDestroy,
+           'deletion_policy': ?deletionPolicy,
+           'noop_on_destroy': ?noopOnDestroy,
+           'nobuild_files_regex': ?nobuildFilesRegex,
+           'runtime_channel': ?runtimeChannel,
+           'runtime_main_executable_path': ?runtimeMainExecutablePath,
+           'service_account': ?serviceAccount?.encodeAs('email'),
+           'serving_status': ?servingStatus,
+           'inbound_services': ?inboundServices,
+           'project': ?project,
          },
        );
 

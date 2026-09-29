@@ -136,10 +136,8 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageBucketsCloudStorageBu
   final TfArg<String>? bucketPrefixRegex;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('name').toTfJson(),
-    if (bucketPrefixRegex != null)
-      'bucket_prefix_regex': bucketPrefixRegex!.toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('name').toTfJson(),
+    'bucket_prefix_regex': ?bucketPrefixRegex?.toTfJson(),
   };
 }
 
@@ -209,10 +207,8 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageBucketsCloudStorageBu
   final TfArg<String>? bucketPrefixRegex;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('name').toTfJson(),
-    if (bucketPrefixRegex != null)
-      'bucket_prefix_regex': bucketPrefixRegex!.toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('name').toTfJson(),
+    'bucket_prefix_regex': ?bucketPrefixRegex?.toTfJson(),
   };
 }
 
@@ -293,12 +289,11 @@ final class GoogleStorageInsightsDatasetConfig extends Resource {
              'include_cloud_storage_buckets': TfArg.literal(
                includeCloudStorageBuckets.encode(),
              ),
-           if (includeNewlyCreatedBuckets != null)
-             'include_newly_created_buckets': includeNewlyCreatedBuckets,
-           if (description != null) 'description': description,
-           if (linkDataset != null) 'link_dataset': linkDataset,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'include_newly_created_buckets': ?includeNewlyCreatedBuckets,
+           'description': ?description,
+           'link_dataset': ?linkDataset,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            source.blockKey: TfArg.literal(source.encode()[source.blockKey]),
          },
        );

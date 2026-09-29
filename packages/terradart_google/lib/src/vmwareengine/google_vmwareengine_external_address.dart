@@ -40,7 +40,7 @@ final class GoogleVmwareengineExternalAddress extends Resource {
            'name': name,
            'parent': parent,
            'internal_ip': internalIp,
-           if (description != null) 'description': description,
+           'description': ?description,
          },
        );
 

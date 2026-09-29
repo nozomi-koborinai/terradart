@@ -42,10 +42,10 @@ final class DataAwsEc2TransitGatewayVpnAttachment extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (transitGatewayId != null) 'transit_gateway_id': transitGatewayId,
-           if (vpnConnectionId != null) 'vpn_connection_id': vpnConnectionId,
+           'region': ?region,
+           'tags': ?tags,
+           'transit_gateway_id': ?transitGatewayId,
+           'vpn_connection_id': ?vpnConnectionId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

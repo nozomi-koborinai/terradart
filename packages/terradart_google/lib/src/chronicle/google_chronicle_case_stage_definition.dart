@@ -27,12 +27,12 @@ final class GoogleChronicleCaseStageDefinition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
            'instance': instance,
            'location': location,
            'order': order,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

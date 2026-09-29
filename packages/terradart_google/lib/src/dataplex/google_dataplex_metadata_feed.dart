@@ -26,9 +26,9 @@ final class DataplexMetadataFeedFilters {
   final TfArg<List<Object?>>? entryTypes;
 
   Map<String, Object?> encode() => {
-    if (aspectTypes != null) 'aspect_types': aspectTypes!.toTfJson(),
-    if (changeTypes != null) 'change_types': changeTypes!.toTfJson(),
-    if (entryTypes != null) 'entry_types': entryTypes!.toTfJson(),
+    'aspect_types': ?aspectTypes?.toTfJson(),
+    'change_types': ?changeTypes?.toTfJson(),
+    'entry_types': ?entryTypes?.toTfJson(),
   };
 }
 
@@ -49,10 +49,9 @@ final class DataplexMetadataFeedScope {
   final TfArg<List<Object?>>? projects;
 
   Map<String, Object?> encode() => {
-    if (entryGroups != null) 'entry_groups': entryGroups!.toTfJson(),
-    if (organizationLevel != null)
-      'organization_level': organizationLevel!.toTfJson(),
-    if (projects != null) 'projects': projects!.toTfJson(),
+    'entry_groups': ?entryGroups?.toTfJson(),
+    'organization_level': ?organizationLevel?.toTfJson(),
+    'projects': ?projects?.toTfJson(),
   };
 }
 
@@ -84,10 +83,10 @@ final class GoogleDataplexMetadataFeed extends Resource {
            'location': location,
            'scope': TfArg.literal(scope.encode()),
            if (filters != null) 'filters': TfArg.literal(filters.encode()),
-           if (pubsubTopic != null) 'pubsub_topic': pubsubTopic.encodeAs('id'),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'pubsub_topic': ?pubsubTopic?.encodeAs('id'),
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

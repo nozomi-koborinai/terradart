@@ -39,10 +39,8 @@ final class VertexAiIndexMetadata {
   final VertexAiIndexMetadataConfig config;
 
   Map<String, Object?> encode() => {
-    if (contentsDeltaUri != null)
-      'contents_delta_uri': contentsDeltaUri!.toTfJson(),
-    if (isCompleteOverwrite != null)
-      'is_complete_overwrite': isCompleteOverwrite!.toTfJson(),
+    'contents_delta_uri': ?contentsDeltaUri?.toTfJson(),
+    'is_complete_overwrite': ?isCompleteOverwrite?.toTfJson(),
     'config': config.encode(),
   };
 }
@@ -73,15 +71,12 @@ final class VertexAiIndexMetadataConfig {
   final VertexAiIndexMetadataConfigAlgorithmConfig? algorithmConfig;
 
   Map<String, Object?> encode() => {
-    if (approximateNeighborsCount != null)
-      'approximate_neighbors_count': approximateNeighborsCount!.toTfJson(),
+    'approximate_neighbors_count': ?approximateNeighborsCount?.toTfJson(),
     'dimensions': dimensions.toTfJson(),
-    if (distanceMeasureType != null)
-      'distance_measure_type': distanceMeasureType!.toTfJson(),
-    if (featureNormType != null)
-      'feature_norm_type': featureNormType!.toTfJson(),
-    if (shardSize != null) 'shard_size': shardSize!.toTfJson(),
-    if (algorithmConfig != null) 'algorithm_config': algorithmConfig!.encode(),
+    'distance_measure_type': ?distanceMeasureType?.toTfJson(),
+    'feature_norm_type': ?featureNormType?.toTfJson(),
+    'shard_size': ?shardSize?.toTfJson(),
+    'algorithm_config': ?algorithmConfig?.encode(),
   };
 }
 
@@ -166,10 +161,8 @@ final class VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig {
   final TfArg<num>? leafNodesToSearchPercent;
 
   Map<String, Object?> encode() => {
-    if (leafNodeEmbeddingCount != null)
-      'leaf_node_embedding_count': leafNodeEmbeddingCount!.toTfJson(),
-    if (leafNodesToSearchPercent != null)
-      'leaf_nodes_to_search_percent': leafNodesToSearchPercent!.toTfJson(),
+    'leaf_node_embedding_count': ?leafNodeEmbeddingCount?.toTfJson(),
+    'leaf_nodes_to_search_percent': ?leafNodesToSearchPercent?.toTfJson(),
   };
 }
 
@@ -239,16 +232,15 @@ final class GoogleVertexAiIndex extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
+           'region': ?region,
+           'description': ?description,
            'metadata': TfArg.literal(metadata.encode()),
-           if (indexUpdateMethod != null)
-             'index_update_method': indexUpdateMethod,
+           'index_update_method': ?indexUpdateMethod,
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

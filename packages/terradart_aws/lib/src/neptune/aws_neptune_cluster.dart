@@ -121,8 +121,8 @@ final class NeptuneClusterServerlessV2ScalingConfiguration {
   final TfArg<num>? minCapacity;
 
   Map<String, Object?> encode() => {
-    if (maxCapacity != null) 'max_capacity': maxCapacity!.toTfJson(),
-    if (minCapacity != null) 'min_capacity': minCapacity!.toTfJson(),
+    'max_capacity': ?maxCapacity?.toTfJson(),
+    'min_capacity': ?minCapacity?.toTfJson(),
   };
 }
 
@@ -171,58 +171,41 @@ final class AwsNeptuneCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowMajorVersionUpgrade != null)
-             'allow_major_version_upgrade': allowMajorVersionUpgrade,
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (availabilityZones != null)
-             'availability_zones': availabilityZones,
-           if (backupRetentionPeriod != null)
-             'backup_retention_period': backupRetentionPeriod,
+           'allow_major_version_upgrade': ?allowMajorVersionUpgrade,
+           'apply_immediately': ?applyImmediately,
+           'availability_zones': ?availabilityZones,
+           'backup_retention_period': ?backupRetentionPeriod,
            ...?clusterIdentifier?.argMap,
-           if (copyTagsToSnapshot != null)
-             'copy_tags_to_snapshot': copyTagsToSnapshot,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
+           'copy_tags_to_snapshot': ?copyTagsToSnapshot,
+           'deletion_protection': ?deletionProtection,
            if (enableCloudwatchLogsExports != null)
              'enable_cloudwatch_logs_exports': TfArg.literal([
                for (final e in enableCloudwatchLogsExports) e.toTfJson(),
              ]),
-           if (engine != null) 'engine': engine,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (finalSnapshotIdentifier != null)
-             'final_snapshot_identifier': finalSnapshotIdentifier,
-           if (globalClusterIdentifier != null)
-             'global_cluster_identifier': globalClusterIdentifier,
-           if (iamDatabaseAuthenticationEnabled != null)
-             'iam_database_authentication_enabled':
-                 iamDatabaseAuthenticationEnabled,
-           if (iamRoles != null) 'iam_roles': iamRoles,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (neptuneClusterParameterGroupName != null)
-             'neptune_cluster_parameter_group_name':
-                 neptuneClusterParameterGroupName,
-           if (neptuneInstanceParameterGroupName != null)
-             'neptune_instance_parameter_group_name':
-                 neptuneInstanceParameterGroupName,
-           if (neptuneSubnetGroupName != null)
-             'neptune_subnet_group_name': neptuneSubnetGroupName,
-           if (port != null) 'port': port,
-           if (preferredBackupWindow != null)
-             'preferred_backup_window': preferredBackupWindow,
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (region != null) 'region': region,
-           if (replicationSourceIdentifier != null)
-             'replication_source_identifier': replicationSourceIdentifier,
-           if (skipFinalSnapshot != null)
-             'skip_final_snapshot': skipFinalSnapshot,
-           if (snapshotIdentifier != null)
-             'snapshot_identifier': snapshotIdentifier,
-           if (storageEncrypted != null) 'storage_encrypted': storageEncrypted,
-           if (storageType != null) 'storage_type': storageType,
-           if (tags != null) 'tags': tags,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'engine': ?engine,
+           'engine_version': ?engineVersion,
+           'final_snapshot_identifier': ?finalSnapshotIdentifier,
+           'global_cluster_identifier': ?globalClusterIdentifier,
+           'iam_database_authentication_enabled':
+               ?iamDatabaseAuthenticationEnabled,
+           'iam_roles': ?iamRoles,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
+           'neptune_cluster_parameter_group_name':
+               ?neptuneClusterParameterGroupName,
+           'neptune_instance_parameter_group_name':
+               ?neptuneInstanceParameterGroupName,
+           'neptune_subnet_group_name': ?neptuneSubnetGroupName,
+           'port': ?port,
+           'preferred_backup_window': ?preferredBackupWindow,
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'region': ?region,
+           'replication_source_identifier': ?replicationSourceIdentifier,
+           'skip_final_snapshot': ?skipFinalSnapshot,
+           'snapshot_identifier': ?snapshotIdentifier,
+           'storage_encrypted': ?storageEncrypted,
+           'storage_type': ?storageType,
+           'tags': ?tags,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
            if (serverlessV2ScalingConfiguration != null)
              'serverless_v2_scaling_configuration': TfArg.literal(
                serverlessV2ScalingConfiguration.encode(),

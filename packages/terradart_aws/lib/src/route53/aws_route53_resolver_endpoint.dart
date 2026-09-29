@@ -60,8 +60,8 @@ final class Route53ResolverEndpointIpAddress {
   final RefTo<AwsSubnet> subnetId;
 
   Map<String, Object?> encode() => {
-    if (ip != null) 'ip': ip!.toTfJson(),
-    if (ipv6 != null) 'ipv6': ipv6!.toTfJson(),
+    'ip': ?ip?.toTfJson(),
+    'ipv6': ?ipv6?.toTfJson(),
     'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 }
@@ -90,21 +90,18 @@ final class AwsRoute53ResolverEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'direction': direction,
-           if (name != null) 'name': name,
+           'name': ?name,
            if (protocols != null)
              'protocols': TfArg.literal([
                for (final e in protocols) e.toTfJson(),
              ]),
-           if (region != null) 'region': region,
-           if (resolverEndpointType != null)
-             'resolver_endpoint_type': resolverEndpointType,
-           if (rniEnhancedMetricsEnabled != null)
-             'rni_enhanced_metrics_enabled': rniEnhancedMetricsEnabled,
+           'region': ?region,
+           'resolver_endpoint_type': ?resolverEndpointType,
+           'rni_enhanced_metrics_enabled': ?rniEnhancedMetricsEnabled,
            'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (targetNameServerMetricsEnabled != null)
-             'target_name_server_metrics_enabled':
-                 targetNameServerMetricsEnabled,
+           'tags': ?tags,
+           'target_name_server_metrics_enabled':
+               ?targetNameServerMetricsEnabled,
            'ip_address': TfArg.literal([for (final e in ipAddress) e.encode()]),
          },
        );

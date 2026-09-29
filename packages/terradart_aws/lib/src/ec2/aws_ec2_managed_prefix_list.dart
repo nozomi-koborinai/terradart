@@ -29,7 +29,7 @@ final class Ec2ManagedPrefixListEntry {
 
   Map<String, Object?> encode() => {
     'cidr': cidr.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
   };
 }
 
@@ -55,8 +55,8 @@ final class AwsEc2ManagedPrefixList extends Resource {
            'address_family': addressFamily,
            'max_entries': maxEntries,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (entry != null)
              'entry': TfArg.literal([for (final e in entry) e.encode()]),
          },

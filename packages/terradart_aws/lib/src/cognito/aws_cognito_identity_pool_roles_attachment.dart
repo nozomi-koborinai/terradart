@@ -33,8 +33,7 @@ final class CognitoIdentityPoolRolesAttachmentRoleMapping {
   mappingRule;
 
   Map<String, Object?> encode() => {
-    if (ambiguousRoleResolution != null)
-      'ambiguous_role_resolution': ambiguousRoleResolution!.toTfJson(),
+    'ambiguous_role_resolution': ?ambiguousRoleResolution?.toTfJson(),
     'identity_provider': identityProvider.toTfJson(),
     'type': type.toTfJson(),
     if (mappingRule != null)
@@ -127,7 +126,7 @@ final class AwsCognitoIdentityPoolRolesAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'identity_pool_id': identityPoolId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'roles': roles,
            if (roleMapping != null)
              'role_mapping': TfArg.literal([

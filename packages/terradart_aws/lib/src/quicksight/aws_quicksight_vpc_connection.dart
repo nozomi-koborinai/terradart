@@ -32,14 +32,14 @@ final class AwsQuicksightVpcConnection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
-           if (dnsResolvers != null) 'dns_resolvers': dnsResolvers,
+           'aws_account_id': ?awsAccountId,
+           'dns_resolvers': ?dnsResolvers,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
            'security_group_ids': securityGroupIds.encodeAs('id'),
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'vpc_connection_id': vpcConnectionId,
          },
        );

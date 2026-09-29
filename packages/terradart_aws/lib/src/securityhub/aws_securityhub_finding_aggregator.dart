@@ -35,8 +35,8 @@ final class AwsSecurityhubFindingAggregator extends Resource {
          terraformType: tfType,
          argMap: {
            'linking_mode': linkingMode,
-           if (region != null) 'region': region,
-           if (specifiedRegions != null) 'specified_regions': specifiedRegions,
+           'region': ?region,
+           'specified_regions': ?specifiedRegions,
          },
        );
 

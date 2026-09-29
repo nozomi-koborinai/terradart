@@ -23,9 +23,9 @@ final class DataAwsEcsService extends Data {
          terraformType: tfType,
          argMap: {
            'cluster_arn': clusterArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_name': serviceName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

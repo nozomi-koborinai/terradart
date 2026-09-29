@@ -118,7 +118,7 @@ final class AwsCeAnomalyMonitor extends Resource {
            ...?scope?.argMap,
            'monitor_type': monitorType,
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

@@ -38,12 +38,11 @@ final class AwsLocationTracker extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (positionFiltering != null)
-             'position_filtering': positionFiltering,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'position_filtering': ?positionFiltering,
+           'region': ?region,
+           'tags': ?tags,
            'tracker_name': trackerName,
          },
        );

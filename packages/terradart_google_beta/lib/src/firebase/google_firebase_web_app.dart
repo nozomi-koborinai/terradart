@@ -26,10 +26,10 @@ final class GoogleFirebaseWebApp extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (apiKeyId != null) 'api_key_id': apiKeyId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'api_key_id': ?apiKeyId,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -18,7 +18,7 @@ final class DataAwsWorkspacesImage extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'image_id': imageId, if (region != null) 'region': region},
+         argMap: {'image_id': imageId, 'region': ?region},
        );
 
   @override

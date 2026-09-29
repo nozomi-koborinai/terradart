@@ -41,14 +41,12 @@ final class DataAwsRdsSnapshots extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dbInstanceIdentifier != null)
-             'db_instance_identifier': dbInstanceIdentifier,
-           if (dbSnapshotIdentifier != null)
-             'db_snapshot_identifier': dbSnapshotIdentifier,
-           if (includePublic != null) 'include_public': includePublic,
-           if (includeShared != null) 'include_shared': includeShared,
-           if (region != null) 'region': region,
-           if (snapshotType != null) 'snapshot_type': snapshotType,
+           'db_instance_identifier': ?dbInstanceIdentifier,
+           'db_snapshot_identifier': ?dbSnapshotIdentifier,
+           'include_public': ?includePublic,
+           'include_shared': ?includeShared,
+           'region': ?region,
+           'snapshot_type': ?snapshotType,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

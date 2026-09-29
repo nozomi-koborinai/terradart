@@ -48,8 +48,8 @@ final class GoogleTagsLocationTagBinding extends Resource {
          argMap: {
            'parent': parent,
            'tag_value': tagValue,
-           if (location != null) 'location': location,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'location': ?location,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

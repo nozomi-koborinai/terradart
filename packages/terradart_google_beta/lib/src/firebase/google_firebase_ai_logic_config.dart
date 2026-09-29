@@ -26,10 +26,9 @@ final class FirebaseAiLogicConfigGenerativeLanguageConfig {
   final TfArg<String>? apiKeyWoVersion;
 
   Map<String, Object?> encode() => {
-    if (apiKey != null) 'api_key': apiKey!.toTfJson(),
-    if (apiKeyWo != null) 'api_key_wo': apiKeyWo!.toTfJson(),
-    if (apiKeyWoVersion != null)
-      'api_key_wo_version': apiKeyWoVersion!.toTfJson(),
+    'api_key': ?apiKey?.toTfJson(),
+    'api_key_wo': ?apiKeyWo?.toTfJson(),
+    'api_key_wo_version': ?apiKeyWoVersion?.toTfJson(),
   };
 }
 
@@ -44,8 +43,8 @@ final class FirebaseAiLogicConfigTelemetryConfig {
   final TfArg<num>? samplingRate;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (samplingRate != null) 'sampling_rate': samplingRate!.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'sampling_rate': ?samplingRate?.toTfJson(),
   };
 }
 
@@ -57,9 +56,7 @@ final class FirebaseAiLogicConfigTrafficFilter {
 
   final TfArg<bool>? templateOnly;
 
-  Map<String, Object?> encode() => {
-    if (templateOnly != null) 'template_only': templateOnly!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'template_only': ?templateOnly?.toTfJson()};
 }
 
 /// Factory wrapper for `google_firebase_ai_logic_config`.
@@ -84,9 +81,9 @@ final class GoogleFirebaseAiLogicConfig extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'location': ?location,
+           'project': ?project,
            if (generativeLanguageConfig != null)
              'generative_language_config': TfArg.literal(
                generativeLanguageConfig.encode(),

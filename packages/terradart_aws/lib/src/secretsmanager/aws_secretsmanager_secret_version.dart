@@ -116,12 +116,11 @@ final class AwsSecretsmanagerSecretVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            ...?secret?.argMap,
            'secret_id': secretId,
-           if (secretStringWoVersion != null)
-             'secret_string_wo_version': secretStringWoVersion,
-           if (versionStages != null) 'version_stages': versionStages,
+           'secret_string_wo_version': ?secretStringWoVersion,
+           'version_stages': ?versionStages,
          },
        );
 

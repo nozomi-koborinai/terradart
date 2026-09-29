@@ -173,10 +173,10 @@ final class NetworkConnectivityPolicyBasedRouteFilter {
   final TfArg<String>? srcRange;
 
   Map<String, Object?> encode() => {
-    if (destRange != null) 'dest_range': destRange!.toTfJson(),
-    if (ipProtocol != null) 'ip_protocol': ipProtocol!.toTfJson(),
+    'dest_range': ?destRange?.toTfJson(),
+    'ip_protocol': ?ipProtocol?.toTfJson(),
     'protocol_version': protocolVersion.toTfJson(),
-    if (srcRange != null) 'src_range': srcRange!.toTfJson(),
+    'src_range': ?srcRange?.toTfJson(),
   };
 }
 
@@ -288,11 +288,11 @@ final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
            'network': network.encodeAs('id'),
            'filter': TfArg.literal(filter.encode()),
            ...?scope?.argMap,
-           if (priority != null) 'priority': priority,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'priority': ?priority,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            nextHop.blockKey: nextHop.value,
          },
        );

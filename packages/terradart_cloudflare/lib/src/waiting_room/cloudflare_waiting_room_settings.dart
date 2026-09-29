@@ -27,8 +27,7 @@ final class CloudflareWaitingRoomSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (searchEngineCrawlerBypass != null)
-             'search_engine_crawler_bypass': searchEngineCrawlerBypass,
+           'search_engine_crawler_bypass': ?searchEngineCrawlerBypass,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

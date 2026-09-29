@@ -30,13 +30,11 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
          argMap: {
            'gemini_gcp_enablement_setting_id': geminiGcpEnablementSettingId,
            'location': location,
-           if (enableCustomerDataSharing != null)
-             'enable_customer_data_sharing': enableCustomerDataSharing,
-           if (disableWebGrounding != null)
-             'disable_web_grounding': disableWebGrounding,
-           if (webGroundingType != null) 'web_grounding_type': webGroundingType,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'enable_customer_data_sharing': ?enableCustomerDataSharing,
+           'disable_web_grounding': ?disableWebGrounding,
+           'web_grounding_type': ?webGroundingType,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

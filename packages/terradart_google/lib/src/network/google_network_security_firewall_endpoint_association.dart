@@ -66,12 +66,11 @@ final class GoogleNetworkSecurityFirewallEndpointAssociation extends Resource {
            'location': location,
            'firewall_endpoint': firewallEndpoint,
            'network': network.encodeAs('id'),
-           if (parent != null) 'parent': parent,
-           if (tlsInspectionPolicy != null)
-             'tls_inspection_policy': tlsInspectionPolicy,
-           if (disabled != null) 'disabled': disabled,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'parent': ?parent,
+           'tls_inspection_policy': ?tlsInspectionPolicy,
+           'disabled': ?disabled,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

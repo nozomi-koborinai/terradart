@@ -341,16 +341,15 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
          argMap: {
            'name': name,
            'target': target,
-           if (ipAddress != null) 'ip_address': ipAddress,
-           if (ipProtocol != null) 'ip_protocol': ipProtocol,
-           if (ipVersion != null) 'ip_version': ipVersion,
-           if (portRange != null) 'port_range': portRange,
-           if (loadBalancingScheme != null)
-             'load_balancing_scheme': loadBalancingScheme,
-           if (network != null) 'network': network.encodeAs('id'),
-           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
-           if (networkTier != null) 'network_tier': networkTier,
-           if (sourceIpRanges != null) 'source_ip_ranges': sourceIpRanges,
+           'ip_address': ?ipAddress,
+           'ip_protocol': ?ipProtocol,
+           'ip_version': ?ipVersion,
+           'port_range': ?portRange,
+           'load_balancing_scheme': ?loadBalancingScheme,
+           'network': ?network?.encodeAs('id'),
+           'subnetwork': ?subnetwork?.encodeAs('id'),
+           'network_tier': ?networkTier,
+           'source_ip_ranges': ?sourceIpRanges,
            if (metadataFilters != null)
              'metadata_filters': TfArg.literal(
                metadataFilters.map((f) => f.toArgMap()).toList(),
@@ -359,17 +358,14 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
              'service_directory_registrations': TfArg.literal(
                serviceDirectoryRegistrations.map((r) => r.toArgMap()).toList(),
              ),
-           if (externalManagedBackendBucketMigrationState != null)
-             'external_managed_backend_bucket_migration_state':
-                 externalManagedBackendBucketMigrationState,
-           if (externalManagedBackendBucketMigrationTestingPercentage != null)
-             'external_managed_backend_bucket_migration_testing_percentage':
-                 externalManagedBackendBucketMigrationTestingPercentage,
-           if (noAutomateDnsZone != null)
-             'no_automate_dns_zone': noAutomateDnsZone,
-           if (labels != null) 'labels': labels,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'external_managed_backend_bucket_migration_state':
+               ?externalManagedBackendBucketMigrationState,
+           'external_managed_backend_bucket_migration_testing_percentage':
+               ?externalManagedBackendBucketMigrationTestingPercentage,
+           'no_automate_dns_zone': ?noAutomateDnsZone,
+           'labels': ?labels,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

@@ -32,11 +32,11 @@ final class CloudflareDnsZoneTransfersPeer extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (ip != null) 'ip': ip,
-           if (ixfrEnable != null) 'ixfr_enable': ixfrEnable,
+           'ip': ?ip,
+           'ixfr_enable': ?ixfrEnable,
            'name': name,
-           if (port != null) 'port': port,
-           if (tsigId != null) 'tsig_id': tsigId,
+           'port': ?port,
+           'tsig_id': ?tsigId,
          },
        );
 

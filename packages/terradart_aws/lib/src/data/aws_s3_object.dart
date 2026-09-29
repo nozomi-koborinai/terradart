@@ -27,13 +27,13 @@ final class DataAwsS3Object extends Data {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (checksumMode != null) 'checksum_mode': checksumMode,
-           if (downloadBody != null) 'download_body': downloadBody,
+           'checksum_mode': ?checksumMode,
+           'download_body': ?downloadBody,
            'key': key,
-           if (range != null) 'range': range,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (versionId != null) 'version_id': versionId,
+           'range': ?range,
+           'region': ?region,
+           'tags': ?tags,
+           'version_id': ?versionId,
          },
        );
 

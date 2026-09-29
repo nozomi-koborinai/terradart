@@ -30,10 +30,10 @@ final class ApiGatewayDocumentationPartLocation {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (statusCode != null) 'status_code': statusCode!.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'status_code': ?statusCode?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -56,7 +56,7 @@ final class AwsApiGatewayDocumentationPart extends Resource {
          terraformType: tfType,
          argMap: {
            'properties': properties,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rest_api_id': restApiId,
            'location': TfArg.literal(location.encode()),
          },

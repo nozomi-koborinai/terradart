@@ -42,7 +42,7 @@ final class CloudfrontDistributionTenantCustomizationsCertificate {
 
   final TfArg<String>? arn;
 
-  Map<String, Object?> encode() => {if (arn != null) 'arn': arn!.toTfJson()};
+  Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
 /// Typed helper for the `customizations.geo_restriction` block of
@@ -62,9 +62,8 @@ final class CloudfrontDistributionTenantCustomizationsGeoRestriction {
   restrictionType;
 
   Map<String, Object?> encode() => {
-    if (locations != null) 'locations': locations!.toTfJson(),
-    if (restrictionType != null)
-      'restriction_type': restrictionType!.toTfJson(),
+    'locations': ?locations?.toTfJson(),
+    'restriction_type': ?restrictionType?.toTfJson(),
   };
 }
 
@@ -96,8 +95,8 @@ final class CloudfrontDistributionTenantCustomizationsWebAcl {
   final TfArg<String>? arn;
 
   Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
-    if (arn != null) 'arn': arn!.toTfJson(),
+    'action': ?action?.toTfJson(),
+    'arn': ?arn?.toTfJson(),
   };
 }
 
@@ -148,13 +147,10 @@ final class CloudfrontDistributionTenantManagedCertificateRequest {
   validationTokenHost;
 
   Map<String, Object?> encode() => {
-    if (certificateTransparencyLoggingPreference != null)
-      'certificate_transparency_logging_preference':
-          certificateTransparencyLoggingPreference!.toTfJson(),
-    if (primaryDomainName != null)
-      'primary_domain_name': primaryDomainName!.toTfJson(),
-    if (validationTokenHost != null)
-      'validation_token_host': validationTokenHost!.toTfJson(),
+    'certificate_transparency_logging_preference':
+        ?certificateTransparencyLoggingPreference?.toTfJson(),
+    'primary_domain_name': ?primaryDomainName?.toTfJson(),
+    'validation_token_host': ?validationTokenHost?.toTfJson(),
   };
 }
 
@@ -227,14 +223,12 @@ final class AwsCloudfrontDistributionTenant extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (connectionGroupId != null)
-             'connection_group_id': connectionGroupId,
+           'connection_group_id': ?connectionGroupId,
            'distribution_id': distributionId,
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'name': name,
-           if (tags != null) 'tags': tags,
-           if (waitForDeployment != null)
-             'wait_for_deployment': waitForDeployment,
+           'tags': ?tags,
+           'wait_for_deployment': ?waitForDeployment,
            if (customizations != null)
              'customizations': TfArg.literal([
                for (final e in customizations) e.encode(),

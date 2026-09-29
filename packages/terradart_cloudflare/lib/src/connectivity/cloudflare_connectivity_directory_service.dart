@@ -52,11 +52,11 @@ final class ConnectivityDirectoryServiceHost {
   final ConnectivityDirectoryServiceHostResolverNetwork? resolverNetwork;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (ipv4 != null) 'ipv4': ipv4!.toTfJson(),
-    if (ipv6 != null) 'ipv6': ipv6!.toTfJson(),
-    if (network != null) 'network': network!.encode(),
-    if (resolverNetwork != null) 'resolver_network': resolverNetwork!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'ipv4': ?ipv4?.toTfJson(),
+    'ipv6': ?ipv6?.toTfJson(),
+    'network': ?network?.encode(),
+    'resolver_network': ?resolverNetwork?.encode(),
   };
 }
 
@@ -85,7 +85,7 @@ final class ConnectivityDirectoryServiceHostResolverNetwork {
   final TfArg<String> tunnelId;
 
   Map<String, Object?> encode() => {
-    if (resolverIps != null) 'resolver_ips': resolverIps!.toTfJson(),
+    'resolver_ips': ?resolverIps?.toTfJson(),
     'tunnel_id': tunnelId.toTfJson(),
   };
 }
@@ -128,11 +128,11 @@ final class CloudflareConnectivityDirectoryService extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (appProtocol != null) 'app_protocol': appProtocol,
-           if (httpPort != null) 'http_port': httpPort,
-           if (httpsPort != null) 'https_port': httpsPort,
+           'app_protocol': ?appProtocol,
+           'http_port': ?httpPort,
+           'https_port': ?httpsPort,
            'name': name,
-           if (tcpPort != null) 'tcp_port': tcpPort,
+           'tcp_port': ?tcpPort,
            'type': type,
            'host': TfArg.literal(host.encode()),
            if (tlsSettings != null)

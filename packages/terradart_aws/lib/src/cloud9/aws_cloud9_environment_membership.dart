@@ -36,7 +36,7 @@ final class AwsCloud9EnvironmentMembership extends Resource {
          argMap: {
            'environment_id': environmentId,
            'permissions': permissions,
-           if (region != null) 'region': region,
+           'region': ?region,
            'user_arn': userArn,
          },
        );

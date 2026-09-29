@@ -53,20 +53,17 @@ final class AwsRdsGlobalCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (databaseName != null) 'database_name': databaseName,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (engine != null) 'engine': engine,
-           if (engineLifecycleSupport != null)
-             'engine_lifecycle_support': engineLifecycleSupport,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'database_name': ?databaseName,
+           'deletion_protection': ?deletionProtection,
+           'engine': ?engine,
+           'engine_lifecycle_support': ?engineLifecycleSupport,
+           'engine_version': ?engineVersion,
+           'force_destroy': ?forceDestroy,
            'global_cluster_identifier': globalClusterIdentifier,
-           if (region != null) 'region': region,
-           if (sourceDbClusterIdentifier != null)
-             'source_db_cluster_identifier': sourceDbClusterIdentifier,
-           if (storageEncrypted != null) 'storage_encrypted': storageEncrypted,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'source_db_cluster_identifier': ?sourceDbClusterIdentifier,
+           'storage_encrypted': ?storageEncrypted,
+           'tags': ?tags,
          },
        );
 

@@ -65,13 +65,12 @@ final class Apigatewayv2ApiCorsConfiguration {
   final TfArg<num>? maxAge;
 
   Map<String, Object?> encode() => {
-    if (allowCredentials != null)
-      'allow_credentials': allowCredentials!.toTfJson(),
-    if (allowHeaders != null) 'allow_headers': allowHeaders!.toTfJson(),
-    if (allowMethods != null) 'allow_methods': allowMethods!.toTfJson(),
-    if (allowOrigins != null) 'allow_origins': allowOrigins!.toTfJson(),
-    if (exposeHeaders != null) 'expose_headers': exposeHeaders!.toTfJson(),
-    if (maxAge != null) 'max_age': maxAge!.toTfJson(),
+    'allow_credentials': ?allowCredentials?.toTfJson(),
+    'allow_headers': ?allowHeaders?.toTfJson(),
+    'allow_methods': ?allowMethods?.toTfJson(),
+    'allow_origins': ?allowOrigins?.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
   };
 }
 
@@ -104,24 +103,21 @@ final class AwsApigatewayv2Api extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (apiKeySelectionExpression != null)
-             'api_key_selection_expression': apiKeySelectionExpression,
-           if (body != null) 'body': body,
-           if (credentialsArn != null) 'credentials_arn': credentialsArn,
-           if (description != null) 'description': description,
-           if (disableExecuteApiEndpoint != null)
-             'disable_execute_api_endpoint': disableExecuteApiEndpoint,
-           if (failOnWarnings != null) 'fail_on_warnings': failOnWarnings,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
+           'api_key_selection_expression': ?apiKeySelectionExpression,
+           'body': ?body,
+           'credentials_arn': ?credentialsArn,
+           'description': ?description,
+           'disable_execute_api_endpoint': ?disableExecuteApiEndpoint,
+           'fail_on_warnings': ?failOnWarnings,
+           'ip_address_type': ?ipAddressType,
            'name': name,
            'protocol_type': protocolType,
-           if (region != null) 'region': region,
-           if (routeKey != null) 'route_key': routeKey,
-           if (routeSelectionExpression != null)
-             'route_selection_expression': routeSelectionExpression,
-           if (tags != null) 'tags': tags,
-           if (target != null) 'target': target,
-           if (version != null) 'version': version,
+           'region': ?region,
+           'route_key': ?routeKey,
+           'route_selection_expression': ?routeSelectionExpression,
+           'tags': ?tags,
+           'target': ?target,
+           'version': ?version,
            if (corsConfiguration != null)
              'cors_configuration': TfArg.literal(corsConfiguration.encode()),
          },

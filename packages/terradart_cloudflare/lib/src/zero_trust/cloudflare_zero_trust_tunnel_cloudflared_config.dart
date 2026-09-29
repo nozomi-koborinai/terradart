@@ -35,7 +35,7 @@ final class ZeroTrustTunnelCloudflaredConfigConfig {
 
   Map<String, Object?> encode() => {
     if (ingress != null) 'ingress': [for (final e in ingress!) e.encode()],
-    if (originRequest != null) 'origin_request': originRequest!.encode(),
+    'origin_request': ?originRequest?.encode(),
   };
 }
 
@@ -60,10 +60,10 @@ final class ZeroTrustTunnelCloudflaredConfigConfigIngress {
   originRequest;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'path': ?path?.toTfJson(),
     'service': service.toTfJson(),
-    if (originRequest != null) 'origin_request': originRequest!.encode(),
+    'origin_request': ?originRequest?.encode(),
   };
 }
 
@@ -121,26 +121,21 @@ final class ZeroTrustTunnelCloudflaredConfigConfigIngressOriginRequest {
   access;
 
   Map<String, Object?> encode() => {
-    if (caPool != null) 'ca_pool': caPool!.toTfJson(),
-    if (connectTimeout != null) 'connect_timeout': connectTimeout!.toTfJson(),
-    if (disableChunkedEncoding != null)
-      'disable_chunked_encoding': disableChunkedEncoding!.toTfJson(),
-    if (http2Origin != null) 'http2_origin': http2Origin!.toTfJson(),
-    if (httpHostHeader != null) 'http_host_header': httpHostHeader!.toTfJson(),
-    if (keepAliveConnections != null)
-      'keep_alive_connections': keepAliveConnections!.toTfJson(),
-    if (keepAliveTimeout != null)
-      'keep_alive_timeout': keepAliveTimeout!.toTfJson(),
-    if (matchSnItoHost != null) 'match_sn_ito_host': matchSnItoHost!.toTfJson(),
-    if (noHappyEyeballs != null)
-      'no_happy_eyeballs': noHappyEyeballs!.toTfJson(),
-    if (noTlsVerify != null) 'no_tls_verify': noTlsVerify!.toTfJson(),
-    if (originServerName != null)
-      'origin_server_name': originServerName!.toTfJson(),
-    if (proxyType != null) 'proxy_type': proxyType!.toTfJson(),
-    if (tcpKeepAlive != null) 'tcp_keep_alive': tcpKeepAlive!.toTfJson(),
-    if (tlsTimeout != null) 'tls_timeout': tlsTimeout!.toTfJson(),
-    if (access != null) 'access': access!.encode(),
+    'ca_pool': ?caPool?.toTfJson(),
+    'connect_timeout': ?connectTimeout?.toTfJson(),
+    'disable_chunked_encoding': ?disableChunkedEncoding?.toTfJson(),
+    'http2_origin': ?http2Origin?.toTfJson(),
+    'http_host_header': ?httpHostHeader?.toTfJson(),
+    'keep_alive_connections': ?keepAliveConnections?.toTfJson(),
+    'keep_alive_timeout': ?keepAliveTimeout?.toTfJson(),
+    'match_sn_ito_host': ?matchSnItoHost?.toTfJson(),
+    'no_happy_eyeballs': ?noHappyEyeballs?.toTfJson(),
+    'no_tls_verify': ?noTlsVerify?.toTfJson(),
+    'origin_server_name': ?originServerName?.toTfJson(),
+    'proxy_type': ?proxyType?.toTfJson(),
+    'tcp_keep_alive': ?tcpKeepAlive?.toTfJson(),
+    'tls_timeout': ?tlsTimeout?.toTfJson(),
+    'access': ?access?.encode(),
   };
 }
 
@@ -162,7 +157,7 @@ final class ZeroTrustTunnelCloudflaredConfigConfigIngressOriginRequestAccess {
 
   Map<String, Object?> encode() => {
     'aud_tag': audTag.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'required': ?required?.toTfJson(),
     'team_name': teamName.toTfJson(),
   };
 }
@@ -220,26 +215,21 @@ final class ZeroTrustTunnelCloudflaredConfigConfigOriginRequest {
   final ZeroTrustTunnelCloudflaredConfigConfigOriginRequestAccess? access;
 
   Map<String, Object?> encode() => {
-    if (caPool != null) 'ca_pool': caPool!.toTfJson(),
-    if (connectTimeout != null) 'connect_timeout': connectTimeout!.toTfJson(),
-    if (disableChunkedEncoding != null)
-      'disable_chunked_encoding': disableChunkedEncoding!.toTfJson(),
-    if (http2Origin != null) 'http2_origin': http2Origin!.toTfJson(),
-    if (httpHostHeader != null) 'http_host_header': httpHostHeader!.toTfJson(),
-    if (keepAliveConnections != null)
-      'keep_alive_connections': keepAliveConnections!.toTfJson(),
-    if (keepAliveTimeout != null)
-      'keep_alive_timeout': keepAliveTimeout!.toTfJson(),
-    if (matchSnItoHost != null) 'match_sn_ito_host': matchSnItoHost!.toTfJson(),
-    if (noHappyEyeballs != null)
-      'no_happy_eyeballs': noHappyEyeballs!.toTfJson(),
-    if (noTlsVerify != null) 'no_tls_verify': noTlsVerify!.toTfJson(),
-    if (originServerName != null)
-      'origin_server_name': originServerName!.toTfJson(),
-    if (proxyType != null) 'proxy_type': proxyType!.toTfJson(),
-    if (tcpKeepAlive != null) 'tcp_keep_alive': tcpKeepAlive!.toTfJson(),
-    if (tlsTimeout != null) 'tls_timeout': tlsTimeout!.toTfJson(),
-    if (access != null) 'access': access!.encode(),
+    'ca_pool': ?caPool?.toTfJson(),
+    'connect_timeout': ?connectTimeout?.toTfJson(),
+    'disable_chunked_encoding': ?disableChunkedEncoding?.toTfJson(),
+    'http2_origin': ?http2Origin?.toTfJson(),
+    'http_host_header': ?httpHostHeader?.toTfJson(),
+    'keep_alive_connections': ?keepAliveConnections?.toTfJson(),
+    'keep_alive_timeout': ?keepAliveTimeout?.toTfJson(),
+    'match_sn_ito_host': ?matchSnItoHost?.toTfJson(),
+    'no_happy_eyeballs': ?noHappyEyeballs?.toTfJson(),
+    'no_tls_verify': ?noTlsVerify?.toTfJson(),
+    'origin_server_name': ?originServerName?.toTfJson(),
+    'proxy_type': ?proxyType?.toTfJson(),
+    'tcp_keep_alive': ?tcpKeepAlive?.toTfJson(),
+    'tls_timeout': ?tlsTimeout?.toTfJson(),
+    'access': ?access?.encode(),
   };
 }
 
@@ -261,7 +251,7 @@ final class ZeroTrustTunnelCloudflaredConfigConfigOriginRequestAccess {
 
   Map<String, Object?> encode() => {
     'aud_tag': audTag.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'required': ?required?.toTfJson(),
     'team_name': teamName.toTfJson(),
   };
 }
@@ -291,7 +281,7 @@ final class CloudflareZeroTrustTunnelCloudflaredConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (source != null) 'source': source,
+           'source': ?source,
            'tunnel_id': tunnelId,
            if (config != null) 'config': TfArg.literal(config.encode()),
          },

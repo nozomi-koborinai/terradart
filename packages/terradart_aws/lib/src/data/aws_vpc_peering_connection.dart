@@ -47,14 +47,14 @@ final class DataAwsVpcPeeringConnection extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cidrBlock != null) 'cidr_block': cidrBlock,
-           if (ownerId != null) 'owner_id': ownerId,
-           if (peerCidrBlock != null) 'peer_cidr_block': peerCidrBlock,
-           if (peerOwnerId != null) 'peer_owner_id': peerOwnerId,
-           if (peerVpcId != null) 'peer_vpc_id': peerVpcId,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
+           'cidr_block': ?cidrBlock,
+           'owner_id': ?ownerId,
+           'peer_cidr_block': ?peerCidrBlock,
+           'peer_owner_id': ?peerOwnerId,
+           'peer_vpc_id': ?peerVpcId,
+           'status': ?status,
+           'tags': ?tags,
+           'vpc_id': ?vpcId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

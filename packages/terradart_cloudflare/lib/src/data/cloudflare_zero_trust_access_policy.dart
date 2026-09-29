@@ -23,10 +23,7 @@ final class DataCloudflareZeroTrustAccessPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'policy_id': policyId,
-         },
+         argMap: {'account_id': ?accountId, 'policy_id': policyId},
        );
 
   @override

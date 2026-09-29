@@ -39,8 +39,7 @@ final class CloudflareTotalTls extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (certificateAuthority != null)
-             'certificate_authority': certificateAuthority,
+           'certificate_authority': ?certificateAuthority,
            'enabled': enabled,
            'zone_id': zoneId.encodeAs('id'),
          },

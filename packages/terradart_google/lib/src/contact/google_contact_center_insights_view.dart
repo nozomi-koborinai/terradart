@@ -32,10 +32,10 @@ final class GoogleContactCenterInsightsView extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (value != null) 'value': value,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'display_name': ?displayName,
+           'value': ?value,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

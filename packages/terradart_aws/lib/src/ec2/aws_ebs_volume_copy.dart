@@ -41,13 +41,13 @@ final class AwsEbsVolumeCopy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (iops != null) 'iops': iops,
-           if (region != null) 'region': region,
-           if (size != null) 'size': size,
+           'iops': ?iops,
+           'region': ?region,
+           'size': ?size,
            'source_volume_id': sourceVolumeId,
-           if (tags != null) 'tags': tags,
-           if (throughput != null) 'throughput': throughput,
-           if (volumeType != null) 'volume_type': volumeType,
+           'tags': ?tags,
+           'throughput': ?throughput,
+           'volume_type': ?volumeType,
          },
        );
 

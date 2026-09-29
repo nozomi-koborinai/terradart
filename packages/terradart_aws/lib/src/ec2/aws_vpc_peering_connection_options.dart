@@ -16,9 +16,7 @@ final class VpcPeeringConnectionOptionsAccepter {
   final TfArg<bool>? allowRemoteVpcDnsResolution;
 
   Map<String, Object?> encode() => {
-    if (allowRemoteVpcDnsResolution != null)
-      'allow_remote_vpc_dns_resolution': allowRemoteVpcDnsResolution!
-          .toTfJson(),
+    'allow_remote_vpc_dns_resolution': ?allowRemoteVpcDnsResolution?.toTfJson(),
   };
 }
 
@@ -33,9 +31,7 @@ final class VpcPeeringConnectionOptionsRequester {
   final TfArg<bool>? allowRemoteVpcDnsResolution;
 
   Map<String, Object?> encode() => {
-    if (allowRemoteVpcDnsResolution != null)
-      'allow_remote_vpc_dns_resolution': allowRemoteVpcDnsResolution!
-          .toTfJson(),
+    'allow_remote_vpc_dns_resolution': ?allowRemoteVpcDnsResolution?.toTfJson(),
   };
 }
 
@@ -56,7 +52,7 @@ final class AwsVpcPeeringConnectionOptions extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'vpc_peering_connection_id': vpcPeeringConnectionId,
            if (accepter != null) 'accepter': TfArg.literal(accepter.encode()),
            if (requester != null)

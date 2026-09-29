@@ -131,12 +131,10 @@ final class DialogflowCxSecuritySettingsAudioExportSettings {
   final RefTo<GoogleStorageBucket>? gcsBucket;
 
   Map<String, Object?> encode() => {
-    if (audioExportPattern != null)
-      'audio_export_pattern': audioExportPattern!.toTfJson(),
-    if (audioFormat != null) 'audio_format': audioFormat!.toTfJson(),
-    if (enableAudioRedaction != null)
-      'enable_audio_redaction': enableAudioRedaction!.toTfJson(),
-    if (gcsBucket != null) 'gcs_bucket': gcsBucket!.encodeAs('name').toTfJson(),
+    'audio_export_pattern': ?audioExportPattern?.toTfJson(),
+    'audio_format': ?audioFormat?.toTfJson(),
+    'enable_audio_redaction': ?enableAudioRedaction?.toTfJson(),
+    'gcs_bucket': ?gcsBucket?.encodeAs('name').toTfJson(),
   };
 }
 
@@ -213,14 +211,12 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
          argMap: {
            'display_name': displayName,
            'location': location,
-           if (redactionStrategy != null)
-             'redaction_strategy': redactionStrategy,
-           if (redactionScope != null) 'redaction_scope': redactionScope,
-           if (inspectTemplate != null) 'inspect_template': inspectTemplate,
-           if (deidentifyTemplate != null)
-             'deidentify_template': deidentifyTemplate,
+           'redaction_strategy': ?redactionStrategy,
+           'redaction_scope': ?redactionScope,
+           'inspect_template': ?inspectTemplate,
+           'deidentify_template': ?deidentifyTemplate,
            ...?retention?.argMap,
-           if (purgeDataTypes != null) 'purge_data_types': purgeDataTypes,
+           'purge_data_types': ?purgeDataTypes,
            if (audioExportSettings != null)
              'audio_export_settings': TfArg.literal(
                audioExportSettings.encode(),
@@ -229,8 +225,8 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
              'insights_export_settings': TfArg.literal(
                insightsExportSettings.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -43,10 +43,10 @@ final class SccFolderCustomModuleCustomConfig {
   final SccFolderCustomModuleCustomConfigResourceSelector resourceSelector;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'recommendation': recommendation.toTfJson(),
     'severity': severity.toTfJson(),
-    if (customOutput != null) 'custom_output': customOutput!.encode(),
+    'custom_output': ?customOutput?.encode(),
     'predicate': predicate.encode(),
     'resource_selector': resourceSelector.encode(),
   };
@@ -94,8 +94,8 @@ final class SccFolderCustomModuleCustomConfigCustomOutputProperties {
   valueExpression;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (valueExpression != null) 'value_expression': valueExpression!.encode(),
+    'name': ?name?.toTfJson(),
+    'value_expression': ?valueExpression?.encode(),
   };
 }
 
@@ -119,10 +119,10 @@ final class SccFolderCustomModuleCustomConfigCustomOutputPropertiesValueExpressi
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -146,10 +146,10 @@ final class SccFolderCustomModuleCustomConfigPredicate {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -196,7 +196,7 @@ final class GoogleSccFolderCustomModule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
            'enablement_state': enablementState,
            'folder': folder,

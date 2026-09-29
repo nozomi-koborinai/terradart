@@ -24,10 +24,10 @@ final class DataAwsCloudcontrolapiResource extends Data {
          terraformType: tfType,
          argMap: {
            'identifier': identifier,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           'region': ?region,
+           'role_arn': ?roleArn,
            'type_name': typeName,
-           if (typeVersionId != null) 'type_version_id': typeVersionId,
+           'type_version_id': ?typeVersionId,
          },
        );
 

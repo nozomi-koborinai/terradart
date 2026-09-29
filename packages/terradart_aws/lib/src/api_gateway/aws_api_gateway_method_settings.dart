@@ -48,25 +48,18 @@ final class ApiGatewayMethodSettingsSettings {
   unauthorizedCacheControlHeaderStrategy;
 
   Map<String, Object?> encode() => {
-    if (cacheDataEncrypted != null)
-      'cache_data_encrypted': cacheDataEncrypted!.toTfJson(),
-    if (cacheTtlInSeconds != null)
-      'cache_ttl_in_seconds': cacheTtlInSeconds!.toTfJson(),
-    if (cachingEnabled != null) 'caching_enabled': cachingEnabled!.toTfJson(),
-    if (dataTraceEnabled != null)
-      'data_trace_enabled': dataTraceEnabled!.toTfJson(),
-    if (loggingLevel != null) 'logging_level': loggingLevel!.toTfJson(),
-    if (metricsEnabled != null) 'metrics_enabled': metricsEnabled!.toTfJson(),
-    if (requireAuthorizationForCacheControl != null)
-      'require_authorization_for_cache_control':
-          requireAuthorizationForCacheControl!.toTfJson(),
-    if (throttlingBurstLimit != null)
-      'throttling_burst_limit': throttlingBurstLimit!.toTfJson(),
-    if (throttlingRateLimit != null)
-      'throttling_rate_limit': throttlingRateLimit!.toTfJson(),
-    if (unauthorizedCacheControlHeaderStrategy != null)
-      'unauthorized_cache_control_header_strategy':
-          unauthorizedCacheControlHeaderStrategy!.toTfJson(),
+    'cache_data_encrypted': ?cacheDataEncrypted?.toTfJson(),
+    'cache_ttl_in_seconds': ?cacheTtlInSeconds?.toTfJson(),
+    'caching_enabled': ?cachingEnabled?.toTfJson(),
+    'data_trace_enabled': ?dataTraceEnabled?.toTfJson(),
+    'logging_level': ?loggingLevel?.toTfJson(),
+    'metrics_enabled': ?metricsEnabled?.toTfJson(),
+    'require_authorization_for_cache_control':
+        ?requireAuthorizationForCacheControl?.toTfJson(),
+    'throttling_burst_limit': ?throttlingBurstLimit?.toTfJson(),
+    'throttling_rate_limit': ?throttlingRateLimit?.toTfJson(),
+    'unauthorized_cache_control_header_strategy':
+        ?unauthorizedCacheControlHeaderStrategy?.toTfJson(),
   };
 }
 
@@ -114,7 +107,7 @@ final class AwsApiGatewayMethodSettings extends Resource {
          terraformType: tfType,
          argMap: {
            'method_path': methodPath,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rest_api_id': restApiId,
            'stage_name': stageName,
            'settings': TfArg.literal(settings.encode()),

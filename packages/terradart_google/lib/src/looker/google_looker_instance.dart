@@ -38,8 +38,7 @@ final class LookerInstanceAdminSettings {
   final TfArg<List<Object?>>? allowedEmailDomains;
 
   Map<String, Object?> encode() => {
-    if (allowedEmailDomains != null)
-      'allowed_email_domains': allowedEmailDomains!.toTfJson(),
+    'allowed_email_domains': ?allowedEmailDomains?.toTfJson(),
   };
 }
 
@@ -57,9 +56,8 @@ final class LookerInstanceControlledEgressConfig {
   final TfArg<bool>? marketplaceEnabled;
 
   Map<String, Object?> encode() => {
-    if (egressFqdns != null) 'egress_fqdns': egressFqdns!.toTfJson(),
-    if (marketplaceEnabled != null)
-      'marketplace_enabled': marketplaceEnabled!.toTfJson(),
+    'egress_fqdns': ?egressFqdns?.toTfJson(),
+    'marketplace_enabled': ?marketplaceEnabled?.toTfJson(),
   };
 }
 
@@ -71,9 +69,7 @@ final class LookerInstanceCustomDomain {
 
   final TfArg<String>? domain;
 
-  Map<String, Object?> encode() => {
-    if (domain != null) 'domain': domain!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'domain': ?domain?.toTfJson()};
 }
 
 /// Typed helper for the `deny_maintenance_period` block of
@@ -116,9 +112,9 @@ final class LookerInstanceDenyMaintenancePeriodEndDate {
   final TfArg<num>? year;
 
   Map<String, Object?> encode() => {
-    if (day != null) 'day': day!.toTfJson(),
-    if (month != null) 'month': month!.toTfJson(),
-    if (year != null) 'year': year!.toTfJson(),
+    'day': ?day?.toTfJson(),
+    'month': ?month?.toTfJson(),
+    'year': ?year?.toTfJson(),
   };
 }
 
@@ -139,9 +135,9 @@ final class LookerInstanceDenyMaintenancePeriodStartDate {
   final TfArg<num>? year;
 
   Map<String, Object?> encode() => {
-    if (day != null) 'day': day!.toTfJson(),
-    if (month != null) 'month': month!.toTfJson(),
-    if (year != null) 'year': year!.toTfJson(),
+    'day': ?day?.toTfJson(),
+    'month': ?month?.toTfJson(),
+    'year': ?year?.toTfJson(),
   };
 }
 
@@ -165,10 +161,10 @@ final class LookerInstanceDenyMaintenancePeriodTime {
   final TfArg<num>? seconds;
 
   Map<String, Object?> encode() => {
-    if (hours != null) 'hours': hours!.toTfJson(),
-    if (minutes != null) 'minutes': minutes!.toTfJson(),
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    'hours': ?hours?.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -181,8 +177,7 @@ final class LookerInstanceEncryptionConfig {
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -240,10 +235,10 @@ final class LookerInstanceMaintenanceWindowStartTime {
   final TfArg<num>? seconds;
 
   Map<String, Object?> encode() => {
-    if (hours != null) 'hours': hours!.toTfJson(),
-    if (minutes != null) 'minutes': minutes!.toTfJson(),
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    'hours': ?hours?.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -309,10 +304,10 @@ final class LookerInstancePeriodicExportConfigStartTime {
   final TfArg<num>? seconds;
 
   Map<String, Object?> encode() => {
-    if (hours != null) 'hours': hours!.toTfJson(),
-    if (minutes != null) 'minutes': minutes!.toTfJson(),
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    'hours': ?hours?.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -327,7 +322,7 @@ final class LookerInstancePscConfig {
   final List<LookerInstancePscConfigServiceAttachments>? serviceAttachments;
 
   Map<String, Object?> encode() => {
-    if (allowedVpcs != null) 'allowed_vpcs': allowedVpcs!.toTfJson(),
+    'allowed_vpcs': ?allowedVpcs?.toTfJson(),
     if (serviceAttachments != null)
       'service_attachments': [for (final e in serviceAttachments!) e.encode()],
   };
@@ -347,9 +342,8 @@ final class LookerInstancePscConfigServiceAttachments {
   final TfArg<String>? targetServiceAttachmentUri;
 
   Map<String, Object?> encode() => {
-    if (localFqdn != null) 'local_fqdn': localFqdn!.toTfJson(),
-    if (targetServiceAttachmentUri != null)
-      'target_service_attachment_uri': targetServiceAttachmentUri!.toTfJson(),
+    'local_fqdn': ?localFqdn?.toTfJson(),
+    'target_service_attachment_uri': ?targetServiceAttachmentUri?.toTfJson(),
   };
 }
 
@@ -370,13 +364,10 @@ final class LookerInstanceUserMetadata {
   final TfArg<num>? additionalViewerUserCount;
 
   Map<String, Object?> encode() => {
-    if (additionalDeveloperUserCount != null)
-      'additional_developer_user_count': additionalDeveloperUserCount!
-          .toTfJson(),
-    if (additionalStandardUserCount != null)
-      'additional_standard_user_count': additionalStandardUserCount!.toTfJson(),
-    if (additionalViewerUserCount != null)
-      'additional_viewer_user_count': additionalViewerUserCount!.toTfJson(),
+    'additional_developer_user_count': ?additionalDeveloperUserCount
+        ?.toTfJson(),
+    'additional_standard_user_count': ?additionalStandardUserCount?.toTfJson(),
+    'additional_viewer_user_count': ?additionalViewerUserCount?.toTfJson(),
   };
 }
 
@@ -439,11 +430,10 @@ final class GoogleLookerInstance extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (platformEdition != null) 'platform_edition': platformEdition,
+           'region': ?region,
+           'platform_edition': ?platformEdition,
            'oauth_config': TfArg.literal(oauthConfig.encode()),
-           if (consumerNetwork != null)
-             'consumer_network': consumerNetwork.encodeAs('id'),
+           'consumer_network': ?consumerNetwork?.encodeAs('id'),
            if (adminSettings != null)
              'admin_settings': TfArg.literal(adminSettings.encode()),
            if (maintenanceWindow != null)
@@ -464,8 +454,8 @@ final class GoogleLookerInstance extends Resource {
              'periodic_export_config': TfArg.literal(
                periodicExportConfig.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

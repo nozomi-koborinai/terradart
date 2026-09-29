@@ -49,7 +49,7 @@ final class GoogleLoggingLinkedDataset extends Resource {
          argMap: {
            'bucket': bucket,
            'link_id': linkId,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (bigqueryDataset != null)
              'bigquery_dataset': TfArg.literal([bigqueryDataset.toArgMap()]),
          },

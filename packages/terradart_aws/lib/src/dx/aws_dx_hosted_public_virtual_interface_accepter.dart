@@ -24,8 +24,8 @@ final class AwsDxHostedPublicVirtualInterfaceAccepter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'virtual_interface_id': virtualInterfaceId,
          },
        );

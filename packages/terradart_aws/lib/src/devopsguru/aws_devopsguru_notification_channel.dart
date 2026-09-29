@@ -84,7 +84,7 @@ final class AwsDevopsguruNotificationChannel extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (filters != null)
              'filters': TfArg.literal([for (final e in filters) e.encode()]),
            if (sns != null)

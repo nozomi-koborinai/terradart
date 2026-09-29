@@ -26,10 +26,7 @@ final class DataCloudflareSchemaValidationOperationSettings extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'operation_id': operationId,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'operation_id': operationId, 'zone_id': ?zoneId},
        );
 
   @override

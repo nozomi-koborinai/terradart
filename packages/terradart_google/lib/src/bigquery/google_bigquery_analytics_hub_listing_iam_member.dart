@@ -30,11 +30,11 @@ final class GoogleBigqueryAnalyticsHubListingIamMember extends Resource {
          argMap: {
            'data_exchange_id': dataExchangeId,
            'listing_id': listingId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'member': member,
-           if (project != null) 'project': project,
+           'project': ?project,
            'role': role,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

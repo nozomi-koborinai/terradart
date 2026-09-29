@@ -38,11 +38,10 @@ final class FolderOrganizationPolicyListPolicy {
   final FolderOrganizationPolicyListPolicyDeny? deny;
 
   Map<String, Object?> encode() => {
-    if (inheritFromParent != null)
-      'inherit_from_parent': inheritFromParent!.toTfJson(),
-    if (suggestedValue != null) 'suggested_value': suggestedValue!.toTfJson(),
-    if (allow != null) 'allow': allow!.encode(),
-    if (deny != null) 'deny': deny!.encode(),
+    'inherit_from_parent': ?inheritFromParent?.toTfJson(),
+    'suggested_value': ?suggestedValue?.toTfJson(),
+    'allow': ?allow?.encode(),
+    'deny': ?deny?.encode(),
   };
 }
 
@@ -57,8 +56,8 @@ final class FolderOrganizationPolicyListPolicyAllow {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (all != null) 'all': all!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'all': ?all?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -73,8 +72,8 @@ final class FolderOrganizationPolicyListPolicyDeny {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (all != null) 'all': all!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'all': ?all?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -117,9 +116,9 @@ final class GoogleFolderOrganizationPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'constraint': constraint,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'folder': folder,
-           if (version != null) 'version': version,
+           'version': ?version,
            if (booleanPolicy != null)
              'boolean_policy': TfArg.literal(booleanPolicy.encode()),
            if (listPolicy != null)

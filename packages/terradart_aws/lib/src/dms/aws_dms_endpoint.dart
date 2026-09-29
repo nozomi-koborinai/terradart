@@ -98,13 +98,10 @@ final class DmsEndpointElasticsearchSettings {
 
   Map<String, Object?> encode() => {
     'endpoint_uri': endpointUri.toTfJson(),
-    if (errorRetryDuration != null)
-      'error_retry_duration': errorRetryDuration!.toTfJson(),
-    if (fullLoadErrorPercentage != null)
-      'full_load_error_percentage': fullLoadErrorPercentage!.toTfJson(),
+    'error_retry_duration': ?errorRetryDuration?.toTfJson(),
+    'full_load_error_percentage': ?fullLoadErrorPercentage?.toTfJson(),
     'service_access_role_arn': serviceAccessRoleArn.toTfJson(),
-    if (useNewMappingType != null)
-      'use_new_mapping_type': useNewMappingType!.toTfJson(),
+    'use_new_mapping_type': ?useNewMappingType?.toTfJson(),
   };
 }
 
@@ -174,36 +171,24 @@ final class DmsEndpointKafkaSettings {
 
   Map<String, Object?> encode() => {
     'broker': broker.toTfJson(),
-    if (includeControlDetails != null)
-      'include_control_details': includeControlDetails!.toTfJson(),
-    if (includeNullAndEmpty != null)
-      'include_null_and_empty': includeNullAndEmpty!.toTfJson(),
-    if (includePartitionValue != null)
-      'include_partition_value': includePartitionValue!.toTfJson(),
-    if (includeTableAlterOperations != null)
-      'include_table_alter_operations': includeTableAlterOperations!.toTfJson(),
-    if (includeTransactionDetails != null)
-      'include_transaction_details': includeTransactionDetails!.toTfJson(),
-    if (messageFormat != null) 'message_format': messageFormat!.toTfJson(),
-    if (messageMaxBytes != null)
-      'message_max_bytes': messageMaxBytes!.toTfJson(),
-    if (noHexPrefix != null) 'no_hex_prefix': noHexPrefix!.toTfJson(),
-    if (partitionIncludeSchemaTable != null)
-      'partition_include_schema_table': partitionIncludeSchemaTable!.toTfJson(),
-    if (saslMechanism != null) 'sasl_mechanism': saslMechanism!.toTfJson(),
-    if (saslPassword != null) 'sasl_password': saslPassword!.toTfJson(),
-    if (saslUsername != null) 'sasl_username': saslUsername!.toTfJson(),
-    if (securityProtocol != null)
-      'security_protocol': securityProtocol!.toTfJson(),
-    if (sslCaCertificateArn != null)
-      'ssl_ca_certificate_arn': sslCaCertificateArn!.toTfJson(),
-    if (sslClientCertificateArn != null)
-      'ssl_client_certificate_arn': sslClientCertificateArn!.toTfJson(),
-    if (sslClientKeyArn != null)
-      'ssl_client_key_arn': sslClientKeyArn!.toTfJson(),
-    if (sslClientKeyPassword != null)
-      'ssl_client_key_password': sslClientKeyPassword!.toTfJson(),
-    if (topic != null) 'topic': topic!.toTfJson(),
+    'include_control_details': ?includeControlDetails?.toTfJson(),
+    'include_null_and_empty': ?includeNullAndEmpty?.toTfJson(),
+    'include_partition_value': ?includePartitionValue?.toTfJson(),
+    'include_table_alter_operations': ?includeTableAlterOperations?.toTfJson(),
+    'include_transaction_details': ?includeTransactionDetails?.toTfJson(),
+    'message_format': ?messageFormat?.toTfJson(),
+    'message_max_bytes': ?messageMaxBytes?.toTfJson(),
+    'no_hex_prefix': ?noHexPrefix?.toTfJson(),
+    'partition_include_schema_table': ?partitionIncludeSchemaTable?.toTfJson(),
+    'sasl_mechanism': ?saslMechanism?.toTfJson(),
+    'sasl_password': ?saslPassword?.toTfJson(),
+    'sasl_username': ?saslUsername?.toTfJson(),
+    'security_protocol': ?securityProtocol?.toTfJson(),
+    'ssl_ca_certificate_arn': ?sslCaCertificateArn?.toTfJson(),
+    'ssl_client_certificate_arn': ?sslClientCertificateArn?.toTfJson(),
+    'ssl_client_key_arn': ?sslClientKeyArn?.toTfJson(),
+    'ssl_client_key_password': ?sslClientKeyPassword?.toTfJson(),
+    'topic': ?topic?.toTfJson(),
   };
 }
 
@@ -277,24 +262,16 @@ final class DmsEndpointKinesisSettings {
   final TfArg<bool>? useLargeIntegerValue;
 
   Map<String, Object?> encode() => {
-    if (includeControlDetails != null)
-      'include_control_details': includeControlDetails!.toTfJson(),
-    if (includeNullAndEmpty != null)
-      'include_null_and_empty': includeNullAndEmpty!.toTfJson(),
-    if (includePartitionValue != null)
-      'include_partition_value': includePartitionValue!.toTfJson(),
-    if (includeTableAlterOperations != null)
-      'include_table_alter_operations': includeTableAlterOperations!.toTfJson(),
-    if (includeTransactionDetails != null)
-      'include_transaction_details': includeTransactionDetails!.toTfJson(),
-    if (messageFormat != null) 'message_format': messageFormat!.toTfJson(),
-    if (partitionIncludeSchemaTable != null)
-      'partition_include_schema_table': partitionIncludeSchemaTable!.toTfJson(),
-    if (serviceAccessRoleArn != null)
-      'service_access_role_arn': serviceAccessRoleArn!.toTfJson(),
-    if (streamArn != null) 'stream_arn': streamArn!.toTfJson(),
-    if (useLargeIntegerValue != null)
-      'use_large_integer_value': useLargeIntegerValue!.toTfJson(),
+    'include_control_details': ?includeControlDetails?.toTfJson(),
+    'include_null_and_empty': ?includeNullAndEmpty?.toTfJson(),
+    'include_partition_value': ?includePartitionValue?.toTfJson(),
+    'include_table_alter_operations': ?includeTableAlterOperations?.toTfJson(),
+    'include_transaction_details': ?includeTransactionDetails?.toTfJson(),
+    'message_format': ?messageFormat?.toTfJson(),
+    'partition_include_schema_table': ?partitionIncludeSchemaTable?.toTfJson(),
+    'service_access_role_arn': ?serviceAccessRoleArn?.toTfJson(),
+    'stream_arn': ?streamArn?.toTfJson(),
+    'use_large_integer_value': ?useLargeIntegerValue?.toTfJson(),
   };
 }
 
@@ -337,15 +314,13 @@ final class DmsEndpointMongodbSettings {
   final TfArg<bool>? useUpdateLookup;
 
   Map<String, Object?> encode() => {
-    if (authMechanism != null) 'auth_mechanism': authMechanism!.toTfJson(),
-    if (authSource != null) 'auth_source': authSource!.toTfJson(),
-    if (authType != null) 'auth_type': authType!.toTfJson(),
-    if (docsToInvestigate != null)
-      'docs_to_investigate': docsToInvestigate!.toTfJson(),
-    if (extractDocId != null) 'extract_doc_id': extractDocId!.toTfJson(),
-    if (nestingLevel != null) 'nesting_level': nestingLevel!.toTfJson(),
-    if (useUpdateLookup != null)
-      'use_update_lookup': useUpdateLookup!.toTfJson(),
+    'auth_mechanism': ?authMechanism?.toTfJson(),
+    'auth_source': ?authSource?.toTfJson(),
+    'auth_type': ?authType?.toTfJson(),
+    'docs_to_investigate': ?docsToInvestigate?.toTfJson(),
+    'extract_doc_id': ?extractDocId?.toTfJson(),
+    'nesting_level': ?nestingLevel?.toTfJson(),
+    'use_update_lookup': ?useUpdateLookup?.toTfJson(),
   };
 }
 
@@ -419,23 +394,17 @@ final class DmsEndpointMysqlSettings {
   final TfArg<DmsEndpointMysqlSettingsTargetDbType>? targetDbType;
 
   Map<String, Object?> encode() => {
-    if (afterConnectScript != null)
-      'after_connect_script': afterConnectScript!.toTfJson(),
-    if (authenticationMethod != null)
-      'authentication_method': authenticationMethod!.toTfJson(),
-    if (cleanSourceMetadataOnMismatch != null)
-      'clean_source_metadata_on_mismatch': cleanSourceMetadataOnMismatch!
-          .toTfJson(),
-    if (eventsPollInterval != null)
-      'events_poll_interval': eventsPollInterval!.toTfJson(),
-    if (executeTimeout != null) 'execute_timeout': executeTimeout!.toTfJson(),
-    if (maxFileSize != null) 'max_file_size': maxFileSize!.toTfJson(),
-    if (parallelLoadThreads != null)
-      'parallel_load_threads': parallelLoadThreads!.toTfJson(),
-    if (serverTimezone != null) 'server_timezone': serverTimezone!.toTfJson(),
-    if (serviceAccessRoleArn != null)
-      'service_access_role_arn': serviceAccessRoleArn!.toTfJson(),
-    if (targetDbType != null) 'target_db_type': targetDbType!.toTfJson(),
+    'after_connect_script': ?afterConnectScript?.toTfJson(),
+    'authentication_method': ?authenticationMethod?.toTfJson(),
+    'clean_source_metadata_on_mismatch': ?cleanSourceMetadataOnMismatch
+        ?.toTfJson(),
+    'events_poll_interval': ?eventsPollInterval?.toTfJson(),
+    'execute_timeout': ?executeTimeout?.toTfJson(),
+    'max_file_size': ?maxFileSize?.toTfJson(),
+    'parallel_load_threads': ?parallelLoadThreads?.toTfJson(),
+    'server_timezone': ?serverTimezone?.toTfJson(),
+    'service_access_role_arn': ?serviceAccessRoleArn?.toTfJson(),
+    'target_db_type': ?targetDbType?.toTfJson(),
   };
 }
 
@@ -580,80 +549,47 @@ final class DmsEndpointOracleSettings {
   final TfArg<String>? usePathPrefix;
 
   Map<String, Object?> encode() => {
-    if (accessAlternateDirectly != null)
-      'access_alternate_directly': accessAlternateDirectly!.toTfJson(),
-    if (addSupplementalLogging != null)
-      'add_supplemental_logging': addSupplementalLogging!.toTfJson(),
-    if (additionalArchivedLogDestId != null)
-      'additional_archived_log_dest_id': additionalArchivedLogDestId!
-          .toTfJson(),
-    if (allowSelectedNestedTables != null)
-      'allow_selected_nested_tables': allowSelectedNestedTables!.toTfJson(),
-    if (archivedLogDestId != null)
-      'archived_log_dest_id': archivedLogDestId!.toTfJson(),
-    if (archivedLogsOnly != null)
-      'archived_logs_only': archivedLogsOnly!.toTfJson(),
-    if (asmPassword != null) 'asm_password': asmPassword!.toTfJson(),
-    if (asmServer != null) 'asm_server': asmServer!.toTfJson(),
-    if (asmUser != null) 'asm_user': asmUser!.toTfJson(),
-    if (authenticationMethod != null)
-      'authentication_method': authenticationMethod!.toTfJson(),
-    if (charLengthSemantics != null)
-      'char_length_semantics': charLengthSemantics!.toTfJson(),
-    if (convertTimestampWithZoneToUtc != null)
-      'convert_timestamp_with_zone_to_utc': convertTimestampWithZoneToUtc!
-          .toTfJson(),
-    if (directPathNoLog != null)
-      'direct_path_no_log': directPathNoLog!.toTfJson(),
-    if (directPathParallelLoad != null)
-      'direct_path_parallel_load': directPathParallelLoad!.toTfJson(),
-    if (enableHomogenousTablespace != null)
-      'enable_homogenous_tablespace': enableHomogenousTablespace!.toTfJson(),
-    if (extraArchivedLogDestIds != null)
-      'extra_archived_log_dest_ids': extraArchivedLogDestIds!.toTfJson(),
-    if (failTaskOnLobTruncation != null)
-      'fail_task_on_lob_truncation': failTaskOnLobTruncation!.toTfJson(),
-    if (numberDatatypeScale != null)
-      'number_datatype_scale': numberDatatypeScale!.toTfJson(),
-    if (openTransactionWindow != null)
-      'open_transaction_window': openTransactionWindow!.toTfJson(),
-    if (oraclePathPrefix != null)
-      'oracle_path_prefix': oraclePathPrefix!.toTfJson(),
-    if (parallelAsmReadThreads != null)
-      'parallel_asm_read_threads': parallelAsmReadThreads!.toTfJson(),
-    if (readAheadBlocks != null)
-      'read_ahead_blocks': readAheadBlocks!.toTfJson(),
-    if (readTableSpaceName != null)
-      'read_table_space_name': readTableSpaceName!.toTfJson(),
-    if (replacePathPrefix != null)
-      'replace_path_prefix': replacePathPrefix!.toTfJson(),
-    if (retryInterval != null) 'retry_interval': retryInterval!.toTfJson(),
-    if (secretsManagerOracleAsmAccessRoleArn != null)
-      'secrets_manager_oracle_asm_access_role_arn':
-          secretsManagerOracleAsmAccessRoleArn!.toTfJson(),
-    if (secretsManagerOracleAsmSecretId != null)
-      'secrets_manager_oracle_asm_secret_id': secretsManagerOracleAsmSecretId!
-          .toTfJson(),
-    if (securityDbEncryption != null)
-      'security_db_encryption': securityDbEncryption!.toTfJson(),
-    if (securityDbEncryptionName != null)
-      'security_db_encryption_name': securityDbEncryptionName!.toTfJson(),
-    if (spatialDataOptionToGeoJsonFunctionName != null)
-      'spatial_data_option_to_geo_json_function_name':
-          spatialDataOptionToGeoJsonFunctionName!.toTfJson(),
-    if (standbyDelayTime != null)
-      'standby_delay_time': standbyDelayTime!.toTfJson(),
-    if (trimSpaceInChar != null)
-      'trim_space_in_char': trimSpaceInChar!.toTfJson(),
-    if (useAlternateFolderForOnline != null)
-      'use_alternate_folder_for_online': useAlternateFolderForOnline!
-          .toTfJson(),
-    if (useBfile != null) 'use_bfile': useBfile!.toTfJson(),
-    if (useDirectPathFullLoad != null)
-      'use_direct_path_full_load': useDirectPathFullLoad!.toTfJson(),
-    if (useLogminerReader != null)
-      'use_logminer_reader': useLogminerReader!.toTfJson(),
-    if (usePathPrefix != null) 'use_path_prefix': usePathPrefix!.toTfJson(),
+    'access_alternate_directly': ?accessAlternateDirectly?.toTfJson(),
+    'add_supplemental_logging': ?addSupplementalLogging?.toTfJson(),
+    'additional_archived_log_dest_id': ?additionalArchivedLogDestId?.toTfJson(),
+    'allow_selected_nested_tables': ?allowSelectedNestedTables?.toTfJson(),
+    'archived_log_dest_id': ?archivedLogDestId?.toTfJson(),
+    'archived_logs_only': ?archivedLogsOnly?.toTfJson(),
+    'asm_password': ?asmPassword?.toTfJson(),
+    'asm_server': ?asmServer?.toTfJson(),
+    'asm_user': ?asmUser?.toTfJson(),
+    'authentication_method': ?authenticationMethod?.toTfJson(),
+    'char_length_semantics': ?charLengthSemantics?.toTfJson(),
+    'convert_timestamp_with_zone_to_utc': ?convertTimestampWithZoneToUtc
+        ?.toTfJson(),
+    'direct_path_no_log': ?directPathNoLog?.toTfJson(),
+    'direct_path_parallel_load': ?directPathParallelLoad?.toTfJson(),
+    'enable_homogenous_tablespace': ?enableHomogenousTablespace?.toTfJson(),
+    'extra_archived_log_dest_ids': ?extraArchivedLogDestIds?.toTfJson(),
+    'fail_task_on_lob_truncation': ?failTaskOnLobTruncation?.toTfJson(),
+    'number_datatype_scale': ?numberDatatypeScale?.toTfJson(),
+    'open_transaction_window': ?openTransactionWindow?.toTfJson(),
+    'oracle_path_prefix': ?oraclePathPrefix?.toTfJson(),
+    'parallel_asm_read_threads': ?parallelAsmReadThreads?.toTfJson(),
+    'read_ahead_blocks': ?readAheadBlocks?.toTfJson(),
+    'read_table_space_name': ?readTableSpaceName?.toTfJson(),
+    'replace_path_prefix': ?replacePathPrefix?.toTfJson(),
+    'retry_interval': ?retryInterval?.toTfJson(),
+    'secrets_manager_oracle_asm_access_role_arn':
+        ?secretsManagerOracleAsmAccessRoleArn?.toTfJson(),
+    'secrets_manager_oracle_asm_secret_id': ?secretsManagerOracleAsmSecretId
+        ?.toTfJson(),
+    'security_db_encryption': ?securityDbEncryption?.toTfJson(),
+    'security_db_encryption_name': ?securityDbEncryptionName?.toTfJson(),
+    'spatial_data_option_to_geo_json_function_name':
+        ?spatialDataOptionToGeoJsonFunctionName?.toTfJson(),
+    'standby_delay_time': ?standbyDelayTime?.toTfJson(),
+    'trim_space_in_char': ?trimSpaceInChar?.toTfJson(),
+    'use_alternate_folder_for_online': ?useAlternateFolderForOnline?.toTfJson(),
+    'use_bfile': ?useBfile?.toTfJson(),
+    'use_direct_path_full_load': ?useDirectPathFullLoad?.toTfJson(),
+    'use_logminer_reader': ?useLogminerReader?.toTfJson(),
+    'use_path_prefix': ?usePathPrefix?.toTfJson(),
   };
 }
 
@@ -741,35 +677,24 @@ final class DmsEndpointPostgresSettings {
   final TfArg<String>? slotName;
 
   Map<String, Object?> encode() => {
-    if (afterConnectScript != null)
-      'after_connect_script': afterConnectScript!.toTfJson(),
-    if (authenticationMethod != null)
-      'authentication_method': authenticationMethod!.toTfJson(),
-    if (babelfishDatabaseName != null)
-      'babelfish_database_name': babelfishDatabaseName!.toTfJson(),
-    if (captureDdls != null) 'capture_ddls': captureDdls!.toTfJson(),
-    if (databaseMode != null) 'database_mode': databaseMode!.toTfJson(),
-    if (ddlArtifactsSchema != null)
-      'ddl_artifacts_schema': ddlArtifactsSchema!.toTfJson(),
-    if (executeTimeout != null) 'execute_timeout': executeTimeout!.toTfJson(),
-    if (failTasksOnLobTruncation != null)
-      'fail_tasks_on_lob_truncation': failTasksOnLobTruncation!.toTfJson(),
-    if (heartbeatEnable != null)
-      'heartbeat_enable': heartbeatEnable!.toTfJson(),
-    if (heartbeatFrequency != null)
-      'heartbeat_frequency': heartbeatFrequency!.toTfJson(),
-    if (heartbeatSchema != null)
-      'heartbeat_schema': heartbeatSchema!.toTfJson(),
-    if (mapBooleanAsBoolean != null)
-      'map_boolean_as_boolean': mapBooleanAsBoolean!.toTfJson(),
-    if (mapJsonbAsClob != null) 'map_jsonb_as_clob': mapJsonbAsClob!.toTfJson(),
-    if (mapLongVarcharAs != null)
-      'map_long_varchar_as': mapLongVarcharAs!.toTfJson(),
-    if (maxFileSize != null) 'max_file_size': maxFileSize!.toTfJson(),
-    if (pluginName != null) 'plugin_name': pluginName!.toTfJson(),
-    if (serviceAccessRoleArn != null)
-      'service_access_role_arn': serviceAccessRoleArn!.toTfJson(),
-    if (slotName != null) 'slot_name': slotName!.toTfJson(),
+    'after_connect_script': ?afterConnectScript?.toTfJson(),
+    'authentication_method': ?authenticationMethod?.toTfJson(),
+    'babelfish_database_name': ?babelfishDatabaseName?.toTfJson(),
+    'capture_ddls': ?captureDdls?.toTfJson(),
+    'database_mode': ?databaseMode?.toTfJson(),
+    'ddl_artifacts_schema': ?ddlArtifactsSchema?.toTfJson(),
+    'execute_timeout': ?executeTimeout?.toTfJson(),
+    'fail_tasks_on_lob_truncation': ?failTasksOnLobTruncation?.toTfJson(),
+    'heartbeat_enable': ?heartbeatEnable?.toTfJson(),
+    'heartbeat_frequency': ?heartbeatFrequency?.toTfJson(),
+    'heartbeat_schema': ?heartbeatSchema?.toTfJson(),
+    'map_boolean_as_boolean': ?mapBooleanAsBoolean?.toTfJson(),
+    'map_jsonb_as_clob': ?mapJsonbAsClob?.toTfJson(),
+    'map_long_varchar_as': ?mapLongVarcharAs?.toTfJson(),
+    'max_file_size': ?maxFileSize?.toTfJson(),
+    'plugin_name': ?pluginName?.toTfJson(),
+    'service_access_role_arn': ?serviceAccessRoleArn?.toTfJson(),
+    'slot_name': ?slotName?.toTfJson(),
   };
 }
 
@@ -844,15 +769,13 @@ final class DmsEndpointRedisSettings {
   final TfArg<DmsEndpointRedisSettingsSslSecurityProtocol>? sslSecurityProtocol;
 
   Map<String, Object?> encode() => {
-    if (authPassword != null) 'auth_password': authPassword!.toTfJson(),
+    'auth_password': ?authPassword?.toTfJson(),
     'auth_type': authType.toTfJson(),
-    if (authUserName != null) 'auth_user_name': authUserName!.toTfJson(),
+    'auth_user_name': ?authUserName?.toTfJson(),
     'port': port.toTfJson(),
     'server_name': serverName.toTfJson(),
-    if (sslCaCertificateArn != null)
-      'ssl_ca_certificate_arn': sslCaCertificateArn!.toTfJson(),
-    if (sslSecurityProtocol != null)
-      'ssl_security_protocol': sslSecurityProtocol!.toTfJson(),
+    'ssl_ca_certificate_arn': ?sslCaCertificateArn?.toTfJson(),
+    'ssl_security_protocol': ?sslSecurityProtocol?.toTfJson(),
   };
 }
 
@@ -900,15 +823,12 @@ final class DmsEndpointRedshiftSettings {
   final TfArg<String>? serviceAccessRoleArn;
 
   Map<String, Object?> encode() => {
-    if (bucketFolder != null) 'bucket_folder': bucketFolder!.toTfJson(),
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (encryptionMode != null) 'encryption_mode': encryptionMode!.toTfJson(),
-    if (serverSideEncryptionKmsKeyId != null)
-      'server_side_encryption_kms_key_id': serverSideEncryptionKmsKeyId!
-          .toTfJson(),
-    if (serviceAccessRoleArn != null)
-      'service_access_role_arn': serviceAccessRoleArn!.toTfJson(),
+    'bucket_folder': ?bucketFolder?.toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'encryption_mode': ?encryptionMode?.toTfJson(),
+    'server_side_encryption_kms_key_id': ?serverSideEncryptionKmsKeyId
+        ?.toTfJson(),
+    'service_access_role_arn': ?serviceAccessRoleArn?.toTfJson(),
   };
 }
 
@@ -962,29 +882,24 @@ final class AwsDmsEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (certificateArn != null) 'certificate_arn': certificateArn,
-           if (databaseName != null) 'database_name': databaseName,
+           'certificate_arn': ?certificateArn,
+           'database_name': ?databaseName,
            'endpoint_id': endpointId,
            'endpoint_type': endpointType,
            'engine_name': engineName,
-           if (extraConnectionAttributes != null)
-             'extra_connection_attributes': extraConnectionAttributes,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (password != null) 'password': password,
-           if (pauseReplicationTasks != null)
-             'pause_replication_tasks': pauseReplicationTasks,
-           if (port != null) 'port': port,
-           if (region != null) 'region': region,
-           if (secretsManagerAccessRoleArn != null)
-             'secrets_manager_access_role_arn': secretsManagerAccessRoleArn,
-           if (secretsManagerArn != null)
-             'secrets_manager_arn': secretsManagerArn,
-           if (serverName != null) 'server_name': serverName,
-           if (serviceAccessRole != null)
-             'service_access_role': serviceAccessRole,
-           if (sslMode != null) 'ssl_mode': sslMode,
-           if (tags != null) 'tags': tags,
-           if (username != null) 'username': username,
+           'extra_connection_attributes': ?extraConnectionAttributes,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
+           'password': ?password,
+           'pause_replication_tasks': ?pauseReplicationTasks,
+           'port': ?port,
+           'region': ?region,
+           'secrets_manager_access_role_arn': ?secretsManagerAccessRoleArn,
+           'secrets_manager_arn': ?secretsManagerArn,
+           'server_name': ?serverName,
+           'service_access_role': ?serviceAccessRole,
+           'ssl_mode': ?sslMode,
+           'tags': ?tags,
+           'username': ?username,
            if (elasticsearchSettings != null)
              'elasticsearch_settings': TfArg.literal(
                elasticsearchSettings.encode(),

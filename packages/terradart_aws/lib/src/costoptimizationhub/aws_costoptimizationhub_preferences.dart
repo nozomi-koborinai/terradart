@@ -49,11 +49,9 @@ final class AwsCostoptimizationhubPreferences extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (memberAccountDiscountVisibility != null)
-             'member_account_discount_visibility':
-                 memberAccountDiscountVisibility,
-           if (savingsEstimationMode != null)
-             'savings_estimation_mode': savingsEstimationMode,
+           'member_account_discount_visibility':
+               ?memberAccountDiscountVisibility,
+           'savings_estimation_mode': ?savingsEstimationMode,
          },
        );
 

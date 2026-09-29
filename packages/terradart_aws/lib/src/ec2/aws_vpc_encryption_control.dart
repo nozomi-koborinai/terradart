@@ -43,27 +43,19 @@ final class AwsVpcEncryptionControl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (egressOnlyInternetGatewayExclusion != null)
-             'egress_only_internet_gateway_exclusion':
-                 egressOnlyInternetGatewayExclusion,
-           if (elasticFileSystemExclusion != null)
-             'elastic_file_system_exclusion': elasticFileSystemExclusion,
-           if (internetGatewayExclusion != null)
-             'internet_gateway_exclusion': internetGatewayExclusion,
-           if (lambdaExclusion != null) 'lambda_exclusion': lambdaExclusion,
+           'egress_only_internet_gateway_exclusion':
+               ?egressOnlyInternetGatewayExclusion,
+           'elastic_file_system_exclusion': ?elasticFileSystemExclusion,
+           'internet_gateway_exclusion': ?internetGatewayExclusion,
+           'lambda_exclusion': ?lambdaExclusion,
            'mode': mode,
-           if (natGatewayExclusion != null)
-             'nat_gateway_exclusion': natGatewayExclusion,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (virtualPrivateGatewayExclusion != null)
-             'virtual_private_gateway_exclusion':
-                 virtualPrivateGatewayExclusion,
+           'nat_gateway_exclusion': ?natGatewayExclusion,
+           'region': ?region,
+           'tags': ?tags,
+           'virtual_private_gateway_exclusion': ?virtualPrivateGatewayExclusion,
            'vpc_id': vpcId.encodeAs('id'),
-           if (vpcLatticeExclusion != null)
-             'vpc_lattice_exclusion': vpcLatticeExclusion,
-           if (vpcPeeringExclusion != null)
-             'vpc_peering_exclusion': vpcPeeringExclusion,
+           'vpc_lattice_exclusion': ?vpcLatticeExclusion,
+           'vpc_peering_exclusion': ?vpcPeeringExclusion,
          },
        );
 

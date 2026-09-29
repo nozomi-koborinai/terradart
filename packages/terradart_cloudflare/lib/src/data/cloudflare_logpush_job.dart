@@ -25,9 +25,9 @@ final class DataCloudflareLogpushJob extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'job_id': jobId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'zone_id': ?zoneId,
          },
        );
 

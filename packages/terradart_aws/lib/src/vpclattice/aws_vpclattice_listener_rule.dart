@@ -97,7 +97,7 @@ final class VpclatticeListenerRuleActionForwardTargetGroups {
 
   Map<String, Object?> encode() => {
     'target_group_identifier': targetGroupIdentifier.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -129,10 +129,10 @@ final class VpclatticeListenerRuleMatchHttpMatch {
   final VpclatticeListenerRuleMatchHttpMatchPathMatch? pathMatch;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
+    'method': ?method?.toTfJson(),
     if (headerMatches != null)
       'header_matches': [for (final e in headerMatches!) e.encode()],
-    if (pathMatch != null) 'path_match': pathMatch!.encode(),
+    'path_match': ?pathMatch?.encode(),
   };
 }
 
@@ -153,7 +153,7 @@ final class VpclatticeListenerRuleMatchHttpMatchHeaderMatches {
   final VpclatticeListenerRuleMatchHttpMatchHeaderMatchesMatch match;
 
   Map<String, Object?> encode() => {
-    if (caseSensitive != null) 'case_sensitive': caseSensitive!.toTfJson(),
+    'case_sensitive': ?caseSensitive?.toTfJson(),
     'name': name.toTfJson(),
     'match': match.encode(),
   };
@@ -176,9 +176,9 @@ final class VpclatticeListenerRuleMatchHttpMatchHeaderMatchesMatch {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -196,7 +196,7 @@ final class VpclatticeListenerRuleMatchHttpMatchPathMatch {
   final VpclatticeListenerRuleMatchHttpMatchPathMatchMatch match;
 
   Map<String, Object?> encode() => {
-    if (caseSensitive != null) 'case_sensitive': caseSensitive!.toTfJson(),
+    'case_sensitive': ?caseSensitive?.toTfJson(),
     'match': match.encode(),
   };
 }
@@ -215,8 +215,8 @@ final class VpclatticeListenerRuleMatchHttpMatchPathMatchMatch {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -244,9 +244,9 @@ final class AwsVpclatticeListenerRule extends Resource {
            'listener_identifier': listenerIdentifier,
            'name': name,
            'priority': priority,
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_identifier': serviceIdentifier,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'action': TfArg.literal(action.encode()),
            'match': TfArg.literal(match.encode()),
          },

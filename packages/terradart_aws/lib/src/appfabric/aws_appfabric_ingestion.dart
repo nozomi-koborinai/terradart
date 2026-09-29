@@ -37,8 +37,8 @@ final class AwsAppfabricIngestion extends Resource {
            'app': app,
            'app_bundle_arn': appBundleArn,
            'ingestion_type': ingestionType,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'tenant_id': tenantId,
          },
        );

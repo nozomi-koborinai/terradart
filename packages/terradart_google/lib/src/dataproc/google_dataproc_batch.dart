@@ -201,9 +201,8 @@ final class DataprocBatchEnvironmentConfig {
   final DataprocBatchEnvironmentConfigPeripheralsConfig? peripheralsConfig;
 
   Map<String, Object?> encode() => {
-    if (executionConfig != null) 'execution_config': executionConfig!.encode(),
-    if (peripheralsConfig != null)
-      'peripherals_config': peripheralsConfig!.encode(),
+    'execution_config': ?executionConfig?.encode(),
+    'peripherals_config': ?peripheralsConfig?.encode(),
   };
 }
 
@@ -237,15 +236,13 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
   authenticationConfig;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
-    if (networkTags != null) 'network_tags': networkTags!.toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
+    'network_tags': ?networkTags?.toTfJson(),
     ...?network?.encode(),
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
-    if (stagingBucket != null) 'staging_bucket': stagingBucket!.toTfJson(),
-    if (ttl != null) 'ttl': ttl!.toTfJson(),
-    if (authenticationConfig != null)
-      'authentication_config': authenticationConfig!.encode(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'staging_bucket': ?stagingBucket?.toTfJson(),
+    'ttl': ?ttl?.toTfJson(),
+    'authentication_config': ?authenticationConfig?.encode(),
   };
 }
 
@@ -319,9 +316,8 @@ final class DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfig {
   userWorkloadAuthenticationType;
 
   Map<String, Object?> encode() => {
-    if (userWorkloadAuthenticationType != null)
-      'user_workload_authentication_type': userWorkloadAuthenticationType!
-          .toTfJson(),
+    'user_workload_authentication_type': ?userWorkloadAuthenticationType
+        ?.toTfJson(),
   };
 }
 
@@ -353,10 +349,8 @@ final class DataprocBatchEnvironmentConfigPeripheralsConfig {
   sparkHistoryServerConfig;
 
   Map<String, Object?> encode() => {
-    if (metastoreService != null)
-      'metastore_service': metastoreService!.toTfJson(),
-    if (sparkHistoryServerConfig != null)
-      'spark_history_server_config': sparkHistoryServerConfig!.encode(),
+    'metastore_service': ?metastoreService?.toTfJson(),
+    'spark_history_server_config': ?sparkHistoryServerConfig?.encode(),
   };
 }
 
@@ -371,8 +365,7 @@ final class DataprocBatchEnvironmentConfigPeripheralsConfigSparkHistoryServerCon
   final TfArg<String>? dataprocCluster;
 
   Map<String, Object?> encode() => {
-    if (dataprocCluster != null)
-      'dataproc_cluster': dataprocCluster!.toTfJson(),
+    'dataproc_cluster': ?dataprocCluster?.toTfJson(),
   };
 }
 
@@ -399,12 +392,11 @@ final class DataprocBatchRuntimeConfig {
   final DataprocBatchRuntimeConfigAutotuningConfig? autotuningConfig;
 
   Map<String, Object?> encode() => {
-    if (cohort != null) 'cohort': cohort!.toTfJson(),
-    if (containerImage != null) 'container_image': containerImage!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (autotuningConfig != null)
-      'autotuning_config': autotuningConfig!.encode(),
+    'cohort': ?cohort?.toTfJson(),
+    'container_image': ?containerImage?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'version': ?version?.toTfJson(),
+    'autotuning_config': ?autotuningConfig?.encode(),
   };
 }
 
@@ -478,15 +470,15 @@ final class GoogleDataprocBatch extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (batchId != null) 'batch_id': batchId,
-           if (location != null) 'location': location,
-           if (labels != null) 'labels': labels,
+           'batch_id': ?batchId,
+           'location': ?location,
+           'labels': ?labels,
            if (runtimeConfig != null)
              'runtime_config': TfArg.literal(runtimeConfig.encode()),
            if (environmentConfig != null)
              'environment_config': TfArg.literal(environmentConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            workload.blockKey: TfArg.literal(workload.encode()),
          },
        );

@@ -22,12 +22,11 @@ final class DataAwsOutpostsOutposts extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (availabilityZoneId != null)
-             'availability_zone_id': availabilityZoneId,
-           if (ownerId != null) 'owner_id': ownerId,
-           if (region != null) 'region': region,
-           if (siteId != null) 'site_id': siteId,
+           'availability_zone': ?availabilityZone,
+           'availability_zone_id': ?availabilityZoneId,
+           'owner_id': ?ownerId,
+           'region': ?region,
+           'site_id': ?siteId,
          },
        );
 

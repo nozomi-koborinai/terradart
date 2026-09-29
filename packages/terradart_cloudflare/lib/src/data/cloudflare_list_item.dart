@@ -25,7 +25,7 @@ final class DataCloudflareListItem extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'item_id': itemId,
            'list_id': listId,
          },

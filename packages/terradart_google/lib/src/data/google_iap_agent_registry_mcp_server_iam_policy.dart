@@ -26,9 +26,9 @@ final class DataGoogleIapAgentRegistryMcpServerIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
+           'location': ?location,
            'mcp_server_id': mcpServerId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

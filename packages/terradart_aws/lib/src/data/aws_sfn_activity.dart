@@ -20,11 +20,7 @@ final class DataAwsSfnActivity extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (arn != null) 'arn': arn,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-         },
+         argMap: {'arn': ?arn, 'name': ?name, 'region': ?region},
        );
 
   @override

@@ -46,7 +46,7 @@ final class CodestarconnectionsHostVpcConfiguration {
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tlsCertificate != null) 'tls_certificate': tlsCertificate!.toTfJson(),
+    'tls_certificate': ?tlsCertificate?.toTfJson(),
     'vpc_id': vpcId.encodeAs('id').toTfJson(),
   };
 }
@@ -72,7 +72,7 @@ final class AwsCodestarconnectionsHost extends Resource {
            'name': name,
            'provider_endpoint': providerEndpoint,
            'provider_type': providerType,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (vpcConfiguration != null)
              'vpc_configuration': TfArg.literal(vpcConfiguration.encode()),
          },

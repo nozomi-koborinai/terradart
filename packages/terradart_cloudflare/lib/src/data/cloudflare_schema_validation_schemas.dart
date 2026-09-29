@@ -17,8 +17,7 @@ final class DataSchemaValidationSchemasFilter {
   final TfArg<bool>? validationEnabled;
 
   Map<String, Object?> encode() => {
-    if (validationEnabled != null)
-      'validation_enabled': validationEnabled!.toTfJson(),
+    'validation_enabled': ?validationEnabled?.toTfJson(),
   };
 }
 
@@ -42,9 +41,9 @@ final class DataCloudflareSchemaValidationSchemas extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (omitSource != null) 'omit_source': omitSource,
-           if (schemaId != null) 'schema_id': schemaId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'omit_source': ?omitSource,
+           'schema_id': ?schemaId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

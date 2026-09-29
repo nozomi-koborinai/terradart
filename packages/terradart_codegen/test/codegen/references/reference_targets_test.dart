@@ -326,8 +326,8 @@ hashicorp/google:
       );
       expect(src, contains('RefTo<GoogleXNetwork>? network'));
       expect(src, contains('TfArg<List<RefTo<GoogleXNetwork>>>? networks'));
-      expect(src, contains("'network': network.encodeAs('self_link')"));
-      expect(src, contains("'networks': networks.encodeAs('self_link')"));
+      expect(src, contains("'network': ?network?.encodeAs('self_link')"));
+      expect(src, contains("'networks': ?networks?.encodeAs('self_link')"));
       expect(src, contains('final RefTo<GoogleXNetwork> network;'));
       expect(src, contains("'network': network.encodeAs('name').toTfJson()"));
       expect(src, contains('TfArg<num>? networkCount'));

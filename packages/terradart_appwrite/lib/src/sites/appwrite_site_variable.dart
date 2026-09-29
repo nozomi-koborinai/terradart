@@ -30,8 +30,8 @@ final class AppwriteSiteVariable extends Resource {
          terraformType: tfType,
          argMap: {
            'key': key,
-           if (projectId != null) 'project_id': projectId,
-           if (secret != null) 'secret': secret,
+           'project_id': ?projectId,
+           'secret': ?secret,
            'site_id': siteId,
            'value': value,
          },

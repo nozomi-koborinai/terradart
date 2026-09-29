@@ -36,14 +36,13 @@ final class AwsVpclatticeService extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (authType != null) 'auth_type': authType,
-           if (certificateArn != null) 'certificate_arn': certificateArn,
-           if (customDomainName != null) 'custom_domain_name': customDomainName,
-           if (idleTimeoutSeconds != null)
-             'idle_timeout_seconds': idleTimeoutSeconds,
+           'auth_type': ?authType,
+           'certificate_arn': ?certificateArn,
+           'custom_domain_name': ?customDomainName,
+           'idle_timeout_seconds': ?idleTimeoutSeconds,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

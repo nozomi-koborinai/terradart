@@ -27,12 +27,11 @@ final class AwsVolumeAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'device_name': deviceName,
-           if (forceDetach != null) 'force_detach': forceDetach,
+           'force_detach': ?forceDetach,
            'instance_id': instanceId,
-           if (region != null) 'region': region,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (stopInstanceBeforeDetaching != null)
-             'stop_instance_before_detaching': stopInstanceBeforeDetaching,
+           'region': ?region,
+           'skip_destroy': ?skipDestroy,
+           'stop_instance_before_detaching': ?stopInstanceBeforeDetaching,
            'volume_id': volumeId,
          },
        );

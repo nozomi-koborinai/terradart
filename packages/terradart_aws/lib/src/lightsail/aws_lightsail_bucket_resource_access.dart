@@ -23,7 +23,7 @@ final class AwsLightsailBucketResourceAccess extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket_name': bucketName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_name': resourceName,
          },
        );

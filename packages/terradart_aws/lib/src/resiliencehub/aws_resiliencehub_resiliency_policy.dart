@@ -111,8 +111,8 @@ final class ResiliencehubResiliencyPolicyPolicyRegion {
   final TfArg<String>? rto;
 
   Map<String, Object?> encode() => {
-    if (rpo != null) 'rpo': rpo!.toTfJson(),
-    if (rto != null) 'rto': rto!.toTfJson(),
+    'rpo': ?rpo?.toTfJson(),
+    'rto': ?rto?.toTfJson(),
   };
 }
 
@@ -156,12 +156,11 @@ final class AwsResiliencehubResiliencyPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dataLocationConstraint != null)
-             'data_location_constraint': dataLocationConstraint,
-           if (description != null) 'description': description,
+           'data_location_constraint': ?dataLocationConstraint,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'tier': tier,
            if (policy != null)
              'policy': TfArg.literal([for (final e in policy) e.encode()]),

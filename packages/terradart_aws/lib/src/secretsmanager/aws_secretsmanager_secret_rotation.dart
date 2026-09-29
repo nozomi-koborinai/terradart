@@ -41,7 +41,7 @@ final class SecretsmanagerSecretRotationRotationRules {
 
   Map<String, Object?> encode() => {
     ...schedule.encode(),
-    if (duration != null) 'duration': duration!.toTfJson(),
+    'duration': ?duration?.toTfJson(),
   };
 }
 
@@ -126,14 +126,11 @@ final class AwsSecretsmanagerSecretRotation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (externalSecretRotationRoleArn != null)
-             'external_secret_rotation_role_arn': externalSecretRotationRoleArn,
-           if (region != null) 'region': region,
-           if (rotateImmediately != null)
-             'rotate_immediately': rotateImmediately,
-           if (rotationEnabled != null) 'rotation_enabled': rotationEnabled,
-           if (rotationLambdaArn != null)
-             'rotation_lambda_arn': rotationLambdaArn,
+           'external_secret_rotation_role_arn': ?externalSecretRotationRoleArn,
+           'region': ?region,
+           'rotate_immediately': ?rotateImmediately,
+           'rotation_enabled': ?rotationEnabled,
+           'rotation_lambda_arn': ?rotationLambdaArn,
            'secret_id': secretId,
            if (externalSecretRotationMetadata != null)
              'external_secret_rotation_metadata': TfArg.literal([

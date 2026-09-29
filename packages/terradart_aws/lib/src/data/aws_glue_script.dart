@@ -26,8 +26,7 @@ final class DataGlueScriptDagEdge {
   Map<String, Object?> encode() => {
     'source': source.toTfJson(),
     'target': target.toTfJson(),
-    if (targetParameter != null)
-      'target_parameter': targetParameter!.toTfJson(),
+    'target_parameter': ?targetParameter?.toTfJson(),
   };
 }
 
@@ -52,7 +51,7 @@ final class DataGlueScriptDagNode {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (lineNumber != null) 'line_number': lineNumber!.toTfJson(),
+    'line_number': ?lineNumber?.toTfJson(),
     'node_type': nodeType.toTfJson(),
     'args': [for (final e in args) e.encode()],
   };
@@ -76,7 +75,7 @@ final class DataGlueScriptDagNodeArgs {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (param != null) 'param': param!.toTfJson(),
+    'param': ?param?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -96,8 +95,8 @@ final class DataAwsGlueScript extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (language != null) 'language': language,
-           if (region != null) 'region': region,
+           'language': ?language,
+           'region': ?region,
            'dag_edge': TfArg.literal([for (final e in dagEdge) e.encode()]),
            'dag_node': TfArg.literal([for (final e in dagNode) e.encode()]),
          },

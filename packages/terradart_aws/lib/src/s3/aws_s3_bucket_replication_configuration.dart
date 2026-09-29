@@ -50,18 +50,15 @@ final class S3BucketReplicationConfigurationRule {
   sourceSelectionCriteria;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (priority != null) 'priority': priority!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'priority': ?priority?.toTfJson(),
     'status': status.toTfJson(),
-    if (deleteMarkerReplication != null)
-      'delete_marker_replication': deleteMarkerReplication!.encode(),
+    'delete_marker_replication': ?deleteMarkerReplication?.encode(),
     'destination': destination.encode(),
-    if (existingObjectReplication != null)
-      'existing_object_replication': existingObjectReplication!.encode(),
-    if (filter != null) 'filter': filter!.encode(),
-    if (sourceSelectionCriteria != null)
-      'source_selection_criteria': sourceSelectionCriteria!.encode(),
+    'existing_object_replication': ?existingObjectReplication?.encode(),
+    'filter': ?filter?.encode(),
+    'source_selection_criteria': ?sourceSelectionCriteria?.encode(),
   };
 }
 
@@ -135,15 +132,13 @@ final class S3BucketReplicationConfigurationRuleDestination {
   replicationTime;
 
   Map<String, Object?> encode() => {
-    if (account != null) 'account': account!.toTfJson(),
+    'account': ?account?.toTfJson(),
     'bucket': bucket.encodeAs('arn').toTfJson(),
-    if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
-    if (accessControlTranslation != null)
-      'access_control_translation': accessControlTranslation!.encode(),
-    if (encryptionConfiguration != null)
-      'encryption_configuration': encryptionConfiguration!.encode(),
-    if (metrics != null) 'metrics': metrics!.encode(),
-    if (replicationTime != null) 'replication_time': replicationTime!.encode(),
+    'storage_class': ?storageClass?.toTfJson(),
+    'access_control_translation': ?accessControlTranslation?.encode(),
+    'encryption_configuration': ?encryptionConfiguration?.encode(),
+    'metrics': ?metrics?.encode(),
+    'replication_time': ?replicationTime?.encode(),
   };
 }
 
@@ -233,7 +228,7 @@ final class S3BucketReplicationConfigurationRuleDestinationMetrics {
 
   Map<String, Object?> encode() => {
     'status': status.toTfJson(),
-    if (eventThreshold != null) 'event_threshold': eventThreshold!.encode(),
+    'event_threshold': ?eventThreshold?.encode(),
   };
 }
 
@@ -357,9 +352,9 @@ final class S3BucketReplicationConfigurationRuleFilter {
   final S3BucketReplicationConfigurationRuleFilterTag? tag;
 
   Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (and != null) 'and': and!.encode(),
-    if (tag != null) 'tag': tag!.encode(),
+    'prefix': ?prefix?.toTfJson(),
+    'and': ?and?.encode(),
+    'tag': ?tag?.encode(),
   };
 }
 
@@ -374,8 +369,8 @@ final class S3BucketReplicationConfigurationRuleFilterAnd {
   final TfArg<Map<String, String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -414,10 +409,8 @@ final class S3BucketReplicationConfigurationRuleSourceSelectionCriteria {
   sseKmsEncryptedObjects;
 
   Map<String, Object?> encode() => {
-    if (replicaModifications != null)
-      'replica_modifications': replicaModifications!.encode(),
-    if (sseKmsEncryptedObjects != null)
-      'sse_kms_encrypted_objects': sseKmsEncryptedObjects!.encode(),
+    'replica_modifications': ?replicaModifications?.encode(),
+    'sse_kms_encrypted_objects': ?sseKmsEncryptedObjects?.encode(),
   };
 }
 
@@ -498,9 +491,9 @@ final class AwsS3BucketReplicationConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (region != null) 'region': region,
+           'region': ?region,
            'role': role.encodeAs('arn'),
-           if (token != null) 'token': token,
+           'token': ?token,
            'rule': TfArg.literal([for (final e in rule) e.encode()]),
          },
        );

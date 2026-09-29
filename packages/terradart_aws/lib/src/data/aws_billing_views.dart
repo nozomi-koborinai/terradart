@@ -17,9 +17,7 @@ final class DataAwsBillingViews extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (billingViewTypes != null) 'billing_view_types': billingViewTypes,
-         },
+         argMap: {'billing_view_types': ?billingViewTypes},
        );
 
   @override

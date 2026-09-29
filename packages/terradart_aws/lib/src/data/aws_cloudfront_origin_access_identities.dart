@@ -15,10 +15,7 @@ final class DataAwsCloudfrontOriginAccessIdentities extends Data {
     TfArg<List<String>>? comments,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (comments != null) 'comments': comments},
-       );
+  }) : super(terraformType: tfType, argMap: {'comments': ?comments});
 
   @override
   Set<String> get sensitiveFields =>

@@ -30,10 +30,10 @@ final class AwsIotCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'active': active,
-           if (caPem != null) 'ca_pem': caPem,
-           if (certificatePem != null) 'certificate_pem': certificatePem,
-           if (csr != null) 'csr': csr,
-           if (region != null) 'region': region,
+           'ca_pem': ?caPem,
+           'certificate_pem': ?certificatePem,
+           'csr': ?csr,
+           'region': ?region,
          },
        );
 

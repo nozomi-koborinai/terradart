@@ -25,11 +25,10 @@ final class AwsBackupVaultLockConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'backup_vault_name': backupVaultName,
-           if (changeableForDays != null)
-             'changeable_for_days': changeableForDays,
-           if (maxRetentionDays != null) 'max_retention_days': maxRetentionDays,
-           if (minRetentionDays != null) 'min_retention_days': minRetentionDays,
-           if (region != null) 'region': region,
+           'changeable_for_days': ?changeableForDays,
+           'max_retention_days': ?maxRetentionDays,
+           'min_retention_days': ?minRetentionDays,
+           'region': ?region,
          },
        );
 

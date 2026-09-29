@@ -29,8 +29,8 @@ final class DialogflowCxIntentParameters {
   Map<String, Object?> encode() => {
     'entity_type': entityType.toTfJson(),
     'id': id.toTfJson(),
-    if (isList != null) 'is_list': isList!.toTfJson(),
-    if (redact != null) 'redact': redact!.toTfJson(),
+    'is_list': ?isList?.toTfJson(),
+    'redact': ?redact?.toTfJson(),
   };
 }
 
@@ -48,7 +48,7 @@ final class DialogflowCxIntentTrainingPhrases {
   final List<DialogflowCxIntentTrainingPhrasesParts> parts;
 
   Map<String, Object?> encode() => {
-    if (repeatCount != null) 'repeat_count': repeatCount!.toTfJson(),
+    'repeat_count': ?repeatCount?.toTfJson(),
     'parts': [for (final e in parts) e.encode()],
   };
 }
@@ -67,7 +67,7 @@ final class DialogflowCxIntentTrainingPhrasesParts {
   final TfArg<String> text;
 
   Map<String, Object?> encode() => {
-    if (parameterId != null) 'parameter_id': parameterId!.toTfJson(),
+    'parameter_id': ?parameterId?.toTfJson(),
     'text': text.toTfJson(),
   };
 }
@@ -109,16 +109,14 @@ final class GoogleDialogflowCxIntent extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (parent != null) 'parent': parent,
-           if (description != null) 'description': description,
-           if (priority != null) 'priority': priority,
-           if (isFallback != null) 'is_fallback': isFallback,
-           if (labels != null) 'labels': labels,
-           if (languageCode != null) 'language_code': languageCode,
-           if (isDefaultWelcomeIntent != null)
-             'is_default_welcome_intent': isDefaultWelcomeIntent,
-           if (isDefaultNegativeIntent != null)
-             'is_default_negative_intent': isDefaultNegativeIntent,
+           'parent': ?parent,
+           'description': ?description,
+           'priority': ?priority,
+           'is_fallback': ?isFallback,
+           'labels': ?labels,
+           'language_code': ?languageCode,
+           'is_default_welcome_intent': ?isDefaultWelcomeIntent,
+           'is_default_negative_intent': ?isDefaultNegativeIntent,
            if (trainingPhrases != null)
              'training_phrases': TfArg.literal([
                for (final e in trainingPhrases) e.encode(),
@@ -127,7 +125,7 @@ final class GoogleDialogflowCxIntent extends Resource {
              'parameters': TfArg.literal([
                for (final e in parameters) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -24,9 +24,9 @@ final class DataCloudflareZeroTrustDeviceIpProfiles extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (perPage != null) 'per_page': perPage,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'per_page': ?perPage,
          },
        );
 

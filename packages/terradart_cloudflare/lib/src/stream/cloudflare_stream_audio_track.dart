@@ -31,10 +31,10 @@ final class CloudflareStreamAudioTrack extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (audioIdentifier != null) 'audio_identifier': audioIdentifier,
-           if (defaultCase != null) 'default': defaultCase,
+           'audio_identifier': ?audioIdentifier,
+           'default': ?defaultCase,
            'identifier': identifier,
-           if (label != null) 'label': label,
+           'label': ?label,
          },
        );
 

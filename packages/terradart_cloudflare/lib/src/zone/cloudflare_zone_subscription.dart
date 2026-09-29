@@ -33,8 +33,8 @@ final class ZoneSubscriptionRatePlan {
   final TfArg<String>? scope;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
   };
 }
 
@@ -77,7 +77,7 @@ final class CloudflareZoneSubscription extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (frequency != null) 'frequency': frequency,
+           'frequency': ?frequency,
            'zone_id': zoneId.encodeAs('id'),
            if (ratePlan != null) 'rate_plan': TfArg.literal(ratePlan.encode()),
          },

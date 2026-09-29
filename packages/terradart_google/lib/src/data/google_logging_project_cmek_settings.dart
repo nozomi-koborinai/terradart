@@ -21,10 +21,7 @@ final class DataGoogleLoggingProjectCmekSettings extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
-           'project': project,
-         },
+         argMap: {'kms_key_name': ?kmsKeyName, 'project': project},
        );
 
   @override

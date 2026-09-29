@@ -22,7 +22,7 @@ final class AwsIotEventConfigurations extends Resource {
          terraformType: tfType,
          argMap: {
            'event_configurations': eventConfigurations,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

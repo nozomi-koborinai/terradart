@@ -42,11 +42,10 @@ final class DataAwsEc2TransitGatewayMulticastDomain extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (transitGatewayMulticastDomainId != null)
-             'transit_gateway_multicast_domain_id':
-                 transitGatewayMulticastDomainId,
+           'region': ?region,
+           'tags': ?tags,
+           'transit_gateway_multicast_domain_id':
+               ?transitGatewayMulticastDomainId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

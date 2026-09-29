@@ -34,9 +34,8 @@ final class EcsDaemonDeploymentConfiguration {
   final List<EcsDaemonDeploymentConfigurationAlarms>? alarms;
 
   Map<String, Object?> encode() => {
-    if (bakeTimeInMinutes != null)
-      'bake_time_in_minutes': bakeTimeInMinutes!.toTfJson(),
-    if (drainPercent != null) 'drain_percent': drainPercent!.toTfJson(),
+    'bake_time_in_minutes': ?bakeTimeInMinutes?.toTfJson(),
+    'drain_percent': ?drainPercent?.toTfJson(),
     if (alarms != null) 'alarms': [for (final e in alarms!) e.encode()],
   };
 }
@@ -52,8 +51,8 @@ final class EcsDaemonDeploymentConfigurationAlarms {
   final TfArg<bool>? enable;
 
   Map<String, Object?> encode() => {
-    if (alarmNames != null) 'alarm_names': alarmNames!.toTfJson(),
-    if (enable != null) 'enable': enable!.toTfJson(),
+    'alarm_names': ?alarmNames?.toTfJson(),
+    'enable': ?enable?.toTfJson(),
   };
 }
 
@@ -81,16 +80,14 @@ final class AwsEcsDaemon extends Resource {
          terraformType: tfType,
          argMap: {
            'capacity_provider_arns': capacityProviderArns,
-           if (clusterArn != null) 'cluster_arn': clusterArn,
+           'cluster_arn': ?clusterArn,
            'daemon_task_definition_arn': daemonTaskDefinitionArn,
-           if (enableEcsManagedTags != null)
-             'enable_ecs_managed_tags': enableEcsManagedTags,
-           if (enableExecuteCommand != null)
-             'enable_execute_command': enableExecuteCommand,
+           'enable_ecs_managed_tags': ?enableEcsManagedTags,
+           'enable_execute_command': ?enableExecuteCommand,
            'name': name,
-           if (propagateTags != null) 'propagate_tags': propagateTags,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'propagate_tags': ?propagateTags,
+           'region': ?region,
+           'tags': ?tags,
            if (deploymentConfiguration != null)
              'deployment_configuration': TfArg.literal([
                for (final e in deploymentConfiguration) e.encode(),

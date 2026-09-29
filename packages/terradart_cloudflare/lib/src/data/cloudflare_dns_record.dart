@@ -55,19 +55,19 @@ final class DataDnsRecordFilter {
   final DataDnsRecordFilterTag? tag;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (match != null) 'match': match!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (proxied != null) 'proxied': proxied!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
-    if (shadowedByName != null) 'shadowed_by_name': shadowedByName!.toTfJson(),
-    if (shadowingName != null) 'shadowing_name': shadowingName!.toTfJson(),
-    if (tagMatch != null) 'tag_match': tagMatch!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (comment != null) 'comment': comment!.encode(),
-    if (content != null) 'content': content!.encode(),
-    if (name != null) 'name': name!.encode(),
-    if (tag != null) 'tag': tag!.encode(),
+    'direction': ?direction?.toTfJson(),
+    'match': ?match?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'proxied': ?proxied?.toTfJson(),
+    'search': ?search?.toTfJson(),
+    'shadowed_by_name': ?shadowedByName?.toTfJson(),
+    'shadowing_name': ?shadowingName?.toTfJson(),
+    'tag_match': ?tagMatch?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'comment': ?comment?.encode(),
+    'content': ?content?.encode(),
+    'name': ?name?.encode(),
+    'tag': ?tag?.encode(),
   };
 }
 
@@ -169,12 +169,12 @@ final class DataDnsRecordFilterComment {
   final TfArg<String>? startswith;
 
   Map<String, Object?> encode() => {
-    if (absent != null) 'absent': absent!.toTfJson(),
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endswith != null) 'endswith': endswith!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (present != null) 'present': present!.toTfJson(),
-    if (startswith != null) 'startswith': startswith!.toTfJson(),
+    'absent': ?absent?.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'endswith': ?endswith?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'present': ?present?.toTfJson(),
+    'startswith': ?startswith?.toTfJson(),
   };
 }
 
@@ -198,10 +198,10 @@ final class DataDnsRecordFilterContent {
   final TfArg<String>? startswith;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endswith != null) 'endswith': endswith!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (startswith != null) 'startswith': startswith!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'endswith': ?endswith?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'startswith': ?startswith?.toTfJson(),
   };
 }
 
@@ -225,10 +225,10 @@ final class DataDnsRecordFilterName {
   final TfArg<String>? startswith;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endswith != null) 'endswith': endswith!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (startswith != null) 'startswith': startswith!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'endswith': ?endswith?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'startswith': ?startswith?.toTfJson(),
   };
 }
 
@@ -258,12 +258,12 @@ final class DataDnsRecordFilterTag {
   final TfArg<String>? startswith;
 
   Map<String, Object?> encode() => {
-    if (absent != null) 'absent': absent!.toTfJson(),
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endswith != null) 'endswith': endswith!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (present != null) 'present': present!.toTfJson(),
-    if (startswith != null) 'startswith': startswith!.toTfJson(),
+    'absent': ?absent?.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'endswith': ?endswith?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'present': ?present?.toTfJson(),
+    'startswith': ?startswith?.toTfJson(),
   };
 }
 
@@ -286,10 +286,9 @@ final class DataCloudflareDnsRecord extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dnsRecordId != null) 'dns_record_id': dnsRecordId,
-           if (includeShadowMetadata != null)
-             'include_shadow_metadata': includeShadowMetadata,
-           if (zoneId != null) 'zone_id': zoneId,
+           'dns_record_id': ?dnsRecordId,
+           'include_shadow_metadata': ?includeShadowMetadata,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

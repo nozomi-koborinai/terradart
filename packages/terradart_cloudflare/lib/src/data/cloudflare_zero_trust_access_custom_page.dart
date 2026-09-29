@@ -23,10 +23,7 @@ final class DataCloudflareZeroTrustAccessCustomPage extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'custom_page_id': customPageId,
-         },
+         argMap: {'account_id': ?accountId, 'custom_page_id': customPageId},
        );
 
   @override

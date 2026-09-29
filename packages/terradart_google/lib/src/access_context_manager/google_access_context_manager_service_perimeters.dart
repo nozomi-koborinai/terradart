@@ -40,14 +40,13 @@ final class AccessContextManagerServicePerimetersServicePerimeters {
   final AccessContextManagerServicePerimetersServicePerimetersStatus? status;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (perimeterType != null) 'perimeter_type': perimeterType!.toTfJson(),
+    'perimeter_type': ?perimeterType?.toTfJson(),
     'title': title.toTfJson(),
-    if (useExplicitDryRunSpec != null)
-      'use_explicit_dry_run_spec': useExplicitDryRunSpec!.toTfJson(),
-    if (spec != null) 'spec': spec!.encode(),
-    if (status != null) 'status': status!.encode(),
+    'use_explicit_dry_run_spec': ?useExplicitDryRunSpec?.toTfJson(),
+    'spec': ?spec?.encode(),
+    'status': ?status?.encode(),
   };
 }
 
@@ -97,16 +96,14 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpec {
   vpcAccessibleServices;
 
   Map<String, Object?> encode() => {
-    if (accessLevels != null) 'access_levels': accessLevels!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
-    if (restrictedServices != null)
-      'restricted_services': restrictedServices!.toTfJson(),
+    'access_levels': ?accessLevels?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
+    'restricted_services': ?restrictedServices?.toTfJson(),
     if (egressPolicies != null)
       'egress_policies': [for (final e in egressPolicies!) e.encode()],
     if (ingressPolicies != null)
       'ingress_policies': [for (final e in ingressPolicies!) e.encode()],
-    if (vpcAccessibleServices != null)
-      'vpc_accessible_services': vpcAccessibleServices!.encode(),
+    'vpc_accessible_services': ?vpcAccessibleServices?.encode(),
   };
 }
 
@@ -129,9 +126,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoli
   egressTo;
 
   Map<String, Object?> encode() => {
-    if (title != null) 'title': title!.toTfJson(),
-    if (egressFrom != null) 'egress_from': egressFrom!.encode(),
-    if (egressTo != null) 'egress_to': egressTo!.encode(),
+    'title': ?title?.toTfJson(),
+    'egress_from': ?egressFrom?.encode(),
+    'egress_to': ?egressTo?.encode(),
   };
 }
 
@@ -164,10 +161,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoli
   sources;
 
   Map<String, Object?> encode() => {
-    if (identities != null) 'identities': identities!.toTfJson(),
-    if (identityType != null) 'identity_type': identityType!.toTfJson(),
-    if (sourceRestriction != null)
-      'source_restriction': sourceRestriction!.toTfJson(),
+    'identities': ?identities?.toTfJson(),
+    'identity_type': ?identityType?.toTfJson(),
+    'source_restriction': ?sourceRestriction?.toTfJson(),
     if (sources != null) 'sources': [for (final e in sources!) e.encode()],
   };
 }
@@ -219,9 +215,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoli
   pscEndpoint;
 
   Map<String, Object?> encode() => {
-    if (accessLevel != null) 'access_level': accessLevel!.toTfJson(),
-    if (resource != null) 'resource': resource!.toTfJson(),
-    if (pscEndpoint != null) 'psc_endpoint': pscEndpoint!.encode(),
+    'access_level': ?accessLevel?.toTfJson(),
+    'resource': ?resource?.toTfJson(),
+    'psc_endpoint': ?pscEndpoint?.encode(),
   };
 }
 
@@ -236,7 +232,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoli
   final TfArg<String>? forwardingRule;
 
   Map<String, Object?> encode() => {
-    if (forwardingRule != null) 'forwarding_rule': forwardingRule!.toTfJson(),
+    'forwarding_rule': ?forwardingRule?.toTfJson(),
   };
 }
 
@@ -263,10 +259,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoli
   operations;
 
   Map<String, Object?> encode() => {
-    if (externalResources != null)
-      'external_resources': externalResources!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
-    if (roles != null) 'roles': roles!.toTfJson(),
+    'external_resources': ?externalResources?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
+    'roles': ?roles?.toTfJson(),
     if (operations != null)
       'operations': [for (final e in operations!) e.encode()],
   };
@@ -289,7 +284,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoli
   methodSelectors;
 
   Map<String, Object?> encode() => {
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
     if (methodSelectors != null)
       'method_selectors': [for (final e in methodSelectors!) e.encode()],
   };
@@ -309,8 +304,8 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecEgressPoli
   final TfArg<String>? permission;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
-    if (permission != null) 'permission': permission!.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'permission': ?permission?.toTfJson(),
   };
 }
 
@@ -333,9 +328,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecIngressPol
   ingressTo;
 
   Map<String, Object?> encode() => {
-    if (title != null) 'title': title!.toTfJson(),
-    if (ingressFrom != null) 'ingress_from': ingressFrom!.encode(),
-    if (ingressTo != null) 'ingress_to': ingressTo!.encode(),
+    'title': ?title?.toTfJson(),
+    'ingress_from': ?ingressFrom?.encode(),
+    'ingress_to': ?ingressTo?.encode(),
   };
 }
 
@@ -362,8 +357,8 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecIngressPol
   sources;
 
   Map<String, Object?> encode() => {
-    if (identities != null) 'identities': identities!.toTfJson(),
-    if (identityType != null) 'identity_type': identityType!.toTfJson(),
+    'identities': ?identities?.toTfJson(),
+    'identity_type': ?identityType?.toTfJson(),
     if (sources != null) 'sources': [for (final e in sources!) e.encode()],
   };
 }
@@ -401,9 +396,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecIngressPol
   pscEndpoint;
 
   Map<String, Object?> encode() => {
-    if (accessLevel != null) 'access_level': accessLevel!.toTfJson(),
-    if (resource != null) 'resource': resource!.toTfJson(),
-    if (pscEndpoint != null) 'psc_endpoint': pscEndpoint!.encode(),
+    'access_level': ?accessLevel?.toTfJson(),
+    'resource': ?resource?.toTfJson(),
+    'psc_endpoint': ?pscEndpoint?.encode(),
   };
 }
 
@@ -418,7 +413,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecIngressPol
   final TfArg<String>? forwardingRule;
 
   Map<String, Object?> encode() => {
-    if (forwardingRule != null) 'forwarding_rule': forwardingRule!.toTfJson(),
+    'forwarding_rule': ?forwardingRule?.toTfJson(),
   };
 }
 
@@ -442,8 +437,8 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecIngressPol
   operations;
 
   Map<String, Object?> encode() => {
-    if (resources != null) 'resources': resources!.toTfJson(),
-    if (roles != null) 'roles': roles!.toTfJson(),
+    'resources': ?resources?.toTfJson(),
+    'roles': ?roles?.toTfJson(),
     if (operations != null)
       'operations': [for (final e in operations!) e.encode()],
   };
@@ -466,7 +461,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecIngressPol
   methodSelectors;
 
   Map<String, Object?> encode() => {
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
     if (methodSelectors != null)
       'method_selectors': [for (final e in methodSelectors!) e.encode()],
   };
@@ -486,8 +481,8 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecIngressPol
   final TfArg<String>? permission;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
-    if (permission != null) 'permission': permission!.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'permission': ?permission?.toTfJson(),
   };
 }
 
@@ -514,13 +509,10 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecVpcAccessi
   allowedServicePatterns;
 
   Map<String, Object?> encode() => {
-    if (allowedServices != null)
-      'allowed_services': allowedServices!.toTfJson(),
-    if (enableRestriction != null)
-      'enable_restriction': enableRestriction!.toTfJson(),
-    if (servicePatternsEnforcementScopes != null)
-      'service_patterns_enforcement_scopes': servicePatternsEnforcementScopes!
-          .toTfJson(),
+    'allowed_services': ?allowedServices?.toTfJson(),
+    'enable_restriction': ?enableRestriction?.toTfJson(),
+    'service_patterns_enforcement_scopes': ?servicePatternsEnforcementScopes
+        ?.toTfJson(),
     if (allowedServicePatterns != null)
       'allowed_service_patterns': [
         for (final e in allowedServicePatterns!) e.encode(),
@@ -548,8 +540,8 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecVpcAccessi
   modifiers;
 
   Map<String, Object?> encode() => {
-    if (pattern != null) 'pattern': pattern!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'pattern': ?pattern?.toTfJson(),
+    'service': ?service?.toTfJson(),
     if (modifiers != null)
       'modifiers': [for (final e in modifiers!) e.encode()],
   };
@@ -567,8 +559,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersSpecVpcAccessi
   addRequestHeader;
 
   Map<String, Object?> encode() => {
-    if (addRequestHeader != null)
-      'add_request_header': addRequestHeader!.encode(),
+    'add_request_header': ?addRequestHeader?.encode(),
   };
 }
 
@@ -624,16 +615,14 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatus {
   vpcAccessibleServices;
 
   Map<String, Object?> encode() => {
-    if (accessLevels != null) 'access_levels': accessLevels!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
-    if (restrictedServices != null)
-      'restricted_services': restrictedServices!.toTfJson(),
+    'access_levels': ?accessLevels?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
+    'restricted_services': ?restrictedServices?.toTfJson(),
     if (egressPolicies != null)
       'egress_policies': [for (final e in egressPolicies!) e.encode()],
     if (ingressPolicies != null)
       'ingress_policies': [for (final e in ingressPolicies!) e.encode()],
-    if (vpcAccessibleServices != null)
-      'vpc_accessible_services': vpcAccessibleServices!.encode(),
+    'vpc_accessible_services': ?vpcAccessibleServices?.encode(),
   };
 }
 
@@ -656,9 +645,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusEgressPo
   egressTo;
 
   Map<String, Object?> encode() => {
-    if (title != null) 'title': title!.toTfJson(),
-    if (egressFrom != null) 'egress_from': egressFrom!.encode(),
-    if (egressTo != null) 'egress_to': egressTo!.encode(),
+    'title': ?title?.toTfJson(),
+    'egress_from': ?egressFrom?.encode(),
+    'egress_to': ?egressTo?.encode(),
   };
 }
 
@@ -691,10 +680,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusEgressPo
   sources;
 
   Map<String, Object?> encode() => {
-    if (identities != null) 'identities': identities!.toTfJson(),
-    if (identityType != null) 'identity_type': identityType!.toTfJson(),
-    if (sourceRestriction != null)
-      'source_restriction': sourceRestriction!.toTfJson(),
+    'identities': ?identities?.toTfJson(),
+    'identity_type': ?identityType?.toTfJson(),
+    'source_restriction': ?sourceRestriction?.toTfJson(),
     if (sources != null) 'sources': [for (final e in sources!) e.encode()],
   };
 }
@@ -746,9 +734,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusEgressPo
   pscEndpoint;
 
   Map<String, Object?> encode() => {
-    if (accessLevel != null) 'access_level': accessLevel!.toTfJson(),
-    if (resource != null) 'resource': resource!.toTfJson(),
-    if (pscEndpoint != null) 'psc_endpoint': pscEndpoint!.encode(),
+    'access_level': ?accessLevel?.toTfJson(),
+    'resource': ?resource?.toTfJson(),
+    'psc_endpoint': ?pscEndpoint?.encode(),
   };
 }
 
@@ -763,7 +751,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusEgressPo
   final TfArg<String>? forwardingRule;
 
   Map<String, Object?> encode() => {
-    if (forwardingRule != null) 'forwarding_rule': forwardingRule!.toTfJson(),
+    'forwarding_rule': ?forwardingRule?.toTfJson(),
   };
 }
 
@@ -790,10 +778,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusEgressPo
   operations;
 
   Map<String, Object?> encode() => {
-    if (externalResources != null)
-      'external_resources': externalResources!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
-    if (roles != null) 'roles': roles!.toTfJson(),
+    'external_resources': ?externalResources?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
+    'roles': ?roles?.toTfJson(),
     if (operations != null)
       'operations': [for (final e in operations!) e.encode()],
   };
@@ -816,7 +803,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusEgressPo
   methodSelectors;
 
   Map<String, Object?> encode() => {
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
     if (methodSelectors != null)
       'method_selectors': [for (final e in methodSelectors!) e.encode()],
   };
@@ -836,8 +823,8 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusEgressPo
   final TfArg<String>? permission;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
-    if (permission != null) 'permission': permission!.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'permission': ?permission?.toTfJson(),
   };
 }
 
@@ -860,9 +847,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusIngressP
   ingressTo;
 
   Map<String, Object?> encode() => {
-    if (title != null) 'title': title!.toTfJson(),
-    if (ingressFrom != null) 'ingress_from': ingressFrom!.encode(),
-    if (ingressTo != null) 'ingress_to': ingressTo!.encode(),
+    'title': ?title?.toTfJson(),
+    'ingress_from': ?ingressFrom?.encode(),
+    'ingress_to': ?ingressTo?.encode(),
   };
 }
 
@@ -889,8 +876,8 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusIngressP
   sources;
 
   Map<String, Object?> encode() => {
-    if (identities != null) 'identities': identities!.toTfJson(),
-    if (identityType != null) 'identity_type': identityType!.toTfJson(),
+    'identities': ?identities?.toTfJson(),
+    'identity_type': ?identityType?.toTfJson(),
     if (sources != null) 'sources': [for (final e in sources!) e.encode()],
   };
 }
@@ -928,9 +915,9 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusIngressP
   pscEndpoint;
 
   Map<String, Object?> encode() => {
-    if (accessLevel != null) 'access_level': accessLevel!.toTfJson(),
-    if (resource != null) 'resource': resource!.toTfJson(),
-    if (pscEndpoint != null) 'psc_endpoint': pscEndpoint!.encode(),
+    'access_level': ?accessLevel?.toTfJson(),
+    'resource': ?resource?.toTfJson(),
+    'psc_endpoint': ?pscEndpoint?.encode(),
   };
 }
 
@@ -945,7 +932,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusIngressP
   final TfArg<String>? forwardingRule;
 
   Map<String, Object?> encode() => {
-    if (forwardingRule != null) 'forwarding_rule': forwardingRule!.toTfJson(),
+    'forwarding_rule': ?forwardingRule?.toTfJson(),
   };
 }
 
@@ -969,8 +956,8 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusIngressP
   operations;
 
   Map<String, Object?> encode() => {
-    if (resources != null) 'resources': resources!.toTfJson(),
-    if (roles != null) 'roles': roles!.toTfJson(),
+    'resources': ?resources?.toTfJson(),
+    'roles': ?roles?.toTfJson(),
     if (operations != null)
       'operations': [for (final e in operations!) e.encode()],
   };
@@ -993,7 +980,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusIngressP
   methodSelectors;
 
   Map<String, Object?> encode() => {
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
     if (methodSelectors != null)
       'method_selectors': [for (final e in methodSelectors!) e.encode()],
   };
@@ -1013,8 +1000,8 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusIngressP
   final TfArg<String>? permission;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
-    if (permission != null) 'permission': permission!.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'permission': ?permission?.toTfJson(),
   };
 }
 
@@ -1041,13 +1028,10 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusVpcAcces
   allowedServicePatterns;
 
   Map<String, Object?> encode() => {
-    if (allowedServices != null)
-      'allowed_services': allowedServices!.toTfJson(),
-    if (enableRestriction != null)
-      'enable_restriction': enableRestriction!.toTfJson(),
-    if (servicePatternsEnforcementScopes != null)
-      'service_patterns_enforcement_scopes': servicePatternsEnforcementScopes!
-          .toTfJson(),
+    'allowed_services': ?allowedServices?.toTfJson(),
+    'enable_restriction': ?enableRestriction?.toTfJson(),
+    'service_patterns_enforcement_scopes': ?servicePatternsEnforcementScopes
+        ?.toTfJson(),
     if (allowedServicePatterns != null)
       'allowed_service_patterns': [
         for (final e in allowedServicePatterns!) e.encode(),
@@ -1075,8 +1059,8 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusVpcAcces
   modifiers;
 
   Map<String, Object?> encode() => {
-    if (pattern != null) 'pattern': pattern!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'pattern': ?pattern?.toTfJson(),
+    'service': ?service?.toTfJson(),
     if (modifiers != null)
       'modifiers': [for (final e in modifiers!) e.encode()],
   };
@@ -1094,8 +1078,7 @@ final class AccessContextManagerServicePerimetersServicePerimetersStatusVpcAcces
   addRequestHeader;
 
   Map<String, Object?> encode() => {
-    if (addRequestHeader != null)
-      'add_request_header': addRequestHeader!.encode(),
+    'add_request_header': ?addRequestHeader?.encode(),
   };
 }
 
@@ -1149,7 +1132,7 @@ final class GoogleAccessContextManagerServicePerimeters extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'parent': parent,
            if (servicePerimeters != null)
              'service_perimeters': TfArg.literal([

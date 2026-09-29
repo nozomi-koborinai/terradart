@@ -25,9 +25,9 @@ final class AwsApigatewayv2ApiMapping extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (apiMappingKey != null) 'api_mapping_key': apiMappingKey,
+           'api_mapping_key': ?apiMappingKey,
            'domain_name': domainName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'stage': stage,
          },
        );

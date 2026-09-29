@@ -75,34 +75,25 @@ final class ComposerEnvironmentConfig {
   final ComposerEnvironmentConfigWorkloadsConfig? workloadsConfig;
 
   Map<String, Object?> encode() => {
-    if (enablePrivateBuildsOnly != null)
-      'enable_private_builds_only': enablePrivateBuildsOnly!.toTfJson(),
-    if (enablePrivateEnvironment != null)
-      'enable_private_environment': enablePrivateEnvironment!.toTfJson(),
-    if (environmentSize != null)
-      'environment_size': environmentSize!.toTfJson(),
-    if (nodeCount != null) 'node_count': nodeCount!.toTfJson(),
-    if (resilienceMode != null) 'resilience_mode': resilienceMode!.toTfJson(),
-    if (dataRetentionConfig != null)
-      'data_retention_config': dataRetentionConfig!.encode(),
-    if (databaseConfig != null) 'database_config': databaseConfig!.encode(),
-    if (encryptionConfig != null)
-      'encryption_config': encryptionConfig!.encode(),
-    if (maintenanceWindow != null)
-      'maintenance_window': maintenanceWindow!.encode(),
-    if (masterAuthorizedNetworksConfig != null)
-      'master_authorized_networks_config': masterAuthorizedNetworksConfig!
-          .encode(),
-    if (nodeConfig != null) 'node_config': nodeConfig!.encode(),
-    if (privateEnvironmentConfig != null)
-      'private_environment_config': privateEnvironmentConfig!.encode(),
-    if (recoveryConfig != null) 'recovery_config': recoveryConfig!.encode(),
-    if (softwareConfig != null) 'software_config': softwareConfig!.encode(),
-    if (webServerConfig != null) 'web_server_config': webServerConfig!.encode(),
-    if (webServerNetworkAccessControl != null)
-      'web_server_network_access_control': webServerNetworkAccessControl!
-          .encode(),
-    if (workloadsConfig != null) 'workloads_config': workloadsConfig!.encode(),
+    'enable_private_builds_only': ?enablePrivateBuildsOnly?.toTfJson(),
+    'enable_private_environment': ?enablePrivateEnvironment?.toTfJson(),
+    'environment_size': ?environmentSize?.toTfJson(),
+    'node_count': ?nodeCount?.toTfJson(),
+    'resilience_mode': ?resilienceMode?.toTfJson(),
+    'data_retention_config': ?dataRetentionConfig?.encode(),
+    'database_config': ?databaseConfig?.encode(),
+    'encryption_config': ?encryptionConfig?.encode(),
+    'maintenance_window': ?maintenanceWindow?.encode(),
+    'master_authorized_networks_config': ?masterAuthorizedNetworksConfig
+        ?.encode(),
+    'node_config': ?nodeConfig?.encode(),
+    'private_environment_config': ?privateEnvironmentConfig?.encode(),
+    'recovery_config': ?recoveryConfig?.encode(),
+    'software_config': ?softwareConfig?.encode(),
+    'web_server_config': ?webServerConfig?.encode(),
+    'web_server_network_access_control': ?webServerNetworkAccessControl
+        ?.encode(),
+    'workloads_config': ?workloadsConfig?.encode(),
   };
 }
 
@@ -151,8 +142,8 @@ final class ComposerEnvironmentConfigDataRetentionConfigAirflowMetadataRetention
   final TfArg<String>? retentionMode;
 
   Map<String, Object?> encode() => {
-    if (retentionDays != null) 'retention_days': retentionDays!.toTfJson(),
-    if (retentionMode != null) 'retention_mode': retentionMode!.toTfJson(),
+    'retention_days': ?retentionDays?.toTfJson(),
+    'retention_mode': ?retentionMode?.toTfJson(),
   };
 }
 
@@ -166,9 +157,7 @@ final class ComposerEnvironmentConfigDataRetentionConfigTaskLogsRetentionConfig 
 
   final TfArg<String>? storageMode;
 
-  Map<String, Object?> encode() => {
-    if (storageMode != null) 'storage_mode': storageMode!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'storage_mode': ?storageMode?.toTfJson()};
 }
 
 /// Typed helper for the `config.database_config` block of
@@ -182,8 +171,8 @@ final class ComposerEnvironmentConfigDatabaseConfig {
   final TfArg<String>? zone;
 
   Map<String, Object?> encode() => {
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
   };
 }
 
@@ -259,7 +248,7 @@ final class ComposerEnvironmentConfigMasterAuthorizedNetworksConfigCidrBlocks {
 
   Map<String, Object?> encode() => {
     'cidr_block': cidrBlock.toTfJson(),
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
   };
 }
 
@@ -308,24 +297,19 @@ final class ComposerEnvironmentConfigNodeConfig {
   ipAllocationPolicy;
 
   Map<String, Object?> encode() => {
-    if (composerInternalIpv4CidrBlock != null)
-      'composer_internal_ipv4_cidr_block': composerInternalIpv4CidrBlock!
-          .toTfJson(),
-    if (composerNetworkAttachment != null)
-      'composer_network_attachment': composerNetworkAttachment!.toTfJson(),
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (enableIpMasqAgent != null)
-      'enable_ip_masq_agent': enableIpMasqAgent!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
-    if (oauthScopes != null) 'oauth_scopes': oauthScopes!.toTfJson(),
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
-    if (ipAllocationPolicy != null)
-      'ip_allocation_policy': ipAllocationPolicy!.encode(),
+    'composer_internal_ipv4_cidr_block': ?composerInternalIpv4CidrBlock
+        ?.toTfJson(),
+    'composer_network_attachment': ?composerNetworkAttachment?.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'enable_ip_masq_agent': ?enableIpMasqAgent?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'oauth_scopes': ?oauthScopes?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
+    'ip_allocation_policy': ?ipAllocationPolicy?.encode(),
   };
 }
 
@@ -352,15 +336,11 @@ final class ComposerEnvironmentConfigNodeConfigIpAllocationPolicy {
   final TfArg<bool>? useIpAliases;
 
   Map<String, Object?> encode() => {
-    if (clusterIpv4CidrBlock != null)
-      'cluster_ipv4_cidr_block': clusterIpv4CidrBlock!.toTfJson(),
-    if (clusterSecondaryRangeName != null)
-      'cluster_secondary_range_name': clusterSecondaryRangeName!.toTfJson(),
-    if (servicesIpv4CidrBlock != null)
-      'services_ipv4_cidr_block': servicesIpv4CidrBlock!.toTfJson(),
-    if (servicesSecondaryRangeName != null)
-      'services_secondary_range_name': servicesSecondaryRangeName!.toTfJson(),
-    if (useIpAliases != null) 'use_ip_aliases': useIpAliases!.toTfJson(),
+    'cluster_ipv4_cidr_block': ?clusterIpv4CidrBlock?.toTfJson(),
+    'cluster_secondary_range_name': ?clusterSecondaryRangeName?.toTfJson(),
+    'services_ipv4_cidr_block': ?servicesIpv4CidrBlock?.toTfJson(),
+    'services_secondary_range_name': ?servicesSecondaryRangeName?.toTfJson(),
+    'use_ip_aliases': ?useIpAliases?.toTfJson(),
   };
 }
 
@@ -396,24 +376,17 @@ final class ComposerEnvironmentConfigPrivateEnvironmentConfig {
   final TfArg<String>? webServerIpv4CidrBlock;
 
   Map<String, Object?> encode() => {
-    if (cloudComposerConnectionSubnetwork != null)
-      'cloud_composer_connection_subnetwork': cloudComposerConnectionSubnetwork!
-          .toTfJson(),
-    if (cloudComposerNetworkIpv4CidrBlock != null)
-      'cloud_composer_network_ipv4_cidr_block':
-          cloudComposerNetworkIpv4CidrBlock!.toTfJson(),
-    if (cloudSqlIpv4CidrBlock != null)
-      'cloud_sql_ipv4_cidr_block': cloudSqlIpv4CidrBlock!.toTfJson(),
-    if (connectionType != null) 'connection_type': connectionType!.toTfJson(),
-    if (enablePrivateEndpoint != null)
-      'enable_private_endpoint': enablePrivateEndpoint!.toTfJson(),
-    if (enablePrivatelyUsedPublicIps != null)
-      'enable_privately_used_public_ips': enablePrivatelyUsedPublicIps!
-          .toTfJson(),
-    if (masterIpv4CidrBlock != null)
-      'master_ipv4_cidr_block': masterIpv4CidrBlock!.toTfJson(),
-    if (webServerIpv4CidrBlock != null)
-      'web_server_ipv4_cidr_block': webServerIpv4CidrBlock!.toTfJson(),
+    'cloud_composer_connection_subnetwork': ?cloudComposerConnectionSubnetwork
+        ?.toTfJson(),
+    'cloud_composer_network_ipv4_cidr_block': ?cloudComposerNetworkIpv4CidrBlock
+        ?.toTfJson(),
+    'cloud_sql_ipv4_cidr_block': ?cloudSqlIpv4CidrBlock?.toTfJson(),
+    'connection_type': ?connectionType?.toTfJson(),
+    'enable_private_endpoint': ?enablePrivateEndpoint?.toTfJson(),
+    'enable_privately_used_public_ips': ?enablePrivatelyUsedPublicIps
+        ?.toTfJson(),
+    'master_ipv4_cidr_block': ?masterIpv4CidrBlock?.toTfJson(),
+    'web_server_ipv4_cidr_block': ?webServerIpv4CidrBlock?.toTfJson(),
   };
 }
 
@@ -429,8 +402,7 @@ final class ComposerEnvironmentConfigRecoveryConfig {
   scheduledSnapshotsConfig;
 
   Map<String, Object?> encode() => {
-    if (scheduledSnapshotsConfig != null)
-      'scheduled_snapshots_config': scheduledSnapshotsConfig!.encode(),
+    'scheduled_snapshots_config': ?scheduledSnapshotsConfig?.encode(),
   };
 }
 
@@ -455,11 +427,9 @@ final class ComposerEnvironmentConfigRecoveryConfigScheduledSnapshotsConfig {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (snapshotCreationSchedule != null)
-      'snapshot_creation_schedule': snapshotCreationSchedule!.toTfJson(),
-    if (snapshotLocation != null)
-      'snapshot_location': snapshotLocation!.toTfJson(),
-    if (timeZone != null) 'time_zone': timeZone!.toTfJson(),
+    'snapshot_creation_schedule': ?snapshotCreationSchedule?.toTfJson(),
+    'snapshot_location': ?snapshotLocation?.toTfJson(),
+    'time_zone': ?timeZone?.toTfJson(),
   };
 }
 
@@ -496,17 +466,14 @@ final class ComposerEnvironmentConfigSoftwareConfig {
   cloudDataLineageIntegration;
 
   Map<String, Object?> encode() => {
-    if (airflowConfigOverrides != null)
-      'airflow_config_overrides': airflowConfigOverrides!.toTfJson(),
-    if (envVariables != null) 'env_variables': envVariables!.toTfJson(),
-    if (imageVersion != null) 'image_version': imageVersion!.toTfJson(),
-    if (pypiPackages != null) 'pypi_packages': pypiPackages!.toTfJson(),
-    if (pythonVersion != null) 'python_version': pythonVersion!.toTfJson(),
-    if (schedulerCount != null) 'scheduler_count': schedulerCount!.toTfJson(),
-    if (webServerPluginsMode != null)
-      'web_server_plugins_mode': webServerPluginsMode!.toTfJson(),
-    if (cloudDataLineageIntegration != null)
-      'cloud_data_lineage_integration': cloudDataLineageIntegration!.encode(),
+    'airflow_config_overrides': ?airflowConfigOverrides?.toTfJson(),
+    'env_variables': ?envVariables?.toTfJson(),
+    'image_version': ?imageVersion?.toTfJson(),
+    'pypi_packages': ?pypiPackages?.toTfJson(),
+    'python_version': ?pythonVersion?.toTfJson(),
+    'scheduler_count': ?schedulerCount?.toTfJson(),
+    'web_server_plugins_mode': ?webServerPluginsMode?.toTfJson(),
+    'cloud_data_lineage_integration': ?cloudDataLineageIntegration?.encode(),
   };
 }
 
@@ -567,7 +534,7 @@ final class ComposerEnvironmentConfigWebServerNetworkAccessControlAllowedIpRange
   final TfArg<String> value;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -595,11 +562,11 @@ final class ComposerEnvironmentConfigWorkloadsConfig {
   final ComposerEnvironmentConfigWorkloadsConfigWorker? worker;
 
   Map<String, Object?> encode() => {
-    if (dagProcessor != null) 'dag_processor': dagProcessor!.encode(),
-    if (scheduler != null) 'scheduler': scheduler!.encode(),
-    if (triggerer != null) 'triggerer': triggerer!.encode(),
-    if (webServer != null) 'web_server': webServer!.encode(),
-    if (worker != null) 'worker': worker!.encode(),
+    'dag_processor': ?dagProcessor?.encode(),
+    'scheduler': ?scheduler?.encode(),
+    'triggerer': ?triggerer?.encode(),
+    'web_server': ?webServer?.encode(),
+    'worker': ?worker?.encode(),
   };
 }
 
@@ -623,10 +590,10 @@ final class ComposerEnvironmentConfigWorkloadsConfigDagProcessor {
   final TfArg<num>? storageGb;
 
   Map<String, Object?> encode() => {
-    if (count != null) 'count': count!.toTfJson(),
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (memoryGb != null) 'memory_gb': memoryGb!.toTfJson(),
-    if (storageGb != null) 'storage_gb': storageGb!.toTfJson(),
+    'count': ?count?.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'memory_gb': ?memoryGb?.toTfJson(),
+    'storage_gb': ?storageGb?.toTfJson(),
   };
 }
 
@@ -650,10 +617,10 @@ final class ComposerEnvironmentConfigWorkloadsConfigScheduler {
   final TfArg<num>? storageGb;
 
   Map<String, Object?> encode() => {
-    if (count != null) 'count': count!.toTfJson(),
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (memoryGb != null) 'memory_gb': memoryGb!.toTfJson(),
-    if (storageGb != null) 'storage_gb': storageGb!.toTfJson(),
+    'count': ?count?.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'memory_gb': ?memoryGb?.toTfJson(),
+    'storage_gb': ?storageGb?.toTfJson(),
   };
 }
 
@@ -697,9 +664,9 @@ final class ComposerEnvironmentConfigWorkloadsConfigWebServer {
   final TfArg<num>? storageGb;
 
   Map<String, Object?> encode() => {
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (memoryGb != null) 'memory_gb': memoryGb!.toTfJson(),
-    if (storageGb != null) 'storage_gb': storageGb!.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'memory_gb': ?memoryGb?.toTfJson(),
+    'storage_gb': ?storageGb?.toTfJson(),
   };
 }
 
@@ -726,11 +693,11 @@ final class ComposerEnvironmentConfigWorkloadsConfigWorker {
   final TfArg<num>? storageGb;
 
   Map<String, Object?> encode() => {
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (maxCount != null) 'max_count': maxCount!.toTfJson(),
-    if (memoryGb != null) 'memory_gb': memoryGb!.toTfJson(),
-    if (minCount != null) 'min_count': minCount!.toTfJson(),
-    if (storageGb != null) 'storage_gb': storageGb!.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'max_count': ?maxCount?.toTfJson(),
+    'memory_gb': ?memoryGb?.toTfJson(),
+    'min_count': ?minCount?.toTfJson(),
+    'storage_gb': ?storageGb?.toTfJson(),
   };
 }
 
@@ -792,13 +759,13 @@ final class GoogleComposerEnvironment extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (config != null) 'config': TfArg.literal(config.encode()),
            if (storageConfig != null)
              'storage_config': TfArg.literal(storageConfig.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

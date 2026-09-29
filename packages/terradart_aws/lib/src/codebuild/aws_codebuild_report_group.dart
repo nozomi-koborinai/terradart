@@ -34,7 +34,7 @@ final class CodebuildReportGroupExportConfig {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (s3Destination != null) 's3_destination': s3Destination!.encode(),
+    's3_destination': ?s3Destination?.encode(),
   };
 }
 
@@ -73,11 +73,10 @@ final class CodebuildReportGroupExportConfigS3Destination {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (encryptionDisabled != null)
-      'encryption_disabled': encryptionDisabled!.toTfJson(),
+    'encryption_disabled': ?encryptionDisabled?.toTfJson(),
     'encryption_key': encryptionKey.toTfJson(),
-    if (packaging != null) 'packaging': packaging!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'packaging': ?packaging?.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -113,10 +112,10 @@ final class AwsCodebuildReportGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deleteReports != null) 'delete_reports': deleteReports,
+           'delete_reports': ?deleteReports,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'type': type,
            'export_config': TfArg.literal(exportConfig.encode()),
          },

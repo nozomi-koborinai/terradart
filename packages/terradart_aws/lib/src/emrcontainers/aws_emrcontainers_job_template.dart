@@ -36,10 +36,9 @@ final class EmrcontainersJobTemplateJobTemplateData {
 
   Map<String, Object?> encode() => {
     'execution_role_arn': executionRoleArn.encodeAs('arn').toTfJson(),
-    if (jobTags != null) 'job_tags': jobTags!.toTfJson(),
+    'job_tags': ?jobTags?.toTfJson(),
     'release_label': releaseLabel.toTfJson(),
-    if (configurationOverrides != null)
-      'configuration_overrides': configurationOverrides!.encode(),
+    'configuration_overrides': ?configurationOverrides?.encode(),
     'job_driver': jobDriver.encode(),
   };
 }
@@ -66,8 +65,7 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverrides {
       'application_configuration': [
         for (final e in applicationConfiguration!) e.encode(),
       ],
-    if (monitoringConfiguration != null)
-      'monitoring_configuration': monitoringConfiguration!.encode(),
+    'monitoring_configuration': ?monitoringConfiguration?.encode(),
   };
 }
 
@@ -92,7 +90,7 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplica
 
   Map<String, Object?> encode() => {
     'classification': classification.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
+    'properties': ?properties?.toTfJson(),
     if (configurations != null)
       'configurations': [for (final e in configurations!) e.encode()],
   };
@@ -112,8 +110,8 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplica
   final TfArg<Map<String, String>>? properties;
 
   Map<String, Object?> encode() => {
-    if (classification != null) 'classification': classification!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
+    'classification': ?classification?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
   };
 }
 
@@ -139,13 +137,10 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitor
   s3MonitoringConfiguration;
 
   Map<String, Object?> encode() => {
-    if (persistentAppUi != null)
-      'persistent_app_ui': persistentAppUi!.toTfJson(),
-    if (cloudWatchMonitoringConfiguration != null)
-      'cloud_watch_monitoring_configuration': cloudWatchMonitoringConfiguration!
-          .encode(),
-    if (s3MonitoringConfiguration != null)
-      's3_monitoring_configuration': s3MonitoringConfiguration!.encode(),
+    'persistent_app_ui': ?persistentAppUi?.toTfJson(),
+    'cloud_watch_monitoring_configuration': ?cloudWatchMonitoringConfiguration
+        ?.encode(),
+    's3_monitoring_configuration': ?s3MonitoringConfiguration?.encode(),
   };
 }
 
@@ -177,8 +172,7 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitor
 
   Map<String, Object?> encode() => {
     'log_group_name': logGroupName.encodeAs('name').toTfJson(),
-    if (logStreamNamePrefix != null)
-      'log_stream_name_prefix': logStreamNamePrefix!.toTfJson(),
+    'log_stream_name_prefix': ?logStreamNamePrefix?.toTfJson(),
   };
 }
 
@@ -272,9 +266,8 @@ final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver {
   final TfArg<String>? sparkSqlParameters;
 
   Map<String, Object?> encode() => {
-    if (entryPoint != null) 'entry_point': entryPoint!.toTfJson(),
-    if (sparkSqlParameters != null)
-      'spark_sql_parameters': sparkSqlParameters!.toTfJson(),
+    'entry_point': ?entryPoint?.toTfJson(),
+    'spark_sql_parameters': ?sparkSqlParameters?.toTfJson(),
   };
 }
 
@@ -296,10 +289,8 @@ final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver
 
   Map<String, Object?> encode() => {
     'entry_point': entryPoint.toTfJson(),
-    if (entryPointArguments != null)
-      'entry_point_arguments': entryPointArguments!.toTfJson(),
-    if (sparkSubmitParameters != null)
-      'spark_submit_parameters': sparkSubmitParameters!.toTfJson(),
+    'entry_point_arguments': ?entryPointArguments?.toTfJson(),
+    'spark_submit_parameters': ?sparkSubmitParameters?.toTfJson(),
   };
 }
 
@@ -321,10 +312,10 @@ final class AwsEmrcontainersJobTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'job_template_data': TfArg.literal(jobTemplateData.encode()),
          },
        );

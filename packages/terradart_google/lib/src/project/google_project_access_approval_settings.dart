@@ -22,8 +22,7 @@ final class ProjectAccessApprovalSettingsEnrolledServices {
 
   Map<String, Object?> encode() => {
     'cloud_product': cloudProduct.toTfJson(),
-    if (enrollmentLevel != null)
-      'enrollment_level': enrollmentLevel!.toTfJson(),
+    'enrollment_level': ?enrollmentLevel?.toTfJson(),
   };
 }
 
@@ -57,11 +56,10 @@ final class GoogleProjectAccessApprovalSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (activeKeyVersion != null) 'active_key_version': activeKeyVersion,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (notificationEmails != null)
-             'notification_emails': notificationEmails,
-           if (project != null) 'project': project,
+           'active_key_version': ?activeKeyVersion,
+           'deletion_policy': ?deletionPolicy,
+           'notification_emails': ?notificationEmails,
+           'project': ?project,
            'project_id': projectId,
            'enrolled_services': TfArg.literal([
              for (final e in enrolledServices) e.encode(),

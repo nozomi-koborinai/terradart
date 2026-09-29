@@ -25,10 +25,9 @@ final class ChronicleFindingsRefinementDeploymentDetectionExclusionApplication {
   final TfArg<List<Object?>>? rules;
 
   Map<String, Object?> encode() => {
-    if (curatedRuleSets != null)
-      'curated_rule_sets': curatedRuleSets!.toTfJson(),
-    if (curatedRules != null) 'curated_rules': curatedRules!.toTfJson(),
-    if (rules != null) 'rules': rules!.toTfJson(),
+    'curated_rule_sets': ?curatedRuleSets?.toTfJson(),
+    'curated_rules': ?curatedRules?.toTfJson(),
+    'rules': ?rules?.toTfJson(),
   };
 }
 
@@ -72,13 +71,13 @@ final class GoogleChronicleFindingsRefinementDeployment extends Resource {
            'findings_refinement': findingsRefinement,
            'location': location,
            'instance': instance,
-           if (enabled != null) 'enabled': enabled,
-           if (archived != null) 'archived': archived,
+           'enabled': ?enabled,
+           'archived': ?archived,
            if (detectionExclusionApplication != null)
              'detection_exclusion_application': TfArg.literal(
                detectionExclusionApplication.encode(),
              ),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

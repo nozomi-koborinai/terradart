@@ -42,7 +42,7 @@ final class DataAwsDevopsguruNotificationChannel extends Data {
          terraformType: tfType,
          argMap: {
            'id': id,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (filters != null)
              'filters': TfArg.literal([for (final e in filters) e.encode()]),
            if (sns != null)

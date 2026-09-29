@@ -23,10 +23,10 @@ final class AwsCloudwatchQueryDefinition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (logGroupNames != null) 'log_group_names': logGroupNames,
+           'log_group_names': ?logGroupNames,
            'name': name,
            'query_string': queryString,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

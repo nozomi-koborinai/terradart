@@ -45,13 +45,13 @@ final class GoogleComputeInstanceGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (zone != null) 'zone': zone,
-           if (network != null) 'network': network.encodeAs('id'),
-           if (instances != null) 'instances': instances,
-           if (namedPort != null) 'named_port': namedPort,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'zone': ?zone,
+           'network': ?network?.encodeAs('id'),
+           'instances': ?instances,
+           'named_port': ?namedPort,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

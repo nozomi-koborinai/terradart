@@ -54,11 +54,11 @@ final class AwsBedrockagentAgentKnowledgeBaseAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'agent_id': agentId,
-           if (agentVersion != null) 'agent_version': agentVersion,
+           'agent_version': ?agentVersion,
            'description': description,
            'knowledge_base_id': knowledgeBaseId,
            'knowledge_base_state': knowledgeBaseState,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

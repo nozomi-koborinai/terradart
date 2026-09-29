@@ -19,10 +19,7 @@ final class DataAwsRedshiftserverlessWorkgroup extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'workgroup_name': workgroupName,
-         },
+         argMap: {'region': ?region, 'workgroup_name': workgroupName},
        );
 
   @override

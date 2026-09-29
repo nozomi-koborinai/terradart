@@ -14,6 +14,7 @@
 
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). The generated wrappers were already formatted in the Dart 3.7+ tall style, so the constraint now matches them (pub.dev static analysis no longer reports a formatter mismatch).
 - **Breaking** — no sealed type name repeats a block segment. A block holding nothing but one sealed group is the sealed type itself (`amount: .lastPeriodAmount(...)` on `GoogleBillingBudget`, `data: .resource(...)` on `GoogleDataplexDatascan`), several derived groups take clearer names (`GoogleLoggingSavedQuery(definition: ...)`, `DatastreamStreamSourceConfig(system: ...)`), and the variants of five hand-written sealed types are renamed: `StorageBucketObjectBody` (+ `Source` / `Content`), `ColabNotebookExecutionIdentity*`, `ComputeImageSource{Disk,Image,Snapshot}`, `ComputeRegionHealthCheck<Protocol>HealthCheckConfig`, `FirebaseAppHostingBuildSource*`. See [MIGRATING.md](../../MIGRATING.md).
+- Generated wrappers encode optional inputs as null-aware map elements (`'k': ?x`, `'k': ?x?.toTfJson()`) instead of `if (x != null) 'k': x` guards, regenerated with `terradart wrap`. No API change; synth output is unchanged.
 
 ## 0.30.0 - 2026-09-28
 

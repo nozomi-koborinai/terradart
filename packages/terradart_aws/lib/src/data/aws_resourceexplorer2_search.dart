@@ -21,8 +21,8 @@ final class DataAwsResourceexplorer2Search extends Data {
          terraformType: tfType,
          argMap: {
            'query_string': queryString,
-           if (region != null) 'region': region,
-           if (viewArn != null) 'view_arn': viewArn,
+           'region': ?region,
+           'view_arn': ?viewArn,
          },
        );
 

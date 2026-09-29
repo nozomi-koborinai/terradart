@@ -27,8 +27,8 @@ final class DataCloudflareFlagshipFlags extends Data {
          argMap: {
            'account_id': accountId,
            'app_id': appId,
-           if (limit != null) 'limit': limit,
-           if (maxItems != null) 'max_items': maxItems,
+           'limit': ?limit,
+           'max_items': ?maxItems,
          },
        );
 

@@ -98,17 +98,15 @@ final class CloudflareMagicNetworkMonitoringRule extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'automatic_advertisement': automaticAdvertisement,
-           if (bandwidthThreshold != null)
-             'bandwidth_threshold': bandwidthThreshold,
-           if (duration != null) 'duration': duration,
+           'bandwidth_threshold': ?bandwidthThreshold,
+           'duration': ?duration,
            'name': name,
-           if (packetThreshold != null) 'packet_threshold': packetThreshold,
-           if (prefixMatch != null) 'prefix_match': prefixMatch,
+           'packet_threshold': ?packetThreshold,
+           'prefix_match': ?prefixMatch,
            'prefixes': prefixes,
            'type': type,
-           if (zscoreSensitivity != null)
-             'zscore_sensitivity': zscoreSensitivity,
-           if (zscoreTarget != null) 'zscore_target': zscoreTarget,
+           'zscore_sensitivity': ?zscoreSensitivity,
+           'zscore_target': ?zscoreTarget,
          },
        );
 

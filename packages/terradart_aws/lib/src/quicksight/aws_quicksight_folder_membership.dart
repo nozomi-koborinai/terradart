@@ -37,11 +37,11 @@ final class AwsQuicksightFolderMembership extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'folder_id': folderId,
            'member_id': memberId,
            'member_type': memberType,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

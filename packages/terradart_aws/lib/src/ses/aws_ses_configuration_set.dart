@@ -15,9 +15,7 @@ final class SesConfigurationSetDeliveryOptions {
 
   final TfArg<SesConfigurationSetDeliveryOptionsTlsPolicy>? tlsPolicy;
 
-  Map<String, Object?> encode() => {
-    if (tlsPolicy != null) 'tls_policy': tlsPolicy!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'tls_policy': ?tlsPolicy?.toTfJson()};
 }
 
 /// `tls_policy` — derived from the provider schema description.
@@ -39,8 +37,7 @@ final class SesConfigurationSetTrackingOptions {
   final TfArg<String>? customRedirectDomain;
 
   Map<String, Object?> encode() => {
-    if (customRedirectDomain != null)
-      'custom_redirect_domain': customRedirectDomain!.toTfJson(),
+    'custom_redirect_domain': ?customRedirectDomain?.toTfJson(),
   };
 }
 
@@ -64,10 +61,9 @@ final class AwsSesConfigurationSet extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (reputationMetricsEnabled != null)
-             'reputation_metrics_enabled': reputationMetricsEnabled,
-           if (sendingEnabled != null) 'sending_enabled': sendingEnabled,
+           'region': ?region,
+           'reputation_metrics_enabled': ?reputationMetricsEnabled,
+           'sending_enabled': ?sendingEnabled,
            if (deliveryOptions != null)
              'delivery_options': TfArg.literal(deliveryOptions.encode()),
            if (trackingOptions != null)

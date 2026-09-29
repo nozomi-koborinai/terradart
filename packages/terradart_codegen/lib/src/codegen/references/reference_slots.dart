@@ -10,15 +10,15 @@ import 'reference_targets.dart';
   required ResolvedReference reference,
   required bool required,
 }) {
-  final value = "$dartName.encodeAs('${reference.attribute}')";
+  final encode = "encodeAs('${reference.attribute}')";
   return required
       ? (
           param: 'required ${reference.dartType} $dartName',
-          argMapEntry: "'$tfName': $value,",
+          argMapEntry: "'$tfName': $dartName.$encode,",
         )
       : (
           param: '${reference.dartType}? $dartName',
-          argMapEntry: "if ($dartName != null) '$tfName': $value,",
+          argMapEntry: "'$tfName': ?$dartName?.$encode,",
         );
 }
 
@@ -31,18 +31,16 @@ import 'reference_targets.dart';
   required bool required,
 }) {
   final ident = safeDartIdentifier(dartName);
-  final access = required ? ident : '$ident!';
-  final entry =
-      "'$tfName': $access.encodeAs('${reference.attribute}').toTfJson(),";
+  final encode = "encodeAs('${reference.attribute}').toTfJson()";
   return required
       ? (
           ctorParam: 'required this.$ident,',
           fieldDecl: 'final ${reference.dartType} $ident;',
-          encodeEntry: entry,
+          encodeEntry: "'$tfName': $ident.$encode,",
         )
       : (
           ctorParam: 'this.$ident,',
           fieldDecl: 'final ${reference.dartType}? $ident;',
-          encodeEntry: 'if ($ident != null) $entry',
+          encodeEntry: "'$tfName': ?$ident?.$encode,",
         );
 }

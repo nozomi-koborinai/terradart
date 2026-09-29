@@ -24,7 +24,7 @@ final class AwsServicecatalogBudgetResourceAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'budget_name': budgetName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_id': resourceId,
          },
        );

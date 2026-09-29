@@ -36,11 +36,11 @@ final class GoogleBigqueryAnalyticsHubListingIamBinding extends Resource {
          argMap: {
            'data_exchange_id': dataExchangeId,
            'listing_id': listingId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

@@ -20,11 +20,7 @@ final class AwsApiGatewayAccount extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (cloudwatchRoleArn != null)
-             'cloudwatch_role_arn': cloudwatchRoleArn,
-           if (region != null) 'region': region,
-         },
+         argMap: {'cloudwatch_role_arn': ?cloudwatchRoleArn, 'region': ?region},
        );
 
   @override

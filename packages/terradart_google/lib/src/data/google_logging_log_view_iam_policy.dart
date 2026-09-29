@@ -26,7 +26,7 @@ final class DataGoogleLoggingLogViewIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (location != null) 'location': location,
+           'location': ?location,
            'name': name,
            'parent': parent,
          },

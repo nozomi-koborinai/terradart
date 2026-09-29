@@ -19,7 +19,7 @@ final class DataAwsCurReportDefinition extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'report_name': reportName, if (tags != null) 'tags': tags},
+         argMap: {'report_name': reportName, 'tags': ?tags},
        );
 
   @override

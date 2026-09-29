@@ -22,7 +22,7 @@ final class DataGoogleGkeHubScopeIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (project != null) 'project': project, 'scope_id': scopeId},
+         argMap: {'project': ?project, 'scope_id': scopeId},
        );
 
   @override

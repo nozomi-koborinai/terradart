@@ -29,13 +29,13 @@ final class GoogleFirebaseAndroidApp extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (apiKeyId != null) 'api_key_id': apiKeyId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'api_key_id': ?apiKeyId,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
            'package_name': packageName,
-           if (project != null) 'project': project,
-           if (sha1Hashes != null) 'sha1_hashes': sha1Hashes,
-           if (sha256Hashes != null) 'sha256_hashes': sha256Hashes,
+           'project': ?project,
+           'sha1_hashes': ?sha1Hashes,
+           'sha256_hashes': ?sha256Hashes,
          },
        );
 

@@ -54,8 +54,8 @@ final class ApigeeOrganizationPropertiesProperty {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -117,29 +117,23 @@ final class GoogleApigeeOrganization extends Resource {
          terraformType: tfType,
          argMap: {
            'project_id': projectId,
-           if (analyticsRegion != null) 'analytics_region': analyticsRegion,
-           if (authorizedNetwork != null)
-             'authorized_network': authorizedNetwork.encodeAs('id'),
-           if (runtimeType != null) 'runtime_type': runtimeType,
-           if (billingType != null) 'billing_type': billingType,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (disableVpcPeering != null)
-             'disable_vpc_peering': disableVpcPeering,
-           if (retention != null) 'retention': retention,
-           if (apiConsumerDataLocation != null)
-             'api_consumer_data_location': apiConsumerDataLocation,
-           if (apiConsumerDataEncryptionKeyName != null)
-             'api_consumer_data_encryption_key_name':
-                 apiConsumerDataEncryptionKeyName,
-           if (controlPlaneEncryptionKeyName != null)
-             'control_plane_encryption_key_name': controlPlaneEncryptionKeyName,
-           if (runtimeDatabaseEncryptionKeyName != null)
-             'runtime_database_encryption_key_name':
-                 runtimeDatabaseEncryptionKeyName,
+           'analytics_region': ?analyticsRegion,
+           'authorized_network': ?authorizedNetwork?.encodeAs('id'),
+           'runtime_type': ?runtimeType,
+           'billing_type': ?billingType,
+           'display_name': ?displayName,
+           'description': ?description,
+           'disable_vpc_peering': ?disableVpcPeering,
+           'retention': ?retention,
+           'api_consumer_data_location': ?apiConsumerDataLocation,
+           'api_consumer_data_encryption_key_name':
+               ?apiConsumerDataEncryptionKeyName,
+           'control_plane_encryption_key_name': ?controlPlaneEncryptionKeyName,
+           'runtime_database_encryption_key_name':
+               ?runtimeDatabaseEncryptionKeyName,
            if (properties != null)
              'properties': TfArg.literal(properties.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

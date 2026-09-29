@@ -46,7 +46,7 @@ final class AwsCognitoResourceServer extends Resource {
          argMap: {
            'identifier': identifier,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'user_pool_id': userPoolId,
            if (scope != null)
              'scope': TfArg.literal([for (final e in scope) e.encode()]),

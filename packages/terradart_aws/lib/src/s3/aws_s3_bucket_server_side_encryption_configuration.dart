@@ -36,11 +36,9 @@ final class S3BucketServerSideEncryptionConfigurationRule {
       'blocked_encryption_types': [
         for (final e in blockedEncryptionTypes!) e.toTfJson(),
       ],
-    if (bucketKeyEnabled != null)
-      'bucket_key_enabled': bucketKeyEnabled!.toTfJson(),
-    if (applyServerSideEncryptionByDefault != null)
-      'apply_server_side_encryption_by_default':
-          applyServerSideEncryptionByDefault!.encode(),
+    'bucket_key_enabled': ?bucketKeyEnabled?.toTfJson(),
+    'apply_server_side_encryption_by_default':
+        ?applyServerSideEncryptionByDefault?.encode(),
   };
 }
 
@@ -74,8 +72,7 @@ final class S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncrypti
   sseAlgorithm;
 
   Map<String, Object?> encode() => {
-    if (kmsMasterKeyId != null)
-      'kms_master_key_id': kmsMasterKeyId!.encodeAs('arn').toTfJson(),
+    'kms_master_key_id': ?kmsMasterKeyId?.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),
   };
 }
@@ -115,9 +112,8 @@ final class AwsS3BucketServerSideEncryptionConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (region != null) 'region': region,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'region': ?region,
            'rule': TfArg.literal([for (final e in rule) e.encode()]),
          },
        );

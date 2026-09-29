@@ -43,17 +43,13 @@ final class BillingBudgetAllUpdatesRule {
   final TfArg<String>? schemaVersion;
 
   Map<String, Object?> encode() => {
-    if (disableDefaultIamRecipients != null)
-      'disable_default_iam_recipients': disableDefaultIamRecipients!.toTfJson(),
-    if (enableProjectLevelRecipients != null)
-      'enable_project_level_recipients': enableProjectLevelRecipients!
-          .toTfJson(),
-    if (monitoringNotificationChannels != null)
-      'monitoring_notification_channels': monitoringNotificationChannels!
-          .toTfJson(),
-    if (pubsubTopic != null)
-      'pubsub_topic': pubsubTopic!.encodeAs('id').toTfJson(),
-    if (schemaVersion != null) 'schema_version': schemaVersion!.toTfJson(),
+    'disable_default_iam_recipients': ?disableDefaultIamRecipients?.toTfJson(),
+    'enable_project_level_recipients': ?enableProjectLevelRecipients
+        ?.toTfJson(),
+    'monitoring_notification_channels': ?monitoringNotificationChannels
+        ?.toTfJson(),
+    'pubsub_topic': ?pubsubTopic?.encodeAs('id').toTfJson(),
+    'schema_version': ?schemaVersion?.toTfJson(),
   };
 }
 
@@ -128,9 +124,9 @@ final class BillingBudgetAmountSpecifiedAmount {
   final TfArg<String>? units;
 
   Map<String, Object?> encode() => {
-    if (currencyCode != null) 'currency_code': currencyCode!.toTfJson(),
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (units != null) 'units': units!.toTfJson(),
+    'currency_code': ?currencyCode?.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'units': ?units?.toTfJson(),
   };
 }
 
@@ -170,17 +166,15 @@ final class BillingBudgetBudgetFilter {
   final BillingBudgetBudgetFilterCustomPeriod? customPeriod;
 
   Map<String, Object?> encode() => {
-    if (calendarPeriod != null) 'calendar_period': calendarPeriod!.toTfJson(),
-    if (creditTypes != null) 'credit_types': creditTypes!.toTfJson(),
-    if (creditTypesTreatment != null)
-      'credit_types_treatment': creditTypesTreatment!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (projects != null) 'projects': projects!.toTfJson(),
-    if (resourceAncestors != null)
-      'resource_ancestors': resourceAncestors!.toTfJson(),
-    if (services != null) 'services': services!.toTfJson(),
-    if (subaccounts != null) 'subaccounts': subaccounts!.toTfJson(),
-    if (customPeriod != null) 'custom_period': customPeriod!.encode(),
+    'calendar_period': ?calendarPeriod?.toTfJson(),
+    'credit_types': ?creditTypes?.toTfJson(),
+    'credit_types_treatment': ?creditTypesTreatment?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'projects': ?projects?.toTfJson(),
+    'resource_ancestors': ?resourceAncestors?.toTfJson(),
+    'services': ?services?.toTfJson(),
+    'subaccounts': ?subaccounts?.toTfJson(),
+    'custom_period': ?customPeriod?.encode(),
   };
 }
 
@@ -221,7 +215,7 @@ final class BillingBudgetBudgetFilterCustomPeriod {
   final BillingBudgetBudgetFilterCustomPeriodStartDate startDate;
 
   Map<String, Object?> encode() => {
-    if (endDate != null) 'end_date': endDate!.encode(),
+    'end_date': ?endDate?.encode(),
     'start_date': startDate.encode(),
   };
 }
@@ -286,7 +280,7 @@ final class BillingBudgetThresholdRules {
   final TfArg<num> thresholdPercent;
 
   Map<String, Object?> encode() => {
-    if (spendBasis != null) 'spend_basis': spendBasis!.toTfJson(),
+    'spend_basis': ?spendBasis?.toTfJson(),
     'threshold_percent': thresholdPercent.toTfJson(),
   };
 }
@@ -332,9 +326,9 @@ final class GoogleBillingBudget extends Resource {
          terraformType: tfType,
          argMap: {
            'billing_account': billingAccount,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (ownershipScope != null) 'ownership_scope': ownershipScope,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'ownership_scope': ?ownershipScope,
            if (allUpdatesRule != null)
              'all_updates_rule': TfArg.literal(allUpdatesRule.encode()),
            'amount': TfArg.literal(amount.encode()),

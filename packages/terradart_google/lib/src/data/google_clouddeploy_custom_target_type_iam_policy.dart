@@ -25,11 +25,7 @@ final class DataGoogleClouddeployCustomTargetTypeIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (location != null) 'location': location,
-           'name': name,
-           if (project != null) 'project': project,
-         },
+         argMap: {'location': ?location, 'name': name, 'project': ?project},
        );
 
   @override

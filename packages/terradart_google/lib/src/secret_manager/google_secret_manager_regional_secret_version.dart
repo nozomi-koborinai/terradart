@@ -30,10 +30,9 @@ final class GoogleSecretManagerRegionalSecretVersion extends Resource {
          argMap: {
            'secret': secret,
            'secret_data': secretData,
-           if (enabled != null) 'enabled': enabled,
-           if (isSecretDataBase64 != null)
-             'is_secret_data_base64': isSecretDataBase64,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'enabled': ?enabled,
+           'is_secret_data_base64': ?isSecretDataBase64,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

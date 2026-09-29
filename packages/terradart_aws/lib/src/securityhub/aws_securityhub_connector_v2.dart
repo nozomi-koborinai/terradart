@@ -117,11 +117,11 @@ final class AwsSecurityhubConnectorV2 extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'description': ?description,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (connectorProvider != null)
              'connector_provider': TfArg.literal([
                for (final e in connectorProvider) e.encode(),

@@ -113,8 +113,7 @@ final class CodebuildWebhookFilterGroupFilter {
   final TfArg<CodebuildWebhookFilterGroupFilterType> type;
 
   Map<String, Object?> encode() => {
-    if (excludeMatchedPattern != null)
-      'exclude_matched_pattern': excludeMatchedPattern!.toTfJson(),
+    'exclude_matched_pattern': ?excludeMatchedPattern?.toTfJson(),
     'pattern': pattern.toTfJson(),
     'type': type.toTfJson(),
   };
@@ -217,7 +216,7 @@ final class CodebuildWebhookScopeConfiguration {
   final TfArg<CodebuildWebhookScopeConfigurationScope> scope;
 
   Map<String, Object?> encode() => {
-    if (domain != null) 'domain': domain!.toTfJson(),
+    'domain': ?domain?.toTfJson(),
     'name': name.toTfJson(),
     'scope': scope.toTfJson(),
   };
@@ -255,10 +254,10 @@ final class AwsCodebuildWebhook extends Resource {
          terraformType: tfType,
          argMap: {
            ...?trigger?.argMap,
-           if (buildType != null) 'build_type': buildType,
-           if (manualCreation != null) 'manual_creation': manualCreation,
+           'build_type': ?buildType,
+           'manual_creation': ?manualCreation,
            'project_name': projectName,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (pullRequestBuildPolicy != null)
              'pull_request_build_policy': TfArg.literal(
                pullRequestBuildPolicy.encode(),

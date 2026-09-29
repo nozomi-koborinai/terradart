@@ -275,19 +275,17 @@ final class AwsVpclatticeResourceConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowAssociationToShareableServiceNetwork != null)
-             'allow_association_to_shareable_service_network':
-                 allowAssociationToShareableServiceNetwork,
-           if (customDomainName != null) 'custom_domain_name': customDomainName,
-           if (domainVerificationId != null)
-             'domain_verification_id': domainVerificationId,
+           'allow_association_to_shareable_service_network':
+               ?allowAssociationToShareableServiceNetwork,
+           'custom_domain_name': ?customDomainName,
+           'domain_verification_id': ?domainVerificationId,
            'name': name,
-           if (portRanges != null) 'port_ranges': portRanges,
-           if (protocol != null) 'protocol': protocol,
-           if (region != null) 'region': region,
+           'port_ranges': ?portRanges,
+           'protocol': ?protocol,
+           'region': ?region,
            ...parent.argMap,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'tags': ?tags,
+           'type': ?type,
            if (resourceConfigurationDefinition != null)
              'resource_configuration_definition': TfArg.literal([
                for (final e in resourceConfigurationDefinition) e.encode(),

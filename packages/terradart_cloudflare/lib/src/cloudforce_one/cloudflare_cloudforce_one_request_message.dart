@@ -29,7 +29,7 @@ final class CloudflareCloudforceOneRequestMessage extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (content != null) 'content': content,
+           'content': ?content,
            'request_id': requestId,
          },
        );

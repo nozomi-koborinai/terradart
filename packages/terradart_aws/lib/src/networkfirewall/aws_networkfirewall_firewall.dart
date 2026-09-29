@@ -115,7 +115,7 @@ final class NetworkfirewallFirewallEncryptionConfiguration {
   final TfArg<NetworkfirewallFirewallEncryptionConfigurationType> type;
 
   Map<String, Object?> encode() => {
-    if (keyId != null) 'key_id': keyId!.encodeAs('arn').toTfJson(),
+    'key_id': ?keyId?.encodeAs('arn').toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -145,7 +145,7 @@ final class NetworkfirewallFirewallSubnetMapping {
   final RefTo<AwsSubnet> subnetId;
 
   Map<String, Object?> encode() => {
-    if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
+    'ip_address_type': ?ipAddressType?.toTfJson(),
     'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 }
@@ -191,24 +191,20 @@ final class AwsNetworkfirewallFirewall extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZoneChangeProtection != null)
-             'availability_zone_change_protection':
-                 availabilityZoneChangeProtection,
-           if (deleteProtection != null) 'delete_protection': deleteProtection,
-           if (description != null) 'description': description,
+           'availability_zone_change_protection':
+               ?availabilityZoneChangeProtection,
+           'delete_protection': ?deleteProtection,
+           'description': ?description,
            if (enabledAnalysisTypes != null)
              'enabled_analysis_types': TfArg.literal([
                for (final e in enabledAnalysisTypes) e.toTfJson(),
              ]),
            'firewall_policy_arn': firewallPolicyArn,
-           if (firewallPolicyChangeProtection != null)
-             'firewall_policy_change_protection':
-                 firewallPolicyChangeProtection,
+           'firewall_policy_change_protection': ?firewallPolicyChangeProtection,
            'name': name,
-           if (region != null) 'region': region,
-           if (subnetChangeProtection != null)
-             'subnet_change_protection': subnetChangeProtection,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'subnet_change_protection': ?subnetChangeProtection,
+           'tags': ?tags,
            ...attachment.argMap,
            if (availabilityZoneMapping != null)
              'availability_zone_mapping': TfArg.literal([

@@ -23,10 +23,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfileLocalDomainFallback
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'policy_id': policyId,
-         },
+         argMap: {'account_id': ?accountId, 'policy_id': policyId},
        );
 
   @override

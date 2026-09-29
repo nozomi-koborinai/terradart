@@ -26,10 +26,7 @@ final class CloudflareLogpullRetention extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (flag != null) 'flag': flag,
-           'zone_id': zoneId.encodeAs('id'),
-         },
+         argMap: {'flag': ?flag, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

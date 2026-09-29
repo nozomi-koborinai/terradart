@@ -23,7 +23,7 @@ final class AwsSagemakerModelPackageGroupPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'model_package_group_name': modelPackageGroupName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_policy': resourcePolicy,
          },
        );

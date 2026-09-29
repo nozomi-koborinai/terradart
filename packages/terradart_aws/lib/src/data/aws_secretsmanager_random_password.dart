@@ -26,18 +26,15 @@ final class DataAwsSecretsmanagerRandomPassword extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (excludeCharacters != null)
-             'exclude_characters': excludeCharacters,
-           if (excludeLowercase != null) 'exclude_lowercase': excludeLowercase,
-           if (excludeNumbers != null) 'exclude_numbers': excludeNumbers,
-           if (excludePunctuation != null)
-             'exclude_punctuation': excludePunctuation,
-           if (excludeUppercase != null) 'exclude_uppercase': excludeUppercase,
-           if (includeSpace != null) 'include_space': includeSpace,
-           if (passwordLength != null) 'password_length': passwordLength,
-           if (region != null) 'region': region,
-           if (requireEachIncludedType != null)
-             'require_each_included_type': requireEachIncludedType,
+           'exclude_characters': ?excludeCharacters,
+           'exclude_lowercase': ?excludeLowercase,
+           'exclude_numbers': ?excludeNumbers,
+           'exclude_punctuation': ?excludePunctuation,
+           'exclude_uppercase': ?excludeUppercase,
+           'include_space': ?includeSpace,
+           'password_length': ?passwordLength,
+           'region': ?region,
+           'require_each_included_type': ?requireEachIncludedType,
          },
        );
 

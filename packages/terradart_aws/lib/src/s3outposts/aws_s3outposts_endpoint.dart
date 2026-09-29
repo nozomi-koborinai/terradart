@@ -38,11 +38,10 @@ final class AwsS3outpostsEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessType != null) 'access_type': accessType,
-           if (customerOwnedIpv4Pool != null)
-             'customer_owned_ipv4_pool': customerOwnedIpv4Pool,
+           'access_type': ?accessType,
+           'customer_owned_ipv4_pool': ?customerOwnedIpv4Pool,
            'outpost_id': outpostId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_group_id': securityGroupId.encodeAs('id'),
            'subnet_id': subnetId.encodeAs('id'),
          },

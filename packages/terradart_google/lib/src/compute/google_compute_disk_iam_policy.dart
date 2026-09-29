@@ -30,8 +30,8 @@ final class GoogleComputeDiskIamPolicy extends Resource {
          argMap: {
            'name': name,
            'policy_data': policyData,
-           if (zone != null) 'zone': zone,
-           if (project != null) 'project': project,
+           'zone': ?zone,
+           'project': ?project,
          },
        );
 

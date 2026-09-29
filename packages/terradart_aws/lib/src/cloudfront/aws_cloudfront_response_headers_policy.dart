@@ -42,14 +42,12 @@ final class CloudfrontResponseHeadersPolicyCorsConfig {
   Map<String, Object?> encode() => {
     'access_control_allow_credentials': accessControlAllowCredentials
         .toTfJson(),
-    if (accessControlMaxAgeSec != null)
-      'access_control_max_age_sec': accessControlMaxAgeSec!.toTfJson(),
+    'access_control_max_age_sec': ?accessControlMaxAgeSec?.toTfJson(),
     'origin_override': originOverride.toTfJson(),
     'access_control_allow_headers': accessControlAllowHeaders.encode(),
     'access_control_allow_methods': accessControlAllowMethods.encode(),
     'access_control_allow_origins': accessControlAllowOrigins.encode(),
-    if (accessControlExposeHeaders != null)
-      'access_control_expose_headers': accessControlExposeHeaders!.encode(),
+    'access_control_expose_headers': ?accessControlExposeHeaders?.encode(),
   };
 }
 
@@ -63,9 +61,7 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowHeaders {
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Typed helper for the `cors_config.access_control_allow_methods` block of
@@ -78,9 +74,7 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowMethods {
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Typed helper for the `cors_config.access_control_allow_origins` block of
@@ -93,9 +87,7 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowOrigins {
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Typed helper for the `cors_config.access_control_expose_headers` block of
@@ -108,9 +100,7 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlExposeHeaders 
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Typed helper for the `custom_headers_config` block of
@@ -207,15 +197,12 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfig {
   xssProtection;
 
   Map<String, Object?> encode() => {
-    if (contentSecurityPolicy != null)
-      'content_security_policy': contentSecurityPolicy!.encode(),
-    if (contentTypeOptions != null)
-      'content_type_options': contentTypeOptions!.encode(),
-    if (frameOptions != null) 'frame_options': frameOptions!.encode(),
-    if (referrerPolicy != null) 'referrer_policy': referrerPolicy!.encode(),
-    if (strictTransportSecurity != null)
-      'strict_transport_security': strictTransportSecurity!.encode(),
-    if (xssProtection != null) 'xss_protection': xssProtection!.encode(),
+    'content_security_policy': ?contentSecurityPolicy?.encode(),
+    'content_type_options': ?contentTypeOptions?.encode(),
+    'frame_options': ?frameOptions?.encode(),
+    'referrer_policy': ?referrerPolicy?.encode(),
+    'strict_transport_security': ?strictTransportSecurity?.encode(),
+    'xss_protection': ?xssProtection?.encode(),
   };
 }
 
@@ -348,10 +335,9 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfigStrictTransportS
 
   Map<String, Object?> encode() => {
     'access_control_max_age_sec': accessControlMaxAgeSec.toTfJson(),
-    if (includeSubdomains != null)
-      'include_subdomains': includeSubdomains!.toTfJson(),
+    'include_subdomains': ?includeSubdomains?.toTfJson(),
     'override': override.toTfJson(),
-    if (preload != null) 'preload': preload!.toTfJson(),
+    'preload': ?preload?.toTfJson(),
   };
 }
 
@@ -375,10 +361,10 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfigXssProtection {
   final TfArg<String>? reportUri;
 
   Map<String, Object?> encode() => {
-    if (modeBlock != null) 'mode_block': modeBlock!.toTfJson(),
+    'mode_block': ?modeBlock?.toTfJson(),
     'override': override.toTfJson(),
     'protection': protection.toTfJson(),
-    if (reportUri != null) 'report_uri': reportUri!.toTfJson(),
+    'report_uri': ?reportUri?.toTfJson(),
   };
 }
 
@@ -422,7 +408,7 @@ final class AwsCloudfrontResponseHeadersPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'name': name,
            if (corsConfig != null)
              'cors_config': TfArg.literal(corsConfig.encode()),

@@ -19,10 +19,7 @@ final class DataAwsRoute53ResolverFirewallConfig extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'resource_id': resourceId,
-         },
+         argMap: {'region': ?region, 'resource_id': resourceId},
        );
 
   @override

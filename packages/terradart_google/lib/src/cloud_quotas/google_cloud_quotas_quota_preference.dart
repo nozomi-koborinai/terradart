@@ -32,7 +32,7 @@ final class CloudQuotasQuotaPreferenceQuotaConfig {
   final TfArg<String> preferredValue;
 
   Map<String, Object?> encode() => {
-    if (annotations != null) 'annotations': annotations!.toTfJson(),
+    'annotations': ?annotations?.toTfJson(),
     'preferred_value': preferredValue.toTfJson(),
   };
 }
@@ -73,16 +73,15 @@ final class GoogleCloudQuotasQuotaPreference extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (parent != null) 'parent': parent,
-           if (name != null) 'name': name,
-           if (service != null) 'service': service,
-           if (quotaId != null) 'quota_id': quotaId,
+           'parent': ?parent,
+           'name': ?name,
+           'service': ?service,
+           'quota_id': ?quotaId,
            'quota_config': TfArg.literal(quotaConfig.encode()),
-           if (dimensions != null) 'dimensions': dimensions,
-           if (contactEmail != null) 'contact_email': contactEmail,
-           if (justification != null) 'justification': justification,
-           if (ignoreSafetyChecks != null)
-             'ignore_safety_checks': ignoreSafetyChecks,
+           'dimensions': ?dimensions,
+           'contact_email': ?contactEmail,
+           'justification': ?justification,
+           'ignore_safety_checks': ?ignoreSafetyChecks,
          },
        );
 

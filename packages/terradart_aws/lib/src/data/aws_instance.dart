@@ -42,12 +42,12 @@ final class DataAwsInstance extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (getPasswordData != null) 'get_password_data': getPasswordData,
-           if (getUserData != null) 'get_user_data': getUserData,
-           if (instanceId != null) 'instance_id': instanceId,
-           if (instanceTags != null) 'instance_tags': instanceTags,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'get_password_data': ?getPasswordData,
+           'get_user_data': ?getUserData,
+           'instance_id': ?instanceId,
+           'instance_tags': ?instanceTags,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

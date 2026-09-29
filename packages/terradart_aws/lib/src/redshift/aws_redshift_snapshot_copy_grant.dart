@@ -25,10 +25,10 @@ final class AwsRedshiftSnapshotCopyGrant extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'region': ?region,
            'snapshot_copy_grant_name': snapshotCopyGrantName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

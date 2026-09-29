@@ -85,8 +85,8 @@ final class AwsKeyPair extends Resource {
          argMap: {
            ...?keyName?.argMap,
            'public_key': publicKey,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

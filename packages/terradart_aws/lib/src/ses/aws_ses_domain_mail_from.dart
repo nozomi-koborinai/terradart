@@ -33,11 +33,10 @@ final class AwsSesDomainMailFrom extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (behaviorOnMxFailure != null)
-             'behavior_on_mx_failure': behaviorOnMxFailure,
+           'behavior_on_mx_failure': ?behaviorOnMxFailure,
            'domain': domain,
            'mail_from_domain': mailFromDomain,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

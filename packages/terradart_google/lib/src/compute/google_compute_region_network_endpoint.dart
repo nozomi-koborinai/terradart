@@ -33,14 +33,13 @@ final class GoogleComputeRegionNetworkEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clientDestinationPort != null)
-             'client_destination_port': clientDestinationPort,
-           if (fqdn != null) 'fqdn': fqdn,
-           if (instance != null) 'instance': instance,
-           if (ipAddress != null) 'ip_address': ipAddress,
+           'client_destination_port': ?clientDestinationPort,
+           'fqdn': ?fqdn,
+           'instance': ?instance,
+           'ip_address': ?ipAddress,
            'port': port,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
            'region_network_endpoint_group': regionNetworkEndpointGroup,
          },
        );

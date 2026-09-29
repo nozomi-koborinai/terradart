@@ -22,10 +22,10 @@ final class DataAwsBudgetsBudget extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
-           if (tags != null) 'tags': tags,
+           'name_prefix': ?namePrefix,
+           'tags': ?tags,
          },
        );
 

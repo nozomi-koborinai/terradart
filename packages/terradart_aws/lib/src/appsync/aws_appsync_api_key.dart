@@ -24,9 +24,9 @@ final class AwsAppsyncApiKey extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (description != null) 'description': description,
-           if (expires != null) 'expires': expires,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'expires': ?expires,
+           'region': ?region,
          },
        );
 

@@ -34,7 +34,7 @@ final class ComputeRouterPeerAdvertisedIpRanges {
   final TfArg<String> range;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'range': range.toTfJson(),
   };
 }
@@ -60,11 +60,9 @@ final class ComputeRouterPeerBfd {
   sessionInitializationMode;
 
   Map<String, Object?> encode() => {
-    if (minReceiveInterval != null)
-      'min_receive_interval': minReceiveInterval!.toTfJson(),
-    if (minTransmitInterval != null)
-      'min_transmit_interval': minTransmitInterval!.toTfJson(),
-    if (multiplier != null) 'multiplier': multiplier!.toTfJson(),
+    'min_receive_interval': ?minReceiveInterval?.toTfJson(),
+    'min_transmit_interval': ?minTransmitInterval?.toTfJson(),
+    'multiplier': ?multiplier?.toTfJson(),
     'session_initialization_mode': sessionInitializationMode.toTfJson(),
   };
 }
@@ -149,30 +147,24 @@ final class GoogleComputeRouterPeer extends Resource {
            'router': router,
            'interface': interface,
            'peer_asn': peerAsn,
-           if (region != null) 'region': region,
-           if (peerIpAddress != null) 'peer_ip_address': peerIpAddress,
-           if (advertiseMode != null) 'advertise_mode': advertiseMode,
-           if (advertisedGroups != null) 'advertised_groups': advertisedGroups,
-           if (advertisedRoutePriority != null)
-             'advertised_route_priority': advertisedRoutePriority,
-           if (enable != null) 'enable': enable,
-           if (enableIpv4 != null) 'enable_ipv4': enableIpv4,
-           if (enableIpv6 != null) 'enable_ipv6': enableIpv6,
-           if (ipAddress != null) 'ip_address': ipAddress,
-           if (ipv4NexthopAddress != null)
-             'ipv4_nexthop_address': ipv4NexthopAddress,
-           if (ipv6NexthopAddress != null)
-             'ipv6_nexthop_address': ipv6NexthopAddress,
-           if (peerIpv4NexthopAddress != null)
-             'peer_ipv4_nexthop_address': peerIpv4NexthopAddress,
-           if (peerIpv6NexthopAddress != null)
-             'peer_ipv6_nexthop_address': peerIpv6NexthopAddress,
-           if (exportPolicies != null) 'export_policies': exportPolicies,
-           if (importPolicies != null) 'import_policies': importPolicies,
-           if (routerApplianceInstance != null)
-             'router_appliance_instance': routerApplianceInstance,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'peer_ip_address': ?peerIpAddress,
+           'advertise_mode': ?advertiseMode,
+           'advertised_groups': ?advertisedGroups,
+           'advertised_route_priority': ?advertisedRoutePriority,
+           'enable': ?enable,
+           'enable_ipv4': ?enableIpv4,
+           'enable_ipv6': ?enableIpv6,
+           'ip_address': ?ipAddress,
+           'ipv4_nexthop_address': ?ipv4NexthopAddress,
+           'ipv6_nexthop_address': ?ipv6NexthopAddress,
+           'peer_ipv4_nexthop_address': ?peerIpv4NexthopAddress,
+           'peer_ipv6_nexthop_address': ?peerIpv6NexthopAddress,
+           'export_policies': ?exportPolicies,
+           'import_policies': ?importPolicies,
+           'router_appliance_instance': ?routerApplianceInstance,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

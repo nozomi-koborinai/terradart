@@ -25,8 +25,8 @@ final class DataGoogleBeyondcorpSecurityGatewayIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
            'security_gateway_id': securityGatewayId,
          },
        );

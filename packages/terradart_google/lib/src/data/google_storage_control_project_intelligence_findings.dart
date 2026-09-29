@@ -26,10 +26,10 @@ final class DataGoogleStorageControlProjectIntelligenceFindings extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (filter != null) 'filter': filter,
-           if (location != null) 'location': location,
-           if (pageSize != null) 'page_size': pageSize,
-           if (project != null) 'project': project,
+           'filter': ?filter,
+           'location': ?location,
+           'page_size': ?pageSize,
+           'project': ?project,
          },
        );
 

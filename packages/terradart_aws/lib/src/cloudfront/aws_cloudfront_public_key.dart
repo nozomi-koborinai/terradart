@@ -80,7 +80,7 @@ final class AwsCloudfrontPublicKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'encoded_key': encodedKey,
            ...?name?.argMap,
          },

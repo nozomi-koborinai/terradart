@@ -26,9 +26,9 @@ final class AwsTimestreamwriteDatabase extends Resource {
          terraformType: tfType,
          argMap: {
            'database_name': databaseName,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -100,11 +100,11 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -123,8 +123,8 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -149,10 +149,10 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudC
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -406,11 +406,11 @@ final class GoogleCloudSecurityComplianceFrameworkDeployment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'framework_deployment_id': frameworkDeploymentId,
-           if (location != null) 'location': location,
-           if (parent != null) 'parent': parent,
+           'location': ?location,
+           'parent': ?parent,
            'cloud_control_metadata': TfArg.literal([
              for (final e in cloudControlMetadata) e.encode(),
            ]),

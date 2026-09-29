@@ -36,7 +36,7 @@ final class DataAwsRegions extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allRegions != null) 'all_regions': allRegions,
+           'all_regions': ?allRegions,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

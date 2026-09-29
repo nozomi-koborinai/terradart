@@ -55,10 +55,10 @@ final class GoogleDialogflowConversationProfile extends Resource {
          argMap: {
            'display_name': displayName,
            'location': location,
-           if (languageCode != null) 'language_code': languageCode,
-           if (timeZone != null) 'time_zone': timeZone,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'language_code': ?languageCode,
+           'time_zone': ?timeZone,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

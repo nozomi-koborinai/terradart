@@ -32,9 +32,8 @@ final class AppflowFlowDestinationFlowConfig {
   destinationConnectorProperties;
 
   Map<String, Object?> encode() => {
-    if (apiVersion != null) 'api_version': apiVersion!.toTfJson(),
-    if (connectorProfileName != null)
-      'connector_profile_name': connectorProfileName!.toTfJson(),
+    'api_version': ?apiVersion?.toTfJson(),
+    'connector_profile_name': ?connectorProfileName?.toTfJson(),
     'connector_type': connectorType.toTfJson(),
     'destination_connector_properties': destinationConnectorProperties.encode(),
   };
@@ -131,20 +130,19 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorProperties {
   zendesk;
 
   Map<String, Object?> encode() => {
-    if (customConnector != null) 'custom_connector': customConnector!.encode(),
-    if (customerProfiles != null)
-      'customer_profiles': customerProfiles!.encode(),
-    if (eventBridge != null) 'event_bridge': eventBridge!.encode(),
-    if (honeycode != null) 'honeycode': honeycode!.encode(),
-    if (lookoutMetrics != null) 'lookout_metrics': lookoutMetrics!.encode(),
-    if (marketo != null) 'marketo': marketo!.encode(),
-    if (redshift != null) 'redshift': redshift!.encode(),
-    if (s3 != null) 's3': s3!.encode(),
-    if (salesforce != null) 'salesforce': salesforce!.encode(),
-    if (sapoData != null) 'sapo_data': sapoData!.encode(),
-    if (snowflake != null) 'snowflake': snowflake!.encode(),
-    if (upsolver != null) 'upsolver': upsolver!.encode(),
-    if (zendesk != null) 'zendesk': zendesk!.encode(),
+    'custom_connector': ?customConnector?.encode(),
+    'customer_profiles': ?customerProfiles?.encode(),
+    'event_bridge': ?eventBridge?.encode(),
+    'honeycode': ?honeycode?.encode(),
+    'lookout_metrics': ?lookoutMetrics?.encode(),
+    'marketo': ?marketo?.encode(),
+    'redshift': ?redshift?.encode(),
+    's3': ?s3?.encode(),
+    'salesforce': ?salesforce?.encode(),
+    'sapo_data': ?sapoData?.encode(),
+    'snowflake': ?snowflake?.encode(),
+    'upsolver': ?upsolver?.encode(),
+    'zendesk': ?zendesk?.encode(),
   };
 }
 
@@ -175,14 +173,11 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
   errorHandlingConfig;
 
   Map<String, Object?> encode() => {
-    if (customProperties != null)
-      'custom_properties': customProperties!.toTfJson(),
+    'custom_properties': ?customProperties?.toTfJson(),
     'entity_name': entityName.toTfJson(),
-    if (idFieldNames != null) 'id_field_names': idFieldNames!.toTfJson(),
-    if (writeOperationType != null)
-      'write_operation_type': writeOperationType!.toTfJson(),
-    if (errorHandlingConfig != null)
-      'error_handling_config': errorHandlingConfig!.encode(),
+    'id_field_names': ?idFieldNames?.toTfJson(),
+    'write_operation_type': ?writeOperationType?.toTfJson(),
+    'error_handling_config': ?errorHandlingConfig?.encode(),
   };
 }
 
@@ -218,12 +213,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (failOnFirstDestinationError != null)
-      'fail_on_first_destination_error': failOnFirstDestinationError!
-          .toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
   };
 }
 
@@ -242,7 +234,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
 
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
-    if (objectTypeName != null) 'object_type_name': objectTypeName!.toTfJson(),
+    'object_type_name': ?objectTypeName?.toTfJson(),
   };
 }
 
@@ -262,8 +254,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesEventB
 
   Map<String, Object?> encode() => {
     'object': object.toTfJson(),
-    if (errorHandlingConfig != null)
-      'error_handling_config': errorHandlingConfig!.encode(),
+    'error_handling_config': ?errorHandlingConfig?.encode(),
   };
 }
 
@@ -284,12 +275,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesEventB
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (failOnFirstDestinationError != null)
-      'fail_on_first_destination_error': failOnFirstDestinationError!
-          .toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
   };
 }
 
@@ -309,8 +297,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesHoneyc
 
   Map<String, Object?> encode() => {
     'object': object.toTfJson(),
-    if (errorHandlingConfig != null)
-      'error_handling_config': errorHandlingConfig!.encode(),
+    'error_handling_config': ?errorHandlingConfig?.encode(),
   };
 }
 
@@ -331,12 +318,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesHoneyc
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (failOnFirstDestinationError != null)
-      'fail_on_first_destination_error': failOnFirstDestinationError!
-          .toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
   };
 }
 
@@ -365,8 +349,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesMarket
 
   Map<String, Object?> encode() => {
     'object': object.toTfJson(),
-    if (errorHandlingConfig != null)
-      'error_handling_config': errorHandlingConfig!.encode(),
+    'error_handling_config': ?errorHandlingConfig?.encode(),
   };
 }
 
@@ -387,12 +370,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesMarket
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (failOnFirstDestinationError != null)
-      'fail_on_first_destination_error': failOnFirstDestinationError!
-          .toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
   };
 }
 
@@ -417,11 +397,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshi
   errorHandlingConfig;
 
   Map<String, Object?> encode() => {
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
     'intermediate_bucket_name': intermediateBucketName.toTfJson(),
     'object': object.toTfJson(),
-    if (errorHandlingConfig != null)
-      'error_handling_config': errorHandlingConfig!.encode(),
+    'error_handling_config': ?errorHandlingConfig?.encode(),
   };
 }
 
@@ -442,12 +421,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesRedshi
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (failOnFirstDestinationError != null)
-      'fail_on_first_destination_error': failOnFirstDestinationError!
-          .toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
   };
 }
 
@@ -470,9 +446,8 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3 {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (s3OutputFormatConfig != null)
-      's3_output_format_config': s3OutputFormatConfig!.encode(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    's3_output_format_config': ?s3OutputFormatConfig?.encode(),
   };
 }
 
@@ -501,12 +476,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
   prefixConfig;
 
   Map<String, Object?> encode() => {
-    if (fileType != null) 'file_type': fileType!.toTfJson(),
-    if (preserveSourceDataTyping != null)
-      'preserve_source_data_typing': preserveSourceDataTyping!.toTfJson(),
-    if (aggregationConfig != null)
-      'aggregation_config': aggregationConfig!.encode(),
-    if (prefixConfig != null) 'prefix_config': prefixConfig!.encode(),
+    'file_type': ?fileType?.toTfJson(),
+    'preserve_source_data_typing': ?preserveSourceDataTyping?.toTfJson(),
+    'aggregation_config': ?aggregationConfig?.encode(),
+    'prefix_config': ?prefixConfig?.encode(),
   };
 }
 
@@ -541,9 +514,8 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
   final TfArg<num>? targetFileSize;
 
   Map<String, Object?> encode() => {
-    if (aggregationType != null)
-      'aggregation_type': aggregationType!.toTfJson(),
-    if (targetFileSize != null) 'target_file_size': targetFileSize!.toTfJson(),
+    'aggregation_type': ?aggregationType?.toTfJson(),
+    'target_file_size': ?targetFileSize?.toTfJson(),
   };
 }
 
@@ -588,10 +560,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
   prefixType;
 
   Map<String, Object?> encode() => {
-    if (prefixFormat != null) 'prefix_format': prefixFormat!.toTfJson(),
+    'prefix_format': ?prefixFormat?.toTfJson(),
     if (prefixHierarchy != null)
       'prefix_hierarchy': [for (final e in prefixHierarchy!) e.toTfJson()],
-    if (prefixType != null) 'prefix_type': prefixType!.toTfJson(),
+    'prefix_type': ?prefixType?.toTfJson(),
   };
 }
 
@@ -668,14 +640,11 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesf
   errorHandlingConfig;
 
   Map<String, Object?> encode() => {
-    if (dataTransferApi != null)
-      'data_transfer_api': dataTransferApi!.toTfJson(),
-    if (idFieldNames != null) 'id_field_names': idFieldNames!.toTfJson(),
+    'data_transfer_api': ?dataTransferApi?.toTfJson(),
+    'id_field_names': ?idFieldNames?.toTfJson(),
     'object': object.toTfJson(),
-    if (writeOperationType != null)
-      'write_operation_type': writeOperationType!.toTfJson(),
-    if (errorHandlingConfig != null)
-      'error_handling_config': errorHandlingConfig!.encode(),
+    'write_operation_type': ?writeOperationType?.toTfJson(),
+    'error_handling_config': ?errorHandlingConfig?.encode(),
   };
 }
 
@@ -725,12 +694,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesf
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (failOnFirstDestinationError != null)
-      'fail_on_first_destination_error': failOnFirstDestinationError!
-          .toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
   };
 }
 
@@ -762,15 +728,12 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
   successResponseHandlingConfig;
 
   Map<String, Object?> encode() => {
-    if (idFieldNames != null) 'id_field_names': idFieldNames!.toTfJson(),
+    'id_field_names': ?idFieldNames?.toTfJson(),
     'object_path': objectPath.toTfJson(),
-    if (writeOperationType != null)
-      'write_operation_type': writeOperationType!.toTfJson(),
-    if (errorHandlingConfig != null)
-      'error_handling_config': errorHandlingConfig!.encode(),
-    if (successResponseHandlingConfig != null)
-      'success_response_handling_config': successResponseHandlingConfig!
-          .encode(),
+    'write_operation_type': ?writeOperationType?.toTfJson(),
+    'error_handling_config': ?errorHandlingConfig?.encode(),
+    'success_response_handling_config': ?successResponseHandlingConfig
+        ?.encode(),
   };
 }
 
@@ -806,12 +769,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (failOnFirstDestinationError != null)
-      'fail_on_first_destination_error': failOnFirstDestinationError!
-          .toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
   };
 }
 
@@ -829,9 +789,8 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
   final TfArg<String>? bucketPrefix;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
   };
 }
 
@@ -856,11 +815,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowfl
   errorHandlingConfig;
 
   Map<String, Object?> encode() => {
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
     'intermediate_bucket_name': intermediateBucketName.toTfJson(),
     'object': object.toTfJson(),
-    if (errorHandlingConfig != null)
-      'error_handling_config': errorHandlingConfig!.encode(),
+    'error_handling_config': ?errorHandlingConfig?.encode(),
   };
 }
 
@@ -881,12 +839,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSnowfl
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (failOnFirstDestinationError != null)
-      'fail_on_first_destination_error': failOnFirstDestinationError!
-          .toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
   };
 }
 
@@ -909,7 +864,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
     's3_output_format_config': s3OutputFormatConfig.encode(),
   };
 }
@@ -936,9 +891,8 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
   prefixConfig;
 
   Map<String, Object?> encode() => {
-    if (fileType != null) 'file_type': fileType!.toTfJson(),
-    if (aggregationConfig != null)
-      'aggregation_config': aggregationConfig!.encode(),
+    'file_type': ?fileType?.toTfJson(),
+    'aggregation_config': ?aggregationConfig?.encode(),
     'prefix_config': prefixConfig.encode(),
   };
 }
@@ -971,8 +925,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
   aggregationType;
 
   Map<String, Object?> encode() => {
-    if (aggregationType != null)
-      'aggregation_type': aggregationType!.toTfJson(),
+    'aggregation_type': ?aggregationType?.toTfJson(),
   };
 }
 
@@ -1017,7 +970,7 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
   prefixType;
 
   Map<String, Object?> encode() => {
-    if (prefixFormat != null) 'prefix_format': prefixFormat!.toTfJson(),
+    'prefix_format': ?prefixFormat?.toTfJson(),
     if (prefixHierarchy != null)
       'prefix_hierarchy': [for (final e in prefixHierarchy!) e.toTfJson()],
     'prefix_type': prefixType.toTfJson(),
@@ -1091,12 +1044,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendes
   errorHandlingConfig;
 
   Map<String, Object?> encode() => {
-    if (idFieldNames != null) 'id_field_names': idFieldNames!.toTfJson(),
+    'id_field_names': ?idFieldNames?.toTfJson(),
     'object': object.toTfJson(),
-    if (writeOperationType != null)
-      'write_operation_type': writeOperationType!.toTfJson(),
-    if (errorHandlingConfig != null)
-      'error_handling_config': errorHandlingConfig!.encode(),
+    'write_operation_type': ?writeOperationType?.toTfJson(),
+    'error_handling_config': ?errorHandlingConfig?.encode(),
   };
 }
 
@@ -1132,12 +1083,9 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendes
   final TfArg<bool>? failOnFirstDestinationError;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (failOnFirstDestinationError != null)
-      'fail_on_first_destination_error': failOnFirstDestinationError!
-          .toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'fail_on_first_destination_error': ?failOnFirstDestinationError?.toTfJson(),
   };
 }
 
@@ -1150,7 +1098,7 @@ final class AppflowFlowMetadataCatalogConfig {
   final AppflowFlowMetadataCatalogConfigGlueDataCatalog? glueDataCatalog;
 
   Map<String, Object?> encode() => {
-    if (glueDataCatalog != null) 'glue_data_catalog': glueDataCatalog!.encode(),
+    'glue_data_catalog': ?glueDataCatalog?.encode(),
   };
 }
 
@@ -1201,12 +1149,10 @@ final class AppflowFlowSourceFlowConfig {
   sourceConnectorProperties;
 
   Map<String, Object?> encode() => {
-    if (apiVersion != null) 'api_version': apiVersion!.toTfJson(),
-    if (connectorProfileName != null)
-      'connector_profile_name': connectorProfileName!.toTfJson(),
+    'api_version': ?apiVersion?.toTfJson(),
+    'connector_profile_name': ?connectorProfileName?.toTfJson(),
     'connector_type': connectorType.toTfJson(),
-    if (incrementalPullConfig != null)
-      'incremental_pull_config': incrementalPullConfig!.encode(),
+    'incremental_pull_config': ?incrementalPullConfig?.encode(),
     'source_connector_properties': sourceConnectorProperties.encode(),
   };
 }
@@ -1254,8 +1200,7 @@ final class AppflowFlowSourceFlowConfigIncrementalPullConfig {
   final TfArg<String>? datetimeTypeFieldName;
 
   Map<String, Object?> encode() => {
-    if (datetimeTypeFieldName != null)
-      'datetime_type_field_name': datetimeTypeFieldName!.toTfJson(),
+    'datetime_type_field_name': ?datetimeTypeFieldName?.toTfJson(),
   };
 }
 
@@ -1323,22 +1268,22 @@ final class AppflowFlowSourceFlowConfigSourceConnectorProperties {
   final AppflowFlowSourceFlowConfigSourceConnectorPropertiesZendesk? zendesk;
 
   Map<String, Object?> encode() => {
-    if (amplitude != null) 'amplitude': amplitude!.encode(),
-    if (customConnector != null) 'custom_connector': customConnector!.encode(),
-    if (datadog != null) 'datadog': datadog!.encode(),
-    if (dynatrace != null) 'dynatrace': dynatrace!.encode(),
-    if (googleAnalytics != null) 'google_analytics': googleAnalytics!.encode(),
-    if (inforNexus != null) 'infor_nexus': inforNexus!.encode(),
-    if (marketo != null) 'marketo': marketo!.encode(),
-    if (s3 != null) 's3': s3!.encode(),
-    if (salesforce != null) 'salesforce': salesforce!.encode(),
-    if (sapoData != null) 'sapo_data': sapoData!.encode(),
-    if (serviceNow != null) 'service_now': serviceNow!.encode(),
-    if (singular != null) 'singular': singular!.encode(),
-    if (slack != null) 'slack': slack!.encode(),
-    if (trendmicro != null) 'trendmicro': trendmicro!.encode(),
-    if (veeva != null) 'veeva': veeva!.encode(),
-    if (zendesk != null) 'zendesk': zendesk!.encode(),
+    'amplitude': ?amplitude?.encode(),
+    'custom_connector': ?customConnector?.encode(),
+    'datadog': ?datadog?.encode(),
+    'dynatrace': ?dynatrace?.encode(),
+    'google_analytics': ?googleAnalytics?.encode(),
+    'infor_nexus': ?inforNexus?.encode(),
+    'marketo': ?marketo?.encode(),
+    's3': ?s3?.encode(),
+    'salesforce': ?salesforce?.encode(),
+    'sapo_data': ?sapoData?.encode(),
+    'service_now': ?serviceNow?.encode(),
+    'singular': ?singular?.encode(),
+    'slack': ?slack?.encode(),
+    'trendmicro': ?trendmicro?.encode(),
+    'veeva': ?veeva?.encode(),
+    'zendesk': ?zendesk?.encode(),
   };
 }
 
@@ -1369,8 +1314,7 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesCustomConnector 
   final TfArg<String> entityName;
 
   Map<String, Object?> encode() => {
-    if (customProperties != null)
-      'custom_properties': customProperties!.toTfJson(),
+    'custom_properties': ?customProperties?.toTfJson(),
     'entity_name': entityName.toTfJson(),
   };
 }
@@ -1460,8 +1404,7 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3 {
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': bucketPrefix.toTfJson(),
-    if (s3InputFormatConfig != null)
-      's3_input_format_config': s3InputFormatConfig!.encode(),
+    's3_input_format_config': ?s3InputFormatConfig?.encode(),
   };
 }
 
@@ -1479,8 +1422,7 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatC
   s3InputFileType;
 
   Map<String, Object?> encode() => {
-    if (s3InputFileType != null)
-      's3_input_file_type': s3InputFileType!.toTfJson(),
+    's3_input_file_type': ?s3InputFileType?.toTfJson(),
   };
 }
 
@@ -1520,12 +1462,9 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforce {
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    if (dataTransferApi != null)
-      'data_transfer_api': dataTransferApi!.toTfJson(),
-    if (enableDynamicFieldUpdate != null)
-      'enable_dynamic_field_update': enableDynamicFieldUpdate!.toTfJson(),
-    if (includeDeletedRecords != null)
-      'include_deleted_records': includeDeletedRecords!.toTfJson(),
+    'data_transfer_api': ?dataTransferApi?.toTfJson(),
+    'enable_dynamic_field_update': ?enableDynamicFieldUpdate?.toTfJson(),
+    'include_deleted_records': ?includeDeletedRecords?.toTfJson(),
     'object': object.toTfJson(),
   };
 }
@@ -1564,10 +1503,8 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSapoData {
 
   Map<String, Object?> encode() => {
     'object_path': objectPath.toTfJson(),
-    if (paginationConfig != null)
-      'pagination_config': paginationConfig!.encode(),
-    if (parallelismConfig != null)
-      'parallelism_config': parallelismConfig!.encode(),
+    'pagination_config': ?paginationConfig?.encode(),
+    'parallelism_config': ?parallelismConfig?.encode(),
   };
 }
 
@@ -1672,13 +1609,10 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesVeeva {
   final TfArg<String> object;
 
   Map<String, Object?> encode() => {
-    if (documentType != null) 'document_type': documentType!.toTfJson(),
-    if (includeAllVersions != null)
-      'include_all_versions': includeAllVersions!.toTfJson(),
-    if (includeRenditions != null)
-      'include_renditions': includeRenditions!.toTfJson(),
-    if (includeSourceFiles != null)
-      'include_source_files': includeSourceFiles!.toTfJson(),
+    'document_type': ?documentType?.toTfJson(),
+    'include_all_versions': ?includeAllVersions?.toTfJson(),
+    'include_renditions': ?includeRenditions?.toTfJson(),
+    'include_source_files': ?includeSourceFiles?.toTfJson(),
     'object': object.toTfJson(),
   };
 }
@@ -1719,10 +1653,9 @@ final class AppflowFlowTask {
   final List<AppflowFlowTaskConnectorOperator>? connectorOperator;
 
   Map<String, Object?> encode() => {
-    if (destinationField != null)
-      'destination_field': destinationField!.toTfJson(),
-    if (sourceFields != null) 'source_fields': sourceFields!.toTfJson(),
-    if (taskProperties != null) 'task_properties': taskProperties!.toTfJson(),
+    'destination_field': ?destinationField?.toTfJson(),
+    'source_fields': ?sourceFields?.toTfJson(),
+    'task_properties': ?taskProperties?.toTfJson(),
     'task_type': taskType.toTfJson(),
     if (connectorOperator != null)
       'connector_operator': [for (final e in connectorOperator!) e.encode()],
@@ -1803,24 +1736,22 @@ final class AppflowFlowTaskConnectorOperator {
   final TfArg<AppflowFlowTaskConnectorOperatorZendesk>? zendesk;
 
   Map<String, Object?> encode() => {
-    if (amplitude != null) 'amplitude': amplitude!.toTfJson(),
-    if (customConnector != null)
-      'custom_connector': customConnector!.toTfJson(),
-    if (datadog != null) 'datadog': datadog!.toTfJson(),
-    if (dynatrace != null) 'dynatrace': dynatrace!.toTfJson(),
-    if (googleAnalytics != null)
-      'google_analytics': googleAnalytics!.toTfJson(),
-    if (inforNexus != null) 'infor_nexus': inforNexus!.toTfJson(),
-    if (marketo != null) 'marketo': marketo!.toTfJson(),
-    if (s3 != null) 's3': s3!.toTfJson(),
-    if (salesforce != null) 'salesforce': salesforce!.toTfJson(),
-    if (sapoData != null) 'sapo_data': sapoData!.toTfJson(),
-    if (serviceNow != null) 'service_now': serviceNow!.toTfJson(),
-    if (singular != null) 'singular': singular!.toTfJson(),
-    if (slack != null) 'slack': slack!.toTfJson(),
-    if (trendmicro != null) 'trendmicro': trendmicro!.toTfJson(),
-    if (veeva != null) 'veeva': veeva!.toTfJson(),
-    if (zendesk != null) 'zendesk': zendesk!.toTfJson(),
+    'amplitude': ?amplitude?.toTfJson(),
+    'custom_connector': ?customConnector?.toTfJson(),
+    'datadog': ?datadog?.toTfJson(),
+    'dynatrace': ?dynatrace?.toTfJson(),
+    'google_analytics': ?googleAnalytics?.toTfJson(),
+    'infor_nexus': ?inforNexus?.toTfJson(),
+    'marketo': ?marketo?.toTfJson(),
+    's3': ?s3?.toTfJson(),
+    'salesforce': ?salesforce?.toTfJson(),
+    'sapo_data': ?sapoData?.toTfJson(),
+    'service_now': ?serviceNow?.toTfJson(),
+    'singular': ?singular?.toTfJson(),
+    'slack': ?slack?.toTfJson(),
+    'trendmicro': ?trendmicro?.toTfJson(),
+    'veeva': ?veeva?.toTfJson(),
+    'zendesk': ?zendesk?.toTfJson(),
   };
 }
 
@@ -2217,8 +2148,7 @@ final class AppflowFlowTriggerConfig {
 
   Map<String, Object?> encode() => {
     'trigger_type': triggerType.toTfJson(),
-    if (triggerProperties != null)
-      'trigger_properties': triggerProperties!.encode(),
+    'trigger_properties': ?triggerProperties?.encode(),
   };
 }
 
@@ -2241,9 +2171,7 @@ final class AppflowFlowTriggerConfigTriggerProperties {
 
   final AppflowFlowTriggerConfigTriggerPropertiesScheduled? scheduled;
 
-  Map<String, Object?> encode() => {
-    if (scheduled != null) 'scheduled': scheduled!.encode(),
-  };
+  Map<String, Object?> encode() => {'scheduled': ?scheduled?.encode()};
 }
 
 /// Typed helper for the `trigger_config.trigger_properties.scheduled` block of
@@ -2276,16 +2204,13 @@ final class AppflowFlowTriggerConfigTriggerPropertiesScheduled {
   final TfArg<String>? timezone;
 
   Map<String, Object?> encode() => {
-    if (dataPullMode != null) 'data_pull_mode': dataPullMode!.toTfJson(),
-    if (firstExecutionFrom != null)
-      'first_execution_from': firstExecutionFrom!.toTfJson(),
-    if (scheduleEndTime != null)
-      'schedule_end_time': scheduleEndTime!.toTfJson(),
+    'data_pull_mode': ?dataPullMode?.toTfJson(),
+    'first_execution_from': ?firstExecutionFrom?.toTfJson(),
+    'schedule_end_time': ?scheduleEndTime?.toTfJson(),
     'schedule_expression': scheduleExpression.toTfJson(),
-    if (scheduleOffset != null) 'schedule_offset': scheduleOffset!.toTfJson(),
-    if (scheduleStartTime != null)
-      'schedule_start_time': scheduleStartTime!.toTfJson(),
-    if (timezone != null) 'timezone': timezone!.toTfJson(),
+    'schedule_offset': ?scheduleOffset?.toTfJson(),
+    'schedule_start_time': ?scheduleStartTime?.toTfJson(),
+    'timezone': ?timezone?.toTfJson(),
   };
 }
 
@@ -2325,11 +2250,11 @@ final class AwsAppflowFlow extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (kmsArn != null) 'kms_arn': kmsArn.encodeAs('arn'),
+           'description': ?description,
+           'kms_arn': ?kmsArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'destination_flow_config': TfArg.literal([
              for (final e in destinationFlowConfig) e.encode(),
            ]),

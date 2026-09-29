@@ -23,11 +23,10 @@ final class AwsDevicefarmProject extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultJobTimeoutMinutes != null)
-             'default_job_timeout_minutes': defaultJobTimeoutMinutes,
+           'default_job_timeout_minutes': ?defaultJobTimeoutMinutes,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

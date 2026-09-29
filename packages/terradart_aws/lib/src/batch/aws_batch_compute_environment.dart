@@ -153,27 +153,24 @@ final class BatchComputeEnvironmentComputeResources {
   final BatchComputeEnvironmentComputeResourcesLaunchTemplate? launchTemplate;
 
   Map<String, Object?> encode() => {
-    if (allocationStrategy != null)
-      'allocation_strategy': allocationStrategy!.toTfJson(),
-    if (bidPercentage != null) 'bid_percentage': bidPercentage!.toTfJson(),
-    if (desiredVcpus != null) 'desired_vcpus': desiredVcpus!.toTfJson(),
-    if (ec2KeyPair != null) 'ec2_key_pair': ec2KeyPair!.toTfJson(),
-    if (imageId != null) 'image_id': imageId!.toTfJson(),
-    if (instanceRole != null) 'instance_role': instanceRole!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
+    'allocation_strategy': ?allocationStrategy?.toTfJson(),
+    'bid_percentage': ?bidPercentage?.toTfJson(),
+    'desired_vcpus': ?desiredVcpus?.toTfJson(),
+    'ec2_key_pair': ?ec2KeyPair?.toTfJson(),
+    'image_id': ?imageId?.toTfJson(),
+    'instance_role': ?instanceRole?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
     'max_vcpus': maxVcpus.toTfJson(),
-    if (minVcpus != null) 'min_vcpus': minVcpus!.toTfJson(),
-    if (placementGroup != null) 'placement_group': placementGroup!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
-    if (spotIamFleetRole != null)
-      'spot_iam_fleet_role': spotIamFleetRole!.toTfJson(),
+    'min_vcpus': ?minVcpus?.toTfJson(),
+    'placement_group': ?placementGroup?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
+    'spot_iam_fleet_role': ?spotIamFleetRole?.toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'type': type.toTfJson(),
     if (ec2Configuration != null)
       'ec2_configuration': [for (final e in ec2Configuration!) e.encode()],
-    if (launchTemplate != null) 'launch_template': launchTemplate!.encode(),
+    'launch_template': ?launchTemplate?.encode(),
   };
 }
 
@@ -224,11 +221,9 @@ final class BatchComputeEnvironmentComputeResourcesEc2Configuration {
   final TfArg<String>? imageType;
 
   Map<String, Object?> encode() => {
-    if (imageIdOverride != null)
-      'image_id_override': imageIdOverride!.toTfJson(),
-    if (imageKubernetesVersion != null)
-      'image_kubernetes_version': imageKubernetesVersion!.toTfJson(),
-    if (imageType != null) 'image_type': imageType!.toTfJson(),
+    'image_id_override': ?imageIdOverride?.toTfJson(),
+    'image_kubernetes_version': ?imageKubernetesVersion?.toTfJson(),
+    'image_type': ?imageType?.toTfJson(),
   };
 }
 
@@ -248,7 +243,7 @@ final class BatchComputeEnvironmentComputeResourcesLaunchTemplate {
 
   Map<String, Object?> encode() => {
     ...?identifier?.encode(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -345,10 +340,8 @@ final class BatchComputeEnvironmentUpdatePolicy {
   final TfArg<bool>? terminateJobsOnUpdate;
 
   Map<String, Object?> encode() => {
-    if (jobExecutionTimeoutMinutes != null)
-      'job_execution_timeout_minutes': jobExecutionTimeoutMinutes!.toTfJson(),
-    if (terminateJobsOnUpdate != null)
-      'terminate_jobs_on_update': terminateJobsOnUpdate!.toTfJson(),
+    'job_execution_timeout_minutes': ?jobExecutionTimeoutMinutes?.toTfJson(),
+    'terminate_jobs_on_update': ?terminateJobsOnUpdate?.toTfJson(),
   };
 }
 
@@ -375,10 +368,10 @@ final class AwsBatchComputeEnvironment extends Resource {
          terraformType: tfType,
          argMap: {
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (serviceRole != null) 'service_role': serviceRole.encodeAs('arn'),
-           if (state != null) 'state': state,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'service_role': ?serviceRole?.encodeAs('arn'),
+           'state': ?state,
+           'tags': ?tags,
            'type': type,
            if (computeResources != null)
              'compute_resources': TfArg.literal(computeResources.encode()),

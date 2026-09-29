@@ -26,9 +26,9 @@ final class DataCustomHostnamesHostname {
   final TfArg<String>? startsWith;
 
   Map<String, Object?> encode() => {
-    if (contain != null) 'contain': contain!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (startsWith != null) 'starts_with': startsWith!.toTfJson(),
+    'contain': ?contain?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'starts_with': ?startsWith?.toTfJson(),
   };
 }
 
@@ -58,18 +58,16 @@ final class DataCloudflareCustomHostnames extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (certificateAuthority != null)
-             'certificate_authority': certificateAuthority,
-           if (customOriginServer != null)
-             'custom_origin_server': customOriginServer,
-           if (direction != null) 'direction': direction,
-           if (hostnameStatus != null) 'hostname_status': hostnameStatus,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
-           if (ssl != null) 'ssl': ssl,
-           if (sslStatus != null) 'ssl_status': sslStatus,
-           if (wildcard != null) 'wildcard': wildcard,
-           if (zoneId != null) 'zone_id': zoneId,
+           'certificate_authority': ?certificateAuthority,
+           'custom_origin_server': ?customOriginServer,
+           'direction': ?direction,
+           'hostname_status': ?hostnameStatus,
+           'max_items': ?maxItems,
+           'order': ?order,
+           'ssl': ?ssl,
+           'ssl_status': ?sslStatus,
+           'wildcard': ?wildcard,
+           'zone_id': ?zoneId,
            if (hostname != null) 'hostname': TfArg.literal(hostname.encode()),
          },
        );

@@ -20,7 +20,7 @@ final class AwsLicensemanagerGrantAccepter extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'grant_arn': grantArn, if (region != null) 'region': region},
+         argMap: {'grant_arn': grantArn, 'region': ?region},
        );
 
   @override

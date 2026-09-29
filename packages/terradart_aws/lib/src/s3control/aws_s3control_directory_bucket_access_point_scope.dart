@@ -25,7 +25,7 @@ final class S3controlDirectoryBucketAccessPointScopeScope {
   Map<String, Object?> encode() => {
     if (permissions != null)
       'permissions': [for (final e in permissions!) e.toTfJson()],
-    if (prefixes != null) 'prefixes': prefixes!.toTfJson(),
+    'prefixes': ?prefixes?.toTfJson(),
   };
 }
 
@@ -68,7 +68,7 @@ final class AwsS3controlDirectoryBucketAccessPointScope extends Resource {
          argMap: {
            'account_id': accountId,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (scope != null)
              'scope': TfArg.literal([for (final e in scope) e.encode()]),
          },

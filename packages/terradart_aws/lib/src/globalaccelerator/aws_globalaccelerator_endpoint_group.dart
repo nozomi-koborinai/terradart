@@ -39,11 +39,10 @@ final class GlobalacceleratorEndpointGroupEndpointConfiguration {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (attachmentArn != null) 'attachment_arn': attachmentArn!.toTfJson(),
-    if (clientIpPreservationEnabled != null)
-      'client_ip_preservation_enabled': clientIpPreservationEnabled!.toTfJson(),
-    if (endpointId != null) 'endpoint_id': endpointId!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'attachment_arn': ?attachmentArn?.toTfJson(),
+    'client_ip_preservation_enabled': ?clientIpPreservationEnabled?.toTfJson(),
+    'endpoint_id': ?endpointId?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -91,18 +90,14 @@ final class AwsGlobalacceleratorEndpointGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (endpointGroupRegion != null)
-             'endpoint_group_region': endpointGroupRegion,
-           if (healthCheckIntervalSeconds != null)
-             'health_check_interval_seconds': healthCheckIntervalSeconds,
-           if (healthCheckPath != null) 'health_check_path': healthCheckPath,
-           if (healthCheckPort != null) 'health_check_port': healthCheckPort,
-           if (healthCheckProtocol != null)
-             'health_check_protocol': healthCheckProtocol,
+           'endpoint_group_region': ?endpointGroupRegion,
+           'health_check_interval_seconds': ?healthCheckIntervalSeconds,
+           'health_check_path': ?healthCheckPath,
+           'health_check_port': ?healthCheckPort,
+           'health_check_protocol': ?healthCheckProtocol,
            'listener_arn': listenerArn,
-           if (thresholdCount != null) 'threshold_count': thresholdCount,
-           if (trafficDialPercentage != null)
-             'traffic_dial_percentage': trafficDialPercentage,
+           'threshold_count': ?thresholdCount,
+           'traffic_dial_percentage': ?trafficDialPercentage,
            if (endpointConfiguration != null)
              'endpoint_configuration': TfArg.literal([
                for (final e in endpointConfiguration) e.encode(),

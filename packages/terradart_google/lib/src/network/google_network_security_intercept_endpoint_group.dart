@@ -47,10 +47,10 @@ final class GoogleNetworkSecurityInterceptEndpointGroup extends Resource {
            'location': location,
            'intercept_endpoint_group_id': interceptEndpointGroupId,
            'intercept_deployment_group': interceptDeploymentGroup,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

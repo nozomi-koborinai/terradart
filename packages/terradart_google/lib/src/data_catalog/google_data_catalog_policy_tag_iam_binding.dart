@@ -31,7 +31,7 @@ final class GoogleDataCatalogPolicyTagIamBinding extends Resource {
            'policy_tag': policyTag,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

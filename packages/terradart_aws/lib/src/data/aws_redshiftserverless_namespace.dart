@@ -19,10 +19,7 @@ final class DataAwsRedshiftserverlessNamespace extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'namespace_name': namespaceName,
-           if (region != null) 'region': region,
-         },
+         argMap: {'namespace_name': namespaceName, 'region': ?region},
        );
 
   @override

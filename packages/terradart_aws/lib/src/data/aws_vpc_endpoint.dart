@@ -43,13 +43,13 @@ final class DataAwsVpcEndpoint extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (serviceName != null) 'service_name': serviceName,
-           if (serviceRegion != null) 'service_region': serviceRegion,
-           if (state != null) 'state': state,
-           if (tags != null) 'tags': tags,
-           if (vpcEndpointType != null) 'vpc_endpoint_type': vpcEndpointType,
-           if (vpcId != null) 'vpc_id': vpcId,
+           'region': ?region,
+           'service_name': ?serviceName,
+           'service_region': ?serviceRegion,
+           'state': ?state,
+           'tags': ?tags,
+           'vpc_endpoint_type': ?vpcEndpointType,
+           'vpc_id': ?vpcId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

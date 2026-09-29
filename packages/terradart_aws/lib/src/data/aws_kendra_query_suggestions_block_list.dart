@@ -24,8 +24,8 @@ final class DataAwsKendraQuerySuggestionsBlockList extends Data {
          argMap: {
            'index_id': indexId,
            'query_suggestions_block_list_id': querySuggestionsBlockListId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -22,10 +22,10 @@ final class DataAwsEfsFileSystem extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (creationToken != null) 'creation_token': creationToken,
-           if (fileSystemId != null) 'file_system_id': fileSystemId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'creation_token': ?creationToken,
+           'file_system_id': ?fileSystemId,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

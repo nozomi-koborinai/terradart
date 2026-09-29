@@ -44,11 +44,11 @@ final class GoogleParameterManagerParameter extends Resource {
          terraformType: tfType,
          argMap: {
            'parameter_id': parameterId,
-           if (format != null) 'format': format,
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'format': ?format,
+           'kms_key': ?kmsKey?.encodeAs('id'),
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

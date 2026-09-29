@@ -99,11 +99,11 @@ final class AwsCustomerGateway extends Resource {
          terraformType: tfType,
          argMap: {
            ...?bgpAsn?.argMap,
-           if (certificateArn != null) 'certificate_arn': certificateArn,
-           if (deviceName != null) 'device_name': deviceName,
-           if (ipAddress != null) 'ip_address': ipAddress,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'certificate_arn': ?certificateArn,
+           'device_name': ?deviceName,
+           'ip_address': ?ipAddress,
+           'region': ?region,
+           'tags': ?tags,
            'type': type,
          },
        );

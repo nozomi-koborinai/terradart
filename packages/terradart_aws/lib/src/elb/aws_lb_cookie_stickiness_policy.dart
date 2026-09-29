@@ -24,12 +24,11 @@ final class AwsLbCookieStickinessPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cookieExpirationPeriod != null)
-             'cookie_expiration_period': cookieExpirationPeriod,
+           'cookie_expiration_period': ?cookieExpirationPeriod,
            'lb_port': lbPort,
            'load_balancer': loadBalancer,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

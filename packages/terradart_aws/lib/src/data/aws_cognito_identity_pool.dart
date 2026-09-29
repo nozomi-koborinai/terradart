@@ -22,8 +22,8 @@ final class DataAwsCognitoIdentityPool extends Data {
          terraformType: tfType,
          argMap: {
            'identity_pool_name': identityPoolName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

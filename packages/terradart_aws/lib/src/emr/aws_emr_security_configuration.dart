@@ -85,7 +85,7 @@ final class AwsEmrSecurityConfiguration extends Resource {
          argMap: {
            'configuration': configuration,
            ...?name?.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

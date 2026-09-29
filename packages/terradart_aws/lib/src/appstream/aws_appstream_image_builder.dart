@@ -83,7 +83,7 @@ final class AppstreamImageBuilderAccessEndpoint {
 
   Map<String, Object?> encode() => {
     'endpoint_type': endpointType.toTfJson(),
-    if (vpceId != null) 'vpce_id': vpceId!.toTfJson(),
+    'vpce_id': ?vpceId?.toTfJson(),
   };
 }
 
@@ -110,10 +110,9 @@ final class AppstreamImageBuilderDomainJoinInfo {
   final TfArg<String>? organizationalUnitDistinguishedName;
 
   Map<String, Object?> encode() => {
-    if (directoryName != null) 'directory_name': directoryName!.toTfJson(),
-    if (organizationalUnitDistinguishedName != null)
-      'organizational_unit_distinguished_name':
-          organizationalUnitDistinguishedName!.toTfJson(),
+    'directory_name': ?directoryName?.toTfJson(),
+    'organizational_unit_distinguished_name':
+        ?organizationalUnitDistinguishedName?.toTfJson(),
   };
 }
 
@@ -128,9 +127,8 @@ final class AppstreamImageBuilderVpcConfig {
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
+    'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -160,18 +158,16 @@ final class AwsAppstreamImageBuilder extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (appstreamAgentVersion != null)
-             'appstream_agent_version': appstreamAgentVersion,
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
-           if (enableDefaultInternetAccess != null)
-             'enable_default_internet_access': enableDefaultInternetAccess,
-           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn.encodeAs('arn'),
+           'appstream_agent_version': ?appstreamAgentVersion,
+           'description': ?description,
+           'display_name': ?displayName,
+           'enable_default_internet_access': ?enableDefaultInternetAccess,
+           'iam_role_arn': ?iamRoleArn?.encodeAs('arn'),
            ...image.argMap,
            'instance_type': instanceType,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (accessEndpoint != null)
              'access_endpoint': TfArg.literal([
                for (final e in accessEndpoint) e.encode(),

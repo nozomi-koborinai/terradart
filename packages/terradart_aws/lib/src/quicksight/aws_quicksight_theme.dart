@@ -27,11 +27,10 @@ final class QuicksightThemeConfiguration {
   final QuicksightThemeConfigurationUiColorPalette? uiColorPalette;
 
   Map<String, Object?> encode() => {
-    if (dataColorPalette != null)
-      'data_color_palette': dataColorPalette!.encode(),
-    if (sheet != null) 'sheet': sheet!.encode(),
-    if (typography != null) 'typography': typography!.encode(),
-    if (uiColorPalette != null) 'ui_color_palette': uiColorPalette!.encode(),
+    'data_color_palette': ?dataColorPalette?.encode(),
+    'sheet': ?sheet?.encode(),
+    'typography': ?typography?.encode(),
+    'ui_color_palette': ?uiColorPalette?.encode(),
   };
 }
 
@@ -52,9 +51,9 @@ final class QuicksightThemeConfigurationDataColorPalette {
   final TfArg<List<Object?>>? minMaxGradient;
 
   Map<String, Object?> encode() => {
-    if (colors != null) 'colors': colors!.toTfJson(),
-    if (emptyFillColor != null) 'empty_fill_color': emptyFillColor!.toTfJson(),
-    if (minMaxGradient != null) 'min_max_gradient': minMaxGradient!.toTfJson(),
+    'colors': ?colors?.toTfJson(),
+    'empty_fill_color': ?emptyFillColor?.toTfJson(),
+    'min_max_gradient': ?minMaxGradient?.toTfJson(),
   };
 }
 
@@ -69,8 +68,8 @@ final class QuicksightThemeConfigurationSheet {
   final QuicksightThemeConfigurationSheetTileLayout? tileLayout;
 
   Map<String, Object?> encode() => {
-    if (tile != null) 'tile': tile!.encode(),
-    if (tileLayout != null) 'tile_layout': tileLayout!.encode(),
+    'tile': ?tile?.encode(),
+    'tile_layout': ?tileLayout?.encode(),
   };
 }
 
@@ -82,9 +81,7 @@ final class QuicksightThemeConfigurationSheetTile {
 
   final QuicksightThemeConfigurationSheetTileBorder? border;
 
-  Map<String, Object?> encode() => {
-    if (border != null) 'border': border!.encode(),
-  };
+  Map<String, Object?> encode() => {'border': ?border?.encode()};
 }
 
 /// Typed helper for the `configuration.sheet.tile.border` block of
@@ -95,7 +92,7 @@ final class QuicksightThemeConfigurationSheetTileBorder {
 
   final TfArg<bool>? show;
 
-  Map<String, Object?> encode() => {if (show != null) 'show': show!.toTfJson()};
+  Map<String, Object?> encode() => {'show': ?show?.toTfJson()};
 }
 
 /// Typed helper for the `configuration.sheet.tile_layout` block of
@@ -109,8 +106,8 @@ final class QuicksightThemeConfigurationSheetTileLayout {
   final QuicksightThemeConfigurationSheetTileLayoutMargin? margin;
 
   Map<String, Object?> encode() => {
-    if (gutter != null) 'gutter': gutter!.encode(),
-    if (margin != null) 'margin': margin!.encode(),
+    'gutter': ?gutter?.encode(),
+    'margin': ?margin?.encode(),
   };
 }
 
@@ -122,7 +119,7 @@ final class QuicksightThemeConfigurationSheetTileLayoutGutter {
 
   final TfArg<bool>? show;
 
-  Map<String, Object?> encode() => {if (show != null) 'show': show!.toTfJson()};
+  Map<String, Object?> encode() => {'show': ?show?.toTfJson()};
 }
 
 /// Typed helper for the `configuration.sheet.tile_layout.margin` block of
@@ -133,7 +130,7 @@ final class QuicksightThemeConfigurationSheetTileLayoutMargin {
 
   final TfArg<bool>? show;
 
-  Map<String, Object?> encode() => {if (show != null) 'show': show!.toTfJson()};
+  Map<String, Object?> encode() => {'show': ?show?.toTfJson()};
 }
 
 /// Typed helper for the `configuration.typography` block of
@@ -158,9 +155,7 @@ final class QuicksightThemeConfigurationTypographyFontFamilies {
 
   final TfArg<String>? fontFamily;
 
-  Map<String, Object?> encode() => {
-    if (fontFamily != null) 'font_family': fontFamily!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'font_family': ?fontFamily?.toTfJson()};
 }
 
 /// Typed helper for the `configuration.ui_color_palette` block of
@@ -219,32 +214,22 @@ final class QuicksightThemeConfigurationUiColorPalette {
   final TfArg<String>? warningForeground;
 
   Map<String, Object?> encode() => {
-    if (accent != null) 'accent': accent!.toTfJson(),
-    if (accentForeground != null)
-      'accent_foreground': accentForeground!.toTfJson(),
-    if (danger != null) 'danger': danger!.toTfJson(),
-    if (dangerForeground != null)
-      'danger_foreground': dangerForeground!.toTfJson(),
-    if (dimension != null) 'dimension': dimension!.toTfJson(),
-    if (dimensionForeground != null)
-      'dimension_foreground': dimensionForeground!.toTfJson(),
-    if (measure != null) 'measure': measure!.toTfJson(),
-    if (measureForeground != null)
-      'measure_foreground': measureForeground!.toTfJson(),
-    if (primaryBackground != null)
-      'primary_background': primaryBackground!.toTfJson(),
-    if (primaryForeground != null)
-      'primary_foreground': primaryForeground!.toTfJson(),
-    if (secondaryBackground != null)
-      'secondary_background': secondaryBackground!.toTfJson(),
-    if (secondaryForeground != null)
-      'secondary_foreground': secondaryForeground!.toTfJson(),
-    if (success != null) 'success': success!.toTfJson(),
-    if (successForeground != null)
-      'success_foreground': successForeground!.toTfJson(),
-    if (warning != null) 'warning': warning!.toTfJson(),
-    if (warningForeground != null)
-      'warning_foreground': warningForeground!.toTfJson(),
+    'accent': ?accent?.toTfJson(),
+    'accent_foreground': ?accentForeground?.toTfJson(),
+    'danger': ?danger?.toTfJson(),
+    'danger_foreground': ?dangerForeground?.toTfJson(),
+    'dimension': ?dimension?.toTfJson(),
+    'dimension_foreground': ?dimensionForeground?.toTfJson(),
+    'measure': ?measure?.toTfJson(),
+    'measure_foreground': ?measureForeground?.toTfJson(),
+    'primary_background': ?primaryBackground?.toTfJson(),
+    'primary_foreground': ?primaryForeground?.toTfJson(),
+    'secondary_background': ?secondaryBackground?.toTfJson(),
+    'secondary_foreground': ?secondaryForeground?.toTfJson(),
+    'success': ?success?.toTfJson(),
+    'success_foreground': ?successForeground?.toTfJson(),
+    'warning': ?warning?.toTfJson(),
+    'warning_foreground': ?warningForeground?.toTfJson(),
   };
 }
 
@@ -289,14 +274,13 @@ final class AwsQuicksightTheme extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'base_theme_id': baseThemeId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'theme_id': themeId,
-           if (versionDescription != null)
-             'version_description': versionDescription,
+           'version_description': ?versionDescription,
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),
            if (permissions != null)

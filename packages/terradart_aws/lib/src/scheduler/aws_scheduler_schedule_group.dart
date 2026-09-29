@@ -82,11 +82,7 @@ final class AwsSchedulerScheduleGroup extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {...?name?.argMap, 'region': ?region, 'tags': ?tags},
        );
 
   @override

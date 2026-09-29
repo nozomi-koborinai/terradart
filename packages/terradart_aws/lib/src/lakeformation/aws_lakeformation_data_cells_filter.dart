@@ -41,7 +41,7 @@ final class LakeformationDataCellsFilterTableData {
     'name': name.toTfJson(),
     'table_catalog_id': tableCatalogId.toTfJson(),
     'table_name': tableName.toTfJson(),
-    if (versionId != null) 'version_id': versionId!.toTfJson(),
+    'version_id': ?versionId?.toTfJson(),
     if (rowFilter != null)
       'row_filter': [for (final e in rowFilter!) e.encode()],
   };
@@ -114,8 +114,7 @@ final class LakeformationDataCellsFilterTableDataColumnWildcard {
   final TfArg<List<Object?>>? excludedColumnNames;
 
   Map<String, Object?> encode() => {
-    if (excludedColumnNames != null)
-      'excluded_column_names': excludedColumnNames!.toTfJson(),
+    'excluded_column_names': ?excludedColumnNames?.toTfJson(),
   };
 }
 
@@ -204,7 +203,7 @@ final class AwsLakeformationDataCellsFilter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (tableData != null)
              'table_data': TfArg.literal([
                for (final e in tableData) e.encode(),

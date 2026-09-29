@@ -27,12 +27,10 @@ final class AwsRedshiftSnapshotCopy extends Resource {
          argMap: {
            'cluster_identifier': clusterIdentifier,
            'destination_region': destinationRegion,
-           if (manualSnapshotRetentionPeriod != null)
-             'manual_snapshot_retention_period': manualSnapshotRetentionPeriod,
-           if (region != null) 'region': region,
-           if (retentionPeriod != null) 'retention_period': retentionPeriod,
-           if (snapshotCopyGrantName != null)
-             'snapshot_copy_grant_name': snapshotCopyGrantName,
+           'manual_snapshot_retention_period': ?manualSnapshotRetentionPeriod,
+           'region': ?region,
+           'retention_period': ?retentionPeriod,
+           'snapshot_copy_grant_name': ?snapshotCopyGrantName,
          },
        );
 

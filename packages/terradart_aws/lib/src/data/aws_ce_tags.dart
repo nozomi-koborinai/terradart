@@ -34,11 +34,11 @@ final class DataCeTagsFilter {
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (not != null) 'not': not!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
-    if (tags != null) 'tags': tags!.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -55,9 +55,9 @@ final class DataCeTagsFilterAnd {
   final DataCeTagsFilterAndTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -78,9 +78,9 @@ final class DataCeTagsFilterAndCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -101,9 +101,9 @@ final class DataCeTagsFilterAndDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -120,9 +120,9 @@ final class DataCeTagsFilterAndTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -143,9 +143,9 @@ final class DataCeTagsFilterCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -162,9 +162,9 @@ final class DataCeTagsFilterDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -181,9 +181,9 @@ final class DataCeTagsFilterNot {
   final DataCeTagsFilterNotTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -204,9 +204,9 @@ final class DataCeTagsFilterNotCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -227,9 +227,9 @@ final class DataCeTagsFilterNotDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -246,9 +246,9 @@ final class DataCeTagsFilterNotTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -265,9 +265,9 @@ final class DataCeTagsFilterOr {
   final DataCeTagsFilterOrTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -288,9 +288,9 @@ final class DataCeTagsFilterOrCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -307,9 +307,9 @@ final class DataCeTagsFilterOrDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -326,9 +326,9 @@ final class DataCeTagsFilterOrTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -345,9 +345,9 @@ final class DataCeTagsFilterTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -362,8 +362,8 @@ final class DataCeTagsSortBy {
   final TfArg<String>? sortOrder;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (sortOrder != null) 'sort_order': sortOrder!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'sort_order': ?sortOrder?.toTfJson(),
   };
 }
 
@@ -399,8 +399,8 @@ final class DataAwsCeTags extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (searchString != null) 'search_string': searchString,
-           if (tagKey != null) 'tag_key': tagKey,
+           'search_string': ?searchString,
+           'tag_key': ?tagKey,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
            if (sortBy != null)
              'sort_by': TfArg.literal([for (final e in sortBy) e.encode()]),

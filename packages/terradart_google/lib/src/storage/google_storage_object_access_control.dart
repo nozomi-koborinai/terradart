@@ -66,7 +66,7 @@ final class GoogleStorageObjectAccessControl extends Resource {
            'object': object,
            'entity': entity,
            'role': role,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -43,12 +43,12 @@ final class GoogleSccV2OrganizationSccBigQueryExports extends Resource {
          terraformType: tfType,
          argMap: {
            'big_query_export_id': bigQueryExportId,
-           if (dataset != null) 'dataset': dataset,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (filter != null) 'filter': filter,
-           if (location != null) 'location': location,
-           if (name != null) 'name': name,
+           'dataset': ?dataset,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'filter': ?filter,
+           'location': ?location,
+           'name': ?name,
            'organization': organization,
          },
        );

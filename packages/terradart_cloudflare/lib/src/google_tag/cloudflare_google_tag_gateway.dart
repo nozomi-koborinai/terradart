@@ -35,7 +35,7 @@ final class CloudflareGoogleTagGateway extends Resource {
            'endpoint': endpoint,
            'hide_original_ip': hideOriginalIp,
            'measurement_id': measurementId,
-           if (setUpTag != null) 'set_up_tag': setUpTag,
+           'set_up_tag': ?setUpTag,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

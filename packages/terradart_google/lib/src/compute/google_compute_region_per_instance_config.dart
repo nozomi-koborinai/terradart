@@ -29,7 +29,7 @@ final class ComputeRegionPerInstanceConfigPreservedState {
   internalIp;
 
   Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
+    'metadata': ?metadata?.toTfJson(),
     if (disk != null) 'disk': [for (final e in disk!) e.encode()],
     if (externalIp != null)
       'external_ip': [for (final e in externalIp!) e.encode()],
@@ -59,9 +59,9 @@ final class ComputeRegionPerInstanceConfigPreservedStateDisk {
   final TfArg<String> source;
 
   Map<String, Object?> encode() => {
-    if (deleteRule != null) 'delete_rule': deleteRule!.toTfJson(),
+    'delete_rule': ?deleteRule?.toTfJson(),
     'device_name': deviceName.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
+    'mode': ?mode?.toTfJson(),
     'source': source.toTfJson(),
   };
 }
@@ -111,9 +111,9 @@ final class ComputeRegionPerInstanceConfigPreservedStateExternalIp {
   ipAddress;
 
   Map<String, Object?> encode() => {
-    if (autoDelete != null) 'auto_delete': autoDelete!.toTfJson(),
+    'auto_delete': ?autoDelete?.toTfJson(),
     'interface_name': interfaceName.toTfJson(),
-    if (ipAddress != null) 'ip_address': ipAddress!.encode(),
+    'ip_address': ?ipAddress?.encode(),
   };
 }
 
@@ -140,9 +140,7 @@ final class ComputeRegionPerInstanceConfigPreservedStateExternalIpIpAddress {
 
   final TfArg<String>? address;
 
-  Map<String, Object?> encode() => {
-    if (address != null) 'address': address!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'address': ?address?.toTfJson()};
 }
 
 /// Typed helper for the `preserved_state.internal_ip` block of
@@ -164,9 +162,9 @@ final class ComputeRegionPerInstanceConfigPreservedStateInternalIp {
   ipAddress;
 
   Map<String, Object?> encode() => {
-    if (autoDelete != null) 'auto_delete': autoDelete!.toTfJson(),
+    'auto_delete': ?autoDelete?.toTfJson(),
     'interface_name': interfaceName.toTfJson(),
-    if (ipAddress != null) 'ip_address': ipAddress!.encode(),
+    'ip_address': ?ipAddress?.encode(),
   };
 }
 
@@ -193,9 +191,7 @@ final class ComputeRegionPerInstanceConfigPreservedStateInternalIpIpAddress {
 
   final TfArg<String>? address;
 
-  Map<String, Object?> encode() => {
-    if (address != null) 'address': address!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'address': ?address?.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_region_per_instance_config`.
@@ -232,18 +228,15 @@ final class GoogleComputeRegionPerInstanceConfig extends Resource {
          argMap: {
            'region_instance_group_manager': regionInstanceGroupManager,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (preservedState != null)
              'preserved_state': TfArg.literal(preservedState.encode()),
-           if (minimalAction != null) 'minimal_action': minimalAction,
-           if (mostDisruptiveAllowedAction != null)
-             'most_disruptive_allowed_action': mostDisruptiveAllowedAction,
-           if (removeInstanceOnDestroy != null)
-             'remove_instance_on_destroy': removeInstanceOnDestroy,
-           if (removeInstanceStateOnDestroy != null)
-             'remove_instance_state_on_destroy': removeInstanceStateOnDestroy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'minimal_action': ?minimalAction,
+           'most_disruptive_allowed_action': ?mostDisruptiveAllowedAction,
+           'remove_instance_on_destroy': ?removeInstanceOnDestroy,
+           'remove_instance_state_on_destroy': ?removeInstanceStateOnDestroy,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

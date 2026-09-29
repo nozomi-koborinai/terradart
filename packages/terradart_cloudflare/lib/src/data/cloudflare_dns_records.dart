@@ -33,12 +33,12 @@ final class DataDnsRecordsComment {
   final TfArg<String>? startswith;
 
   Map<String, Object?> encode() => {
-    if (absent != null) 'absent': absent!.toTfJson(),
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endswith != null) 'endswith': endswith!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (present != null) 'present': present!.toTfJson(),
-    if (startswith != null) 'startswith': startswith!.toTfJson(),
+    'absent': ?absent?.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'endswith': ?endswith?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'present': ?present?.toTfJson(),
+    'startswith': ?startswith?.toTfJson(),
   };
 }
 
@@ -62,10 +62,10 @@ final class DataDnsRecordsContent {
   final TfArg<String>? startswith;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endswith != null) 'endswith': endswith!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (startswith != null) 'startswith': startswith!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'endswith': ?endswith?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'startswith': ?startswith?.toTfJson(),
   };
 }
 
@@ -89,10 +89,10 @@ final class DataDnsRecordsName {
   final TfArg<String>? startswith;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endswith != null) 'endswith': endswith!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (startswith != null) 'startswith': startswith!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'endswith': ?endswith?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'startswith': ?startswith?.toTfJson(),
   };
 }
 
@@ -122,12 +122,12 @@ final class DataDnsRecordsTag {
   final TfArg<String>? startswith;
 
   Map<String, Object?> encode() => {
-    if (absent != null) 'absent': absent!.toTfJson(),
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endswith != null) 'endswith': endswith!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (present != null) 'present': present!.toTfJson(),
-    if (startswith != null) 'startswith': startswith!.toTfJson(),
+    'absent': ?absent?.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'endswith': ?endswith?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'present': ?present?.toTfJson(),
+    'startswith': ?startswith?.toTfJson(),
   };
 }
 
@@ -162,19 +162,18 @@ final class DataCloudflareDnsRecords extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (direction != null) 'direction': direction,
-           if (includeShadowMetadata != null)
-             'include_shadow_metadata': includeShadowMetadata,
-           if (match != null) 'match': match,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
-           if (proxied != null) 'proxied': proxied,
-           if (search != null) 'search': search,
-           if (shadowedByName != null) 'shadowed_by_name': shadowedByName,
-           if (shadowingName != null) 'shadowing_name': shadowingName,
-           if (tagMatch != null) 'tag_match': tagMatch,
-           if (type != null) 'type': type,
-           if (zoneId != null) 'zone_id': zoneId,
+           'direction': ?direction,
+           'include_shadow_metadata': ?includeShadowMetadata,
+           'match': ?match,
+           'max_items': ?maxItems,
+           'order': ?order,
+           'proxied': ?proxied,
+           'search': ?search,
+           'shadowed_by_name': ?shadowedByName,
+           'shadowing_name': ?shadowingName,
+           'tag_match': ?tagMatch,
+           'type': ?type,
+           'zone_id': ?zoneId,
            if (comment != null) 'comment': TfArg.literal(comment.encode()),
            if (content != null) 'content': TfArg.literal(content.encode()),
            if (name != null) 'name': TfArg.literal(name.encode()),

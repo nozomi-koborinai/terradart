@@ -26,7 +26,7 @@ final class DataGoogleOracleDatabaseCloudVmCluster extends Data {
          argMap: {
            'cloud_vm_cluster_id': cloudVmClusterId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -66,8 +66,8 @@ final class ComputeFutureReservationAggregateReservation {
   reservedResources;
 
   Map<String, Object?> encode() => {
-    if (vmFamily != null) 'vm_family': vmFamily!.toTfJson(),
-    if (workloadType != null) 'workload_type': workloadType!.toTfJson(),
+    'vm_family': ?vmFamily?.toTfJson(),
+    'workload_type': ?workloadType?.toTfJson(),
     'reserved_resources': [for (final e in reservedResources) e.encode()],
   };
 }
@@ -115,9 +115,7 @@ final class ComputeFutureReservationAggregateReservationReservedResources {
   final ComputeFutureReservationAggregateReservationReservedResourcesAccelerator?
   accelerator;
 
-  Map<String, Object?> encode() => {
-    if (accelerator != null) 'accelerator': accelerator!.encode(),
-  };
+  Map<String, Object?> encode() => {'accelerator': ?accelerator?.encode()};
 }
 
 /// Typed helper for the `aggregate_reservation.reserved_resources.accelerator` block of
@@ -134,10 +132,8 @@ final class ComputeFutureReservationAggregateReservationReservedResourcesAcceler
   final TfArg<String>? acceleratorType;
 
   Map<String, Object?> encode() => {
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.toTfJson(),
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
   };
 }
 
@@ -155,8 +151,8 @@ final class ComputeFutureReservationAutoCreatedReservationsDuration {
   final TfArg<String>? seconds;
 
   Map<String, Object?> encode() => {
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -179,10 +175,9 @@ final class ComputeFutureReservationCommitmentInfo {
   previousCommitmentTerms;
 
   Map<String, Object?> encode() => {
-    if (commitmentName != null) 'commitment_name': commitmentName!.toTfJson(),
-    if (commitmentPlan != null) 'commitment_plan': commitmentPlan!.toTfJson(),
-    if (previousCommitmentTerms != null)
-      'previous_commitment_terms': previousCommitmentTerms!.toTfJson(),
+    'commitment_name': ?commitmentName?.toTfJson(),
+    'commitment_plan': ?commitmentPlan?.toTfJson(),
+    'previous_commitment_terms': ?previousCommitmentTerms?.toTfJson(),
   };
 }
 
@@ -221,8 +216,7 @@ final class ComputeFutureReservationParams {
   final TfArg<Map<String, String>>? resourceManagerTags;
 
   Map<String, Object?> encode() => {
-    if (resourceManagerTags != null)
-      'resource_manager_tags': resourceManagerTags!.toTfJson(),
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
 }
 
@@ -243,8 +237,8 @@ final class ComputeFutureReservationShareSettings {
   final List<ComputeFutureReservationShareSettingsProjectMap>? projectMap;
 
   Map<String, Object?> encode() => {
-    if (projects != null) 'projects': projects!.toTfJson(),
-    if (shareType != null) 'share_type': shareType!.toTfJson(),
+    'projects': ?projects?.toTfJson(),
+    'share_type': ?shareType?.toTfJson(),
     if (projectMap != null)
       'project_map': [for (final e in projectMap!) e.encode()],
   };
@@ -275,7 +269,7 @@ final class ComputeFutureReservationShareSettingsProjectMap {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
   };
 }
 
@@ -297,11 +291,9 @@ final class ComputeFutureReservationSpecificSkuProperties {
   instanceProperties;
 
   Map<String, Object?> encode() => {
-    if (sourceInstanceTemplate != null)
-      'source_instance_template': sourceInstanceTemplate!.toTfJson(),
-    if (totalCount != null) 'total_count': totalCount!.toTfJson(),
-    if (instanceProperties != null)
-      'instance_properties': instanceProperties!.encode(),
+    'source_instance_template': ?sourceInstanceTemplate?.toTfJson(),
+    'total_count': ?totalCount?.toTfJson(),
+    'instance_properties': ?instanceProperties?.encode(),
   };
 }
 
@@ -343,14 +335,12 @@ final class ComputeFutureReservationSpecificSkuPropertiesInstanceProperties {
   localSsds;
 
   Map<String, Object?> encode() => {
-    if (locationHint != null) 'location_hint': locationHint!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (maintenanceFreezeDurationHours != null)
-      'maintenance_freeze_duration_hours': maintenanceFreezeDurationHours!
-          .toTfJson(),
-    if (maintenanceInterval != null)
-      'maintenance_interval': maintenanceInterval!.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
+    'location_hint': ?locationHint?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'maintenance_freeze_duration_hours': ?maintenanceFreezeDurationHours
+        ?.toTfJson(),
+    'maintenance_interval': ?maintenanceInterval?.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
     if (guestAccelerators != null)
       'guest_accelerators': [for (final e in guestAccelerators!) e.encode()],
     if (localSsds != null)
@@ -384,10 +374,8 @@ final class ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesGuest
   final TfArg<String>? acceleratorType;
 
   Map<String, Object?> encode() => {
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.toTfJson(),
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
   };
 }
 
@@ -408,8 +396,8 @@ final class ComputeFutureReservationSpecificSkuPropertiesInstancePropertiesLocal
   interface;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (interface != null) 'interface': interface!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'interface': ?interface?.toTfJson(),
   };
 }
 
@@ -443,9 +431,9 @@ final class ComputeFutureReservationTimeWindow {
   final ComputeFutureReservationTimeWindowDuration? duration;
 
   Map<String, Object?> encode() => {
-    if (endTime != null) 'end_time': endTime!.toTfJson(),
+    'end_time': ?endTime?.toTfJson(),
     'start_time': startTime.toTfJson(),
-    if (duration != null) 'duration': duration!.encode(),
+    'duration': ?duration?.encode(),
   };
 }
 
@@ -460,8 +448,8 @@ final class ComputeFutureReservationTimeWindowDuration {
   final TfArg<String>? seconds;
 
   Map<String, Object?> encode() => {
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -510,25 +498,22 @@ final class GoogleComputeFutureReservation extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (autoCreatedReservationsDeleteTime != null)
-             'auto_created_reservations_delete_time':
-                 autoCreatedReservationsDeleteTime,
-           if (autoDeleteAutoCreatedReservations != null)
-             'auto_delete_auto_created_reservations':
-                 autoDeleteAutoCreatedReservations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deploymentType != null) 'deployment_type': deploymentType,
-           if (description != null) 'description': description,
+           'auto_created_reservations_delete_time':
+               ?autoCreatedReservationsDeleteTime,
+           'auto_delete_auto_created_reservations':
+               ?autoDeleteAutoCreatedReservations,
+           'deletion_policy': ?deletionPolicy,
+           'deployment_type': ?deploymentType,
+           'description': ?description,
            'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
-           if (planningStatus != null) 'planning_status': planningStatus,
-           if (project != null) 'project': project,
-           if (reservationMode != null) 'reservation_mode': reservationMode,
-           if (reservationName != null) 'reservation_name': reservationName,
-           if (schedulingType != null) 'scheduling_type': schedulingType,
-           if (specificReservationRequired != null)
-             'specific_reservation_required': specificReservationRequired,
-           if (zone != null) 'zone': zone,
+           'name_prefix': ?namePrefix,
+           'planning_status': ?planningStatus,
+           'project': ?project,
+           'reservation_mode': ?reservationMode,
+           'reservation_name': ?reservationName,
+           'scheduling_type': ?schedulingType,
+           'specific_reservation_required': ?specificReservationRequired,
+           'zone': ?zone,
            if (aggregateReservation != null)
              'aggregate_reservation': TfArg.literal(
                aggregateReservation.encode(),

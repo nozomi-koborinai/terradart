@@ -21,8 +21,7 @@ final class AppEngineServiceNetworkSettingsNetworkSettings {
   ingressTrafficAllowed;
 
   Map<String, Object?> encode() => {
-    if (ingressTrafficAllowed != null)
-      'ingress_traffic_allowed': ingressTrafficAllowed!.toTfJson(),
+    'ingress_traffic_allowed': ?ingressTrafficAllowed?.toTfJson(),
   };
 }
 
@@ -62,7 +61,7 @@ final class GoogleAppEngineServiceNetworkSettings extends Resource {
          argMap: {
            'service': service,
            'network_settings': TfArg.literal(networkSettings.encode()),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -26,10 +26,10 @@ final class DataAwsS3BucketObject extends Data {
          argMap: {
            'bucket': bucket,
            'key': key,
-           if (range != null) 'range': range,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (versionId != null) 'version_id': versionId,
+           'range': ?range,
+           'region': ?region,
+           'tags': ?tags,
+           'version_id': ?versionId,
          },
        );
 

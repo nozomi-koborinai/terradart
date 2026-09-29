@@ -34,8 +34,8 @@ final class GoogleDataplexAssetIamPolicy extends Resource {
            'dataplex_zone': dataplexZone,
            'lake': lake,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

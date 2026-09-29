@@ -56,27 +56,19 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElements {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (amazonTranscribeCallAnalyticsProcessorConfiguration != null)
-      'amazon_transcribe_call_analytics_processor_configuration':
-          amazonTranscribeCallAnalyticsProcessorConfiguration!.encode(),
-    if (amazonTranscribeProcessorConfiguration != null)
-      'amazon_transcribe_processor_configuration':
-          amazonTranscribeProcessorConfiguration!.encode(),
-    if (kinesisDataStreamSinkConfiguration != null)
-      'kinesis_data_stream_sink_configuration':
-          kinesisDataStreamSinkConfiguration!.encode(),
-    if (lambdaFunctionSinkConfiguration != null)
-      'lambda_function_sink_configuration': lambdaFunctionSinkConfiguration!
-          .encode(),
-    if (s3RecordingSinkConfiguration != null)
-      's3_recording_sink_configuration': s3RecordingSinkConfiguration!.encode(),
-    if (snsTopicSinkConfiguration != null)
-      'sns_topic_sink_configuration': snsTopicSinkConfiguration!.encode(),
-    if (sqsQueueSinkConfiguration != null)
-      'sqs_queue_sink_configuration': sqsQueueSinkConfiguration!.encode(),
-    if (voiceAnalyticsProcessorConfiguration != null)
-      'voice_analytics_processor_configuration':
-          voiceAnalyticsProcessorConfiguration!.encode(),
+    'amazon_transcribe_call_analytics_processor_configuration':
+        ?amazonTranscribeCallAnalyticsProcessorConfiguration?.encode(),
+    'amazon_transcribe_processor_configuration':
+        ?amazonTranscribeProcessorConfiguration?.encode(),
+    'kinesis_data_stream_sink_configuration':
+        ?kinesisDataStreamSinkConfiguration?.encode(),
+    'lambda_function_sink_configuration': ?lambdaFunctionSinkConfiguration
+        ?.encode(),
+    's3_recording_sink_configuration': ?s3RecordingSinkConfiguration?.encode(),
+    'sns_topic_sink_configuration': ?snsTopicSinkConfiguration?.encode(),
+    'sqs_queue_sink_configuration': ?sqsQueueSinkConfiguration?.encode(),
+    'voice_analytics_processor_configuration':
+        ?voiceAnalyticsProcessorConfiguration?.encode(),
   };
 }
 
@@ -165,31 +157,21 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   postCallAnalyticsSettings;
 
   Map<String, Object?> encode() => {
-    if (callAnalyticsStreamCategories != null)
-      'call_analytics_stream_categories': callAnalyticsStreamCategories!
-          .toTfJson(),
-    if (contentIdentificationType != null)
-      'content_identification_type': contentIdentificationType!.toTfJson(),
-    if (contentRedactionType != null)
-      'content_redaction_type': contentRedactionType!.toTfJson(),
-    if (enablePartialResultsStabilization != null)
-      'enable_partial_results_stabilization': enablePartialResultsStabilization!
-          .toTfJson(),
-    if (filterPartialResults != null)
-      'filter_partial_results': filterPartialResults!.toTfJson(),
+    'call_analytics_stream_categories': ?callAnalyticsStreamCategories
+        ?.toTfJson(),
+    'content_identification_type': ?contentIdentificationType?.toTfJson(),
+    'content_redaction_type': ?contentRedactionType?.toTfJson(),
+    'enable_partial_results_stabilization': ?enablePartialResultsStabilization
+        ?.toTfJson(),
+    'filter_partial_results': ?filterPartialResults?.toTfJson(),
     'language_code': languageCode.toTfJson(),
-    if (languageModelName != null)
-      'language_model_name': languageModelName!.toTfJson(),
-    if (partialResultsStability != null)
-      'partial_results_stability': partialResultsStability!.toTfJson(),
-    if (piiEntityTypes != null) 'pii_entity_types': piiEntityTypes!.toTfJson(),
-    if (vocabularyFilterMethod != null)
-      'vocabulary_filter_method': vocabularyFilterMethod!.toTfJson(),
-    if (vocabularyFilterName != null)
-      'vocabulary_filter_name': vocabularyFilterName!.toTfJson(),
-    if (vocabularyName != null) 'vocabulary_name': vocabularyName!.toTfJson(),
-    if (postCallAnalyticsSettings != null)
-      'post_call_analytics_settings': postCallAnalyticsSettings!.encode(),
+    'language_model_name': ?languageModelName?.toTfJson(),
+    'partial_results_stability': ?partialResultsStability?.toTfJson(),
+    'pii_entity_types': ?piiEntityTypes?.toTfJson(),
+    'vocabulary_filter_method': ?vocabularyFilterMethod?.toTfJson(),
+    'vocabulary_filter_name': ?vocabularyFilterName?.toTfJson(),
+    'vocabulary_name': ?vocabularyName?.toTfJson(),
+    'post_call_analytics_settings': ?postCallAnalyticsSettings?.encode(),
   };
 }
 
@@ -288,11 +270,9 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   final TfArg<String> outputLocation;
 
   Map<String, Object?> encode() => {
-    if (contentRedactionOutput != null)
-      'content_redaction_output': contentRedactionOutput!.toTfJson(),
+    'content_redaction_output': ?contentRedactionOutput?.toTfJson(),
     'data_access_role_arn': dataAccessRoleArn.toTfJson(),
-    if (outputEncryptionKmsKeyId != null)
-      'output_encryption_kms_key_id': outputEncryptionKmsKeyId!.toTfJson(),
+    'output_encryption_kms_key_id': ?outputEncryptionKmsKeyId?.toTfJson(),
     'output_location': outputLocation.toTfJson(),
   };
 }
@@ -369,28 +349,19 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   final TfArg<String>? vocabularyName;
 
   Map<String, Object?> encode() => {
-    if (contentIdentificationType != null)
-      'content_identification_type': contentIdentificationType!.toTfJson(),
-    if (contentRedactionType != null)
-      'content_redaction_type': contentRedactionType!.toTfJson(),
-    if (enablePartialResultsStabilization != null)
-      'enable_partial_results_stabilization': enablePartialResultsStabilization!
-          .toTfJson(),
-    if (filterPartialResults != null)
-      'filter_partial_results': filterPartialResults!.toTfJson(),
+    'content_identification_type': ?contentIdentificationType?.toTfJson(),
+    'content_redaction_type': ?contentRedactionType?.toTfJson(),
+    'enable_partial_results_stabilization': ?enablePartialResultsStabilization
+        ?.toTfJson(),
+    'filter_partial_results': ?filterPartialResults?.toTfJson(),
     'language_code': languageCode.toTfJson(),
-    if (languageModelName != null)
-      'language_model_name': languageModelName!.toTfJson(),
-    if (partialResultsStability != null)
-      'partial_results_stability': partialResultsStability!.toTfJson(),
-    if (piiEntityTypes != null) 'pii_entity_types': piiEntityTypes!.toTfJson(),
-    if (showSpeakerLabel != null)
-      'show_speaker_label': showSpeakerLabel!.toTfJson(),
-    if (vocabularyFilterMethod != null)
-      'vocabulary_filter_method': vocabularyFilterMethod!.toTfJson(),
-    if (vocabularyFilterName != null)
-      'vocabulary_filter_name': vocabularyFilterName!.toTfJson(),
-    if (vocabularyName != null) 'vocabulary_name': vocabularyName!.toTfJson(),
+    'language_model_name': ?languageModelName?.toTfJson(),
+    'partial_results_stability': ?partialResultsStability?.toTfJson(),
+    'pii_entity_types': ?piiEntityTypes?.toTfJson(),
+    'show_speaker_label': ?showSpeakerLabel?.toTfJson(),
+    'vocabulary_filter_method': ?vocabularyFilterMethod?.toTfJson(),
+    'vocabulary_filter_name': ?vocabularyFilterName?.toTfJson(),
+    'vocabulary_name': ?vocabularyName?.toTfJson(),
   };
 }
 
@@ -506,9 +477,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsS3Re
 
   final TfArg<String>? destination;
 
-  Map<String, Object?> encode() => {
-    if (destination != null) 'destination': destination!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'destination': ?destination?.toTfJson()};
 }
 
 /// Typed helper for the `elements.sns_topic_sink_configuration` block of
@@ -609,7 +578,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
   rules;
 
   Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
     'rules': [for (final e in rules) e.encode()],
   };
 }
@@ -641,12 +610,9 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (issueDetectionConfiguration != null)
-      'issue_detection_configuration': issueDetectionConfiguration!.encode(),
-    if (keywordMatchConfiguration != null)
-      'keyword_match_configuration': keywordMatchConfiguration!.encode(),
-    if (sentimentConfiguration != null)
-      'sentiment_configuration': sentimentConfiguration!.encode(),
+    'issue_detection_configuration': ?issueDetectionConfiguration?.encode(),
+    'keyword_match_configuration': ?keywordMatchConfiguration?.encode(),
+    'sentiment_configuration': ?sentimentConfiguration?.encode(),
   };
 }
 
@@ -695,7 +661,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
 
   Map<String, Object?> encode() => {
     'keywords': keywords.toTfJson(),
-    if (negate != null) 'negate': negate!.toTfJson(),
+    'negate': ?negate?.toTfJson(),
     'rule_name': ruleName.toTfJson(),
   };
 }
@@ -764,9 +730,9 @@ final class AwsChimesdkmediapipelinesMediaInsightsPipelineConfiguration
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_access_role_arn': resourceAccessRoleArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'elements': TfArg.literal([for (final e in elements) e.encode()]),
            if (realTimeAlertConfiguration != null)
              'real_time_alert_configuration': TfArg.literal(

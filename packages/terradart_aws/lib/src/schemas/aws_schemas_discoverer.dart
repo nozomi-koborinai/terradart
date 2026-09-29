@@ -23,10 +23,10 @@ final class AwsSchemasDiscoverer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'region': ?region,
            'source_arn': sourceArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

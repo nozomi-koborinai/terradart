@@ -30,7 +30,7 @@ final class GoogleRuntimeconfigConfigIamPolicy extends Resource {
          argMap: {
            'config': config,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -10,6 +10,7 @@
 - **Breaking** — Magic Modules `conflicts` sets are nullable sealed arguments: 4 groups on 3 resources, e.g. `GoogleFirebaseHostingChannel(expiration: .ttl(...))` and `GoogleTpuV2Vm(accelerator: ...)`. Leave the argument out to set none. See [MIGRATING.md](../../MIGRATING.md).
 - Every factory gets typed output getters for its computed attributes.
 - The derivation is automatic: the weekly schema bump re-syncs the beta fixture's MM YAML (`tool/sync_lane_mm_yaml.dart`), so a later pin types new or changed inputs without override edits. Synth output is unchanged.
+- Generated wrappers encode optional inputs as null-aware map elements (`'k': ?x`, `'k': ?x?.toTfJson()`) instead of `if (x != null) 'k': x` guards, regenerated with `terradart wrap`. No API change; synth output is unchanged.
 
 ## 0.30.0 - 2026-09-28
 

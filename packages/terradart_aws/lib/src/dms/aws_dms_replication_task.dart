@@ -109,18 +109,15 @@ final class AwsDmsReplicationTask extends Resource {
          argMap: {
            ...?cdcStart?.argMap,
            'migration_type': migrationType,
-           if (region != null) 'region': region,
+           'region': ?region,
            'replication_instance_arn': replicationInstanceArn,
            'replication_task_id': replicationTaskId,
-           if (replicationTaskSettings != null)
-             'replication_task_settings': replicationTaskSettings,
-           if (resourceIdentifier != null)
-             'resource_identifier': resourceIdentifier,
+           'replication_task_settings': ?replicationTaskSettings,
+           'resource_identifier': ?resourceIdentifier,
            'source_endpoint_arn': sourceEndpointArn,
-           if (startReplicationTask != null)
-             'start_replication_task': startReplicationTask,
+           'start_replication_task': ?startReplicationTask,
            'table_mappings': tableMappings,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'target_endpoint_arn': targetEndpointArn,
          },
        );

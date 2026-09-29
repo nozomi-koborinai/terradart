@@ -28,7 +28,7 @@ final class DataAwsRdsReservedInstanceOffering extends Data {
            'multi_az': multiAz,
            'offering_type': offeringType,
            'product_description': productDescription,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

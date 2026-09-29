@@ -39,9 +39,9 @@ final class GoogleLoggingProjectExclusion extends Resource {
          argMap: {
            'name': name,
            'filter': filter,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'disabled': ?disabled,
+           'project': ?project,
          },
        );
 

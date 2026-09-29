@@ -39,10 +39,9 @@ final class GuarddutyOrganizationConfigurationDatasources {
   final GuarddutyOrganizationConfigurationDatasourcesS3Logs? s3Logs;
 
   Map<String, Object?> encode() => {
-    if (kubernetes != null) 'kubernetes': kubernetes!.encode(),
-    if (malwareProtection != null)
-      'malware_protection': malwareProtection!.encode(),
-    if (s3Logs != null) 's3_logs': s3Logs!.encode(),
+    'kubernetes': ?kubernetes?.encode(),
+    'malware_protection': ?malwareProtection?.encode(),
+    's3_logs': ?s3Logs?.encode(),
   };
 }
 
@@ -151,7 +150,7 @@ final class AwsGuarddutyOrganizationConfiguration extends Resource {
          argMap: {
            'auto_enable_organization_members': autoEnableOrganizationMembers,
            'detector_id': detectorId,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (datasources != null)
              'datasources': TfArg.literal(datasources.encode()),
          },

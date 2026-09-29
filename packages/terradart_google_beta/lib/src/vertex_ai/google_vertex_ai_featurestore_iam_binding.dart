@@ -24,7 +24,7 @@ final class VertexAiFeaturestoreIamBindingCondition {
   final TfArg<String> title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
     'title': title.toTfJson(),
   };
@@ -57,8 +57,8 @@ final class GoogleVertexAiFeaturestoreIamBinding extends Resource {
          argMap: {
            'featurestore': featurestore,
            'members': members,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

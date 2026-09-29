@@ -59,8 +59,8 @@ final class SecurityScannerScanConfigAuthentication {
   final SecurityScannerScanConfigAuthenticationGoogleAccount? googleAccount;
 
   Map<String, Object?> encode() => {
-    if (customAccount != null) 'custom_account': customAccount!.encode(),
-    if (googleAccount != null) 'google_account': googleAccount!.encode(),
+    'custom_account': ?customAccount?.encode(),
+    'google_account': ?googleAccount?.encode(),
   };
 }
 
@@ -121,7 +121,7 @@ final class SecurityScannerScanConfigSchedule {
 
   Map<String, Object?> encode() => {
     'interval_duration_days': intervalDurationDays.toTfJson(),
-    if (scheduleTime != null) 'schedule_time': scheduleTime!.toTfJson(),
+    'schedule_time': ?scheduleTime?.toTfJson(),
   };
 }
 
@@ -155,23 +155,20 @@ final class GoogleSecurityScannerScanConfig extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (blacklistPatterns != null)
-             'blacklist_patterns': blacklistPatterns,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'blacklist_patterns': ?blacklistPatterns,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
-           if (exportToSecurityCommandCenter != null)
-             'export_to_security_command_center': exportToSecurityCommandCenter,
-           if (ignoreHttpStatusErrors != null)
-             'ignore_http_status_errors': ignoreHttpStatusErrors,
-           if (maxQps != null) 'max_qps': maxQps,
-           if (project != null) 'project': project,
+           'export_to_security_command_center': ?exportToSecurityCommandCenter,
+           'ignore_http_status_errors': ?ignoreHttpStatusErrors,
+           'max_qps': ?maxQps,
+           'project': ?project,
            'starting_urls': startingUrls,
-           if (staticIpScan != null) 'static_ip_scan': staticIpScan,
+           'static_ip_scan': ?staticIpScan,
            if (targetPlatforms != null)
              'target_platforms': TfArg.literal([
                for (final e in targetPlatforms) e.toTfJson(),
              ]),
-           if (userAgent != null) 'user_agent': userAgent,
+           'user_agent': ?userAgent,
            if (authentication != null)
              'authentication': TfArg.literal(authentication.encode()),
            if (schedule != null) 'schedule': TfArg.literal(schedule.encode()),

@@ -115,9 +115,9 @@ final class GoogleCertificateManagerCertificateIssuanceConfig extends Resource {
            'key_algorithm': keyAlgorithm,
            'lifetime': lifetime,
            'rotation_window_percentage': rotationWindowPercentage,
-           if (description != null) 'description': description,
-           if (location != null) 'location': location,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'location': ?location,
+           'labels': ?labels,
          },
        );
 

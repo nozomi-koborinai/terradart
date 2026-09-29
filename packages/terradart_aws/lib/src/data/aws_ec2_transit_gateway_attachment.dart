@@ -41,10 +41,9 @@ final class DataAwsEc2TransitGatewayAttachment extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (transitGatewayAttachmentId != null)
-             'transit_gateway_attachment_id': transitGatewayAttachmentId,
+           'region': ?region,
+           'tags': ?tags,
+           'transit_gateway_attachment_id': ?transitGatewayAttachmentId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

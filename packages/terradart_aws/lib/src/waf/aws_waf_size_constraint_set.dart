@@ -48,7 +48,7 @@ final class WafSizeConstraintSetSizeConstraintsFieldToMatch {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (data != null) 'data': data!.toTfJson(),
+    'data': ?data?.toTfJson(),
     'type': type.toTfJson(),
   };
 }

@@ -66,12 +66,12 @@ final class GoogleNetworkConnectivityGroup extends Resource {
          argMap: {
            'hub': hub,
            'name': name,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (autoAccept != null)
              'auto_accept': TfArg.literal([autoAccept.encode()]),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

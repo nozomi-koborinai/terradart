@@ -21,8 +21,8 @@ final class DataCloudflareAiSearchNamespaces extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (search != null) 'search': search,
+           'max_items': ?maxItems,
+           'search': ?search,
          },
        );
 

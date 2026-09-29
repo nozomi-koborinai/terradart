@@ -24,10 +24,10 @@ final class AwsGrafanaRoleAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (groupIds != null) 'group_ids': groupIds,
-           if (region != null) 'region': region,
+           'group_ids': ?groupIds,
+           'region': ?region,
            'role': role,
-           if (userIds != null) 'user_ids': userIds,
+           'user_ids': ?userIds,
            'workspace_id': workspaceId,
          },
        );

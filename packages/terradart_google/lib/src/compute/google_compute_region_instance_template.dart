@@ -57,44 +57,34 @@ final class GoogleComputeRegionInstanceTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           'name': ?name,
+           'name_prefix': ?namePrefix,
            'machine_type': machineType,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (metadata != null) 'metadata': metadata,
-           if (metadataStartupScript != null)
-             'metadata_startup_script': metadataStartupScript,
-           if (tags != null) 'tags': tags,
-           if (canIpForward != null) 'can_ip_forward': canIpForward,
-           if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform,
-           if (resourceManagerTags != null)
-             'resource_manager_tags': resourceManagerTags,
-           if (resourcePolicies != null) 'resource_policies': resourcePolicies,
-           if (keyRevocationActionType != null)
-             'key_revocation_action_type': keyRevocationActionType,
-           if (instanceDescription != null)
-             'instance_description': instanceDescription,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
-           if (advancedMachineFeatures != null)
-             'advanced_machine_features': advancedMachineFeatures,
-           if (confidentialInstanceConfig != null)
-             'confidential_instance_config': confidentialInstanceConfig,
+           'region': ?region,
+           'description': ?description,
+           'labels': ?labels,
+           'metadata': ?metadata,
+           'metadata_startup_script': ?metadataStartupScript,
+           'tags': ?tags,
+           'can_ip_forward': ?canIpForward,
+           'min_cpu_platform': ?minCpuPlatform,
+           'resource_manager_tags': ?resourceManagerTags,
+           'resource_policies': ?resourcePolicies,
+           'key_revocation_action_type': ?keyRevocationActionType,
+           'instance_description': ?instanceDescription,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
+           'advanced_machine_features': ?advancedMachineFeatures,
+           'confidential_instance_config': ?confidentialInstanceConfig,
            'disk': disk,
-           if (guestAccelerator != null) 'guest_accelerator': guestAccelerator,
-           if (networkInterface != null) 'network_interface': networkInterface,
-           if (networkPerformanceConfig != null)
-             'network_performance_config': networkPerformanceConfig,
-           if (reservationAffinity != null)
-             'reservation_affinity': reservationAffinity,
-           if (scheduling != null) 'scheduling': scheduling,
-           if (serviceAccount != null) 'service_account': serviceAccount,
-           if (shieldedInstanceConfig != null)
-             'shielded_instance_config': shieldedInstanceConfig,
-           if (workloadIdentityConfig != null)
-             'workload_identity_config': workloadIdentityConfig,
+           'guest_accelerator': ?guestAccelerator,
+           'network_interface': ?networkInterface,
+           'network_performance_config': ?networkPerformanceConfig,
+           'reservation_affinity': ?reservationAffinity,
+           'scheduling': ?scheduling,
+           'service_account': ?serviceAccount,
+           'shielded_instance_config': ?shieldedInstanceConfig,
+           'workload_identity_config': ?workloadIdentityConfig,
          },
        );
 

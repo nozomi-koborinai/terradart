@@ -45,12 +45,11 @@ final class ChronicleDataTableColumnInfo {
 
   Map<String, Object?> encode() => {
     'column_index': columnIndex.toTfJson(),
-    if (columnType != null) 'column_type': columnType!.toTfJson(),
-    if (keyColumn != null) 'key_column': keyColumn!.toTfJson(),
-    if (mappedColumnPath != null)
-      'mapped_column_path': mappedColumnPath!.toTfJson(),
+    'column_type': ?columnType?.toTfJson(),
+    'key_column': ?keyColumn?.toTfJson(),
+    'mapped_column_path': ?mappedColumnPath?.toTfJson(),
     'original_column': originalColumn.toTfJson(),
-    if (repeatedValues != null) 'repeated_values': repeatedValues!.toTfJson(),
+    'repeated_values': ?repeatedValues?.toTfJson(),
   };
 }
 
@@ -127,9 +126,9 @@ final class GoogleChronicleDataTable extends Resource {
              ]),
            if (scopeInfo != null)
              'scope_info': TfArg.literal(scopeInfo.encode()),
-           if (rowTimeToLive != null) 'row_time_to_live': rowTimeToLive,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'row_time_to_live': ?rowTimeToLive,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

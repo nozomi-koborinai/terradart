@@ -28,10 +28,10 @@ final class DataZeroTrustDnsLocationFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
-    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'filter': ?filter?.toTfJson(),
+    'order_by': ?orderBy?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -75,8 +75,8 @@ final class DataCloudflareZeroTrustDnsLocation extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (locationId != null) 'location_id': locationId,
+           'account_id': ?accountId,
+           'location_id': ?locationId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

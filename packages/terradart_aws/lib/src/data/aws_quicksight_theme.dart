@@ -22,9 +22,9 @@ final class DataAwsQuicksightTheme extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'aws_account_id': ?awsAccountId,
+           'region': ?region,
+           'tags': ?tags,
            'theme_id': themeId,
          },
        );

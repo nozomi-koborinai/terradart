@@ -60,16 +60,14 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetails {
   validatorConfig;
 
   Map<String, Object?> encode() => {
-    if (apiEnableAdmin != null) 'api_enable_admin': apiEnableAdmin!.toTfJson(),
-    if (apiEnableDebug != null) 'api_enable_debug': apiEnableDebug!.toTfJson(),
-    if (consensusClient != null)
-      'consensus_client': consensusClient!.toTfJson(),
-    if (executionClient != null)
-      'execution_client': executionClient!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
-    if (nodeType != null) 'node_type': nodeType!.toTfJson(),
-    if (gethDetails != null) 'geth_details': gethDetails!.encode(),
-    if (validatorConfig != null) 'validator_config': validatorConfig!.encode(),
+    'api_enable_admin': ?apiEnableAdmin?.toTfJson(),
+    'api_enable_debug': ?apiEnableDebug?.toTfJson(),
+    'consensus_client': ?consensusClient?.toTfJson(),
+    'execution_client': ?executionClient?.toTfJson(),
+    'network': ?network?.toTfJson(),
+    'node_type': ?nodeType?.toTfJson(),
+    'geth_details': ?gethDetails?.encode(),
+    'validator_config': ?validatorConfig?.encode(),
   };
 }
 
@@ -142,8 +140,7 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetails {
   garbageCollectionMode;
 
   Map<String, Object?> encode() => {
-    if (garbageCollectionMode != null)
-      'garbage_collection_mode': garbageCollectionMode!.toTfJson(),
+    'garbage_collection_mode': ?garbageCollectionMode?.toTfJson(),
   };
 }
 
@@ -174,9 +171,8 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetailsValidatorConfig {
   final TfArg<List<Object?>>? mevRelayUrls;
 
   Map<String, Object?> encode() => {
-    if (beaconFeeRecipient != null)
-      'beacon_fee_recipient': beaconFeeRecipient!.toTfJson(),
-    if (mevRelayUrls != null) 'mev_relay_urls': mevRelayUrls!.toTfJson(),
+    'beacon_fee_recipient': ?beaconFeeRecipient?.toTfJson(),
+    'mev_relay_urls': ?mevRelayUrls?.toTfJson(),
   };
 }
 
@@ -214,12 +210,12 @@ final class GoogleBlockchainNodeEngineBlockchainNodes extends Resource {
          argMap: {
            'blockchain_node_id': blockchainNodeId,
            'location': location,
-           if (blockchainType != null) 'blockchain_type': blockchainType,
+           'blockchain_type': ?blockchainType,
            if (ethereumDetails != null)
              'ethereum_details': TfArg.literal(ethereumDetails.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

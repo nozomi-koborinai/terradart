@@ -31,7 +31,7 @@ final class GoogleBillingAccountIamBinding extends Resource {
            'billing_account_id': billingAccountId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

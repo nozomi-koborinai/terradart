@@ -91,8 +91,8 @@ final class FmsPolicyExcludeMap {
   final TfArg<List<Object?>>? orgunit;
 
   Map<String, Object?> encode() => {
-    if (account != null) 'account': account!.toTfJson(),
-    if (orgunit != null) 'orgunit': orgunit!.toTfJson(),
+    'account': ?account?.toTfJson(),
+    'orgunit': ?orgunit?.toTfJson(),
   };
 }
 
@@ -107,8 +107,8 @@ final class FmsPolicyIncludeMap {
   final TfArg<List<Object?>>? orgunit;
 
   Map<String, Object?> encode() => {
-    if (account != null) 'account': account!.toTfJson(),
-    if (orgunit != null) 'orgunit': orgunit!.toTfJson(),
+    'account': ?account?.toTfJson(),
+    'orgunit': ?orgunit?.toTfJson(),
   };
 }
 
@@ -129,10 +129,9 @@ final class FmsPolicySecurityServicePolicyData {
   final FmsPolicySecurityServicePolicyDataPolicyOption? policyOption;
 
   Map<String, Object?> encode() => {
-    if (managedServiceData != null)
-      'managed_service_data': managedServiceData!.toTfJson(),
+    'managed_service_data': ?managedServiceData?.toTfJson(),
     'type': type.toTfJson(),
-    if (policyOption != null) 'policy_option': policyOption!.encode(),
+    'policy_option': ?policyOption?.encode(),
   };
 }
 
@@ -156,12 +155,9 @@ final class FmsPolicySecurityServicePolicyDataPolicyOption {
   thirdPartyFirewallPolicy;
 
   Map<String, Object?> encode() => {
-    if (networkAclCommonPolicy != null)
-      'network_acl_common_policy': networkAclCommonPolicy!.encode(),
-    if (networkFirewallPolicy != null)
-      'network_firewall_policy': networkFirewallPolicy!.encode(),
-    if (thirdPartyFirewallPolicy != null)
-      'third_party_firewall_policy': thirdPartyFirewallPolicy!.encode(),
+    'network_acl_common_policy': ?networkAclCommonPolicy?.encode(),
+    'network_firewall_policy': ?networkFirewallPolicy?.encode(),
+    'third_party_firewall_policy': ?thirdPartyFirewallPolicy?.encode(),
   };
 }
 
@@ -177,8 +173,7 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
   networkAclEntrySet;
 
   Map<String, Object?> encode() => {
-    if (networkAclEntrySet != null)
-      'network_acl_entry_set': networkAclEntrySet!.encode(),
+    'network_acl_entry_set': ?networkAclEntrySet?.encode(),
   };
 }
 
@@ -253,9 +248,9 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
   portRange;
 
   Map<String, Object?> encode() => {
-    if (cidrBlock != null) 'cidr_block': cidrBlock!.toTfJson(),
+    'cidr_block': ?cidrBlock?.toTfJson(),
     'egress': egress.toTfJson(),
-    if (ipv6CidrBlock != null) 'ipv6_cidr_block': ipv6CidrBlock!.toTfJson(),
+    'ipv6_cidr_block': ?ipv6CidrBlock?.toTfJson(),
     'protocol': protocol.toTfJson(),
     'rule_action': ruleAction.toTfJson(),
     if (icmpTypeCode != null)
@@ -279,8 +274,8 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
   final TfArg<num>? type;
 
   Map<String, Object?> encode() => {
-    if (code != null) 'code': code!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'code': ?code?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -298,8 +293,8 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
   final TfArg<num>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -338,9 +333,9 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
   portRange;
 
   Map<String, Object?> encode() => {
-    if (cidrBlock != null) 'cidr_block': cidrBlock!.toTfJson(),
+    'cidr_block': ?cidrBlock?.toTfJson(),
     'egress': egress.toTfJson(),
-    if (ipv6CidrBlock != null) 'ipv6_cidr_block': ipv6CidrBlock!.toTfJson(),
+    'ipv6_cidr_block': ?ipv6CidrBlock?.toTfJson(),
     'protocol': protocol.toTfJson(),
     'rule_action': ruleAction.toTfJson(),
     if (icmpTypeCode != null)
@@ -364,8 +359,8 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
   final TfArg<num>? type;
 
   Map<String, Object?> encode() => {
-    if (code != null) 'code': code!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'code': ?code?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -383,8 +378,8 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
   final TfArg<num>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -402,8 +397,7 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicy 
   firewallDeploymentModel;
 
   Map<String, Object?> encode() => {
-    if (firewallDeploymentModel != null)
-      'firewall_deployment_model': firewallDeploymentModel!.toTfJson(),
+    'firewall_deployment_model': ?firewallDeploymentModel?.toTfJson(),
   };
 }
 
@@ -434,8 +428,7 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPoli
   firewallDeploymentModel;
 
   Map<String, Object?> encode() => {
-    if (firewallDeploymentModel != null)
-      'firewall_deployment_model': firewallDeploymentModel!.toTfJson(),
+    'firewall_deployment_model': ?firewallDeploymentModel?.toTfJson(),
   };
 }
 
@@ -480,23 +473,19 @@ final class AwsFmsPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deleteAllPolicyResources != null)
-             'delete_all_policy_resources': deleteAllPolicyResources,
-           if (deleteUnusedFmManagedResources != null)
-             'delete_unused_fm_managed_resources':
-                 deleteUnusedFmManagedResources,
-           if (description != null) 'description': description,
+           'delete_all_policy_resources': ?deleteAllPolicyResources,
+           'delete_unused_fm_managed_resources':
+               ?deleteUnusedFmManagedResources,
+           'description': ?description,
            'exclude_resource_tags': excludeResourceTags,
            'name': name,
-           if (region != null) 'region': region,
-           if (remediationEnabled != null)
-             'remediation_enabled': remediationEnabled,
-           if (resourceSetIds != null) 'resource_set_ids': resourceSetIds,
-           if (resourceTagLogicalOperator != null)
-             'resource_tag_logical_operator': resourceTagLogicalOperator,
-           if (resourceTags != null) 'resource_tags': resourceTags,
+           'region': ?region,
+           'remediation_enabled': ?remediationEnabled,
+           'resource_set_ids': ?resourceSetIds,
+           'resource_tag_logical_operator': ?resourceTagLogicalOperator,
+           'resource_tags': ?resourceTags,
            ...?resourceType?.argMap,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (excludeMap != null)
              'exclude_map': TfArg.literal(excludeMap.encode()),
            if (includeMap != null)

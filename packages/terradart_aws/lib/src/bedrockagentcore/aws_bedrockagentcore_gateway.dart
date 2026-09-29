@@ -105,10 +105,9 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizer {
   privateEndpointOverrides;
 
   Map<String, Object?> encode() => {
-    if (allowedAudience != null)
-      'allowed_audience': allowedAudience!.toTfJson(),
-    if (allowedClients != null) 'allowed_clients': allowedClients!.toTfJson(),
-    if (allowedScopes != null) 'allowed_scopes': allowedScopes!.toTfJson(),
+    'allowed_audience': ?allowedAudience?.toTfJson(),
+    'allowed_clients': ?allowedClients?.toTfJson(),
+    'allowed_scopes': ?allowedScopes?.toTfJson(),
     'discovery_url': discoveryUrl.toTfJson(),
     if (allowedWorkloadConfiguration != null)
       'allowed_workload_configuration': [
@@ -142,8 +141,7 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerAll
   hostingEnvironment;
 
   Map<String, Object?> encode() => {
-    if (workloadIdentities != null)
-      'workload_identities': workloadIdentities!.toTfJson(),
+    'workload_identities': ?workloadIdentities?.toTfJson(),
     if (hostingEnvironment != null)
       'hosting_environment': [for (final e in hostingEnvironment!) e.encode()],
   };
@@ -261,10 +259,8 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCus
   final TfArg<List<Object?>>? matchValueStringList;
 
   Map<String, Object?> encode() => {
-    if (matchValueString != null)
-      'match_value_string': matchValueString!.toTfJson(),
-    if (matchValueStringList != null)
-      'match_value_string_list': matchValueStringList!.toTfJson(),
+    'match_value_string': ?matchValueString?.toTfJson(),
+    'match_value_string_list': ?matchValueStringList?.toTfJson(),
   };
 }
 
@@ -327,11 +323,10 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -360,9 +355,8 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -448,11 +442,10 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -481,9 +474,8 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -649,10 +641,9 @@ final class BedrockagentcoreGatewayProtocolConfigurationMcp {
   streamingConfiguration;
 
   Map<String, Object?> encode() => {
-    if (instructions != null) 'instructions': instructions!.toTfJson(),
-    if (searchType != null) 'search_type': searchType!.toTfJson(),
-    if (supportedVersions != null)
-      'supported_versions': supportedVersions!.toTfJson(),
+    'instructions': ?instructions?.toTfJson(),
+    'search_type': ?searchType?.toTfJson(),
+    'supported_versions': ?supportedVersions?.toTfJson(),
     if (sessionConfiguration != null)
       'session_configuration': [
         for (final e in sessionConfiguration!) e.encode(),
@@ -687,8 +678,7 @@ final class BedrockagentcoreGatewayProtocolConfigurationMcpSessionConfiguration 
   final TfArg<num>? sessionTimeoutInSeconds;
 
   Map<String, Object?> encode() => {
-    if (sessionTimeoutInSeconds != null)
-      'session_timeout_in_seconds': sessionTimeoutInSeconds!.toTfJson(),
+    'session_timeout_in_seconds': ?sessionTimeoutInSeconds?.toTfJson(),
   };
 }
 
@@ -703,8 +693,7 @@ final class BedrockagentcoreGatewayProtocolConfigurationMcpStreamingConfiguratio
   final TfArg<bool>? enableResponseStreaming;
 
   Map<String, Object?> encode() => {
-    if (enableResponseStreaming != null)
-      'enable_response_streaming': enableResponseStreaming!.toTfJson(),
+    'enable_response_streaming': ?enableResponseStreaming?.toTfJson(),
   };
 }
 
@@ -738,14 +727,14 @@ final class AwsBedrockagentcoreGateway extends Resource {
          terraformType: tfType,
          argMap: {
            'authorizer_type': authorizerType,
-           if (description != null) 'description': description,
-           if (exceptionLevel != null) 'exception_level': exceptionLevel,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'description': ?description,
+           'exception_level': ?exceptionLevel,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'name': name,
-           if (protocolType != null) 'protocol_type': protocolType,
-           if (region != null) 'region': region,
+           'protocol_type': ?protocolType,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (authorizerConfiguration != null)
              'authorizer_configuration': TfArg.literal([
                for (final e in authorizerConfiguration) e.encode(),

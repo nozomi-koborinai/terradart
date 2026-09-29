@@ -19,7 +19,7 @@ final class DataAwsOrganizationsAccount extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, if (tags != null) 'tags': tags},
+         argMap: {'account_id': accountId, 'tags': ?tags},
        );
 
   @override

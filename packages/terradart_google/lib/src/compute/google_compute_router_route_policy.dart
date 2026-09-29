@@ -60,10 +60,10 @@ final class ComputeRouterRoutePolicyTermsActions {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -87,10 +87,10 @@ final class ComputeRouterRoutePolicyTermsMatch {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -122,11 +122,11 @@ final class GoogleComputeRouterRoutePolicy extends Resource {
          argMap: {
            'name': name,
            'router': router,
-           if (region != null) 'region': region,
-           if (type != null) 'type': type,
+           'region': ?region,
+           'type': ?type,
            'terms': TfArg.literal([for (final e in terms) e.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -159,10 +159,10 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
            'location': location,
            'build_id': buildId,
            'source': TfArg.literal([source.encode()]),
-           if (displayName != null) 'display_name': displayName,
-           if (annotations != null) 'annotations': annotations,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'annotations': ?annotations,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

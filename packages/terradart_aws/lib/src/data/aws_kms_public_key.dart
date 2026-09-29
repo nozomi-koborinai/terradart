@@ -20,9 +20,9 @@ final class DataAwsKmsPublicKey extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (grantTokens != null) 'grant_tokens': grantTokens,
+           'grant_tokens': ?grantTokens,
            'key_id': keyId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

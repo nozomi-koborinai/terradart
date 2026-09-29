@@ -184,8 +184,7 @@ final class NetworkSecuritySecurityProfileCustomMirroringProfile {
   final TfArg<String> mirroringEndpointGroup;
 
   Map<String, Object?> encode() => {
-    if (mirroringDeploymentGroups != null)
-      'mirroring_deployment_groups': mirroringDeploymentGroups!.toTfJson(),
+    'mirroring_deployment_groups': ?mirroringDeploymentGroups?.toTfJson(),
     'mirroring_endpoint_group': mirroringEndpointGroup.toTfJson(),
   };
 }
@@ -413,7 +412,7 @@ final class NetworkSecuritySecurityProfileUrlFilteringProfileUrlFilters {
   Map<String, Object?> encode() => {
     'filtering_action': filteringAction.toTfJson(),
     'priority': priority.toTfJson(),
-    if (urls != null) 'urls': urls!.toTfJson(),
+    'urls': ?urls?.toTfJson(),
   };
 }
 
@@ -470,12 +469,12 @@ final class GoogleNetworkSecuritySecurityProfile extends Resource {
          argMap: {
            'name': name,
            'type': type,
-           if (location != null) 'location': location,
-           if (parent != null) 'parent': parent,
-           if (description != null) 'description': description,
+           'location': ?location,
+           'parent': ?parent,
+           'description': ?description,
            ...?settings?.argMap,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

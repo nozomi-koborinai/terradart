@@ -34,10 +34,8 @@ final class ElasticsearchDomainAdvancedSecurityOptions {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (internalUserDatabaseEnabled != null)
-      'internal_user_database_enabled': internalUserDatabaseEnabled!.toTfJson(),
-    if (masterUserOptions != null)
-      'master_user_options': masterUserOptions!.encode(),
+    'internal_user_database_enabled': ?internalUserDatabaseEnabled?.toTfJson(),
+    'master_user_options': ?masterUserOptions?.encode(),
   };
 }
 
@@ -58,10 +56,9 @@ final class ElasticsearchDomainAdvancedSecurityOptionsMasterUserOptions {
   final TfArg<String>? masterUserPassword;
 
   Map<String, Object?> encode() => {
-    if (masterUserArn != null) 'master_user_arn': masterUserArn!.toTfJson(),
-    if (masterUserName != null) 'master_user_name': masterUserName!.toTfJson(),
-    if (masterUserPassword != null)
-      'master_user_password': masterUserPassword!.toTfJson(),
+    'master_user_arn': ?masterUserArn?.toTfJson(),
+    'master_user_name': ?masterUserName?.toTfJson(),
+    'master_user_password': ?masterUserPassword?.toTfJson(),
   };
 }
 
@@ -85,8 +82,7 @@ final class ElasticsearchDomainAutoTuneOptions {
 
   Map<String, Object?> encode() => {
     'desired_state': desiredState.toTfJson(),
-    if (rollbackOnDisable != null)
-      'rollback_on_disable': rollbackOnDisable!.toTfJson(),
+    'rollback_on_disable': ?rollbackOnDisable?.toTfJson(),
     if (maintenanceSchedule != null)
       'maintenance_schedule': [
         for (final e in maintenanceSchedule!) e.encode(),
@@ -214,23 +210,17 @@ final class ElasticsearchDomainClusterConfig {
   zoneAwarenessConfig;
 
   Map<String, Object?> encode() => {
-    if (dedicatedMasterCount != null)
-      'dedicated_master_count': dedicatedMasterCount!.toTfJson(),
-    if (dedicatedMasterEnabled != null)
-      'dedicated_master_enabled': dedicatedMasterEnabled!.toTfJson(),
-    if (dedicatedMasterType != null)
-      'dedicated_master_type': dedicatedMasterType!.toTfJson(),
-    if (instanceCount != null) 'instance_count': instanceCount!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (warmCount != null) 'warm_count': warmCount!.toTfJson(),
-    if (warmEnabled != null) 'warm_enabled': warmEnabled!.toTfJson(),
-    if (warmType != null) 'warm_type': warmType!.toTfJson(),
-    if (zoneAwarenessEnabled != null)
-      'zone_awareness_enabled': zoneAwarenessEnabled!.toTfJson(),
-    if (coldStorageOptions != null)
-      'cold_storage_options': coldStorageOptions!.encode(),
-    if (zoneAwarenessConfig != null)
-      'zone_awareness_config': zoneAwarenessConfig!.encode(),
+    'dedicated_master_count': ?dedicatedMasterCount?.toTfJson(),
+    'dedicated_master_enabled': ?dedicatedMasterEnabled?.toTfJson(),
+    'dedicated_master_type': ?dedicatedMasterType?.toTfJson(),
+    'instance_count': ?instanceCount?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'warm_count': ?warmCount?.toTfJson(),
+    'warm_enabled': ?warmEnabled?.toTfJson(),
+    'warm_type': ?warmType?.toTfJson(),
+    'zone_awareness_enabled': ?zoneAwarenessEnabled?.toTfJson(),
+    'cold_storage_options': ?coldStorageOptions?.encode(),
+    'zone_awareness_config': ?zoneAwarenessConfig?.encode(),
   };
 }
 
@@ -242,9 +232,7 @@ final class ElasticsearchDomainClusterConfigColdStorageOptions {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `cluster_config.zone_awareness_config` block of
@@ -258,8 +246,7 @@ final class ElasticsearchDomainClusterConfigZoneAwarenessConfig {
   final TfArg<num>? availabilityZoneCount;
 
   Map<String, Object?> encode() => {
-    if (availabilityZoneCount != null)
-      'availability_zone_count': availabilityZoneCount!.toTfJson(),
+    'availability_zone_count': ?availabilityZoneCount?.toTfJson(),
   };
 }
 
@@ -283,7 +270,7 @@ final class ElasticsearchDomainCognitoOptions {
   final TfArg<String> userPoolId;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'identity_pool_id': identityPoolId.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'user_pool_id': userPoolId.toTfJson(),
@@ -314,15 +301,12 @@ final class ElasticsearchDomainDomainEndpointOptions {
   tlsSecurityPolicy;
 
   Map<String, Object?> encode() => {
-    if (customEndpoint != null) 'custom_endpoint': customEndpoint!.toTfJson(),
-    if (customEndpointCertificateArn != null)
-      'custom_endpoint_certificate_arn': customEndpointCertificateArn!
-          .toTfJson(),
-    if (customEndpointEnabled != null)
-      'custom_endpoint_enabled': customEndpointEnabled!.toTfJson(),
-    if (enforceHttps != null) 'enforce_https': enforceHttps!.toTfJson(),
-    if (tlsSecurityPolicy != null)
-      'tls_security_policy': tlsSecurityPolicy!.toTfJson(),
+    'custom_endpoint': ?customEndpoint?.toTfJson(),
+    'custom_endpoint_certificate_arn': ?customEndpointCertificateArn
+        ?.toTfJson(),
+    'custom_endpoint_enabled': ?customEndpointEnabled?.toTfJson(),
+    'enforce_https': ?enforceHttps?.toTfJson(),
+    'tls_security_policy': ?tlsSecurityPolicy?.toTfJson(),
   };
 }
 
@@ -365,10 +349,10 @@ final class ElasticsearchDomainEbsOptions {
 
   Map<String, Object?> encode() => {
     'ebs_enabled': ebsEnabled.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -399,7 +383,7 @@ final class ElasticsearchDomainEncryptAtRest {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -423,7 +407,7 @@ final class ElasticsearchDomainLogPublishingOptions {
     'cloudwatch_log_group_arn': cloudwatchLogGroupArn
         .encodeAs('arn')
         .toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'log_type': logType.toTfJson(),
   };
 }
@@ -477,9 +461,8 @@ final class ElasticsearchDomainVpcOptions {
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
+    'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -513,13 +496,12 @@ final class AwsElasticsearchDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessPolicies != null) 'access_policies': accessPolicies,
-           if (advancedOptions != null) 'advanced_options': advancedOptions,
+           'access_policies': ?accessPolicies,
+           'advanced_options': ?advancedOptions,
            'domain_name': domainName,
-           if (elasticsearchVersion != null)
-             'elasticsearch_version': elasticsearchVersion,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'elasticsearch_version': ?elasticsearchVersion,
+           'region': ?region,
+           'tags': ?tags,
            if (advancedSecurityOptions != null)
              'advanced_security_options': TfArg.literal(
                advancedSecurityOptions.encode(),

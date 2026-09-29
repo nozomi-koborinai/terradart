@@ -18,8 +18,8 @@ final class IamDenyPolicyRules {
   final IamDenyPolicyRulesDenyRule? denyRule;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (denyRule != null) 'deny_rule': denyRule!.encode(),
+    'description': ?description?.toTfJson(),
+    'deny_rule': ?denyRule?.encode(),
   };
 }
 
@@ -46,15 +46,11 @@ final class IamDenyPolicyRulesDenyRule {
   final IamDenyPolicyRulesDenyRuleDenialCondition? denialCondition;
 
   Map<String, Object?> encode() => {
-    if (deniedPermissions != null)
-      'denied_permissions': deniedPermissions!.toTfJson(),
-    if (deniedPrincipals != null)
-      'denied_principals': deniedPrincipals!.toTfJson(),
-    if (exceptionPermissions != null)
-      'exception_permissions': exceptionPermissions!.toTfJson(),
-    if (exceptionPrincipals != null)
-      'exception_principals': exceptionPrincipals!.toTfJson(),
-    if (denialCondition != null) 'denial_condition': denialCondition!.encode(),
+    'denied_permissions': ?deniedPermissions?.toTfJson(),
+    'denied_principals': ?deniedPrincipals?.toTfJson(),
+    'exception_permissions': ?exceptionPermissions?.toTfJson(),
+    'exception_principals': ?exceptionPrincipals?.toTfJson(),
+    'denial_condition': ?denialCondition?.encode(),
   };
 }
 
@@ -78,10 +74,10 @@ final class IamDenyPolicyRulesDenyRuleDenialCondition {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -146,9 +142,9 @@ final class GoogleIamDenyPolicy extends Resource {
          argMap: {
            'parent': parent,
            'name': name,
-           if (displayName != null) 'display_name': displayName,
+           'display_name': ?displayName,
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

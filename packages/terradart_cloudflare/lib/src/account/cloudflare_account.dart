@@ -37,10 +37,8 @@ final class AccountSettings {
   final TfArg<bool>? enforceTwofactor;
 
   Map<String, Object?> encode() => {
-    if (abuseContactEmail != null)
-      'abuse_contact_email': abuseContactEmail!.toTfJson(),
-    if (enforceTwofactor != null)
-      'enforce_twofactor': enforceTwofactor!.toTfJson(),
+    'abuse_contact_email': ?abuseContactEmail?.toTfJson(),
+    'enforce_twofactor': ?enforceTwofactor?.toTfJson(),
   };
 }
 
@@ -52,7 +50,7 @@ final class AccountUnit {
 
   final TfArg<String>? id;
 
-  Map<String, Object?> encode() => {if (id != null) 'id': id!.toTfJson()};
+  Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_account`.
@@ -89,8 +87,8 @@ final class CloudflareAccount extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (standalone != null) 'standalone': standalone,
-           if (type != null) 'type': type,
+           'standalone': ?standalone,
+           'type': ?type,
            if (managedBy != null)
              'managed_by': TfArg.literal(managedBy.encode()),
            if (settings != null) 'settings': TfArg.literal(settings.encode()),

@@ -44,11 +44,10 @@ final class GoogleMigrationCenterSettings extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (preferenceSet != null) 'preference_set': preferenceSet,
-           if (disableCloudLogging != null)
-             'disable_cloud_logging': disableCloudLogging,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'preference_set': ?preferenceSet,
+           'disable_cloud_logging': ?disableCloudLogging,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

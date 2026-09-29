@@ -37,11 +37,11 @@ final class AwsSchemasSchema extends Resource {
          terraformType: tfType,
          argMap: {
            'content': content,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'registry_name': registryName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'type': type,
          },
        );

@@ -18,8 +18,8 @@ final class DataEcrpublicImagesImageIds {
   final TfArg<String>? imageTag;
 
   Map<String, Object?> encode() => {
-    if (imageDigest != null) 'image_digest': imageDigest!.toTfJson(),
-    if (imageTag != null) 'image_tag': imageTag!.toTfJson(),
+    'image_digest': ?imageDigest?.toTfJson(),
+    'image_tag': ?imageTag?.toTfJson(),
   };
 }
 
@@ -40,8 +40,8 @@ final class DataAwsEcrpublicImages extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (registryId != null) 'registry_id': registryId,
+           'region': ?region,
+           'registry_id': ?registryId,
            'repository_name': repositoryName,
            if (imageIds != null)
              'image_ids': TfArg.literal([for (final e in imageIds) e.encode()]),

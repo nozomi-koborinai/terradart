@@ -23,7 +23,7 @@ final class S3BucketVersioningVersioningConfiguration {
   final TfArg<String> status;
 
   Map<String, Object?> encode() => {
-    if (mfaDelete != null) 'mfa_delete': mfaDelete!.toTfJson(),
+    'mfa_delete': ?mfaDelete?.toTfJson(),
     'status': status.toTfJson(),
   };
 }
@@ -58,10 +58,9 @@ final class AwsS3BucketVersioning extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (mfa != null) 'mfa': mfa,
-           if (region != null) 'region': region,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'mfa': ?mfa,
+           'region': ?region,
            'versioning_configuration': TfArg.literal(
              versioningConfiguration.encode(),
            ),

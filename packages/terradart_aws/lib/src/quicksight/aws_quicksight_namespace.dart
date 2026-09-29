@@ -24,11 +24,11 @@ final class AwsQuicksightNamespace extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
-           if (identityStore != null) 'identity_store': identityStore,
+           'aws_account_id': ?awsAccountId,
+           'identity_store': ?identityStore,
            'namespace': namespace,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

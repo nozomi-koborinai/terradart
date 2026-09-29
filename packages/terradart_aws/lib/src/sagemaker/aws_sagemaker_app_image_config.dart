@@ -23,9 +23,8 @@ final class SagemakerAppImageConfigCodeEditorAppImageConfig {
   fileSystemConfig;
 
   Map<String, Object?> encode() => {
-    if (containerConfig != null) 'container_config': containerConfig!.encode(),
-    if (fileSystemConfig != null)
-      'file_system_config': fileSystemConfig!.encode(),
+    'container_config': ?containerConfig?.encode(),
+    'file_system_config': ?fileSystemConfig?.encode(),
   };
 }
 
@@ -46,13 +45,10 @@ final class SagemakerAppImageConfigCodeEditorAppImageConfigContainerConfig {
   final TfArg<Map<String, String>>? containerEnvironmentVariables;
 
   Map<String, Object?> encode() => {
-    if (containerArguments != null)
-      'container_arguments': containerArguments!.toTfJson(),
-    if (containerEntrypoint != null)
-      'container_entrypoint': containerEntrypoint!.toTfJson(),
-    if (containerEnvironmentVariables != null)
-      'container_environment_variables': containerEnvironmentVariables!
-          .toTfJson(),
+    'container_arguments': ?containerArguments?.toTfJson(),
+    'container_entrypoint': ?containerEntrypoint?.toTfJson(),
+    'container_environment_variables': ?containerEnvironmentVariables
+        ?.toTfJson(),
   };
 }
 
@@ -73,9 +69,9 @@ final class SagemakerAppImageConfigCodeEditorAppImageConfigFileSystemConfig {
   final TfArg<String>? mountPath;
 
   Map<String, Object?> encode() => {
-    if (defaultGid != null) 'default_gid': defaultGid!.toTfJson(),
-    if (defaultUid != null) 'default_uid': defaultUid!.toTfJson(),
-    if (mountPath != null) 'mount_path': mountPath!.toTfJson(),
+    'default_gid': ?defaultGid?.toTfJson(),
+    'default_uid': ?defaultUid?.toTfJson(),
+    'mount_path': ?mountPath?.toTfJson(),
   };
 }
 
@@ -95,9 +91,8 @@ final class SagemakerAppImageConfigJupyterLabImageConfig {
   fileSystemConfig;
 
   Map<String, Object?> encode() => {
-    if (containerConfig != null) 'container_config': containerConfig!.encode(),
-    if (fileSystemConfig != null)
-      'file_system_config': fileSystemConfig!.encode(),
+    'container_config': ?containerConfig?.encode(),
+    'file_system_config': ?fileSystemConfig?.encode(),
   };
 }
 
@@ -118,13 +113,10 @@ final class SagemakerAppImageConfigJupyterLabImageConfigContainerConfig {
   final TfArg<Map<String, String>>? containerEnvironmentVariables;
 
   Map<String, Object?> encode() => {
-    if (containerArguments != null)
-      'container_arguments': containerArguments!.toTfJson(),
-    if (containerEntrypoint != null)
-      'container_entrypoint': containerEntrypoint!.toTfJson(),
-    if (containerEnvironmentVariables != null)
-      'container_environment_variables': containerEnvironmentVariables!
-          .toTfJson(),
+    'container_arguments': ?containerArguments?.toTfJson(),
+    'container_entrypoint': ?containerEntrypoint?.toTfJson(),
+    'container_environment_variables': ?containerEnvironmentVariables
+        ?.toTfJson(),
   };
 }
 
@@ -145,9 +137,9 @@ final class SagemakerAppImageConfigJupyterLabImageConfigFileSystemConfig {
   final TfArg<String>? mountPath;
 
   Map<String, Object?> encode() => {
-    if (defaultGid != null) 'default_gid': defaultGid!.toTfJson(),
-    if (defaultUid != null) 'default_uid': defaultUid!.toTfJson(),
-    if (mountPath != null) 'mount_path': mountPath!.toTfJson(),
+    'default_gid': ?defaultGid?.toTfJson(),
+    'default_uid': ?defaultUid?.toTfJson(),
+    'mount_path': ?mountPath?.toTfJson(),
   };
 }
 
@@ -167,8 +159,7 @@ final class SagemakerAppImageConfigKernelGatewayImageConfig {
   kernelSpec;
 
   Map<String, Object?> encode() => {
-    if (fileSystemConfig != null)
-      'file_system_config': fileSystemConfig!.encode(),
+    'file_system_config': ?fileSystemConfig?.encode(),
     'kernel_spec': [for (final e in kernelSpec) e.encode()],
   };
 }
@@ -190,9 +181,9 @@ final class SagemakerAppImageConfigKernelGatewayImageConfigFileSystemConfig {
   final TfArg<String>? mountPath;
 
   Map<String, Object?> encode() => {
-    if (defaultGid != null) 'default_gid': defaultGid!.toTfJson(),
-    if (defaultUid != null) 'default_uid': defaultUid!.toTfJson(),
-    if (mountPath != null) 'mount_path': mountPath!.toTfJson(),
+    'default_gid': ?defaultGid?.toTfJson(),
+    'default_uid': ?defaultUid?.toTfJson(),
+    'mount_path': ?mountPath?.toTfJson(),
   };
 }
 
@@ -210,7 +201,7 @@ final class SagemakerAppImageConfigKernelGatewayImageConfigKernelSpec {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -235,8 +226,8 @@ final class AwsSagemakerAppImageConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'app_image_config_name': appImageConfigName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (codeEditorAppImageConfig != null)
              'code_editor_app_image_config': TfArg.literal(
                codeEditorAppImageConfig.encode(),

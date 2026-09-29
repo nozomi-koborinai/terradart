@@ -36,9 +36,9 @@ final class DialogflowCxToolVersionTool {
   Map<String, Object?> encode() => {
     'description': description.toTfJson(),
     'display_name': displayName.toTfJson(),
-    if (dataStoreSpec != null) 'data_store_spec': dataStoreSpec!.encode(),
-    if (functionSpec != null) 'function_spec': functionSpec!.encode(),
-    if (openApiSpec != null) 'open_api_spec': openApiSpec!.encode(),
+    'data_store_spec': ?dataStoreSpec?.encode(),
+    'function_spec': ?functionSpec?.encode(),
+    'open_api_spec': ?openApiSpec?.encode(),
   };
 }
 
@@ -81,10 +81,9 @@ final class DialogflowCxToolVersionToolDataStoreSpecDataStoreConnections {
   final TfArg<String>? documentProcessingMode;
 
   Map<String, Object?> encode() => {
-    if (dataStore != null) 'data_store': dataStore!.toTfJson(),
-    if (dataStoreType != null) 'data_store_type': dataStoreType!.toTfJson(),
-    if (documentProcessingMode != null)
-      'document_processing_mode': documentProcessingMode!.toTfJson(),
+    'data_store': ?dataStore?.toTfJson(),
+    'data_store_type': ?dataStoreType?.toTfJson(),
+    'document_processing_mode': ?documentProcessingMode?.toTfJson(),
   };
 }
 
@@ -111,8 +110,8 @@ final class DialogflowCxToolVersionToolFunctionSpec {
   final TfArg<String>? outputSchema;
 
   Map<String, Object?> encode() => {
-    if (inputSchema != null) 'input_schema': inputSchema!.toTfJson(),
-    if (outputSchema != null) 'output_schema': outputSchema!.toTfJson(),
+    'input_schema': ?inputSchema?.toTfJson(),
+    'output_schema': ?outputSchema?.toTfJson(),
   };
 }
 
@@ -138,10 +137,9 @@ final class DialogflowCxToolVersionToolOpenApiSpec {
 
   Map<String, Object?> encode() => {
     'text_schema': textSchema.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
-    if (serviceDirectoryConfig != null)
-      'service_directory_config': serviceDirectoryConfig!.encode(),
-    if (tlsConfig != null) 'tls_config': tlsConfig!.encode(),
+    'authentication': ?authentication?.encode(),
+    'service_directory_config': ?serviceDirectoryConfig?.encode(),
+    'tls_config': ?tlsConfig?.encode(),
   };
 }
 
@@ -169,12 +167,10 @@ final class DialogflowCxToolVersionToolOpenApiSpecAuthentication {
   serviceAgentAuthConfig;
 
   Map<String, Object?> encode() => {
-    if (apiKeyConfig != null) 'api_key_config': apiKeyConfig!.encode(),
-    if (bearerTokenConfig != null)
-      'bearer_token_config': bearerTokenConfig!.encode(),
-    if (oauthConfig != null) 'oauth_config': oauthConfig!.encode(),
-    if (serviceAgentAuthConfig != null)
-      'service_agent_auth_config': serviceAgentAuthConfig!.encode(),
+    'api_key_config': ?apiKeyConfig?.encode(),
+    'bearer_token_config': ?bearerTokenConfig?.encode(),
+    'oauth_config': ?oauthConfig?.encode(),
+    'service_agent_auth_config': ?serviceAgentAuthConfig?.encode(),
   };
 }
 
@@ -198,11 +194,10 @@ final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationApiKeyConfig {
   final TfArg<String>? secretVersionForApiKey;
 
   Map<String, Object?> encode() => {
-    if (apiKey != null) 'api_key': apiKey!.toTfJson(),
+    'api_key': ?apiKey?.toTfJson(),
     'key_name': keyName.toTfJson(),
     'request_location': requestLocation.toTfJson(),
-    if (secretVersionForApiKey != null)
-      'secret_version_for_api_key': secretVersionForApiKey!.toTfJson(),
+    'secret_version_for_api_key': ?secretVersionForApiKey?.toTfJson(),
   };
 }
 
@@ -220,9 +215,8 @@ final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationBearerTokenConfi
   final TfArg<String>? token;
 
   Map<String, Object?> encode() => {
-    if (secretVersionForToken != null)
-      'secret_version_for_token': secretVersionForToken!.toTfJson(),
-    if (token != null) 'token': token!.toTfJson(),
+    'secret_version_for_token': ?secretVersionForToken?.toTfJson(),
+    'token': ?token?.toTfJson(),
   };
 }
 
@@ -253,12 +247,11 @@ final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationOauthConfig {
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
     'oauth_grant_type': oauthGrantType.toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
-    if (secretVersionForClientSecret != null)
-      'secret_version_for_client_secret': secretVersionForClientSecret!
-          .toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
+    'secret_version_for_client_secret': ?secretVersionForClientSecret
+        ?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
   };
 }
@@ -274,8 +267,7 @@ final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationServiceAgentAuth
   final TfArg<String>? serviceAgentAuth;
 
   Map<String, Object?> encode() => {
-    if (serviceAgentAuth != null)
-      'service_agent_auth': serviceAgentAuth!.toTfJson(),
+    'service_agent_auth': ?serviceAgentAuth?.toTfJson(),
   };
 }
 
@@ -356,7 +348,7 @@ final class GoogleDialogflowCxToolVersion extends Resource {
            'display_name': displayName,
            'parent': parent,
            'tool': TfArg.literal(tool.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

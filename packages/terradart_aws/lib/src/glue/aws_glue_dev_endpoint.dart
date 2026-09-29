@@ -113,24 +113,21 @@ final class AwsGlueDevEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arguments != null) 'arguments': arguments,
-           if (extraJarsS3Path != null) 'extra_jars_s3_path': extraJarsS3Path,
-           if (extraPythonLibsS3Path != null)
-             'extra_python_libs_s3_path': extraPythonLibsS3Path,
-           if (glueVersion != null) 'glue_version': glueVersion,
+           'arguments': ?arguments,
+           'extra_jars_s3_path': ?extraJarsS3Path,
+           'extra_python_libs_s3_path': ?extraPythonLibsS3Path,
+           'glue_version': ?glueVersion,
            'name': name,
-           if (numberOfNodes != null) 'number_of_nodes': numberOfNodes,
-           if (numberOfWorkers != null) 'number_of_workers': numberOfWorkers,
+           'number_of_nodes': ?numberOfNodes,
+           'number_of_workers': ?numberOfWorkers,
            ...?publicKey?.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (securityConfiguration != null)
-             'security_configuration': securityConfiguration,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (workerType != null) 'worker_type': workerType,
+           'security_configuration': ?securityConfiguration,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'subnet_id': ?subnetId?.encodeAs('id'),
+           'tags': ?tags,
+           'worker_type': ?workerType,
          },
        );
 

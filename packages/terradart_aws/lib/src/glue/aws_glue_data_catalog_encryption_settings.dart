@@ -42,7 +42,7 @@ final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsConnec
   final TfArg<bool> returnConnectionPasswordEncrypted;
 
   Map<String, Object?> encode() => {
-    if (awsKmsKeyId != null) 'aws_kms_key_id': awsKmsKeyId!.toTfJson(),
+    'aws_kms_key_id': ?awsKmsKeyId?.toTfJson(),
     'return_connection_password_encrypted': returnConnectionPasswordEncrypted
         .toTfJson(),
   };
@@ -69,11 +69,9 @@ final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryp
 
   Map<String, Object?> encode() => {
     'catalog_encryption_mode': catalogEncryptionMode.toTfJson(),
-    if (catalogEncryptionServiceRole != null)
-      'catalog_encryption_service_role': catalogEncryptionServiceRole!
-          .toTfJson(),
-    if (sseAwsKmsKeyId != null)
-      'sse_aws_kms_key_id': sseAwsKmsKeyId!.toTfJson(),
+    'catalog_encryption_service_role': ?catalogEncryptionServiceRole
+        ?.toTfJson(),
+    'sse_aws_kms_key_id': ?sseAwsKmsKeyId?.toTfJson(),
   };
 }
 
@@ -108,8 +106,8 @@ final class AwsGlueDataCatalogEncryptionSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
-           if (region != null) 'region': region,
+           'catalog_id': ?catalogId,
+           'region': ?region,
            'data_catalog_encryption_settings': TfArg.literal(
              dataCatalogEncryptionSettings.encode(),
            ),

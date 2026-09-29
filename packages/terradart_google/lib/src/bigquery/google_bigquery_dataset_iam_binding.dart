@@ -35,8 +35,8 @@ final class GoogleBigqueryDatasetIamBinding extends Resource {
            'dataset_id': datasetId.encodeAs('dataset_id'),
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

@@ -73,8 +73,8 @@ final class GoogleFirebaseAppCheckDeviceCheckConfig extends Resource {
            'app_id': appId,
            'key_id': keyId,
            'private_key': privateKey,
-           if (tokenTtl != null) 'token_ttl': tokenTtl,
-           if (project != null) 'project': project,
+           'token_ttl': ?tokenTtl,
+           'project': ?project,
          },
        );
 

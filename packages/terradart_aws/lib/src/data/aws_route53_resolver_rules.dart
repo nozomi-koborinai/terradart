@@ -23,13 +23,12 @@ final class DataAwsRoute53ResolverRules extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (nameRegex != null) 'name_regex': nameRegex,
-           if (ownerId != null) 'owner_id': ownerId,
-           if (region != null) 'region': region,
-           if (resolverEndpointId != null)
-             'resolver_endpoint_id': resolverEndpointId,
-           if (ruleType != null) 'rule_type': ruleType,
-           if (shareStatus != null) 'share_status': shareStatus,
+           'name_regex': ?nameRegex,
+           'owner_id': ?ownerId,
+           'region': ?region,
+           'resolver_endpoint_id': ?resolverEndpointId,
+           'rule_type': ?ruleType,
+           'share_status': ?shareStatus,
          },
        );
 

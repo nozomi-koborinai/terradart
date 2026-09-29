@@ -51,16 +51,14 @@ final class CloudflareEmailSecurityDomain extends Resource {
            'allowed_delivery_modes': allowedDeliveryModes,
            'domain': domain,
            'drop_dispositions': dropDispositions,
-           if (folder != null) 'folder': folder,
-           if (integrationId != null) 'integration_id': integrationId,
+           'folder': ?folder,
+           'integration_id': ?integrationId,
            'ip_restrictions': ipRestrictions,
-           if (lookbackHops != null) 'lookback_hops': lookbackHops,
+           'lookback_hops': ?lookbackHops,
            'regions': regions,
-           if (requireTlsInbound != null)
-             'require_tls_inbound': requireTlsInbound,
-           if (requireTlsOutbound != null)
-             'require_tls_outbound': requireTlsOutbound,
-           if (transport != null) 'transport': transport,
+           'require_tls_inbound': ?requireTlsInbound,
+           'require_tls_outbound': ?requireTlsOutbound,
+           'transport': ?transport,
          },
        );
 

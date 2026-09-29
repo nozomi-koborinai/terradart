@@ -17,10 +17,7 @@ final class AwsCloudfrontOriginAccessIdentity extends Resource {
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (comment != null) 'comment': comment},
-       );
+  }) : super(terraformType: tfType, argMap: {'comment': ?comment});
 
   @override
   Set<String> get sensitiveFields =>

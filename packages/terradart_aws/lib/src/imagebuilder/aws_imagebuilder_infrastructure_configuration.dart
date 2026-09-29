@@ -30,9 +30,8 @@ final class ImagebuilderInfrastructureConfigurationInstanceMetadataOptions {
   httpTokens;
 
   Map<String, Object?> encode() => {
-    if (httpPutResponseHopLimit != null)
-      'http_put_response_hop_limit': httpPutResponseHopLimit!.toTfJson(),
-    if (httpTokens != null) 'http_tokens': httpTokens!.toTfJson(),
+    'http_put_response_hop_limit': ?httpPutResponseHopLimit?.toTfJson(),
+    'http_tokens': ?httpTokens?.toTfJson(),
   };
 }
 
@@ -75,7 +74,7 @@ final class ImagebuilderInfrastructureConfigurationLoggingS3Logs {
 
   Map<String, Object?> encode() => {
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
-    if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix!.toTfJson(),
+    's3_key_prefix': ?s3KeyPrefix?.toTfJson(),
   };
 }
 
@@ -96,10 +95,9 @@ final class ImagebuilderInfrastructureConfigurationPlacement {
   final TfArg<ImagebuilderInfrastructureConfigurationPlacementTenancy>? tenancy;
 
   Map<String, Object?> encode() => {
-    if (availabilityZone != null)
-      'availability_zone': availabilityZone!.toTfJson(),
+    'availability_zone': ?availabilityZone?.toTfJson(),
     ...?host?.encode(),
-    if (tenancy != null) 'tenancy': tenancy!.toTfJson(),
+    'tenancy': ?tenancy?.toTfJson(),
   };
 }
 
@@ -202,21 +200,18 @@ final class AwsImagebuilderInfrastructureConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'instance_profile_name': instanceProfileName,
-           if (instanceTypes != null) 'instance_types': instanceTypes,
-           if (keyPair != null) 'key_pair': keyPair,
+           'instance_types': ?instanceTypes,
+           'key_pair': ?keyPair,
            'name': name,
-           if (region != null) 'region': region,
-           if (resourceTags != null) 'resource_tags': resourceTags,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (snsTopicArn != null)
-             'sns_topic_arn': snsTopicArn.encodeAs('arn'),
-           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (terminateInstanceOnFailure != null)
-             'terminate_instance_on_failure': terminateInstanceOnFailure,
+           'region': ?region,
+           'resource_tags': ?resourceTags,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'sns_topic_arn': ?snsTopicArn?.encodeAs('arn'),
+           'subnet_id': ?subnetId?.encodeAs('id'),
+           'tags': ?tags,
+           'terminate_instance_on_failure': ?terminateInstanceOnFailure,
            if (instanceMetadataOptions != null)
              'instance_metadata_options': TfArg.literal(
                instanceMetadataOptions.encode(),

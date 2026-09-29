@@ -183,37 +183,28 @@ final class AwsSubnet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (assignIpv6AddressOnCreation != null)
-             'assign_ipv6_address_on_creation': assignIpv6AddressOnCreation,
+           'assign_ipv6_address_on_creation': ?assignIpv6AddressOnCreation,
            ...?availabilityZone?.argMap,
-           if (cidrBlock != null) 'cidr_block': cidrBlock,
-           if (customerOwnedIpv4Pool != null)
-             'customer_owned_ipv4_pool': customerOwnedIpv4Pool,
-           if (enableDns64 != null) 'enable_dns64': enableDns64,
-           if (enableLniAtDeviceIndex != null)
-             'enable_lni_at_device_index': enableLniAtDeviceIndex,
-           if (enableResourceNameDnsARecordOnLaunch != null)
-             'enable_resource_name_dns_a_record_on_launch':
-                 enableResourceNameDnsARecordOnLaunch,
-           if (enableResourceNameDnsAaaaRecordOnLaunch != null)
-             'enable_resource_name_dns_aaaa_record_on_launch':
-                 enableResourceNameDnsAaaaRecordOnLaunch,
-           if (ipv4IpamPoolId != null) 'ipv4_ipam_pool_id': ipv4IpamPoolId,
-           if (ipv4NetmaskLength != null)
-             'ipv4_netmask_length': ipv4NetmaskLength,
+           'cidr_block': ?cidrBlock,
+           'customer_owned_ipv4_pool': ?customerOwnedIpv4Pool,
+           'enable_dns64': ?enableDns64,
+           'enable_lni_at_device_index': ?enableLniAtDeviceIndex,
+           'enable_resource_name_dns_a_record_on_launch':
+               ?enableResourceNameDnsARecordOnLaunch,
+           'enable_resource_name_dns_aaaa_record_on_launch':
+               ?enableResourceNameDnsAaaaRecordOnLaunch,
+           'ipv4_ipam_pool_id': ?ipv4IpamPoolId,
+           'ipv4_netmask_length': ?ipv4NetmaskLength,
            ...?ipv6?.argMap,
-           if (ipv6IpamPoolId != null) 'ipv6_ipam_pool_id': ipv6IpamPoolId,
-           if (ipv6Native != null) 'ipv6_native': ipv6Native,
-           if (mapCustomerOwnedIpOnLaunch != null)
-             'map_customer_owned_ip_on_launch': mapCustomerOwnedIpOnLaunch,
-           if (mapPublicIpOnLaunch != null)
-             'map_public_ip_on_launch': mapPublicIpOnLaunch,
-           if (outpostArn != null) 'outpost_arn': outpostArn,
-           if (privateDnsHostnameTypeOnLaunch != null)
-             'private_dns_hostname_type_on_launch':
-                 privateDnsHostnameTypeOnLaunch,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'ipv6_ipam_pool_id': ?ipv6IpamPoolId,
+           'ipv6_native': ?ipv6Native,
+           'map_customer_owned_ip_on_launch': ?mapCustomerOwnedIpOnLaunch,
+           'map_public_ip_on_launch': ?mapPublicIpOnLaunch,
+           'outpost_arn': ?outpostArn,
+           'private_dns_hostname_type_on_launch':
+               ?privateDnsHostnameTypeOnLaunch,
+           'region': ?region,
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

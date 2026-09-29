@@ -81,10 +81,9 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizer {
   privateEndpointOverrides;
 
   Map<String, Object?> encode() => {
-    if (allowedAudience != null)
-      'allowed_audience': allowedAudience!.toTfJson(),
-    if (allowedClients != null) 'allowed_clients': allowedClients!.toTfJson(),
-    if (allowedScopes != null) 'allowed_scopes': allowedScopes!.toTfJson(),
+    'allowed_audience': ?allowedAudience?.toTfJson(),
+    'allowed_clients': ?allowedClients?.toTfJson(),
+    'allowed_scopes': ?allowedScopes?.toTfJson(),
     'discovery_url': discoveryUrl.toTfJson(),
     if (allowedWorkloadConfiguration != null)
       'allowed_workload_configuration': [
@@ -118,8 +117,7 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAll
   hostingEnvironment;
 
   Map<String, Object?> encode() => {
-    if (workloadIdentities != null)
-      'workload_identities': workloadIdentities!.toTfJson(),
+    'workload_identities': ?workloadIdentities?.toTfJson(),
     if (hostingEnvironment != null)
       'hosting_environment': [for (final e in hostingEnvironment!) e.encode()],
   };
@@ -237,10 +235,8 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCus
   final TfArg<List<Object?>>? matchValueStringList;
 
   Map<String, Object?> encode() => {
-    if (matchValueString != null)
-      'match_value_string': matchValueString!.toTfJson(),
-    if (matchValueStringList != null)
-      'match_value_string_list': matchValueStringList!.toTfJson(),
+    'match_value_string': ?matchValueString?.toTfJson(),
+    'match_value_string_list': ?matchValueStringList?.toTfJson(),
   };
 }
 
@@ -303,11 +299,10 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -336,9 +331,8 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -424,11 +418,10 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -457,9 +450,8 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -503,8 +495,7 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironment {
   networkConfiguration;
 
   Map<String, Object?> encode() => {
-    if (lifecycleConfiguration != null)
-      'lifecycle_configuration': lifecycleConfiguration!.toTfJson(),
+    'lifecycle_configuration': ?lifecycleConfiguration?.toTfJson(),
     if (filesystemConfiguration != null)
       'filesystem_configuration': [
         for (final e in filesystemConfiguration!) e.encode(),
@@ -748,9 +739,9 @@ final class BedrockagentcoreHarnessMemoryAgentcoreMemoryConfiguration {
   retrievalConfig;
 
   Map<String, Object?> encode() => {
-    if (actorId != null) 'actor_id': actorId!.toTfJson(),
+    'actor_id': ?actorId?.toTfJson(),
     'arn': arn.toTfJson(),
-    if (messagesCount != null) 'messages_count': messagesCount!.toTfJson(),
+    'messages_count': ?messagesCount?.toTfJson(),
     if (retrievalConfig != null)
       'retrieval_config': [for (final e in retrievalConfig!) e.encode()],
   };
@@ -777,9 +768,9 @@ final class BedrockagentcoreHarnessMemoryAgentcoreMemoryConfigurationRetrievalCo
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (relevanceScore != null) 'relevance_score': relevanceScore!.toTfJson(),
-    if (strategyId != null) 'strategy_id': strategyId!.toTfJson(),
-    if (topK != null) 'top_k': topK!.toTfJson(),
+    'relevance_score': ?relevanceScore?.toTfJson(),
+    'strategy_id': ?strategyId?.toTfJson(),
+    'top_k': ?topK?.toTfJson(),
   };
 }
 
@@ -812,10 +803,8 @@ final class BedrockagentcoreHarnessMemoryManagedMemoryConfiguration {
   strategies;
 
   Map<String, Object?> encode() => {
-    if (encryptionKeyArn != null)
-      'encryption_key_arn': encryptionKeyArn!.encodeAs('arn').toTfJson(),
-    if (eventExpiryDuration != null)
-      'event_expiry_duration': eventExpiryDuration!.toTfJson(),
+    'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
+    'event_expiry_duration': ?eventExpiryDuration?.toTfJson(),
     if (strategies != null)
       'strategies': [for (final e in strategies!) e.toTfJson()],
   };
@@ -896,13 +885,12 @@ final class BedrockagentcoreHarnessModelBedrockModelConfig {
   final TfArg<num>? topP;
 
   Map<String, Object?> encode() => {
-    if (additionalParams != null)
-      'additional_params': additionalParams!.toTfJson(),
-    if (apiFormat != null) 'api_format': apiFormat!.toTfJson(),
-    if (maxTokens != null) 'max_tokens': maxTokens!.toTfJson(),
+    'additional_params': ?additionalParams?.toTfJson(),
+    'api_format': ?apiFormat?.toTfJson(),
+    'max_tokens': ?maxTokens?.toTfJson(),
     'model_id': modelId.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
-    if (topP != null) 'top_p': topP!.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'top_p': ?topP?.toTfJson(),
   };
 }
 
@@ -949,14 +937,13 @@ final class BedrockagentcoreHarnessModelGeminiModelConfig {
   final TfArg<num>? topP;
 
   Map<String, Object?> encode() => {
-    if (additionalParams != null)
-      'additional_params': additionalParams!.toTfJson(),
+    'additional_params': ?additionalParams?.toTfJson(),
     'api_key_arn': apiKeyArn.toTfJson(),
-    if (maxTokens != null) 'max_tokens': maxTokens!.toTfJson(),
+    'max_tokens': ?maxTokens?.toTfJson(),
     'model_id': modelId.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
-    if (topK != null) 'top_k': topK!.toTfJson(),
-    if (topP != null) 'top_p': topP!.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'top_k': ?topK?.toTfJson(),
+    'top_p': ?topP?.toTfJson(),
   };
 }
 
@@ -989,14 +976,13 @@ final class BedrockagentcoreHarnessModelLitellmModelConfig {
   final TfArg<num>? topP;
 
   Map<String, Object?> encode() => {
-    if (additionalParams != null)
-      'additional_params': additionalParams!.toTfJson(),
-    if (apiBase != null) 'api_base': apiBase!.toTfJson(),
-    if (apiKeyArn != null) 'api_key_arn': apiKeyArn!.toTfJson(),
-    if (maxTokens != null) 'max_tokens': maxTokens!.toTfJson(),
+    'additional_params': ?additionalParams?.toTfJson(),
+    'api_base': ?apiBase?.toTfJson(),
+    'api_key_arn': ?apiKeyArn?.toTfJson(),
+    'max_tokens': ?maxTokens?.toTfJson(),
     'model_id': modelId.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
-    if (topP != null) 'top_p': topP!.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'top_p': ?topP?.toTfJson(),
   };
 }
 
@@ -1030,14 +1016,13 @@ final class BedrockagentcoreHarnessModelOpenaiModelConfig {
   final TfArg<num>? topP;
 
   Map<String, Object?> encode() => {
-    if (additionalParams != null)
-      'additional_params': additionalParams!.toTfJson(),
-    if (apiFormat != null) 'api_format': apiFormat!.toTfJson(),
+    'additional_params': ?additionalParams?.toTfJson(),
+    'api_format': ?apiFormat?.toTfJson(),
     'api_key_arn': apiKeyArn.toTfJson(),
-    if (maxTokens != null) 'max_tokens': maxTokens!.toTfJson(),
+    'max_tokens': ?maxTokens?.toTfJson(),
     'model_id': modelId.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
-    if (topP != null) 'top_p': topP!.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'top_p': ?topP?.toTfJson(),
   };
 }
 
@@ -1074,7 +1059,7 @@ final class BedrockagentcoreHarnessSkill {
   final List<BedrockagentcoreHarnessSkillS3>? s3;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
     if (awsSkills != null)
       'aws_skills': [for (final e in awsSkills!) e.encode()],
     if (git != null) 'git': [for (final e in git!) e.encode()],
@@ -1090,9 +1075,7 @@ final class BedrockagentcoreHarnessSkillAwsSkills {
 
   final TfArg<List<Object?>>? paths;
 
-  Map<String, Object?> encode() => {
-    if (paths != null) 'paths': paths!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'paths': ?paths?.toTfJson()};
 }
 
 /// Typed helper for the `skill.git` block of
@@ -1112,7 +1095,7 @@ final class BedrockagentcoreHarnessSkillGit {
   final List<BedrockagentcoreHarnessSkillGitAuth>? auth;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
     'url': url.toTfJson(),
     if (auth != null) 'auth': [for (final e in auth!) e.encode()],
   };
@@ -1133,7 +1116,7 @@ final class BedrockagentcoreHarnessSkillGitAuth {
 
   Map<String, Object?> encode() => {
     'credential_arn': credentialArn.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -1156,7 +1139,7 @@ final class BedrockagentcoreHarnessSystemPrompt {
 
   final TfArg<String>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Typed helper for the `tool` block of
@@ -1176,7 +1159,7 @@ final class BedrockagentcoreHarnessTool {
   final List<BedrockagentcoreHarnessToolConfig>? config;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     'type': type.toTfJson(),
     if (config != null) 'config': [for (final e in config!) e.encode()],
   };
@@ -1244,9 +1227,7 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreBrowser {
 
   final TfArg<String>? browserArn;
 
-  Map<String, Object?> encode() => {
-    if (browserArn != null) 'browser_arn': browserArn!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'browser_arn': ?browserArn?.toTfJson()};
 }
 
 /// Typed helper for the `tool.config.agentcore_code_interpreter` block of
@@ -1260,8 +1241,7 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreCodeInterpreter {
   final TfArg<String>? codeInterpreterArn;
 
   Map<String, Object?> encode() => {
-    if (codeInterpreterArn != null)
-      'code_interpreter_arn': codeInterpreterArn!.toTfJson(),
+    'code_interpreter_arn': ?codeInterpreterArn?.toTfJson(),
   };
 }
 
@@ -1306,8 +1286,8 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuth {
   oauth;
 
   Map<String, Object?> encode() => {
-    if (awsIam != null) 'aws_iam': awsIam!.toTfJson(),
-    if (none != null) 'none': none!.toTfJson(),
+    'aws_iam': ?awsIam?.toTfJson(),
+    'none': ?none?.toTfJson(),
     if (oauth != null) 'oauth': [for (final e in oauth!) e.encode()],
   };
 }
@@ -1338,11 +1318,9 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauth {
   final TfArg<List<Object?>> scopes;
 
   Map<String, Object?> encode() => {
-    if (customParameters != null)
-      'custom_parameters': customParameters!.toTfJson(),
-    if (defaultReturnUrl != null)
-      'default_return_url': defaultReturnUrl!.toTfJson(),
-    if (grantType != null) 'grant_type': grantType!.toTfJson(),
+    'custom_parameters': ?customParameters?.toTfJson(),
+    'default_return_url': ?defaultReturnUrl?.toTfJson(),
+    'grant_type': ?grantType?.toTfJson(),
     'provider_arn': providerArn.toTfJson(),
     'scopes': scopes.toTfJson(),
   };
@@ -1395,7 +1373,7 @@ final class BedrockagentcoreHarnessToolConfigRemoteMcp {
   final TfArg<String> url;
 
   Map<String, Object?> encode() => {
-    if (headers != null) 'headers': headers!.toTfJson(),
+    'headers': ?headers?.toTfJson(),
     'url': url.toTfJson(),
   };
 }
@@ -1432,17 +1410,16 @@ final class AwsBedrockagentcoreHarness extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowedTools != null) 'allowed_tools': allowedTools,
-           if (environmentVariables != null)
-             'environment_variables': environmentVariables,
+           'allowed_tools': ?allowedTools,
+           'environment_variables': ?environmentVariables,
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'harness_name': harnessName,
-           if (maxIterations != null) 'max_iterations': maxIterations,
-           if (maxTokens != null) 'max_tokens': maxTokens,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds,
-           if (truncation != null) 'truncation': truncation,
+           'max_iterations': ?maxIterations,
+           'max_tokens': ?maxTokens,
+           'region': ?region,
+           'tags': ?tags,
+           'timeout_seconds': ?timeoutSeconds,
+           'truncation': ?truncation,
            if (authorizerConfiguration != null)
              'authorizer_configuration': TfArg.literal([
                for (final e in authorizerConfiguration) e.encode(),

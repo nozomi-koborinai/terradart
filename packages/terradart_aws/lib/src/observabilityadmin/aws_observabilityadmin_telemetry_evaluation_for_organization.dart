@@ -25,9 +25,9 @@ final class AwsObservabilityadminTelemetryEvaluationForOrganization
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allRegions != null) 'all_regions': allRegions,
-           if (region != null) 'region': region,
-           if (regions != null) 'regions': regions,
+           'all_regions': ?allRegions,
+           'region': ?region,
+           'regions': ?regions,
          },
        );
 

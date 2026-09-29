@@ -19,7 +19,7 @@ final class DataLossPreventionContentPolicyDefaultAction {
   returnVerdict;
 
   Map<String, Object?> encode() => {
-    if (returnVerdict != null) 'return_verdict': returnVerdict!.toTfJson(),
+    'return_verdict': ?returnVerdict?.toTfJson(),
   };
 }
 
@@ -50,7 +50,7 @@ final class DataLossPreventionContentPolicyFailedToScanSupportedFileType {
   returnVerdict;
 
   Map<String, Object?> encode() => {
-    if (returnVerdict != null) 'return_verdict': returnVerdict!.toTfJson(),
+    'return_verdict': ?returnVerdict?.toTfJson(),
   };
 }
 
@@ -77,7 +77,7 @@ final class DataLossPreventionContentPolicyInputTooLarge {
   returnVerdict;
 
   Map<String, Object?> encode() => {
-    if (returnVerdict != null) 'return_verdict': returnVerdict!.toTfJson(),
+    'return_verdict': ?returnVerdict?.toTfJson(),
   };
 }
 
@@ -137,15 +137,14 @@ final class DataLossPreventionContentPolicyInspectConfig {
   Map<String, Object?> encode() => {
     if (contentOptions != null)
       'content_options': [for (final e in contentOptions!) e.toTfJson()],
-    if (excludeInfoTypes != null)
-      'exclude_info_types': excludeInfoTypes!.toTfJson(),
-    if (includeQuote != null) 'include_quote': includeQuote!.toTfJson(),
-    if (minLikelihood != null) 'min_likelihood': minLikelihood!.toTfJson(),
+    'exclude_info_types': ?excludeInfoTypes?.toTfJson(),
+    'include_quote': ?includeQuote?.toTfJson(),
+    'min_likelihood': ?minLikelihood?.toTfJson(),
     if (customInfoTypes != null)
       'custom_info_types': [for (final e in customInfoTypes!) e.encode()],
     if (infoTypes != null)
       'info_types': [for (final e in infoTypes!) e.encode()],
-    if (limits != null) 'limits': limits!.encode(),
+    'limits': ?limits?.encode(),
     if (minLikelihoodPerInfoType != null)
       'min_likelihood_per_info_type': [
         for (final e in minLikelihoodPerInfoType!) e.encode(),
@@ -223,15 +222,14 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypes {
   surrogateType;
 
   Map<String, Object?> encode() => {
-    if (exclusionType != null) 'exclusion_type': exclusionType!.toTfJson(),
-    if (likelihood != null) 'likelihood': likelihood!.toTfJson(),
-    if (dictionary != null) 'dictionary': dictionary!.encode(),
+    'exclusion_type': ?exclusionType?.toTfJson(),
+    'likelihood': ?likelihood?.toTfJson(),
+    'dictionary': ?dictionary?.encode(),
     'info_type': infoType.encode(),
-    if (regex != null) 'regex': regex!.encode(),
-    if (sensitivityScore != null)
-      'sensitivity_score': sensitivityScore!.encode(),
-    if (storedType != null) 'stored_type': storedType!.encode(),
-    if (surrogateType != null) 'surrogate_type': surrogateType!.encode(),
+    'regex': ?regex?.encode(),
+    'sensitivity_score': ?sensitivityScore?.encode(),
+    'stored_type': ?storedType?.encode(),
+    'surrogate_type': ?surrogateType?.encode(),
   };
 }
 
@@ -267,9 +265,8 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionar
   wordList;
 
   Map<String, Object?> encode() => {
-    if (cloudStoragePath != null)
-      'cloud_storage_path': cloudStoragePath!.encode(),
-    if (wordList != null) 'word_list': wordList!.encode(),
+    'cloud_storage_path': ?cloudStoragePath?.encode(),
+    'word_list': ?wordList?.encode(),
   };
 }
 
@@ -318,9 +315,8 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoType 
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (sensitivityScore != null)
-      'sensitivity_score': sensitivityScore!.encode(),
+    'version': ?version?.toTfJson(),
+    'sensitivity_score': ?sensitivityScore?.encode(),
   };
 }
 
@@ -368,7 +364,7 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesRegex {
   final TfArg<String> pattern;
 
   Map<String, Object?> encode() => {
-    if (groupIndexes != null) 'group_indexes': groupIndexes!.toTfJson(),
+    'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': pattern.toTfJson(),
   };
 }
@@ -444,9 +440,8 @@ final class DataLossPreventionContentPolicyInspectConfigInfoTypes {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (sensitivityScore != null)
-      'sensitivity_score': sensitivityScore!.encode(),
+    'version': ?version?.toTfJson(),
+    'sensitivity_score': ?sensitivityScore?.encode(),
   };
 }
 
@@ -525,7 +520,7 @@ final class DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfo
 
   Map<String, Object?> encode() => {
     'max_findings': maxFindings.toTfJson(),
-    if (infoType != null) 'info_type': infoType!.encode(),
+    'info_type': ?infoType?.encode(),
   };
 }
 
@@ -548,9 +543,8 @@ final class DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfo
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (sensitivityScore != null)
-      'sensitivity_score': sensitivityScore!.encode(),
+    'version': ?version?.toTfJson(),
+    'sensitivity_score': ?sensitivityScore?.encode(),
   };
 }
 
@@ -603,7 +597,7 @@ final class DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoType
 
   Map<String, Object?> encode() => {
     'min_likelihood': minLikelihood.toTfJson(),
-    if (infoType != null) 'info_type': infoType!.encode(),
+    'info_type': ?infoType?.encode(),
   };
 }
 
@@ -638,7 +632,7 @@ final class DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoType
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -681,9 +675,8 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetInfoTypes {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (sensitivityScore != null)
-      'sensitivity_score': sensitivityScore!.encode(),
+    'version': ?version?.toTfJson(),
+    'sensitivity_score': ?sensitivityScore?.encode(),
   };
 }
 
@@ -733,8 +726,8 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRules {
   hotwordRule;
 
   Map<String, Object?> encode() => {
-    if (exclusionRule != null) 'exclusion_rule': exclusionRule!.encode(),
-    if (hotwordRule != null) 'hotword_rule': hotwordRule!.encode(),
+    'exclusion_rule': ?exclusionRule?.encode(),
+    'hotword_rule': ?hotwordRule?.encode(),
   };
 }
 
@@ -769,12 +762,10 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
 
   Map<String, Object?> encode() => {
     'matching_type': matchingType.toTfJson(),
-    if (dictionary != null) 'dictionary': dictionary!.encode(),
-    if (excludeByHotword != null)
-      'exclude_by_hotword': excludeByHotword!.encode(),
-    if (excludeInfoTypes != null)
-      'exclude_info_types': excludeInfoTypes!.encode(),
-    if (regex != null) 'regex': regex!.encode(),
+    'dictionary': ?dictionary?.encode(),
+    'exclude_by_hotword': ?excludeByHotword?.encode(),
+    'exclude_info_types': ?excludeInfoTypes?.encode(),
+    'regex': ?regex?.encode(),
   };
 }
 
@@ -808,9 +799,8 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
   wordList;
 
   Map<String, Object?> encode() => {
-    if (cloudStoragePath != null)
-      'cloud_storage_path': cloudStoragePath!.encode(),
-    if (wordList != null) 'word_list': wordList!.encode(),
+    'cloud_storage_path': ?cloudStoragePath?.encode(),
+    'word_list': ?wordList?.encode(),
   };
 }
 
@@ -875,7 +865,7 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
   final TfArg<String> pattern;
 
   Map<String, Object?> encode() => {
-    if (groupIndexes != null) 'group_indexes': groupIndexes!.toTfJson(),
+    'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': pattern.toTfJson(),
   };
 }
@@ -894,8 +884,8 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
   final TfArg<num>? windowBefore;
 
   Map<String, Object?> encode() => {
-    if (windowAfter != null) 'window_after': windowAfter!.toTfJson(),
-    if (windowBefore != null) 'window_before': windowBefore!.toTfJson(),
+    'window_after': ?windowAfter?.toTfJson(),
+    'window_before': ?windowBefore?.toTfJson(),
   };
 }
 
@@ -936,9 +926,8 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (sensitivityScore != null)
-      'sensitivity_score': sensitivityScore!.encode(),
+    'version': ?version?.toTfJson(),
+    'sensitivity_score': ?sensitivityScore?.encode(),
   };
 }
 
@@ -986,7 +975,7 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
   final TfArg<String> pattern;
 
   Map<String, Object?> encode() => {
-    if (groupIndexes != null) 'group_indexes': groupIndexes!.toTfJson(),
+    'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': pattern.toTfJson(),
   };
 }
@@ -1031,7 +1020,7 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleH
   final TfArg<String> pattern;
 
   Map<String, Object?> encode() => {
-    if (groupIndexes != null) 'group_indexes': groupIndexes!.toTfJson(),
+    'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': pattern.toTfJson(),
   };
 }
@@ -1053,10 +1042,8 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleL
   final TfArg<num>? relativeLikelihood;
 
   Map<String, Object?> encode() => {
-    if (fixedLikelihood != null)
-      'fixed_likelihood': fixedLikelihood!.toTfJson(),
-    if (relativeLikelihood != null)
-      'relative_likelihood': relativeLikelihood!.toTfJson(),
+    'fixed_likelihood': ?fixedLikelihood?.toTfJson(),
+    'relative_likelihood': ?relativeLikelihood?.toTfJson(),
   };
 }
 
@@ -1090,8 +1077,8 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleP
   final TfArg<num>? windowBefore;
 
   Map<String, Object?> encode() => {
-    if (windowAfter != null) 'window_after': windowAfter!.toTfJson(),
-    if (windowBefore != null) 'window_before': windowBefore!.toTfJson(),
+    'window_after': ?windowAfter?.toTfJson(),
+    'window_before': ?windowBefore?.toTfJson(),
   };
 }
 
@@ -1105,7 +1092,7 @@ final class DataLossPreventionContentPolicyLoggingConfigs {
   logToBigQuery;
 
   Map<String, Object?> encode() => {
-    if (logToBigQuery != null) 'log_to_big_query': logToBigQuery!.encode(),
+    'log_to_big_query': ?logToBigQuery?.encode(),
   };
 }
 
@@ -1162,7 +1149,7 @@ final class DataLossPreventionContentPolicyRulesAction {
   returnVerdict;
 
   Map<String, Object?> encode() => {
-    if (returnVerdict != null) 'return_verdict': returnVerdict!.toTfJson(),
+    'return_verdict': ?returnVerdict?.toTfJson(),
   };
 }
 
@@ -1191,8 +1178,7 @@ final class DataLossPreventionContentPolicyRulesConditions {
   infoTypeCondition;
 
   Map<String, Object?> encode() => {
-    if (infoTypeCondition != null)
-      'info_type_condition': infoTypeCondition!.encode(),
+    'info_type_condition': ?infoTypeCondition?.encode(),
   };
 }
 
@@ -1215,9 +1201,9 @@ final class DataLossPreventionContentPolicyRulesConditionsInfoTypeCondition {
   infoTypes;
 
   Map<String, Object?> encode() => {
-    if (minCount != null) 'min_count': minCount!.toTfJson(),
-    if (anyInfoType != null) 'any_info_type': anyInfoType!.encode(),
-    if (infoTypes != null) 'info_types': infoTypes!.encode(),
+    'min_count': ?minCount?.toTfJson(),
+    'any_info_type': ?anyInfoType?.encode(),
+    'info_types': ?infoTypes?.encode(),
   };
 }
 
@@ -1257,7 +1243,7 @@ final class DataLossPreventionContentPolicyUnsupportedFileType {
   returnVerdict;
 
   Map<String, Object?> encode() => {
-    if (returnVerdict != null) 'return_verdict': returnVerdict!.toTfJson(),
+    'return_verdict': ?returnVerdict?.toTfJson(),
   };
 }
 
@@ -1300,8 +1286,8 @@ final class GoogleDataLossPreventionContentPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
            'parent': parent,
            if (defaultAction != null)
              'default_action': TfArg.literal(defaultAction.encode()),

@@ -22,10 +22,7 @@ final class DataGoogleParameterManagerParameter extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'parameter_id': parameterId,
-           if (project != null) 'project': project,
-         },
+         argMap: {'parameter_id': parameterId, 'project': ?project},
        );
 
   @override

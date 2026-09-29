@@ -37,8 +37,8 @@ final class DataAwsAutoscalingGroups extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (names != null) 'names': names,
-           if (region != null) 'region': region,
+           'names': ?names,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

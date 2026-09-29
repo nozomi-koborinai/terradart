@@ -22,7 +22,7 @@ final class AwsS3tablesTableBucketPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_policy': resourcePolicy,
            'table_bucket_arn': tableBucketArn,
          },

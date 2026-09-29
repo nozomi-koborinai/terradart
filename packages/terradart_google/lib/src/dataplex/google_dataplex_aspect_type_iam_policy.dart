@@ -30,8 +30,8 @@ final class GoogleDataplexAspectTypeIamPolicy extends Resource {
          argMap: {
            'aspect_type_id': aspectTypeId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

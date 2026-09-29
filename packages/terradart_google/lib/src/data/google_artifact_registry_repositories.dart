@@ -24,8 +24,8 @@ final class DataGoogleArtifactRegistryRepositories extends Data {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (nameFilter != null) 'name_filter': nameFilter,
-           if (project != null) 'project': project,
+           'name_filter': ?nameFilter,
+           'project': ?project,
          },
        );
 

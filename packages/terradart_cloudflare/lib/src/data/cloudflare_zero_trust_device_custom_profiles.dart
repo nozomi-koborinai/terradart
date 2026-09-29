@@ -21,9 +21,9 @@ final class DataCloudflareZeroTrustDeviceCustomProfiles extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (profileType != null) 'profile_type': profileType,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'profile_type': ?profileType,
          },
        );
 

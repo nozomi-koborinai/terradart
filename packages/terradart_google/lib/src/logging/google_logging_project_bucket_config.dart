@@ -43,10 +43,10 @@ final class GoogleLoggingProjectBucketConfig extends Resource {
            'bucket_id': bucketId,
            'location': location,
            'project': project,
-           if (description != null) 'description': description,
-           if (enableAnalytics != null) 'enable_analytics': enableAnalytics,
-           if (retentionDays != null) 'retention_days': retentionDays,
-           if (locked != null) 'locked': locked,
+           'description': ?description,
+           'enable_analytics': ?enableAnalytics,
+           'retention_days': ?retentionDays,
+           'locked': ?locked,
          },
        );
 

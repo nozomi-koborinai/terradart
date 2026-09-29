@@ -23,10 +23,10 @@ final class AwsRoute53ResolverFirewallDomainList extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (domains != null) 'domains': domains,
+           'domains': ?domains,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

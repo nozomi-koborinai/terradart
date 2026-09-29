@@ -53,16 +53,15 @@ final class AwsWorkspacesPool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applicationSettings != null)
-             'application_settings': applicationSettings,
+           'application_settings': ?applicationSettings,
            'bundle_id': bundleId,
            'description': description,
            'directory_id': directoryId,
            'pool_name': poolName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'running_mode': runningMode,
-           if (tags != null) 'tags': tags,
-           if (timeoutSettings != null) 'timeout_settings': timeoutSettings,
+           'tags': ?tags,
+           'timeout_settings': ?timeoutSettings,
            if (capacity != null)
              'capacity': TfArg.literal([for (final e in capacity) e.encode()]),
          },

@@ -45,8 +45,7 @@ final class BinaryAuthorizationPolicyClusterAdmissionRules {
     'cluster': cluster.toTfJson(),
     'enforcement_mode': enforcementMode.toTfJson(),
     'evaluation_mode': evaluationMode.toTfJson(),
-    if (requireAttestationsBy != null)
-      'require_attestations_by': requireAttestationsBy!.toTfJson(),
+    'require_attestations_by': ?requireAttestationsBy?.toTfJson(),
   };
 }
 
@@ -98,8 +97,7 @@ final class BinaryAuthorizationPolicyDefaultAdmissionRule {
   Map<String, Object?> encode() => {
     'enforcement_mode': enforcementMode.toTfJson(),
     'evaluation_mode': evaluationMode.toTfJson(),
-    if (requireAttestationsBy != null)
-      'require_attestations_by': requireAttestationsBy!.toTfJson(),
+    'require_attestations_by': ?requireAttestationsBy?.toTfJson(),
   };
 }
 
@@ -175,11 +173,10 @@ final class GoogleBinaryAuthorizationPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (globalPolicyEvaluationMode != null)
-             'global_policy_evaluation_mode': globalPolicyEvaluationMode,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'global_policy_evaluation_mode': ?globalPolicyEvaluationMode,
+           'project': ?project,
            if (admissionWhitelistPatterns != null)
              'admission_whitelist_patterns': TfArg.literal([
                for (final e in admissionWhitelistPatterns) e.encode(),

@@ -95,10 +95,10 @@ final class AwsNetworkmanagerCoreNetwork extends Resource {
          terraformType: tfType,
          argMap: {
            ...?basePolicy?.argMap,
-           if (createBasePolicy != null) 'create_base_policy': createBasePolicy,
-           if (description != null) 'description': description,
+           'create_base_policy': ?createBasePolicy,
+           'description': ?description,
            'global_network_id': globalNetworkId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

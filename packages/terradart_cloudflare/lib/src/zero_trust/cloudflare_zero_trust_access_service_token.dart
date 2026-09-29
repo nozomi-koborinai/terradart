@@ -35,15 +35,13 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
-           if (clientSecretVersion != null)
-             'client_secret_version': clientSecretVersion,
-           if (duration != null) 'duration': duration,
-           if (enabled != null) 'enabled': enabled,
+           'account_id': ?accountId?.encodeAs('id'),
+           'client_secret_version': ?clientSecretVersion,
+           'duration': ?duration,
+           'enabled': ?enabled,
            'name': name,
-           if (previousClientSecretExpiresAt != null)
-             'previous_client_secret_expires_at': previousClientSecretExpiresAt,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'previous_client_secret_expires_at': ?previousClientSecretExpiresAt,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

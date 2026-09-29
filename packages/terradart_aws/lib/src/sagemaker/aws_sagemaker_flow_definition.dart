@@ -22,9 +22,8 @@ final class SagemakerFlowDefinitionHumanLoopActivationConfig {
   humanLoopActivationConditionsConfig;
 
   Map<String, Object?> encode() => {
-    if (humanLoopActivationConditionsConfig != null)
-      'human_loop_activation_conditions_config':
-          humanLoopActivationConditionsConfig!.encode(),
+    'human_loop_activation_conditions_config':
+        ?humanLoopActivationConditionsConfig?.encode(),
   };
 }
 
@@ -81,18 +80,15 @@ final class SagemakerFlowDefinitionHumanLoopConfig {
 
   Map<String, Object?> encode() => {
     'human_task_ui_arn': humanTaskUiArn.toTfJson(),
-    if (taskAvailabilityLifetimeInSeconds != null)
-      'task_availability_lifetime_in_seconds':
-          taskAvailabilityLifetimeInSeconds!.toTfJson(),
+    'task_availability_lifetime_in_seconds': ?taskAvailabilityLifetimeInSeconds
+        ?.toTfJson(),
     'task_count': taskCount.toTfJson(),
     'task_description': taskDescription.toTfJson(),
-    if (taskKeywords != null) 'task_keywords': taskKeywords!.toTfJson(),
-    if (taskTimeLimitInSeconds != null)
-      'task_time_limit_in_seconds': taskTimeLimitInSeconds!.toTfJson(),
+    'task_keywords': ?taskKeywords?.toTfJson(),
+    'task_time_limit_in_seconds': ?taskTimeLimitInSeconds?.toTfJson(),
     'task_title': taskTitle.toTfJson(),
     'workteam_arn': workteamArn.toTfJson(),
-    if (publicWorkforceTaskPrice != null)
-      'public_workforce_task_price': publicWorkforceTaskPrice!.encode(),
+    'public_workforce_task_price': ?publicWorkforceTaskPrice?.encode(),
   };
 }
 
@@ -107,9 +103,7 @@ final class SagemakerFlowDefinitionHumanLoopConfigPublicWorkforceTaskPrice {
   final SagemakerFlowDefinitionHumanLoopConfigPublicWorkforceTaskPriceAmountInUsd?
   amountInUsd;
 
-  Map<String, Object?> encode() => {
-    if (amountInUsd != null) 'amount_in_usd': amountInUsd!.encode(),
-  };
+  Map<String, Object?> encode() => {'amount_in_usd': ?amountInUsd?.encode()};
 }
 
 /// Typed helper for the `human_loop_config.public_workforce_task_price.amount_in_usd` block of
@@ -129,10 +123,9 @@ final class SagemakerFlowDefinitionHumanLoopConfigPublicWorkforceTaskPriceAmount
   final TfArg<num>? tenthFractionsOfACent;
 
   Map<String, Object?> encode() => {
-    if (cents != null) 'cents': cents!.toTfJson(),
-    if (dollars != null) 'dollars': dollars!.toTfJson(),
-    if (tenthFractionsOfACent != null)
-      'tenth_fractions_of_a_cent': tenthFractionsOfACent!.toTfJson(),
+    'cents': ?cents?.toTfJson(),
+    'dollars': ?dollars?.toTfJson(),
+    'tenth_fractions_of_a_cent': ?tenthFractionsOfACent?.toTfJson(),
   };
 }
 
@@ -184,7 +177,7 @@ final class SagemakerFlowDefinitionOutputConfig {
   final TfArg<String> s3OutputPath;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
 }
@@ -211,9 +204,9 @@ final class AwsSagemakerFlowDefinition extends Resource {
          terraformType: tfType,
          argMap: {
            'flow_definition_name': flowDefinitionName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (humanLoopActivationConfig != null)
              'human_loop_activation_config': TfArg.literal(
                humanLoopActivationConfig.encode(),

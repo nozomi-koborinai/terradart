@@ -29,8 +29,8 @@ final class CodedeployDeploymentConfigMinimumHealthyHosts {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -59,7 +59,7 @@ final class CodedeployDeploymentConfigTrafficRoutingConfig {
   final CodedeployDeploymentConfigTrafficRoutingConfigTimeBased? timeBased;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     ...?timeBased?.encode(),
   };
 }
@@ -154,8 +154,8 @@ final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary {
   final TfArg<num>? percentage;
 
   Map<String, Object?> encode() => {
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (percentage != null) 'percentage': percentage!.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'percentage': ?percentage?.toTfJson(),
   };
 }
 
@@ -173,8 +173,8 @@ final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear {
   final TfArg<num>? percentage;
 
   Map<String, Object?> encode() => {
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (percentage != null) 'percentage': percentage!.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'percentage': ?percentage?.toTfJson(),
   };
 }
 
@@ -196,13 +196,10 @@ final class CodedeployDeploymentConfigZonalConfig {
   minimumHealthyHostsPerZone;
 
   Map<String, Object?> encode() => {
-    if (firstZoneMonitorDurationInSeconds != null)
-      'first_zone_monitor_duration_in_seconds':
-          firstZoneMonitorDurationInSeconds!.toTfJson(),
-    if (monitorDurationInSeconds != null)
-      'monitor_duration_in_seconds': monitorDurationInSeconds!.toTfJson(),
-    if (minimumHealthyHostsPerZone != null)
-      'minimum_healthy_hosts_per_zone': minimumHealthyHostsPerZone!.encode(),
+    'first_zone_monitor_duration_in_seconds': ?firstZoneMonitorDurationInSeconds
+        ?.toTfJson(),
+    'monitor_duration_in_seconds': ?monitorDurationInSeconds?.toTfJson(),
+    'minimum_healthy_hosts_per_zone': ?minimumHealthyHostsPerZone?.encode(),
   };
 }
 
@@ -223,8 +220,8 @@ final class CodedeployDeploymentConfigZonalConfigMinimumHealthyHostsPerZone {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -260,9 +257,9 @@ final class AwsCodedeployDeploymentConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (computePlatform != null) 'compute_platform': computePlatform,
+           'compute_platform': ?computePlatform,
            'deployment_config_name': deploymentConfigName,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (minimumHealthyHosts != null)
              'minimum_healthy_hosts': TfArg.literal(
                minimumHealthyHosts.encode(),

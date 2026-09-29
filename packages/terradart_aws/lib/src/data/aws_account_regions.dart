@@ -19,9 +19,8 @@ final class DataAwsAccountRegions extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (regionOptStatusContains != null)
-             'region_opt_status_contains': regionOptStatusContains,
+           'account_id': ?accountId,
+           'region_opt_status_contains': ?regionOptStatusContains,
          },
        );
 

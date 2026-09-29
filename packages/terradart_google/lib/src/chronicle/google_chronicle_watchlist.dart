@@ -15,9 +15,7 @@ final class ChronicleWatchlistEntityPopulationMechanism {
 
   final ChronicleWatchlistEntityPopulationMechanismManual? manual;
 
-  Map<String, Object?> encode() => {
-    if (manual != null) 'manual': manual!.encode(),
-  };
+  Map<String, Object?> encode() => {'manual': ?manual?.encode()};
 }
 
 /// Typed helper for the `entity_population_mechanism.manual` block of
@@ -37,9 +35,7 @@ final class ChronicleWatchlistWatchlistUserPreferences {
 
   final TfArg<bool>? pinned;
 
-  Map<String, Object?> encode() => {
-    if (pinned != null) 'pinned': pinned!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'pinned': ?pinned?.toTfJson()};
 }
 
 /// Factory wrapper for `google_chronicle_watchlist`.
@@ -88,16 +84,15 @@ final class GoogleChronicleWatchlist extends Resource {
            'entity_population_mechanism': TfArg.literal(
              entityPopulationMechanism.encode(),
            ),
-           if (watchlistId != null) 'watchlist_id': watchlistId,
-           if (description != null) 'description': description,
-           if (multiplyingFactor != null)
-             'multiplying_factor': multiplyingFactor,
+           'watchlist_id': ?watchlistId,
+           'description': ?description,
+           'multiplying_factor': ?multiplyingFactor,
            if (watchlistUserPreferences != null)
              'watchlist_user_preferences': TfArg.literal(
                watchlistUserPreferences.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

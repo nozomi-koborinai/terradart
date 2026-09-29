@@ -43,7 +43,7 @@ final class CloudflareZeroTrustAccessCustomPage extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (contractVersion != null) 'contract_version': contractVersion,
+           'contract_version': ?contractVersion,
            'custom_html': customHtml,
            'name': name,
            'type': type,

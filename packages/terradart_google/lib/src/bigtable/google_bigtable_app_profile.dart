@@ -150,13 +150,13 @@ final class GoogleBigtableAppProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'app_profile_id': appProfileId,
-           if (instance != null) 'instance': instance,
+           'instance': ?instance,
            routing.blockKey: TfArg.literal([routing.encode()]),
-           if (description != null) 'description': description,
-           if (ignoreWarnings != null) 'ignore_warnings': ignoreWarnings,
-           if (rowAffinity != null) 'row_affinity': rowAffinity,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'ignore_warnings': ?ignoreWarnings,
+           'row_affinity': ?rowAffinity,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

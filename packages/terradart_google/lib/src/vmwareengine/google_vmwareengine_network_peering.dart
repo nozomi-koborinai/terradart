@@ -66,19 +66,15 @@ final class GoogleVmwareengineNetworkPeering extends Resource {
            'vmware_engine_network': vmwareEngineNetwork,
            'peer_network': peerNetwork,
            'peer_network_type': peerNetworkType,
-           if (description != null) 'description': description,
-           if (exportCustomRoutes != null)
-             'export_custom_routes': exportCustomRoutes,
-           if (exportCustomRoutesWithPublicIp != null)
-             'export_custom_routes_with_public_ip':
-                 exportCustomRoutesWithPublicIp,
-           if (importCustomRoutes != null)
-             'import_custom_routes': importCustomRoutes,
-           if (importCustomRoutesWithPublicIp != null)
-             'import_custom_routes_with_public_ip':
-                 importCustomRoutesWithPublicIp,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'export_custom_routes': ?exportCustomRoutes,
+           'export_custom_routes_with_public_ip':
+               ?exportCustomRoutesWithPublicIp,
+           'import_custom_routes': ?importCustomRoutes,
+           'import_custom_routes_with_public_ip':
+               ?importCustomRoutesWithPublicIp,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

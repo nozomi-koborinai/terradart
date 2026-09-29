@@ -36,7 +36,7 @@ final class AwsSesReceiptFilter extends Resource {
            'cidr': cidr,
            'name': name,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

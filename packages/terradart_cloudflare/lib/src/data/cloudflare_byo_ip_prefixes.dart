@@ -24,10 +24,7 @@ final class DataCloudflareByoIpPrefixes extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-         },
+         argMap: {'account_id': ?accountId, 'max_items': ?maxItems},
        );
 
   @override

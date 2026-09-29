@@ -18,9 +18,8 @@ final class IotThingGroupProperties {
   final IotThingGroupPropertiesAttributePayload? attributePayload;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (attributePayload != null)
-      'attribute_payload': attributePayload!.encode(),
+    'description': ?description?.toTfJson(),
+    'attribute_payload': ?attributePayload?.encode(),
   };
 }
 
@@ -32,9 +31,7 @@ final class IotThingGroupPropertiesAttributePayload {
 
   final TfArg<Map<String, String>>? attributes;
 
-  Map<String, Object?> encode() => {
-    if (attributes != null) 'attributes': attributes!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'attributes': ?attributes?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_iot_thing_group`.
@@ -56,9 +53,9 @@ final class AwsIotThingGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (parentGroupName != null) 'parent_group_name': parentGroupName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'parent_group_name': ?parentGroupName,
+           'region': ?region,
+           'tags': ?tags,
            if (properties != null)
              'properties': TfArg.literal(properties.encode()),
          },

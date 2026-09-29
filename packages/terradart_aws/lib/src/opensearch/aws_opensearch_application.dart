@@ -20,8 +20,8 @@ final class OpensearchApplicationAppConfig {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -53,9 +53,8 @@ final class OpensearchApplicationDataSource {
   final TfArg<String>? dataSourceDescription;
 
   Map<String, Object?> encode() => {
-    if (dataSourceArn != null) 'data_source_arn': dataSourceArn!.toTfJson(),
-    if (dataSourceDescription != null)
-      'data_source_description': dataSourceDescription!.toTfJson(),
+    'data_source_arn': ?dataSourceArn?.toTfJson(),
+    'data_source_description': ?dataSourceDescription?.toTfJson(),
   };
 }
 
@@ -76,13 +75,11 @@ final class OpensearchApplicationIamIdentityCenterOptions {
   final TfArg<String>? iamRoleForIdentityCenterApplicationArn;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (iamIdentityCenterInstanceArn != null)
-      'iam_identity_center_instance_arn': iamIdentityCenterInstanceArn!
-          .toTfJson(),
-    if (iamRoleForIdentityCenterApplicationArn != null)
-      'iam_role_for_identity_center_application_arn':
-          iamRoleForIdentityCenterApplicationArn!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'iam_identity_center_instance_arn': ?iamIdentityCenterInstanceArn
+        ?.toTfJson(),
+    'iam_role_for_identity_center_application_arn':
+        ?iamRoleForIdentityCenterApplicationArn?.toTfJson(),
   };
 }
 
@@ -107,10 +104,10 @@ final class AwsOpensearchApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (appConfig != null)
              'app_config': TfArg.literal([
                for (final e in appConfig) e.encode(),

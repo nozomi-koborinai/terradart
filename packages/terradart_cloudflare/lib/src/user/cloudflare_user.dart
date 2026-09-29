@@ -28,11 +28,11 @@ final class CloudflareUser extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (country != null) 'country': country,
-           if (firstName != null) 'first_name': firstName,
-           if (lastName != null) 'last_name': lastName,
-           if (telephone != null) 'telephone': telephone,
-           if (zipcode != null) 'zipcode': zipcode,
+           'country': ?country,
+           'first_name': ?firstName,
+           'last_name': ?lastName,
+           'telephone': ?telephone,
+           'zipcode': ?zipcode,
          },
        );
 

@@ -274,12 +274,12 @@ final class GoogleStorageBatchOperationsJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (jobId != null) 'job_id': jobId,
+           'job_id': ?jobId,
            'bucket_list': TfArg.literal(bucketList.encode()),
-           if (description != null) 'description': description,
-           if (deleteProtection != null) 'delete_protection': deleteProtection,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'delete_protection': ?deleteProtection,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            operation.blockKey: TfArg.literal(operation.encode()),
          },
        );

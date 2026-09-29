@@ -33,7 +33,7 @@ final class GoogleApigeeEnvironmentIamBinding extends Resource {
            'env_id': envId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

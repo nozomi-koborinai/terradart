@@ -24,12 +24,11 @@ final class AwsXrayResourcePolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bypassPolicyLockoutCheck != null)
-             'bypass_policy_lockout_check': bypassPolicyLockoutCheck,
+           'bypass_policy_lockout_check': ?bypassPolicyLockoutCheck,
            'policy_document': policyDocument,
            'policy_name': policyName,
-           if (policyRevisionId != null) 'policy_revision_id': policyRevisionId,
-           if (region != null) 'region': region,
+           'policy_revision_id': ?policyRevisionId,
+           'region': ?region,
          },
        );
 

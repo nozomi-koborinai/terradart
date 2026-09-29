@@ -44,8 +44,8 @@ final class GlueMlTransformInputRecordTables {
   final TfArg<String> tableName;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
-    if (connectionName != null) 'connection_name': connectionName!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
+    'connection_name': ?connectionName?.toTfJson(),
     'database_name': databaseName.toTfJson(),
     'table_name': tableName.toTfJson(),
   };
@@ -99,14 +99,10 @@ final class GlueMlTransformParametersFindMatchesParameters {
   final TfArg<String>? primaryKeyColumnName;
 
   Map<String, Object?> encode() => {
-    if (accuracyCostTradeOff != null)
-      'accuracy_cost_trade_off': accuracyCostTradeOff!.toTfJson(),
-    if (enforceProvidedLabels != null)
-      'enforce_provided_labels': enforceProvidedLabels!.toTfJson(),
-    if (precisionRecallTradeOff != null)
-      'precision_recall_trade_off': precisionRecallTradeOff!.toTfJson(),
-    if (primaryKeyColumnName != null)
-      'primary_key_column_name': primaryKeyColumnName!.toTfJson(),
+    'accuracy_cost_trade_off': ?accuracyCostTradeOff?.toTfJson(),
+    'enforce_provided_labels': ?enforceProvidedLabels?.toTfJson(),
+    'precision_recall_trade_off': ?precisionRecallTradeOff?.toTfJson(),
+    'primary_key_column_name': ?primaryKeyColumnName?.toTfJson(),
   };
 }
 
@@ -136,17 +132,17 @@ final class AwsGlueMlTransform extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (glueVersion != null) 'glue_version': glueVersion,
-           if (maxCapacity != null) 'max_capacity': maxCapacity,
-           if (maxRetries != null) 'max_retries': maxRetries,
+           'description': ?description,
+           'glue_version': ?glueVersion,
+           'max_capacity': ?maxCapacity,
+           'max_retries': ?maxRetries,
            'name': name,
-           if (numberOfWorkers != null) 'number_of_workers': numberOfWorkers,
-           if (region != null) 'region': region,
+           'number_of_workers': ?numberOfWorkers,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
-           if (timeout != null) 'timeout': timeout,
-           if (workerType != null) 'worker_type': workerType,
+           'tags': ?tags,
+           'timeout': ?timeout,
+           'worker_type': ?workerType,
            'input_record_tables': TfArg.literal([
              for (final e in inputRecordTables) e.encode(),
            ]),

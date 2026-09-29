@@ -20,11 +20,7 @@ final class DataAwsApigatewayv2Api extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'api_id': apiId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'api_id': apiId, 'region': ?region, 'tags': ?tags},
        );
 
   @override

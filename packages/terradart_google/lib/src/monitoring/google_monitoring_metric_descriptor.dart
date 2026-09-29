@@ -197,15 +197,15 @@ final class GoogleMonitoringMetricDescriptor extends Resource {
            'type': type,
            'metric_kind': metricKind,
            'value_type': valueType,
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
-           if (unit != null) 'unit': unit,
+           'description': ?description,
+           'display_name': ?displayName,
+           'unit': ?unit,
            if (labels != null)
              'labels': TfArg.literal(labels.map((l) => l.toArgMap()).toList()),
            if (metadata != null)
              'metadata': TfArg.literal([metadata.toArgMap()]),
-           if (launchStage != null) 'launch_stage': launchStage,
-           if (project != null) 'project': project,
+           'launch_stage': ?launchStage,
+           'project': ?project,
          },
        );
 

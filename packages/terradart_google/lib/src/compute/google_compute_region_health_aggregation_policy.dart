@@ -54,14 +54,12 @@ final class GoogleComputeRegionHealthAggregationPolicy extends Resource {
          argMap: {
            'name': name,
            'region': region,
-           if (policyType != null) 'policy_type': policyType,
-           if (healthyPercentThreshold != null)
-             'healthy_percent_threshold': healthyPercentThreshold,
-           if (minHealthyThreshold != null)
-             'min_healthy_threshold': minHealthyThreshold,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'policy_type': ?policyType,
+           'healthy_percent_threshold': ?healthyPercentThreshold,
+           'min_healthy_threshold': ?minHealthyThreshold,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

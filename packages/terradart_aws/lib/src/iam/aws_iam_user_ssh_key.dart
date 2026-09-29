@@ -35,7 +35,7 @@ final class AwsIamUserSshKey extends Resource {
          argMap: {
            'encoding': encoding,
            'public_key': publicKey,
-           if (status != null) 'status': status,
+           'status': ?status,
            'username': username,
          },
        );

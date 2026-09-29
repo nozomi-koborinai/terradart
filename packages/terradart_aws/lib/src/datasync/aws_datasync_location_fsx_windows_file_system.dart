@@ -29,13 +29,13 @@ final class AwsDatasyncLocationFsxWindowsFileSystem extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (domain != null) 'domain': domain,
+           'domain': ?domain,
            'fsx_filesystem_arn': fsxFilesystemArn,
            'password': password,
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_group_arns': securityGroupArns,
-           if (subdirectory != null) 'subdirectory': subdirectory,
-           if (tags != null) 'tags': tags,
+           'subdirectory': ?subdirectory,
+           'tags': ?tags,
            'user': user,
          },
        );

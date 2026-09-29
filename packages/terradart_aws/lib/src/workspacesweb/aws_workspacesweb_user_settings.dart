@@ -112,8 +112,8 @@ final class WorkspaceswebUserSettingsCookieSynchronizationConfigurationAllowlist
 
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -135,8 +135,8 @@ final class WorkspaceswebUserSettingsCookieSynchronizationConfigurationBlocklist
 
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -172,10 +172,9 @@ final class WorkspaceswebUserSettingsToolbarConfiguration {
       'hidden_toolbar_items': [
         for (final e in hiddenToolbarItems!) e.toTfJson(),
       ],
-    if (maxDisplayResolution != null)
-      'max_display_resolution': maxDisplayResolution!.toTfJson(),
-    if (toolbarType != null) 'toolbar_type': toolbarType!.toTfJson(),
-    if (visualMode != null) 'visual_mode': visualMode!.toTfJson(),
+    'max_display_resolution': ?maxDisplayResolution?.toTfJson(),
+    'toolbar_type': ?toolbarType?.toTfJson(),
+    'visual_mode': ?visualMode?.toTfJson(),
   };
 }
 
@@ -268,22 +267,18 @@ final class AwsWorkspaceswebUserSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalEncryptionContext != null)
-             'additional_encryption_context': additionalEncryptionContext,
+           'additional_encryption_context': ?additionalEncryptionContext,
            'copy_allowed': copyAllowed,
-           if (customerManagedKey != null)
-             'customer_managed_key': customerManagedKey,
-           if (deepLinkAllowed != null) 'deep_link_allowed': deepLinkAllowed,
-           if (disconnectTimeoutInMinutes != null)
-             'disconnect_timeout_in_minutes': disconnectTimeoutInMinutes,
+           'customer_managed_key': ?customerManagedKey,
+           'deep_link_allowed': ?deepLinkAllowed,
+           'disconnect_timeout_in_minutes': ?disconnectTimeoutInMinutes,
            'download_allowed': downloadAllowed,
-           if (idleDisconnectTimeoutInMinutes != null)
-             'idle_disconnect_timeout_in_minutes':
-                 idleDisconnectTimeoutInMinutes,
+           'idle_disconnect_timeout_in_minutes':
+               ?idleDisconnectTimeoutInMinutes,
            'paste_allowed': pasteAllowed,
            'print_allowed': printAllowed,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'upload_allowed': uploadAllowed,
            if (cookieSynchronizationConfiguration != null)
              'cookie_synchronization_configuration': TfArg.literal([

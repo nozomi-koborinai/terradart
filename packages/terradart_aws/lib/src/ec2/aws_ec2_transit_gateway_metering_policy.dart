@@ -23,10 +23,9 @@ final class AwsEc2TransitGatewayMeteringPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (middleboxAttachmentIds != null)
-             'middlebox_attachment_ids': middleboxAttachmentIds,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'middlebox_attachment_ids': ?middleboxAttachmentIds,
+           'region': ?region,
+           'tags': ?tags,
            'transit_gateway_id': transitGatewayId,
          },
        );

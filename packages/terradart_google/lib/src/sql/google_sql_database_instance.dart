@@ -763,33 +763,27 @@ final class GoogleSqlDatabaseInstance extends Resource {
          terraformType: tfType,
          argMap: {
            'database_version': databaseVersion,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            if (settings != null)
              'settings': TfArg.literal([settings.toArgMap()]),
-           if (rootPassword != null) 'root_password': rootPassword,
-           if (rootPasswordWo != null) 'root_password_wo': rootPasswordWo,
-           if (rootPasswordWoVersion != null)
-             'root_password_wo_version': rootPasswordWoVersion,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (masterInstanceName != null)
-             'master_instance_name': masterInstanceName,
+           'root_password': ?rootPassword,
+           'root_password_wo': ?rootPasswordWo,
+           'root_password_wo_version': ?rootPasswordWoVersion,
+           'deletion_protection': ?deletionProtection,
+           'master_instance_name': ?masterInstanceName,
            if (replicaConfiguration != null)
              'replica_configuration': TfArg.literal([
                replicaConfiguration.toArgMap(),
              ]),
-           if (instanceType != null) 'instance_type': instanceType,
-           if (nodeCount != null) 'node_count': nodeCount,
-           if (maintenanceVersion != null)
-             'maintenance_version': maintenanceVersion,
-           if (encryptionKeyName != null)
-             'encryption_key_name': encryptionKeyName.encodeAs('id'),
-           if (replicaNames != null) 'replica_names': replicaNames,
-           if (finalBackupDescription != null)
-             'final_backup_description': finalBackupDescription,
-           if (backupdrBackup != null) 'backupdr_backup': backupdrBackup,
-           if (project != null) 'project': project,
+           'instance_type': ?instanceType,
+           'node_count': ?nodeCount,
+           'maintenance_version': ?maintenanceVersion,
+           'encryption_key_name': ?encryptionKeyName?.encodeAs('id'),
+           'replica_names': ?replicaNames,
+           'final_backup_description': ?finalBackupDescription,
+           'backupdr_backup': ?backupdrBackup,
+           'project': ?project,
          },
        );
 

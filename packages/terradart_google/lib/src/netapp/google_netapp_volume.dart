@@ -34,10 +34,9 @@ final class NetappVolumeBackupConfig {
   final TfArg<bool>? scheduledBackupEnabled;
 
   Map<String, Object?> encode() => {
-    if (backupPolicies != null) 'backup_policies': backupPolicies!.toTfJson(),
-    if (backupVault != null) 'backup_vault': backupVault!.toTfJson(),
-    if (scheduledBackupEnabled != null)
-      'scheduled_backup_enabled': scheduledBackupEnabled!.toTfJson(),
+    'backup_policies': ?backupPolicies?.toTfJson(),
+    'backup_vault': ?backupVault?.toTfJson(),
+    'scheduled_backup_enabled': ?scheduledBackupEnabled?.toTfJson(),
   };
 }
 
@@ -58,8 +57,8 @@ final class NetappVolumeBlockDevices {
   final TfArg<NetappVolumeBlockDevicesOsType> osType;
 
   Map<String, Object?> encode() => {
-    if (hostGroups != null) 'host_groups': hostGroups!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'host_groups': ?hostGroups?.toTfJson(),
+    'name': ?name?.toTfJson(),
     'os_type': osType.toTfJson(),
   };
 }
@@ -104,17 +103,13 @@ final class NetappVolumeCacheParameters {
   final NetappVolumeCacheParametersCacheConfig? cacheConfig;
 
   Map<String, Object?> encode() => {
-    if (enableGlobalFileLock != null)
-      'enable_global_file_lock': enableGlobalFileLock!.toTfJson(),
-    if (peerClusterName != null)
-      'peer_cluster_name': peerClusterName!.toTfJson(),
-    if (peerIpAddresses != null)
-      'peer_ip_addresses': peerIpAddresses!.toTfJson(),
-    if (peerSvmName != null) 'peer_svm_name': peerSvmName!.toTfJson(),
-    if (peerVolumeName != null) 'peer_volume_name': peerVolumeName!.toTfJson(),
-    if (peeringCommandExpiryTime != null)
-      'peering_command_expiry_time': peeringCommandExpiryTime!.toTfJson(),
-    if (cacheConfig != null) 'cache_config': cacheConfig!.encode(),
+    'enable_global_file_lock': ?enableGlobalFileLock?.toTfJson(),
+    'peer_cluster_name': ?peerClusterName?.toTfJson(),
+    'peer_ip_addresses': ?peerIpAddresses?.toTfJson(),
+    'peer_svm_name': ?peerSvmName?.toTfJson(),
+    'peer_volume_name': ?peerVolumeName?.toTfJson(),
+    'peering_command_expiry_time': ?peeringCommandExpiryTime?.toTfJson(),
+    'cache_config': ?cacheConfig?.encode(),
   };
 }
 
@@ -127,8 +122,7 @@ final class NetappVolumeCacheParametersCacheConfig {
   final TfArg<bool>? cifsChangeNotifyEnabled;
 
   Map<String, Object?> encode() => {
-    if (cifsChangeNotifyEnabled != null)
-      'cifs_change_notify_enabled': cifsChangeNotifyEnabled!.toTfJson(),
+    'cifs_change_notify_enabled': ?cifsChangeNotifyEnabled?.toTfJson(),
   };
 }
 
@@ -192,25 +186,19 @@ final class NetappVolumeExportPolicyRules {
   final TfArg<NetappVolumeExportPolicyRulesSquashMode>? squashMode;
 
   Map<String, Object?> encode() => {
-    if (accessType != null) 'access_type': accessType!.toTfJson(),
-    if (allowedClients != null) 'allowed_clients': allowedClients!.toTfJson(),
-    if (anonUid != null) 'anon_uid': anonUid!.toTfJson(),
-    if (hasRootAccess != null) 'has_root_access': hasRootAccess!.toTfJson(),
-    if (kerberos5ReadOnly != null)
-      'kerberos5_read_only': kerberos5ReadOnly!.toTfJson(),
-    if (kerberos5ReadWrite != null)
-      'kerberos5_read_write': kerberos5ReadWrite!.toTfJson(),
-    if (kerberos5iReadOnly != null)
-      'kerberos5i_read_only': kerberos5iReadOnly!.toTfJson(),
-    if (kerberos5iReadWrite != null)
-      'kerberos5i_read_write': kerberos5iReadWrite!.toTfJson(),
-    if (kerberos5pReadOnly != null)
-      'kerberos5p_read_only': kerberos5pReadOnly!.toTfJson(),
-    if (kerberos5pReadWrite != null)
-      'kerberos5p_read_write': kerberos5pReadWrite!.toTfJson(),
-    if (nfsv3 != null) 'nfsv3': nfsv3!.toTfJson(),
-    if (nfsv4 != null) 'nfsv4': nfsv4!.toTfJson(),
-    if (squashMode != null) 'squash_mode': squashMode!.toTfJson(),
+    'access_type': ?accessType?.toTfJson(),
+    'allowed_clients': ?allowedClients?.toTfJson(),
+    'anon_uid': ?anonUid?.toTfJson(),
+    'has_root_access': ?hasRootAccess?.toTfJson(),
+    'kerberos5_read_only': ?kerberos5ReadOnly?.toTfJson(),
+    'kerberos5_read_write': ?kerberos5ReadWrite?.toTfJson(),
+    'kerberos5i_read_only': ?kerberos5iReadOnly?.toTfJson(),
+    'kerberos5i_read_write': ?kerberos5iReadWrite?.toTfJson(),
+    'kerberos5p_read_only': ?kerberos5pReadOnly?.toTfJson(),
+    'kerberos5p_read_write': ?kerberos5pReadWrite?.toTfJson(),
+    'nfsv3': ?nfsv3?.toTfJson(),
+    'nfsv4': ?nfsv4?.toTfJson(),
+    'squash_mode': ?squashMode?.toTfJson(),
   };
 }
 
@@ -280,23 +268,17 @@ final class NetappVolumeHybridReplicationParameters {
   replicationSchedule;
 
   Map<String, Object?> encode() => {
-    if (clusterLocation != null)
-      'cluster_location': clusterLocation!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (hybridReplicationType != null)
-      'hybrid_replication_type': hybridReplicationType!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (largeVolumeConstituentCount != null)
-      'large_volume_constituent_count': largeVolumeConstituentCount!.toTfJson(),
-    if (peerClusterName != null)
-      'peer_cluster_name': peerClusterName!.toTfJson(),
-    if (peerIpAddresses != null)
-      'peer_ip_addresses': peerIpAddresses!.toTfJson(),
-    if (peerSvmName != null) 'peer_svm_name': peerSvmName!.toTfJson(),
-    if (peerVolumeName != null) 'peer_volume_name': peerVolumeName!.toTfJson(),
-    if (replication != null) 'replication': replication!.toTfJson(),
-    if (replicationSchedule != null)
-      'replication_schedule': replicationSchedule!.toTfJson(),
+    'cluster_location': ?clusterLocation?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'hybrid_replication_type': ?hybridReplicationType?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'large_volume_constituent_count': ?largeVolumeConstituentCount?.toTfJson(),
+    'peer_cluster_name': ?peerClusterName?.toTfJson(),
+    'peer_ip_addresses': ?peerIpAddresses?.toTfJson(),
+    'peer_svm_name': ?peerSvmName?.toTfJson(),
+    'peer_volume_name': ?peerVolumeName?.toTfJson(),
+    'replication': ?replication?.toTfJson(),
+    'replication_schedule': ?replicationSchedule?.toTfJson(),
   };
 }
 
@@ -338,8 +320,7 @@ final class NetappVolumeLargeCapacityConfig {
   final TfArg<num>? constituentCount;
 
   Map<String, Object?> encode() => {
-    if (constituentCount != null)
-      'constituent_count': constituentCount!.toTfJson(),
+    'constituent_count': ?constituentCount?.toTfJson(),
   };
 }
 
@@ -419,11 +400,11 @@ final class NetappVolumeSnapshotPolicy {
   final NetappVolumeSnapshotPolicyWeeklySchedule? weeklySchedule;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (dailySchedule != null) 'daily_schedule': dailySchedule!.encode(),
-    if (hourlySchedule != null) 'hourly_schedule': hourlySchedule!.encode(),
-    if (monthlySchedule != null) 'monthly_schedule': monthlySchedule!.encode(),
-    if (weeklySchedule != null) 'weekly_schedule': weeklySchedule!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'daily_schedule': ?dailySchedule?.encode(),
+    'hourly_schedule': ?hourlySchedule?.encode(),
+    'monthly_schedule': ?monthlySchedule?.encode(),
+    'weekly_schedule': ?weeklySchedule?.encode(),
   };
 }
 
@@ -444,8 +425,8 @@ final class NetappVolumeSnapshotPolicyDailySchedule {
   final TfArg<num> snapshotsToKeep;
 
   Map<String, Object?> encode() => {
-    if (hour != null) 'hour': hour!.toTfJson(),
-    if (minute != null) 'minute': minute!.toTfJson(),
+    'hour': ?hour?.toTfJson(),
+    'minute': ?minute?.toTfJson(),
     'snapshots_to_keep': snapshotsToKeep.toTfJson(),
   };
 }
@@ -464,7 +445,7 @@ final class NetappVolumeSnapshotPolicyHourlySchedule {
   final TfArg<num> snapshotsToKeep;
 
   Map<String, Object?> encode() => {
-    if (minute != null) 'minute': minute!.toTfJson(),
+    'minute': ?minute?.toTfJson(),
     'snapshots_to_keep': snapshotsToKeep.toTfJson(),
   };
 }
@@ -489,9 +470,9 @@ final class NetappVolumeSnapshotPolicyMonthlySchedule {
   final TfArg<num> snapshotsToKeep;
 
   Map<String, Object?> encode() => {
-    if (daysOfMonth != null) 'days_of_month': daysOfMonth!.toTfJson(),
-    if (hour != null) 'hour': hour!.toTfJson(),
-    if (minute != null) 'minute': minute!.toTfJson(),
+    'days_of_month': ?daysOfMonth?.toTfJson(),
+    'hour': ?hour?.toTfJson(),
+    'minute': ?minute?.toTfJson(),
     'snapshots_to_keep': snapshotsToKeep.toTfJson(),
   };
 }
@@ -516,9 +497,9 @@ final class NetappVolumeSnapshotPolicyWeeklySchedule {
   final TfArg<num> snapshotsToKeep;
 
   Map<String, Object?> encode() => {
-    if (day != null) 'day': day!.toTfJson(),
-    if (hour != null) 'hour': hour!.toTfJson(),
-    if (minute != null) 'minute': minute!.toTfJson(),
+    'day': ?day?.toTfJson(),
+    'hour': ?hour?.toTfJson(),
+    'minute': ?minute?.toTfJson(),
     'snapshots_to_keep': snapshotsToKeep.toTfJson(),
   };
 }
@@ -540,11 +521,9 @@ final class NetappVolumeTieringPolicy {
   final TfArg<NetappVolumeTieringPolicyTierAction>? tierAction;
 
   Map<String, Object?> encode() => {
-    if (coolingThresholdDays != null)
-      'cooling_threshold_days': coolingThresholdDays!.toTfJson(),
-    if (hotTierBypassModeEnabled != null)
-      'hot_tier_bypass_mode_enabled': hotTierBypassModeEnabled!.toTfJson(),
-    if (tierAction != null) 'tier_action': tierAction!.toTfJson(),
+    'cooling_threshold_days': ?coolingThresholdDays?.toTfJson(),
+    'hot_tier_bypass_mode_enabled': ?hotTierBypassModeEnabled?.toTfJson(),
+    'tier_action': ?tierAction?.toTfJson(),
   };
 }
 
@@ -624,15 +603,14 @@ final class GoogleNetappVolume extends Resource {
            'storage_pool': storagePool,
            'capacity_gib': capacityGib,
            'protocols': protocols,
-           if (shareName != null) 'share_name': shareName,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (smbSettings != null) 'smb_settings': smbSettings,
-           if (unixPermissions != null) 'unix_permissions': unixPermissions,
-           if (snapshotDirectory != null)
-             'snapshot_directory': snapshotDirectory,
-           if (securityStyle != null) 'security_style': securityStyle,
-           if (kerberosEnabled != null) 'kerberos_enabled': kerberosEnabled,
+           'share_name': ?shareName,
+           'description': ?description,
+           'labels': ?labels,
+           'smb_settings': ?smbSettings,
+           'unix_permissions': ?unixPermissions,
+           'snapshot_directory': ?snapshotDirectory,
+           'security_style': ?securityStyle,
+           'kerberos_enabled': ?kerberosEnabled,
            if (exportPolicy != null)
              'export_policy': TfArg.literal(exportPolicy.encode()),
            if (snapshotPolicy != null)
@@ -641,8 +619,8 @@ final class GoogleNetappVolume extends Resource {
              'backup_config': TfArg.literal(backupConfig.encode()),
            if (restoreParameters != null)
              'restore_parameters': TfArg.literal(restoreParameters.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

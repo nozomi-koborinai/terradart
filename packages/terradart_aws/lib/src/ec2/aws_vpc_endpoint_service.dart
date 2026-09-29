@@ -40,20 +40,17 @@ final class AwsVpcEndpointService extends Resource {
          terraformType: tfType,
          argMap: {
            'acceptance_required': acceptanceRequired,
-           if (allowedPrincipals != null)
-             'allowed_principals': allowedPrincipals,
-           if (gatewayLoadBalancerArns != null)
-             'gateway_load_balancer_arns': gatewayLoadBalancerArns,
-           if (networkLoadBalancerArns != null)
-             'network_load_balancer_arns': networkLoadBalancerArns,
-           if (privateDnsName != null) 'private_dns_name': privateDnsName,
-           if (region != null) 'region': region,
+           'allowed_principals': ?allowedPrincipals,
+           'gateway_load_balancer_arns': ?gatewayLoadBalancerArns,
+           'network_load_balancer_arns': ?networkLoadBalancerArns,
+           'private_dns_name': ?privateDnsName,
+           'region': ?region,
            if (supportedIpAddressTypes != null)
              'supported_ip_address_types': TfArg.literal([
                for (final e in supportedIpAddressTypes) e.toTfJson(),
              ]),
-           if (supportedRegions != null) 'supported_regions': supportedRegions,
-           if (tags != null) 'tags': tags,
+           'supported_regions': ?supportedRegions,
+           'tags': ?tags,
          },
        );
 

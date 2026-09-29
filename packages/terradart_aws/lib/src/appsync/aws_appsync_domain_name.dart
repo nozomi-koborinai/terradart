@@ -24,9 +24,9 @@ final class AwsAppsyncDomainName extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate_arn': certificateArn,
-           if (description != null) 'description': description,
+           'description': ?description,
            'domain_name': domainName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

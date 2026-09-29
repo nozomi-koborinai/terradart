@@ -23,7 +23,7 @@ final class AwsS3vectorsVectorBucketPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
            'vector_bucket_arn': vectorBucketArn,
          },
        );

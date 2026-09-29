@@ -33,13 +33,12 @@ final class EcrpublicRepositoryCatalogData {
   final TfArg<String>? usageText;
 
   Map<String, Object?> encode() => {
-    if (aboutText != null) 'about_text': aboutText!.toTfJson(),
-    if (architectures != null) 'architectures': architectures!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (logoImageBlob != null) 'logo_image_blob': logoImageBlob!.toTfJson(),
-    if (operatingSystems != null)
-      'operating_systems': operatingSystems!.toTfJson(),
-    if (usageText != null) 'usage_text': usageText!.toTfJson(),
+    'about_text': ?aboutText?.toTfJson(),
+    'architectures': ?architectures?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'logo_image_blob': ?logoImageBlob?.toTfJson(),
+    'operating_systems': ?operatingSystems?.toTfJson(),
+    'usage_text': ?usageText?.toTfJson(),
   };
 }
 
@@ -61,10 +60,10 @@ final class AwsEcrpublicRepository extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (region != null) 'region': region,
+           'force_destroy': ?forceDestroy,
+           'region': ?region,
            'repository_name': repositoryName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (catalogData != null)
              'catalog_data': TfArg.literal(catalogData.encode()),
          },

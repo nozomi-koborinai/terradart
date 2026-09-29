@@ -24,7 +24,7 @@ final class AwsRedshiftAuthenticationProfile extends Resource {
          argMap: {
            'authentication_profile_content': authenticationProfileContent,
            'authentication_profile_name': authenticationProfileName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

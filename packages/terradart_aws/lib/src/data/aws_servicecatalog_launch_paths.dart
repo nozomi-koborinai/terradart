@@ -20,9 +20,9 @@ final class DataAwsServicecatalogLaunchPaths extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
+           'accept_language': ?acceptLanguage,
            'product_id': productId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

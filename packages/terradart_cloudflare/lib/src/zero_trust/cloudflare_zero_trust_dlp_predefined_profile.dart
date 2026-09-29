@@ -55,13 +55,11 @@ final class CloudflareZeroTrustDlpPredefinedProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (aiContextEnabled != null) 'ai_context_enabled': aiContextEnabled,
-           if (allowedMatchCount != null)
-             'allowed_match_count': allowedMatchCount,
-           if (confidenceThreshold != null)
-             'confidence_threshold': confidenceThreshold,
-           if (enabledEntries != null) 'enabled_entries': enabledEntries,
-           if (ocrEnabled != null) 'ocr_enabled': ocrEnabled,
+           'ai_context_enabled': ?aiContextEnabled,
+           'allowed_match_count': ?allowedMatchCount,
+           'confidence_threshold': ?confidenceThreshold,
+           'enabled_entries': ?enabledEntries,
+           'ocr_enabled': ?ocrEnabled,
            'profile_id': profileId,
            if (entries != null)
              'entries': TfArg.literal([for (final e in entries) e.encode()]),

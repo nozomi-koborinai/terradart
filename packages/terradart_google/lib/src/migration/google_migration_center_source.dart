@@ -63,13 +63,13 @@ final class GoogleMigrationCenterSource extends Resource {
          argMap: {
            'location': location,
            'source_id': sourceId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (type != null) 'type': type,
-           if (priority != null) 'priority': priority,
-           if (managed != null) 'managed': managed,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'description': ?description,
+           'type': ?type,
+           'priority': ?priority,
+           'managed': ?managed,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

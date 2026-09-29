@@ -24,9 +24,9 @@ final class ComputeNetworkEndpointsNetworkEndpoints {
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (instance != null) 'instance': instance!.toTfJson(),
-    if (ipAddress != null) 'ip_address': ipAddress!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'instance': ?instance?.toTfJson(),
+    'ip_address': ?ipAddress?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -72,9 +72,9 @@ final class GoogleComputeNetworkEndpoints extends Resource {
              'network_endpoints': TfArg.literal([
                for (final e in networkEndpoints) e.encode(),
              ]),
-           if (zone != null) 'zone': zone,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'zone': ?zone,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -266,7 +266,7 @@ final class RdsClusterRestoreToPointInTime {
 
   Map<String, Object?> encode() => {
     ...target.encode(),
-    if (restoreType != null) 'restore_type': restoreType!.toTfJson(),
+    'restore_type': ?restoreType?.toTfJson(),
     ...sourceCluster.encode(),
   };
 }
@@ -421,7 +421,7 @@ final class RdsClusterS3Import {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
     'ingestion_role': ingestionRole.toTfJson(),
     'source_engine': sourceEngine.toTfJson(),
     'source_engine_version': sourceEngineVersion.toTfJson(),
@@ -454,14 +454,12 @@ final class RdsClusterScalingConfiguration {
   final TfArg<RdsClusterScalingConfigurationTimeoutAction>? timeoutAction;
 
   Map<String, Object?> encode() => {
-    if (autoPause != null) 'auto_pause': autoPause!.toTfJson(),
-    if (maxCapacity != null) 'max_capacity': maxCapacity!.toTfJson(),
-    if (minCapacity != null) 'min_capacity': minCapacity!.toTfJson(),
-    if (secondsBeforeTimeout != null)
-      'seconds_before_timeout': secondsBeforeTimeout!.toTfJson(),
-    if (secondsUntilAutoPause != null)
-      'seconds_until_auto_pause': secondsUntilAutoPause!.toTfJson(),
-    if (timeoutAction != null) 'timeout_action': timeoutAction!.toTfJson(),
+    'auto_pause': ?autoPause?.toTfJson(),
+    'max_capacity': ?maxCapacity?.toTfJson(),
+    'min_capacity': ?minCapacity?.toTfJson(),
+    'seconds_before_timeout': ?secondsBeforeTimeout?.toTfJson(),
+    'seconds_until_auto_pause': ?secondsUntilAutoPause?.toTfJson(),
+    'timeout_action': ?timeoutAction?.toTfJson(),
   };
 }
 
@@ -494,8 +492,7 @@ final class RdsClusterServerlessv2ScalingConfiguration {
   Map<String, Object?> encode() => {
     'max_capacity': maxCapacity.toTfJson(),
     'min_capacity': minCapacity.toTfJson(),
-    if (secondsUntilAutoPause != null)
-      'seconds_until_auto_pause': secondsUntilAutoPause!.toTfJson(),
+    'seconds_until_auto_pause': ?secondsUntilAutoPause?.toTfJson(),
   };
 }
 
@@ -578,108 +575,72 @@ final class AwsRdsCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allocatedStorage != null) 'allocated_storage': allocatedStorage,
-           if (allowMajorVersionUpgrade != null)
-             'allow_major_version_upgrade': allowMajorVersionUpgrade,
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (autoMinorVersionUpgrade != null)
-             'auto_minor_version_upgrade': autoMinorVersionUpgrade,
-           if (availabilityZones != null)
-             'availability_zones': availabilityZones,
-           if (backtrackWindow != null) 'backtrack_window': backtrackWindow,
-           if (backupRetentionPeriod != null)
-             'backup_retention_period': backupRetentionPeriod,
-           if (caCertificateIdentifier != null)
-             'ca_certificate_identifier': caCertificateIdentifier,
+           'allocated_storage': ?allocatedStorage,
+           'allow_major_version_upgrade': ?allowMajorVersionUpgrade,
+           'apply_immediately': ?applyImmediately,
+           'auto_minor_version_upgrade': ?autoMinorVersionUpgrade,
+           'availability_zones': ?availabilityZones,
+           'backtrack_window': ?backtrackWindow,
+           'backup_retention_period': ?backupRetentionPeriod,
+           'ca_certificate_identifier': ?caCertificateIdentifier,
            ...?clusterIdentifier?.argMap,
-           if (clusterMembers != null) 'cluster_members': clusterMembers,
-           if (clusterScalabilityType != null)
-             'cluster_scalability_type': clusterScalabilityType,
-           if (copyTagsToSnapshot != null)
-             'copy_tags_to_snapshot': copyTagsToSnapshot,
-           if (databaseInsightsMode != null)
-             'database_insights_mode': databaseInsightsMode,
-           if (databaseName != null) 'database_name': databaseName,
-           if (dbClusterInstanceClass != null)
-             'db_cluster_instance_class': dbClusterInstanceClass,
-           if (dbClusterParameterGroupName != null)
-             'db_cluster_parameter_group_name': dbClusterParameterGroupName,
-           if (dbInstanceParameterGroupName != null)
-             'db_instance_parameter_group_name': dbInstanceParameterGroupName,
-           if (dbSubnetGroupName != null)
-             'db_subnet_group_name': dbSubnetGroupName,
-           if (dbSystemId != null) 'db_system_id': dbSystemId,
-           if (deleteAutomatedBackups != null)
-             'delete_automated_backups': deleteAutomatedBackups,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (domain != null) 'domain': domain,
-           if (domainIamRoleName != null)
-             'domain_iam_role_name': domainIamRoleName,
-           if (enableGlobalWriteForwarding != null)
-             'enable_global_write_forwarding': enableGlobalWriteForwarding,
-           if (enableHttpEndpoint != null)
-             'enable_http_endpoint': enableHttpEndpoint,
-           if (enableLocalWriteForwarding != null)
-             'enable_local_write_forwarding': enableLocalWriteForwarding,
+           'cluster_members': ?clusterMembers,
+           'cluster_scalability_type': ?clusterScalabilityType,
+           'copy_tags_to_snapshot': ?copyTagsToSnapshot,
+           'database_insights_mode': ?databaseInsightsMode,
+           'database_name': ?databaseName,
+           'db_cluster_instance_class': ?dbClusterInstanceClass,
+           'db_cluster_parameter_group_name': ?dbClusterParameterGroupName,
+           'db_instance_parameter_group_name': ?dbInstanceParameterGroupName,
+           'db_subnet_group_name': ?dbSubnetGroupName,
+           'db_system_id': ?dbSystemId,
+           'delete_automated_backups': ?deleteAutomatedBackups,
+           'deletion_protection': ?deletionProtection,
+           'domain': ?domain,
+           'domain_iam_role_name': ?domainIamRoleName,
+           'enable_global_write_forwarding': ?enableGlobalWriteForwarding,
+           'enable_http_endpoint': ?enableHttpEndpoint,
+           'enable_local_write_forwarding': ?enableLocalWriteForwarding,
            if (enabledCloudwatchLogsExports != null)
              'enabled_cloudwatch_logs_exports': TfArg.literal([
                for (final e in enabledCloudwatchLogsExports) e.toTfJson(),
              ]),
            'engine': engine,
-           if (engineLifecycleSupport != null)
-             'engine_lifecycle_support': engineLifecycleSupport,
-           if (engineMode != null) 'engine_mode': engineMode,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (finalSnapshotIdentifier != null)
-             'final_snapshot_identifier': finalSnapshotIdentifier,
-           if (globalClusterIdentifier != null)
-             'global_cluster_identifier': globalClusterIdentifier,
-           if (iamDatabaseAuthenticationEnabled != null)
-             'iam_database_authentication_enabled':
-                 iamDatabaseAuthenticationEnabled,
-           if (iamRoles != null) 'iam_roles': iamRoles,
-           if (iops != null) 'iops': iops,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'engine_lifecycle_support': ?engineLifecycleSupport,
+           'engine_mode': ?engineMode,
+           'engine_version': ?engineVersion,
+           'final_snapshot_identifier': ?finalSnapshotIdentifier,
+           'global_cluster_identifier': ?globalClusterIdentifier,
+           'iam_database_authentication_enabled':
+               ?iamDatabaseAuthenticationEnabled,
+           'iam_roles': ?iamRoles,
+           'iops': ?iops,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            ...?masterPassword?.argMap,
-           if (masterPasswordWoVersion != null)
-             'master_password_wo_version': masterPasswordWoVersion,
-           if (masterUserSecretKmsKeyId != null)
-             'master_user_secret_kms_key_id': masterUserSecretKmsKeyId,
-           if (masterUsername != null) 'master_username': masterUsername,
-           if (monitoringInterval != null)
-             'monitoring_interval': monitoringInterval,
-           if (monitoringRoleArn != null)
-             'monitoring_role_arn': monitoringRoleArn,
-           if (networkType != null) 'network_type': networkType,
-           if (performanceInsightsEnabled != null)
-             'performance_insights_enabled': performanceInsightsEnabled,
-           if (performanceInsightsKmsKeyId != null)
-             'performance_insights_kms_key_id': performanceInsightsKmsKeyId
-                 .encodeAs('arn'),
-           if (performanceInsightsRetentionPeriod != null)
-             'performance_insights_retention_period':
-                 performanceInsightsRetentionPeriod,
-           if (port != null) 'port': port,
-           if (preferredBackupWindow != null)
-             'preferred_backup_window': preferredBackupWindow,
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (region != null) 'region': region,
-           if (replicationSourceIdentifier != null)
-             'replication_source_identifier': replicationSourceIdentifier,
-           if (skipFinalSnapshot != null)
-             'skip_final_snapshot': skipFinalSnapshot,
-           if (snapshotIdentifier != null)
-             'snapshot_identifier': snapshotIdentifier,
-           if (sourceRegion != null) 'source_region': sourceRegion,
-           if (storageEncrypted != null) 'storage_encrypted': storageEncrypted,
-           if (storageType != null) 'storage_type': storageType,
-           if (tags != null) 'tags': tags,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
-           if (warningEventCategories != null)
-             'warning_event_categories': warningEventCategories,
+           'master_password_wo_version': ?masterPasswordWoVersion,
+           'master_user_secret_kms_key_id': ?masterUserSecretKmsKeyId,
+           'master_username': ?masterUsername,
+           'monitoring_interval': ?monitoringInterval,
+           'monitoring_role_arn': ?monitoringRoleArn,
+           'network_type': ?networkType,
+           'performance_insights_enabled': ?performanceInsightsEnabled,
+           'performance_insights_kms_key_id': ?performanceInsightsKmsKeyId
+               ?.encodeAs('arn'),
+           'performance_insights_retention_period':
+               ?performanceInsightsRetentionPeriod,
+           'port': ?port,
+           'preferred_backup_window': ?preferredBackupWindow,
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'region': ?region,
+           'replication_source_identifier': ?replicationSourceIdentifier,
+           'skip_final_snapshot': ?skipFinalSnapshot,
+           'snapshot_identifier': ?snapshotIdentifier,
+           'source_region': ?sourceRegion,
+           'storage_encrypted': ?storageEncrypted,
+           'storage_type': ?storageType,
+           'tags': ?tags,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
+           'warning_event_categories': ?warningEventCategories,
            if (restoreToPointInTime != null)
              'restore_to_point_in_time': TfArg.literal(
                restoreToPointInTime.encode(),

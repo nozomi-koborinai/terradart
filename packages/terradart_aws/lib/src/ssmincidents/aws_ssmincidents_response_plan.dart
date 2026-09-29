@@ -51,12 +51,10 @@ final class SsmincidentsResponsePlanActionSsmAutomation {
 
   Map<String, Object?> encode() => {
     'document_name': documentName.toTfJson(),
-    if (documentVersion != null)
-      'document_version': documentVersion!.toTfJson(),
-    if (dynamicParameters != null)
-      'dynamic_parameters': dynamicParameters!.toTfJson(),
+    'document_version': ?documentVersion?.toTfJson(),
+    'dynamic_parameters': ?dynamicParameters?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (targetAccount != null) 'target_account': targetAccount!.toTfJson(),
+    'target_account': ?targetAccount?.toTfJson(),
     if (parameter != null)
       'parameter': [for (final e in parameter!) e.encode()],
   };
@@ -108,10 +106,10 @@ final class SsmincidentsResponsePlanIncidentTemplate {
   notificationTarget;
 
   Map<String, Object?> encode() => {
-    if (dedupeString != null) 'dedupe_string': dedupeString!.toTfJson(),
+    'dedupe_string': ?dedupeString?.toTfJson(),
     'impact': impact.toTfJson(),
-    if (incidentTags != null) 'incident_tags': incidentTags!.toTfJson(),
-    if (summary != null) 'summary': summary!.toTfJson(),
+    'incident_tags': ?incidentTags?.toTfJson(),
+    'summary': ?summary?.toTfJson(),
     'title': title.toTfJson(),
     if (notificationTarget != null)
       'notification_target': [for (final e in notificationTarget!) e.encode()],
@@ -192,12 +190,12 @@ final class AwsSsmincidentsResponsePlan extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (chatChannel != null) 'chat_channel': chatChannel,
-           if (displayName != null) 'display_name': displayName,
-           if (engagements != null) 'engagements': engagements,
+           'chat_channel': ?chatChannel,
+           'display_name': ?displayName,
+           'engagements': ?engagements,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (action != null) 'action': TfArg.literal(action.encode()),
            'incident_template': TfArg.literal(incidentTemplate.encode()),
            if (integration != null)

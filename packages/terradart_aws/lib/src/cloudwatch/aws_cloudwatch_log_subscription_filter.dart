@@ -53,10 +53,9 @@ final class AwsCloudwatchLogSubscriptionFilter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyOnTransformedLogs != null)
-             'apply_on_transformed_logs': applyOnTransformedLogs,
+           'apply_on_transformed_logs': ?applyOnTransformedLogs,
            'destination_arn': destinationArn,
-           if (distribution != null) 'distribution': distribution,
+           'distribution': ?distribution,
            if (emitSystemFields != null)
              'emit_system_fields': TfArg.literal([
                for (final e in emitSystemFields) e.toTfJson(),
@@ -64,8 +63,8 @@ final class AwsCloudwatchLogSubscriptionFilter extends Resource {
            'filter_pattern': filterPattern,
            'log_group_name': logGroupName.encodeAs('name'),
            'name': name,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
          },
        );
 

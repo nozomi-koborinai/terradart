@@ -28,13 +28,13 @@ final class GoogleNetworkConnectivityHub extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (description != null) 'description': description,
-           if (policyMode != null) 'policy_mode': policyMode,
-           if (presetTopology != null) 'preset_topology': presetTopology,
-           if (exportPsc != null) 'export_psc': exportPsc,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'name': ?name,
+           'description': ?description,
+           'policy_mode': ?policyMode,
+           'preset_topology': ?presetTopology,
+           'export_psc': ?exportPsc,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

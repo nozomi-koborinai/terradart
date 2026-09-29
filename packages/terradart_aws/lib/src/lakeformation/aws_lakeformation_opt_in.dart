@@ -245,7 +245,7 @@ final class LakeformationOptInResourceDataCatalog {
 
   final TfArg<String>? id;
 
-  Map<String, Object?> encode() => {if (id != null) 'id': id!.toTfJson()};
+  Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 
 /// Typed helper for the `resource_data.data_cells_filter` block of
@@ -268,10 +268,10 @@ final class LakeformationOptInResourceDataDataCellsFilter {
   final TfArg<String>? tableName;
 
   Map<String, Object?> encode() => {
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (tableCatalogId != null) 'table_catalog_id': tableCatalogId!.toTfJson(),
-    if (tableName != null) 'table_name': tableName!.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'table_catalog_id': ?tableCatalogId?.toTfJson(),
+    'table_name': ?tableName?.toTfJson(),
   };
 }
 
@@ -289,7 +289,7 @@ final class LakeformationOptInResourceDataDataLocation {
   final TfArg<String> resourceArn;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'resource_arn': resourceArn.toTfJson(),
   };
 }
@@ -308,7 +308,7 @@ final class LakeformationOptInResourceDataDatabase {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -330,7 +330,7 @@ final class LakeformationOptInResourceDataLfTag {
   final TfArg<List<Object?>> values;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'key': key.toTfJson(),
     'values': values.toTfJson(),
   };
@@ -350,7 +350,7 @@ final class LakeformationOptInResourceDataLfTagExpression {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -375,9 +375,9 @@ final class LakeformationOptInResourceDataLfTagPolicy {
   final TfArg<String> resourceType;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (expressionName != null) 'expression_name': expressionName!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
+    'expression': ?expression?.toTfJson(),
+    'expression_name': ?expressionName?.toTfJson(),
     'resource_type': resourceType.toTfJson(),
   };
 }
@@ -402,10 +402,10 @@ final class LakeformationOptInResourceDataTable {
   final TfArg<bool>? wildcard;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (wildcard != null) 'wildcard': wildcard!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'wildcard': ?wildcard?.toTfJson(),
   };
 }
 
@@ -433,8 +433,8 @@ final class LakeformationOptInResourceDataTableWithColumns {
   columnWildcard;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
-    if (columnNames != null) 'column_names': columnNames!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
+    'column_names': ?columnNames?.toTfJson(),
     'database_name': databaseName.toTfJson(),
     'name': name.toTfJson(),
     if (columnWildcard != null)
@@ -453,8 +453,7 @@ final class LakeformationOptInResourceDataTableWithColumnsColumnWildcard {
   final TfArg<List<Object?>>? excludedColumnNames;
 
   Map<String, Object?> encode() => {
-    if (excludedColumnNames != null)
-      'excluded_column_names': excludedColumnNames!.toTfJson(),
+    'excluded_column_names': ?excludedColumnNames?.toTfJson(),
   };
 }
 
@@ -475,7 +474,7 @@ final class AwsLakeformationOptIn extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (condition != null)
              'condition': TfArg.literal([
                for (final e in condition) e.encode(),

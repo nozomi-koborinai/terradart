@@ -37,8 +37,8 @@ final class DataAwsVpcIpams extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (ipamIds != null) 'ipam_ids': ipamIds,
-           if (region != null) 'region': region,
+           'ipam_ids': ?ipamIds,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

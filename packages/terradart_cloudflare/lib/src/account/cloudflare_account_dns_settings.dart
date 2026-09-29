@@ -44,17 +44,15 @@ final class AccountDnsSettingsZoneDefaults {
   final AccountDnsSettingsZoneDefaultsSoa? soa;
 
   Map<String, Object?> encode() => {
-    if (flattenAllCnames != null)
-      'flatten_all_cnames': flattenAllCnames!.toTfJson(),
-    if (foundationDns != null) 'foundation_dns': foundationDns!.toTfJson(),
-    if (multiProvider != null) 'multi_provider': multiProvider!.toTfJson(),
-    if (nsTtl != null) 'ns_ttl': nsTtl!.toTfJson(),
-    if (secondaryOverrides != null)
-      'secondary_overrides': secondaryOverrides!.toTfJson(),
-    if (zoneMode != null) 'zone_mode': zoneMode!.toTfJson(),
-    if (internalDns != null) 'internal_dns': internalDns!.encode(),
-    if (nameservers != null) 'nameservers': nameservers!.encode(),
-    if (soa != null) 'soa': soa!.encode(),
+    'flatten_all_cnames': ?flattenAllCnames?.toTfJson(),
+    'foundation_dns': ?foundationDns?.toTfJson(),
+    'multi_provider': ?multiProvider?.toTfJson(),
+    'ns_ttl': ?nsTtl?.toTfJson(),
+    'secondary_overrides': ?secondaryOverrides?.toTfJson(),
+    'zone_mode': ?zoneMode?.toTfJson(),
+    'internal_dns': ?internalDns?.encode(),
+    'nameservers': ?nameservers?.encode(),
+    'soa': ?soa?.encode(),
   };
 }
 
@@ -78,8 +76,7 @@ final class AccountDnsSettingsZoneDefaultsInternalDns {
   final TfArg<String>? referenceZoneId;
 
   Map<String, Object?> encode() => {
-    if (referenceZoneId != null)
-      'reference_zone_id': referenceZoneId!.toTfJson(),
+    'reference_zone_id': ?referenceZoneId?.toTfJson(),
   };
 }
 
@@ -91,7 +88,7 @@ final class AccountDnsSettingsZoneDefaultsNameservers {
 
   final TfArg<AccountDnsSettingsZoneDefaultsNameserversType>? type;
 
-  Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
@@ -135,13 +132,13 @@ final class AccountDnsSettingsZoneDefaultsSoa {
   final TfArg<num>? ttl;
 
   Map<String, Object?> encode() => {
-    if (expire != null) 'expire': expire!.toTfJson(),
-    if (minTtl != null) 'min_ttl': minTtl!.toTfJson(),
-    if (mname != null) 'mname': mname!.toTfJson(),
-    if (refresh != null) 'refresh': refresh!.toTfJson(),
-    if (retry != null) 'retry': retry!.toTfJson(),
-    if (rname != null) 'rname': rname!.toTfJson(),
-    if (ttl != null) 'ttl': ttl!.toTfJson(),
+    'expire': ?expire?.toTfJson(),
+    'min_ttl': ?minTtl?.toTfJson(),
+    'mname': ?mname?.toTfJson(),
+    'refresh': ?refresh?.toTfJson(),
+    'retry': ?retry?.toTfJson(),
+    'rname': ?rname?.toTfJson(),
+    'ttl': ?ttl?.toTfJson(),
   };
 }
 
@@ -166,7 +163,7 @@ final class CloudflareAccountDnsSettings extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (enforceDnsOnly != null) 'enforce_dns_only': enforceDnsOnly,
+           'enforce_dns_only': ?enforceDnsOnly,
            if (zoneDefaults != null)
              'zone_defaults': TfArg.literal(zoneDefaults.encode()),
          },

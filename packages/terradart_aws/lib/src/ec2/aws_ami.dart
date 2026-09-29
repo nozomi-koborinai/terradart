@@ -94,16 +94,15 @@ final class AmiEbsBlockDevice {
   final TfArg<AmiEbsBlockDeviceVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_name': deviceName.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (outpostArn != null) 'outpost_arn': outpostArn!.toTfJson(),
-    if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'outpost_arn': ?outpostArn?.toTfJson(),
+    'snapshot_id': ?snapshotId?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -173,24 +172,23 @@ final class AwsAmi extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (architecture != null) 'architecture': architecture,
-           if (bootMode != null) 'boot_mode': bootMode,
-           if (deprecationTime != null) 'deprecation_time': deprecationTime,
-           if (description != null) 'description': description,
-           if (enaSupport != null) 'ena_support': enaSupport,
-           if (imageLocation != null) 'image_location': imageLocation,
-           if (imdsSupport != null) 'imds_support': imdsSupport,
-           if (kernelId != null) 'kernel_id': kernelId,
+           'architecture': ?architecture,
+           'boot_mode': ?bootMode,
+           'deprecation_time': ?deprecationTime,
+           'description': ?description,
+           'ena_support': ?enaSupport,
+           'image_location': ?imageLocation,
+           'imds_support': ?imdsSupport,
+           'kernel_id': ?kernelId,
            'name': name,
-           if (ramdiskId != null) 'ramdisk_id': ramdiskId,
-           if (region != null) 'region': region,
-           if (rootDeviceName != null) 'root_device_name': rootDeviceName,
-           if (sriovNetSupport != null) 'sriov_net_support': sriovNetSupport,
-           if (tags != null) 'tags': tags,
-           if (tpmSupport != null) 'tpm_support': tpmSupport,
-           if (uefiData != null) 'uefi_data': uefiData,
-           if (virtualizationType != null)
-             'virtualization_type': virtualizationType,
+           'ramdisk_id': ?ramdiskId,
+           'region': ?region,
+           'root_device_name': ?rootDeviceName,
+           'sriov_net_support': ?sriovNetSupport,
+           'tags': ?tags,
+           'tpm_support': ?tpmSupport,
+           'uefi_data': ?uefiData,
+           'virtualization_type': ?virtualizationType,
            if (ebsBlockDevice != null)
              'ebs_block_device': TfArg.literal([
                for (final e in ebsBlockDevice) e.encode(),

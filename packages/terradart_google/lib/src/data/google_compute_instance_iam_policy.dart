@@ -25,8 +25,8 @@ final class DataGoogleComputeInstanceIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'instance_name': instanceName,
-           if (project != null) 'project': project,
-           if (zone != null) 'zone': zone,
+           'project': ?project,
+           'zone': ?zone,
          },
        );
 

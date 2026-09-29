@@ -224,7 +224,7 @@ final class ColabNotebookExecutionWorkbenchRuntimeVmImage {
 
   Map<String, Object?> encode() => {
     ...selector.encode(),
-    if (project != null) 'project': project!.toTfJson(),
+    'project': ?project?.toTfJson(),
   };
 }
 
@@ -327,11 +327,10 @@ final class GoogleColabNotebookExecution extends Resource {
            'location': location,
            'display_name': displayName,
            'gcs_output_uri': gcsOutputUri,
-           if (notebookExecutionJobId != null)
-             'notebook_execution_job_id': notebookExecutionJobId,
-           if (executionTimeout != null) 'execution_timeout': executionTimeout,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'notebook_execution_job_id': ?notebookExecutionJobId,
+           'execution_timeout': ?executionTimeout,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            source.blockKey: TfArg.literal(source.encode()),
            compute.blockKey: TfArg.literal(compute.encode()[compute.blockKey]),
            identity.blockKey: identity.value,

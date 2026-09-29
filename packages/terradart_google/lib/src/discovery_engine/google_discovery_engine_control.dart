@@ -283,14 +283,14 @@ final class GoogleDiscoveryEngineControl extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (collectionId != null) 'collection_id': collectionId,
+           'collection_id': ?collectionId,
            'engine_id': engineId,
            'control_id': controlId,
            'display_name': displayName,
            'solution_type': solutionType,
-           if (useCases != null) 'use_cases': useCases,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'use_cases': ?useCases,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            action.blockKey: TfArg.literal(action.encode()),
          },
        );

@@ -27,10 +27,10 @@ final class RolesanywhereTrustAnchorNotificationSettings {
   final TfArg<num>? threshold;
 
   Map<String, Object?> encode() => {
-    if (channel != null) 'channel': channel!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (event != null) 'event': event!.toTfJson(),
-    if (threshold != null) 'threshold': threshold!.toTfJson(),
+    'channel': ?channel?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'event': ?event?.toTfJson(),
+    'threshold': ?threshold?.toTfJson(),
   };
 }
 
@@ -101,9 +101,8 @@ final class RolesanywhereTrustAnchorSourceSourceData {
   final TfArg<String>? x509CertificateData;
 
   Map<String, Object?> encode() => {
-    if (acmPcaArn != null) 'acm_pca_arn': acmPcaArn!.toTfJson(),
-    if (x509CertificateData != null)
-      'x509_certificate_data': x509CertificateData!.toTfJson(),
+    'acm_pca_arn': ?acmPcaArn?.toTfJson(),
+    'x509_certificate_data': ?x509CertificateData?.toTfJson(),
   };
 }
 
@@ -125,9 +124,9 @@ final class AwsRolesanywhereTrustAnchor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (notificationSettings != null)
              'notification_settings': TfArg.literal([
                for (final e in notificationSettings) e.encode(),

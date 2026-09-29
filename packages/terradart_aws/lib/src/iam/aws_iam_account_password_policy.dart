@@ -28,20 +28,15 @@ final class AwsIamAccountPasswordPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowUsersToChangePassword != null)
-             'allow_users_to_change_password': allowUsersToChangePassword,
-           if (hardExpiry != null) 'hard_expiry': hardExpiry,
-           if (maxPasswordAge != null) 'max_password_age': maxPasswordAge,
-           if (minimumPasswordLength != null)
-             'minimum_password_length': minimumPasswordLength,
-           if (passwordReusePrevention != null)
-             'password_reuse_prevention': passwordReusePrevention,
-           if (requireLowercaseCharacters != null)
-             'require_lowercase_characters': requireLowercaseCharacters,
-           if (requireNumbers != null) 'require_numbers': requireNumbers,
-           if (requireSymbols != null) 'require_symbols': requireSymbols,
-           if (requireUppercaseCharacters != null)
-             'require_uppercase_characters': requireUppercaseCharacters,
+           'allow_users_to_change_password': ?allowUsersToChangePassword,
+           'hard_expiry': ?hardExpiry,
+           'max_password_age': ?maxPasswordAge,
+           'minimum_password_length': ?minimumPasswordLength,
+           'password_reuse_prevention': ?passwordReusePrevention,
+           'require_lowercase_characters': ?requireLowercaseCharacters,
+           'require_numbers': ?requireNumbers,
+           'require_symbols': ?requireSymbols,
+           'require_uppercase_characters': ?requireUppercaseCharacters,
          },
        );
 

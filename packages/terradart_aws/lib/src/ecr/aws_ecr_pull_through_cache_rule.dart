@@ -25,13 +25,12 @@ final class AwsEcrPullThroughCacheRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (credentialArn != null) 'credential_arn': credentialArn,
-           if (customRoleArn != null) 'custom_role_arn': customRoleArn,
+           'credential_arn': ?credentialArn,
+           'custom_role_arn': ?customRoleArn,
            'ecr_repository_prefix': ecrRepositoryPrefix,
-           if (region != null) 'region': region,
+           'region': ?region,
            'upstream_registry_url': upstreamRegistryUrl,
-           if (upstreamRepositoryPrefix != null)
-             'upstream_repository_prefix': upstreamRepositoryPrefix,
+           'upstream_repository_prefix': ?upstreamRepositoryPrefix,
          },
        );
 

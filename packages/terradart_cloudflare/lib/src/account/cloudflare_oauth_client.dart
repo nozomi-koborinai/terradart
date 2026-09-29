@@ -83,27 +83,25 @@ final class CloudflareOauthClient extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (allowedCorsOrigins != null)
-             'allowed_cors_origins': allowedCorsOrigins,
+           'allowed_cors_origins': ?allowedCorsOrigins,
            'client_name': clientName,
-           if (clientUri != null) 'client_uri': clientUri,
+           'client_uri': ?clientUri,
            'grant_types': TfArg.literal([
              for (final e in grantTypes) e.toTfJson(),
            ]),
-           if (logoUri != null) 'logo_uri': logoUri,
-           if (oauthClientId != null) 'oauth_client_id': oauthClientId,
-           if (optionalScopes != null) 'optional_scopes': optionalScopes,
-           if (policyUri != null) 'policy_uri': policyUri,
-           if (postLogoutRedirectUris != null)
-             'post_logout_redirect_uris': postLogoutRedirectUris,
+           'logo_uri': ?logoUri,
+           'oauth_client_id': ?oauthClientId,
+           'optional_scopes': ?optionalScopes,
+           'policy_uri': ?policyUri,
+           'post_logout_redirect_uris': ?postLogoutRedirectUris,
            'redirect_uris': redirectUris,
            'response_types': TfArg.literal([
              for (final e in responseTypes) e.toTfJson(),
            ]),
            'scopes': scopes,
            'token_endpoint_auth_method': tokenEndpointAuthMethod,
-           if (tosUri != null) 'tos_uri': tosUri,
-           if (visibility != null) 'visibility': visibility,
+           'tos_uri': ?tosUri,
+           'visibility': ?visibility,
          },
        );
 

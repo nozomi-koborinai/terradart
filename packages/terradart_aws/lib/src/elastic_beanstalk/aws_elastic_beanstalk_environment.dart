@@ -129,7 +129,7 @@ final class ElasticBeanstalkEnvironmentSetting {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'namespace': namespace.toTfJson(),
-    if (resource != null) 'resource': resource!.toTfJson(),
+    'resource': ?resource?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -160,17 +160,16 @@ final class AwsElasticBeanstalkEnvironment extends Resource {
          terraformType: tfType,
          argMap: {
            'application': application,
-           if (cnamePrefix != null) 'cname_prefix': cnamePrefix,
-           if (description != null) 'description': description,
+           'cname_prefix': ?cnamePrefix,
+           'description': ?description,
            'name': name,
            ...?platform?.argMap,
-           if (pollInterval != null) 'poll_interval': pollInterval,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (tier != null) 'tier': tier,
-           if (versionLabel != null) 'version_label': versionLabel,
-           if (waitForReadyTimeout != null)
-             'wait_for_ready_timeout': waitForReadyTimeout,
+           'poll_interval': ?pollInterval,
+           'region': ?region,
+           'tags': ?tags,
+           'tier': ?tier,
+           'version_label': ?versionLabel,
+           'wait_for_ready_timeout': ?waitForReadyTimeout,
            if (setting != null)
              'setting': TfArg.literal([for (final e in setting) e.encode()]),
          },

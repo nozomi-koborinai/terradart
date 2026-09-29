@@ -83,10 +83,10 @@ final class AwsLightsailKeyPair extends Resource {
          terraformType: tfType,
          argMap: {
            ...?name?.argMap,
-           if (pgpKey != null) 'pgp_key': pgpKey,
-           if (publicKey != null) 'public_key': publicKey,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'pgp_key': ?pgpKey,
+           'public_key': ?publicKey,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

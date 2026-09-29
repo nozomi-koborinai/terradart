@@ -55,13 +55,12 @@ final class LambdaFunctionUrlCors {
   final TfArg<num>? maxAge;
 
   Map<String, Object?> encode() => {
-    if (allowCredentials != null)
-      'allow_credentials': allowCredentials!.toTfJson(),
-    if (allowHeaders != null) 'allow_headers': allowHeaders!.toTfJson(),
-    if (allowMethods != null) 'allow_methods': allowMethods!.toTfJson(),
-    if (allowOrigins != null) 'allow_origins': allowOrigins!.toTfJson(),
-    if (exposeHeaders != null) 'expose_headers': exposeHeaders!.toTfJson(),
-    if (maxAge != null) 'max_age': maxAge!.toTfJson(),
+    'allow_credentials': ?allowCredentials?.toTfJson(),
+    'allow_headers': ?allowHeaders?.toTfJson(),
+    'allow_methods': ?allowMethods?.toTfJson(),
+    'allow_origins': ?allowOrigins?.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
   };
 }
 
@@ -93,9 +92,9 @@ final class AwsLambdaFunctionUrl extends Resource {
          argMap: {
            'authorization_type': authorizationType,
            'function_name': functionName.encodeAs('function_name'),
-           if (invokeMode != null) 'invoke_mode': invokeMode,
-           if (qualifier != null) 'qualifier': qualifier,
-           if (region != null) 'region': region,
+           'invoke_mode': ?invokeMode,
+           'qualifier': ?qualifier,
+           'region': ?region,
            if (cors != null) 'cors': TfArg.literal(cors.encode()),
          },
        );

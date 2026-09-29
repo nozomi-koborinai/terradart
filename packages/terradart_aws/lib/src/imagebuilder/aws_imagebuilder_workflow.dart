@@ -100,14 +100,13 @@ final class AwsImagebuilderWorkflow extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (changeDescription != null)
-             'change_description': changeDescription,
+           'change_description': ?changeDescription,
            ...document.argMap,
-           if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'description': ?description,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'type': type,
            'version': version,
          },

@@ -53,7 +53,7 @@ final class CloudfrontTrustStoreCaCertificatesBundleSourceCaCertificatesBundleS3
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),
     'region': region.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -75,7 +75,7 @@ final class AwsCloudfrontTrustStore extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (caCertificatesBundleSource != null)
              'ca_certificates_bundle_source': TfArg.literal([
                for (final e in caCertificatesBundleSource) e.encode(),

@@ -26,11 +26,11 @@ final class DataCloudflareListItems extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'list_id': listId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (perPage != null) 'per_page': perPage,
-           if (search != null) 'search': search,
+           'max_items': ?maxItems,
+           'per_page': ?perPage,
+           'search': ?search,
          },
        );
 

@@ -51,8 +51,8 @@ final class GoogleFilestoreBackup extends Resource {
            'location': location,
            'source_instance': sourceInstance,
            'source_file_share': sourceFileShare,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'labels': ?labels,
          },
        );
 

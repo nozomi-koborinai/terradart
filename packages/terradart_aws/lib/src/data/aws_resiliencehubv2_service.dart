@@ -17,10 +17,7 @@ final class DataAwsResiliencehubv2Service extends Data {
     TfArg<String>? region,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {'arn': arn, if (region != null) 'region': region},
-       );
+  }) : super(terraformType: tfType, argMap: {'arn': arn, 'region': ?region});
 
   @override
   Set<String> get sensitiveFields => _awsResiliencehubv2ServiceSensitive;

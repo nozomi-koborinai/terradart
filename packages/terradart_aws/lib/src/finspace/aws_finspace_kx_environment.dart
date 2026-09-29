@@ -92,8 +92,8 @@ final class FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAcl
     'protocol': protocol.toTfJson(),
     'rule_action': ruleAction.toTfJson(),
     'rule_number': ruleNumber.toTfJson(),
-    if (icmpTypeCode != null) 'icmp_type_code': icmpTypeCode!.encode(),
-    if (portRange != null) 'port_range': portRange!.encode(),
+    'icmp_type_code': ?icmpTypeCode?.encode(),
+    'port_range': ?portRange?.encode(),
   };
 }
 
@@ -169,11 +169,11 @@ final class AwsFinspaceKxEnvironment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (customDnsConfiguration != null)
              'custom_dns_configuration': TfArg.literal([
                for (final e in customDnsConfiguration) e.encode(),

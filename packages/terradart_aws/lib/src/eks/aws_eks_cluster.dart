@@ -39,11 +39,9 @@ final class EksClusterAccessConfig {
   final TfArg<bool>? bootstrapClusterCreatorAdminPermissions;
 
   Map<String, Object?> encode() => {
-    if (authenticationMode != null)
-      'authentication_mode': authenticationMode!.toTfJson(),
-    if (bootstrapClusterCreatorAdminPermissions != null)
-      'bootstrap_cluster_creator_admin_permissions':
-          bootstrapClusterCreatorAdminPermissions!.toTfJson(),
+    'authentication_mode': ?authenticationMode?.toTfJson(),
+    'bootstrap_cluster_creator_admin_permissions':
+        ?bootstrapClusterCreatorAdminPermissions?.toTfJson(),
   };
 }
 
@@ -75,10 +73,10 @@ final class EksClusterComputeConfig {
   final TfArg<String>? nodeRoleArn;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (nodePools != null)
       'node_pools': [for (final e in nodePools!) e.toTfJson()],
-    if (nodeRoleArn != null) 'node_role_arn': nodeRoleArn!.toTfJson(),
+    'node_role_arn': ?nodeRoleArn?.toTfJson(),
   };
 }
 
@@ -100,7 +98,7 @@ final class EksClusterControlPlaneScalingConfig {
 
   final TfArg<EksClusterControlPlaneScalingConfigTier>? tier;
 
-  Map<String, Object?> encode() => {if (tier != null) 'tier': tier!.toTfJson()};
+  Map<String, Object?> encode() => {'tier': ?tier?.toTfJson()};
 }
 
 /// `tier` — derived from the provider schema description.
@@ -171,9 +169,8 @@ final class EksClusterKubeApiServerConfig {
   final EksClusterKubeApiServerConfigServiceNodePortRange? serviceNodePortRange;
 
   Map<String, Object?> encode() => {
-    if (eventTtl != null) 'event_ttl': eventTtl!.toTfJson(),
-    if (serviceNodePortRange != null)
-      'service_node_port_range': serviceNodePortRange!.encode(),
+    'event_ttl': ?eventTtl?.toTfJson(),
+    'service_node_port_range': ?serviceNodePortRange?.encode(),
   };
 }
 
@@ -191,8 +188,8 @@ final class EksClusterKubeApiServerConfigServiceNodePortRange {
   final TfArg<num>? minPort;
 
   Map<String, Object?> encode() => {
-    if (maxPort != null) 'max_port': maxPort!.toTfJson(),
-    if (minPort != null) 'min_port': minPort!.toTfJson(),
+    'max_port': ?maxPort?.toTfJson(),
+    'min_port': ?minPort?.toTfJson(),
   };
 }
 
@@ -212,11 +209,9 @@ final class EksClusterKubeControllerManagerConfig {
   podGcControllerConfig;
 
   Map<String, Object?> encode() => {
-    if (horizontalPodAutoscalerControllerConfig != null)
-      'horizontal_pod_autoscaler_controller_config':
-          horizontalPodAutoscalerControllerConfig!.encode(),
-    if (podGcControllerConfig != null)
-      'pod_gc_controller_config': podGcControllerConfig!.encode(),
+    'horizontal_pod_autoscaler_controller_config':
+        ?horizontalPodAutoscalerControllerConfig?.encode(),
+    'pod_gc_controller_config': ?podGcControllerConfig?.encode(),
   };
 }
 
@@ -231,9 +226,8 @@ final class EksClusterKubeControllerManagerConfigHorizontalPodAutoscalerControll
   final TfArg<String>? horizontalPodAutoscalerSyncPeriod;
 
   Map<String, Object?> encode() => {
-    if (horizontalPodAutoscalerSyncPeriod != null)
-      'horizontal_pod_autoscaler_sync_period':
-          horizontalPodAutoscalerSyncPeriod!.toTfJson(),
+    'horizontal_pod_autoscaler_sync_period': ?horizontalPodAutoscalerSyncPeriod
+        ?.toTfJson(),
   };
 }
 
@@ -248,8 +242,7 @@ final class EksClusterKubeControllerManagerConfigPodGcControllerConfig {
   final TfArg<num>? terminatedPodGcThreshold;
 
   Map<String, Object?> encode() => {
-    if (terminatedPodGcThreshold != null)
-      'terminated_pod_gc_threshold': terminatedPodGcThreshold!.toTfJson(),
+    'terminated_pod_gc_threshold': ?terminatedPodGcThreshold?.toTfJson(),
   };
 }
 
@@ -262,8 +255,7 @@ final class EksClusterKubeSchedulerConfig {
   final EksClusterKubeSchedulerConfigNodeResourcesFit? nodeResourcesFit;
 
   Map<String, Object?> encode() => {
-    if (nodeResourcesFit != null)
-      'node_resources_fit': nodeResourcesFit!.encode(),
+    'node_resources_fit': ?nodeResourcesFit?.encode(),
   };
 }
 
@@ -277,7 +269,7 @@ final class EksClusterKubeSchedulerConfigNodeResourcesFit {
   scoringStrategy;
 
   Map<String, Object?> encode() => {
-    if (scoringStrategy != null) 'scoring_strategy': scoringStrategy!.encode(),
+    'scoring_strategy': ?scoringStrategy?.encode(),
   };
 }
 
@@ -299,7 +291,7 @@ final class EksClusterKubeSchedulerConfigNodeResourcesFitScoringStrategy {
   resource;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     if (resource != null) 'resource': [for (final e in resource!) e.encode()],
   };
 }
@@ -331,8 +323,8 @@ final class EksClusterKubeSchedulerConfigNodeResourcesFitScoringStrategyResource
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -354,11 +346,9 @@ final class EksClusterKubernetesNetworkConfig {
   elasticLoadBalancing;
 
   Map<String, Object?> encode() => {
-    if (ipFamily != null) 'ip_family': ipFamily!.toTfJson(),
-    if (serviceIpv4Cidr != null)
-      'service_ipv4_cidr': serviceIpv4Cidr!.toTfJson(),
-    if (elasticLoadBalancing != null)
-      'elastic_load_balancing': elasticLoadBalancing!.encode(),
+    'ip_family': ?ipFamily?.toTfJson(),
+    'service_ipv4_cidr': ?serviceIpv4Cidr?.toTfJson(),
+    'elastic_load_balancing': ?elasticLoadBalancing?.encode(),
   };
 }
 
@@ -380,9 +370,7 @@ final class EksClusterKubernetesNetworkConfigElasticLoadBalancing {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `outpost_config` block of
@@ -409,12 +397,10 @@ final class EksClusterOutpostConfig {
 
   Map<String, Object?> encode() => {
     'control_plane_instance_type': controlPlaneInstanceType.toTfJson(),
-    if (etcdInstanceType != null)
-      'etcd_instance_type': etcdInstanceType!.toTfJson(),
+    'etcd_instance_type': ?etcdInstanceType?.toTfJson(),
     'outpost_arns': outpostArns.toTfJson(),
-    if (controlPlanePlacement != null)
-      'control_plane_placement': controlPlanePlacement!.encode(),
-    if (etcdPlacement != null) 'etcd_placement': etcdPlacement!.encode(),
+    'control_plane_placement': ?controlPlanePlacement?.encode(),
+    'etcd_placement': ?etcdPlacement?.encode(),
   };
 }
 
@@ -433,8 +419,8 @@ final class EksClusterOutpostConfigControlPlanePlacement {
   spreadLevel;
 
   Map<String, Object?> encode() => {
-    if (groupName != null) 'group_name': groupName!.toTfJson(),
-    if (spreadLevel != null) 'spread_level': spreadLevel!.toTfJson(),
+    'group_name': ?groupName?.toTfJson(),
+    'spread_level': ?spreadLevel?.toTfJson(),
   };
 }
 
@@ -459,9 +445,7 @@ final class EksClusterOutpostConfigEtcdPlacement {
 
   final TfArg<EksClusterOutpostConfigEtcdPlacementSpreadLevel>? spreadLevel;
 
-  Map<String, Object?> encode() => {
-    if (spreadLevel != null) 'spread_level': spreadLevel!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'spread_level': ?spreadLevel?.toTfJson()};
 }
 
 /// `spread_level` — derived from the provider schema description.
@@ -488,10 +472,8 @@ final class EksClusterRemoteNetworkConfig {
   final EksClusterRemoteNetworkConfigRemotePodNetworks? remotePodNetworks;
 
   Map<String, Object?> encode() => {
-    if (remoteNodeNetworks != null)
-      'remote_node_networks': remoteNodeNetworks!.encode(),
-    if (remotePodNetworks != null)
-      'remote_pod_networks': remotePodNetworks!.encode(),
+    'remote_node_networks': ?remoteNodeNetworks?.encode(),
+    'remote_pod_networks': ?remotePodNetworks?.encode(),
   };
 }
 
@@ -503,9 +485,7 @@ final class EksClusterRemoteNetworkConfigRemoteNodeNetworks {
 
   final TfArg<List<Object?>>? cidrs;
 
-  Map<String, Object?> encode() => {
-    if (cidrs != null) 'cidrs': cidrs!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cidrs': ?cidrs?.toTfJson()};
 }
 
 /// Typed helper for the `remote_network_config.remote_pod_networks` block of
@@ -516,9 +496,7 @@ final class EksClusterRemoteNetworkConfigRemotePodNetworks {
 
   final TfArg<List<Object?>>? cidrs;
 
-  Map<String, Object?> encode() => {
-    if (cidrs != null) 'cidrs': cidrs!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cidrs': ?cidrs?.toTfJson()};
 }
 
 /// Typed helper for the `storage_config` block of
@@ -529,9 +507,7 @@ final class EksClusterStorageConfig {
 
   final EksClusterStorageConfigBlockStorage? blockStorage;
 
-  Map<String, Object?> encode() => {
-    if (blockStorage != null) 'block_storage': blockStorage!.encode(),
-  };
+  Map<String, Object?> encode() => {'block_storage': ?blockStorage?.encode()};
 }
 
 /// Typed helper for the `storage_config.block_storage` block of
@@ -542,9 +518,7 @@ final class EksClusterStorageConfigBlockStorage {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `upgrade_policy` block of
@@ -555,9 +529,7 @@ final class EksClusterUpgradePolicy {
 
   final TfArg<EksClusterUpgradePolicySupportType>? supportType;
 
-  Map<String, Object?> encode() => {
-    if (supportType != null) 'support_type': supportType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'support_type': ?supportType?.toTfJson()};
 }
 
 /// `support_type` — derived from the provider schema description.
@@ -597,16 +569,11 @@ final class EksClusterVpcConfig {
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    if (controlPlaneEgressMode != null)
-      'control_plane_egress_mode': controlPlaneEgressMode!.toTfJson(),
-    if (endpointPrivateAccess != null)
-      'endpoint_private_access': endpointPrivateAccess!.toTfJson(),
-    if (endpointPublicAccess != null)
-      'endpoint_public_access': endpointPublicAccess!.toTfJson(),
-    if (publicAccessCidrs != null)
-      'public_access_cidrs': publicAccessCidrs!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'control_plane_egress_mode': ?controlPlaneEgressMode?.toTfJson(),
+    'endpoint_private_access': ?endpointPrivateAccess?.toTfJson(),
+    'endpoint_public_access': ?endpointPublicAccess?.toTfJson(),
+    'public_access_cidrs': ?publicAccessCidrs?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
@@ -630,9 +597,7 @@ final class EksClusterZonalShiftConfig {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_eks_cluster`.
@@ -671,21 +636,18 @@ final class AwsEksCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bootstrapSelfManagedAddons != null)
-             'bootstrap_self_managed_addons': bootstrapSelfManagedAddons,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
+           'bootstrap_self_managed_addons': ?bootstrapSelfManagedAddons,
+           'deletion_protection': ?deletionProtection,
            if (enabledClusterLogTypes != null)
              'enabled_cluster_log_types': TfArg.literal([
                for (final e in enabledClusterLogTypes) e.toTfJson(),
              ]),
-           if (forceUpdateVersion != null)
-             'force_update_version': forceUpdateVersion,
+           'force_update_version': ?forceUpdateVersion,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
-           if (version != null) 'version': version,
+           'tags': ?tags,
+           'version': ?version,
            if (accessConfig != null)
              'access_config': TfArg.literal(accessConfig.encode()),
            if (computeConfig != null)

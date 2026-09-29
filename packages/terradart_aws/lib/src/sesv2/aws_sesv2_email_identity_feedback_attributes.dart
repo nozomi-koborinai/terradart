@@ -23,10 +23,9 @@ final class AwsSesv2EmailIdentityFeedbackAttributes extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (emailForwardingEnabled != null)
-             'email_forwarding_enabled': emailForwardingEnabled,
+           'email_forwarding_enabled': ?emailForwardingEnabled,
            'email_identity': emailIdentity,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

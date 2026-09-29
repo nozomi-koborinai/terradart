@@ -32,7 +32,7 @@ final class DataCloudflareWorkerVersion extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (include != null) 'include': include,
+           'include': ?include,
            'version_id': versionId,
            'worker_id': workerId,
          },

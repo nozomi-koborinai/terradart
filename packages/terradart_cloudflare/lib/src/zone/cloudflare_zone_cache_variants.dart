@@ -50,17 +50,17 @@ final class ZoneCacheVariantsValue {
   final TfArg<List<Object?>>? webp;
 
   Map<String, Object?> encode() => {
-    if (avif != null) 'avif': avif!.toTfJson(),
-    if (bmp != null) 'bmp': bmp!.toTfJson(),
-    if (gif != null) 'gif': gif!.toTfJson(),
-    if (jp2 != null) 'jp2': jp2!.toTfJson(),
-    if (jpeg != null) 'jpeg': jpeg!.toTfJson(),
-    if (jpg != null) 'jpg': jpg!.toTfJson(),
-    if (jpg2 != null) 'jpg2': jpg2!.toTfJson(),
-    if (png != null) 'png': png!.toTfJson(),
-    if (tif != null) 'tif': tif!.toTfJson(),
-    if (tiff != null) 'tiff': tiff!.toTfJson(),
-    if (webp != null) 'webp': webp!.toTfJson(),
+    'avif': ?avif?.toTfJson(),
+    'bmp': ?bmp?.toTfJson(),
+    'gif': ?gif?.toTfJson(),
+    'jp2': ?jp2?.toTfJson(),
+    'jpeg': ?jpeg?.toTfJson(),
+    'jpg': ?jpg?.toTfJson(),
+    'jpg2': ?jpg2?.toTfJson(),
+    'png': ?png?.toTfJson(),
+    'tif': ?tif?.toTfJson(),
+    'tiff': ?tiff?.toTfJson(),
+    'webp': ?webp?.toTfJson(),
   };
 }
 

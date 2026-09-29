@@ -25,10 +25,10 @@ final class DataCloudflareWorkersKvNamespaces extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
+           'account_id': ?accountId,
+           'direction': ?direction,
+           'max_items': ?maxItems,
+           'order': ?order,
          },
        );
 

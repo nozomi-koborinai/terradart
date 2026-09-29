@@ -43,7 +43,7 @@ final class AwsAutoscalingTrafficSourceAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'autoscaling_group_name': autoscalingGroupName,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (trafficSource != null)
              'traffic_source': TfArg.literal(trafficSource.encode()),
          },

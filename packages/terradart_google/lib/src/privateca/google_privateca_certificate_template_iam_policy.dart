@@ -31,9 +31,9 @@ final class GooglePrivatecaCertificateTemplateIamPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate_template': certificateTemplate,
-           if (location != null) 'location': location,
+           'location': ?location,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

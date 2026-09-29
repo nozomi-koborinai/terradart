@@ -40,9 +40,7 @@ final class MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndp
   final MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpointsConnectionsPscConnection?
   pscConnection;
 
-  Map<String, Object?> encode() => {
-    if (pscConnection != null) 'psc_connection': pscConnection!.encode(),
-  };
+  Map<String, Object?> encode() => {'psc_connection': ?pscConnection?.encode()};
 }
 
 /// Typed helper for the `desired_user_created_endpoints.connections.psc_connection` block of
@@ -74,7 +72,7 @@ final class MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndp
     'forwarding_rule': forwardingRule.toTfJson(),
     'ip_address': ipAddress.toTfJson(),
     'network': network.encodeAs('id').toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
     'psc_connection_id': pscConnectionId.toTfJson(),
     'service_attachment': serviceAttachment.toTfJson(),
   };
@@ -121,7 +119,7 @@ final class GoogleMemorystoreInstanceDesiredUserCreatedEndpoints
              'desired_user_created_endpoints': TfArg.literal([
                for (final e in desiredUserCreatedEndpoints) e.encode(),
              ]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

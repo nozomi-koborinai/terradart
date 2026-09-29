@@ -52,8 +52,7 @@ final class TransferWebAppEndpointDetailsVpc {
   final RefTo<AwsVpc> vpcId;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     'vpc_id': vpcId.encodeAs('id').toTfJson(),
   };
@@ -90,8 +89,8 @@ final class TransferWebAppIdentityProviderDetailsIdentityCenterConfig {
   final RefTo<AwsIamRole>? role;
 
   Map<String, Object?> encode() => {
-    if (instanceArn != null) 'instance_arn': instanceArn!.toTfJson(),
-    if (role != null) 'role': role!.encodeAs('arn').toTfJson(),
+    'instance_arn': ?instanceArn?.toTfJson(),
+    'role': ?role?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -115,12 +114,11 @@ final class AwsTransferWebApp extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessEndpoint != null) 'access_endpoint': accessEndpoint,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (webAppEndpointPolicy != null)
-             'web_app_endpoint_policy': webAppEndpointPolicy,
-           if (webAppUnits != null) 'web_app_units': webAppUnits,
+           'access_endpoint': ?accessEndpoint,
+           'region': ?region,
+           'tags': ?tags,
+           'web_app_endpoint_policy': ?webAppEndpointPolicy,
+           'web_app_units': ?webAppUnits,
            if (endpointDetails != null)
              'endpoint_details': TfArg.literal([
                for (final e in endpointDetails) e.encode(),

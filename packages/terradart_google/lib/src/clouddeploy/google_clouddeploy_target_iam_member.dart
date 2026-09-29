@@ -27,8 +27,8 @@ final class GoogleClouddeployTargetIamMember extends Resource {
            'name': name,
            'role': role,
            'member': member,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

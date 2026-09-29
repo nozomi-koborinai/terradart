@@ -146,12 +146,11 @@ final class AwsAppsyncSourceApiAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            ...mergedApi.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            ...sourceApi.argMap,
-           if (sourceApiAssociationConfig != null)
-             'source_api_association_config': sourceApiAssociationConfig,
+           'source_api_association_config': ?sourceApiAssociationConfig,
          },
        );
 

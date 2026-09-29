@@ -41,9 +41,9 @@ final class ZeroTrustAccessAiControlsMcpServerUpdatedPrompts {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (alias != null) 'alias': alias!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'alias': ?alias?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -68,9 +68,9 @@ final class ZeroTrustAccessAiControlsMcpServerUpdatedTools {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (alias != null) 'alias': alias!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'alias': ?alias?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -106,16 +106,15 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (authCredentials != null) 'auth_credentials': authCredentials,
+           'auth_credentials': ?authCredentials,
            'auth_type': authType,
-           if (clientSecret != null) 'client_secret': clientSecret,
-           if (description != null) 'description': description,
+           'client_secret': ?clientSecret,
+           'description': ?description,
            'hostname': hostname,
            'id': id,
-           if (isSharedOauthCallbackEnabled != null)
-             'is_shared_oauth_callback_enabled': isSharedOauthCallbackEnabled,
+           'is_shared_oauth_callback_enabled': ?isSharedOauthCallbackEnabled,
            'name': name,
-           if (secureWebGateway != null) 'secure_web_gateway': secureWebGateway,
+           'secure_web_gateway': ?secureWebGateway,
            if (updatedPrompts != null)
              'updated_prompts': TfArg.literal([
                for (final e in updatedPrompts) e.encode(),

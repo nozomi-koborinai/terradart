@@ -98,8 +98,8 @@ final class GoogleFirebaseAppCheckServiceConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'service_id': serviceId,
-           if (enforcementMode != null) 'enforcement_mode': enforcementMode,
-           if (project != null) 'project': project,
+           'enforcement_mode': ?enforcementMode,
+           'project': ?project,
          },
        );
 

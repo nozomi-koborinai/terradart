@@ -24,7 +24,7 @@ final class DataCloudflareHostnameTlsSettings extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (maxItems != null) 'max_items': maxItems,
+           'max_items': ?maxItems,
            'setting_id': settingId,
            'zone_id': zoneId,
          },

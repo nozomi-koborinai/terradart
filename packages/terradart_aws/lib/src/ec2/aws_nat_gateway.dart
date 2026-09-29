@@ -122,11 +122,9 @@ final class NatGatewayAvailabilityZoneAddress {
   final TfArg<String>? availabilityZoneId;
 
   Map<String, Object?> encode() => {
-    if (allocationIds != null) 'allocation_ids': allocationIds!.toTfJson(),
-    if (availabilityZone != null)
-      'availability_zone': availabilityZone!.toTfJson(),
-    if (availabilityZoneId != null)
-      'availability_zone_id': availabilityZoneId!.toTfJson(),
+    'allocation_ids': ?allocationIds?.toTfJson(),
+    'availability_zone': ?availabilityZone?.toTfJson(),
+    'availability_zone_id': ?availabilityZoneId?.toTfJson(),
   };
 }
 
@@ -154,17 +152,16 @@ final class AwsNatGateway extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allocationId != null) 'allocation_id': allocationId,
-           if (availabilityMode != null) 'availability_mode': availabilityMode,
-           if (connectivityType != null) 'connectivity_type': connectivityType,
-           if (privateIp != null) 'private_ip': privateIp,
-           if (region != null) 'region': region,
-           if (secondaryAllocationIds != null)
-             'secondary_allocation_ids': secondaryAllocationIds,
+           'allocation_id': ?allocationId,
+           'availability_mode': ?availabilityMode,
+           'connectivity_type': ?connectivityType,
+           'private_ip': ?privateIp,
+           'region': ?region,
+           'secondary_allocation_ids': ?secondaryAllocationIds,
            ...?secondaryPrivateIpAddress?.argMap,
-           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
+           'subnet_id': ?subnetId?.encodeAs('id'),
+           'tags': ?tags,
+           'vpc_id': ?vpcId?.encodeAs('id'),
            if (availabilityZoneAddress != null)
              'availability_zone_address': TfArg.literal([
                for (final e in availabilityZoneAddress) e.encode(),

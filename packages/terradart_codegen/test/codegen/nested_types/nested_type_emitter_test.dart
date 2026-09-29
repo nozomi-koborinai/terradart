@@ -110,9 +110,8 @@ final class AppEngineDomainMappingSslSettings {
       sslManagementType;
 
   Map<String, Object?> encode() => {
-        if (certificateId != null) 'certificate_id': certificateId!.toTfJson(),
-        if (sslManagementType != null)
-          'ssl_management_type': sslManagementType!.toTfJson(),
+        'certificate_id': ?certificateId?.toTfJson(),
+        'ssl_management_type': ?sslManagementType?.toTfJson(),
       };
 }
 
@@ -333,12 +332,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         formatted,
         contains('final TfArg<Map<String, dynamic>>? devicePolicy;'),
       );
-      expect(
-        formatted,
-        contains(
-          "if (devicePolicy != null) 'device_policy': devicePolicy!.toTfJson(),",
-        ),
-      );
+      expect(formatted, contains("'device_policy': ?devicePolicy?.toTfJson()"));
     });
 
     test(
@@ -370,12 +364,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
           formatted,
           contains('final TfArg<List<Map<String, dynamic>>>? resources;'),
         );
-        expect(
-          formatted,
-          contains(
-            "if (resources != null) 'resources': resources!.toTfJson(),",
-          ),
-        );
+        expect(formatted, contains("'resources': ?resources?.toTfJson()"));
         // NOT the per-element shape a repeated *typed* attribute/child uses.
         expect(formatted, isNot(contains('List<TfArg<Map<String, dynamic>>>')));
         expect(formatted, isNot(contains('for (final e in resources')));
@@ -806,12 +795,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
       expect(actual, contains('this.enumCase,'));
       expect(actual, contains('final TfArg<String>? defaultCase;'));
       expect(actual, contains('final List<TfArg<String>>? enumCase;'));
-      expect(
-        actual,
-        contains(
-          "if (defaultCase != null) 'default': defaultCase!.toTfJson(),",
-        ),
-      );
+      expect(actual, contains("'default': ?defaultCase?.toTfJson(),"));
       expect(
         actual,
         contains(

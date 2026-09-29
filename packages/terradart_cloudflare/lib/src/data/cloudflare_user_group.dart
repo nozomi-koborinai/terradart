@@ -28,10 +28,10 @@ final class DataUserGroupFilter {
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (fuzzyName != null) 'fuzzy_name': fuzzyName!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'fuzzy_name': ?fuzzyName?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -64,7 +64,7 @@ final class DataCloudflareUserGroup extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (userGroupId != null) 'user_group_id': userGroupId,
+           'user_group_id': ?userGroupId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

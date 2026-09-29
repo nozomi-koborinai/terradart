@@ -46,8 +46,7 @@ final class GameliftGameServerGroupAutoScalingPolicy {
   targetTrackingConfiguration;
 
   Map<String, Object?> encode() => {
-    if (estimatedInstanceWarmup != null)
-      'estimated_instance_warmup': estimatedInstanceWarmup!.toTfJson(),
+    'estimated_instance_warmup': ?estimatedInstanceWarmup?.toTfJson(),
     'target_tracking_configuration': targetTrackingConfiguration.encode(),
   };
 }
@@ -81,8 +80,7 @@ final class GameliftGameServerGroupInstanceDefinition {
 
   Map<String, Object?> encode() => {
     'instance_type': instanceType.toTfJson(),
-    if (weightedCapacity != null)
-      'weighted_capacity': weightedCapacity!.toTfJson(),
+    'weighted_capacity': ?weightedCapacity?.toTfJson(),
   };
 }
 
@@ -197,7 +195,7 @@ final class GameliftGameServerGroupLaunchTemplate {
 
   Map<String, Object?> encode() => {
     ...?identifier?.encode(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -279,17 +277,15 @@ final class AwsGameliftGameServerGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (balancingStrategy != null)
-             'balancing_strategy': balancingStrategy,
+           'balancing_strategy': ?balancingStrategy,
            'game_server_group_name': gameServerGroupName,
-           if (gameServerProtectionPolicy != null)
-             'game_server_protection_policy': gameServerProtectionPolicy,
+           'game_server_protection_policy': ?gameServerProtectionPolicy,
            'max_size': maxSize,
            'min_size': minSize,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
-           if (vpcSubnets != null) 'vpc_subnets': vpcSubnets,
+           'tags': ?tags,
+           'vpc_subnets': ?vpcSubnets,
            if (autoScalingPolicy != null)
              'auto_scaling_policy': TfArg.literal(autoScalingPolicy.encode()),
            'instance_definition': TfArg.literal([

@@ -27,7 +27,7 @@ final class EvidentlyLaunchGroups {
   final TfArg<String> variation;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'feature': feature.toTfJson(),
     'name': name.toTfJson(),
     'variation': variation.toTfJson(),
@@ -71,9 +71,9 @@ final class EvidentlyLaunchMetricMonitorsMetricDefinition {
 
   Map<String, Object?> encode() => {
     'entity_id_key': entityIdKey.toTfJson(),
-    if (eventPattern != null) 'event_pattern': eventPattern!.toTfJson(),
+    'event_pattern': ?eventPattern?.toTfJson(),
     'name': name.toTfJson(),
-    if (unitLabel != null) 'unit_label': unitLabel!.toTfJson(),
+    'unit_label': ?unitLabel?.toTfJson(),
     'value_key': valueKey.toTfJson(),
   };
 }
@@ -161,13 +161,12 @@ final class AwsEvidentlyLaunch extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
            'project': project,
-           if (randomizationSalt != null)
-             'randomization_salt': randomizationSalt,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'randomization_salt': ?randomizationSalt,
+           'region': ?region,
+           'tags': ?tags,
            'groups': TfArg.literal([for (final e in groups) e.encode()]),
            if (metricMonitors != null)
              'metric_monitors': TfArg.literal([

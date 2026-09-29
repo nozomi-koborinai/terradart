@@ -112,29 +112,23 @@ final class AwsDocdbClusterInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (autoMinorVersionUpgrade != null)
-             'auto_minor_version_upgrade': autoMinorVersionUpgrade,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (caCertIdentifier != null) 'ca_cert_identifier': caCertIdentifier,
-           if (certificateRotationRestart != null)
-             'certificate_rotation_restart': certificateRotationRestart,
+           'apply_immediately': ?applyImmediately,
+           'auto_minor_version_upgrade': ?autoMinorVersionUpgrade,
+           'availability_zone': ?availabilityZone,
+           'ca_cert_identifier': ?caCertIdentifier,
+           'certificate_rotation_restart': ?certificateRotationRestart,
            'cluster_identifier': clusterIdentifier,
-           if (copyTagsToSnapshot != null)
-             'copy_tags_to_snapshot': copyTagsToSnapshot,
-           if (enablePerformanceInsights != null)
-             'enable_performance_insights': enablePerformanceInsights,
-           if (engine != null) 'engine': engine,
+           'copy_tags_to_snapshot': ?copyTagsToSnapshot,
+           'enable_performance_insights': ?enablePerformanceInsights,
+           'engine': ?engine,
            ...?identifier?.argMap,
            'instance_class': instanceClass,
-           if (performanceInsightsKmsKeyId != null)
-             'performance_insights_kms_key_id': performanceInsightsKmsKeyId
-                 .encodeAs('arn'),
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (promotionTier != null) 'promotion_tier': promotionTier,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'performance_insights_kms_key_id': ?performanceInsightsKmsKeyId
+               ?.encodeAs('arn'),
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'promotion_tier': ?promotionTier,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

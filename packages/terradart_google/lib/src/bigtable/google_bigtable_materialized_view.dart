@@ -49,11 +49,10 @@ final class GoogleBigtableMaterializedView extends Resource {
          argMap: {
            'materialized_view_id': materializedViewId,
            'query': query,
-           if (instance != null) 'instance': instance,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'instance': ?instance,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

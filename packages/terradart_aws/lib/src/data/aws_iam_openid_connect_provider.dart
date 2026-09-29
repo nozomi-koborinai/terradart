@@ -20,11 +20,7 @@ final class DataAwsIamOpenidConnectProvider extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (arn != null) 'arn': arn,
-           if (tags != null) 'tags': tags,
-           if (url != null) 'url': url,
-         },
+         argMap: {'arn': ?arn, 'tags': ?tags, 'url': ?url},
        );
 
   @override

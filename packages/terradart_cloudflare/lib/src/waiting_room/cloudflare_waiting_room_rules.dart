@@ -30,8 +30,8 @@ final class WaitingRoomRulesRules {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'expression': expression.toTfJson(),
   };
 }

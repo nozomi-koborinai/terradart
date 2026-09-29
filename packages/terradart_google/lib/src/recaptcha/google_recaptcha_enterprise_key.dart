@@ -21,10 +21,8 @@ final class RecaptchaEnterpriseKeyAndroidSettings {
   final TfArg<List<Object?>>? allowedPackageNames;
 
   Map<String, Object?> encode() => {
-    if (allowAllPackageNames != null)
-      'allow_all_package_names': allowAllPackageNames!.toTfJson(),
-    if (allowedPackageNames != null)
-      'allowed_package_names': allowedPackageNames!.toTfJson(),
+    'allow_all_package_names': ?allowAllPackageNames?.toTfJson(),
+    'allowed_package_names': ?allowedPackageNames?.toTfJson(),
   };
 }
 
@@ -42,10 +40,8 @@ final class RecaptchaEnterpriseKeyIosSettings {
   final TfArg<List<Object?>>? allowedBundleIds;
 
   Map<String, Object?> encode() => {
-    if (allowAllBundleIds != null)
-      'allow_all_bundle_ids': allowAllBundleIds!.toTfJson(),
-    if (allowedBundleIds != null)
-      'allowed_bundle_ids': allowedBundleIds!.toTfJson(),
+    'allow_all_bundle_ids': ?allowAllBundleIds?.toTfJson(),
+    'allowed_bundle_ids': ?allowedBundleIds?.toTfJson(),
   };
 }
 
@@ -64,9 +60,8 @@ final class RecaptchaEnterpriseKeyTestingOptions {
   final TfArg<num>? testingScore;
 
   Map<String, Object?> encode() => {
-    if (testingChallenge != null)
-      'testing_challenge': testingChallenge!.toTfJson(),
-    if (testingScore != null) 'testing_score': testingScore!.toTfJson(),
+    'testing_challenge': ?testingChallenge?.toTfJson(),
+    'testing_score': ?testingScore?.toTfJson(),
   };
 }
 
@@ -152,16 +147,12 @@ final class RecaptchaEnterpriseKeyWebSettings {
   final RecaptchaEnterpriseKeyWebSettingsChallengeSettings? challengeSettings;
 
   Map<String, Object?> encode() => {
-    if (allowAllDomains != null)
-      'allow_all_domains': allowAllDomains!.toTfJson(),
-    if (allowAmpTraffic != null)
-      'allow_amp_traffic': allowAmpTraffic!.toTfJson(),
-    if (allowedDomains != null) 'allowed_domains': allowedDomains!.toTfJson(),
-    if (challengeSecurityPreference != null)
-      'challenge_security_preference': challengeSecurityPreference!.toTfJson(),
+    'allow_all_domains': ?allowAllDomains?.toTfJson(),
+    'allow_amp_traffic': ?allowAmpTraffic?.toTfJson(),
+    'allowed_domains': ?allowedDomains?.toTfJson(),
+    'challenge_security_preference': ?challengeSecurityPreference?.toTfJson(),
     'integration_type': integrationType.toTfJson(),
-    if (challengeSettings != null)
-      'challenge_settings': challengeSettings!.encode(),
+    'challenge_settings': ?challengeSettings?.encode(),
   };
 }
 
@@ -301,9 +292,9 @@ final class GoogleRecaptchaEnterpriseKey extends Resource {
              'waf_settings': TfArg.literal(wafSettings.encode()),
            if (testingOptions != null)
              'testing_options': TfArg.literal(testingOptions.encode()),
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

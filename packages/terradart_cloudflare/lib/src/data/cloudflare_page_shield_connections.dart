@@ -23,10 +23,7 @@ final class DataCloudflarePageShieldConnections extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'connection_id': connectionId,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'connection_id': connectionId, 'zone_id': ?zoneId},
        );
 
   @override

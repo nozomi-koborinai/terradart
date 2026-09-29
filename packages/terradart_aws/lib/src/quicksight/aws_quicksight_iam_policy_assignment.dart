@@ -29,8 +29,8 @@ final class QuicksightIamPolicyAssignmentIdentities {
   final TfArg<List<Object?>>? user;
 
   Map<String, Object?> encode() => {
-    if (group != null) 'group': group!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'group': ?group?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -57,10 +57,10 @@ final class AwsQuicksightIamPolicyAssignment extends Resource {
          argMap: {
            'assignment_name': assignmentName,
            'assignment_status': assignmentStatus,
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
-           if (namespace != null) 'namespace': namespace,
-           if (policyArn != null) 'policy_arn': policyArn,
-           if (region != null) 'region': region,
+           'aws_account_id': ?awsAccountId,
+           'namespace': ?namespace,
+           'policy_arn': ?policyArn,
+           'region': ?region,
            if (identities != null)
              'identities': TfArg.literal([
                for (final e in identities) e.encode(),

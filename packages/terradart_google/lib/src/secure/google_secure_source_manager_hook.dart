@@ -17,9 +17,7 @@ final class SecureSourceManagerHookPushOption {
 
   final TfArg<String>? branchFilter;
 
-  Map<String, Object?> encode() => {
-    if (branchFilter != null) 'branch_filter': branchFilter!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'branch_filter': ?branchFilter?.toTfJson()};
 }
 
 /// Factory wrapper for `google_secure_source_manager_hook`.
@@ -60,14 +58,13 @@ final class GoogleSecureSourceManagerHook extends Resource {
            'location': location,
            'repository_id': repositoryId,
            'target_uri': targetUri,
-           if (events != null) 'events': events,
-           if (disabled != null) 'disabled': disabled,
-           if (sensitiveQueryString != null)
-             'sensitive_query_string': sensitiveQueryString,
+           'events': ?events,
+           'disabled': ?disabled,
+           'sensitive_query_string': ?sensitiveQueryString,
            if (pushOption != null)
              'push_option': TfArg.literal(pushOption.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

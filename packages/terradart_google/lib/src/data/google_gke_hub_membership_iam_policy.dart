@@ -24,9 +24,9 @@ final class DataGoogleGkeHubMembershipIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
+           'location': ?location,
            'membership_id': membershipId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

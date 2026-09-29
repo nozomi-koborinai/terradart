@@ -22,10 +22,10 @@ final class DataAwsAppmeshMesh extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (meshOwner != null) 'mesh_owner': meshOwner,
+           'mesh_owner': ?meshOwner,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

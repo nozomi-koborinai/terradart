@@ -135,16 +135,15 @@ final class SagemakerWorkforceOidcConfig {
   final TfArg<String> userInfoEndpoint;
 
   Map<String, Object?> encode() => {
-    if (authenticationRequestExtraParams != null)
-      'authentication_request_extra_params': authenticationRequestExtraParams!
-          .toTfJson(),
+    'authentication_request_extra_params': ?authenticationRequestExtraParams
+        ?.toTfJson(),
     'authorization_endpoint': authorizationEndpoint.toTfJson(),
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
     'issuer': issuer.toTfJson(),
     'jwks_uri': jwksUri.toTfJson(),
     'logout_endpoint': logoutEndpoint.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
+    'scope': ?scope?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
     'user_info_endpoint': userInfoEndpoint.toTfJson(),
   };
@@ -178,10 +177,9 @@ final class SagemakerWorkforceWorkforceVpcConfig {
   final RefTo<AwsVpc>? vpcId;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
-    if (subnets != null) 'subnets': subnets!.encodeAs('id').toTfJson(),
-    if (vpcId != null) 'vpc_id': vpcId!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
+    'subnets': ?subnets?.encodeAs('id').toTfJson(),
+    'vpc_id': ?vpcId?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -203,7 +201,7 @@ final class AwsSagemakerWorkforce extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'workforce_name': workforceName,
            ...identityProvider.argMap,
            if (sourceIpConfig != null)

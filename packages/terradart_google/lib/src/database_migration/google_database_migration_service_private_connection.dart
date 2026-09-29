@@ -74,14 +74,13 @@ final class GoogleDatabaseMigrationServicePrivateConnection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (createWithoutValidation != null)
-             'create_without_validation': createWithoutValidation,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
+           'create_without_validation': ?createWithoutValidation,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'labels': ?labels,
            'location': location,
            'private_connection_id': privateConnectionId,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (vpcPeeringConfig != null)
              'vpc_peering_config': TfArg.literal(vpcPeeringConfig.encode()),
          },

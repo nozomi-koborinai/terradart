@@ -45,20 +45,18 @@ final class GoogleNetworkManagementOrganizationVpcFlowLogsConfig
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (aggregationInterval != null)
-             'aggregation_interval': aggregationInterval,
-           if (crossProjectMetadata != null)
-             'cross_project_metadata': crossProjectMetadata,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (filterExpr != null) 'filter_expr': filterExpr,
-           if (flowSampling != null) 'flow_sampling': flowSampling,
-           if (labels != null) 'labels': labels,
+           'aggregation_interval': ?aggregationInterval,
+           'cross_project_metadata': ?crossProjectMetadata,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'filter_expr': ?filterExpr,
+           'flow_sampling': ?flowSampling,
+           'labels': ?labels,
            'location': location,
-           if (metadata != null) 'metadata': metadata,
-           if (metadataFields != null) 'metadata_fields': metadataFields,
+           'metadata': ?metadata,
+           'metadata_fields': ?metadataFields,
            'organization': organization,
-           if (state != null) 'state': state,
+           'state': ?state,
            'vpc_flow_logs_config_id': vpcFlowLogsConfigId,
          },
        );

@@ -20,7 +20,7 @@ final class AwsDetectiveInvitationAccepter extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'graph_arn': graphArn, if (region != null) 'region': region},
+         argMap: {'graph_arn': graphArn, 'region': ?region},
        );
 
   @override

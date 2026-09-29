@@ -25,8 +25,8 @@ final class DataGoogleLustreInstance extends Data {
          terraformType: tfType,
          argMap: {
            'instance_id': instanceId,
-           if (project != null) 'project': project,
-           if (zone != null) 'zone': zone,
+           'project': ?project,
+           'zone': ?zone,
          },
        );
 

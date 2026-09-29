@@ -24,7 +24,7 @@ final class AwsDynamodbTag extends Resource {
          terraformType: tfType,
          argMap: {
            'key': key,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
            'value': value,
          },

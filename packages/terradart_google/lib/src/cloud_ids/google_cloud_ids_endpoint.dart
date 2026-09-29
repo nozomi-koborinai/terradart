@@ -63,10 +63,10 @@ final class GoogleCloudIdsEndpoint extends Resource {
            'location': location,
            'network': network.encodeAs('id'),
            'severity': severity,
-           if (description != null) 'description': description,
-           if (threatExceptions != null) 'threat_exceptions': threatExceptions,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'threat_exceptions': ?threatExceptions,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

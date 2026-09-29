@@ -105,8 +105,7 @@ final class CloudwatchEventTargetAppsyncTarget {
   final TfArg<String>? graphqlOperation;
 
   Map<String, Object?> encode() => {
-    if (graphqlOperation != null)
-      'graphql_operation': graphqlOperation!.toTfJson(),
+    'graphql_operation': ?graphqlOperation?.toTfJson(),
   };
 }
 
@@ -130,8 +129,8 @@ final class CloudwatchEventTargetBatchTarget {
   final TfArg<String> jobName;
 
   Map<String, Object?> encode() => {
-    if (arraySize != null) 'array_size': arraySize!.toTfJson(),
-    if (jobAttempts != null) 'job_attempts': jobAttempts!.toTfJson(),
+    'array_size': ?arraySize?.toTfJson(),
+    'job_attempts': ?jobAttempts?.toTfJson(),
     'job_definition': jobDefinition.toTfJson(),
     'job_name': jobName.toTfJson(),
   };
@@ -145,7 +144,7 @@ final class CloudwatchEventTargetDeadLetterConfig {
 
   final TfArg<String>? arn;
 
-  Map<String, Object?> encode() => {if (arn != null) 'arn': arn!.toTfJson()};
+  Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
 /// Typed helper for the `ecs_target` block of
@@ -199,24 +198,20 @@ final class CloudwatchEventTargetEcsTarget {
   placementConstraint;
 
   Map<String, Object?> encode() => {
-    if (enableEcsManagedTags != null)
-      'enable_ecs_managed_tags': enableEcsManagedTags!.toTfJson(),
-    if (enableExecuteCommand != null)
-      'enable_execute_command': enableExecuteCommand!.toTfJson(),
-    if (group != null) 'group': group!.toTfJson(),
-    if (launchType != null) 'launch_type': launchType!.toTfJson(),
-    if (platformVersion != null)
-      'platform_version': platformVersion!.toTfJson(),
-    if (propagateTags != null) 'propagate_tags': propagateTags!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (taskCount != null) 'task_count': taskCount!.toTfJson(),
+    'enable_ecs_managed_tags': ?enableEcsManagedTags?.toTfJson(),
+    'enable_execute_command': ?enableExecuteCommand?.toTfJson(),
+    'group': ?group?.toTfJson(),
+    'launch_type': ?launchType?.toTfJson(),
+    'platform_version': ?platformVersion?.toTfJson(),
+    'propagate_tags': ?propagateTags?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'task_count': ?taskCount?.toTfJson(),
     'task_definition_arn': taskDefinitionArn.toTfJson(),
     if (capacityProviderStrategy != null)
       'capacity_provider_strategy': [
         for (final e in capacityProviderStrategy!) e.encode(),
       ],
-    if (networkConfiguration != null)
-      'network_configuration': networkConfiguration!.encode(),
+    'network_configuration': ?networkConfiguration?.encode(),
     if (orderedPlacementStrategy != null)
       'ordered_placement_strategy': [
         for (final e in orderedPlacementStrategy!) e.encode(),
@@ -265,9 +260,9 @@ final class CloudwatchEventTargetEcsTargetCapacityProviderStrategy {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (base != null) 'base': base!.toTfJson(),
+    'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -288,9 +283,8 @@ final class CloudwatchEventTargetEcsTargetNetworkConfiguration {
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    if (assignPublicIp != null) 'assign_public_ip': assignPublicIp!.toTfJson(),
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    'assign_public_ip': ?assignPublicIp?.toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
@@ -309,7 +303,7 @@ final class CloudwatchEventTargetEcsTargetOrderedPlacementStrategy {
   final TfArg<CloudwatchEventTargetEcsTargetOrderedPlacementStrategyType> type;
 
   Map<String, Object?> encode() => {
-    if (field != null) 'field': field!.toTfJson(),
+    'field': ?field?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -342,7 +336,7 @@ final class CloudwatchEventTargetEcsTargetPlacementConstraint {
   final TfArg<CloudwatchEventTargetEcsTargetPlacementConstraintType> type;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -377,12 +371,9 @@ final class CloudwatchEventTargetHttpTarget {
   final TfArg<Map<String, String>>? queryStringParameters;
 
   Map<String, Object?> encode() => {
-    if (headerParameters != null)
-      'header_parameters': headerParameters!.toTfJson(),
-    if (pathParameterValues != null)
-      'path_parameter_values': pathParameterValues!.toTfJson(),
-    if (queryStringParameters != null)
-      'query_string_parameters': queryStringParameters!.toTfJson(),
+    'header_parameters': ?headerParameters?.toTfJson(),
+    'path_parameter_values': ?pathParameterValues?.toTfJson(),
+    'query_string_parameters': ?queryStringParameters?.toTfJson(),
   };
 }
 
@@ -400,7 +391,7 @@ final class CloudwatchEventTargetInputTransformer {
   final TfArg<String> inputTemplate;
 
   Map<String, Object?> encode() => {
-    if (inputPaths != null) 'input_paths': inputPaths!.toTfJson(),
+    'input_paths': ?inputPaths?.toTfJson(),
     'input_template': inputTemplate.toTfJson(),
   };
 }
@@ -414,8 +405,7 @@ final class CloudwatchEventTargetKinesisTarget {
   final TfArg<String>? partitionKeyPath;
 
   Map<String, Object?> encode() => {
-    if (partitionKeyPath != null)
-      'partition_key_path': partitionKeyPath!.toTfJson(),
+    'partition_key_path': ?partitionKeyPath?.toTfJson(),
   };
 }
 
@@ -446,12 +436,11 @@ final class CloudwatchEventTargetRedshiftTarget {
 
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
-    if (dbUser != null) 'db_user': dbUser!.toTfJson(),
-    if (secretsManagerArn != null)
-      'secrets_manager_arn': secretsManagerArn!.toTfJson(),
-    if (sql != null) 'sql': sql!.toTfJson(),
-    if (statementName != null) 'statement_name': statementName!.toTfJson(),
-    if (withEvent != null) 'with_event': withEvent!.toTfJson(),
+    'db_user': ?dbUser?.toTfJson(),
+    'secrets_manager_arn': ?secretsManagerArn?.toTfJson(),
+    'sql': ?sql?.toTfJson(),
+    'statement_name': ?statementName?.toTfJson(),
+    'with_event': ?withEvent?.toTfJson(),
   };
 }
 
@@ -469,10 +458,8 @@ final class CloudwatchEventTargetRetryPolicy {
   final TfArg<num>? maximumRetryAttempts;
 
   Map<String, Object?> encode() => {
-    if (maximumEventAgeInSeconds != null)
-      'maximum_event_age_in_seconds': maximumEventAgeInSeconds!.toTfJson(),
-    if (maximumRetryAttempts != null)
-      'maximum_retry_attempts': maximumRetryAttempts!.toTfJson(),
+    'maximum_event_age_in_seconds': ?maximumEventAgeInSeconds?.toTfJson(),
+    'maximum_retry_attempts': ?maximumRetryAttempts?.toTfJson(),
   };
 }
 
@@ -542,7 +529,7 @@ final class CloudwatchEventTargetSqsTarget {
   final TfArg<String>? messageGroupId;
 
   Map<String, Object?> encode() => {
-    if (messageGroupId != null) 'message_group_id': messageGroupId!.toTfJson(),
+    'message_group_id': ?messageGroupId?.toTfJson(),
   };
 }
 
@@ -579,13 +566,13 @@ final class AwsCloudwatchEventTarget extends Resource {
          terraformType: tfType,
          argMap: {
            'arn': arn,
-           if (eventBusName != null) 'event_bus_name': eventBusName,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'event_bus_name': ?eventBusName,
+           'force_destroy': ?forceDestroy,
            ...?input?.argMap,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
            'rule': rule,
-           if (targetId != null) 'target_id': targetId,
+           'target_id': ?targetId,
            if (appsyncTarget != null)
              'appsync_target': TfArg.literal(appsyncTarget.encode()),
            if (batchTarget != null)

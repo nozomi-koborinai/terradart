@@ -93,9 +93,9 @@ final class GoogleApigeeSecurityFeedback extends Resource {
            'feedback_id': feedbackId,
            'org_id': orgId,
            'feedback_type': feedbackType,
-           if (reason != null) 'reason': reason,
-           if (comment != null) 'comment': comment,
-           if (displayName != null) 'display_name': displayName,
+           'reason': ?reason,
+           'comment': ?comment,
+           'display_name': ?displayName,
            'feedback_contexts': TfArg.literal([
              for (final e in feedbackContexts) e.encode(),
            ]),

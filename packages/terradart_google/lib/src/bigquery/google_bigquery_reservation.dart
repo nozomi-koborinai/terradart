@@ -113,17 +113,16 @@ final class GoogleBigqueryReservation extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
+           'location': ?location,
            'slot_capacity': slotCapacity,
-           if (ignoreIdleSlots != null) 'ignore_idle_slots': ignoreIdleSlots,
-           if (concurrency != null) 'concurrency': concurrency,
-           if (edition != null) 'edition': edition,
-           if (secondaryLocation != null)
-             'secondary_location': secondaryLocation,
-           if (reservationGroup != null) 'reservation_group': reservationGroup,
+           'ignore_idle_slots': ?ignoreIdleSlots,
+           'concurrency': ?concurrency,
+           'edition': ?edition,
+           'secondary_location': ?secondaryLocation,
+           'reservation_group': ?reservationGroup,
            if (autoscale != null)
              'autoscale': TfArg.literal([autoscale.encode()]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -125,17 +125,16 @@ final class GoogleBigqueryAnalyticsHubDataExchange extends Resource {
          terraformType: tfType,
          argMap: {
            'data_exchange_id': dataExchangeId,
-           if (description != null) 'description': description,
-           if (discoveryType != null) 'discovery_type': discoveryType,
+           'description': ?description,
+           'discovery_type': ?discoveryType,
            'display_name': displayName,
-           if (documentation != null) 'documentation': documentation,
-           if (icon != null) 'icon': icon,
+           'documentation': ?documentation,
+           'icon': ?icon,
            'location': location,
-           if (logLinkedDatasetQueryUserEmail != null)
-             'log_linked_dataset_query_user_email':
-                 logLinkedDatasetQueryUserEmail,
-           if (primaryContact != null) 'primary_contact': primaryContact,
-           if (project != null) 'project': project,
+           'log_linked_dataset_query_user_email':
+               ?logLinkedDatasetQueryUserEmail,
+           'primary_contact': ?primaryContact,
+           'project': ?project,
            if (sharingEnvironmentConfig != null)
              'sharing_environment_config': TfArg.literal(
                sharingEnvironmentConfig.encode(),

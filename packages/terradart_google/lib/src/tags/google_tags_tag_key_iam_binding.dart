@@ -32,7 +32,7 @@ final class GoogleTagsTagKeyIamBinding extends Resource {
            'tag_key': tagKey,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

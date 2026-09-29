@@ -33,9 +33,8 @@ final class NetworkSecuritySacAttachmentSymantecOptions {
   final TfArg<String>? symantecSite;
 
   Map<String, Object?> encode() => {
-    if (symantecLocationName != null)
-      'symantec_location_name': symantecLocationName!.toTfJson(),
-    if (symantecSite != null) 'symantec_site': symantecSite!.toTfJson(),
+    'symantec_location_name': ?symantecLocationName?.toTfJson(),
+    'symantec_site': ?symantecSite?.toTfJson(),
   };
 }
 
@@ -65,15 +64,15 @@ final class GoogleNetworkSecuritySacAttachment extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (country != null) 'country': country,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'country': ?country,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
            'name': name,
            'ncc_gateway': nccGateway,
-           if (project != null) 'project': project,
+           'project': ?project,
            'sac_realm': sacRealm,
-           if (timeZone != null) 'time_zone': timeZone,
+           'time_zone': ?timeZone,
            if (symantecOptions != null)
              'symantec_options': TfArg.literal(symantecOptions.encode()),
          },

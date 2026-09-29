@@ -101,7 +101,7 @@ final class S3BucketAclAccessControlPolicyGrant {
 
   Map<String, Object?> encode() => {
     'permission': permission.toTfJson(),
-    if (grantee != null) 'grantee': grantee!.encode(),
+    'grantee': ?grantee?.encode(),
   };
 }
 
@@ -138,10 +138,10 @@ final class S3BucketAclAccessControlPolicyGrantGrantee {
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (emailAddress != null) 'email_address': emailAddress!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
+    'email_address': ?emailAddress?.toTfJson(),
+    'id': ?id?.toTfJson(),
     'type': type.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -170,7 +170,7 @@ final class S3BucketAclAccessControlPolicyOwner {
   final TfArg<String> id;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'id': id.toTfJson(),
   };
 }
@@ -194,9 +194,8 @@ final class AwsS3BucketAcl extends Resource {
          argMap: {
            ...policy.argMap,
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (region != null) 'region': region,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'region': ?region,
          },
        );
 

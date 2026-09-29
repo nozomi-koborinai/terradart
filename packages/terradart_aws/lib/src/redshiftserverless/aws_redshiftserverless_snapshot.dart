@@ -24,8 +24,8 @@ final class AwsRedshiftserverlessSnapshot extends Resource {
          terraformType: tfType,
          argMap: {
            'namespace_name': namespaceName,
-           if (region != null) 'region': region,
-           if (retentionPeriod != null) 'retention_period': retentionPeriod,
+           'region': ?region,
+           'retention_period': ?retentionPeriod,
            'snapshot_name': snapshotName,
          },
        );

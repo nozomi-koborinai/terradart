@@ -22,7 +22,7 @@ final class DataAwsOdbIamRoleAssociation extends Data {
          terraformType: tfType,
          argMap: {
            'iam_role_arn': iamRoleArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
          },
        );

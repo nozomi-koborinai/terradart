@@ -38,7 +38,7 @@ final class AwsSsmcontactsContactChannel extends Resource {
          argMap: {
            'contact_id': contactId,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'type': type,
            'delivery_address': TfArg.literal(deliveryAddress.encode()),
          },

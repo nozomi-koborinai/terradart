@@ -184,17 +184,15 @@ final class AlbTargetGroupHealthCheck {
   final TfArg<num>? unhealthyThreshold;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (healthyThreshold != null)
-      'healthy_threshold': healthyThreshold!.toTfJson(),
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (matcher != null) 'matcher': matcher!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
-    if (unhealthyThreshold != null)
-      'unhealthy_threshold': unhealthyThreshold!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'healthy_threshold': ?healthyThreshold?.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'matcher': ?matcher?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
+    'unhealthy_threshold': ?unhealthyThreshold?.toTfJson(),
   };
 }
 
@@ -218,9 +216,9 @@ final class AlbTargetGroupStickiness {
   final TfArg<AlbTargetGroupStickinessType> type;
 
   Map<String, Object?> encode() => {
-    if (cookieDuration != null) 'cookie_duration': cookieDuration!.toTfJson(),
-    if (cookieName != null) 'cookie_name': cookieName!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'cookie_duration': ?cookieDuration?.toTfJson(),
+    'cookie_name': ?cookieName?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -292,9 +290,8 @@ final class AlbTargetGroupTargetGroupHealth {
   unhealthyStateRouting;
 
   Map<String, Object?> encode() => {
-    if (dnsFailover != null) 'dns_failover': dnsFailover!.encode(),
-    if (unhealthyStateRouting != null)
-      'unhealthy_state_routing': unhealthyStateRouting!.encode(),
+    'dns_failover': ?dnsFailover?.encode(),
+    'unhealthy_state_routing': ?unhealthyStateRouting?.encode(),
   };
 }
 
@@ -312,11 +309,9 @@ final class AlbTargetGroupTargetGroupHealthDnsFailover {
   final TfArg<String>? minimumHealthyTargetsPercentage;
 
   Map<String, Object?> encode() => {
-    if (minimumHealthyTargetsCount != null)
-      'minimum_healthy_targets_count': minimumHealthyTargetsCount!.toTfJson(),
-    if (minimumHealthyTargetsPercentage != null)
-      'minimum_healthy_targets_percentage': minimumHealthyTargetsPercentage!
-          .toTfJson(),
+    'minimum_healthy_targets_count': ?minimumHealthyTargetsCount?.toTfJson(),
+    'minimum_healthy_targets_percentage': ?minimumHealthyTargetsPercentage
+        ?.toTfJson(),
   };
 }
 
@@ -334,11 +329,9 @@ final class AlbTargetGroupTargetGroupHealthUnhealthyStateRouting {
   final TfArg<String>? minimumHealthyTargetsPercentage;
 
   Map<String, Object?> encode() => {
-    if (minimumHealthyTargetsCount != null)
-      'minimum_healthy_targets_count': minimumHealthyTargetsCount!.toTfJson(),
-    if (minimumHealthyTargetsPercentage != null)
-      'minimum_healthy_targets_percentage': minimumHealthyTargetsPercentage!
-          .toTfJson(),
+    'minimum_healthy_targets_count': ?minimumHealthyTargetsCount?.toTfJson(),
+    'minimum_healthy_targets_percentage': ?minimumHealthyTargetsPercentage
+        ?.toTfJson(),
   };
 }
 
@@ -358,8 +351,7 @@ final class AlbTargetGroupTargetHealthState {
   Map<String, Object?> encode() => {
     'enable_unhealthy_connection_termination':
         enableUnhealthyConnectionTermination.toTfJson(),
-    if (unhealthyDrainingInterval != null)
-      'unhealthy_draining_interval': unhealthyDrainingInterval!.toTfJson(),
+    'unhealthy_draining_interval': ?unhealthyDrainingInterval?.toTfJson(),
   };
 }
 
@@ -402,34 +394,26 @@ final class AwsAlbTargetGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (connectionTermination != null)
-             'connection_termination': connectionTermination,
-           if (deregistrationDelay != null)
-             'deregistration_delay': deregistrationDelay,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (lambdaMultiValueHeadersEnabled != null)
-             'lambda_multi_value_headers_enabled':
-                 lambdaMultiValueHeadersEnabled,
-           if (loadBalancingAlgorithmType != null)
-             'load_balancing_algorithm_type': loadBalancingAlgorithmType,
-           if (loadBalancingAnomalyMitigation != null)
-             'load_balancing_anomaly_mitigation':
-                 loadBalancingAnomalyMitigation,
-           if (loadBalancingCrossZoneEnabled != null)
-             'load_balancing_cross_zone_enabled': loadBalancingCrossZoneEnabled,
+           'connection_termination': ?connectionTermination,
+           'deregistration_delay': ?deregistrationDelay,
+           'ip_address_type': ?ipAddressType,
+           'lambda_multi_value_headers_enabled':
+               ?lambdaMultiValueHeadersEnabled,
+           'load_balancing_algorithm_type': ?loadBalancingAlgorithmType,
+           'load_balancing_anomaly_mitigation': ?loadBalancingAnomalyMitigation,
+           'load_balancing_cross_zone_enabled': ?loadBalancingCrossZoneEnabled,
            ...?name?.argMap,
-           if (port != null) 'port': port,
-           if (preserveClientIp != null) 'preserve_client_ip': preserveClientIp,
-           if (protocol != null) 'protocol': protocol,
-           if (protocolVersion != null) 'protocol_version': protocolVersion,
-           if (proxyProtocolV2 != null) 'proxy_protocol_v2': proxyProtocolV2,
-           if (region != null) 'region': region,
-           if (slowStart != null) 'slow_start': slowStart,
-           if (tags != null) 'tags': tags,
-           if (targetControlPort != null)
-             'target_control_port': targetControlPort,
-           if (targetType != null) 'target_type': targetType,
-           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
+           'port': ?port,
+           'preserve_client_ip': ?preserveClientIp,
+           'protocol': ?protocol,
+           'protocol_version': ?protocolVersion,
+           'proxy_protocol_v2': ?proxyProtocolV2,
+           'region': ?region,
+           'slow_start': ?slowStart,
+           'tags': ?tags,
+           'target_control_port': ?targetControlPort,
+           'target_type': ?targetType,
+           'vpc_id': ?vpcId?.encodeAs('id'),
            if (healthCheck != null)
              'health_check': TfArg.literal(healthCheck.encode()),
            if (stickiness != null)

@@ -30,10 +30,7 @@ final class AwsShieldSubscription extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (autoRenew != null) 'auto_renew': autoRenew,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-         },
+         argMap: {'auto_renew': ?autoRenew, 'skip_destroy': ?skipDestroy},
        );
 
   @override

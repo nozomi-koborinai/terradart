@@ -28,13 +28,13 @@ final class DataCloudflareWorkersCustomDomains extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (environment != null) 'environment': environment,
-           if (hostname != null) 'hostname': hostname,
-           if (maxItems != null) 'max_items': maxItems,
-           if (service != null) 'service': service,
-           if (zoneId != null) 'zone_id': zoneId,
-           if (zoneName != null) 'zone_name': zoneName,
+           'account_id': ?accountId,
+           'environment': ?environment,
+           'hostname': ?hostname,
+           'max_items': ?maxItems,
+           'service': ?service,
+           'zone_id': ?zoneId,
+           'zone_name': ?zoneName,
          },
        );
 

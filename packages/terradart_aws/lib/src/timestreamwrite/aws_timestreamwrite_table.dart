@@ -25,11 +25,9 @@ final class TimestreamwriteTableMagneticStoreWriteProperties {
   magneticStoreRejectedDataLocation;
 
   Map<String, Object?> encode() => {
-    if (enableMagneticStoreWrites != null)
-      'enable_magnetic_store_writes': enableMagneticStoreWrites!.toTfJson(),
-    if (magneticStoreRejectedDataLocation != null)
-      'magnetic_store_rejected_data_location':
-          magneticStoreRejectedDataLocation!.encode(),
+    'enable_magnetic_store_writes': ?enableMagneticStoreWrites?.toTfJson(),
+    'magnetic_store_rejected_data_location': ?magneticStoreRejectedDataLocation
+        ?.encode(),
   };
 }
 
@@ -45,7 +43,7 @@ final class TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejecte
   s3Configuration;
 
   Map<String, Object?> encode() => {
-    if (s3Configuration != null) 's3_configuration': s3Configuration!.encode(),
+    's3_configuration': ?s3Configuration?.encode(),
   };
 }
 
@@ -72,13 +70,10 @@ final class TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejecte
   final TfArg<String>? objectKeyPrefix;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
-    if (encryptionOption != null)
-      'encryption_option': encryptionOption!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (objectKeyPrefix != null)
-      'object_key_prefix': objectKeyPrefix!.toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
+    'encryption_option': ?encryptionOption?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'object_key_prefix': ?objectKeyPrefix?.toTfJson(),
   };
 }
 
@@ -125,8 +120,7 @@ final class TimestreamwriteTableSchema {
   final TimestreamwriteTableSchemaCompositePartitionKey? compositePartitionKey;
 
   Map<String, Object?> encode() => {
-    if (compositePartitionKey != null)
-      'composite_partition_key': compositePartitionKey!.encode(),
+    'composite_partition_key': ?compositePartitionKey?.encode(),
   };
 }
 
@@ -150,9 +144,8 @@ final class TimestreamwriteTableSchemaCompositePartitionKey {
   final TfArg<TimestreamwriteTableSchemaCompositePartitionKeyType> type;
 
   Map<String, Object?> encode() => {
-    if (enforcementInRecord != null)
-      'enforcement_in_record': enforcementInRecord!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'enforcement_in_record': ?enforcementInRecord?.toTfJson(),
+    'name': ?name?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -205,9 +198,9 @@ final class AwsTimestreamwriteTable extends Resource {
          terraformType: tfType,
          argMap: {
            'database_name': databaseName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'table_name': tableName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (magneticStoreWriteProperties != null)
              'magnetic_store_write_properties': TfArg.literal(
                magneticStoreWriteProperties.encode(),

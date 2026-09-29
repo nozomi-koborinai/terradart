@@ -185,77 +185,57 @@ final class AwsDmsS3Endpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (addColumnName != null) 'add_column_name': addColumnName,
-           if (addTrailingPaddingCharacter != null)
-             'add_trailing_padding_character': addTrailingPaddingCharacter,
-           if (bucketFolder != null) 'bucket_folder': bucketFolder,
+           'add_column_name': ?addColumnName,
+           'add_trailing_padding_character': ?addTrailingPaddingCharacter,
+           'bucket_folder': ?bucketFolder,
            'bucket_name': bucketName.encodeAs('id'),
-           if (cannedAclForObjects != null)
-             'canned_acl_for_objects': cannedAclForObjects,
-           if (cdcInsertsAndUpdates != null)
-             'cdc_inserts_and_updates': cdcInsertsAndUpdates,
-           if (cdcInsertsOnly != null) 'cdc_inserts_only': cdcInsertsOnly,
-           if (cdcMaxBatchInterval != null)
-             'cdc_max_batch_interval': cdcMaxBatchInterval,
-           if (cdcMinFileSize != null) 'cdc_min_file_size': cdcMinFileSize,
-           if (cdcPath != null) 'cdc_path': cdcPath,
-           if (certificateArn != null) 'certificate_arn': certificateArn,
-           if (compressionType != null) 'compression_type': compressionType,
-           if (csvDelimiter != null) 'csv_delimiter': csvDelimiter,
-           if (csvNoSupValue != null) 'csv_no_sup_value': csvNoSupValue,
-           if (csvNullValue != null) 'csv_null_value': csvNullValue,
-           if (csvRowDelimiter != null) 'csv_row_delimiter': csvRowDelimiter,
-           if (dataFormat != null) 'data_format': dataFormat,
-           if (dataPageSize != null) 'data_page_size': dataPageSize,
-           if (datePartitionDelimiter != null)
-             'date_partition_delimiter': datePartitionDelimiter,
-           if (datePartitionEnabled != null)
-             'date_partition_enabled': datePartitionEnabled,
-           if (datePartitionSequence != null)
-             'date_partition_sequence': datePartitionSequence,
-           if (datePartitionTimezone != null)
-             'date_partition_timezone': datePartitionTimezone,
-           if (detachTargetOnLobLookupFailureParquet != null)
-             'detach_target_on_lob_lookup_failure_parquet':
-                 detachTargetOnLobLookupFailureParquet,
-           if (dictPageSizeLimit != null)
-             'dict_page_size_limit': dictPageSizeLimit,
-           if (enableStatistics != null) 'enable_statistics': enableStatistics,
-           if (encodingType != null) 'encoding_type': encodingType,
-           if (encryptionMode != null) 'encryption_mode': encryptionMode,
+           'canned_acl_for_objects': ?cannedAclForObjects,
+           'cdc_inserts_and_updates': ?cdcInsertsAndUpdates,
+           'cdc_inserts_only': ?cdcInsertsOnly,
+           'cdc_max_batch_interval': ?cdcMaxBatchInterval,
+           'cdc_min_file_size': ?cdcMinFileSize,
+           'cdc_path': ?cdcPath,
+           'certificate_arn': ?certificateArn,
+           'compression_type': ?compressionType,
+           'csv_delimiter': ?csvDelimiter,
+           'csv_no_sup_value': ?csvNoSupValue,
+           'csv_null_value': ?csvNullValue,
+           'csv_row_delimiter': ?csvRowDelimiter,
+           'data_format': ?dataFormat,
+           'data_page_size': ?dataPageSize,
+           'date_partition_delimiter': ?datePartitionDelimiter,
+           'date_partition_enabled': ?datePartitionEnabled,
+           'date_partition_sequence': ?datePartitionSequence,
+           'date_partition_timezone': ?datePartitionTimezone,
+           'detach_target_on_lob_lookup_failure_parquet':
+               ?detachTargetOnLobLookupFailureParquet,
+           'dict_page_size_limit': ?dictPageSizeLimit,
+           'enable_statistics': ?enableStatistics,
+           'encoding_type': ?encodingType,
+           'encryption_mode': ?encryptionMode,
            'endpoint_id': endpointId,
            'endpoint_type': endpointType,
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (externalTableDefinition != null)
-             'external_table_definition': externalTableDefinition,
-           if (glueCatalogGeneration != null)
-             'glue_catalog_generation': glueCatalogGeneration,
-           if (ignoreHeaderRows != null) 'ignore_header_rows': ignoreHeaderRows,
-           if (includeOpForFullLoad != null)
-             'include_op_for_full_load': includeOpForFullLoad,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (maxFileSize != null) 'max_file_size': maxFileSize,
-           if (parquetTimestampInMillisecond != null)
-             'parquet_timestamp_in_millisecond': parquetTimestampInMillisecond,
-           if (parquetVersion != null) 'parquet_version': parquetVersion,
-           if (preserveTransactions != null)
-             'preserve_transactions': preserveTransactions,
-           if (region != null) 'region': region,
-           if (rfc4180 != null) 'rfc_4180': rfc4180,
-           if (rowGroupLength != null) 'row_group_length': rowGroupLength,
-           if (serverSideEncryptionKmsKeyId != null)
-             'server_side_encryption_kms_key_id': serverSideEncryptionKmsKeyId,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'external_table_definition': ?externalTableDefinition,
+           'glue_catalog_generation': ?glueCatalogGeneration,
+           'ignore_header_rows': ?ignoreHeaderRows,
+           'include_op_for_full_load': ?includeOpForFullLoad,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
+           'max_file_size': ?maxFileSize,
+           'parquet_timestamp_in_millisecond': ?parquetTimestampInMillisecond,
+           'parquet_version': ?parquetVersion,
+           'preserve_transactions': ?preserveTransactions,
+           'region': ?region,
+           'rfc_4180': ?rfc4180,
+           'row_group_length': ?rowGroupLength,
+           'server_side_encryption_kms_key_id': ?serverSideEncryptionKmsKeyId,
            'service_access_role_arn': serviceAccessRoleArn,
-           if (sslMode != null) 'ssl_mode': sslMode,
-           if (tags != null) 'tags': tags,
-           if (timestampColumnName != null)
-             'timestamp_column_name': timestampColumnName,
-           if (useCsvNoSupValue != null)
-             'use_csv_no_sup_value': useCsvNoSupValue,
-           if (useTaskStartTimeForFullLoadTimestamp != null)
-             'use_task_start_time_for_full_load_timestamp':
-                 useTaskStartTimeForFullLoadTimestamp,
+           'ssl_mode': ?sslMode,
+           'tags': ?tags,
+           'timestamp_column_name': ?timestampColumnName,
+           'use_csv_no_sup_value': ?useCsvNoSupValue,
+           'use_task_start_time_for_full_load_timestamp':
+               ?useTaskStartTimeForFullLoadTimestamp,
          },
        );
 

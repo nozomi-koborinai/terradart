@@ -28,7 +28,7 @@ final class GoogleAccessContextManagerAccessPolicyIamMember extends Resource {
            'name': name,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

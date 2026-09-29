@@ -23,9 +23,8 @@ final class AwsWafregionalRegexPatternSet extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (regexPatternStrings != null)
-             'regex_pattern_strings': regexPatternStrings,
-           if (region != null) 'region': region,
+           'regex_pattern_strings': ?regexPatternStrings,
+           'region': ?region,
          },
        );
 

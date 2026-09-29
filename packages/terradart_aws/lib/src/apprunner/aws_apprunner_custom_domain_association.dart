@@ -24,9 +24,8 @@ final class AwsApprunnerCustomDomainAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'domain_name': domainName,
-           if (enableWwwSubdomain != null)
-             'enable_www_subdomain': enableWwwSubdomain,
-           if (region != null) 'region': region,
+           'enable_www_subdomain': ?enableWwwSubdomain,
+           'region': ?region,
            'service_arn': serviceArn,
          },
        );

@@ -23,10 +23,10 @@ final class AwsRedshiftDataShareAuthorization extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowWrites != null) 'allow_writes': allowWrites,
+           'allow_writes': ?allowWrites,
            'consumer_identifier': consumerIdentifier,
            'data_share_arn': dataShareArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

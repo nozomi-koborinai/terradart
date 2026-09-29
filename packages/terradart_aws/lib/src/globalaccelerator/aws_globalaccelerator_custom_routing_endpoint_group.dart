@@ -59,9 +59,7 @@ final class GlobalacceleratorCustomRoutingEndpointGroupEndpointConfiguration {
 
   final TfArg<String>? endpointId;
 
-  Map<String, Object?> encode() => {
-    if (endpointId != null) 'endpoint_id': endpointId!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'endpoint_id': ?endpointId?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_globalaccelerator_custom_routing_endpoint_group`.
@@ -86,8 +84,7 @@ final class AwsGlobalacceleratorCustomRoutingEndpointGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (endpointGroupRegion != null)
-             'endpoint_group_region': endpointGroupRegion,
+           'endpoint_group_region': ?endpointGroupRegion,
            'listener_arn': listenerArn,
            'destination_configuration': TfArg.literal([
              for (final e in destinationConfiguration) e.encode(),

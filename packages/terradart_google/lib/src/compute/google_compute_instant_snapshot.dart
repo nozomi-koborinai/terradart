@@ -38,11 +38,11 @@ final class GoogleComputeInstantSnapshot extends Resource {
          argMap: {
            'name': name,
            'source_disk': sourceDisk,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (zone != null) 'zone': zone,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'zone': ?zone,
+           'project': ?project,
          },
        );
 

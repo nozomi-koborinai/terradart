@@ -25,8 +25,8 @@ final class DataGoogleIapWebCloudRunServiceIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'cloud_run_service_name': cloudRunServiceName,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

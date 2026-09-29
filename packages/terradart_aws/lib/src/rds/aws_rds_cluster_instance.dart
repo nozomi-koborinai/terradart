@@ -113,48 +113,34 @@ final class AwsRdsClusterInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (autoMinorVersionUpgrade != null)
-             'auto_minor_version_upgrade': autoMinorVersionUpgrade,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (caCertIdentifier != null) 'ca_cert_identifier': caCertIdentifier,
+           'apply_immediately': ?applyImmediately,
+           'auto_minor_version_upgrade': ?autoMinorVersionUpgrade,
+           'availability_zone': ?availabilityZone,
+           'ca_cert_identifier': ?caCertIdentifier,
            'cluster_identifier': clusterIdentifier,
-           if (copyTagsToSnapshot != null)
-             'copy_tags_to_snapshot': copyTagsToSnapshot,
-           if (customIamInstanceProfile != null)
-             'custom_iam_instance_profile': customIamInstanceProfile,
-           if (dbParameterGroupName != null)
-             'db_parameter_group_name': dbParameterGroupName,
-           if (dbSubnetGroupName != null)
-             'db_subnet_group_name': dbSubnetGroupName,
+           'copy_tags_to_snapshot': ?copyTagsToSnapshot,
+           'custom_iam_instance_profile': ?customIamInstanceProfile,
+           'db_parameter_group_name': ?dbParameterGroupName,
+           'db_subnet_group_name': ?dbSubnetGroupName,
            'engine': engine,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'engine_version': ?engineVersion,
+           'force_destroy': ?forceDestroy,
            ...?identifier?.argMap,
            'instance_class': instanceClass,
-           if (monitoringInterval != null)
-             'monitoring_interval': monitoringInterval,
-           if (monitoringRoleArn != null)
-             'monitoring_role_arn': monitoringRoleArn,
-           if (performanceInsightsEnabled != null)
-             'performance_insights_enabled': performanceInsightsEnabled,
-           if (performanceInsightsKmsKeyId != null)
-             'performance_insights_kms_key_id': performanceInsightsKmsKeyId
-                 .encodeAs('arn'),
-           if (performanceInsightsRetentionPeriod != null)
-             'performance_insights_retention_period':
-                 performanceInsightsRetentionPeriod,
-           if (preferredBackupWindow != null)
-             'preferred_backup_window': preferredBackupWindow,
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (promotionTier != null) 'promotion_tier': promotionTier,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (warningEventCategories != null)
-             'warning_event_categories': warningEventCategories,
+           'monitoring_interval': ?monitoringInterval,
+           'monitoring_role_arn': ?monitoringRoleArn,
+           'performance_insights_enabled': ?performanceInsightsEnabled,
+           'performance_insights_kms_key_id': ?performanceInsightsKmsKeyId
+               ?.encodeAs('arn'),
+           'performance_insights_retention_period':
+               ?performanceInsightsRetentionPeriod,
+           'preferred_backup_window': ?preferredBackupWindow,
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'promotion_tier': ?promotionTier,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
+           'tags': ?tags,
+           'warning_event_categories': ?warningEventCategories,
          },
        );
 

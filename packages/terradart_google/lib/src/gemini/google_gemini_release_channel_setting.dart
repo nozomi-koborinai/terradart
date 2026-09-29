@@ -28,9 +28,9 @@ final class GoogleGeminiReleaseChannelSetting extends Resource {
          argMap: {
            'release_channel_setting_id': releaseChannelSettingId,
            'location': location,
-           if (releaseChannel != null) 'release_channel': releaseChannel,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'release_channel': ?releaseChannel,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

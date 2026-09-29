@@ -31,7 +31,7 @@ final class GoogleKmsCryptoKeyIamBinding extends Resource {
            'crypto_key_id': cryptoKeyId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

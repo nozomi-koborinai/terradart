@@ -102,8 +102,7 @@ final class MedialiveInputVpc {
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
@@ -132,12 +131,11 @@ final class AwsMedialiveInput extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (inputSecurityGroups != null)
-             'input_security_groups': inputSecurityGroups,
+           'input_security_groups': ?inputSecurityGroups,
            'name': name,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
+           'tags': ?tags,
            'type': type,
            if (destinations != null)
              'destinations': TfArg.literal([

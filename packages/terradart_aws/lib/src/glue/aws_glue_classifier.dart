@@ -153,19 +153,16 @@ final class GlueClassifierCsvClassifier {
   final TfArg<GlueClassifierCsvClassifierSerde>? serde;
 
   Map<String, Object?> encode() => {
-    if (allowSingleColumn != null)
-      'allow_single_column': allowSingleColumn!.toTfJson(),
-    if (containsHeader != null) 'contains_header': containsHeader!.toTfJson(),
-    if (customDatatypeConfigured != null)
-      'custom_datatype_configured': customDatatypeConfigured!.toTfJson(),
+    'allow_single_column': ?allowSingleColumn?.toTfJson(),
+    'contains_header': ?containsHeader?.toTfJson(),
+    'custom_datatype_configured': ?customDatatypeConfigured?.toTfJson(),
     if (customDatatypes != null)
       'custom_datatypes': [for (final e in customDatatypes!) e.toTfJson()],
-    if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
-    if (disableValueTrimming != null)
-      'disable_value_trimming': disableValueTrimming!.toTfJson(),
-    if (header != null) 'header': header!.toTfJson(),
-    if (quoteSymbol != null) 'quote_symbol': quoteSymbol!.toTfJson(),
-    if (serde != null) 'serde': serde!.toTfJson(),
+    'delimiter': ?delimiter?.toTfJson(),
+    'disable_value_trimming': ?disableValueTrimming?.toTfJson(),
+    'header': ?header?.toTfJson(),
+    'quote_symbol': ?quoteSymbol?.toTfJson(),
+    'serde': ?serde?.toTfJson(),
   };
 }
 
@@ -228,7 +225,7 @@ final class GlueClassifierGrokClassifier {
 
   Map<String, Object?> encode() => {
     'classification': classification.toTfJson(),
-    if (customPatterns != null) 'custom_patterns': customPatterns!.toTfJson(),
+    'custom_patterns': ?customPatterns?.toTfJson(),
     'grok_pattern': grokPattern.toTfJson(),
   };
 }
@@ -278,11 +275,7 @@ final class AwsGlueClassifier extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (region != null) 'region': region,
-           ...?format?.argMap,
-         },
+         argMap: {'name': name, 'region': ?region, ...?format?.argMap},
        );
 
   @override

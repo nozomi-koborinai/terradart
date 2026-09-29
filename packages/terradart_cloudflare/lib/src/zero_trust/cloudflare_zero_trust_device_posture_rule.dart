@@ -180,59 +180,51 @@ final class ZeroTrustDevicePostureRuleInput {
   final ZeroTrustDevicePostureRuleInputLocations? locations;
 
   Map<String, Object?> encode() => {
-    if (activeThreats != null) 'active_threats': activeThreats!.toTfJson(),
+    'active_threats': ?activeThreats?.toTfJson(),
     if (authState != null)
       'auth_state': [for (final e in authState!) e.toTfJson()],
-    if (certificateId != null) 'certificate_id': certificateId!.toTfJson(),
-    if (checkDisks != null) 'check_disks': checkDisks!.toTfJson(),
-    if (checkPrivateKey != null)
-      'check_private_key': checkPrivateKey!.toTfJson(),
-    if (cn != null) 'cn': cn!.toTfJson(),
-    if (complianceStatus != null)
-      'compliance_status': complianceStatus!.toTfJson(),
-    if (connectionId != null) 'connection_id': connectionId!.toTfJson(),
-    if (countOperator != null) 'count_operator': countOperator!.toTfJson(),
-    if (domain != null) 'domain': domain!.toTfJson(),
-    if (eidLastSeen != null) 'eid_last_seen': eidLastSeen!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (exists != null) 'exists': exists!.toTfJson(),
+    'certificate_id': ?certificateId?.toTfJson(),
+    'check_disks': ?checkDisks?.toTfJson(),
+    'check_private_key': ?checkPrivateKey?.toTfJson(),
+    'cn': ?cn?.toTfJson(),
+    'compliance_status': ?complianceStatus?.toTfJson(),
+    'connection_id': ?connectionId?.toTfJson(),
+    'count_operator': ?countOperator?.toTfJson(),
+    'domain': ?domain?.toTfJson(),
+    'eid_last_seen': ?eidLastSeen?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'exists': ?exists?.toTfJson(),
     if (extendedKeyUsage != null)
       'extended_key_usage': [for (final e in extendedKeyUsage!) e.toTfJson()],
-    if (id != null) 'id': id!.toTfJson(),
-    if (infected != null) 'infected': infected!.toTfJson(),
-    if (isActive != null) 'is_active': isActive!.toTfJson(),
-    if (issueCount != null) 'issue_count': issueCount!.toTfJson(),
-    if (lastSeen != null) 'last_seen': lastSeen!.toTfJson(),
-    if (networkStatus != null) 'network_status': networkStatus!.toTfJson(),
-    if (operatingSystem != null)
-      'operating_system': operatingSystem!.toTfJson(),
-    if (operationalState != null)
-      'operational_state': operationalState!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-    if (os != null) 'os': os!.toTfJson(),
-    if (osDistroName != null) 'os_distro_name': osDistroName!.toTfJson(),
-    if (osDistroRevision != null)
-      'os_distro_revision': osDistroRevision!.toTfJson(),
-    if (osVersionExtra != null) 'os_version_extra': osVersionExtra!.toTfJson(),
-    if (overall != null) 'overall': overall!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (requireAll != null) 'require_all': requireAll!.toTfJson(),
-    if (riskLevel != null) 'risk_level': riskLevel!.toTfJson(),
-    if (score != null) 'score': score!.toTfJson(),
-    if (scoreOperator != null) 'score_operator': scoreOperator!.toTfJson(),
-    if (sensorConfig != null) 'sensor_config': sensorConfig!.toTfJson(),
-    if (sha256 != null) 'sha256': sha256!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
-    if (subjectAlternativeNames != null)
-      'subject_alternative_names': subjectAlternativeNames!.toTfJson(),
-    if (thumbprint != null) 'thumbprint': thumbprint!.toTfJson(),
-    if (totalScore != null) 'total_score': totalScore!.toTfJson(),
-    if (updateWindowDays != null)
-      'update_window_days': updateWindowDays!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (versionOperator != null)
-      'version_operator': versionOperator!.toTfJson(),
-    if (locations != null) 'locations': locations!.encode(),
+    'id': ?id?.toTfJson(),
+    'infected': ?infected?.toTfJson(),
+    'is_active': ?isActive?.toTfJson(),
+    'issue_count': ?issueCount?.toTfJson(),
+    'last_seen': ?lastSeen?.toTfJson(),
+    'network_status': ?networkStatus?.toTfJson(),
+    'operating_system': ?operatingSystem?.toTfJson(),
+    'operational_state': ?operationalState?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
+    'os': ?os?.toTfJson(),
+    'os_distro_name': ?osDistroName?.toTfJson(),
+    'os_distro_revision': ?osDistroRevision?.toTfJson(),
+    'os_version_extra': ?osVersionExtra?.toTfJson(),
+    'overall': ?overall?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'require_all': ?requireAll?.toTfJson(),
+    'risk_level': ?riskLevel?.toTfJson(),
+    'score': ?score?.toTfJson(),
+    'score_operator': ?scoreOperator?.toTfJson(),
+    'sensor_config': ?sensorConfig?.toTfJson(),
+    'sha256': ?sha256?.toTfJson(),
+    'state': ?state?.toTfJson(),
+    'subject_alternative_names': ?subjectAlternativeNames?.toTfJson(),
+    'thumbprint': ?thumbprint?.toTfJson(),
+    'total_score': ?totalScore?.toTfJson(),
+    'update_window_days': ?updateWindowDays?.toTfJson(),
+    'version': ?version?.toTfJson(),
+    'version_operator': ?versionOperator?.toTfJson(),
+    'locations': ?locations?.encode(),
   };
 }
 
@@ -403,7 +395,7 @@ final class ZeroTrustDevicePostureRuleInputLocations {
   trustStores;
 
   Map<String, Object?> encode() => {
-    if (paths != null) 'paths': paths!.toTfJson(),
+    'paths': ?paths?.toTfJson(),
     if (trustStores != null)
       'trust_stores': [for (final e in trustStores!) e.toTfJson()],
   };
@@ -430,9 +422,7 @@ final class ZeroTrustDevicePostureRuleMatch {
 
   final TfArg<ZeroTrustDevicePostureRuleMatchPlatform>? platform;
 
-  Map<String, Object?> encode() => {
-    if (platform != null) 'platform': platform!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'platform': ?platform?.toTfJson()};
 }
 
 /// `platform` — derived from the provider schema description.
@@ -475,10 +465,10 @@ final class CloudflareZeroTrustDevicePostureRule extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (expiration != null) 'expiration': expiration,
-           if (name != null) 'name': name,
-           if (schedule != null) 'schedule': schedule,
+           'description': ?description,
+           'expiration': ?expiration,
+           'name': ?name,
+           'schedule': ?schedule,
            'type': type,
            if (input != null) 'input': TfArg.literal(input.encode()),
            if (match != null)

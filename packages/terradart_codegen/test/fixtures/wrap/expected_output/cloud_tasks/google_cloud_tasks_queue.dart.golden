@@ -203,8 +203,8 @@ final class GoogleCloudTasksQueue extends Resource {
              ),
            if (httpTarget != null)
              'http_target': TfArg.literal(httpTarget.encode()),
-           if (project != null) 'project': project,
-           if (desiredState != null) 'desired_state': desiredState,
+           'project': ?project,
+           'desired_state': ?desiredState,
          },
        );
 

@@ -30,7 +30,7 @@ final class CloudIdentityGroupGroupKey {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
   };
 }
 
@@ -63,11 +63,10 @@ final class GoogleCloudIdentityGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
-           if (initialGroupConfig != null)
-             'initial_group_config': initialGroupConfig,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'display_name': ?displayName,
+           'initial_group_config': ?initialGroupConfig,
            'labels': labels,
            'parent': parent,
            'group_key': TfArg.literal(groupKey.encode()),

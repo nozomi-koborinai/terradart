@@ -170,7 +170,7 @@ final class TpuV2VmDataDisks {
   final TfArg<String> sourceDisk;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
+    'mode': ?mode?.toTfJson(),
     'source_disk': sourceDisk.toTfJson(),
   };
 }
@@ -208,12 +208,11 @@ final class TpuV2VmNetworkConfig {
   final TfArg<String>? subnetwork;
 
   Map<String, Object?> encode() => {
-    if (canIpForward != null) 'can_ip_forward': canIpForward!.toTfJson(),
-    if (enableExternalIps != null)
-      'enable_external_ips': enableExternalIps!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
-    if (queueCount != null) 'queue_count': queueCount!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    'can_ip_forward': ?canIpForward?.toTfJson(),
+    'enable_external_ips': ?enableExternalIps?.toTfJson(),
+    'network': ?network?.toTfJson(),
+    'queue_count': ?queueCount?.toTfJson(),
+    'subnetwork': ?subnetwork?.toTfJson(),
   };
 }
 
@@ -240,12 +239,11 @@ final class TpuV2VmNetworkConfigs {
   final TfArg<String>? subnetwork;
 
   Map<String, Object?> encode() => {
-    if (canIpForward != null) 'can_ip_forward': canIpForward!.toTfJson(),
-    if (enableExternalIps != null)
-      'enable_external_ips': enableExternalIps!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
-    if (queueCount != null) 'queue_count': queueCount!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    'can_ip_forward': ?canIpForward?.toTfJson(),
+    'enable_external_ips': ?enableExternalIps?.toTfJson(),
+    'network': ?network?.toTfJson(),
+    'queue_count': ?queueCount?.toTfJson(),
+    'subnetwork': ?subnetwork?.toTfJson(),
   };
 }
 
@@ -262,9 +260,9 @@ final class TpuV2VmSchedulingConfig {
   final TfArg<bool>? spot;
 
   Map<String, Object?> encode() => {
-    if (preemptible != null) 'preemptible': preemptible!.toTfJson(),
-    if (reserved != null) 'reserved': reserved!.toTfJson(),
-    if (spot != null) 'spot': spot!.toTfJson(),
+    'preemptible': ?preemptible?.toTfJson(),
+    'reserved': ?reserved?.toTfJson(),
+    'spot': ?spot?.toTfJson(),
   };
 }
 
@@ -279,8 +277,8 @@ final class TpuV2VmServiceAccount {
   final TfArg<List<Object?>>? scope;
 
   Map<String, Object?> encode() => {
-    if (email != null) 'email': email!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
+    'email': ?email?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
   };
 }
 
@@ -330,16 +328,16 @@ final class GoogleTpuV2Vm extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            ...?accelerator?.argMap,
-           if (cidrBlock != null) 'cidr_block': cidrBlock,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (metadata != null) 'metadata': metadata,
+           'cidr_block': ?cidrBlock,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'metadata': ?metadata,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'runtime_version': runtimeVersion,
-           if (tags != null) 'tags': tags,
-           if (zone != null) 'zone': zone,
+           'tags': ?tags,
+           'zone': ?zone,
            if (dataDisks != null)
              'data_disks': TfArg.literal([
                for (final e in dataDisks) e.encode(),

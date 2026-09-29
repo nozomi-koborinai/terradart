@@ -118,7 +118,7 @@ final class SagemakerPipelinePipelineDefinitionS3Location {
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'object_key': objectKey.toTfJson(),
-    if (versionId != null) 'version_id': versionId!.toTfJson(),
+    'version_id': ?versionId?.toTfJson(),
   };
 }
 
@@ -144,13 +144,12 @@ final class AwsSagemakerPipeline extends Resource {
          terraformType: tfType,
          argMap: {
            ...pipelineDefinition.argMap,
-           if (pipelineDescription != null)
-             'pipeline_description': pipelineDescription,
+           'pipeline_description': ?pipelineDescription,
            'pipeline_display_name': pipelineDisplayName,
            'pipeline_name': pipelineName,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
+           'tags': ?tags,
            if (parallelismConfiguration != null)
              'parallelism_configuration': TfArg.literal(
                parallelismConfiguration.encode(),

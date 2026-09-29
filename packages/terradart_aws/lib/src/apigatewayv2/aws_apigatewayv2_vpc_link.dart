@@ -28,10 +28,10 @@ final class AwsApigatewayv2VpcLink extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_group_ids': securityGroupIds.encodeAs('id'),
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

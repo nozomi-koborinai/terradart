@@ -26,7 +26,7 @@ final class AwsEc2TransitGatewayMulticastGroupMember extends Resource {
          argMap: {
            'group_ip_address': groupIpAddress,
            'network_interface_id': networkInterfaceId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'transit_gateway_multicast_domain_id':
                transitGatewayMulticastDomainId,
          },

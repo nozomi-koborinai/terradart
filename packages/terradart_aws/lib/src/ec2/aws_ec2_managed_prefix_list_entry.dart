@@ -24,9 +24,9 @@ final class AwsEc2ManagedPrefixListEntry extends Resource {
          terraformType: tfType,
          argMap: {
            'cidr': cidr,
-           if (description != null) 'description': description,
+           'description': ?description,
            'prefix_list_id': prefixListId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

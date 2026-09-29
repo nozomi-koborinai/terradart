@@ -32,11 +32,10 @@ final class SagemakerFeatureGroupFeatureDefinition {
   collectionConfig;
 
   Map<String, Object?> encode() => {
-    if (collectionType != null) 'collection_type': collectionType!.toTfJson(),
-    if (featureName != null) 'feature_name': featureName!.toTfJson(),
-    if (featureType != null) 'feature_type': featureType!.toTfJson(),
-    if (collectionConfig != null)
-      'collection_config': collectionConfig!.encode(),
+    'collection_type': ?collectionType?.toTfJson(),
+    'feature_name': ?featureName?.toTfJson(),
+    'feature_type': ?featureType?.toTfJson(),
+    'collection_config': ?collectionConfig?.encode(),
   };
 }
 
@@ -77,9 +76,7 @@ final class SagemakerFeatureGroupFeatureDefinitionCollectionConfig {
   final SagemakerFeatureGroupFeatureDefinitionCollectionConfigVectorConfig?
   vectorConfig;
 
-  Map<String, Object?> encode() => {
-    if (vectorConfig != null) 'vector_config': vectorConfig!.encode(),
-  };
+  Map<String, Object?> encode() => {'vector_config': ?vectorConfig?.encode()};
 }
 
 /// Typed helper for the `feature_definition.collection_config.vector_config` block of
@@ -92,9 +89,7 @@ final class SagemakerFeatureGroupFeatureDefinitionCollectionConfigVectorConfig {
 
   final TfArg<num>? dimension;
 
-  Map<String, Object?> encode() => {
-    if (dimension != null) 'dimension': dimension!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'dimension': ?dimension?.toTfJson()};
 }
 
 /// Typed helper for the `offline_store_config` block of
@@ -118,11 +113,9 @@ final class SagemakerFeatureGroupOfflineStoreConfig {
   final SagemakerFeatureGroupOfflineStoreConfigS3StorageConfig s3StorageConfig;
 
   Map<String, Object?> encode() => {
-    if (disableGlueTableCreation != null)
-      'disable_glue_table_creation': disableGlueTableCreation!.toTfJson(),
-    if (tableFormat != null) 'table_format': tableFormat!.toTfJson(),
-    if (dataCatalogConfig != null)
-      'data_catalog_config': dataCatalogConfig!.encode(),
+    'disable_glue_table_creation': ?disableGlueTableCreation?.toTfJson(),
+    'table_format': ?tableFormat?.toTfJson(),
+    'data_catalog_config': ?dataCatalogConfig?.encode(),
     's3_storage_config': s3StorageConfig.encode(),
   };
 }
@@ -156,9 +149,9 @@ final class SagemakerFeatureGroupOfflineStoreConfigDataCatalogConfig {
   final TfArg<String>? tableName;
 
   Map<String, Object?> encode() => {
-    if (catalog != null) 'catalog': catalog!.toTfJson(),
-    if (database != null) 'database': database!.toTfJson(),
-    if (tableName != null) 'table_name': tableName!.toTfJson(),
+    'catalog': ?catalog?.toTfJson(),
+    'database': ?database?.toTfJson(),
+    'table_name': ?tableName?.toTfJson(),
   };
 }
 
@@ -179,9 +172,8 @@ final class SagemakerFeatureGroupOfflineStoreConfigS3StorageConfig {
   final TfArg<String> s3Uri;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (resolvedOutputS3Uri != null)
-      'resolved_output_s3_uri': resolvedOutputS3Uri!.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'resolved_output_s3_uri': ?resolvedOutputS3Uri?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
   };
 }
@@ -206,11 +198,10 @@ final class SagemakerFeatureGroupOnlineStoreConfig {
   final SagemakerFeatureGroupOnlineStoreConfigTtlDuration? ttlDuration;
 
   Map<String, Object?> encode() => {
-    if (enableOnlineStore != null)
-      'enable_online_store': enableOnlineStore!.toTfJson(),
-    if (storageType != null) 'storage_type': storageType!.toTfJson(),
-    if (securityConfig != null) 'security_config': securityConfig!.encode(),
-    if (ttlDuration != null) 'ttl_duration': ttlDuration!.encode(),
+    'enable_online_store': ?enableOnlineStore?.toTfJson(),
+    'storage_type': ?storageType?.toTfJson(),
+    'security_config': ?securityConfig?.encode(),
+    'ttl_duration': ?ttlDuration?.encode(),
   };
 }
 
@@ -235,7 +226,7 @@ final class SagemakerFeatureGroupOnlineStoreConfigSecurityConfig {
   final RefTo<AwsKmsKey>? kmsKeyId;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -253,8 +244,8 @@ final class SagemakerFeatureGroupOnlineStoreConfigTtlDuration {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (unit != null) 'unit': unit!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -292,13 +283,11 @@ final class SagemakerFeatureGroupThroughputConfig {
   throughputMode;
 
   Map<String, Object?> encode() => {
-    if (provisionedReadCapacityUnits != null)
-      'provisioned_read_capacity_units': provisionedReadCapacityUnits!
-          .toTfJson(),
-    if (provisionedWriteCapacityUnits != null)
-      'provisioned_write_capacity_units': provisionedWriteCapacityUnits!
-          .toTfJson(),
-    if (throughputMode != null) 'throughput_mode': throughputMode!.toTfJson(),
+    'provisioned_read_capacity_units': ?provisionedReadCapacityUnits
+        ?.toTfJson(),
+    'provisioned_write_capacity_units': ?provisionedWriteCapacityUnits
+        ?.toTfJson(),
+    'throughput_mode': ?throughputMode?.toTfJson(),
   };
 }
 
@@ -339,13 +328,13 @@ final class AwsSagemakerFeatureGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'event_time_feature_name': eventTimeFeatureName,
            'feature_group_name': featureGroupName,
            'record_identifier_feature_name': recordIdentifierFeatureName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'feature_definition': TfArg.literal([
              for (final e in featureDefinition) e.encode(),
            ]),

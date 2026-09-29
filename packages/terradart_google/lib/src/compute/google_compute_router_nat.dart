@@ -116,10 +116,10 @@ final class ComputeRouterNatRules {
   final ComputeRouterNatRulesAction? action;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'match': match.toTfJson(),
     'rule_number': ruleNumber.toTfJson(),
-    if (action != null) 'action': action!.encode(),
+    'action': ?action?.encode(),
   };
 }
 
@@ -143,14 +143,10 @@ final class ComputeRouterNatRulesAction {
   final TfArg<List<Object?>>? sourceNatDrainRanges;
 
   Map<String, Object?> encode() => {
-    if (sourceNatActiveIps != null)
-      'source_nat_active_ips': sourceNatActiveIps!.toTfJson(),
-    if (sourceNatActiveRanges != null)
-      'source_nat_active_ranges': sourceNatActiveRanges!.toTfJson(),
-    if (sourceNatDrainIps != null)
-      'source_nat_drain_ips': sourceNatDrainIps!.toTfJson(),
-    if (sourceNatDrainRanges != null)
-      'source_nat_drain_ranges': sourceNatDrainRanges!.toTfJson(),
+    'source_nat_active_ips': ?sourceNatActiveIps?.toTfJson(),
+    'source_nat_active_ranges': ?sourceNatActiveRanges?.toTfJson(),
+    'source_nat_drain_ips': ?sourceNatDrainIps?.toTfJson(),
+    'source_nat_drain_ranges': ?sourceNatDrainRanges?.toTfJson(),
   };
 }
 
@@ -172,8 +168,7 @@ final class ComputeRouterNatSubnetwork {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (secondaryIpRangeNames != null)
-      'secondary_ip_range_names': secondaryIpRangeNames!.toTfJson(),
+    'secondary_ip_range_names': ?secondaryIpRangeNames?.toTfJson(),
     'source_ip_ranges_to_nat': sourceIpRangesToNat.toTfJson(),
   };
 }
@@ -228,38 +223,29 @@ final class GoogleComputeRouterNat extends Resource {
          argMap: {
            'name': name,
            'router': router,
-           if (region != null) 'region': region,
+           'region': ?region,
            'source_subnetwork_ip_ranges_to_nat': sourceSubnetworkIpRangesToNat,
-           if (natIpAllocateOption != null)
-             'nat_ip_allocate_option': natIpAllocateOption,
-           if (type != null) 'type': type,
-           if (natIps != null) 'nat_ips': natIps,
-           if (initialNatIps != null) 'initial_nat_ips': initialNatIps,
-           if (drainNatIps != null) 'drain_nat_ips': drainNatIps,
-           if (minPortsPerVm != null) 'min_ports_per_vm': minPortsPerVm,
-           if (maxPortsPerVm != null) 'max_ports_per_vm': maxPortsPerVm,
-           if (enableDynamicPortAllocation != null)
-             'enable_dynamic_port_allocation': enableDynamicPortAllocation,
-           if (enableEndpointIndependentMapping != null)
-             'enable_endpoint_independent_mapping':
-                 enableEndpointIndependentMapping,
-           if (icmpIdleTimeoutSec != null)
-             'icmp_idle_timeout_sec': icmpIdleTimeoutSec,
-           if (tcpEstablishedIdleTimeoutSec != null)
-             'tcp_established_idle_timeout_sec': tcpEstablishedIdleTimeoutSec,
-           if (tcpTransitoryIdleTimeoutSec != null)
-             'tcp_transitory_idle_timeout_sec': tcpTransitoryIdleTimeoutSec,
-           if (tcpTimeWaitTimeoutSec != null)
-             'tcp_time_wait_timeout_sec': tcpTimeWaitTimeoutSec,
-           if (udpIdleTimeoutSec != null)
-             'udp_idle_timeout_sec': udpIdleTimeoutSec,
-           if (autoNetworkTier != null) 'auto_network_tier': autoNetworkTier,
-           if (endpointTypes != null) 'endpoint_types': endpointTypes,
-           if (sourceSubnetworkIpRangesToNat64 != null)
-             'source_subnetwork_ip_ranges_to_nat64':
-                 sourceSubnetworkIpRangesToNat64,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'nat_ip_allocate_option': ?natIpAllocateOption,
+           'type': ?type,
+           'nat_ips': ?natIps,
+           'initial_nat_ips': ?initialNatIps,
+           'drain_nat_ips': ?drainNatIps,
+           'min_ports_per_vm': ?minPortsPerVm,
+           'max_ports_per_vm': ?maxPortsPerVm,
+           'enable_dynamic_port_allocation': ?enableDynamicPortAllocation,
+           'enable_endpoint_independent_mapping':
+               ?enableEndpointIndependentMapping,
+           'icmp_idle_timeout_sec': ?icmpIdleTimeoutSec,
+           'tcp_established_idle_timeout_sec': ?tcpEstablishedIdleTimeoutSec,
+           'tcp_transitory_idle_timeout_sec': ?tcpTransitoryIdleTimeoutSec,
+           'tcp_time_wait_timeout_sec': ?tcpTimeWaitTimeoutSec,
+           'udp_idle_timeout_sec': ?udpIdleTimeoutSec,
+           'auto_network_tier': ?autoNetworkTier,
+           'endpoint_types': ?endpointTypes,
+           'source_subnetwork_ip_ranges_to_nat64':
+               ?sourceSubnetworkIpRangesToNat64,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

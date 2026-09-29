@@ -24,7 +24,7 @@ final class AwsVpcEndpointSubnetAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'subnet_id': subnetId.encodeAs('id'),
            'vpc_endpoint_id': vpcEndpointId,
          },

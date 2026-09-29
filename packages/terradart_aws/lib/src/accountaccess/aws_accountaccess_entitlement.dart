@@ -77,8 +77,8 @@ final class AccountaccessEntitlementEntitlementPrincipalRolePrincipalIdentityCen
   final TfArg<String>? userId;
 
   Map<String, Object?> encode() => {
-    if (groupId != null) 'group_id': groupId!.toTfJson(),
-    if (userId != null) 'user_id': userId!.toTfJson(),
+    'group_id': ?groupId?.toTfJson(),
+    'user_id': ?userId?.toTfJson(),
   };
 }
 
@@ -99,7 +99,7 @@ final class AwsAccountaccessEntitlement extends Resource {
          terraformType: tfType,
          argMap: {
            'application_arn': applicationArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (entitlement != null)
              'entitlement': TfArg.literal([
                for (final e in entitlement) e.encode(),

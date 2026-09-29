@@ -30,8 +30,7 @@ final class DiscoveryEngineChatEngineChatEngineConfig {
   final DiscoveryEngineChatEngineChatEngineConfigAgent agent;
 
   Map<String, Object?> encode() => {
-    if (allowCrossRegion != null)
-      'allow_cross_region': allowCrossRegion!.toTfJson(),
+    'allow_cross_region': ?allowCrossRegion?.toTfJson(),
     ...agent.encode(),
   };
 }
@@ -117,9 +116,9 @@ final class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig {
   final TfArg<String> timeZone;
 
   Map<String, Object?> encode() => {
-    if (business != null) 'business': business!.toTfJson(),
+    'business': ?business?.toTfJson(),
     'default_language_code': defaultLanguageCode.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
+    'location': ?location?.toTfJson(),
     'time_zone': timeZone.toTfJson(),
   };
 }
@@ -132,9 +131,7 @@ final class DiscoveryEngineChatEngineCommonConfig {
 
   final TfArg<String>? companyName;
 
-  Map<String, Object?> encode() => {
-    if (companyName != null) 'company_name': companyName!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'company_name': ?companyName?.toTfJson()};
 }
 
 /// Factory wrapper for `google_discovery_engine_chat_engine`.
@@ -183,11 +180,11 @@ final class GoogleDiscoveryEngineChatEngine extends Resource {
            'display_name': displayName,
            'data_store_ids': dataStoreIds,
            'chat_engine_config': TfArg.literal(chatEngineConfig.encode()),
-           if (industryVertical != null) 'industry_vertical': industryVertical,
+           'industry_vertical': ?industryVertical,
            if (commonConfig != null)
              'common_config': TfArg.literal(commonConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

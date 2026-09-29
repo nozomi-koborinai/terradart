@@ -123,8 +123,8 @@ final class GoogleCertificateManagerTrustConfig extends Resource {
              'allowlisted_certificates': TfArg.literal(
                allowlistedCertificates.map((c) => c.encode()).toList(),
              ),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'labels': ?labels,
          },
        );
 

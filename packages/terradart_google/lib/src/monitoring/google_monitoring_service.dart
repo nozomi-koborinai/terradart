@@ -118,11 +118,11 @@ final class GoogleMonitoringService extends Resource {
          terraformType: tfType,
          argMap: {
            'service_id': serviceId,
-           if (displayName != null) 'display_name': displayName,
+           'display_name': ?displayName,
            if (basicService != null)
              'basic_service': TfArg.literal([basicService.toArgMap()]),
-           if (userLabels != null) 'user_labels': userLabels,
-           if (project != null) 'project': project,
+           'user_labels': ?userLabels,
+           'project': ?project,
          },
        );
 

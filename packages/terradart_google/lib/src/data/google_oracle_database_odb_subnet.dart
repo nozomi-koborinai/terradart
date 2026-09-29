@@ -28,7 +28,7 @@ final class DataGoogleOracleDatabaseOdbSubnet extends Data {
            'location': location,
            'odb_subnet_id': odbSubnetId,
            'odbnetwork': odbnetwork,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -21,8 +21,8 @@ final class DataAwsNetworkmanagerDevices extends Data {
          terraformType: tfType,
          argMap: {
            'global_network_id': globalNetworkId,
-           if (siteId != null) 'site_id': siteId,
-           if (tags != null) 'tags': tags,
+           'site_id': ?siteId,
+           'tags': ?tags,
          },
        );
 

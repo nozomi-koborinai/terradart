@@ -37,9 +37,9 @@ final class GoogleComputeOrganizationSecurityPolicyAssociation
          terraformType: tfType,
          argMap: {
            'attachment_id': attachmentId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (excludedFolders != null) 'excluded_folders': excludedFolders,
-           if (excludedProjects != null) 'excluded_projects': excludedProjects,
+           'deletion_policy': ?deletionPolicy,
+           'excluded_folders': ?excludedFolders,
+           'excluded_projects': ?excludedProjects,
            'name': name,
            'policy_id': policyId,
          },

@@ -50,14 +50,12 @@ final class DeveloperConnectAccountConnectorCustomOauthConfig {
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
     'host_uri': hostUri.toTfJson(),
-    if (pkceDisabled != null) 'pkce_disabled': pkceDisabled!.toTfJson(),
+    'pkce_disabled': ?pkceDisabled?.toTfJson(),
     'scm_provider': scmProvider.toTfJson(),
     'scopes': scopes.toTfJson(),
-    if (sslCaCertificate != null)
-      'ssl_ca_certificate': sslCaCertificate!.toTfJson(),
+    'ssl_ca_certificate': ?sslCaCertificate?.toTfJson(),
     'token_uri': tokenUri.toTfJson(),
-    if (serviceDirectoryConfig != null)
-      'service_directory_config': serviceDirectoryConfig!.encode(),
+    'service_directory_config': ?serviceDirectoryConfig?.encode(),
   };
 }
 
@@ -89,8 +87,7 @@ final class DeveloperConnectAccountConnectorProviderOauthConfig {
 
   Map<String, Object?> encode() => {
     'scopes': scopes.toTfJson(),
-    if (systemProviderId != null)
-      'system_provider_id': systemProviderId!.toTfJson(),
+    'system_provider_id': ?systemProviderId?.toTfJson(),
   };
 }
 
@@ -102,9 +99,7 @@ final class DeveloperConnectAccountConnectorProxyConfig {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `google_developer_connect_account_connector`.
@@ -163,10 +158,10 @@ final class GoogleDeveloperConnectAccountConnector extends Resource {
              'provider_oauth_config': TfArg.literal(
                providerOauthConfig.encode(),
              ),
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

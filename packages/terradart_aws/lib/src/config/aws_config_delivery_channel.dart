@@ -22,8 +22,7 @@ final class ConfigDeliveryChannelSnapshotDeliveryProperties {
   deliveryFrequency;
 
   Map<String, Object?> encode() => {
-    if (deliveryFrequency != null)
-      'delivery_frequency': deliveryFrequency!.toTfJson(),
+    'delivery_frequency': ?deliveryFrequency?.toTfJson(),
   };
 }
 
@@ -63,13 +62,12 @@ final class AwsConfigDeliveryChannel extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            's3_bucket_name': s3BucketName.encodeAs('id'),
-           if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix,
-           if (s3KmsKeyArn != null) 's3_kms_key_arn': s3KmsKeyArn,
-           if (snsTopicArn != null)
-             'sns_topic_arn': snsTopicArn.encodeAs('arn'),
+           's3_key_prefix': ?s3KeyPrefix,
+           's3_kms_key_arn': ?s3KmsKeyArn,
+           'sns_topic_arn': ?snsTopicArn?.encodeAs('arn'),
            if (snapshotDeliveryProperties != null)
              'snapshot_delivery_properties': TfArg.literal(
                snapshotDeliveryProperties.encode(),

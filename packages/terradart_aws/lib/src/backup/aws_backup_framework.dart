@@ -27,7 +27,7 @@ final class BackupFrameworkControl {
     'name': name.toTfJson(),
     if (inputParameter != null)
       'input_parameter': [for (final e in inputParameter!) e.encode()],
-    if (scope != null) 'scope': scope!.encode(),
+    'scope': ?scope?.encode(),
   };
 }
 
@@ -42,8 +42,8 @@ final class BackupFrameworkControlInputParameter {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -64,11 +64,9 @@ final class BackupFrameworkControlScope {
   final TfArg<Map<String, String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (complianceResourceIds != null)
-      'compliance_resource_ids': complianceResourceIds!.toTfJson(),
-    if (complianceResourceTypes != null)
-      'compliance_resource_types': complianceResourceTypes!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'compliance_resource_ids': ?complianceResourceIds?.toTfJson(),
+    'compliance_resource_types': ?complianceResourceTypes?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -90,10 +88,10 @@ final class AwsBackupFramework extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'control': TfArg.literal([for (final e in control) e.encode()]),
          },
        );

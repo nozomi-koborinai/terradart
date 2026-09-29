@@ -65,10 +65,9 @@ final class GoogleBigtableAuthorizedView extends Resource {
            'name': name,
            if (subsetView != null)
              'subset_view': TfArg.literal([subsetView.toArgMap()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

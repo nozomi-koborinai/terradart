@@ -33,9 +33,9 @@ final class GoogleBigqueryAnalyticsHubListingIamPolicy extends Resource {
          argMap: {
            'data_exchange_id': dataExchangeId,
            'listing_id': listingId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -30,7 +30,7 @@ final class CloudflareZeroTrustDlpSensitivityLevel extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
            'sensitivity_group_id': sensitivityGroupId,
          },

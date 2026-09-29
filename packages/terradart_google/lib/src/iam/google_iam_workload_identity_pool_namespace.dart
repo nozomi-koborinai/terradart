@@ -50,10 +50,10 @@ final class GoogleIamWorkloadIdentityPoolNamespace extends Resource {
            'workload_identity_pool_id': workloadIdentityPoolId,
            'workload_identity_pool_namespace_id':
                workloadIdentityPoolNamespaceId,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'disabled': ?disabled,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -34,11 +34,11 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamBinding extends Resource {
          terraformType: tfType,
          argMap: {
            'data_exchange_id': dataExchangeId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

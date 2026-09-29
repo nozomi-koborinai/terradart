@@ -1119,18 +1119,17 @@ final class GoogleCloudbuildTrigger extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (tags != null) 'tags': tags,
-           if (disabled != null) 'disabled': disabled,
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('name'),
-           if (includeBuildLogs != null) 'include_build_logs': includeBuildLogs,
-           if (filter != null) 'filter': filter,
-           if (substitutions != null) 'substitutions': substitutions,
-           if (includedFiles != null) 'included_files': includedFiles,
-           if (ignoredFiles != null) 'ignored_files': ignoredFiles,
+           'name': ?name,
+           'location': ?location,
+           'description': ?description,
+           'tags': ?tags,
+           'disabled': ?disabled,
+           'service_account': ?serviceAccount?.encodeAs('name'),
+           'include_build_logs': ?includeBuildLogs,
+           'filter': ?filter,
+           'substitutions': ?substitutions,
+           'included_files': ?includedFiles,
+           'ignored_files': ?ignoredFiles,
            if (sourceToBuild != null)
              'source_to_build': TfArg.literal([sourceToBuild.toArgMap()]),
            if (triggerTemplate != null)
@@ -1154,7 +1153,7 @@ final class GoogleCloudbuildTrigger extends Resource {
              'webhook_config': TfArg.literal([webhookConfig.toArgMap()]),
            if (approvalConfig != null)
              'approval_config': TfArg.literal([approvalConfig.toArgMap()]),
-           if (project != null) 'project': project,
+           'project': ?project,
            buildSpec.blockKey: buildSpec.slotValue,
          },
        );

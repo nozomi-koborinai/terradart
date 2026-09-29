@@ -24,10 +24,8 @@ final class VmwareengineDatastoreNfsDatastore {
   thirdPartyFileService;
 
   Map<String, Object?> encode() => {
-    if (googleFileService != null)
-      'google_file_service': googleFileService!.encode(),
-    if (thirdPartyFileService != null)
-      'third_party_file_service': thirdPartyFileService!.encode(),
+    'google_file_service': ?googleFileService?.encode(),
+    'third_party_file_service': ?thirdPartyFileService?.encode(),
   };
 }
 
@@ -45,9 +43,8 @@ final class VmwareengineDatastoreNfsDatastoreGoogleFileService {
   final TfArg<String>? netappVolume;
 
   Map<String, Object?> encode() => {
-    if (filestoreInstance != null)
-      'filestore_instance': filestoreInstance!.toTfJson(),
-    if (netappVolume != null) 'netapp_volume': netappVolume!.toTfJson(),
+    'filestore_instance': ?filestoreInstance?.toTfJson(),
+    'netapp_volume': ?netappVolume?.toTfJson(),
   };
 }
 
@@ -119,7 +116,7 @@ final class GoogleVmwareengineDatastore extends Resource {
            'name': name,
            'location': location,
            'nfs_datastore': TfArg.literal(nfsDatastore.encode()),
-           if (description != null) 'description': description,
+           'description': ?description,
          },
        );
 

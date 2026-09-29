@@ -57,13 +57,13 @@ final class AwsQuicksightFolder extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'folder_id': folderId,
-           if (folderType != null) 'folder_type': folderType,
-           if (name != null) 'name': name,
-           if (parentFolderArn != null) 'parent_folder_arn': parentFolderArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'folder_type': ?folderType,
+           'name': ?name,
+           'parent_folder_arn': ?parentFolderArn,
+           'region': ?region,
+           'tags': ?tags,
            if (permissions != null)
              'permissions': TfArg.literal([
                for (final e in permissions) e.encode(),

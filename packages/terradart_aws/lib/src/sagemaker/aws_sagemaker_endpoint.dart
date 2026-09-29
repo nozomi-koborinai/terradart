@@ -22,8 +22,7 @@ final class SagemakerEndpointDeploymentConfig {
   final SagemakerEndpointDeploymentConfigUpdatePolicy updatePolicy;
 
   Map<String, Object?> encode() => {
-    if (autoRollbackConfiguration != null)
-      'auto_rollback_configuration': autoRollbackConfiguration!.encode(),
+    'auto_rollback_configuration': ?autoRollbackConfiguration?.encode(),
     ...updatePolicy.encode(),
   };
 }
@@ -137,11 +136,9 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy {
   trafficRoutingConfiguration;
 
   Map<String, Object?> encode() => {
-    if (maximumExecutionTimeoutInSeconds != null)
-      'maximum_execution_timeout_in_seconds': maximumExecutionTimeoutInSeconds!
-          .toTfJson(),
-    if (terminationWaitInSeconds != null)
-      'termination_wait_in_seconds': terminationWaitInSeconds!.toTfJson(),
+    'maximum_execution_timeout_in_seconds': ?maximumExecutionTimeoutInSeconds
+        ?.toTfJson(),
+    'termination_wait_in_seconds': ?terminationWaitInSeconds?.toTfJson(),
     'traffic_routing_configuration': trafficRoutingConfiguration.encode(),
   };
 }
@@ -173,8 +170,8 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRouting
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'wait_interval_in_seconds': waitIntervalInSeconds.toTfJson(),
-    if (canarySize != null) 'canary_size': canarySize!.encode(),
-    if (linearStepSize != null) 'linear_step_size': linearStepSize!.encode(),
+    'canary_size': ?canarySize?.encode(),
+    'linear_step_size': ?linearStepSize?.encode(),
   };
 }
 
@@ -284,13 +281,11 @@ final class SagemakerEndpointDeploymentConfigRollingUpdatePolicy {
   rollbackMaximumBatchSize;
 
   Map<String, Object?> encode() => {
-    if (maximumExecutionTimeoutInSeconds != null)
-      'maximum_execution_timeout_in_seconds': maximumExecutionTimeoutInSeconds!
-          .toTfJson(),
+    'maximum_execution_timeout_in_seconds': ?maximumExecutionTimeoutInSeconds
+        ?.toTfJson(),
     'wait_interval_in_seconds': waitIntervalInSeconds.toTfJson(),
     'maximum_batch_size': maximumBatchSize.encode(),
-    if (rollbackMaximumBatchSize != null)
-      'rollback_maximum_batch_size': rollbackMaximumBatchSize!.encode(),
+    'rollback_maximum_batch_size': ?rollbackMaximumBatchSize?.encode(),
   };
 }
 
@@ -383,9 +378,9 @@ final class AwsSagemakerEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'endpoint_config_name': endpointConfigName,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
            if (deploymentConfig != null)
              'deployment_config': TfArg.literal(deploymentConfig.encode()),
          },

@@ -39,13 +39,12 @@ final class AwsBedrockProvisionedModelThroughput extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (commitmentDuration != null)
-             'commitment_duration': commitmentDuration,
+           'commitment_duration': ?commitmentDuration,
            'model_arn': modelArn,
            'model_units': modelUnits,
            'provisioned_model_name': provisionedModelName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -48,13 +48,13 @@ final class GoogleDataplexDataProduct extends Resource {
            'data_product_id': dataProductId,
            'display_name': displayName,
            'owner_emails': ownerEmails,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'labels': ?labels,
            if (accessApprovalConfig != null)
              'access_approval_config': TfArg.literal([
                accessApprovalConfig.toArgMap(),
              ]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

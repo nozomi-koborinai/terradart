@@ -339,10 +339,10 @@ final class DataAwsLbListenerRule extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (listenerArn != null) 'listener_arn': listenerArn,
-           if (priority != null) 'priority': priority,
-           if (region != null) 'region': region,
+           'arn': ?arn,
+           'listener_arn': ?listenerArn,
+           'priority': ?priority,
+           'region': ?region,
            if (action != null)
              'action': TfArg.literal([for (final e in action) e.encode()]),
            if (condition != null)

@@ -736,11 +736,9 @@ _FieldPlan _planExcludedChild(ExcludedNestedBlock excluded) {
       : 'this.$dartName,';
   final fieldDecl = 'final $fieldType $dartName;';
 
-  final accessExpr = excluded.required ? dartName : '$dartName!';
-  final entry = "'${excluded.tfName}': $accessExpr.toTfJson(),";
   final encodeEntry = excluded.required
-      ? entry
-      : 'if ($dartName != null) $entry';
+      ? "'${excluded.tfName}': $dartName.toTfJson(),"
+      : "'${excluded.tfName}': ?$dartName?.toTfJson(),";
 
   return (ctorParam: ctorParam, fieldDecl: fieldDecl, encodeEntry: encodeEntry);
 }
@@ -784,11 +782,12 @@ _FieldPlan _plan({
     final source = required ? ident : '$ident!';
     valueExpr = '{for (final e in $source.entries) e.key: e.value$accessor}';
   } else {
-    final target = required ? ident : '$ident!';
-    valueExpr = '$target$accessor';
+    valueExpr = required ? '$ident$accessor' : '?$ident?$accessor';
   }
   final entry = "'$tfName': $valueExpr,";
-  final encodeEntry = required ? entry : 'if ($ident != null) $entry';
+  final encodeEntry = required || !(repeated || keyed)
+      ? entry
+      : 'if ($ident != null) $entry';
 
   return (ctorParam: ctorParam, fieldDecl: fieldDecl, encodeEntry: encodeEntry);
 }

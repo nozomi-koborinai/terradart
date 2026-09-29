@@ -28,15 +28,13 @@ final class AwsS3BucketPublicAccessBlock extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (blockPublicAcls != null) 'block_public_acls': blockPublicAcls,
-           if (blockPublicPolicy != null)
-             'block_public_policy': blockPublicPolicy,
+           'block_public_acls': ?blockPublicAcls,
+           'block_public_policy': ?blockPublicPolicy,
            'bucket': bucket.encodeAs('id'),
-           if (ignorePublicAcls != null) 'ignore_public_acls': ignorePublicAcls,
-           if (region != null) 'region': region,
-           if (restrictPublicBuckets != null)
-             'restrict_public_buckets': restrictPublicBuckets,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
+           'ignore_public_acls': ?ignorePublicAcls,
+           'region': ?region,
+           'restrict_public_buckets': ?restrictPublicBuckets,
+           'skip_destroy': ?skipDestroy,
          },
        );
 

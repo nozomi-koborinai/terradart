@@ -26,10 +26,9 @@ final class AwsRoute53profilesResourceAssociation extends Resource {
          argMap: {
            'name': name,
            'profile_id': profileId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
-           if (resourceProperties != null)
-             'resource_properties': resourceProperties,
+           'resource_properties': ?resourceProperties,
          },
        );
 

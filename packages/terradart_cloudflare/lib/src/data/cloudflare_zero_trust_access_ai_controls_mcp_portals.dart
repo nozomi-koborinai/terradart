@@ -26,9 +26,9 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpPortals extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (search != null) 'search': search,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'search': ?search,
          },
        );
 

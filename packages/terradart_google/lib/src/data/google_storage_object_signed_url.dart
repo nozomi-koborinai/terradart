@@ -31,12 +31,12 @@ final class DataGoogleStorageObjectSignedUrl extends Data {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (contentMd5 != null) 'content_md5': contentMd5,
-           if (contentType != null) 'content_type': contentType,
-           if (credentials != null) 'credentials': credentials,
-           if (duration != null) 'duration': duration,
-           if (extensionHeaders != null) 'extension_headers': extensionHeaders,
-           if (httpMethod != null) 'http_method': httpMethod,
+           'content_md5': ?contentMd5,
+           'content_type': ?contentType,
+           'credentials': ?credentials,
+           'duration': ?duration,
+           'extension_headers': ?extensionHeaders,
+           'http_method': ?httpMethod,
            'path': path,
          },
        );

@@ -79,9 +79,8 @@ final class GoogleDocumentAiWarehouseLocation extends Resource {
          argMap: {
            'access_control_mode': accessControlMode,
            'database_type': databaseType,
-           if (documentCreatorDefaultRole != null)
-             'document_creator_default_role': documentCreatorDefaultRole,
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
+           'document_creator_default_role': ?documentCreatorDefaultRole,
+           'kms_key': ?kmsKey?.encodeAs('id'),
            'location': location,
            'project_number': projectNumber,
          },

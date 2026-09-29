@@ -23,7 +23,7 @@ final class AwsOrganizationsPolicyAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_id': policyId,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
+           'skip_destroy': ?skipDestroy,
            'target_id': targetId,
          },
        );

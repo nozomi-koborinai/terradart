@@ -48,7 +48,7 @@ final class WafregionalSizeConstraintSetSizeConstraintsFieldToMatch {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (data != null) 'data': data!.toTfJson(),
+    'data': ?data?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -70,7 +70,7 @@ final class AwsWafregionalSizeConstraintSet extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (sizeConstraints != null)
              'size_constraints': TfArg.literal([
                for (final e in sizeConstraints) e.encode(),

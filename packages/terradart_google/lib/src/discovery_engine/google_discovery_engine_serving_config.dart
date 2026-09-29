@@ -44,18 +44,15 @@ final class GoogleDiscoveryEngineServingConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (collectionId != null) 'collection_id': collectionId,
+           'collection_id': ?collectionId,
            'engine_id': engineId,
-           if (servingConfigId != null) 'serving_config_id': servingConfigId,
-           if (synonymsControlIds != null)
-             'synonyms_control_ids': synonymsControlIds,
-           if (filterControlIds != null) 'filter_control_ids': filterControlIds,
-           if (boostControlIds != null) 'boost_control_ids': boostControlIds,
-           if (redirectControlIds != null)
-             'redirect_control_ids': redirectControlIds,
-           if (promoteControlIds != null)
-             'promote_control_ids': promoteControlIds,
-           if (project != null) 'project': project,
+           'serving_config_id': ?servingConfigId,
+           'synonyms_control_ids': ?synonymsControlIds,
+           'filter_control_ids': ?filterControlIds,
+           'boost_control_ids': ?boostControlIds,
+           'redirect_control_ids': ?redirectControlIds,
+           'promote_control_ids': ?promoteControlIds,
+           'project': ?project,
          },
        );
 

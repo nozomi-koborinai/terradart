@@ -178,12 +178,10 @@ final class AwsBackupRestoreTestingSelection extends Resource {
            'name': name,
            ...protectedResource.argMap,
            'protected_resource_type': protectedResourceType,
-           if (region != null) 'region': region,
-           if (restoreMetadataOverrides != null)
-             'restore_metadata_overrides': restoreMetadataOverrides,
+           'region': ?region,
+           'restore_metadata_overrides': ?restoreMetadataOverrides,
            'restore_testing_plan_name': restoreTestingPlanName,
-           if (validationWindowHours != null)
-             'validation_window_hours': validationWindowHours,
+           'validation_window_hours': ?validationWindowHours,
          },
        );
 

@@ -19,7 +19,7 @@ final class DataAwsIamUser extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (tags != null) 'tags': tags, 'user_name': userName},
+         argMap: {'tags': ?tags, 'user_name': userName},
        );
 
   @override

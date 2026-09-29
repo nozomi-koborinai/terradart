@@ -27,11 +27,9 @@ final class KeyspacesTableCapacitySpecification {
   final TfArg<num>? writeCapacityUnits;
 
   Map<String, Object?> encode() => {
-    if (readCapacityUnits != null)
-      'read_capacity_units': readCapacityUnits!.toTfJson(),
-    if (throughputMode != null) 'throughput_mode': throughputMode!.toTfJson(),
-    if (writeCapacityUnits != null)
-      'write_capacity_units': writeCapacityUnits!.toTfJson(),
+    'read_capacity_units': ?readCapacityUnits?.toTfJson(),
+    'throughput_mode': ?throughputMode?.toTfJson(),
+    'write_capacity_units': ?writeCapacityUnits?.toTfJson(),
   };
 }
 
@@ -74,9 +72,7 @@ final class KeyspacesTableComment {
 
   final TfArg<String>? message;
 
-  Map<String, Object?> encode() => {
-    if (message != null) 'message': message!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'message': ?message?.toTfJson()};
 }
 
 /// Typed helper for the `encryption_specification` block of
@@ -93,9 +89,8 @@ final class KeyspacesTableEncryptionSpecification {
   final TfArg<KeyspacesTableEncryptionSpecificationType>? type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyIdentifier != null)
-      'kms_key_identifier': kmsKeyIdentifier!.encodeAs('arn').toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn').toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -117,9 +112,7 @@ final class KeyspacesTablePointInTimeRecovery {
 
   final TfArg<KeyspacesTablePointInTimeRecoveryStatus>? status;
 
-  Map<String, Object?> encode() => {
-    if (status != null) 'status': status!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
@@ -277,12 +270,11 @@ final class AwsKeyspacesTable extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultTimeToLive != null)
-             'default_time_to_live': defaultTimeToLive,
+           'default_time_to_live': ?defaultTimeToLive,
            'keyspace_name': keyspaceName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'table_name': tableName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (capacitySpecification != null)
              'capacity_specification': TfArg.literal(
                capacitySpecification.encode(),

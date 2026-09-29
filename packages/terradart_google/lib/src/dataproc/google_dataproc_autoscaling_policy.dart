@@ -21,7 +21,7 @@ final class DataprocAutoscalingPolicyBasicAlgorithm {
   final DataprocAutoscalingPolicyBasicAlgorithmYarnConfig yarnConfig;
 
   Map<String, Object?> encode() => {
-    if (cooldownPeriod != null) 'cooldown_period': cooldownPeriod!.toTfJson(),
+    'cooldown_period': ?cooldownPeriod?.toTfJson(),
     'yarn_config': yarnConfig.encode(),
   };
 }
@@ -51,11 +51,9 @@ final class DataprocAutoscalingPolicyBasicAlgorithmYarnConfig {
   Map<String, Object?> encode() => {
     'graceful_decommission_timeout': gracefulDecommissionTimeout.toTfJson(),
     'scale_down_factor': scaleDownFactor.toTfJson(),
-    if (scaleDownMinWorkerFraction != null)
-      'scale_down_min_worker_fraction': scaleDownMinWorkerFraction!.toTfJson(),
+    'scale_down_min_worker_fraction': ?scaleDownMinWorkerFraction?.toTfJson(),
     'scale_up_factor': scaleUpFactor.toTfJson(),
-    if (scaleUpMinWorkerFraction != null)
-      'scale_up_min_worker_fraction': scaleUpMinWorkerFraction!.toTfJson(),
+    'scale_up_min_worker_fraction': ?scaleUpMinWorkerFraction?.toTfJson(),
   };
 }
 
@@ -76,9 +74,9 @@ final class DataprocAutoscalingPolicySecondaryWorkerConfig {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (maxInstances != null) 'max_instances': maxInstances!.toTfJson(),
-    if (minInstances != null) 'min_instances': minInstances!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'max_instances': ?maxInstances?.toTfJson(),
+    'min_instances': ?minInstances?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -100,8 +98,8 @@ final class DataprocAutoscalingPolicyWorkerConfig {
 
   Map<String, Object?> encode() => {
     'max_instances': maxInstances.toTfJson(),
-    if (minInstances != null) 'min_instances': minInstances!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'min_instances': ?minInstances?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -156,7 +154,7 @@ final class GoogleDataprocAutoscalingPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_id': policyId,
-           if (location != null) 'location': location,
+           'location': ?location,
            if (workerConfig != null)
              'worker_config': TfArg.literal(workerConfig.encode()),
            if (secondaryWorkerConfig != null)
@@ -165,8 +163,8 @@ final class GoogleDataprocAutoscalingPolicy extends Resource {
              ),
            if (basicAlgorithm != null)
              'basic_algorithm': TfArg.literal(basicAlgorithm.encode()),
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

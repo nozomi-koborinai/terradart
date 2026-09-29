@@ -59,7 +59,7 @@ final class DataAwsS3filesAccessPoint extends Data {
          terraformType: tfType,
          argMap: {
            'id': id,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (posixUser != null)
              'posix_user': TfArg.literal([
                for (final e in posixUser) e.encode(),

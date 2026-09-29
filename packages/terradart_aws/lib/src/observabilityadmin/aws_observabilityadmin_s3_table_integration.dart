@@ -26,7 +26,7 @@ final class ObservabilityadminS3TableIntegrationEncryption {
   sseAlgorithm;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),
   };
 }
@@ -61,9 +61,9 @@ final class AwsObservabilityadminS3TableIntegration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (encryption != null)
              'encryption': TfArg.literal([
                for (final e in encryption) e.encode(),

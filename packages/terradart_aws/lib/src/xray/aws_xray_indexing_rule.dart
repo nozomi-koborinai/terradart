@@ -53,7 +53,7 @@ final class AwsXrayIndexingRule extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (rule != null)
              'rule': TfArg.literal([for (final e in rule) e.encode()]),
          },

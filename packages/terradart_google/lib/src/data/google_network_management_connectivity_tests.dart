@@ -22,10 +22,7 @@ final class DataGoogleNetworkManagementConnectivityTests extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (filter != null) 'filter': filter,
-           if (project != null) 'project': project,
-         },
+         argMap: {'filter': ?filter, 'project': ?project},
        );
 
   @override

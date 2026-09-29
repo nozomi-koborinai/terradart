@@ -388,9 +388,9 @@ final class Route53RecordGeolocationRoutingPolicy {
   final TfArg<String>? subdivision;
 
   Map<String, Object?> encode() => {
-    if (continent != null) 'continent': continent!.toTfJson(),
-    if (country != null) 'country': country!.toTfJson(),
-    if (subdivision != null) 'subdivision': subdivision!.toTfJson(),
+    'continent': ?continent?.toTfJson(),
+    'country': ?country?.toTfJson(),
+    'subdivision': ?subdivision?.toTfJson(),
   };
 }
 
@@ -414,9 +414,9 @@ final class Route53RecordGeoproximityRoutingPolicy {
   final List<Route53RecordGeoproximityRoutingPolicyCoordinates>? coordinates;
 
   Map<String, Object?> encode() => {
-    if (awsRegion != null) 'aws_region': awsRegion!.toTfJson(),
-    if (bias != null) 'bias': bias!.toTfJson(),
-    if (localZoneGroup != null) 'local_zone_group': localZoneGroup!.toTfJson(),
+    'aws_region': ?awsRegion?.toTfJson(),
+    'bias': ?bias?.toTfJson(),
+    'local_zone_group': ?localZoneGroup?.toTfJson(),
     if (coordinates != null)
       'coordinates': [for (final e in coordinates!) e.encode()],
   };
@@ -532,13 +532,13 @@ final class AwsRoute53Record extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowOverwrite != null) 'allow_overwrite': allowOverwrite,
-           if (healthCheckId != null) 'health_check_id': healthCheckId,
+           'allow_overwrite': ?allowOverwrite,
+           'health_check_id': ?healthCheckId,
            ...?routingPolicy?.argMap,
            'name': name,
            ...target.argMap,
-           if (setIdentifier != null) 'set_identifier': setIdentifier,
-           if (ttl != null) 'ttl': ttl,
+           'set_identifier': ?setIdentifier,
+           'ttl': ?ttl,
            'type': type,
            'zone_id': zoneId,
          },

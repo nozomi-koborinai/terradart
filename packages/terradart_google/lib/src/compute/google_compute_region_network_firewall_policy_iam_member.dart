@@ -29,8 +29,8 @@ final class GoogleComputeRegionNetworkFirewallPolicyIamMember extends Resource {
            'name': name,
            'role': role,
            'member': member,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'project': ?project,
          },
        );
 

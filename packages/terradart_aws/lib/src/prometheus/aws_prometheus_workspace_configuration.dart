@@ -58,14 +58,11 @@ final class AwsPrometheusWorkspaceConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (outOfOrderTimeWindowInSeconds != null)
-             'out_of_order_time_window_in_seconds':
-                 outOfOrderTimeWindowInSeconds,
-           if (region != null) 'region': region,
-           if (retentionPeriodInDays != null)
-             'retention_period_in_days': retentionPeriodInDays,
-           if (ruleQueryOffsetInSeconds != null)
-             'rule_query_offset_in_seconds': ruleQueryOffsetInSeconds,
+           'out_of_order_time_window_in_seconds':
+               ?outOfOrderTimeWindowInSeconds,
+           'region': ?region,
+           'retention_period_in_days': ?retentionPeriodInDays,
+           'rule_query_offset_in_seconds': ?ruleQueryOffsetInSeconds,
            'workspace_id': workspaceId,
            if (limitsPerLabelSet != null)
              'limits_per_label_set': TfArg.literal([

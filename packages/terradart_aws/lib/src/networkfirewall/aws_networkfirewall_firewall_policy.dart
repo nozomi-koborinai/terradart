@@ -23,7 +23,7 @@ final class NetworkfirewallFirewallPolicyEncryptionConfiguration {
   final TfArg<NetworkfirewallFirewallPolicyEncryptionConfigurationType> type;
 
   Map<String, Object?> encode() => {
-    if (keyId != null) 'key_id': keyId!.encodeAs('arn').toTfJson(),
+    'key_id': ?keyId?.encodeAs('arn').toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -88,19 +88,15 @@ final class NetworkfirewallFirewallPolicyFirewallPolicy {
   statelessRuleGroupReference;
 
   Map<String, Object?> encode() => {
-    if (enableTlsSessionHolding != null)
-      'enable_tls_session_holding': enableTlsSessionHolding!.toTfJson(),
-    if (statefulDefaultActions != null)
-      'stateful_default_actions': statefulDefaultActions!.toTfJson(),
+    'enable_tls_session_holding': ?enableTlsSessionHolding?.toTfJson(),
+    'stateful_default_actions': ?statefulDefaultActions?.toTfJson(),
     'stateless_default_actions': statelessDefaultActions.toTfJson(),
     'stateless_fragment_default_actions': statelessFragmentDefaultActions
         .toTfJson(),
-    if (tlsInspectionConfigurationArn != null)
-      'tls_inspection_configuration_arn': tlsInspectionConfigurationArn!
-          .toTfJson(),
-    if (policyVariables != null) 'policy_variables': policyVariables!.encode(),
-    if (statefulEngineOptions != null)
-      'stateful_engine_options': statefulEngineOptions!.encode(),
+    'tls_inspection_configuration_arn': ?tlsInspectionConfigurationArn
+        ?.toTfJson(),
+    'policy_variables': ?policyVariables?.encode(),
+    'stateful_engine_options': ?statefulEngineOptions?.encode(),
     if (statefulRuleGroupReference != null)
       'stateful_rule_group_reference': [
         for (final e in statefulRuleGroupReference!) e.encode(),
@@ -192,10 +188,9 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptions {
   flowTimeouts;
 
   Map<String, Object?> encode() => {
-    if (ruleOrder != null) 'rule_order': ruleOrder!.toTfJson(),
-    if (streamExceptionPolicy != null)
-      'stream_exception_policy': streamExceptionPolicy!.toTfJson(),
-    if (flowTimeouts != null) 'flow_timeouts': flowTimeouts!.encode(),
+    'rule_order': ?ruleOrder?.toTfJson(),
+    'stream_exception_policy': ?streamExceptionPolicy?.toTfJson(),
+    'flow_timeouts': ?flowTimeouts?.encode(),
   };
 }
 
@@ -237,8 +232,7 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsFlow
   final TfArg<num>? tcpIdleTimeoutSeconds;
 
   Map<String, Object?> encode() => {
-    if (tcpIdleTimeoutSeconds != null)
-      'tcp_idle_timeout_seconds': tcpIdleTimeoutSeconds!.toTfJson(),
+    'tcp_idle_timeout_seconds': ?tcpIdleTimeoutSeconds?.toTfJson(),
   };
 }
 
@@ -263,11 +257,10 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenc
   override;
 
   Map<String, Object?> encode() => {
-    if (deepThreatInspection != null)
-      'deep_threat_inspection': deepThreatInspection!.toTfJson(),
-    if (priority != null) 'priority': priority!.toTfJson(),
+    'deep_threat_inspection': ?deepThreatInspection?.toTfJson(),
+    'priority': ?priority?.toTfJson(),
     'resource_arn': resourceArn.toTfJson(),
-    if (override != null) 'override': override!.encode(),
+    'override': ?override?.encode(),
   };
 }
 
@@ -284,9 +277,7 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenc
   >?
   action;
 
-  Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
@@ -407,10 +398,10 @@ final class AwsNetworkfirewallFirewallPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (encryptionConfiguration != null)
              'encryption_configuration': TfArg.literal(
                encryptionConfiguration.encode(),

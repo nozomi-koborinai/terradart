@@ -37,9 +37,9 @@ final class GoogleComputeRegionNetworkFirewallPolicyAssociation
            'name': name,
            'firewall_policy': firewallPolicy,
            'attachment_target': attachmentTarget,
-           if (region != null) 'region': region,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -197,8 +197,8 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride
   configurationBundle;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'metadata': ?metadata?.toTfJson(),
     'name': name.toTfJson(),
     'weight': weight.toTfJson(),
     if (configurationBundle != null)
@@ -344,8 +344,8 @@ final class BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteTrafficSp
   final TfArg<num> weight;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'metadata': ?metadata?.toTfJson(),
     'name': name.toTfJson(),
     'target_name': targetName.toTfJson(),
     'weight': weight.toTfJson(),
@@ -471,7 +471,7 @@ final class BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipal
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
+    'operator': ?operator?.toTfJson(),
   };
 }
 
@@ -507,10 +507,10 @@ final class AwsBedrockagentcoreGatewayRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'gateway_identifier': gatewayIdentifier,
            'priority': priority,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (action != null)
              'action': TfArg.literal([for (final e in action) e.encode()]),
            if (condition != null)

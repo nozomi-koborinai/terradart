@@ -34,12 +34,11 @@ final class AwsAppconfigDeployment extends Resource {
            'configuration_profile_id': configurationProfileId,
            'configuration_version': configurationVersion,
            'deployment_strategy_id': deploymentStrategyId,
-           if (description != null) 'description': description,
+           'description': ?description,
            'environment_id': environmentId,
-           if (kmsKeyIdentifier != null)
-             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn'),
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

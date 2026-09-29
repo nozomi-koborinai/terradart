@@ -467,7 +467,7 @@ final class BedrockEvaluationJobEvaluationConfigHumanCustomMetric {
   ratingMethod;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
     'rating_method': ratingMethod.toTfJson(),
   };
@@ -585,7 +585,7 @@ final class BedrockEvaluationJobEvaluationConfigHumanHumanWorkflowConfig {
 
   Map<String, Object?> encode() => {
     'flow_definition_arn': flowDefinitionArn.toTfJson(),
-    if (instructions != null) 'instructions': instructions!.toTfJson(),
+    'instructions': ?instructions?.toTfJson(),
   };
 }
 
@@ -727,8 +727,7 @@ final class BedrockEvaluationJobInferenceConfigModelBedrockModel {
   performanceConfig;
 
   Map<String, Object?> encode() => {
-    if (inferenceParams != null)
-      'inference_params': inferenceParams!.toTfJson(),
+    'inference_params': ?inferenceParams?.toTfJson(),
     'model_identifier': modelIdentifier.toTfJson(),
     if (performanceConfig != null)
       'performance_config': [for (final e in performanceConfig!) e.encode()],
@@ -748,9 +747,7 @@ final class BedrockEvaluationJobInferenceConfigModelBedrockModelPerformanceConfi
   >?
   latency;
 
-  Map<String, Object?> encode() => {
-    if (latency != null) 'latency': latency!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'latency': ?latency?.toTfJson()};
 }
 
 /// `latency` — derived from the provider schema description.
@@ -982,8 +979,7 @@ final class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetri
   final TfArg<num>? numberOfResults;
 
   Map<String, Object?> encode() => {
-    if (numberOfResults != null)
-      'number_of_results': numberOfResults!.toTfJson(),
+    'number_of_results': ?numberOfResults?.toTfJson(),
   };
 }
 
@@ -1044,8 +1040,7 @@ final class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetri
   final TfArg<num>? numberOfResults;
 
   Map<String, Object?> encode() => {
-    if (numberOfResults != null)
-      'number_of_results': numberOfResults!.toTfJson(),
+    'number_of_results': ?numberOfResults?.toTfJson(),
   };
 }
 
@@ -1191,15 +1186,14 @@ final class AwsBedrockEvaluationJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applicationType != null) 'application_type': applicationType,
-           if (customerEncryptionKeyId != null)
-             'customer_encryption_key_id': customerEncryptionKeyId,
-           if (jobDescription != null) 'job_description': jobDescription,
+           'application_type': ?applicationType,
+           'customer_encryption_key_id': ?customerEncryptionKeyId,
+           'job_description': ?jobDescription,
            'job_name': jobName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (tags != null) 'tags': tags,
+           'skip_destroy': ?skipDestroy,
+           'tags': ?tags,
            if (evaluationConfig != null)
              'evaluation_config': TfArg.literal([
                for (final e in evaluationConfig) e.encode(),

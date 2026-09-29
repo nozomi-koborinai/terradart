@@ -25,7 +25,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewIamBindingCondition {
   final TfArg<String> title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
     'title': title.toTfJson(),
   };
@@ -62,8 +62,8 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding
            'feature_online_store': featureOnlineStore,
            'feature_view': featureView,
            'members': members,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

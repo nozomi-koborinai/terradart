@@ -26,11 +26,11 @@ final class DataGoogleComputeInstanceTemplate extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (filter != null) 'filter': filter,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (name != null) 'name': name,
-           if (project != null) 'project': project,
-           if (selfLinkUnique != null) 'self_link_unique': selfLinkUnique,
+           'filter': ?filter,
+           'most_recent': ?mostRecent,
+           'name': ?name,
+           'project': ?project,
+           'self_link_unique': ?selfLinkUnique,
          },
        );
 

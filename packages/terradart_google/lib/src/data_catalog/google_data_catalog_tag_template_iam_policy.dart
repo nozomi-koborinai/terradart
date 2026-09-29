@@ -29,9 +29,9 @@ final class GoogleDataCatalogTagTemplateIamPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'tag_template': tagTemplate,
-           if (region != null) 'region': region,
+           'region': ?region,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

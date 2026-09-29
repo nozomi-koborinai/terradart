@@ -27,8 +27,8 @@ final class DataGoogleComputeRouter extends Data {
          argMap: {
            'name': name,
            'network': network,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

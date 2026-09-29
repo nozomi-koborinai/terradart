@@ -21,9 +21,9 @@ final class DataAccountMemberFilter {
   final TfArg<DataAccountMemberFilterStatus>? status;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -78,8 +78,8 @@ final class DataCloudflareAccountMember extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (memberId != null) 'member_id': memberId,
+           'account_id': ?accountId,
+           'member_id': ?memberId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

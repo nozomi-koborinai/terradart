@@ -25,7 +25,7 @@ final class AwsServiceDiscoveryInstance extends Resource {
          argMap: {
            'attributes': attributes,
            'instance_id': instanceId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_id': serviceId,
          },
        );

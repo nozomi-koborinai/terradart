@@ -26,9 +26,9 @@ final class AwsLocationRouteCalculator extends Resource {
          argMap: {
            'calculator_name': calculatorName,
            'data_source': dataSource,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

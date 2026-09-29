@@ -102,18 +102,16 @@ final class AwsImagebuilderComponent extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (changeDescription != null)
-             'change_description': changeDescription,
+           'change_description': ?changeDescription,
            ...document.argMap,
-           if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'description': ?description,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
            'platform': platform,
-           if (region != null) 'region': region,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (supportedOsVersions != null)
-             'supported_os_versions': supportedOsVersions,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'skip_destroy': ?skipDestroy,
+           'supported_os_versions': ?supportedOsVersions,
+           'tags': ?tags,
            'version': version,
          },
        );

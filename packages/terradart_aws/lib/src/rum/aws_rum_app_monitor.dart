@@ -100,15 +100,14 @@ final class RumAppMonitorAppMonitorConfiguration {
   telemetries;
 
   Map<String, Object?> encode() => {
-    if (allowCookies != null) 'allow_cookies': allowCookies!.toTfJson(),
-    if (enableXray != null) 'enable_xray': enableXray!.toTfJson(),
-    if (excludedPages != null) 'excluded_pages': excludedPages!.toTfJson(),
-    if (favoritePages != null) 'favorite_pages': favoritePages!.toTfJson(),
-    if (guestRoleArn != null) 'guest_role_arn': guestRoleArn!.toTfJson(),
-    if (identityPoolId != null) 'identity_pool_id': identityPoolId!.toTfJson(),
-    if (includedPages != null) 'included_pages': includedPages!.toTfJson(),
-    if (sessionSampleRate != null)
-      'session_sample_rate': sessionSampleRate!.toTfJson(),
+    'allow_cookies': ?allowCookies?.toTfJson(),
+    'enable_xray': ?enableXray?.toTfJson(),
+    'excluded_pages': ?excludedPages?.toTfJson(),
+    'favorite_pages': ?favoritePages?.toTfJson(),
+    'guest_role_arn': ?guestRoleArn?.toTfJson(),
+    'identity_pool_id': ?identityPoolId?.toTfJson(),
+    'included_pages': ?includedPages?.toTfJson(),
+    'session_sample_rate': ?sessionSampleRate?.toTfJson(),
     if (telemetries != null)
       'telemetries': [for (final e in telemetries!) e.toTfJson()],
   };
@@ -133,9 +132,7 @@ final class RumAppMonitorCustomEvents {
 
   final TfArg<RumAppMonitorCustomEventsStatus>? status;
 
-  Map<String, Object?> encode() => {
-    if (status != null) 'status': status!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
@@ -168,11 +165,11 @@ final class AwsRumAppMonitor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cwLogEnabled != null) 'cw_log_enabled': cwLogEnabled,
+           'cw_log_enabled': ?cwLogEnabled,
            ...domain.argMap,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (appMonitorConfiguration != null)
              'app_monitor_configuration': TfArg.literal(
                appMonitorConfiguration.encode(),

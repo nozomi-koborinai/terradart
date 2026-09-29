@@ -28,7 +28,7 @@ final class GoogleApigeeEnvironmentIamMember extends Resource {
            'env_id': envId,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

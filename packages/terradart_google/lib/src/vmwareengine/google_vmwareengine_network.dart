@@ -66,9 +66,9 @@ final class GoogleVmwareengineNetwork extends Resource {
            'name': name,
            'location': location,
            'type': type,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

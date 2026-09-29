@@ -28,11 +28,11 @@ final class AwsApprunnerAutoScalingConfigurationVersion extends Resource {
          terraformType: tfType,
          argMap: {
            'auto_scaling_configuration_name': autoScalingConfigurationName,
-           if (maxConcurrency != null) 'max_concurrency': maxConcurrency,
-           if (maxSize != null) 'max_size': maxSize,
-           if (minSize != null) 'min_size': minSize,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'max_concurrency': ?maxConcurrency,
+           'max_size': ?maxSize,
+           'min_size': ?minSize,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

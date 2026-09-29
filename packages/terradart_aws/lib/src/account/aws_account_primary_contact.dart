@@ -32,19 +32,19 @@ final class AwsAccountPrimaryContact extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'address_line_1': addressLine1,
-           if (addressLine2 != null) 'address_line_2': addressLine2,
-           if (addressLine3 != null) 'address_line_3': addressLine3,
+           'address_line_2': ?addressLine2,
+           'address_line_3': ?addressLine3,
            'city': city,
-           if (companyName != null) 'company_name': companyName,
+           'company_name': ?companyName,
            'country_code': countryCode,
-           if (districtOrCounty != null) 'district_or_county': districtOrCounty,
+           'district_or_county': ?districtOrCounty,
            'full_name': fullName,
            'phone_number': phoneNumber,
            'postal_code': postalCode,
-           if (stateOrRegion != null) 'state_or_region': stateOrRegion,
-           if (websiteUrl != null) 'website_url': websiteUrl,
+           'state_or_region': ?stateOrRegion,
+           'website_url': ?websiteUrl,
          },
        );
 

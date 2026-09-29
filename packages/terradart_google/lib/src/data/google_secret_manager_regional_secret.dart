@@ -25,7 +25,7 @@ final class DataGoogleSecretManagerRegionalSecret extends Data {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'secret_id': secretId,
          },
        );

@@ -52,9 +52,9 @@ final class GoogleNetworkSecurityUllMirroringCollector extends Resource {
            'ull_mirroring_collector_id': ullMirroringCollectorId,
            'engine': engine,
            'forwarding_rule': forwardingRule,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

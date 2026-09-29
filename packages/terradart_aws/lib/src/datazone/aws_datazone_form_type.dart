@@ -48,12 +48,12 @@ final class AwsDatazoneFormType extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'domain_identifier': domainIdentifier,
            'name': name,
            'owning_project_identifier': owningProjectIdentifier,
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
+           'region': ?region,
+           'status': ?status,
            if (model != null)
              'model': TfArg.literal([for (final e in model) e.encode()]),
          },

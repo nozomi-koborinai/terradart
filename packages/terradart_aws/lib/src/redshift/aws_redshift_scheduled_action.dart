@@ -121,11 +121,11 @@ final class RedshiftScheduledActionTargetActionResizeCluster {
   final TfArg<num>? numberOfNodes;
 
   Map<String, Object?> encode() => {
-    if (classic != null) 'classic': classic!.toTfJson(),
+    'classic': ?classic?.toTfJson(),
     'cluster_identifier': clusterIdentifier.toTfJson(),
-    if (clusterType != null) 'cluster_type': clusterType!.toTfJson(),
-    if (nodeType != null) 'node_type': nodeType!.toTfJson(),
-    if (numberOfNodes != null) 'number_of_nodes': numberOfNodes!.toTfJson(),
+    'cluster_type': ?clusterType?.toTfJson(),
+    'node_type': ?nodeType?.toTfJson(),
+    'number_of_nodes': ?numberOfNodes?.toTfJson(),
   };
 }
 
@@ -166,14 +166,14 @@ final class AwsRedshiftScheduledAction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (enable != null) 'enable': enable,
-           if (endTime != null) 'end_time': endTime,
+           'description': ?description,
+           'enable': ?enable,
+           'end_time': ?endTime,
            'iam_role': iamRole,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'schedule': schedule,
-           if (startTime != null) 'start_time': startTime,
+           'start_time': ?startTime,
            'target_action': TfArg.literal(targetAction.encode()),
          },
        );

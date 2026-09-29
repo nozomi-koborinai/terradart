@@ -100,8 +100,8 @@ final class AwsCodeconnectionsConnection extends Resource {
          argMap: {
            ...?host?.argMap,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

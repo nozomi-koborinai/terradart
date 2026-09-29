@@ -25,7 +25,7 @@ final class AwsDsqlClusterPeering extends Resource {
          argMap: {
            'clusters': clusters,
            'identifier': identifier,
-           if (region != null) 'region': region,
+           'region': ?region,
            'witness_region': witnessRegion,
          },
        );

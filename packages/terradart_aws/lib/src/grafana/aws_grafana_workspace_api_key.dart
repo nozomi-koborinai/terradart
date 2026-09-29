@@ -37,7 +37,7 @@ final class AwsGrafanaWorkspaceApiKey extends Resource {
          argMap: {
            'key_name': keyName,
            'key_role': keyRole,
-           if (region != null) 'region': region,
+           'region': ?region,
            'seconds_to_live': secondsToLive,
            'workspace_id': workspaceId,
          },

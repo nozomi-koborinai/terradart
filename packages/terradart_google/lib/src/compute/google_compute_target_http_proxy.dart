@@ -63,11 +63,10 @@ final class GoogleComputeTargetHttpProxy extends Resource {
          argMap: {
            'name': name,
            'url_map': urlMap,
-           if (proxyBind != null) 'proxy_bind': proxyBind,
-           if (httpKeepAliveTimeoutSec != null)
-             'http_keep_alive_timeout_sec': httpKeepAliveTimeoutSec,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'proxy_bind': ?proxyBind,
+           'http_keep_alive_timeout_sec': ?httpKeepAliveTimeoutSec,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

@@ -94,7 +94,7 @@ final class AwsDbProxyTarget extends Resource {
          argMap: {
            ...database.argMap,
            'db_proxy_name': dbProxyName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'target_group_name': targetGroupName,
          },
        );

@@ -23,10 +23,10 @@ final class AwsIdentitystoreGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'display_name': displayName,
            'identity_store_id': identityStoreId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

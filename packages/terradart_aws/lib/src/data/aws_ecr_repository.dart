@@ -23,9 +23,9 @@ final class DataAwsEcrRepository extends Data {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (registryId != null) 'registry_id': registryId,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'registry_id': ?registryId,
+           'tags': ?tags,
          },
        );
 

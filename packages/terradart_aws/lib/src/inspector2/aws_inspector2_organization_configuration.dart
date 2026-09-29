@@ -30,11 +30,11 @@ final class Inspector2OrganizationConfigurationAutoEnable {
   final TfArg<bool>? lambdaCode;
 
   Map<String, Object?> encode() => {
-    if (codeRepository != null) 'code_repository': codeRepository!.toTfJson(),
+    'code_repository': ?codeRepository?.toTfJson(),
     'ec2': ec2.toTfJson(),
     'ecr': ecr.toTfJson(),
-    if (lambda != null) 'lambda': lambda!.toTfJson(),
-    if (lambdaCode != null) 'lambda_code': lambdaCode!.toTfJson(),
+    'lambda': ?lambda?.toTfJson(),
+    'lambda_code': ?lambdaCode?.toTfJson(),
   };
 }
 
@@ -53,7 +53,7 @@ final class AwsInspector2OrganizationConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'auto_enable': TfArg.literal(autoEnable.encode()),
          },
        );

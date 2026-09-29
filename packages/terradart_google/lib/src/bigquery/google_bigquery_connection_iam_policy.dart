@@ -29,9 +29,9 @@ final class GoogleBigqueryConnectionIamPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'connection_id': connectionId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

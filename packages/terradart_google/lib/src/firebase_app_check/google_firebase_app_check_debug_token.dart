@@ -65,7 +65,7 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
            'app_id': appId,
            'display_name': displayName,
            'token': token,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

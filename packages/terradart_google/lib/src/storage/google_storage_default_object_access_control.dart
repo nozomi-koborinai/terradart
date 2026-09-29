@@ -65,7 +65,7 @@ final class GoogleStorageDefaultObjectAccessControl extends Resource {
            'bucket': bucket.encodeAs('name'),
            'entity': entity,
            'role': role,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

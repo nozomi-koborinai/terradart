@@ -81,11 +81,7 @@ final class AwsStoragegatewayUploadBuffer extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           ...disk.argMap,
-           'gateway_arn': gatewayArn,
-           if (region != null) 'region': region,
-         },
+         argMap: {...disk.argMap, 'gateway_arn': gatewayArn, 'region': ?region},
        );
 
   @override

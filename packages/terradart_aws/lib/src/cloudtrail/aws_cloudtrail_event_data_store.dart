@@ -34,7 +34,7 @@ final class CloudtrailEventDataStoreAdvancedEventSelector {
   fieldSelector;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (fieldSelector != null)
       'field_selector': [for (final e in fieldSelector!) e.encode()],
   };
@@ -70,13 +70,13 @@ final class CloudtrailEventDataStoreAdvancedEventSelectorFieldSelector {
   final TfArg<List<Object?>>? startsWith;
 
   Map<String, Object?> encode() => {
-    if (endsWith != null) 'ends_with': endsWith!.toTfJson(),
-    if (equals != null) 'equals': equals!.toTfJson(),
-    if (field != null) 'field': field!.toTfJson(),
-    if (notEndsWith != null) 'not_ends_with': notEndsWith!.toTfJson(),
-    if (notEquals != null) 'not_equals': notEquals!.toTfJson(),
-    if (notStartsWith != null) 'not_starts_with': notStartsWith!.toTfJson(),
-    if (startsWith != null) 'starts_with': startsWith!.toTfJson(),
+    'ends_with': ?endsWith?.toTfJson(),
+    'equals': ?equals?.toTfJson(),
+    'field': ?field?.toTfJson(),
+    'not_ends_with': ?notEndsWith?.toTfJson(),
+    'not_equals': ?notEquals?.toTfJson(),
+    'not_starts_with': ?notStartsWith?.toTfJson(),
+    'starts_with': ?startsWith?.toTfJson(),
   };
 }
 
@@ -126,19 +126,16 @@ final class AwsCloudtrailEventDataStore extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (billingMode != null) 'billing_mode': billingMode,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (multiRegionEnabled != null)
-             'multi_region_enabled': multiRegionEnabled,
+           'billing_mode': ?billingMode,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'multi_region_enabled': ?multiRegionEnabled,
            'name': name,
-           if (organizationEnabled != null)
-             'organization_enabled': organizationEnabled,
-           if (region != null) 'region': region,
-           if (retentionPeriod != null) 'retention_period': retentionPeriod,
-           if (suspend != null) 'suspend': suspend,
-           if (tags != null) 'tags': tags,
-           if (terminationProtectionEnabled != null)
-             'termination_protection_enabled': terminationProtectionEnabled,
+           'organization_enabled': ?organizationEnabled,
+           'region': ?region,
+           'retention_period': ?retentionPeriod,
+           'suspend': ?suspend,
+           'tags': ?tags,
+           'termination_protection_enabled': ?terminationProtectionEnabled,
            if (advancedEventSelector != null)
              'advanced_event_selector': TfArg.literal([
                for (final e in advancedEventSelector) e.encode(),

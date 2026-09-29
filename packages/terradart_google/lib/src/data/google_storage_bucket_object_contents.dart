@@ -24,8 +24,8 @@ final class DataGoogleStorageBucketObjectContents extends Data {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (matchGlob != null) 'match_glob': matchGlob,
-           if (prefix != null) 'prefix': prefix,
+           'match_glob': ?matchGlob,
+           'prefix': ?prefix,
          },
        );
 

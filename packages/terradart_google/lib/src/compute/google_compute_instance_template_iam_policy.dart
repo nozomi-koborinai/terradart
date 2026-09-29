@@ -26,11 +26,7 @@ final class GoogleComputeInstanceTemplateIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           'policy_data': policyData,
-           if (project != null) 'project': project,
-         },
+         argMap: {'name': name, 'policy_data': policyData, 'project': ?project},
        );
 
   @override

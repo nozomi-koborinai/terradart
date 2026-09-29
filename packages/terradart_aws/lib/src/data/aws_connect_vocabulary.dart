@@ -24,10 +24,10 @@ final class DataAwsConnectVocabulary extends Data {
          terraformType: tfType,
          argMap: {
            'instance_id': instanceId,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (vocabularyId != null) 'vocabulary_id': vocabularyId,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
+           'vocabulary_id': ?vocabularyId,
          },
        );
 

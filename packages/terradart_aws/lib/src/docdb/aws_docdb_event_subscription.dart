@@ -90,14 +90,14 @@ final class AwsDocdbEventSubscription extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
-           if (eventCategories != null) 'event_categories': eventCategories,
+           'enabled': ?enabled,
+           'event_categories': ?eventCategories,
            ...?name?.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            'sns_topic_arn': snsTopicArn.encodeAs('arn'),
-           if (sourceIds != null) 'source_ids': sourceIds,
-           if (sourceType != null) 'source_type': sourceType,
-           if (tags != null) 'tags': tags,
+           'source_ids': ?sourceIds,
+           'source_type': ?sourceType,
+           'tags': ?tags,
          },
        );
 

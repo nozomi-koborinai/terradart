@@ -51,13 +51,13 @@ final class CodepipelineCustomActionTypeConfigurationProperty {
   final TfArg<CodepipelineCustomActionTypeConfigurationPropertyType>? type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'key': key.toTfJson(),
     'name': name.toTfJson(),
-    if (queryable != null) 'queryable': queryable!.toTfJson(),
+    'queryable': ?queryable?.toTfJson(),
     'required': required.toTfJson(),
     'secret': secret.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -133,14 +133,10 @@ final class CodepipelineCustomActionTypeSettings {
   final TfArg<String>? thirdPartyConfigurationUrl;
 
   Map<String, Object?> encode() => {
-    if (entityUrlTemplate != null)
-      'entity_url_template': entityUrlTemplate!.toTfJson(),
-    if (executionUrlTemplate != null)
-      'execution_url_template': executionUrlTemplate!.toTfJson(),
-    if (revisionUrlTemplate != null)
-      'revision_url_template': revisionUrlTemplate!.toTfJson(),
-    if (thirdPartyConfigurationUrl != null)
-      'third_party_configuration_url': thirdPartyConfigurationUrl!.toTfJson(),
+    'entity_url_template': ?entityUrlTemplate?.toTfJson(),
+    'execution_url_template': ?executionUrlTemplate?.toTfJson(),
+    'revision_url_template': ?revisionUrlTemplate?.toTfJson(),
+    'third_party_configuration_url': ?thirdPartyConfigurationUrl?.toTfJson(),
   };
 }
 
@@ -171,8 +167,8 @@ final class AwsCodepipelineCustomActionType extends Resource {
          argMap: {
            'category': category,
            'provider_name': providerName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'version': version,
            if (configurationProperty != null)
              'configuration_property': TfArg.literal([

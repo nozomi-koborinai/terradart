@@ -28,14 +28,13 @@ final class AwsKinesisVideoStream extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dataRetentionInHours != null)
-             'data_retention_in_hours': dataRetentionInHours,
-           if (deviceName != null) 'device_name': deviceName,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (mediaType != null) 'media_type': mediaType,
+           'data_retention_in_hours': ?dataRetentionInHours,
+           'device_name': ?deviceName,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'media_type': ?mediaType,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -1203,25 +1203,21 @@ final class GoogleComputeRegionBackendService extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
-           if (protocol != null) 'protocol': protocol,
-           if (portName != null) 'port_name': portName,
-           if (loadBalancingScheme != null)
-             'load_balancing_scheme': loadBalancingScheme,
-           if (localityLbPolicy != null) 'locality_lb_policy': localityLbPolicy,
-           if (sessionAffinity != null) 'session_affinity': sessionAffinity,
-           if (affinityCookieTtlSec != null)
-             'affinity_cookie_ttl_sec': affinityCookieTtlSec,
-           if (timeoutSec != null) 'timeout_sec': timeoutSec,
-           if (connectionDrainingTimeoutSec != null)
-             'connection_draining_timeout_sec': connectionDrainingTimeoutSec,
-           if (enableCdn != null) 'enable_cdn': enableCdn,
-           if (ipAddressSelectionPolicy != null)
-             'ip_address_selection_policy': ipAddressSelectionPolicy,
-           if (network != null) 'network': network.encodeAs('id'),
-           if (healthChecks != null) 'health_checks': healthChecks,
-           if (securityPolicy != null) 'security_policy': securityPolicy,
+           'region': ?region,
+           'description': ?description,
+           'protocol': ?protocol,
+           'port_name': ?portName,
+           'load_balancing_scheme': ?loadBalancingScheme,
+           'locality_lb_policy': ?localityLbPolicy,
+           'session_affinity': ?sessionAffinity,
+           'affinity_cookie_ttl_sec': ?affinityCookieTtlSec,
+           'timeout_sec': ?timeoutSec,
+           'connection_draining_timeout_sec': ?connectionDrainingTimeoutSec,
+           'enable_cdn': ?enableCdn,
+           'ip_address_selection_policy': ?ipAddressSelectionPolicy,
+           'network': ?network?.encodeAs('id'),
+           'health_checks': ?healthChecks,
+           'security_policy': ?securityPolicy,
            if (backends != null)
              'backend': TfArg.literal(
                backends.map((b) => b.toArgMap()).toList(),
@@ -1260,7 +1256,7 @@ final class GoogleComputeRegionBackendService extends Resource {
            if (tlsSettings != null)
              'tls_settings': TfArg.literal([tlsSettings.toArgMap()]),
            if (params != null) 'params': TfArg.literal([params.toArgMap()]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

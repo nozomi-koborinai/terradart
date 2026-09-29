@@ -80,8 +80,8 @@ final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
          argMap: {
            'service_id': serviceId,
            'target_resource': targetResource,
-           if (enforcementMode != null) 'enforcement_mode': enforcementMode,
-           if (project != null) 'project': project,
+           'enforcement_mode': ?enforcementMode,
+           'project': ?project,
          },
        );
 

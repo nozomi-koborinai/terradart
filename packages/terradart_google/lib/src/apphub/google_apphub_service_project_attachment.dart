@@ -32,9 +32,9 @@ final class GoogleApphubServiceProjectAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'service_project_attachment_id': serviceProjectAttachmentId,
-           if (serviceProject != null) 'service_project': serviceProject,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'service_project': ?serviceProject,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

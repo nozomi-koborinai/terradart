@@ -945,25 +945,21 @@ final class GoogleComputeInstanceTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           'name': ?name,
+           'name_prefix': ?namePrefix,
            'machine_type': machineType,
-           if (description != null) 'description': description,
-           if (instanceDescription != null)
-             'instance_description': instanceDescription,
-           if (labels != null) 'labels': labels,
-           if (tags != null) 'tags': tags,
-           if (metadata != null) 'metadata': metadata,
-           if (metadataStartupScript != null)
-             'metadata_startup_script': metadataStartupScript,
-           if (canIpForward != null) 'can_ip_forward': canIpForward,
-           if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform,
-           if (region != null) 'region': region,
-           if (resourceManagerTags != null)
-             'resource_manager_tags': resourceManagerTags,
-           if (resourcePolicies != null) 'resource_policies': resourcePolicies,
-           if (keyRevocationActionType != null)
-             'key_revocation_action_type': keyRevocationActionType,
+           'description': ?description,
+           'instance_description': ?instanceDescription,
+           'labels': ?labels,
+           'tags': ?tags,
+           'metadata': ?metadata,
+           'metadata_startup_script': ?metadataStartupScript,
+           'can_ip_forward': ?canIpForward,
+           'min_cpu_platform': ?minCpuPlatform,
+           'region': ?region,
+           'resource_manager_tags': ?resourceManagerTags,
+           'resource_policies': ?resourcePolicies,
+           'key_revocation_action_type': ?keyRevocationActionType,
            'disk': TfArg.literal(disk.map((d) => d.toArgMap()).toList()),
            'network_interface': TfArg.literal(
              networkInterface.map((n) => n.toArgMap()).toList(),
@@ -996,7 +992,7 @@ final class GoogleComputeInstanceTemplate extends Resource {
              'network_performance_config': TfArg.literal([
                networkPerformanceConfig.toArgMap(),
              ]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

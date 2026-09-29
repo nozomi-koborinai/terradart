@@ -46,10 +46,9 @@ final class GoogleApigeeEnvironmentApiRevisionDeployment extends Resource {
            'environment': environment,
            'api': api,
            'revision': revision,
-           if (override != null) 'override': override,
-           if (sequencedRollout != null) 'sequenced_rollout': sequencedRollout,
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('email'),
+           'override': ?override,
+           'sequenced_rollout': ?sequencedRollout,
+           'service_account': ?serviceAccount?.encodeAs('email'),
          },
        );
 

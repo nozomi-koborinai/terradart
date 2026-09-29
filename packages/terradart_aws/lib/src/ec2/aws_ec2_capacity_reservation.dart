@@ -90,21 +90,19 @@ final class AwsEc2CapacityReservation extends Resource {
          terraformType: tfType,
          argMap: {
            'availability_zone': availabilityZone,
-           if (ebsOptimized != null) 'ebs_optimized': ebsOptimized,
-           if (endDate != null) 'end_date': endDate,
-           if (endDateType != null) 'end_date_type': endDateType,
-           if (ephemeralStorage != null) 'ephemeral_storage': ephemeralStorage,
+           'ebs_optimized': ?ebsOptimized,
+           'end_date': ?endDate,
+           'end_date_type': ?endDateType,
+           'ephemeral_storage': ?ephemeralStorage,
            'instance_count': instanceCount,
-           if (instanceMatchCriteria != null)
-             'instance_match_criteria': instanceMatchCriteria,
+           'instance_match_criteria': ?instanceMatchCriteria,
            'instance_platform': instancePlatform,
            'instance_type': instanceType,
-           if (outpostArn != null) 'outpost_arn': outpostArn,
-           if (placementGroupArn != null)
-             'placement_group_arn': placementGroupArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (tenancy != null) 'tenancy': tenancy,
+           'outpost_arn': ?outpostArn,
+           'placement_group_arn': ?placementGroupArn,
+           'region': ?region,
+           'tags': ?tags,
+           'tenancy': ?tenancy,
          },
        );
 

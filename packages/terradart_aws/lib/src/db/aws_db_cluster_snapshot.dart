@@ -26,9 +26,9 @@ final class AwsDbClusterSnapshot extends Resource {
          argMap: {
            'db_cluster_identifier': dbClusterIdentifier,
            'db_cluster_snapshot_identifier': dbClusterSnapshotIdentifier,
-           if (region != null) 'region': region,
-           if (sharedAccounts != null) 'shared_accounts': sharedAccounts,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'shared_accounts': ?sharedAccounts,
+           'tags': ?tags,
          },
        );
 

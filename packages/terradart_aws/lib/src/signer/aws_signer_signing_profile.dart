@@ -143,10 +143,9 @@ final class AwsSignerSigningProfile extends Resource {
          argMap: {
            ...?name?.argMap,
            'platform_id': platformId,
-           if (region != null) 'region': region,
-           if (signingParameters != null)
-             'signing_parameters': signingParameters,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'signing_parameters': ?signingParameters,
+           'tags': ?tags,
            if (signatureValidityPeriod != null)
              'signature_validity_period': TfArg.literal(
                signatureValidityPeriod.encode(),

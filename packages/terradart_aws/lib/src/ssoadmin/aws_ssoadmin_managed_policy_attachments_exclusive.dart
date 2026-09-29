@@ -28,7 +28,7 @@ final class AwsSsoadminManagedPolicyAttachmentsExclusive extends Resource {
            'instance_arn': instanceArn,
            'managed_policy_arns': managedPolicyArns,
            'permission_set_arn': permissionSetArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

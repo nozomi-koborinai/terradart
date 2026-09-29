@@ -30,8 +30,8 @@ final class GoogleDataplexEntryGroupIamPolicy extends Resource {
          argMap: {
            'entry_group_id': entryGroupId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

@@ -28,15 +28,15 @@ final class AwsEc2TrafficMirrorSession extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'network_interface_id': networkInterfaceId,
-           if (packetLength != null) 'packet_length': packetLength,
-           if (region != null) 'region': region,
+           'packet_length': ?packetLength,
+           'region': ?region,
            'session_number': sessionNumber,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'traffic_mirror_filter_id': trafficMirrorFilterId,
            'traffic_mirror_target_id': trafficMirrorTargetId,
-           if (virtualNetworkId != null) 'virtual_network_id': virtualNetworkId,
+           'virtual_network_id': ?virtualNetworkId,
          },
        );
 

@@ -24,10 +24,10 @@ final class AwsResiliencehubv2UserJourney extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (policyArn != null) 'policy_arn': policyArn,
-           if (region != null) 'region': region,
+           'policy_arn': ?policyArn,
+           'region': ?region,
            'system_arn': systemArn,
          },
        );

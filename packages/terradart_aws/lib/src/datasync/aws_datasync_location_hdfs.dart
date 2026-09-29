@@ -189,9 +189,8 @@ final class DatasyncLocationHdfsQopConfiguration {
   final TfArg<DatasyncLocationHdfsQopConfigurationRpcProtection>? rpcProtection;
 
   Map<String, Object?> encode() => {
-    if (dataTransferProtection != null)
-      'data_transfer_protection': dataTransferProtection!.toTfJson(),
-    if (rpcProtection != null) 'rpc_protection': rpcProtection!.toTfJson(),
+    'data_transfer_protection': ?dataTransferProtection?.toTfJson(),
+    'rpc_protection': ?rpcProtection?.toTfJson(),
   };
 }
 
@@ -251,21 +250,17 @@ final class AwsDatasyncLocationHdfs extends Resource {
          terraformType: tfType,
          argMap: {
            'agent_arns': agentArns,
-           if (authenticationType != null)
-             'authentication_type': authenticationType,
-           if (blockSize != null) 'block_size': blockSize,
+           'authentication_type': ?authenticationType,
+           'block_size': ?blockSize,
            ...?kerberosKeytab?.argMap,
            ...?kerberosKrb5Conf?.argMap,
-           if (kerberosPrincipal != null)
-             'kerberos_principal': kerberosPrincipal,
-           if (kmsKeyProviderUri != null)
-             'kms_key_provider_uri': kmsKeyProviderUri,
-           if (region != null) 'region': region,
-           if (replicationFactor != null)
-             'replication_factor': replicationFactor,
-           if (simpleUser != null) 'simple_user': simpleUser,
-           if (subdirectory != null) 'subdirectory': subdirectory,
-           if (tags != null) 'tags': tags,
+           'kerberos_principal': ?kerberosPrincipal,
+           'kms_key_provider_uri': ?kmsKeyProviderUri,
+           'region': ?region,
+           'replication_factor': ?replicationFactor,
+           'simple_user': ?simpleUser,
+           'subdirectory': ?subdirectory,
+           'tags': ?tags,
            'name_node': TfArg.literal([for (final e in nameNode) e.encode()]),
            if (qopConfiguration != null)
              'qop_configuration': TfArg.literal(qopConfiguration.encode()),

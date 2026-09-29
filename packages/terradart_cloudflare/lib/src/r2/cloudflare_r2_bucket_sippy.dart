@@ -43,10 +43,9 @@ final class R2BucketSippyDestination {
   final TfArg<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
-    if (accessKeyId != null) 'access_key_id': accessKeyId!.toTfJson(),
-    if (cloudProvider != null) 'cloud_provider': cloudProvider!.toTfJson(),
-    if (secretAccessKey != null)
-      'secret_access_key': secretAccessKey!.toTfJson(),
+    'access_key_id': ?accessKeyId?.toTfJson(),
+    'cloud_provider': ?cloudProvider?.toTfJson(),
+    'secret_access_key': ?secretAccessKey?.toTfJson(),
   };
 }
 
@@ -103,19 +102,18 @@ final class R2BucketSippySource {
   final TfArg<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
-    if (accessKeyId != null) 'access_key_id': accessKeyId!.toTfJson(),
-    if (accountKey != null) 'account_key': accountKey!.toTfJson(),
-    if (accountName != null) 'account_name': accountName!.toTfJson(),
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
-    if (bucketUrl != null) 'bucket_url': bucketUrl!.toTfJson(),
-    if (clientEmail != null) 'client_email': clientEmail!.toTfJson(),
-    if (cloudProvider != null) 'cloud_provider': cloudProvider!.toTfJson(),
-    if (container != null) 'container': container!.toTfJson(),
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (sasToken != null) 'sas_token': sasToken!.toTfJson(),
-    if (secretAccessKey != null)
-      'secret_access_key': secretAccessKey!.toTfJson(),
+    'access_key_id': ?accessKeyId?.toTfJson(),
+    'account_key': ?accountKey?.toTfJson(),
+    'account_name': ?accountName?.toTfJson(),
+    'bucket': ?bucket?.toTfJson(),
+    'bucket_url': ?bucketUrl?.toTfJson(),
+    'client_email': ?clientEmail?.toTfJson(),
+    'cloud_provider': ?cloudProvider?.toTfJson(),
+    'container': ?container?.toTfJson(),
+    'private_key': ?privateKey?.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'sas_token': ?sasToken?.toTfJson(),
+    'secret_access_key': ?secretAccessKey?.toTfJson(),
   };
 }
 
@@ -155,7 +153,7 @@ final class CloudflareR2BucketSippy extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
+           'jurisdiction': ?jurisdiction,
            if (destination != null)
              'destination': TfArg.literal(destination.encode()),
            if (source != null) 'source': TfArg.literal(source.encode()),

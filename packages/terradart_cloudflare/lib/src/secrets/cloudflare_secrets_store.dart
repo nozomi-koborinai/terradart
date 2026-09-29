@@ -29,7 +29,7 @@ final class CloudflareSecretsStore extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (force != null) 'force': force,
+           'force': ?force,
            'name': name,
          },
        );

@@ -23,10 +23,9 @@ final class AwsIamUserLoginProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (passwordLength != null) 'password_length': passwordLength,
-           if (passwordResetRequired != null)
-             'password_reset_required': passwordResetRequired,
-           if (pgpKey != null) 'pgp_key': pgpKey,
+           'password_length': ?passwordLength,
+           'password_reset_required': ?passwordResetRequired,
+           'pgp_key': ?pgpKey,
            'user': user,
          },
        );

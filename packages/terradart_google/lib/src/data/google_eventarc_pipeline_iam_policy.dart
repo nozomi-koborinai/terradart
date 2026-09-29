@@ -24,9 +24,9 @@ final class DataGoogleEventarcPipelineIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
+           'location': ?location,
            'pipeline_id': pipelineId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

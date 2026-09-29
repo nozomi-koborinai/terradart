@@ -76,14 +76,10 @@ final class Ec2ClientVpnEndpointAuthenticationOptions {
   final TfArg<Ec2ClientVpnEndpointAuthenticationOptionsType> type;
 
   Map<String, Object?> encode() => {
-    if (activeDirectoryId != null)
-      'active_directory_id': activeDirectoryId!.toTfJson(),
-    if (rootCertificateChainArn != null)
-      'root_certificate_chain_arn': rootCertificateChainArn!.toTfJson(),
-    if (samlProviderArn != null)
-      'saml_provider_arn': samlProviderArn!.toTfJson(),
-    if (selfServiceSamlProviderArn != null)
-      'self_service_saml_provider_arn': selfServiceSamlProviderArn!.toTfJson(),
+    'active_directory_id': ?activeDirectoryId?.toTfJson(),
+    'root_certificate_chain_arn': ?rootCertificateChainArn?.toTfJson(),
+    'saml_provider_arn': ?samlProviderArn?.toTfJson(),
+    'self_service_saml_provider_arn': ?selfServiceSamlProviderArn?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -113,9 +109,8 @@ final class Ec2ClientVpnEndpointClientConnectOptions {
   final RefTo<AwsLambdaFunction>? lambdaFunctionArn;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (lambdaFunctionArn != null)
-      'lambda_function_arn': lambdaFunctionArn!.encodeAs('arn').toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'lambda_function_arn': ?lambdaFunctionArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -133,8 +128,8 @@ final class Ec2ClientVpnEndpointClientLoginBannerOptions {
   final TfArg<bool>? enabled;
 
   Map<String, Object?> encode() => {
-    if (bannerText != null) 'banner_text': bannerText!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'banner_text': ?bannerText?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
   };
 }
 
@@ -146,9 +141,7 @@ final class Ec2ClientVpnEndpointClientRouteEnforcementOptions {
 
   final TfArg<bool>? enforced;
 
-  Map<String, Object?> encode() => {
-    if (enforced != null) 'enforced': enforced!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enforced': ?enforced?.toTfJson()};
 }
 
 /// Typed helper for the `connection_log_options` block of
@@ -168,10 +161,8 @@ final class Ec2ClientVpnEndpointConnectionLogOptions {
   final TfArg<bool> enabled;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLogGroup != null)
-      'cloudwatch_log_group': cloudwatchLogGroup!.toTfJson(),
-    if (cloudwatchLogStream != null)
-      'cloudwatch_log_stream': cloudwatchLogStream!.toTfJson(),
+    'cloudwatch_log_group': ?cloudwatchLogGroup?.toTfJson(),
+    'cloudwatch_log_stream': ?cloudwatchLogStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
   };
 }
@@ -192,8 +183,7 @@ final class Ec2ClientVpnEndpointTransitGatewayConfiguration {
 
   Map<String, Object?> encode() => {
     ...?availabilityZone?.encode(),
-    if (transitGatewayId != null)
-      'transit_gateway_id': transitGatewayId!.toTfJson(),
+    'transit_gateway_id': ?transitGatewayId?.toTfJson(),
   };
 }
 
@@ -295,29 +285,22 @@ final class AwsEc2ClientVpnEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clientCidrBlock != null) 'client_cidr_block': clientCidrBlock,
-           if (description != null) 'description': description,
-           if (disconnectOnSessionTimeout != null)
-             'disconnect_on_session_timeout': disconnectOnSessionTimeout,
-           if (dnsServers != null) 'dns_servers': dnsServers,
-           if (endpointIpAddressType != null)
-             'endpoint_ip_address_type': endpointIpAddressType,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (selfServicePortal != null)
-             'self_service_portal': selfServicePortal,
+           'client_cidr_block': ?clientCidrBlock,
+           'description': ?description,
+           'disconnect_on_session_timeout': ?disconnectOnSessionTimeout,
+           'dns_servers': ?dnsServers,
+           'endpoint_ip_address_type': ?endpointIpAddressType,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'self_service_portal': ?selfServicePortal,
            'server_certificate_arn': serverCertificateArn,
-           if (sessionTimeoutHours != null)
-             'session_timeout_hours': sessionTimeoutHours,
-           if (splitTunnel != null) 'split_tunnel': splitTunnel,
-           if (tags != null) 'tags': tags,
-           if (trafficIpAddressType != null)
-             'traffic_ip_address_type': trafficIpAddressType,
-           if (transportProtocol != null)
-             'transport_protocol': transportProtocol,
-           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
-           if (vpnPort != null) 'vpn_port': vpnPort,
+           'session_timeout_hours': ?sessionTimeoutHours,
+           'split_tunnel': ?splitTunnel,
+           'tags': ?tags,
+           'traffic_ip_address_type': ?trafficIpAddressType,
+           'transport_protocol': ?transportProtocol,
+           'vpc_id': ?vpcId?.encodeAs('id'),
+           'vpn_port': ?vpnPort,
            'authentication_options': TfArg.literal([
              for (final e in authenticationOptions) e.encode(),
            ]),

@@ -28,7 +28,7 @@ final class WafregionalByteMatchSetByteMatchTuples {
 
   Map<String, Object?> encode() => {
     'positional_constraint': positionalConstraint.toTfJson(),
-    if (targetString != null) 'target_string': targetString!.toTfJson(),
+    'target_string': ?targetString?.toTfJson(),
     'text_transformation': textTransformation.toTfJson(),
     'field_to_match': fieldToMatch.encode(),
   };
@@ -48,7 +48,7 @@ final class WafregionalByteMatchSetByteMatchTuplesFieldToMatch {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (data != null) 'data': data!.toTfJson(),
+    'data': ?data?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -70,7 +70,7 @@ final class AwsWafregionalByteMatchSet extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (byteMatchTuples != null)
              'byte_match_tuples': TfArg.literal([
                for (final e in byteMatchTuples) e.encode(),

@@ -40,7 +40,7 @@ final class CloudflareContentScanningExpression extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (payload != null) 'payload': payload,
+           'payload': ?payload,
            'zone_id': zoneId.encodeAs('id'),
            'body': TfArg.literal([for (final e in body) e.encode()]),
          },

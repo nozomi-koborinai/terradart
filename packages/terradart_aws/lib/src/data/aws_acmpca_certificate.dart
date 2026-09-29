@@ -23,7 +23,7 @@ final class DataAwsAcmpcaCertificate extends Data {
          argMap: {
            'arn': arn,
            'certificate_authority_arn': certificateAuthorityArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

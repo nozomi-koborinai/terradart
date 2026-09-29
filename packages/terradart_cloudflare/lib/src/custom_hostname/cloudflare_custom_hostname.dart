@@ -53,21 +53,18 @@ final class CustomHostnameSsl {
   final CustomHostnameSslSettings? settings;
 
   Map<String, Object?> encode() => {
-    if (bundleMethod != null) 'bundle_method': bundleMethod!.toTfJson(),
-    if (certificateAuthority != null)
-      'certificate_authority': certificateAuthority!.toTfJson(),
-    if (cloudflareBranding != null)
-      'cloudflare_branding': cloudflareBranding!.toTfJson(),
-    if (customCertificate != null)
-      'custom_certificate': customCertificate!.toTfJson(),
-    if (customCsrId != null) 'custom_csr_id': customCsrId!.toTfJson(),
-    if (customKey != null) 'custom_key': customKey!.toTfJson(),
-    if (method != null) 'method': method!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (wildcard != null) 'wildcard': wildcard!.toTfJson(),
+    'bundle_method': ?bundleMethod?.toTfJson(),
+    'certificate_authority': ?certificateAuthority?.toTfJson(),
+    'cloudflare_branding': ?cloudflareBranding?.toTfJson(),
+    'custom_certificate': ?customCertificate?.toTfJson(),
+    'custom_csr_id': ?customCsrId?.toTfJson(),
+    'custom_key': ?customKey?.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'wildcard': ?wildcard?.toTfJson(),
     if (customCertBundle != null)
       'custom_cert_bundle': [for (final e in customCertBundle!) e.encode()],
-    if (settings != null) 'settings': settings!.encode(),
+    'settings': ?settings?.encode(),
   };
 }
 
@@ -156,11 +153,11 @@ final class CustomHostnameSslSettings {
   final TfArg<CustomHostnameSslSettingsTls13>? tls13;
 
   Map<String, Object?> encode() => {
-    if (ciphers != null) 'ciphers': ciphers!.toTfJson(),
-    if (earlyHints != null) 'early_hints': earlyHints!.toTfJson(),
-    if (http2 != null) 'http2': http2!.toTfJson(),
-    if (minTlsVersion != null) 'min_tls_version': minTlsVersion!.toTfJson(),
-    if (tls13 != null) 'tls_1_3': tls13!.toTfJson(),
+    'ciphers': ?ciphers?.toTfJson(),
+    'early_hints': ?earlyHints?.toTfJson(),
+    'http2': ?http2?.toTfJson(),
+    'min_tls_version': ?minTlsVersion?.toTfJson(),
+    'tls_1_3': ?tls13?.toTfJson(),
   };
 }
 
@@ -229,10 +226,9 @@ final class CloudflareCustomHostname extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customMetadata != null) 'custom_metadata': customMetadata,
-           if (customOriginServer != null)
-             'custom_origin_server': customOriginServer,
-           if (customOriginSni != null) 'custom_origin_sni': customOriginSni,
+           'custom_metadata': ?customMetadata,
+           'custom_origin_server': ?customOriginServer,
+           'custom_origin_sni': ?customOriginSni,
            'hostname': hostname,
            'zone_id': zoneId.encodeAs('id'),
            if (ssl != null) 'ssl': TfArg.literal(ssl.encode()),

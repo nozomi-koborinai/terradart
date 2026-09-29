@@ -78,7 +78,7 @@ final class SecretsmanagerSecretReplica {
   final TfArg<String> region;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     'region': region.toTfJson(),
   };
 }
@@ -106,17 +106,15 @@ final class AwsSecretsmanagerSecret extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (forceOverwriteReplicaSecret != null)
-             'force_overwrite_replica_secret': forceOverwriteReplicaSecret,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'description': ?description,
+           'force_overwrite_replica_secret': ?forceOverwriteReplicaSecret,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            ...?name?.argMap,
-           if (policy != null) 'policy': policy,
-           if (recoveryWindowInDays != null)
-             'recovery_window_in_days': recoveryWindowInDays,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'policy': ?policy,
+           'recovery_window_in_days': ?recoveryWindowInDays,
+           'region': ?region,
+           'tags': ?tags,
+           'type': ?type,
            if (replica != null)
              'replica': TfArg.literal([for (final e in replica) e.encode()]),
          },

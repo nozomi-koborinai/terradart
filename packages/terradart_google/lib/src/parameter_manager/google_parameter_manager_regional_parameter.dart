@@ -47,11 +47,11 @@ final class GoogleParameterManagerRegionalParameter extends Resource {
          argMap: {
            'parameter_id': parameterId,
            'location': location,
-           if (format != null) 'format': format,
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'format': ?format,
+           'kms_key': ?kmsKey?.encodeAs('id'),
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

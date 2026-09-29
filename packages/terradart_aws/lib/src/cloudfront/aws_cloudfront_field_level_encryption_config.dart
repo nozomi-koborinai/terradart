@@ -66,7 +66,7 @@ final class CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentT
   Map<String, Object?> encode() => {
     'content_type': contentType.toTfJson(),
     'format': format.toTfJson(),
-    if (profileId != null) 'profile_id': profileId!.toTfJson(),
+    'profile_id': ?profileId?.toTfJson(),
   };
 }
 
@@ -87,8 +87,7 @@ final class CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfig {
   Map<String, Object?> encode() => {
     'forward_when_query_arg_profile_is_unknown':
         forwardWhenQueryArgProfileIsUnknown.toTfJson(),
-    if (queryArgProfiles != null)
-      'query_arg_profiles': queryArgProfiles!.encode(),
+    'query_arg_profiles': ?queryArgProfiles?.encode(),
   };
 }
 
@@ -147,7 +146,7 @@ final class AwsCloudfrontFieldLevelEncryptionConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'content_type_profile_config': TfArg.literal(
              contentTypeProfileConfig.encode(),
            ),

@@ -36,26 +36,18 @@ final class CloudflareZeroTrustDeviceSettings extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (disableForTime != null) 'disable_for_time': disableForTime,
-           if (externalEmergencySignalEnabled != null)
-             'external_emergency_signal_enabled':
-                 externalEmergencySignalEnabled,
-           if (externalEmergencySignalFingerprint != null)
-             'external_emergency_signal_fingerprint':
-                 externalEmergencySignalFingerprint,
-           if (externalEmergencySignalInterval != null)
-             'external_emergency_signal_interval':
-                 externalEmergencySignalInterval,
-           if (externalEmergencySignalUrl != null)
-             'external_emergency_signal_url': externalEmergencySignalUrl,
-           if (gatewayProxyEnabled != null)
-             'gateway_proxy_enabled': gatewayProxyEnabled,
-           if (gatewayUdpProxyEnabled != null)
-             'gateway_udp_proxy_enabled': gatewayUdpProxyEnabled,
-           if (rootCertificateInstallationEnabled != null)
-             'root_certificate_installation_enabled':
-                 rootCertificateInstallationEnabled,
-           if (useZtVirtualIp != null) 'use_zt_virtual_ip': useZtVirtualIp,
+           'disable_for_time': ?disableForTime,
+           'external_emergency_signal_enabled': ?externalEmergencySignalEnabled,
+           'external_emergency_signal_fingerprint':
+               ?externalEmergencySignalFingerprint,
+           'external_emergency_signal_interval':
+               ?externalEmergencySignalInterval,
+           'external_emergency_signal_url': ?externalEmergencySignalUrl,
+           'gateway_proxy_enabled': ?gatewayProxyEnabled,
+           'gateway_udp_proxy_enabled': ?gatewayUdpProxyEnabled,
+           'root_certificate_installation_enabled':
+               ?rootCertificateInstallationEnabled,
+           'use_zt_virtual_ip': ?useZtVirtualIp,
          },
        );
 

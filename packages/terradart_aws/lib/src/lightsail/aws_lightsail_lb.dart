@@ -35,12 +35,12 @@ final class AwsLightsailLb extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (healthCheckPath != null) 'health_check_path': healthCheckPath,
+           'health_check_path': ?healthCheckPath,
            'instance_port': instancePort,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
+           'ip_address_type': ?ipAddressType,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

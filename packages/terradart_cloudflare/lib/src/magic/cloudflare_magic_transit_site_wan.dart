@@ -28,8 +28,7 @@ final class MagicTransitSiteWanStaticAddressing {
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'gateway_address': gatewayAddress.toTfJson(),
-    if (secondaryAddress != null)
-      'secondary_address': secondaryAddress!.toTfJson(),
+    'secondary_address': ?secondaryAddress?.toTfJson(),
   };
 }
 
@@ -59,11 +58,11 @@ final class CloudflareMagicTransitSiteWan extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (name != null) 'name': name,
+           'name': ?name,
            'physport': physport,
-           if (priority != null) 'priority': priority,
+           'priority': ?priority,
            'site_id': siteId,
-           if (vlanTag != null) 'vlan_tag': vlanTag,
+           'vlan_tag': ?vlanTag,
            if (staticAddressing != null)
              'static_addressing': TfArg.literal(staticAddressing.encode()),
          },

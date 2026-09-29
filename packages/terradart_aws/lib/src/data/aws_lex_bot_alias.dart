@@ -20,11 +20,7 @@ final class DataAwsLexBotAlias extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'bot_name': botName,
-           'name': name,
-           if (region != null) 'region': region,
-         },
+         argMap: {'bot_name': botName, 'name': name, 'region': ?region},
        );
 
   @override

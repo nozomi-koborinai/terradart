@@ -23,10 +23,7 @@ final class DataCloudflareRateLimit extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'rate_limit_id': rateLimitId,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'rate_limit_id': rateLimitId, 'zone_id': ?zoneId},
        );
 
   @override

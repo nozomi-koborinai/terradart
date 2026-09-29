@@ -24,7 +24,7 @@ final class AwsS3controlAccessPointPolicy extends Resource {
          argMap: {
            'access_point_arn': accessPointArn,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

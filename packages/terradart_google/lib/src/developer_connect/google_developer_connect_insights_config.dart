@@ -26,11 +26,9 @@ final class DeveloperConnectInsightsConfigArtifactConfigs {
   googleArtifactRegistry;
 
   Map<String, Object?> encode() => {
-    if (uri != null) 'uri': uri!.toTfJson(),
-    if (googleArtifactAnalysis != null)
-      'google_artifact_analysis': googleArtifactAnalysis!.encode(),
-    if (googleArtifactRegistry != null)
-      'google_artifact_registry': googleArtifactRegistry!.encode(),
+    'uri': ?uri?.toTfJson(),
+    'google_artifact_analysis': ?googleArtifactAnalysis?.encode(),
+    'google_artifact_registry': ?googleArtifactRegistry?.encode(),
   };
 }
 
@@ -74,9 +72,7 @@ final class DeveloperConnectInsightsConfigTargetProjects {
 
   final TfArg<List<Object?>>? projectIds;
 
-  Map<String, Object?> encode() => {
-    if (projectIds != null) 'project_ids': projectIds!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'project_ids': ?projectIds?.toTfJson()};
 }
 
 /// Factory wrapper for `google_developer_connect_insights_config`.
@@ -110,14 +106,13 @@ final class GoogleDeveloperConnectInsightsConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (appHubApplication != null)
-             'app_hub_application': appHubApplication,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'annotations': ?annotations,
+           'app_hub_application': ?appHubApplication,
+           'deletion_policy': ?deletionPolicy,
            'insights_config_id': insightsConfigId,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (artifactConfigs != null)
              'artifact_configs': TfArg.literal([
                for (final e in artifactConfigs) e.encode(),

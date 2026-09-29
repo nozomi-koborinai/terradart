@@ -143,9 +143,9 @@ final class WorkspaceswebSessionLoggerLogConfigurationS3 {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (bucketOwner != null) 'bucket_owner': bucketOwner!.toTfJson(),
+    'bucket_owner': ?bucketOwner?.toTfJson(),
     'folder_structure': folderStructure.toTfJson(),
-    if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
+    'key_prefix': ?keyPrefix?.toTfJson(),
     'log_file_format': logFileFormat.toTfJson(),
   };
 }
@@ -196,13 +196,11 @@ final class AwsWorkspaceswebSessionLogger extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalEncryptionContext != null)
-             'additional_encryption_context': additionalEncryptionContext,
-           if (customerManagedKey != null)
-             'customer_managed_key': customerManagedKey,
-           if (displayName != null) 'display_name': displayName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'additional_encryption_context': ?additionalEncryptionContext,
+           'customer_managed_key': ?customerManagedKey,
+           'display_name': ?displayName,
+           'region': ?region,
+           'tags': ?tags,
            if (eventFilter != null)
              'event_filter': TfArg.literal([
                for (final e in eventFilter) e.encode(),

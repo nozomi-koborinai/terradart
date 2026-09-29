@@ -39,11 +39,11 @@ final class GoogleComputeExternalVpnGateway extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (description != null) 'description': description,
-           if (redundancyType != null) 'redundancy_type': redundancyType,
-           if (labels != null) 'labels': labels,
-           if (interface != null) 'interface': interface,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'redundancy_type': ?redundancyType,
+           'labels': ?labels,
+           'interface': ?interface,
+           'project': ?project,
          },
        );
 

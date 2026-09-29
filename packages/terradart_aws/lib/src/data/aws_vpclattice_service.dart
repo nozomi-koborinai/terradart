@@ -22,11 +22,10 @@ final class DataAwsVpclatticeService extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (serviceIdentifier != null)
-             'service_identifier': serviceIdentifier,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'service_identifier': ?serviceIdentifier,
+           'tags': ?tags,
          },
        );
 

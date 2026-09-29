@@ -32,8 +32,8 @@ final class GoogleGkeHubScopeIamBinding extends Resource {
            'scope_id': scopeId,
            'role': role,
            'members': members,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

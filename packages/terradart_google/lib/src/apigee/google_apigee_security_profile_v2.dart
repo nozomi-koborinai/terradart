@@ -70,7 +70,7 @@ final class GoogleApigeeSecurityProfileV2 extends Resource {
          argMap: {
            'profile_id': profileId,
            'org_id': orgId,
-           if (description != null) 'description': description,
+           'description': ?description,
            'profile_assessment_configs': TfArg.literal([
              for (final e in profileAssessmentConfigs) e.encode(),
            ]),

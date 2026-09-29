@@ -27,8 +27,8 @@ final class DataGoogleSecureSourceManagerInstanceIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'instance_id': instanceId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

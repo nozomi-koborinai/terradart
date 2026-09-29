@@ -50,60 +50,42 @@ final class AwsSnsTopic extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applicationFailureFeedbackRoleArn != null)
-             'application_failure_feedback_role_arn':
-                 applicationFailureFeedbackRoleArn,
-           if (applicationSuccessFeedbackRoleArn != null)
-             'application_success_feedback_role_arn':
-                 applicationSuccessFeedbackRoleArn,
-           if (applicationSuccessFeedbackSampleRate != null)
-             'application_success_feedback_sample_rate':
-                 applicationSuccessFeedbackSampleRate,
-           if (archivePolicy != null) 'archive_policy': archivePolicy,
-           if (contentBasedDeduplication != null)
-             'content_based_deduplication': contentBasedDeduplication,
-           if (deliveryPolicy != null) 'delivery_policy': deliveryPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (fifoThroughputScope != null)
-             'fifo_throughput_scope': fifoThroughputScope,
-           if (fifoTopic != null) 'fifo_topic': fifoTopic,
-           if (firehoseFailureFeedbackRoleArn != null)
-             'firehose_failure_feedback_role_arn':
-                 firehoseFailureFeedbackRoleArn,
-           if (firehoseSuccessFeedbackRoleArn != null)
-             'firehose_success_feedback_role_arn':
-                 firehoseSuccessFeedbackRoleArn,
-           if (firehoseSuccessFeedbackSampleRate != null)
-             'firehose_success_feedback_sample_rate':
-                 firehoseSuccessFeedbackSampleRate,
-           if (httpFailureFeedbackRoleArn != null)
-             'http_failure_feedback_role_arn': httpFailureFeedbackRoleArn,
-           if (httpSuccessFeedbackRoleArn != null)
-             'http_success_feedback_role_arn': httpSuccessFeedbackRoleArn,
-           if (httpSuccessFeedbackSampleRate != null)
-             'http_success_feedback_sample_rate': httpSuccessFeedbackSampleRate,
-           if (kmsMasterKeyId != null)
-             'kms_master_key_id': kmsMasterKeyId.encodeAs('arn'),
-           if (lambdaFailureFeedbackRoleArn != null)
-             'lambda_failure_feedback_role_arn': lambdaFailureFeedbackRoleArn,
-           if (lambdaSuccessFeedbackRoleArn != null)
-             'lambda_success_feedback_role_arn': lambdaSuccessFeedbackRoleArn,
-           if (lambdaSuccessFeedbackSampleRate != null)
-             'lambda_success_feedback_sample_rate':
-                 lambdaSuccessFeedbackSampleRate,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
-           if (signatureVersion != null) 'signature_version': signatureVersion,
-           if (sqsFailureFeedbackRoleArn != null)
-             'sqs_failure_feedback_role_arn': sqsFailureFeedbackRoleArn,
-           if (sqsSuccessFeedbackRoleArn != null)
-             'sqs_success_feedback_role_arn': sqsSuccessFeedbackRoleArn,
-           if (sqsSuccessFeedbackSampleRate != null)
-             'sqs_success_feedback_sample_rate': sqsSuccessFeedbackSampleRate,
-           if (tags != null) 'tags': tags,
-           if (tracingConfig != null) 'tracing_config': tracingConfig,
+           'application_failure_feedback_role_arn':
+               ?applicationFailureFeedbackRoleArn,
+           'application_success_feedback_role_arn':
+               ?applicationSuccessFeedbackRoleArn,
+           'application_success_feedback_sample_rate':
+               ?applicationSuccessFeedbackSampleRate,
+           'archive_policy': ?archivePolicy,
+           'content_based_deduplication': ?contentBasedDeduplication,
+           'delivery_policy': ?deliveryPolicy,
+           'display_name': ?displayName,
+           'fifo_throughput_scope': ?fifoThroughputScope,
+           'fifo_topic': ?fifoTopic,
+           'firehose_failure_feedback_role_arn':
+               ?firehoseFailureFeedbackRoleArn,
+           'firehose_success_feedback_role_arn':
+               ?firehoseSuccessFeedbackRoleArn,
+           'firehose_success_feedback_sample_rate':
+               ?firehoseSuccessFeedbackSampleRate,
+           'http_failure_feedback_role_arn': ?httpFailureFeedbackRoleArn,
+           'http_success_feedback_role_arn': ?httpSuccessFeedbackRoleArn,
+           'http_success_feedback_sample_rate': ?httpSuccessFeedbackSampleRate,
+           'kms_master_key_id': ?kmsMasterKeyId?.encodeAs('arn'),
+           'lambda_failure_feedback_role_arn': ?lambdaFailureFeedbackRoleArn,
+           'lambda_success_feedback_role_arn': ?lambdaSuccessFeedbackRoleArn,
+           'lambda_success_feedback_sample_rate':
+               ?lambdaSuccessFeedbackSampleRate,
+           'name': ?name,
+           'name_prefix': ?namePrefix,
+           'policy': ?policy,
+           'region': ?region,
+           'signature_version': ?signatureVersion,
+           'sqs_failure_feedback_role_arn': ?sqsFailureFeedbackRoleArn,
+           'sqs_success_feedback_role_arn': ?sqsSuccessFeedbackRoleArn,
+           'sqs_success_feedback_sample_rate': ?sqsSuccessFeedbackSampleRate,
+           'tags': ?tags,
+           'tracing_config': ?tracingConfig,
          },
        );
 

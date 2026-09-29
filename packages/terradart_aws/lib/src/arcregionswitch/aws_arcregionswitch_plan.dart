@@ -41,9 +41,8 @@ final class ArcregionswitchPlanAssociatedAlarms {
 
   Map<String, Object?> encode() => {
     'alarm_type': alarmType.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'map_block_key': mapBlockKey.toTfJson(),
     'resource_identifier': resourceIdentifier.toTfJson(),
   };
@@ -133,7 +132,7 @@ final class ArcregionswitchPlanTriggers {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'min_delay_minutes_between_executions': minDelayMinutesBetweenExecutions
         .toTfJson(),
     'target_region': targetRegion.toTfJson(),
@@ -203,11 +202,9 @@ final class ArcregionswitchPlanWorkflow {
   final List<ArcregionswitchPlanWorkflowStep>? step;
 
   Map<String, Object?> encode() => {
-    if (workflowDescription != null)
-      'workflow_description': workflowDescription!.toTfJson(),
+    'workflow_description': ?workflowDescription?.toTfJson(),
     'workflow_target_action': workflowTargetAction.toTfJson(),
-    if (workflowTargetRegion != null)
-      'workflow_target_region': workflowTargetRegion!.toTfJson(),
+    'workflow_target_region': ?workflowTargetRegion?.toTfJson(),
     if (step != null) 'step': [for (final e in step!) e.encode()],
   };
 }
@@ -309,7 +306,7 @@ final class ArcregionswitchPlanWorkflowStep {
   route53HealthCheckConfig;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'execution_block_type': executionBlockType.toTfJson(),
     'name': name.toTfJson(),
     if (arcRoutingControlConfig != null)
@@ -427,10 +424,9 @@ final class ArcregionswitchPlanWorkflowStepArcRoutingControlConfig {
   regionAndRoutingControls;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (regionAndRoutingControls != null)
       'region_and_routing_controls': [
         for (final e in regionAndRoutingControls!) e.encode(),
@@ -522,13 +518,12 @@ final class ArcregionswitchPlanWorkflowStepAuroraProvisionedScalingConfig {
   final TfArg<num>? timeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
     'instance_arns': instanceArns.toTfJson(),
     'region_database_cluster_arns': regionDatabaseClusterArns.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -558,13 +553,12 @@ final class ArcregionswitchPlanWorkflowStepAuroraServerlessScalingConfig {
   final TfArg<num>? timeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
     'region_database_cluster_arns': regionDatabaseClusterArns.toTfJson(),
-    if (targetPercent != null) 'target_percent': targetPercent!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'target_percent': ?targetPercent?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -598,7 +592,7 @@ final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfig {
   Map<String, Object?> encode() => {
     'region_to_run': regionToRun.toTfJson(),
     'retry_interval_minutes': retryIntervalMinutes.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (lambda != null) 'lambda': [for (final e in lambda!) e.encode()],
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
@@ -638,9 +632,8 @@ final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigLambda {
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
   };
 }
 
@@ -703,12 +696,11 @@ final class ArcregionswitchPlanWorkflowStepDocumentDbConfig {
 
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
     'database_cluster_arns': databaseClusterArns.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
@@ -786,8 +778,8 @@ final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfig {
 
   Map<String, Object?> encode() => {
     'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
-    if (targetPercent != null) 'target_percent': targetPercent!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'target_percent': ?targetPercent?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (asg != null) 'asg': [for (final e in asg!) e.encode()],
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
@@ -825,9 +817,8 @@ final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigAsg {
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
   };
 }
 
@@ -877,8 +868,8 @@ final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfig {
 
   Map<String, Object?> encode() => {
     'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
-    if (targetPercent != null) 'target_percent': targetPercent!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'target_percent': ?targetPercent?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (service != null) 'service': [for (final e in service!) e.encode()],
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
@@ -919,9 +910,8 @@ final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigService {
 
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'service_arn': serviceArn.toTfJson(),
   };
 }
@@ -985,7 +975,7 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfig {
   Map<String, Object?> encode() => {
     'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
     'target_percent': targetPercent.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (eksClusters != null)
       'eks_clusters': [for (final e in eksClusters!) e.encode()],
     if (kubernetesResourceType != null)
@@ -1029,9 +1019,8 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigEksClusters {
 
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
   };
 }
 
@@ -1097,7 +1086,7 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfigScalingResour
   final TfArg<String> resourceName;
 
   Map<String, Object?> encode() => {
-    if (hpaName != null) 'hpa_name': hpaName!.toTfJson(),
+    'hpa_name': ?hpaName?.toTfJson(),
     'name': name.toTfJson(),
     'namespace': namespace.toTfJson(),
     'resource_name': resourceName.toTfJson(),
@@ -1134,7 +1123,7 @@ final class ArcregionswitchPlanWorkflowStepExecutionApprovalConfig {
 
   Map<String, Object?> encode() => {
     'approval_role': approvalRole.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -1170,12 +1159,11 @@ final class ArcregionswitchPlanWorkflowStepGlobalAuroraConfig {
 
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
     'database_cluster_arns': databaseClusterArns.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
@@ -1252,7 +1240,7 @@ final class ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfig {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (regionEventSourceMapping != null)
       'region_event_source_mapping': [
         for (final e in regionEventSourceMapping!) e.encode(),
@@ -1296,9 +1284,8 @@ final class ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigRegionE
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'region': region.toTfJson(),
   };
 }
@@ -1367,12 +1354,11 @@ final class ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfig {
 
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
     'region_database_cluster_arns': regionDatabaseClusterArns.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
@@ -1546,7 +1532,7 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStep {
   route53HealthCheckConfig;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'execution_block_type': executionBlockType.toTfJson(),
     'name': name.toTfJson(),
     if (arcRoutingControlConfig != null)
@@ -1664,10 +1650,9 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlCo
   regionAndRoutingControls;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (regionAndRoutingControls != null)
       'region_and_routing_controls': [
         for (final e in regionAndRoutingControls!) e.encode(),
@@ -1759,13 +1744,12 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepAuroraProvisionedSc
   final TfArg<num>? timeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
     'instance_arns': instanceArns.toTfJson(),
     'region_database_cluster_arns': regionDatabaseClusterArns.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -1795,13 +1779,12 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepAuroraServerlessSca
   final TfArg<num>? timeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
     'region_database_cluster_arns': regionDatabaseClusterArns.toTfJson(),
-    if (targetPercent != null) 'target_percent': targetPercent!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'target_percent': ?targetPercent?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -1839,7 +1822,7 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaC
   Map<String, Object?> encode() => {
     'region_to_run': regionToRun.toTfJson(),
     'retry_interval_minutes': retryIntervalMinutes.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (lambda != null) 'lambda': [for (final e in lambda!) e.encode()],
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
@@ -1879,9 +1862,8 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaC
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
   };
 }
 
@@ -1949,12 +1931,11 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfig {
 
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
     'database_cluster_arns': databaseClusterArns.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
@@ -2034,8 +2015,8 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncre
 
   Map<String, Object?> encode() => {
     'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
-    if (targetPercent != null) 'target_percent': targetPercent!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'target_percent': ?targetPercent?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (asg != null) 'asg': [for (final e in asg!) e.encode()],
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
@@ -2073,9 +2054,8 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncre
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
   };
 }
 
@@ -2127,8 +2107,8 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncrease
 
   Map<String, Object?> encode() => {
     'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
-    if (targetPercent != null) 'target_percent': targetPercent!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'target_percent': ?targetPercent?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (service != null) 'service': [for (final e in service!) e.encode()],
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
@@ -2169,9 +2149,8 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncrease
 
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'service_arn': serviceArn.toTfJson(),
   };
 }
@@ -2237,7 +2216,7 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingC
   Map<String, Object?> encode() => {
     'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
     'target_percent': targetPercent.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (eksClusters != null)
       'eks_clusters': [for (final e in eksClusters!) e.encode()],
     if (kubernetesResourceType != null)
@@ -2281,9 +2260,8 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingC
 
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
   };
 }
 
@@ -2349,7 +2327,7 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingC
   final TfArg<String> resourceName;
 
   Map<String, Object?> encode() => {
-    if (hpaName != null) 'hpa_name': hpaName!.toTfJson(),
+    'hpa_name': ?hpaName?.toTfJson(),
     'name': name.toTfJson(),
     'namespace': namespace.toTfJson(),
     'resource_name': resourceName.toTfJson(),
@@ -2386,7 +2364,7 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepExecutionApprovalCo
 
   Map<String, Object?> encode() => {
     'approval_role': approvalRole.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -2426,12 +2404,11 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfig 
 
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
     'database_cluster_arns': databaseClusterArns.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
@@ -2508,7 +2485,7 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMa
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (regionEventSourceMapping != null)
       'region_event_source_mapping': [
         for (final e in regionEventSourceMapping!) e.encode(),
@@ -2552,9 +2529,8 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMa
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'region': region.toTfJson(),
   };
 }
@@ -2623,12 +2599,11 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDataba
 
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'global_cluster_identifier': globalClusterIdentifier.toTfJson(),
     'region_database_cluster_arns': regionDatabaseClusterArns.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
@@ -2695,11 +2670,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepRdsCreateCrossRegio
   final TfArg<num>? timeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
     'db_instance_arn_map': dbInstanceArnMap.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -2723,11 +2697,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepRdsPromoteReadRepli
   final TfArg<num>? timeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
     'db_instance_arn_map': dbInstanceArnMap.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -2749,9 +2722,8 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepRegionSwitchPlanCon
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
   };
 }
 
@@ -2784,12 +2756,11 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepRoute53HealthCheckC
   recordSet;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'hosted_zone_id': hostedZoneId.toTfJson(),
     'record_name': recordName.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (recordSet != null)
       'record_set': [for (final e in recordSet!) e.encode()],
   };
@@ -2834,11 +2805,10 @@ final class ArcregionswitchPlanWorkflowStepRdsCreateCrossRegionReadReplicaConfig
   final TfArg<num>? timeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
     'db_instance_arn_map': dbInstanceArnMap.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -2862,11 +2832,10 @@ final class ArcregionswitchPlanWorkflowStepRdsPromoteReadReplicaConfig {
   final TfArg<num>? timeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
     'db_instance_arn_map': dbInstanceArnMap.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
 }
 
@@ -2888,9 +2857,8 @@ final class ArcregionswitchPlanWorkflowStepRegionSwitchPlanConfig {
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
   };
 }
 
@@ -2921,12 +2889,11 @@ final class ArcregionswitchPlanWorkflowStepRoute53HealthCheckConfig {
   recordSet;
 
   Map<String, Object?> encode() => {
-    if (crossAccountRole != null)
-      'cross_account_role': crossAccountRole!.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
     'hosted_zone_id': hostedZoneId.toTfJson(),
     'record_name': recordName.toTfJson(),
-    if (timeoutMinutes != null) 'timeout_minutes': timeoutMinutes!.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
     if (recordSet != null)
       'record_set': [for (final e in recordSet!) e.encode()],
   };
@@ -2977,16 +2944,15 @@ final class AwsArcregionswitchPlan extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'execution_role': executionRole,
            'name': name,
-           if (primaryRegion != null) 'primary_region': primaryRegion,
+           'primary_region': ?primaryRegion,
            'recovery_approach': recoveryApproach,
-           if (recoveryTimeObjectiveMinutes != null)
-             'recovery_time_objective_minutes': recoveryTimeObjectiveMinutes,
-           if (region != null) 'region': region,
+           'recovery_time_objective_minutes': ?recoveryTimeObjectiveMinutes,
+           'region': ?region,
            'regions': regions,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (associatedAlarms != null)
              'associated_alarms': TfArg.literal([
                for (final e in associatedAlarms) e.encode(),

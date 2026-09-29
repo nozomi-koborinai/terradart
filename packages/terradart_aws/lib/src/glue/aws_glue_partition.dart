@@ -54,21 +54,18 @@ final class GluePartitionStorageDescriptor {
   final List<GluePartitionStorageDescriptorSortColumns>? sortColumns;
 
   Map<String, Object?> encode() => {
-    if (additionalLocations != null)
-      'additional_locations': additionalLocations!.toTfJson(),
-    if (bucketColumns != null) 'bucket_columns': bucketColumns!.toTfJson(),
-    if (compressed != null) 'compressed': compressed!.toTfJson(),
-    if (inputFormat != null) 'input_format': inputFormat!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (numberOfBuckets != null)
-      'number_of_buckets': numberOfBuckets!.toTfJson(),
-    if (outputFormat != null) 'output_format': outputFormat!.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (storedAsSubDirectories != null)
-      'stored_as_sub_directories': storedAsSubDirectories!.toTfJson(),
+    'additional_locations': ?additionalLocations?.toTfJson(),
+    'bucket_columns': ?bucketColumns?.toTfJson(),
+    'compressed': ?compressed?.toTfJson(),
+    'input_format': ?inputFormat?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'number_of_buckets': ?numberOfBuckets?.toTfJson(),
+    'output_format': ?outputFormat?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'stored_as_sub_directories': ?storedAsSubDirectories?.toTfJson(),
     if (columns != null) 'columns': [for (final e in columns!) e.encode()],
-    if (serDeInfo != null) 'ser_de_info': serDeInfo!.encode(),
-    if (skewedInfo != null) 'skewed_info': skewedInfo!.encode(),
+    'ser_de_info': ?serDeInfo?.encode(),
+    'skewed_info': ?skewedInfo?.encode(),
     if (sortColumns != null)
       'sort_columns': [for (final e in sortColumns!) e.encode()],
   };
@@ -91,9 +88,9 @@ final class GluePartitionStorageDescriptorColumns {
   final TfArg<String>? type;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
     'name': name.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -114,10 +111,9 @@ final class GluePartitionStorageDescriptorSerDeInfo {
   final TfArg<String>? serializationLibrary;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (serializationLibrary != null)
-      'serialization_library': serializationLibrary!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'serialization_library': ?serializationLibrary?.toTfJson(),
   };
 }
 
@@ -138,13 +134,10 @@ final class GluePartitionStorageDescriptorSkewedInfo {
   final TfArg<List<Object?>>? skewedColumnValues;
 
   Map<String, Object?> encode() => {
-    if (skewedColumnNames != null)
-      'skewed_column_names': skewedColumnNames!.toTfJson(),
-    if (skewedColumnValueLocationMaps != null)
-      'skewed_column_value_location_maps': skewedColumnValueLocationMaps!
-          .toTfJson(),
-    if (skewedColumnValues != null)
-      'skewed_column_values': skewedColumnValues!.toTfJson(),
+    'skewed_column_names': ?skewedColumnNames?.toTfJson(),
+    'skewed_column_value_location_maps': ?skewedColumnValueLocationMaps
+        ?.toTfJson(),
+    'skewed_column_values': ?skewedColumnValues?.toTfJson(),
   };
 }
 
@@ -187,11 +180,11 @@ final class AwsGluePartition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
+           'catalog_id': ?catalogId,
            'database_name': databaseName,
-           if (parameters != null) 'parameters': parameters,
+           'parameters': ?parameters,
            'partition_values': partitionValues,
-           if (region != null) 'region': region,
+           'region': ?region,
            'table_name': tableName,
            if (storageDescriptor != null)
              'storage_descriptor': TfArg.literal(storageDescriptor.encode()),

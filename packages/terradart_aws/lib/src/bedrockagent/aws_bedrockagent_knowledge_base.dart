@@ -124,10 +124,8 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeB
   serverSideEncryptionConfiguration;
 
   Map<String, Object?> encode() => {
-    if (embeddingModelArn != null)
-      'embedding_model_arn': embeddingModelArn!.toTfJson(),
-    if (embeddingModelType != null)
-      'embedding_model_type': embeddingModelType!.toTfJson(),
+    'embedding_model_arn': ?embeddingModelArn?.toTfJson(),
+    'embedding_model_type': ?embeddingModelType?.toTfJson(),
     if (embeddingModelConfiguration != null)
       'embedding_model_configuration': [
         for (final e in embeddingModelConfiguration!) e.encode(),
@@ -202,9 +200,8 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeB
   video;
 
   Map<String, Object?> encode() => {
-    if (dimensions != null) 'dimensions': dimensions!.toTfJson(),
-    if (embeddingDataType != null)
-      'embedding_data_type': embeddingDataType!.toTfJson(),
+    'dimensions': ?dimensions?.toTfJson(),
+    'embedding_data_type': ?embeddingDataType?.toTfJson(),
     if (audio != null) 'audio': [for (final e in audio!) e.encode()],
     if (video != null) 'video': [for (final e in video!) e.encode()],
   };
@@ -306,7 +303,7 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeB
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -485,10 +482,9 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
   final TfArg<String>? usernamePasswordSecretArn;
 
   Map<String, Object?> encode() => {
-    if (databaseUser != null) 'database_user': databaseUser!.toTfJson(),
+    'database_user': ?databaseUser?.toTfJson(),
     'type': type.toTfJson(),
-    if (usernamePasswordSecretArn != null)
-      'username_password_secret_arn': usernamePasswordSecretArn!.toTfJson(),
+    'username_password_secret_arn': ?usernamePasswordSecretArn?.toTfJson(),
   };
 }
 
@@ -547,8 +543,7 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (usernamePasswordSecretArn != null)
-      'username_password_secret_arn': usernamePasswordSecretArn!.toTfJson(),
+    'username_password_secret_arn': ?usernamePasswordSecretArn?.toTfJson(),
   };
 }
 
@@ -582,8 +577,7 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
   generationContext;
 
   Map<String, Object?> encode() => {
-    if (executionTimeoutSeconds != null)
-      'execution_timeout_seconds': executionTimeoutSeconds!.toTfJson(),
+    'execution_timeout_seconds': ?executionTimeoutSeconds?.toTfJson(),
     if (generationContext != null)
       'generation_context': [for (final e in generationContext!) e.encode()],
   };
@@ -660,8 +654,8 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
   column;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (inclusion != null) 'inclusion': inclusion!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'inclusion': ?inclusion?.toTfJson(),
     'name': name.toTfJson(),
     if (column != null) 'column': [for (final e in column!) e.encode()],
   };
@@ -700,9 +694,9 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (inclusion != null) 'inclusion': inclusion!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'inclusion': ?inclusion?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -881,9 +875,8 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBa
   video;
 
   Map<String, Object?> encode() => {
-    if (dimensions != null) 'dimensions': dimensions!.toTfJson(),
-    if (embeddingDataType != null)
-      'embedding_data_type': embeddingDataType!.toTfJson(),
+    'dimensions': ?dimensions?.toTfJson(),
+    'embedding_data_type': ?embeddingDataType?.toTfJson(),
     if (audio != null) 'audio': [for (final e in audio!) e.encode()],
     if (video != null) 'video': [for (final e in video!) e.encode()],
   };
@@ -1191,9 +1184,8 @@ final class BedrockagentKnowledgeBaseStorageConfigurationMongoDbAtlasConfigurati
     'credentials_secret_arn': credentialsSecretArn.toTfJson(),
     'database_name': databaseName.toTfJson(),
     'endpoint': endpoint.toTfJson(),
-    if (endpointServiceName != null)
-      'endpoint_service_name': endpointServiceName!.toTfJson(),
-    if (textIndexName != null) 'text_index_name': textIndexName!.toTfJson(),
+    'endpoint_service_name': ?endpointServiceName?.toTfJson(),
+    'text_index_name': ?textIndexName?.toTfJson(),
     'vector_index_name': vectorIndexName.toTfJson(),
     if (fieldMapping != null)
       'field_mapping': [for (final e in fieldMapping!) e.encode()],
@@ -1394,7 +1386,7 @@ final class BedrockagentKnowledgeBaseStorageConfigurationPineconeConfiguration {
   Map<String, Object?> encode() => {
     'connection_string': connectionString.toTfJson(),
     'credentials_secret_arn': credentialsSecretArn.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
     if (fieldMapping != null)
       'field_mapping': [for (final e in fieldMapping!) e.encode()],
   };
@@ -1477,8 +1469,7 @@ final class BedrockagentKnowledgeBaseStorageConfigurationRdsConfigurationFieldMa
   final TfArg<String> vectorField;
 
   Map<String, Object?> encode() => {
-    if (customMetadataField != null)
-      'custom_metadata_field': customMetadataField!.toTfJson(),
+    'custom_metadata_field': ?customMetadataField?.toTfJson(),
     'metadata_field': metadataField.toTfJson(),
     'primary_key_field': primaryKeyField.toTfJson(),
     'text_field': textField.toTfJson(),
@@ -1534,9 +1525,9 @@ final class BedrockagentKnowledgeBaseStorageConfigurationRedisEnterpriseCloudCon
   final TfArg<String>? vectorField;
 
   Map<String, Object?> encode() => {
-    if (metadataField != null) 'metadata_field': metadataField!.toTfJson(),
-    if (textField != null) 'text_field': textField!.toTfJson(),
-    if (vectorField != null) 'vector_field': vectorField!.toTfJson(),
+    'metadata_field': ?metadataField?.toTfJson(),
+    'text_field': ?textField?.toTfJson(),
+    'vector_field': ?vectorField?.toTfJson(),
   };
 }
 
@@ -1557,10 +1548,9 @@ final class BedrockagentKnowledgeBaseStorageConfigurationS3VectorsConfiguration 
   final TfArg<String>? vectorBucketArn;
 
   Map<String, Object?> encode() => {
-    if (indexArn != null) 'index_arn': indexArn!.toTfJson(),
-    if (indexName != null) 'index_name': indexName!.toTfJson(),
-    if (vectorBucketArn != null)
-      'vector_bucket_arn': vectorBucketArn!.toTfJson(),
+    'index_arn': ?indexArn?.toTfJson(),
+    'index_name': ?indexName?.toTfJson(),
+    'vector_bucket_arn': ?vectorBucketArn?.toTfJson(),
   };
 }
 
@@ -1585,11 +1575,11 @@ final class AwsBedrockagentKnowledgeBase extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (knowledgeBaseConfiguration != null)
              'knowledge_base_configuration': TfArg.literal([
                for (final e in knowledgeBaseConfiguration) e.encode(),

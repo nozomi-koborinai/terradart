@@ -34,15 +34,11 @@ final class MskReplicatorKafkaCluster {
   final MskReplicatorKafkaClusterVpcConfig? vpcConfig;
 
   Map<String, Object?> encode() => {
-    if (amazonMskCluster != null)
-      'amazon_msk_cluster': amazonMskCluster!.encode(),
-    if (apacheKafkaCluster != null)
-      'apache_kafka_cluster': apacheKafkaCluster!.encode(),
-    if (clientAuthentication != null)
-      'client_authentication': clientAuthentication!.encode(),
-    if (encryptionInTransit != null)
-      'encryption_in_transit': encryptionInTransit!.encode(),
-    if (vpcConfig != null) 'vpc_config': vpcConfig!.encode(),
+    'amazon_msk_cluster': ?amazonMskCluster?.encode(),
+    'apache_kafka_cluster': ?apacheKafkaCluster?.encode(),
+    'client_authentication': ?clientAuthentication?.encode(),
+    'encryption_in_transit': ?encryptionInTransit?.encode(),
+    'vpc_config': ?vpcConfig?.encode(),
   };
 }
 
@@ -94,8 +90,8 @@ final class MskReplicatorKafkaClusterClientAuthentication {
   final MskReplicatorKafkaClusterClientAuthenticationSaslScram? saslScram;
 
   Map<String, Object?> encode() => {
-    if (mtls != null) 'mtls': mtls!.encode(),
-    if (saslScram != null) 'sasl_scram': saslScram!.encode(),
+    'mtls': ?mtls?.encode(),
+    'sasl_scram': ?saslScram?.encode(),
   };
 }
 
@@ -174,8 +170,7 @@ final class MskReplicatorKafkaClusterVpcConfig {
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    if (securityGroupsIds != null)
-      'security_groups_ids': securityGroupsIds!.toTfJson(),
+    'security_groups_ids': ?securityGroupsIds?.toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
@@ -189,8 +184,7 @@ final class MskReplicatorLogDelivery {
   final MskReplicatorLogDeliveryReplicatorLogDelivery? replicatorLogDelivery;
 
   Map<String, Object?> encode() => {
-    if (replicatorLogDelivery != null)
-      'replicator_log_delivery': replicatorLogDelivery!.encode(),
+    'replicator_log_delivery': ?replicatorLogDelivery?.encode(),
   };
 }
 
@@ -212,9 +206,9 @@ final class MskReplicatorLogDeliveryReplicatorLogDelivery {
   final MskReplicatorLogDeliveryReplicatorLogDeliveryS3? s3;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLogs != null) 'cloudwatch_logs': cloudwatchLogs!.encode(),
-    if (firehose != null) 'firehose': firehose!.encode(),
-    if (s3 != null) 's3': s3!.encode(),
+    'cloudwatch_logs': ?cloudwatchLogs?.encode(),
+    'firehose': ?firehose?.encode(),
+    's3': ?s3?.encode(),
   };
 }
 
@@ -233,7 +227,7 @@ final class MskReplicatorLogDeliveryReplicatorLogDeliveryCloudwatchLogs {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
+    'log_group': ?logGroup?.encodeAs('name').toTfJson(),
   };
 }
 
@@ -251,7 +245,7 @@ final class MskReplicatorLogDeliveryReplicatorLogDeliveryFirehose {
   final TfArg<bool> enabled;
 
   Map<String, Object?> encode() => {
-    if (deliveryStream != null) 'delivery_stream': deliveryStream!.toTfJson(),
+    'delivery_stream': ?deliveryStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
   };
 }
@@ -273,9 +267,9 @@ final class MskReplicatorLogDeliveryReplicatorLogDeliveryS3 {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -457,18 +451,13 @@ final class MskReplicatorReplicationInfoListConsumerGroupReplication {
   final TfArg<bool>? synchroniseConsumerGroupOffsets;
 
   Map<String, Object?> encode() => {
-    if (consumerGroupOffsetSyncMode != null)
-      'consumer_group_offset_sync_mode': consumerGroupOffsetSyncMode!
-          .toTfJson(),
-    if (consumerGroupsToExclude != null)
-      'consumer_groups_to_exclude': consumerGroupsToExclude!.toTfJson(),
+    'consumer_group_offset_sync_mode': ?consumerGroupOffsetSyncMode?.toTfJson(),
+    'consumer_groups_to_exclude': ?consumerGroupsToExclude?.toTfJson(),
     'consumer_groups_to_replicate': consumerGroupsToReplicate.toTfJson(),
-    if (detectAndCopyNewConsumerGroups != null)
-      'detect_and_copy_new_consumer_groups': detectAndCopyNewConsumerGroups!
-          .toTfJson(),
-    if (synchroniseConsumerGroupOffsets != null)
-      'synchronise_consumer_group_offsets': synchroniseConsumerGroupOffsets!
-          .toTfJson(),
+    'detect_and_copy_new_consumer_groups': ?detectAndCopyNewConsumerGroups
+        ?.toTfJson(),
+    'synchronise_consumer_group_offsets': ?synchroniseConsumerGroupOffsets
+        ?.toTfJson(),
   };
 }
 
@@ -516,20 +505,14 @@ final class MskReplicatorReplicationInfoListTopicReplication {
   topicNameConfiguration;
 
   Map<String, Object?> encode() => {
-    if (copyAccessControlListsForTopics != null)
-      'copy_access_control_lists_for_topics': copyAccessControlListsForTopics!
-          .toTfJson(),
-    if (copyTopicConfigurations != null)
-      'copy_topic_configurations': copyTopicConfigurations!.toTfJson(),
-    if (detectAndCopyNewTopics != null)
-      'detect_and_copy_new_topics': detectAndCopyNewTopics!.toTfJson(),
-    if (topicsToExclude != null)
-      'topics_to_exclude': topicsToExclude!.toTfJson(),
+    'copy_access_control_lists_for_topics': ?copyAccessControlListsForTopics
+        ?.toTfJson(),
+    'copy_topic_configurations': ?copyTopicConfigurations?.toTfJson(),
+    'detect_and_copy_new_topics': ?detectAndCopyNewTopics?.toTfJson(),
+    'topics_to_exclude': ?topicsToExclude?.toTfJson(),
     'topics_to_replicate': topicsToReplicate.toTfJson(),
-    if (startingPosition != null)
-      'starting_position': startingPosition!.encode(),
-    if (topicNameConfiguration != null)
-      'topic_name_configuration': topicNameConfiguration!.encode(),
+    'starting_position': ?startingPosition?.encode(),
+    'topic_name_configuration': ?topicNameConfiguration?.encode(),
   };
 }
 
@@ -546,7 +529,7 @@ final class MskReplicatorReplicationInfoListTopicReplicationStartingPosition {
   >?
   type;
 
-  Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
@@ -575,7 +558,7 @@ final class MskReplicatorReplicationInfoListTopicReplicationTopicNameConfigurati
   >?
   type;
 
-  Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
@@ -612,11 +595,11 @@ final class AwsMskReplicator extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'region': ?region,
            'replicator_name': replicatorName,
            'service_execution_role_arn': serviceExecutionRoleArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'kafka_cluster': TfArg.literal([
              for (final e in kafkaCluster) e.encode(),
            ]),

@@ -47,10 +47,10 @@ final class GoogleNetworkSecurityMirroringDeployment extends Resource {
            'mirroring_deployment_id': mirroringDeploymentId,
            'forwarding_rule': forwardingRule,
            'mirroring_deployment_group': mirroringDeploymentGroup,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

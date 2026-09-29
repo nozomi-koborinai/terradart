@@ -49,7 +49,7 @@ final class LexBotAbortStatement {
   final List<LexBotAbortStatementMessage> message;
 
   Map<String, Object?> encode() => {
-    if (responseCard != null) 'response_card': responseCard!.toTfJson(),
+    'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
   };
 }
@@ -73,7 +73,7 @@ final class LexBotAbortStatementMessage {
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
-    if (groupNumber != null) 'group_number': groupNumber!.toTfJson(),
+    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -95,7 +95,7 @@ final class LexBotClarificationPrompt {
 
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
-    if (responseCard != null) 'response_card': responseCard!.toTfJson(),
+    'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
   };
 }
@@ -119,7 +119,7 @@ final class LexBotClarificationPromptMessage {
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
-    if (groupNumber != null) 'group_number': groupNumber!.toTfJson(),
+    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -168,20 +168,17 @@ final class AwsLexBot extends Resource {
          terraformType: tfType,
          argMap: {
            'child_directed': childDirected,
-           if (createVersion != null) 'create_version': createVersion,
-           if (description != null) 'description': description,
-           if (detectSentiment != null) 'detect_sentiment': detectSentiment,
-           if (enableModelImprovements != null)
-             'enable_model_improvements': enableModelImprovements,
-           if (idleSessionTtlInSeconds != null)
-             'idle_session_ttl_in_seconds': idleSessionTtlInSeconds,
-           if (locale != null) 'locale': locale,
+           'create_version': ?createVersion,
+           'description': ?description,
+           'detect_sentiment': ?detectSentiment,
+           'enable_model_improvements': ?enableModelImprovements,
+           'idle_session_ttl_in_seconds': ?idleSessionTtlInSeconds,
+           'locale': ?locale,
            'name': name,
-           if (nluIntentConfidenceThreshold != null)
-             'nlu_intent_confidence_threshold': nluIntentConfidenceThreshold,
-           if (processBehavior != null) 'process_behavior': processBehavior,
-           if (region != null) 'region': region,
-           if (voiceId != null) 'voice_id': voiceId,
+           'nlu_intent_confidence_threshold': ?nluIntentConfidenceThreshold,
+           'process_behavior': ?processBehavior,
+           'region': ?region,
+           'voice_id': ?voiceId,
            'abort_statement': TfArg.literal(abortStatement.encode()),
            if (clarificationPrompt != null)
              'clarification_prompt': TfArg.literal(

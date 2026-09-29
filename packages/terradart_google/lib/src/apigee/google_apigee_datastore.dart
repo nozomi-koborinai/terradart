@@ -80,7 +80,7 @@ final class GoogleApigeeDatastore extends Resource {
            'target_type': targetType,
            if (datastoreConfig != null)
              'datastore_config': TfArg.literal([datastoreConfig.toArgMap()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

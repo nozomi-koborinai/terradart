@@ -25,7 +25,7 @@ final class DataGoogleDataCatalogTaxonomy extends Data {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (project != null) 'project': project,
+           'project': ?project,
            'region': region,
          },
        );

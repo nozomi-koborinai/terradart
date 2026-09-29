@@ -61,30 +61,24 @@ final class GoogleDataflowJob extends Resource {
            'name': name,
            'template_gcs_path': templateGcsPath,
            'temp_gcs_location': tempGcsLocation,
-           if (region != null) 'region': region,
-           if (zone != null) 'zone': zone,
-           if (maxWorkers != null) 'max_workers': maxWorkers,
-           if (machineType != null) 'machine_type': machineType,
-           if (network != null) 'network': network.encodeAs('name'),
-           if (subnetwork != null)
-             'subnetwork': subnetwork.encodeAs('self_link'),
-           if (ipConfiguration != null) 'ip_configuration': ipConfiguration,
-           if (serviceAccountEmail != null)
-             'service_account_email': serviceAccountEmail.encodeAs('email'),
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
-           if (enableStreamingEngine != null)
-             'enable_streaming_engine': enableStreamingEngine,
-           if (parameters != null) 'parameters': parameters,
-           if (transformNameMapping != null)
-             'transform_name_mapping': transformNameMapping,
-           if (additionalExperiments != null)
-             'additional_experiments': additionalExperiments,
-           if (onDelete != null) 'on_delete': onDelete,
-           if (skipWaitOnJobTermination != null)
-             'skip_wait_on_job_termination': skipWaitOnJobTermination,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'zone': ?zone,
+           'max_workers': ?maxWorkers,
+           'machine_type': ?machineType,
+           'network': ?network?.encodeAs('name'),
+           'subnetwork': ?subnetwork?.encodeAs('self_link'),
+           'ip_configuration': ?ipConfiguration,
+           'service_account_email': ?serviceAccountEmail?.encodeAs('email'),
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'enable_streaming_engine': ?enableStreamingEngine,
+           'parameters': ?parameters,
+           'transform_name_mapping': ?transformNameMapping,
+           'additional_experiments': ?additionalExperiments,
+           'on_delete': ?onDelete,
+           'skip_wait_on_job_termination': ?skipWaitOnJobTermination,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

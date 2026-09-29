@@ -104,26 +104,21 @@ final class AwsVpc extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (assignGeneratedIpv6CidrBlock != null)
-             'assign_generated_ipv6_cidr_block': assignGeneratedIpv6CidrBlock,
+           'assign_generated_ipv6_cidr_block': ?assignGeneratedIpv6CidrBlock,
            ...?ipv4Cidr?.argMap,
-           if (enableDnsHostnames != null)
-             'enable_dns_hostnames': enableDnsHostnames,
-           if (enableDnsSupport != null) 'enable_dns_support': enableDnsSupport,
-           if (enableNetworkAddressUsageMetrics != null)
-             'enable_network_address_usage_metrics':
-                 enableNetworkAddressUsageMetrics,
-           if (instanceTenancy != null) 'instance_tenancy': instanceTenancy,
-           if (ipv4IpamPoolId != null) 'ipv4_ipam_pool_id': ipv4IpamPoolId,
-           if (ipv6CidrBlock != null) 'ipv6_cidr_block': ipv6CidrBlock,
-           if (ipv6CidrBlockNetworkBorderGroup != null)
-             'ipv6_cidr_block_network_border_group':
-                 ipv6CidrBlockNetworkBorderGroup,
-           if (ipv6IpamPoolId != null) 'ipv6_ipam_pool_id': ipv6IpamPoolId,
-           if (ipv6NetmaskLength != null)
-             'ipv6_netmask_length': ipv6NetmaskLength,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'enable_dns_hostnames': ?enableDnsHostnames,
+           'enable_dns_support': ?enableDnsSupport,
+           'enable_network_address_usage_metrics':
+               ?enableNetworkAddressUsageMetrics,
+           'instance_tenancy': ?instanceTenancy,
+           'ipv4_ipam_pool_id': ?ipv4IpamPoolId,
+           'ipv6_cidr_block': ?ipv6CidrBlock,
+           'ipv6_cidr_block_network_border_group':
+               ?ipv6CidrBlockNetworkBorderGroup,
+           'ipv6_ipam_pool_id': ?ipv6IpamPoolId,
+           'ipv6_netmask_length': ?ipv6NetmaskLength,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

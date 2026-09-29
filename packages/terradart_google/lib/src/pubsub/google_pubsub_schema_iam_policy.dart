@@ -29,7 +29,7 @@ final class GooglePubsubSchemaIamPolicy extends Resource {
          argMap: {
            'schema': schema,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

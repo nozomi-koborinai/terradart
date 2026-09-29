@@ -55,7 +55,7 @@ final class AwsS3tablesTableBucketReplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'role': role.encodeAs('arn'),
            'table_bucket_arn': tableBucketArn,
            if (rule != null)

@@ -39,11 +39,10 @@ final class AwsNotificationsNotificationConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (aggregationDuration != null)
-             'aggregation_duration': aggregationDuration,
+           'aggregation_duration': ?aggregationDuration,
            'description': description,
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

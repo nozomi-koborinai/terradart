@@ -39,12 +39,11 @@ final class AwsAppstreamUser extends Resource {
          terraformType: tfType,
          argMap: {
            'authentication_type': authenticationType,
-           if (enabled != null) 'enabled': enabled,
-           if (firstName != null) 'first_name': firstName,
-           if (lastName != null) 'last_name': lastName,
-           if (region != null) 'region': region,
-           if (sendEmailNotification != null)
-             'send_email_notification': sendEmailNotification,
+           'enabled': ?enabled,
+           'first_name': ?firstName,
+           'last_name': ?lastName,
+           'region': ?region,
+           'send_email_notification': ?sendEmailNotification,
            'user_name': userName,
          },
        );

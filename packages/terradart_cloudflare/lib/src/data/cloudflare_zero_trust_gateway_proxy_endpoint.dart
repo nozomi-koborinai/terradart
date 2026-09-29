@@ -29,10 +29,10 @@ final class DataZeroTrustGatewayProxyEndpointFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
-    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'filter': ?filter?.toTfJson(),
+    'order_by': ?orderBy?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -71,8 +71,8 @@ final class DataCloudflareZeroTrustGatewayProxyEndpoint extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (proxyEndpointId != null) 'proxy_endpoint_id': proxyEndpointId,
+           'account_id': ?accountId,
+           'proxy_endpoint_id': ?proxyEndpointId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

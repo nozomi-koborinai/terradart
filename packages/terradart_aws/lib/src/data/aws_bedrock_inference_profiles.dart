@@ -16,13 +16,7 @@ final class DataAwsBedrockInferenceProfiles extends Data {
     TfArg<String>? type,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (type != null) 'type': type,
-         },
-       );
+  }) : super(terraformType: tfType, argMap: {'region': ?region, 'type': ?type});
 
   @override
   Set<String> get sensitiveFields => _awsBedrockInferenceProfilesSensitive;

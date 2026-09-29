@@ -53,14 +53,13 @@ final class GoogleOracleDatabaseGoldengateConnection extends Resource {
            'location': location,
            'goldengate_connection_id': goldengateConnectionId,
            'properties': properties,
-           if (odbSubnet != null) 'odb_subnet': odbSubnet,
-           if (odbNetwork != null) 'odb_network': odbNetwork,
-           if (gcpOracleZone != null) 'gcp_oracle_zone': gcpOracleZone,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'odb_subnet': ?odbSubnet,
+           'odb_network': ?odbNetwork,
+           'gcp_oracle_zone': ?gcpOracleZone,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

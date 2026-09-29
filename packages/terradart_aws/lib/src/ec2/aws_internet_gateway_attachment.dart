@@ -25,7 +25,7 @@ final class AwsInternetGatewayAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'internet_gateway_id': internetGatewayId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

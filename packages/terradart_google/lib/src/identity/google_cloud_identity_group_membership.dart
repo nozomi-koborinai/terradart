@@ -22,7 +22,7 @@ final class CloudIdentityGroupMembershipPreferredMemberKey {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
   };
 }
 
@@ -41,7 +41,7 @@ final class CloudIdentityGroupMembershipRoles {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (expiryDetail != null) 'expiry_detail': expiryDetail!.encode(),
+    'expiry_detail': ?expiryDetail?.encode(),
   };
 }
 
@@ -97,9 +97,8 @@ final class GoogleCloudIdentityGroupMembership extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (createIgnoreAlreadyExists != null)
-             'create_ignore_already_exists': createIgnoreAlreadyExists,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'create_ignore_already_exists': ?createIgnoreAlreadyExists,
+           'deletion_policy': ?deletionPolicy,
            'group': group,
            if (preferredMemberKey != null)
              'preferred_member_key': TfArg.literal(preferredMemberKey.encode()),

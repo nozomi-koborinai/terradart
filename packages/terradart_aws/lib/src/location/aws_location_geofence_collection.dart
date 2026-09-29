@@ -27,10 +27,10 @@ final class AwsLocationGeofenceCollection extends Resource {
          terraformType: tfType,
          argMap: {
            'collection_name': collectionName,
-           if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

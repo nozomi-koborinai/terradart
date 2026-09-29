@@ -33,10 +33,10 @@ final class AwsOpensearchserverlessAccessPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
            'type': type,
          },
        );

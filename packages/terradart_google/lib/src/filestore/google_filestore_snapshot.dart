@@ -47,8 +47,8 @@ final class GoogleFilestoreSnapshot extends Resource {
            'name': name,
            'location': location,
            'instance': instance,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'labels': ?labels,
          },
        );
 

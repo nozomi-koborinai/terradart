@@ -27,9 +27,8 @@ final class AwsNetworkmanagerDxGatewayAttachment extends Resource {
            'core_network_id': coreNetworkId,
            'direct_connect_gateway_arn': directConnectGatewayArn,
            'edge_locations': edgeLocations,
-           if (routingPolicyLabel != null)
-             'routing_policy_label': routingPolicyLabel,
-           if (tags != null) 'tags': tags,
+           'routing_policy_label': ?routingPolicyLabel,
+           'tags': ?tags,
          },
        );
 

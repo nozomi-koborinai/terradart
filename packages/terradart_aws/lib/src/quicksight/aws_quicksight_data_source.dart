@@ -76,9 +76,9 @@ final class QuicksightDataSourceCredentials {
   final QuicksightDataSourceCredentialsCredentialPair? credentialPair;
 
   Map<String, Object?> encode() => {
-    if (copySourceArn != null) 'copy_source_arn': copySourceArn!.toTfJson(),
-    if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
-    if (credentialPair != null) 'credential_pair': credentialPair!.encode(),
+    'copy_source_arn': ?copySourceArn?.toTfJson(),
+    'secret_arn': ?secretArn?.toTfJson(),
+    'credential_pair': ?credentialPair?.encode(),
   };
 }
 
@@ -172,29 +172,27 @@ final class QuicksightDataSourceParameters {
   final QuicksightDataSourceParametersTwitter? twitter;
 
   Map<String, Object?> encode() => {
-    if (amazonElasticsearch != null)
-      'amazon_elasticsearch': amazonElasticsearch!.encode(),
-    if (athena != null) 'athena': athena!.encode(),
-    if (aurora != null) 'aurora': aurora!.encode(),
-    if (auroraPostgresql != null)
-      'aurora_postgresql': auroraPostgresql!.encode(),
-    if (awsIotAnalytics != null) 'aws_iot_analytics': awsIotAnalytics!.encode(),
-    if (databricks != null) 'databricks': databricks!.encode(),
-    if (jira != null) 'jira': jira!.encode(),
-    if (mariaDb != null) 'maria_db': mariaDb!.encode(),
-    if (mysql != null) 'mysql': mysql!.encode(),
-    if (oracle != null) 'oracle': oracle!.encode(),
-    if (postgresql != null) 'postgresql': postgresql!.encode(),
-    if (presto != null) 'presto': presto!.encode(),
-    if (rds != null) 'rds': rds!.encode(),
-    if (redshift != null) 'redshift': redshift!.encode(),
-    if (s3 != null) 's3': s3!.encode(),
-    if (serviceNow != null) 'service_now': serviceNow!.encode(),
-    if (snowflake != null) 'snowflake': snowflake!.encode(),
-    if (spark != null) 'spark': spark!.encode(),
-    if (sqlServer != null) 'sql_server': sqlServer!.encode(),
-    if (teradata != null) 'teradata': teradata!.encode(),
-    if (twitter != null) 'twitter': twitter!.encode(),
+    'amazon_elasticsearch': ?amazonElasticsearch?.encode(),
+    'athena': ?athena?.encode(),
+    'aurora': ?aurora?.encode(),
+    'aurora_postgresql': ?auroraPostgresql?.encode(),
+    'aws_iot_analytics': ?awsIotAnalytics?.encode(),
+    'databricks': ?databricks?.encode(),
+    'jira': ?jira?.encode(),
+    'maria_db': ?mariaDb?.encode(),
+    'mysql': ?mysql?.encode(),
+    'oracle': ?oracle?.encode(),
+    'postgresql': ?postgresql?.encode(),
+    'presto': ?presto?.encode(),
+    'rds': ?rds?.encode(),
+    'redshift': ?redshift?.encode(),
+    's3': ?s3?.encode(),
+    'service_now': ?serviceNow?.encode(),
+    'snowflake': ?snowflake?.encode(),
+    'spark': ?spark?.encode(),
+    'sql_server': ?sqlServer?.encode(),
+    'teradata': ?teradata?.encode(),
+    'twitter': ?twitter?.encode(),
   };
 }
 
@@ -222,8 +220,8 @@ final class QuicksightDataSourceParametersAthena {
   final TfArg<String>? workGroup;
 
   Map<String, Object?> encode() => {
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (workGroup != null) 'work_group': workGroup!.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'work_group': ?workGroup?.toTfJson(),
   };
 }
 
@@ -474,10 +472,10 @@ final class QuicksightDataSourceParametersRedshift {
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (clusterId != null) 'cluster_id': clusterId!.toTfJson(),
+    'cluster_id': ?clusterId?.toTfJson(),
     'database': database.toTfJson(),
-    if (host != null) 'host': host!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -496,7 +494,7 @@ final class QuicksightDataSourceParametersS3 {
   manifestFileLocation;
 
   Map<String, Object?> encode() => {
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     'manifest_file_location': manifestFileLocation.encode(),
   };
 }
@@ -707,11 +705,11 @@ final class AwsQuicksightDataSource extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'data_source_id': dataSourceId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'type': type,
            if (credentials != null)
              'credentials': TfArg.literal(credentials.encode()),

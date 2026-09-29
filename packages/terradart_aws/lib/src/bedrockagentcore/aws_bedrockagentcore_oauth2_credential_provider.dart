@@ -220,14 +220,12 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassia
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
-    if (clientCredentialsWoVersion != null)
-      'client_credentials_wo_version': clientCredentialsWoVersion!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientIdWo != null) 'client_id_wo': clientIdWo!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretSource != null)
-      'client_secret_source': clientSecretSource!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
+    'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_id_wo': ?clientIdWo?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_source': ?clientSecretSource?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
   };
@@ -320,16 +318,13 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   privateKeyJwtConfig;
 
   Map<String, Object?> encode() => {
-    if (clientAuthenticationMethod != null)
-      'client_authentication_method': clientAuthenticationMethod!.toTfJson(),
-    if (clientCredentialsWoVersion != null)
-      'client_credentials_wo_version': clientCredentialsWoVersion!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientIdWo != null) 'client_id_wo': clientIdWo!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretSource != null)
-      'client_secret_source': clientSecretSource!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
+    'client_authentication_method': ?clientAuthenticationMethod?.toTfJson(),
+    'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_id_wo': ?clientIdWo?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_source': ?clientSecretSource?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
     if (oauthDiscovery != null)
@@ -402,7 +397,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   authorizationServerMetadata;
 
   Map<String, Object?> encode() => {
-    if (discoveryUrl != null) 'discovery_url': discoveryUrl!.toTfJson(),
+    'discovery_url': ?discoveryUrl?.toTfJson(),
     if (authorizationServerMetadata != null)
       'authorization_server_metadata': [
         for (final e in authorizationServerMetadata!) e.encode(),
@@ -435,10 +430,9 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   Map<String, Object?> encode() => {
     'authorization_endpoint': authorizationEndpoint.toTfJson(),
     'issuer': issuer.toTfJson(),
-    if (responseTypes != null) 'response_types': responseTypes!.toTfJson(),
+    'response_types': ?responseTypes?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
-    if (tokenEndpointAuthMethods != null)
-      'token_endpoint_auth_methods': tokenEndpointAuthMethods!.toTfJson(),
+    'token_endpoint_auth_methods': ?tokenEndpointAuthMethods?.toTfJson(),
   };
 }
 
@@ -501,8 +495,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 
   Map<String, Object?> encode() => {
     'actor_token_content': actorTokenContent.toTfJson(),
-    if (actorTokenScopes != null)
-      'actor_token_scopes': actorTokenScopes!.toTfJson(),
+    'actor_token_scopes': ?actorTokenScopes?.toTfJson(),
   };
 }
 
@@ -579,11 +572,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -612,9 +604,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -700,11 +691,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -733,9 +723,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -765,12 +754,9 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   privateKeySource;
 
   Map<String, Object?> encode() => {
-    if (additionalHeaderClaims != null)
-      'additional_header_claims': additionalHeaderClaims!.toTfJson(),
-    if (additionalPayloadClaims != null)
-      'additional_payload_claims': additionalPayloadClaims!.toTfJson(),
-    if (signingAlgorithm != null)
-      'signing_algorithm': signingAlgorithm!.toTfJson(),
+    'additional_header_claims': ?additionalHeaderClaims?.toTfJson(),
+    'additional_payload_claims': ?additionalPayloadClaims?.toTfJson(),
+    'signing_algorithm': ?signingAlgorithm?.toTfJson(),
     if (privateKeySource != null)
       'private_key_source': [for (final e in privateKeySource!) e.encode()],
   };
@@ -856,14 +842,12 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOa
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
-    if (clientCredentialsWoVersion != null)
-      'client_credentials_wo_version': clientCredentialsWoVersion!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientIdWo != null) 'client_id_wo': clientIdWo!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretSource != null)
-      'client_secret_source': clientSecretSource!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
+    'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_id_wo': ?clientIdWo?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_source': ?clientSecretSource?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
   };
@@ -920,14 +904,12 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOa
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
-    if (clientCredentialsWoVersion != null)
-      'client_credentials_wo_version': clientCredentialsWoVersion!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientIdWo != null) 'client_id_wo': clientIdWo!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretSource != null)
-      'client_secret_source': clientSecretSource!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
+    'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_id_wo': ?clientIdWo?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_source': ?clientSecretSource?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
   };
@@ -993,18 +975,15 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigIncluded
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
-    if (authorizationEndpoint != null)
-      'authorization_endpoint': authorizationEndpoint!.toTfJson(),
-    if (clientCredentialsWoVersion != null)
-      'client_credentials_wo_version': clientCredentialsWoVersion!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientIdWo != null) 'client_id_wo': clientIdWo!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretSource != null)
-      'client_secret_source': clientSecretSource!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
+    'authorization_endpoint': ?authorizationEndpoint?.toTfJson(),
+    'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_id_wo': ?clientIdWo?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_source': ?clientSecretSource?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
   };
@@ -1061,14 +1040,12 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigLinkedin
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
-    if (clientCredentialsWoVersion != null)
-      'client_credentials_wo_version': clientCredentialsWoVersion!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientIdWo != null) 'client_id_wo': clientIdWo!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretSource != null)
-      'client_secret_source': clientSecretSource!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
+    'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_id_wo': ?clientIdWo?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_source': ?clientSecretSource?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
   };
@@ -1132,17 +1109,14 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
-    if (clientCredentialsWoVersion != null)
-      'client_credentials_wo_version': clientCredentialsWoVersion!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientIdWo != null) 'client_id_wo': clientIdWo!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretSource != null)
-      'client_secret_source': clientSecretSource!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
+    'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_id_wo': ?clientIdWo?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_source': ?clientSecretSource?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
     ...?tenantId?.encode(),
-    if (tenantIdWoVersion != null)
-      'tenant_id_wo_version': tenantIdWoVersion!.toTfJson(),
+    'tenant_id_wo_version': ?tenantIdWoVersion?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
   };
@@ -1257,14 +1231,12 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSalesfor
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
-    if (clientCredentialsWoVersion != null)
-      'client_credentials_wo_version': clientCredentialsWoVersion!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientIdWo != null) 'client_id_wo': clientIdWo!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretSource != null)
-      'client_secret_source': clientSecretSource!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
+    'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_id_wo': ?clientIdWo?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_source': ?clientSecretSource?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
   };
@@ -1321,14 +1293,12 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigSlackOau
   clientSecretConfig;
 
   Map<String, Object?> encode() => {
-    if (clientCredentialsWoVersion != null)
-      'client_credentials_wo_version': clientCredentialsWoVersion!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientIdWo != null) 'client_id_wo': clientIdWo!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretSource != null)
-      'client_secret_source': clientSecretSource!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
+    'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_id_wo': ?clientIdWo?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_source': ?clientSecretSource?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
   };
@@ -1378,8 +1348,8 @@ final class AwsBedrockagentcoreOauth2CredentialProvider extends Resource {
          argMap: {
            'credential_provider_vendor': credentialProviderVendor,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (oauth2ProviderConfig != null)
              'oauth2_provider_config': TfArg.literal([
                for (final e in oauth2ProviderConfig) e.encode(),

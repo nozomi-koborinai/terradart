@@ -40,11 +40,10 @@ final class AwsDbProxyEndpoint extends Resource {
          argMap: {
            'db_proxy_endpoint_name': dbProxyEndpointName,
            'db_proxy_name': dbProxyName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (targetRole != null) 'target_role': targetRole,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'region': ?region,
+           'tags': ?tags,
+           'target_role': ?targetRole,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
            'vpc_subnet_ids': vpcSubnetIds,
          },
        );

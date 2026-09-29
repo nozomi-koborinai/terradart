@@ -100,10 +100,9 @@ final class AwsPinpointGcmChannel extends Resource {
          argMap: {
            ...credentials.argMap,
            'application_id': applicationId,
-           if (defaultAuthenticationMethod != null)
-             'default_authentication_method': defaultAuthenticationMethod,
-           if (enabled != null) 'enabled': enabled,
-           if (region != null) 'region': region,
+           'default_authentication_method': ?defaultAuthenticationMethod,
+           'enabled': ?enabled,
+           'region': ?region,
          },
        );
 

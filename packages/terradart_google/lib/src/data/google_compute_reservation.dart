@@ -23,11 +23,7 @@ final class DataGoogleComputeReservation extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (project != null) 'project': project,
-           'zone': zone,
-         },
+         argMap: {'name': name, 'project': ?project, 'zone': zone},
        );
 
   @override

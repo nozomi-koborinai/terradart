@@ -28,7 +28,7 @@ final class DataGoogleBeyondcorpSecurityGatewayApplicationIamPolicy
          terraformType: tfType,
          argMap: {
            'application_id': applicationId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'security_gateway_id': securityGatewayId,
          },
        );

@@ -55,8 +55,7 @@ final class ApihubPluginConfigTemplate {
       'additional_config_template': [
         for (final e in additionalConfigTemplate!) e.encode(),
       ],
-    if (authConfigTemplate != null)
-      'auth_config_template': authConfigTemplate!.encode(),
+    'auth_config_template': ?authConfigTemplate?.encode(),
   };
 }
 
@@ -93,11 +92,10 @@ final class ApihubPluginConfigTemplateAdditionalConfigTemplate {
   multiSelectOptions;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'id': id.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (validationRegex != null)
-      'validation_regex': validationRegex!.toTfJson(),
+    'required': ?required?.toTfJson(),
+    'validation_regex': ?validationRegex?.toTfJson(),
     'value_type': valueType.toTfJson(),
     if (enumOptions != null)
       'enum_options': [for (final e in enumOptions!) e.encode()],
@@ -123,7 +121,7 @@ final class ApihubPluginConfigTemplateAdditionalConfigTemplateEnumOptions {
   final TfArg<String> id;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'display_name': displayName.toTfJson(),
     'id': id.toTfJson(),
   };
@@ -146,7 +144,7 @@ final class ApihubPluginConfigTemplateAdditionalConfigTemplateMultiSelectOptions
   final TfArg<String> id;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'display_name': displayName.toTfJson(),
     'id': id.toTfJson(),
   };
@@ -168,7 +166,7 @@ final class ApihubPluginConfigTemplateAuthConfigTemplate {
 
   Map<String, Object?> encode() => {
     'supported_auth_types': supportedAuthTypes.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.encode(),
+    'service_account': ?serviceAccount?.encode(),
   };
 }
 
@@ -195,9 +193,7 @@ final class ApihubPluginDocumentation {
 
   final TfArg<String>? externalUri;
 
-  Map<String, Object?> encode() => {
-    if (externalUri != null) 'external_uri': externalUri!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'external_uri': ?externalUri?.toTfJson()};
 }
 
 /// Typed helper for the `hosting_service` block of
@@ -208,9 +204,7 @@ final class ApihubPluginHostingService {
 
   final TfArg<String>? serviceUri;
 
-  Map<String, Object?> encode() => {
-    if (serviceUri != null) 'service_uri': serviceUri!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'service_uri': ?serviceUri?.toTfJson()};
 }
 
 /// Factory wrapper for `google_apihub_plugin`.
@@ -253,8 +247,8 @@ final class GoogleApihubPlugin extends Resource {
            'location': location,
            'plugin_id': pluginId,
            'display_name': displayName,
-           if (description != null) 'description': description,
-           if (pluginCategory != null) 'plugin_category': pluginCategory,
+           'description': ?description,
+           'plugin_category': ?pluginCategory,
            if (actionsConfig != null)
              'actions_config': TfArg.literal([
                for (final e in actionsConfig) e.encode(),
@@ -265,8 +259,8 @@ final class GoogleApihubPlugin extends Resource {
              'documentation': TfArg.literal(documentation.encode()),
            if (hostingService != null)
              'hosting_service': TfArg.literal(hostingService.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

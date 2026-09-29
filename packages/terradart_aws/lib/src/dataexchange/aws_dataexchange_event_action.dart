@@ -69,8 +69,8 @@ final class DataexchangeEventActionActionExportRevisionToS3Encryption {
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -102,7 +102,7 @@ final class DataexchangeEventActionActionExportRevisionToS3RevisionDestination {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (keyPattern != null) 'key_pattern': keyPattern!.toTfJson(),
+    'key_pattern': ?keyPattern?.toTfJson(),
   };
 }
 
@@ -149,7 +149,7 @@ final class AwsDataexchangeEventAction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (action != null)
              'action': TfArg.literal([for (final e in action) e.encode()]),
            if (event != null)

@@ -84,54 +84,37 @@ final class QuicksightCustomPermissionsCapabilities {
   final TfArg<String>? viewAccountSpiceCapacity;
 
   Map<String, Object?> encode() => {
-    if (addOrRunAnomalyDetectionForAnalyses != null)
-      'add_or_run_anomaly_detection_for_analyses':
-          addOrRunAnomalyDetectionForAnalyses!.toTfJson(),
-    if (createAndUpdateDashboardEmailReports != null)
-      'create_and_update_dashboard_email_reports':
-          createAndUpdateDashboardEmailReports!.toTfJson(),
-    if (createAndUpdateDataSources != null)
-      'create_and_update_data_sources': createAndUpdateDataSources!.toTfJson(),
-    if (createAndUpdateDatasets != null)
-      'create_and_update_datasets': createAndUpdateDatasets!.toTfJson(),
-    if (createAndUpdateThemes != null)
-      'create_and_update_themes': createAndUpdateThemes!.toTfJson(),
-    if (createAndUpdateThresholdAlerts != null)
-      'create_and_update_threshold_alerts': createAndUpdateThresholdAlerts!
-          .toTfJson(),
-    if (createSharedFolders != null)
-      'create_shared_folders': createSharedFolders!.toTfJson(),
-    if (createSpiceDataset != null)
-      'create_spice_dataset': createSpiceDataset!.toTfJson(),
-    if (exportToCsv != null) 'export_to_csv': exportToCsv!.toTfJson(),
-    if (exportToCsvInScheduledReports != null)
-      'export_to_csv_in_scheduled_reports': exportToCsvInScheduledReports!
-          .toTfJson(),
-    if (exportToExcel != null) 'export_to_excel': exportToExcel!.toTfJson(),
-    if (exportToExcelInScheduledReports != null)
-      'export_to_excel_in_scheduled_reports': exportToExcelInScheduledReports!
-          .toTfJson(),
-    if (exportToPdf != null) 'export_to_pdf': exportToPdf!.toTfJson(),
-    if (exportToPdfInScheduledReports != null)
-      'export_to_pdf_in_scheduled_reports': exportToPdfInScheduledReports!
-          .toTfJson(),
-    if (includeContentInScheduledReportsEmail != null)
-      'include_content_in_scheduled_reports_email':
-          includeContentInScheduledReportsEmail!.toTfJson(),
-    if (printReports != null) 'print_reports': printReports!.toTfJson(),
-    if (renameSharedFolders != null)
-      'rename_shared_folders': renameSharedFolders!.toTfJson(),
-    if (shareAnalyses != null) 'share_analyses': shareAnalyses!.toTfJson(),
-    if (shareDashboards != null)
-      'share_dashboards': shareDashboards!.toTfJson(),
-    if (shareDataSources != null)
-      'share_data_sources': shareDataSources!.toTfJson(),
-    if (shareDatasets != null) 'share_datasets': shareDatasets!.toTfJson(),
-    if (subscribeDashboardEmailReports != null)
-      'subscribe_dashboard_email_reports': subscribeDashboardEmailReports!
-          .toTfJson(),
-    if (viewAccountSpiceCapacity != null)
-      'view_account_spice_capacity': viewAccountSpiceCapacity!.toTfJson(),
+    'add_or_run_anomaly_detection_for_analyses':
+        ?addOrRunAnomalyDetectionForAnalyses?.toTfJson(),
+    'create_and_update_dashboard_email_reports':
+        ?createAndUpdateDashboardEmailReports?.toTfJson(),
+    'create_and_update_data_sources': ?createAndUpdateDataSources?.toTfJson(),
+    'create_and_update_datasets': ?createAndUpdateDatasets?.toTfJson(),
+    'create_and_update_themes': ?createAndUpdateThemes?.toTfJson(),
+    'create_and_update_threshold_alerts': ?createAndUpdateThresholdAlerts
+        ?.toTfJson(),
+    'create_shared_folders': ?createSharedFolders?.toTfJson(),
+    'create_spice_dataset': ?createSpiceDataset?.toTfJson(),
+    'export_to_csv': ?exportToCsv?.toTfJson(),
+    'export_to_csv_in_scheduled_reports': ?exportToCsvInScheduledReports
+        ?.toTfJson(),
+    'export_to_excel': ?exportToExcel?.toTfJson(),
+    'export_to_excel_in_scheduled_reports': ?exportToExcelInScheduledReports
+        ?.toTfJson(),
+    'export_to_pdf': ?exportToPdf?.toTfJson(),
+    'export_to_pdf_in_scheduled_reports': ?exportToPdfInScheduledReports
+        ?.toTfJson(),
+    'include_content_in_scheduled_reports_email':
+        ?includeContentInScheduledReportsEmail?.toTfJson(),
+    'print_reports': ?printReports?.toTfJson(),
+    'rename_shared_folders': ?renameSharedFolders?.toTfJson(),
+    'share_analyses': ?shareAnalyses?.toTfJson(),
+    'share_dashboards': ?shareDashboards?.toTfJson(),
+    'share_data_sources': ?shareDataSources?.toTfJson(),
+    'share_datasets': ?shareDatasets?.toTfJson(),
+    'subscribe_dashboard_email_reports': ?subscribeDashboardEmailReports
+        ?.toTfJson(),
+    'view_account_spice_capacity': ?viewAccountSpiceCapacity?.toTfJson(),
   };
 }
 
@@ -153,10 +136,10 @@ final class AwsQuicksightCustomPermissions extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'custom_permissions_name': customPermissionsName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (capabilities != null)
              'capabilities': TfArg.literal([
                for (final e in capabilities) e.encode(),

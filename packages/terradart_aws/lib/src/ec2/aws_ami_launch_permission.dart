@@ -143,11 +143,7 @@ final class AwsAmiLaunchPermission extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           ...grantee.argMap,
-           'image_id': imageId,
-           if (region != null) 'region': region,
-         },
+         argMap: {...grantee.argMap, 'image_id': imageId, 'region': ?region},
        );
 
   @override

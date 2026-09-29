@@ -23,10 +23,10 @@ final class DataCloudflareShareResources extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (resourceType != null) 'resource_type': resourceType,
+           'max_items': ?maxItems,
+           'resource_type': ?resourceType,
            'share_id': shareId,
-           if (status != null) 'status': status,
+           'status': ?status,
          },
        );
 

@@ -24,7 +24,7 @@ final class VertexAiEndpointIamMemberCondition {
   final TfArg<String> title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
     'title': title.toTfJson(),
   };
@@ -51,9 +51,9 @@ final class GoogleVertexAiEndpointIamMember extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'endpoint': endpoint,
-           if (location != null) 'location': location,
+           'location': ?location,
            'member': member,
-           if (project != null) 'project': project,
+           'project': ?project,
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

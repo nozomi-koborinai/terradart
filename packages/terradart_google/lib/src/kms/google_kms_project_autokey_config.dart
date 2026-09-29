@@ -66,10 +66,9 @@ final class GoogleKmsProjectAutokeyConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (keyProjectResolutionMode != null)
-             'key_project_resolution_mode': keyProjectResolutionMode,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'key_project_resolution_mode': ?keyProjectResolutionMode,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -18,10 +18,7 @@ final class DataGoogleOrganizations extends Data {
     TfArg<String>? filter,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (filter != null) 'filter': filter},
-       );
+  }) : super(terraformType: tfType, argMap: {'filter': ?filter});
 
   @override
   Set<String> get sensitiveFields => _googleOrganizationsSensitive;

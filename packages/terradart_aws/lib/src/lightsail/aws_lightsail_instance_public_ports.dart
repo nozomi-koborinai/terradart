@@ -33,11 +33,10 @@ final class LightsailInstancePublicPortsPortInfo {
   final TfArg<num> toPort;
 
   Map<String, Object?> encode() => {
-    if (cidrListAliases != null)
-      'cidr_list_aliases': cidrListAliases!.toTfJson(),
-    if (cidrs != null) 'cidrs': cidrs!.toTfJson(),
+    'cidr_list_aliases': ?cidrListAliases?.toTfJson(),
+    'cidrs': ?cidrs?.toTfJson(),
     'from_port': fromPort.toTfJson(),
-    if (ipv6Cidrs != null) 'ipv6_cidrs': ipv6Cidrs!.toTfJson(),
+    'ipv6_cidrs': ?ipv6Cidrs?.toTfJson(),
     'protocol': protocol.toTfJson(),
     'to_port': toPort.toTfJson(),
   };
@@ -60,7 +59,7 @@ final class AwsLightsailInstancePublicPorts extends Resource {
          terraformType: tfType,
          argMap: {
            'instance_name': instanceName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'port_info': TfArg.literal([for (final e in portInfo) e.encode()]),
          },
        );

@@ -169,10 +169,9 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
   privateEndpointOverride;
 
   Map<String, Object?> encode() => {
-    if (allowedAudience != null)
-      'allowed_audience': allowedAudience!.toTfJson(),
-    if (allowedClients != null) 'allowed_clients': allowedClients!.toTfJson(),
-    if (allowedScopes != null) 'allowed_scopes': allowedScopes!.toTfJson(),
+    'allowed_audience': ?allowedAudience?.toTfJson(),
+    'allowed_clients': ?allowedClients?.toTfJson(),
+    'allowed_scopes': ?allowedScopes?.toTfJson(),
     'discovery_url': discoveryUrl.toTfJson(),
     if (customClaim != null)
       'custom_claim': [for (final e in customClaim!) e.encode()],
@@ -284,10 +283,8 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
   final TfArg<List<Object?>>? matchValueStringList;
 
   Map<String, Object?> encode() => {
-    if (matchValueString != null)
-      'match_value_string': matchValueString!.toTfJson(),
-    if (matchValueStringList != null)
-      'match_value_string_list': matchValueStringList!.toTfJson(),
+    'match_value_string': ?matchValueString?.toTfJson(),
+    'match_value_string_list': ?matchValueStringList?.toTfJson(),
   };
 }
 
@@ -350,11 +347,10 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -383,9 +379,8 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -471,11 +466,10 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -504,9 +498,8 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -545,10 +538,10 @@ final class AwsAgentregistryRegistry extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (approvalConfiguration != null)
              'approval_configuration': TfArg.literal([
                for (final e in approvalConfiguration) e.encode(),

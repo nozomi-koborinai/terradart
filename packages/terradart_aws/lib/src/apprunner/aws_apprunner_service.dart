@@ -48,14 +48,12 @@ final class ApprunnerServiceHealthCheckConfiguration {
   final TfArg<num>? unhealthyThreshold;
 
   Map<String, Object?> encode() => {
-    if (healthyThreshold != null)
-      'healthy_threshold': healthyThreshold!.toTfJson(),
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
-    if (unhealthyThreshold != null)
-      'unhealthy_threshold': unhealthyThreshold!.toTfJson(),
+    'healthy_threshold': ?healthyThreshold?.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
+    'unhealthy_threshold': ?unhealthyThreshold?.toTfJson(),
   };
 }
 
@@ -86,10 +84,9 @@ final class ApprunnerServiceInstanceConfiguration {
   final TfArg<String>? memory;
 
   Map<String, Object?> encode() => {
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (instanceRoleArn != null)
-      'instance_role_arn': instanceRoleArn!.toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'instance_role_arn': ?instanceRoleArn?.toTfJson(),
+    'memory': ?memory?.toTfJson(),
   };
 }
 
@@ -112,11 +109,9 @@ final class ApprunnerServiceNetworkConfiguration {
   ingressConfiguration;
 
   Map<String, Object?> encode() => {
-    if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
-    if (egressConfiguration != null)
-      'egress_configuration': egressConfiguration!.encode(),
-    if (ingressConfiguration != null)
-      'ingress_configuration': ingressConfiguration!.encode(),
+    'ip_address_type': ?ipAddressType?.toTfJson(),
+    'egress_configuration': ?egressConfiguration?.encode(),
+    'ingress_configuration': ?ingressConfiguration?.encode(),
   };
 }
 
@@ -148,9 +143,8 @@ final class ApprunnerServiceNetworkConfigurationEgressConfiguration {
   final TfArg<String>? vpcConnectorArn;
 
   Map<String, Object?> encode() => {
-    if (egressType != null) 'egress_type': egressType!.toTfJson(),
-    if (vpcConnectorArn != null)
-      'vpc_connector_arn': vpcConnectorArn!.toTfJson(),
+    'egress_type': ?egressType?.toTfJson(),
+    'vpc_connector_arn': ?vpcConnectorArn?.toTfJson(),
   };
 }
 
@@ -178,8 +172,7 @@ final class ApprunnerServiceNetworkConfigurationIngressConfiguration {
   final TfArg<bool>? isPubliclyAccessible;
 
   Map<String, Object?> encode() => {
-    if (isPubliclyAccessible != null)
-      'is_publicly_accessible': isPubliclyAccessible!.toTfJson(),
+    'is_publicly_accessible': ?isPubliclyAccessible?.toTfJson(),
   };
 }
 
@@ -197,9 +190,8 @@ final class ApprunnerServiceObservabilityConfiguration {
   final TfArg<bool> observabilityEnabled;
 
   Map<String, Object?> encode() => {
-    if (observabilityConfigurationArn != null)
-      'observability_configuration_arn': observabilityConfigurationArn!
-          .toTfJson(),
+    'observability_configuration_arn': ?observabilityConfigurationArn
+        ?.toTfJson(),
     'observability_enabled': observabilityEnabled.toTfJson(),
   };
 }
@@ -222,10 +214,8 @@ final class ApprunnerServiceSourceConfiguration {
   final ApprunnerServiceSourceConfigurationRepository repository;
 
   Map<String, Object?> encode() => {
-    if (autoDeploymentsEnabled != null)
-      'auto_deployments_enabled': autoDeploymentsEnabled!.toTfJson(),
-    if (authenticationConfiguration != null)
-      'authentication_configuration': authenticationConfiguration!.encode(),
+    'auto_deployments_enabled': ?autoDeploymentsEnabled?.toTfJson(),
+    'authentication_configuration': ?authenticationConfiguration?.encode(),
     ...repository.encode(),
   };
 }
@@ -301,8 +291,8 @@ final class ApprunnerServiceSourceConfigurationAuthenticationConfiguration {
   final TfArg<String>? connectionArn;
 
   Map<String, Object?> encode() => {
-    if (accessRoleArn != null) 'access_role_arn': accessRoleArn!.toTfJson(),
-    if (connectionArn != null) 'connection_arn': connectionArn!.toTfJson(),
+    'access_role_arn': ?accessRoleArn?.toTfJson(),
+    'connection_arn': ?connectionArn?.toTfJson(),
   };
 }
 
@@ -329,10 +319,8 @@ final class ApprunnerServiceSourceConfigurationCodeRepository {
 
   Map<String, Object?> encode() => {
     'repository_url': repositoryUrl.toTfJson(),
-    if (sourceDirectory != null)
-      'source_directory': sourceDirectory!.toTfJson(),
-    if (codeConfiguration != null)
-      'code_configuration': codeConfiguration!.encode(),
+    'source_directory': ?sourceDirectory?.toTfJson(),
+    'code_configuration': ?codeConfiguration?.encode(),
     'source_code_version': sourceCodeVersion.encode(),
   };
 }
@@ -356,8 +344,7 @@ final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfiguration {
 
   Map<String, Object?> encode() => {
     'configuration_source': configurationSource.toTfJson(),
-    if (codeConfigurationValues != null)
-      'code_configuration_values': codeConfigurationValues!.encode(),
+    'code_configuration_values': ?codeConfigurationValues?.encode(),
   };
 }
 
@@ -403,14 +390,12 @@ final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCo
   final TfArg<String>? startCommand;
 
   Map<String, Object?> encode() => {
-    if (buildCommand != null) 'build_command': buildCommand!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'build_command': ?buildCommand?.toTfJson(),
+    'port': ?port?.toTfJson(),
     'runtime': runtime.toTfJson(),
-    if (runtimeEnvironmentSecrets != null)
-      'runtime_environment_secrets': runtimeEnvironmentSecrets!.toTfJson(),
-    if (runtimeEnvironmentVariables != null)
-      'runtime_environment_variables': runtimeEnvironmentVariables!.toTfJson(),
-    if (startCommand != null) 'start_command': startCommand!.toTfJson(),
+    'runtime_environment_secrets': ?runtimeEnvironmentSecrets?.toTfJson(),
+    'runtime_environment_variables': ?runtimeEnvironmentVariables?.toTfJson(),
+    'start_command': ?startCommand?.toTfJson(),
   };
 }
 
@@ -495,8 +480,7 @@ final class ApprunnerServiceSourceConfigurationImageRepository {
   Map<String, Object?> encode() => {
     'image_identifier': imageIdentifier.toTfJson(),
     'image_repository_type': imageRepositoryType.toTfJson(),
-    if (imageConfiguration != null)
-      'image_configuration': imageConfiguration!.encode(),
+    'image_configuration': ?imageConfiguration?.encode(),
   };
 }
 
@@ -533,12 +517,10 @@ final class ApprunnerServiceSourceConfigurationImageRepositoryImageConfiguration
   final TfArg<String>? startCommand;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
-    if (runtimeEnvironmentSecrets != null)
-      'runtime_environment_secrets': runtimeEnvironmentSecrets!.toTfJson(),
-    if (runtimeEnvironmentVariables != null)
-      'runtime_environment_variables': runtimeEnvironmentVariables!.toTfJson(),
-    if (startCommand != null) 'start_command': startCommand!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'runtime_environment_secrets': ?runtimeEnvironmentSecrets?.toTfJson(),
+    'runtime_environment_variables': ?runtimeEnvironmentVariables?.toTfJson(),
+    'start_command': ?startCommand?.toTfJson(),
   };
 }
 
@@ -565,11 +547,10 @@ final class AwsApprunnerService extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoScalingConfigurationArn != null)
-             'auto_scaling_configuration_arn': autoScalingConfigurationArn,
-           if (region != null) 'region': region,
+           'auto_scaling_configuration_arn': ?autoScalingConfigurationArn,
+           'region': ?region,
            'service_name': serviceName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (encryptionConfiguration != null)
              'encryption_configuration': TfArg.literal(
                encryptionConfiguration.encode(),

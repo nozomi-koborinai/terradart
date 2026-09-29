@@ -86,12 +86,11 @@ final class AwsKmsCiphertext extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (context != null) 'context': context,
+           'context': ?context,
            'key_id': keyId.encodeAs('key_id'),
            ...plaintext.argMap,
-           if (plaintextWoVersion != null)
-             'plaintext_wo_version': plaintextWoVersion,
-           if (region != null) 'region': region,
+           'plaintext_wo_version': ?plaintextWoVersion,
+           'region': ?region,
          },
        );
 

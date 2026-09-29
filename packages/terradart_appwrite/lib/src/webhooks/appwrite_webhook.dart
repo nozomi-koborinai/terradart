@@ -32,13 +32,13 @@ final class AppwriteWebhook extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (authPassword != null) 'auth_password': authPassword,
-           if (authUsername != null) 'auth_username': authUsername,
-           if (enabled != null) 'enabled': enabled,
+           'auth_password': ?authPassword,
+           'auth_username': ?authUsername,
+           'enabled': ?enabled,
            'events': events,
            'name': name,
-           if (projectId != null) 'project_id': projectId,
-           if (tls != null) 'tls': tls,
+           'project_id': ?projectId,
+           'tls': ?tls,
            'url': url,
          },
        );

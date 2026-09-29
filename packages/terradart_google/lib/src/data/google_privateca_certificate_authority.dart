@@ -25,11 +25,10 @@ final class DataGooglePrivatecaCertificateAuthority extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (certificateAuthorityId != null)
-             'certificate_authority_id': certificateAuthorityId,
-           if (location != null) 'location': location,
-           if (pool != null) 'pool': pool,
-           if (project != null) 'project': project,
+           'certificate_authority_id': ?certificateAuthorityId,
+           'location': ?location,
+           'pool': ?pool,
+           'project': ?project,
          },
        );
 

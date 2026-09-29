@@ -46,7 +46,7 @@ final class AthenaDatabaseEncryptionConfiguration {
 
   Map<String, Object?> encode() => {
     'encryption_option': encryptionOption.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -87,15 +87,14 @@ final class AwsAthenaDatabase extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bucket != null) 'bucket': bucket.encodeAs('id'),
-           if (comment != null) 'comment': comment,
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'bucket': ?bucket?.encodeAs('id'),
+           'comment': ?comment,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'force_destroy': ?forceDestroy,
            'name': name,
-           if (properties != null) 'properties': properties,
-           if (region != null) 'region': region,
-           if (workgroup != null) 'workgroup': workgroup,
+           'properties': ?properties,
+           'region': ?region,
+           'workgroup': ?workgroup,
            if (aclConfiguration != null)
              'acl_configuration': TfArg.literal(aclConfiguration.encode()),
            if (encryptionConfiguration != null)

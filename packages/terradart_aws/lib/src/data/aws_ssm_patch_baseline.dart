@@ -23,11 +23,11 @@ final class DataAwsSsmPatchBaseline extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultBaseline != null) 'default_baseline': defaultBaseline,
-           if (namePrefix != null) 'name_prefix': namePrefix,
-           if (operatingSystem != null) 'operating_system': operatingSystem,
+           'default_baseline': ?defaultBaseline,
+           'name_prefix': ?namePrefix,
+           'operating_system': ?operatingSystem,
            'owner': owner,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

@@ -26,7 +26,7 @@ final class DataCloudflareZeroTrustDlpSensitivityLevels extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
+           'max_items': ?maxItems,
            'sensitivity_group_id': sensitivityGroupId,
          },
        );

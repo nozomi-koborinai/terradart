@@ -259,9 +259,7 @@ final class AutoscalingGroupAvailabilityZoneDistribution {
   capacityDistributionStrategy;
 
   Map<String, Object?> encode() => {
-    if (capacityDistributionStrategy != null)
-      'capacity_distribution_strategy': capacityDistributionStrategy!
-          .toTfJson(),
+    'capacity_distribution_strategy': ?capacityDistributionStrategy?.toTfJson(),
   };
 }
 
@@ -297,11 +295,9 @@ final class AutoscalingGroupCapacityReservationSpecification {
   capacityReservationTarget;
 
   Map<String, Object?> encode() => {
-    if (capacityReservationPreference != null)
-      'capacity_reservation_preference': capacityReservationPreference!
-          .toTfJson(),
-    if (capacityReservationTarget != null)
-      'capacity_reservation_target': capacityReservationTarget!.encode(),
+    'capacity_reservation_preference': ?capacityReservationPreference
+        ?.toTfJson(),
+    'capacity_reservation_target': ?capacityReservationTarget?.encode(),
   };
 }
 
@@ -413,16 +409,13 @@ final class AutoscalingGroupInitialLifecycleHook {
   final RefTo<AwsIamRole>? roleArn;
 
   Map<String, Object?> encode() => {
-    if (defaultResult != null) 'default_result': defaultResult!.toTfJson(),
-    if (heartbeatTimeout != null)
-      'heartbeat_timeout': heartbeatTimeout!.toTfJson(),
+    'default_result': ?defaultResult?.toTfJson(),
+    'heartbeat_timeout': ?heartbeatTimeout?.toTfJson(),
     'lifecycle_transition': lifecycleTransition.toTfJson(),
     'name': name.toTfJson(),
-    if (notificationMetadata != null)
-      'notification_metadata': notificationMetadata!.toTfJson(),
-    if (notificationTargetArn != null)
-      'notification_target_arn': notificationTargetArn!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
+    'notification_metadata': ?notificationMetadata?.toTfJson(),
+    'notification_target_arn': ?notificationTargetArn?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -460,8 +453,7 @@ final class AutoscalingGroupInstanceLifecyclePolicy {
   retentionTriggers;
 
   Map<String, Object?> encode() => {
-    if (retentionTriggers != null)
-      'retention_triggers': retentionTriggers!.encode(),
+    'retention_triggers': ?retentionTriggers?.encode(),
   };
 }
 
@@ -479,8 +471,7 @@ final class AutoscalingGroupInstanceLifecyclePolicyRetentionTriggers {
   terminateHookAbandon;
 
   Map<String, Object?> encode() => {
-    if (terminateHookAbandon != null)
-      'terminate_hook_abandon': terminateHookAbandon!.toTfJson(),
+    'terminate_hook_abandon': ?terminateHookAbandon?.toTfJson(),
   };
 }
 
@@ -534,8 +525,8 @@ final class AutoscalingGroupInstanceRefresh {
 
   Map<String, Object?> encode() => {
     'strategy': strategy.toTfJson(),
-    if (triggers != null) 'triggers': triggers!.toTfJson(),
-    if (preferences != null) 'preferences': preferences!.encode(),
+    'triggers': ?triggers?.toTfJson(),
+    'preferences': ?preferences?.encode(),
   };
 }
 
@@ -592,23 +583,16 @@ final class AutoscalingGroupInstanceRefreshPreferences {
   alarmSpecification;
 
   Map<String, Object?> encode() => {
-    if (autoRollback != null) 'auto_rollback': autoRollback!.toTfJson(),
-    if (checkpointDelay != null)
-      'checkpoint_delay': checkpointDelay!.toTfJson(),
-    if (checkpointPercentages != null)
-      'checkpoint_percentages': checkpointPercentages!.toTfJson(),
-    if (instanceWarmup != null) 'instance_warmup': instanceWarmup!.toTfJson(),
-    if (maxHealthyPercentage != null)
-      'max_healthy_percentage': maxHealthyPercentage!.toTfJson(),
-    if (minHealthyPercentage != null)
-      'min_healthy_percentage': minHealthyPercentage!.toTfJson(),
-    if (scaleInProtectedInstances != null)
-      'scale_in_protected_instances': scaleInProtectedInstances!.toTfJson(),
-    if (skipMatching != null) 'skip_matching': skipMatching!.toTfJson(),
-    if (standbyInstances != null)
-      'standby_instances': standbyInstances!.toTfJson(),
-    if (alarmSpecification != null)
-      'alarm_specification': alarmSpecification!.encode(),
+    'auto_rollback': ?autoRollback?.toTfJson(),
+    'checkpoint_delay': ?checkpointDelay?.toTfJson(),
+    'checkpoint_percentages': ?checkpointPercentages?.toTfJson(),
+    'instance_warmup': ?instanceWarmup?.toTfJson(),
+    'max_healthy_percentage': ?maxHealthyPercentage?.toTfJson(),
+    'min_healthy_percentage': ?minHealthyPercentage?.toTfJson(),
+    'scale_in_protected_instances': ?scaleInProtectedInstances?.toTfJson(),
+    'skip_matching': ?skipMatching?.toTfJson(),
+    'standby_instances': ?standbyInstances?.toTfJson(),
+    'alarm_specification': ?alarmSpecification?.encode(),
   };
 }
 
@@ -650,9 +634,7 @@ final class AutoscalingGroupInstanceRefreshPreferencesAlarmSpecification {
 
   final TfArg<List<Object?>>? alarms;
 
-  Map<String, Object?> encode() => {
-    if (alarms != null) 'alarms': alarms!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'alarms': ?alarms?.toTfJson()};
 }
 
 /// Typed helper for the `launch_template` block of
@@ -667,7 +649,7 @@ final class AutoscalingGroupLaunchTemplate {
 
   Map<String, Object?> encode() => {
     ...?identifier?.encode(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -737,8 +719,7 @@ final class AutoscalingGroupMixedInstancesPolicy {
   final AutoscalingGroupMixedInstancesPolicyLaunchTemplate launchTemplate;
 
   Map<String, Object?> encode() => {
-    if (instancesDistribution != null)
-      'instances_distribution': instancesDistribution!.encode(),
+    'instances_distribution': ?instancesDistribution?.encode(),
     'launch_template': launchTemplate.encode(),
   };
 }
@@ -769,18 +750,13 @@ final class AutoscalingGroupMixedInstancesPolicyInstancesDistribution {
   final TfArg<String>? spotMaxPrice;
 
   Map<String, Object?> encode() => {
-    if (onDemandAllocationStrategy != null)
-      'on_demand_allocation_strategy': onDemandAllocationStrategy!.toTfJson(),
-    if (onDemandBaseCapacity != null)
-      'on_demand_base_capacity': onDemandBaseCapacity!.toTfJson(),
-    if (onDemandPercentageAboveBaseCapacity != null)
-      'on_demand_percentage_above_base_capacity':
-          onDemandPercentageAboveBaseCapacity!.toTfJson(),
-    if (spotAllocationStrategy != null)
-      'spot_allocation_strategy': spotAllocationStrategy!.toTfJson(),
-    if (spotInstancePools != null)
-      'spot_instance_pools': spotInstancePools!.toTfJson(),
-    if (spotMaxPrice != null) 'spot_max_price': spotMaxPrice!.toTfJson(),
+    'on_demand_allocation_strategy': ?onDemandAllocationStrategy?.toTfJson(),
+    'on_demand_base_capacity': ?onDemandBaseCapacity?.toTfJson(),
+    'on_demand_percentage_above_base_capacity':
+        ?onDemandPercentageAboveBaseCapacity?.toTfJson(),
+    'spot_allocation_strategy': ?spotAllocationStrategy?.toTfJson(),
+    'spot_instance_pools': ?spotInstancePools?.toTfJson(),
+    'spot_max_price': ?spotMaxPrice?.toTfJson(),
   };
 }
 
@@ -822,11 +798,9 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpec
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    if (launchTemplateId != null)
-      'launch_template_id': launchTemplateId!.toTfJson(),
-    if (launchTemplateName != null)
-      'launch_template_name': launchTemplateName!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'launch_template_id': ?launchTemplateId?.toTfJson(),
+    'launch_template_name': ?launchTemplateName?.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -852,13 +826,10 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverride {
   launchTemplateSpecification;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (weightedCapacity != null)
-      'weighted_capacity': weightedCapacity!.toTfJson(),
-    if (instanceRequirements != null)
-      'instance_requirements': instanceRequirements!.encode(),
-    if (launchTemplateSpecification != null)
-      'launch_template_specification': launchTemplateSpecification!.encode(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'weighted_capacity': ?weightedCapacity?.toTfJson(),
+    'instance_requirements': ?instanceRequirements?.encode(),
+    'launch_template_specification': ?launchTemplateSpecification?.encode(),
   };
 }
 
@@ -998,49 +969,35 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
       'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
     if (acceleratorTypes != null)
       'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
-    if (allowedInstanceTypes != null)
-      'allowed_instance_types': allowedInstanceTypes!.toTfJson(),
-    if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
-    if (burstablePerformance != null)
-      'burstable_performance': burstablePerformance!.toTfJson(),
+    'allowed_instance_types': ?allowedInstanceTypes?.toTfJson(),
+    'bare_metal': ?bareMetal?.toTfJson(),
+    'burstable_performance': ?burstablePerformance?.toTfJson(),
     if (cpuManufacturers != null)
       'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
-    if (excludedInstanceTypes != null)
-      'excluded_instance_types': excludedInstanceTypes!.toTfJson(),
+    'excluded_instance_types': ?excludedInstanceTypes?.toTfJson(),
     if (instanceGenerations != null)
       'instance_generations': [
         for (final e in instanceGenerations!) e.toTfJson(),
       ],
-    if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
+    'local_storage': ?localStorage?.toTfJson(),
     if (localStorageTypes != null)
       'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
-    if (maxSpotPriceAsPercentageOfOptimalOnDemandPrice != null)
-      'max_spot_price_as_percentage_of_optimal_on_demand_price':
-          maxSpotPriceAsPercentageOfOptimalOnDemandPrice!.toTfJson(),
-    if (onDemandMaxPricePercentageOverLowestPrice != null)
-      'on_demand_max_price_percentage_over_lowest_price':
-          onDemandMaxPricePercentageOverLowestPrice!.toTfJson(),
-    if (requireHibernateSupport != null)
-      'require_hibernate_support': requireHibernateSupport!.toTfJson(),
-    if (spotMaxPricePercentageOverLowestPrice != null)
-      'spot_max_price_percentage_over_lowest_price':
-          spotMaxPricePercentageOverLowestPrice!.toTfJson(),
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.encode(),
-    if (acceleratorTotalMemoryMib != null)
-      'accelerator_total_memory_mib': acceleratorTotalMemoryMib!.encode(),
-    if (baselineEbsBandwidthMbps != null)
-      'baseline_ebs_bandwidth_mbps': baselineEbsBandwidthMbps!.encode(),
-    if (memoryGibPerVcpu != null)
-      'memory_gib_per_vcpu': memoryGibPerVcpu!.encode(),
-    if (memoryMib != null) 'memory_mib': memoryMib!.encode(),
-    if (networkBandwidthGbps != null)
-      'network_bandwidth_gbps': networkBandwidthGbps!.encode(),
-    if (networkInterfaceCount != null)
-      'network_interface_count': networkInterfaceCount!.encode(),
-    if (totalLocalStorageGb != null)
-      'total_local_storage_gb': totalLocalStorageGb!.encode(),
-    if (vcpuCount != null) 'vcpu_count': vcpuCount!.encode(),
+    'max_spot_price_as_percentage_of_optimal_on_demand_price':
+        ?maxSpotPriceAsPercentageOfOptimalOnDemandPrice?.toTfJson(),
+    'on_demand_max_price_percentage_over_lowest_price':
+        ?onDemandMaxPricePercentageOverLowestPrice?.toTfJson(),
+    'require_hibernate_support': ?requireHibernateSupport?.toTfJson(),
+    'spot_max_price_percentage_over_lowest_price':
+        ?spotMaxPricePercentageOverLowestPrice?.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.encode(),
+    'accelerator_total_memory_mib': ?acceleratorTotalMemoryMib?.encode(),
+    'baseline_ebs_bandwidth_mbps': ?baselineEbsBandwidthMbps?.encode(),
+    'memory_gib_per_vcpu': ?memoryGibPerVcpu?.encode(),
+    'memory_mib': ?memoryMib?.encode(),
+    'network_bandwidth_gbps': ?networkBandwidthGbps?.encode(),
+    'network_interface_count': ?networkInterfaceCount?.encode(),
+    'total_local_storage_gb': ?totalLocalStorageGb?.encode(),
+    'vcpu_count': ?vcpuCount?.encode(),
   };
 }
 
@@ -1188,8 +1145,8 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1207,8 +1164,8 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1226,8 +1183,8 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1245,8 +1202,8 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1264,8 +1221,8 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1283,8 +1240,8 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1302,8 +1259,8 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1321,8 +1278,8 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1340,8 +1297,8 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1362,11 +1319,9 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideLaunchTemp
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    if (launchTemplateId != null)
-      'launch_template_id': launchTemplateId!.toTfJson(),
-    if (launchTemplateName != null)
-      'launch_template_name': launchTemplateName!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'launch_template_id': ?launchTemplateId?.toTfJson(),
+    'launch_template_name': ?launchTemplateName?.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -1405,7 +1360,7 @@ final class AutoscalingGroupTrafficSource {
 
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -1429,12 +1384,10 @@ final class AutoscalingGroupWarmPool {
   final AutoscalingGroupWarmPoolInstanceReusePolicy? instanceReusePolicy;
 
   Map<String, Object?> encode() => {
-    if (maxGroupPreparedCapacity != null)
-      'max_group_prepared_capacity': maxGroupPreparedCapacity!.toTfJson(),
-    if (minSize != null) 'min_size': minSize!.toTfJson(),
-    if (poolState != null) 'pool_state': poolState!.toTfJson(),
-    if (instanceReusePolicy != null)
-      'instance_reuse_policy': instanceReusePolicy!.encode(),
+    'max_group_prepared_capacity': ?maxGroupPreparedCapacity?.toTfJson(),
+    'min_size': ?minSize?.toTfJson(),
+    'pool_state': ?poolState?.toTfJson(),
+    'instance_reuse_policy': ?instanceReusePolicy?.encode(),
   };
 }
 
@@ -1458,7 +1411,7 @@ final class AutoscalingGroupWarmPoolInstanceReusePolicy {
   final TfArg<bool>? reuseOnScaleIn;
 
   Map<String, Object?> encode() => {
-    if (reuseOnScaleIn != null) 'reuse_on_scale_in': reuseOnScaleIn!.toTfJson(),
+    'reuse_on_scale_in': ?reuseOnScaleIn?.toTfJson(),
   };
 }
 
@@ -1516,49 +1469,35 @@ final class AwsAutoscalingGroup extends Resource {
          terraformType: tfType,
          argMap: {
            ...?placement?.argMap,
-           if (capacityRebalance != null)
-             'capacity_rebalance': capacityRebalance,
-           if (context != null) 'context': context,
-           if (defaultCooldown != null) 'default_cooldown': defaultCooldown,
-           if (defaultInstanceWarmup != null)
-             'default_instance_warmup': defaultInstanceWarmup,
-           if (desiredCapacity != null) 'desired_capacity': desiredCapacity,
-           if (desiredCapacityType != null)
-             'desired_capacity_type': desiredCapacityType,
-           if (enabledMetrics != null) 'enabled_metrics': enabledMetrics,
-           if (forceDelete != null) 'force_delete': forceDelete,
-           if (forceDeleteWarmPool != null)
-             'force_delete_warm_pool': forceDeleteWarmPool,
-           if (healthCheckGracePeriod != null)
-             'health_check_grace_period': healthCheckGracePeriod,
-           if (healthCheckType != null) 'health_check_type': healthCheckType,
-           if (ignoreFailedScalingActivities != null)
-             'ignore_failed_scaling_activities': ignoreFailedScalingActivities,
+           'capacity_rebalance': ?capacityRebalance,
+           'context': ?context,
+           'default_cooldown': ?defaultCooldown,
+           'default_instance_warmup': ?defaultInstanceWarmup,
+           'desired_capacity': ?desiredCapacity,
+           'desired_capacity_type': ?desiredCapacityType,
+           'enabled_metrics': ?enabledMetrics,
+           'force_delete': ?forceDelete,
+           'force_delete_warm_pool': ?forceDeleteWarmPool,
+           'health_check_grace_period': ?healthCheckGracePeriod,
+           'health_check_type': ?healthCheckType,
+           'ignore_failed_scaling_activities': ?ignoreFailedScalingActivities,
            ...instanceSource.argMap,
-           if (loadBalancers != null) 'load_balancers': loadBalancers,
-           if (maxInstanceLifetime != null)
-             'max_instance_lifetime': maxInstanceLifetime,
+           'load_balancers': ?loadBalancers,
+           'max_instance_lifetime': ?maxInstanceLifetime,
            'max_size': maxSize,
-           if (metricsGranularity != null)
-             'metrics_granularity': metricsGranularity,
-           if (minElbCapacity != null) 'min_elb_capacity': minElbCapacity,
+           'metrics_granularity': ?metricsGranularity,
+           'min_elb_capacity': ?minElbCapacity,
            'min_size': minSize,
            ...?name?.argMap,
-           if (placementGroup != null) 'placement_group': placementGroup,
-           if (protectFromScaleIn != null)
-             'protect_from_scale_in': protectFromScaleIn,
-           if (region != null) 'region': region,
-           if (serviceLinkedRoleArn != null)
-             'service_linked_role_arn': serviceLinkedRoleArn,
-           if (suspendedProcesses != null)
-             'suspended_processes': suspendedProcesses,
-           if (targetGroupArns != null) 'target_group_arns': targetGroupArns,
-           if (terminationPolicies != null)
-             'termination_policies': terminationPolicies,
-           if (waitForCapacityTimeout != null)
-             'wait_for_capacity_timeout': waitForCapacityTimeout,
-           if (waitForElbCapacity != null)
-             'wait_for_elb_capacity': waitForElbCapacity,
+           'placement_group': ?placementGroup,
+           'protect_from_scale_in': ?protectFromScaleIn,
+           'region': ?region,
+           'service_linked_role_arn': ?serviceLinkedRoleArn,
+           'suspended_processes': ?suspendedProcesses,
+           'target_group_arns': ?targetGroupArns,
+           'termination_policies': ?terminationPolicies,
+           'wait_for_capacity_timeout': ?waitForCapacityTimeout,
+           'wait_for_elb_capacity': ?waitForElbCapacity,
            if (availabilityZoneDistribution != null)
              'availability_zone_distribution': TfArg.literal(
                availabilityZoneDistribution.encode(),

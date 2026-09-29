@@ -25,8 +25,8 @@ final class DataGoogleDataplexEntryTypeIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'entry_type_id': entryTypeId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

@@ -42,11 +42,11 @@ final class GoogleDataLossPreventionDeidentifyTemplate extends Resource {
          terraformType: tfType,
          argMap: {
            'parent': parent,
-           if (templateId != null) 'template_id': templateId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
+           'template_id': ?templateId,
+           'display_name': ?displayName,
+           'description': ?description,
            'deidentify_config': deidentifyConfig,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -88,11 +88,7 @@ final class AwsConfigAggregateAuthorization extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'account_id': accountId,
-           ...region.argMap,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'account_id': accountId, ...region.argMap, 'tags': ?tags},
        );
 
   @override

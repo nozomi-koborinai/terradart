@@ -40,10 +40,10 @@ final class DataAwsSecurityGroup extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
+           'vpc_id': ?vpcId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

@@ -85,12 +85,12 @@ final class GoogleCloudbuildBitbucketServerConfig extends Resource {
          argMap: {
            'api_key': apiKey,
            'config_id': configId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'host_uri': hostUri,
            'location': location,
-           if (peeredNetwork != null) 'peered_network': peeredNetwork,
-           if (project != null) 'project': project,
-           if (sslCa != null) 'ssl_ca': sslCa,
+           'peered_network': ?peeredNetwork,
+           'project': ?project,
+           'ssl_ca': ?sslCa,
            'username': username,
            if (connectedRepositories != null)
              'connected_repositories': TfArg.literal([

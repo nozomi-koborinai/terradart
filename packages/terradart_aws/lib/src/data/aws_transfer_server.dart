@@ -20,11 +20,7 @@ final class DataAwsTransferServer extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'server_id': serverId,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'region': ?region, 'server_id': serverId, 'tags': ?tags},
        );
 
   @override
