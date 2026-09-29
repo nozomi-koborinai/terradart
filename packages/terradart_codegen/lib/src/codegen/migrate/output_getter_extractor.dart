@@ -12,9 +12,8 @@ final class ExtractedGetter {
 }
 
 final RegExp _getter = RegExp(
-  r'TfRef<(.+?)>\s+get\s+(\w+)\s*=>\s*TfRef\.attribute<[^(]*>\(\s*this\s*,\s*'
+  r'TfRef<([\w\s<>,?]+?)>\s+get\s+(\w+)\s*=>\s*TfRef\.attribute<[^(]*>\(\s*this\s*,\s*'
   "'([^']+)'",
-  dotAll: true,
 );
 
 /// Extracts every output-attribute getter from a wrapper file. Both the
