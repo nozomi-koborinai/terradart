@@ -117,6 +117,23 @@ final class SccLeftoverStack extends Stack {
         dependsOn: [ResourceDependency(topic)],
       ),
     );
+    // The organization's SCC notification service agent publishes findings to
+    // the topic.
+    final notificationAgent = add(
+      GoogleSccNotificationServiceAccount(
+        localName: 'notification_agent',
+        organization: .literal(org),
+        dependsOn: apiDeps,
+      ),
+    );
+    add(
+      GooglePubsubTopicIamMember(
+        localName: 'findings_publisher',
+        topic: topic.ref,
+        role: .literal('roles/pubsub.publisher'),
+        member: .ref(TfRef.attribute<String>(notificationAgent, 'member')),
+      ),
+    );
     add(
       GoogleSccFolderNotificationConfig(
         localName: 'folder_notify',

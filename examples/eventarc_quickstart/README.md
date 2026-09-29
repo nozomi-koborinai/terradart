@@ -2,7 +2,8 @@
 
 End-to-end terradart example for the Eventarc control plane beyond the
 trigger: message bus → Google API source → enrollment, a partner channel, a
-pipeline, and a Pub/Sub → HTTP trigger.
+pipeline (with an additive IAM grant for the trigger service account), and a
+Pub/Sub → HTTP trigger.
 
 ## Before you apply
 
