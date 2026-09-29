@@ -48,7 +48,7 @@ void main() {
       DuplicateModuleError,
       TfTimeouts,
     ];
-    expect(symbols, hasLength(40));
+    expect(symbols, hasLength(41));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {
