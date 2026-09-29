@@ -54,21 +54,24 @@ string argument unchecked. To keep emitting the attribute you passed before,
 pin it: `vpc.ref.pinned('self_link')`.
 
 **Synth output changes** where the old code passed a different attribute
-than the argument now emits. Every value below is one the provider accepts
-for that argument; `terraform plan` shows an in-place update (or none, where
-the provider normalizes the value) — pin the old attribute if you want no
-diff at all:
+than the argument now emits. Every new value is one the provider accepts for
+that argument, but run `terraform plan` before applying: where the provider
+does not treat the old and new forms as equal, the argument shows a change,
+and on an argument that forces replacement that means a replacement. Pin the
+old attribute (`vpc.ref.pinned('self_link')`) to keep the exact old value.
+The examples changed in these places:
 
 - google `network` / `subnetwork` arguments emit `id`
   (`projects/p/global/networks/n`) instead of `self_link` or `name`
-  (Compute, Cloud SQL, service networking, GKE, Oracle Database,
-  Network Connectivity, ...);
-- `topic` on `google_pubsub_subscription`, `google_pubsub_topic_iam_*` and
-  Cloud Asset feeds emits `id` instead of `name`;
+  (Compute addresses, firewalls, forwarding rules, NEGs, instance groups and
+  subnetworks, service networking, GKE clusters, Oracle Database ODB
+  networks, Network Connectivity transports, subnetwork IAM);
+- `topic` on `google_pubsub_topic_iam_member` / `_binding` / `_policy` emits
+  `id` instead of `name`;
 - `service_account` on `google_cloudbuild_trigger` emits `name` instead of
   `id` (the same `projects/p/serviceAccounts/email` value);
-- `function_name` on `aws_lambda_permission` emits `function_name` instead
-  of `arn`.
+- `function_name` on `aws_lambda_function_url` emits `function_name`
+  instead of `arn`.
 
 `terradart-migrate` writes `x.ref` for a reference to a migrated block,
 `x.ref.pinned('attr')` when the source reads another attribute, and

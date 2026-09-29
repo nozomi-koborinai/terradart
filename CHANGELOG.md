@@ -62,7 +62,7 @@ Per-package changelogs live alongside each package and are the system of record 
   `.literal(...)` / `.variable(...)` / `.expression(...)` / `.arg(...)` for a
   value outside the Stack. Synth output changes where an example passed
   another attribute than the argument emits (`self_link` → `id` on google
-  networks, `name` → `id` on Pub/Sub topics, ...); `.pinned('attr')` keeps
+  networks, `name` → `id` on Pub/Sub topic IAM, ...); `.pinned('attr')` keeps
   the old one. See `MIGRATING.md`. A type a later provider pin adds is typed
   by the weekly bump when its inputs match the ledger.
 
