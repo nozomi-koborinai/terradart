@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- pub.dev: add `example/main.dart` (parse a module, walk its resources, write a block back) and dartdoc on every public member. No API changes.
+
 ## 0.30.0 - 2026-09-28
 
 First release on pub.dev, published beside `terradart_migrate` (which reads Terraform through it). No `terradart_hcl` API changes.

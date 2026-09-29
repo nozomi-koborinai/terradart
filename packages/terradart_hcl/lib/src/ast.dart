@@ -13,15 +13,20 @@ import 'source.dart';
 sealed class HclNode {
   const HclNode();
 
+  /// Where this node sits in its file's source text; [SourceRange.none]
+  /// for nodes decoded from Terraform JSON.
   SourceRange get range;
 }
 
 /// A `#`, `//` or `/* */` comment, kept with its delimiters.
 final class Comment {
+  /// Creates a comment spanning [range]; [isBlock] marks a `/* */` comment.
   const Comment(this.text, this.range, {required this.isBlock});
 
   /// The comment text including its delimiters (`# foo`, `/* bar */`).
   final String text;
+
+  /// Where the comment sits in the source text, delimiters included.
   final SourceRange range;
 
   /// True for `/* */` comments.
@@ -53,6 +58,7 @@ sealed class Expr extends HclNode {
 /// A primitive literal: a string (from a quoted string without
 /// interpolation), a number, a boolean, or `null`.
 final class LiteralExpr extends Expr {
+  /// Creates a literal of [value]; [source] keeps the original text.
   const LiteralExpr(this.value, this.range, {this.source});
 
   /// `String`, `num`, `bool` or `null`.
@@ -66,9 +72,16 @@ final class LiteralExpr extends Expr {
   /// for literals that did not come from source text.
   final String? source;
 
+  /// True when [value] is a `String`.
   bool get isString => value is String;
+
+  /// True when [value] is a `num`.
   bool get isNumber => value is num;
+
+  /// True when [value] is a `bool`.
   bool get isBool => value is bool;
+
+  /// True for the `null` literal.
   bool get isNull => value == null;
 
   @override
@@ -85,8 +98,10 @@ sealed class TemplatePart extends HclNode {
 
 /// Literal text between interpolations, with escapes already decoded.
 final class TemplateLiteral extends TemplatePart {
+  /// Creates a literal template part holding the decoded [text].
   const TemplateLiteral(this.text, this.range);
 
+  /// The text with escapes (`\n`, `$${`, `%%{`) decoded.
   final String text;
 
   @override
@@ -99,6 +114,7 @@ final class TemplateLiteral extends TemplatePart {
 /// A `${ expr }` interpolation. [stripLeft] / [stripRight] record the `~`
 /// whitespace-strip markers (`${~ expr ~}`).
 final class TemplateInterpolation extends TemplatePart {
+  /// Creates an interpolation of [expr].
   const TemplateInterpolation(
     this.expr,
     this.range, {
@@ -106,11 +122,16 @@ final class TemplateInterpolation extends TemplatePart {
     this.stripRight = false,
   });
 
+  /// The interpolated expression.
   final Expr expr;
 
   @override
   final SourceRange range;
+
+  /// True when written `${~`: strip whitespace before the interpolation.
   final bool stripLeft;
+
+  /// True when written `~}`: strip whitespace after the interpolation.
   final bool stripRight;
 
   @override
@@ -121,6 +142,7 @@ final class TemplateInterpolation extends TemplatePart {
 /// kept as its verbatim [content] — a migrator treats a template with
 /// directives as opaque.
 final class TemplateDirective extends TemplatePart {
+  /// Creates a directive holding its trimmed [content].
   const TemplateDirective(
     this.content,
     this.range, {
@@ -133,7 +155,11 @@ final class TemplateDirective extends TemplatePart {
 
   @override
   final SourceRange range;
+
+  /// True when written `%{~`: strip whitespace before the directive.
   final bool stripLeft;
+
+  /// True when written `~}`: strip whitespace after the directive.
   final bool stripRight;
 
   @override
@@ -142,6 +168,7 @@ final class TemplateDirective extends TemplatePart {
 
 /// A quoted string with interpolations or directives, or any heredoc.
 final class TemplateExpr extends Expr {
+  /// Creates a template from its [parts]; pass [delimiter] for a heredoc.
   const TemplateExpr(
     this.parts,
     this.range, {
@@ -150,6 +177,7 @@ final class TemplateExpr extends Expr {
     this.rawBody,
   });
 
+  /// The literal text, interpolations and directives, in source order.
   final List<TemplatePart> parts;
 
   @override
@@ -165,6 +193,7 @@ final class TemplateExpr extends Expr {
   /// writer can reproduce it; `null` for quoted strings.
   final String? rawBody;
 
+  /// True for a heredoc (`<<EOT` or `<<-EOT`).
   bool get isHeredoc => delimiter != null;
 
   /// True when the template has no interpolations or directives.
@@ -185,8 +214,10 @@ sealed class TraversalStep extends HclNode {
 
 /// `.name`
 final class AttrStep extends TraversalStep {
+  /// Creates a `.name` step.
   const AttrStep(this.name, this.range);
 
+  /// The attribute name, without the leading dot.
   final String name;
 
   @override
@@ -198,8 +229,10 @@ final class AttrStep extends TraversalStep {
 
 /// `[0]` or `["key"]` with a literal index.
 final class IndexStep extends TraversalStep {
+  /// Creates a `[index]` step.
   const IndexStep(this.index, this.range);
 
+  /// The literal index: a number for `[0]`, a string for `["key"]`.
   final LiteralExpr index;
 
   @override
@@ -217,9 +250,13 @@ final class IndexStep extends TraversalStep {
 /// (`.*`, `[*]`) or a computed index turns the whole expression into a
 /// [RawExpr].
 final class TraversalExpr extends Expr {
+  /// Creates a traversal of [steps] starting at [root].
   const TraversalExpr(this.root, this.steps, this.range);
 
+  /// The first name (`var`, `local`, `google_pubsub_topic`, `each`, ...).
   final String root;
+
+  /// The `.attr` and `[index]` steps after [root], in order.
   final List<TraversalStep> steps;
 
   @override
@@ -238,8 +275,10 @@ final class TraversalExpr extends Expr {
 
 /// `[a, b, c]`
 final class TupleExpr extends Expr {
+  /// Creates a tuple of [elements].
   const TupleExpr(this.elements, this.range, {this.multiLine = false});
 
+  /// The elements, in source order.
   final List<Expr> elements;
 
   @override
@@ -254,11 +293,14 @@ final class TupleExpr extends Expr {
 
 /// One `key = value` (or `key: value`) item of an [ObjectExpr].
 final class ObjectItem extends HclNode {
+  /// Creates the item `key = value`.
   const ObjectItem(this.key, this.value, this.range, {this.colon = false});
 
   /// A [LiteralExpr] string for identifier and quoted keys, a [RawExpr]
   /// for a parenthesised `(expr)` key.
   final Expr key;
+
+  /// The item's value.
   final Expr value;
 
   @override
@@ -276,8 +318,10 @@ final class ObjectItem extends HclNode {
 
 /// `{ k = v, ... }`
 final class ObjectExpr extends Expr {
+  /// Creates an object of [items].
   const ObjectExpr(this.items, this.range, {this.multiLine = false});
 
+  /// The items, in source order (duplicate keys are kept).
   final List<ObjectItem> items;
 
   @override
@@ -300,6 +344,7 @@ final class ObjectExpr extends Expr {
 
 /// Any expression the shallow parser does not model: kept verbatim.
 final class RawExpr extends Expr {
+  /// Creates a verbatim expression from its [source] text.
   const RawExpr(this.source, this.range);
 
   /// The exact source text, with balanced brackets.
@@ -326,6 +371,7 @@ sealed class BodyEntry extends HclNode {
 
 /// `name = value`
 final class Attribute extends BodyEntry {
+  /// Creates the attribute `name = value`.
   const Attribute(
     this.name,
     this.value,
@@ -335,7 +381,10 @@ final class Attribute extends BodyEntry {
     this.trailingComment,
   });
 
+  /// The attribute name.
   final String name;
+
+  /// The attribute value.
   final Expr value;
 
   @override
@@ -356,10 +405,16 @@ final class Attribute extends BodyEntry {
 
 /// One label of a [Block]: `"name"` (quoted) or `name` (identifier).
 final class BlockLabel {
+  /// Creates a label; [quoted] is true for `"name"`.
   const BlockLabel(this.text, this.range, {required this.quoted});
 
+  /// The label text, without quotes.
   final String text;
+
+  /// Where the label sits in the source text, quotes included.
   final SourceRange range;
+
+  /// True when the label was written as a quoted string.
   final bool quoted;
 
   @override
@@ -368,6 +423,7 @@ final class BlockLabel {
 
 /// `type "label" ... { body }`
 final class Block extends BodyEntry {
+  /// Creates a block of [type] with [labels] and [body].
   const Block(
     this.type,
     this.labels,
@@ -379,8 +435,13 @@ final class Block extends BodyEntry {
     this.trailingComment,
   });
 
+  /// The block type (`resource`, `variable`, `lifecycle`, ...).
   final String type;
+
+  /// The labels after [type] (`"google_pubsub_topic" "orders"`).
   final List<BlockLabel> labels;
+
+  /// The block's contents between the braces.
   final Body body;
 
   @override
@@ -407,8 +468,10 @@ final class Block extends BodyEntry {
 
 /// The ordered contents of a file or block.
 final class Body extends HclNode {
+  /// Creates a body of [entries].
   const Body(this.entries, this.range, {this.trailingComments = const []});
 
+  /// The attributes and blocks, in source order.
   final List<BodyEntry> entries;
 
   @override
@@ -417,7 +480,10 @@ final class Body extends HclNode {
   /// Comments after the last entry (before the closing brace / end of file).
   final List<Comment> trailingComments;
 
+  /// The [entries] that are attributes, in order.
   Iterable<Attribute> get attributes => entries.whereType<Attribute>();
+
+  /// The [entries] that are blocks, in order.
   Iterable<Block> get blocks => entries.whereType<Block>();
 
   /// The first attribute named [name], if any.
@@ -442,11 +508,13 @@ final class Body extends HclNode {
     return null;
   }
 
+  /// True when the body has no attributes or blocks.
   bool get isEmpty => entries.isEmpty;
 }
 
 /// A parsed file (native syntax or JSON syntax).
 final class HclFile extends HclNode {
+  /// Creates a file whose top-level [body] was parsed from [source].
   const HclFile(
     this.body, {
     required this.source,
@@ -455,10 +523,13 @@ final class HclFile extends HclNode {
     this.isJson = false,
   });
 
+  /// The file's top-level attributes and blocks.
   final Body body;
 
   /// The original text, so [SourceRange.textIn] works for every node.
   final String source;
+
+  /// The name the file was parsed under, used in diagnostics.
   final String? fileName;
 
   /// Every comment in the file, in source order (the same objects the
