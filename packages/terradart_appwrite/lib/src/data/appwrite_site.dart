@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../sites/appwrite_site.dart';
+import '../project/appwrite_project.dart' show AppwriteProject;
 
 /// Sensitive field paths for `appwrite_site`.
 const Set<String> _appwriteSiteSensitive = <String>{};
@@ -16,12 +17,12 @@ final class DataAppwriteSite extends Data {
   DataAppwriteSite({
     required super.localName,
     required TfArg<String> id,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'id': id, 'project_id': ?projectId},
+         argMap: {'id': id, 'project_id': ?projectId?.encodeAs('id')},
        );
 
   @override

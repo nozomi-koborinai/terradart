@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../postgresql/appwrite_postgresql_database.dart'
+    show AppwritePostgresqlDatabase;
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_postgresql_branch`.
 const Set<String> _appwritePostgresqlBranchSensitive = <String>{
   'connection_string',
@@ -24,8 +28,8 @@ final class AppwritePostgresqlBranch extends Resource {
   AppwritePostgresqlBranch({
     required super.localName,
     TfArg<String>? branchId,
-    required TfArg<String> databaseId,
-    TfArg<String>? projectId,
+    required RefTo<AppwritePostgresqlDatabase> databaseId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<num>? ttl,
     super.lifecycle,
     super.dependsOn,
@@ -35,8 +39,8 @@ final class AppwritePostgresqlBranch extends Resource {
          terraformType: tfType,
          argMap: {
            'branch_id': ?branchId,
-           'database_id': databaseId,
-           'project_id': ?projectId,
+           'database_id': databaseId.encodeAs('id'),
+           'project_id': ?projectId?.encodeAs('id'),
            'ttl': ?ttl,
          },
        );
