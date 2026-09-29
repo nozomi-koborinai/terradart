@@ -218,7 +218,7 @@ final class FlutterWebStack extends Stack {
       : super(providers: [const AwsProvider(region: 'us-east-1')]) {
     final bucket = AwsS3Bucket(
       localName: 'site',
-      bucket: .bucketPrefix(.literal('flutter-web-')),
+      name: .bucketPrefix(.literal('flutter-web-')),
     );
     add(bucket);
     add(AwsS3BucketPublicAccessBlock(
