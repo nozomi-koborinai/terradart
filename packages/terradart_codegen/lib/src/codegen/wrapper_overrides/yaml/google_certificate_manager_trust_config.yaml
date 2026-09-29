@@ -1,6 +1,7 @@
 outputDir: certificate_manager
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 paramOrder:

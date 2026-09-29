@@ -1,6 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Google Cloud Armor: a layer-7 WAF / DDoS / rate-limiting policy that

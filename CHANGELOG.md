@@ -25,6 +25,13 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **`terradart_google` compute and networking input groups are sealed
+  types** (**breaking**) — the GA lane's first `deriveExactlyOne`
+  adoption: 16 Magic Modules groups on 13 resources (11 `conflicts` sets
+  → nullable, 5 `exactly_one_of` groups → required), e.g.
+  `GoogleVpcAccessConnector(minThroughputOrMinInstances: ...)`. A hand
+  helper slot such as `GoogleComputeUrlMap`'s `defaultUrlRedirect` becomes
+  a variant that keeps its class. See `MIGRATING.md`.
 - **Minimum Dart SDK is 3.10** (**breaking**) — every package, example,
   and cookbook stack declares `sdk: ^3.10.0` (was `^3.6.0`;
   `terradart_hcl` and `terradart_migrate` already required 3.10). The

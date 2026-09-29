@@ -19,6 +19,43 @@ output are the same. Raising your package's language version also switches
 `dart format` to the tall style, so expect a one-time reformat of your own
 code.
 
+### `terradart_google` Magic Modules input groups are sealed types
+
+**Breaking (`terradart_google`)** — input groups the Magic Modules YAML
+declares mutually exclusive take one sealed-type argument (or helper field)
+instead of several optional ones: an `exactly_one_of` group (or an
+`at_least_one_of` set whose members all `conflicts`) becomes a **required**
+argument, and a `conflicts` set no such group covers becomes a **nullable**
+one (leave it out to set none). The argument is named after its members
+joined by `Or`, and each member is a variant class named
+`<Prefix><Member>Option`, as on `terradart_google_beta` / `terradart_aws`.
+Synth output is unchanged. Groups a hand-written sealed argument already
+covers (`BigtableAppProfileRouting`, `ComputeHealthCheckProtocol`, ...) keep
+it. Setting two members, or none of an exactly-one group, used to fail at
+`terraform validate`; now it doesn't compile. `terradart-migrate` picks the
+variant from whichever member the source sets.
+
+Compute and networking (16 groups on 13 resources):
+
+| Before | After |
+|--------|-------|
+| `GoogleComputeTargetHttpsProxy(sslCertificates: TfArg.literal([...]), ...)` | `GoogleComputeTargetHttpsProxy(certificateManagerCertificatesOrSslCertificates: ComputeTargetHttpsProxySslCertificatesOption(sslCertificates: TfArg.literal([...])), ...)` |
+| `GoogleVpcAccessConnector(minInstances: TfArg.literal(2), maxInstances: TfArg.literal(3), ...)` | `GoogleVpcAccessConnector(minThroughputOrMinInstances: VpcAccessConnectorMinInstancesOption(minInstances: TfArg.literal(2)), maxInstancesOrMaxThroughput: VpcAccessConnectorMaxInstancesOption(maxInstances: TfArg.literal(3)), ...)` |
+| `GoogleNetworkConnectivityPolicyBasedRoute(virtualMachine: ..., ...)` | `GoogleNetworkConnectivityPolicyBasedRoute(virtualMachineOrInterconnectAttachment: NetworkConnectivityPolicyBasedRouteVirtualMachineOption(virtualMachine: ...), ...)` |
+| `NetworkServicesHttpRouteRulesMatches(fullPathMatch: TfArg.literal('/x'))` | `NetworkServicesHttpRouteRulesMatches(fullPathMatchOrPrefixMatchOrRegexMatch: NetworkServicesHttpRouteRulesMatchesFullPathMatchOption(fullPathMatch: TfArg.literal('/x')))` |
+| `ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(name: ...)` | `ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(nameOrPredefinedRolloutPlan: ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption(name: ...))` |
+
+The other groups: `GoogleComputeRegionTargetHttpsProxy` (as the global
+proxy), `GoogleComputeUrlMap` / `GoogleComputeRegionUrlMap`
+(`default_url_redirect` / `default_route_action`, which keep their helper
+classes), `GoogleComputeNodeTemplate` (`node_type` /
+`node_type_flexibility`), `GoogleComputeVpnTunnel` (`peer_external_gateway`
+/ `peer_gcp_gateway`), `GoogleNetworkSecuritySecurityProfile` (the four
+profile blocks), `GoogleNetworkServicesGateway` (`all_ports` / `ports`),
+`GoogleComputeReservation`'s `specific_reservation`
+(`instance_properties` / `source_instance_template`), and the
+`GoogleNetworkServicesHttpRoute` header and query-parameter matches.
+
 ### `terradart_cloudflare` exactly-one inputs are sealed types
 
 **Breaking (`terradart_cloudflare`)** — 13 input groups across 5 resources

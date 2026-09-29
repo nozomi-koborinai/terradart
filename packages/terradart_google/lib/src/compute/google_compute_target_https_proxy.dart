@@ -45,6 +45,71 @@ enum TlsEarlyData implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `certificate_manager_certificates`, `ssl_certificates` on `google_compute_target_https_proxy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
+  const ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `certificate_manager_certificates` (one of the [ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates] choices).
+final class ComputeTargetHttpsProxyCertificateManagerCertificatesOption
+    extends
+        ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
+  const ComputeTargetHttpsProxyCertificateManagerCertificatesOption({
+    required this.certificateManagerCertificates,
+  });
+
+  final TfArg<List<String>> certificateManagerCertificates;
+
+  @override
+  String get blockKey => 'certificate_manager_certificates';
+
+  @override
+  Map<String, Object?> encode() => {
+    'certificate_manager_certificates': certificateManagerCertificates
+        .toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'certificate_manager_certificates': certificateManagerCertificates,
+  };
+}
+
+/// Sets `ssl_certificates` (one of the [ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates] choices).
+final class ComputeTargetHttpsProxySslCertificatesOption
+    extends
+        ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
+  const ComputeTargetHttpsProxySslCertificatesOption({
+    required this.sslCertificates,
+  });
+
+  final TfArg<List<String>> sslCertificates;
+
+  @override
+  String get blockKey => 'ssl_certificates';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ssl_certificates': sslCertificates.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'ssl_certificates': sslCertificates,
+  };
+}
+
 /// Factory wrapper for `google_compute_target_https_proxy`.
 ///
 /// Represents a TargetHttpsProxy resource, which is used by one or more global
@@ -83,7 +148,7 @@ enum TlsEarlyData implements TerraformEnum {
 ///   `//certificatemanager.googleapis.com/projects/{p}/locations/{l}/certificates/{r}`
 ///   form, or the bare `projects/.../certificates/{r}` self-link).
 ///   Only valid when the load-balancing scheme is INTERNAL_MANAGED.
-///   Mutually exclusive with `sslCertificates`.
+///   The other choice of [certificateManagerCertificatesOrSslCertificates].
 ///
 /// Example (classic SSL certificate, external HTTPS LB):
 /// ```dart
@@ -91,9 +156,12 @@ enum TlsEarlyData implements TerraformEnum {
 ///   localName: 'lb_https',
 ///   name: TfArg.literal('lb-https-proxy'),
 ///   urlMap: TfArg.ref(urlMap.selfLink),
-///   sslCertificates: TfArg.literal(const [
-///     'projects/my-proj/global/sslCertificates/my-cert',
-///   ]),
+///   certificateManagerCertificatesOrSslCertificates:
+///       ComputeTargetHttpsProxySslCertificatesOption(
+///         sslCertificates: TfArg.literal(const [
+///           'projects/my-proj/global/sslCertificates/my-cert',
+///         ]),
+///       ),
 ///   sslPolicy: TfArg.ref(var.ssl_policy_id),
 ///   quicOverride: TfArg.literal(QuicOverride.enable),
 /// );
@@ -112,8 +180,8 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> urlMap,
-    TfArg<List<String>>? sslCertificates,
-    TfArg<List<String>>? certificateManagerCertificates,
+    ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates?
+    certificateManagerCertificatesOrSslCertificates,
     TfArg<String>? certificateMap,
     TfArg<String>? sslPolicy,
     TfArg<String>? serverTlsPolicy,
@@ -132,9 +200,7 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
          argMap: {
            'name': name,
            'url_map': urlMap,
-           if (sslCertificates != null) 'ssl_certificates': sslCertificates,
-           if (certificateManagerCertificates != null)
-             'certificate_manager_certificates': certificateManagerCertificates,
+           ...?certificateManagerCertificatesOrSslCertificates?.argMap,
            if (certificateMap != null) 'certificate_map': certificateMap,
            if (sslPolicy != null) 'ssl_policy': sslPolicy,
            if (serverTlsPolicy != null) 'server_tls_policy': serverTlsPolicy,

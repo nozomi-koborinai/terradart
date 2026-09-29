@@ -97,10 +97,12 @@ final class ComputeRolloutStack extends Stack {
           ),
         ],
         rolloutOperation: ComputeGlobalVmExtensionPolicyRolloutOperation(
-          rolloutInput:
-              ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(
-                name: TfArg.literal(planResourceName),
-              ),
+          rolloutInput: ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(
+            nameOrPredefinedRolloutPlan:
+                ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption(
+                  name: TfArg.literal(planResourceName),
+                ),
+          ),
         ),
         dependsOn: [ResourceDependency(apiCompute), ResourceDependency(plan)],
       ),

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Breaking** — compute and networking input groups the Magic Modules YAML declares mutually exclusive are sealed types: 16 groups on 13 resources (`exactly_one_of` → a required sealed argument or helper field, `conflicts` → a nullable one), e.g. `GoogleComputeTargetHttpsProxy(certificateManagerCertificatesOrSslCertificates: ComputeTargetHttpsProxySslCertificatesOption(...))`. Every compute / network / DNS / service-networking / certificate-manager / VMware Engine / edge override sets `deriveExactlyOne`, so a later MM group seals on the weekly bump. See [MIGRATING.md](../../MIGRATING.md).
+
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). The generated wrappers were already formatted in the Dart 3.7+ tall style, so the constraint now matches them (pub.dev static analysis no longer reports a formatter mismatch).
 
 ## 0.30.0 - 2026-09-28

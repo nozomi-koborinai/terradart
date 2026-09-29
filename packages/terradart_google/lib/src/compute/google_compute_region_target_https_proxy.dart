@@ -6,6 +6,71 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_region_target_https_proxy`.
 const Set<String> _googleComputeRegionTargetHttpsProxySensitive = <String>{};
 
+/// At most one of `certificate_manager_certificates`, `ssl_certificates` on `google_compute_region_target_https_proxy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
+  const ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `certificate_manager_certificates` (one of the [ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates] choices).
+final class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOption
+    extends
+        ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
+  const ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOption({
+    required this.certificateManagerCertificates,
+  });
+
+  final TfArg<List<String>> certificateManagerCertificates;
+
+  @override
+  String get blockKey => 'certificate_manager_certificates';
+
+  @override
+  Map<String, Object?> encode() => {
+    'certificate_manager_certificates': certificateManagerCertificates
+        .toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'certificate_manager_certificates': certificateManagerCertificates,
+  };
+}
+
+/// Sets `ssl_certificates` (one of the [ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates] choices).
+final class ComputeRegionTargetHttpsProxySslCertificatesOption
+    extends
+        ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
+  const ComputeRegionTargetHttpsProxySslCertificatesOption({
+    required this.sslCertificates,
+  });
+
+  final TfArg<List<String>> sslCertificates;
+
+  @override
+  String get blockKey => 'ssl_certificates';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ssl_certificates': sslCertificates.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'ssl_certificates': sslCertificates,
+  };
+}
+
 /// Factory wrapper for `google_compute_region_target_https_proxy`.
 ///
 /// Represents a RegionTargetHttpsProxy resource, which is used by one or more
@@ -53,7 +118,8 @@ const Set<String> _googleComputeRegionTargetHttpsProxySensitive = <String>{};
 ///   certificate URLs (the
 ///   `//certificatemanager.googleapis.com/projects/{p}/locations/{l}/certificates/{r}`
 ///   form, or the bare `projects/.../locations/.../certificates/{r}`
-///   self-link). Mutually exclusive with `sslCertificates`.
+///   self-link). The other choice of
+///   [certificateManagerCertificatesOrSslCertificates].
 ///
 /// Example (classic regional SSL certificate, regional HTTPS LB):
 /// ```dart
@@ -62,9 +128,12 @@ const Set<String> _googleComputeRegionTargetHttpsProxySensitive = <String>{};
 ///   name: TfArg.literal('lb-https-proxy'),
 ///   urlMap: TfArg.ref(regionUrlMap.selfLink),
 ///   region: TfArg.literal('us-central1'),
-///   sslCertificates: TfArg.literal(const [
-///     'projects/my-proj/regions/us-central1/sslCertificates/my-cert',
-///   ]),
+///   certificateManagerCertificatesOrSslCertificates:
+///       ComputeRegionTargetHttpsProxySslCertificatesOption(
+///         sslCertificates: TfArg.literal(const [
+///           'projects/my-proj/regions/us-central1/sslCertificates/my-cert',
+///         ]),
+///       ),
 ///   sslPolicy: TfArg.ref(var.region_ssl_policy_id),
 /// );
 /// ```
@@ -93,8 +162,8 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
     required TfArg<String> name,
     required TfArg<String> urlMap,
     required TfArg<String> region,
-    TfArg<List<String>>? sslCertificates,
-    TfArg<List<String>>? certificateManagerCertificates,
+    ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates?
+    certificateManagerCertificatesOrSslCertificates,
     TfArg<String>? sslPolicy,
     TfArg<String>? serverTlsPolicy,
     TfArg<num>? httpKeepAliveTimeoutSec,
@@ -110,9 +179,7 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
            'name': name,
            'url_map': urlMap,
            'region': region,
-           if (sslCertificates != null) 'ssl_certificates': sslCertificates,
-           if (certificateManagerCertificates != null)
-             'certificate_manager_certificates': certificateManagerCertificates,
+           ...?certificateManagerCertificatesOrSslCertificates?.argMap,
            if (sslPolicy != null) 'ssl_policy': sslPolicy,
            if (serverTlsPolicy != null) 'server_tls_policy': serverTlsPolicy,
            if (httpKeepAliveTimeoutSec != null)

@@ -46,6 +46,56 @@ enum NetworkServicesGatewayType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `all_ports`, `ports` on `google_network_services_gateway`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NetworkServicesGatewayAllPortsOrPorts {
+  const NetworkServicesGatewayAllPortsOrPorts();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `all_ports` (one of the [NetworkServicesGatewayAllPortsOrPorts] choices).
+final class NetworkServicesGatewayAllPortsOption
+    extends NetworkServicesGatewayAllPortsOrPorts {
+  const NetworkServicesGatewayAllPortsOption({required this.allPorts});
+
+  final TfArg<bool> allPorts;
+
+  @override
+  String get blockKey => 'all_ports';
+
+  @override
+  Map<String, Object?> encode() => {'all_ports': allPorts.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'all_ports': allPorts};
+}
+
+/// Sets `ports` (one of the [NetworkServicesGatewayAllPortsOrPorts] choices).
+final class NetworkServicesGatewayPortsOption
+    extends NetworkServicesGatewayAllPortsOrPorts {
+  const NetworkServicesGatewayPortsOption({required this.ports});
+
+  final TfArg<List<num>> ports;
+
+  @override
+  String get blockKey => 'ports';
+
+  @override
+  Map<String, Object?> encode() => {'ports': ports.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'ports': ports};
+}
+
 /// Factory wrapper for `google_network_services_gateway`.
 ///
 /// Gateway represents the configuration for a proxy, typically a load balancer.
@@ -76,8 +126,7 @@ final class GoogleNetworkServicesGateway extends Resource {
     TfArg<String>? description,
     TfArg<String>? network,
     TfArg<String>? subnetwork,
-    TfArg<List<num>>? ports,
-    TfArg<bool>? allPorts,
+    NetworkServicesGatewayAllPortsOrPorts? allPortsOrPorts,
     TfArg<List<String>>? certificateUrls,
     TfArg<String>? gatewaySecurityPolicy,
     TfArg<String>? serverTlsPolicy,
@@ -102,8 +151,7 @@ final class GoogleNetworkServicesGateway extends Resource {
            if (description != null) 'description': description,
            if (network != null) 'network': network,
            if (subnetwork != null) 'subnetwork': subnetwork,
-           if (ports != null) 'ports': ports,
-           if (allPorts != null) 'all_ports': allPorts,
+           ...?allPortsOrPorts?.argMap,
            if (certificateUrls != null) 'certificate_urls': certificateUrls,
            if (gatewaySecurityPolicy != null)
              'gateway_security_policy': gatewaySecurityPolicy,

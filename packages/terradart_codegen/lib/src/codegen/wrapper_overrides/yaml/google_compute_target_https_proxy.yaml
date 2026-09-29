@@ -1,6 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// A global HTTPS target proxy — the TLS-terminating node in the GCP
@@ -36,7 +37,7 @@ curatedDoc: |-
   ///   `//certificatemanager.googleapis.com/projects/{p}/locations/{l}/certificates/{r}`
   ///   form, or the bare `projects/.../certificates/{r}` self-link).
   ///   Only valid when the load-balancing scheme is INTERNAL_MANAGED.
-  ///   Mutually exclusive with `sslCertificates`.
+  ///   The other choice of [certificateManagerCertificatesOrSslCertificates].
   ///
   /// Example (classic SSL certificate, external HTTPS LB):
   /// ```dart
@@ -44,9 +45,12 @@ curatedDoc: |-
   ///   localName: 'lb_https',
   ///   name: TfArg.literal('lb-https-proxy'),
   ///   urlMap: TfArg.ref(urlMap.selfLink),
-  ///   sslCertificates: TfArg.literal(const [
-  ///     'projects/my-proj/global/sslCertificates/my-cert',
-  ///   ]),
+  ///   certificateManagerCertificatesOrSslCertificates:
+  ///       ComputeTargetHttpsProxySslCertificatesOption(
+  ///         sslCertificates: TfArg.literal(const [
+  ///           'projects/my-proj/global/sslCertificates/my-cert',
+  ///         ]),
+  ///       ),
   ///   sslPolicy: TfArg.ref(var.ssl_policy_id),
   ///   quicOverride: TfArg.literal(QuicOverride.enable),
   /// );

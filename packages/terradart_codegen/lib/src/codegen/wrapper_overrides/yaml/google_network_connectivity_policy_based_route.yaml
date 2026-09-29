@@ -1,6 +1,7 @@
 outputDir: network
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
@@ -14,8 +15,8 @@ curatedDoc: |-
   /// over ordinary VPC routes when it matches.
   ///
   /// Pass exactly one [nextHop] variant (`ilbIp` or `otherRoutes`). Scope
-  /// installation with optional [virtualMachine] tags and/or
-  /// [interconnectAttachment] (provider `conflicts` — do not set both).
+  /// installation with at most one of VM tags or an interconnect attachment
+  /// ([virtualMachineOrInterconnectAttachment]).
   ///
   /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for PBR
   /// (Network Connectivity Center `7BEB-7A51-4223` `list_skus` keywords
@@ -40,9 +41,12 @@ curatedDoc: |-
   ///       NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
   ///     ),
   ///   ),
-  ///   virtualMachine: NetworkConnectivityPolicyBasedRouteVirtualMachine(
-  ///     tags: TfArg.literal(['terradart-pbr']),
-  ///   ),
+  ///   virtualMachineOrInterconnectAttachment:
+  ///       NetworkConnectivityPolicyBasedRouteVirtualMachineOption(
+  ///         virtualMachine: NetworkConnectivityPolicyBasedRouteVirtualMachine(
+  ///           tags: TfArg.literal(['terradart-pbr']),
+  ///         ),
+  ///       ),
   /// );
   /// ```
 

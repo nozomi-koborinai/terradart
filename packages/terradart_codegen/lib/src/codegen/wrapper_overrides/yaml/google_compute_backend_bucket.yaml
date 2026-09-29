@@ -1,6 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// A **global** backend bucket — the load-balancing target that points
