@@ -55,18 +55,18 @@ enum BudgetsBudgetTimeUnit implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.costFilter(...)`.
-sealed class BudgetsBudgetCostFilterOrFilterExpression {
-  const BudgetsBudgetCostFilterOrFilterExpression();
+sealed class BudgetsBudgetFilter {
+  const BudgetsBudgetFilter();
 
   /// Sets `cost_filter`.
-  const factory BudgetsBudgetCostFilterOrFilterExpression.costFilter(
+  const factory BudgetsBudgetFilter.costFilter(
     List<BudgetsBudgetCostFilter> costFilter,
-  ) = BudgetsBudgetCostFilterOrFilterExpressionCostFilter;
+  ) = BudgetsBudgetFilterCostFilter;
 
   /// Sets `filter_expression`.
-  const factory BudgetsBudgetCostFilterOrFilterExpression.filterExpression(
+  const factory BudgetsBudgetFilter.filterExpression(
     BudgetsBudgetFilterExpression filterExpression,
-  ) = BudgetsBudgetCostFilterOrFilterExpressionFilterExpression;
+  ) = BudgetsBudgetFilterFilterExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -78,10 +78,9 @@ sealed class BudgetsBudgetCostFilterOrFilterExpression {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [BudgetsBudgetCostFilterOrFilterExpression.costFilter] choice: sets `cost_filter`.
-final class BudgetsBudgetCostFilterOrFilterExpressionCostFilter
-    extends BudgetsBudgetCostFilterOrFilterExpression {
-  const BudgetsBudgetCostFilterOrFilterExpressionCostFilter(this.costFilter);
+/// The [BudgetsBudgetFilter.costFilter] choice: sets `cost_filter`.
+final class BudgetsBudgetFilterCostFilter extends BudgetsBudgetFilter {
+  const BudgetsBudgetFilterCostFilter(this.costFilter);
 
   final List<BudgetsBudgetCostFilter> costFilter;
 
@@ -99,12 +98,9 @@ final class BudgetsBudgetCostFilterOrFilterExpressionCostFilter
   };
 }
 
-/// The [BudgetsBudgetCostFilterOrFilterExpression.filterExpression] choice: sets `filter_expression`.
-final class BudgetsBudgetCostFilterOrFilterExpressionFilterExpression
-    extends BudgetsBudgetCostFilterOrFilterExpression {
-  const BudgetsBudgetCostFilterOrFilterExpressionFilterExpression(
-    this.filterExpression,
-  );
+/// The [BudgetsBudgetFilter.filterExpression] choice: sets `filter_expression`.
+final class BudgetsBudgetFilterFilterExpression extends BudgetsBudgetFilter {
+  const BudgetsBudgetFilterFilterExpression(this.filterExpression);
 
   final BudgetsBudgetFilterExpression filterExpression;
 
@@ -127,18 +123,18 @@ final class BudgetsBudgetCostFilterOrFilterExpressionFilterExpression
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.costTypes(...)`.
-sealed class BudgetsBudgetCostTypesOrMetrics {
-  const BudgetsBudgetCostTypesOrMetrics();
+sealed class BudgetsBudgetMeasure {
+  const BudgetsBudgetMeasure();
 
   /// Sets `cost_types`.
-  const factory BudgetsBudgetCostTypesOrMetrics.costTypes(
+  const factory BudgetsBudgetMeasure.costTypes(
     BudgetsBudgetCostTypes costTypes,
-  ) = BudgetsBudgetCostTypesOrMetricsCostTypes;
+  ) = BudgetsBudgetMeasureCostTypes;
 
   /// Sets `metrics`.
-  const factory BudgetsBudgetCostTypesOrMetrics.metrics(
+  const factory BudgetsBudgetMeasure.metrics(
     List<TfArg<BudgetsBudgetMetrics>> metrics,
-  ) = BudgetsBudgetCostTypesOrMetricsMetrics;
+  ) = BudgetsBudgetMeasureMetrics;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -150,10 +146,9 @@ sealed class BudgetsBudgetCostTypesOrMetrics {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [BudgetsBudgetCostTypesOrMetrics.costTypes] choice: sets `cost_types`.
-final class BudgetsBudgetCostTypesOrMetricsCostTypes
-    extends BudgetsBudgetCostTypesOrMetrics {
-  const BudgetsBudgetCostTypesOrMetricsCostTypes(this.costTypes);
+/// The [BudgetsBudgetMeasure.costTypes] choice: sets `cost_types`.
+final class BudgetsBudgetMeasureCostTypes extends BudgetsBudgetMeasure {
+  const BudgetsBudgetMeasureCostTypes(this.costTypes);
 
   final BudgetsBudgetCostTypes costTypes;
 
@@ -169,10 +164,9 @@ final class BudgetsBudgetCostTypesOrMetricsCostTypes
   };
 }
 
-/// The [BudgetsBudgetCostTypesOrMetrics.metrics] choice: sets `metrics`.
-final class BudgetsBudgetCostTypesOrMetricsMetrics
-    extends BudgetsBudgetCostTypesOrMetrics {
-  const BudgetsBudgetCostTypesOrMetricsMetrics(this.metrics);
+/// The [BudgetsBudgetMeasure.metrics] choice: sets `metrics`.
+final class BudgetsBudgetMeasureMetrics extends BudgetsBudgetMeasure {
+  const BudgetsBudgetMeasureMetrics(this.metrics);
 
   final List<TfArg<BudgetsBudgetMetrics>> metrics;
 
@@ -1815,14 +1809,14 @@ final class AwsBudgetsBudget extends Resource {
     required TfArg<BudgetsBudgetBudgetType> budgetType,
     TfArg<String>? limitAmount,
     TfArg<String>? limitUnit,
-    BudgetsBudgetCostTypesOrMetrics? costTypesOrMetrics,
+    BudgetsBudgetMeasure? measure,
     BudgetsBudgetName? name,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? timePeriodEnd,
     TfArg<String>? timePeriodStart,
     required TfArg<BudgetsBudgetTimeUnit> timeUnit,
     BudgetsBudgetAutoAdjustData? autoAdjustData,
-    BudgetsBudgetCostFilterOrFilterExpression? costFilterOrFilterExpression,
+    BudgetsBudgetFilter? filter,
     List<BudgetsBudgetNotification>? notification,
     List<BudgetsBudgetPlannedLimit>? plannedLimit,
     super.lifecycle,
@@ -1837,7 +1831,7 @@ final class AwsBudgetsBudget extends Resource {
            'budget_type': budgetType,
            if (limitAmount != null) 'limit_amount': limitAmount,
            if (limitUnit != null) 'limit_unit': limitUnit,
-           ...?costTypesOrMetrics?.argMap,
+           ...?measure?.argMap,
            ...?name?.argMap,
            if (tags != null) 'tags': tags,
            if (timePeriodEnd != null) 'time_period_end': timePeriodEnd,
@@ -1845,7 +1839,7 @@ final class AwsBudgetsBudget extends Resource {
            'time_unit': timeUnit,
            if (autoAdjustData != null)
              'auto_adjust_data': TfArg.literal(autoAdjustData.encode()),
-           ...?costFilterOrFilterExpression?.argMap,
+           ...?filter?.argMap,
            if (notification != null)
              'notification': TfArg.literal([
                for (final e in notification) e.encode(),

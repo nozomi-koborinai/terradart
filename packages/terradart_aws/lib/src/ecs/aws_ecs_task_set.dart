@@ -24,18 +24,18 @@ enum EcsTaskSetLaunchType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.capacityProviderStrategy(...)`.
-sealed class EcsTaskSetCapacityProviderStrategyOrLaunchType {
-  const EcsTaskSetCapacityProviderStrategyOrLaunchType();
+sealed class EcsTaskSetCapacity {
+  const EcsTaskSetCapacity();
 
   /// Sets `capacity_provider_strategy`.
-  const factory EcsTaskSetCapacityProviderStrategyOrLaunchType.capacityProviderStrategy(
+  const factory EcsTaskSetCapacity.capacityProviderStrategy(
     List<EcsTaskSetCapacityProviderStrategy> capacityProviderStrategy,
-  ) = EcsTaskSetCapacityProviderStrategyOrLaunchTypeCapacityProviderStrategy;
+  ) = EcsTaskSetCapacityCapacityProviderStrategy;
 
   /// Sets `launch_type`.
-  const factory EcsTaskSetCapacityProviderStrategyOrLaunchType.launchType(
+  const factory EcsTaskSetCapacity.launchType(
     TfArg<EcsTaskSetLaunchType> launchType,
-  ) = EcsTaskSetCapacityProviderStrategyOrLaunchTypeLaunchType;
+  ) = EcsTaskSetCapacityLaunchType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,10 +47,10 @@ sealed class EcsTaskSetCapacityProviderStrategyOrLaunchType {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [EcsTaskSetCapacityProviderStrategyOrLaunchType.capacityProviderStrategy] choice: sets `capacity_provider_strategy`.
-final class EcsTaskSetCapacityProviderStrategyOrLaunchTypeCapacityProviderStrategy
-    extends EcsTaskSetCapacityProviderStrategyOrLaunchType {
-  const EcsTaskSetCapacityProviderStrategyOrLaunchTypeCapacityProviderStrategy(
+/// The [EcsTaskSetCapacity.capacityProviderStrategy] choice: sets `capacity_provider_strategy`.
+final class EcsTaskSetCapacityCapacityProviderStrategy
+    extends EcsTaskSetCapacity {
+  const EcsTaskSetCapacityCapacityProviderStrategy(
     this.capacityProviderStrategy,
   );
 
@@ -74,12 +74,9 @@ final class EcsTaskSetCapacityProviderStrategyOrLaunchTypeCapacityProviderStrate
   };
 }
 
-/// The [EcsTaskSetCapacityProviderStrategyOrLaunchType.launchType] choice: sets `launch_type`.
-final class EcsTaskSetCapacityProviderStrategyOrLaunchTypeLaunchType
-    extends EcsTaskSetCapacityProviderStrategyOrLaunchType {
-  const EcsTaskSetCapacityProviderStrategyOrLaunchTypeLaunchType(
-    this.launchType,
-  );
+/// The [EcsTaskSetCapacity.launchType] choice: sets `launch_type`.
+final class EcsTaskSetCapacityLaunchType extends EcsTaskSetCapacity {
+  const EcsTaskSetCapacityLaunchType(this.launchType);
 
   final TfArg<EcsTaskSetLaunchType> launchType;
 
@@ -228,8 +225,7 @@ final class AwsEcsTaskSet extends Resource {
     required TfArg<String> cluster,
     TfArg<String>? externalId,
     TfArg<bool>? forceDelete,
-    EcsTaskSetCapacityProviderStrategyOrLaunchType?
-    capacityProviderStrategyOrLaunchType,
+    EcsTaskSetCapacity? capacity,
     TfArg<String>? platformVersion,
     TfArg<String>? region,
     required TfArg<String> service,
@@ -251,7 +247,7 @@ final class AwsEcsTaskSet extends Resource {
            'cluster': cluster,
            if (externalId != null) 'external_id': externalId,
            if (forceDelete != null) 'force_delete': forceDelete,
-           ...?capacityProviderStrategyOrLaunchType?.argMap,
+           ...?capacity?.argMap,
            if (platformVersion != null) 'platform_version': platformVersion,
            if (region != null) 'region': region,
            'service': service,

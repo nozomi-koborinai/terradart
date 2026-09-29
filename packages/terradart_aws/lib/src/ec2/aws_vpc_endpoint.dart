@@ -36,23 +36,22 @@ enum VpcEndpointVpcEndpointType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.resourceConfigurationArn(...)`.
-sealed class VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn {
-  const VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn();
+sealed class VpcEndpointService {
+  const VpcEndpointService();
 
   /// Sets `resource_configuration_arn`.
-  const factory VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn.resourceConfigurationArn(
+  const factory VpcEndpointService.resourceConfigurationArn(
     TfArg<String> resourceConfigurationArn,
-  ) = VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnResourceConfigurationArn;
+  ) = VpcEndpointServiceResourceConfigurationArn;
 
   /// Sets `service_name`.
-  const factory VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn.serviceName(
-    TfArg<String> serviceName,
-  ) = VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceName;
+  const factory VpcEndpointService.serviceName(TfArg<String> serviceName) =
+      VpcEndpointServiceServiceName;
 
   /// Sets `service_network_arn`.
-  const factory VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn.serviceNetworkArn(
+  const factory VpcEndpointService.serviceNetworkArn(
     TfArg<String> serviceNetworkArn,
-  ) = VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceNetworkArn;
+  ) = VpcEndpointServiceServiceNetworkArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -64,11 +63,10 @@ sealed class VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn.resourceConfigurationArn] choice: sets `resource_configuration_arn`.
-final class VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnResourceConfigurationArn
-    extends
-        VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn {
-  const VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnResourceConfigurationArn(
+/// The [VpcEndpointService.resourceConfigurationArn] choice: sets `resource_configuration_arn`.
+final class VpcEndpointServiceResourceConfigurationArn
+    extends VpcEndpointService {
+  const VpcEndpointServiceResourceConfigurationArn(
     this.resourceConfigurationArn,
   );
 
@@ -88,13 +86,9 @@ final class VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnR
   };
 }
 
-/// The [VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn.serviceName] choice: sets `service_name`.
-final class VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceName
-    extends
-        VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn {
-  const VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceName(
-    this.serviceName,
-  );
+/// The [VpcEndpointService.serviceName] choice: sets `service_name`.
+final class VpcEndpointServiceServiceName extends VpcEndpointService {
+  const VpcEndpointServiceServiceName(this.serviceName);
 
   final TfArg<String> serviceName;
 
@@ -108,13 +102,9 @@ final class VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnS
   Map<String, TfArg<Object?>> get argMap => {'service_name': serviceName};
 }
 
-/// The [VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn.serviceNetworkArn] choice: sets `service_network_arn`.
-final class VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceNetworkArn
-    extends
-        VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn {
-  const VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceNetworkArn(
-    this.serviceNetworkArn,
-  );
+/// The [VpcEndpointService.serviceNetworkArn] choice: sets `service_network_arn`.
+final class VpcEndpointServiceServiceNetworkArn extends VpcEndpointService {
+  const VpcEndpointServiceServiceNetworkArn(this.serviceNetworkArn);
 
   final TfArg<String> serviceNetworkArn;
 
@@ -218,8 +208,7 @@ final class AwsVpcEndpoint extends Resource {
     TfArg<String>? policy,
     TfArg<bool>? privateDnsEnabled,
     TfArg<String>? region,
-    VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn?
-    resourceConfigurationArnOrServiceNameOrServiceNetworkArn,
+    VpcEndpointService? service,
     TfArg<List<String>>? routeTableIds,
     TfArg<List<String>>? securityGroupIds,
     TfArg<String>? serviceRegion,
@@ -242,7 +231,7 @@ final class AwsVpcEndpoint extends Resource {
            if (privateDnsEnabled != null)
              'private_dns_enabled': privateDnsEnabled,
            if (region != null) 'region': region,
-           ...?resourceConfigurationArnOrServiceNameOrServiceNetworkArn?.argMap,
+           ...?service?.argMap,
            if (routeTableIds != null) 'route_table_ids': routeTableIds,
            if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
            if (serviceRegion != null) 'service_region': serviceRegion,

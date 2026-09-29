@@ -23,18 +23,17 @@ enum VpcBlockPublicAccessExclusionInternetGatewayExclusionMode
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.subnetId(...)`.
-sealed class VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
-  const VpcBlockPublicAccessExclusionSubnetIdOrVpcId();
+sealed class VpcBlockPublicAccessExclusionTarget {
+  const VpcBlockPublicAccessExclusionTarget();
 
   /// Sets `subnet_id`.
-  const factory VpcBlockPublicAccessExclusionSubnetIdOrVpcId.subnetId(
+  const factory VpcBlockPublicAccessExclusionTarget.subnetId(
     TfArg<String> subnetId,
-  ) = VpcBlockPublicAccessExclusionSubnetIdOrVpcIdSubnetId;
+  ) = VpcBlockPublicAccessExclusionTargetSubnetId;
 
   /// Sets `vpc_id`.
-  const factory VpcBlockPublicAccessExclusionSubnetIdOrVpcId.vpcId(
-    TfArg<String> vpcId,
-  ) = VpcBlockPublicAccessExclusionSubnetIdOrVpcIdVpcId;
+  const factory VpcBlockPublicAccessExclusionTarget.vpcId(TfArg<String> vpcId) =
+      VpcBlockPublicAccessExclusionTargetVpcId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,10 +45,10 @@ sealed class VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VpcBlockPublicAccessExclusionSubnetIdOrVpcId.subnetId] choice: sets `subnet_id`.
-final class VpcBlockPublicAccessExclusionSubnetIdOrVpcIdSubnetId
-    extends VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
-  const VpcBlockPublicAccessExclusionSubnetIdOrVpcIdSubnetId(this.subnetId);
+/// The [VpcBlockPublicAccessExclusionTarget.subnetId] choice: sets `subnet_id`.
+final class VpcBlockPublicAccessExclusionTargetSubnetId
+    extends VpcBlockPublicAccessExclusionTarget {
+  const VpcBlockPublicAccessExclusionTargetSubnetId(this.subnetId);
 
   final TfArg<String> subnetId;
 
@@ -63,10 +62,10 @@ final class VpcBlockPublicAccessExclusionSubnetIdOrVpcIdSubnetId
   Map<String, TfArg<Object?>> get argMap => {'subnet_id': subnetId};
 }
 
-/// The [VpcBlockPublicAccessExclusionSubnetIdOrVpcId.vpcId] choice: sets `vpc_id`.
-final class VpcBlockPublicAccessExclusionSubnetIdOrVpcIdVpcId
-    extends VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
-  const VpcBlockPublicAccessExclusionSubnetIdOrVpcIdVpcId(this.vpcId);
+/// The [VpcBlockPublicAccessExclusionTarget.vpcId] choice: sets `vpc_id`.
+final class VpcBlockPublicAccessExclusionTargetVpcId
+    extends VpcBlockPublicAccessExclusionTarget {
+  const VpcBlockPublicAccessExclusionTargetVpcId(this.vpcId);
 
   final TfArg<String> vpcId;
 
@@ -89,7 +88,7 @@ final class AwsVpcBlockPublicAccessExclusion extends Resource {
     required TfArg<VpcBlockPublicAccessExclusionInternetGatewayExclusionMode>
     internetGatewayExclusionMode,
     TfArg<String>? region,
-    required VpcBlockPublicAccessExclusionSubnetIdOrVpcId subnetIdOrVpcId,
+    required VpcBlockPublicAccessExclusionTarget target,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -100,7 +99,7 @@ final class AwsVpcBlockPublicAccessExclusion extends Resource {
          argMap: {
            'internet_gateway_exclusion_mode': internetGatewayExclusionMode,
            if (region != null) 'region': region,
-           ...subnetIdOrVpcId.argMap,
+           ...target.argMap,
            if (tags != null) 'tags': tags,
          },
        );

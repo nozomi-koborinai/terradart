@@ -14,9 +14,9 @@ export 'src/s3/aws_s3_bucket.dart'
     show
         AwsS3Bucket,
         S3BucketAccelerationStatus,
-        S3BucketAclOrGrant,
-        S3BucketAclOrGrantAcl,
-        S3BucketAclOrGrantGrant,
+        S3BucketAccess,
+        S3BucketAccessAcl,
+        S3BucketAccessGrant,
         S3BucketBucket,
         S3BucketBucketBucket,
         S3BucketBucketBucketPrefix,
@@ -51,9 +51,9 @@ export 'src/s3/aws_s3_bucket.dart'
         S3BucketRequestPayer,
         S3BucketVersioning,
         S3BucketWebsite,
-        S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo,
-        S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToIndexDocument,
-        S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToRedirectAllRequestsTo;
+        S3BucketWebsiteMode,
+        S3BucketWebsiteModeIndexDocument,
+        S3BucketWebsiteModeRedirectAllRequestsTo;
 export 'src/s3/aws_s3_bucket_abac.dart'
     show AwsS3BucketAbac, S3BucketAbacAbacStatus;
 export 'src/s3/aws_s3_bucket_accelerate_configuration.dart'
@@ -63,14 +63,14 @@ export 'src/s3/aws_s3_bucket_accelerate_configuration.dart'
 export 'src/s3/aws_s3_bucket_acl.dart'
     show
         AwsS3BucketAcl,
+        S3BucketAclAccess,
+        S3BucketAclAccessAccessControlPolicy,
+        S3BucketAclAccessAcl,
         S3BucketAclAccessControlPolicy,
         S3BucketAclAccessControlPolicyGrant,
         S3BucketAclAccessControlPolicyGrantGrantee,
         S3BucketAclAccessControlPolicyGrantGranteeType,
         S3BucketAclAccessControlPolicyGrantPermission,
-        S3BucketAclAccessControlPolicyOrAcl,
-        S3BucketAclAccessControlPolicyOrAclAccessControlPolicy,
-        S3BucketAclAccessControlPolicyOrAclAcl,
         S3BucketAclAccessControlPolicyOwner;
 export 'src/s3/aws_s3_bucket_analytics_configuration.dart'
     show
@@ -163,13 +163,13 @@ export 'src/s3/aws_s3_bucket_object.dart'
     show
         AwsS3BucketObject,
         S3BucketObjectAcl,
-        S3BucketObjectContentOrContentBase64OrSource,
-        S3BucketObjectContentOrContentBase64OrSourceContent,
-        S3BucketObjectContentOrContentBase64OrSourceContentBase64,
-        S3BucketObjectContentOrContentBase64OrSourceSource,
-        S3BucketObjectEtagOrKmsKeyId,
-        S3BucketObjectEtagOrKmsKeyIdEtag,
-        S3BucketObjectEtagOrKmsKeyIdKmsKeyId,
+        S3BucketObjectBody,
+        S3BucketObjectBodyContent,
+        S3BucketObjectBodyContentBase64,
+        S3BucketObjectBodySource,
+        S3BucketObjectIntegrity,
+        S3BucketObjectIntegrityEtag,
+        S3BucketObjectIntegrityKmsKeyId,
         S3BucketObjectObjectLockLegalHoldStatus,
         S3BucketObjectObjectLockMode,
         S3BucketObjectServerSideEncryption,
@@ -180,10 +180,10 @@ export 'src/s3/aws_s3_bucket_object_lock_configuration.dart'
         S3BucketObjectLockConfigurationObjectLockEnabled,
         S3BucketObjectLockConfigurationRule,
         S3BucketObjectLockConfigurationRuleDefaultRetention,
-        S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears,
-        S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays,
-        S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsYears,
-        S3BucketObjectLockConfigurationRuleDefaultRetentionMode;
+        S3BucketObjectLockConfigurationRuleDefaultRetentionMode,
+        S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod,
+        S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays,
+        S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears;
 export 'src/s3/aws_s3_bucket_ownership_controls.dart'
     show
         AwsS3BucketOwnershipControls,
@@ -253,14 +253,14 @@ export 'src/s3/aws_s3_object.dart'
     show
         AwsS3Object,
         S3ObjectAcl,
+        S3ObjectBody,
+        S3ObjectBodyContent,
+        S3ObjectBodyContentBase64,
+        S3ObjectBodySource,
         S3ObjectChecksumAlgorithm,
-        S3ObjectContentOrContentBase64OrSource,
-        S3ObjectContentOrContentBase64OrSourceContent,
-        S3ObjectContentOrContentBase64OrSourceContentBase64,
-        S3ObjectContentOrContentBase64OrSourceSource,
-        S3ObjectEtagOrKmsKeyId,
-        S3ObjectEtagOrKmsKeyIdEtag,
-        S3ObjectEtagOrKmsKeyIdKmsKeyId,
+        S3ObjectIntegrity,
+        S3ObjectIntegrityEtag,
+        S3ObjectIntegrityKmsKeyId,
         S3ObjectObjectLockLegalHoldStatus,
         S3ObjectObjectLockMode,
         S3ObjectOverrideProvider,
@@ -270,10 +270,10 @@ export 'src/s3/aws_s3_object.dart'
 export 'src/s3/aws_s3_object_copy.dart'
     show
         AwsS3ObjectCopy,
+        S3ObjectCopyAccess,
+        S3ObjectCopyAccessAcl,
+        S3ObjectCopyAccessGrant,
         S3ObjectCopyAcl,
-        S3ObjectCopyAclOrGrant,
-        S3ObjectCopyAclOrGrantAcl,
-        S3ObjectCopyAclOrGrantGrant,
         S3ObjectCopyChecksumAlgorithm,
         S3ObjectCopyGrant,
         S3ObjectCopyGrantPermissions,

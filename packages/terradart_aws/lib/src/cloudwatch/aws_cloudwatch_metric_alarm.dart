@@ -101,23 +101,23 @@ enum CloudwatchMetricAlarmUnit implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.evaluationCriteria(...)`.
-sealed class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
-  const CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery();
+sealed class CloudwatchMetricAlarmMetric {
+  const CloudwatchMetricAlarmMetric();
 
   /// Sets `evaluation_criteria`.
-  const factory CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.evaluationCriteria(
+  const factory CloudwatchMetricAlarmMetric.evaluationCriteria(
     CloudwatchMetricAlarmEvaluationCriteria evaluationCriteria,
-  ) = CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEvaluationCriteria;
+  ) = CloudwatchMetricAlarmMetricEvaluationCriteria;
 
   /// Sets `metric_name`.
-  const factory CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.metricName(
+  const factory CloudwatchMetricAlarmMetric.metricName(
     TfArg<String> metricName,
-  ) = CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricName;
+  ) = CloudwatchMetricAlarmMetricMetricName;
 
   /// Sets `metric_query`.
-  const factory CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.metricQuery(
+  const factory CloudwatchMetricAlarmMetric.metricQuery(
     List<CloudwatchMetricAlarmMetricQuery> metricQuery,
-  ) = CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricQuery;
+  ) = CloudwatchMetricAlarmMetricMetricQuery;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -129,12 +129,10 @@ sealed class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.evaluationCriteria] choice: sets `evaluation_criteria`.
-final class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEvaluationCriteria
-    extends CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
-  const CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEvaluationCriteria(
-    this.evaluationCriteria,
-  );
+/// The [CloudwatchMetricAlarmMetric.evaluationCriteria] choice: sets `evaluation_criteria`.
+final class CloudwatchMetricAlarmMetricEvaluationCriteria
+    extends CloudwatchMetricAlarmMetric {
+  const CloudwatchMetricAlarmMetricEvaluationCriteria(this.evaluationCriteria);
 
   final CloudwatchMetricAlarmEvaluationCriteria evaluationCriteria;
 
@@ -152,12 +150,10 @@ final class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEval
   };
 }
 
-/// The [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.metricName] choice: sets `metric_name`.
-final class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricName
-    extends CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
-  const CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricName(
-    this.metricName,
-  );
+/// The [CloudwatchMetricAlarmMetric.metricName] choice: sets `metric_name`.
+final class CloudwatchMetricAlarmMetricMetricName
+    extends CloudwatchMetricAlarmMetric {
+  const CloudwatchMetricAlarmMetricMetricName(this.metricName);
 
   final TfArg<String> metricName;
 
@@ -171,12 +167,10 @@ final class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetr
   Map<String, TfArg<Object?>> get argMap => {'metric_name': metricName};
 }
 
-/// The [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.metricQuery] choice: sets `metric_query`.
-final class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricQuery
-    extends CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
-  const CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricQuery(
-    this.metricQuery,
-  );
+/// The [CloudwatchMetricAlarmMetric.metricQuery] choice: sets `metric_query`.
+final class CloudwatchMetricAlarmMetricMetricQuery
+    extends CloudwatchMetricAlarmMetric {
+  const CloudwatchMetricAlarmMetricMetricQuery(this.metricQuery);
 
   final List<CloudwatchMetricAlarmMetricQuery> metricQuery;
 
@@ -199,18 +193,18 @@ final class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetr
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.extendedStatistic(...)`.
-sealed class CloudwatchMetricAlarmExtendedStatisticOrStatistic {
-  const CloudwatchMetricAlarmExtendedStatisticOrStatistic();
+sealed class CloudwatchMetricAlarmAggregation {
+  const CloudwatchMetricAlarmAggregation();
 
   /// Sets `extended_statistic`.
-  const factory CloudwatchMetricAlarmExtendedStatisticOrStatistic.extendedStatistic(
+  const factory CloudwatchMetricAlarmAggregation.extendedStatistic(
     TfArg<String> extendedStatistic,
-  ) = CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic;
+  ) = CloudwatchMetricAlarmAggregationExtendedStatistic;
 
   /// Sets `statistic`.
-  const factory CloudwatchMetricAlarmExtendedStatisticOrStatistic.statistic(
+  const factory CloudwatchMetricAlarmAggregation.statistic(
     TfArg<CloudwatchMetricAlarmStatistic> statistic,
-  ) = CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic;
+  ) = CloudwatchMetricAlarmAggregationStatistic;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -222,10 +216,10 @@ sealed class CloudwatchMetricAlarmExtendedStatisticOrStatistic {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudwatchMetricAlarmExtendedStatisticOrStatistic.extendedStatistic] choice: sets `extended_statistic`.
-final class CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic
-    extends CloudwatchMetricAlarmExtendedStatisticOrStatistic {
-  const CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic(
+/// The [CloudwatchMetricAlarmAggregation.extendedStatistic] choice: sets `extended_statistic`.
+final class CloudwatchMetricAlarmAggregationExtendedStatistic
+    extends CloudwatchMetricAlarmAggregation {
+  const CloudwatchMetricAlarmAggregationExtendedStatistic(
     this.extendedStatistic,
   );
 
@@ -245,12 +239,10 @@ final class CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic
   };
 }
 
-/// The [CloudwatchMetricAlarmExtendedStatisticOrStatistic.statistic] choice: sets `statistic`.
-final class CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic
-    extends CloudwatchMetricAlarmExtendedStatisticOrStatistic {
-  const CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic(
-    this.statistic,
-  );
+/// The [CloudwatchMetricAlarmAggregation.statistic] choice: sets `statistic`.
+final class CloudwatchMetricAlarmAggregationStatistic
+    extends CloudwatchMetricAlarmAggregation {
+  const CloudwatchMetricAlarmAggregationStatistic(this.statistic);
 
   final TfArg<CloudwatchMetricAlarmStatistic> statistic;
 
@@ -374,7 +366,6 @@ final class CloudwatchMetricAlarmMetricQuery {
     this.label,
     this.period,
     this.returnData,
-    this.metric,
   });
 
   final TfArg<String>? accountId;
@@ -389,8 +380,6 @@ final class CloudwatchMetricAlarmMetricQuery {
 
   final TfArg<bool>? returnData;
 
-  final CloudwatchMetricAlarmMetricQueryMetric? metric;
-
   Map<String, Object?> encode() => {
     if (accountId != null) 'account_id': accountId!.toTfJson(),
     if (expression != null) 'expression': expression!.toTfJson(),
@@ -398,91 +387,7 @@ final class CloudwatchMetricAlarmMetricQuery {
     if (label != null) 'label': label!.toTfJson(),
     if (period != null) 'period': period!.toTfJson(),
     if (returnData != null) 'return_data': returnData!.toTfJson(),
-    if (metric != null) 'metric': metric!.encode(),
   };
-}
-
-/// Typed helper for the `metric_query.metric` block of
-/// `aws_cloudwatch_metric_alarm` (derived from provider schema).
-@immutable
-final class CloudwatchMetricAlarmMetricQueryMetric {
-  const CloudwatchMetricAlarmMetricQueryMetric({
-    this.dimensions,
-    required this.metricName,
-    this.namespace,
-    required this.period,
-    required this.stat,
-    this.unit,
-  });
-
-  final TfArg<Map<String, String>>? dimensions;
-
-  final TfArg<String> metricName;
-
-  final TfArg<String>? namespace;
-
-  final TfArg<num> period;
-
-  final TfArg<CloudwatchMetricAlarmMetricQueryMetricStat> stat;
-
-  final TfArg<CloudwatchMetricAlarmMetricQueryMetricUnit>? unit;
-
-  Map<String, Object?> encode() => {
-    if (dimensions != null) 'dimensions': dimensions!.toTfJson(),
-    'metric_name': metricName.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-    'period': period.toTfJson(),
-    'stat': stat.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
-  };
-}
-
-/// `stat` — derived from the provider schema description.
-enum CloudwatchMetricAlarmMetricQueryMetricStat implements TerraformEnum {
-  samplecount('SampleCount'),
-  average('Average'),
-  sum('Sum'),
-  minimum('Minimum'),
-  maximum('Maximum');
-
-  const CloudwatchMetricAlarmMetricQueryMetricStat(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `unit` — derived from the provider schema description.
-enum CloudwatchMetricAlarmMetricQueryMetricUnit implements TerraformEnum {
-  seconds('Seconds'),
-  microseconds('Microseconds'),
-  milliseconds('Milliseconds'),
-  bytes('Bytes'),
-  kilobytes('Kilobytes'),
-  megabytes('Megabytes'),
-  gigabytes('Gigabytes'),
-  terabytes('Terabytes'),
-  bits('Bits'),
-  kilobits('Kilobits'),
-  megabits('Megabits'),
-  gigabits('Gigabits'),
-  terabits('Terabits'),
-  percent('Percent'),
-  count('Count'),
-  bytesSecond('Bytes/Second'),
-  kilobytesSecond('Kilobytes/Second'),
-  megabytesSecond('Megabytes/Second'),
-  gigabytesSecond('Gigabytes/Second'),
-  terabytesSecond('Terabytes/Second'),
-  bitsSecond('Bits/Second'),
-  kilobitsSecond('Kilobits/Second'),
-  megabitsSecond('Megabits/Second'),
-  gigabitsSecond('Gigabits/Second'),
-  terabitsSecond('Terabits/Second'),
-  countSecond('Count/Second'),
-  none('None');
-
-  const CloudwatchMetricAlarmMetricQueryMetricUnit(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `warm_up_configuration` block of
@@ -524,11 +429,9 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     evaluateLowSampleCountPercentiles,
     TfArg<num>? evaluationInterval,
     TfArg<num>? evaluationPeriods,
-    CloudwatchMetricAlarmExtendedStatisticOrStatistic?
-    extendedStatisticOrStatistic,
+    CloudwatchMetricAlarmAggregation? aggregation,
     TfArg<List<String>>? insufficientDataActions,
-    required CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery
-    evaluationCriteriaOrMetricNameOrMetricQuery,
+    required CloudwatchMetricAlarmMetric metric,
     TfArg<String>? namespace,
     TfArg<List<String>>? okActions,
     TfArg<num>? period,
@@ -561,10 +464,10 @@ final class AwsCloudwatchMetricAlarm extends Resource {
              'evaluation_interval': evaluationInterval,
            if (evaluationPeriods != null)
              'evaluation_periods': evaluationPeriods,
-           ...?extendedStatisticOrStatistic?.argMap,
+           ...?aggregation?.argMap,
            if (insufficientDataActions != null)
              'insufficient_data_actions': insufficientDataActions,
-           ...evaluationCriteriaOrMetricNameOrMetricQuery.argMap,
+           ...metric.argMap,
            if (namespace != null) 'namespace': namespace,
            if (okActions != null) 'ok_actions': okActions,
            if (period != null) 'period': period,

@@ -159,23 +159,23 @@ final class RdsClusterClusterIdentifierClusterIdentifierPrefix
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.manageMasterUserPassword(...)`.
-sealed class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo();
+sealed class RdsClusterMasterPassword {
+  const RdsClusterMasterPassword();
 
   /// Sets `manage_master_user_password`.
-  const factory RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.manageMasterUserPassword(
+  const factory RdsClusterMasterPassword.manageMasterUserPassword(
     TfArg<bool> manageMasterUserPassword,
-  ) = RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword;
+  ) = RdsClusterMasterPasswordManageMasterUserPassword;
 
   /// Sets `master_password`.
-  const factory RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPassword(
+  const factory RdsClusterMasterPassword.masterPassword(
     TfArg<String> masterPassword,
-  ) = RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword;
+  ) = RdsClusterMasterPasswordMasterPassword;
 
   /// Sets `master_password_wo`.
-  const factory RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPasswordWo(
+  const factory RdsClusterMasterPassword.masterPasswordWo(
     TfArg<String> masterPasswordWo,
-  ) = RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo;
+  ) = RdsClusterMasterPasswordMasterPasswordWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -187,11 +187,10 @@ sealed class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordW
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.manageMasterUserPassword] choice: sets `manage_master_user_password`.
-final class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword
-    extends
-        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword(
+/// The [RdsClusterMasterPassword.manageMasterUserPassword] choice: sets `manage_master_user_password`.
+final class RdsClusterMasterPasswordManageMasterUserPassword
+    extends RdsClusterMasterPassword {
+  const RdsClusterMasterPasswordManageMasterUserPassword(
     this.manageMasterUserPassword,
   );
 
@@ -211,13 +210,10 @@ final class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo
   };
 }
 
-/// The [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPassword] choice: sets `master_password`.
-final class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword
-    extends
-        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword(
-    this.masterPassword,
-  );
+/// The [RdsClusterMasterPassword.masterPassword] choice: sets `master_password`.
+final class RdsClusterMasterPasswordMasterPassword
+    extends RdsClusterMasterPassword {
+  const RdsClusterMasterPasswordMasterPassword(this.masterPassword);
 
   final TfArg<String> masterPassword;
 
@@ -233,13 +229,10 @@ final class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo
   Map<String, TfArg<Object?>> get argMap => {'master_password': masterPassword};
 }
 
-/// The [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPasswordWo] choice: sets `master_password_wo`.
-final class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo
-    extends
-        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo(
-    this.masterPasswordWo,
-  );
+/// The [RdsClusterMasterPassword.masterPasswordWo] choice: sets `master_password_wo`.
+final class RdsClusterMasterPasswordMasterPasswordWo
+    extends RdsClusterMasterPassword {
+  const RdsClusterMasterPasswordMasterPasswordWo(this.masterPasswordWo);
 
   final TfArg<String> masterPasswordWo;
 
@@ -552,8 +545,7 @@ final class AwsRdsCluster extends Resource {
     TfArg<List<String>>? iamRoles,
     TfArg<num>? iops,
     TfArg<String>? kmsKeyId,
-    RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo?
-    manageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo,
+    RdsClusterMasterPassword? masterPassword,
     TfArg<num>? masterPasswordWoVersion,
     TfArg<String>? masterUserSecretKmsKeyId,
     TfArg<String>? masterUsername,
@@ -651,8 +643,7 @@ final class AwsRdsCluster extends Resource {
            if (iamRoles != null) 'iam_roles': iamRoles,
            if (iops != null) 'iops': iops,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
-           ...?manageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo
-               ?.argMap,
+           ...?masterPassword?.argMap,
            if (masterPasswordWoVersion != null)
              'master_password_wo_version': masterPasswordWoVersion,
            if (masterUserSecretKmsKeyId != null)

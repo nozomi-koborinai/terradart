@@ -34,18 +34,17 @@ enum CognitoUserMessageAction implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.password(...)`.
-sealed class CognitoUserPasswordOrTemporaryPassword {
-  const CognitoUserPasswordOrTemporaryPassword();
+sealed class CognitoUserPassword {
+  const CognitoUserPassword();
 
   /// Sets `password`.
-  const factory CognitoUserPasswordOrTemporaryPassword.password(
-    TfArg<String> password,
-  ) = CognitoUserPasswordOrTemporaryPasswordPassword;
+  const factory CognitoUserPassword.password(TfArg<String> password) =
+      CognitoUserPasswordPassword;
 
   /// Sets `temporary_password`.
-  const factory CognitoUserPasswordOrTemporaryPassword.temporaryPassword(
+  const factory CognitoUserPassword.temporaryPassword(
     TfArg<String> temporaryPassword,
-  ) = CognitoUserPasswordOrTemporaryPasswordTemporaryPassword;
+  ) = CognitoUserPasswordTemporaryPassword;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -57,10 +56,9 @@ sealed class CognitoUserPasswordOrTemporaryPassword {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CognitoUserPasswordOrTemporaryPassword.password] choice: sets `password`.
-final class CognitoUserPasswordOrTemporaryPasswordPassword
-    extends CognitoUserPasswordOrTemporaryPassword {
-  const CognitoUserPasswordOrTemporaryPasswordPassword(this.password);
+/// The [CognitoUserPassword.password] choice: sets `password`.
+final class CognitoUserPasswordPassword extends CognitoUserPassword {
+  const CognitoUserPasswordPassword(this.password);
 
   final TfArg<String> password;
 
@@ -74,12 +72,9 @@ final class CognitoUserPasswordOrTemporaryPasswordPassword
   Map<String, TfArg<Object?>> get argMap => {'password': password};
 }
 
-/// The [CognitoUserPasswordOrTemporaryPassword.temporaryPassword] choice: sets `temporary_password`.
-final class CognitoUserPasswordOrTemporaryPasswordTemporaryPassword
-    extends CognitoUserPasswordOrTemporaryPassword {
-  const CognitoUserPasswordOrTemporaryPasswordTemporaryPassword(
-    this.temporaryPassword,
-  );
+/// The [CognitoUserPassword.temporaryPassword] choice: sets `temporary_password`.
+final class CognitoUserPasswordTemporaryPassword extends CognitoUserPassword {
+  const CognitoUserPasswordTemporaryPassword(this.temporaryPassword);
 
   final TfArg<String> temporaryPassword;
 
@@ -109,7 +104,7 @@ final class AwsCognitoUser extends Resource {
     TfArg<bool>? enabled,
     TfArg<bool>? forceAliasCreation,
     TfArg<CognitoUserMessageAction>? messageAction,
-    CognitoUserPasswordOrTemporaryPassword? passwordOrTemporaryPassword,
+    CognitoUserPassword? password,
     TfArg<String>? region,
     required TfArg<String> userPoolId,
     required TfArg<String> username,
@@ -131,7 +126,7 @@ final class AwsCognitoUser extends Resource {
            if (forceAliasCreation != null)
              'force_alias_creation': forceAliasCreation,
            if (messageAction != null) 'message_action': messageAction,
-           ...?passwordOrTemporaryPassword?.argMap,
+           ...?password?.argMap,
            if (region != null) 'region': region,
            'user_pool_id': userPoolId,
            'username': username,

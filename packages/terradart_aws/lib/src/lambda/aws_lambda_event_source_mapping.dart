@@ -31,18 +31,18 @@ enum LambdaEventSourceMappingStartingPosition implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.eventSourceArn(...)`.
-sealed class LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource {
-  const LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource();
+sealed class LambdaEventSourceMappingEventSource {
+  const LambdaEventSourceMappingEventSource();
 
   /// Sets `event_source_arn`.
-  const factory LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource.eventSourceArn(
+  const factory LambdaEventSourceMappingEventSource.eventSourceArn(
     TfArg<String> eventSourceArn,
-  ) = LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceEventSourceArn;
+  ) = LambdaEventSourceMappingEventSourceEventSourceArn;
 
   /// Sets `self_managed_event_source`.
-  const factory LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource.selfManagedEventSource(
+  const factory LambdaEventSourceMappingEventSource.selfManagedEventSource(
     LambdaEventSourceMappingSelfManagedEventSource selfManagedEventSource,
-  ) = LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceSelfManagedEventSource;
+  ) = LambdaEventSourceMappingEventSourceSelfManagedEventSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -54,12 +54,10 @@ sealed class LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource.eventSourceArn] choice: sets `event_source_arn`.
-final class LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceEventSourceArn
-    extends LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource {
-  const LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceEventSourceArn(
-    this.eventSourceArn,
-  );
+/// The [LambdaEventSourceMappingEventSource.eventSourceArn] choice: sets `event_source_arn`.
+final class LambdaEventSourceMappingEventSourceEventSourceArn
+    extends LambdaEventSourceMappingEventSource {
+  const LambdaEventSourceMappingEventSourceEventSourceArn(this.eventSourceArn);
 
   final TfArg<String> eventSourceArn;
 
@@ -77,10 +75,10 @@ final class LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceEventS
   };
 }
 
-/// The [LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource.selfManagedEventSource] choice: sets `self_managed_event_source`.
-final class LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceSelfManagedEventSource
-    extends LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource {
-  const LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceSelfManagedEventSource(
+/// The [LambdaEventSourceMappingEventSource.selfManagedEventSource] choice: sets `self_managed_event_source`.
+final class LambdaEventSourceMappingEventSourceSelfManagedEventSource
+    extends LambdaEventSourceMappingEventSource {
+  const LambdaEventSourceMappingEventSourceSelfManagedEventSource(
     this.selfManagedEventSource,
   );
 
@@ -685,8 +683,7 @@ final class AwsLambdaEventSourceMapping extends Resource {
     TfArg<num>? batchSize,
     TfArg<bool>? bisectBatchOnFunctionError,
     TfArg<bool>? enabled,
-    required LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource
-    eventSourceArnOrSelfManagedEventSource,
+    required LambdaEventSourceMappingEventSource eventSource,
     required TfArg<String> functionName,
     List<TfArg<LambdaEventSourceMappingFunctionResponseTypes>>?
     functionResponseTypes,
@@ -725,7 +722,7 @@ final class AwsLambdaEventSourceMapping extends Resource {
            if (bisectBatchOnFunctionError != null)
              'bisect_batch_on_function_error': bisectBatchOnFunctionError,
            if (enabled != null) 'enabled': enabled,
-           ...eventSourceArnOrSelfManagedEventSource.argMap,
+           ...eventSource.argMap,
            'function_name': functionName,
            if (functionResponseTypes != null)
              'function_response_types': TfArg.literal([

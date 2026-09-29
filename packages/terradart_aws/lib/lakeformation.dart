@@ -60,15 +60,6 @@ export 'src/lakeformation/aws_lakeformation_opt_in.dart'
 export 'src/lakeformation/aws_lakeformation_permissions.dart'
     show
         AwsLakeformationPermissions,
-        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns,
-        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsCatalogResource,
-        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataCellsFilter,
-        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataLocation,
-        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDatabase,
-        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTag,
-        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTagPolicy,
-        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTable,
-        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTableWithColumns,
         LakeformationPermissionsDataCellsFilter,
         LakeformationPermissionsDataLocation,
         LakeformationPermissionsDatabase,
@@ -78,6 +69,15 @@ export 'src/lakeformation/aws_lakeformation_permissions.dart'
         LakeformationPermissionsLfTagPolicyResourceType,
         LakeformationPermissionsPermissions,
         LakeformationPermissionsPermissionsWithGrantOption,
+        LakeformationPermissionsResource,
+        LakeformationPermissionsResourceCatalogResource,
+        LakeformationPermissionsResourceDataCellsFilter,
+        LakeformationPermissionsResourceDataLocation,
+        LakeformationPermissionsResourceDatabase,
+        LakeformationPermissionsResourceLfTag,
+        LakeformationPermissionsResourceLfTagPolicy,
+        LakeformationPermissionsResourceTable,
+        LakeformationPermissionsResourceTableWithColumns,
         LakeformationPermissionsTable,
         LakeformationPermissionsTableWithColumns;
 export 'src/lakeformation/aws_lakeformation_resource.dart'
@@ -86,11 +86,11 @@ export 'src/lakeformation/aws_lakeformation_resource_lf_tag.dart'
     show
         AwsLakeformationResourceLfTag,
         LakeformationResourceLfTagDatabase,
-        LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns,
-        LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsDatabase,
-        LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTable,
-        LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTableWithColumns,
         LakeformationResourceLfTagLfTag,
+        LakeformationResourceLfTagResource,
+        LakeformationResourceLfTagResourceDatabase,
+        LakeformationResourceLfTagResourceTable,
+        LakeformationResourceLfTagResourceTableWithColumns,
         LakeformationResourceLfTagTable,
         LakeformationResourceLfTagTableWithColumns,
         LakeformationResourceLfTagTableWithColumnsColumnWildcard;
@@ -98,10 +98,10 @@ export 'src/lakeformation/aws_lakeformation_resource_lf_tags.dart'
     show
         AwsLakeformationResourceLfTags,
         LakeformationResourceLfTagsDatabase,
-        LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns,
-        LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsDatabase,
-        LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTable,
-        LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTableWithColumns,
         LakeformationResourceLfTagsLfTag,
+        LakeformationResourceLfTagsResource,
+        LakeformationResourceLfTagsResourceDatabase,
+        LakeformationResourceLfTagsResourceTable,
+        LakeformationResourceLfTagsResourceTableWithColumns,
         LakeformationResourceLfTagsTable,
         LakeformationResourceLfTagsTableWithColumns;

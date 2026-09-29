@@ -33,13 +33,12 @@ enum CloudwatchEventConnectionAuthorizationType implements TerraformEnum {
 @immutable
 final class CloudwatchEventConnectionAuthParameters {
   const CloudwatchEventConnectionAuthParameters({
-    required this.apiKeyOrBasicOrOauth,
+    required this.auth,
     this.connectivityParameters,
     this.invocationHttpParameters,
   });
 
-  final CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth
-  apiKeyOrBasicOrOauth;
+  final CloudwatchEventConnectionAuthParametersAuth auth;
 
   final CloudwatchEventConnectionAuthParametersConnectivityParameters?
   connectivityParameters;
@@ -48,7 +47,7 @@ final class CloudwatchEventConnectionAuthParameters {
   invocationHttpParameters;
 
   Map<String, Object?> encode() => {
-    ...apiKeyOrBasicOrOauth.encode(),
+    ...auth.encode(),
     if (connectivityParameters != null)
       'connectivity_parameters': connectivityParameters!.encode(),
     if (invocationHttpParameters != null)
@@ -60,23 +59,23 @@ final class CloudwatchEventConnectionAuthParameters {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.apiKey(...)`.
-sealed class CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth {
-  const CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth();
+sealed class CloudwatchEventConnectionAuthParametersAuth {
+  const CloudwatchEventConnectionAuthParametersAuth();
 
   /// Sets `api_key`.
-  const factory CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth.apiKey(
+  const factory CloudwatchEventConnectionAuthParametersAuth.apiKey(
     CloudwatchEventConnectionAuthParametersApiKey apiKey,
-  ) = CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthApiKey;
+  ) = CloudwatchEventConnectionAuthParametersAuthApiKey;
 
   /// Sets `basic`.
-  const factory CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth.basic(
+  const factory CloudwatchEventConnectionAuthParametersAuth.basic(
     CloudwatchEventConnectionAuthParametersBasic basic,
-  ) = CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthBasic;
+  ) = CloudwatchEventConnectionAuthParametersAuthBasic;
 
   /// Sets `oauth`.
-  const factory CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth.oauth(
+  const factory CloudwatchEventConnectionAuthParametersAuth.oauth(
     CloudwatchEventConnectionAuthParametersOauth oauth,
-  ) = CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthOauth;
+  ) = CloudwatchEventConnectionAuthParametersAuthOauth;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -84,12 +83,10 @@ sealed class CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth {
   Map<String, Object?> encode();
 }
 
-/// The [CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth.apiKey] choice: sets `api_key`.
-final class CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthApiKey
-    extends CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth {
-  const CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthApiKey(
-    this.apiKey,
-  );
+/// The [CloudwatchEventConnectionAuthParametersAuth.apiKey] choice: sets `api_key`.
+final class CloudwatchEventConnectionAuthParametersAuthApiKey
+    extends CloudwatchEventConnectionAuthParametersAuth {
+  const CloudwatchEventConnectionAuthParametersAuthApiKey(this.apiKey);
 
   final CloudwatchEventConnectionAuthParametersApiKey apiKey;
 
@@ -100,12 +97,10 @@ final class CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthApiKey
   Map<String, Object?> encode() => {'api_key': apiKey.encode()};
 }
 
-/// The [CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth.basic] choice: sets `basic`.
-final class CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthBasic
-    extends CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth {
-  const CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthBasic(
-    this.basic,
-  );
+/// The [CloudwatchEventConnectionAuthParametersAuth.basic] choice: sets `basic`.
+final class CloudwatchEventConnectionAuthParametersAuthBasic
+    extends CloudwatchEventConnectionAuthParametersAuth {
+  const CloudwatchEventConnectionAuthParametersAuthBasic(this.basic);
 
   final CloudwatchEventConnectionAuthParametersBasic basic;
 
@@ -116,12 +111,10 @@ final class CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthBasic
   Map<String, Object?> encode() => {'basic': basic.encode()};
 }
 
-/// The [CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth.oauth] choice: sets `oauth`.
-final class CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthOauth
-    extends CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth {
-  const CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthOauth(
-    this.oauth,
-  );
+/// The [CloudwatchEventConnectionAuthParametersAuth.oauth] choice: sets `oauth`.
+final class CloudwatchEventConnectionAuthParametersAuthOauth
+    extends CloudwatchEventConnectionAuthParametersAuth {
+  const CloudwatchEventConnectionAuthParametersAuthOauth(this.oauth);
 
   final CloudwatchEventConnectionAuthParametersOauth oauth;
 

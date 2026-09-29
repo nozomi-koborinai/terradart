@@ -10,18 +10,18 @@ const Set<String> _awsTranscribeVocabularyFilterSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.vocabularyFilterFileUri(...)`.
-sealed class TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
-  const TranscribeVocabularyFilterVocabularyFilterFileUriOrWords();
+sealed class TranscribeVocabularyFilterTerms {
+  const TranscribeVocabularyFilterTerms();
 
   /// Sets `vocabulary_filter_file_uri`.
-  const factory TranscribeVocabularyFilterVocabularyFilterFileUriOrWords.vocabularyFilterFileUri(
+  const factory TranscribeVocabularyFilterTerms.vocabularyFilterFileUri(
     TfArg<String> vocabularyFilterFileUri,
-  ) = TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFilterFileUri;
+  ) = TranscribeVocabularyFilterTermsVocabularyFilterFileUri;
 
   /// Sets `words`.
-  const factory TranscribeVocabularyFilterVocabularyFilterFileUriOrWords.words(
+  const factory TranscribeVocabularyFilterTerms.words(
     TfArg<List<String>> words,
-  ) = TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsWords;
+  ) = TranscribeVocabularyFilterTermsWords;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +33,10 @@ sealed class TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [TranscribeVocabularyFilterVocabularyFilterFileUriOrWords.vocabularyFilterFileUri] choice: sets `vocabulary_filter_file_uri`.
-final class TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFilterFileUri
-    extends TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
-  const TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFilterFileUri(
+/// The [TranscribeVocabularyFilterTerms.vocabularyFilterFileUri] choice: sets `vocabulary_filter_file_uri`.
+final class TranscribeVocabularyFilterTermsVocabularyFilterFileUri
+    extends TranscribeVocabularyFilterTerms {
+  const TranscribeVocabularyFilterTermsVocabularyFilterFileUri(
     this.vocabularyFilterFileUri,
   );
 
@@ -56,12 +56,10 @@ final class TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFi
   };
 }
 
-/// The [TranscribeVocabularyFilterVocabularyFilterFileUriOrWords.words] choice: sets `words`.
-final class TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsWords
-    extends TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
-  const TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsWords(
-    this.words,
-  );
+/// The [TranscribeVocabularyFilterTerms.words] choice: sets `words`.
+final class TranscribeVocabularyFilterTermsWords
+    extends TranscribeVocabularyFilterTerms {
+  const TranscribeVocabularyFilterTermsWords(this.words);
 
   final TfArg<List<String>> words;
 
@@ -84,8 +82,7 @@ final class AwsTranscribeVocabularyFilter extends Resource {
     required TfArg<String> languageCode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TranscribeVocabularyFilterVocabularyFilterFileUriOrWords
-    vocabularyFilterFileUriOrWords,
+    required TranscribeVocabularyFilterTerms terms,
     required TfArg<String> vocabularyFilterName,
     super.lifecycle,
     super.dependsOn,
@@ -97,7 +94,7 @@ final class AwsTranscribeVocabularyFilter extends Resource {
            'language_code': languageCode,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           ...vocabularyFilterFileUriOrWords.argMap,
+           ...terms.argMap,
            'vocabulary_filter_name': vocabularyFilterName,
          },
        );

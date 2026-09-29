@@ -19,28 +19,27 @@ enum AmiLaunchPermissionGroup implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.accountId(...)`.
-sealed class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn {
-  const AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn();
+sealed class AmiLaunchPermissionGrantee {
+  const AmiLaunchPermissionGrantee();
 
   /// Sets `account_id`.
-  const factory AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.accountId(
-    TfArg<String> accountId,
-  ) = AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnAccountId;
+  const factory AmiLaunchPermissionGrantee.accountId(TfArg<String> accountId) =
+      AmiLaunchPermissionGranteeAccountId;
 
   /// Sets `group`.
-  const factory AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.group(
+  const factory AmiLaunchPermissionGrantee.group(
     TfArg<AmiLaunchPermissionGroup> group,
-  ) = AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnGroup;
+  ) = AmiLaunchPermissionGranteeGroup;
 
   /// Sets `organization_arn`.
-  const factory AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.organizationArn(
+  const factory AmiLaunchPermissionGrantee.organizationArn(
     TfArg<String> organizationArn,
-  ) = AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationArn;
+  ) = AmiLaunchPermissionGranteeOrganizationArn;
 
   /// Sets `organizational_unit_arn`.
-  const factory AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.organizationalUnitArn(
+  const factory AmiLaunchPermissionGrantee.organizationalUnitArn(
     TfArg<String> organizationalUnitArn,
-  ) = AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationalUnitArn;
+  ) = AmiLaunchPermissionGranteeOrganizationalUnitArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,13 +51,10 @@ sealed class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationa
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.accountId] choice: sets `account_id`.
-final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnAccountId
-    extends
-        AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn {
-  const AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnAccountId(
-    this.accountId,
-  );
+/// The [AmiLaunchPermissionGrantee.accountId] choice: sets `account_id`.
+final class AmiLaunchPermissionGranteeAccountId
+    extends AmiLaunchPermissionGrantee {
+  const AmiLaunchPermissionGranteeAccountId(this.accountId);
 
   final TfArg<String> accountId;
 
@@ -72,13 +68,9 @@ final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizational
   Map<String, TfArg<Object?>> get argMap => {'account_id': accountId};
 }
 
-/// The [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.group] choice: sets `group`.
-final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnGroup
-    extends
-        AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn {
-  const AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnGroup(
-    this.group,
-  );
+/// The [AmiLaunchPermissionGrantee.group] choice: sets `group`.
+final class AmiLaunchPermissionGranteeGroup extends AmiLaunchPermissionGrantee {
+  const AmiLaunchPermissionGranteeGroup(this.group);
 
   final TfArg<AmiLaunchPermissionGroup> group;
 
@@ -92,13 +84,10 @@ final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizational
   Map<String, TfArg<Object?>> get argMap => {'group': group};
 }
 
-/// The [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.organizationArn] choice: sets `organization_arn`.
-final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationArn
-    extends
-        AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn {
-  const AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationArn(
-    this.organizationArn,
-  );
+/// The [AmiLaunchPermissionGrantee.organizationArn] choice: sets `organization_arn`.
+final class AmiLaunchPermissionGranteeOrganizationArn
+    extends AmiLaunchPermissionGrantee {
+  const AmiLaunchPermissionGranteeOrganizationArn(this.organizationArn);
 
   final TfArg<String> organizationArn;
 
@@ -116,11 +105,10 @@ final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizational
   };
 }
 
-/// The [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.organizationalUnitArn] choice: sets `organizational_unit_arn`.
-final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationalUnitArn
-    extends
-        AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn {
-  const AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationalUnitArn(
+/// The [AmiLaunchPermissionGrantee.organizationalUnitArn] choice: sets `organizational_unit_arn`.
+final class AmiLaunchPermissionGranteeOrganizationalUnitArn
+    extends AmiLaunchPermissionGrantee {
+  const AmiLaunchPermissionGranteeOrganizationalUnitArn(
     this.organizationalUnitArn,
   );
 
@@ -146,8 +134,7 @@ final class AwsAmiLaunchPermission extends Resource {
 
   AwsAmiLaunchPermission({
     required super.localName,
-    required AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn
-    accountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn,
+    required AmiLaunchPermissionGrantee grantee,
     required TfArg<String> imageId,
     TfArg<String>? region,
     super.lifecycle,
@@ -157,7 +144,7 @@ final class AwsAmiLaunchPermission extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...accountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.argMap,
+           ...grantee.argMap,
            'image_id': imageId,
            if (region != null) 'region': region,
          },

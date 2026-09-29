@@ -12,18 +12,18 @@ const Set<String> _awsCloudtrailSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.advancedEventSelector(...)`.
-sealed class CloudtrailAdvancedEventSelectorOrEventSelector {
-  const CloudtrailAdvancedEventSelectorOrEventSelector();
+sealed class CloudtrailSelectors {
+  const CloudtrailSelectors();
 
   /// Sets `advanced_event_selector`.
-  const factory CloudtrailAdvancedEventSelectorOrEventSelector.advancedEventSelector(
+  const factory CloudtrailSelectors.advancedEventSelector(
     List<CloudtrailAdvancedEventSelector> advancedEventSelector,
-  ) = CloudtrailAdvancedEventSelectorOrEventSelectorAdvancedEventSelector;
+  ) = CloudtrailSelectorsAdvancedEventSelector;
 
   /// Sets `event_selector`.
-  const factory CloudtrailAdvancedEventSelectorOrEventSelector.eventSelector(
+  const factory CloudtrailSelectors.eventSelector(
     List<CloudtrailEventSelector> eventSelector,
-  ) = CloudtrailAdvancedEventSelectorOrEventSelectorEventSelector;
+  ) = CloudtrailSelectorsEventSelector;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,12 +35,10 @@ sealed class CloudtrailAdvancedEventSelectorOrEventSelector {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudtrailAdvancedEventSelectorOrEventSelector.advancedEventSelector] choice: sets `advanced_event_selector`.
-final class CloudtrailAdvancedEventSelectorOrEventSelectorAdvancedEventSelector
-    extends CloudtrailAdvancedEventSelectorOrEventSelector {
-  const CloudtrailAdvancedEventSelectorOrEventSelectorAdvancedEventSelector(
-    this.advancedEventSelector,
-  );
+/// The [CloudtrailSelectors.advancedEventSelector] choice: sets `advanced_event_selector`.
+final class CloudtrailSelectorsAdvancedEventSelector
+    extends CloudtrailSelectors {
+  const CloudtrailSelectorsAdvancedEventSelector(this.advancedEventSelector);
 
   final List<CloudtrailAdvancedEventSelector> advancedEventSelector;
 
@@ -62,12 +60,9 @@ final class CloudtrailAdvancedEventSelectorOrEventSelectorAdvancedEventSelector
   };
 }
 
-/// The [CloudtrailAdvancedEventSelectorOrEventSelector.eventSelector] choice: sets `event_selector`.
-final class CloudtrailAdvancedEventSelectorOrEventSelectorEventSelector
-    extends CloudtrailAdvancedEventSelectorOrEventSelector {
-  const CloudtrailAdvancedEventSelectorOrEventSelectorEventSelector(
-    this.eventSelector,
-  );
+/// The [CloudtrailSelectors.eventSelector] choice: sets `event_selector`.
+final class CloudtrailSelectorsEventSelector extends CloudtrailSelectors {
+  const CloudtrailSelectorsEventSelector(this.eventSelector);
 
   final List<CloudtrailEventSelector> eventSelector;
 
@@ -278,8 +273,7 @@ final class AwsCloudtrail extends Resource {
     TfArg<String>? s3KeyPrefix,
     TfArg<String>? snsTopicName,
     TfArg<Map<String, String>>? tags,
-    CloudtrailAdvancedEventSelectorOrEventSelector?
-    advancedEventSelectorOrEventSelector,
+    CloudtrailSelectors? selectors,
     List<CloudtrailInsightSelector>? insightSelector,
     super.lifecycle,
     super.dependsOn,
@@ -308,7 +302,7 @@ final class AwsCloudtrail extends Resource {
            if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix,
            if (snsTopicName != null) 'sns_topic_name': snsTopicName,
            if (tags != null) 'tags': tags,
-           ...?advancedEventSelectorOrEventSelector?.argMap,
+           ...?selectors?.argMap,
            if (insightSelector != null)
              'insight_selector': TfArg.literal([
                for (final e in insightSelector) e.encode(),

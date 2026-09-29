@@ -23,23 +23,23 @@ enum SpotInstanceRequestTenancy implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.hostResourceGroupArn(...)`.
-sealed class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
-  const SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId();
+sealed class SpotInstanceRequestPlacement {
+  const SpotInstanceRequestPlacement();
 
   /// Sets `host_resource_group_arn`.
-  const factory SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.hostResourceGroupArn(
+  const factory SpotInstanceRequestPlacement.hostResourceGroupArn(
     TfArg<String> hostResourceGroupArn,
-  ) = SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdHostResourceGroupArn;
+  ) = SpotInstanceRequestPlacementHostResourceGroupArn;
 
   /// Sets `placement_group`.
-  const factory SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.placementGroup(
+  const factory SpotInstanceRequestPlacement.placementGroup(
     TfArg<String> placementGroup,
-  ) = SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroup;
+  ) = SpotInstanceRequestPlacementPlacementGroup;
 
   /// Sets `placement_group_id`.
-  const factory SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.placementGroupId(
+  const factory SpotInstanceRequestPlacement.placementGroupId(
     TfArg<String> placementGroupId,
-  ) = SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroupId;
+  ) = SpotInstanceRequestPlacementPlacementGroupId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -51,11 +51,10 @@ sealed class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementG
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
-final class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdHostResourceGroupArn
-    extends
-        SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
-  const SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdHostResourceGroupArn(
+/// The [SpotInstanceRequestPlacement.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
+final class SpotInstanceRequestPlacementHostResourceGroupArn
+    extends SpotInstanceRequestPlacement {
+  const SpotInstanceRequestPlacementHostResourceGroupArn(
     this.hostResourceGroupArn,
   );
 
@@ -75,13 +74,10 @@ final class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGr
   };
 }
 
-/// The [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.placementGroup] choice: sets `placement_group`.
-final class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroup
-    extends
-        SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
-  const SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroup(
-    this.placementGroup,
-  );
+/// The [SpotInstanceRequestPlacement.placementGroup] choice: sets `placement_group`.
+final class SpotInstanceRequestPlacementPlacementGroup
+    extends SpotInstanceRequestPlacement {
+  const SpotInstanceRequestPlacementPlacementGroup(this.placementGroup);
 
   final TfArg<String> placementGroup;
 
@@ -97,13 +93,10 @@ final class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGr
   Map<String, TfArg<Object?>> get argMap => {'placement_group': placementGroup};
 }
 
-/// The [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.placementGroupId] choice: sets `placement_group_id`.
-final class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroupId
-    extends
-        SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
-  const SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroupId(
-    this.placementGroupId,
-  );
+/// The [SpotInstanceRequestPlacement.placementGroupId] choice: sets `placement_group_id`.
+final class SpotInstanceRequestPlacementPlacementGroupId
+    extends SpotInstanceRequestPlacement {
+  const SpotInstanceRequestPlacementPlacementGroupId(this.placementGroupId);
 
   final TfArg<String> placementGroupId;
 
@@ -545,16 +538,16 @@ final class SpotInstanceRequestEphemeralBlockDevice {
 @immutable
 final class SpotInstanceRequestLaunchTemplate {
   const SpotInstanceRequestLaunchTemplate({
-    required this.idOrName,
+    required this.template,
     this.version,
   });
 
-  final SpotInstanceRequestLaunchTemplateIdOrName idOrName;
+  final SpotInstanceRequestLaunchTemplateTemplate template;
 
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    ...idOrName.encode(),
+    ...template.encode(),
     if (version != null) 'version': version!.toTfJson(),
   };
 }
@@ -563,17 +556,17 @@ final class SpotInstanceRequestLaunchTemplate {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.id(...)`.
-sealed class SpotInstanceRequestLaunchTemplateIdOrName {
-  const SpotInstanceRequestLaunchTemplateIdOrName();
+sealed class SpotInstanceRequestLaunchTemplateTemplate {
+  const SpotInstanceRequestLaunchTemplateTemplate();
 
   /// Sets `id`.
-  const factory SpotInstanceRequestLaunchTemplateIdOrName.id(TfArg<String> id) =
-      SpotInstanceRequestLaunchTemplateIdOrNameId;
+  const factory SpotInstanceRequestLaunchTemplateTemplate.id(TfArg<String> id) =
+      SpotInstanceRequestLaunchTemplateTemplateId;
 
   /// Sets `name`.
-  const factory SpotInstanceRequestLaunchTemplateIdOrName.name(
+  const factory SpotInstanceRequestLaunchTemplateTemplate.name(
     TfArg<String> name,
-  ) = SpotInstanceRequestLaunchTemplateIdOrNameName;
+  ) = SpotInstanceRequestLaunchTemplateTemplateName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -581,10 +574,10 @@ sealed class SpotInstanceRequestLaunchTemplateIdOrName {
   Map<String, Object?> encode();
 }
 
-/// The [SpotInstanceRequestLaunchTemplateIdOrName.id] choice: sets `id`.
-final class SpotInstanceRequestLaunchTemplateIdOrNameId
-    extends SpotInstanceRequestLaunchTemplateIdOrName {
-  const SpotInstanceRequestLaunchTemplateIdOrNameId(this.id);
+/// The [SpotInstanceRequestLaunchTemplateTemplate.id] choice: sets `id`.
+final class SpotInstanceRequestLaunchTemplateTemplateId
+    extends SpotInstanceRequestLaunchTemplateTemplate {
+  const SpotInstanceRequestLaunchTemplateTemplateId(this.id);
 
   final TfArg<String> id;
 
@@ -595,10 +588,10 @@ final class SpotInstanceRequestLaunchTemplateIdOrNameId
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// The [SpotInstanceRequestLaunchTemplateIdOrName.name] choice: sets `name`.
-final class SpotInstanceRequestLaunchTemplateIdOrNameName
-    extends SpotInstanceRequestLaunchTemplateIdOrName {
-  const SpotInstanceRequestLaunchTemplateIdOrNameName(this.name);
+/// The [SpotInstanceRequestLaunchTemplateTemplate.name] choice: sets `name`.
+final class SpotInstanceRequestLaunchTemplateTemplateName
+    extends SpotInstanceRequestLaunchTemplateTemplate {
+  const SpotInstanceRequestLaunchTemplateTemplateName(this.name);
 
   final TfArg<String> name;
 
@@ -908,8 +901,7 @@ final class AwsSpotInstanceRequest extends Resource {
     TfArg<bool>? getPasswordData,
     TfArg<bool>? hibernation,
     TfArg<String>? hostId,
-    SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId?
-    hostResourceGroupArnOrPlacementGroupOrPlacementGroupId,
+    SpotInstanceRequestPlacement? placement,
     TfArg<String>? iamInstanceProfile,
     TfArg<String>? instanceInitiatedShutdownBehavior,
     TfArg<String>? instanceInterruptionBehavior,
@@ -973,7 +965,7 @@ final class AwsSpotInstanceRequest extends Resource {
            if (getPasswordData != null) 'get_password_data': getPasswordData,
            if (hibernation != null) 'hibernation': hibernation,
            if (hostId != null) 'host_id': hostId,
-           ...?hostResourceGroupArnOrPlacementGroupOrPlacementGroupId?.argMap,
+           ...?placement?.argMap,
            if (iamInstanceProfile != null)
              'iam_instance_profile': iamInstanceProfile,
            if (instanceInitiatedShutdownBehavior != null)

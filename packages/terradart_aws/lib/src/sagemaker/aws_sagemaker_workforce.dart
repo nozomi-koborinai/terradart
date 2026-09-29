@@ -13,18 +13,18 @@ const Set<String> _awsSagemakerWorkforceSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cognitoConfig(...)`.
-sealed class SagemakerWorkforceCognitoConfigOrOidcConfig {
-  const SagemakerWorkforceCognitoConfigOrOidcConfig();
+sealed class SagemakerWorkforceIdentityProvider {
+  const SagemakerWorkforceIdentityProvider();
 
   /// Sets `cognito_config`.
-  const factory SagemakerWorkforceCognitoConfigOrOidcConfig.cognitoConfig(
+  const factory SagemakerWorkforceIdentityProvider.cognitoConfig(
     SagemakerWorkforceCognitoConfig cognitoConfig,
-  ) = SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig;
+  ) = SagemakerWorkforceIdentityProviderCognitoConfig;
 
   /// Sets `oidc_config`.
-  const factory SagemakerWorkforceCognitoConfigOrOidcConfig.oidcConfig(
+  const factory SagemakerWorkforceIdentityProvider.oidcConfig(
     SagemakerWorkforceOidcConfig oidcConfig,
-  ) = SagemakerWorkforceCognitoConfigOrOidcConfigOidcConfig;
+  ) = SagemakerWorkforceIdentityProviderOidcConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,12 +36,10 @@ sealed class SagemakerWorkforceCognitoConfigOrOidcConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SagemakerWorkforceCognitoConfigOrOidcConfig.cognitoConfig] choice: sets `cognito_config`.
-final class SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig
-    extends SagemakerWorkforceCognitoConfigOrOidcConfig {
-  const SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig(
-    this.cognitoConfig,
-  );
+/// The [SagemakerWorkforceIdentityProvider.cognitoConfig] choice: sets `cognito_config`.
+final class SagemakerWorkforceIdentityProviderCognitoConfig
+    extends SagemakerWorkforceIdentityProvider {
+  const SagemakerWorkforceIdentityProviderCognitoConfig(this.cognitoConfig);
 
   final SagemakerWorkforceCognitoConfig cognitoConfig;
 
@@ -57,10 +55,10 @@ final class SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig
   };
 }
 
-/// The [SagemakerWorkforceCognitoConfigOrOidcConfig.oidcConfig] choice: sets `oidc_config`.
-final class SagemakerWorkforceCognitoConfigOrOidcConfigOidcConfig
-    extends SagemakerWorkforceCognitoConfigOrOidcConfig {
-  const SagemakerWorkforceCognitoConfigOrOidcConfigOidcConfig(this.oidcConfig);
+/// The [SagemakerWorkforceIdentityProvider.oidcConfig] choice: sets `oidc_config`.
+final class SagemakerWorkforceIdentityProviderOidcConfig
+    extends SagemakerWorkforceIdentityProvider {
+  const SagemakerWorkforceIdentityProviderOidcConfig(this.oidcConfig);
 
   final SagemakerWorkforceOidcConfig oidcConfig;
 
@@ -191,8 +189,7 @@ final class AwsSagemakerWorkforce extends Resource {
     required super.localName,
     TfArg<String>? region,
     required TfArg<String> workforceName,
-    required SagemakerWorkforceCognitoConfigOrOidcConfig
-    cognitoConfigOrOidcConfig,
+    required SagemakerWorkforceIdentityProvider identityProvider,
     SagemakerWorkforceSourceIpConfig? sourceIpConfig,
     SagemakerWorkforceWorkforceVpcConfig? workforceVpcConfig,
     super.lifecycle,
@@ -204,7 +201,7 @@ final class AwsSagemakerWorkforce extends Resource {
          argMap: {
            if (region != null) 'region': region,
            'workforce_name': workforceName,
-           ...cognitoConfigOrOidcConfig.argMap,
+           ...identityProvider.argMap,
            if (sourceIpConfig != null)
              'source_ip_config': TfArg.literal(sourceIpConfig.encode()),
            if (workforceVpcConfig != null)

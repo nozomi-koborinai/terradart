@@ -112,18 +112,18 @@ enum ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceSource
 @immutable
 final class ComputeoptimizerRecommendationPreferencesPreferredResource {
   const ComputeoptimizerRecommendationPreferencesPreferredResource({
-    this.excludeListOrIncludeList,
+    this.filter,
     required this.name,
   });
 
-  final ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList?
-  excludeListOrIncludeList;
+  final ComputeoptimizerRecommendationPreferencesPreferredResourceFilter?
+  filter;
 
   final TfArg<ComputeoptimizerRecommendationPreferencesPreferredResourceName>
   name;
 
   Map<String, Object?> encode() => {
-    ...?excludeListOrIncludeList?.encode(),
+    ...?filter?.encode(),
     'name': name.toTfJson(),
   };
 }
@@ -133,18 +133,18 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResource {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.excludeList(...)`.
-sealed class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList {
-  const ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList();
+sealed class ComputeoptimizerRecommendationPreferencesPreferredResourceFilter {
+  const ComputeoptimizerRecommendationPreferencesPreferredResourceFilter();
 
   /// Sets `exclude_list`.
-  const factory ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList.excludeList(
+  const factory ComputeoptimizerRecommendationPreferencesPreferredResourceFilter.excludeList(
     TfArg<List<Object?>> excludeList,
-  ) = ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListExcludeList;
+  ) = ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcludeList;
 
   /// Sets `include_list`.
-  const factory ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList.includeList(
+  const factory ComputeoptimizerRecommendationPreferencesPreferredResourceFilter.includeList(
     TfArg<List<Object?>> includeList,
-  ) = ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListIncludeList;
+  ) = ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncludeList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -152,11 +152,10 @@ sealed class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeLi
   Map<String, Object?> encode();
 }
 
-/// The [ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList.excludeList] choice: sets `exclude_list`.
-final class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListExcludeList
-    extends
-        ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList {
-  const ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListExcludeList(
+/// The [ComputeoptimizerRecommendationPreferencesPreferredResourceFilter.excludeList] choice: sets `exclude_list`.
+final class ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcludeList
+    extends ComputeoptimizerRecommendationPreferencesPreferredResourceFilter {
+  const ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcludeList(
     this.excludeList,
   );
 
@@ -169,11 +168,10 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeLis
   Map<String, Object?> encode() => {'exclude_list': excludeList.toTfJson()};
 }
 
-/// The [ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList.includeList] choice: sets `include_list`.
-final class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListIncludeList
-    extends
-        ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList {
-  const ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListIncludeList(
+/// The [ComputeoptimizerRecommendationPreferencesPreferredResourceFilter.includeList] choice: sets `include_list`.
+final class ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncludeList
+    extends ComputeoptimizerRecommendationPreferencesPreferredResourceFilter {
+  const ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncludeList(
     this.includeList,
   );
 

@@ -12,17 +12,17 @@ const Set<String> _awsRoute53ZoneSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.delegationSetId(...)`.
-sealed class Route53ZoneDelegationSetIdOrVpc {
-  const Route53ZoneDelegationSetIdOrVpc();
+sealed class Route53ZoneVisibility {
+  const Route53ZoneVisibility();
 
   /// Sets `delegation_set_id`.
-  const factory Route53ZoneDelegationSetIdOrVpc.delegationSetId(
+  const factory Route53ZoneVisibility.delegationSetId(
     TfArg<String> delegationSetId,
-  ) = Route53ZoneDelegationSetIdOrVpcDelegationSetId;
+  ) = Route53ZoneVisibilityDelegationSetId;
 
   /// Sets `vpc`.
-  const factory Route53ZoneDelegationSetIdOrVpc.vpc(List<Route53ZoneVpc> vpc) =
-      Route53ZoneDelegationSetIdOrVpcVpc;
+  const factory Route53ZoneVisibility.vpc(List<Route53ZoneVpc> vpc) =
+      Route53ZoneVisibilityVpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +34,9 @@ sealed class Route53ZoneDelegationSetIdOrVpc {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Route53ZoneDelegationSetIdOrVpc.delegationSetId] choice: sets `delegation_set_id`.
-final class Route53ZoneDelegationSetIdOrVpcDelegationSetId
-    extends Route53ZoneDelegationSetIdOrVpc {
-  const Route53ZoneDelegationSetIdOrVpcDelegationSetId(this.delegationSetId);
+/// The [Route53ZoneVisibility.delegationSetId] choice: sets `delegation_set_id`.
+final class Route53ZoneVisibilityDelegationSetId extends Route53ZoneVisibility {
+  const Route53ZoneVisibilityDelegationSetId(this.delegationSetId);
 
   final TfArg<String> delegationSetId;
 
@@ -55,10 +54,9 @@ final class Route53ZoneDelegationSetIdOrVpcDelegationSetId
   };
 }
 
-/// The [Route53ZoneDelegationSetIdOrVpc.vpc] choice: sets `vpc`.
-final class Route53ZoneDelegationSetIdOrVpcVpc
-    extends Route53ZoneDelegationSetIdOrVpc {
-  const Route53ZoneDelegationSetIdOrVpcVpc(this.vpc);
+/// The [Route53ZoneVisibility.vpc] choice: sets `vpc`.
+final class Route53ZoneVisibilityVpc extends Route53ZoneVisibility {
+  const Route53ZoneVisibilityVpc(this.vpc);
 
   final List<Route53ZoneVpc> vpc;
 
@@ -99,7 +97,7 @@ final class AwsRoute53Zone extends Resource {
   AwsRoute53Zone({
     required super.localName,
     TfArg<String>? comment,
-    Route53ZoneDelegationSetIdOrVpc? delegationSetIdOrVpc,
+    Route53ZoneVisibility? visibility,
     TfArg<bool>? enableAcceleratedRecovery,
     TfArg<bool>? forceDestroy,
     required TfArg<String> name,
@@ -112,7 +110,7 @@ final class AwsRoute53Zone extends Resource {
          terraformType: tfType,
          argMap: {
            if (comment != null) 'comment': comment,
-           ...?delegationSetIdOrVpc?.argMap,
+           ...?visibility?.argMap,
            if (enableAcceleratedRecovery != null)
              'enable_accelerated_recovery': enableAcceleratedRecovery,
            if (forceDestroy != null) 'force_destroy': forceDestroy,

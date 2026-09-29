@@ -10,18 +10,18 @@ const Set<String> _awsEc2ClientVpnAuthorizationRuleSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.accessGroupId(...)`.
-sealed class Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups {
-  const Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups();
+sealed class Ec2ClientVpnAuthorizationRuleAudience {
+  const Ec2ClientVpnAuthorizationRuleAudience();
 
   /// Sets `access_group_id`.
-  const factory Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups.accessGroupId(
+  const factory Ec2ClientVpnAuthorizationRuleAudience.accessGroupId(
     TfArg<String> accessGroupId,
-  ) = Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAccessGroupId;
+  ) = Ec2ClientVpnAuthorizationRuleAudienceAccessGroupId;
 
   /// Sets `authorize_all_groups`.
-  const factory Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups.authorizeAllGroups(
+  const factory Ec2ClientVpnAuthorizationRuleAudience.authorizeAllGroups(
     TfArg<bool> authorizeAllGroups,
-  ) = Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAuthorizeAllGroups;
+  ) = Ec2ClientVpnAuthorizationRuleAudienceAuthorizeAllGroups;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,12 +33,10 @@ sealed class Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups.accessGroupId] choice: sets `access_group_id`.
-final class Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAccessGroupId
-    extends Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups {
-  const Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAccessGroupId(
-    this.accessGroupId,
-  );
+/// The [Ec2ClientVpnAuthorizationRuleAudience.accessGroupId] choice: sets `access_group_id`.
+final class Ec2ClientVpnAuthorizationRuleAudienceAccessGroupId
+    extends Ec2ClientVpnAuthorizationRuleAudience {
+  const Ec2ClientVpnAuthorizationRuleAudienceAccessGroupId(this.accessGroupId);
 
   final TfArg<String> accessGroupId;
 
@@ -54,10 +52,10 @@ final class Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAccess
   Map<String, TfArg<Object?>> get argMap => {'access_group_id': accessGroupId};
 }
 
-/// The [Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups.authorizeAllGroups] choice: sets `authorize_all_groups`.
-final class Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAuthorizeAllGroups
-    extends Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups {
-  const Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAuthorizeAllGroups(
+/// The [Ec2ClientVpnAuthorizationRuleAudience.authorizeAllGroups] choice: sets `authorize_all_groups`.
+final class Ec2ClientVpnAuthorizationRuleAudienceAuthorizeAllGroups
+    extends Ec2ClientVpnAuthorizationRuleAudience {
+  const Ec2ClientVpnAuthorizationRuleAudienceAuthorizeAllGroups(
     this.authorizeAllGroups,
   );
 
@@ -83,8 +81,7 @@ final class AwsEc2ClientVpnAuthorizationRule extends Resource {
 
   AwsEc2ClientVpnAuthorizationRule({
     required super.localName,
-    required Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups
-    accessGroupIdOrAuthorizeAllGroups,
+    required Ec2ClientVpnAuthorizationRuleAudience audience,
     required TfArg<String> clientVpnEndpointId,
     TfArg<String>? description,
     TfArg<String>? region,
@@ -96,7 +93,7 @@ final class AwsEc2ClientVpnAuthorizationRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...accessGroupIdOrAuthorizeAllGroups.argMap,
+           ...audience.argMap,
            'client_vpn_endpoint_id': clientVpnEndpointId,
            if (description != null) 'description': description,
            if (region != null) 'region': region,

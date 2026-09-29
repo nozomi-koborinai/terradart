@@ -62,18 +62,18 @@ enum ElasticacheClusterOutpostMode implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.engine(...)`.
-sealed class ElasticacheClusterEngineOrReplicationGroupId {
-  const ElasticacheClusterEngineOrReplicationGroupId();
+sealed class ElasticacheClusterSource {
+  const ElasticacheClusterSource();
 
   /// Sets `engine`.
-  const factory ElasticacheClusterEngineOrReplicationGroupId.engine(
+  const factory ElasticacheClusterSource.engine(
     TfArg<ElasticacheClusterEngine> engine,
-  ) = ElasticacheClusterEngineOrReplicationGroupIdEngine;
+  ) = ElasticacheClusterSourceEngine;
 
   /// Sets `replication_group_id`.
-  const factory ElasticacheClusterEngineOrReplicationGroupId.replicationGroupId(
+  const factory ElasticacheClusterSource.replicationGroupId(
     TfArg<String> replicationGroupId,
-  ) = ElasticacheClusterEngineOrReplicationGroupIdReplicationGroupId;
+  ) = ElasticacheClusterSourceReplicationGroupId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -85,10 +85,9 @@ sealed class ElasticacheClusterEngineOrReplicationGroupId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ElasticacheClusterEngineOrReplicationGroupId.engine] choice: sets `engine`.
-final class ElasticacheClusterEngineOrReplicationGroupIdEngine
-    extends ElasticacheClusterEngineOrReplicationGroupId {
-  const ElasticacheClusterEngineOrReplicationGroupIdEngine(this.engine);
+/// The [ElasticacheClusterSource.engine] choice: sets `engine`.
+final class ElasticacheClusterSourceEngine extends ElasticacheClusterSource {
+  const ElasticacheClusterSourceEngine(this.engine);
 
   final TfArg<ElasticacheClusterEngine> engine;
 
@@ -102,12 +101,10 @@ final class ElasticacheClusterEngineOrReplicationGroupIdEngine
   Map<String, TfArg<Object?>> get argMap => {'engine': engine};
 }
 
-/// The [ElasticacheClusterEngineOrReplicationGroupId.replicationGroupId] choice: sets `replication_group_id`.
-final class ElasticacheClusterEngineOrReplicationGroupIdReplicationGroupId
-    extends ElasticacheClusterEngineOrReplicationGroupId {
-  const ElasticacheClusterEngineOrReplicationGroupIdReplicationGroupId(
-    this.replicationGroupId,
-  );
+/// The [ElasticacheClusterSource.replicationGroupId] choice: sets `replication_group_id`.
+final class ElasticacheClusterSourceReplicationGroupId
+    extends ElasticacheClusterSource {
+  const ElasticacheClusterSourceReplicationGroupId(this.replicationGroupId);
 
   final TfArg<String> replicationGroupId;
 
@@ -201,8 +198,7 @@ final class AwsElasticacheCluster extends Resource {
     TfArg<String>? availabilityZone,
     TfArg<ElasticacheClusterAzMode>? azMode,
     required TfArg<String> clusterId,
-    required ElasticacheClusterEngineOrReplicationGroupId
-    engineOrReplicationGroupId,
+    required ElasticacheClusterSource source,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<ElasticacheClusterIpDiscovery>? ipDiscovery,
@@ -239,7 +235,7 @@ final class AwsElasticacheCluster extends Resource {
            if (availabilityZone != null) 'availability_zone': availabilityZone,
            if (azMode != null) 'az_mode': azMode,
            'cluster_id': clusterId,
-           ...engineOrReplicationGroupId.argMap,
+           ...source.argMap,
            if (engineVersion != null) 'engine_version': engineVersion,
            if (finalSnapshotIdentifier != null)
              'final_snapshot_identifier': finalSnapshotIdentifier,

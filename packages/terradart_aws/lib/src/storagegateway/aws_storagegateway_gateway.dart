@@ -60,18 +60,18 @@ enum StoragegatewayGatewayTapeDriveType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.activationKey(...)`.
-sealed class StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
-  const StoragegatewayGatewayActivationKeyOrGatewayIpAddress();
+sealed class StoragegatewayGatewayActivation {
+  const StoragegatewayGatewayActivation();
 
   /// Sets `activation_key`.
-  const factory StoragegatewayGatewayActivationKeyOrGatewayIpAddress.activationKey(
+  const factory StoragegatewayGatewayActivation.activationKey(
     TfArg<String> activationKey,
-  ) = StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey;
+  ) = StoragegatewayGatewayActivationActivationKey;
 
   /// Sets `gateway_ip_address`.
-  const factory StoragegatewayGatewayActivationKeyOrGatewayIpAddress.gatewayIpAddress(
+  const factory StoragegatewayGatewayActivation.gatewayIpAddress(
     TfArg<String> gatewayIpAddress,
-  ) = StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress;
+  ) = StoragegatewayGatewayActivationGatewayIpAddress;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -83,12 +83,10 @@ sealed class StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [StoragegatewayGatewayActivationKeyOrGatewayIpAddress.activationKey] choice: sets `activation_key`.
-final class StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey
-    extends StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
-  const StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey(
-    this.activationKey,
-  );
+/// The [StoragegatewayGatewayActivation.activationKey] choice: sets `activation_key`.
+final class StoragegatewayGatewayActivationActivationKey
+    extends StoragegatewayGatewayActivation {
+  const StoragegatewayGatewayActivationActivationKey(this.activationKey);
 
   final TfArg<String> activationKey;
 
@@ -102,12 +100,10 @@ final class StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey
   Map<String, TfArg<Object?>> get argMap => {'activation_key': activationKey};
 }
 
-/// The [StoragegatewayGatewayActivationKeyOrGatewayIpAddress.gatewayIpAddress] choice: sets `gateway_ip_address`.
-final class StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress
-    extends StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
-  const StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress(
-    this.gatewayIpAddress,
-  );
+/// The [StoragegatewayGatewayActivation.gatewayIpAddress] choice: sets `gateway_ip_address`.
+final class StoragegatewayGatewayActivationGatewayIpAddress
+    extends StoragegatewayGatewayActivation {
+  const StoragegatewayGatewayActivationGatewayIpAddress(this.gatewayIpAddress);
 
   final TfArg<String> gatewayIpAddress;
 
@@ -196,8 +192,7 @@ final class AwsStoragegatewayGateway extends Resource {
 
   AwsStoragegatewayGateway({
     required super.localName,
-    required StoragegatewayGatewayActivationKeyOrGatewayIpAddress
-    activationKeyOrGatewayIpAddress,
+    required StoragegatewayGatewayActivation activation,
     TfArg<num>? averageDownloadRateLimitInBitsPerSec,
     TfArg<num>? averageUploadRateLimitInBitsPerSec,
     TfArg<String>? cloudwatchLogGroupArn,
@@ -221,7 +216,7 @@ final class AwsStoragegatewayGateway extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...activationKeyOrGatewayIpAddress.argMap,
+           ...activation.argMap,
            if (averageDownloadRateLimitInBitsPerSec != null)
              'average_download_rate_limit_in_bits_per_sec':
                  averageDownloadRateLimitInBitsPerSec,

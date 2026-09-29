@@ -22,18 +22,18 @@ enum RdsCustomDbEngineVersionStatus implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.filename(...)`.
-sealed class RdsCustomDbEngineVersionFilenameOrManifest {
-  const RdsCustomDbEngineVersionFilenameOrManifest();
+sealed class RdsCustomDbEngineVersionManifest {
+  const RdsCustomDbEngineVersionManifest();
 
   /// Sets `filename`.
-  const factory RdsCustomDbEngineVersionFilenameOrManifest.filename(
+  const factory RdsCustomDbEngineVersionManifest.filename(
     TfArg<String> filename,
-  ) = RdsCustomDbEngineVersionFilenameOrManifestFilename;
+  ) = RdsCustomDbEngineVersionManifestFilename;
 
   /// Sets `manifest`.
-  const factory RdsCustomDbEngineVersionFilenameOrManifest.manifest(
+  const factory RdsCustomDbEngineVersionManifest.manifest(
     TfArg<String> manifest,
-  ) = RdsCustomDbEngineVersionFilenameOrManifestManifest;
+  ) = RdsCustomDbEngineVersionManifestManifest;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,10 +45,10 @@ sealed class RdsCustomDbEngineVersionFilenameOrManifest {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RdsCustomDbEngineVersionFilenameOrManifest.filename] choice: sets `filename`.
-final class RdsCustomDbEngineVersionFilenameOrManifestFilename
-    extends RdsCustomDbEngineVersionFilenameOrManifest {
-  const RdsCustomDbEngineVersionFilenameOrManifestFilename(this.filename);
+/// The [RdsCustomDbEngineVersionManifest.filename] choice: sets `filename`.
+final class RdsCustomDbEngineVersionManifestFilename
+    extends RdsCustomDbEngineVersionManifest {
+  const RdsCustomDbEngineVersionManifestFilename(this.filename);
 
   final TfArg<String> filename;
 
@@ -62,10 +62,10 @@ final class RdsCustomDbEngineVersionFilenameOrManifestFilename
   Map<String, TfArg<Object?>> get argMap => {'filename': filename};
 }
 
-/// The [RdsCustomDbEngineVersionFilenameOrManifest.manifest] choice: sets `manifest`.
-final class RdsCustomDbEngineVersionFilenameOrManifestManifest
-    extends RdsCustomDbEngineVersionFilenameOrManifest {
-  const RdsCustomDbEngineVersionFilenameOrManifestManifest(this.manifest);
+/// The [RdsCustomDbEngineVersionManifest.manifest] choice: sets `manifest`.
+final class RdsCustomDbEngineVersionManifestManifest
+    extends RdsCustomDbEngineVersionManifest {
+  const RdsCustomDbEngineVersionManifestManifest(this.manifest);
 
   final TfArg<String> manifest;
 
@@ -90,7 +90,7 @@ final class AwsRdsCustomDbEngineVersion extends Resource {
     TfArg<String>? description,
     required TfArg<String> engine,
     required TfArg<String> engineVersion,
-    RdsCustomDbEngineVersionFilenameOrManifest? filenameOrManifest,
+    RdsCustomDbEngineVersionManifest? manifest,
     TfArg<String>? kmsKeyId,
     TfArg<String>? manifestHash,
     TfArg<String>? region,
@@ -113,7 +113,7 @@ final class AwsRdsCustomDbEngineVersion extends Resource {
            if (description != null) 'description': description,
            'engine': engine,
            'engine_version': engineVersion,
-           ...?filenameOrManifest?.argMap,
+           ...?manifest?.argMap,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            if (manifestHash != null) 'manifest_hash': manifestHash,
            if (region != null) 'region': region,

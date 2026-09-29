@@ -20,18 +20,16 @@ enum NetworkAclRuleRuleAction implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cidrBlock(...)`.
-sealed class NetworkAclRuleCidrBlockOrIpv6CidrBlock {
-  const NetworkAclRuleCidrBlockOrIpv6CidrBlock();
+sealed class NetworkAclRuleCidr {
+  const NetworkAclRuleCidr();
 
   /// Sets `cidr_block`.
-  const factory NetworkAclRuleCidrBlockOrIpv6CidrBlock.cidrBlock(
-    TfArg<String> cidrBlock,
-  ) = NetworkAclRuleCidrBlockOrIpv6CidrBlockCidrBlock;
+  const factory NetworkAclRuleCidr.cidrBlock(TfArg<String> cidrBlock) =
+      NetworkAclRuleCidrCidrBlock;
 
   /// Sets `ipv6_cidr_block`.
-  const factory NetworkAclRuleCidrBlockOrIpv6CidrBlock.ipv6CidrBlock(
-    TfArg<String> ipv6CidrBlock,
-  ) = NetworkAclRuleCidrBlockOrIpv6CidrBlockIpv6CidrBlock;
+  const factory NetworkAclRuleCidr.ipv6CidrBlock(TfArg<String> ipv6CidrBlock) =
+      NetworkAclRuleCidrIpv6CidrBlock;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,10 +41,9 @@ sealed class NetworkAclRuleCidrBlockOrIpv6CidrBlock {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NetworkAclRuleCidrBlockOrIpv6CidrBlock.cidrBlock] choice: sets `cidr_block`.
-final class NetworkAclRuleCidrBlockOrIpv6CidrBlockCidrBlock
-    extends NetworkAclRuleCidrBlockOrIpv6CidrBlock {
-  const NetworkAclRuleCidrBlockOrIpv6CidrBlockCidrBlock(this.cidrBlock);
+/// The [NetworkAclRuleCidr.cidrBlock] choice: sets `cidr_block`.
+final class NetworkAclRuleCidrCidrBlock extends NetworkAclRuleCidr {
+  const NetworkAclRuleCidrCidrBlock(this.cidrBlock);
 
   final TfArg<String> cidrBlock;
 
@@ -60,10 +57,9 @@ final class NetworkAclRuleCidrBlockOrIpv6CidrBlockCidrBlock
   Map<String, TfArg<Object?>> get argMap => {'cidr_block': cidrBlock};
 }
 
-/// The [NetworkAclRuleCidrBlockOrIpv6CidrBlock.ipv6CidrBlock] choice: sets `ipv6_cidr_block`.
-final class NetworkAclRuleCidrBlockOrIpv6CidrBlockIpv6CidrBlock
-    extends NetworkAclRuleCidrBlockOrIpv6CidrBlock {
-  const NetworkAclRuleCidrBlockOrIpv6CidrBlockIpv6CidrBlock(this.ipv6CidrBlock);
+/// The [NetworkAclRuleCidr.ipv6CidrBlock] choice: sets `ipv6_cidr_block`.
+final class NetworkAclRuleCidrIpv6CidrBlock extends NetworkAclRuleCidr {
+  const NetworkAclRuleCidrIpv6CidrBlock(this.ipv6CidrBlock);
 
   final TfArg<String> ipv6CidrBlock;
 
@@ -85,7 +81,7 @@ final class AwsNetworkAclRule extends Resource {
 
   AwsNetworkAclRule({
     required super.localName,
-    required NetworkAclRuleCidrBlockOrIpv6CidrBlock cidrBlockOrIpv6CidrBlock,
+    required NetworkAclRuleCidr cidr,
     TfArg<bool>? egress,
     TfArg<num>? fromPort,
     TfArg<num>? icmpCode,
@@ -103,7 +99,7 @@ final class AwsNetworkAclRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...cidrBlockOrIpv6CidrBlock.argMap,
+           ...cidr.argMap,
            if (egress != null) 'egress': egress,
            if (fromPort != null) 'from_port': fromPort,
            if (icmpCode != null) 'icmp_code': icmpCode,

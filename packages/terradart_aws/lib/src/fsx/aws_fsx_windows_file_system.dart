@@ -47,18 +47,18 @@ enum FsxWindowsFileSystemStorageType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.activeDirectoryId(...)`.
-sealed class FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
-  const FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory();
+sealed class FsxWindowsFileSystemActiveDirectory {
+  const FsxWindowsFileSystemActiveDirectory();
 
   /// Sets `active_directory_id`.
-  const factory FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory.activeDirectoryId(
+  const factory FsxWindowsFileSystemActiveDirectory.activeDirectoryId(
     TfArg<String> activeDirectoryId,
-  ) = FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId;
+  ) = FsxWindowsFileSystemActiveDirectoryActiveDirectoryId;
 
   /// Sets `self_managed_active_directory`.
-  const factory FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory.selfManagedActiveDirectory(
+  const factory FsxWindowsFileSystemActiveDirectory.selfManagedActiveDirectory(
     FsxWindowsFileSystemSelfManagedActiveDirectory selfManagedActiveDirectory,
-  ) = FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory;
+  ) = FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -70,10 +70,10 @@ sealed class FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory.activeDirectoryId] choice: sets `active_directory_id`.
-final class FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId
-    extends FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
-  const FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId(
+/// The [FsxWindowsFileSystemActiveDirectory.activeDirectoryId] choice: sets `active_directory_id`.
+final class FsxWindowsFileSystemActiveDirectoryActiveDirectoryId
+    extends FsxWindowsFileSystemActiveDirectory {
+  const FsxWindowsFileSystemActiveDirectoryActiveDirectoryId(
     this.activeDirectoryId,
   );
 
@@ -93,10 +93,10 @@ final class FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryAct
   };
 }
 
-/// The [FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory.selfManagedActiveDirectory] choice: sets `self_managed_active_directory`.
-final class FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory
-    extends FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
-  const FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory(
+/// The [FsxWindowsFileSystemActiveDirectory.selfManagedActiveDirectory] choice: sets `self_managed_active_directory`.
+final class FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory
+    extends FsxWindowsFileSystemActiveDirectory {
+  const FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory(
     this.selfManagedActiveDirectory,
   );
 
@@ -266,8 +266,7 @@ final class AwsFsxWindowsFileSystem extends Resource {
 
   AwsFsxWindowsFileSystem({
     required super.localName,
-    FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory?
-    activeDirectoryIdOrSelfManagedActiveDirectory,
+    FsxWindowsFileSystemActiveDirectory? activeDirectory,
     TfArg<List<String>>? aliases,
     TfArg<num>? automaticBackupRetentionDays,
     TfArg<String>? backupId,
@@ -296,7 +295,7 @@ final class AwsFsxWindowsFileSystem extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?activeDirectoryIdOrSelfManagedActiveDirectory?.argMap,
+           ...?activeDirectory?.argMap,
            if (aliases != null) 'aliases': aliases,
            if (automaticBackupRetentionDays != null)
              'automatic_backup_retention_days': automaticBackupRetentionDays,

@@ -21,16 +21,16 @@ enum ImagebuilderWorkflowType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.data(...)`.
-sealed class ImagebuilderWorkflowDataOrUri {
-  const ImagebuilderWorkflowDataOrUri();
+sealed class ImagebuilderWorkflowDocument {
+  const ImagebuilderWorkflowDocument();
 
   /// Sets `data`.
-  const factory ImagebuilderWorkflowDataOrUri.data(TfArg<String> data) =
-      ImagebuilderWorkflowDataOrUriData;
+  const factory ImagebuilderWorkflowDocument.data(TfArg<String> data) =
+      ImagebuilderWorkflowDocumentData;
 
   /// Sets `uri`.
-  const factory ImagebuilderWorkflowDataOrUri.uri(TfArg<String> uri) =
-      ImagebuilderWorkflowDataOrUriUri;
+  const factory ImagebuilderWorkflowDocument.uri(TfArg<String> uri) =
+      ImagebuilderWorkflowDocumentUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,10 +42,10 @@ sealed class ImagebuilderWorkflowDataOrUri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ImagebuilderWorkflowDataOrUri.data] choice: sets `data`.
-final class ImagebuilderWorkflowDataOrUriData
-    extends ImagebuilderWorkflowDataOrUri {
-  const ImagebuilderWorkflowDataOrUriData(this.data);
+/// The [ImagebuilderWorkflowDocument.data] choice: sets `data`.
+final class ImagebuilderWorkflowDocumentData
+    extends ImagebuilderWorkflowDocument {
+  const ImagebuilderWorkflowDocumentData(this.data);
 
   final TfArg<String> data;
 
@@ -59,10 +59,10 @@ final class ImagebuilderWorkflowDataOrUriData
   Map<String, TfArg<Object?>> get argMap => {'data': data};
 }
 
-/// The [ImagebuilderWorkflowDataOrUri.uri] choice: sets `uri`.
-final class ImagebuilderWorkflowDataOrUriUri
-    extends ImagebuilderWorkflowDataOrUri {
-  const ImagebuilderWorkflowDataOrUriUri(this.uri);
+/// The [ImagebuilderWorkflowDocument.uri] choice: sets `uri`.
+final class ImagebuilderWorkflowDocumentUri
+    extends ImagebuilderWorkflowDocument {
+  const ImagebuilderWorkflowDocumentUri(this.uri);
 
   final TfArg<String> uri;
 
@@ -83,7 +83,7 @@ final class AwsImagebuilderWorkflow extends Resource {
   AwsImagebuilderWorkflow({
     required super.localName,
     TfArg<String>? changeDescription,
-    required ImagebuilderWorkflowDataOrUri dataOrUri,
+    required ImagebuilderWorkflowDocument document,
     TfArg<String>? description,
     TfArg<String>? kmsKeyId,
     required TfArg<String> name,
@@ -100,7 +100,7 @@ final class AwsImagebuilderWorkflow extends Resource {
          argMap: {
            if (changeDescription != null)
              'change_description': changeDescription,
-           ...dataOrUri.argMap,
+           ...document.argMap,
            if (description != null) 'description': description,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            'name': name,

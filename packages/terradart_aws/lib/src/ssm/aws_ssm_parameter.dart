@@ -43,23 +43,20 @@ enum SsmParameterType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.insecureValue(...)`.
-sealed class SsmParameterInsecureValueOrValueOrValueWo {
-  const SsmParameterInsecureValueOrValueOrValueWo();
+sealed class SsmParameterValue {
+  const SsmParameterValue();
 
   /// Sets `insecure_value`.
-  const factory SsmParameterInsecureValueOrValueOrValueWo.insecureValue(
-    TfArg<String> insecureValue,
-  ) = SsmParameterInsecureValueOrValueOrValueWoInsecureValue;
+  const factory SsmParameterValue.insecureValue(TfArg<String> insecureValue) =
+      SsmParameterValueInsecureValue;
 
   /// Sets `value`.
-  const factory SsmParameterInsecureValueOrValueOrValueWo.value(
-    TfArg<String> value,
-  ) = SsmParameterInsecureValueOrValueOrValueWoValue;
+  const factory SsmParameterValue.value(TfArg<String> value) =
+      SsmParameterValueValue;
 
   /// Sets `value_wo`.
-  const factory SsmParameterInsecureValueOrValueOrValueWo.valueWo(
-    TfArg<String> valueWo,
-  ) = SsmParameterInsecureValueOrValueOrValueWoValueWo;
+  const factory SsmParameterValue.valueWo(TfArg<String> valueWo) =
+      SsmParameterValueValueWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -71,12 +68,9 @@ sealed class SsmParameterInsecureValueOrValueOrValueWo {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SsmParameterInsecureValueOrValueOrValueWo.insecureValue] choice: sets `insecure_value`.
-final class SsmParameterInsecureValueOrValueOrValueWoInsecureValue
-    extends SsmParameterInsecureValueOrValueOrValueWo {
-  const SsmParameterInsecureValueOrValueOrValueWoInsecureValue(
-    this.insecureValue,
-  );
+/// The [SsmParameterValue.insecureValue] choice: sets `insecure_value`.
+final class SsmParameterValueInsecureValue extends SsmParameterValue {
+  const SsmParameterValueInsecureValue(this.insecureValue);
 
   final TfArg<String> insecureValue;
 
@@ -90,10 +84,9 @@ final class SsmParameterInsecureValueOrValueOrValueWoInsecureValue
   Map<String, TfArg<Object?>> get argMap => {'insecure_value': insecureValue};
 }
 
-/// The [SsmParameterInsecureValueOrValueOrValueWo.value] choice: sets `value`.
-final class SsmParameterInsecureValueOrValueOrValueWoValue
-    extends SsmParameterInsecureValueOrValueOrValueWo {
-  const SsmParameterInsecureValueOrValueOrValueWoValue(this.value);
+/// The [SsmParameterValue.value] choice: sets `value`.
+final class SsmParameterValueValue extends SsmParameterValue {
+  const SsmParameterValueValue(this.value);
 
   final TfArg<String> value;
 
@@ -107,10 +100,9 @@ final class SsmParameterInsecureValueOrValueOrValueWoValue
   Map<String, TfArg<Object?>> get argMap => {'value': value};
 }
 
-/// The [SsmParameterInsecureValueOrValueOrValueWo.valueWo] choice: sets `value_wo`.
-final class SsmParameterInsecureValueOrValueOrValueWoValueWo
-    extends SsmParameterInsecureValueOrValueOrValueWo {
-  const SsmParameterInsecureValueOrValueOrValueWoValueWo(this.valueWo);
+/// The [SsmParameterValue.valueWo] choice: sets `value_wo`.
+final class SsmParameterValueValueWo extends SsmParameterValue {
+  const SsmParameterValueValueWo(this.valueWo);
 
   final TfArg<String> valueWo;
 
@@ -134,8 +126,7 @@ final class AwsSsmParameter extends Resource {
     TfArg<String>? arn,
     TfArg<SsmParameterDataType>? dataType,
     TfArg<String>? description,
-    required SsmParameterInsecureValueOrValueOrValueWo
-    insecureValueOrValueOrValueWo,
+    required SsmParameterValue value,
     TfArg<String>? keyId,
     required TfArg<String> name,
     TfArg<bool>? overwrite,
@@ -155,7 +146,7 @@ final class AwsSsmParameter extends Resource {
            if (arn != null) 'arn': arn,
            if (dataType != null) 'data_type': dataType,
            if (description != null) 'description': description,
-           ...insecureValueOrValueOrValueWo.argMap,
+           ...value.argMap,
            if (keyId != null) 'key_id': keyId,
            'name': name,
            if (overwrite != null) 'overwrite': overwrite,

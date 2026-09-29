@@ -22,18 +22,18 @@ enum CloudformationStackSetInstanceCallAs implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.accountId(...)`.
-sealed class CloudformationStackSetInstanceAccountIdOrDeploymentTargets {
-  const CloudformationStackSetInstanceAccountIdOrDeploymentTargets();
+sealed class CloudformationStackSetInstanceTarget {
+  const CloudformationStackSetInstanceTarget();
 
   /// Sets `account_id`.
-  const factory CloudformationStackSetInstanceAccountIdOrDeploymentTargets.accountId(
+  const factory CloudformationStackSetInstanceTarget.accountId(
     TfArg<String> accountId,
-  ) = CloudformationStackSetInstanceAccountIdOrDeploymentTargetsAccountId;
+  ) = CloudformationStackSetInstanceTargetAccountId;
 
   /// Sets `deployment_targets`.
-  const factory CloudformationStackSetInstanceAccountIdOrDeploymentTargets.deploymentTargets(
+  const factory CloudformationStackSetInstanceTarget.deploymentTargets(
     CloudformationStackSetInstanceDeploymentTargets deploymentTargets,
-  ) = CloudformationStackSetInstanceAccountIdOrDeploymentTargetsDeploymentTargets;
+  ) = CloudformationStackSetInstanceTargetDeploymentTargets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,12 +45,10 @@ sealed class CloudformationStackSetInstanceAccountIdOrDeploymentTargets {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudformationStackSetInstanceAccountIdOrDeploymentTargets.accountId] choice: sets `account_id`.
-final class CloudformationStackSetInstanceAccountIdOrDeploymentTargetsAccountId
-    extends CloudformationStackSetInstanceAccountIdOrDeploymentTargets {
-  const CloudformationStackSetInstanceAccountIdOrDeploymentTargetsAccountId(
-    this.accountId,
-  );
+/// The [CloudformationStackSetInstanceTarget.accountId] choice: sets `account_id`.
+final class CloudformationStackSetInstanceTargetAccountId
+    extends CloudformationStackSetInstanceTarget {
+  const CloudformationStackSetInstanceTargetAccountId(this.accountId);
 
   final TfArg<String> accountId;
 
@@ -64,10 +62,10 @@ final class CloudformationStackSetInstanceAccountIdOrDeploymentTargetsAccountId
   Map<String, TfArg<Object?>> get argMap => {'account_id': accountId};
 }
 
-/// The [CloudformationStackSetInstanceAccountIdOrDeploymentTargets.deploymentTargets] choice: sets `deployment_targets`.
-final class CloudformationStackSetInstanceAccountIdOrDeploymentTargetsDeploymentTargets
-    extends CloudformationStackSetInstanceAccountIdOrDeploymentTargets {
-  const CloudformationStackSetInstanceAccountIdOrDeploymentTargetsDeploymentTargets(
+/// The [CloudformationStackSetInstanceTarget.deploymentTargets] choice: sets `deployment_targets`.
+final class CloudformationStackSetInstanceTargetDeploymentTargets
+    extends CloudformationStackSetInstanceTarget {
+  const CloudformationStackSetInstanceTargetDeploymentTargets(
     this.deploymentTargets,
   );
 
@@ -92,18 +90,18 @@ final class CloudformationStackSetInstanceAccountIdOrDeploymentTargetsDeployment
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.region(...)`.
-sealed class CloudformationStackSetInstanceRegionOrStackSetInstanceRegion {
-  const CloudformationStackSetInstanceRegionOrStackSetInstanceRegion();
+sealed class CloudformationStackSetInstanceRegion {
+  const CloudformationStackSetInstanceRegion();
 
   /// Sets `region`.
-  const factory CloudformationStackSetInstanceRegionOrStackSetInstanceRegion.region(
+  const factory CloudformationStackSetInstanceRegion.region(
     TfArg<String> region,
-  ) = CloudformationStackSetInstanceRegionOrStackSetInstanceRegionRegion;
+  ) = CloudformationStackSetInstanceRegionRegion;
 
   /// Sets `stack_set_instance_region`.
-  const factory CloudformationStackSetInstanceRegionOrStackSetInstanceRegion.stackSetInstanceRegion(
+  const factory CloudformationStackSetInstanceRegion.stackSetInstanceRegion(
     TfArg<String> stackSetInstanceRegion,
-  ) = CloudformationStackSetInstanceRegionOrStackSetInstanceRegionStackSetInstanceRegion;
+  ) = CloudformationStackSetInstanceRegionStackSetInstanceRegion;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -115,12 +113,10 @@ sealed class CloudformationStackSetInstanceRegionOrStackSetInstanceRegion {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudformationStackSetInstanceRegionOrStackSetInstanceRegion.region] choice: sets `region`.
-final class CloudformationStackSetInstanceRegionOrStackSetInstanceRegionRegion
-    extends CloudformationStackSetInstanceRegionOrStackSetInstanceRegion {
-  const CloudformationStackSetInstanceRegionOrStackSetInstanceRegionRegion(
-    this.region,
-  );
+/// The [CloudformationStackSetInstanceRegion.region] choice: sets `region`.
+final class CloudformationStackSetInstanceRegionRegion
+    extends CloudformationStackSetInstanceRegion {
+  const CloudformationStackSetInstanceRegionRegion(this.region);
 
   final TfArg<String> region;
 
@@ -134,10 +130,10 @@ final class CloudformationStackSetInstanceRegionOrStackSetInstanceRegionRegion
   Map<String, TfArg<Object?>> get argMap => {'region': region};
 }
 
-/// The [CloudformationStackSetInstanceRegionOrStackSetInstanceRegion.stackSetInstanceRegion] choice: sets `stack_set_instance_region`.
-final class CloudformationStackSetInstanceRegionOrStackSetInstanceRegionStackSetInstanceRegion
-    extends CloudformationStackSetInstanceRegionOrStackSetInstanceRegion {
-  const CloudformationStackSetInstanceRegionOrStackSetInstanceRegionStackSetInstanceRegion(
+/// The [CloudformationStackSetInstanceRegion.stackSetInstanceRegion] choice: sets `stack_set_instance_region`.
+final class CloudformationStackSetInstanceRegionStackSetInstanceRegion
+    extends CloudformationStackSetInstanceRegion {
+  const CloudformationStackSetInstanceRegionStackSetInstanceRegion(
     this.stackSetInstanceRegion,
   );
 
@@ -379,12 +375,10 @@ final class AwsCloudformationStackSetInstance extends Resource {
 
   AwsCloudformationStackSetInstance({
     required super.localName,
-    CloudformationStackSetInstanceAccountIdOrDeploymentTargets?
-    accountIdOrDeploymentTargets,
+    CloudformationStackSetInstanceTarget? target,
     TfArg<CloudformationStackSetInstanceCallAs>? callAs,
     TfArg<Map<String, String>>? parameterOverrides,
-    CloudformationStackSetInstanceRegionOrStackSetInstanceRegion?
-    regionOrStackSetInstanceRegion,
+    CloudformationStackSetInstanceRegion? region,
     TfArg<bool>? retainStack,
     required TfArg<String> stackSetName,
     CloudformationStackSetInstanceOperationPreferences? operationPreferences,
@@ -395,11 +389,11 @@ final class AwsCloudformationStackSetInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?accountIdOrDeploymentTargets?.argMap,
+           ...?target?.argMap,
            if (callAs != null) 'call_as': callAs,
            if (parameterOverrides != null)
              'parameter_overrides': parameterOverrides,
-           ...?regionOrStackSetInstanceRegion?.argMap,
+           ...?region?.argMap,
            if (retainStack != null) 'retain_stack': retainStack,
            'stack_set_name': stackSetName,
            if (operationPreferences != null)

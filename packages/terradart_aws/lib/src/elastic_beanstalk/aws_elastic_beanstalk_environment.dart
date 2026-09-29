@@ -22,23 +22,23 @@ enum ElasticBeanstalkEnvironmentTier implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.platformArn(...)`.
-sealed class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
-  const ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName();
+sealed class ElasticBeanstalkEnvironmentPlatform {
+  const ElasticBeanstalkEnvironmentPlatform();
 
   /// Sets `platform_arn`.
-  const factory ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.platformArn(
+  const factory ElasticBeanstalkEnvironmentPlatform.platformArn(
     TfArg<String> platformArn,
-  ) = ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNamePlatformArn;
+  ) = ElasticBeanstalkEnvironmentPlatformPlatformArn;
 
   /// Sets `solution_stack_name`.
-  const factory ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.solutionStackName(
+  const factory ElasticBeanstalkEnvironmentPlatform.solutionStackName(
     TfArg<String> solutionStackName,
-  ) = ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameSolutionStackName;
+  ) = ElasticBeanstalkEnvironmentPlatformSolutionStackName;
 
   /// Sets `template_name`.
-  const factory ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.templateName(
+  const factory ElasticBeanstalkEnvironmentPlatform.templateName(
     TfArg<String> templateName,
-  ) = ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameTemplateName;
+  ) = ElasticBeanstalkEnvironmentPlatformTemplateName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -50,13 +50,10 @@ sealed class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplate
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.platformArn] choice: sets `platform_arn`.
-final class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNamePlatformArn
-    extends
-        ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
-  const ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNamePlatformArn(
-    this.platformArn,
-  );
+/// The [ElasticBeanstalkEnvironmentPlatform.platformArn] choice: sets `platform_arn`.
+final class ElasticBeanstalkEnvironmentPlatformPlatformArn
+    extends ElasticBeanstalkEnvironmentPlatform {
+  const ElasticBeanstalkEnvironmentPlatformPlatformArn(this.platformArn);
 
   final TfArg<String> platformArn;
 
@@ -70,11 +67,10 @@ final class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateN
   Map<String, TfArg<Object?>> get argMap => {'platform_arn': platformArn};
 }
 
-/// The [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.solutionStackName] choice: sets `solution_stack_name`.
-final class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameSolutionStackName
-    extends
-        ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
-  const ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameSolutionStackName(
+/// The [ElasticBeanstalkEnvironmentPlatform.solutionStackName] choice: sets `solution_stack_name`.
+final class ElasticBeanstalkEnvironmentPlatformSolutionStackName
+    extends ElasticBeanstalkEnvironmentPlatform {
+  const ElasticBeanstalkEnvironmentPlatformSolutionStackName(
     this.solutionStackName,
   );
 
@@ -94,13 +90,10 @@ final class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateN
   };
 }
 
-/// The [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.templateName] choice: sets `template_name`.
-final class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameTemplateName
-    extends
-        ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
-  const ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameTemplateName(
-    this.templateName,
-  );
+/// The [ElasticBeanstalkEnvironmentPlatform.templateName] choice: sets `template_name`.
+final class ElasticBeanstalkEnvironmentPlatformTemplateName
+    extends ElasticBeanstalkEnvironmentPlatform {
+  const ElasticBeanstalkEnvironmentPlatformTemplateName(this.templateName);
 
   final TfArg<String> templateName;
 
@@ -151,8 +144,7 @@ final class AwsElasticBeanstalkEnvironment extends Resource {
     TfArg<String>? cnamePrefix,
     TfArg<String>? description,
     required TfArg<String> name,
-    ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName?
-    platformArnOrSolutionStackNameOrTemplateName,
+    ElasticBeanstalkEnvironmentPlatform? platform,
     TfArg<String>? pollInterval,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -171,7 +163,7 @@ final class AwsElasticBeanstalkEnvironment extends Resource {
            if (cnamePrefix != null) 'cname_prefix': cnamePrefix,
            if (description != null) 'description': description,
            'name': name,
-           ...?platformArnOrSolutionStackNameOrTemplateName?.argMap,
+           ...?platform?.argMap,
            if (pollInterval != null) 'poll_interval': pollInterval,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

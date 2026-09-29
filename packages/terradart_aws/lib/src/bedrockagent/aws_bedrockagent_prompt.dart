@@ -13,7 +13,7 @@ const Set<String> _awsBedrockagentPromptSensitive = <String>{};
 final class BedrockagentPromptVariant {
   const BedrockagentPromptVariant({
     this.additionalModelRequestFields,
-    required this.genAiResourceOrModelId,
+    required this.model,
     required this.name,
     required this.templateType,
     this.inferenceConfiguration,
@@ -23,7 +23,7 @@ final class BedrockagentPromptVariant {
 
   final TfArg<String>? additionalModelRequestFields;
 
-  final BedrockagentPromptVariantGenAiResourceOrModelId genAiResourceOrModelId;
+  final BedrockagentPromptVariantModel model;
 
   final TfArg<String> name;
 
@@ -41,7 +41,7 @@ final class BedrockagentPromptVariant {
     if (additionalModelRequestFields != null)
       'additional_model_request_fields': additionalModelRequestFields!
           .toTfJson(),
-    ...genAiResourceOrModelId.encode(),
+    ...model.encode(),
     'name': name.toTfJson(),
     'template_type': templateType.toTfJson(),
     if (inferenceConfiguration != null)
@@ -60,18 +60,17 @@ final class BedrockagentPromptVariant {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.genAiResource(...)`.
-sealed class BedrockagentPromptVariantGenAiResourceOrModelId {
-  const BedrockagentPromptVariantGenAiResourceOrModelId();
+sealed class BedrockagentPromptVariantModel {
+  const BedrockagentPromptVariantModel();
 
   /// Sets `gen_ai_resource`.
-  const factory BedrockagentPromptVariantGenAiResourceOrModelId.genAiResource(
+  const factory BedrockagentPromptVariantModel.genAiResource(
     List<BedrockagentPromptVariantGenAiResource> genAiResource,
-  ) = BedrockagentPromptVariantGenAiResourceOrModelIdGenAiResource;
+  ) = BedrockagentPromptVariantModelGenAiResource;
 
   /// Sets `model_id`.
-  const factory BedrockagentPromptVariantGenAiResourceOrModelId.modelId(
-    TfArg<String> modelId,
-  ) = BedrockagentPromptVariantGenAiResourceOrModelIdModelId;
+  const factory BedrockagentPromptVariantModel.modelId(TfArg<String> modelId) =
+      BedrockagentPromptVariantModelModelId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -79,12 +78,10 @@ sealed class BedrockagentPromptVariantGenAiResourceOrModelId {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentPromptVariantGenAiResourceOrModelId.genAiResource] choice: sets `gen_ai_resource`.
-final class BedrockagentPromptVariantGenAiResourceOrModelIdGenAiResource
-    extends BedrockagentPromptVariantGenAiResourceOrModelId {
-  const BedrockagentPromptVariantGenAiResourceOrModelIdGenAiResource(
-    this.genAiResource,
-  );
+/// The [BedrockagentPromptVariantModel.genAiResource] choice: sets `gen_ai_resource`.
+final class BedrockagentPromptVariantModelGenAiResource
+    extends BedrockagentPromptVariantModel {
+  const BedrockagentPromptVariantModelGenAiResource(this.genAiResource);
 
   final List<BedrockagentPromptVariantGenAiResource> genAiResource;
 
@@ -97,10 +94,10 @@ final class BedrockagentPromptVariantGenAiResourceOrModelIdGenAiResource
   };
 }
 
-/// The [BedrockagentPromptVariantGenAiResourceOrModelId.modelId] choice: sets `model_id`.
-final class BedrockagentPromptVariantGenAiResourceOrModelIdModelId
-    extends BedrockagentPromptVariantGenAiResourceOrModelId {
-  const BedrockagentPromptVariantGenAiResourceOrModelIdModelId(this.modelId);
+/// The [BedrockagentPromptVariantModel.modelId] choice: sets `model_id`.
+final class BedrockagentPromptVariantModelModelId
+    extends BedrockagentPromptVariantModel {
+  const BedrockagentPromptVariantModelModelId(this.modelId);
 
   final TfArg<String> modelId;
 

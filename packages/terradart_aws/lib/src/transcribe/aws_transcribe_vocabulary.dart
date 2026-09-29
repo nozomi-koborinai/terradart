@@ -10,18 +10,17 @@ const Set<String> _awsTranscribeVocabularySensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.phrases(...)`.
-sealed class TranscribeVocabularyPhrasesOrVocabularyFileUri {
-  const TranscribeVocabularyPhrasesOrVocabularyFileUri();
+sealed class TranscribeVocabularyTerms {
+  const TranscribeVocabularyTerms();
 
   /// Sets `phrases`.
-  const factory TranscribeVocabularyPhrasesOrVocabularyFileUri.phrases(
-    TfArg<List<String>> phrases,
-  ) = TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases;
+  const factory TranscribeVocabularyTerms.phrases(TfArg<List<String>> phrases) =
+      TranscribeVocabularyTermsPhrases;
 
   /// Sets `vocabulary_file_uri`.
-  const factory TranscribeVocabularyPhrasesOrVocabularyFileUri.vocabularyFileUri(
+  const factory TranscribeVocabularyTerms.vocabularyFileUri(
     TfArg<String> vocabularyFileUri,
-  ) = TranscribeVocabularyPhrasesOrVocabularyFileUriVocabularyFileUri;
+  ) = TranscribeVocabularyTermsVocabularyFileUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class TranscribeVocabularyPhrasesOrVocabularyFileUri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [TranscribeVocabularyPhrasesOrVocabularyFileUri.phrases] choice: sets `phrases`.
-final class TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases
-    extends TranscribeVocabularyPhrasesOrVocabularyFileUri {
-  const TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases(this.phrases);
+/// The [TranscribeVocabularyTerms.phrases] choice: sets `phrases`.
+final class TranscribeVocabularyTermsPhrases extends TranscribeVocabularyTerms {
+  const TranscribeVocabularyTermsPhrases(this.phrases);
 
   final TfArg<List<String>> phrases;
 
@@ -50,12 +48,10 @@ final class TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases
   Map<String, TfArg<Object?>> get argMap => {'phrases': phrases};
 }
 
-/// The [TranscribeVocabularyPhrasesOrVocabularyFileUri.vocabularyFileUri] choice: sets `vocabulary_file_uri`.
-final class TranscribeVocabularyPhrasesOrVocabularyFileUriVocabularyFileUri
-    extends TranscribeVocabularyPhrasesOrVocabularyFileUri {
-  const TranscribeVocabularyPhrasesOrVocabularyFileUriVocabularyFileUri(
-    this.vocabularyFileUri,
-  );
+/// The [TranscribeVocabularyTerms.vocabularyFileUri] choice: sets `vocabulary_file_uri`.
+final class TranscribeVocabularyTermsVocabularyFileUri
+    extends TranscribeVocabularyTerms {
+  const TranscribeVocabularyTermsVocabularyFileUri(this.vocabularyFileUri);
 
   final TfArg<String> vocabularyFileUri;
 
@@ -80,8 +76,7 @@ final class AwsTranscribeVocabulary extends Resource {
   AwsTranscribeVocabulary({
     required super.localName,
     required TfArg<String> languageCode,
-    required TranscribeVocabularyPhrasesOrVocabularyFileUri
-    phrasesOrVocabularyFileUri,
+    required TranscribeVocabularyTerms terms,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> vocabularyName,
@@ -93,7 +88,7 @@ final class AwsTranscribeVocabulary extends Resource {
          terraformType: tfType,
          argMap: {
            'language_code': languageCode,
-           ...phrasesOrVocabularyFileUri.argMap,
+           ...terms.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            'vocabulary_name': vocabularyName,

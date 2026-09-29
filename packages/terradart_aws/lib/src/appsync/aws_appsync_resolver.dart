@@ -22,18 +22,17 @@ enum AppsyncResolverKind implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.dataSource(...)`.
-sealed class AppsyncResolverDataSourceOrPipelineConfig {
-  const AppsyncResolverDataSourceOrPipelineConfig();
+sealed class AppsyncResolverBackend {
+  const AppsyncResolverBackend();
 
   /// Sets `data_source`.
-  const factory AppsyncResolverDataSourceOrPipelineConfig.dataSource(
-    TfArg<String> dataSource,
-  ) = AppsyncResolverDataSourceOrPipelineConfigDataSource;
+  const factory AppsyncResolverBackend.dataSource(TfArg<String> dataSource) =
+      AppsyncResolverBackendDataSource;
 
   /// Sets `pipeline_config`.
-  const factory AppsyncResolverDataSourceOrPipelineConfig.pipelineConfig(
+  const factory AppsyncResolverBackend.pipelineConfig(
     AppsyncResolverPipelineConfig pipelineConfig,
-  ) = AppsyncResolverDataSourceOrPipelineConfigPipelineConfig;
+  ) = AppsyncResolverBackendPipelineConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,10 +44,9 @@ sealed class AppsyncResolverDataSourceOrPipelineConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AppsyncResolverDataSourceOrPipelineConfig.dataSource] choice: sets `data_source`.
-final class AppsyncResolverDataSourceOrPipelineConfigDataSource
-    extends AppsyncResolverDataSourceOrPipelineConfig {
-  const AppsyncResolverDataSourceOrPipelineConfigDataSource(this.dataSource);
+/// The [AppsyncResolverBackend.dataSource] choice: sets `data_source`.
+final class AppsyncResolverBackendDataSource extends AppsyncResolverBackend {
+  const AppsyncResolverBackendDataSource(this.dataSource);
 
   final TfArg<String> dataSource;
 
@@ -62,12 +60,10 @@ final class AppsyncResolverDataSourceOrPipelineConfigDataSource
   Map<String, TfArg<Object?>> get argMap => {'data_source': dataSource};
 }
 
-/// The [AppsyncResolverDataSourceOrPipelineConfig.pipelineConfig] choice: sets `pipeline_config`.
-final class AppsyncResolverDataSourceOrPipelineConfigPipelineConfig
-    extends AppsyncResolverDataSourceOrPipelineConfig {
-  const AppsyncResolverDataSourceOrPipelineConfigPipelineConfig(
-    this.pipelineConfig,
-  );
+/// The [AppsyncResolverBackend.pipelineConfig] choice: sets `pipeline_config`.
+final class AppsyncResolverBackendPipelineConfig
+    extends AppsyncResolverBackend {
+  const AppsyncResolverBackendPipelineConfig(this.pipelineConfig);
 
   final AppsyncResolverPipelineConfig pipelineConfig;
 
@@ -213,7 +209,7 @@ final class AwsAppsyncResolver extends Resource {
     required super.localName,
     required TfArg<String> apiId,
     TfArg<String>? code,
-    AppsyncResolverDataSourceOrPipelineConfig? dataSourceOrPipelineConfig,
+    AppsyncResolverBackend? backend,
     required TfArg<String> field,
     TfArg<AppsyncResolverKind>? kind,
     TfArg<num>? maxBatchSize,
@@ -233,7 +229,7 @@ final class AwsAppsyncResolver extends Resource {
          argMap: {
            'api_id': apiId,
            if (code != null) 'code': code,
-           ...?dataSourceOrPipelineConfig?.argMap,
+           ...?backend?.argMap,
            'field': field,
            if (kind != null) 'kind': kind,
            if (maxBatchSize != null) 'max_batch_size': maxBatchSize,

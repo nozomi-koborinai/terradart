@@ -6,9 +6,9 @@ library;
 export 'src/config/aws_config_aggregate_authorization.dart'
     show
         AwsConfigAggregateAuthorization,
-        ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion,
-        ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion,
-        ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion;
+        ConfigAggregateAuthorizationRegion,
+        ConfigAggregateAuthorizationRegionAuthorizedAwsRegion,
+        ConfigAggregateAuthorizationRegionRegion;
 export 'src/config/aws_config_config_rule.dart'
     show
         AwsConfigConfigRule,

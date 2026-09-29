@@ -596,18 +596,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'domainNameOrPrivateKeyOrPrivateKeyWo',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'domain_name':
-                'AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName',
-            'private_key':
-                'AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey',
-            'private_key_wo':
-                'AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKeyWo',
+            'domain_name': 'AcmCertificateSourceDomainName',
+            'private_key': 'AcmCertificateSourcePrivateKey',
+            'private_key_wo': 'AcmCertificateSourcePrivateKeyWo',
           },
         ),
         MigrateSlot(
@@ -3549,20 +3546,17 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'accountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn',
+          dartName: 'grantee',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'account_id':
-                'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnAccountId',
-            'group':
-                'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnGroup',
-            'organization_arn':
-                'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationArn',
+            'account_id': 'AmiLaunchPermissionGranteeAccountId',
+            'group': 'AmiLaunchPermissionGranteeGroup',
+            'organization_arn': 'AmiLaunchPermissionGranteeOrganizationArn',
             'organizational_unit_arn':
-                'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationalUnitArn',
+                'AmiLaunchPermissionGranteeOrganizationalUnitArn',
           },
         ),
         MigrateSlot(
@@ -12348,16 +12342,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'dataSourceOrPipelineConfig',
+          dartName: 'backend',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'data_source':
-                'AppsyncResolverDataSourceOrPipelineConfigDataSource',
-            'pipeline_config':
-                'AppsyncResolverDataSourceOrPipelineConfigPipelineConfig',
+            'data_source': 'AppsyncResolverBackendDataSource',
+            'pipeline_config': 'AppsyncResolverBackendPipelineConfig',
           },
         ),
         MigrateSlot(
@@ -13883,15 +13875,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'elbOrLbTargetGroupArn',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'elb': 'AutoscalingAttachmentElbOrLbTargetGroupArnElb',
+            'elb': 'AutoscalingAttachmentTargetElb',
             'lb_target_group_arn':
-                'AutoscalingAttachmentElbOrLbTargetGroupArnLbTargetGroupArn',
+                'AutoscalingAttachmentTargetLbTargetGroupArn',
           },
         ),
         MigrateSlot(
@@ -13914,16 +13906,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'availabilityZonesOrVpcZoneIdentifier',
+          dartName: 'placement',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'availability_zones':
-                'AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierAvailabilityZones',
-            'vpc_zone_identifier':
-                'AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierVpcZoneIdentifier',
+            'availability_zones': 'AutoscalingGroupPlacementAvailabilityZones',
+            'vpc_zone_identifier': 'AutoscalingGroupPlacementVpcZoneIdentifier',
           },
         ),
         MigrateSlot(
@@ -14012,18 +14002,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'launchConfigurationOrLaunchTemplateOrMixedInstancesPolicy',
+          dartName: 'launch',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'launch_configuration':
-                'AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchConfiguration',
-            'launch_template':
-                'AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchTemplate',
+            'launch_configuration': 'AutoscalingGroupLaunchLaunchConfiguration',
+            'launch_template': 'AutoscalingGroupLaunchLaunchTemplate',
             'mixed_instances_policy':
-                'AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyMixedInstancesPolicy',
+                'AutoscalingGroupLaunchMixedInstancesPolicy',
           },
         ),
         MigrateSlot(
@@ -17917,16 +17905,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'descriptionOrParentActionGroupSignature',
+          dartName: 'definition',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'description':
-                'BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureDescription',
+            'description': 'BedrockagentAgentActionGroupDefinitionDescription',
             'parent_action_group_signature':
-                'BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureParentActionGroupSignature',
+                'BedrockagentAgentActionGroupDefinitionParentActionGroupSignature',
           },
         ),
         MigrateSlot(
@@ -20438,14 +20425,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'costTypesOrMetrics',
+          dartName: 'measure',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'cost_types': 'BudgetsBudgetCostTypesOrMetricsCostTypes',
-            'metrics': 'BudgetsBudgetCostTypesOrMetricsMetrics',
+            'cost_types': 'BudgetsBudgetMeasureCostTypes',
+            'metrics': 'BudgetsBudgetMeasureMetrics',
           },
         ),
         MigrateSlot(
@@ -20498,16 +20485,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'costFilterOrFilterExpression',
+          dartName: 'filter',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'cost_filter':
-                'BudgetsBudgetCostFilterOrFilterExpressionCostFilter',
-            'filter_expression':
-                'BudgetsBudgetCostFilterOrFilterExpressionFilterExpression',
+            'cost_filter': 'BudgetsBudgetFilterCostFilter',
+            'filter_expression': 'BudgetsBudgetFilterFilterExpression',
           },
         ),
         MigrateSlot(
@@ -22620,16 +22605,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'accountsOrDeploymentTargets',
+          dartName: 'targets',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'accounts':
-                'CloudformationStackInstancesAccountsOrDeploymentTargetsAccounts',
+            'accounts': 'CloudformationStackInstancesTargetsAccounts',
             'deployment_targets':
-                'CloudformationStackInstancesAccountsOrDeploymentTargetsDeploymentTargets',
+                'CloudformationStackInstancesTargetsDeploymentTargets',
           },
         ),
         MigrateSlot(
@@ -22830,16 +22814,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'accountIdOrDeploymentTargets',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'account_id':
-                'CloudformationStackSetInstanceAccountIdOrDeploymentTargetsAccountId',
+            'account_id': 'CloudformationStackSetInstanceTargetAccountId',
             'deployment_targets':
-                'CloudformationStackSetInstanceAccountIdOrDeploymentTargetsDeploymentTargets',
+                'CloudformationStackSetInstanceTargetDeploymentTargets',
           },
         ),
         MigrateSlot(
@@ -22858,16 +22841,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'regionOrStackSetInstanceRegion',
+          dartName: 'region',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'region':
-                'CloudformationStackSetInstanceRegionOrStackSetInstanceRegionRegion',
+            'region': 'CloudformationStackSetInstanceRegionRegion',
             'stack_set_instance_region':
-                'CloudformationStackSetInstanceRegionOrStackSetInstanceRegionStackSetInstanceRegion',
+                'CloudformationStackSetInstanceRegionStackSetInstanceRegion',
           },
         ),
         MigrateSlot(
@@ -25289,15 +25271,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'availabilityZoneOrSubnetId',
+          dartName: 'placement',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'availability_zone':
-                'CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone',
-            'subnet_id': 'CloudhsmV2HsmAvailabilityZoneOrSubnetIdSubnetId',
+            'availability_zone': 'CloudhsmV2HsmPlacementAvailabilityZone',
+            'subnet_id': 'CloudhsmV2HsmPlacementSubnetId',
           },
         ),
         MigrateSlot(
@@ -25549,16 +25530,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'advancedEventSelectorOrEventSelector',
+          dartName: 'selectors',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'advanced_event_selector':
-                'CloudtrailAdvancedEventSelectorOrEventSelectorAdvancedEventSelector',
-            'event_selector':
-                'CloudtrailAdvancedEventSelectorOrEventSelectorEventSelector',
+                'CloudtrailSelectorsAdvancedEventSelector',
+            'event_selector': 'CloudtrailSelectorsEventSelector',
           },
         ),
         MigrateSlot(
@@ -26647,14 +26627,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'isEnabledOrState',
+          dartName: 'status',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'is_enabled': 'CloudwatchEventRuleIsEnabledOrStateIsEnabled',
-            'state': 'CloudwatchEventRuleIsEnabledOrStateState',
+            'is_enabled': 'CloudwatchEventRuleStatusIsEnabled',
+            'state': 'CloudwatchEventRuleStatusState',
           },
         ),
         MigrateSlot(
@@ -27684,16 +27664,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'policyNameOrResourceArn',
+          dartName: 'scope',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'policy_name':
-                'CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName',
-            'resource_arn':
-                'CloudwatchLogResourcePolicyPolicyNameOrResourceArnResourceArn',
+            'policy_name': 'CloudwatchLogResourcePolicyScopePolicyName',
+            'resource_arn': 'CloudwatchLogResourcePolicyScopeResourceArn',
           },
         ),
         MigrateSlot(
@@ -27997,16 +27975,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'extendedStatisticOrStatistic',
+          dartName: 'aggregation',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'extended_statistic':
-                'CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic',
-            'statistic':
-                'CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic',
+                'CloudwatchMetricAlarmAggregationExtendedStatistic',
+            'statistic': 'CloudwatchMetricAlarmAggregationStatistic',
           },
         ),
         MigrateSlot(
@@ -28018,18 +27995,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'evaluationCriteriaOrMetricNameOrMetricQuery',
+          dartName: 'metric',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'evaluation_criteria':
-                'CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEvaluationCriteria',
-            'metric_name':
-                'CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricName',
-            'metric_query':
-                'CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricQuery',
+                'CloudwatchMetricAlarmMetricEvaluationCriteria',
+            'metric_name': 'CloudwatchMetricAlarmMetricMetricName',
+            'metric_query': 'CloudwatchMetricAlarmMetricMetricQuery',
           },
         ),
         MigrateSlot(
@@ -29188,16 +29163,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'branchFilterOrFilterGroup',
+          dartName: 'filter',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'branch_filter':
-                'CodebuildWebhookBranchFilterOrFilterGroupBranchFilter',
-            'filter_group':
-                'CodebuildWebhookBranchFilterOrFilterGroupFilterGroup',
+            'branch_filter': 'CodebuildWebhookFilterBranchFilter',
+            'filter_group': 'CodebuildWebhookFilterFilterGroup',
           },
         ),
         MigrateSlot(
@@ -29841,15 +29814,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'hostArnOrProviderType',
+          dartName: 'host',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'host_arn': 'CodeconnectionsConnectionHostArnOrProviderTypeHostArn',
-            'provider_type':
-                'CodeconnectionsConnectionHostArnOrProviderTypeProviderType',
+            'host_arn': 'CodeconnectionsConnectionHostHostArn',
+            'provider_type': 'CodeconnectionsConnectionHostProviderType',
           },
         ),
         MigrateSlot(
@@ -30684,16 +30656,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'hostArnOrProviderType',
+          dartName: 'host',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'host_arn':
-                'CodestarconnectionsConnectionHostArnOrProviderTypeHostArn',
-            'provider_type':
-                'CodestarconnectionsConnectionHostArnOrProviderTypeProviderType',
+            'host_arn': 'CodestarconnectionsConnectionHostHostArn',
+            'provider_type': 'CodestarconnectionsConnectionHostProviderType',
           },
         ),
         MigrateSlot(
@@ -31258,16 +31228,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'settingsOrUseCognitoProvidedValues',
+          dartName: 'style',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'settings':
-                'CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings',
+            'settings': 'CognitoManagedLoginBrandingStyleSettings',
             'use_cognito_provided_values':
-                'CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues',
+                'CognitoManagedLoginBrandingStyleUseCognitoProvidedValues',
           },
         ),
         MigrateSlot(
@@ -31653,15 +31622,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'passwordOrTemporaryPassword',
+          dartName: 'password',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'password': 'CognitoUserPasswordOrTemporaryPasswordPassword',
-            'temporary_password':
-                'CognitoUserPasswordOrTemporaryPasswordTemporaryPassword',
+            'password': 'CognitoUserPasswordPassword',
+            'temporary_password': 'CognitoUserPasswordTemporaryPassword',
           },
         ),
         MigrateSlot(
@@ -31898,15 +31866,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'attributes',
+          dartName: 'signInAttributes',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'alias_attributes': 'CognitoUserPoolAttributesAliasAttributes',
+            'alias_attributes':
+                'CognitoUserPoolSignInAttributesAliasAttributes',
             'username_attributes':
-                'CognitoUserPoolAttributesUsernameAttributes',
+                'CognitoUserPoolSignInAttributesUsernameAttributes',
           },
         ),
         MigrateSlot(
@@ -33191,16 +33160,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'authorizedAwsRegionOrRegion',
+          dartName: 'region',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'authorized_aws_region':
-                'ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion',
-            'region':
-                'ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion',
+                'ConfigAggregateAuthorizationRegionAuthorizedAwsRegion',
+            'region': 'ConfigAggregateAuthorizationRegionRegion',
           },
         ),
         MigrateSlot(
@@ -34121,14 +34089,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'contentOrFilename',
+          dartName: 'content',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'content': 'ConnectContactFlowContentOrFilenameContent',
-            'filename': 'ConnectContactFlowContentOrFilenameFilename',
+            'content': 'ConnectContactFlowContentContent',
+            'filename': 'ConnectContactFlowContentFilename',
           },
         ),
         MigrateSlot(
@@ -34265,14 +34233,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'contentOrFilename',
+          dartName: 'content',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'content': 'ConnectContactFlowModuleContentOrFilenameContent',
-            'filename': 'ConnectContactFlowModuleContentOrFilenameFilename',
+            'content': 'ConnectContactFlowModuleContentContent',
+            'filename': 'ConnectContactFlowModuleContentFilename',
           },
         ),
         MigrateSlot(
@@ -40034,18 +40002,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'manageMasterUserPasswordOrPasswordOrPasswordWo',
+          dartName: 'password',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'manage_master_user_password':
-                'DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword',
-            'password':
-                'DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword',
-            'password_wo':
-                'DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo',
+                'DbInstancePasswordManageMasterUserPassword',
+            'password': 'DbInstancePasswordPassword',
+            'password_wo': 'DbInstancePasswordPasswordWo',
           },
         ),
         MigrateSlot(
@@ -41190,14 +41156,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'db',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'db_cluster_identifier': 'DbProxyTargetDbDbClusterIdentifier',
-            'db_instance_identifier': 'DbProxyTargetDbDbInstanceIdentifier',
+            'db_cluster_identifier': 'DbProxyTargetTargetDbClusterIdentifier',
+            'db_instance_identifier': 'DbProxyTargetTargetDbInstanceIdentifier',
           },
         ),
         MigrateSlot(
@@ -45736,19 +45702,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'manageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo',
+          dartName: 'masterPassword',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'manage_master_user_password':
-                'DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword',
-            'master_password':
-                'DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword',
-            'master_password_wo':
-                'DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo',
+                'DocdbClusterMasterPasswordManageMasterUserPassword',
+            'master_password': 'DocdbClusterMasterPasswordMasterPassword',
+            'master_password_wo': 'DocdbClusterMasterPasswordMasterPasswordWo',
           },
         ),
         MigrateSlot(
@@ -45809,16 +45772,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'restoreToPointInTimeOrSnapshotIdentifier',
+          dartName: 'restoreSource',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'restore_to_point_in_time':
-                'DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierRestoreToPointInTime',
+                'DocdbClusterRestoreSourceRestoreToPointInTime',
             'snapshot_identifier':
-                'DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierSnapshotIdentifier',
+                'DocdbClusterRestoreSourceSnapshotIdentifier',
           },
         ),
         MigrateSlot(
@@ -46365,16 +46328,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'engineOrSourceDbClusterIdentifier',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'engine':
-                'DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine',
+            'engine': 'DocdbGlobalClusterSourceEngine',
             'source_db_cluster_identifier':
-                'DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier',
+                'DocdbGlobalClusterSourceSourceDbClusterIdentifier',
           },
         ),
         MigrateSlot(
@@ -49146,21 +49108,17 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'importTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'import_table':
-                'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnImportTable',
-            'restore_backup_arn':
-                'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreBackupArn',
-            'restore_source_name':
-                'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceName',
+            'import_table': 'DynamodbTableSourceImportTable',
+            'restore_backup_arn': 'DynamodbTableSourceRestoreBackupArn',
+            'restore_source_name': 'DynamodbTableSourceRestoreSourceName',
             'restore_source_table_arn':
-                'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceTableArn',
+                'DynamodbTableSourceRestoreSourceTableArn',
           },
         ),
         MigrateSlot(
@@ -51320,16 +51278,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'accessGroupIdOrAuthorizeAllGroups',
+          dartName: 'audience',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'access_group_id':
-                'Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAccessGroupId',
+                'Ec2ClientVpnAuthorizationRuleAudienceAccessGroupId',
             'authorize_all_groups':
-                'Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAuthorizeAllGroups',
+                'Ec2ClientVpnAuthorizationRuleAudienceAuthorizeAllGroups',
           },
         ),
         MigrateSlot(
@@ -54880,19 +54838,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'gatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'gateway_load_balancer_endpoint_id':
-                'Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnGatewayLoadBalancerEndpointId',
+                'Ec2TrafficMirrorTargetTargetGatewayLoadBalancerEndpointId',
             'network_interface_id':
-                'Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkInterfaceId',
+                'Ec2TrafficMirrorTargetTargetNetworkInterfaceId',
             'network_load_balancer_arn':
-                'Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkLoadBalancerArn',
+                'Ec2TrafficMirrorTargetTargetNetworkLoadBalancerArn',
           },
         ),
         MigrateSlot(
@@ -59784,16 +59741,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'capacityProviderStrategyOrLaunchType',
+          dartName: 'capacity',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'capacity_provider_strategy':
-                'EcsTaskSetCapacityProviderStrategyOrLaunchTypeCapacityProviderStrategy',
-            'launch_type':
-                'EcsTaskSetCapacityProviderStrategyOrLaunchTypeLaunchType',
+                'EcsTaskSetCapacityCapacityProviderStrategy',
+            'launch_type': 'EcsTaskSetCapacityLaunchType',
           },
         ),
         MigrateSlot(
@@ -60872,16 +60828,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'instanceIdOrNetworkInterfaceId',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'instance_id':
-                'EipAssociationInstanceIdOrNetworkInterfaceIdInstanceId',
-            'network_interface_id':
-                'EipAssociationInstanceIdOrNetworkInterfaceIdNetworkInterfaceId',
+            'instance_id': 'EipAssociationTargetInstanceId',
+            'network_interface_id': 'EipAssociationTargetNetworkInterfaceId',
           },
         ),
         MigrateSlot(
@@ -62785,18 +62739,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'platformArnOrSolutionStackNameOrTemplateName',
+          dartName: 'platform',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'platform_arn':
-                'ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNamePlatformArn',
+            'platform_arn': 'ElasticBeanstalkEnvironmentPlatformPlatformArn',
             'solution_stack_name':
-                'ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameSolutionStackName',
-            'template_name':
-                'ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameTemplateName',
+                'ElasticBeanstalkEnvironmentPlatformSolutionStackName',
+            'template_name': 'ElasticBeanstalkEnvironmentPlatformTemplateName',
           },
         ),
         MigrateSlot(
@@ -62992,15 +62944,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'engineOrReplicationGroupId',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'engine': 'ElasticacheClusterEngineOrReplicationGroupIdEngine',
+            'engine': 'ElasticacheClusterSourceEngine',
             'replication_group_id':
-                'ElasticacheClusterEngineOrReplicationGroupIdReplicationGroupId',
+                'ElasticacheClusterSourceReplicationGroupId',
           },
         ),
         MigrateSlot(
@@ -63518,18 +63470,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'authTokenOrAuthTokenWoOrUserGroupIds',
+          dartName: 'auth',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'auth_token':
-                'ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthToken',
-            'auth_token_wo':
-                'ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthTokenWo',
-            'user_group_ids':
-                'ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserGroupIds',
+            'auth_token': 'ElasticacheReplicationGroupAuthAuthToken',
+            'auth_token_wo': 'ElasticacheReplicationGroupAuthAuthTokenWo',
+            'user_group_ids': 'ElasticacheReplicationGroupAuthUserGroupIds',
           },
         ),
         MigrateSlot(
@@ -63695,16 +63644,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'nodeGroupConfigurationOrPreferredCacheClusterAzs',
+          dartName: 'topology',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'node_group_configuration':
-                'ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsNodeGroupConfiguration',
+                'ElasticacheReplicationGroupTopologyNodeGroupConfiguration',
             'preferred_cache_cluster_azs':
-                'ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsPreferredCacheClusterAzs',
+                'ElasticacheReplicationGroupTopologyPreferredCacheClusterAzs',
           },
         ),
         MigrateSlot(
@@ -67942,25 +67891,19 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'eniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'eni_id':
-                'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdEniId',
-            'regional_nat_gateway_id':
-                'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdRegionalNatGatewayId',
-            'subnet_id':
-                'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdSubnetId',
+            'eni_id': 'FlowLogSourceEniId',
+            'regional_nat_gateway_id': 'FlowLogSourceRegionalNatGatewayId',
+            'subnet_id': 'FlowLogSourceSubnetId',
             'transit_gateway_attachment_id':
-                'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayAttachmentId',
-            'transit_gateway_id':
-                'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayId',
-            'vpc_id':
-                'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdVpcId',
+                'FlowLogSourceTransitGatewayAttachmentId',
+            'transit_gateway_id': 'FlowLogSourceTransitGatewayId',
+            'vpc_id': 'FlowLogSourceVpcId',
           },
         ),
         MigrateSlot(
@@ -69891,16 +69834,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'activeDirectoryIdOrSelfManagedActiveDirectory',
+          dartName: 'activeDirectory',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'active_directory_id':
-                'FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId',
+                'FsxWindowsFileSystemActiveDirectoryActiveDirectoryId',
             'self_managed_active_directory':
-                'FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory',
+                'FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory',
           },
         ),
         MigrateSlot(
@@ -70346,14 +70289,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'buildIdOrScriptId',
+          dartName: 'artifact',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'build_id': 'GameliftFleetBuildIdOrScriptIdBuildId',
-            'script_id': 'GameliftFleetBuildIdOrScriptIdScriptId',
+            'build_id': 'GameliftFleetArtifactBuildId',
+            'script_id': 'GameliftFleetArtifactScriptId',
           },
         ),
         MigrateSlot(
@@ -70691,15 +70634,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'storageLocationOrZipFile',
+          dartName: 'code',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'storage_location':
-                'GameliftScriptStorageLocationOrZipFileStorageLocation',
-            'zip_file': 'GameliftScriptStorageLocationOrZipFileZipFile',
+            'storage_location': 'GameliftScriptCodeStorageLocation',
+            'zip_file': 'GameliftScriptCodeZipFile',
           },
         ),
       ],
@@ -77704,14 +77646,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'dataOrUri',
+          dartName: 'document',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'data': 'ImagebuilderComponentDataOrUriData',
-            'uri': 'ImagebuilderComponentDataOrUriUri',
+            'data': 'ImagebuilderComponentDocumentData',
+            'uri': 'ImagebuilderComponentDocumentUri',
           },
         ),
         MigrateSlot(
@@ -79483,14 +79425,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'dataOrUri',
+          dartName: 'document',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'data': 'ImagebuilderWorkflowDataOrUriData',
-            'uri': 'ImagebuilderWorkflowDataOrUriUri',
+            'data': 'ImagebuilderWorkflowDocumentData',
+            'uri': 'ImagebuilderWorkflowDocumentUri',
           },
         ),
         MigrateSlot(
@@ -79989,16 +79931,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'hostResourceGroupArnOrPlacementGroup',
+          dartName: 'placement',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'host_resource_group_arn':
-                'InstanceHostResourceGroupArnOrPlacementGroupHostResourceGroupArn',
-            'placement_group':
-                'InstanceHostResourceGroupArnOrPlacementGroupPlacementGroup',
+            'host_resource_group_arn': 'InstancePlacementHostResourceGroupArn',
+            'placement_group': 'InstancePlacementPlacementGroup',
           },
         ),
         MigrateSlot(
@@ -83985,19 +83925,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'kinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'kinesis_source_configuration':
-                'KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionKinesisSourceConfiguration',
+                'KinesisFirehoseDeliveryStreamSourceKinesisSourceConfiguration',
             'msk_source_configuration':
-                'KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionMskSourceConfiguration',
+                'KinesisFirehoseDeliveryStreamSourceMskSourceConfiguration',
             'server_side_encryption':
-                'KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionServerSideEncryption',
+                'KinesisFirehoseDeliveryStreamSourceServerSideEncryption',
           },
         ),
         MigrateSlot(
@@ -84170,16 +84109,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'shardCountOrWarmThroughputMibPs',
+          dartName: 'capacity',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'shard_count':
-                'KinesisStreamShardCountOrWarmThroughputMibPsShardCount',
+            'shard_count': 'KinesisStreamCapacityShardCount',
             'warm_throughput_mib_ps':
-                'KinesisStreamShardCountOrWarmThroughputMibPsWarmThroughputMibPs',
+                'KinesisStreamCapacityWarmThroughputMibPs',
           },
         ),
         MigrateSlot(
@@ -86106,29 +86044,23 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'catalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns',
+          dartName: 'resource',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'catalog_resource':
-                'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsCatalogResource',
+                'LakeformationPermissionsResourceCatalogResource',
             'data_cells_filter':
-                'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataCellsFilter',
-            'data_location':
-                'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataLocation',
-            'database':
-                'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDatabase',
-            'lf_tag':
-                'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTag',
-            'lf_tag_policy':
-                'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTagPolicy',
-            'table':
-                'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTable',
+                'LakeformationPermissionsResourceDataCellsFilter',
+            'data_location': 'LakeformationPermissionsResourceDataLocation',
+            'database': 'LakeformationPermissionsResourceDatabase',
+            'lf_tag': 'LakeformationPermissionsResourceLfTag',
+            'lf_tag_policy': 'LakeformationPermissionsResourceLfTagPolicy',
+            'table': 'LakeformationPermissionsResourceTable',
             'table_with_columns':
-                'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTableWithColumns',
+                'LakeformationPermissionsResourceTableWithColumns',
           },
         ),
         MigrateSlot(
@@ -86408,18 +86340,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'databaseOrTableOrTableWithColumns',
+          dartName: 'resource',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'database':
-                'LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsDatabase',
-            'table':
-                'LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTable',
+            'database': 'LakeformationResourceLfTagResourceDatabase',
+            'table': 'LakeformationResourceLfTagResourceTable',
             'table_with_columns':
-                'LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTableWithColumns',
+                'LakeformationResourceLfTagResourceTableWithColumns',
           },
         ),
         MigrateSlot(
@@ -86458,18 +86388,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'databaseOrTableOrTableWithColumns',
+          dartName: 'resource',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'database':
-                'LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsDatabase',
-            'table':
-                'LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTable',
+            'database': 'LakeformationResourceLfTagsResourceDatabase',
+            'table': 'LakeformationResourceLfTagsResourceTable',
             'table_with_columns':
-                'LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTableWithColumns',
+                'LakeformationResourceLfTagsResourceTableWithColumns',
           },
         ),
         MigrateSlot(
@@ -86811,16 +86739,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'eventSourceArnOrSelfManagedEventSource',
+          dartName: 'eventSource',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'event_source_arn':
-                'LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceEventSourceArn',
+                'LambdaEventSourceMappingEventSourceEventSourceArn',
             'self_managed_event_source':
-                'LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceSelfManagedEventSource',
+                'LambdaEventSourceMappingEventSourceSelfManagedEventSource',
           },
         ),
         MigrateSlot(
@@ -87065,15 +86993,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'filenameOrImageUriOrS3Bucket',
+          dartName: 'code',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'filename': 'LambdaFunctionFilenameOrImageUriOrS3BucketFilename',
-            'image_uri': 'LambdaFunctionFilenameOrImageUriOrS3BucketImageUri',
-            's3_bucket': 'LambdaFunctionFilenameOrImageUriOrS3BucketS3Bucket',
+            'filename': 'LambdaFunctionCodeFilename',
+            'image_uri': 'LambdaFunctionCodeImageUri',
+            's3_bucket': 'LambdaFunctionCodeS3Bucket',
           },
         ),
         MigrateSlot(
@@ -89069,16 +88997,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'defaultVersionOrUpdateDefaultVersion',
+          dartName: 'defaultVersion',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'default_version':
-                'LaunchTemplateDefaultVersionOrUpdateDefaultVersionDefaultVersion',
+            'default_version': 'LaunchTemplateDefaultVersionDefaultVersion',
             'update_default_version':
-                'LaunchTemplateDefaultVersionOrUpdateDefaultVersionUpdateDefaultVersion',
+                'LaunchTemplateDefaultVersionUpdateDefaultVersion',
           },
         ),
         MigrateSlot(
@@ -89178,16 +89105,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'securityGroupNamesOrVpcSecurityGroupIds',
+          dartName: 'securityGroups',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'security_group_names':
-                'LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsSecurityGroupNames',
+                'LaunchTemplateSecurityGroupsSecurityGroupNames',
             'vpc_security_group_ids':
-                'LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsVpcSecurityGroupIds',
+                'LaunchTemplateSecurityGroupsVpcSecurityGroupIds',
           },
         ),
         MigrateSlot(
@@ -91631,16 +91558,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'conclusionStatementOrFollowUpPrompt',
+          dartName: 'closing',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'conclusion_statement':
-                'LexIntentConclusionStatementOrFollowUpPromptConclusionStatement',
-            'follow_up_prompt':
-                'LexIntentConclusionStatementOrFollowUpPromptFollowUpPrompt',
+            'conclusion_statement': 'LexIntentClosingConclusionStatement',
+            'follow_up_prompt': 'LexIntentClosingFollowUpPrompt',
           },
         ),
         MigrateSlot(
@@ -101522,16 +101447,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'engineOrSourceDbClusterIdentifier',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'engine':
-                'NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine',
+            'engine': 'NeptuneGlobalClusterSourceEngine',
             'source_db_cluster_identifier':
-                'NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier',
+                'NeptuneGlobalClusterSourceSourceDbClusterIdentifier',
           },
         ),
         MigrateSlot(
@@ -102075,15 +101999,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'cidrBlockOrIpv6CidrBlock',
+          dartName: 'cidr',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'cidr_block': 'NetworkAclRuleCidrBlockOrIpv6CidrBlockCidrBlock',
-            'ipv6_cidr_block':
-                'NetworkAclRuleCidrBlockOrIpv6CidrBlockIpv6CidrBlock',
+            'cidr_block': 'NetworkAclRuleCidrCidrBlock',
+            'ipv6_cidr_block': 'NetworkAclRuleCidrIpv6CidrBlock',
           },
         ),
         MigrateSlot(
@@ -102819,15 +102742,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'transitGatewayIdOrVpcId',
+          dartName: 'attachment',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'transit_gateway_id':
-                'NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId',
-            'vpc_id': 'NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId',
+                'NetworkfirewallFirewallAttachmentTransitGatewayId',
+            'vpc_id': 'NetworkfirewallFirewallAttachmentVpcId',
           },
         ),
         MigrateSlot(
@@ -112779,14 +112702,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'apiKeyOrServiceJson',
+          dartName: 'credentials',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'api_key': 'PinpointGcmChannelApiKeyOrServiceJsonApiKey',
-            'service_json': 'PinpointGcmChannelApiKeyOrServiceJsonServiceJson',
+            'api_key': 'PinpointGcmChannelCredentialsApiKey',
+            'service_json': 'PinpointGcmChannelCredentialsServiceJson',
           },
         ),
         MigrateSlot(
@@ -117149,16 +117072,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'excludeResourceTagsOrResourceTags',
+          dartName: 'tagFilter',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'exclude_resource_tags':
-                'RbinRuleExcludeResourceTagsOrResourceTagsExcludeResourceTags',
-            'resource_tags':
-                'RbinRuleExcludeResourceTagsOrResourceTagsResourceTags',
+            'exclude_resource_tags': 'RbinRuleTagFilterExcludeResourceTags',
+            'resource_tags': 'RbinRuleTagFilterResourceTags',
           },
         ),
         MigrateSlot(
@@ -117557,19 +117478,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'manageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo',
+          dartName: 'masterPassword',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'manage_master_user_password':
-                'RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword',
-            'master_password':
-                'RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword',
-            'master_password_wo':
-                'RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo',
+                'RdsClusterMasterPasswordManageMasterUserPassword',
+            'master_password': 'RdsClusterMasterPasswordMasterPassword',
+            'master_password_wo': 'RdsClusterMasterPasswordMasterPasswordWo',
           },
         ),
         MigrateSlot(
@@ -118679,14 +118597,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'filenameOrManifest',
+          dartName: 'manifest',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'filename': 'RdsCustomDbEngineVersionFilenameOrManifestFilename',
-            'manifest': 'RdsCustomDbEngineVersionFilenameOrManifestManifest',
+            'filename': 'RdsCustomDbEngineVersionManifestFilename',
+            'manifest': 'RdsCustomDbEngineVersionManifestManifest',
           },
         ),
         MigrateSlot(
@@ -120145,18 +120063,17 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'manageMasterPasswordOrMasterPasswordOrMasterPasswordWo',
+          dartName: 'masterPassword',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'manage_master_password':
-                'RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoManageMasterPassword',
-            'master_password':
-                'RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword',
+                'RedshiftClusterMasterPasswordManageMasterPassword',
+            'master_password': 'RedshiftClusterMasterPasswordMasterPassword',
             'master_password_wo':
-                'RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo',
+                'RedshiftClusterMasterPasswordMasterPasswordWo',
           },
         ),
         MigrateSlot(
@@ -120764,18 +120681,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'associateEntireAccountOrConsumerArnOrConsumerRegion',
+          dartName: 'consumer',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'associate_entire_account':
-                'RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionAssociateEntireAccount',
+                'RedshiftDataShareConsumerAssociationConsumerAssociateEntireAccount',
             'consumer_arn':
-                'RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerArn',
+                'RedshiftDataShareConsumerAssociationConsumerConsumerArn',
             'consumer_region':
-                'RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerRegion',
+                'RedshiftDataShareConsumerAssociationConsumerConsumerRegion',
           },
         ),
         MigrateSlot(
@@ -122336,19 +122253,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'adminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword',
+          dartName: 'adminPassword',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'admin_user_password':
-                'RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPassword',
+                'RedshiftserverlessNamespaceAdminPasswordAdminUserPassword',
             'admin_user_password_wo':
-                'RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPasswordWo',
+                'RedshiftserverlessNamespaceAdminPasswordAdminUserPasswordWo',
             'manage_admin_password':
-                'RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordManageAdminPassword',
+                'RedshiftserverlessNamespaceAdminPasswordManageAdminPassword',
           },
         ),
         MigrateSlot(
@@ -124258,16 +124174,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'carrierGatewayIdOrDestinationIpv6CidrBlock',
+          dartName: 'carrierIpv6',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'carrier_gateway_id':
-                'RouteCarrierGatewayIdOrDestinationIpv6CidrBlockCarrierGatewayId',
+            'carrier_gateway_id': 'RouteCarrierIpv6CarrierGatewayId',
             'destination_ipv6_cidr_block':
-                'RouteCarrierGatewayIdOrDestinationIpv6CidrBlockDestinationIpv6CidrBlock',
+                'RouteCarrierIpv6DestinationIpv6CidrBlock',
           },
         ),
         MigrateSlot(
@@ -124279,30 +124194,27 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'destinationCidrBlockOrEgressOnlyGatewayId',
+          dartName: 'ipv4Egress',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'destination_cidr_block':
-                'RouteDestinationCidrBlockOrEgressOnlyGatewayIdDestinationCidrBlock',
-            'egress_only_gateway_id':
-                'RouteDestinationCidrBlockOrEgressOnlyGatewayIdEgressOnlyGatewayId',
+            'destination_cidr_block': 'RouteIpv4EgressDestinationCidrBlock',
+            'egress_only_gateway_id': 'RouteIpv4EgressEgressOnlyGatewayId',
           },
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'destinationPrefixListIdOrVpcEndpointId',
+          dartName: 'prefixListEndpoint',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'destination_prefix_list_id':
-                'RouteDestinationPrefixListIdOrVpcEndpointIdDestinationPrefixListId',
-            'vpc_endpoint_id':
-                'RouteDestinationPrefixListIdOrVpcEndpointIdVpcEndpointId',
+                'RoutePrefixListEndpointDestinationPrefixListId',
+            'vpc_endpoint_id': 'RoutePrefixListEndpointVpcEndpointId',
           },
         ),
         MigrateSlot(
@@ -124968,14 +124880,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'aliasOrRecords',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'alias': 'Route53RecordAliasOrRecordsAlias',
-            'records': 'Route53RecordAliasOrRecordsRecords',
+            'alias': 'Route53RecordTargetAlias',
+            'records': 'Route53RecordTargetRecords',
           },
         ),
         MigrateSlot(
@@ -126455,15 +126367,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'delegationSetIdOrVpc',
+          dartName: 'visibility',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'delegation_set_id':
-                'Route53ZoneDelegationSetIdOrVpcDelegationSetId',
-            'vpc': 'Route53ZoneDelegationSetIdOrVpcVpc',
+            'delegation_set_id': 'Route53ZoneVisibilityDelegationSetId',
+            'vpc': 'Route53ZoneVisibilityVpc',
           },
         ),
         MigrateSlot(
@@ -127740,14 +127651,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'gatewayIdOrSubnetId',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'gateway_id': 'RouteTableAssociationGatewayIdOrSubnetIdGatewayId',
-            'subnet_id': 'RouteTableAssociationGatewayIdOrSubnetIdSubnetId',
+            'gateway_id': 'RouteTableAssociationTargetGatewayId',
+            'subnet_id': 'RouteTableAssociationTargetSubnetId',
           },
         ),
         MigrateSlot(
@@ -128209,14 +128120,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'aclOrGrant',
+          dartName: 'access',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'acl': 'S3BucketAclOrGrantAcl',
-            'grant': 'S3BucketAclOrGrantGrant',
+            'acl': 'S3BucketAccessAcl',
+            'grant': 'S3BucketAccessGrant',
           },
         ),
         MigrateSlot(
@@ -128522,15 +128433,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'accessControlPolicyOrAcl',
+          dartName: 'access',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'access_control_policy':
-                'S3BucketAclAccessControlPolicyOrAclAccessControlPolicy',
-            'acl': 'S3BucketAclAccessControlPolicyOrAclAcl',
+            'access_control_policy': 'S3BucketAclAccessAccessControlPolicy',
+            'acl': 'S3BucketAclAccessAcl',
           },
         ),
         MigrateSlot(
@@ -129116,16 +129026,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'contentOrContentBase64OrSource',
+          dartName: 'body',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'content': 'S3BucketObjectContentOrContentBase64OrSourceContent',
-            'content_base64':
-                'S3BucketObjectContentOrContentBase64OrSourceContentBase64',
-            'source': 'S3BucketObjectContentOrContentBase64OrSourceSource',
+            'content': 'S3BucketObjectBodyContent',
+            'content_base64': 'S3BucketObjectBodyContentBase64',
+            'source': 'S3BucketObjectBodySource',
           },
         ),
         MigrateSlot(
@@ -129158,14 +129067,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'etagOrKmsKeyId',
+          dartName: 'integrity',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'etag': 'S3BucketObjectEtagOrKmsKeyIdEtag',
-            'kms_key_id': 'S3BucketObjectEtagOrKmsKeyIdKmsKeyId',
+            'etag': 'S3BucketObjectIntegrityEtag',
+            'kms_key_id': 'S3BucketObjectIntegrityKmsKeyId',
           },
         ),
         MigrateSlot(
@@ -130206,16 +130115,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'contentOrContentBase64OrSource',
+          dartName: 'body',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'content': 'S3ObjectContentOrContentBase64OrSourceContent',
-            'content_base64':
-                'S3ObjectContentOrContentBase64OrSourceContentBase64',
-            'source': 'S3ObjectContentOrContentBase64OrSourceSource',
+            'content': 'S3ObjectBodyContent',
+            'content_base64': 'S3ObjectBodyContentBase64',
+            'source': 'S3ObjectBodySource',
           },
         ),
         MigrateSlot(
@@ -130248,14 +130156,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'etagOrKmsKeyId',
+          dartName: 'integrity',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'etag': 'S3ObjectEtagOrKmsKeyIdEtag',
-            'kms_key_id': 'S3ObjectEtagOrKmsKeyIdKmsKeyId',
+            'etag': 'S3ObjectIntegrityEtag',
+            'kms_key_id': 'S3ObjectIntegrityKmsKeyId',
           },
         ),
         MigrateSlot(
@@ -130584,14 +130492,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'aclOrGrant',
+          dartName: 'access',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'acl': 'S3ObjectCopyAclOrGrantAcl',
-            'grant': 'S3ObjectCopyAclOrGrantGrant',
+            'acl': 'S3ObjectCopyAccessAcl',
+            'grant': 'S3ObjectCopyAccessGrant',
           },
         ),
         MigrateSlot(
@@ -133157,15 +133065,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'spaceNameOrUserProfileName',
+          dartName: 'owner',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'space_name': 'SagemakerAppSpaceNameOrUserProfileNameSpaceName',
-            'user_profile_name':
-                'SagemakerAppSpaceNameOrUserProfileNameUserProfileName',
+            'space_name': 'SagemakerAppOwnerSpaceName',
+            'user_profile_name': 'SagemakerAppOwnerUserProfileName',
           },
         ),
         MigrateSlot(
@@ -135823,16 +135730,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'cognitoConfigOrOidcConfig',
+          dartName: 'identityProvider',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'cognito_config':
-                'SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig',
-            'oidc_config':
-                'SagemakerWorkforceCognitoConfigOrOidcConfigOidcConfig',
+            'cognito_config': 'SagemakerWorkforceIdentityProviderCognitoConfig',
+            'oidc_config': 'SagemakerWorkforceIdentityProviderOidcConfig',
           },
         ),
         MigrateSlot(
@@ -141036,14 +140941,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'awsRegionOrRegion',
+          dartName: 'region',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'aws_region': 'ServicequotasTemplateAwsRegionOrRegionAwsRegion',
-            'region': 'ServicequotasTemplateAwsRegionOrRegionRegion',
+            'aws_region': 'ServicequotasTemplateRegionAwsRegion',
+            'region': 'ServicequotasTemplateRegionRegion',
           },
         ),
         MigrateSlot(
@@ -143249,15 +143154,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'membersOrResourceType',
+          dartName: 'scope',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'members': 'ShieldProtectionGroupMembersOrResourceTypeMembers',
-            'resource_type':
-                'ShieldProtectionGroupMembersOrResourceTypeResourceType',
+            'members': 'ShieldProtectionGroupScopeMembers',
+            'resource_type': 'ShieldProtectionGroupScopeResourceType',
           },
         ),
         MigrateSlot(
@@ -144753,18 +144657,17 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'hostResourceGroupArnOrPlacementGroupOrPlacementGroupId',
+          dartName: 'placement',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'host_resource_group_arn':
-                'SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdHostResourceGroupArn',
-            'placement_group':
-                'SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroup',
+                'SpotInstanceRequestPlacementHostResourceGroupArn',
+            'placement_group': 'SpotInstanceRequestPlacementPlacementGroup',
             'placement_group_id':
-                'SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroupId',
+                'SpotInstanceRequestPlacementPlacementGroupId',
           },
         ),
         MigrateSlot(
@@ -146236,16 +146139,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'insecureValueOrValueOrValueWo',
+          dartName: 'value',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'insecure_value':
-                'SsmParameterInsecureValueOrValueOrValueWoInsecureValue',
-            'value': 'SsmParameterInsecureValueOrValueOrValueWoValue',
-            'value_wo': 'SsmParameterInsecureValueOrValueOrValueWoValueWo',
+            'insecure_value': 'SsmParameterValueInsecureValue',
+            'value': 'SsmParameterValueValue',
+            'value_wo': 'SsmParameterValueValueWo',
           },
         ),
         MigrateSlot(
@@ -148652,16 +148554,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'activationKeyOrGatewayIpAddress',
+          dartName: 'activation',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'activation_key':
-                'StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey',
+            'activation_key': 'StoragegatewayGatewayActivationActivationKey',
             'gateway_ip_address':
-                'StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress',
+                'StoragegatewayGatewayActivationGatewayIpAddress',
           },
         ),
         MigrateSlot(
@@ -151047,15 +150948,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'phrasesOrVocabularyFileUri',
+          dartName: 'terms',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'phrases': 'TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases',
-            'vocabulary_file_uri':
-                'TranscribeVocabularyPhrasesOrVocabularyFileUriVocabularyFileUri',
+            'phrases': 'TranscribeVocabularyTermsPhrases',
+            'vocabulary_file_uri': 'TranscribeVocabularyTermsVocabularyFileUri',
           },
         ),
         MigrateSlot(
@@ -151119,16 +151019,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'vocabularyFilterFileUriOrWords',
+          dartName: 'terms',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'vocabulary_filter_file_uri':
-                'TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFilterFileUri',
-            'words':
-                'TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsWords',
+                'TranscribeVocabularyFilterTermsVocabularyFilterFileUri',
+            'words': 'TranscribeVocabularyFilterTermsWords',
           },
         ),
         MigrateSlot(
@@ -153114,15 +153013,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'cidrBlockOrIpv4NetmaskLength',
+          dartName: 'ipv4Cidr',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'cidr_block': 'VpcCidrBlockOrIpv4NetmaskLengthCidrBlock',
-            'ipv4_netmask_length':
-                'VpcCidrBlockOrIpv4NetmaskLengthIpv4NetmaskLength',
+            'cidr_block': 'VpcIpv4CidrCidrBlock',
+            'ipv4_netmask_length': 'VpcIpv4CidrIpv4NetmaskLength',
           },
         ),
         MigrateSlot(
@@ -153378,14 +153276,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'subnetIdOrVpcId',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'subnet_id': 'VpcBlockPublicAccessExclusionSubnetIdOrVpcIdSubnetId',
-            'vpc_id': 'VpcBlockPublicAccessExclusionSubnetIdOrVpcIdVpcId',
+            'subnet_id': 'VpcBlockPublicAccessExclusionTargetSubnetId',
+            'vpc_id': 'VpcBlockPublicAccessExclusionTargetVpcId',
           },
         ),
         MigrateSlot(
@@ -153781,18 +153679,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'resourceConfigurationArnOrServiceNameOrServiceNetworkArn',
+          dartName: 'service',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'resource_configuration_arn':
-                'VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnResourceConfigurationArn',
-            'service_name':
-                'VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceName',
-            'service_network_arn':
-                'VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceNetworkArn',
+                'VpcEndpointServiceResourceConfigurationArn',
+            'service_name': 'VpcEndpointServiceServiceName',
+            'service_network_arn': 'VpcEndpointServiceServiceNetworkArn',
           },
         ),
         MigrateSlot(
@@ -155075,14 +154971,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'cidrOrNetmaskLength',
+          dartName: 'cidr',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'cidr': 'VpcIpamPoolCidrCidrOrNetmaskLengthCidr',
-            'netmask_length': 'VpcIpamPoolCidrCidrOrNetmaskLengthNetmaskLength',
+            'cidr': 'VpcIpamPoolCidrCidrCidr',
+            'netmask_length': 'VpcIpamPoolCidrCidrNetmaskLength',
           },
         ),
         MigrateSlot(
@@ -155125,15 +155021,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'cidrOrNetmaskLength',
+          dartName: 'cidr',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'cidr': 'VpcIpamPoolCidrAllocationCidrOrNetmaskLengthCidr',
-            'netmask_length':
-                'VpcIpamPoolCidrAllocationCidrOrNetmaskLengthNetmaskLength',
+            'cidr': 'VpcIpamPoolCidrAllocationCidrCidr',
+            'netmask_length': 'VpcIpamPoolCidrAllocationCidrNetmaskLength',
           },
         ),
         MigrateSlot(
@@ -160460,14 +160355,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'ruleOrRulesJson',
+          dartName: 'rules',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'rule': 'Wafv2RuleGroupRuleOrRulesJsonRule',
-            'rules_json': 'Wafv2RuleGroupRuleOrRulesJsonRulesJson',
+            'rule': 'Wafv2RuleGroupRulesRule',
+            'rules_json': 'Wafv2RuleGroupRulesRulesJson',
           },
         ),
         MigrateSlot(
@@ -160861,15 +160756,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'actionOrOverrideAction',
+          dartName: 'ruleAction',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'action': 'Wafv2WebAclRuleActionOrOverrideActionAction',
-            'override_action':
-                'Wafv2WebAclRuleActionOrOverrideActionOverrideAction',
+            'action': 'Wafv2WebAclRuleRuleActionAction',
+            'override_action': 'Wafv2WebAclRuleRuleActionOverrideAction',
           },
         ),
         MigrateSlot(
@@ -160965,16 +160859,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'managedRuleGroupOrRuleGroupReference',
+          dartName: 'ruleGroup',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'managed_rule_group':
-                'Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceManagedRuleGroup',
+                'Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup',
             'rule_group_reference':
-                'Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceRuleGroupReference',
+                'Wafv2WebAclRuleGroupAssociationRuleGroupRuleGroupReference',
           },
         ),
         MigrateSlot(
@@ -163822,54 +163716,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName':
-        MigrateHelper(
-          className:
-              'AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'domain_name',
-              dartName: 'domainName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'domainName',
-        ),
-    'AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey':
-        MigrateHelper(
-          className:
-              'AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'private_key',
-              dartName: 'privateKey',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'privateKey',
-        ),
-    'AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKeyWo':
-        MigrateHelper(
-          className:
-              'AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKeyWo',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'private_key_wo',
-              dartName: 'privateKeyWo',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'privateKeyWo',
-        ),
     'AcmCertificateOptions': MigrateHelper(
       className: 'AcmCertificateOptions',
       slots: <MigrateSlot>[
@@ -163889,6 +163735,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'AcmCertificateOptionsExport',
         ),
       ],
+    ),
+    'AcmCertificateSourceDomainName': MigrateHelper(
+      className: 'AcmCertificateSourceDomainName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'domain_name',
+          dartName: 'domainName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'domainName',
+    ),
+    'AcmCertificateSourcePrivateKey': MigrateHelper(
+      className: 'AcmCertificateSourcePrivateKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'private_key',
+          dartName: 'privateKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'privateKey',
+    ),
+    'AcmCertificateSourcePrivateKeyWo': MigrateHelper(
+      className: 'AcmCertificateSourcePrivateKeyWo',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'private_key_wo',
+          dartName: 'privateKeyWo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'privateKeyWo',
     ),
     'AcmCertificateValidationOption': MigrateHelper(
       className: 'AcmCertificateValidationOption',
@@ -166210,70 +166098,62 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       className: 'AmiFromInstanceEphemeralBlockDevice',
       slots: <MigrateSlot>[],
     ),
-    'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnAccountId':
-        MigrateHelper(
-          className:
-              'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnAccountId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'account_id',
-              dartName: 'accountId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'accountId',
+    'AmiLaunchPermissionGranteeAccountId': MigrateHelper(
+      className: 'AmiLaunchPermissionGranteeAccountId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnGroup':
-        MigrateHelper(
-          className:
-              'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnGroup',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'group',
-              dartName: 'group',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              positional: true,
-              dartType: 'AmiLaunchPermissionGroup',
-            ),
-          ],
-          shorthand: 'group',
+      ],
+      shorthand: 'accountId',
+    ),
+    'AmiLaunchPermissionGranteeGroup': MigrateHelper(
+      className: 'AmiLaunchPermissionGranteeGroup',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'group',
+          dartName: 'group',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'AmiLaunchPermissionGroup',
         ),
-    'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationArn':
-        MigrateHelper(
-          className:
-              'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'organization_arn',
-              dartName: 'organizationArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'organizationArn',
+      ],
+      shorthand: 'group',
+    ),
+    'AmiLaunchPermissionGranteeOrganizationArn': MigrateHelper(
+      className: 'AmiLaunchPermissionGranteeOrganizationArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'organization_arn',
+          dartName: 'organizationArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationalUnitArn':
-        MigrateHelper(
-          className:
-              'AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationalUnitArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'organizational_unit_arn',
-              dartName: 'organizationalUnitArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'organizationalUnitArn',
+      ],
+      shorthand: 'organizationArn',
+    ),
+    'AmiLaunchPermissionGranteeOrganizationalUnitArn': MigrateHelper(
+      className: 'AmiLaunchPermissionGranteeOrganizationalUnitArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'organizational_unit_arn',
+          dartName: 'organizationalUnitArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'organizationalUnitArn',
+    ),
     'AmplifyAppAutoBranchCreationConfig': MigrateHelper(
       className: 'AmplifyAppAutoBranchCreationConfig',
       slots: <MigrateSlot>[
@@ -176607,19 +176487,49 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'virtual',
+          dartName: 'provider',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'virtual_node':
-                'AppmeshVirtualServiceSpecProviderVirtualVirtualNode',
+                'AppmeshVirtualServiceSpecProviderProviderVirtualNode',
             'virtual_router':
-                'AppmeshVirtualServiceSpecProviderVirtualVirtualRouter',
+                'AppmeshVirtualServiceSpecProviderProviderVirtualRouter',
           },
         ),
       ],
+    ),
+    'AppmeshVirtualServiceSpecProviderProviderVirtualNode': MigrateHelper(
+      className: 'AppmeshVirtualServiceSpecProviderProviderVirtualNode',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'virtual_node',
+          dartName: 'virtualNode',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'AppmeshVirtualServiceSpecProviderVirtualNode',
+        ),
+      ],
+      shorthand: 'virtualNode',
+    ),
+    'AppmeshVirtualServiceSpecProviderProviderVirtualRouter': MigrateHelper(
+      className: 'AppmeshVirtualServiceSpecProviderProviderVirtualRouter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'virtual_router',
+          dartName: 'virtualRouter',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'AppmeshVirtualServiceSpecProviderVirtualRouter',
+        ),
+      ],
+      shorthand: 'virtualRouter',
     ),
     'AppmeshVirtualServiceSpecProviderVirtualNode': MigrateHelper(
       className: 'AppmeshVirtualServiceSpecProviderVirtualNode',
@@ -176644,36 +176554,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'AppmeshVirtualServiceSpecProviderVirtualVirtualNode': MigrateHelper(
-      className: 'AppmeshVirtualServiceSpecProviderVirtualVirtualNode',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'virtual_node',
-          dartName: 'virtualNode',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'AppmeshVirtualServiceSpecProviderVirtualNode',
-        ),
-      ],
-      shorthand: 'virtualNode',
-    ),
-    'AppmeshVirtualServiceSpecProviderVirtualVirtualRouter': MigrateHelper(
-      className: 'AppmeshVirtualServiceSpecProviderVirtualVirtualRouter',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'virtual_router',
-          dartName: 'virtualRouter',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'AppmeshVirtualServiceSpecProviderVirtualRouter',
-        ),
-      ],
-      shorthand: 'virtualRouter',
     ),
     'ApprunnerObservabilityConfigurationTraceConfiguration': MigrateHelper(
       className: 'ApprunnerObservabilityConfigurationTraceConfiguration',
@@ -178413,6 +178293,35 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'AppsyncResolverBackendDataSource': MigrateHelper(
+      className: 'AppsyncResolverBackendDataSource',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'data_source',
+          dartName: 'dataSource',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'dataSource',
+    ),
+    'AppsyncResolverBackendPipelineConfig': MigrateHelper(
+      className: 'AppsyncResolverBackendPipelineConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pipeline_config',
+          dartName: 'pipelineConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'AppsyncResolverPipelineConfig',
+        ),
+      ],
+      shorthand: 'pipelineConfig',
+    ),
     'AppsyncResolverCachingConfig': MigrateHelper(
       className: 'AppsyncResolverCachingConfig',
       slots: <MigrateSlot>[
@@ -178431,35 +178340,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-    ),
-    'AppsyncResolverDataSourceOrPipelineConfigDataSource': MigrateHelper(
-      className: 'AppsyncResolverDataSourceOrPipelineConfigDataSource',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'data_source',
-          dartName: 'dataSource',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'dataSource',
-    ),
-    'AppsyncResolverDataSourceOrPipelineConfigPipelineConfig': MigrateHelper(
-      className: 'AppsyncResolverDataSourceOrPipelineConfigPipelineConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'pipeline_config',
-          dartName: 'pipelineConfig',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'AppsyncResolverPipelineConfig',
-        ),
-      ],
-      shorthand: 'pipelineConfig',
     ),
     'AppsyncResolverPipelineConfig': MigrateHelper(
       className: 'AppsyncResolverPipelineConfig',
@@ -182147,8 +182027,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'AutoscalingAttachmentElbOrLbTargetGroupArnElb': MigrateHelper(
-      className: 'AutoscalingAttachmentElbOrLbTargetGroupArnElb',
+    'AutoscalingAttachmentTargetElb': MigrateHelper(
+      className: 'AutoscalingAttachmentTargetElb',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'elb',
@@ -182161,8 +182041,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'elb',
     ),
-    'AutoscalingAttachmentElbOrLbTargetGroupArnLbTargetGroupArn': MigrateHelper(
-      className: 'AutoscalingAttachmentElbOrLbTargetGroupArnLbTargetGroupArn',
+    'AutoscalingAttachmentTargetLbTargetGroupArn': MigrateHelper(
+      className: 'AutoscalingAttachmentTargetLbTargetGroupArn',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'lb_target_group_arn',
@@ -182188,38 +182068,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierAvailabilityZones':
-        MigrateHelper(
-          className:
-              'AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierAvailabilityZones',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'availability_zones',
-              dartName: 'availabilityZones',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'availabilityZones',
-        ),
-    'AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierVpcZoneIdentifier':
-        MigrateHelper(
-          className:
-              'AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierVpcZoneIdentifier',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'vpc_zone_identifier',
-              dartName: 'vpcZoneIdentifier',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'vpcZoneIdentifier',
-        ),
     'AutoscalingGroupCapacityReservationSpecification': MigrateHelper(
       className: 'AutoscalingGroupCapacityReservationSpecification',
       slots: <MigrateSlot>[
@@ -182514,69 +182362,63 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchConfiguration':
-        MigrateHelper(
-          className:
-              'AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchConfiguration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'launch_configuration',
-              dartName: 'launchConfiguration',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'launchConfiguration',
+    'AutoscalingGroupLaunchLaunchConfiguration': MigrateHelper(
+      className: 'AutoscalingGroupLaunchLaunchConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'launch_configuration',
+          dartName: 'launchConfiguration',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchTemplate':
-        MigrateHelper(
-          className:
-              'AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchTemplate',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'launch_template',
-              dartName: 'launchTemplate',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'AutoscalingGroupLaunchTemplate',
-            ),
-          ],
-          shorthand: 'launchTemplate',
+      ],
+      shorthand: 'launchConfiguration',
+    ),
+    'AutoscalingGroupLaunchLaunchTemplate': MigrateHelper(
+      className: 'AutoscalingGroupLaunchLaunchTemplate',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'launch_template',
+          dartName: 'launchTemplate',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'AutoscalingGroupLaunchTemplate',
         ),
-    'AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyMixedInstancesPolicy':
-        MigrateHelper(
-          className:
-              'AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyMixedInstancesPolicy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'mixed_instances_policy',
-              dartName: 'mixedInstancesPolicy',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'AutoscalingGroupMixedInstancesPolicy',
-            ),
-          ],
-          shorthand: 'mixedInstancesPolicy',
+      ],
+      shorthand: 'launchTemplate',
+    ),
+    'AutoscalingGroupLaunchMixedInstancesPolicy': MigrateHelper(
+      className: 'AutoscalingGroupLaunchMixedInstancesPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mixed_instances_policy',
+          dartName: 'mixedInstancesPolicy',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'AutoscalingGroupMixedInstancesPolicy',
         ),
+      ],
+      shorthand: 'mixedInstancesPolicy',
+    ),
     'AutoscalingGroupLaunchTemplate': MigrateHelper(
       className: 'AutoscalingGroupLaunchTemplate',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'idOrName',
+          dartName: 'template',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'id': 'AutoscalingGroupLaunchTemplateIdOrNameId',
-            'name': 'AutoscalingGroupLaunchTemplateIdOrNameName',
+            'id': 'AutoscalingGroupLaunchTemplateTemplateId',
+            'name': 'AutoscalingGroupLaunchTemplateTemplateName',
           },
         ),
         MigrateSlot(
@@ -182588,8 +182430,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'AutoscalingGroupLaunchTemplateIdOrNameId': MigrateHelper(
-      className: 'AutoscalingGroupLaunchTemplateIdOrNameId',
+    'AutoscalingGroupLaunchTemplateTemplateId': MigrateHelper(
+      className: 'AutoscalingGroupLaunchTemplateTemplateId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'id',
@@ -182602,8 +182444,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'id',
     ),
-    'AutoscalingGroupLaunchTemplateIdOrNameName': MigrateHelper(
-      className: 'AutoscalingGroupLaunchTemplateIdOrNameName',
+    'AutoscalingGroupLaunchTemplateTemplateName': MigrateHelper(
+      className: 'AutoscalingGroupLaunchTemplateTemplateName',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
@@ -183223,6 +183065,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'namePrefix',
+    ),
+    'AutoscalingGroupPlacementAvailabilityZones': MigrateHelper(
+      className: 'AutoscalingGroupPlacementAvailabilityZones',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'availability_zones',
+          dartName: 'availabilityZones',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
+        ),
+      ],
+      shorthand: 'availabilityZones',
+    ),
+    'AutoscalingGroupPlacementVpcZoneIdentifier': MigrateHelper(
+      className: 'AutoscalingGroupPlacementVpcZoneIdentifier',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vpc_zone_identifier',
+          dartName: 'vpcZoneIdentifier',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
+        ),
+      ],
+      shorthand: 'vpcZoneIdentifier',
     ),
     'AutoscalingGroupTag': MigrateHelper(
       className: 'AutoscalingGroupTag',
@@ -188521,26 +188391,24 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureDescription':
-        MigrateHelper(
-          className:
-              'BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureDescription',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'description',
-              dartName: 'description',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'description',
+    'BedrockagentAgentActionGroupDefinitionDescription': MigrateHelper(
+      className: 'BedrockagentAgentActionGroupDefinitionDescription',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'description',
+          dartName: 'description',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureParentActionGroupSignature':
+      ],
+      shorthand: 'description',
+    ),
+    'BedrockagentAgentActionGroupDefinitionParentActionGroupSignature':
         MigrateHelper(
           className:
-              'BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureParentActionGroupSignature',
+              'BedrockagentAgentActionGroupDefinitionParentActionGroupSignature',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'parent_action_group_signature',
@@ -193050,16 +192918,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'genAiResourceOrModelId',
+          dartName: 'model',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'gen_ai_resource':
-                'BedrockagentPromptVariantGenAiResourceOrModelIdGenAiResource',
-            'model_id':
-                'BedrockagentPromptVariantGenAiResourceOrModelIdModelId',
+            'gen_ai_resource': 'BedrockagentPromptVariantModelGenAiResource',
+            'model_id': 'BedrockagentPromptVariantModelModelId',
           },
         ),
         MigrateSlot(
@@ -193131,38 +192997,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'BedrockagentPromptVariantGenAiResourceOrModelIdGenAiResource':
-        MigrateHelper(
-          className:
-              'BedrockagentPromptVariantGenAiResourceOrModelIdGenAiResource',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'gen_ai_resource',
-              dartName: 'genAiResource',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'BedrockagentPromptVariantGenAiResource',
-            ),
-          ],
-          shorthand: 'genAiResource',
-        ),
-    'BedrockagentPromptVariantGenAiResourceOrModelIdModelId': MigrateHelper(
-      className: 'BedrockagentPromptVariantGenAiResourceOrModelIdModelId',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'model_id',
-          dartName: 'modelId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'modelId',
-    ),
     'BedrockagentPromptVariantInferenceConfiguration': MigrateHelper(
       className: 'BedrockagentPromptVariantInferenceConfiguration',
       slots: <MigrateSlot>[
@@ -193228,6 +193062,36 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'BedrockagentPromptVariantModelGenAiResource': MigrateHelper(
+      className: 'BedrockagentPromptVariantModelGenAiResource',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gen_ai_resource',
+          dartName: 'genAiResource',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BedrockagentPromptVariantGenAiResource',
+        ),
+      ],
+      shorthand: 'genAiResource',
+    ),
+    'BedrockagentPromptVariantModelModelId': MigrateHelper(
+      className: 'BedrockagentPromptVariantModelModelId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'model_id',
+          dartName: 'modelId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'modelId',
     ),
     'BedrockagentPromptVariantTemplateConfiguration': MigrateHelper(
       className: 'BedrockagentPromptVariantTemplateConfiguration',
@@ -202576,37 +202440,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'BudgetsBudgetCostFilterOrFilterExpressionCostFilter': MigrateHelper(
-      className: 'BudgetsBudgetCostFilterOrFilterExpressionCostFilter',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'cost_filter',
-          dartName: 'costFilter',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          repeated: true,
-          wrapped: false,
-          positional: true,
-          helper: 'BudgetsBudgetCostFilter',
-        ),
-      ],
-      shorthand: 'costFilter',
-    ),
-    'BudgetsBudgetCostFilterOrFilterExpressionFilterExpression': MigrateHelper(
-      className: 'BudgetsBudgetCostFilterOrFilterExpressionFilterExpression',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'filter_expression',
-          dartName: 'filterExpression',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'BudgetsBudgetFilterExpression',
-        ),
-      ],
-      shorthand: 'filterExpression',
-    ),
     'BudgetsBudgetCostTypes': MigrateHelper(
       className: 'BudgetsBudgetCostTypes',
       slots: <MigrateSlot>[
@@ -202689,35 +202522,21 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'BudgetsBudgetCostTypesOrMetricsCostTypes': MigrateHelper(
-      className: 'BudgetsBudgetCostTypesOrMetricsCostTypes',
+    'BudgetsBudgetFilterCostFilter': MigrateHelper(
+      className: 'BudgetsBudgetFilterCostFilter',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'cost_types',
-          dartName: 'costTypes',
+          tfName: 'cost_filter',
+          dartName: 'costFilter',
           kind: MigrateSlotKind.helper,
           required: true,
+          repeated: true,
           wrapped: false,
           positional: true,
-          helper: 'BudgetsBudgetCostTypes',
+          helper: 'BudgetsBudgetCostFilter',
         ),
       ],
-      shorthand: 'costTypes',
-    ),
-    'BudgetsBudgetCostTypesOrMetricsMetrics': MigrateHelper(
-      className: 'BudgetsBudgetCostTypesOrMetricsMetrics',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'metrics',
-          dartName: 'metrics',
-          kind: MigrateSlotKind.enumValue,
-          required: true,
-          repeated: true,
-          positional: true,
-          dartType: 'BudgetsBudgetMetrics',
-        ),
-      ],
-      shorthand: 'metrics',
+      shorthand: 'costFilter',
     ),
     'BudgetsBudgetFilterExpression': MigrateHelper(
       className: 'BudgetsBudgetFilterExpression',
@@ -204216,6 +204035,51 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'List<Object?>',
         ),
       ],
+    ),
+    'BudgetsBudgetFilterFilterExpression': MigrateHelper(
+      className: 'BudgetsBudgetFilterFilterExpression',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'filter_expression',
+          dartName: 'filterExpression',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BudgetsBudgetFilterExpression',
+        ),
+      ],
+      shorthand: 'filterExpression',
+    ),
+    'BudgetsBudgetMeasureCostTypes': MigrateHelper(
+      className: 'BudgetsBudgetMeasureCostTypes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cost_types',
+          dartName: 'costTypes',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BudgetsBudgetCostTypes',
+        ),
+      ],
+      shorthand: 'costTypes',
+    ),
+    'BudgetsBudgetMeasureMetrics': MigrateHelper(
+      className: 'BudgetsBudgetMeasureMetrics',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'metrics',
+          dartName: 'metrics',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          repeated: true,
+          positional: true,
+          dartType: 'BudgetsBudgetMetrics',
+        ),
+      ],
+      shorthand: 'metrics',
     ),
     'BudgetsBudgetNameName': MigrateHelper(
       className: 'BudgetsBudgetNameName',
@@ -207312,39 +207176,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudformationStackInstancesAccountsOrDeploymentTargetsAccounts':
-        MigrateHelper(
-          className:
-              'CloudformationStackInstancesAccountsOrDeploymentTargetsAccounts',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'accounts',
-              dartName: 'accounts',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'accounts',
-        ),
-    'CloudformationStackInstancesAccountsOrDeploymentTargetsDeploymentTargets':
-        MigrateHelper(
-          className:
-              'CloudformationStackInstancesAccountsOrDeploymentTargetsDeploymentTargets',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'deployment_targets',
-              dartName: 'deploymentTargets',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudformationStackInstancesDeploymentTargets',
-            ),
-          ],
-          shorthand: 'deploymentTargets',
-        ),
     'CloudformationStackInstancesDeploymentTargets': MigrateHelper(
       className: 'CloudformationStackInstancesDeploymentTargets',
       slots: <MigrateSlot>[
@@ -207498,6 +207329,35 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'maxConcurrentPercentage',
         ),
+    'CloudformationStackInstancesTargetsAccounts': MigrateHelper(
+      className: 'CloudformationStackInstancesTargetsAccounts',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'accounts',
+          dartName: 'accounts',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
+        ),
+      ],
+      shorthand: 'accounts',
+    ),
+    'CloudformationStackInstancesTargetsDeploymentTargets': MigrateHelper(
+      className: 'CloudformationStackInstancesTargetsDeploymentTargets',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'deployment_targets',
+          dartName: 'deploymentTargets',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'CloudformationStackInstancesDeploymentTargets',
+        ),
+      ],
+      shorthand: 'deploymentTargets',
+    ),
     'CloudformationStackSetAutoDeployment': MigrateHelper(
       className: 'CloudformationStackSetAutoDeployment',
       slots: <MigrateSlot>[
@@ -207524,39 +207384,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudformationStackSetInstanceAccountIdOrDeploymentTargetsAccountId':
-        MigrateHelper(
-          className:
-              'CloudformationStackSetInstanceAccountIdOrDeploymentTargetsAccountId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'account_id',
-              dartName: 'accountId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'accountId',
-        ),
-    'CloudformationStackSetInstanceAccountIdOrDeploymentTargetsDeploymentTargets':
-        MigrateHelper(
-          className:
-              'CloudformationStackSetInstanceAccountIdOrDeploymentTargetsDeploymentTargets',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'deployment_targets',
-              dartName: 'deploymentTargets',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudformationStackSetInstanceDeploymentTargets',
-            ),
-          ],
-          shorthand: 'deploymentTargets',
-        ),
     'CloudformationStackSetInstanceDeploymentTargets': MigrateHelper(
       className: 'CloudformationStackSetInstanceDeploymentTargets',
       slots: <MigrateSlot>[
@@ -207710,38 +207537,63 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'maxConcurrentPercentage',
         ),
-    'CloudformationStackSetInstanceRegionOrStackSetInstanceRegionRegion':
-        MigrateHelper(
-          className:
-              'CloudformationStackSetInstanceRegionOrStackSetInstanceRegionRegion',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'region',
-              dartName: 'region',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'region',
+    'CloudformationStackSetInstanceRegionRegion': MigrateHelper(
+      className: 'CloudformationStackSetInstanceRegionRegion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'region',
+          dartName: 'region',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'CloudformationStackSetInstanceRegionOrStackSetInstanceRegionStackSetInstanceRegion':
-        MigrateHelper(
-          className:
-              'CloudformationStackSetInstanceRegionOrStackSetInstanceRegionStackSetInstanceRegion',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'stack_set_instance_region',
-              dartName: 'stackSetInstanceRegion',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'stackSetInstanceRegion',
+      ],
+      shorthand: 'region',
+    ),
+    'CloudformationStackSetInstanceRegionStackSetInstanceRegion': MigrateHelper(
+      className: 'CloudformationStackSetInstanceRegionStackSetInstanceRegion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'stack_set_instance_region',
+          dartName: 'stackSetInstanceRegion',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'stackSetInstanceRegion',
+    ),
+    'CloudformationStackSetInstanceTargetAccountId': MigrateHelper(
+      className: 'CloudformationStackSetInstanceTargetAccountId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'accountId',
+    ),
+    'CloudformationStackSetInstanceTargetDeploymentTargets': MigrateHelper(
+      className: 'CloudformationStackSetInstanceTargetDeploymentTargets',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'deployment_targets',
+          dartName: 'deploymentTargets',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'CloudformationStackSetInstanceDeploymentTargets',
+        ),
+      ],
+      shorthand: 'deploymentTargets',
+    ),
     'CloudformationStackSetManagedExecution': MigrateHelper(
       className: 'CloudformationStackSetManagedExecution',
       slots: <MigrateSlot>[
@@ -211275,8 +211127,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone': MigrateHelper(
-      className: 'CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone',
+    'CloudhsmV2HsmPlacementAvailabilityZone': MigrateHelper(
+      className: 'CloudhsmV2HsmPlacementAvailabilityZone',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'availability_zone',
@@ -211289,8 +211141,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'availabilityZone',
     ),
-    'CloudhsmV2HsmAvailabilityZoneOrSubnetIdSubnetId': MigrateHelper(
-      className: 'CloudhsmV2HsmAvailabilityZoneOrSubnetIdSubnetId',
+    'CloudhsmV2HsmPlacementSubnetId': MigrateHelper(
+      className: 'CloudhsmV2HsmPlacementSubnetId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'subnet_id',
@@ -211498,42 +211350,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudtrailAdvancedEventSelectorOrEventSelectorAdvancedEventSelector':
-        MigrateHelper(
-          className:
-              'CloudtrailAdvancedEventSelectorOrEventSelectorAdvancedEventSelector',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'advanced_event_selector',
-              dartName: 'advancedEventSelector',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudtrailAdvancedEventSelector',
-            ),
-          ],
-          shorthand: 'advancedEventSelector',
-        ),
-    'CloudtrailAdvancedEventSelectorOrEventSelectorEventSelector':
-        MigrateHelper(
-          className:
-              'CloudtrailAdvancedEventSelectorOrEventSelectorEventSelector',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'event_selector',
-              dartName: 'eventSelector',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudtrailEventSelector',
-            ),
-          ],
-          shorthand: 'eventSelector',
-        ),
     'CloudtrailEventDataStoreAdvancedEventSelector': MigrateHelper(
       className: 'CloudtrailEventDataStoreAdvancedEventSelector',
       slots: <MigrateSlot>[
@@ -211676,6 +211492,38 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'CloudtrailSelectorsAdvancedEventSelector': MigrateHelper(
+      className: 'CloudtrailSelectorsAdvancedEventSelector',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'advanced_event_selector',
+          dartName: 'advancedEventSelector',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'CloudtrailAdvancedEventSelector',
+        ),
+      ],
+      shorthand: 'advancedEventSelector',
+    ),
+    'CloudtrailSelectorsEventSelector': MigrateHelper(
+      className: 'CloudtrailSelectorsEventSelector',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'event_selector',
+          dartName: 'eventSelector',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'CloudtrailEventSelector',
+        ),
+      ],
+      shorthand: 'eventSelector',
+    ),
     'CloudwatchAlarmMuteRuleMuteTargets': MigrateHelper(
       className: 'CloudwatchAlarmMuteRuleMuteTargets',
       slots: <MigrateSlot>[
@@ -211790,18 +211638,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'apiKeyOrBasicOrOauth',
+          dartName: 'auth',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'api_key':
-                'CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthApiKey',
-            'basic':
-                'CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthBasic',
-            'oauth':
-                'CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthOauth',
+            'api_key': 'CloudwatchEventConnectionAuthParametersAuthApiKey',
+            'basic': 'CloudwatchEventConnectionAuthParametersAuthBasic',
+            'oauth': 'CloudwatchEventConnectionAuthParametersAuthOauth',
           },
         ),
         MigrateSlot(
@@ -211843,57 +211688,51 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthApiKey':
-        MigrateHelper(
-          className:
-              'CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthApiKey',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'api_key',
-              dartName: 'apiKey',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudwatchEventConnectionAuthParametersApiKey',
-            ),
-          ],
-          shorthand: 'apiKey',
+    'CloudwatchEventConnectionAuthParametersAuthApiKey': MigrateHelper(
+      className: 'CloudwatchEventConnectionAuthParametersAuthApiKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'api_key',
+          dartName: 'apiKey',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'CloudwatchEventConnectionAuthParametersApiKey',
         ),
-    'CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthBasic':
-        MigrateHelper(
-          className:
-              'CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthBasic',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'basic',
-              dartName: 'basic',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudwatchEventConnectionAuthParametersBasic',
-            ),
-          ],
-          shorthand: 'basic',
+      ],
+      shorthand: 'apiKey',
+    ),
+    'CloudwatchEventConnectionAuthParametersAuthBasic': MigrateHelper(
+      className: 'CloudwatchEventConnectionAuthParametersAuthBasic',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'basic',
+          dartName: 'basic',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'CloudwatchEventConnectionAuthParametersBasic',
         ),
-    'CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthOauth':
-        MigrateHelper(
-          className:
-              'CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthOauth',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'oauth',
-              dartName: 'oauth',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudwatchEventConnectionAuthParametersOauth',
-            ),
-          ],
-          shorthand: 'oauth',
+      ],
+      shorthand: 'basic',
+    ),
+    'CloudwatchEventConnectionAuthParametersAuthOauth': MigrateHelper(
+      className: 'CloudwatchEventConnectionAuthParametersAuthOauth',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'oauth',
+          dartName: 'oauth',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'CloudwatchEventConnectionAuthParametersOauth',
         ),
+      ],
+      shorthand: 'oauth',
+    ),
     'CloudwatchEventConnectionAuthParametersBasic': MigrateHelper(
       className: 'CloudwatchEventConnectionAuthParametersBasic',
       slots: <MigrateSlot>[
@@ -212378,34 +212217,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudwatchEventRuleIsEnabledOrStateIsEnabled': MigrateHelper(
-      className: 'CloudwatchEventRuleIsEnabledOrStateIsEnabled',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'is_enabled',
-          dartName: 'isEnabled',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'bool',
-        ),
-      ],
-      shorthand: 'isEnabled',
-    ),
-    'CloudwatchEventRuleIsEnabledOrStateState': MigrateHelper(
-      className: 'CloudwatchEventRuleIsEnabledOrStateState',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'state',
-          dartName: 'state',
-          kind: MigrateSlotKind.enumValue,
-          required: true,
-          positional: true,
-          dartType: 'CloudwatchEventRuleState',
-        ),
-      ],
-      shorthand: 'state',
-    ),
     'CloudwatchEventRuleNameName': MigrateHelper(
       className: 'CloudwatchEventRuleNameName',
       slots: <MigrateSlot>[
@@ -212433,6 +212244,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'namePrefix',
+    ),
+    'CloudwatchEventRuleStatusIsEnabled': MigrateHelper(
+      className: 'CloudwatchEventRuleStatusIsEnabled',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'is_enabled',
+          dartName: 'isEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'isEnabled',
+    ),
+    'CloudwatchEventRuleStatusState': MigrateHelper(
+      className: 'CloudwatchEventRuleStatusState',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'state',
+          dartName: 'state',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'CloudwatchEventRuleState',
+        ),
+      ],
+      shorthand: 'state',
     ),
     'CloudwatchEventTargetAppsyncTarget': MigrateHelper(
       className: 'CloudwatchEventTargetAppsyncTarget',
@@ -213007,38 +212846,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName':
-        MigrateHelper(
-          className:
-              'CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'policy_name',
-              dartName: 'policyName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'policyName',
+    'CloudwatchLogResourcePolicyScopePolicyName': MigrateHelper(
+      className: 'CloudwatchLogResourcePolicyScopePolicyName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'policy_name',
+          dartName: 'policyName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'CloudwatchLogResourcePolicyPolicyNameOrResourceArnResourceArn':
-        MigrateHelper(
-          className:
-              'CloudwatchLogResourcePolicyPolicyNameOrResourceArnResourceArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'resource_arn',
-              dartName: 'resourceArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'resourceArn',
+      ],
+      shorthand: 'policyName',
+    ),
+    'CloudwatchLogResourcePolicyScopeResourceArn': MigrateHelper(
+      className: 'CloudwatchLogResourcePolicyScopeResourceArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'resource_arn',
+          dartName: 'resourceArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'resourceArn',
+    ),
     'CloudwatchLogS3TableIntegrationSourceDataSource': MigrateHelper(
       className: 'CloudwatchLogS3TableIntegrationSourceDataSource',
       slots: <MigrateSlot>[
@@ -213903,6 +213738,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'CloudwatchMetricAlarmAggregationExtendedStatistic': MigrateHelper(
+      className: 'CloudwatchMetricAlarmAggregationExtendedStatistic',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'extended_statistic',
+          dartName: 'extendedStatistic',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'extendedStatistic',
+    ),
+    'CloudwatchMetricAlarmAggregationStatistic': MigrateHelper(
+      className: 'CloudwatchMetricAlarmAggregationStatistic',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'statistic',
+          dartName: 'statistic',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'CloudwatchMetricAlarmStatistic',
+        ),
+      ],
+      shorthand: 'statistic',
+    ),
     'CloudwatchMetricAlarmEvaluationCriteria': MigrateHelper(
       className: 'CloudwatchMetricAlarmEvaluationCriteria',
       slots: <MigrateSlot>[
@@ -213916,57 +213779,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEvaluationCriteria':
-        MigrateHelper(
-          className:
-              'CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEvaluationCriteria',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'evaluation_criteria',
-              dartName: 'evaluationCriteria',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudwatchMetricAlarmEvaluationCriteria',
-            ),
-          ],
-          shorthand: 'evaluationCriteria',
-        ),
-    'CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricName':
-        MigrateHelper(
-          className:
-              'CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'metric_name',
-              dartName: 'metricName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'metricName',
-        ),
-    'CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricQuery':
-        MigrateHelper(
-          className:
-              'CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricQuery',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'metric_query',
-              dartName: 'metricQuery',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudwatchMetricAlarmMetricQuery',
-            ),
-          ],
-          shorthand: 'metricQuery',
-        ),
     'CloudwatchMetricAlarmEvaluationCriteriaPromqlCriteria': MigrateHelper(
       className: 'CloudwatchMetricAlarmEvaluationCriteriaPromqlCriteria',
       slots: <MigrateSlot>[
@@ -213993,35 +213805,50 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic':
-        MigrateHelper(
-          className:
-              'CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'extended_statistic',
-              dartName: 'extendedStatistic',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'extendedStatistic',
-        ),
-    'CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic': MigrateHelper(
-      className: 'CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic',
+    'CloudwatchMetricAlarmMetricEvaluationCriteria': MigrateHelper(
+      className: 'CloudwatchMetricAlarmMetricEvaluationCriteria',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'statistic',
-          dartName: 'statistic',
-          kind: MigrateSlotKind.enumValue,
+          tfName: 'evaluation_criteria',
+          dartName: 'evaluationCriteria',
+          kind: MigrateSlotKind.helper,
           required: true,
+          wrapped: false,
           positional: true,
-          dartType: 'CloudwatchMetricAlarmStatistic',
+          helper: 'CloudwatchMetricAlarmEvaluationCriteria',
         ),
       ],
-      shorthand: 'statistic',
+      shorthand: 'evaluationCriteria',
+    ),
+    'CloudwatchMetricAlarmMetricMetricName': MigrateHelper(
+      className: 'CloudwatchMetricAlarmMetricMetricName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'metric_name',
+          dartName: 'metricName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'metricName',
+    ),
+    'CloudwatchMetricAlarmMetricMetricQuery': MigrateHelper(
+      className: 'CloudwatchMetricAlarmMetricMetricQuery',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'metric_query',
+          dartName: 'metricQuery',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'CloudwatchMetricAlarmMetricQuery',
+        ),
+      ],
+      shorthand: 'metricQuery',
     ),
     'CloudwatchMetricAlarmMetricQuery': MigrateHelper(
       className: 'CloudwatchMetricAlarmMetricQuery',
@@ -214067,61 +213894,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'metric',
-          dartName: 'metric',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'CloudwatchMetricAlarmMetricQueryMetric',
-        ),
-      ],
-    ),
-    'CloudwatchMetricAlarmMetricQueryMetric': MigrateHelper(
-      className: 'CloudwatchMetricAlarmMetricQueryMetric',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'dimensions',
-          dartName: 'dimensions',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'Map<String, String>',
-        ),
-        MigrateSlot(
-          tfName: 'metric_name',
-          dartName: 'metricName',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'namespace',
-          dartName: 'namespace',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'period',
-          dartName: 'period',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'stat',
-          dartName: 'stat',
-          kind: MigrateSlotKind.enumValue,
-          required: true,
-          dartType: 'CloudwatchMetricAlarmMetricQueryMetricStat',
-        ),
-        MigrateSlot(
-          tfName: 'unit',
-          dartName: 'unit',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'CloudwatchMetricAlarmMetricQueryMetricUnit',
         ),
       ],
     ),
@@ -215327,8 +215099,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CodebuildWebhookBranchFilterOrFilterGroupBranchFilter': MigrateHelper(
-      className: 'CodebuildWebhookBranchFilterOrFilterGroupBranchFilter',
+    'CodebuildWebhookFilterBranchFilter': MigrateHelper(
+      className: 'CodebuildWebhookFilterBranchFilter',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'branch_filter',
@@ -215341,8 +215113,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'branchFilter',
     ),
-    'CodebuildWebhookBranchFilterOrFilterGroupFilterGroup': MigrateHelper(
-      className: 'CodebuildWebhookBranchFilterOrFilterGroupFilterGroup',
+    'CodebuildWebhookFilterFilterGroup': MigrateHelper(
+      className: 'CodebuildWebhookFilterFilterGroup',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'filter_group',
@@ -215359,43 +215131,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     ),
     'CodebuildWebhookFilterGroup': MigrateHelper(
       className: 'CodebuildWebhookFilterGroup',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'filter',
-          dartName: 'filter',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'CodebuildWebhookFilterGroupFilter',
-        ),
-      ],
-    ),
-    'CodebuildWebhookFilterGroupFilter': MigrateHelper(
-      className: 'CodebuildWebhookFilterGroupFilter',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'exclude_matched_pattern',
-          dartName: 'excludeMatchedPattern',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'pattern',
-          dartName: 'pattern',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'type',
-          dartName: 'type',
-          kind: MigrateSlotKind.enumValue,
-          required: true,
-          dartType: 'CodebuildWebhookFilterGroupFilterType',
-        ),
-      ],
+      slots: <MigrateSlot>[],
     ),
     'CodebuildWebhookPullRequestBuildPolicy': MigrateHelper(
       className: 'CodebuildWebhookPullRequestBuildPolicy',
@@ -215535,8 +215271,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CodeconnectionsConnectionHostArnOrProviderTypeHostArn': MigrateHelper(
-      className: 'CodeconnectionsConnectionHostArnOrProviderTypeHostArn',
+    'CodeconnectionsConnectionHostHostArn': MigrateHelper(
+      className: 'CodeconnectionsConnectionHostHostArn',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'host_arn',
@@ -215549,8 +215285,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'hostArn',
     ),
-    'CodeconnectionsConnectionHostArnOrProviderTypeProviderType': MigrateHelper(
-      className: 'CodeconnectionsConnectionHostArnOrProviderTypeProviderType',
+    'CodeconnectionsConnectionHostProviderType': MigrateHelper(
+      className: 'CodeconnectionsConnectionHostProviderType',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'provider_type',
@@ -217390,8 +217126,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CodestarconnectionsConnectionHostArnOrProviderTypeHostArn': MigrateHelper(
-      className: 'CodestarconnectionsConnectionHostArnOrProviderTypeHostArn',
+    'CodestarconnectionsConnectionHostHostArn': MigrateHelper(
+      className: 'CodestarconnectionsConnectionHostHostArn',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'host_arn',
@@ -217404,22 +217140,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'hostArn',
     ),
-    'CodestarconnectionsConnectionHostArnOrProviderTypeProviderType':
-        MigrateHelper(
-          className:
-              'CodestarconnectionsConnectionHostArnOrProviderTypeProviderType',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'provider_type',
-              dartName: 'providerType',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              positional: true,
-              dartType: 'CodestarconnectionsConnectionProviderType',
-            ),
-          ],
-          shorthand: 'providerType',
+    'CodestarconnectionsConnectionHostProviderType': MigrateHelper(
+      className: 'CodestarconnectionsConnectionHostProviderType',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'provider_type',
+          dartName: 'providerType',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'CodestarconnectionsConnectionProviderType',
         ),
+      ],
+      shorthand: 'providerType',
+    ),
     'CodestarconnectionsHostVpcConfiguration': MigrateHelper(
       className: 'CodestarconnectionsHostVpcConfiguration',
       slots: <MigrateSlot>[
@@ -217700,38 +217434,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings':
-        MigrateHelper(
-          className:
-              'CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'settings',
-              dartName: 'settings',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'settings',
+    'CognitoManagedLoginBrandingStyleSettings': MigrateHelper(
+      className: 'CognitoManagedLoginBrandingStyleSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'settings',
+          dartName: 'settings',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues':
-        MigrateHelper(
-          className:
-              'CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'use_cognito_provided_values',
-              dartName: 'useCognitoProvidedValues',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'useCognitoProvidedValues',
+      ],
+      shorthand: 'settings',
+    ),
+    'CognitoManagedLoginBrandingStyleUseCognitoProvidedValues': MigrateHelper(
+      className: 'CognitoManagedLoginBrandingStyleUseCognitoProvidedValues',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'use_cognito_provided_values',
+          dartName: 'useCognitoProvidedValues',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
+      ],
+      shorthand: 'useCognitoProvidedValues',
+    ),
     'CognitoManagedUserPoolClientAnalyticsConfiguration': MigrateHelper(
       className: 'CognitoManagedUserPoolClientAnalyticsConfiguration',
       slots: <MigrateSlot>[
@@ -218214,8 +217944,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CognitoUserPasswordOrTemporaryPasswordPassword': MigrateHelper(
-      className: 'CognitoUserPasswordOrTemporaryPasswordPassword',
+    'CognitoUserPasswordPassword': MigrateHelper(
+      className: 'CognitoUserPasswordPassword',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'password',
@@ -218228,8 +217958,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'password',
     ),
-    'CognitoUserPasswordOrTemporaryPasswordTemporaryPassword': MigrateHelper(
-      className: 'CognitoUserPasswordOrTemporaryPasswordTemporaryPassword',
+    'CognitoUserPasswordTemporaryPassword': MigrateHelper(
+      className: 'CognitoUserPasswordTemporaryPassword',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'temporary_password',
@@ -218321,36 +218051,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'CognitoUserPoolAttributesAliasAttributes': MigrateHelper(
-      className: 'CognitoUserPoolAttributesAliasAttributes',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'alias_attributes',
-          dartName: 'aliasAttributes',
-          kind: MigrateSlotKind.enumValue,
-          required: true,
-          repeated: true,
-          positional: true,
-          dartType: 'CognitoUserPoolAliasAttributes',
-        ),
-      ],
-      shorthand: 'aliasAttributes',
-    ),
-    'CognitoUserPoolAttributesUsernameAttributes': MigrateHelper(
-      className: 'CognitoUserPoolAttributesUsernameAttributes',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'username_attributes',
-          dartName: 'usernameAttributes',
-          kind: MigrateSlotKind.enumValue,
-          required: true,
-          repeated: true,
-          positional: true,
-          dartType: 'CognitoUserPoolUsernameAttributes',
-        ),
-      ],
-      shorthand: 'usernameAttributes',
     ),
     'CognitoUserPoolClientAnalyticsConfiguration': MigrateHelper(
       className: 'CognitoUserPoolClientAnalyticsConfiguration',
@@ -218859,6 +218559,36 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'CognitoUserPoolSignInAttributesAliasAttributes': MigrateHelper(
+      className: 'CognitoUserPoolSignInAttributesAliasAttributes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'alias_attributes',
+          dartName: 'aliasAttributes',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          repeated: true,
+          positional: true,
+          dartType: 'CognitoUserPoolAliasAttributes',
+        ),
+      ],
+      shorthand: 'aliasAttributes',
+    ),
+    'CognitoUserPoolSignInAttributesUsernameAttributes': MigrateHelper(
+      className: 'CognitoUserPoolSignInAttributesUsernameAttributes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'username_attributes',
+          dartName: 'usernameAttributes',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          repeated: true,
+          positional: true,
+          dartType: 'CognitoUserPoolUsernameAttributes',
+        ),
+      ],
+      shorthand: 'usernameAttributes',
+    ),
     'CognitoUserPoolSignInPolicy': MigrateHelper(
       className: 'CognitoUserPoolSignInPolicy',
       slots: <MigrateSlot>[
@@ -219056,16 +218786,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'augmentedManifestsOrS3Uri',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'augmented_manifests':
-                'ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriAugmentedManifests',
-            's3_uri':
-                'ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriS3Uri',
+                'ComprehendDocumentClassifierInputDataConfigSourceAugmentedManifests',
+            's3_uri': 'ComprehendDocumentClassifierInputDataConfigSourceS3Uri',
           },
         ),
         MigrateSlot(
@@ -219127,10 +218856,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriAugmentedManifests':
+    'ComprehendDocumentClassifierInputDataConfigSourceAugmentedManifests':
         MigrateHelper(
           className:
-              'ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriAugmentedManifests',
+              'ComprehendDocumentClassifierInputDataConfigSourceAugmentedManifests',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'augmented_manifests',
@@ -219146,22 +218875,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'augmentedManifests',
         ),
-    'ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriS3Uri':
-        MigrateHelper(
-          className:
-              'ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriS3Uri',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 's3_uri',
-              dartName: 's3Uri',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 's3Uri',
+    'ComprehendDocumentClassifierInputDataConfigSourceS3Uri': MigrateHelper(
+      className: 'ComprehendDocumentClassifierInputDataConfigSourceS3Uri',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 's3_uri',
+          dartName: 's3Uri',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 's3Uri',
+    ),
     'ComprehendDocumentClassifierOutputDataConfig': MigrateHelper(
       className: 'ComprehendDocumentClassifierOutputDataConfig',
       slots: <MigrateSlot>[
@@ -219240,30 +218967,30 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'annotationsOrEntityList',
+          dartName: 'labels',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'annotations':
-                'ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListAnnotations',
+                'ComprehendEntityRecognizerInputDataConfigLabelsAnnotations',
             'entity_list':
-                'ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListEntityList',
+                'ComprehendEntityRecognizerInputDataConfigLabelsEntityList',
           },
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'augmentedManifestsOrDocuments',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'augmented_manifests':
-                'ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsAugmentedManifests',
+                'ComprehendEntityRecognizerInputDataConfigSourceAugmentedManifests',
             'documents':
-                'ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsDocuments',
+                'ComprehendEntityRecognizerInputDataConfigSourceDocuments',
           },
         ),
         MigrateSlot(
@@ -219296,40 +219023,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListAnnotations':
-        MigrateHelper(
-          className:
-              'ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListAnnotations',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'annotations',
-              dartName: 'annotations',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ComprehendEntityRecognizerInputDataConfigAnnotations',
-            ),
-          ],
-          shorthand: 'annotations',
-        ),
-    'ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListEntityList':
-        MigrateHelper(
-          className:
-              'ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityListEntityList',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'entity_list',
-              dartName: 'entityList',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ComprehendEntityRecognizerInputDataConfigEntityList',
-            ),
-          ],
-          shorthand: 'entityList',
-        ),
     'ComprehendEntityRecognizerInputDataConfigAugmentedManifests': MigrateHelper(
       className: 'ComprehendEntityRecognizerInputDataConfigAugmentedManifests',
       slots: <MigrateSlot>[
@@ -219379,42 +219072,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsAugmentedManifests':
-        MigrateHelper(
-          className:
-              'ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsAugmentedManifests',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'augmented_manifests',
-              dartName: 'augmentedManifests',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'ComprehendEntityRecognizerInputDataConfigAugmentedManifests',
-            ),
-          ],
-          shorthand: 'augmentedManifests',
-        ),
-    'ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsDocuments':
-        MigrateHelper(
-          className:
-              'ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocumentsDocuments',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'documents',
-              dartName: 'documents',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ComprehendEntityRecognizerInputDataConfigDocuments',
-            ),
-          ],
-          shorthand: 'documents',
-        ),
     'ComprehendEntityRecognizerInputDataConfigDocuments': MigrateHelper(
       className: 'ComprehendEntityRecognizerInputDataConfigDocuments',
       slots: <MigrateSlot>[
@@ -219465,6 +219122,70 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ComprehendEntityRecognizerInputDataConfigLabelsAnnotations': MigrateHelper(
+      className: 'ComprehendEntityRecognizerInputDataConfigLabelsAnnotations',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'annotations',
+          dartName: 'annotations',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComprehendEntityRecognizerInputDataConfigAnnotations',
+        ),
+      ],
+      shorthand: 'annotations',
+    ),
+    'ComprehendEntityRecognizerInputDataConfigLabelsEntityList': MigrateHelper(
+      className: 'ComprehendEntityRecognizerInputDataConfigLabelsEntityList',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'entity_list',
+          dartName: 'entityList',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComprehendEntityRecognizerInputDataConfigEntityList',
+        ),
+      ],
+      shorthand: 'entityList',
+    ),
+    'ComprehendEntityRecognizerInputDataConfigSourceAugmentedManifests':
+        MigrateHelper(
+          className:
+              'ComprehendEntityRecognizerInputDataConfigSourceAugmentedManifests',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'augmented_manifests',
+              dartName: 'augmentedManifests',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'ComprehendEntityRecognizerInputDataConfigAugmentedManifests',
+            ),
+          ],
+          shorthand: 'augmentedManifests',
+        ),
+    'ComprehendEntityRecognizerInputDataConfigSourceDocuments': MigrateHelper(
+      className: 'ComprehendEntityRecognizerInputDataConfigSourceDocuments',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'documents',
+          dartName: 'documents',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComprehendEntityRecognizerInputDataConfigDocuments',
+        ),
+      ],
+      shorthand: 'documents',
     ),
     'ComprehendEntityRecognizerVersionNameVersionName': MigrateHelper(
       className: 'ComprehendEntityRecognizerVersionNameVersionName',
@@ -219533,16 +219254,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'excludeListOrIncludeList',
+          dartName: 'filter',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'exclude_list':
-                'ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListExcludeList',
+                'ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcludeList',
             'include_list':
-                'ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListIncludeList',
+                'ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncludeList',
           },
         ),
         MigrateSlot(
@@ -219555,10 +219276,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListExcludeList':
+    'ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcludeList':
         MigrateHelper(
           className:
-              'ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListExcludeList',
+              'ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcludeList',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'exclude_list',
@@ -219571,10 +219292,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'excludeList',
         ),
-    'ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListIncludeList':
+    'ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncludeList':
         MigrateHelper(
           className:
-              'ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListIncludeList',
+              'ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncludeList',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'include_list',
@@ -219653,38 +219374,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion':
-        MigrateHelper(
-          className:
-              'ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'authorized_aws_region',
-              dartName: 'authorizedAwsRegion',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'authorizedAwsRegion',
+    'ConfigAggregateAuthorizationRegionAuthorizedAwsRegion': MigrateHelper(
+      className: 'ConfigAggregateAuthorizationRegionAuthorizedAwsRegion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'authorized_aws_region',
+          dartName: 'authorizedAwsRegion',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion':
-        MigrateHelper(
-          className:
-              'ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'region',
-              dartName: 'region',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'region',
+      ],
+      shorthand: 'authorizedAwsRegion',
+    ),
+    'ConfigAggregateAuthorizationRegionRegion': MigrateHelper(
+      className: 'ConfigAggregateAuthorizationRegionRegion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'region',
+          dartName: 'region',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'region',
+    ),
     'ConfigConfigRuleEvaluationMode': MigrateHelper(
       className: 'ConfigConfigRuleEvaluationMode',
       slots: <MigrateSlot>[
@@ -220191,8 +219908,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ConnectContactFlowContentOrFilenameContent': MigrateHelper(
-      className: 'ConnectContactFlowContentOrFilenameContent',
+    'ConnectContactFlowContentContent': MigrateHelper(
+      className: 'ConnectContactFlowContentContent',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content',
@@ -220205,8 +219922,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'content',
     ),
-    'ConnectContactFlowContentOrFilenameFilename': MigrateHelper(
-      className: 'ConnectContactFlowContentOrFilenameFilename',
+    'ConnectContactFlowContentFilename': MigrateHelper(
+      className: 'ConnectContactFlowContentFilename',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'filename',
@@ -220219,8 +219936,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'filename',
     ),
-    'ConnectContactFlowModuleContentOrFilenameContent': MigrateHelper(
-      className: 'ConnectContactFlowModuleContentOrFilenameContent',
+    'ConnectContactFlowModuleContentContent': MigrateHelper(
+      className: 'ConnectContactFlowModuleContentContent',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content',
@@ -220233,8 +219950,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'content',
     ),
-    'ConnectContactFlowModuleContentOrFilenameFilename': MigrateHelper(
-      className: 'ConnectContactFlowModuleContentOrFilenameFilename',
+    'ConnectContactFlowModuleContentFilename': MigrateHelper(
+      className: 'ConnectContactFlowModuleContentFilename',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'filename',
@@ -228560,54 +228277,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'identifierPrefix',
     ),
-    'DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword':
-        MigrateHelper(
-          className:
-              'DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'manage_master_user_password',
-              dartName: 'manageMasterUserPassword',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'manageMasterUserPassword',
+    'DbInstancePasswordManageMasterUserPassword': MigrateHelper(
+      className: 'DbInstancePasswordManageMasterUserPassword',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'manage_master_user_password',
+          dartName: 'manageMasterUserPassword',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
-    'DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword':
-        MigrateHelper(
-          className:
-              'DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'password',
-              dartName: 'password',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'password',
+      ],
+      shorthand: 'manageMasterUserPassword',
+    ),
+    'DbInstancePasswordPassword': MigrateHelper(
+      className: 'DbInstancePasswordPassword',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'password',
+          dartName: 'password',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo':
-        MigrateHelper(
-          className:
-              'DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'password_wo',
-              dartName: 'passwordWo',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'passwordWo',
+      ],
+      shorthand: 'password',
+    ),
+    'DbInstancePasswordPasswordWo': MigrateHelper(
+      className: 'DbInstancePasswordPasswordWo',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'password_wo',
+          dartName: 'passwordWo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'passwordWo',
+    ),
     'DbInstanceRestoreToPointInTime': MigrateHelper(
       className: 'DbInstanceRestoreToPointInTime',
       slots: <MigrateSlot>[
@@ -228954,8 +228665,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DbProxyTargetDbDbClusterIdentifier': MigrateHelper(
-      className: 'DbProxyTargetDbDbClusterIdentifier',
+    'DbProxyTargetTargetDbClusterIdentifier': MigrateHelper(
+      className: 'DbProxyTargetTargetDbClusterIdentifier',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'db_cluster_identifier',
@@ -228968,8 +228679,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'dbClusterIdentifier',
     ),
-    'DbProxyTargetDbDbInstanceIdentifier': MigrateHelper(
-      className: 'DbProxyTargetDbDbInstanceIdentifier',
+    'DbProxyTargetTargetDbInstanceIdentifier': MigrateHelper(
+      className: 'DbProxyTargetTargetDbInstanceIdentifier',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'db_instance_identifier',
@@ -232061,54 +231772,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'identifierPrefix',
     ),
-    'DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword':
-        MigrateHelper(
-          className:
-              'DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'manage_master_user_password',
-              dartName: 'manageMasterUserPassword',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'manageMasterUserPassword',
+    'DocdbClusterMasterPasswordManageMasterUserPassword': MigrateHelper(
+      className: 'DocdbClusterMasterPasswordManageMasterUserPassword',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'manage_master_user_password',
+          dartName: 'manageMasterUserPassword',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
-    'DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword':
-        MigrateHelper(
-          className:
-              'DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'master_password',
-              dartName: 'masterPassword',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'masterPassword',
+      ],
+      shorthand: 'manageMasterUserPassword',
+    ),
+    'DocdbClusterMasterPasswordMasterPassword': MigrateHelper(
+      className: 'DocdbClusterMasterPasswordMasterPassword',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'master_password',
+          dartName: 'masterPassword',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo':
-        MigrateHelper(
-          className:
-              'DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'master_password_wo',
-              dartName: 'masterPasswordWo',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'masterPasswordWo',
+      ],
+      shorthand: 'masterPassword',
+    ),
+    'DocdbClusterMasterPasswordMasterPasswordWo': MigrateHelper(
+      className: 'DocdbClusterMasterPasswordMasterPasswordWo',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'master_password_wo',
+          dartName: 'masterPasswordWo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'masterPasswordWo',
+    ),
     'DocdbClusterParameterGroupNameName': MigrateHelper(
       className: 'DocdbClusterParameterGroupNameName',
       slots: <MigrateSlot>[
@@ -232163,6 +231868,35 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DocdbClusterRestoreSourceRestoreToPointInTime': MigrateHelper(
+      className: 'DocdbClusterRestoreSourceRestoreToPointInTime',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'restore_to_point_in_time',
+          dartName: 'restoreToPointInTime',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'DocdbClusterRestoreToPointInTime',
+        ),
+      ],
+      shorthand: 'restoreToPointInTime',
+    ),
+    'DocdbClusterRestoreSourceSnapshotIdentifier': MigrateHelper(
+      className: 'DocdbClusterRestoreSourceSnapshotIdentifier',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'snapshot_identifier',
+          dartName: 'snapshotIdentifier',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'snapshotIdentifier',
+    ),
     'DocdbClusterRestoreToPointInTime': MigrateHelper(
       className: 'DocdbClusterRestoreToPointInTime',
       slots: <MigrateSlot>[
@@ -232196,39 +231930,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierRestoreToPointInTime':
-        MigrateHelper(
-          className:
-              'DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierRestoreToPointInTime',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'restore_to_point_in_time',
-              dartName: 'restoreToPointInTime',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'DocdbClusterRestoreToPointInTime',
-            ),
-          ],
-          shorthand: 'restoreToPointInTime',
-        ),
-    'DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierSnapshotIdentifier':
-        MigrateHelper(
-          className:
-              'DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierSnapshotIdentifier',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'snapshot_identifier',
-              dartName: 'snapshotIdentifier',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'snapshotIdentifier',
-        ),
     'DocdbClusterRestoreToPointInTimeTimeRestoreToTime': MigrateHelper(
       className: 'DocdbClusterRestoreToPointInTimeTimeRestoreToTime',
       slots: <MigrateSlot>[
@@ -232306,8 +232007,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'namePrefix',
     ),
-    'DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine': MigrateHelper(
-      className: 'DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine',
+    'DocdbGlobalClusterSourceEngine': MigrateHelper(
+      className: 'DocdbGlobalClusterSourceEngine',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'engine',
@@ -232320,22 +232021,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'engine',
     ),
-    'DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier':
-        MigrateHelper(
-          className:
-              'DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'source_db_cluster_identifier',
-              dartName: 'sourceDbClusterIdentifier',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'sourceDbClusterIdentifier',
+    'DocdbGlobalClusterSourceSourceDbClusterIdentifier': MigrateHelper(
+      className: 'DocdbGlobalClusterSourceSourceDbClusterIdentifier',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'source_db_cluster_identifier',
+          dartName: 'sourceDbClusterIdentifier',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'sourceDbClusterIdentifier',
+    ),
     'DocdbSubnetGroupNameName': MigrateHelper(
       className: 'DocdbSubnetGroupNameName',
       slots: <MigrateSlot>[
@@ -232839,71 +232538,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnImportTable':
-        MigrateHelper(
-          className:
-              'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnImportTable',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'import_table',
-              dartName: 'importTable',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'DynamodbTableImportTable',
-            ),
-          ],
-          shorthand: 'importTable',
-        ),
-    'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreBackupArn':
-        MigrateHelper(
-          className:
-              'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreBackupArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'restore_backup_arn',
-              dartName: 'restoreBackupArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'restoreBackupArn',
-        ),
-    'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceName':
-        MigrateHelper(
-          className:
-              'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'restore_source_name',
-              dartName: 'restoreSourceName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'restoreSourceName',
-        ),
-    'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceTableArn':
-        MigrateHelper(
-          className:
-              'DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceTableArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'restore_source_table_arn',
-              dartName: 'restoreSourceTableArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'restoreSourceTableArn',
-        ),
     'DynamodbTableImportTableS3BucketSource': MigrateHelper(
       className: 'DynamodbTableImportTableS3BucketSource',
       slots: <MigrateSlot>[
@@ -233067,6 +232701,63 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DynamodbTableSourceImportTable': MigrateHelper(
+      className: 'DynamodbTableSourceImportTable',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'import_table',
+          dartName: 'importTable',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'DynamodbTableImportTable',
+        ),
+      ],
+      shorthand: 'importTable',
+    ),
+    'DynamodbTableSourceRestoreBackupArn': MigrateHelper(
+      className: 'DynamodbTableSourceRestoreBackupArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'restore_backup_arn',
+          dartName: 'restoreBackupArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'restoreBackupArn',
+    ),
+    'DynamodbTableSourceRestoreSourceName': MigrateHelper(
+      className: 'DynamodbTableSourceRestoreSourceName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'restore_source_name',
+          dartName: 'restoreSourceName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'restoreSourceName',
+    ),
+    'DynamodbTableSourceRestoreSourceTableArn': MigrateHelper(
+      className: 'DynamodbTableSourceRestoreSourceTableArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'restore_source_table_arn',
+          dartName: 'restoreSourceTableArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'restoreSourceTableArn',
+    ),
     'DynamodbTableTtl': MigrateHelper(
       className: 'DynamodbTableTtl',
       slots: <MigrateSlot>[
@@ -233157,21 +232848,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'urlOrUserBucket',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'url': 'EbsSnapshotImportDiskContainerUrlOrUserBucketUrl',
-            'user_bucket':
-                'EbsSnapshotImportDiskContainerUrlOrUserBucketUserBucket',
+            'url': 'EbsSnapshotImportDiskContainerSourceUrl',
+            'user_bucket': 'EbsSnapshotImportDiskContainerSourceUserBucket',
           },
         ),
       ],
     ),
-    'EbsSnapshotImportDiskContainerUrlOrUserBucketUrl': MigrateHelper(
-      className: 'EbsSnapshotImportDiskContainerUrlOrUserBucketUrl',
+    'EbsSnapshotImportDiskContainerSourceUrl': MigrateHelper(
+      className: 'EbsSnapshotImportDiskContainerSourceUrl',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'url',
@@ -233184,8 +232874,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'url',
     ),
-    'EbsSnapshotImportDiskContainerUrlOrUserBucketUserBucket': MigrateHelper(
-      className: 'EbsSnapshotImportDiskContainerUrlOrUserBucketUserBucket',
+    'EbsSnapshotImportDiskContainerSourceUserBucket': MigrateHelper(
+      className: 'EbsSnapshotImportDiskContainerSourceUserBucket',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'user_bucket',
@@ -233291,38 +232981,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAccessGroupId':
-        MigrateHelper(
-          className:
-              'Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAccessGroupId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'access_group_id',
-              dartName: 'accessGroupId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'accessGroupId',
+    'Ec2ClientVpnAuthorizationRuleAudienceAccessGroupId': MigrateHelper(
+      className: 'Ec2ClientVpnAuthorizationRuleAudienceAccessGroupId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'access_group_id',
+          dartName: 'accessGroupId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAuthorizeAllGroups':
-        MigrateHelper(
-          className:
-              'Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAuthorizeAllGroups',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'authorize_all_groups',
-              dartName: 'authorizeAllGroups',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'authorizeAllGroups',
+      ],
+      shorthand: 'accessGroupId',
+    ),
+    'Ec2ClientVpnAuthorizationRuleAudienceAuthorizeAllGroups': MigrateHelper(
+      className: 'Ec2ClientVpnAuthorizationRuleAudienceAuthorizeAllGroups',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'authorize_all_groups',
+          dartName: 'authorizeAllGroups',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
+      ],
+      shorthand: 'authorizeAllGroups',
+    ),
     'Ec2ClientVpnEndpointAuthenticationOptions': MigrateHelper(
       className: 'Ec2ClientVpnEndpointAuthenticationOptions',
       slots: <MigrateSlot>[
@@ -234986,54 +234672,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnGatewayLoadBalancerEndpointId':
-        MigrateHelper(
-          className:
-              'Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnGatewayLoadBalancerEndpointId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'gateway_load_balancer_endpoint_id',
-              dartName: 'gatewayLoadBalancerEndpointId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'gatewayLoadBalancerEndpointId',
+    'Ec2TrafficMirrorTargetTargetGatewayLoadBalancerEndpointId': MigrateHelper(
+      className: 'Ec2TrafficMirrorTargetTargetGatewayLoadBalancerEndpointId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gateway_load_balancer_endpoint_id',
+          dartName: 'gatewayLoadBalancerEndpointId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkInterfaceId':
-        MigrateHelper(
-          className:
-              'Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkInterfaceId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'network_interface_id',
-              dartName: 'networkInterfaceId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'networkInterfaceId',
+      ],
+      shorthand: 'gatewayLoadBalancerEndpointId',
+    ),
+    'Ec2TrafficMirrorTargetTargetNetworkInterfaceId': MigrateHelper(
+      className: 'Ec2TrafficMirrorTargetTargetNetworkInterfaceId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'network_interface_id',
+          dartName: 'networkInterfaceId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkLoadBalancerArn':
-        MigrateHelper(
-          className:
-              'Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkLoadBalancerArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'network_load_balancer_arn',
-              dartName: 'networkLoadBalancerArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'networkLoadBalancerArn',
+      ],
+      shorthand: 'networkInterfaceId',
+    ),
+    'Ec2TrafficMirrorTargetTargetNetworkLoadBalancerArn': MigrateHelper(
+      className: 'Ec2TrafficMirrorTargetTargetNetworkLoadBalancerArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'network_load_balancer_arn',
+          dartName: 'networkLoadBalancerArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'networkLoadBalancerArn',
+    ),
     'Ec2TransitGatewayPeeringAttachmentOptions': MigrateHelper(
       className: 'Ec2TransitGatewayPeeringAttachmentOptions',
       slots: <MigrateSlot>[
@@ -238289,6 +237969,36 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'EcsTaskSetCapacityCapacityProviderStrategy': MigrateHelper(
+      className: 'EcsTaskSetCapacityCapacityProviderStrategy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'capacity_provider_strategy',
+          dartName: 'capacityProviderStrategy',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'EcsTaskSetCapacityProviderStrategy',
+        ),
+      ],
+      shorthand: 'capacityProviderStrategy',
+    ),
+    'EcsTaskSetCapacityLaunchType': MigrateHelper(
+      className: 'EcsTaskSetCapacityLaunchType',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'launch_type',
+          dartName: 'launchType',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'EcsTaskSetLaunchType',
+        ),
+      ],
+      shorthand: 'launchType',
+    ),
     'EcsTaskSetCapacityProviderStrategy': MigrateHelper(
       className: 'EcsTaskSetCapacityProviderStrategy',
       slots: <MigrateSlot>[
@@ -238314,38 +238024,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-    ),
-    'EcsTaskSetCapacityProviderStrategyOrLaunchTypeCapacityProviderStrategy':
-        MigrateHelper(
-          className:
-              'EcsTaskSetCapacityProviderStrategyOrLaunchTypeCapacityProviderStrategy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'capacity_provider_strategy',
-              dartName: 'capacityProviderStrategy',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'EcsTaskSetCapacityProviderStrategy',
-            ),
-          ],
-          shorthand: 'capacityProviderStrategy',
-        ),
-    'EcsTaskSetCapacityProviderStrategyOrLaunchTypeLaunchType': MigrateHelper(
-      className: 'EcsTaskSetCapacityProviderStrategyOrLaunchTypeLaunchType',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'launch_type',
-          dartName: 'launchType',
-          kind: MigrateSlotKind.enumValue,
-          required: true,
-          positional: true,
-          dartType: 'EcsTaskSetLaunchType',
-        ),
-      ],
-      shorthand: 'launchType',
     ),
     'EcsTaskSetLoadBalancer': MigrateHelper(
       className: 'EcsTaskSetLoadBalancer',
@@ -238614,8 +238292,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'EipAssociationInstanceIdOrNetworkInterfaceIdInstanceId': MigrateHelper(
-      className: 'EipAssociationInstanceIdOrNetworkInterfaceIdInstanceId',
+    'EipAssociationTargetInstanceId': MigrateHelper(
+      className: 'EipAssociationTargetInstanceId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'instance_id',
@@ -238628,22 +238306,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'instanceId',
     ),
-    'EipAssociationInstanceIdOrNetworkInterfaceIdNetworkInterfaceId':
-        MigrateHelper(
-          className:
-              'EipAssociationInstanceIdOrNetworkInterfaceIdNetworkInterfaceId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'network_interface_id',
-              dartName: 'networkInterfaceId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'networkInterfaceId',
+    'EipAssociationTargetNetworkInterfaceId': MigrateHelper(
+      className: 'EipAssociationTargetNetworkInterfaceId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'network_interface_id',
+          dartName: 'networkInterfaceId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'networkInterfaceId',
+    ),
     'EksAccessPolicyAssociationAccessScope': MigrateHelper(
       className: 'EksAccessPolicyAssociationAccessScope',
       slots: <MigrateSlot>[
@@ -239406,14 +239082,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'idOrName',
+          dartName: 'template',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'id': 'EksNodeGroupLaunchTemplateIdOrNameId',
-            'name': 'EksNodeGroupLaunchTemplateIdOrNameName',
+            'id': 'EksNodeGroupLaunchTemplateTemplateId',
+            'name': 'EksNodeGroupLaunchTemplateTemplateName',
           },
         ),
         MigrateSlot(
@@ -239425,8 +239101,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'EksNodeGroupLaunchTemplateIdOrNameId': MigrateHelper(
-      className: 'EksNodeGroupLaunchTemplateIdOrNameId',
+    'EksNodeGroupLaunchTemplateTemplateId': MigrateHelper(
+      className: 'EksNodeGroupLaunchTemplateTemplateId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'id',
@@ -239439,8 +239115,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'id',
     ),
-    'EksNodeGroupLaunchTemplateIdOrNameName': MigrateHelper(
-      className: 'EksNodeGroupLaunchTemplateIdOrNameName',
+    'EksNodeGroupLaunchTemplateTemplateName': MigrateHelper(
+      className: 'EksNodeGroupLaunchTemplateTemplateName',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
@@ -239854,54 +239530,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNamePlatformArn':
-        MigrateHelper(
-          className:
-              'ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNamePlatformArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'platform_arn',
-              dartName: 'platformArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'platformArn',
+    'ElasticBeanstalkEnvironmentPlatformPlatformArn': MigrateHelper(
+      className: 'ElasticBeanstalkEnvironmentPlatformPlatformArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'platform_arn',
+          dartName: 'platformArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameSolutionStackName':
-        MigrateHelper(
-          className:
-              'ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameSolutionStackName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'solution_stack_name',
-              dartName: 'solutionStackName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'solutionStackName',
+      ],
+      shorthand: 'platformArn',
+    ),
+    'ElasticBeanstalkEnvironmentPlatformSolutionStackName': MigrateHelper(
+      className: 'ElasticBeanstalkEnvironmentPlatformSolutionStackName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'solution_stack_name',
+          dartName: 'solutionStackName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameTemplateName':
-        MigrateHelper(
-          className:
-              'ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameTemplateName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'template_name',
-              dartName: 'templateName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'templateName',
+      ],
+      shorthand: 'solutionStackName',
+    ),
+    'ElasticBeanstalkEnvironmentPlatformTemplateName': MigrateHelper(
+      className: 'ElasticBeanstalkEnvironmentPlatformTemplateName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'template_name',
+          dartName: 'templateName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'templateName',
+    ),
     'ElasticBeanstalkEnvironmentSetting': MigrateHelper(
       className: 'ElasticBeanstalkEnvironmentSetting',
       slots: <MigrateSlot>[
@@ -239935,36 +239605,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ElasticacheClusterEngineOrReplicationGroupIdEngine': MigrateHelper(
-      className: 'ElasticacheClusterEngineOrReplicationGroupIdEngine',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'engine',
-          dartName: 'engine',
-          kind: MigrateSlotKind.enumValue,
-          required: true,
-          positional: true,
-          dartType: 'ElasticacheClusterEngine',
-        ),
-      ],
-      shorthand: 'engine',
-    ),
-    'ElasticacheClusterEngineOrReplicationGroupIdReplicationGroupId':
-        MigrateHelper(
-          className:
-              'ElasticacheClusterEngineOrReplicationGroupIdReplicationGroupId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'replication_group_id',
-              dartName: 'replicationGroupId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'replicationGroupId',
-        ),
     'ElasticacheClusterLogDeliveryConfiguration': MigrateHelper(
       className: 'ElasticacheClusterLogDeliveryConfiguration',
       slots: <MigrateSlot>[
@@ -239998,6 +239638,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ElasticacheClusterSourceEngine': MigrateHelper(
+      className: 'ElasticacheClusterSourceEngine',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'engine',
+          dartName: 'engine',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'ElasticacheClusterEngine',
+        ),
+      ],
+      shorthand: 'engine',
+    ),
+    'ElasticacheClusterSourceReplicationGroupId': MigrateHelper(
+      className: 'ElasticacheClusterSourceReplicationGroupId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'replication_group_id',
+          dartName: 'replicationGroupId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'replicationGroupId',
+    ),
     'ElasticacheParameterGroupParameter': MigrateHelper(
       className: 'ElasticacheParameterGroupParameter',
       slots: <MigrateSlot>[
@@ -240017,54 +239685,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthToken':
-        MigrateHelper(
-          className:
-              'ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthToken',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'auth_token',
-              dartName: 'authToken',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'authToken',
+    'ElasticacheReplicationGroupAuthAuthToken': MigrateHelper(
+      className: 'ElasticacheReplicationGroupAuthAuthToken',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'auth_token',
+          dartName: 'authToken',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthTokenWo':
-        MigrateHelper(
-          className:
-              'ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthTokenWo',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'auth_token_wo',
-              dartName: 'authTokenWo',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'authTokenWo',
+      ],
+      shorthand: 'authToken',
+    ),
+    'ElasticacheReplicationGroupAuthAuthTokenWo': MigrateHelper(
+      className: 'ElasticacheReplicationGroupAuthAuthTokenWo',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'auth_token_wo',
+          dartName: 'authTokenWo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserGroupIds':
-        MigrateHelper(
-          className:
-              'ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserGroupIds',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'user_group_ids',
-              dartName: 'userGroupIds',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'userGroupIds',
+      ],
+      shorthand: 'authTokenWo',
+    ),
+    'ElasticacheReplicationGroupAuthUserGroupIds': MigrateHelper(
+      className: 'ElasticacheReplicationGroupAuthUserGroupIds',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'user_group_ids',
+          dartName: 'userGroupIds',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
         ),
+      ],
+      shorthand: 'userGroupIds',
+    ),
     'ElasticacheReplicationGroupLogDeliveryConfiguration': MigrateHelper(
       className: 'ElasticacheReplicationGroupLogDeliveryConfiguration',
       slots: <MigrateSlot>[
@@ -240155,28 +239817,26 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsNodeGroupConfiguration':
-        MigrateHelper(
-          className:
-              'ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsNodeGroupConfiguration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'node_group_configuration',
-              dartName: 'nodeGroupConfiguration',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ElasticacheReplicationGroupNodeGroupConfiguration',
-            ),
-          ],
-          shorthand: 'nodeGroupConfiguration',
+    'ElasticacheReplicationGroupTopologyNodeGroupConfiguration': MigrateHelper(
+      className: 'ElasticacheReplicationGroupTopologyNodeGroupConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_group_configuration',
+          dartName: 'nodeGroupConfiguration',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ElasticacheReplicationGroupNodeGroupConfiguration',
         ),
-    'ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsPreferredCacheClusterAzs':
+      ],
+      shorthand: 'nodeGroupConfiguration',
+    ),
+    'ElasticacheReplicationGroupTopologyPreferredCacheClusterAzs':
         MigrateHelper(
           className:
-              'ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsPreferredCacheClusterAzs',
+              'ElasticacheReplicationGroupTopologyPreferredCacheClusterAzs',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'preferred_cache_cluster_azs',
@@ -241805,20 +241465,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'subnetId',
+          dartName: 'subnet',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'subnet_id': 'EmrClusterEc2AttributesSubnetIdSubnetId',
-            'subnet_ids': 'EmrClusterEc2AttributesSubnetIdSubnetIds',
+            'subnet_id': 'EmrClusterEc2AttributesSubnetSubnetId',
+            'subnet_ids': 'EmrClusterEc2AttributesSubnetSubnetIds',
           },
         ),
       ],
     ),
-    'EmrClusterEc2AttributesSubnetIdSubnetId': MigrateHelper(
-      className: 'EmrClusterEc2AttributesSubnetIdSubnetId',
+    'EmrClusterEc2AttributesSubnetSubnetId': MigrateHelper(
+      className: 'EmrClusterEc2AttributesSubnetSubnetId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'subnet_id',
@@ -241831,8 +241491,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'subnetId',
     ),
-    'EmrClusterEc2AttributesSubnetIdSubnetIds': MigrateHelper(
-      className: 'EmrClusterEc2AttributesSubnetIdSubnetIds',
+    'EmrClusterEc2AttributesSubnetSubnetIds': MigrateHelper(
+      className: 'EmrClusterEc2AttributesSubnetSubnetIds',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'subnet_ids',
@@ -244380,102 +244040,90 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdEniId':
-        MigrateHelper(
-          className:
-              'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdEniId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'eni_id',
-              dartName: 'eniId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'eniId',
+    'FlowLogSourceEniId': MigrateHelper(
+      className: 'FlowLogSourceEniId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'eni_id',
+          dartName: 'eniId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdRegionalNatGatewayId':
-        MigrateHelper(
-          className:
-              'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdRegionalNatGatewayId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'regional_nat_gateway_id',
-              dartName: 'regionalNatGatewayId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'regionalNatGatewayId',
+      ],
+      shorthand: 'eniId',
+    ),
+    'FlowLogSourceRegionalNatGatewayId': MigrateHelper(
+      className: 'FlowLogSourceRegionalNatGatewayId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'regional_nat_gateway_id',
+          dartName: 'regionalNatGatewayId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdSubnetId':
-        MigrateHelper(
-          className:
-              'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdSubnetId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'subnet_id',
-              dartName: 'subnetId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'subnetId',
+      ],
+      shorthand: 'regionalNatGatewayId',
+    ),
+    'FlowLogSourceSubnetId': MigrateHelper(
+      className: 'FlowLogSourceSubnetId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'subnet_id',
+          dartName: 'subnetId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayAttachmentId':
-        MigrateHelper(
-          className:
-              'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayAttachmentId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'transit_gateway_attachment_id',
-              dartName: 'transitGatewayAttachmentId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'transitGatewayAttachmentId',
+      ],
+      shorthand: 'subnetId',
+    ),
+    'FlowLogSourceTransitGatewayAttachmentId': MigrateHelper(
+      className: 'FlowLogSourceTransitGatewayAttachmentId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'transit_gateway_attachment_id',
+          dartName: 'transitGatewayAttachmentId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayId':
-        MigrateHelper(
-          className:
-              'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'transit_gateway_id',
-              dartName: 'transitGatewayId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'transitGatewayId',
+      ],
+      shorthand: 'transitGatewayAttachmentId',
+    ),
+    'FlowLogSourceTransitGatewayId': MigrateHelper(
+      className: 'FlowLogSourceTransitGatewayId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'transit_gateway_id',
+          dartName: 'transitGatewayId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdVpcId':
-        MigrateHelper(
-          className:
-              'FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdVpcId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'vpc_id',
-              dartName: 'vpcId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'vpcId',
+      ],
+      shorthand: 'transitGatewayId',
+    ),
+    'FlowLogSourceVpcId': MigrateHelper(
+      className: 'FlowLogSourceVpcId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vpc_id',
+          dartName: 'vpcId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'vpcId',
+    ),
     'FlowLogTagFieldSpecification': MigrateHelper(
       className: 'FlowLogTagFieldSpecification',
       slots: <MigrateSlot>[
@@ -245876,26 +245524,24 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId':
-        MigrateHelper(
-          className:
-              'FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'active_directory_id',
-              dartName: 'activeDirectoryId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'activeDirectoryId',
+    'FsxWindowsFileSystemActiveDirectoryActiveDirectoryId': MigrateHelper(
+      className: 'FsxWindowsFileSystemActiveDirectoryActiveDirectoryId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'active_directory_id',
+          dartName: 'activeDirectoryId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory':
+      ],
+      shorthand: 'activeDirectoryId',
+    ),
+    'FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory':
         MigrateHelper(
           className:
-              'FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory',
+              'FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'self_managed_active_directory',
@@ -246083,8 +245729,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'GameliftFleetBuildIdOrScriptIdBuildId': MigrateHelper(
-      className: 'GameliftFleetBuildIdOrScriptIdBuildId',
+    'GameliftFleetArtifactBuildId': MigrateHelper(
+      className: 'GameliftFleetArtifactBuildId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'build_id',
@@ -246097,8 +245743,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'buildId',
     ),
-    'GameliftFleetBuildIdOrScriptIdScriptId': MigrateHelper(
-      className: 'GameliftFleetBuildIdOrScriptIdScriptId',
+    'GameliftFleetArtifactScriptId': MigrateHelper(
+      className: 'GameliftFleetArtifactScriptId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'script_id',
@@ -246288,14 +245934,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'idOrName',
+          dartName: 'template',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'id': 'GameliftGameServerGroupLaunchTemplateIdOrNameId',
-            'name': 'GameliftGameServerGroupLaunchTemplateIdOrNameName',
+            'id': 'GameliftGameServerGroupLaunchTemplateTemplateId',
+            'name': 'GameliftGameServerGroupLaunchTemplateTemplateName',
           },
         ),
         MigrateSlot(
@@ -246307,8 +245953,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'GameliftGameServerGroupLaunchTemplateIdOrNameId': MigrateHelper(
-      className: 'GameliftGameServerGroupLaunchTemplateIdOrNameId',
+    'GameliftGameServerGroupLaunchTemplateTemplateId': MigrateHelper(
+      className: 'GameliftGameServerGroupLaunchTemplateTemplateId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'id',
@@ -246321,8 +245967,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'id',
     ),
-    'GameliftGameServerGroupLaunchTemplateIdOrNameName': MigrateHelper(
-      className: 'GameliftGameServerGroupLaunchTemplateIdOrNameName',
+    'GameliftGameServerGroupLaunchTemplateTemplateName': MigrateHelper(
+      className: 'GameliftGameServerGroupLaunchTemplateTemplateName',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
@@ -246353,6 +245999,35 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
+    ),
+    'GameliftScriptCodeStorageLocation': MigrateHelper(
+      className: 'GameliftScriptCodeStorageLocation',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'storage_location',
+          dartName: 'storageLocation',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'GameliftScriptStorageLocation',
+        ),
+      ],
+      shorthand: 'storageLocation',
+    ),
+    'GameliftScriptCodeZipFile': MigrateHelper(
+      className: 'GameliftScriptCodeZipFile',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'zip_file',
+          dartName: 'zipFile',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'zipFile',
     ),
     'GameliftScriptStorageLocation': MigrateHelper(
       className: 'GameliftScriptStorageLocation',
@@ -246386,35 +246061,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'GameliftScriptStorageLocationOrZipFileStorageLocation': MigrateHelper(
-      className: 'GameliftScriptStorageLocationOrZipFileStorageLocation',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'storage_location',
-          dartName: 'storageLocation',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'GameliftScriptStorageLocation',
-        ),
-      ],
-      shorthand: 'storageLocation',
-    ),
-    'GameliftScriptStorageLocationOrZipFileZipFile': MigrateHelper(
-      className: 'GameliftScriptStorageLocationOrZipFileZipFile',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'zip_file',
-          dartName: 'zipFile',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'zipFile',
     ),
     'GlacierVaultNotification': MigrateHelper(
       className: 'GlacierVaultNotification',
@@ -250313,8 +249959,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ImagebuilderComponentDataOrUriData': MigrateHelper(
-      className: 'ImagebuilderComponentDataOrUriData',
+    'ImagebuilderComponentDocumentData': MigrateHelper(
+      className: 'ImagebuilderComponentDocumentData',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'data',
@@ -250327,8 +249973,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'data',
     ),
-    'ImagebuilderComponentDataOrUriUri': MigrateHelper(
-      className: 'ImagebuilderComponentDataOrUriUri',
+    'ImagebuilderComponentDocumentUri': MigrateHelper(
+      className: 'ImagebuilderComponentDocumentUri',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'uri',
@@ -251797,8 +251443,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ImagebuilderWorkflowDataOrUriData': MigrateHelper(
-      className: 'ImagebuilderWorkflowDataOrUriData',
+    'ImagebuilderWorkflowDocumentData': MigrateHelper(
+      className: 'ImagebuilderWorkflowDocumentData',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'data',
@@ -251811,8 +251457,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'data',
     ),
-    'ImagebuilderWorkflowDataOrUriUri': MigrateHelper(
-      className: 'ImagebuilderWorkflowDataOrUriUri',
+    'ImagebuilderWorkflowDocumentUri': MigrateHelper(
+      className: 'ImagebuilderWorkflowDocumentUri',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'uri',
@@ -253695,36 +253341,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'InstanceHostResourceGroupArnOrPlacementGroupHostResourceGroupArn':
-        MigrateHelper(
-          className:
-              'InstanceHostResourceGroupArnOrPlacementGroupHostResourceGroupArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'host_resource_group_arn',
-              dartName: 'hostResourceGroupArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'hostResourceGroupArn',
-        ),
-    'InstanceHostResourceGroupArnOrPlacementGroupPlacementGroup': MigrateHelper(
-      className: 'InstanceHostResourceGroupArnOrPlacementGroupPlacementGroup',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'placement_group',
-          dartName: 'placementGroup',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'placementGroup',
-    ),
     'InstanceInstanceMarketOptions': MigrateHelper(
       className: 'InstanceInstanceMarketOptions',
       slots: <MigrateSlot>[
@@ -253784,14 +253400,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'idOrName',
+          dartName: 'template',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'id': 'InstanceLaunchTemplateIdOrNameId',
-            'name': 'InstanceLaunchTemplateIdOrNameName',
+            'id': 'InstanceLaunchTemplateTemplateId',
+            'name': 'InstanceLaunchTemplateTemplateName',
           },
         ),
         MigrateSlot(
@@ -253803,8 +253419,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'InstanceLaunchTemplateIdOrNameId': MigrateHelper(
-      className: 'InstanceLaunchTemplateIdOrNameId',
+    'InstanceLaunchTemplateTemplateId': MigrateHelper(
+      className: 'InstanceLaunchTemplateTemplateId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'id',
@@ -253817,8 +253433,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'id',
     ),
-    'InstanceLaunchTemplateIdOrNameName': MigrateHelper(
-      className: 'InstanceLaunchTemplateIdOrNameName',
+    'InstanceLaunchTemplateTemplateName': MigrateHelper(
+      className: 'InstanceLaunchTemplateTemplateName',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
@@ -253915,6 +253531,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'InstancePlacementHostResourceGroupArn': MigrateHelper(
+      className: 'InstancePlacementHostResourceGroupArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'host_resource_group_arn',
+          dartName: 'hostResourceGroupArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'hostResourceGroupArn',
+    ),
+    'InstancePlacementPlacementGroup': MigrateHelper(
+      className: 'InstancePlacementPlacementGroup',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'placement_group',
+          dartName: 'placementGroup',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'placementGroup',
     ),
     'InstancePrimaryNetworkInterface': MigrateHelper(
       className: 'InstancePrimaryNetworkInterface',
@@ -258339,16 +257983,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'clusterEndpointOrDomainArn',
+          dartName: 'domain',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'cluster_endpoint':
-                'KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnClusterEndpoint',
+                'KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainClusterEndpoint',
             'domain_arn':
-                'KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnDomainArn',
+                'KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainDomainArn',
           },
         ),
         MigrateSlot(
@@ -258461,10 +258105,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnClusterEndpoint':
+    'KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainClusterEndpoint':
         MigrateHelper(
           className:
-              'KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnClusterEndpoint',
+              'KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainClusterEndpoint',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'cluster_endpoint',
@@ -258477,10 +258121,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'clusterEndpoint',
         ),
-    'KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnDomainArn':
+    'KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainDomainArn':
         MigrateHelper(
           className:
-              'KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnDomainArn',
+              'KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainDomainArn',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'domain_arn',
@@ -260164,57 +259808,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionKinesisSourceConfiguration':
-        MigrateHelper(
-          className:
-              'KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionKinesisSourceConfiguration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'kinesis_source_configuration',
-              dartName: 'kinesisSourceConfiguration',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'KinesisFirehoseDeliveryStreamKinesisSourceConfiguration',
-            ),
-          ],
-          shorthand: 'kinesisSourceConfiguration',
-        ),
-    'KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionMskSourceConfiguration':
-        MigrateHelper(
-          className:
-              'KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionMskSourceConfiguration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'msk_source_configuration',
-              dartName: 'mskSourceConfiguration',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'KinesisFirehoseDeliveryStreamMskSourceConfiguration',
-            ),
-          ],
-          shorthand: 'mskSourceConfiguration',
-        ),
-    'KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionServerSideEncryption':
-        MigrateHelper(
-          className:
-              'KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionServerSideEncryption',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'server_side_encryption',
-              dartName: 'serverSideEncryption',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'KinesisFirehoseDeliveryStreamServerSideEncryption',
-            ),
-          ],
-          shorthand: 'serverSideEncryption',
-        ),
     'KinesisFirehoseDeliveryStreamMskSourceConfiguration': MigrateHelper(
       className: 'KinesisFirehoseDeliveryStreamMskSourceConfiguration',
       slots: <MigrateSlot>[
@@ -260291,16 +259884,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'clusterEndpointOrDomainArn',
+          dartName: 'domain',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'cluster_endpoint':
-                'KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnClusterEndpoint',
+                'KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainClusterEndpoint',
             'domain_arn':
-                'KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnDomainArn',
+                'KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainDomainArn',
           },
         ),
         MigrateSlot(
@@ -260422,38 +260015,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnClusterEndpoint':
-        MigrateHelper(
-          className:
-              'KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnClusterEndpoint',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'cluster_endpoint',
-              dartName: 'clusterEndpoint',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'clusterEndpoint',
-        ),
-    'KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnDomainArn':
-        MigrateHelper(
-          className:
-              'KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnDomainArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'domain_arn',
-              dartName: 'domainArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'domainArn',
-        ),
     'KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptions':
         MigrateHelper(
           className:
@@ -260468,6 +260029,38 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
                   'KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptionsDefaultDocumentIdFormat',
             ),
           ],
+        ),
+    'KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainClusterEndpoint':
+        MigrateHelper(
+          className:
+              'KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainClusterEndpoint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'cluster_endpoint',
+              dartName: 'clusterEndpoint',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clusterEndpoint',
+        ),
+    'KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainDomainArn':
+        MigrateHelper(
+          className:
+              'KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainDomainArn',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'domain_arn',
+              dartName: 'domainArn',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'domainArn',
         ),
     'KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfiguration':
         MigrateHelper(
@@ -261874,6 +261467,53 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'KinesisFirehoseDeliveryStreamSourceKinesisSourceConfiguration':
+        MigrateHelper(
+          className:
+              'KinesisFirehoseDeliveryStreamSourceKinesisSourceConfiguration',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'kinesis_source_configuration',
+              dartName: 'kinesisSourceConfiguration',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'KinesisFirehoseDeliveryStreamKinesisSourceConfiguration',
+            ),
+          ],
+          shorthand: 'kinesisSourceConfiguration',
+        ),
+    'KinesisFirehoseDeliveryStreamSourceMskSourceConfiguration': MigrateHelper(
+      className: 'KinesisFirehoseDeliveryStreamSourceMskSourceConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'msk_source_configuration',
+          dartName: 'mskSourceConfiguration',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'KinesisFirehoseDeliveryStreamMskSourceConfiguration',
+        ),
+      ],
+      shorthand: 'mskSourceConfiguration',
+    ),
+    'KinesisFirehoseDeliveryStreamSourceServerSideEncryption': MigrateHelper(
+      className: 'KinesisFirehoseDeliveryStreamSourceServerSideEncryption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'server_side_encryption',
+          dartName: 'serverSideEncryption',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'KinesisFirehoseDeliveryStreamServerSideEncryption',
+        ),
+      ],
+      shorthand: 'serverSideEncryption',
+    ),
     'KinesisFirehoseDeliveryStreamSplunkConfiguration': MigrateHelper(
       className: 'KinesisFirehoseDeliveryStreamSplunkConfiguration',
       slots: <MigrateSlot>[
@@ -262198,8 +261838,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'KinesisStreamShardCountOrWarmThroughputMibPsShardCount': MigrateHelper(
-      className: 'KinesisStreamShardCountOrWarmThroughputMibPsShardCount',
+    'KinesisStreamCapacityShardCount': MigrateHelper(
+      className: 'KinesisStreamCapacityShardCount',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'shard_count',
@@ -262212,22 +261852,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'shardCount',
     ),
-    'KinesisStreamShardCountOrWarmThroughputMibPsWarmThroughputMibPs':
-        MigrateHelper(
-          className:
-              'KinesisStreamShardCountOrWarmThroughputMibPsWarmThroughputMibPs',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'warm_throughput_mib_ps',
-              dartName: 'warmThroughputMibPs',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'num',
-            ),
-          ],
-          shorthand: 'warmThroughputMibPs',
+    'KinesisStreamCapacityWarmThroughputMibPs': MigrateHelper(
+      className: 'KinesisStreamCapacityWarmThroughputMibPs',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'warm_throughput_mib_ps',
+          dartName: 'warmThroughputMibPs',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
         ),
+      ],
+      shorthand: 'warmThroughputMibPs',
+    ),
     'KinesisStreamStreamModeDetails': MigrateHelper(
       className: 'KinesisStreamStreamModeDetails',
       slots: <MigrateSlot>[
@@ -264221,141 +263859,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsCatalogResource':
-        MigrateHelper(
-          className:
-              'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsCatalogResource',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'catalog_resource',
-              dartName: 'catalogResource',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'catalogResource',
-        ),
-    'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataCellsFilter':
-        MigrateHelper(
-          className:
-              'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataCellsFilter',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'data_cells_filter',
-              dartName: 'dataCellsFilter',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationPermissionsDataCellsFilter',
-            ),
-          ],
-          shorthand: 'dataCellsFilter',
-        ),
-    'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataLocation':
-        MigrateHelper(
-          className:
-              'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataLocation',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'data_location',
-              dartName: 'dataLocation',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationPermissionsDataLocation',
-            ),
-          ],
-          shorthand: 'dataLocation',
-        ),
-    'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDatabase':
-        MigrateHelper(
-          className:
-              'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDatabase',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'database',
-              dartName: 'database',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationPermissionsDatabase',
-            ),
-          ],
-          shorthand: 'database',
-        ),
-    'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTag':
-        MigrateHelper(
-          className:
-              'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTag',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'lf_tag',
-              dartName: 'lfTag',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationPermissionsLfTag',
-            ),
-          ],
-          shorthand: 'lfTag',
-        ),
-    'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTagPolicy':
-        MigrateHelper(
-          className:
-              'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTagPolicy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'lf_tag_policy',
-              dartName: 'lfTagPolicy',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationPermissionsLfTagPolicy',
-            ),
-          ],
-          shorthand: 'lfTagPolicy',
-        ),
-    'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTable':
-        MigrateHelper(
-          className:
-              'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTable',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'table',
-              dartName: 'table',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationPermissionsTable',
-            ),
-          ],
-          shorthand: 'table',
-        ),
-    'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTableWithColumns':
-        MigrateHelper(
-          className:
-              'LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTableWithColumns',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'table_with_columns',
-              dartName: 'tableWithColumns',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationPermissionsTableWithColumns',
-            ),
-          ],
-          shorthand: 'tableWithColumns',
-        ),
     'LakeformationPermissionsDataCellsFilter': MigrateHelper(
       className: 'LakeformationPermissionsDataCellsFilter',
       slots: <MigrateSlot>[
@@ -264500,6 +264003,125 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LakeformationPermissionsResourceCatalogResource': MigrateHelper(
+      className: 'LakeformationPermissionsResourceCatalogResource',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'catalog_resource',
+          dartName: 'catalogResource',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'catalogResource',
+    ),
+    'LakeformationPermissionsResourceDataCellsFilter': MigrateHelper(
+      className: 'LakeformationPermissionsResourceDataCellsFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'data_cells_filter',
+          dartName: 'dataCellsFilter',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationPermissionsDataCellsFilter',
+        ),
+      ],
+      shorthand: 'dataCellsFilter',
+    ),
+    'LakeformationPermissionsResourceDataLocation': MigrateHelper(
+      className: 'LakeformationPermissionsResourceDataLocation',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'data_location',
+          dartName: 'dataLocation',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationPermissionsDataLocation',
+        ),
+      ],
+      shorthand: 'dataLocation',
+    ),
+    'LakeformationPermissionsResourceDatabase': MigrateHelper(
+      className: 'LakeformationPermissionsResourceDatabase',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'database',
+          dartName: 'database',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationPermissionsDatabase',
+        ),
+      ],
+      shorthand: 'database',
+    ),
+    'LakeformationPermissionsResourceLfTag': MigrateHelper(
+      className: 'LakeformationPermissionsResourceLfTag',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'lf_tag',
+          dartName: 'lfTag',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationPermissionsLfTag',
+        ),
+      ],
+      shorthand: 'lfTag',
+    ),
+    'LakeformationPermissionsResourceLfTagPolicy': MigrateHelper(
+      className: 'LakeformationPermissionsResourceLfTagPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'lf_tag_policy',
+          dartName: 'lfTagPolicy',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationPermissionsLfTagPolicy',
+        ),
+      ],
+      shorthand: 'lfTagPolicy',
+    ),
+    'LakeformationPermissionsResourceTable': MigrateHelper(
+      className: 'LakeformationPermissionsResourceTable',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'table',
+          dartName: 'table',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationPermissionsTable',
+        ),
+      ],
+      shorthand: 'table',
+    ),
+    'LakeformationPermissionsResourceTableWithColumns': MigrateHelper(
+      className: 'LakeformationPermissionsResourceTableWithColumns',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'table_with_columns',
+          dartName: 'tableWithColumns',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationPermissionsTableWithColumns',
+        ),
+      ],
+      shorthand: 'tableWithColumns',
+    ),
     'LakeformationPermissionsTable': MigrateHelper(
       className: 'LakeformationPermissionsTable',
       slots: <MigrateSlot>[
@@ -264599,60 +264221,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsDatabase':
-        MigrateHelper(
-          className:
-              'LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsDatabase',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'database',
-              dartName: 'database',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationResourceLfTagDatabase',
-            ),
-          ],
-          shorthand: 'database',
-        ),
-    'LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTable':
-        MigrateHelper(
-          className:
-              'LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTable',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'table',
-              dartName: 'table',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationResourceLfTagTable',
-            ),
-          ],
-          shorthand: 'table',
-        ),
-    'LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTableWithColumns':
-        MigrateHelper(
-          className:
-              'LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTableWithColumns',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'table_with_columns',
-              dartName: 'tableWithColumns',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationResourceLfTagTableWithColumns',
-            ),
-          ],
-          shorthand: 'tableWithColumns',
-        ),
     'LakeformationResourceLfTagLfTag': MigrateHelper(
       className: 'LakeformationResourceLfTagLfTag',
       slots: <MigrateSlot>[
@@ -264678,6 +264246,54 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LakeformationResourceLfTagResourceDatabase': MigrateHelper(
+      className: 'LakeformationResourceLfTagResourceDatabase',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'database',
+          dartName: 'database',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationResourceLfTagDatabase',
+        ),
+      ],
+      shorthand: 'database',
+    ),
+    'LakeformationResourceLfTagResourceTable': MigrateHelper(
+      className: 'LakeformationResourceLfTagResourceTable',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'table',
+          dartName: 'table',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationResourceLfTagTable',
+        ),
+      ],
+      shorthand: 'table',
+    ),
+    'LakeformationResourceLfTagResourceTableWithColumns': MigrateHelper(
+      className: 'LakeformationResourceLfTagResourceTableWithColumns',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'table_with_columns',
+          dartName: 'tableWithColumns',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationResourceLfTagTableWithColumns',
+        ),
+      ],
+      shorthand: 'tableWithColumns',
     ),
     'LakeformationResourceLfTagTable': MigrateHelper(
       className: 'LakeformationResourceLfTagTable',
@@ -264785,57 +264401,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsDatabase':
-        MigrateHelper(
-          className:
-              'LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsDatabase',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'database',
-              dartName: 'database',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationResourceLfTagsDatabase',
-            ),
-          ],
-          shorthand: 'database',
-        ),
-    'LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTable':
-        MigrateHelper(
-          className:
-              'LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTable',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'table',
-              dartName: 'table',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationResourceLfTagsTable',
-            ),
-          ],
-          shorthand: 'table',
-        ),
-    'LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTableWithColumns':
-        MigrateHelper(
-          className:
-              'LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTableWithColumns',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'table_with_columns',
-              dartName: 'tableWithColumns',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LakeformationResourceLfTagsTableWithColumns',
-            ),
-          ],
-          shorthand: 'tableWithColumns',
-        ),
     'LakeformationResourceLfTagsLfTag': MigrateHelper(
       className: 'LakeformationResourceLfTagsLfTag',
       slots: <MigrateSlot>[
@@ -264861,6 +264426,51 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LakeformationResourceLfTagsResourceDatabase': MigrateHelper(
+      className: 'LakeformationResourceLfTagsResourceDatabase',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'database',
+          dartName: 'database',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationResourceLfTagsDatabase',
+        ),
+      ],
+      shorthand: 'database',
+    ),
+    'LakeformationResourceLfTagsResourceTable': MigrateHelper(
+      className: 'LakeformationResourceLfTagsResourceTable',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'table',
+          dartName: 'table',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationResourceLfTagsTable',
+        ),
+      ],
+      shorthand: 'table',
+    ),
+    'LakeformationResourceLfTagsResourceTableWithColumns': MigrateHelper(
+      className: 'LakeformationResourceLfTagsResourceTableWithColumns',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'table_with_columns',
+          dartName: 'tableWithColumns',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LakeformationResourceLfTagsTableWithColumns',
+        ),
+      ],
+      shorthand: 'tableWithColumns',
     ),
     'LakeformationResourceLfTagsTable': MigrateHelper(
       className: 'LakeformationResourceLfTagsTable',
@@ -265161,39 +264771,35 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceEventSourceArn':
-        MigrateHelper(
-          className:
-              'LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceEventSourceArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'event_source_arn',
-              dartName: 'eventSourceArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'eventSourceArn',
+    'LambdaEventSourceMappingEventSourceEventSourceArn': MigrateHelper(
+      className: 'LambdaEventSourceMappingEventSourceEventSourceArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'event_source_arn',
+          dartName: 'eventSourceArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceSelfManagedEventSource':
-        MigrateHelper(
-          className:
-              'LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceSelfManagedEventSource',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'self_managed_event_source',
-              dartName: 'selfManagedEventSource',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LambdaEventSourceMappingSelfManagedEventSource',
-            ),
-          ],
-          shorthand: 'selfManagedEventSource',
+      ],
+      shorthand: 'eventSourceArn',
+    ),
+    'LambdaEventSourceMappingEventSourceSelfManagedEventSource': MigrateHelper(
+      className: 'LambdaEventSourceMappingEventSourceSelfManagedEventSource',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'self_managed_event_source',
+          dartName: 'selfManagedEventSource',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LambdaEventSourceMappingSelfManagedEventSource',
         ),
+      ],
+      shorthand: 'selfManagedEventSource',
+    ),
     'LambdaEventSourceMappingFilterCriteria': MigrateHelper(
       className: 'LambdaEventSourceMappingFilterCriteria',
       slots: <MigrateSlot>[
@@ -265479,6 +265085,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'LambdaFunctionCodeFilename': MigrateHelper(
+      className: 'LambdaFunctionCodeFilename',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'filename',
+          dartName: 'filename',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'filename',
+    ),
+    'LambdaFunctionCodeImageUri': MigrateHelper(
+      className: 'LambdaFunctionCodeImageUri',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'image_uri',
+          dartName: 'imageUri',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'imageUri',
+    ),
+    'LambdaFunctionCodeS3Bucket': MigrateHelper(
+      className: 'LambdaFunctionCodeS3Bucket',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 's3_bucket',
+          dartName: 's3Bucket',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 's3Bucket',
+    ),
     'LambdaFunctionDeadLetterConfig': MigrateHelper(
       className: 'LambdaFunctionDeadLetterConfig',
       slots: <MigrateSlot>[
@@ -265597,48 +265245,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'LambdaFunctionFilenameOrImageUriOrS3BucketFilename': MigrateHelper(
-      className: 'LambdaFunctionFilenameOrImageUriOrS3BucketFilename',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'filename',
-          dartName: 'filename',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'filename',
-    ),
-    'LambdaFunctionFilenameOrImageUriOrS3BucketImageUri': MigrateHelper(
-      className: 'LambdaFunctionFilenameOrImageUriOrS3BucketImageUri',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'image_uri',
-          dartName: 'imageUri',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'imageUri',
-    ),
-    'LambdaFunctionFilenameOrImageUriOrS3BucketS3Bucket': MigrateHelper(
-      className: 'LambdaFunctionFilenameOrImageUriOrS3BucketS3Bucket',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 's3_bucket',
-          dartName: 's3Bucket',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 's3Bucket',
     ),
     'LambdaFunctionImageConfig': MigrateHelper(
       className: 'LambdaFunctionImageConfig',
@@ -266448,38 +266054,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LaunchTemplateDefaultVersionOrUpdateDefaultVersionDefaultVersion':
-        MigrateHelper(
-          className:
-              'LaunchTemplateDefaultVersionOrUpdateDefaultVersionDefaultVersion',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'default_version',
-              dartName: 'defaultVersion',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'num',
-            ),
-          ],
-          shorthand: 'defaultVersion',
+    'LaunchTemplateDefaultVersionDefaultVersion': MigrateHelper(
+      className: 'LaunchTemplateDefaultVersionDefaultVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_version',
+          dartName: 'defaultVersion',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
         ),
-    'LaunchTemplateDefaultVersionOrUpdateDefaultVersionUpdateDefaultVersion':
-        MigrateHelper(
-          className:
-              'LaunchTemplateDefaultVersionOrUpdateDefaultVersionUpdateDefaultVersion',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'update_default_version',
-              dartName: 'updateDefaultVersion',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'updateDefaultVersion',
+      ],
+      shorthand: 'defaultVersion',
+    ),
+    'LaunchTemplateDefaultVersionUpdateDefaultVersion': MigrateHelper(
+      className: 'LaunchTemplateDefaultVersionUpdateDefaultVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'update_default_version',
+          dartName: 'updateDefaultVersion',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
+      ],
+      shorthand: 'updateDefaultVersion',
+    ),
     'LaunchTemplateEnclaveOptions': MigrateHelper(
       className: 'LaunchTemplateEnclaveOptions',
       slots: <MigrateSlot>[
@@ -267615,38 +267217,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsSecurityGroupNames':
-        MigrateHelper(
-          className:
-              'LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsSecurityGroupNames',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'security_group_names',
-              dartName: 'securityGroupNames',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'securityGroupNames',
+    'LaunchTemplateSecurityGroupsSecurityGroupNames': MigrateHelper(
+      className: 'LaunchTemplateSecurityGroupsSecurityGroupNames',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'security_group_names',
+          dartName: 'securityGroupNames',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
         ),
-    'LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsVpcSecurityGroupIds':
-        MigrateHelper(
-          className:
-              'LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIdsVpcSecurityGroupIds',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'vpc_security_group_ids',
-              dartName: 'vpcSecurityGroupIds',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'vpcSecurityGroupIds',
+      ],
+      shorthand: 'securityGroupNames',
+    ),
+    'LaunchTemplateSecurityGroupsVpcSecurityGroupIds': MigrateHelper(
+      className: 'LaunchTemplateSecurityGroupsVpcSecurityGroupIds',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vpc_security_group_ids',
+          dartName: 'vpcSecurityGroupIds',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
         ),
+      ],
+      shorthand: 'vpcSecurityGroupIds',
+    ),
     'LaunchTemplateTagSpecifications': MigrateHelper(
       className: 'LaunchTemplateTagSpecifications',
       slots: <MigrateSlot>[
@@ -269411,6 +269009,36 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LexIntentClosingConclusionStatement': MigrateHelper(
+      className: 'LexIntentClosingConclusionStatement',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'conclusion_statement',
+          dartName: 'conclusionStatement',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LexIntentConclusionStatement',
+        ),
+      ],
+      shorthand: 'conclusionStatement',
+    ),
+    'LexIntentClosingFollowUpPrompt': MigrateHelper(
+      className: 'LexIntentClosingFollowUpPrompt',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'follow_up_prompt',
+          dartName: 'followUpPrompt',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LexIntentFollowUpPrompt',
+        ),
+      ],
+      shorthand: 'followUpPrompt',
+    ),
     'LexIntentConclusionStatement': MigrateHelper(
       className: 'LexIntentConclusionStatement',
       slots: <MigrateSlot>[
@@ -269457,38 +269085,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-    ),
-    'LexIntentConclusionStatementOrFollowUpPromptConclusionStatement':
-        MigrateHelper(
-          className:
-              'LexIntentConclusionStatementOrFollowUpPromptConclusionStatement',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'conclusion_statement',
-              dartName: 'conclusionStatement',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'LexIntentConclusionStatement',
-            ),
-          ],
-          shorthand: 'conclusionStatement',
-        ),
-    'LexIntentConclusionStatementOrFollowUpPromptFollowUpPrompt': MigrateHelper(
-      className: 'LexIntentConclusionStatementOrFollowUpPromptFollowUpPrompt',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'follow_up_prompt',
-          dartName: 'followUpPrompt',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'LexIntentFollowUpPrompt',
-        ),
-      ],
-      shorthand: 'followUpPrompt',
     ),
     'LexIntentConfirmationPrompt': MigrateHelper(
       className: 'LexIntentConfirmationPrompt',
@@ -310626,38 +310222,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'namePrefix',
     ),
-    'NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine':
-        MigrateHelper(
-          className:
-              'NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'engine',
-              dartName: 'engine',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              positional: true,
-              dartType: 'NeptuneGlobalClusterEngine',
-            ),
-          ],
-          shorthand: 'engine',
+    'NeptuneGlobalClusterSourceEngine': MigrateHelper(
+      className: 'NeptuneGlobalClusterSourceEngine',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'engine',
+          dartName: 'engine',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'NeptuneGlobalClusterEngine',
         ),
-    'NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier':
-        MigrateHelper(
-          className:
-              'NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'source_db_cluster_identifier',
-              dartName: 'sourceDbClusterIdentifier',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'sourceDbClusterIdentifier',
+      ],
+      shorthand: 'engine',
+    ),
+    'NeptuneGlobalClusterSourceSourceDbClusterIdentifier': MigrateHelper(
+      className: 'NeptuneGlobalClusterSourceSourceDbClusterIdentifier',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'source_db_cluster_identifier',
+          dartName: 'sourceDbClusterIdentifier',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'sourceDbClusterIdentifier',
+    ),
     'NeptuneParameterGroupNameName': MigrateHelper(
       className: 'NeptuneParameterGroupNameName',
       slots: <MigrateSlot>[
@@ -310780,8 +310372,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'NetworkAclRuleCidrBlockOrIpv6CidrBlockCidrBlock': MigrateHelper(
-      className: 'NetworkAclRuleCidrBlockOrIpv6CidrBlockCidrBlock',
+    'NetworkAclRuleCidrCidrBlock': MigrateHelper(
+      className: 'NetworkAclRuleCidrCidrBlock',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'cidr_block',
@@ -310794,8 +310386,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'cidrBlock',
     ),
-    'NetworkAclRuleCidrBlockOrIpv6CidrBlockIpv6CidrBlock': MigrateHelper(
-      className: 'NetworkAclRuleCidrBlockOrIpv6CidrBlockIpv6CidrBlock',
+    'NetworkAclRuleCidrIpv6CidrBlock': MigrateHelper(
+      className: 'NetworkAclRuleCidrIpv6CidrBlock',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'ipv6_cidr_block',
@@ -311009,6 +310601,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'NetworkfirewallFirewallAttachmentTransitGatewayId': MigrateHelper(
+      className: 'NetworkfirewallFirewallAttachmentTransitGatewayId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'transit_gateway_id',
+          dartName: 'transitGatewayId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'transitGatewayId',
+    ),
+    'NetworkfirewallFirewallAttachmentVpcId': MigrateHelper(
+      className: 'NetworkfirewallFirewallAttachmentVpcId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vpc_id',
+          dartName: 'vpcId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'vpcId',
+    ),
     'NetworkfirewallFirewallAvailabilityZoneMapping': MigrateHelper(
       className: 'NetworkfirewallFirewallAvailabilityZoneMapping',
       slots: <MigrateSlot>[
@@ -311404,36 +311024,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId':
-        MigrateHelper(
-          className:
-              'NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'transit_gateway_id',
-              dartName: 'transitGatewayId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'transitGatewayId',
-        ),
-    'NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId': MigrateHelper(
-      className: 'NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'vpc_id',
-          dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'vpcId',
     ),
     'NetworkfirewallLoggingConfigurationLoggingConfiguration': MigrateHelper(
       className: 'NetworkfirewallLoggingConfigurationLoggingConfiguration',
@@ -315857,8 +315447,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PinpointGcmChannelApiKeyOrServiceJsonApiKey': MigrateHelper(
-      className: 'PinpointGcmChannelApiKeyOrServiceJsonApiKey',
+    'PinpointGcmChannelCredentialsApiKey': MigrateHelper(
+      className: 'PinpointGcmChannelCredentialsApiKey',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'api_key',
@@ -315871,8 +315461,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'apiKey',
     ),
-    'PinpointGcmChannelApiKeyOrServiceJsonServiceJson': MigrateHelper(
-      className: 'PinpointGcmChannelApiKeyOrServiceJsonServiceJson',
+    'PinpointGcmChannelCredentialsServiceJson': MigrateHelper(
+      className: 'PinpointGcmChannelCredentialsServiceJson',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'service_json',
@@ -364354,40 +363944,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'RbinRuleExcludeResourceTagsOrResourceTagsExcludeResourceTags':
-        MigrateHelper(
-          className:
-              'RbinRuleExcludeResourceTagsOrResourceTagsExcludeResourceTags',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'exclude_resource_tags',
-              dartName: 'excludeResourceTags',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'RbinRuleExcludeResourceTags',
-            ),
-          ],
-          shorthand: 'excludeResourceTags',
-        ),
-    'RbinRuleExcludeResourceTagsOrResourceTagsResourceTags': MigrateHelper(
-      className: 'RbinRuleExcludeResourceTagsOrResourceTagsResourceTags',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'resource_tags',
-          dartName: 'resourceTags',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          repeated: true,
-          wrapped: false,
-          positional: true,
-          helper: 'RbinRuleResourceTags',
-        ),
-      ],
-      shorthand: 'resourceTags',
-    ),
     'RbinRuleLockConfiguration': MigrateHelper(
       className: 'RbinRuleLockConfiguration',
       slots: <MigrateSlot>[
@@ -364457,6 +364013,38 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
+    ),
+    'RbinRuleTagFilterExcludeResourceTags': MigrateHelper(
+      className: 'RbinRuleTagFilterExcludeResourceTags',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'exclude_resource_tags',
+          dartName: 'excludeResourceTags',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'RbinRuleExcludeResourceTags',
+        ),
+      ],
+      shorthand: 'excludeResourceTags',
+    ),
+    'RbinRuleTagFilterResourceTags': MigrateHelper(
+      className: 'RbinRuleTagFilterResourceTags',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'resource_tags',
+          dartName: 'resourceTags',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'RbinRuleResourceTags',
+        ),
+      ],
+      shorthand: 'resourceTags',
     ),
     'RdsClusterClusterIdentifierClusterIdentifier': MigrateHelper(
       className: 'RdsClusterClusterIdentifierClusterIdentifier',
@@ -364542,54 +364130,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'identifierPrefix',
     ),
-    'RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword':
-        MigrateHelper(
-          className:
-              'RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'manage_master_user_password',
-              dartName: 'manageMasterUserPassword',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'manageMasterUserPassword',
+    'RdsClusterMasterPasswordManageMasterUserPassword': MigrateHelper(
+      className: 'RdsClusterMasterPasswordManageMasterUserPassword',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'manage_master_user_password',
+          dartName: 'manageMasterUserPassword',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
-    'RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword':
-        MigrateHelper(
-          className:
-              'RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'master_password',
-              dartName: 'masterPassword',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'masterPassword',
+      ],
+      shorthand: 'manageMasterUserPassword',
+    ),
+    'RdsClusterMasterPasswordMasterPassword': MigrateHelper(
+      className: 'RdsClusterMasterPasswordMasterPassword',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'master_password',
+          dartName: 'masterPassword',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo':
-        MigrateHelper(
-          className:
-              'RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'master_password_wo',
-              dartName: 'masterPasswordWo',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'masterPasswordWo',
+      ],
+      shorthand: 'masterPassword',
+    ),
+    'RdsClusterMasterPasswordMasterPasswordWo': MigrateHelper(
+      className: 'RdsClusterMasterPasswordMasterPasswordWo',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'master_password_wo',
+          dartName: 'masterPasswordWo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'masterPasswordWo',
+    ),
     'RdsClusterParameterGroupNameName': MigrateHelper(
       className: 'RdsClusterParameterGroupNameName',
       slots: <MigrateSlot>[
@@ -364857,8 +364439,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'RdsCustomDbEngineVersionFilenameOrManifestFilename': MigrateHelper(
-      className: 'RdsCustomDbEngineVersionFilenameOrManifestFilename',
+    'RdsCustomDbEngineVersionManifestFilename': MigrateHelper(
+      className: 'RdsCustomDbEngineVersionManifestFilename',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'filename',
@@ -364871,8 +364453,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'filename',
     ),
-    'RdsCustomDbEngineVersionFilenameOrManifestManifest': MigrateHelper(
-      className: 'RdsCustomDbEngineVersionFilenameOrManifestManifest',
+    'RdsCustomDbEngineVersionManifestManifest': MigrateHelper(
+      className: 'RdsCustomDbEngineVersionManifestManifest',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'manifest',
@@ -364885,54 +364467,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'manifest',
     ),
-    'RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoManageMasterPassword':
-        MigrateHelper(
-          className:
-              'RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoManageMasterPassword',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'manage_master_password',
-              dartName: 'manageMasterPassword',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'manageMasterPassword',
+    'RedshiftClusterMasterPasswordManageMasterPassword': MigrateHelper(
+      className: 'RedshiftClusterMasterPasswordManageMasterPassword',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'manage_master_password',
+          dartName: 'manageMasterPassword',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
-    'RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword':
-        MigrateHelper(
-          className:
-              'RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'master_password',
-              dartName: 'masterPassword',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'masterPassword',
+      ],
+      shorthand: 'manageMasterPassword',
+    ),
+    'RedshiftClusterMasterPasswordMasterPassword': MigrateHelper(
+      className: 'RedshiftClusterMasterPasswordMasterPassword',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'master_password',
+          dartName: 'masterPassword',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo':
-        MigrateHelper(
-          className:
-              'RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'master_password_wo',
-              dartName: 'masterPasswordWo',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'masterPasswordWo',
+      ],
+      shorthand: 'masterPassword',
+    ),
+    'RedshiftClusterMasterPasswordMasterPasswordWo': MigrateHelper(
+      className: 'RedshiftClusterMasterPasswordMasterPasswordWo',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'master_password_wo',
+          dartName: 'masterPasswordWo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'masterPasswordWo',
+    ),
     'RedshiftClusterSnapshotSnapshotArn': MigrateHelper(
       className: 'RedshiftClusterSnapshotSnapshotArn',
       slots: <MigrateSlot>[
@@ -364961,10 +364537,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'snapshotIdentifier',
     ),
-    'RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionAssociateEntireAccount':
+    'RedshiftDataShareConsumerAssociationConsumerAssociateEntireAccount':
         MigrateHelper(
           className:
-              'RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionAssociateEntireAccount',
+              'RedshiftDataShareConsumerAssociationConsumerAssociateEntireAccount',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'associate_entire_account',
@@ -364977,38 +364553,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'associateEntireAccount',
         ),
-    'RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerArn':
-        MigrateHelper(
-          className:
-              'RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'consumer_arn',
-              dartName: 'consumerArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'consumerArn',
+    'RedshiftDataShareConsumerAssociationConsumerConsumerArn': MigrateHelper(
+      className: 'RedshiftDataShareConsumerAssociationConsumerConsumerArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_arn',
+          dartName: 'consumerArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerRegion':
-        MigrateHelper(
-          className:
-              'RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerRegion',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'consumer_region',
-              dartName: 'consumerRegion',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'consumerRegion',
+      ],
+      shorthand: 'consumerArn',
+    ),
+    'RedshiftDataShareConsumerAssociationConsumerConsumerRegion': MigrateHelper(
+      className: 'RedshiftDataShareConsumerAssociationConsumerConsumerRegion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_region',
+          dartName: 'consumerRegion',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'consumerRegion',
+    ),
     'RedshiftIdcApplicationAuthorizedTokenIssuer': MigrateHelper(
       className: 'RedshiftIdcApplicationAuthorizedTokenIssuer',
       slots: <MigrateSlot>[
@@ -365171,24 +364743,24 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'cluster',
+          dartName: 'action',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'pause_cluster':
-                'RedshiftScheduledActionTargetActionClusterPauseCluster',
+                'RedshiftScheduledActionTargetActionActionPauseCluster',
             'resize_cluster':
-                'RedshiftScheduledActionTargetActionClusterResizeCluster',
+                'RedshiftScheduledActionTargetActionActionResizeCluster',
             'resume_cluster':
-                'RedshiftScheduledActionTargetActionClusterResumeCluster',
+                'RedshiftScheduledActionTargetActionActionResumeCluster',
           },
         ),
       ],
     ),
-    'RedshiftScheduledActionTargetActionClusterPauseCluster': MigrateHelper(
-      className: 'RedshiftScheduledActionTargetActionClusterPauseCluster',
+    'RedshiftScheduledActionTargetActionActionPauseCluster': MigrateHelper(
+      className: 'RedshiftScheduledActionTargetActionActionPauseCluster',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'pause_cluster',
@@ -365202,8 +364774,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'pauseCluster',
     ),
-    'RedshiftScheduledActionTargetActionClusterResizeCluster': MigrateHelper(
-      className: 'RedshiftScheduledActionTargetActionClusterResizeCluster',
+    'RedshiftScheduledActionTargetActionActionResizeCluster': MigrateHelper(
+      className: 'RedshiftScheduledActionTargetActionActionResizeCluster',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'resize_cluster',
@@ -365217,8 +364789,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'resizeCluster',
     ),
-    'RedshiftScheduledActionTargetActionClusterResumeCluster': MigrateHelper(
-      className: 'RedshiftScheduledActionTargetActionClusterResumeCluster',
+    'RedshiftScheduledActionTargetActionActionResumeCluster': MigrateHelper(
+      className: 'RedshiftScheduledActionTargetActionActionResumeCluster',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'resume_cluster',
@@ -365343,26 +364915,24 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPassword':
-        MigrateHelper(
-          className:
-              'RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPassword',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'admin_user_password',
-              dartName: 'adminUserPassword',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'adminUserPassword',
+    'RedshiftserverlessNamespaceAdminPasswordAdminUserPassword': MigrateHelper(
+      className: 'RedshiftserverlessNamespaceAdminPasswordAdminUserPassword',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'admin_user_password',
+          dartName: 'adminUserPassword',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPasswordWo':
+      ],
+      shorthand: 'adminUserPassword',
+    ),
+    'RedshiftserverlessNamespaceAdminPasswordAdminUserPasswordWo':
         MigrateHelper(
           className:
-              'RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPasswordWo',
+              'RedshiftserverlessNamespaceAdminPasswordAdminUserPasswordWo',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'admin_user_password_wo',
@@ -365375,10 +364945,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'adminUserPasswordWo',
         ),
-    'RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordManageAdminPassword':
+    'RedshiftserverlessNamespaceAdminPasswordManageAdminPassword':
         MigrateHelper(
           className:
-              'RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordManageAdminPassword',
+              'RedshiftserverlessNamespaceAdminPasswordManageAdminPassword',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'manage_admin_password',
@@ -366273,35 +365843,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'Route53RecordAliasOrRecordsAlias': MigrateHelper(
-      className: 'Route53RecordAliasOrRecordsAlias',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'alias',
-          dartName: 'alias',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'Route53RecordAlias',
-        ),
-      ],
-      shorthand: 'alias',
-    ),
-    'Route53RecordAliasOrRecordsRecords': MigrateHelper(
-      className: 'Route53RecordAliasOrRecordsRecords',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'records',
-          dartName: 'records',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'List<String>',
-        ),
-      ],
-      shorthand: 'records',
-    ),
     'Route53RecordCidrRoutingPolicy': MigrateHelper(
       className: 'Route53RecordCidrRoutingPolicy',
       slots: <MigrateSlot>[
@@ -366528,6 +366069,35 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'weightedRoutingPolicy',
+    ),
+    'Route53RecordTargetAlias': MigrateHelper(
+      className: 'Route53RecordTargetAlias',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'alias',
+          dartName: 'alias',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Route53RecordAlias',
+        ),
+      ],
+      shorthand: 'alias',
+    ),
+    'Route53RecordTargetRecords': MigrateHelper(
+      className: 'Route53RecordTargetRecords',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'records',
+          dartName: 'records',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
+        ),
+      ],
+      shorthand: 'records',
     ),
     'Route53RecordWeightedRoutingPolicy': MigrateHelper(
       className: 'Route53RecordWeightedRoutingPolicy',
@@ -366861,8 +366431,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'Route53ZoneDelegationSetIdOrVpcDelegationSetId': MigrateHelper(
-      className: 'Route53ZoneDelegationSetIdOrVpcDelegationSetId',
+    'Route53ZoneVisibilityDelegationSetId': MigrateHelper(
+      className: 'Route53ZoneVisibilityDelegationSetId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'delegation_set_id',
@@ -366875,8 +366445,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'delegationSetId',
     ),
-    'Route53ZoneDelegationSetIdOrVpcVpc': MigrateHelper(
-      className: 'Route53ZoneDelegationSetIdOrVpcVpc',
+    'Route53ZoneVisibilityVpc': MigrateHelper(
+      className: 'Route53ZoneVisibilityVpc',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'vpc',
@@ -367928,88 +367498,78 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'RouteCarrierGatewayIdOrDestinationIpv6CidrBlockCarrierGatewayId':
-        MigrateHelper(
-          className:
-              'RouteCarrierGatewayIdOrDestinationIpv6CidrBlockCarrierGatewayId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'carrier_gateway_id',
-              dartName: 'carrierGatewayId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'carrierGatewayId',
+    'RouteCarrierIpv6CarrierGatewayId': MigrateHelper(
+      className: 'RouteCarrierIpv6CarrierGatewayId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'carrier_gateway_id',
+          dartName: 'carrierGatewayId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'RouteCarrierGatewayIdOrDestinationIpv6CidrBlockDestinationIpv6CidrBlock':
-        MigrateHelper(
-          className:
-              'RouteCarrierGatewayIdOrDestinationIpv6CidrBlockDestinationIpv6CidrBlock',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'destination_ipv6_cidr_block',
-              dartName: 'destinationIpv6CidrBlock',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'destinationIpv6CidrBlock',
+      ],
+      shorthand: 'carrierGatewayId',
+    ),
+    'RouteCarrierIpv6DestinationIpv6CidrBlock': MigrateHelper(
+      className: 'RouteCarrierIpv6DestinationIpv6CidrBlock',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'destination_ipv6_cidr_block',
+          dartName: 'destinationIpv6CidrBlock',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'RouteDestinationCidrBlockOrEgressOnlyGatewayIdDestinationCidrBlock':
-        MigrateHelper(
-          className:
-              'RouteDestinationCidrBlockOrEgressOnlyGatewayIdDestinationCidrBlock',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'destination_cidr_block',
-              dartName: 'destinationCidrBlock',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'destinationCidrBlock',
+      ],
+      shorthand: 'destinationIpv6CidrBlock',
+    ),
+    'RouteIpv4EgressDestinationCidrBlock': MigrateHelper(
+      className: 'RouteIpv4EgressDestinationCidrBlock',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'destination_cidr_block',
+          dartName: 'destinationCidrBlock',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'RouteDestinationCidrBlockOrEgressOnlyGatewayIdEgressOnlyGatewayId':
-        MigrateHelper(
-          className:
-              'RouteDestinationCidrBlockOrEgressOnlyGatewayIdEgressOnlyGatewayId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'egress_only_gateway_id',
-              dartName: 'egressOnlyGatewayId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'egressOnlyGatewayId',
+      ],
+      shorthand: 'destinationCidrBlock',
+    ),
+    'RouteIpv4EgressEgressOnlyGatewayId': MigrateHelper(
+      className: 'RouteIpv4EgressEgressOnlyGatewayId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'egress_only_gateway_id',
+          dartName: 'egressOnlyGatewayId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'RouteDestinationPrefixListIdOrVpcEndpointIdDestinationPrefixListId':
-        MigrateHelper(
-          className:
-              'RouteDestinationPrefixListIdOrVpcEndpointIdDestinationPrefixListId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'destination_prefix_list_id',
-              dartName: 'destinationPrefixListId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'destinationPrefixListId',
+      ],
+      shorthand: 'egressOnlyGatewayId',
+    ),
+    'RoutePrefixListEndpointDestinationPrefixListId': MigrateHelper(
+      className: 'RoutePrefixListEndpointDestinationPrefixListId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'destination_prefix_list_id',
+          dartName: 'destinationPrefixListId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'RouteDestinationPrefixListIdOrVpcEndpointIdVpcEndpointId': MigrateHelper(
-      className: 'RouteDestinationPrefixListIdOrVpcEndpointIdVpcEndpointId',
+      ],
+      shorthand: 'destinationPrefixListId',
+    ),
+    'RoutePrefixListEndpointVpcEndpointId': MigrateHelper(
+      className: 'RoutePrefixListEndpointVpcEndpointId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'vpc_endpoint_id',
@@ -368022,8 +367582,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'vpcEndpointId',
     ),
-    'RouteTableAssociationGatewayIdOrSubnetIdGatewayId': MigrateHelper(
-      className: 'RouteTableAssociationGatewayIdOrSubnetIdGatewayId',
+    'RouteTableAssociationTargetGatewayId': MigrateHelper(
+      className: 'RouteTableAssociationTargetGatewayId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'gateway_id',
@@ -368036,8 +367596,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'gatewayId',
     ),
-    'RouteTableAssociationGatewayIdOrSubnetIdSubnetId': MigrateHelper(
-      className: 'RouteTableAssociationGatewayIdOrSubnetIdSubnetId',
+    'RouteTableAssociationTargetSubnetId': MigrateHelper(
+      className: 'RouteTableAssociationTargetSubnetId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'subnet_id',
@@ -368216,6 +367776,65 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'S3BucketAccessAcl': MigrateHelper(
+      className: 'S3BucketAccessAcl',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'acl',
+          dartName: 'acl',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'acl',
+    ),
+    'S3BucketAccessGrant': MigrateHelper(
+      className: 'S3BucketAccessGrant',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'grant',
+          dartName: 'grant',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'S3BucketGrant',
+        ),
+      ],
+      shorthand: 'grant',
+    ),
+    'S3BucketAclAccessAccessControlPolicy': MigrateHelper(
+      className: 'S3BucketAclAccessAccessControlPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'access_control_policy',
+          dartName: 'accessControlPolicy',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'S3BucketAclAccessControlPolicy',
+        ),
+      ],
+      shorthand: 'accessControlPolicy',
+    ),
+    'S3BucketAclAccessAcl': MigrateHelper(
+      className: 'S3BucketAclAccessAcl',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'acl',
+          dartName: 'acl',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'acl',
+    ),
     'S3BucketAclAccessControlPolicy': MigrateHelper(
       className: 'S3BucketAclAccessControlPolicy',
       slots: <MigrateSlot>[
@@ -368291,35 +367910,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'S3BucketAclAccessControlPolicyOrAclAccessControlPolicy': MigrateHelper(
-      className: 'S3BucketAclAccessControlPolicyOrAclAccessControlPolicy',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'access_control_policy',
-          dartName: 'accessControlPolicy',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'S3BucketAclAccessControlPolicy',
-        ),
-      ],
-      shorthand: 'accessControlPolicy',
-    ),
-    'S3BucketAclAccessControlPolicyOrAclAcl': MigrateHelper(
-      className: 'S3BucketAclAccessControlPolicyOrAclAcl',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'acl',
-          dartName: 'acl',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'acl',
-    ),
     'S3BucketAclAccessControlPolicyOwner': MigrateHelper(
       className: 'S3BucketAclAccessControlPolicyOwner',
       slots: <MigrateSlot>[
@@ -368338,36 +367928,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'S3BucketAclOrGrantAcl': MigrateHelper(
-      className: 'S3BucketAclOrGrantAcl',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'acl',
-          dartName: 'acl',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'acl',
-    ),
-    'S3BucketAclOrGrantGrant': MigrateHelper(
-      className: 'S3BucketAclOrGrantGrant',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'grant',
-          dartName: 'grant',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          repeated: true,
-          wrapped: false,
-          positional: true,
-          helper: 'S3BucketGrant',
-        ),
-      ],
-      shorthand: 'grant',
     ),
     'S3BucketAnalyticsConfigurationFilter': MigrateHelper(
       className: 'S3BucketAnalyticsConfigurationFilter',
@@ -369685,8 +369245,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'S3BucketObjectContentOrContentBase64OrSourceContent': MigrateHelper(
-      className: 'S3BucketObjectContentOrContentBase64OrSourceContent',
+    'S3BucketObjectBodyContent': MigrateHelper(
+      className: 'S3BucketObjectBodyContent',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content',
@@ -369699,8 +369259,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'content',
     ),
-    'S3BucketObjectContentOrContentBase64OrSourceContentBase64': MigrateHelper(
-      className: 'S3BucketObjectContentOrContentBase64OrSourceContentBase64',
+    'S3BucketObjectBodyContentBase64': MigrateHelper(
+      className: 'S3BucketObjectBodyContentBase64',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content_base64',
@@ -369713,8 +369273,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'contentBase64',
     ),
-    'S3BucketObjectContentOrContentBase64OrSourceSource': MigrateHelper(
-      className: 'S3BucketObjectContentOrContentBase64OrSourceSource',
+    'S3BucketObjectBodySource': MigrateHelper(
+      className: 'S3BucketObjectBodySource',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'source',
@@ -369727,8 +369287,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'source',
     ),
-    'S3BucketObjectEtagOrKmsKeyIdEtag': MigrateHelper(
-      className: 'S3BucketObjectEtagOrKmsKeyIdEtag',
+    'S3BucketObjectIntegrityEtag': MigrateHelper(
+      className: 'S3BucketObjectIntegrityEtag',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'etag',
@@ -369741,8 +369301,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'etag',
     ),
-    'S3BucketObjectEtagOrKmsKeyIdKmsKeyId': MigrateHelper(
-      className: 'S3BucketObjectEtagOrKmsKeyIdKmsKeyId',
+    'S3BucketObjectIntegrityKmsKeyId': MigrateHelper(
+      className: 'S3BucketObjectIntegrityKmsKeyId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'kms_key_id',
@@ -369773,16 +369333,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'daysOrYears',
+          dartName: 'period',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'days':
-                'S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays',
+                'S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays',
             'years':
-                'S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsYears',
+                'S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears',
           },
         ),
         MigrateSlot(
@@ -369794,10 +369354,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays':
+    'S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays':
         MigrateHelper(
           className:
-              'S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays',
+              'S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'days',
@@ -369810,10 +369370,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'days',
         ),
-    'S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsYears':
+    'S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears':
         MigrateHelper(
           className:
-              'S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsYears',
+              'S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'years',
@@ -370575,16 +370135,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'indexDocumentOrRedirectAllRequestsTo',
+          dartName: 'mode',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'index_document':
-                'S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToIndexDocument',
+            'index_document': 'S3BucketWebsiteModeIndexDocument',
             'redirect_all_requests_to':
-                'S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToRedirectAllRequestsTo',
+                'S3BucketWebsiteModeRedirectAllRequestsTo',
           },
         ),
         MigrateSlot(
@@ -370719,38 +370278,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToIndexDocument':
-        MigrateHelper(
-          className:
-              'S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToIndexDocument',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'index_document',
-              dartName: 'indexDocument',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'indexDocument',
+    'S3BucketWebsiteModeIndexDocument': MigrateHelper(
+      className: 'S3BucketWebsiteModeIndexDocument',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'index_document',
+          dartName: 'indexDocument',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToRedirectAllRequestsTo':
-        MigrateHelper(
-          className:
-              'S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToRedirectAllRequestsTo',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'redirect_all_requests_to',
-              dartName: 'redirectAllRequestsTo',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'redirectAllRequestsTo',
+      ],
+      shorthand: 'indexDocument',
+    ),
+    'S3BucketWebsiteModeRedirectAllRequestsTo': MigrateHelper(
+      className: 'S3BucketWebsiteModeRedirectAllRequestsTo',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'redirect_all_requests_to',
+          dartName: 'redirectAllRequestsTo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'redirectAllRequestsTo',
+    ),
     'S3DirectoryBucketLocation': MigrateHelper(
       className: 'S3DirectoryBucketLocation',
       slots: <MigrateSlot>[
@@ -370770,8 +370325,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'S3ObjectContentOrContentBase64OrSourceContent': MigrateHelper(
-      className: 'S3ObjectContentOrContentBase64OrSourceContent',
+    'S3ObjectBodyContent': MigrateHelper(
+      className: 'S3ObjectBodyContent',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content',
@@ -370784,8 +370339,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'content',
     ),
-    'S3ObjectContentOrContentBase64OrSourceContentBase64': MigrateHelper(
-      className: 'S3ObjectContentOrContentBase64OrSourceContentBase64',
+    'S3ObjectBodyContentBase64': MigrateHelper(
+      className: 'S3ObjectBodyContentBase64',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'content_base64',
@@ -370798,8 +370353,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'contentBase64',
     ),
-    'S3ObjectContentOrContentBase64OrSourceSource': MigrateHelper(
-      className: 'S3ObjectContentOrContentBase64OrSourceSource',
+    'S3ObjectBodySource': MigrateHelper(
+      className: 'S3ObjectBodySource',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'source',
@@ -370812,8 +370367,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'source',
     ),
-    'S3ObjectCopyAclOrGrantAcl': MigrateHelper(
-      className: 'S3ObjectCopyAclOrGrantAcl',
+    'S3ObjectCopyAccessAcl': MigrateHelper(
+      className: 'S3ObjectCopyAccessAcl',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'acl',
@@ -370826,8 +370381,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'acl',
     ),
-    'S3ObjectCopyAclOrGrantGrant': MigrateHelper(
-      className: 'S3ObjectCopyAclOrGrantGrant',
+    'S3ObjectCopyAccessGrant': MigrateHelper(
+      className: 'S3ObjectCopyAccessGrant',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'grant',
@@ -370908,8 +370463,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'S3ObjectEtagOrKmsKeyIdEtag': MigrateHelper(
-      className: 'S3ObjectEtagOrKmsKeyIdEtag',
+    'S3ObjectIntegrityEtag': MigrateHelper(
+      className: 'S3ObjectIntegrityEtag',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'etag',
@@ -370922,8 +370477,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'etag',
     ),
-    'S3ObjectEtagOrKmsKeyIdKmsKeyId': MigrateHelper(
-      className: 'S3ObjectEtagOrKmsKeyIdKmsKeyId',
+    'S3ObjectIntegrityKmsKeyId': MigrateHelper(
+      className: 'S3ObjectIntegrityKmsKeyId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'kms_key_id',
@@ -374163,6 +373718,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'SagemakerAppOwnerSpaceName': MigrateHelper(
+      className: 'SagemakerAppOwnerSpaceName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'space_name',
+          dartName: 'spaceName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'spaceName',
+    ),
+    'SagemakerAppOwnerUserProfileName': MigrateHelper(
+      className: 'SagemakerAppOwnerUserProfileName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'user_profile_name',
+          dartName: 'userProfileName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'userProfileName',
+    ),
     'SagemakerAppResourceSpec': MigrateHelper(
       className: 'SagemakerAppResourceSpec',
       slots: <MigrateSlot>[
@@ -374202,34 +373785,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'SagemakerAppSpaceNameOrUserProfileNameSpaceName': MigrateHelper(
-      className: 'SagemakerAppSpaceNameOrUserProfileNameSpaceName',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'space_name',
-          dartName: 'spaceName',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'spaceName',
-    ),
-    'SagemakerAppSpaceNameOrUserProfileNameUserProfileName': MigrateHelper(
-      className: 'SagemakerAppSpaceNameOrUserProfileNameUserProfileName',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'user_profile_name',
-          dartName: 'userProfileName',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'userProfileName',
     ),
     'SagemakerCodeRepositoryGitConfig': MigrateHelper(
       className: 'SagemakerCodeRepositoryGitConfig',
@@ -378654,16 +378209,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'hyperParameterTuningResourceConfigOrResourceConfig',
+          dartName: 'resources',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'hyper_parameter_tuning_resource_config':
-                'SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig',
+                'SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesHyperParameterTuningResourceConfig',
             'resource_config':
-                'SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigResourceConfig',
+                'SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesResourceConfig',
           },
         ),
         MigrateSlot(
@@ -378724,16 +378279,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'algorithmNameOrTrainingImage',
+          dartName: 'algorithm',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'algorithm_name':
-                'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName',
+                'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmAlgorithmName',
             'training_image':
-                'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage',
+                'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmTrainingImage',
           },
         ),
         MigrateSlot(
@@ -378756,10 +378311,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName':
+    'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmAlgorithmName':
         MigrateHelper(
           className:
-              'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName',
+              'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmAlgorithmName',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'algorithm_name',
@@ -378772,10 +378327,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'algorithmName',
         ),
-    'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage':
+    'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmTrainingImage':
         MigrateHelper(
           className:
-              'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage',
+              'SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmTrainingImage',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'training_image',
@@ -379071,44 +378626,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
               dartType: 'num',
             ),
           ],
-        ),
-    'SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig':
-        MigrateHelper(
-          className:
-              'SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'hyper_parameter_tuning_resource_config',
-              dartName: 'hyperParameterTuningResourceConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfig',
-            ),
-          ],
-          shorthand: 'hyperParameterTuningResourceConfig',
-        ),
-    'SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigResourceConfig':
-        MigrateHelper(
-          className:
-              'SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigResourceConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'resource_config',
-              dartName: 'resourceConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfig',
-            ),
-          ],
-          shorthand: 'resourceConfig',
         ),
     'SagemakerHyperParameterTuningJobTrainingJobDefinitionInputDataConfig': MigrateHelper(
       className:
@@ -379515,6 +379032,44 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesHyperParameterTuningResourceConfig':
+        MigrateHelper(
+          className:
+              'SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesHyperParameterTuningResourceConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'hyper_parameter_tuning_resource_config',
+              dartName: 'hyperParameterTuningResourceConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfig',
+            ),
+          ],
+          shorthand: 'hyperParameterTuningResourceConfig',
+        ),
+    'SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesResourceConfig':
+        MigrateHelper(
+          className:
+              'SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesResourceConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'resource_config',
+              dartName: 'resourceConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfig',
+            ),
+          ],
+          shorthand: 'resourceConfig',
+        ),
     'SagemakerHyperParameterTuningJobTrainingJobDefinitionStoppingCondition':
         MigrateHelper(
           className:
@@ -379677,16 +379232,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'hyperParameterTuningResourceConfigOrResourceConfig',
+          dartName: 'resources',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'hyper_parameter_tuning_resource_config':
-                'SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig',
+                'SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesHyperParameterTuningResourceConfig',
             'resource_config':
-                'SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigResourceConfig',
+                'SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesResourceConfig',
           },
         ),
         MigrateSlot(
@@ -379747,16 +379302,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'algorithmNameOrTrainingImage',
+          dartName: 'algorithm',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'algorithm_name':
-                'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName',
+                'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmAlgorithmName',
             'training_image':
-                'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage',
+                'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmTrainingImage',
           },
         ),
         MigrateSlot(
@@ -379779,10 +379334,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName':
+    'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmAlgorithmName':
         MigrateHelper(
           className:
-              'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName',
+              'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmAlgorithmName',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'algorithm_name',
@@ -379795,10 +379350,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'algorithmName',
         ),
-    'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage':
+    'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmTrainingImage':
         MigrateHelper(
           className:
-              'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage',
+              'SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmTrainingImage',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'training_image',
@@ -380094,44 +379649,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
               dartType: 'num',
             ),
           ],
-        ),
-    'SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig':
-        MigrateHelper(
-          className:
-              'SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'hyper_parameter_tuning_resource_config',
-              dartName: 'hyperParameterTuningResourceConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfig',
-            ),
-          ],
-          shorthand: 'hyperParameterTuningResourceConfig',
-        ),
-    'SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigResourceConfig':
-        MigrateHelper(
-          className:
-              'SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigResourceConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'resource_config',
-              dartName: 'resourceConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfig',
-            ),
-          ],
-          shorthand: 'resourceConfig',
         ),
     'SagemakerHyperParameterTuningJobTrainingJobDefinitionsInputDataConfig': MigrateHelper(
       className:
@@ -380537,6 +380054,44 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
               dartType: 'String',
             ),
           ],
+        ),
+    'SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesHyperParameterTuningResourceConfig':
+        MigrateHelper(
+          className:
+              'SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesHyperParameterTuningResourceConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'hyper_parameter_tuning_resource_config',
+              dartName: 'hyperParameterTuningResourceConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfig',
+            ),
+          ],
+          shorthand: 'hyperParameterTuningResourceConfig',
+        ),
+    'SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesResourceConfig':
+        MigrateHelper(
+          className:
+              'SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesResourceConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'resource_config',
+              dartName: 'resourceConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfig',
+            ),
+          ],
+          shorthand: 'resourceConfig',
         ),
     'SagemakerHyperParameterTuningJobTrainingJobDefinitionsStoppingCondition':
         MigrateHelper(
@@ -385242,8 +384797,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig': MigrateHelper(
-      className: 'SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig',
+    'SagemakerWorkforceIdentityProviderCognitoConfig': MigrateHelper(
+      className: 'SagemakerWorkforceIdentityProviderCognitoConfig',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'cognito_config',
@@ -385257,8 +384812,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'cognitoConfig',
     ),
-    'SagemakerWorkforceCognitoConfigOrOidcConfigOidcConfig': MigrateHelper(
-      className: 'SagemakerWorkforceCognitoConfigOrOidcConfigOidcConfig',
+    'SagemakerWorkforceIdentityProviderOidcConfig': MigrateHelper(
+      className: 'SagemakerWorkforceIdentityProviderOidcConfig',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'oidc_config',
@@ -386080,16 +385635,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'automaticallyAfterDaysOrScheduleExpression',
+          dartName: 'schedule',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'automatically_after_days':
-                'SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionAutomaticallyAfterDays',
+                'SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterDays',
             'schedule_expression':
-                'SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionScheduleExpression',
+                'SecretsmanagerSecretRotationRotationRulesScheduleScheduleExpression',
           },
         ),
         MigrateSlot(
@@ -386101,10 +385656,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionAutomaticallyAfterDays':
+    'SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterDays':
         MigrateHelper(
           className:
-              'SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionAutomaticallyAfterDays',
+              'SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterDays',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'automatically_after_days',
@@ -386117,10 +385672,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'automaticallyAfterDays',
         ),
-    'SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionScheduleExpression':
+    'SecretsmanagerSecretRotationRotationRulesScheduleScheduleExpression':
         MigrateHelper(
           className:
-              'SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionScheduleExpression',
+              'SecretsmanagerSecretRotationRotationRulesScheduleScheduleExpression',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'schedule_expression',
@@ -391966,8 +391521,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ServicequotasTemplateAwsRegionOrRegionAwsRegion': MigrateHelper(
-      className: 'ServicequotasTemplateAwsRegionOrRegionAwsRegion',
+    'ServicequotasTemplateRegionAwsRegion': MigrateHelper(
+      className: 'ServicequotasTemplateRegionAwsRegion',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'aws_region',
@@ -391980,8 +391535,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'awsRegion',
     ),
-    'ServicequotasTemplateAwsRegionOrRegionRegion': MigrateHelper(
-      className: 'ServicequotasTemplateAwsRegionOrRegionRegion',
+    'ServicequotasTemplateRegionRegion': MigrateHelper(
+      className: 'ServicequotasTemplateRegionRegion',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'region',
@@ -392996,8 +392551,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ShieldProtectionGroupMembersOrResourceTypeMembers': MigrateHelper(
-      className: 'ShieldProtectionGroupMembersOrResourceTypeMembers',
+    'ShieldProtectionGroupScopeMembers': MigrateHelper(
+      className: 'ShieldProtectionGroupScopeMembers',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'members',
@@ -393010,8 +392565,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'members',
     ),
-    'ShieldProtectionGroupMembersOrResourceTypeResourceType': MigrateHelper(
-      className: 'ShieldProtectionGroupMembersOrResourceTypeResourceType',
+    'ShieldProtectionGroupScopeResourceType': MigrateHelper(
+      className: 'ShieldProtectionGroupScopeResourceType',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'resource_type',
@@ -394302,67 +393857,19 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdHostResourceGroupArn':
-        MigrateHelper(
-          className:
-              'SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdHostResourceGroupArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'host_resource_group_arn',
-              dartName: 'hostResourceGroupArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'hostResourceGroupArn',
-        ),
-    'SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroup':
-        MigrateHelper(
-          className:
-              'SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroup',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'placement_group',
-              dartName: 'placementGroup',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'placementGroup',
-        ),
-    'SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroupId':
-        MigrateHelper(
-          className:
-              'SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroupId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'placement_group_id',
-              dartName: 'placementGroupId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'placementGroupId',
-        ),
     'SpotInstanceRequestLaunchTemplate': MigrateHelper(
       className: 'SpotInstanceRequestLaunchTemplate',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'idOrName',
+          dartName: 'template',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'id': 'SpotInstanceRequestLaunchTemplateIdOrNameId',
-            'name': 'SpotInstanceRequestLaunchTemplateIdOrNameName',
+            'id': 'SpotInstanceRequestLaunchTemplateTemplateId',
+            'name': 'SpotInstanceRequestLaunchTemplateTemplateName',
           },
         ),
         MigrateSlot(
@@ -394374,8 +393881,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SpotInstanceRequestLaunchTemplateIdOrNameId': MigrateHelper(
-      className: 'SpotInstanceRequestLaunchTemplateIdOrNameId',
+    'SpotInstanceRequestLaunchTemplateTemplateId': MigrateHelper(
+      className: 'SpotInstanceRequestLaunchTemplateTemplateId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'id',
@@ -394388,8 +393895,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'id',
     ),
-    'SpotInstanceRequestLaunchTemplateIdOrNameName': MigrateHelper(
-      className: 'SpotInstanceRequestLaunchTemplateIdOrNameName',
+    'SpotInstanceRequestLaunchTemplateTemplateName': MigrateHelper(
+      className: 'SpotInstanceRequestLaunchTemplateTemplateName',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
@@ -394479,6 +393986,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'SpotInstanceRequestPlacementHostResourceGroupArn': MigrateHelper(
+      className: 'SpotInstanceRequestPlacementHostResourceGroupArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'host_resource_group_arn',
+          dartName: 'hostResourceGroupArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'hostResourceGroupArn',
+    ),
+    'SpotInstanceRequestPlacementPlacementGroup': MigrateHelper(
+      className: 'SpotInstanceRequestPlacementPlacementGroup',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'placement_group',
+          dartName: 'placementGroup',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'placementGroup',
+    ),
+    'SpotInstanceRequestPlacementPlacementGroupId': MigrateHelper(
+      className: 'SpotInstanceRequestPlacementPlacementGroupId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'placement_group_id',
+          dartName: 'placementGroupId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'placementGroupId',
     ),
     'SpotInstanceRequestPrivateDnsNameOptions': MigrateHelper(
       className: 'SpotInstanceRequestPrivateDnsNameOptions',
@@ -395057,8 +394606,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'SsmParameterInsecureValueOrValueOrValueWoInsecureValue': MigrateHelper(
-      className: 'SsmParameterInsecureValueOrValueOrValueWoInsecureValue',
+    'SsmParameterValueInsecureValue': MigrateHelper(
+      className: 'SsmParameterValueInsecureValue',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'insecure_value',
@@ -395071,8 +394620,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'insecureValue',
     ),
-    'SsmParameterInsecureValueOrValueOrValueWoValue': MigrateHelper(
-      className: 'SsmParameterInsecureValueOrValueOrValueWoValue',
+    'SsmParameterValueValue': MigrateHelper(
+      className: 'SsmParameterValueValue',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'value',
@@ -395085,8 +394634,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'value',
     ),
-    'SsmParameterInsecureValueOrValueOrValueWoValueWo': MigrateHelper(
-      className: 'SsmParameterInsecureValueOrValueOrValueWoValueWo',
+    'SsmParameterValueValueWo': MigrateHelper(
+      className: 'SsmParameterValueValueWo',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'value_wo',
@@ -396080,38 +395629,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey':
-        MigrateHelper(
-          className:
-              'StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'activation_key',
-              dartName: 'activationKey',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'activationKey',
+    'StoragegatewayGatewayActivationActivationKey': MigrateHelper(
+      className: 'StoragegatewayGatewayActivationActivationKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'activation_key',
+          dartName: 'activationKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress':
-        MigrateHelper(
-          className:
-              'StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'gateway_ip_address',
-              dartName: 'gatewayIpAddress',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'gatewayIpAddress',
+      ],
+      shorthand: 'activationKey',
+    ),
+    'StoragegatewayGatewayActivationGatewayIpAddress': MigrateHelper(
+      className: 'StoragegatewayGatewayActivationGatewayIpAddress',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gateway_ip_address',
+          dartName: 'gatewayIpAddress',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'gatewayIpAddress',
+    ),
     'StoragegatewayGatewayMaintenanceStartTime': MigrateHelper(
       className: 'StoragegatewayGatewayMaintenanceStartTime',
       slots: <MigrateSlot>[
@@ -397348,40 +396893,36 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFilterFileUri':
-        MigrateHelper(
-          className:
-              'TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFilterFileUri',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'vocabulary_filter_file_uri',
-              dartName: 'vocabularyFilterFileUri',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'vocabularyFilterFileUri',
+    'TranscribeVocabularyFilterTermsVocabularyFilterFileUri': MigrateHelper(
+      className: 'TranscribeVocabularyFilterTermsVocabularyFilterFileUri',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vocabulary_filter_file_uri',
+          dartName: 'vocabularyFilterFileUri',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsWords':
-        MigrateHelper(
-          className:
-              'TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsWords',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'words',
-              dartName: 'words',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'words',
+      ],
+      shorthand: 'vocabularyFilterFileUri',
+    ),
+    'TranscribeVocabularyFilterTermsWords': MigrateHelper(
+      className: 'TranscribeVocabularyFilterTermsWords',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'words',
+          dartName: 'words',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
         ),
-    'TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases': MigrateHelper(
-      className: 'TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases',
+      ],
+      shorthand: 'words',
+    ),
+    'TranscribeVocabularyTermsPhrases': MigrateHelper(
+      className: 'TranscribeVocabularyTermsPhrases',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'phrases',
@@ -397394,22 +396935,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'phrases',
     ),
-    'TranscribeVocabularyPhrasesOrVocabularyFileUriVocabularyFileUri':
-        MigrateHelper(
-          className:
-              'TranscribeVocabularyPhrasesOrVocabularyFileUriVocabularyFileUri',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'vocabulary_file_uri',
-              dartName: 'vocabularyFileUri',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'vocabularyFileUri',
+    'TranscribeVocabularyTermsVocabularyFileUri': MigrateHelper(
+      className: 'TranscribeVocabularyTermsVocabularyFileUri',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vocabulary_file_uri',
+          dartName: 'vocabularyFileUri',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'vocabularyFileUri',
+    ),
     'TransferAccessHomeDirectoryMappings': MigrateHelper(
       className: 'TransferAccessHomeDirectoryMappings',
       slots: <MigrateSlot>[
@@ -399442,8 +398981,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VpcBlockPublicAccessExclusionSubnetIdOrVpcIdSubnetId': MigrateHelper(
-      className: 'VpcBlockPublicAccessExclusionSubnetIdOrVpcIdSubnetId',
+    'VpcBlockPublicAccessExclusionTargetSubnetId': MigrateHelper(
+      className: 'VpcBlockPublicAccessExclusionTargetSubnetId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'subnet_id',
@@ -399456,8 +398995,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'subnetId',
     ),
-    'VpcBlockPublicAccessExclusionSubnetIdOrVpcIdVpcId': MigrateHelper(
-      className: 'VpcBlockPublicAccessExclusionSubnetIdOrVpcIdVpcId',
+    'VpcBlockPublicAccessExclusionTargetVpcId': MigrateHelper(
+      className: 'VpcBlockPublicAccessExclusionTargetVpcId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'vpc_id',
@@ -399469,34 +399008,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'vpcId',
-    ),
-    'VpcCidrBlockOrIpv4NetmaskLengthCidrBlock': MigrateHelper(
-      className: 'VpcCidrBlockOrIpv4NetmaskLengthCidrBlock',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'cidr_block',
-          dartName: 'cidrBlock',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'cidrBlock',
-    ),
-    'VpcCidrBlockOrIpv4NetmaskLengthIpv4NetmaskLength': MigrateHelper(
-      className: 'VpcCidrBlockOrIpv4NetmaskLengthIpv4NetmaskLength',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'ipv4_netmask_length',
-          dartName: 'ipv4NetmaskLength',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'num',
-        ),
-      ],
-      shorthand: 'ipv4NetmaskLength',
     ),
     'VpcEndpointConnectionNotificationVpcEndpointVpcEndpointId': MigrateHelper(
       className: 'VpcEndpointConnectionNotificationVpcEndpointVpcEndpointId',
@@ -399561,54 +399072,48 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnResourceConfigurationArn':
-        MigrateHelper(
-          className:
-              'VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnResourceConfigurationArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'resource_configuration_arn',
-              dartName: 'resourceConfigurationArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'resourceConfigurationArn',
+    'VpcEndpointServiceResourceConfigurationArn': MigrateHelper(
+      className: 'VpcEndpointServiceResourceConfigurationArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'resource_configuration_arn',
+          dartName: 'resourceConfigurationArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceName':
-        MigrateHelper(
-          className:
-              'VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'service_name',
-              dartName: 'serviceName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'serviceName',
+      ],
+      shorthand: 'resourceConfigurationArn',
+    ),
+    'VpcEndpointServiceServiceName': MigrateHelper(
+      className: 'VpcEndpointServiceServiceName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'service_name',
+          dartName: 'serviceName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceNetworkArn':
-        MigrateHelper(
-          className:
-              'VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArnServiceNetworkArn',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'service_network_arn',
-              dartName: 'serviceNetworkArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'serviceNetworkArn',
+      ],
+      shorthand: 'serviceName',
+    ),
+    'VpcEndpointServiceServiceNetworkArn': MigrateHelper(
+      className: 'VpcEndpointServiceServiceNetworkArn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'service_network_arn',
+          dartName: 'serviceNetworkArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'serviceNetworkArn',
+    ),
     'VpcEndpointSubnetConfiguration': MigrateHelper(
       className: 'VpcEndpointSubnetConfiguration',
       slots: <MigrateSlot>[
@@ -399647,8 +399152,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VpcIpamPoolCidrAllocationCidrOrNetmaskLengthCidr': MigrateHelper(
-      className: 'VpcIpamPoolCidrAllocationCidrOrNetmaskLengthCidr',
+    'VpcIpamPoolCidrAllocationCidrCidr': MigrateHelper(
+      className: 'VpcIpamPoolCidrAllocationCidrCidr',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'cidr',
@@ -399661,8 +399166,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'cidr',
     ),
-    'VpcIpamPoolCidrAllocationCidrOrNetmaskLengthNetmaskLength': MigrateHelper(
-      className: 'VpcIpamPoolCidrAllocationCidrOrNetmaskLengthNetmaskLength',
+    'VpcIpamPoolCidrAllocationCidrNetmaskLength': MigrateHelper(
+      className: 'VpcIpamPoolCidrAllocationCidrNetmaskLength',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'netmask_length',
@@ -399694,8 +399199,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VpcIpamPoolCidrCidrOrNetmaskLengthCidr': MigrateHelper(
-      className: 'VpcIpamPoolCidrCidrOrNetmaskLengthCidr',
+    'VpcIpamPoolCidrCidrCidr': MigrateHelper(
+      className: 'VpcIpamPoolCidrCidrCidr',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'cidr',
@@ -399708,8 +399213,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'cidr',
     ),
-    'VpcIpamPoolCidrCidrOrNetmaskLengthNetmaskLength': MigrateHelper(
-      className: 'VpcIpamPoolCidrCidrOrNetmaskLengthNetmaskLength',
+    'VpcIpamPoolCidrCidrNetmaskLength': MigrateHelper(
+      className: 'VpcIpamPoolCidrCidrNetmaskLength',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'netmask_length',
@@ -399778,6 +399283,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'VpcIpv4CidrCidrBlock': MigrateHelper(
+      className: 'VpcIpv4CidrCidrBlock',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cidr_block',
+          dartName: 'cidrBlock',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'cidrBlock',
+    ),
+    'VpcIpv4CidrIpv4NetmaskLength': MigrateHelper(
+      className: 'VpcIpv4CidrIpv4NetmaskLength',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'ipv4_netmask_length',
+          dartName: 'ipv4NetmaskLength',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'ipv4NetmaskLength',
     ),
     'VpcPeeringConnectionAccepter': MigrateHelper(
       className: 'VpcPeeringConnectionAccepter',
@@ -401970,36 +401503,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'Wafv2RuleGroupRuleOrRulesJsonRule': MigrateHelper(
-      className: 'Wafv2RuleGroupRuleOrRulesJsonRule',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'rule',
-          dartName: 'rule',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          repeated: true,
-          wrapped: false,
-          positional: true,
-          helper: 'Wafv2RuleGroupRule',
-        ),
-      ],
-      shorthand: 'rule',
-    ),
-    'Wafv2RuleGroupRuleOrRulesJsonRulesJson': MigrateHelper(
-      className: 'Wafv2RuleGroupRuleOrRulesJsonRulesJson',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'rules_json',
-          dartName: 'rulesJson',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'rulesJson',
-    ),
     'Wafv2RuleGroupRuleRuleLabel': MigrateHelper(
       className: 'Wafv2RuleGroupRuleRuleLabel',
       slots: <MigrateSlot>[
@@ -403483,6 +402986,36 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'Wafv2RuleGroupRulesRule': MigrateHelper(
+      className: 'Wafv2RuleGroupRulesRule',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rule',
+          dartName: 'rule',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Wafv2RuleGroupRule',
+        ),
+      ],
+      shorthand: 'rule',
+    ),
+    'Wafv2RuleGroupRulesRulesJson': MigrateHelper(
+      className: 'Wafv2RuleGroupRulesRulesJson',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rules_json',
+          dartName: 'rulesJson',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'rulesJson',
+    ),
     'Wafv2RuleGroupVisibilityConfig': MigrateHelper(
       className: 'Wafv2RuleGroupVisibilityConfig',
       slots: <MigrateSlot>[
@@ -404144,38 +403677,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           helper: 'Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader',
         ),
       ],
-    ),
-    'Wafv2WebAclRuleActionOrOverrideActionAction': MigrateHelper(
-      className: 'Wafv2WebAclRuleActionOrOverrideActionAction',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'action',
-          dartName: 'action',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          repeated: true,
-          wrapped: false,
-          positional: true,
-          helper: 'Wafv2WebAclRuleAction',
-        ),
-      ],
-      shorthand: 'action',
-    ),
-    'Wafv2WebAclRuleActionOrOverrideActionOverrideAction': MigrateHelper(
-      className: 'Wafv2WebAclRuleActionOrOverrideActionOverrideAction',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'override_action',
-          dartName: 'overrideAction',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          repeated: true,
-          wrapped: false,
-          positional: true,
-          helper: 'Wafv2WebAclRuleOverrideAction',
-        ),
-      ],
-      shorthand: 'overrideAction',
     ),
     'Wafv2WebAclRuleCaptchaConfig': MigrateHelper(
       className: 'Wafv2WebAclRuleCaptchaConfig',
@@ -404974,42 +404475,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceManagedRuleGroup':
-        MigrateHelper(
-          className:
-              'Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceManagedRuleGroup',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'managed_rule_group',
-              dartName: 'managedRuleGroup',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'Wafv2WebAclRuleGroupAssociationManagedRuleGroup',
-            ),
-          ],
-          shorthand: 'managedRuleGroup',
-        ),
-    'Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceRuleGroupReference':
-        MigrateHelper(
-          className:
-              'Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceRuleGroupReference',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'rule_group_reference',
-              dartName: 'ruleGroupReference',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'Wafv2WebAclRuleGroupAssociationRuleGroupReference',
-            ),
-          ],
-          shorthand: 'ruleGroupReference',
-        ),
     'Wafv2WebAclRuleGroupAssociationManagedRuleGroupRuleActionOverride':
         MigrateHelper(
           className:
@@ -405379,6 +404844,22 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup': MigrateHelper(
+      className: 'Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'managed_rule_group',
+          dartName: 'managedRuleGroup',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Wafv2WebAclRuleGroupAssociationManagedRuleGroup',
+        ),
+      ],
+      shorthand: 'managedRuleGroup',
+    ),
     'Wafv2WebAclRuleGroupAssociationRuleGroupReference': MigrateHelper(
       className: 'Wafv2WebAclRuleGroupAssociationRuleGroupReference',
       slots: <MigrateSlot>[
@@ -405770,6 +405251,22 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'Wafv2WebAclRuleGroupAssociationRuleGroupRuleGroupReference': MigrateHelper(
+      className: 'Wafv2WebAclRuleGroupAssociationRuleGroupRuleGroupReference',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rule_group_reference',
+          dartName: 'ruleGroupReference',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Wafv2WebAclRuleGroupAssociationRuleGroupReference',
+        ),
+      ],
+      shorthand: 'ruleGroupReference',
+    ),
     'Wafv2WebAclRuleGroupAssociationVisibilityConfig': MigrateHelper(
       className: 'Wafv2WebAclRuleGroupAssociationVisibilityConfig',
       slots: <MigrateSlot>[
@@ -405822,6 +405319,38 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     'Wafv2WebAclRuleOverrideActionCount': MigrateHelper(
       className: 'Wafv2WebAclRuleOverrideActionCount',
       slots: <MigrateSlot>[],
+    ),
+    'Wafv2WebAclRuleRuleActionAction': MigrateHelper(
+      className: 'Wafv2WebAclRuleRuleActionAction',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'action',
+          dartName: 'action',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Wafv2WebAclRuleAction',
+        ),
+      ],
+      shorthand: 'action',
+    ),
+    'Wafv2WebAclRuleRuleActionOverrideAction': MigrateHelper(
+      className: 'Wafv2WebAclRuleRuleActionOverrideAction',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'override_action',
+          dartName: 'overrideAction',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Wafv2WebAclRuleOverrideAction',
+        ),
+      ],
+      shorthand: 'overrideAction',
     ),
     'Wafv2WebAclRuleRuleLabel': MigrateHelper(
       className: 'Wafv2WebAclRuleRuleLabel',
@@ -415265,48 +414794,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       name: 'CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles',
       members: <String, String>{'evaluate': 'evaluate', 'ignore': 'ignore'},
     ),
-    'CloudwatchMetricAlarmMetricQueryMetricStat': MigrateEnum(
-      name: 'CloudwatchMetricAlarmMetricQueryMetricStat',
-      members: <String, String>{
-        'SampleCount': 'samplecount',
-        'Average': 'average',
-        'Sum': 'sum',
-        'Minimum': 'minimum',
-        'Maximum': 'maximum',
-      },
-    ),
-    'CloudwatchMetricAlarmMetricQueryMetricUnit': MigrateEnum(
-      name: 'CloudwatchMetricAlarmMetricQueryMetricUnit',
-      members: <String, String>{
-        'Seconds': 'seconds',
-        'Microseconds': 'microseconds',
-        'Milliseconds': 'milliseconds',
-        'Bytes': 'bytes',
-        'Kilobytes': 'kilobytes',
-        'Megabytes': 'megabytes',
-        'Gigabytes': 'gigabytes',
-        'Terabytes': 'terabytes',
-        'Bits': 'bits',
-        'Kilobits': 'kilobits',
-        'Megabits': 'megabits',
-        'Gigabits': 'gigabits',
-        'Terabits': 'terabits',
-        'Percent': 'percent',
-        'Count': 'count',
-        'Bytes/Second': 'bytesSecond',
-        'Kilobytes/Second': 'kilobytesSecond',
-        'Megabytes/Second': 'megabytesSecond',
-        'Gigabytes/Second': 'gigabytesSecond',
-        'Terabytes/Second': 'terabytesSecond',
-        'Bits/Second': 'bitsSecond',
-        'Kilobits/Second': 'kilobitsSecond',
-        'Megabits/Second': 'megabitsSecond',
-        'Gigabits/Second': 'gigabitsSecond',
-        'Terabits/Second': 'terabitsSecond',
-        'Count/Second': 'countSecond',
-        'None': 'none',
-      },
-    ),
     'CloudwatchMetricAlarmStatistic': MigrateEnum(
       name: 'CloudwatchMetricAlarmStatistic',
       members: <String, String>{
@@ -415701,22 +415188,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'BUILD': 'build',
         'BUILD_BATCH': 'buildBatch',
         'RUNNER_BUILDKITE_BUILD': 'runnerBuildkiteBuild',
-      },
-    ),
-    'CodebuildWebhookFilterGroupFilterType': MigrateEnum(
-      name: 'CodebuildWebhookFilterGroupFilterType',
-      members: <String, String>{
-        'EVENT': 'event',
-        'BASE_REF': 'baseRef',
-        'HEAD_REF': 'headRef',
-        'ACTOR_ACCOUNT_ID': 'actorAccountId',
-        'FILE_PATH': 'filePath',
-        'COMMIT_MESSAGE': 'commitMessage',
-        'WORKFLOW_NAME': 'workflowName',
-        'TAG_NAME': 'tagName',
-        'RELEASE_NAME': 'releaseName',
-        'REPOSITORY_NAME': 'repositoryName',
-        'ORGANIZATION_NAME': 'organizationName',
       },
     ),
     'CodebuildWebhookPullRequestBuildPolicyApproverRoles': MigrateEnum(

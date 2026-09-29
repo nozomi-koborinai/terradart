@@ -19,18 +19,18 @@ enum NeptuneGlobalClusterEngine implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.engine(...)`.
-sealed class NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier {
-  const NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier();
+sealed class NeptuneGlobalClusterSource {
+  const NeptuneGlobalClusterSource();
 
   /// Sets `engine`.
-  const factory NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier.engine(
+  const factory NeptuneGlobalClusterSource.engine(
     TfArg<NeptuneGlobalClusterEngine> engine,
-  ) = NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine;
+  ) = NeptuneGlobalClusterSourceEngine;
 
   /// Sets `source_db_cluster_identifier`.
-  const factory NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier.sourceDbClusterIdentifier(
+  const factory NeptuneGlobalClusterSource.sourceDbClusterIdentifier(
     TfArg<String> sourceDbClusterIdentifier,
-  ) = NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier;
+  ) = NeptuneGlobalClusterSourceSourceDbClusterIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,12 +42,10 @@ sealed class NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier.engine] choice: sets `engine`.
-final class NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine
-    extends NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier {
-  const NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine(
-    this.engine,
-  );
+/// The [NeptuneGlobalClusterSource.engine] choice: sets `engine`.
+final class NeptuneGlobalClusterSourceEngine
+    extends NeptuneGlobalClusterSource {
+  const NeptuneGlobalClusterSourceEngine(this.engine);
 
   final TfArg<NeptuneGlobalClusterEngine> engine;
 
@@ -61,10 +59,10 @@ final class NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine
   Map<String, TfArg<Object?>> get argMap => {'engine': engine};
 }
 
-/// The [NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier.sourceDbClusterIdentifier] choice: sets `source_db_cluster_identifier`.
-final class NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier
-    extends NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier {
-  const NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier(
+/// The [NeptuneGlobalClusterSource.sourceDbClusterIdentifier] choice: sets `source_db_cluster_identifier`.
+final class NeptuneGlobalClusterSourceSourceDbClusterIdentifier
+    extends NeptuneGlobalClusterSource {
+  const NeptuneGlobalClusterSourceSourceDbClusterIdentifier(
     this.sourceDbClusterIdentifier,
   );
 
@@ -91,8 +89,7 @@ final class AwsNeptuneGlobalCluster extends Resource {
   AwsNeptuneGlobalCluster({
     required super.localName,
     TfArg<bool>? deletionProtection,
-    required NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier
-    engineOrSourceDbClusterIdentifier,
+    required NeptuneGlobalClusterSource source,
     TfArg<String>? engineVersion,
     required TfArg<String> globalClusterIdentifier,
     TfArg<String>? region,
@@ -106,7 +103,7 @@ final class AwsNeptuneGlobalCluster extends Resource {
          argMap: {
            if (deletionProtection != null)
              'deletion_protection': deletionProtection,
-           ...engineOrSourceDbClusterIdentifier.argMap,
+           ...source.argMap,
            if (engineVersion != null) 'engine_version': engineVersion,
            'global_cluster_identifier': globalClusterIdentifier,
            if (region != null) 'region': region,

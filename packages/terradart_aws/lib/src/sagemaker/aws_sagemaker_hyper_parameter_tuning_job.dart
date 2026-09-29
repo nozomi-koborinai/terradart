@@ -486,7 +486,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
     this.algorithmSpecification,
     this.checkpointConfig,
     this.hyperParameterRanges,
-    this.hyperParameterTuningResourceConfigOrResourceConfig,
+    this.resources,
     this.inputDataConfig,
     this.outputDataConfig,
     this.stoppingCondition,
@@ -525,8 +525,8 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
   >?
   hyperParameterRanges;
 
-  final SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig?
-  hyperParameterTuningResourceConfigOrResourceConfig;
+  final SagemakerHyperParameterTuningJobTrainingJobDefinitionResources?
+  resources;
 
   final List<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionInputDataConfig
@@ -575,7 +575,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
       'hyper_parameter_ranges': [
         for (final e in hyperParameterRanges!) e.encode(),
       ],
-    ...?hyperParameterTuningResourceConfigOrResourceConfig?.encode(),
+    ...?resources?.encode(),
     if (inputDataConfig != null)
       'input_data_config': [for (final e in inputDataConfig!) e.encode()],
     if (outputDataConfig != null)
@@ -594,22 +594,22 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.hyperParameterTuningResourceConfig(...)`.
-sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig();
+sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionResources {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionResources();
 
   /// Sets `hyper_parameter_tuning_resource_config`.
-  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig.hyperParameterTuningResourceConfig(
+  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionResources.hyperParameterTuningResourceConfig(
     List<
       SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfig
     >
     hyperParameterTuningResourceConfig,
-  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig;
+  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesHyperParameterTuningResourceConfig;
 
   /// Sets `resource_config`.
-  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig.resourceConfig(
+  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionResources.resourceConfig(
     List<SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfig>
     resourceConfig,
-  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigResourceConfig;
+  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesResourceConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -617,11 +617,10 @@ sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameter
   Map<String, Object?> encode();
 }
 
-/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig.hyperParameterTuningResourceConfig] choice: sets `hyper_parameter_tuning_resource_config`.
-final class SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig
-    extends
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig(
+/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionResources.hyperParameterTuningResourceConfig] choice: sets `hyper_parameter_tuning_resource_config`.
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesHyperParameterTuningResourceConfig
+    extends SagemakerHyperParameterTuningJobTrainingJobDefinitionResources {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesHyperParameterTuningResourceConfig(
     this.hyperParameterTuningResourceConfig,
   );
 
@@ -641,11 +640,10 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterT
   };
 }
 
-/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig.resourceConfig] choice: sets `resource_config`.
-final class SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigResourceConfig
-    extends
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigResourceConfig(
+/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionResources.resourceConfig] choice: sets `resource_config`.
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesResourceConfig
+    extends SagemakerHyperParameterTuningJobTrainingJobDefinitionResources {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesResourceConfig(
     this.resourceConfig,
   );
 
@@ -668,13 +666,13 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterT
 @immutable
 final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecification {
   const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecification({
-    this.algorithmNameOrTrainingImage,
+    this.algorithm,
     required this.trainingInputMode,
     this.metricDefinitions,
   });
 
-  final SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage?
-  algorithmNameOrTrainingImage;
+  final SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm?
+  algorithm;
 
   final TfArg<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationTrainingInputMode
@@ -687,7 +685,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecif
   metricDefinitions;
 
   Map<String, Object?> encode() => {
-    ...?algorithmNameOrTrainingImage?.encode(),
+    ...?algorithm?.encode(),
     'training_input_mode': trainingInputMode.toTfJson(),
     if (metricDefinitions != null)
       'metric_definitions': [for (final e in metricDefinitions!) e.encode()],
@@ -699,18 +697,18 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecif
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.algorithmName(...)`.
-sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage();
+sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm();
 
   /// Sets `algorithm_name`.
-  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage.algorithmName(
+  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm.algorithmName(
     TfArg<String> algorithmName,
-  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName;
+  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmAlgorithmName;
 
   /// Sets `training_image`.
-  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage.trainingImage(
+  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm.trainingImage(
     TfArg<String> trainingImage,
-  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage;
+  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmTrainingImage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -718,11 +716,11 @@ sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpeci
   Map<String, Object?> encode();
 }
 
-/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage.algorithmName] choice: sets `algorithm_name`.
-final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName
+/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm.algorithmName] choice: sets `algorithm_name`.
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmAlgorithmName
     extends
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName(
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmAlgorithmName(
     this.algorithmName,
   );
 
@@ -735,11 +733,11 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecif
   Map<String, Object?> encode() => {'algorithm_name': algorithmName.toTfJson()};
 }
 
-/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage.trainingImage] choice: sets `training_image`.
-final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage
+/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm.trainingImage] choice: sets `training_image`.
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmTrainingImage
     extends
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage(
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmTrainingImage(
     this.trainingImage,
   );
 
@@ -2288,7 +2286,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
     this.algorithmSpecification,
     this.checkpointConfig,
     this.hyperParameterRanges,
-    this.hyperParameterTuningResourceConfigOrResourceConfig,
+    this.resources,
     this.inputDataConfig,
     this.outputDataConfig,
     this.stoppingCondition,
@@ -2327,8 +2325,8 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
   >?
   hyperParameterRanges;
 
-  final SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig?
-  hyperParameterTuningResourceConfigOrResourceConfig;
+  final SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources?
+  resources;
 
   final List<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionsInputDataConfig
@@ -2377,7 +2375,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
       'hyper_parameter_ranges': [
         for (final e in hyperParameterRanges!) e.encode(),
       ],
-    ...?hyperParameterTuningResourceConfigOrResourceConfig?.encode(),
+    ...?resources?.encode(),
     if (inputDataConfig != null)
       'input_data_config': [for (final e in inputDataConfig!) e.encode()],
     if (outputDataConfig != null)
@@ -2396,22 +2394,22 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.hyperParameterTuningResourceConfig(...)`.
-sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig();
+sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources();
 
   /// Sets `hyper_parameter_tuning_resource_config`.
-  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig.hyperParameterTuningResourceConfig(
+  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources.hyperParameterTuningResourceConfig(
     List<
       SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfig
     >
     hyperParameterTuningResourceConfig,
-  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig;
+  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesHyperParameterTuningResourceConfig;
 
   /// Sets `resource_config`.
-  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig.resourceConfig(
+  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources.resourceConfig(
     List<SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfig>
     resourceConfig,
-  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigResourceConfig;
+  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesResourceConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -2419,11 +2417,10 @@ sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParamete
   Map<String, Object?> encode();
 }
 
-/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig.hyperParameterTuningResourceConfig] choice: sets `hyper_parameter_tuning_resource_config`.
-final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig
-    extends
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig(
+/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources.hyperParameterTuningResourceConfig] choice: sets `hyper_parameter_tuning_resource_config`.
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesHyperParameterTuningResourceConfig
+    extends SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesHyperParameterTuningResourceConfig(
     this.hyperParameterTuningResourceConfig,
   );
 
@@ -2443,11 +2440,10 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameter
   };
 }
 
-/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig.resourceConfig] choice: sets `resource_config`.
-final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigResourceConfig
-    extends
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigResourceConfig(
+/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources.resourceConfig] choice: sets `resource_config`.
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesResourceConfig
+    extends SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesResourceConfig(
     this.resourceConfig,
   );
 
@@ -2470,13 +2466,13 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameter
 @immutable
 final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecification {
   const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecification({
-    this.algorithmNameOrTrainingImage,
+    this.algorithm,
     required this.trainingInputMode,
     this.metricDefinitions,
   });
 
-  final SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage?
-  algorithmNameOrTrainingImage;
+  final SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm?
+  algorithm;
 
   final TfArg<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationTrainingInputMode
@@ -2489,7 +2485,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpeci
   metricDefinitions;
 
   Map<String, Object?> encode() => {
-    ...?algorithmNameOrTrainingImage?.encode(),
+    ...?algorithm?.encode(),
     'training_input_mode': trainingInputMode.toTfJson(),
     if (metricDefinitions != null)
       'metric_definitions': [for (final e in metricDefinitions!) e.encode()],
@@ -2501,18 +2497,18 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpeci
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.algorithmName(...)`.
-sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage();
+sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm();
 
   /// Sets `algorithm_name`.
-  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage.algorithmName(
+  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm.algorithmName(
     TfArg<String> algorithmName,
-  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName;
+  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmAlgorithmName;
 
   /// Sets `training_image`.
-  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage.trainingImage(
+  const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm.trainingImage(
     TfArg<String> trainingImage,
-  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage;
+  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmTrainingImage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -2520,11 +2516,11 @@ sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpec
   Map<String, Object?> encode();
 }
 
-/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage.algorithmName] choice: sets `algorithm_name`.
-final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName
+/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm.algorithmName] choice: sets `algorithm_name`.
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmAlgorithmName
     extends
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName(
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmAlgorithmName(
     this.algorithmName,
   );
 
@@ -2537,11 +2533,11 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpeci
   Map<String, Object?> encode() => {'algorithm_name': algorithmName.toTfJson()};
 }
 
-/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage.trainingImage] choice: sets `training_image`.
-final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage
+/// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm.trainingImage] choice: sets `training_image`.
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmTrainingImage
     extends
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage(
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmTrainingImage(
     this.trainingImage,
   );
 

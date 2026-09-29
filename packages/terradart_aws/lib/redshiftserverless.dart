@@ -10,10 +10,10 @@ export 'src/redshiftserverless/aws_redshiftserverless_endpoint_access.dart'
 export 'src/redshiftserverless/aws_redshiftserverless_namespace.dart'
     show
         AwsRedshiftserverlessNamespace,
-        RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword,
-        RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPassword,
-        RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPasswordWo,
-        RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordManageAdminPassword,
+        RedshiftserverlessNamespaceAdminPassword,
+        RedshiftserverlessNamespaceAdminPasswordAdminUserPassword,
+        RedshiftserverlessNamespaceAdminPasswordAdminUserPasswordWo,
+        RedshiftserverlessNamespaceAdminPasswordManageAdminPassword,
         RedshiftserverlessNamespaceLogExports;
 export 'src/redshiftserverless/aws_redshiftserverless_resource_policy.dart'
     show AwsRedshiftserverlessResourcePolicy;

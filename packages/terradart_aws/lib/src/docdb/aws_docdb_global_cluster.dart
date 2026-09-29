@@ -19,18 +19,18 @@ enum DocdbGlobalClusterEngine implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.engine(...)`.
-sealed class DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
-  const DocdbGlobalClusterEngineOrSourceDbClusterIdentifier();
+sealed class DocdbGlobalClusterSource {
+  const DocdbGlobalClusterSource();
 
   /// Sets `engine`.
-  const factory DocdbGlobalClusterEngineOrSourceDbClusterIdentifier.engine(
+  const factory DocdbGlobalClusterSource.engine(
     TfArg<DocdbGlobalClusterEngine> engine,
-  ) = DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine;
+  ) = DocdbGlobalClusterSourceEngine;
 
   /// Sets `source_db_cluster_identifier`.
-  const factory DocdbGlobalClusterEngineOrSourceDbClusterIdentifier.sourceDbClusterIdentifier(
+  const factory DocdbGlobalClusterSource.sourceDbClusterIdentifier(
     TfArg<String> sourceDbClusterIdentifier,
-  ) = DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier;
+  ) = DocdbGlobalClusterSourceSourceDbClusterIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,10 +42,9 @@ sealed class DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DocdbGlobalClusterEngineOrSourceDbClusterIdentifier.engine] choice: sets `engine`.
-final class DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine
-    extends DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
-  const DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine(this.engine);
+/// The [DocdbGlobalClusterSource.engine] choice: sets `engine`.
+final class DocdbGlobalClusterSourceEngine extends DocdbGlobalClusterSource {
+  const DocdbGlobalClusterSourceEngine(this.engine);
 
   final TfArg<DocdbGlobalClusterEngine> engine;
 
@@ -59,10 +58,10 @@ final class DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine
   Map<String, TfArg<Object?>> get argMap => {'engine': engine};
 }
 
-/// The [DocdbGlobalClusterEngineOrSourceDbClusterIdentifier.sourceDbClusterIdentifier] choice: sets `source_db_cluster_identifier`.
-final class DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier
-    extends DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
-  const DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier(
+/// The [DocdbGlobalClusterSource.sourceDbClusterIdentifier] choice: sets `source_db_cluster_identifier`.
+final class DocdbGlobalClusterSourceSourceDbClusterIdentifier
+    extends DocdbGlobalClusterSource {
+  const DocdbGlobalClusterSourceSourceDbClusterIdentifier(
     this.sourceDbClusterIdentifier,
   );
 
@@ -90,8 +89,7 @@ final class AwsDocdbGlobalCluster extends Resource {
     required super.localName,
     TfArg<String>? databaseName,
     TfArg<bool>? deletionProtection,
-    required DocdbGlobalClusterEngineOrSourceDbClusterIdentifier
-    engineOrSourceDbClusterIdentifier,
+    required DocdbGlobalClusterSource source,
     TfArg<String>? engineVersion,
     required TfArg<String> globalClusterIdentifier,
     TfArg<String>? region,
@@ -106,7 +104,7 @@ final class AwsDocdbGlobalCluster extends Resource {
            if (databaseName != null) 'database_name': databaseName,
            if (deletionProtection != null)
              'deletion_protection': deletionProtection,
-           ...engineOrSourceDbClusterIdentifier.argMap,
+           ...source.argMap,
            if (engineVersion != null) 'engine_version': engineVersion,
            'global_cluster_identifier': globalClusterIdentifier,
            if (region != null) 'region': region,

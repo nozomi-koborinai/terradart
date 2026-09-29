@@ -22,23 +22,23 @@ enum AutoscalingGroupDesiredCapacityType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.launchConfiguration(...)`.
-sealed class AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy {
-  const AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy();
+sealed class AutoscalingGroupLaunch {
+  const AutoscalingGroupLaunch();
 
   /// Sets `launch_configuration`.
-  const factory AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy.launchConfiguration(
+  const factory AutoscalingGroupLaunch.launchConfiguration(
     TfArg<String> launchConfiguration,
-  ) = AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchConfiguration;
+  ) = AutoscalingGroupLaunchLaunchConfiguration;
 
   /// Sets `launch_template`.
-  const factory AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy.launchTemplate(
+  const factory AutoscalingGroupLaunch.launchTemplate(
     AutoscalingGroupLaunchTemplate launchTemplate,
-  ) = AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchTemplate;
+  ) = AutoscalingGroupLaunchLaunchTemplate;
 
   /// Sets `mixed_instances_policy`.
-  const factory AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy.mixedInstancesPolicy(
+  const factory AutoscalingGroupLaunch.mixedInstancesPolicy(
     AutoscalingGroupMixedInstancesPolicy mixedInstancesPolicy,
-  ) = AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyMixedInstancesPolicy;
+  ) = AutoscalingGroupLaunchMixedInstancesPolicy;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -50,13 +50,10 @@ sealed class AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstances
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy.launchConfiguration] choice: sets `launch_configuration`.
-final class AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchConfiguration
-    extends
-        AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy {
-  const AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchConfiguration(
-    this.launchConfiguration,
-  );
+/// The [AutoscalingGroupLaunch.launchConfiguration] choice: sets `launch_configuration`.
+final class AutoscalingGroupLaunchLaunchConfiguration
+    extends AutoscalingGroupLaunch {
+  const AutoscalingGroupLaunchLaunchConfiguration(this.launchConfiguration);
 
   final TfArg<String> launchConfiguration;
 
@@ -74,13 +71,10 @@ final class AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesP
   };
 }
 
-/// The [AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy.launchTemplate] choice: sets `launch_template`.
-final class AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchTemplate
-    extends
-        AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy {
-  const AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyLaunchTemplate(
-    this.launchTemplate,
-  );
+/// The [AutoscalingGroupLaunch.launchTemplate] choice: sets `launch_template`.
+final class AutoscalingGroupLaunchLaunchTemplate
+    extends AutoscalingGroupLaunch {
+  const AutoscalingGroupLaunchLaunchTemplate(this.launchTemplate);
 
   final AutoscalingGroupLaunchTemplate launchTemplate;
 
@@ -96,13 +90,10 @@ final class AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesP
   };
 }
 
-/// The [AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy.mixedInstancesPolicy] choice: sets `mixed_instances_policy`.
-final class AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyMixedInstancesPolicy
-    extends
-        AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy {
-  const AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicyMixedInstancesPolicy(
-    this.mixedInstancesPolicy,
-  );
+/// The [AutoscalingGroupLaunch.mixedInstancesPolicy] choice: sets `mixed_instances_policy`.
+final class AutoscalingGroupLaunchMixedInstancesPolicy
+    extends AutoscalingGroupLaunch {
+  const AutoscalingGroupLaunchMixedInstancesPolicy(this.mixedInstancesPolicy);
 
   final AutoscalingGroupMixedInstancesPolicy mixedInstancesPolicy;
 
@@ -125,18 +116,18 @@ final class AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesP
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.availabilityZones(...)`.
-sealed class AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier {
-  const AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier();
+sealed class AutoscalingGroupPlacement {
+  const AutoscalingGroupPlacement();
 
   /// Sets `availability_zones`.
-  const factory AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier.availabilityZones(
+  const factory AutoscalingGroupPlacement.availabilityZones(
     TfArg<List<String>> availabilityZones,
-  ) = AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierAvailabilityZones;
+  ) = AutoscalingGroupPlacementAvailabilityZones;
 
   /// Sets `vpc_zone_identifier`.
-  const factory AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier.vpcZoneIdentifier(
+  const factory AutoscalingGroupPlacement.vpcZoneIdentifier(
     TfArg<List<String>> vpcZoneIdentifier,
-  ) = AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierVpcZoneIdentifier;
+  ) = AutoscalingGroupPlacementVpcZoneIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -148,12 +139,10 @@ sealed class AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier.availabilityZones] choice: sets `availability_zones`.
-final class AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierAvailabilityZones
-    extends AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier {
-  const AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierAvailabilityZones(
-    this.availabilityZones,
-  );
+/// The [AutoscalingGroupPlacement.availabilityZones] choice: sets `availability_zones`.
+final class AutoscalingGroupPlacementAvailabilityZones
+    extends AutoscalingGroupPlacement {
+  const AutoscalingGroupPlacementAvailabilityZones(this.availabilityZones);
 
   final TfArg<List<String>> availabilityZones;
 
@@ -171,12 +160,10 @@ final class AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierAvailabilityZone
   };
 }
 
-/// The [AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier.vpcZoneIdentifier] choice: sets `vpc_zone_identifier`.
-final class AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierVpcZoneIdentifier
-    extends AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier {
-  const AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierVpcZoneIdentifier(
-    this.vpcZoneIdentifier,
-  );
+/// The [AutoscalingGroupPlacement.vpcZoneIdentifier] choice: sets `vpc_zone_identifier`.
+final class AutoscalingGroupPlacementVpcZoneIdentifier
+    extends AutoscalingGroupPlacement {
+  const AutoscalingGroupPlacementVpcZoneIdentifier(this.vpcZoneIdentifier);
 
   final TfArg<List<String>> vpcZoneIdentifier;
 
@@ -680,14 +667,14 @@ final class AutoscalingGroupInstanceRefreshPreferencesAlarmSpecification {
 /// `aws_autoscaling_group` (derived from provider schema).
 @immutable
 final class AutoscalingGroupLaunchTemplate {
-  const AutoscalingGroupLaunchTemplate({this.idOrName, this.version});
+  const AutoscalingGroupLaunchTemplate({this.template, this.version});
 
-  final AutoscalingGroupLaunchTemplateIdOrName? idOrName;
+  final AutoscalingGroupLaunchTemplateTemplate? template;
 
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    ...?idOrName?.encode(),
+    ...?template?.encode(),
     if (version != null) 'version': version!.toTfJson(),
   };
 }
@@ -697,17 +684,17 @@ final class AutoscalingGroupLaunchTemplate {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.id(...)`.
-sealed class AutoscalingGroupLaunchTemplateIdOrName {
-  const AutoscalingGroupLaunchTemplateIdOrName();
+sealed class AutoscalingGroupLaunchTemplateTemplate {
+  const AutoscalingGroupLaunchTemplateTemplate();
 
   /// Sets `id`.
-  const factory AutoscalingGroupLaunchTemplateIdOrName.id(TfArg<String> id) =
-      AutoscalingGroupLaunchTemplateIdOrNameId;
+  const factory AutoscalingGroupLaunchTemplateTemplate.id(TfArg<String> id) =
+      AutoscalingGroupLaunchTemplateTemplateId;
 
   /// Sets `name`.
-  const factory AutoscalingGroupLaunchTemplateIdOrName.name(
+  const factory AutoscalingGroupLaunchTemplateTemplate.name(
     TfArg<String> name,
-  ) = AutoscalingGroupLaunchTemplateIdOrNameName;
+  ) = AutoscalingGroupLaunchTemplateTemplateName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -715,10 +702,10 @@ sealed class AutoscalingGroupLaunchTemplateIdOrName {
   Map<String, Object?> encode();
 }
 
-/// The [AutoscalingGroupLaunchTemplateIdOrName.id] choice: sets `id`.
-final class AutoscalingGroupLaunchTemplateIdOrNameId
-    extends AutoscalingGroupLaunchTemplateIdOrName {
-  const AutoscalingGroupLaunchTemplateIdOrNameId(this.id);
+/// The [AutoscalingGroupLaunchTemplateTemplate.id] choice: sets `id`.
+final class AutoscalingGroupLaunchTemplateTemplateId
+    extends AutoscalingGroupLaunchTemplateTemplate {
+  const AutoscalingGroupLaunchTemplateTemplateId(this.id);
 
   final TfArg<String> id;
 
@@ -729,10 +716,10 @@ final class AutoscalingGroupLaunchTemplateIdOrNameId
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// The [AutoscalingGroupLaunchTemplateIdOrName.name] choice: sets `name`.
-final class AutoscalingGroupLaunchTemplateIdOrNameName
-    extends AutoscalingGroupLaunchTemplateIdOrName {
-  const AutoscalingGroupLaunchTemplateIdOrNameName(this.name);
+/// The [AutoscalingGroupLaunchTemplateTemplate.name] choice: sets `name`.
+final class AutoscalingGroupLaunchTemplateTemplateName
+    extends AutoscalingGroupLaunchTemplateTemplate {
+  const AutoscalingGroupLaunchTemplateTemplateName(this.name);
 
   final TfArg<String> name;
 
@@ -1489,8 +1476,7 @@ final class AwsAutoscalingGroup extends Resource {
 
   AwsAutoscalingGroup({
     required super.localName,
-    AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier?
-    availabilityZonesOrVpcZoneIdentifier,
+    AutoscalingGroupPlacement? placement,
     TfArg<bool>? capacityRebalance,
     TfArg<String>? context,
     TfArg<num>? defaultCooldown,
@@ -1503,8 +1489,7 @@ final class AwsAutoscalingGroup extends Resource {
     TfArg<num>? healthCheckGracePeriod,
     TfArg<String>? healthCheckType,
     TfArg<bool>? ignoreFailedScalingActivities,
-    required AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy
-    launchConfigurationOrLaunchTemplateOrMixedInstancesPolicy,
+    required AutoscalingGroupLaunch launch,
     TfArg<List<String>>? loadBalancers,
     TfArg<num>? maxInstanceLifetime,
     required TfArg<num> maxSize,
@@ -1538,7 +1523,7 @@ final class AwsAutoscalingGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?availabilityZonesOrVpcZoneIdentifier?.argMap,
+           ...?placement?.argMap,
            if (capacityRebalance != null)
              'capacity_rebalance': capacityRebalance,
            if (context != null) 'context': context,
@@ -1557,7 +1542,7 @@ final class AwsAutoscalingGroup extends Resource {
            if (healthCheckType != null) 'health_check_type': healthCheckType,
            if (ignoreFailedScalingActivities != null)
              'ignore_failed_scaling_activities': ignoreFailedScalingActivities,
-           ...launchConfigurationOrLaunchTemplateOrMixedInstancesPolicy.argMap,
+           ...launch.argMap,
            if (loadBalancers != null) 'load_balancers': loadBalancers,
            if (maxInstanceLifetime != null)
              'max_instance_lifetime': maxInstanceLifetime,

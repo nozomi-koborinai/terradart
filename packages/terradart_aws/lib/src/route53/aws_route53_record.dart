@@ -36,17 +36,16 @@ enum Route53RecordType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.alias(...)`.
-sealed class Route53RecordAliasOrRecords {
-  const Route53RecordAliasOrRecords();
+sealed class Route53RecordTarget {
+  const Route53RecordTarget();
 
   /// Sets `alias`.
-  const factory Route53RecordAliasOrRecords.alias(Route53RecordAlias alias) =
-      Route53RecordAliasOrRecordsAlias;
+  const factory Route53RecordTarget.alias(Route53RecordAlias alias) =
+      Route53RecordTargetAlias;
 
   /// Sets `records`.
-  const factory Route53RecordAliasOrRecords.records(
-    TfArg<List<String>> records,
-  ) = Route53RecordAliasOrRecordsRecords;
+  const factory Route53RecordTarget.records(TfArg<List<String>> records) =
+      Route53RecordTargetRecords;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -58,10 +57,9 @@ sealed class Route53RecordAliasOrRecords {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Route53RecordAliasOrRecords.alias] choice: sets `alias`.
-final class Route53RecordAliasOrRecordsAlias
-    extends Route53RecordAliasOrRecords {
-  const Route53RecordAliasOrRecordsAlias(this.alias);
+/// The [Route53RecordTarget.alias] choice: sets `alias`.
+final class Route53RecordTargetAlias extends Route53RecordTarget {
+  const Route53RecordTargetAlias(this.alias);
 
   final Route53RecordAlias alias;
 
@@ -77,10 +75,9 @@ final class Route53RecordAliasOrRecordsAlias
   };
 }
 
-/// The [Route53RecordAliasOrRecords.records] choice: sets `records`.
-final class Route53RecordAliasOrRecordsRecords
-    extends Route53RecordAliasOrRecords {
-  const Route53RecordAliasOrRecordsRecords(this.records);
+/// The [Route53RecordTarget.records] choice: sets `records`.
+final class Route53RecordTargetRecords extends Route53RecordTarget {
+  const Route53RecordTargetRecords(this.records);
 
   final TfArg<List<String>> records;
 
@@ -523,7 +520,7 @@ final class AwsRoute53Record extends Resource {
     TfArg<String>? healthCheckId,
     Route53RecordRoutingPolicy? routingPolicy,
     required TfArg<String> name,
-    required Route53RecordAliasOrRecords aliasOrRecords,
+    required Route53RecordTarget target,
     TfArg<String>? setIdentifier,
     TfArg<num>? ttl,
     required TfArg<Route53RecordType> type,
@@ -539,7 +536,7 @@ final class AwsRoute53Record extends Resource {
            if (healthCheckId != null) 'health_check_id': healthCheckId,
            ...?routingPolicy?.argMap,
            'name': name,
-           ...aliasOrRecords.argMap,
+           ...target.argMap,
            if (setIdentifier != null) 'set_identifier': setIdentifier,
            if (ttl != null) 'ttl': ttl,
            'type': type,

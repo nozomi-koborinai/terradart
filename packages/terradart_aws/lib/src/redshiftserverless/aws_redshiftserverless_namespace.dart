@@ -25,23 +25,23 @@ enum RedshiftserverlessNamespaceLogExports implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.adminUserPassword(...)`.
-sealed class RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword {
-  const RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword();
+sealed class RedshiftserverlessNamespaceAdminPassword {
+  const RedshiftserverlessNamespaceAdminPassword();
 
   /// Sets `admin_user_password`.
-  const factory RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword.adminUserPassword(
+  const factory RedshiftserverlessNamespaceAdminPassword.adminUserPassword(
     TfArg<String> adminUserPassword,
-  ) = RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPassword;
+  ) = RedshiftserverlessNamespaceAdminPasswordAdminUserPassword;
 
   /// Sets `admin_user_password_wo`.
-  const factory RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword.adminUserPasswordWo(
+  const factory RedshiftserverlessNamespaceAdminPassword.adminUserPasswordWo(
     TfArg<String> adminUserPasswordWo,
-  ) = RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPasswordWo;
+  ) = RedshiftserverlessNamespaceAdminPasswordAdminUserPasswordWo;
 
   /// Sets `manage_admin_password`.
-  const factory RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword.manageAdminPassword(
+  const factory RedshiftserverlessNamespaceAdminPassword.manageAdminPassword(
     TfArg<bool> manageAdminPassword,
-  ) = RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordManageAdminPassword;
+  ) = RedshiftserverlessNamespaceAdminPasswordManageAdminPassword;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,11 +53,10 @@ sealed class RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOr
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword.adminUserPassword] choice: sets `admin_user_password`.
-final class RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPassword
-    extends
-        RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword {
-  const RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPassword(
+/// The [RedshiftserverlessNamespaceAdminPassword.adminUserPassword] choice: sets `admin_user_password`.
+final class RedshiftserverlessNamespaceAdminPasswordAdminUserPassword
+    extends RedshiftserverlessNamespaceAdminPassword {
+  const RedshiftserverlessNamespaceAdminPasswordAdminUserPassword(
     this.adminUserPassword,
   );
 
@@ -77,11 +76,10 @@ final class RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrM
   };
 }
 
-/// The [RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword.adminUserPasswordWo] choice: sets `admin_user_password_wo`.
-final class RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPasswordWo
-    extends
-        RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword {
-  const RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordAdminUserPasswordWo(
+/// The [RedshiftserverlessNamespaceAdminPassword.adminUserPasswordWo] choice: sets `admin_user_password_wo`.
+final class RedshiftserverlessNamespaceAdminPasswordAdminUserPasswordWo
+    extends RedshiftserverlessNamespaceAdminPassword {
+  const RedshiftserverlessNamespaceAdminPasswordAdminUserPasswordWo(
     this.adminUserPasswordWo,
   );
 
@@ -101,11 +99,10 @@ final class RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrM
   };
 }
 
-/// The [RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword.manageAdminPassword] choice: sets `manage_admin_password`.
-final class RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordManageAdminPassword
-    extends
-        RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword {
-  const RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPasswordManageAdminPassword(
+/// The [RedshiftserverlessNamespaceAdminPassword.manageAdminPassword] choice: sets `manage_admin_password`.
+final class RedshiftserverlessNamespaceAdminPasswordManageAdminPassword
+    extends RedshiftserverlessNamespaceAdminPassword {
+  const RedshiftserverlessNamespaceAdminPasswordManageAdminPassword(
     this.manageAdminPassword,
   );
 
@@ -132,8 +129,7 @@ final class AwsRedshiftserverlessNamespace extends Resource {
   AwsRedshiftserverlessNamespace({
     required super.localName,
     TfArg<String>? adminPasswordSecretKmsKeyId,
-    RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword?
-    adminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword,
+    RedshiftserverlessNamespaceAdminPassword? adminPassword,
     TfArg<num>? adminUserPasswordWoVersion,
     TfArg<String>? adminUsername,
     TfArg<String>? dbName,
@@ -153,8 +149,7 @@ final class AwsRedshiftserverlessNamespace extends Resource {
          argMap: {
            if (adminPasswordSecretKmsKeyId != null)
              'admin_password_secret_kms_key_id': adminPasswordSecretKmsKeyId,
-           ...?adminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword
-               ?.argMap,
+           ...?adminPassword?.argMap,
            if (adminUserPasswordWoVersion != null)
              'admin_user_password_wo_version': adminUserPasswordWoVersion,
            if (adminUsername != null) 'admin_username': adminUsername,

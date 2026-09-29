@@ -565,17 +565,16 @@ enum GameliftFleetNewGameSessionProtectionPolicy implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.buildId(...)`.
-sealed class GameliftFleetBuildIdOrScriptId {
-  const GameliftFleetBuildIdOrScriptId();
+sealed class GameliftFleetArtifact {
+  const GameliftFleetArtifact();
 
   /// Sets `build_id`.
-  const factory GameliftFleetBuildIdOrScriptId.buildId(TfArg<String> buildId) =
-      GameliftFleetBuildIdOrScriptIdBuildId;
+  const factory GameliftFleetArtifact.buildId(TfArg<String> buildId) =
+      GameliftFleetArtifactBuildId;
 
   /// Sets `script_id`.
-  const factory GameliftFleetBuildIdOrScriptId.scriptId(
-    TfArg<String> scriptId,
-  ) = GameliftFleetBuildIdOrScriptIdScriptId;
+  const factory GameliftFleetArtifact.scriptId(TfArg<String> scriptId) =
+      GameliftFleetArtifactScriptId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -587,10 +586,9 @@ sealed class GameliftFleetBuildIdOrScriptId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [GameliftFleetBuildIdOrScriptId.buildId] choice: sets `build_id`.
-final class GameliftFleetBuildIdOrScriptIdBuildId
-    extends GameliftFleetBuildIdOrScriptId {
-  const GameliftFleetBuildIdOrScriptIdBuildId(this.buildId);
+/// The [GameliftFleetArtifact.buildId] choice: sets `build_id`.
+final class GameliftFleetArtifactBuildId extends GameliftFleetArtifact {
+  const GameliftFleetArtifactBuildId(this.buildId);
 
   final TfArg<String> buildId;
 
@@ -604,10 +602,9 @@ final class GameliftFleetBuildIdOrScriptIdBuildId
   Map<String, TfArg<Object?>> get argMap => {'build_id': buildId};
 }
 
-/// The [GameliftFleetBuildIdOrScriptId.scriptId] choice: sets `script_id`.
-final class GameliftFleetBuildIdOrScriptIdScriptId
-    extends GameliftFleetBuildIdOrScriptId {
-  const GameliftFleetBuildIdOrScriptIdScriptId(this.scriptId);
+/// The [GameliftFleetArtifact.scriptId] choice: sets `script_id`.
+final class GameliftFleetArtifactScriptId extends GameliftFleetArtifact {
+  const GameliftFleetArtifactScriptId(this.scriptId);
 
   final TfArg<String> scriptId;
 
@@ -764,7 +761,7 @@ final class AwsGameliftFleet extends Resource {
 
   AwsGameliftFleet({
     required super.localName,
-    required GameliftFleetBuildIdOrScriptId buildIdOrScriptId,
+    required GameliftFleetArtifact artifact,
     TfArg<String>? description,
     required TfArg<GameliftFleetEc2InstanceType> ec2InstanceType,
     TfArg<GameliftFleetFleetType>? fleetType,
@@ -786,7 +783,7 @@ final class AwsGameliftFleet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...buildIdOrScriptId.argMap,
+           ...artifact.argMap,
            if (description != null) 'description': description,
            'ec2_instance_type': ec2InstanceType,
            if (fleetType != null) 'fleet_type': fleetType,
