@@ -229,7 +229,7 @@ sealed class LaunchTemplateSecurityGroups {
 
   /// Sets `vpc_security_group_ids`.
   const factory LaunchTemplateSecurityGroups.vpcSecurityGroupIds(
-    TfArg<List<String>> vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>> vpcSecurityGroupIds,
   ) = LaunchTemplateSecurityGroupsVpcSecurityGroupIds;
 
   /// The Terraform argument this choice sets.
@@ -270,19 +270,19 @@ final class LaunchTemplateSecurityGroupsVpcSecurityGroupIds
     this.vpcSecurityGroupIds,
   );
 
-  final TfArg<List<String>> vpcSecurityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> vpcSecurityGroupIds;
 
   @override
   String get blockKey => 'vpc_security_group_ids';
 
   @override
   Map<String, Object?> encode() => {
-    'vpc_security_group_ids': vpcSecurityGroupIds.toTfJson(),
+    'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id').toTfJson(),
   };
 
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'vpc_security_group_ids': vpcSecurityGroupIds,
+    'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
   };
 }
 

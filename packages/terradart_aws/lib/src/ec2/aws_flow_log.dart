@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
 import '../iam/aws_iam_role.dart' show AwsIamRole;
 
 /// Sensitive field paths for `aws_flow_log`.
@@ -47,7 +49,7 @@ sealed class FlowLogSource {
   ) = FlowLogSourceRegionalNatGatewayId;
 
   /// Sets `subnet_id`.
-  const factory FlowLogSource.subnetId(TfArg<String> subnetId) =
+  const factory FlowLogSource.subnetId(RefTo<AwsSubnet> subnetId) =
       FlowLogSourceSubnetId;
 
   /// Sets `transit_gateway_attachment_id`.
@@ -60,7 +62,7 @@ sealed class FlowLogSource {
       FlowLogSourceTransitGatewayId;
 
   /// Sets `vpc_id`.
-  const factory FlowLogSource.vpcId(TfArg<String> vpcId) = FlowLogSourceVpcId;
+  const factory FlowLogSource.vpcId(RefTo<AwsVpc> vpcId) = FlowLogSourceVpcId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -112,16 +114,20 @@ final class FlowLogSourceRegionalNatGatewayId extends FlowLogSource {
 final class FlowLogSourceSubnetId extends FlowLogSource {
   const FlowLogSourceSubnetId(this.subnetId);
 
-  final TfArg<String> subnetId;
+  final RefTo<AwsSubnet> subnetId;
 
   @override
   String get blockKey => 'subnet_id';
 
   @override
-  Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'subnet_id': subnetId.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'subnet_id': subnetId};
+  Map<String, TfArg<Object?>> get argMap => {
+    'subnet_id': subnetId.encodeAs('id'),
+  };
 }
 
 /// The [FlowLogSource.transitGatewayAttachmentId] choice: sets `transit_gateway_attachment_id`.
@@ -170,16 +176,16 @@ final class FlowLogSourceTransitGatewayId extends FlowLogSource {
 final class FlowLogSourceVpcId extends FlowLogSource {
   const FlowLogSourceVpcId(this.vpcId);
 
-  final TfArg<String> vpcId;
+  final RefTo<AwsVpc> vpcId;
 
   @override
   String get blockKey => 'vpc_id';
 
   @override
-  Map<String, Object?> encode() => {'vpc_id': vpcId.toTfJson()};
+  Map<String, Object?> encode() => {'vpc_id': vpcId.encodeAs('id').toTfJson()};
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId};
+  Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId.encodeAs('id')};
 }
 
 /// Typed helper for the `destination_options` block of

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking** — sealed-argument variants whose member names another resource take `RefTo<Target>`: `AwsRouteTableAssociation(target: .subnetId(subnet.ref))`, `AwsLb(subnet: .subnets(.literal([a.ref])))`, and the same on `AwsCloudhsmV2Hsm`, `AwsFlowLog`, `AwsVpcBlockPublicAccessExclusion`, `AwsAlb`, `AwsLambdaFunction`, `AwsNetworkfirewallFirewall`, `AwsS3Object`, `AwsS3BucketObject`, `AwsLaunchTemplate` and `AwsEmrCluster`. See [MIGRATING.md](../../MIGRATING.md).
 - Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource take.
 - **Breaking** — 1,140 arguments that name another resource (IAM role, KMS key, S3 bucket, subnet, security group, VPC, CloudWatch log group, SNS topic and Lambda function) take a `RefTo<Target>` instead of a `TfArg<String>`: `AwsLambdaFunction(role: role.ref)`, `subnetIds: TfArg.literal([a.ref, b.ref])`. The argument picks the attribute it emits; `.literal(...)`, `.variable(...)`, `.expression(...)` and `.arg(...)` take a value outside the Stack, and `.pinned('attr')` keeps emitting another attribute. See `MIGRATING.md`.
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). The generated wrappers were already formatted in the Dart 3.7+ tall style, so the constraint now matches them (pub.dev static analysis no longer reports a formatter mismatch).

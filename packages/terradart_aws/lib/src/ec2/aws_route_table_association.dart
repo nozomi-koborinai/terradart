@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_route_table_association`.
 const Set<String> _awsRouteTableAssociationSensitive = <String>{};
 
@@ -18,8 +20,9 @@ sealed class RouteTableAssociationTarget {
       RouteTableAssociationTargetGatewayId;
 
   /// Sets `subnet_id`.
-  const factory RouteTableAssociationTarget.subnetId(TfArg<String> subnetId) =
-      RouteTableAssociationTargetSubnetId;
+  const factory RouteTableAssociationTarget.subnetId(
+    RefTo<AwsSubnet> subnetId,
+  ) = RouteTableAssociationTargetSubnetId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,16 +56,20 @@ final class RouteTableAssociationTargetSubnetId
     extends RouteTableAssociationTarget {
   const RouteTableAssociationTargetSubnetId(this.subnetId);
 
-  final TfArg<String> subnetId;
+  final RefTo<AwsSubnet> subnetId;
 
   @override
   String get blockKey => 'subnet_id';
 
   @override
-  Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'subnet_id': subnetId.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'subnet_id': subnetId};
+  Map<String, TfArg<Object?>> get argMap => {
+    'subnet_id': subnetId.encodeAs('id'),
+  };
 }
 
 /// Factory wrapper for `aws_route_table_association`.

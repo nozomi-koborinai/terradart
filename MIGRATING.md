@@ -78,6 +78,26 @@ The examples changed in these places:
 `.literal` / `.variable` / `.expression` otherwise, so migrated stacks keep
 their synth output.
 
+A variant of a sealed argument (or of a sealed helper field) whose member
+names another resource takes the same `RefTo<Target>`:
+
+| Before | After |
+|--------|-------|
+| `AwsRouteTableAssociation(target: .subnetId(TfArg.ref(subnet.id)), ...)` | `AwsRouteTableAssociation(target: .subnetId(subnet.ref), ...)` |
+| `AwsLb(subnet: .subnets(TfArg.literal([TfArg.ref(a.id)])), ...)` | `AwsLb(subnet: .subnets(.literal([a.ref])), ...)` |
+| `CloudflareRuleset(scope: .zoneId(TfArg.literal(zoneId)), ...)` | `CloudflareRuleset(scope: .zoneId(.literal(zoneId)), ...)` |
+
+It covers `AwsCloudhsmV2Hsm` `placement`, `AwsFlowLog` `source`,
+`AwsRouteTableAssociation` `target`, `AwsVpcBlockPublicAccessExclusion`
+`target`, `AwsAlb` / `AwsLb` `subnet`, `AwsLambdaFunction` `code`
+(`.s3Bucket`), `AwsNetworkfirewallFirewall` `attachment`, `AwsS3Object` /
+`AwsS3BucketObject` `integrity` (`.kmsKeyId`), `AwsLaunchTemplate`
+`.vpcSecurityGroupIds`, `AwsEmrCluster` `ec2_attributes` `subnet`,
+`CloudflareRuleset` `scope`, `GoogleVertexAiIndexEndpoint` `.network`,
+`GoogleDataprocBatch` `environment_config.execution_config` `network`
+(`.networkUri` / `.subnetworkUri`) and `GoogleSpannerBackupSchedule`
+`encryption_config` (`.kmsKeyName`). Synth output is unchanged.
+
 ### Sealed arguments are built with dot shorthands
 
 **Breaking (`terradart_aws`, every package with a derived sealed type)** —

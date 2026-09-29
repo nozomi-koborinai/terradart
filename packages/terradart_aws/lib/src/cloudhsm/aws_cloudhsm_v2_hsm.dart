@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_cloudhsm_v2_hsm`.
 const Set<String> _awsCloudhsmV2HsmSensitive = <String>{};
 
@@ -19,7 +21,7 @@ sealed class CloudhsmV2HsmPlacement {
   ) = CloudhsmV2HsmPlacementAvailabilityZone;
 
   /// Sets `subnet_id`.
-  const factory CloudhsmV2HsmPlacement.subnetId(TfArg<String> subnetId) =
+  const factory CloudhsmV2HsmPlacement.subnetId(RefTo<AwsSubnet> subnetId) =
       CloudhsmV2HsmPlacementSubnetId;
 
   /// The Terraform argument this choice sets.
@@ -57,16 +59,20 @@ final class CloudhsmV2HsmPlacementAvailabilityZone
 final class CloudhsmV2HsmPlacementSubnetId extends CloudhsmV2HsmPlacement {
   const CloudhsmV2HsmPlacementSubnetId(this.subnetId);
 
-  final TfArg<String> subnetId;
+  final RefTo<AwsSubnet> subnetId;
 
   @override
   String get blockKey => 'subnet_id';
 
   @override
-  Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'subnet_id': subnetId.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'subnet_id': subnetId};
+  Map<String, TfArg<Object?>> get argMap => {
+    'subnet_id': subnetId.encodeAs('id'),
+  };
 }
 
 /// Factory wrapper for `aws_cloudhsm_v2_hsm`.
