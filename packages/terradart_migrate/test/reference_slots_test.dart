@@ -170,7 +170,7 @@ void main() {
 
     test('keeps a block of another type as an unchecked arg, warning', () {
       final r = _migrate({'network': r'${google_x_bucket.b.id}'});
-      expect(_stack(r), contains('network: RefTo.arg(TfArg.ref(b.id))'));
+      expect(_stack(r), contains('network: .arg(.ref(b.id))'));
       expect(
         r.report.warnings,
         contains(
@@ -182,7 +182,7 @@ void main() {
     test('takes a literal, a variable and an expression', () {
       expect(
         _stack(_migrate({'network': 'default'})),
-        contains("network: RefTo.literal(r'default')"),
+        contains("network: .literal(r'default')"),
       );
       expect(
         _stack(
@@ -193,7 +193,7 @@ void main() {
             },
           ),
         ),
-        contains("network: RefTo.variable(r'network')"),
+        contains("network: .variable(r'network')"),
       );
       expect(
         _stack(
@@ -202,7 +202,7 @@ void main() {
                 r'projects/p/global/networks/${google_x_network.main.name}',
           }),
         ),
-        contains('network: RefTo.expression('),
+        contains('network: .expression('),
       );
     });
 
@@ -227,8 +227,8 @@ void main() {
       expect(
         _stack(r),
         contains(
-          "networks: TfArg.literal([main.ref, main.ref.pinned(r'id'), "
-          "RefTo.literal(r'default')])",
+          "networks: .literal([main.ref, main.ref.pinned(r'id'), "
+          ".literal(r'default')])",
         ),
       );
     });
@@ -243,11 +243,11 @@ void main() {
             },
           ),
         ),
-        contains("networks: TfArg.variable(r'networks')"),
+        contains("networks: .variable(r'networks')"),
       );
       expect(
         _stack(_migrate({'networks': r'${concat([], [])}'})),
-        contains('networks: TfArg.expression('),
+        contains('networks: .expression('),
       );
     });
   });

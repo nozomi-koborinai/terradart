@@ -14,23 +14,23 @@ final class PubsubStack extends Stack {
   PubsubStack() : super(providers: [const GoogleProvider()]) {
     addVariable(r'topic', const TfVariable(type: r'string'));
     final thisPubsubTopic = add(
-      GooglePubsubTopic(localName: r'this', name: TfArg.variable(r'topic')),
+      GooglePubsubTopic(localName: r'this', name: .variable(r'topic')),
     );
     add(
       GooglePubsubSubscription(
         localName: r'this',
-        name: TfArg.expression(r'${var.topic}-sub'),
-        topic: TfArg.ref(thisPubsubTopic.nameRef),
+        name: .expression(r'${var.topic}-sub'),
+        topic: .ref(thisPubsubTopic.nameRef),
       ),
     );
     add(
       GoogleServiceAccountIamMember(
         localName: r'publisher',
-        serviceAccountId: TfArg.literal(
+        serviceAccountId: .literal(
           r'projects/example-project/serviceAccounts/publisher@example-project.iam.gserviceaccount.com',
         ),
-        role: TfArg.literal(r'roles/iam.serviceAccountTokenCreator'),
-        member: TfArg.literal(
+        role: .literal(r'roles/iam.serviceAccountTokenCreator'),
+        member: .literal(
           r'serviceAccount:service-pubsub@example-project.iam.gserviceaccount.com',
         ),
       ),
