@@ -163,6 +163,55 @@ properties:
     });
   });
 
+  group('atMostOneOfPaths', () {
+    test('turns pairwise conflicts into at-most-one groups', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: expireTime
+    conflicts:
+      - ttl
+  - name: ttl
+    conflicts:
+      - expireTime
+  - name: config
+    properties:
+      - name: network
+        conflicts:
+          - config.0.subnetwork
+      - name: subnetwork
+''');
+      expect(result.atMostOneOfPaths, [
+        ['expire_time', 'ttl'],
+        ['config.network', 'config.subnetwork'],
+      ]);
+      expect(result.exactlyOneOfPaths, isEmpty);
+    });
+
+    test('promotes an at_least_one_of set whose members conflict', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: a
+    at_least_one_of:
+      - a
+      - b
+    conflicts:
+      - b
+  - name: b
+    at_least_one_of:
+      - a
+      - b
+  - name: c
+    at_least_one_of:
+      - c
+      - d
+''');
+      expect(result.exactlyOneOfPaths, [
+        ['a', 'b'],
+      ]);
+      expect(result.atMostOneOfPaths, isEmpty);
+    });
+  });
+
   test('enumValuesByPath reaches Array item properties; fieldOverrides not',
       () {
     final result = const MmYamlParser().parseString('''

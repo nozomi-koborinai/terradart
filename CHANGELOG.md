@@ -33,6 +33,15 @@ Per-package changelogs live alongside each package and are the system of record 
   weekly aws bump's re-extraction refreshes them with the pin; the leftover
   example generator picks variants of optional sealed slots too. Synth
   output is unchanged. See `MIGRATING.md`.
+- **`terradart_google_beta` `conflicts` sets are nullable sealed types**
+  (**breaking**) — `MmYamlParser` now reads Magic Modules `conflicts` and
+  `at_least_one_of` beside `exactly_one_of` and combines them with the
+  shared `exclusiveGroups`, and `wrap --mm-hints` seals the at-most-one
+  groups: 4 groups on 3 beta resources, e.g.
+  `GoogleFirebaseHostingChannel(expireTimeOrTtl:
+  FirebaseHostingChannelTtlOption(ttl: ...))`. The exactly-one groups are
+  unchanged. The GA `google` lane does not wrap with `--mm-hints`, so its
+  259 `conflicts` entries stay unsealed. See `MIGRATING.md`.
 - **`terradart_cloudflare` at-most-one groups are nullable sealed types**
   (**breaking**) — 14 groups on 8 resources (5 on resource arguments, 9 in
   nested blocks), e.g. `CloudflareDnsRecord(contentOrData:

@@ -115,6 +115,13 @@ unchanged, so no Terraform step is needed; fix the compile errors:
 - **`exactly_one_of` groups are one required sealed argument**, named after
   its members joined by `Or`; each member is a `<Prefix><Member>Option`
   variant.
+- **`conflicts` sets are one optional sealed argument**, named the same way:
+  4 groups on 3 resources (`GoogleTpuV2Vm` `accelerator_type` /
+  `accelerator_config` and `network_config` / `network_configs`,
+  `GoogleFirebaseHostingChannel` `expire_time` / `ttl`,
+  `GoogleComputeRegionNetworkPolicyTrafficClassificationRule`
+  `target_service_accounts` / `target_secure_tags`). Leave it out to set
+  none.
 
 | Before | After |
 |--------|-------|
@@ -123,6 +130,7 @@ unchanged, so no Terraform step is needed; fix the compile errors:
 | `GoogleComputeNetworkFirewallPolicyPacketMirroringRule(direction: TfArg.literal('INGRESS'), ...)` | `...(direction: TfArg.literal(ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.ingress), ...)` |
 | `GoogleGkeHubMembershipRbacRoleBinding(role: TfArg.literal({'predefined_role': 'ADMIN'}), ...)` | `...(role: GkeHubMembershipRbacRoleBindingRole(predefinedRole: TfArg.literal(GkeHubMembershipRbacRoleBindingRolePredefinedRole.admin)), ...)` |
 | `GoogleApiGatewayApiConfig(openapiDocuments: TfArg.literal([{'document': {'contents': c, 'path': 'openapi.yaml'}}]), ...)` | `GoogleApiGatewayApiConfig(openapiDocumentsOrGrpcServices: ApiGatewayApiConfigOpenapiDocumentsOption(openapiDocuments: [ApiGatewayApiConfigOpenapiDocuments(document: ApiGatewayApiConfigOpenapiDocumentsDocument(contents: TfArg.literal(c), path: TfArg.literal('openapi.yaml')))]), ...)` |
+| `GoogleFirebaseHostingChannel(ttl: TfArg.literal('86400s'), ...)` | `GoogleFirebaseHostingChannel(expireTimeOrTtl: FirebaseHostingChannelTtlOption(ttl: TfArg.literal('86400s')), ...)` |
 | `GooglePrivilegedAccessManagerSettings(emailNotificationSettings: TfArg.literal({'disable_all_notifications': {}}), ...)` | `...(emailNotificationSettings: PrivilegedAccessManagerSettingsEmailNotificationSettings(disableAllNotificationsOrCustomNotificationBehavior: PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOption(disableAllNotifications: PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications())), ...)` |
 
 `examples/beta_leftover_quickstart` shows the typed form of every beta

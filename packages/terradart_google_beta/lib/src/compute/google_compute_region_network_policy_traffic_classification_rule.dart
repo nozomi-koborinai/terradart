@@ -9,6 +9,75 @@ const Set<String>
 _googleComputeRegionNetworkPolicyTrafficClassificationRuleSensitive =
     <String>{};
 
+/// At most one of `target_service_accounts`, `target_secure_tags` on `google_compute_region_network_policy_traffic_classification_rule`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `target_service_accounts` (one of the [ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags] choices).
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOption
+    extends
+        ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOption({
+    required this.targetServiceAccounts,
+  });
+
+  final TfArg<List<String>> targetServiceAccounts;
+
+  @override
+  String get blockKey => 'target_service_accounts';
+
+  @override
+  Map<String, Object?> encode() => {
+    'target_service_accounts': targetServiceAccounts.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'target_service_accounts': targetServiceAccounts,
+  };
+}
+
+/// Sets `target_secure_tags` (one of the [ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags] choices).
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTagsOption
+    extends
+        ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTagsOption({
+    required this.targetSecureTags,
+  });
+
+  final List<
+    ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags
+  >
+  targetSecureTags;
+
+  @override
+  String get blockKey => 'target_secure_tags';
+
+  @override
+  Map<String, Object?> encode() => {
+    'target_secure_tags': [for (final e in targetSecureTags) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'target_secure_tags': TfArg.literal([
+      for (final e in targetSecureTags) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `action` block of
 /// `google_compute_region_network_policy_traffic_classification_rule` (derived from provider schema).
 @immutable
@@ -163,11 +232,10 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
     TfArg<String>? project,
     TfArg<String>? region,
     TfArg<String>? ruleName,
-    TfArg<List<String>>? targetServiceAccounts,
+    ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags?
+    targetServiceAccountsOrTargetSecureTags,
     ComputeRegionNetworkPolicyTrafficClassificationRuleAction? action,
     required ComputeRegionNetworkPolicyTrafficClassificationRuleMatch match,
-    List<ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags>?
-    targetSecureTags,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -184,14 +252,9 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
            if (project != null) 'project': project,
            if (region != null) 'region': region,
            if (ruleName != null) 'rule_name': ruleName,
-           if (targetServiceAccounts != null)
-             'target_service_accounts': targetServiceAccounts,
+           ...?targetServiceAccountsOrTargetSecureTags?.argMap,
            if (action != null) 'action': TfArg.literal(action.encode()),
            'match': TfArg.literal(match.encode()),
-           if (targetSecureTags != null)
-             'target_secure_tags': TfArg.literal([
-               for (final e in targetSecureTags) e.encode(),
-             ]),
          },
        );
 
