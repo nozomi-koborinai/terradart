@@ -26,10 +26,15 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/cli/lint_override_command.dart';
+import 'package:terradart_codegen/src/codegen/sealed_name_debt.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:yaml/yaml.dart';
 
 const providersPath = 'tool/providers.yaml';
+
+/// The sealed-name ledger every lane's wrap records its unnamed sealed
+/// groups in.
+const sealedNameDebtPath = 'tool/sealed_name_debt.yaml';
 
 /// The package whose `bin/terradart.dart` runs every gate; lane paths are
 /// repo-relative in providers.yaml and rebased onto it.
@@ -136,6 +141,8 @@ enum WrapGate {
         if (lane.mmGroups) '--mm-groups',
         '--migrate-manifest',
         rel(lane.migrateManifest),
+        '--sealed-name-debt',
+        rel(sealedNameDebtPath),
         if (this == WrapGate.wrap) '--check',
       ],
       // wrap reads MM YAML from <schemaDir>/mm; lint reads the same place.
@@ -326,11 +333,17 @@ List<String> ledgerOwnershipFailures(List<WrapLane> lanes, String repoRoot) {
         rootDir: p.join(repoRoot, lane.overridesRoot),
       ).asLintMap().keys,
   };
+  final sealedDebt = File(p.join(repoRoot, sealedNameDebtPath));
   return [
     ...failures,
     ...unownedLedgerEntries({
       for (final file in lintDebtLedgerFileNames)
         'tool/$file': loadLintDebtLedger(p.join(toolDir, file)).keys,
+      if (sealedDebt.existsSync())
+        sealedNameDebtPath: parseSealedNameDebt(
+          sealedDebt.readAsStringSync(),
+          path: sealedNameDebtPath,
+        ).keys,
     }, names),
   ];
 }

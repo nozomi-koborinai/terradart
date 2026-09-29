@@ -27,10 +27,17 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// for; the others are returned in `skipped` (exactly-one) or
 /// `skippedAtMostOne` with a reason and keep their plain slots. Exactly-one
 /// groups claim their members first.
+///
+/// Every sealed group, top-level or nested, is named by
+/// [resolveSealedName] and listed in `names`; `nameErrors` lists each
+/// `sealedNames` entry that clashes, repeats the derived name, or matches
+/// no sealed group.
 ({
   Map<String, WrapperOverride> overrides,
   List<String> skipped,
   List<String> skippedAtMostOne,
+  List<SealedName> names,
+  List<String> nameErrors,
 })
 deriveExactlyOneSlots(
   Map<String, WrapperOverride> overrides,
@@ -40,6 +47,8 @@ deriveExactlyOneSlots(
 }) {
   final skipped = <String>[];
   final skippedAtMostOne = <String>[];
+  final names = <SealedName>[];
+  final nameErrors = <String>[];
   final out = <String, WrapperOverride>{};
   for (final MapEntry(key: type, value: o) in overrides.entries) {
     final def = defs[type];
@@ -66,8 +75,10 @@ deriveExactlyOneSlots(
             enumValues: providerEnums.resolver(type),
             exactlyOneGroups: nested,
             atMostOneGroups: nestedOptional,
+            sealedNames: o.sealedNames,
           )
         : const <NestedBlockSpec>[];
+    final typeNames = <SealedGroupName>[];
     out[type] = groups == null && optionalGroups == null
         ? o
         : _derive(
@@ -83,7 +94,21 @@ deriveExactlyOneSlots(
             specs,
             skipped: skipped,
             skippedAtMostOne: skippedAtMostOne,
+            names: typeNames,
           );
+    typeNames.addAll(nestedSealedNames(specs));
+    final human = {
+      for (final k in (o.sealedNames ?? const <String, String>{}).keys)
+        sealedGroupKeyOf(const [], sealedGroupKey(k)): k,
+    };
+    for (final n in typeNames) {
+      names.add((type: type, name: n));
+      human.remove(n.key);
+      if (n.error case final e?) nameErrors.add('$type [${n.key}]: $e');
+    }
+    for (final k in human.values) {
+      nameErrors.add('$type sealedNames "$k" matches no sealed group');
+    }
     skipped.addAll([
       for (final s in unsealedNestedGroups(specs, nested)) '$type $s',
     ]);
@@ -96,7 +121,23 @@ deriveExactlyOneSlots(
         '$type $s',
     ]);
   }
-  return (overrides: out, skipped: skipped, skippedAtMostOne: skippedAtMostOne);
+  // An override without groups can still carry stale names.
+  for (final MapEntry(key: type, value: o) in overrides.entries) {
+    if (out[type] == o &&
+        o.sealedNames != null &&
+        !names.any((n) => n.type == type)) {
+      for (final k in o.sealedNames!.keys) {
+        nameErrors.add('$type sealedNames "$k" matches no sealed group');
+      }
+    }
+  }
+  return (
+    overrides: out,
+    skipped: skipped,
+    skippedAtMostOne: skippedAtMostOne,
+    names: names,
+    nameErrors: nameErrors,
+  );
 }
 
 final _optionalHelperParam = RegExp(r'^([A-Za-z_][\w<>, ]*)\?\s+(\w+)$');
@@ -136,6 +177,7 @@ WrapperOverride _derive(
   List<NestedBlockSpec> nestedSpecs, {
   required List<String> skipped,
   required List<String> skippedAtMostOne,
+  required List<SealedGroupName> names,
 }) {
   final prefix = shortResourcePascal(type);
   final order = orderedConstructorParams(def, o.paramOrder);
@@ -193,17 +235,23 @@ WrapperOverride _derive(
   }
 
   final taken = <String>{};
+  final humanNames = {
+    for (final MapEntry(:key, :value)
+        in (o.sealedNames ?? const <String, String>{}).entries)
+      sealedGroupKeyOf(const [], sealedGroupKey(key)): value,
+  };
+  final classNames = {
+    ...nestedTypeNames(nestedSpecs),
+    ...declaredTypeNames(o.prelude ?? ''),
+  };
+  final chosenSlots = <String>{};
   final declarations = StringBuffer();
   var paramOrder = order;
   var argMapOrder = o.argMapOrder;
   for (final (:members, :optional) in groups) {
     final group = members;
     final label = '$type [${group.join(', ')}]';
-    final slot = exactlyOneSlotName(group);
-    String? reason = exactlyOneTooLarge(group);
-    if (reason == null && (order.contains(slot) || slots.containsKey(slot))) {
-      reason = 'the slot name $slot is taken';
-    }
+    String? reason;
     final variants = <ExactlyOneVariant>[];
     for (final m in group) {
       if (reason != null) break;
@@ -237,9 +285,51 @@ WrapperOverride _derive(
       (optional ? skippedAtMostOne : skipped).add('$label: $reason');
       continue;
     }
+    String? clashes(String concept) {
+      if (!group.contains(concept) &&
+              (order.contains(concept) || slots.containsKey(concept)) ||
+          chosenSlots.contains(concept)) {
+        return 'the slot $concept is taken';
+      }
+      final sealed = prefix + snakeToPascal(concept);
+      final classes = {
+        ...classNames,
+        for (final n in order)
+          if (!group.contains(n) || _hasClass(n, blocks, o))
+            prefix + snakeToPascal(n),
+      };
+      for (final name in [
+        sealed,
+        for (final m in group) exactlyOneVariantName(sealed, m),
+      ]) {
+        if (classes.contains(name)) return 'the class $name is taken';
+      }
+      return null;
+    }
+
+    final key = sealedGroupKeyOf(const [], group);
+    final derived = deriveSealedConcept(group);
+    final resolved = resolveSealedName(
+      members: group,
+      human: humanNames[key],
+      derived: derived,
+      clashes: clashes,
+    );
+    names.add((
+      key: key,
+      concept: resolved.concept,
+      source: resolved.source,
+      derived: derived,
+      error: resolved.error,
+    ));
+    final slot = resolved.concept;
+    chosenSlots.add(slot);
     taken.addAll(group);
     group.forEach(slots.remove);
-    final sealed = exactlyOneSealedName(prefix, group);
+    final sealed = prefix + snakeToPascal(slot);
+    classNames
+      ..add(sealed)
+      ..addAll([for (final m in group) exactlyOneVariantName(sealed, m)]);
     final ident = snakeToDartIdent(slot);
     slots[slot] = optional
         ? CustomSlot(
@@ -273,6 +363,16 @@ WrapperOverride _derive(
     customSlots: slots,
     prelude: '${o.prelude ?? ''}$declarations',
   );
+}
+
+/// Whether the resource declares a class for its input [name]: a block's
+/// helper, or an enum.
+bool _hasClass(String name, Map<String, Object> blocks, WrapperOverride o) {
+  if (blocks.containsKey(name)) return true;
+  final type = o.dartTypeOverrides?[name];
+  return type != null &&
+      RegExp(r'^[A-Z]').hasMatch(type) &&
+      !const {'String', 'List', 'Map', 'Set', 'Object'}.any(type.startsWith);
 }
 
 /// [order] with the first of [group]'s members replaced by [slot] and the

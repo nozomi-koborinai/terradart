@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import '../enum_value_parser.dart';
+import '../exactly_one_types.dart';
 import '../naming.dart';
 
 /// One attribute surfaced on a derived nested-type helper class.
@@ -64,6 +65,11 @@ final class NestedBlockSpec {
   /// is valid); the emitter seals each one it can into a nullable field.
   final List<List<String>> atMostOne;
 
+  /// Human concept names for this block's sealed groups (the override's
+  /// `sealedNames` entries that sit in this block), keyed by the members'
+  /// bare names as `sealedGroupKeyOf([], members)` joins them.
+  final Map<String, String> sealedNames;
+
   const NestedBlockSpec({
     required this.tfName,
     required this.path,
@@ -77,6 +83,7 @@ final class NestedBlockSpec {
     this.shared = false,
     this.exactlyOne = const [],
     this.atMostOne = const [],
+    this.sealedNames = const {},
   });
 }
 
@@ -154,7 +161,9 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 /// [exactlyOneGroups] maps a block's dotted path to the member sets the
 /// provider requires exactly one of ([NestedBlockSpec.exactlyOne]), and
 /// [atMostOneGroups] to the sets it accepts at most one of
-/// ([NestedBlockSpec.atMostOne]).
+/// ([NestedBlockSpec.atMostOne]). [sealedNames] is the override's
+/// `sealedNames` axis; each block keeps the entries whose members it holds
+/// ([NestedBlockSpec.sealedNames]).
 List<NestedBlockSpec> collectNestedTypes({
   required Map<String, dynamic> resourceBlock,
   required String resourcePrefix,
@@ -164,6 +173,7 @@ List<NestedBlockSpec> collectNestedTypes({
   EnumValuesResolver enumValues = descriptionEnumValues,
   Map<String, List<List<String>>> exactlyOneGroups = const {},
   Map<String, List<List<String>>> atMostOneGroups = const {},
+  Map<String, String>? sealedNames,
 }) {
   final scan = _scanChildren(
     resourceBlock,
@@ -174,6 +184,7 @@ List<NestedBlockSpec> collectNestedTypes({
     enumValues: enumValues,
     exactlyOneGroups: exactlyOneGroups,
     atMostOneGroups: atMostOneGroups,
+    sealedNames: _sealedNamesByBlock(sealedNames),
   );
   return shareIdenticalShapes
       ? _shareIdenticalShapes(scan.children)
@@ -185,6 +196,7 @@ List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
   final shapeOf = Map<NestedBlockSpec, int>.identity();
   final canonical = <int, NestedBlockSpec>{};
   final occurrences = <int, int>{};
+  final names = <int, Map<String, String>>{};
 
   int visit(NestedBlockSpec spec) {
     final attrKeys = [
@@ -210,6 +222,7 @@ List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
     final id = shapeIds.putIfAbsent(key, () => shapeIds.length);
     shapeOf[spec] = id;
     occurrences[id] = (occurrences[id] ?? 0) + 1;
+    (names[id] ??= {}).addAll(spec.sealedNames);
     final current = canonical[id];
     if (current == null || _comparePaths(spec.path, current.path) < 0) {
       canonical[id] = spec;
@@ -237,6 +250,7 @@ List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
       shared: occurrences[id]! > 1,
       exactlyOne: shape.exactlyOne,
       atMostOne: shape.atMostOne,
+      sealedNames: names[id]!,
     );
   }
 
@@ -274,6 +288,7 @@ _ChildScan _scanChildren(
   required EnumValuesResolver enumValues,
   required Map<String, List<List<String>>> exactlyOneGroups,
   required Map<String, List<List<String>>> atMostOneGroups,
+  required Map<String, Map<String, String>> sealedNames,
 }) {
   final children = <NestedBlockSpec>[];
   final excludedChildren = <ExcludedNestedBlock>[];
@@ -309,6 +324,7 @@ _ChildScan _scanChildren(
         enumValues: enumValues,
         exactlyOneGroups: exactlyOneGroups,
         atMostOneGroups: atMostOneGroups,
+        sealedNames: sealedNames,
       ),
     );
   }
@@ -406,6 +422,7 @@ NestedBlockSpec _buildSpec(
   required EnumValuesResolver enumValues,
   required Map<String, List<List<String>>> exactlyOneGroups,
   required Map<String, List<List<String>>> atMostOneGroups,
+  required Map<String, Map<String, String>> sealedNames,
 }) {
   final cardinality = _blockCardinality(nestedBlockBody, tfName: tfName);
   final className = resourcePrefix + path.map(snakeToPascal).join();
@@ -423,6 +440,7 @@ NestedBlockSpec _buildSpec(
     enumValues: enumValues,
     exactlyOneGroups: exactlyOneGroups,
     atMostOneGroups: atMostOneGroups,
+    sealedNames: sealedNames,
   );
 
   return NestedBlockSpec(
@@ -442,7 +460,30 @@ NestedBlockSpec _buildSpec(
     excludedChildren: scan.excludedChildren,
     exactlyOne: exactlyOneGroups[path.join('.')] ?? const [],
     atMostOne: atMostOneGroups[path.join('.')] ?? const [],
+    sealedNames: sealedNames[path.join('.')] ?? const {},
   );
+}
+
+/// The `sealedNames` axis grouped by the dotted path of the block whose
+/// members each entry lists, re-keyed by the members' bare names. An entry
+/// whose members sit in different blocks matches no group; `wrap` reports
+/// it as unused.
+Map<String, Map<String, String>> _sealedNamesByBlock(
+  Map<String, String>? names,
+) {
+  final out = <String, Map<String, String>>{};
+  for (final MapEntry(:key, :value) in (names ?? const {}).entries) {
+    final paths = [for (final m in sealedGroupKey(key)) m.split('.')];
+    final block = paths.first.sublist(0, paths.first.length - 1).join('.');
+    if (paths.any((p) => p.sublist(0, p.length - 1).join('.') != block)) {
+      continue;
+    }
+    (out[block] ??= {})[sealedGroupKeyOf(const [], [
+          for (final p in paths) p.last,
+        ])] =
+        value;
+  }
+  return out;
 }
 
 List<NestedAttrSpec> _collectAttrs(

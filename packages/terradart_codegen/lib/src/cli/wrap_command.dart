@@ -12,11 +12,13 @@ import '../codegen/catalog_entry_builder.dart';
 import '../codegen/catalog_metadata_emitter.dart';
 import '../codegen/data_source_wrapper_emitter.dart';
 import '../codegen/exactly_one_derivation.dart';
+import '../codegen/exactly_one_types.dart';
 import '../codegen/generated_file_header.dart';
 import '../codegen/migrate/migrate_entry_builder.dart';
 import '../codegen/migrate/migrate_manifest_emitter.dart';
 import '../codegen/provider_enums.dart';
 import '../codegen/provider_version_emitter.dart';
+import '../codegen/sealed_name_debt.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
 import '../codegen/wrapper_overrides/yaml_loader.dart';
@@ -121,6 +123,16 @@ class WrapCommand extends Command<int> {
             'that share the default provider\'s type prefix; omit for the '
             'implied default.',
         valueHelp: 'NAME',
+      )
+      ..addOption(
+        'sealed-name-debt',
+        help:
+            'The sealed-name ledger (tool/sealed_name_debt.yaml): the '
+            'sealed groups no rule names, which fall back to an `Or` name. '
+            'wrap records this registry\'s fallbacks there and drops its '
+            'stale entries; --check fails on either instead. Skipped under '
+            '--only.',
+        valueHelp: 'FILE',
       )
       ..addFlag(
         'provider-enums',
@@ -393,6 +405,50 @@ class WrapCommand extends Command<int> {
     for (final s in exactlyOne.skippedAtMostOne) {
       stderr.writeln('terradart wrap: at-most-one group not sealed: $s');
     }
+    if (exactlyOne.nameErrors.isNotEmpty) {
+      for (final e in exactlyOne.nameErrors) {
+        stderr.writeln('[E406] terradart wrap: $e');
+      }
+      return CliExitCodes.dataError;
+    }
+    final debtPath = results['sealed-name-debt'] as String?;
+    final fallbacks = <String, Set<String>>{
+      for (final n in exactlyOne.names)
+        if (n.name.source == SealedNameSource.fallback) n.type: {},
+    };
+    for (final n in exactlyOne.names) {
+      if (n.name.source == SealedNameSource.fallback) {
+        fallbacks[n.type]!.add(n.name.key);
+      }
+    }
+    ({SealedNameDebt debt, List<String> missing, List<String> stale})? debt;
+    if (debtPath != null && only == null) {
+      final file = File(debtPath);
+      try {
+        debt = syncSealedNameDebt(
+          file.existsSync()
+              ? parseSealedNameDebt(file.readAsStringSync(), path: debtPath)
+              : {},
+          laneTypes: resourceOverrides.keys.toSet(),
+          fallbacks: fallbacks,
+          reason:
+              '$sealedNameDebtPrefix $provider '
+                      '${readProviderVersion(source)}'
+                  .trim(),
+        );
+      } on FormatException catch (e) {
+        stderr.writeln('[E405] terradart wrap: malformed ledger: $e');
+        return CliExitCodes.dataError;
+      }
+    } else if (debtPath == null) {
+      for (final MapEntry(key: type, value: keys) in fallbacks.entries) {
+        for (final key in keys) {
+          stderr.writeln(
+            'terradart wrap: sealed group not named: $type [$key]',
+          );
+        }
+      }
+    }
     final resourceEmitter = WrapperEmitter(
       overrides: resourceOverrides,
       rawResourceSchemas: rawResourceSchemas,
@@ -633,7 +689,12 @@ class WrapCommand extends Command<int> {
         : const <String>[];
 
     if (check) {
-      return _runCheck(buffer, output, orphans);
+      return _runCheck(buffer, output, orphans, [
+        for (final m in debt?.missing ?? const <String>[])
+          '$debtPath: $m has no entry (name it in sealedNames, or run '
+              '`terradart wrap` to record it)',
+        for (final s in debt?.stale ?? const <String>[]) '$debtPath: $s',
+      ]);
     }
 
     // 6. Materialise. Create parent dirs lazily; writeAsStringSync is
@@ -650,6 +711,12 @@ class WrapCommand extends Command<int> {
       final dir = file.parent;
       if (dir.listSync().isEmpty) dir.deleteSync();
       stdout.writeln('terradart wrap: deleted orphaned $orphan');
+    }
+    if (debt != null) {
+      File(debtPath!).writeAsStringSync(renderSealedNameDebt(debt.debt));
+      for (final m in debt.missing) {
+        stdout.writeln('terradart wrap: recorded unnamed sealed group $m');
+      }
     }
     return CliExitCodes.success;
   }
@@ -690,8 +757,10 @@ class WrapCommand extends Command<int> {
     Map<String, String> buffer,
     String output,
     List<String> orphans,
+    List<String> ledgerProblems,
   ) {
     final mismatches = <String>[
+      ...ledgerProblems,
       for (final orphan in orphans)
         '$orphan: orphaned (generated, but no override emits it any more; '
             'run `terradart wrap` to delete it)',
