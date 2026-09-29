@@ -12,23 +12,23 @@ const Set<String> _googleHealthcarePipelineJobSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.mappingPipelineJob(...)`.
-sealed class HealthcarePipelineJobPipelineJob {
-  const HealthcarePipelineJobPipelineJob();
+sealed class HealthcarePipelineJobTask {
+  const HealthcarePipelineJobTask();
 
   /// Sets `mapping_pipeline_job`.
-  const factory HealthcarePipelineJobPipelineJob.mappingPipelineJob(
+  const factory HealthcarePipelineJobTask.mappingPipelineJob(
     HealthcarePipelineJobMappingPipelineJob mappingPipelineJob,
-  ) = HealthcarePipelineJobPipelineJobMappingPipelineJob;
+  ) = HealthcarePipelineJobTaskMappingPipelineJob;
 
   /// Sets `reconciliation_pipeline_job`.
-  const factory HealthcarePipelineJobPipelineJob.reconciliationPipelineJob(
+  const factory HealthcarePipelineJobTask.reconciliationPipelineJob(
     HealthcarePipelineJobReconciliationPipelineJob reconciliationPipelineJob,
-  ) = HealthcarePipelineJobPipelineJobReconciliationPipelineJob;
+  ) = HealthcarePipelineJobTaskReconciliationPipelineJob;
 
   /// Sets `backfill_pipeline_job`.
-  const factory HealthcarePipelineJobPipelineJob.backfillPipelineJob(
+  const factory HealthcarePipelineJobTask.backfillPipelineJob(
     HealthcarePipelineJobBackfillPipelineJob backfillPipelineJob,
-  ) = HealthcarePipelineJobPipelineJobBackfillPipelineJob;
+  ) = HealthcarePipelineJobTaskBackfillPipelineJob;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -40,12 +40,10 @@ sealed class HealthcarePipelineJobPipelineJob {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [HealthcarePipelineJobPipelineJob.mappingPipelineJob] choice: sets `mapping_pipeline_job`.
-final class HealthcarePipelineJobPipelineJobMappingPipelineJob
-    extends HealthcarePipelineJobPipelineJob {
-  const HealthcarePipelineJobPipelineJobMappingPipelineJob(
-    this.mappingPipelineJob,
-  );
+/// The [HealthcarePipelineJobTask.mappingPipelineJob] choice: sets `mapping_pipeline_job`.
+final class HealthcarePipelineJobTaskMappingPipelineJob
+    extends HealthcarePipelineJobTask {
+  const HealthcarePipelineJobTaskMappingPipelineJob(this.mappingPipelineJob);
 
   final HealthcarePipelineJobMappingPipelineJob mappingPipelineJob;
 
@@ -63,10 +61,10 @@ final class HealthcarePipelineJobPipelineJobMappingPipelineJob
   };
 }
 
-/// The [HealthcarePipelineJobPipelineJob.reconciliationPipelineJob] choice: sets `reconciliation_pipeline_job`.
-final class HealthcarePipelineJobPipelineJobReconciliationPipelineJob
-    extends HealthcarePipelineJobPipelineJob {
-  const HealthcarePipelineJobPipelineJobReconciliationPipelineJob(
+/// The [HealthcarePipelineJobTask.reconciliationPipelineJob] choice: sets `reconciliation_pipeline_job`.
+final class HealthcarePipelineJobTaskReconciliationPipelineJob
+    extends HealthcarePipelineJobTask {
+  const HealthcarePipelineJobTaskReconciliationPipelineJob(
     this.reconciliationPipelineJob,
   );
 
@@ -89,12 +87,10 @@ final class HealthcarePipelineJobPipelineJobReconciliationPipelineJob
   };
 }
 
-/// The [HealthcarePipelineJobPipelineJob.backfillPipelineJob] choice: sets `backfill_pipeline_job`.
-final class HealthcarePipelineJobPipelineJobBackfillPipelineJob
-    extends HealthcarePipelineJobPipelineJob {
-  const HealthcarePipelineJobPipelineJobBackfillPipelineJob(
-    this.backfillPipelineJob,
-  );
+/// The [HealthcarePipelineJobTask.backfillPipelineJob] choice: sets `backfill_pipeline_job`.
+final class HealthcarePipelineJobTaskBackfillPipelineJob
+    extends HealthcarePipelineJobTask {
+  const HealthcarePipelineJobTaskBackfillPipelineJob(this.backfillPipelineJob);
 
   final HealthcarePipelineJobBackfillPipelineJob backfillPipelineJob;
 
@@ -351,7 +347,7 @@ final class GoogleHealthcarePipelineJob extends Resource {
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
     required TfArg<String> name,
-    HealthcarePipelineJobPipelineJob? pipelineJob,
+    HealthcarePipelineJobTask? task,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -365,7 +361,7 @@ final class GoogleHealthcarePipelineJob extends Resource {
            'labels': ?labels,
            'location': location,
            'name': name,
-           ...?pipelineJob?.argMap,
+           ...?task?.argMap,
          },
        );
 

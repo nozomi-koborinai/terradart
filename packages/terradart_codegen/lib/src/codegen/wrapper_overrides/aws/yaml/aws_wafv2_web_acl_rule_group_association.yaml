@@ -6,4 +6,4 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "managed_rule_group, rule_group_reference": rule_group
+  "managed_rule_group, rule_group_reference": source

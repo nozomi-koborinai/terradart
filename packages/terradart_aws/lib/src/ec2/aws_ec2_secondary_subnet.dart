@@ -17,12 +17,12 @@ sealed class Ec2SecondarySubnetAvailabilityZone {
   /// Sets `availability_zone`.
   const factory Ec2SecondarySubnetAvailabilityZone.availabilityZone(
     TfArg<String> availabilityZone,
-  ) = Ec2SecondarySubnetAvailabilityZoneAvailabilityZone;
+  ) = Ec2SecondarySubnetAvailabilityZoneChoice;
 
   /// Sets `availability_zone_id`.
   const factory Ec2SecondarySubnetAvailabilityZone.availabilityZoneId(
     TfArg<String> availabilityZoneId,
-  ) = Ec2SecondarySubnetAvailabilityZoneAvailabilityZoneId;
+  ) = Ec2SecondarySubnetAvailabilityZoneId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,11 +35,9 @@ sealed class Ec2SecondarySubnetAvailabilityZone {
 }
 
 /// The [Ec2SecondarySubnetAvailabilityZone.availabilityZone] choice: sets `availability_zone`.
-final class Ec2SecondarySubnetAvailabilityZoneAvailabilityZone
+final class Ec2SecondarySubnetAvailabilityZoneChoice
     extends Ec2SecondarySubnetAvailabilityZone {
-  const Ec2SecondarySubnetAvailabilityZoneAvailabilityZone(
-    this.availabilityZone,
-  );
+  const Ec2SecondarySubnetAvailabilityZoneChoice(this.availabilityZone);
 
   final TfArg<String> availabilityZone;
 
@@ -58,11 +56,9 @@ final class Ec2SecondarySubnetAvailabilityZoneAvailabilityZone
 }
 
 /// The [Ec2SecondarySubnetAvailabilityZone.availabilityZoneId] choice: sets `availability_zone_id`.
-final class Ec2SecondarySubnetAvailabilityZoneAvailabilityZoneId
+final class Ec2SecondarySubnetAvailabilityZoneId
     extends Ec2SecondarySubnetAvailabilityZone {
-  const Ec2SecondarySubnetAvailabilityZoneAvailabilityZoneId(
-    this.availabilityZoneId,
-  );
+  const Ec2SecondarySubnetAvailabilityZoneId(this.availabilityZoneId);
 
   final TfArg<String> availabilityZoneId;
 

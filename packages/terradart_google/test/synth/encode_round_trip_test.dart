@@ -284,30 +284,18 @@ final Map<String, Object Function()> _syntheticInstances = {
       ComputeHealthCheckGrpcHealthCheckConfig(port: TfArg.literal(50051)),
 
   // --- ComputeRegionHealthCheckProtocol (6) — region_health_check -----------
-  'ComputeRegionHealthCheckRegionHealthCheckHttpConfig': () =>
-      ComputeRegionHealthCheckRegionHealthCheckHttpConfig(
-        port: TfArg.literal(80),
-      ),
-  'ComputeRegionHealthCheckRegionHealthCheckHttpsConfig': () =>
-      ComputeRegionHealthCheckRegionHealthCheckHttpsConfig(
-        port: TfArg.literal(443),
-      ),
-  'ComputeRegionHealthCheckRegionHealthCheckHttp2Config': () =>
-      ComputeRegionHealthCheckRegionHealthCheckHttp2Config(
-        port: TfArg.literal(443),
-      ),
-  'ComputeRegionHealthCheckRegionHealthCheckTcpConfig': () =>
-      ComputeRegionHealthCheckRegionHealthCheckTcpConfig(
-        port: TfArg.literal(443),
-      ),
-  'ComputeRegionHealthCheckRegionHealthCheckSslConfig': () =>
-      ComputeRegionHealthCheckRegionHealthCheckSslConfig(
-        port: TfArg.literal(443),
-      ),
-  'ComputeRegionHealthCheckRegionHealthCheckGrpcConfig': () =>
-      ComputeRegionHealthCheckRegionHealthCheckGrpcConfig(
-        port: TfArg.literal(50051),
-      ),
+  'ComputeRegionHealthCheckHttpHealthCheckConfig': () =>
+      ComputeRegionHealthCheckHttpHealthCheckConfig(port: TfArg.literal(80)),
+  'ComputeRegionHealthCheckHttpsHealthCheckConfig': () =>
+      ComputeRegionHealthCheckHttpsHealthCheckConfig(port: TfArg.literal(443)),
+  'ComputeRegionHealthCheckHttp2HealthCheckConfig': () =>
+      ComputeRegionHealthCheckHttp2HealthCheckConfig(port: TfArg.literal(443)),
+  'ComputeRegionHealthCheckTcpHealthCheckConfig': () =>
+      ComputeRegionHealthCheckTcpHealthCheckConfig(port: TfArg.literal(443)),
+  'ComputeRegionHealthCheckSslHealthCheckConfig': () =>
+      ComputeRegionHealthCheckSslHealthCheckConfig(port: TfArg.literal(443)),
+  'ComputeRegionHealthCheckGrpcHealthCheckConfig': () =>
+      ComputeRegionHealthCheckGrpcHealthCheckConfig(port: TfArg.literal(50051)),
 
   // --- ComputeFirewallRulePolicy (2) — compute_firewall --------------------
   'ComputeFirewallAllowPolicy': () => ComputeFirewallAllowPolicy(
@@ -363,13 +351,13 @@ final Map<String, Object Function()> _syntheticInstances = {
   ),
 
   // --- ComputeImageSource (3) — compute_image ------------------------------
-  'ComputeImageDiskSource': () => ComputeImageDiskSource(
+  'ComputeImageSourceDisk': () => ComputeImageSourceDisk(
     sourceDisk: TfArg.literal('projects/p/zones/z/disks/d'),
   ),
-  'ComputeImageImageSource': () => ComputeImageImageSource(
+  'ComputeImageSourceImage': () => ComputeImageSourceImage(
     sourceImage: TfArg.literal('projects/p/global/images/i'),
   ),
-  'ComputeImageSnapshotSource': () => ComputeImageSnapshotSource(
+  'ComputeImageSourceSnapshot': () => ComputeImageSourceSnapshot(
     sourceSnapshot: TfArg.literal('projects/p/global/snapshots/s'),
   ),
 
@@ -512,10 +500,12 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
 
   // --- ColabNotebookExecutionIdentity (2) ----------------------------------
-  'ColabNotebookExecutionExecutionUser': () =>
-      ColabNotebookExecutionExecutionUser(TfArg.literal('user@example.com')),
-  'ColabNotebookExecutionServiceAccount': () =>
-      ColabNotebookExecutionServiceAccount(
+  'ColabNotebookExecutionIdentityExecutionUser': () =>
+      ColabNotebookExecutionIdentityExecutionUser(
+        TfArg.literal('user@example.com'),
+      ),
+  'ColabNotebookExecutionIdentityServiceAccount': () =>
+      ColabNotebookExecutionIdentityServiceAccount(
         TfArg.literal('sa@p.iam.gserviceaccount.com'),
       ),
 
@@ -576,10 +566,10 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
 
   // --- AppHostingBuildSource (2) — firebase_app_hosting_build --------------
-  'FirebaseAppHostingBuildAppHostingBuildSourceCodebase': () =>
-      const FirebaseAppHostingBuildAppHostingBuildSourceCodebase(),
-  'FirebaseAppHostingBuildAppHostingBuildSourceContainer': () =>
-      FirebaseAppHostingBuildAppHostingBuildSourceContainer(
+  'FirebaseAppHostingBuildSourceCodebase': () =>
+      const FirebaseAppHostingBuildSourceCodebase(),
+  'FirebaseAppHostingBuildSourceContainer': () =>
+      FirebaseAppHostingBuildSourceContainer(
         image: TfArg.literal('us-central1-docker.pkg.dev/p/r/web:1.0.0'),
       ),
 
@@ -688,14 +678,11 @@ final Map<String, Object Function()> _syntheticInstances = {
       ]),
 
   // --- BucketObjectContent (2) — storage_bucket_object ---------------------
-  'StorageBucketObjectBucketObjectFromSource': () =>
-      StorageBucketObjectBucketObjectFromSource(
-        source: TfArg.literal('./mock/path.bin'),
-      ),
-  'StorageBucketObjectBucketObjectFromContent': () =>
-      StorageBucketObjectBucketObjectFromContent(
-        content: TfArg.literal('mock-inline-payload'),
-      ),
+  'StorageBucketObjectBodySource': () =>
+      StorageBucketObjectBodySource(source: TfArg.literal('./mock/path.bin')),
+  'StorageBucketObjectBodyContent': () => StorageBucketObjectBodyContent(
+    content: TfArg.literal('mock-inline-payload'),
+  ),
 
   // --- StorageBatchOperationsJobOperation (4) — batch_operations_job -------
   'StorageBatchOperationsJobPutMetadata': () =>

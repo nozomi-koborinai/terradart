@@ -48,5 +48,7 @@ paramOrder:
   - source_config
 
 sealedNames:
+  "destination_config.bigquery_destination_config, destination_config.gcs_destination_config": system
+  "source_config.mongodb_source_config, source_config.mysql_source_config, source_config.oracle_source_config, source_config.postgresql_source_config, source_config.salesforce_source_config, source_config.spanner_source_config, source_config.sql_server_source_config": system
   "destination_config.bigquery_destination_config.append_only, destination_config.bigquery_destination_config.merge": write_mode
   "source_config.mysql_source_config.binary_log_position, source_config.mysql_source_config.gtid": cdc_method

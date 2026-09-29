@@ -31,23 +31,23 @@ enum SesEventDestinationMatchingTypes implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.cloudwatchDestination(...)`.
-sealed class SesEventDestinationDestination {
-  const SesEventDestinationDestination();
+sealed class SesEventDestinationTarget {
+  const SesEventDestinationTarget();
 
   /// Sets `cloudwatch_destination`.
-  const factory SesEventDestinationDestination.cloudwatchDestination(
+  const factory SesEventDestinationTarget.cloudwatchDestination(
     List<SesEventDestinationCloudwatchDestination> cloudwatchDestination,
-  ) = SesEventDestinationDestinationCloudwatchDestination;
+  ) = SesEventDestinationTargetCloudwatchDestination;
 
   /// Sets `kinesis_destination`.
-  const factory SesEventDestinationDestination.kinesisDestination(
+  const factory SesEventDestinationTarget.kinesisDestination(
     SesEventDestinationKinesisDestination kinesisDestination,
-  ) = SesEventDestinationDestinationKinesisDestination;
+  ) = SesEventDestinationTargetKinesisDestination;
 
   /// Sets `sns_destination`.
-  const factory SesEventDestinationDestination.snsDestination(
+  const factory SesEventDestinationTarget.snsDestination(
     SesEventDestinationSnsDestination snsDestination,
-  ) = SesEventDestinationDestinationSnsDestination;
+  ) = SesEventDestinationTargetSnsDestination;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -59,10 +59,10 @@ sealed class SesEventDestinationDestination {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SesEventDestinationDestination.cloudwatchDestination] choice: sets `cloudwatch_destination`.
-final class SesEventDestinationDestinationCloudwatchDestination
-    extends SesEventDestinationDestination {
-  const SesEventDestinationDestinationCloudwatchDestination(
+/// The [SesEventDestinationTarget.cloudwatchDestination] choice: sets `cloudwatch_destination`.
+final class SesEventDestinationTargetCloudwatchDestination
+    extends SesEventDestinationTarget {
+  const SesEventDestinationTargetCloudwatchDestination(
     this.cloudwatchDestination,
   );
 
@@ -86,12 +86,10 @@ final class SesEventDestinationDestinationCloudwatchDestination
   };
 }
 
-/// The [SesEventDestinationDestination.kinesisDestination] choice: sets `kinesis_destination`.
-final class SesEventDestinationDestinationKinesisDestination
-    extends SesEventDestinationDestination {
-  const SesEventDestinationDestinationKinesisDestination(
-    this.kinesisDestination,
-  );
+/// The [SesEventDestinationTarget.kinesisDestination] choice: sets `kinesis_destination`.
+final class SesEventDestinationTargetKinesisDestination
+    extends SesEventDestinationTarget {
+  const SesEventDestinationTargetKinesisDestination(this.kinesisDestination);
 
   final SesEventDestinationKinesisDestination kinesisDestination;
 
@@ -109,10 +107,10 @@ final class SesEventDestinationDestinationKinesisDestination
   };
 }
 
-/// The [SesEventDestinationDestination.snsDestination] choice: sets `sns_destination`.
-final class SesEventDestinationDestinationSnsDestination
-    extends SesEventDestinationDestination {
-  const SesEventDestinationDestinationSnsDestination(this.snsDestination);
+/// The [SesEventDestinationTarget.snsDestination] choice: sets `sns_destination`.
+final class SesEventDestinationTargetSnsDestination
+    extends SesEventDestinationTarget {
+  const SesEventDestinationTargetSnsDestination(this.snsDestination);
 
   final SesEventDestinationSnsDestination snsDestination;
 
@@ -208,7 +206,7 @@ final class AwsSesEventDestination extends Resource {
     required List<TfArg<SesEventDestinationMatchingTypes>> matchingTypes,
     required TfArg<String> name,
     TfArg<String>? region,
-    SesEventDestinationDestination? destination,
+    SesEventDestinationTarget? target,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -223,7 +221,7 @@ final class AwsSesEventDestination extends Resource {
            ]),
            'name': name,
            'region': ?region,
-           ...?destination?.argMap,
+           ...?target?.argMap,
          },
        );
 

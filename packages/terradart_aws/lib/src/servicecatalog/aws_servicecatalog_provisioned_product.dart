@@ -22,18 +22,18 @@ enum ServicecatalogProvisionedProductAcceptLanguage implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.productId(...)`.
-sealed class ServicecatalogProvisionedProductProduct {
-  const ServicecatalogProvisionedProductProduct();
+sealed class ServicecatalogProvisionedProductIdentifier {
+  const ServicecatalogProvisionedProductIdentifier();
 
   /// Sets `product_id`.
-  const factory ServicecatalogProvisionedProductProduct.productId(
+  const factory ServicecatalogProvisionedProductIdentifier.productId(
     TfArg<String> productId,
-  ) = ServicecatalogProvisionedProductProductProductId;
+  ) = ServicecatalogProvisionedProductIdentifierProductId;
 
   /// Sets `product_name`.
-  const factory ServicecatalogProvisionedProductProduct.productName(
+  const factory ServicecatalogProvisionedProductIdentifier.productName(
     TfArg<String> productName,
-  ) = ServicecatalogProvisionedProductProductProductName;
+  ) = ServicecatalogProvisionedProductIdentifierProductName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,10 +45,10 @@ sealed class ServicecatalogProvisionedProductProduct {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ServicecatalogProvisionedProductProduct.productId] choice: sets `product_id`.
-final class ServicecatalogProvisionedProductProductProductId
-    extends ServicecatalogProvisionedProductProduct {
-  const ServicecatalogProvisionedProductProductProductId(this.productId);
+/// The [ServicecatalogProvisionedProductIdentifier.productId] choice: sets `product_id`.
+final class ServicecatalogProvisionedProductIdentifierProductId
+    extends ServicecatalogProvisionedProductIdentifier {
+  const ServicecatalogProvisionedProductIdentifierProductId(this.productId);
 
   final TfArg<String> productId;
 
@@ -62,10 +62,10 @@ final class ServicecatalogProvisionedProductProductProductId
   Map<String, TfArg<Object?>> get argMap => {'product_id': productId};
 }
 
-/// The [ServicecatalogProvisionedProductProduct.productName] choice: sets `product_name`.
-final class ServicecatalogProvisionedProductProductProductName
-    extends ServicecatalogProvisionedProductProduct {
-  const ServicecatalogProvisionedProductProductProductName(this.productName);
+/// The [ServicecatalogProvisionedProductIdentifier.productName] choice: sets `product_name`.
+final class ServicecatalogProvisionedProductIdentifierProductName
+    extends ServicecatalogProvisionedProductIdentifier {
+  const ServicecatalogProvisionedProductIdentifierProductName(this.productName);
 
   final TfArg<String> productName;
 
@@ -89,12 +89,12 @@ sealed class ServicecatalogProvisionedProductProvisioningArtifact {
   /// Sets `provisioning_artifact_id`.
   const factory ServicecatalogProvisionedProductProvisioningArtifact.provisioningArtifactId(
     TfArg<String> provisioningArtifactId,
-  ) = ServicecatalogProvisionedProductProvisioningArtifactProvisioningArtifactId;
+  ) = ServicecatalogProvisionedProductProvisioningArtifactId;
 
   /// Sets `provisioning_artifact_name`.
   const factory ServicecatalogProvisionedProductProvisioningArtifact.provisioningArtifactName(
     TfArg<String> provisioningArtifactName,
-  ) = ServicecatalogProvisionedProductProvisioningArtifactProvisioningArtifactName;
+  ) = ServicecatalogProvisionedProductProvisioningArtifactName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -107,9 +107,9 @@ sealed class ServicecatalogProvisionedProductProvisioningArtifact {
 }
 
 /// The [ServicecatalogProvisionedProductProvisioningArtifact.provisioningArtifactId] choice: sets `provisioning_artifact_id`.
-final class ServicecatalogProvisionedProductProvisioningArtifactProvisioningArtifactId
+final class ServicecatalogProvisionedProductProvisioningArtifactId
     extends ServicecatalogProvisionedProductProvisioningArtifact {
-  const ServicecatalogProvisionedProductProvisioningArtifactProvisioningArtifactId(
+  const ServicecatalogProvisionedProductProvisioningArtifactId(
     this.provisioningArtifactId,
   );
 
@@ -130,9 +130,9 @@ final class ServicecatalogProvisionedProductProvisioningArtifactProvisioningArti
 }
 
 /// The [ServicecatalogProvisionedProductProvisioningArtifact.provisioningArtifactName] choice: sets `provisioning_artifact_name`.
-final class ServicecatalogProvisionedProductProvisioningArtifactProvisioningArtifactName
+final class ServicecatalogProvisionedProductProvisioningArtifactName
     extends ServicecatalogProvisionedProductProvisioningArtifact {
-  const ServicecatalogProvisionedProductProvisioningArtifactProvisioningArtifactName(
+  const ServicecatalogProvisionedProductProvisioningArtifactName(
     this.provisioningArtifactName,
   );
 
@@ -163,12 +163,12 @@ sealed class ServicecatalogProvisionedProductPath {
   /// Sets `path_id`.
   const factory ServicecatalogProvisionedProductPath.pathId(
     TfArg<String> pathId,
-  ) = ServicecatalogProvisionedProductPathPathId;
+  ) = ServicecatalogProvisionedProductPathId;
 
   /// Sets `path_name`.
   const factory ServicecatalogProvisionedProductPath.pathName(
     TfArg<String> pathName,
-  ) = ServicecatalogProvisionedProductPathPathName;
+  ) = ServicecatalogProvisionedProductPathName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -181,9 +181,9 @@ sealed class ServicecatalogProvisionedProductPath {
 }
 
 /// The [ServicecatalogProvisionedProductPath.pathId] choice: sets `path_id`.
-final class ServicecatalogProvisionedProductPathPathId
+final class ServicecatalogProvisionedProductPathId
     extends ServicecatalogProvisionedProductPath {
-  const ServicecatalogProvisionedProductPathPathId(this.pathId);
+  const ServicecatalogProvisionedProductPathId(this.pathId);
 
   final TfArg<String> pathId;
 
@@ -198,9 +198,9 @@ final class ServicecatalogProvisionedProductPathPathId
 }
 
 /// The [ServicecatalogProvisionedProductPath.pathName] choice: sets `path_name`.
-final class ServicecatalogProvisionedProductPathPathName
+final class ServicecatalogProvisionedProductPathName
     extends ServicecatalogProvisionedProductPath {
-  const ServicecatalogProvisionedProductPathPathName(this.pathName);
+  const ServicecatalogProvisionedProductPathName(this.pathName);
 
   final TfArg<String> pathName;
 
@@ -276,12 +276,12 @@ sealed class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFail
   /// Sets `failure_tolerance_count`.
   const factory ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance.failureToleranceCount(
     TfArg<num> failureToleranceCount,
-  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceFailureToleranceCount;
+  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCount;
 
   /// Sets `failure_tolerance_percentage`.
   const factory ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance.failureTolerancePercentage(
     TfArg<num> failureTolerancePercentage,
-  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceFailureTolerancePercentage;
+  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -290,10 +290,10 @@ sealed class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFail
 }
 
 /// The [ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance.failureToleranceCount] choice: sets `failure_tolerance_count`.
-final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceFailureToleranceCount
+final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCount
     extends
         ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance {
-  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceFailureToleranceCount(
+  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCount(
     this.failureToleranceCount,
   );
 
@@ -309,10 +309,10 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailu
 }
 
 /// The [ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance.failureTolerancePercentage] choice: sets `failure_tolerance_percentage`.
-final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceFailureTolerancePercentage
+final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentage
     extends
         ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance {
-  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceFailureTolerancePercentage(
+  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentage(
     this.failureTolerancePercentage,
   );
 
@@ -337,12 +337,12 @@ sealed class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxC
   /// Sets `max_concurrency_count`.
   const factory ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency.maxConcurrencyCount(
     TfArg<num> maxConcurrencyCount,
-  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyMaxConcurrencyCount;
+  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCount;
 
   /// Sets `max_concurrency_percentage`.
   const factory ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency.maxConcurrencyPercentage(
     TfArg<num> maxConcurrencyPercentage,
-  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyMaxConcurrencyPercentage;
+  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -351,10 +351,10 @@ sealed class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxC
 }
 
 /// The [ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency.maxConcurrencyCount] choice: sets `max_concurrency_count`.
-final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyMaxConcurrencyCount
+final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCount
     extends
         ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency {
-  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyMaxConcurrencyCount(
+  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCount(
     this.maxConcurrencyCount,
   );
 
@@ -370,10 +370,10 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxCo
 }
 
 /// The [ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency.maxConcurrencyPercentage] choice: sets `max_concurrency_percentage`.
-final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyMaxConcurrencyPercentage
+final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentage
     extends
         ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency {
-  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyMaxConcurrencyPercentage(
+  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentage(
     this.maxConcurrencyPercentage,
   );
 
@@ -399,7 +399,7 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
     required TfArg<String> name,
     TfArg<List<String>>? notificationArns,
     ServicecatalogProvisionedProductPath? path,
-    required ServicecatalogProvisionedProductProduct product,
+    required ServicecatalogProvisionedProductIdentifier identifier,
     required ServicecatalogProvisionedProductProvisioningArtifact
     provisioningArtifact,
     TfArg<String>? region,
@@ -421,7 +421,7 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
            'name': name,
            'notification_arns': ?notificationArns,
            ...?path?.argMap,
-           ...product.argMap,
+           ...identifier.argMap,
            ...provisioningArtifact.argMap,
            'region': ?region,
            'retain_physical_resources': ?retainPhysicalResources,

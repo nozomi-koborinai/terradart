@@ -22,12 +22,12 @@ sealed class RedshiftDataShareConsumerAssociationConsumer {
   /// Sets `consumer_arn`.
   const factory RedshiftDataShareConsumerAssociationConsumer.consumerArn(
     TfArg<String> consumerArn,
-  ) = RedshiftDataShareConsumerAssociationConsumerConsumerArn;
+  ) = RedshiftDataShareConsumerAssociationConsumerArn;
 
   /// Sets `consumer_region`.
   const factory RedshiftDataShareConsumerAssociationConsumer.consumerRegion(
     TfArg<String> consumerRegion,
-  ) = RedshiftDataShareConsumerAssociationConsumerConsumerRegion;
+  ) = RedshiftDataShareConsumerAssociationConsumerRegion;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -63,11 +63,9 @@ final class RedshiftDataShareConsumerAssociationConsumerAssociateEntireAccount
 }
 
 /// The [RedshiftDataShareConsumerAssociationConsumer.consumerArn] choice: sets `consumer_arn`.
-final class RedshiftDataShareConsumerAssociationConsumerConsumerArn
+final class RedshiftDataShareConsumerAssociationConsumerArn
     extends RedshiftDataShareConsumerAssociationConsumer {
-  const RedshiftDataShareConsumerAssociationConsumerConsumerArn(
-    this.consumerArn,
-  );
+  const RedshiftDataShareConsumerAssociationConsumerArn(this.consumerArn);
 
   final TfArg<String> consumerArn;
 
@@ -82,11 +80,9 @@ final class RedshiftDataShareConsumerAssociationConsumerConsumerArn
 }
 
 /// The [RedshiftDataShareConsumerAssociationConsumer.consumerRegion] choice: sets `consumer_region`.
-final class RedshiftDataShareConsumerAssociationConsumerConsumerRegion
+final class RedshiftDataShareConsumerAssociationConsumerRegion
     extends RedshiftDataShareConsumerAssociationConsumer {
-  const RedshiftDataShareConsumerAssociationConsumerConsumerRegion(
-    this.consumerRegion,
-  );
+  const RedshiftDataShareConsumerAssociationConsumerRegion(this.consumerRegion);
 
   final TfArg<String> consumerRegion;
 

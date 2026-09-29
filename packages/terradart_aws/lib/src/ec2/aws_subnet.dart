@@ -29,12 +29,12 @@ sealed class SubnetAvailabilityZone {
   /// Sets `availability_zone`.
   const factory SubnetAvailabilityZone.availabilityZone(
     TfArg<String> availabilityZone,
-  ) = SubnetAvailabilityZoneAvailabilityZone;
+  ) = SubnetAvailabilityZoneChoice;
 
   /// Sets `availability_zone_id`.
   const factory SubnetAvailabilityZone.availabilityZoneId(
     TfArg<String> availabilityZoneId,
-  ) = SubnetAvailabilityZoneAvailabilityZoneId;
+  ) = SubnetAvailabilityZoneId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,9 +47,8 @@ sealed class SubnetAvailabilityZone {
 }
 
 /// The [SubnetAvailabilityZone.availabilityZone] choice: sets `availability_zone`.
-final class SubnetAvailabilityZoneAvailabilityZone
-    extends SubnetAvailabilityZone {
-  const SubnetAvailabilityZoneAvailabilityZone(this.availabilityZone);
+final class SubnetAvailabilityZoneChoice extends SubnetAvailabilityZone {
+  const SubnetAvailabilityZoneChoice(this.availabilityZone);
 
   final TfArg<String> availabilityZone;
 
@@ -68,9 +67,8 @@ final class SubnetAvailabilityZoneAvailabilityZone
 }
 
 /// The [SubnetAvailabilityZone.availabilityZoneId] choice: sets `availability_zone_id`.
-final class SubnetAvailabilityZoneAvailabilityZoneId
-    extends SubnetAvailabilityZone {
-  const SubnetAvailabilityZoneAvailabilityZoneId(this.availabilityZoneId);
+final class SubnetAvailabilityZoneId extends SubnetAvailabilityZone {
+  const SubnetAvailabilityZoneId(this.availabilityZoneId);
 
   final TfArg<String> availabilityZoneId;
 
@@ -98,11 +96,11 @@ sealed class SubnetIpv6 {
 
   /// Sets `ipv6_cidr_block`.
   const factory SubnetIpv6.ipv6CidrBlock(TfArg<String> ipv6CidrBlock) =
-      SubnetIpv6Ipv6CidrBlock;
+      SubnetIpv6CidrBlock;
 
   /// Sets `ipv6_netmask_length`.
   const factory SubnetIpv6.ipv6NetmaskLength(TfArg<num> ipv6NetmaskLength) =
-      SubnetIpv6Ipv6NetmaskLength;
+      SubnetIpv6NetmaskLength;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -115,8 +113,8 @@ sealed class SubnetIpv6 {
 }
 
 /// The [SubnetIpv6.ipv6CidrBlock] choice: sets `ipv6_cidr_block`.
-final class SubnetIpv6Ipv6CidrBlock extends SubnetIpv6 {
-  const SubnetIpv6Ipv6CidrBlock(this.ipv6CidrBlock);
+final class SubnetIpv6CidrBlock extends SubnetIpv6 {
+  const SubnetIpv6CidrBlock(this.ipv6CidrBlock);
 
   final TfArg<String> ipv6CidrBlock;
 
@@ -133,8 +131,8 @@ final class SubnetIpv6Ipv6CidrBlock extends SubnetIpv6 {
 }
 
 /// The [SubnetIpv6.ipv6NetmaskLength] choice: sets `ipv6_netmask_length`.
-final class SubnetIpv6Ipv6NetmaskLength extends SubnetIpv6 {
-  const SubnetIpv6Ipv6NetmaskLength(this.ipv6NetmaskLength);
+final class SubnetIpv6NetmaskLength extends SubnetIpv6 {
+  const SubnetIpv6NetmaskLength(this.ipv6NetmaskLength);
 
   final TfArg<num> ipv6NetmaskLength;
 

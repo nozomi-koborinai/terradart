@@ -54,9 +54,9 @@ export 'src/storage/google_storage_bucket_object.dart'
     show
         BucketObjectStorageClass,
         GoogleStorageBucketObject,
-        StorageBucketObjectBucketObjectContent,
-        StorageBucketObjectBucketObjectFromContent,
-        StorageBucketObjectBucketObjectFromSource,
+        StorageBucketObjectBody,
+        StorageBucketObjectBodyContent,
+        StorageBucketObjectBodySource,
         StorageBucketObjectBucketObjectRetention,
         StorageBucketObjectCustomerEncryption;
 export 'src/storage/google_storage_default_object_access_control.dart'

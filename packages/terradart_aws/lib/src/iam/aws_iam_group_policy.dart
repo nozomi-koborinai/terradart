@@ -16,11 +16,11 @@ sealed class IamGroupPolicyName {
 
   /// Sets `name`.
   const factory IamGroupPolicyName.name(TfArg<String> name) =
-      IamGroupPolicyNameName;
+      IamGroupPolicyNameChoice;
 
   /// Sets `name_prefix`.
   const factory IamGroupPolicyName.namePrefix(TfArg<String> namePrefix) =
-      IamGroupPolicyNameNamePrefix;
+      IamGroupPolicyNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class IamGroupPolicyName {
 }
 
 /// The [IamGroupPolicyName.name] choice: sets `name`.
-final class IamGroupPolicyNameName extends IamGroupPolicyName {
-  const IamGroupPolicyNameName(this.name);
+final class IamGroupPolicyNameChoice extends IamGroupPolicyName {
+  const IamGroupPolicyNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class IamGroupPolicyNameName extends IamGroupPolicyName {
 }
 
 /// The [IamGroupPolicyName.namePrefix] choice: sets `name_prefix`.
-final class IamGroupPolicyNameNamePrefix extends IamGroupPolicyName {
-  const IamGroupPolicyNameNamePrefix(this.namePrefix);
+final class IamGroupPolicyNamePrefix extends IamGroupPolicyName {
+  const IamGroupPolicyNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -48,18 +48,18 @@ class LoggingSavedQueryOpsAnalyticsQuery {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.loggingQuery(...)`.
-sealed class LoggingSavedQueryQuery {
-  const LoggingSavedQueryQuery();
+sealed class LoggingSavedQueryDefinition {
+  const LoggingSavedQueryDefinition();
 
   /// Sets `logging_query`.
-  const factory LoggingSavedQueryQuery.loggingQuery(
+  const factory LoggingSavedQueryDefinition.loggingQuery(
     LoggingSavedQueryLoggingQuery loggingQuery,
-  ) = LoggingSavedQueryQueryLoggingQuery;
+  ) = LoggingSavedQueryDefinitionLoggingQuery;
 
   /// Sets `ops_analytics_query`.
-  const factory LoggingSavedQueryQuery.opsAnalyticsQuery(
+  const factory LoggingSavedQueryDefinition.opsAnalyticsQuery(
     LoggingSavedQueryOpsAnalyticsQuery opsAnalyticsQuery,
-  ) = LoggingSavedQueryQueryOpsAnalyticsQuery;
+  ) = LoggingSavedQueryDefinitionOpsAnalyticsQuery;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -71,9 +71,10 @@ sealed class LoggingSavedQueryQuery {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LoggingSavedQueryQuery.loggingQuery] choice: sets `logging_query`.
-final class LoggingSavedQueryQueryLoggingQuery extends LoggingSavedQueryQuery {
-  const LoggingSavedQueryQueryLoggingQuery(this.loggingQuery);
+/// The [LoggingSavedQueryDefinition.loggingQuery] choice: sets `logging_query`.
+final class LoggingSavedQueryDefinitionLoggingQuery
+    extends LoggingSavedQueryDefinition {
+  const LoggingSavedQueryDefinitionLoggingQuery(this.loggingQuery);
 
   final LoggingSavedQueryLoggingQuery loggingQuery;
 
@@ -91,10 +92,10 @@ final class LoggingSavedQueryQueryLoggingQuery extends LoggingSavedQueryQuery {
   };
 }
 
-/// The [LoggingSavedQueryQuery.opsAnalyticsQuery] choice: sets `ops_analytics_query`.
-final class LoggingSavedQueryQueryOpsAnalyticsQuery
-    extends LoggingSavedQueryQuery {
-  const LoggingSavedQueryQueryOpsAnalyticsQuery(this.opsAnalyticsQuery);
+/// The [LoggingSavedQueryDefinition.opsAnalyticsQuery] choice: sets `ops_analytics_query`.
+final class LoggingSavedQueryDefinitionOpsAnalyticsQuery
+    extends LoggingSavedQueryDefinition {
+  const LoggingSavedQueryDefinitionOpsAnalyticsQuery(this.opsAnalyticsQuery);
 
   final LoggingSavedQueryOpsAnalyticsQuery opsAnalyticsQuery;
 
@@ -147,7 +148,7 @@ final class GoogleLoggingSavedQuery extends Resource {
     required TfArg<String> location,
     required TfArg<LoggingSavedQueryVisibility> visibility,
     TfArg<String>? description,
-    required LoggingSavedQueryQuery query,
+    required LoggingSavedQueryDefinition definition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -161,7 +162,7 @@ final class GoogleLoggingSavedQuery extends Resource {
            'location': location,
            'visibility': visibility,
            'description': ?description,
-           ...query.argMap,
+           ...definition.argMap,
          },
        );
 

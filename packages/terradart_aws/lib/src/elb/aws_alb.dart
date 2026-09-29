@@ -98,7 +98,7 @@ sealed class AlbSubnet {
 
   /// Sets `subnet_mapping`.
   const factory AlbSubnet.subnetMapping(List<AlbSubnetMapping> subnetMapping) =
-      AlbSubnetSubnetMapping;
+      AlbSubnetMappingChoice;
 
   /// Sets `subnets`.
   const factory AlbSubnet.subnets(TfArg<List<RefTo<AwsSubnet>>> subnets) =
@@ -115,8 +115,8 @@ sealed class AlbSubnet {
 }
 
 /// The [AlbSubnet.subnetMapping] choice: sets `subnet_mapping`.
-final class AlbSubnetSubnetMapping extends AlbSubnet {
-  const AlbSubnetSubnetMapping(this.subnetMapping);
+final class AlbSubnetMappingChoice extends AlbSubnet {
+  const AlbSubnetMappingChoice(this.subnetMapping);
 
   final List<AlbSubnetMapping> subnetMapping;
 
@@ -163,11 +163,10 @@ sealed class AlbName {
   const AlbName();
 
   /// Sets `name`.
-  const factory AlbName.name(TfArg<String> name) = AlbNameName;
+  const factory AlbName.name(TfArg<String> name) = AlbNameChoice;
 
   /// Sets `name_prefix`.
-  const factory AlbName.namePrefix(TfArg<String> namePrefix) =
-      AlbNameNamePrefix;
+  const factory AlbName.namePrefix(TfArg<String> namePrefix) = AlbNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -180,8 +179,8 @@ sealed class AlbName {
 }
 
 /// The [AlbName.name] choice: sets `name`.
-final class AlbNameName extends AlbName {
-  const AlbNameName(this.name);
+final class AlbNameChoice extends AlbName {
+  const AlbNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -196,8 +195,8 @@ final class AlbNameName extends AlbName {
 }
 
 /// The [AlbName.namePrefix] choice: sets `name_prefix`.
-final class AlbNameNamePrefix extends AlbName {
-  const AlbNameNamePrefix(this.namePrefix);
+final class AlbNamePrefix extends AlbName {
+  const AlbNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

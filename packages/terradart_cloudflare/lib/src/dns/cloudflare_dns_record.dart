@@ -48,7 +48,7 @@ sealed class DnsRecordContent {
 
   /// Sets `content`.
   const factory DnsRecordContent.content(TfArg<String> content) =
-      DnsRecordContentContent;
+      DnsRecordContentChoice;
 
   /// Sets `data`.
   const factory DnsRecordContent.data(DnsRecordData data) =
@@ -65,8 +65,8 @@ sealed class DnsRecordContent {
 }
 
 /// The [DnsRecordContent.content] choice: sets `content`.
-final class DnsRecordContentContent extends DnsRecordContent {
-  const DnsRecordContentContent(this.content);
+final class DnsRecordContentChoice extends DnsRecordContent {
+  const DnsRecordContentChoice(this.content);
 
   final TfArg<String> content;
 

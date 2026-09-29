@@ -47,7 +47,7 @@ final class AwsStaticSiteStack extends Stack {
 
     final bucket = AwsS3Bucket(
       localName: 'site',
-      bucket: .bucketPrefix(.literal('terradart-site-')),
+      name: .bucketPrefix(.literal('terradart-site-')),
       forceDestroy: .literal(true),
     );
     add(bucket);

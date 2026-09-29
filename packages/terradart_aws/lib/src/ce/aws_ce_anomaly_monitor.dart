@@ -33,18 +33,18 @@ enum CeAnomalyMonitorMonitorType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.monitorDimension(...)`.
-sealed class CeAnomalyMonitorMonitor {
-  const CeAnomalyMonitorMonitor();
+sealed class CeAnomalyMonitorScope {
+  const CeAnomalyMonitorScope();
 
   /// Sets `monitor_dimension`.
-  const factory CeAnomalyMonitorMonitor.monitorDimension(
+  const factory CeAnomalyMonitorScope.monitorDimension(
     TfArg<CeAnomalyMonitorMonitorDimension> monitorDimension,
-  ) = CeAnomalyMonitorMonitorMonitorDimension;
+  ) = CeAnomalyMonitorScopeMonitorDimension;
 
   /// Sets `monitor_specification`.
-  const factory CeAnomalyMonitorMonitor.monitorSpecification(
+  const factory CeAnomalyMonitorScope.monitorSpecification(
     TfArg<String> monitorSpecification,
-  ) = CeAnomalyMonitorMonitorMonitorSpecification;
+  ) = CeAnomalyMonitorScopeMonitorSpecification;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -56,10 +56,10 @@ sealed class CeAnomalyMonitorMonitor {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CeAnomalyMonitorMonitor.monitorDimension] choice: sets `monitor_dimension`.
-final class CeAnomalyMonitorMonitorMonitorDimension
-    extends CeAnomalyMonitorMonitor {
-  const CeAnomalyMonitorMonitorMonitorDimension(this.monitorDimension);
+/// The [CeAnomalyMonitorScope.monitorDimension] choice: sets `monitor_dimension`.
+final class CeAnomalyMonitorScopeMonitorDimension
+    extends CeAnomalyMonitorScope {
+  const CeAnomalyMonitorScopeMonitorDimension(this.monitorDimension);
 
   final TfArg<CeAnomalyMonitorMonitorDimension> monitorDimension;
 
@@ -77,10 +77,10 @@ final class CeAnomalyMonitorMonitorMonitorDimension
   };
 }
 
-/// The [CeAnomalyMonitorMonitor.monitorSpecification] choice: sets `monitor_specification`.
-final class CeAnomalyMonitorMonitorMonitorSpecification
-    extends CeAnomalyMonitorMonitor {
-  const CeAnomalyMonitorMonitorMonitorSpecification(this.monitorSpecification);
+/// The [CeAnomalyMonitorScope.monitorSpecification] choice: sets `monitor_specification`.
+final class CeAnomalyMonitorScopeMonitorSpecification
+    extends CeAnomalyMonitorScope {
+  const CeAnomalyMonitorScopeMonitorSpecification(this.monitorSpecification);
 
   final TfArg<String> monitorSpecification;
 
@@ -104,7 +104,7 @@ final class AwsCeAnomalyMonitor extends Resource {
 
   AwsCeAnomalyMonitor({
     required super.localName,
-    CeAnomalyMonitorMonitor? monitor,
+    CeAnomalyMonitorScope? scope,
     required TfArg<CeAnomalyMonitorMonitorType> monitorType,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
@@ -115,7 +115,7 @@ final class AwsCeAnomalyMonitor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?monitor?.argMap,
+           ...?scope?.argMap,
            'monitor_type': monitorType,
            'name': name,
            'tags': ?tags,

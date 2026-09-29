@@ -90,7 +90,7 @@ sealed class RouteIpv4Egress {
   /// Sets `egress_only_gateway_id`.
   const factory RouteIpv4Egress.egressOnlyGatewayId(
     TfArg<String> egressOnlyGatewayId,
-  ) = RouteIpv4EgressEgressOnlyGatewayId;
+  ) = RouteIpv4EgressOnlyGatewayId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -123,8 +123,8 @@ final class RouteIpv4EgressDestinationCidrBlock extends RouteIpv4Egress {
 }
 
 /// The [RouteIpv4Egress.egressOnlyGatewayId] choice: sets `egress_only_gateway_id`.
-final class RouteIpv4EgressEgressOnlyGatewayId extends RouteIpv4Egress {
-  const RouteIpv4EgressEgressOnlyGatewayId(this.egressOnlyGatewayId);
+final class RouteIpv4EgressOnlyGatewayId extends RouteIpv4Egress {
+  const RouteIpv4EgressOnlyGatewayId(this.egressOnlyGatewayId);
 
   final TfArg<String> egressOnlyGatewayId;
 

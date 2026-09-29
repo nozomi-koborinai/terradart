@@ -79,7 +79,7 @@ sealed class ComputeRegionHealthCheckProtocol {
     TfArg<String>? portName,
     RegionHealthCheckProxyHeader? proxyHeader,
     RegionHealthCheckPortSpecification? portSpecification,
-  }) = ComputeRegionHealthCheckRegionHealthCheckHttpConfig;
+  }) = ComputeRegionHealthCheckHttpHealthCheckConfig;
 
   /// `https_health_check` block.
   const factory ComputeRegionHealthCheckProtocol.https({
@@ -90,7 +90,7 @@ sealed class ComputeRegionHealthCheckProtocol {
     TfArg<String>? portName,
     RegionHealthCheckProxyHeader? proxyHeader,
     RegionHealthCheckPortSpecification? portSpecification,
-  }) = ComputeRegionHealthCheckRegionHealthCheckHttpsConfig;
+  }) = ComputeRegionHealthCheckHttpsHealthCheckConfig;
 
   /// `http2_health_check` block.
   const factory ComputeRegionHealthCheckProtocol.http2({
@@ -101,7 +101,7 @@ sealed class ComputeRegionHealthCheckProtocol {
     TfArg<String>? portName,
     RegionHealthCheckProxyHeader? proxyHeader,
     RegionHealthCheckPortSpecification? portSpecification,
-  }) = ComputeRegionHealthCheckRegionHealthCheckHttp2Config;
+  }) = ComputeRegionHealthCheckHttp2HealthCheckConfig;
 
   /// `tcp_health_check` block.
   const factory ComputeRegionHealthCheckProtocol.tcp({
@@ -111,7 +111,7 @@ sealed class ComputeRegionHealthCheckProtocol {
     TfArg<String>? portName,
     RegionHealthCheckProxyHeader? proxyHeader,
     RegionHealthCheckPortSpecification? portSpecification,
-  }) = ComputeRegionHealthCheckRegionHealthCheckTcpConfig;
+  }) = ComputeRegionHealthCheckTcpHealthCheckConfig;
 
   /// `ssl_health_check` block.
   const factory ComputeRegionHealthCheckProtocol.ssl({
@@ -121,7 +121,7 @@ sealed class ComputeRegionHealthCheckProtocol {
     TfArg<String>? portName,
     RegionHealthCheckProxyHeader? proxyHeader,
     RegionHealthCheckPortSpecification? portSpecification,
-  }) = ComputeRegionHealthCheckRegionHealthCheckSslConfig;
+  }) = ComputeRegionHealthCheckSslHealthCheckConfig;
 
   /// `grpc_health_check` block.
   const factory ComputeRegionHealthCheckProtocol.grpc({
@@ -129,7 +129,7 @@ sealed class ComputeRegionHealthCheckProtocol {
     TfArg<String>? portName,
     RegionHealthCheckPortSpecification? portSpecification,
     TfArg<String>? grpcServiceName,
-  }) = ComputeRegionHealthCheckRegionHealthCheckGrpcConfig;
+  }) = ComputeRegionHealthCheckGrpcHealthCheckConfig;
 
   String get blockKey;
 
@@ -145,9 +145,9 @@ sealed class ComputeRegionHealthCheckProtocol {
 /// `http_health_check` block. Set this (and only this) to make the
 /// resource an HTTP health check.
 @immutable
-final class ComputeRegionHealthCheckRegionHealthCheckHttpConfig
+final class ComputeRegionHealthCheckHttpHealthCheckConfig
     extends ComputeRegionHealthCheckProtocol {
-  const ComputeRegionHealthCheckRegionHealthCheckHttpConfig({
+  const ComputeRegionHealthCheckHttpHealthCheckConfig({
     this.host,
     this.requestPath,
     this.response,
@@ -201,9 +201,9 @@ final class ComputeRegionHealthCheckRegionHealthCheckHttpConfig
 
 /// `https_health_check` block.
 @immutable
-final class ComputeRegionHealthCheckRegionHealthCheckHttpsConfig
+final class ComputeRegionHealthCheckHttpsHealthCheckConfig
     extends ComputeRegionHealthCheckProtocol {
-  const ComputeRegionHealthCheckRegionHealthCheckHttpsConfig({
+  const ComputeRegionHealthCheckHttpsHealthCheckConfig({
     this.host,
     this.requestPath,
     this.response,
@@ -243,9 +243,9 @@ final class ComputeRegionHealthCheckRegionHealthCheckHttpsConfig
 
 /// `http2_health_check` block.
 @immutable
-final class ComputeRegionHealthCheckRegionHealthCheckHttp2Config
+final class ComputeRegionHealthCheckHttp2HealthCheckConfig
     extends ComputeRegionHealthCheckProtocol {
-  const ComputeRegionHealthCheckRegionHealthCheckHttp2Config({
+  const ComputeRegionHealthCheckHttp2HealthCheckConfig({
     this.host,
     this.requestPath,
     this.response,
@@ -285,9 +285,9 @@ final class ComputeRegionHealthCheckRegionHealthCheckHttp2Config
 
 /// `tcp_health_check` block. Pure TCP connect-or-payload probe.
 @immutable
-final class ComputeRegionHealthCheckRegionHealthCheckTcpConfig
+final class ComputeRegionHealthCheckTcpHealthCheckConfig
     extends ComputeRegionHealthCheckProtocol {
-  const ComputeRegionHealthCheckRegionHealthCheckTcpConfig({
+  const ComputeRegionHealthCheckTcpHealthCheckConfig({
     this.request,
     this.response,
     this.port,
@@ -329,9 +329,9 @@ final class ComputeRegionHealthCheckRegionHealthCheckTcpConfig
 
 /// `ssl_health_check` block. Pure SSL/TLS probe.
 @immutable
-final class ComputeRegionHealthCheckRegionHealthCheckSslConfig
+final class ComputeRegionHealthCheckSslHealthCheckConfig
     extends ComputeRegionHealthCheckProtocol {
-  const ComputeRegionHealthCheckRegionHealthCheckSslConfig({
+  const ComputeRegionHealthCheckSslHealthCheckConfig({
     this.request,
     this.response,
     this.port,
@@ -369,9 +369,9 @@ final class ComputeRegionHealthCheckRegionHealthCheckSslConfig
 /// `grpc_health_check` block. Probes via the gRPC Health Checking
 /// Protocol (`grpc.health.v1.Health/Check`).
 @immutable
-final class ComputeRegionHealthCheckRegionHealthCheckGrpcConfig
+final class ComputeRegionHealthCheckGrpcHealthCheckConfig
     extends ComputeRegionHealthCheckProtocol {
-  const ComputeRegionHealthCheckRegionHealthCheckGrpcConfig({
+  const ComputeRegionHealthCheckGrpcHealthCheckConfig({
     this.port,
     this.portName,
     this.portSpecification,
@@ -475,7 +475,7 @@ class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
 ///   timeoutSec: TfArg.literal(5),
 ///   healthyThreshold: TfArg.literal(2),
 ///   unhealthyThreshold: TfArg.literal(3),
-///   httpsHealthCheck: const ComputeRegionHealthCheckRegionHealthCheckHttpsConfig(
+///   httpsHealthCheck: const ComputeRegionHealthCheckHttpsHealthCheckConfig(
 ///     port: 443,
 ///     requestPath: '/healthz',
 ///     portSpecification:

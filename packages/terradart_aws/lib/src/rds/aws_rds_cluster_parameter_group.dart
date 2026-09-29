@@ -17,12 +17,12 @@ sealed class RdsClusterParameterGroupName {
 
   /// Sets `name`.
   const factory RdsClusterParameterGroupName.name(TfArg<String> name) =
-      RdsClusterParameterGroupNameName;
+      RdsClusterParameterGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory RdsClusterParameterGroupName.namePrefix(
     TfArg<String> namePrefix,
-  ) = RdsClusterParameterGroupNameNamePrefix;
+  ) = RdsClusterParameterGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,9 +35,9 @@ sealed class RdsClusterParameterGroupName {
 }
 
 /// The [RdsClusterParameterGroupName.name] choice: sets `name`.
-final class RdsClusterParameterGroupNameName
+final class RdsClusterParameterGroupNameChoice
     extends RdsClusterParameterGroupName {
-  const RdsClusterParameterGroupNameName(this.name);
+  const RdsClusterParameterGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -52,9 +52,9 @@ final class RdsClusterParameterGroupNameName
 }
 
 /// The [RdsClusterParameterGroupName.namePrefix] choice: sets `name_prefix`.
-final class RdsClusterParameterGroupNameNamePrefix
+final class RdsClusterParameterGroupNamePrefix
     extends RdsClusterParameterGroupName {
-  const RdsClusterParameterGroupNameNamePrefix(this.namePrefix);
+  const RdsClusterParameterGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

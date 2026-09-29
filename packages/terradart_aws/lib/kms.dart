@@ -4,13 +4,13 @@
 library;
 
 export 'src/kms/aws_kms_alias.dart'
-    show AwsKmsAlias, KmsAliasName, KmsAliasNameName, KmsAliasNameNamePrefix;
+    show AwsKmsAlias, KmsAliasName, KmsAliasNameChoice, KmsAliasNamePrefix;
 export 'src/kms/aws_kms_ciphertext.dart'
     show
         AwsKmsCiphertext,
         KmsCiphertextPlaintext,
-        KmsCiphertextPlaintextPlaintext,
-        KmsCiphertextPlaintextPlaintextWo;
+        KmsCiphertextPlaintextChoice,
+        KmsCiphertextPlaintextWo;
 export 'src/kms/aws_kms_custom_key_store.dart'
     show
         AwsKmsCustomKeyStore,

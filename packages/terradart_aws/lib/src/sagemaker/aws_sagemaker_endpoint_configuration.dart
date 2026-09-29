@@ -20,12 +20,12 @@ sealed class SagemakerEndpointConfigurationName {
 
   /// Sets `name`.
   const factory SagemakerEndpointConfigurationName.name(TfArg<String> name) =
-      SagemakerEndpointConfigurationNameName;
+      SagemakerEndpointConfigurationNameChoice;
 
   /// Sets `name_prefix`.
   const factory SagemakerEndpointConfigurationName.namePrefix(
     TfArg<String> namePrefix,
-  ) = SagemakerEndpointConfigurationNameNamePrefix;
+  ) = SagemakerEndpointConfigurationNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -38,9 +38,9 @@ sealed class SagemakerEndpointConfigurationName {
 }
 
 /// The [SagemakerEndpointConfigurationName.name] choice: sets `name`.
-final class SagemakerEndpointConfigurationNameName
+final class SagemakerEndpointConfigurationNameChoice
     extends SagemakerEndpointConfigurationName {
-  const SagemakerEndpointConfigurationNameName(this.name);
+  const SagemakerEndpointConfigurationNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -55,9 +55,9 @@ final class SagemakerEndpointConfigurationNameName
 }
 
 /// The [SagemakerEndpointConfigurationName.namePrefix] choice: sets `name_prefix`.
-final class SagemakerEndpointConfigurationNameNamePrefix
+final class SagemakerEndpointConfigurationNamePrefix
     extends SagemakerEndpointConfigurationName {
-  const SagemakerEndpointConfigurationNameNamePrefix(this.namePrefix);
+  const SagemakerEndpointConfigurationNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

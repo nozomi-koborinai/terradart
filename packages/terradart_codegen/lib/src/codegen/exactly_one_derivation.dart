@@ -326,6 +326,12 @@ WrapperOverride _derive(
       (optional ? skippedAtMostOne : skipped).add('$label: $reason');
       continue;
     }
+    Set<String> classesFor() => {
+      ...classNames,
+      for (final n in order)
+        if (!group.contains(n) || _hasClass(n, blocks, o))
+          prefix + snakeToPascal(n),
+    };
     String? clashes(String concept) {
       if (!group.contains(concept) &&
               (order.contains(concept) || slots.containsKey(concept)) ||
@@ -333,20 +339,7 @@ WrapperOverride _derive(
           _metaParams.contains(concept)) {
         return 'the slot $concept is taken';
       }
-      final sealed = prefix + snakeToPascal(concept);
-      final classes = {
-        ...classNames,
-        for (final n in order)
-          if (!group.contains(n) || _hasClass(n, blocks, o))
-            prefix + snakeToPascal(n),
-      };
-      for (final name in [
-        sealed,
-        for (final m in group) exactlyOneVariantName(sealed, m),
-      ]) {
-        if (classes.contains(name)) return 'the class $name is taken';
-      }
-      return null;
+      return sealedNameClash(prefix, concept, group, classesFor());
     }
 
     final key = sealedGroupKeyOf(const [], group);
@@ -372,10 +365,15 @@ WrapperOverride _derive(
         if (refs[v.tfName]?.dartType == v.fieldType) '$type.${v.tfName}',
     ]);
     group.forEach(slots.remove);
-    final sealed = prefix + snakeToPascal(slot);
+    // Only a group whose name reports an error (which fails `wrap`) reaches
+    // the plain concatenations: `clashes` vetted every name it resolves to.
+    final sealed = sealedTypeName(prefix, slot) ?? prefix + snakeToPascal(slot);
+    final variantClasses =
+        exactlyOneVariantNames(sealed, group, classesFor()) ??
+        [for (final m in group) exactlyOneVariantName(sealed, m)];
     classNames
       ..add(sealed)
-      ..addAll([for (final m in group) exactlyOneVariantName(sealed, m)]);
+      ..addAll(variantClasses);
     final ident = snakeToDartIdent(slot);
     slots[slot] = optional
         ? CustomSlot(
@@ -398,6 +396,7 @@ WrapperOverride _derive(
           members: group,
           where: '`$type`',
           variants: variants,
+          variantClasses: variantClasses,
           optional: optional,
         ),
       );

@@ -154,7 +154,7 @@ export 'src/cloud_run/google_cloud_run_v2_worker_pool.dart'
     show
         CloudRunV2WorkerPoolBinaryAuthorization,
         CloudRunV2WorkerPoolBinaryAuthorizationPolicy,
-        CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy,
+        CloudRunV2WorkerPoolBinaryAuthorizationPolicyChoice,
         CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault,
         CloudRunV2WorkerPoolEmptyDirVolume,
         CloudRunV2WorkerPoolEncryptionKeyRevocationAction,

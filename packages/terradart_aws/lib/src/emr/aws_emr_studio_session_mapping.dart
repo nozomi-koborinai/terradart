@@ -26,12 +26,12 @@ sealed class EmrStudioSessionMappingIdentity {
   /// Sets `identity_id`.
   const factory EmrStudioSessionMappingIdentity.identityId(
     TfArg<String> identityId,
-  ) = EmrStudioSessionMappingIdentityIdentityId;
+  ) = EmrStudioSessionMappingIdentityId;
 
   /// Sets `identity_name`.
   const factory EmrStudioSessionMappingIdentity.identityName(
     TfArg<String> identityName,
-  ) = EmrStudioSessionMappingIdentityIdentityName;
+  ) = EmrStudioSessionMappingIdentityName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,9 +44,9 @@ sealed class EmrStudioSessionMappingIdentity {
 }
 
 /// The [EmrStudioSessionMappingIdentity.identityId] choice: sets `identity_id`.
-final class EmrStudioSessionMappingIdentityIdentityId
+final class EmrStudioSessionMappingIdentityId
     extends EmrStudioSessionMappingIdentity {
-  const EmrStudioSessionMappingIdentityIdentityId(this.identityId);
+  const EmrStudioSessionMappingIdentityId(this.identityId);
 
   final TfArg<String> identityId;
 
@@ -61,9 +61,9 @@ final class EmrStudioSessionMappingIdentityIdentityId
 }
 
 /// The [EmrStudioSessionMappingIdentity.identityName] choice: sets `identity_name`.
-final class EmrStudioSessionMappingIdentityIdentityName
+final class EmrStudioSessionMappingIdentityName
     extends EmrStudioSessionMappingIdentity {
-  const EmrStudioSessionMappingIdentityIdentityName(this.identityName);
+  const EmrStudioSessionMappingIdentityName(this.identityName);
 
   final TfArg<String> identityName;
 

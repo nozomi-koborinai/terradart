@@ -30,8 +30,8 @@ export 'src/servicecatalog/aws_servicecatalog_product.dart'
         ServicecatalogProductAcceptLanguage,
         ServicecatalogProductProvisioningArtifactParameters,
         ServicecatalogProductProvisioningArtifactParametersTemplate,
-        ServicecatalogProductProvisioningArtifactParametersTemplateTemplatePhysicalId,
-        ServicecatalogProductProvisioningArtifactParametersTemplateTemplateUrl,
+        ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalId,
+        ServicecatalogProductProvisioningArtifactParametersTemplateUrl,
         ServicecatalogProductProvisioningArtifactParametersType,
         ServicecatalogProductType;
 export 'src/servicecatalog/aws_servicecatalog_product_portfolio_association.dart'
@@ -42,31 +42,31 @@ export 'src/servicecatalog/aws_servicecatalog_provisioned_product.dart'
     show
         AwsServicecatalogProvisionedProduct,
         ServicecatalogProvisionedProductAcceptLanguage,
+        ServicecatalogProvisionedProductIdentifier,
+        ServicecatalogProvisionedProductIdentifierProductId,
+        ServicecatalogProvisionedProductIdentifierProductName,
         ServicecatalogProvisionedProductPath,
-        ServicecatalogProvisionedProductPathPathId,
-        ServicecatalogProvisionedProductPathPathName,
-        ServicecatalogProvisionedProductProduct,
-        ServicecatalogProvisionedProductProductProductId,
-        ServicecatalogProvisionedProductProductProductName,
+        ServicecatalogProvisionedProductPathId,
+        ServicecatalogProvisionedProductPathName,
         ServicecatalogProvisionedProductProvisioningArtifact,
-        ServicecatalogProvisionedProductProvisioningArtifactProvisioningArtifactId,
-        ServicecatalogProvisionedProductProvisioningArtifactProvisioningArtifactName,
+        ServicecatalogProvisionedProductProvisioningArtifactId,
+        ServicecatalogProvisionedProductProvisioningArtifactName,
         ServicecatalogProvisionedProductProvisioningParameters,
         ServicecatalogProvisionedProductStackSetProvisioningPreferences,
         ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance,
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceFailureToleranceCount,
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceFailureTolerancePercentage,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCount,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentage,
         ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency,
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyMaxConcurrencyCount,
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyMaxConcurrencyPercentage;
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCount,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentage;
 export 'src/servicecatalog/aws_servicecatalog_provisioning_artifact.dart'
     show
         AwsServicecatalogProvisioningArtifact,
         ServicecatalogProvisioningArtifactAcceptLanguage,
         ServicecatalogProvisioningArtifactGuidance,
         ServicecatalogProvisioningArtifactTemplate,
-        ServicecatalogProvisioningArtifactTemplateTemplatePhysicalId,
-        ServicecatalogProvisioningArtifactTemplateTemplateUrl,
+        ServicecatalogProvisioningArtifactTemplatePhysicalId,
+        ServicecatalogProvisioningArtifactTemplateUrl,
         ServicecatalogProvisioningArtifactType;
 export 'src/servicecatalog/aws_servicecatalog_service_action.dart'
     show

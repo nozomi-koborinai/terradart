@@ -11,7 +11,7 @@ export 'src/spanner/google_spanner_backup_schedule.dart'
         SpannerBackupScheduleEncryptionConfig,
         SpannerBackupScheduleEncryptionConfigEncryptionType,
         SpannerBackupScheduleEncryptionConfigKmsKeyName,
-        SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyName,
+        SpannerBackupScheduleEncryptionConfigKmsKeyNameChoice,
         SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyNames,
         SpannerBackupScheduleFullBackupSpec,
         SpannerBackupScheduleIncrementalBackupSpec,

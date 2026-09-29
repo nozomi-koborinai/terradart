@@ -16,7 +16,7 @@ sealed class VpcIpamPoolCidrAllocationCidr {
 
   /// Sets `cidr`.
   const factory VpcIpamPoolCidrAllocationCidr.cidr(TfArg<String> cidr) =
-      VpcIpamPoolCidrAllocationCidrCidr;
+      VpcIpamPoolCidrAllocationCidrChoice;
 
   /// Sets `netmask_length`.
   const factory VpcIpamPoolCidrAllocationCidr.netmaskLength(
@@ -34,9 +34,9 @@ sealed class VpcIpamPoolCidrAllocationCidr {
 }
 
 /// The [VpcIpamPoolCidrAllocationCidr.cidr] choice: sets `cidr`.
-final class VpcIpamPoolCidrAllocationCidrCidr
+final class VpcIpamPoolCidrAllocationCidrChoice
     extends VpcIpamPoolCidrAllocationCidr {
-  const VpcIpamPoolCidrAllocationCidrCidr(this.cidr);
+  const VpcIpamPoolCidrAllocationCidrChoice(this.cidr);
 
   final TfArg<String> cidr;
 

@@ -698,7 +698,7 @@ sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpeci
   /// Sets `algorithm_name`.
   const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm.algorithmName(
     TfArg<String> algorithmName,
-  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmAlgorithmName;
+  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmName;
 
   /// Sets `training_image`.
   const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm.trainingImage(
@@ -712,10 +712,10 @@ sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpeci
 }
 
 /// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm.algorithmName] choice: sets `algorithm_name`.
-final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmAlgorithmName
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmName
     extends
         SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmAlgorithmName(
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmName(
     this.algorithmName,
   );
 
@@ -2482,7 +2482,7 @@ sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpec
   /// Sets `algorithm_name`.
   const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm.algorithmName(
     TfArg<String> algorithmName,
-  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmAlgorithmName;
+  ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmName;
 
   /// Sets `training_image`.
   const factory SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm.trainingImage(
@@ -2496,10 +2496,10 @@ sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpec
 }
 
 /// The [SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm.algorithmName] choice: sets `algorithm_name`.
-final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmAlgorithmName
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmName
     extends
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm {
-  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmAlgorithmName(
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmName(
     this.algorithmName,
   );
 

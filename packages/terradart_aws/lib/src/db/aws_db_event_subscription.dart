@@ -37,11 +37,11 @@ sealed class DbEventSubscriptionName {
 
   /// Sets `name`.
   const factory DbEventSubscriptionName.name(TfArg<String> name) =
-      DbEventSubscriptionNameName;
+      DbEventSubscriptionNameChoice;
 
   /// Sets `name_prefix`.
   const factory DbEventSubscriptionName.namePrefix(TfArg<String> namePrefix) =
-      DbEventSubscriptionNameNamePrefix;
+      DbEventSubscriptionNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -54,8 +54,8 @@ sealed class DbEventSubscriptionName {
 }
 
 /// The [DbEventSubscriptionName.name] choice: sets `name`.
-final class DbEventSubscriptionNameName extends DbEventSubscriptionName {
-  const DbEventSubscriptionNameName(this.name);
+final class DbEventSubscriptionNameChoice extends DbEventSubscriptionName {
+  const DbEventSubscriptionNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -70,8 +70,8 @@ final class DbEventSubscriptionNameName extends DbEventSubscriptionName {
 }
 
 /// The [DbEventSubscriptionName.namePrefix] choice: sets `name_prefix`.
-final class DbEventSubscriptionNameNamePrefix extends DbEventSubscriptionName {
-  const DbEventSubscriptionNameNamePrefix(this.namePrefix);
+final class DbEventSubscriptionNamePrefix extends DbEventSubscriptionName {
+  const DbEventSubscriptionNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

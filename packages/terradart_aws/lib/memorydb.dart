@@ -7,20 +7,20 @@ export 'src/memorydb/aws_memorydb_acl.dart'
     show
         AwsMemorydbAcl,
         MemorydbAclName,
-        MemorydbAclNameName,
-        MemorydbAclNameNamePrefix;
+        MemorydbAclNameChoice,
+        MemorydbAclNamePrefix;
 export 'src/memorydb/aws_memorydb_cluster.dart'
     show
         AwsMemorydbCluster,
         MemorydbClusterEngine,
         MemorydbClusterIpDiscovery,
         MemorydbClusterName,
-        MemorydbClusterNameName,
-        MemorydbClusterNameNamePrefix,
+        MemorydbClusterNameChoice,
+        MemorydbClusterNamePrefix,
         MemorydbClusterNetworkType,
         MemorydbClusterSnapshot,
-        MemorydbClusterSnapshotSnapshotArns,
-        MemorydbClusterSnapshotSnapshotName;
+        MemorydbClusterSnapshotArns,
+        MemorydbClusterSnapshotName;
 export 'src/memorydb/aws_memorydb_multi_region_cluster.dart'
     show
         AwsMemorydbMultiRegionCluster,
@@ -30,21 +30,21 @@ export 'src/memorydb/aws_memorydb_parameter_group.dart'
     show
         AwsMemorydbParameterGroup,
         MemorydbParameterGroupName,
-        MemorydbParameterGroupNameName,
-        MemorydbParameterGroupNameNamePrefix,
+        MemorydbParameterGroupNameChoice,
+        MemorydbParameterGroupNamePrefix,
         MemorydbParameterGroupParameter;
 export 'src/memorydb/aws_memorydb_snapshot.dart'
     show
         AwsMemorydbSnapshot,
         MemorydbSnapshotName,
-        MemorydbSnapshotNameName,
-        MemorydbSnapshotNameNamePrefix;
+        MemorydbSnapshotNameChoice,
+        MemorydbSnapshotNamePrefix;
 export 'src/memorydb/aws_memorydb_subnet_group.dart'
     show
         AwsMemorydbSubnetGroup,
         MemorydbSubnetGroupName,
-        MemorydbSubnetGroupNameName,
-        MemorydbSubnetGroupNameNamePrefix;
+        MemorydbSubnetGroupNameChoice,
+        MemorydbSubnetGroupNamePrefix;
 export 'src/memorydb/aws_memorydb_user.dart'
     show
         AwsMemorydbUser,

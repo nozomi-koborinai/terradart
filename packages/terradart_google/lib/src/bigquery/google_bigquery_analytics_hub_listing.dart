@@ -110,36 +110,22 @@ final class BigqueryAnalyticsHubListingBigqueryDataset {
   };
 }
 
-/// Typed helper for the `bigquery_dataset.selected_resources` block of
-/// `google_bigquery_analytics_hub_listing` (derived from provider schema).
-@immutable
-final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources {
-  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources({
-    required this.selectedResources,
-  });
-
-  final BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources
-  selectedResources;
-
-  Map<String, Object?> encode() => {...selectedResources.encode()};
-}
-
 /// Exactly one of `table`, `routine` on the `bigquery_dataset.selected_resources` block of `google_bigquery_analytics_hub_listing`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.table(...)`.
-sealed class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources {
-  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources();
+sealed class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources {
+  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources();
 
   /// Sets `table`.
-  const factory BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources.table(
+  const factory BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources.table(
     TfArg<String> table,
-  ) = BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesTable;
+  ) = BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTable;
 
   /// Sets `routine`.
-  const factory BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources.routine(
+  const factory BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources.routine(
     TfArg<String> routine,
-  ) = BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesRoutine;
+  ) = BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesRoutine;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -147,11 +133,10 @@ sealed class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelected
   Map<String, Object?> encode();
 }
 
-/// The [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources.table] choice: sets `table`.
-final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesTable
-    extends
-        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources {
-  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesTable(
+/// The [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources.table] choice: sets `table`.
+final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTable
+    extends BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources {
+  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTable(
     this.table,
   );
 
@@ -164,11 +149,10 @@ final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedR
   Map<String, Object?> encode() => {'table': table.toTfJson()};
 }
 
-/// The [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources.routine] choice: sets `routine`.
-final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesRoutine
-    extends
-        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources {
-  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesRoutine(
+/// The [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources.routine] choice: sets `routine`.
+final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesRoutine
+    extends BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources {
+  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesRoutine(
     this.routine,
   );
 

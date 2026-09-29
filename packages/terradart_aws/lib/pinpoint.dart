@@ -19,8 +19,8 @@ export 'src/pinpoint/aws_pinpoint_app.dart'
         PinpointAppCampaignHookMode,
         PinpointAppLimits,
         PinpointAppName,
-        PinpointAppNameName,
-        PinpointAppNameNamePrefix,
+        PinpointAppNameChoice,
+        PinpointAppNamePrefix,
         PinpointAppQuietTime;
 export 'src/pinpoint/aws_pinpoint_baidu_channel.dart'
     show AwsPinpointBaiduChannel;

@@ -31,7 +31,7 @@ export 'src/lambda/aws_lambda_event_source_mapping.dart'
         LambdaEventSourceMappingDocumentDbEventSourceConfig,
         LambdaEventSourceMappingDocumentDbEventSourceConfigFullDocument,
         LambdaEventSourceMappingEventSource,
-        LambdaEventSourceMappingEventSourceEventSourceArn,
+        LambdaEventSourceMappingEventSourceArn,
         LambdaEventSourceMappingEventSourceSelfManagedEventSource,
         LambdaEventSourceMappingFilterCriteria,
         LambdaEventSourceMappingFilterCriteriaFilter,
@@ -118,8 +118,8 @@ export 'src/lambda/aws_lambda_permission.dart'
         AwsLambdaPermission,
         LambdaPermissionFunctionUrlAuthType,
         LambdaPermissionStatementId,
-        LambdaPermissionStatementIdStatementId,
-        LambdaPermissionStatementIdStatementIdPrefix;
+        LambdaPermissionStatementIdChoice,
+        LambdaPermissionStatementIdPrefix;
 export 'src/lambda/aws_lambda_provisioned_concurrency_config.dart'
     show AwsLambdaProvisionedConcurrencyConfig;
 export 'src/lambda/aws_lambda_resource_policy.dart'
