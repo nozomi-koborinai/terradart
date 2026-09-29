@@ -18,12 +18,12 @@ sealed class ConfigOrganizationConformancePackTemplate {
   /// Sets `template_body`.
   const factory ConfigOrganizationConformancePackTemplate.templateBody(
     TfArg<String> templateBody,
-  ) = ConfigOrganizationConformancePackTemplateTemplateBody;
+  ) = ConfigOrganizationConformancePackTemplateBody;
 
   /// Sets `template_s3_uri`.
   const factory ConfigOrganizationConformancePackTemplate.templateS3Uri(
     TfArg<String> templateS3Uri,
-  ) = ConfigOrganizationConformancePackTemplateTemplateS3Uri;
+  ) = ConfigOrganizationConformancePackTemplateS3Uri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,11 +36,9 @@ sealed class ConfigOrganizationConformancePackTemplate {
 }
 
 /// The [ConfigOrganizationConformancePackTemplate.templateBody] choice: sets `template_body`.
-final class ConfigOrganizationConformancePackTemplateTemplateBody
+final class ConfigOrganizationConformancePackTemplateBody
     extends ConfigOrganizationConformancePackTemplate {
-  const ConfigOrganizationConformancePackTemplateTemplateBody(
-    this.templateBody,
-  );
+  const ConfigOrganizationConformancePackTemplateBody(this.templateBody);
 
   final TfArg<String> templateBody;
 
@@ -55,11 +53,9 @@ final class ConfigOrganizationConformancePackTemplateTemplateBody
 }
 
 /// The [ConfigOrganizationConformancePackTemplate.templateS3Uri] choice: sets `template_s3_uri`.
-final class ConfigOrganizationConformancePackTemplateTemplateS3Uri
+final class ConfigOrganizationConformancePackTemplateS3Uri
     extends ConfigOrganizationConformancePackTemplate {
-  const ConfigOrganizationConformancePackTemplateTemplateS3Uri(
-    this.templateS3Uri,
-  );
+  const ConfigOrganizationConformancePackTemplateS3Uri(this.templateS3Uri);
 
   final TfArg<String> templateS3Uri;
 

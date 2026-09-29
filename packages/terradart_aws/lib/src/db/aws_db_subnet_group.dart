@@ -16,11 +16,11 @@ sealed class DbSubnetGroupName {
 
   /// Sets `name`.
   const factory DbSubnetGroupName.name(TfArg<String> name) =
-      DbSubnetGroupNameName;
+      DbSubnetGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory DbSubnetGroupName.namePrefix(TfArg<String> namePrefix) =
-      DbSubnetGroupNameNamePrefix;
+      DbSubnetGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class DbSubnetGroupName {
 }
 
 /// The [DbSubnetGroupName.name] choice: sets `name`.
-final class DbSubnetGroupNameName extends DbSubnetGroupName {
-  const DbSubnetGroupNameName(this.name);
+final class DbSubnetGroupNameChoice extends DbSubnetGroupName {
+  const DbSubnetGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class DbSubnetGroupNameName extends DbSubnetGroupName {
 }
 
 /// The [DbSubnetGroupName.namePrefix] choice: sets `name_prefix`.
-final class DbSubnetGroupNameNamePrefix extends DbSubnetGroupName {
-  const DbSubnetGroupNameNamePrefix(this.namePrefix);
+final class DbSubnetGroupNamePrefix extends DbSubnetGroupName {
+  const DbSubnetGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

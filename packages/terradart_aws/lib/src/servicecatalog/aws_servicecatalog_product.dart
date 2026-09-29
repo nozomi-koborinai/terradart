@@ -73,12 +73,12 @@ sealed class ServicecatalogProductProvisioningArtifactParametersTemplate {
   /// Sets `template_physical_id`.
   const factory ServicecatalogProductProvisioningArtifactParametersTemplate.templatePhysicalId(
     TfArg<String> templatePhysicalId,
-  ) = ServicecatalogProductProvisioningArtifactParametersTemplateTemplatePhysicalId;
+  ) = ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalId;
 
   /// Sets `template_url`.
   const factory ServicecatalogProductProvisioningArtifactParametersTemplate.templateUrl(
     TfArg<String> templateUrl,
-  ) = ServicecatalogProductProvisioningArtifactParametersTemplateTemplateUrl;
+  ) = ServicecatalogProductProvisioningArtifactParametersTemplateUrl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -87,9 +87,9 @@ sealed class ServicecatalogProductProvisioningArtifactParametersTemplate {
 }
 
 /// The [ServicecatalogProductProvisioningArtifactParametersTemplate.templatePhysicalId] choice: sets `template_physical_id`.
-final class ServicecatalogProductProvisioningArtifactParametersTemplateTemplatePhysicalId
+final class ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalId
     extends ServicecatalogProductProvisioningArtifactParametersTemplate {
-  const ServicecatalogProductProvisioningArtifactParametersTemplateTemplatePhysicalId(
+  const ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalId(
     this.templatePhysicalId,
   );
 
@@ -105,9 +105,9 @@ final class ServicecatalogProductProvisioningArtifactParametersTemplateTemplateP
 }
 
 /// The [ServicecatalogProductProvisioningArtifactParametersTemplate.templateUrl] choice: sets `template_url`.
-final class ServicecatalogProductProvisioningArtifactParametersTemplateTemplateUrl
+final class ServicecatalogProductProvisioningArtifactParametersTemplateUrl
     extends ServicecatalogProductProvisioningArtifactParametersTemplate {
-  const ServicecatalogProductProvisioningArtifactParametersTemplateTemplateUrl(
+  const ServicecatalogProductProvisioningArtifactParametersTemplateUrl(
     this.templateUrl,
   );
 

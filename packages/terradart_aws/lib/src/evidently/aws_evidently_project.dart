@@ -7,34 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_evidently_project`.
 const Set<String> _awsEvidentlyProjectSensitive = <String>{};
 
-/// Typed helper for the `data_delivery` block of
-/// `aws_evidently_project` (derived from provider schema).
-@immutable
-final class EvidentlyProjectDataDelivery {
-  const EvidentlyProjectDataDelivery({this.dataDelivery});
-
-  final EvidentlyProjectDataDeliveryDataDelivery? dataDelivery;
-
-  Map<String, Object?> encode() => {...?dataDelivery?.encode()};
-}
-
 /// At most one of `cloudwatch_logs`, `s3_destination` on the `data_delivery` block of `aws_evidently_project`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.cloudwatchLogs(...)`.
-sealed class EvidentlyProjectDataDeliveryDataDelivery {
-  const EvidentlyProjectDataDeliveryDataDelivery();
+sealed class EvidentlyProjectDataDelivery {
+  const EvidentlyProjectDataDelivery();
 
   /// Sets `cloudwatch_logs`.
-  const factory EvidentlyProjectDataDeliveryDataDelivery.cloudwatchLogs(
+  const factory EvidentlyProjectDataDelivery.cloudwatchLogs(
     EvidentlyProjectDataDeliveryCloudwatchLogs cloudwatchLogs,
-  ) = EvidentlyProjectDataDeliveryDataDeliveryCloudwatchLogs;
+  ) = EvidentlyProjectDataDeliveryCloudwatchLogsChoice;
 
   /// Sets `s3_destination`.
-  const factory EvidentlyProjectDataDeliveryDataDelivery.s3Destination(
+  const factory EvidentlyProjectDataDelivery.s3Destination(
     EvidentlyProjectDataDeliveryS3Destination s3Destination,
-  ) = EvidentlyProjectDataDeliveryDataDeliveryS3Destination;
+  ) = EvidentlyProjectDataDeliveryS3DestinationChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,12 +31,10 @@ sealed class EvidentlyProjectDataDeliveryDataDelivery {
   Map<String, Object?> encode();
 }
 
-/// The [EvidentlyProjectDataDeliveryDataDelivery.cloudwatchLogs] choice: sets `cloudwatch_logs`.
-final class EvidentlyProjectDataDeliveryDataDeliveryCloudwatchLogs
-    extends EvidentlyProjectDataDeliveryDataDelivery {
-  const EvidentlyProjectDataDeliveryDataDeliveryCloudwatchLogs(
-    this.cloudwatchLogs,
-  );
+/// The [EvidentlyProjectDataDelivery.cloudwatchLogs] choice: sets `cloudwatch_logs`.
+final class EvidentlyProjectDataDeliveryCloudwatchLogsChoice
+    extends EvidentlyProjectDataDelivery {
+  const EvidentlyProjectDataDeliveryCloudwatchLogsChoice(this.cloudwatchLogs);
 
   final EvidentlyProjectDataDeliveryCloudwatchLogs cloudwatchLogs;
 
@@ -58,12 +45,10 @@ final class EvidentlyProjectDataDeliveryDataDeliveryCloudwatchLogs
   Map<String, Object?> encode() => {'cloudwatch_logs': cloudwatchLogs.encode()};
 }
 
-/// The [EvidentlyProjectDataDeliveryDataDelivery.s3Destination] choice: sets `s3_destination`.
-final class EvidentlyProjectDataDeliveryDataDeliveryS3Destination
-    extends EvidentlyProjectDataDeliveryDataDelivery {
-  const EvidentlyProjectDataDeliveryDataDeliveryS3Destination(
-    this.s3Destination,
-  );
+/// The [EvidentlyProjectDataDelivery.s3Destination] choice: sets `s3_destination`.
+final class EvidentlyProjectDataDeliveryS3DestinationChoice
+    extends EvidentlyProjectDataDelivery {
+  const EvidentlyProjectDataDeliveryS3DestinationChoice(this.s3Destination);
 
   final EvidentlyProjectDataDeliveryS3Destination s3Destination;
 

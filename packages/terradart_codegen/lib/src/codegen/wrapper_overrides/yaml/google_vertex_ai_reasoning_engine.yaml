@@ -51,6 +51,6 @@ extraGetters: |2
     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
 sealedNames:
-  "context_spec.memory_bank_config.ttl_config.default_ttl, context_spec.memory_bank_config.ttl_config.granular_ttl_config": ttl
+  "context_spec.memory_bank_config.ttl_config.default_ttl, context_spec.memory_bank_config.ttl_config.granular_ttl_config": policy
   "spec.container_spec, spec.source_code_spec": deployment
   "spec.source_code_spec.image_spec, spec.source_code_spec.python_spec": runtime

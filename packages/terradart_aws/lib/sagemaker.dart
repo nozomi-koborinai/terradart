@@ -270,8 +270,8 @@ export 'src/sagemaker/aws_sagemaker_endpoint_configuration.dart'
         SagemakerEndpointConfigurationDataCaptureConfigCaptureOptions,
         SagemakerEndpointConfigurationDataCaptureConfigCaptureOptionsCaptureMode,
         SagemakerEndpointConfigurationName,
-        SagemakerEndpointConfigurationNameName,
-        SagemakerEndpointConfigurationNameNamePrefix,
+        SagemakerEndpointConfigurationNameChoice,
+        SagemakerEndpointConfigurationNamePrefix,
         SagemakerEndpointConfigurationProductionVariants,
         SagemakerEndpointConfigurationProductionVariantsAcceleratorType,
         SagemakerEndpointConfigurationProductionVariantsCapacityReservationConfig,
@@ -359,7 +359,7 @@ export 'src/sagemaker/aws_sagemaker_hyper_parameter_tuning_job.dart'
         SagemakerHyperParameterTuningJobTrainingJobDefinition,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecification,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm,
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmAlgorithmName,
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmName,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmTrainingImage,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationMetricDefinitions,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationTrainingInputMode,
@@ -408,7 +408,7 @@ export 'src/sagemaker/aws_sagemaker_hyper_parameter_tuning_job.dart'
         SagemakerHyperParameterTuningJobTrainingJobDefinitions,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecification,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm,
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmAlgorithmName,
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmName,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmTrainingImage,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationMetricDefinitions,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationTrainingInputMode,
@@ -587,10 +587,10 @@ export 'src/sagemaker/aws_sagemaker_notebook_instance_lifecycle_configuration.da
 export 'src/sagemaker/aws_sagemaker_pipeline.dart'
     show
         AwsSagemakerPipeline,
+        SagemakerPipelineDefinition,
+        SagemakerPipelineDefinitionChoice,
+        SagemakerPipelineDefinitionS3Location,
         SagemakerPipelineParallelismConfiguration,
-        SagemakerPipelinePipelineDefinition,
-        SagemakerPipelinePipelineDefinitionPipelineDefinition,
-        SagemakerPipelinePipelineDefinitionPipelineDefinitionS3Location,
         SagemakerPipelinePipelineDefinitionS3Location;
 export 'src/sagemaker/aws_sagemaker_project.dart'
     show
@@ -776,8 +776,7 @@ export 'src/sagemaker/aws_sagemaker_workteam.dart'
         SagemakerWorkteamWorkerAccessConfiguration,
         SagemakerWorkteamWorkerAccessConfigurationS3Presign,
         SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsIamPolicyConstraints,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsIamPolicyConstraintsSourceIp,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsIamPolicyConstraintsVpcSourceIp,
         SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp;
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpChoice,
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp,
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIpChoice;

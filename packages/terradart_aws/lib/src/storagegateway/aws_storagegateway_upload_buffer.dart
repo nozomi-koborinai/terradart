@@ -15,12 +15,12 @@ sealed class StoragegatewayUploadBufferDisk {
 
   /// Sets `disk_id`.
   const factory StoragegatewayUploadBufferDisk.diskId(TfArg<String> diskId) =
-      StoragegatewayUploadBufferDiskDiskId;
+      StoragegatewayUploadBufferDiskId;
 
   /// Sets `disk_path`.
   const factory StoragegatewayUploadBufferDisk.diskPath(
     TfArg<String> diskPath,
-  ) = StoragegatewayUploadBufferDiskDiskPath;
+  ) = StoragegatewayUploadBufferDiskPath;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,9 +33,9 @@ sealed class StoragegatewayUploadBufferDisk {
 }
 
 /// The [StoragegatewayUploadBufferDisk.diskId] choice: sets `disk_id`.
-final class StoragegatewayUploadBufferDiskDiskId
+final class StoragegatewayUploadBufferDiskId
     extends StoragegatewayUploadBufferDisk {
-  const StoragegatewayUploadBufferDiskDiskId(this.diskId);
+  const StoragegatewayUploadBufferDiskId(this.diskId);
 
   final TfArg<String> diskId;
 
@@ -50,9 +50,9 @@ final class StoragegatewayUploadBufferDiskDiskId
 }
 
 /// The [StoragegatewayUploadBufferDisk.diskPath] choice: sets `disk_path`.
-final class StoragegatewayUploadBufferDiskDiskPath
+final class StoragegatewayUploadBufferDiskPath
     extends StoragegatewayUploadBufferDisk {
-  const StoragegatewayUploadBufferDiskDiskPath(this.diskPath);
+  const StoragegatewayUploadBufferDiskPath(this.diskPath);
 
   final TfArg<String> diskPath;
 

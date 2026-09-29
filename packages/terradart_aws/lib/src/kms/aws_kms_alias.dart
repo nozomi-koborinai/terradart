@@ -15,11 +15,11 @@ sealed class KmsAliasName {
   const KmsAliasName();
 
   /// Sets `name`.
-  const factory KmsAliasName.name(TfArg<String> name) = KmsAliasNameName;
+  const factory KmsAliasName.name(TfArg<String> name) = KmsAliasNameChoice;
 
   /// Sets `name_prefix`.
   const factory KmsAliasName.namePrefix(TfArg<String> namePrefix) =
-      KmsAliasNameNamePrefix;
+      KmsAliasNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,8 +32,8 @@ sealed class KmsAliasName {
 }
 
 /// The [KmsAliasName.name] choice: sets `name`.
-final class KmsAliasNameName extends KmsAliasName {
-  const KmsAliasNameName(this.name);
+final class KmsAliasNameChoice extends KmsAliasName {
+  const KmsAliasNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -48,8 +48,8 @@ final class KmsAliasNameName extends KmsAliasName {
 }
 
 /// The [KmsAliasName.namePrefix] choice: sets `name_prefix`.
-final class KmsAliasNameNamePrefix extends KmsAliasName {
-  const KmsAliasNameNamePrefix(this.namePrefix);
+final class KmsAliasNamePrefix extends KmsAliasName {
+  const KmsAliasNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -867,7 +867,9 @@ const _extraParams = <String, List<String>>{
 };
 
 /// The variant of sealed type [sealed] to construct: the one whose member
-/// [owner]'s `_extraParams` entry names, else the first.
+/// `_extraParams` entry of [sealed] (a block that collapsed into its sealed
+/// type) or of [owner] names, else the first. A collapsed block keeps its
+/// `_literalByKey` entries under its own class name.
 String _sealedChoice(
   String sealed,
   Map<String, _ClassInfo> helpers, {
@@ -875,7 +877,10 @@ String _sealedChoice(
   required Set<String> sensitive,
   required String owner,
 }) {
-  final extras = _extraParams[owner] ?? const <String>[];
+  final ownExtras = _extraParams[sealed];
+  if (ownExtras != null) _usedKeys.add(sealed);
+  final extras = ownExtras ?? _extraParams[owner] ?? const <String>[];
+  if (_literalByKey.keys.any((k) => k.startsWith('$sealed.'))) owner = sealed;
   final variants = [
     for (final v in _sealedVariants[sealed]!)
       (v, helpers[v]!.requiredParams.single),

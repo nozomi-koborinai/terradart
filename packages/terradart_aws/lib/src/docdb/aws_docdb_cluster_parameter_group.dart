@@ -17,12 +17,12 @@ sealed class DocdbClusterParameterGroupName {
 
   /// Sets `name`.
   const factory DocdbClusterParameterGroupName.name(TfArg<String> name) =
-      DocdbClusterParameterGroupNameName;
+      DocdbClusterParameterGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory DocdbClusterParameterGroupName.namePrefix(
     TfArg<String> namePrefix,
-  ) = DocdbClusterParameterGroupNameNamePrefix;
+  ) = DocdbClusterParameterGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,9 +35,9 @@ sealed class DocdbClusterParameterGroupName {
 }
 
 /// The [DocdbClusterParameterGroupName.name] choice: sets `name`.
-final class DocdbClusterParameterGroupNameName
+final class DocdbClusterParameterGroupNameChoice
     extends DocdbClusterParameterGroupName {
-  const DocdbClusterParameterGroupNameName(this.name);
+  const DocdbClusterParameterGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -52,9 +52,9 @@ final class DocdbClusterParameterGroupNameName
 }
 
 /// The [DocdbClusterParameterGroupName.namePrefix] choice: sets `name_prefix`.
-final class DocdbClusterParameterGroupNameNamePrefix
+final class DocdbClusterParameterGroupNamePrefix
     extends DocdbClusterParameterGroupName {
-  const DocdbClusterParameterGroupNameNamePrefix(this.namePrefix);
+  const DocdbClusterParameterGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

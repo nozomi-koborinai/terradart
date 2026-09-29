@@ -7,36 +7,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_securityhub_connector_v2`.
 const Set<String> _awsSecurityhubConnectorV2Sensitive = <String>{};
 
-/// Typed helper for the `connector_provider` block of
-/// `aws_securityhub_connector_v2` (derived from provider schema).
-@immutable
-final class SecurityhubConnectorV2ConnectorProvider {
-  const SecurityhubConnectorV2ConnectorProvider({
-    required this.connectorProvider,
-  });
-
-  final SecurityhubConnectorV2ConnectorProviderConnectorProvider
-  connectorProvider;
-
-  Map<String, Object?> encode() => {...connectorProvider.encode()};
-}
-
 /// Exactly one of `jira_cloud`, `service_now` on the `connector_provider` block of `aws_securityhub_connector_v2`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.jiraCloud(...)`.
-sealed class SecurityhubConnectorV2ConnectorProviderConnectorProvider {
-  const SecurityhubConnectorV2ConnectorProviderConnectorProvider();
+sealed class SecurityhubConnectorV2ConnectorProvider {
+  const SecurityhubConnectorV2ConnectorProvider();
 
   /// Sets `jira_cloud`.
-  const factory SecurityhubConnectorV2ConnectorProviderConnectorProvider.jiraCloud(
+  const factory SecurityhubConnectorV2ConnectorProvider.jiraCloud(
     List<SecurityhubConnectorV2ConnectorProviderJiraCloud> jiraCloud,
-  ) = SecurityhubConnectorV2ConnectorProviderConnectorProviderJiraCloud;
+  ) = SecurityhubConnectorV2ConnectorProviderJiraCloudChoice;
 
   /// Sets `service_now`.
-  const factory SecurityhubConnectorV2ConnectorProviderConnectorProvider.serviceNow(
+  const factory SecurityhubConnectorV2ConnectorProvider.serviceNow(
     List<SecurityhubConnectorV2ConnectorProviderServiceNow> serviceNow,
-  ) = SecurityhubConnectorV2ConnectorProviderConnectorProviderServiceNow;
+  ) = SecurityhubConnectorV2ConnectorProviderServiceNowChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,12 +30,10 @@ sealed class SecurityhubConnectorV2ConnectorProviderConnectorProvider {
   Map<String, Object?> encode();
 }
 
-/// The [SecurityhubConnectorV2ConnectorProviderConnectorProvider.jiraCloud] choice: sets `jira_cloud`.
-final class SecurityhubConnectorV2ConnectorProviderConnectorProviderJiraCloud
-    extends SecurityhubConnectorV2ConnectorProviderConnectorProvider {
-  const SecurityhubConnectorV2ConnectorProviderConnectorProviderJiraCloud(
-    this.jiraCloud,
-  );
+/// The [SecurityhubConnectorV2ConnectorProvider.jiraCloud] choice: sets `jira_cloud`.
+final class SecurityhubConnectorV2ConnectorProviderJiraCloudChoice
+    extends SecurityhubConnectorV2ConnectorProvider {
+  const SecurityhubConnectorV2ConnectorProviderJiraCloudChoice(this.jiraCloud);
 
   final List<SecurityhubConnectorV2ConnectorProviderJiraCloud> jiraCloud;
 
@@ -62,10 +46,10 @@ final class SecurityhubConnectorV2ConnectorProviderConnectorProviderJiraCloud
   };
 }
 
-/// The [SecurityhubConnectorV2ConnectorProviderConnectorProvider.serviceNow] choice: sets `service_now`.
-final class SecurityhubConnectorV2ConnectorProviderConnectorProviderServiceNow
-    extends SecurityhubConnectorV2ConnectorProviderConnectorProvider {
-  const SecurityhubConnectorV2ConnectorProviderConnectorProviderServiceNow(
+/// The [SecurityhubConnectorV2ConnectorProvider.serviceNow] choice: sets `service_now`.
+final class SecurityhubConnectorV2ConnectorProviderServiceNowChoice
+    extends SecurityhubConnectorV2ConnectorProvider {
+  const SecurityhubConnectorV2ConnectorProviderServiceNowChoice(
     this.serviceNow,
   );
 

@@ -138,11 +138,10 @@ export 'src/securityhub/aws_securityhub_connector_v2.dart'
     show
         AwsSecurityhubConnectorV2,
         SecurityhubConnectorV2ConnectorProvider,
-        SecurityhubConnectorV2ConnectorProviderConnectorProvider,
-        SecurityhubConnectorV2ConnectorProviderConnectorProviderJiraCloud,
-        SecurityhubConnectorV2ConnectorProviderConnectorProviderServiceNow,
         SecurityhubConnectorV2ConnectorProviderJiraCloud,
-        SecurityhubConnectorV2ConnectorProviderServiceNow;
+        SecurityhubConnectorV2ConnectorProviderJiraCloudChoice,
+        SecurityhubConnectorV2ConnectorProviderServiceNow,
+        SecurityhubConnectorV2ConnectorProviderServiceNowChoice;
 export 'src/securityhub/aws_securityhub_feature_v2.dart'
     show
         AwsSecurityhubFeatureV2,

@@ -53,7 +53,7 @@ sealed class FsxWindowsFileSystemActiveDirectory {
   /// Sets `active_directory_id`.
   const factory FsxWindowsFileSystemActiveDirectory.activeDirectoryId(
     TfArg<String> activeDirectoryId,
-  ) = FsxWindowsFileSystemActiveDirectoryActiveDirectoryId;
+  ) = FsxWindowsFileSystemActiveDirectoryId;
 
   /// Sets `self_managed_active_directory`.
   const factory FsxWindowsFileSystemActiveDirectory.selfManagedActiveDirectory(
@@ -71,11 +71,9 @@ sealed class FsxWindowsFileSystemActiveDirectory {
 }
 
 /// The [FsxWindowsFileSystemActiveDirectory.activeDirectoryId] choice: sets `active_directory_id`.
-final class FsxWindowsFileSystemActiveDirectoryActiveDirectoryId
+final class FsxWindowsFileSystemActiveDirectoryId
     extends FsxWindowsFileSystemActiveDirectory {
-  const FsxWindowsFileSystemActiveDirectoryActiveDirectoryId(
-    this.activeDirectoryId,
-  );
+  const FsxWindowsFileSystemActiveDirectoryId(this.activeDirectoryId);
 
   final TfArg<String> activeDirectoryId;
 

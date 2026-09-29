@@ -100,7 +100,7 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'billingbudget',
         billingAccount: .literal('billingAccounts/000000-000000-000000'),
         deletionPolicy: .literal('DELETE'),
-        amount: BillingBudgetAmount(amount: .lastPeriodAmount(.literal(true))),
+        amount: .lastPeriodAmount(.literal(true)),
       ),
     );
 
@@ -226,12 +226,9 @@ final class DeferredLeftoverStack extends Stack {
           framework: .literal('terradart-leftover'),
           majorRevisionId: .literal('terradart-leftover'),
         ),
-        targetResourceConfig:
-            CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig(
-              targetResourceConfig: .existingTargetResource(
-                .literal('organizations/123456789'),
-              ),
-            ),
+        targetResourceConfig: .existingTargetResource(
+          .literal('organizations/123456789'),
+        ),
       ),
     );
 
@@ -403,7 +400,7 @@ final class DeferredLeftoverStack extends Stack {
         streamId: .literal('terradart-leftover'),
         destinationConfig: DatastreamStreamDestinationConfig(
           destinationConnectionProfile: .literal('terradart-leftover'),
-          destinationConfig: const .gcsDestinationConfig(
+          system: const .gcsDestinationConfig(
             DatastreamStreamDestinationConfigGcsDestinationConfig(
               fileFormat: .avroFileFormat(
                 DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat(),
@@ -413,7 +410,7 @@ final class DeferredLeftoverStack extends Stack {
         ),
         sourceConfig: DatastreamStreamSourceConfig(
           sourceConnectionProfile: .literal('terradart-leftover'),
-          sourceConfig: const .mysqlSourceConfig(
+          system: const .mysqlSourceConfig(
             DatastreamStreamSourceConfigMysqlSourceConfig(),
           ),
         ),

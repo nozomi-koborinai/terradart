@@ -102,12 +102,12 @@ sealed class CloudwatchMetricStreamName {
 
   /// Sets `name`.
   const factory CloudwatchMetricStreamName.name(TfArg<String> name) =
-      CloudwatchMetricStreamNameName;
+      CloudwatchMetricStreamNameChoice;
 
   /// Sets `name_prefix`.
   const factory CloudwatchMetricStreamName.namePrefix(
     TfArg<String> namePrefix,
-  ) = CloudwatchMetricStreamNameNamePrefix;
+  ) = CloudwatchMetricStreamNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -120,8 +120,9 @@ sealed class CloudwatchMetricStreamName {
 }
 
 /// The [CloudwatchMetricStreamName.name] choice: sets `name`.
-final class CloudwatchMetricStreamNameName extends CloudwatchMetricStreamName {
-  const CloudwatchMetricStreamNameName(this.name);
+final class CloudwatchMetricStreamNameChoice
+    extends CloudwatchMetricStreamName {
+  const CloudwatchMetricStreamNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -136,9 +137,9 @@ final class CloudwatchMetricStreamNameName extends CloudwatchMetricStreamName {
 }
 
 /// The [CloudwatchMetricStreamName.namePrefix] choice: sets `name_prefix`.
-final class CloudwatchMetricStreamNameNamePrefix
+final class CloudwatchMetricStreamNamePrefix
     extends CloudwatchMetricStreamName {
-  const CloudwatchMetricStreamNameNamePrefix(this.namePrefix);
+  const CloudwatchMetricStreamNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

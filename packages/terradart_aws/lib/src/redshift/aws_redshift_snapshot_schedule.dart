@@ -17,12 +17,12 @@ sealed class RedshiftSnapshotScheduleIdentifier {
   /// Sets `identifier`.
   const factory RedshiftSnapshotScheduleIdentifier.identifier(
     TfArg<String> identifier,
-  ) = RedshiftSnapshotScheduleIdentifierIdentifier;
+  ) = RedshiftSnapshotScheduleIdentifierChoice;
 
   /// Sets `identifier_prefix`.
   const factory RedshiftSnapshotScheduleIdentifier.identifierPrefix(
     TfArg<String> identifierPrefix,
-  ) = RedshiftSnapshotScheduleIdentifierIdentifierPrefix;
+  ) = RedshiftSnapshotScheduleIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,9 +35,9 @@ sealed class RedshiftSnapshotScheduleIdentifier {
 }
 
 /// The [RedshiftSnapshotScheduleIdentifier.identifier] choice: sets `identifier`.
-final class RedshiftSnapshotScheduleIdentifierIdentifier
+final class RedshiftSnapshotScheduleIdentifierChoice
     extends RedshiftSnapshotScheduleIdentifier {
-  const RedshiftSnapshotScheduleIdentifierIdentifier(this.identifier);
+  const RedshiftSnapshotScheduleIdentifierChoice(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -52,11 +52,9 @@ final class RedshiftSnapshotScheduleIdentifierIdentifier
 }
 
 /// The [RedshiftSnapshotScheduleIdentifier.identifierPrefix] choice: sets `identifier_prefix`.
-final class RedshiftSnapshotScheduleIdentifierIdentifierPrefix
+final class RedshiftSnapshotScheduleIdentifierPrefix
     extends RedshiftSnapshotScheduleIdentifier {
-  const RedshiftSnapshotScheduleIdentifierIdentifierPrefix(
-    this.identifierPrefix,
-  );
+  const RedshiftSnapshotScheduleIdentifierPrefix(this.identifierPrefix);
 
   final TfArg<String> identifierPrefix;
 

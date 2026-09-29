@@ -16,12 +16,12 @@ sealed class DocdbEventSubscriptionName {
 
   /// Sets `name`.
   const factory DocdbEventSubscriptionName.name(TfArg<String> name) =
-      DocdbEventSubscriptionNameName;
+      DocdbEventSubscriptionNameChoice;
 
   /// Sets `name_prefix`.
   const factory DocdbEventSubscriptionName.namePrefix(
     TfArg<String> namePrefix,
-  ) = DocdbEventSubscriptionNameNamePrefix;
+  ) = DocdbEventSubscriptionNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,8 +34,9 @@ sealed class DocdbEventSubscriptionName {
 }
 
 /// The [DocdbEventSubscriptionName.name] choice: sets `name`.
-final class DocdbEventSubscriptionNameName extends DocdbEventSubscriptionName {
-  const DocdbEventSubscriptionNameName(this.name);
+final class DocdbEventSubscriptionNameChoice
+    extends DocdbEventSubscriptionName {
+  const DocdbEventSubscriptionNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -50,9 +51,9 @@ final class DocdbEventSubscriptionNameName extends DocdbEventSubscriptionName {
 }
 
 /// The [DocdbEventSubscriptionName.namePrefix] choice: sets `name_prefix`.
-final class DocdbEventSubscriptionNameNamePrefix
+final class DocdbEventSubscriptionNamePrefix
     extends DocdbEventSubscriptionName {
-  const DocdbEventSubscriptionNameNamePrefix(this.namePrefix);
+  const DocdbEventSubscriptionNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

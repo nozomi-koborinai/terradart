@@ -91,12 +91,12 @@ sealed class DbInstanceIdentifier {
 
   /// Sets `identifier`.
   const factory DbInstanceIdentifier.identifier(TfArg<String> identifier) =
-      DbInstanceIdentifierIdentifier;
+      DbInstanceIdentifierChoice;
 
   /// Sets `identifier_prefix`.
   const factory DbInstanceIdentifier.identifierPrefix(
     TfArg<String> identifierPrefix,
-  ) = DbInstanceIdentifierIdentifierPrefix;
+  ) = DbInstanceIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -109,8 +109,8 @@ sealed class DbInstanceIdentifier {
 }
 
 /// The [DbInstanceIdentifier.identifier] choice: sets `identifier`.
-final class DbInstanceIdentifierIdentifier extends DbInstanceIdentifier {
-  const DbInstanceIdentifierIdentifier(this.identifier);
+final class DbInstanceIdentifierChoice extends DbInstanceIdentifier {
+  const DbInstanceIdentifierChoice(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -125,8 +125,8 @@ final class DbInstanceIdentifierIdentifier extends DbInstanceIdentifier {
 }
 
 /// The [DbInstanceIdentifier.identifierPrefix] choice: sets `identifier_prefix`.
-final class DbInstanceIdentifierIdentifierPrefix extends DbInstanceIdentifier {
-  const DbInstanceIdentifierIdentifierPrefix(this.identifierPrefix);
+final class DbInstanceIdentifierPrefix extends DbInstanceIdentifier {
+  const DbInstanceIdentifierPrefix(this.identifierPrefix);
 
   final TfArg<String> identifierPrefix;
 
@@ -159,11 +159,11 @@ sealed class DbInstancePassword {
 
   /// Sets `password`.
   const factory DbInstancePassword.password(TfArg<String> password) =
-      DbInstancePasswordPassword;
+      DbInstancePasswordChoice;
 
   /// Sets `password_wo`.
   const factory DbInstancePassword.passwordWo(TfArg<String> passwordWo) =
-      DbInstancePasswordPasswordWo;
+      DbInstancePasswordWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -199,8 +199,8 @@ final class DbInstancePasswordManageMasterUserPassword
 }
 
 /// The [DbInstancePassword.password] choice: sets `password`.
-final class DbInstancePasswordPassword extends DbInstancePassword {
-  const DbInstancePasswordPassword(this.password);
+final class DbInstancePasswordChoice extends DbInstancePassword {
+  const DbInstancePasswordChoice(this.password);
 
   final TfArg<String> password;
 
@@ -215,8 +215,8 @@ final class DbInstancePasswordPassword extends DbInstancePassword {
 }
 
 /// The [DbInstancePassword.passwordWo] choice: sets `password_wo`.
-final class DbInstancePasswordPasswordWo extends DbInstancePassword {
-  const DbInstancePasswordPasswordWo(this.passwordWo);
+final class DbInstancePasswordWo extends DbInstancePassword {
+  const DbInstancePasswordWo(this.passwordWo);
 
   final TfArg<String> passwordWo;
 
@@ -248,13 +248,13 @@ final class DbInstanceBlueGreenUpdate {
 @immutable
 final class DbInstanceRestoreToPointInTime {
   const DbInstanceRestoreToPointInTime({
-    this.time,
+    this.target,
     this.sourceDbInstanceAutomatedBackupsArn,
     this.sourceDbInstanceIdentifier,
     this.sourceDbiResourceId,
   });
 
-  final DbInstanceRestoreToPointInTimeTime? time;
+  final DbInstanceRestoreToPointInTimeTarget? target;
 
   final TfArg<String>? sourceDbInstanceAutomatedBackupsArn;
 
@@ -263,7 +263,7 @@ final class DbInstanceRestoreToPointInTime {
   final TfArg<String>? sourceDbiResourceId;
 
   Map<String, Object?> encode() => {
-    ...?time?.encode(),
+    ...?target?.encode(),
     if (sourceDbInstanceAutomatedBackupsArn != null)
       'source_db_instance_automated_backups_arn':
           sourceDbInstanceAutomatedBackupsArn!.toTfJson(),
@@ -279,18 +279,18 @@ final class DbInstanceRestoreToPointInTime {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.restoreTime(...)`.
-sealed class DbInstanceRestoreToPointInTimeTime {
-  const DbInstanceRestoreToPointInTimeTime();
+sealed class DbInstanceRestoreToPointInTimeTarget {
+  const DbInstanceRestoreToPointInTimeTarget();
 
   /// Sets `restore_time`.
-  const factory DbInstanceRestoreToPointInTimeTime.restoreTime(
+  const factory DbInstanceRestoreToPointInTimeTarget.restoreTime(
     TfArg<String> restoreTime,
-  ) = DbInstanceRestoreToPointInTimeTimeRestoreTime;
+  ) = DbInstanceRestoreToPointInTimeTargetRestoreTime;
 
   /// Sets `use_latest_restorable_time`.
-  const factory DbInstanceRestoreToPointInTimeTime.useLatestRestorableTime(
+  const factory DbInstanceRestoreToPointInTimeTarget.useLatestRestorableTime(
     TfArg<bool> useLatestRestorableTime,
-  ) = DbInstanceRestoreToPointInTimeTimeUseLatestRestorableTime;
+  ) = DbInstanceRestoreToPointInTimeTargetUseLatestRestorableTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -298,10 +298,10 @@ sealed class DbInstanceRestoreToPointInTimeTime {
   Map<String, Object?> encode();
 }
 
-/// The [DbInstanceRestoreToPointInTimeTime.restoreTime] choice: sets `restore_time`.
-final class DbInstanceRestoreToPointInTimeTimeRestoreTime
-    extends DbInstanceRestoreToPointInTimeTime {
-  const DbInstanceRestoreToPointInTimeTimeRestoreTime(this.restoreTime);
+/// The [DbInstanceRestoreToPointInTimeTarget.restoreTime] choice: sets `restore_time`.
+final class DbInstanceRestoreToPointInTimeTargetRestoreTime
+    extends DbInstanceRestoreToPointInTimeTarget {
+  const DbInstanceRestoreToPointInTimeTargetRestoreTime(this.restoreTime);
 
   final TfArg<String> restoreTime;
 
@@ -312,10 +312,10 @@ final class DbInstanceRestoreToPointInTimeTimeRestoreTime
   Map<String, Object?> encode() => {'restore_time': restoreTime.toTfJson()};
 }
 
-/// The [DbInstanceRestoreToPointInTimeTime.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
-final class DbInstanceRestoreToPointInTimeTimeUseLatestRestorableTime
-    extends DbInstanceRestoreToPointInTimeTime {
-  const DbInstanceRestoreToPointInTimeTimeUseLatestRestorableTime(
+/// The [DbInstanceRestoreToPointInTimeTarget.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
+final class DbInstanceRestoreToPointInTimeTargetUseLatestRestorableTime
+    extends DbInstanceRestoreToPointInTimeTarget {
+  const DbInstanceRestoreToPointInTimeTargetUseLatestRestorableTime(
     this.useLatestRestorableTime,
   );
 

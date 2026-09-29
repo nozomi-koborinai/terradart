@@ -25,12 +25,12 @@ sealed class CustomerGatewayBgpAsn {
 
   /// Sets `bgp_asn`.
   const factory CustomerGatewayBgpAsn.bgpAsn(TfArg<String> bgpAsn) =
-      CustomerGatewayBgpAsnBgpAsn;
+      CustomerGatewayBgpAsnChoice;
 
   /// Sets `bgp_asn_extended`.
   const factory CustomerGatewayBgpAsn.bgpAsnExtended(
     TfArg<String> bgpAsnExtended,
-  ) = CustomerGatewayBgpAsnBgpAsnExtended;
+  ) = CustomerGatewayBgpAsnExtended;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,8 +43,8 @@ sealed class CustomerGatewayBgpAsn {
 }
 
 /// The [CustomerGatewayBgpAsn.bgpAsn] choice: sets `bgp_asn`.
-final class CustomerGatewayBgpAsnBgpAsn extends CustomerGatewayBgpAsn {
-  const CustomerGatewayBgpAsnBgpAsn(this.bgpAsn);
+final class CustomerGatewayBgpAsnChoice extends CustomerGatewayBgpAsn {
+  const CustomerGatewayBgpAsnChoice(this.bgpAsn);
 
   final TfArg<String> bgpAsn;
 
@@ -59,8 +59,8 @@ final class CustomerGatewayBgpAsnBgpAsn extends CustomerGatewayBgpAsn {
 }
 
 /// The [CustomerGatewayBgpAsn.bgpAsnExtended] choice: sets `bgp_asn_extended`.
-final class CustomerGatewayBgpAsnBgpAsnExtended extends CustomerGatewayBgpAsn {
-  const CustomerGatewayBgpAsnBgpAsnExtended(this.bgpAsnExtended);
+final class CustomerGatewayBgpAsnExtended extends CustomerGatewayBgpAsn {
+  const CustomerGatewayBgpAsnExtended(this.bgpAsnExtended);
 
   final TfArg<String> bgpAsnExtended;
 

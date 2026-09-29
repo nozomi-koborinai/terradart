@@ -7,42 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ivschat_logging_configuration`.
 const Set<String> _awsIvschatLoggingConfigurationSensitive = <String>{};
 
-/// Typed helper for the `destination_configuration` block of
-/// `aws_ivschat_logging_configuration` (derived from provider schema).
-@immutable
-final class IvschatLoggingConfigurationDestinationConfiguration {
-  const IvschatLoggingConfigurationDestinationConfiguration({
-    required this.destinationConfiguration,
-  });
-
-  final IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration
-  destinationConfiguration;
-
-  Map<String, Object?> encode() => {...destinationConfiguration.encode()};
-}
-
 /// Exactly one of `cloudwatch_logs`, `firehose`, `s3` on the `destination_configuration` block of `aws_ivschat_logging_configuration`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cloudwatchLogs(...)`.
-sealed class IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration {
-  const IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration();
+sealed class IvschatLoggingConfigurationDestinationConfiguration {
+  const IvschatLoggingConfigurationDestinationConfiguration();
 
   /// Sets `cloudwatch_logs`.
-  const factory IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration.cloudwatchLogs(
+  const factory IvschatLoggingConfigurationDestinationConfiguration.cloudwatchLogs(
     IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs
     cloudwatchLogs,
-  ) = IvschatLoggingConfigurationDestinationConfigurationDestinationConfigurationCloudwatchLogs;
+  ) = IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsChoice;
 
   /// Sets `firehose`.
-  const factory IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration.firehose(
+  const factory IvschatLoggingConfigurationDestinationConfiguration.firehose(
     IvschatLoggingConfigurationDestinationConfigurationFirehose firehose,
-  ) = IvschatLoggingConfigurationDestinationConfigurationDestinationConfigurationFirehose;
+  ) = IvschatLoggingConfigurationDestinationConfigurationFirehoseChoice;
 
   /// Sets `s3`.
-  const factory IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration.s3(
+  const factory IvschatLoggingConfigurationDestinationConfiguration.s3(
     IvschatLoggingConfigurationDestinationConfigurationS3 s3,
-  ) = IvschatLoggingConfigurationDestinationConfigurationDestinationConfigurationS3;
+  ) = IvschatLoggingConfigurationDestinationConfigurationS3Choice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -50,11 +36,10 @@ sealed class IvschatLoggingConfigurationDestinationConfigurationDestinationConfi
   Map<String, Object?> encode();
 }
 
-/// The [IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration.cloudwatchLogs] choice: sets `cloudwatch_logs`.
-final class IvschatLoggingConfigurationDestinationConfigurationDestinationConfigurationCloudwatchLogs
-    extends
-        IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration {
-  const IvschatLoggingConfigurationDestinationConfigurationDestinationConfigurationCloudwatchLogs(
+/// The [IvschatLoggingConfigurationDestinationConfiguration.cloudwatchLogs] choice: sets `cloudwatch_logs`.
+final class IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsChoice
+    extends IvschatLoggingConfigurationDestinationConfiguration {
+  const IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsChoice(
     this.cloudwatchLogs,
   );
 
@@ -68,11 +53,10 @@ final class IvschatLoggingConfigurationDestinationConfigurationDestinationConfig
   Map<String, Object?> encode() => {'cloudwatch_logs': cloudwatchLogs.encode()};
 }
 
-/// The [IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration.firehose] choice: sets `firehose`.
-final class IvschatLoggingConfigurationDestinationConfigurationDestinationConfigurationFirehose
-    extends
-        IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration {
-  const IvschatLoggingConfigurationDestinationConfigurationDestinationConfigurationFirehose(
+/// The [IvschatLoggingConfigurationDestinationConfiguration.firehose] choice: sets `firehose`.
+final class IvschatLoggingConfigurationDestinationConfigurationFirehoseChoice
+    extends IvschatLoggingConfigurationDestinationConfiguration {
+  const IvschatLoggingConfigurationDestinationConfigurationFirehoseChoice(
     this.firehose,
   );
 
@@ -85,13 +69,10 @@ final class IvschatLoggingConfigurationDestinationConfigurationDestinationConfig
   Map<String, Object?> encode() => {'firehose': firehose.encode()};
 }
 
-/// The [IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration.s3] choice: sets `s3`.
-final class IvschatLoggingConfigurationDestinationConfigurationDestinationConfigurationS3
-    extends
-        IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration {
-  const IvschatLoggingConfigurationDestinationConfigurationDestinationConfigurationS3(
-    this.s3,
-  );
+/// The [IvschatLoggingConfigurationDestinationConfiguration.s3] choice: sets `s3`.
+final class IvschatLoggingConfigurationDestinationConfigurationS3Choice
+    extends IvschatLoggingConfigurationDestinationConfiguration {
+  const IvschatLoggingConfigurationDestinationConfigurationS3Choice(this.s3);
 
   final IvschatLoggingConfigurationDestinationConfigurationS3 s3;
 

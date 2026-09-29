@@ -11,18 +11,18 @@ const Set<String> _awsSagemakerPipelineSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.pipelineDefinition(...)`.
-sealed class SagemakerPipelinePipelineDefinition {
-  const SagemakerPipelinePipelineDefinition();
+sealed class SagemakerPipelineDefinition {
+  const SagemakerPipelineDefinition();
 
   /// Sets `pipeline_definition`.
-  const factory SagemakerPipelinePipelineDefinition.pipelineDefinition(
+  const factory SagemakerPipelineDefinition.pipelineDefinition(
     TfArg<String> pipelineDefinition,
-  ) = SagemakerPipelinePipelineDefinitionPipelineDefinition;
+  ) = SagemakerPipelineDefinitionChoice;
 
   /// Sets `pipeline_definition_s3_location`.
-  const factory SagemakerPipelinePipelineDefinition.pipelineDefinitionS3Location(
+  const factory SagemakerPipelineDefinition.pipelineDefinitionS3Location(
     SagemakerPipelinePipelineDefinitionS3Location pipelineDefinitionS3Location,
-  ) = SagemakerPipelinePipelineDefinitionPipelineDefinitionS3Location;
+  ) = SagemakerPipelineDefinitionS3Location;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,12 +34,10 @@ sealed class SagemakerPipelinePipelineDefinition {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SagemakerPipelinePipelineDefinition.pipelineDefinition] choice: sets `pipeline_definition`.
-final class SagemakerPipelinePipelineDefinitionPipelineDefinition
-    extends SagemakerPipelinePipelineDefinition {
-  const SagemakerPipelinePipelineDefinitionPipelineDefinition(
-    this.pipelineDefinition,
-  );
+/// The [SagemakerPipelineDefinition.pipelineDefinition] choice: sets `pipeline_definition`.
+final class SagemakerPipelineDefinitionChoice
+    extends SagemakerPipelineDefinition {
+  const SagemakerPipelineDefinitionChoice(this.pipelineDefinition);
 
   final TfArg<String> pipelineDefinition;
 
@@ -57,10 +55,10 @@ final class SagemakerPipelinePipelineDefinitionPipelineDefinition
   };
 }
 
-/// The [SagemakerPipelinePipelineDefinition.pipelineDefinitionS3Location] choice: sets `pipeline_definition_s3_location`.
-final class SagemakerPipelinePipelineDefinitionPipelineDefinitionS3Location
-    extends SagemakerPipelinePipelineDefinition {
-  const SagemakerPipelinePipelineDefinitionPipelineDefinitionS3Location(
+/// The [SagemakerPipelineDefinition.pipelineDefinitionS3Location] choice: sets `pipeline_definition_s3_location`.
+final class SagemakerPipelineDefinitionS3Location
+    extends SagemakerPipelineDefinition {
+  const SagemakerPipelineDefinitionS3Location(
     this.pipelineDefinitionS3Location,
   );
 
@@ -127,7 +125,7 @@ final class AwsSagemakerPipeline extends Resource {
 
   AwsSagemakerPipeline({
     required super.localName,
-    required SagemakerPipelinePipelineDefinition pipelineDefinition,
+    required SagemakerPipelineDefinition pipelineDefinition,
     TfArg<String>? pipelineDescription,
     required TfArg<String> pipelineDisplayName,
     required TfArg<String> pipelineName,

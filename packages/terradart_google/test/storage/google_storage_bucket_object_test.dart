@@ -10,9 +10,9 @@ import '../_helpers.dart';
 /// can show: `content` is provider-Sensitive, so a literal must fail
 /// fast (SensitiveLiteralError) instead of silently landing in state.
 void main() {
-  group('StorageBucketObjectBucketObjectContent', () {
+  group('StorageBucketObjectBody', () {
     test('FromSource encodes under source only', () {
-      final body = StorageBucketObjectBucketObjectFromSource(
+      final body = StorageBucketObjectBodySource(
         source: TfArg.literal('./config.json'),
       );
       expect(body.blockKey, equals('source'));
@@ -20,7 +20,7 @@ void main() {
     });
 
     test('FromContent encodes under content only', () {
-      final body = StorageBucketObjectBucketObjectFromContent(
+      final body = StorageBucketObjectBodyContent(
         content: TfArg.variable('seed_content'),
       );
       expect(body.blockKey, equals('content'));
@@ -32,7 +32,7 @@ void main() {
         localName: 'conf',
         bucket: TfArg.literal('assets'),
         name: TfArg.literal('config.json'),
-        body: StorageBucketObjectBucketObjectFromSource(
+        body: StorageBucketObjectBodySource(
           source: TfArg.literal('./config.json'),
         ),
       );
@@ -47,7 +47,7 @@ void main() {
         localName: 'conf',
         bucket: TfArg.literal('assets'),
         name: TfArg.literal('config.json'),
-        body: StorageBucketObjectBucketObjectFromSource(
+        body: StorageBucketObjectBodySource(
           source: TfArg.literal('./config.json'),
         ),
       );
@@ -64,7 +64,7 @@ void main() {
           localName: 'seed',
           bucket: TfArg.literal('assets'),
           name: TfArg.literal('seed.json'),
-          body: StorageBucketObjectBucketObjectFromContent(
+          body: StorageBucketObjectBodyContent(
             content: TfArg.literal('{"k":1}'),
           ),
         ),
@@ -83,7 +83,7 @@ void main() {
           localName: 'seed',
           bucket: TfArg.literal('assets'),
           name: TfArg.literal('seed.json'),
-          body: StorageBucketObjectBucketObjectFromContent(
+          body: StorageBucketObjectBodyContent(
             content: TfArg.variable('seed_content'),
           ),
         ),

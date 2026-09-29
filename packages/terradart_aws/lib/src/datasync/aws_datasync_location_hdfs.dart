@@ -28,12 +28,12 @@ sealed class DatasyncLocationHdfsKerberosKeytab {
   /// Sets `kerberos_keytab`.
   const factory DatasyncLocationHdfsKerberosKeytab.kerberosKeytab(
     TfArg<String> kerberosKeytab,
-  ) = DatasyncLocationHdfsKerberosKeytabKerberosKeytab;
+  ) = DatasyncLocationHdfsKerberosKeytabChoice;
 
   /// Sets `kerberos_keytab_base64`.
   const factory DatasyncLocationHdfsKerberosKeytab.kerberosKeytabBase64(
     TfArg<String> kerberosKeytabBase64,
-  ) = DatasyncLocationHdfsKerberosKeytabKerberosKeytabBase64;
+  ) = DatasyncLocationHdfsKerberosKeytabBase64;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,9 +46,9 @@ sealed class DatasyncLocationHdfsKerberosKeytab {
 }
 
 /// The [DatasyncLocationHdfsKerberosKeytab.kerberosKeytab] choice: sets `kerberos_keytab`.
-final class DatasyncLocationHdfsKerberosKeytabKerberosKeytab
+final class DatasyncLocationHdfsKerberosKeytabChoice
     extends DatasyncLocationHdfsKerberosKeytab {
-  const DatasyncLocationHdfsKerberosKeytabKerberosKeytab(this.kerberosKeytab);
+  const DatasyncLocationHdfsKerberosKeytabChoice(this.kerberosKeytab);
 
   final TfArg<String> kerberosKeytab;
 
@@ -65,11 +65,9 @@ final class DatasyncLocationHdfsKerberosKeytabKerberosKeytab
 }
 
 /// The [DatasyncLocationHdfsKerberosKeytab.kerberosKeytabBase64] choice: sets `kerberos_keytab_base64`.
-final class DatasyncLocationHdfsKerberosKeytabKerberosKeytabBase64
+final class DatasyncLocationHdfsKerberosKeytabBase64
     extends DatasyncLocationHdfsKerberosKeytab {
-  const DatasyncLocationHdfsKerberosKeytabKerberosKeytabBase64(
-    this.kerberosKeytabBase64,
-  );
+  const DatasyncLocationHdfsKerberosKeytabBase64(this.kerberosKeytabBase64);
 
   final TfArg<String> kerberosKeytabBase64;
 
@@ -98,12 +96,12 @@ sealed class DatasyncLocationHdfsKerberosKrb5Conf {
   /// Sets `kerberos_krb5_conf`.
   const factory DatasyncLocationHdfsKerberosKrb5Conf.kerberosKrb5Conf(
     TfArg<String> kerberosKrb5Conf,
-  ) = DatasyncLocationHdfsKerberosKrb5ConfKerberosKrb5Conf;
+  ) = DatasyncLocationHdfsKerberosKrb5ConfChoice;
 
   /// Sets `kerberos_krb5_conf_base64`.
   const factory DatasyncLocationHdfsKerberosKrb5Conf.kerberosKrb5ConfBase64(
     TfArg<String> kerberosKrb5ConfBase64,
-  ) = DatasyncLocationHdfsKerberosKrb5ConfKerberosKrb5ConfBase64;
+  ) = DatasyncLocationHdfsKerberosKrb5ConfBase64;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -116,11 +114,9 @@ sealed class DatasyncLocationHdfsKerberosKrb5Conf {
 }
 
 /// The [DatasyncLocationHdfsKerberosKrb5Conf.kerberosKrb5Conf] choice: sets `kerberos_krb5_conf`.
-final class DatasyncLocationHdfsKerberosKrb5ConfKerberosKrb5Conf
+final class DatasyncLocationHdfsKerberosKrb5ConfChoice
     extends DatasyncLocationHdfsKerberosKrb5Conf {
-  const DatasyncLocationHdfsKerberosKrb5ConfKerberosKrb5Conf(
-    this.kerberosKrb5Conf,
-  );
+  const DatasyncLocationHdfsKerberosKrb5ConfChoice(this.kerberosKrb5Conf);
 
   final TfArg<String> kerberosKrb5Conf;
 
@@ -139,11 +135,9 @@ final class DatasyncLocationHdfsKerberosKrb5ConfKerberosKrb5Conf
 }
 
 /// The [DatasyncLocationHdfsKerberosKrb5Conf.kerberosKrb5ConfBase64] choice: sets `kerberos_krb5_conf_base64`.
-final class DatasyncLocationHdfsKerberosKrb5ConfKerberosKrb5ConfBase64
+final class DatasyncLocationHdfsKerberosKrb5ConfBase64
     extends DatasyncLocationHdfsKerberosKrb5Conf {
-  const DatasyncLocationHdfsKerberosKrb5ConfKerberosKrb5ConfBase64(
-    this.kerberosKrb5ConfBase64,
-  );
+  const DatasyncLocationHdfsKerberosKrb5ConfBase64(this.kerberosKrb5ConfBase64);
 
   final TfArg<String> kerberosKrb5ConfBase64;
 

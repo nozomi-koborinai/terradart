@@ -46,12 +46,12 @@ sealed class VpcEndpointService {
 
   /// Sets `service_name`.
   const factory VpcEndpointService.serviceName(TfArg<String> serviceName) =
-      VpcEndpointServiceServiceName;
+      VpcEndpointServiceName;
 
   /// Sets `service_network_arn`.
   const factory VpcEndpointService.serviceNetworkArn(
     TfArg<String> serviceNetworkArn,
-  ) = VpcEndpointServiceServiceNetworkArn;
+  ) = VpcEndpointServiceNetworkArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -87,8 +87,8 @@ final class VpcEndpointServiceResourceConfigurationArn
 }
 
 /// The [VpcEndpointService.serviceName] choice: sets `service_name`.
-final class VpcEndpointServiceServiceName extends VpcEndpointService {
-  const VpcEndpointServiceServiceName(this.serviceName);
+final class VpcEndpointServiceName extends VpcEndpointService {
+  const VpcEndpointServiceName(this.serviceName);
 
   final TfArg<String> serviceName;
 
@@ -103,8 +103,8 @@ final class VpcEndpointServiceServiceName extends VpcEndpointService {
 }
 
 /// The [VpcEndpointService.serviceNetworkArn] choice: sets `service_network_arn`.
-final class VpcEndpointServiceServiceNetworkArn extends VpcEndpointService {
-  const VpcEndpointServiceServiceNetworkArn(this.serviceNetworkArn);
+final class VpcEndpointServiceNetworkArn extends VpcEndpointService {
+  const VpcEndpointServiceNetworkArn(this.serviceNetworkArn);
 
   final TfArg<String> serviceNetworkArn;
 

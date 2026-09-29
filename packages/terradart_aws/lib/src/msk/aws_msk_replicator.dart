@@ -319,12 +319,12 @@ sealed class MskReplicatorReplicationInfoListSourceKafkaCluster {
   /// Sets `source_kafka_cluster_arn`.
   const factory MskReplicatorReplicationInfoListSourceKafkaCluster.sourceKafkaClusterArn(
     TfArg<String> sourceKafkaClusterArn,
-  ) = MskReplicatorReplicationInfoListSourceKafkaClusterSourceKafkaClusterArn;
+  ) = MskReplicatorReplicationInfoListSourceKafkaClusterArn;
 
   /// Sets `source_kafka_cluster_id`.
   const factory MskReplicatorReplicationInfoListSourceKafkaCluster.sourceKafkaClusterId(
     TfArg<String> sourceKafkaClusterId,
-  ) = MskReplicatorReplicationInfoListSourceKafkaClusterSourceKafkaClusterId;
+  ) = MskReplicatorReplicationInfoListSourceKafkaClusterId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -333,9 +333,9 @@ sealed class MskReplicatorReplicationInfoListSourceKafkaCluster {
 }
 
 /// The [MskReplicatorReplicationInfoListSourceKafkaCluster.sourceKafkaClusterArn] choice: sets `source_kafka_cluster_arn`.
-final class MskReplicatorReplicationInfoListSourceKafkaClusterSourceKafkaClusterArn
+final class MskReplicatorReplicationInfoListSourceKafkaClusterArn
     extends MskReplicatorReplicationInfoListSourceKafkaCluster {
-  const MskReplicatorReplicationInfoListSourceKafkaClusterSourceKafkaClusterArn(
+  const MskReplicatorReplicationInfoListSourceKafkaClusterArn(
     this.sourceKafkaClusterArn,
   );
 
@@ -351,9 +351,9 @@ final class MskReplicatorReplicationInfoListSourceKafkaClusterSourceKafkaCluster
 }
 
 /// The [MskReplicatorReplicationInfoListSourceKafkaCluster.sourceKafkaClusterId] choice: sets `source_kafka_cluster_id`.
-final class MskReplicatorReplicationInfoListSourceKafkaClusterSourceKafkaClusterId
+final class MskReplicatorReplicationInfoListSourceKafkaClusterId
     extends MskReplicatorReplicationInfoListSourceKafkaCluster {
-  const MskReplicatorReplicationInfoListSourceKafkaClusterSourceKafkaClusterId(
+  const MskReplicatorReplicationInfoListSourceKafkaClusterId(
     this.sourceKafkaClusterId,
   );
 
@@ -378,12 +378,12 @@ sealed class MskReplicatorReplicationInfoListTargetKafkaCluster {
   /// Sets `target_kafka_cluster_arn`.
   const factory MskReplicatorReplicationInfoListTargetKafkaCluster.targetKafkaClusterArn(
     TfArg<String> targetKafkaClusterArn,
-  ) = MskReplicatorReplicationInfoListTargetKafkaClusterTargetKafkaClusterArn;
+  ) = MskReplicatorReplicationInfoListTargetKafkaClusterArn;
 
   /// Sets `target_kafka_cluster_id`.
   const factory MskReplicatorReplicationInfoListTargetKafkaCluster.targetKafkaClusterId(
     TfArg<String> targetKafkaClusterId,
-  ) = MskReplicatorReplicationInfoListTargetKafkaClusterTargetKafkaClusterId;
+  ) = MskReplicatorReplicationInfoListTargetKafkaClusterId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -392,9 +392,9 @@ sealed class MskReplicatorReplicationInfoListTargetKafkaCluster {
 }
 
 /// The [MskReplicatorReplicationInfoListTargetKafkaCluster.targetKafkaClusterArn] choice: sets `target_kafka_cluster_arn`.
-final class MskReplicatorReplicationInfoListTargetKafkaClusterTargetKafkaClusterArn
+final class MskReplicatorReplicationInfoListTargetKafkaClusterArn
     extends MskReplicatorReplicationInfoListTargetKafkaCluster {
-  const MskReplicatorReplicationInfoListTargetKafkaClusterTargetKafkaClusterArn(
+  const MskReplicatorReplicationInfoListTargetKafkaClusterArn(
     this.targetKafkaClusterArn,
   );
 
@@ -410,9 +410,9 @@ final class MskReplicatorReplicationInfoListTargetKafkaClusterTargetKafkaCluster
 }
 
 /// The [MskReplicatorReplicationInfoListTargetKafkaCluster.targetKafkaClusterId] choice: sets `target_kafka_cluster_id`.
-final class MskReplicatorReplicationInfoListTargetKafkaClusterTargetKafkaClusterId
+final class MskReplicatorReplicationInfoListTargetKafkaClusterId
     extends MskReplicatorReplicationInfoListTargetKafkaCluster {
-  const MskReplicatorReplicationInfoListTargetKafkaClusterTargetKafkaClusterId(
+  const MskReplicatorReplicationInfoListTargetKafkaClusterId(
     this.targetKafkaClusterId,
   );
 

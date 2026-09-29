@@ -256,7 +256,7 @@ sealed class DataprocBatchEnvironmentConfigExecutionConfigNetwork {
   /// Sets `network_uri`.
   const factory DataprocBatchEnvironmentConfigExecutionConfigNetwork.networkUri(
     TfArg<String> networkUri,
-  ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri;
+  ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkUri;
 
   /// Sets `subnetwork_uri`.
   const factory DataprocBatchEnvironmentConfigExecutionConfigNetwork.subnetworkUri(
@@ -270,9 +270,9 @@ sealed class DataprocBatchEnvironmentConfigExecutionConfigNetwork {
 }
 
 /// The [DataprocBatchEnvironmentConfigExecutionConfigNetwork.networkUri] choice: sets `network_uri`.
-final class DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri
+final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUri
     extends DataprocBatchEnvironmentConfigExecutionConfigNetwork {
-  const DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri(
+  const DataprocBatchEnvironmentConfigExecutionConfigNetworkUri(
     this.networkUri,
   );
 

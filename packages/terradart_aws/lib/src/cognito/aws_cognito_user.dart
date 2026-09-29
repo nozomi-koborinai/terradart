@@ -39,7 +39,7 @@ sealed class CognitoUserPassword {
 
   /// Sets `password`.
   const factory CognitoUserPassword.password(TfArg<String> password) =
-      CognitoUserPasswordPassword;
+      CognitoUserPasswordChoice;
 
   /// Sets `temporary_password`.
   const factory CognitoUserPassword.temporaryPassword(
@@ -57,8 +57,8 @@ sealed class CognitoUserPassword {
 }
 
 /// The [CognitoUserPassword.password] choice: sets `password`.
-final class CognitoUserPasswordPassword extends CognitoUserPassword {
-  const CognitoUserPasswordPassword(this.password);
+final class CognitoUserPasswordChoice extends CognitoUserPassword {
+  const CognitoUserPasswordChoice(this.password);
 
   final TfArg<String> password;
 

@@ -229,7 +229,7 @@ sealed class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain {
   /// Sets `domain_arn`.
   const factory KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain.domainArn(
     TfArg<String> domainArn,
-  ) = KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainDomainArn;
+  ) = KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -256,9 +256,9 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainCluster
 }
 
 /// The [KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain.domainArn] choice: sets `domain_arn`.
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainDomainArn
+final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArn
     extends KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainDomainArn(
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArn(
     this.domainArn,
   );
 
@@ -2011,7 +2011,7 @@ sealed class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain {
   /// Sets `domain_arn`.
   const factory KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain.domainArn(
     TfArg<String> domainArn,
-  ) = KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainDomainArn;
+  ) = KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -2038,9 +2038,9 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainClusterEnd
 }
 
 /// The [KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain.domainArn] choice: sets `domain_arn`.
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainDomainArn
+final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainArn
     extends KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainDomainArn(
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainArn(
     this.domainArn,
   );
 

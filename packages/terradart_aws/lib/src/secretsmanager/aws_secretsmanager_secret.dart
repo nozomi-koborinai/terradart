@@ -17,11 +17,11 @@ sealed class SecretsmanagerSecretName {
 
   /// Sets `name`.
   const factory SecretsmanagerSecretName.name(TfArg<String> name) =
-      SecretsmanagerSecretNameName;
+      SecretsmanagerSecretNameChoice;
 
   /// Sets `name_prefix`.
   const factory SecretsmanagerSecretName.namePrefix(TfArg<String> namePrefix) =
-      SecretsmanagerSecretNameNamePrefix;
+      SecretsmanagerSecretNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,8 +34,8 @@ sealed class SecretsmanagerSecretName {
 }
 
 /// The [SecretsmanagerSecretName.name] choice: sets `name`.
-final class SecretsmanagerSecretNameName extends SecretsmanagerSecretName {
-  const SecretsmanagerSecretNameName(this.name);
+final class SecretsmanagerSecretNameChoice extends SecretsmanagerSecretName {
+  const SecretsmanagerSecretNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -50,9 +50,8 @@ final class SecretsmanagerSecretNameName extends SecretsmanagerSecretName {
 }
 
 /// The [SecretsmanagerSecretName.namePrefix] choice: sets `name_prefix`.
-final class SecretsmanagerSecretNameNamePrefix
-    extends SecretsmanagerSecretName {
-  const SecretsmanagerSecretNameNamePrefix(this.namePrefix);
+final class SecretsmanagerSecretNamePrefix extends SecretsmanagerSecretName {
+  const SecretsmanagerSecretNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

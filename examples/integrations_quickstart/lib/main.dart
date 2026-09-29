@@ -86,7 +86,7 @@ final class IntegrationsStack extends Stack {
         ),
         decryptedCredential: IntegrationsAuthConfigDecryptedCredential(
           credentialType: .literal('USERNAME_AND_PASSWORD'),
-          credential: .usernameAndPassword(
+          secret: .usernameAndPassword(
             IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword(
               username: .literal('terradart-dummy'),
               password: .literal('terradart-dummy-password'),

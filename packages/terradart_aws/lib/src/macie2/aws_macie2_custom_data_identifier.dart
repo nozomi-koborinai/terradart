@@ -16,12 +16,12 @@ sealed class Macie2CustomDataIdentifierName {
 
   /// Sets `name`.
   const factory Macie2CustomDataIdentifierName.name(TfArg<String> name) =
-      Macie2CustomDataIdentifierNameName;
+      Macie2CustomDataIdentifierNameChoice;
 
   /// Sets `name_prefix`.
   const factory Macie2CustomDataIdentifierName.namePrefix(
     TfArg<String> namePrefix,
-  ) = Macie2CustomDataIdentifierNameNamePrefix;
+  ) = Macie2CustomDataIdentifierNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,9 +34,9 @@ sealed class Macie2CustomDataIdentifierName {
 }
 
 /// The [Macie2CustomDataIdentifierName.name] choice: sets `name`.
-final class Macie2CustomDataIdentifierNameName
+final class Macie2CustomDataIdentifierNameChoice
     extends Macie2CustomDataIdentifierName {
-  const Macie2CustomDataIdentifierNameName(this.name);
+  const Macie2CustomDataIdentifierNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -51,9 +51,9 @@ final class Macie2CustomDataIdentifierNameName
 }
 
 /// The [Macie2CustomDataIdentifierName.namePrefix] choice: sets `name_prefix`.
-final class Macie2CustomDataIdentifierNameNamePrefix
+final class Macie2CustomDataIdentifierNamePrefix
     extends Macie2CustomDataIdentifierName {
-  const Macie2CustomDataIdentifierNameNamePrefix(this.namePrefix);
+  const Macie2CustomDataIdentifierNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

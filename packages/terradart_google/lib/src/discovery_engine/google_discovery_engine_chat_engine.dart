@@ -47,7 +47,7 @@ sealed class DiscoveryEngineChatEngineChatEngineConfigAgent {
   const factory DiscoveryEngineChatEngineChatEngineConfigAgent.agentCreationConfig(
     DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig
     agentCreationConfig,
-  ) = DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig;
+  ) = DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigChoice;
 
   /// Sets `dialogflow_agent_to_link`.
   const factory DiscoveryEngineChatEngineChatEngineConfigAgent.dialogflowAgentToLink(
@@ -61,9 +61,9 @@ sealed class DiscoveryEngineChatEngineChatEngineConfigAgent {
 }
 
 /// The [DiscoveryEngineChatEngineChatEngineConfigAgent.agentCreationConfig] choice: sets `agent_creation_config`.
-final class DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig
+final class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigChoice
     extends DiscoveryEngineChatEngineChatEngineConfigAgent {
-  const DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig(
+  const DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigChoice(
     this.agentCreationConfig,
   );
 

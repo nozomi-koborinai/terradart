@@ -1153,12 +1153,12 @@ sealed class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicroso
   /// Sets `tenant_id`.
   const factory BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantId(
     TfArg<String> tenantId,
-  ) = BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantId;
+  ) = BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdChoice;
 
   /// Sets `tenant_id_wo`.
   const factory BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantIdWo(
     TfArg<String> tenantIdWo,
-  ) = BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantIdWo;
+  ) = BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1167,10 +1167,10 @@ sealed class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicroso
 }
 
 /// The [BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantId] choice: sets `tenant_id`.
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantId
+final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdChoice
     extends
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantId(
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdChoice(
     this.tenantId,
   );
 
@@ -1184,10 +1184,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
 }
 
 /// The [BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantIdWo] choice: sets `tenant_id_wo`.
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantIdWo
+final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdWo
     extends
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantIdWo(
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdWo(
     this.tenantIdWo,
   );
 

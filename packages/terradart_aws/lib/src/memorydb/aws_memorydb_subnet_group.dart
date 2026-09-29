@@ -16,11 +16,11 @@ sealed class MemorydbSubnetGroupName {
 
   /// Sets `name`.
   const factory MemorydbSubnetGroupName.name(TfArg<String> name) =
-      MemorydbSubnetGroupNameName;
+      MemorydbSubnetGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory MemorydbSubnetGroupName.namePrefix(TfArg<String> namePrefix) =
-      MemorydbSubnetGroupNameNamePrefix;
+      MemorydbSubnetGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class MemorydbSubnetGroupName {
 }
 
 /// The [MemorydbSubnetGroupName.name] choice: sets `name`.
-final class MemorydbSubnetGroupNameName extends MemorydbSubnetGroupName {
-  const MemorydbSubnetGroupNameName(this.name);
+final class MemorydbSubnetGroupNameChoice extends MemorydbSubnetGroupName {
+  const MemorydbSubnetGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class MemorydbSubnetGroupNameName extends MemorydbSubnetGroupName {
 }
 
 /// The [MemorydbSubnetGroupName.namePrefix] choice: sets `name_prefix`.
-final class MemorydbSubnetGroupNameNamePrefix extends MemorydbSubnetGroupName {
-  const MemorydbSubnetGroupNameNamePrefix(this.namePrefix);
+final class MemorydbSubnetGroupNamePrefix extends MemorydbSubnetGroupName {
+  const MemorydbSubnetGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

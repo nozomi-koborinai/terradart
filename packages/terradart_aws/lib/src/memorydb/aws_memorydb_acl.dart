@@ -15,11 +15,12 @@ sealed class MemorydbAclName {
   const MemorydbAclName();
 
   /// Sets `name`.
-  const factory MemorydbAclName.name(TfArg<String> name) = MemorydbAclNameName;
+  const factory MemorydbAclName.name(TfArg<String> name) =
+      MemorydbAclNameChoice;
 
   /// Sets `name_prefix`.
   const factory MemorydbAclName.namePrefix(TfArg<String> namePrefix) =
-      MemorydbAclNameNamePrefix;
+      MemorydbAclNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,8 +33,8 @@ sealed class MemorydbAclName {
 }
 
 /// The [MemorydbAclName.name] choice: sets `name`.
-final class MemorydbAclNameName extends MemorydbAclName {
-  const MemorydbAclNameName(this.name);
+final class MemorydbAclNameChoice extends MemorydbAclName {
+  const MemorydbAclNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -48,8 +49,8 @@ final class MemorydbAclNameName extends MemorydbAclName {
 }
 
 /// The [MemorydbAclName.namePrefix] choice: sets `name_prefix`.
-final class MemorydbAclNameNamePrefix extends MemorydbAclName {
-  const MemorydbAclNameNamePrefix(this.namePrefix);
+final class MemorydbAclNamePrefix extends MemorydbAclName {
+  const MemorydbAclNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

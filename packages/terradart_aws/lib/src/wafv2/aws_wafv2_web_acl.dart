@@ -26,11 +26,12 @@ sealed class Wafv2WebAclName {
   const Wafv2WebAclName();
 
   /// Sets `name`.
-  const factory Wafv2WebAclName.name(TfArg<String> name) = Wafv2WebAclNameName;
+  const factory Wafv2WebAclName.name(TfArg<String> name) =
+      Wafv2WebAclNameChoice;
 
   /// Sets `name_prefix`.
   const factory Wafv2WebAclName.namePrefix(TfArg<String> namePrefix) =
-      Wafv2WebAclNameNamePrefix;
+      Wafv2WebAclNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,8 +44,8 @@ sealed class Wafv2WebAclName {
 }
 
 /// The [Wafv2WebAclName.name] choice: sets `name`.
-final class Wafv2WebAclNameName extends Wafv2WebAclName {
-  const Wafv2WebAclNameName(this.name);
+final class Wafv2WebAclNameChoice extends Wafv2WebAclName {
+  const Wafv2WebAclNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -59,8 +60,8 @@ final class Wafv2WebAclNameName extends Wafv2WebAclName {
 }
 
 /// The [Wafv2WebAclName.namePrefix] choice: sets `name_prefix`.
-final class Wafv2WebAclNameNamePrefix extends Wafv2WebAclName {
-  const Wafv2WebAclNameNamePrefix(this.namePrefix);
+final class Wafv2WebAclNamePrefix extends Wafv2WebAclName {
+  const Wafv2WebAclNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

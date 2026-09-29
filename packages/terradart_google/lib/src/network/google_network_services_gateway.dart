@@ -60,7 +60,7 @@ sealed class NetworkServicesGatewayPorts {
 
   /// Sets `ports`.
   const factory NetworkServicesGatewayPorts.ports(TfArg<List<num>> ports) =
-      NetworkServicesGatewayPortsPorts;
+      NetworkServicesGatewayPortsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -90,9 +90,9 @@ final class NetworkServicesGatewayPortsAllPorts
 }
 
 /// The [NetworkServicesGatewayPorts.ports] choice: sets `ports`.
-final class NetworkServicesGatewayPortsPorts
+final class NetworkServicesGatewayPortsChoice
     extends NetworkServicesGatewayPorts {
-  const NetworkServicesGatewayPortsPorts(this.ports);
+  const NetworkServicesGatewayPortsChoice(this.ports);
 
   final TfArg<List<num>> ports;
 

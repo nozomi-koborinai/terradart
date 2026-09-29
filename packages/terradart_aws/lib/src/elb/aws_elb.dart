@@ -27,11 +27,10 @@ sealed class ElbName {
   const ElbName();
 
   /// Sets `name`.
-  const factory ElbName.name(TfArg<String> name) = ElbNameName;
+  const factory ElbName.name(TfArg<String> name) = ElbNameChoice;
 
   /// Sets `name_prefix`.
-  const factory ElbName.namePrefix(TfArg<String> namePrefix) =
-      ElbNameNamePrefix;
+  const factory ElbName.namePrefix(TfArg<String> namePrefix) = ElbNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,8 +43,8 @@ sealed class ElbName {
 }
 
 /// The [ElbName.name] choice: sets `name`.
-final class ElbNameName extends ElbName {
-  const ElbNameName(this.name);
+final class ElbNameChoice extends ElbName {
+  const ElbNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -60,8 +59,8 @@ final class ElbNameName extends ElbName {
 }
 
 /// The [ElbName.namePrefix] choice: sets `name_prefix`.
-final class ElbNameNamePrefix extends ElbName {
-  const ElbNameNamePrefix(this.namePrefix);
+final class ElbNamePrefix extends ElbName {
+  const ElbNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

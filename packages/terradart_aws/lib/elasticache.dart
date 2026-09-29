@@ -28,9 +28,9 @@ export 'src/elasticache/aws_elasticache_replication_group.dart'
     show
         AwsElasticacheReplicationGroup,
         ElasticacheReplicationGroupAuth,
-        ElasticacheReplicationGroupAuthAuthToken,
-        ElasticacheReplicationGroupAuthAuthTokenWo,
+        ElasticacheReplicationGroupAuthToken,
         ElasticacheReplicationGroupAuthTokenUpdateStrategy,
+        ElasticacheReplicationGroupAuthTokenWo,
         ElasticacheReplicationGroupAuthUserGroupIds,
         ElasticacheReplicationGroupClusterMode,
         ElasticacheReplicationGroupDurability,

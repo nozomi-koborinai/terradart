@@ -84,12 +84,12 @@ sealed class CognitoUserPoolClientAnalyticsConfigurationApplication {
   /// Sets `application_arn`.
   const factory CognitoUserPoolClientAnalyticsConfigurationApplication.applicationArn(
     TfArg<String> applicationArn,
-  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationArn;
+  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationArn;
 
   /// Sets `application_id`.
   const factory CognitoUserPoolClientAnalyticsConfigurationApplication.applicationId(
     TfArg<String> applicationId,
-  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationId;
+  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -98,9 +98,9 @@ sealed class CognitoUserPoolClientAnalyticsConfigurationApplication {
 }
 
 /// The [CognitoUserPoolClientAnalyticsConfigurationApplication.applicationArn] choice: sets `application_arn`.
-final class CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationArn
+final class CognitoUserPoolClientAnalyticsConfigurationApplicationArn
     extends CognitoUserPoolClientAnalyticsConfigurationApplication {
-  const CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationArn(
+  const CognitoUserPoolClientAnalyticsConfigurationApplicationArn(
     this.applicationArn,
   );
 
@@ -116,9 +116,9 @@ final class CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationArn
 }
 
 /// The [CognitoUserPoolClientAnalyticsConfigurationApplication.applicationId] choice: sets `application_id`.
-final class CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationId
+final class CognitoUserPoolClientAnalyticsConfigurationApplicationId
     extends CognitoUserPoolClientAnalyticsConfigurationApplication {
-  const CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationId(
+  const CognitoUserPoolClientAnalyticsConfigurationApplicationId(
     this.applicationId,
   );
 

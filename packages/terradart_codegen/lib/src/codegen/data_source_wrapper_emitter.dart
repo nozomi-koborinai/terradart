@@ -134,8 +134,14 @@ class DataSourceWrapperEmitter {
         : const <NestedBlockSpec>[];
 
     final extraImports = override.extraImports ?? const <String>[];
+    final nestedTypes = nestedTypeSpecs.isEmpty
+        ? ''
+        : renderNestedTypes(
+            nestedTypeSpecs,
+            resourceTerraformType: def.terraformType,
+          );
     final needsMeta =
-        nestedTypeSpecs.isNotEmpty &&
+        nestedTypes.contains('@immutable') &&
         !extraImports.any((i) => i.contains('package:meta/meta.dart'));
     if (needsMeta) {
       buf.writeln("import 'package:meta/meta.dart';");
@@ -194,13 +200,8 @@ class DataSourceWrapperEmitter {
     );
     buf.writeln();
 
-    if (nestedTypeSpecs.isNotEmpty) {
-      buf.write(
-        renderNestedTypes(
-          nestedTypeSpecs,
-          resourceTerraformType: def.terraformType,
-        ),
-      );
+    if (nestedTypes.isNotEmpty) {
+      buf.write(nestedTypes);
       buf.writeln();
     }
 

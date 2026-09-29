@@ -90,39 +90,26 @@ enum QuicksightRefreshScheduleScheduleScheduleFrequencyInterval
   final String terraformValue;
 }
 
-/// Typed helper for the `schedule.schedule_frequency.refresh_on_day` block of
-/// `aws_quicksight_refresh_schedule` (derived from provider schema).
-@immutable
-final class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay {
-  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay({
-    this.day,
-  });
-
-  final QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay? day;
-
-  Map<String, Object?> encode() => {...?day?.encode()};
-}
-
 /// At most one of `day_of_month`, `day_of_week` on the `schedule.schedule_frequency.refresh_on_day` block of `aws_quicksight_refresh_schedule`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.dayOfMonth(...)`.
-sealed class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay {
-  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay();
+sealed class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay {
+  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay();
 
   /// Sets `day_of_month`.
-  const factory QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay.dayOfMonth(
+  const factory QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay.dayOfMonth(
     TfArg<String> dayOfMonth,
-  ) = QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayDayOfMonth;
+  ) = QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayOfMonth;
 
   /// Sets `day_of_week`.
-  const factory QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay.dayOfWeek(
+  const factory QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay.dayOfWeek(
     TfArg<
       QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfWeek
     >
     dayOfWeek,
-  ) = QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayDayOfWeek;
+  ) = QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayOfWeek;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -130,10 +117,10 @@ sealed class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay {
   Map<String, Object?> encode();
 }
 
-/// The [QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay.dayOfMonth] choice: sets `day_of_month`.
-final class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayDayOfMonth
-    extends QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay {
-  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayDayOfMonth(
+/// The [QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay.dayOfMonth] choice: sets `day_of_month`.
+final class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayOfMonth
+    extends QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay {
+  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayOfMonth(
     this.dayOfMonth,
   );
 
@@ -146,10 +133,10 @@ final class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayDay
   Map<String, Object?> encode() => {'day_of_month': dayOfMonth.toTfJson()};
 }
 
-/// The [QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay.dayOfWeek] choice: sets `day_of_week`.
-final class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayDayOfWeek
-    extends QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay {
-  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayDayOfWeek(
+/// The [QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay.dayOfWeek] choice: sets `day_of_week`.
+final class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayOfWeek
+    extends QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay {
+  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayOfWeek(
     this.dayOfWeek,
   );
 

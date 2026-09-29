@@ -20,13 +20,13 @@ sealed class ComputeRegionNetworkPolicyTrafficClassificationRuleTarget {
   /// Sets `target_service_accounts`.
   const factory ComputeRegionNetworkPolicyTrafficClassificationRuleTarget.targetServiceAccounts(
     TfArg<List<String>> targetServiceAccounts,
-  ) = ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts;
+  ) = ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccounts;
 
   /// Sets `target_secure_tags`.
   const factory ComputeRegionNetworkPolicyTrafficClassificationRuleTarget.targetSecureTags(
     List<ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags>
     targetSecureTags,
-  ) = ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags;
+  ) = ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTagsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -39,9 +39,9 @@ sealed class ComputeRegionNetworkPolicyTrafficClassificationRuleTarget {
 }
 
 /// The [ComputeRegionNetworkPolicyTrafficClassificationRuleTarget.targetServiceAccounts] choice: sets `target_service_accounts`.
-final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccounts
     extends ComputeRegionNetworkPolicyTrafficClassificationRuleTarget {
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts(
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccounts(
     this.targetServiceAccounts,
   );
 
@@ -62,9 +62,9 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServi
 }
 
 /// The [ComputeRegionNetworkPolicyTrafficClassificationRuleTarget.targetSecureTags] choice: sets `target_secure_tags`.
-final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTagsChoice
     extends ComputeRegionNetworkPolicyTrafficClassificationRuleTarget {
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags(
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTagsChoice(
     this.targetSecureTags,
   );
 

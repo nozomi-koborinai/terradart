@@ -16,11 +16,11 @@ sealed class DocdbSubnetGroupName {
 
   /// Sets `name`.
   const factory DocdbSubnetGroupName.name(TfArg<String> name) =
-      DocdbSubnetGroupNameName;
+      DocdbSubnetGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory DocdbSubnetGroupName.namePrefix(TfArg<String> namePrefix) =
-      DocdbSubnetGroupNameNamePrefix;
+      DocdbSubnetGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class DocdbSubnetGroupName {
 }
 
 /// The [DocdbSubnetGroupName.name] choice: sets `name`.
-final class DocdbSubnetGroupNameName extends DocdbSubnetGroupName {
-  const DocdbSubnetGroupNameName(this.name);
+final class DocdbSubnetGroupNameChoice extends DocdbSubnetGroupName {
+  const DocdbSubnetGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class DocdbSubnetGroupNameName extends DocdbSubnetGroupName {
 }
 
 /// The [DocdbSubnetGroupName.namePrefix] choice: sets `name_prefix`.
-final class DocdbSubnetGroupNameNamePrefix extends DocdbSubnetGroupName {
-  const DocdbSubnetGroupNameNamePrefix(this.namePrefix);
+final class DocdbSubnetGroupNamePrefix extends DocdbSubnetGroupName {
+  const DocdbSubnetGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

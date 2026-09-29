@@ -10,23 +10,23 @@ const Set<String> _awsEc2TrafficMirrorTargetSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.gatewayLoadBalancerEndpointId(...)`.
-sealed class Ec2TrafficMirrorTargetTarget {
-  const Ec2TrafficMirrorTargetTarget();
+sealed class Ec2TrafficMirrorTargetDestination {
+  const Ec2TrafficMirrorTargetDestination();
 
   /// Sets `gateway_load_balancer_endpoint_id`.
-  const factory Ec2TrafficMirrorTargetTarget.gatewayLoadBalancerEndpointId(
+  const factory Ec2TrafficMirrorTargetDestination.gatewayLoadBalancerEndpointId(
     TfArg<String> gatewayLoadBalancerEndpointId,
-  ) = Ec2TrafficMirrorTargetTargetGatewayLoadBalancerEndpointId;
+  ) = Ec2TrafficMirrorTargetDestinationGatewayLoadBalancerEndpointId;
 
   /// Sets `network_interface_id`.
-  const factory Ec2TrafficMirrorTargetTarget.networkInterfaceId(
+  const factory Ec2TrafficMirrorTargetDestination.networkInterfaceId(
     TfArg<String> networkInterfaceId,
-  ) = Ec2TrafficMirrorTargetTargetNetworkInterfaceId;
+  ) = Ec2TrafficMirrorTargetDestinationNetworkInterfaceId;
 
   /// Sets `network_load_balancer_arn`.
-  const factory Ec2TrafficMirrorTargetTarget.networkLoadBalancerArn(
+  const factory Ec2TrafficMirrorTargetDestination.networkLoadBalancerArn(
     TfArg<String> networkLoadBalancerArn,
-  ) = Ec2TrafficMirrorTargetTargetNetworkLoadBalancerArn;
+  ) = Ec2TrafficMirrorTargetDestinationNetworkLoadBalancerArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -38,10 +38,10 @@ sealed class Ec2TrafficMirrorTargetTarget {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Ec2TrafficMirrorTargetTarget.gatewayLoadBalancerEndpointId] choice: sets `gateway_load_balancer_endpoint_id`.
-final class Ec2TrafficMirrorTargetTargetGatewayLoadBalancerEndpointId
-    extends Ec2TrafficMirrorTargetTarget {
-  const Ec2TrafficMirrorTargetTargetGatewayLoadBalancerEndpointId(
+/// The [Ec2TrafficMirrorTargetDestination.gatewayLoadBalancerEndpointId] choice: sets `gateway_load_balancer_endpoint_id`.
+final class Ec2TrafficMirrorTargetDestinationGatewayLoadBalancerEndpointId
+    extends Ec2TrafficMirrorTargetDestination {
+  const Ec2TrafficMirrorTargetDestinationGatewayLoadBalancerEndpointId(
     this.gatewayLoadBalancerEndpointId,
   );
 
@@ -62,10 +62,12 @@ final class Ec2TrafficMirrorTargetTargetGatewayLoadBalancerEndpointId
   };
 }
 
-/// The [Ec2TrafficMirrorTargetTarget.networkInterfaceId] choice: sets `network_interface_id`.
-final class Ec2TrafficMirrorTargetTargetNetworkInterfaceId
-    extends Ec2TrafficMirrorTargetTarget {
-  const Ec2TrafficMirrorTargetTargetNetworkInterfaceId(this.networkInterfaceId);
+/// The [Ec2TrafficMirrorTargetDestination.networkInterfaceId] choice: sets `network_interface_id`.
+final class Ec2TrafficMirrorTargetDestinationNetworkInterfaceId
+    extends Ec2TrafficMirrorTargetDestination {
+  const Ec2TrafficMirrorTargetDestinationNetworkInterfaceId(
+    this.networkInterfaceId,
+  );
 
   final TfArg<String> networkInterfaceId;
 
@@ -83,10 +85,10 @@ final class Ec2TrafficMirrorTargetTargetNetworkInterfaceId
   };
 }
 
-/// The [Ec2TrafficMirrorTargetTarget.networkLoadBalancerArn] choice: sets `network_load_balancer_arn`.
-final class Ec2TrafficMirrorTargetTargetNetworkLoadBalancerArn
-    extends Ec2TrafficMirrorTargetTarget {
-  const Ec2TrafficMirrorTargetTargetNetworkLoadBalancerArn(
+/// The [Ec2TrafficMirrorTargetDestination.networkLoadBalancerArn] choice: sets `network_load_balancer_arn`.
+final class Ec2TrafficMirrorTargetDestinationNetworkLoadBalancerArn
+    extends Ec2TrafficMirrorTargetDestination {
+  const Ec2TrafficMirrorTargetDestinationNetworkLoadBalancerArn(
     this.networkLoadBalancerArn,
   );
 
@@ -113,7 +115,7 @@ final class AwsEc2TrafficMirrorTarget extends Resource {
   AwsEc2TrafficMirrorTarget({
     required super.localName,
     TfArg<String>? description,
-    required Ec2TrafficMirrorTargetTarget target,
+    required Ec2TrafficMirrorTargetDestination destination,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -124,7 +126,7 @@ final class AwsEc2TrafficMirrorTarget extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           ...target.argMap,
+           ...destination.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

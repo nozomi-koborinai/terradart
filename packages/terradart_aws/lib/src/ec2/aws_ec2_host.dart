@@ -35,11 +35,11 @@ sealed class Ec2HostInstance {
 
   /// Sets `instance_family`.
   const factory Ec2HostInstance.instanceFamily(TfArg<String> instanceFamily) =
-      Ec2HostInstanceInstanceFamily;
+      Ec2HostInstanceFamily;
 
   /// Sets `instance_type`.
   const factory Ec2HostInstance.instanceType(TfArg<String> instanceType) =
-      Ec2HostInstanceInstanceType;
+      Ec2HostInstanceType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,8 +52,8 @@ sealed class Ec2HostInstance {
 }
 
 /// The [Ec2HostInstance.instanceFamily] choice: sets `instance_family`.
-final class Ec2HostInstanceInstanceFamily extends Ec2HostInstance {
-  const Ec2HostInstanceInstanceFamily(this.instanceFamily);
+final class Ec2HostInstanceFamily extends Ec2HostInstance {
+  const Ec2HostInstanceFamily(this.instanceFamily);
 
   final TfArg<String> instanceFamily;
 
@@ -70,8 +70,8 @@ final class Ec2HostInstanceInstanceFamily extends Ec2HostInstance {
 }
 
 /// The [Ec2HostInstance.instanceType] choice: sets `instance_type`.
-final class Ec2HostInstanceInstanceType extends Ec2HostInstance {
-  const Ec2HostInstanceInstanceType(this.instanceType);
+final class Ec2HostInstanceType extends Ec2HostInstance {
+  const Ec2HostInstanceType(this.instanceType);
 
   final TfArg<String> instanceType;
 

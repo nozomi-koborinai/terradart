@@ -84,7 +84,7 @@ sealed class SpannerBackupScheduleEncryptionConfigKmsKeyName {
   /// Sets `kms_key_name`.
   const factory SpannerBackupScheduleEncryptionConfigKmsKeyName.kmsKeyName(
     TfArg<String> kmsKeyName,
-  ) = SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyName;
+  ) = SpannerBackupScheduleEncryptionConfigKmsKeyNameChoice;
 
   /// Sets `kms_key_names`.
   const factory SpannerBackupScheduleEncryptionConfigKmsKeyName.kmsKeyNames(
@@ -98,11 +98,9 @@ sealed class SpannerBackupScheduleEncryptionConfigKmsKeyName {
 }
 
 /// The [SpannerBackupScheduleEncryptionConfigKmsKeyName.kmsKeyName] choice: sets `kms_key_name`.
-final class SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyName
+final class SpannerBackupScheduleEncryptionConfigKmsKeyNameChoice
     extends SpannerBackupScheduleEncryptionConfigKmsKeyName {
-  const SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyName(
-    this.kmsKeyName,
-  );
+  const SpannerBackupScheduleEncryptionConfigKmsKeyNameChoice(this.kmsKeyName);
 
   final TfArg<String> kmsKeyName;
 

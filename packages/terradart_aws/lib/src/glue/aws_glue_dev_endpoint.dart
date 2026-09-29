@@ -31,7 +31,7 @@ sealed class GlueDevEndpointPublicKey {
 
   /// Sets `public_key`.
   const factory GlueDevEndpointPublicKey.publicKey(TfArg<String> publicKey) =
-      GlueDevEndpointPublicKeyPublicKey;
+      GlueDevEndpointPublicKeyChoice;
 
   /// Sets `public_keys`.
   const factory GlueDevEndpointPublicKey.publicKeys(
@@ -49,8 +49,8 @@ sealed class GlueDevEndpointPublicKey {
 }
 
 /// The [GlueDevEndpointPublicKey.publicKey] choice: sets `public_key`.
-final class GlueDevEndpointPublicKeyPublicKey extends GlueDevEndpointPublicKey {
-  const GlueDevEndpointPublicKeyPublicKey(this.publicKey);
+final class GlueDevEndpointPublicKeyChoice extends GlueDevEndpointPublicKey {
+  const GlueDevEndpointPublicKeyChoice(this.publicKey);
 
   final TfArg<String> publicKey;
 

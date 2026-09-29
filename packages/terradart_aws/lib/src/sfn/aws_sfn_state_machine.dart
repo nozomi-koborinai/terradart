@@ -27,11 +27,11 @@ sealed class SfnStateMachineName {
 
   /// Sets `name`.
   const factory SfnStateMachineName.name(TfArg<String> name) =
-      SfnStateMachineNameName;
+      SfnStateMachineNameChoice;
 
   /// Sets `name_prefix`.
   const factory SfnStateMachineName.namePrefix(TfArg<String> namePrefix) =
-      SfnStateMachineNameNamePrefix;
+      SfnStateMachineNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,8 +44,8 @@ sealed class SfnStateMachineName {
 }
 
 /// The [SfnStateMachineName.name] choice: sets `name`.
-final class SfnStateMachineNameName extends SfnStateMachineName {
-  const SfnStateMachineNameName(this.name);
+final class SfnStateMachineNameChoice extends SfnStateMachineName {
+  const SfnStateMachineNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -60,8 +60,8 @@ final class SfnStateMachineNameName extends SfnStateMachineName {
 }
 
 /// The [SfnStateMachineName.namePrefix] choice: sets `name_prefix`.
-final class SfnStateMachineNameNamePrefix extends SfnStateMachineName {
-  const SfnStateMachineNameNamePrefix(this.namePrefix);
+final class SfnStateMachineNamePrefix extends SfnStateMachineName {
+  const SfnStateMachineNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -16,11 +16,11 @@ sealed class MemorydbSnapshotName {
 
   /// Sets `name`.
   const factory MemorydbSnapshotName.name(TfArg<String> name) =
-      MemorydbSnapshotNameName;
+      MemorydbSnapshotNameChoice;
 
   /// Sets `name_prefix`.
   const factory MemorydbSnapshotName.namePrefix(TfArg<String> namePrefix) =
-      MemorydbSnapshotNameNamePrefix;
+      MemorydbSnapshotNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class MemorydbSnapshotName {
 }
 
 /// The [MemorydbSnapshotName.name] choice: sets `name`.
-final class MemorydbSnapshotNameName extends MemorydbSnapshotName {
-  const MemorydbSnapshotNameName(this.name);
+final class MemorydbSnapshotNameChoice extends MemorydbSnapshotName {
+  const MemorydbSnapshotNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class MemorydbSnapshotNameName extends MemorydbSnapshotName {
 }
 
 /// The [MemorydbSnapshotName.namePrefix] choice: sets `name_prefix`.
-final class MemorydbSnapshotNameNamePrefix extends MemorydbSnapshotName {
-  const MemorydbSnapshotNameNamePrefix(this.namePrefix);
+final class MemorydbSnapshotNamePrefix extends MemorydbSnapshotName {
+  const MemorydbSnapshotNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

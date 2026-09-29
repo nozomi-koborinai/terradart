@@ -42,12 +42,12 @@ sealed class ComprehendDocumentClassifierVersionName {
   /// Sets `version_name`.
   const factory ComprehendDocumentClassifierVersionName.versionName(
     TfArg<String> versionName,
-  ) = ComprehendDocumentClassifierVersionNameVersionName;
+  ) = ComprehendDocumentClassifierVersionNameChoice;
 
   /// Sets `version_name_prefix`.
   const factory ComprehendDocumentClassifierVersionName.versionNamePrefix(
     TfArg<String> versionNamePrefix,
-  ) = ComprehendDocumentClassifierVersionNameVersionNamePrefix;
+  ) = ComprehendDocumentClassifierVersionNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -60,9 +60,9 @@ sealed class ComprehendDocumentClassifierVersionName {
 }
 
 /// The [ComprehendDocumentClassifierVersionName.versionName] choice: sets `version_name`.
-final class ComprehendDocumentClassifierVersionNameVersionName
+final class ComprehendDocumentClassifierVersionNameChoice
     extends ComprehendDocumentClassifierVersionName {
-  const ComprehendDocumentClassifierVersionNameVersionName(this.versionName);
+  const ComprehendDocumentClassifierVersionNameChoice(this.versionName);
 
   final TfArg<String> versionName;
 
@@ -77,11 +77,9 @@ final class ComprehendDocumentClassifierVersionNameVersionName
 }
 
 /// The [ComprehendDocumentClassifierVersionName.versionNamePrefix] choice: sets `version_name_prefix`.
-final class ComprehendDocumentClassifierVersionNameVersionNamePrefix
+final class ComprehendDocumentClassifierVersionNamePrefix
     extends ComprehendDocumentClassifierVersionName {
-  const ComprehendDocumentClassifierVersionNameVersionNamePrefix(
-    this.versionNamePrefix,
-  );
+  const ComprehendDocumentClassifierVersionNamePrefix(this.versionNamePrefix);
 
   final TfArg<String> versionNamePrefix;
 

@@ -208,6 +208,20 @@ MigrateEntryBuild buildMigrateEntry({
     final block = blocks[name];
     if (custom != null) {
       slots.add(_customSlot(name, custom, ctx));
+    } else if (spec != null &&
+        ctx.helpers.sealedClasses.contains(spec.className)) {
+      // A block that is one exactly-one group is itself the sealed type.
+      slots.add(
+        _fromShape(
+          classifyDartType(
+            spec.repeated ? 'List<${spec.className}>' : spec.className,
+            ctx,
+          ),
+          tfName: spec.tfName,
+          dartName: snakeToDartIdent(spec.tfName),
+          required: spec.required || requiredOverrides.contains(name),
+        ),
+      );
     } else if (spec != null) {
       slots.add(
         MigrateSlotData(

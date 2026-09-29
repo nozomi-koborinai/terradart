@@ -9,33 +9,22 @@ const Set<String> _awsDatasyncLocationFsxOntapFileSystemSensitive = <String>{
   'protocol.smb.password',
 };
 
-/// Typed helper for the `protocol` block of
-/// `aws_datasync_location_fsx_ontap_file_system` (derived from provider schema).
-@immutable
-final class DatasyncLocationFsxOntapFileSystemProtocol {
-  const DatasyncLocationFsxOntapFileSystemProtocol({required this.protocol});
-
-  final DatasyncLocationFsxOntapFileSystemProtocolProtocol protocol;
-
-  Map<String, Object?> encode() => {...protocol.encode()};
-}
-
 /// Exactly one of `nfs`, `smb` on the `protocol` block of `aws_datasync_location_fsx_ontap_file_system`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.nfs(...)`.
-sealed class DatasyncLocationFsxOntapFileSystemProtocolProtocol {
-  const DatasyncLocationFsxOntapFileSystemProtocolProtocol();
+sealed class DatasyncLocationFsxOntapFileSystemProtocol {
+  const DatasyncLocationFsxOntapFileSystemProtocol();
 
   /// Sets `nfs`.
-  const factory DatasyncLocationFsxOntapFileSystemProtocolProtocol.nfs(
+  const factory DatasyncLocationFsxOntapFileSystemProtocol.nfs(
     DatasyncLocationFsxOntapFileSystemProtocolNfs nfs,
-  ) = DatasyncLocationFsxOntapFileSystemProtocolProtocolNfs;
+  ) = DatasyncLocationFsxOntapFileSystemProtocolNfsChoice;
 
   /// Sets `smb`.
-  const factory DatasyncLocationFsxOntapFileSystemProtocolProtocol.smb(
+  const factory DatasyncLocationFsxOntapFileSystemProtocol.smb(
     DatasyncLocationFsxOntapFileSystemProtocolSmb smb,
-  ) = DatasyncLocationFsxOntapFileSystemProtocolProtocolSmb;
+  ) = DatasyncLocationFsxOntapFileSystemProtocolSmbChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,10 +32,10 @@ sealed class DatasyncLocationFsxOntapFileSystemProtocolProtocol {
   Map<String, Object?> encode();
 }
 
-/// The [DatasyncLocationFsxOntapFileSystemProtocolProtocol.nfs] choice: sets `nfs`.
-final class DatasyncLocationFsxOntapFileSystemProtocolProtocolNfs
-    extends DatasyncLocationFsxOntapFileSystemProtocolProtocol {
-  const DatasyncLocationFsxOntapFileSystemProtocolProtocolNfs(this.nfs);
+/// The [DatasyncLocationFsxOntapFileSystemProtocol.nfs] choice: sets `nfs`.
+final class DatasyncLocationFsxOntapFileSystemProtocolNfsChoice
+    extends DatasyncLocationFsxOntapFileSystemProtocol {
+  const DatasyncLocationFsxOntapFileSystemProtocolNfsChoice(this.nfs);
 
   final DatasyncLocationFsxOntapFileSystemProtocolNfs nfs;
 
@@ -57,10 +46,10 @@ final class DatasyncLocationFsxOntapFileSystemProtocolProtocolNfs
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
 
-/// The [DatasyncLocationFsxOntapFileSystemProtocolProtocol.smb] choice: sets `smb`.
-final class DatasyncLocationFsxOntapFileSystemProtocolProtocolSmb
-    extends DatasyncLocationFsxOntapFileSystemProtocolProtocol {
-  const DatasyncLocationFsxOntapFileSystemProtocolProtocolSmb(this.smb);
+/// The [DatasyncLocationFsxOntapFileSystemProtocol.smb] choice: sets `smb`.
+final class DatasyncLocationFsxOntapFileSystemProtocolSmbChoice
+    extends DatasyncLocationFsxOntapFileSystemProtocol {
+  const DatasyncLocationFsxOntapFileSystemProtocolSmbChoice(this.smb);
 
   final DatasyncLocationFsxOntapFileSystemProtocolSmb smb;
 

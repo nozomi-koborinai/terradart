@@ -30,7 +30,7 @@ sealed class NeptuneGlobalClusterSource {
   /// Sets `source_db_cluster_identifier`.
   const factory NeptuneGlobalClusterSource.sourceDbClusterIdentifier(
     TfArg<String> sourceDbClusterIdentifier,
-  ) = NeptuneGlobalClusterSourceSourceDbClusterIdentifier;
+  ) = NeptuneGlobalClusterSourceDbClusterIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -60,9 +60,9 @@ final class NeptuneGlobalClusterSourceEngine
 }
 
 /// The [NeptuneGlobalClusterSource.sourceDbClusterIdentifier] choice: sets `source_db_cluster_identifier`.
-final class NeptuneGlobalClusterSourceSourceDbClusterIdentifier
+final class NeptuneGlobalClusterSourceDbClusterIdentifier
     extends NeptuneGlobalClusterSource {
-  const NeptuneGlobalClusterSourceSourceDbClusterIdentifier(
+  const NeptuneGlobalClusterSourceDbClusterIdentifier(
     this.sourceDbClusterIdentifier,
   );
 

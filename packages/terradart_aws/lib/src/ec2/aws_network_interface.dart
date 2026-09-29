@@ -30,7 +30,7 @@ sealed class NetworkInterfaceIpv4Prefix {
   /// Sets `ipv4_prefix_count`.
   const factory NetworkInterfaceIpv4Prefix.ipv4PrefixCount(
     TfArg<num> ipv4PrefixCount,
-  ) = NetworkInterfaceIpv4PrefixIpv4PrefixCount;
+  ) = NetworkInterfaceIpv4PrefixCount;
 
   /// Sets `ipv4_prefixes`.
   const factory NetworkInterfaceIpv4Prefix.ipv4Prefixes(
@@ -48,9 +48,8 @@ sealed class NetworkInterfaceIpv4Prefix {
 }
 
 /// The [NetworkInterfaceIpv4Prefix.ipv4PrefixCount] choice: sets `ipv4_prefix_count`.
-final class NetworkInterfaceIpv4PrefixIpv4PrefixCount
-    extends NetworkInterfaceIpv4Prefix {
-  const NetworkInterfaceIpv4PrefixIpv4PrefixCount(this.ipv4PrefixCount);
+final class NetworkInterfaceIpv4PrefixCount extends NetworkInterfaceIpv4Prefix {
+  const NetworkInterfaceIpv4PrefixCount(this.ipv4PrefixCount);
 
   final TfArg<num> ipv4PrefixCount;
 
@@ -96,12 +95,12 @@ sealed class NetworkInterfaceIpv6Address {
   /// Sets `ipv6_address_count`.
   const factory NetworkInterfaceIpv6Address.ipv6AddressCount(
     TfArg<num> ipv6AddressCount,
-  ) = NetworkInterfaceIpv6AddressIpv6AddressCount;
+  ) = NetworkInterfaceIpv6AddressCount;
 
   /// Sets `ipv6_address_list`.
   const factory NetworkInterfaceIpv6Address.ipv6AddressList(
     TfArg<List<String>> ipv6AddressList,
-  ) = NetworkInterfaceIpv6AddressIpv6AddressList;
+  ) = NetworkInterfaceIpv6AddressList;
 
   /// Sets `ipv6_addresses`.
   const factory NetworkInterfaceIpv6Address.ipv6Addresses(
@@ -119,9 +118,9 @@ sealed class NetworkInterfaceIpv6Address {
 }
 
 /// The [NetworkInterfaceIpv6Address.ipv6AddressCount] choice: sets `ipv6_address_count`.
-final class NetworkInterfaceIpv6AddressIpv6AddressCount
+final class NetworkInterfaceIpv6AddressCount
     extends NetworkInterfaceIpv6Address {
-  const NetworkInterfaceIpv6AddressIpv6AddressCount(this.ipv6AddressCount);
+  const NetworkInterfaceIpv6AddressCount(this.ipv6AddressCount);
 
   final TfArg<num> ipv6AddressCount;
 
@@ -140,9 +139,9 @@ final class NetworkInterfaceIpv6AddressIpv6AddressCount
 }
 
 /// The [NetworkInterfaceIpv6Address.ipv6AddressList] choice: sets `ipv6_address_list`.
-final class NetworkInterfaceIpv6AddressIpv6AddressList
+final class NetworkInterfaceIpv6AddressList
     extends NetworkInterfaceIpv6Address {
-  const NetworkInterfaceIpv6AddressIpv6AddressList(this.ipv6AddressList);
+  const NetworkInterfaceIpv6AddressList(this.ipv6AddressList);
 
   final TfArg<List<String>> ipv6AddressList;
 
@@ -188,7 +187,7 @@ sealed class NetworkInterfaceIpv6Prefix {
   /// Sets `ipv6_prefix_count`.
   const factory NetworkInterfaceIpv6Prefix.ipv6PrefixCount(
     TfArg<num> ipv6PrefixCount,
-  ) = NetworkInterfaceIpv6PrefixIpv6PrefixCount;
+  ) = NetworkInterfaceIpv6PrefixCount;
 
   /// Sets `ipv6_prefixes`.
   const factory NetworkInterfaceIpv6Prefix.ipv6Prefixes(
@@ -206,9 +205,8 @@ sealed class NetworkInterfaceIpv6Prefix {
 }
 
 /// The [NetworkInterfaceIpv6Prefix.ipv6PrefixCount] choice: sets `ipv6_prefix_count`.
-final class NetworkInterfaceIpv6PrefixIpv6PrefixCount
-    extends NetworkInterfaceIpv6Prefix {
-  const NetworkInterfaceIpv6PrefixIpv6PrefixCount(this.ipv6PrefixCount);
+final class NetworkInterfaceIpv6PrefixCount extends NetworkInterfaceIpv6Prefix {
+  const NetworkInterfaceIpv6PrefixCount(this.ipv6PrefixCount);
 
   final TfArg<num> ipv6PrefixCount;
 

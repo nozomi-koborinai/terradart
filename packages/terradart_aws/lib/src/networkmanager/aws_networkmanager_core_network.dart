@@ -17,12 +17,12 @@ sealed class NetworkmanagerCoreNetworkBasePolicy {
   /// Sets `base_policy_document`.
   const factory NetworkmanagerCoreNetworkBasePolicy.basePolicyDocument(
     TfArg<String> basePolicyDocument,
-  ) = NetworkmanagerCoreNetworkBasePolicyBasePolicyDocument;
+  ) = NetworkmanagerCoreNetworkBasePolicyDocument;
 
   /// Sets `base_policy_regions`.
   const factory NetworkmanagerCoreNetworkBasePolicy.basePolicyRegions(
     TfArg<List<String>> basePolicyRegions,
-  ) = NetworkmanagerCoreNetworkBasePolicyBasePolicyRegions;
+  ) = NetworkmanagerCoreNetworkBasePolicyRegions;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,11 +35,9 @@ sealed class NetworkmanagerCoreNetworkBasePolicy {
 }
 
 /// The [NetworkmanagerCoreNetworkBasePolicy.basePolicyDocument] choice: sets `base_policy_document`.
-final class NetworkmanagerCoreNetworkBasePolicyBasePolicyDocument
+final class NetworkmanagerCoreNetworkBasePolicyDocument
     extends NetworkmanagerCoreNetworkBasePolicy {
-  const NetworkmanagerCoreNetworkBasePolicyBasePolicyDocument(
-    this.basePolicyDocument,
-  );
+  const NetworkmanagerCoreNetworkBasePolicyDocument(this.basePolicyDocument);
 
   final TfArg<String> basePolicyDocument;
 
@@ -58,11 +56,9 @@ final class NetworkmanagerCoreNetworkBasePolicyBasePolicyDocument
 }
 
 /// The [NetworkmanagerCoreNetworkBasePolicy.basePolicyRegions] choice: sets `base_policy_regions`.
-final class NetworkmanagerCoreNetworkBasePolicyBasePolicyRegions
+final class NetworkmanagerCoreNetworkBasePolicyRegions
     extends NetworkmanagerCoreNetworkBasePolicy {
-  const NetworkmanagerCoreNetworkBasePolicyBasePolicyRegions(
-    this.basePolicyRegions,
-  );
+  const NetworkmanagerCoreNetworkBasePolicyRegions(this.basePolicyRegions);
 
   final TfArg<List<String>> basePolicyRegions;
 

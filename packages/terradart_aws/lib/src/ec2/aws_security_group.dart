@@ -16,11 +16,11 @@ sealed class SecurityGroupName {
 
   /// Sets `name`.
   const factory SecurityGroupName.name(TfArg<String> name) =
-      SecurityGroupNameName;
+      SecurityGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory SecurityGroupName.namePrefix(TfArg<String> namePrefix) =
-      SecurityGroupNameNamePrefix;
+      SecurityGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class SecurityGroupName {
 }
 
 /// The [SecurityGroupName.name] choice: sets `name`.
-final class SecurityGroupNameName extends SecurityGroupName {
-  const SecurityGroupNameName(this.name);
+final class SecurityGroupNameChoice extends SecurityGroupName {
+  const SecurityGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class SecurityGroupNameName extends SecurityGroupName {
 }
 
 /// The [SecurityGroupName.namePrefix] choice: sets `name_prefix`.
-final class SecurityGroupNameNamePrefix extends SecurityGroupName {
-  const SecurityGroupNameNamePrefix(this.namePrefix);
+final class SecurityGroupNamePrefix extends SecurityGroupName {
+  const SecurityGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

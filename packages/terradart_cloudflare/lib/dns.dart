@@ -9,7 +9,7 @@ export 'src/dns/cloudflare_dns_record.dart'
     show
         CloudflareDnsRecord,
         DnsRecordContent,
-        DnsRecordContentContent,
+        DnsRecordContentChoice,
         DnsRecordContentData,
         DnsRecordData,
         DnsRecordDataLatDirection,

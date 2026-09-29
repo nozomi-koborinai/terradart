@@ -18,36 +18,22 @@ final class VertexAiFeaturestoreEncryptionSpec {
   Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
 }
 
-/// Typed helper for the `online_serving_config` block of
-/// `google_vertex_ai_featurestore` (derived from provider schema).
-@immutable
-final class VertexAiFeaturestoreOnlineServingConfig {
-  const VertexAiFeaturestoreOnlineServingConfig({
-    required this.onlineServingConfig,
-  });
-
-  final VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig
-  onlineServingConfig;
-
-  Map<String, Object?> encode() => {...onlineServingConfig.encode()};
-}
-
 /// Exactly one of `fixed_node_count`, `scaling` on the `online_serving_config` block of `google_vertex_ai_featurestore`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.fixedNodeCount(...)`.
-sealed class VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig {
-  const VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig();
+sealed class VertexAiFeaturestoreOnlineServingConfig {
+  const VertexAiFeaturestoreOnlineServingConfig();
 
   /// Sets `fixed_node_count`.
-  const factory VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig.fixedNodeCount(
+  const factory VertexAiFeaturestoreOnlineServingConfig.fixedNodeCount(
     TfArg<num> fixedNodeCount,
-  ) = VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigFixedNodeCount;
+  ) = VertexAiFeaturestoreOnlineServingConfigFixedNodeCount;
 
   /// Sets `scaling`.
-  const factory VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig.scaling(
+  const factory VertexAiFeaturestoreOnlineServingConfig.scaling(
     VertexAiFeaturestoreOnlineServingConfigScaling scaling,
-  ) = VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigScaling;
+  ) = VertexAiFeaturestoreOnlineServingConfigScalingChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -55,10 +41,10 @@ sealed class VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig.fixedNodeCount] choice: sets `fixed_node_count`.
-final class VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigFixedNodeCount
-    extends VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig {
-  const VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigFixedNodeCount(
+/// The [VertexAiFeaturestoreOnlineServingConfig.fixedNodeCount] choice: sets `fixed_node_count`.
+final class VertexAiFeaturestoreOnlineServingConfigFixedNodeCount
+    extends VertexAiFeaturestoreOnlineServingConfig {
+  const VertexAiFeaturestoreOnlineServingConfigFixedNodeCount(
     this.fixedNodeCount,
   );
 
@@ -73,12 +59,10 @@ final class VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigFixedNodeC
   };
 }
 
-/// The [VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig.scaling] choice: sets `scaling`.
-final class VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigScaling
-    extends VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig {
-  const VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigScaling(
-    this.scaling,
-  );
+/// The [VertexAiFeaturestoreOnlineServingConfig.scaling] choice: sets `scaling`.
+final class VertexAiFeaturestoreOnlineServingConfigScalingChoice
+    extends VertexAiFeaturestoreOnlineServingConfig {
+  const VertexAiFeaturestoreOnlineServingConfigScalingChoice(this.scaling);
 
   final VertexAiFeaturestoreOnlineServingConfigScaling scaling;
 

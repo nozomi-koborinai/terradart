@@ -16,11 +16,11 @@ sealed class IamServerCertificateName {
 
   /// Sets `name`.
   const factory IamServerCertificateName.name(TfArg<String> name) =
-      IamServerCertificateNameName;
+      IamServerCertificateNameChoice;
 
   /// Sets `name_prefix`.
   const factory IamServerCertificateName.namePrefix(TfArg<String> namePrefix) =
-      IamServerCertificateNameNamePrefix;
+      IamServerCertificateNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class IamServerCertificateName {
 }
 
 /// The [IamServerCertificateName.name] choice: sets `name`.
-final class IamServerCertificateNameName extends IamServerCertificateName {
-  const IamServerCertificateNameName(this.name);
+final class IamServerCertificateNameChoice extends IamServerCertificateName {
+  const IamServerCertificateNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,9 +49,8 @@ final class IamServerCertificateNameName extends IamServerCertificateName {
 }
 
 /// The [IamServerCertificateName.namePrefix] choice: sets `name_prefix`.
-final class IamServerCertificateNameNamePrefix
-    extends IamServerCertificateName {
-  const IamServerCertificateNameNamePrefix(this.namePrefix);
+final class IamServerCertificateNamePrefix extends IamServerCertificateName {
+  const IamServerCertificateNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

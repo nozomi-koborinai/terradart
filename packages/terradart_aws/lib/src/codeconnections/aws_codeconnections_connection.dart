@@ -30,7 +30,7 @@ sealed class CodeconnectionsConnectionHost {
 
   /// Sets `host_arn`.
   const factory CodeconnectionsConnectionHost.hostArn(TfArg<String> hostArn) =
-      CodeconnectionsConnectionHostHostArn;
+      CodeconnectionsConnectionHostArn;
 
   /// Sets `provider_type`.
   const factory CodeconnectionsConnectionHost.providerType(
@@ -48,9 +48,9 @@ sealed class CodeconnectionsConnectionHost {
 }
 
 /// The [CodeconnectionsConnectionHost.hostArn] choice: sets `host_arn`.
-final class CodeconnectionsConnectionHostHostArn
+final class CodeconnectionsConnectionHostArn
     extends CodeconnectionsConnectionHost {
-  const CodeconnectionsConnectionHostHostArn(this.hostArn);
+  const CodeconnectionsConnectionHostArn(this.hostArn);
 
   final TfArg<String> hostArn;
 

@@ -6,4 +6,4 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "branch_filter, filter_group": filter
+  "branch_filter, filter_group": trigger

@@ -47,11 +47,11 @@ sealed class MemorydbClusterName {
 
   /// Sets `name`.
   const factory MemorydbClusterName.name(TfArg<String> name) =
-      MemorydbClusterNameName;
+      MemorydbClusterNameChoice;
 
   /// Sets `name_prefix`.
   const factory MemorydbClusterName.namePrefix(TfArg<String> namePrefix) =
-      MemorydbClusterNameNamePrefix;
+      MemorydbClusterNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -64,8 +64,8 @@ sealed class MemorydbClusterName {
 }
 
 /// The [MemorydbClusterName.name] choice: sets `name`.
-final class MemorydbClusterNameName extends MemorydbClusterName {
-  const MemorydbClusterNameName(this.name);
+final class MemorydbClusterNameChoice extends MemorydbClusterName {
+  const MemorydbClusterNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -80,8 +80,8 @@ final class MemorydbClusterNameName extends MemorydbClusterName {
 }
 
 /// The [MemorydbClusterName.namePrefix] choice: sets `name_prefix`.
-final class MemorydbClusterNameNamePrefix extends MemorydbClusterName {
-  const MemorydbClusterNameNamePrefix(this.namePrefix);
+final class MemorydbClusterNamePrefix extends MemorydbClusterName {
+  const MemorydbClusterNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -106,12 +106,12 @@ sealed class MemorydbClusterSnapshot {
   /// Sets `snapshot_arns`.
   const factory MemorydbClusterSnapshot.snapshotArns(
     TfArg<List<String>> snapshotArns,
-  ) = MemorydbClusterSnapshotSnapshotArns;
+  ) = MemorydbClusterSnapshotArns;
 
   /// Sets `snapshot_name`.
   const factory MemorydbClusterSnapshot.snapshotName(
     TfArg<String> snapshotName,
-  ) = MemorydbClusterSnapshotSnapshotName;
+  ) = MemorydbClusterSnapshotName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -124,9 +124,8 @@ sealed class MemorydbClusterSnapshot {
 }
 
 /// The [MemorydbClusterSnapshot.snapshotArns] choice: sets `snapshot_arns`.
-final class MemorydbClusterSnapshotSnapshotArns
-    extends MemorydbClusterSnapshot {
-  const MemorydbClusterSnapshotSnapshotArns(this.snapshotArns);
+final class MemorydbClusterSnapshotArns extends MemorydbClusterSnapshot {
+  const MemorydbClusterSnapshotArns(this.snapshotArns);
 
   final TfArg<List<String>> snapshotArns;
 
@@ -141,9 +140,8 @@ final class MemorydbClusterSnapshotSnapshotArns
 }
 
 /// The [MemorydbClusterSnapshot.snapshotName] choice: sets `snapshot_name`.
-final class MemorydbClusterSnapshotSnapshotName
-    extends MemorydbClusterSnapshot {
-  const MemorydbClusterSnapshotSnapshotName(this.snapshotName);
+final class MemorydbClusterSnapshotName extends MemorydbClusterSnapshot {
+  const MemorydbClusterSnapshotName(this.snapshotName);
 
   final TfArg<String> snapshotName;
 

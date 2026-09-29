@@ -16,7 +16,7 @@ sealed class ConnectContactFlowModuleContent {
 
   /// Sets `content`.
   const factory ConnectContactFlowModuleContent.content(TfArg<String> content) =
-      ConnectContactFlowModuleContentContent;
+      ConnectContactFlowModuleContentChoice;
 
   /// Sets `filename`.
   const factory ConnectContactFlowModuleContent.filename(
@@ -34,9 +34,9 @@ sealed class ConnectContactFlowModuleContent {
 }
 
 /// The [ConnectContactFlowModuleContent.content] choice: sets `content`.
-final class ConnectContactFlowModuleContentContent
+final class ConnectContactFlowModuleContentChoice
     extends ConnectContactFlowModuleContent {
-  const ConnectContactFlowModuleContentContent(this.content);
+  const ConnectContactFlowModuleContentChoice(this.content);
 
   final TfArg<String> content;
 

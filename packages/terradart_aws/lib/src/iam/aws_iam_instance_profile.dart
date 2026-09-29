@@ -16,11 +16,11 @@ sealed class IamInstanceProfileName {
 
   /// Sets `name`.
   const factory IamInstanceProfileName.name(TfArg<String> name) =
-      IamInstanceProfileNameName;
+      IamInstanceProfileNameChoice;
 
   /// Sets `name_prefix`.
   const factory IamInstanceProfileName.namePrefix(TfArg<String> namePrefix) =
-      IamInstanceProfileNameNamePrefix;
+      IamInstanceProfileNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class IamInstanceProfileName {
 }
 
 /// The [IamInstanceProfileName.name] choice: sets `name`.
-final class IamInstanceProfileNameName extends IamInstanceProfileName {
-  const IamInstanceProfileNameName(this.name);
+final class IamInstanceProfileNameChoice extends IamInstanceProfileName {
+  const IamInstanceProfileNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class IamInstanceProfileNameName extends IamInstanceProfileName {
 }
 
 /// The [IamInstanceProfileName.namePrefix] choice: sets `name_prefix`.
-final class IamInstanceProfileNameNamePrefix extends IamInstanceProfileName {
-  const IamInstanceProfileNameNamePrefix(this.namePrefix);
+final class IamInstanceProfileNamePrefix extends IamInstanceProfileName {
+  const IamInstanceProfileNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

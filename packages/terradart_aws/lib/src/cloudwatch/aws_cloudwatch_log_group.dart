@@ -27,11 +27,11 @@ sealed class CloudwatchLogGroupName {
 
   /// Sets `name`.
   const factory CloudwatchLogGroupName.name(TfArg<String> name) =
-      CloudwatchLogGroupNameName;
+      CloudwatchLogGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory CloudwatchLogGroupName.namePrefix(TfArg<String> namePrefix) =
-      CloudwatchLogGroupNameNamePrefix;
+      CloudwatchLogGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,8 +44,8 @@ sealed class CloudwatchLogGroupName {
 }
 
 /// The [CloudwatchLogGroupName.name] choice: sets `name`.
-final class CloudwatchLogGroupNameName extends CloudwatchLogGroupName {
-  const CloudwatchLogGroupNameName(this.name);
+final class CloudwatchLogGroupNameChoice extends CloudwatchLogGroupName {
+  const CloudwatchLogGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -60,8 +60,8 @@ final class CloudwatchLogGroupNameName extends CloudwatchLogGroupName {
 }
 
 /// The [CloudwatchLogGroupName.namePrefix] choice: sets `name_prefix`.
-final class CloudwatchLogGroupNameNamePrefix extends CloudwatchLogGroupName {
-  const CloudwatchLogGroupNameNamePrefix(this.namePrefix);
+final class CloudwatchLogGroupNamePrefix extends CloudwatchLogGroupName {
+  const CloudwatchLogGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

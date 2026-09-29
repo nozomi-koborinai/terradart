@@ -15,6 +15,7 @@ export 'src/privileged_access_manager/google_privileged_access_manager_settings.
         PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantExternallyModified,
         PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotifications,
         PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotificationsPendingApproval,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorChoice,
         PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotifications,
         PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsEntitlementAssigned,
         PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivated,
@@ -25,7 +26,5 @@ export 'src/privileged_access_manager/google_privileged_access_manager_settings.
         PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExternallyModified,
         PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantRevoked,
         PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications,
-        PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings,
-        PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsCustomNotificationBehavior,
-        PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsDisableAllNotifications,
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsChoice,
         PrivilegedAccessManagerSettingsServiceAccountApproverSettings;

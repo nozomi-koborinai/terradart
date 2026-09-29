@@ -27,11 +27,11 @@ sealed class Macie2FindingsFilterName {
 
   /// Sets `name`.
   const factory Macie2FindingsFilterName.name(TfArg<String> name) =
-      Macie2FindingsFilterNameName;
+      Macie2FindingsFilterNameChoice;
 
   /// Sets `name_prefix`.
   const factory Macie2FindingsFilterName.namePrefix(TfArg<String> namePrefix) =
-      Macie2FindingsFilterNameNamePrefix;
+      Macie2FindingsFilterNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,8 +44,8 @@ sealed class Macie2FindingsFilterName {
 }
 
 /// The [Macie2FindingsFilterName.name] choice: sets `name`.
-final class Macie2FindingsFilterNameName extends Macie2FindingsFilterName {
-  const Macie2FindingsFilterNameName(this.name);
+final class Macie2FindingsFilterNameChoice extends Macie2FindingsFilterName {
+  const Macie2FindingsFilterNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -60,9 +60,8 @@ final class Macie2FindingsFilterNameName extends Macie2FindingsFilterName {
 }
 
 /// The [Macie2FindingsFilterName.namePrefix] choice: sets `name_prefix`.
-final class Macie2FindingsFilterNameNamePrefix
-    extends Macie2FindingsFilterName {
-  const Macie2FindingsFilterNameNamePrefix(this.namePrefix);
+final class Macie2FindingsFilterNamePrefix extends Macie2FindingsFilterName {
+  const Macie2FindingsFilterNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

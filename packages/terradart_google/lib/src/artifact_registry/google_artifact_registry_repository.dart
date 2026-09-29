@@ -708,20 +708,20 @@ class ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.virtualRepositoryConfig(...)`.
-sealed class ArtifactRegistryRepositoryRepositoryConfig {
-  const ArtifactRegistryRepositoryRepositoryConfig();
+sealed class ArtifactRegistryRepositoryConfig {
+  const ArtifactRegistryRepositoryConfig();
 
   /// Sets `virtual_repository_config`.
-  const factory ArtifactRegistryRepositoryRepositoryConfig.virtualRepositoryConfig(
+  const factory ArtifactRegistryRepositoryConfig.virtualRepositoryConfig(
     ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig
     virtualRepositoryConfig,
-  ) = ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig;
+  ) = ArtifactRegistryRepositoryConfigVirtualRepositoryConfig;
 
   /// Sets `remote_repository_config`.
-  const factory ArtifactRegistryRepositoryRepositoryConfig.remoteRepositoryConfig(
+  const factory ArtifactRegistryRepositoryConfig.remoteRepositoryConfig(
     ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig
     remoteRepositoryConfig,
-  ) = ArtifactRegistryRepositoryRepositoryConfigRemoteRepositoryConfig;
+  ) = ArtifactRegistryRepositoryConfigRemoteRepositoryConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -733,10 +733,10 @@ sealed class ArtifactRegistryRepositoryRepositoryConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ArtifactRegistryRepositoryRepositoryConfig.virtualRepositoryConfig] choice: sets `virtual_repository_config`.
-final class ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig
-    extends ArtifactRegistryRepositoryRepositoryConfig {
-  const ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig(
+/// The [ArtifactRegistryRepositoryConfig.virtualRepositoryConfig] choice: sets `virtual_repository_config`.
+final class ArtifactRegistryRepositoryConfigVirtualRepositoryConfig
+    extends ArtifactRegistryRepositoryConfig {
+  const ArtifactRegistryRepositoryConfigVirtualRepositoryConfig(
     this.virtualRepositoryConfig,
   );
 
@@ -759,10 +759,10 @@ final class ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig
   };
 }
 
-/// The [ArtifactRegistryRepositoryRepositoryConfig.remoteRepositoryConfig] choice: sets `remote_repository_config`.
-final class ArtifactRegistryRepositoryRepositoryConfigRemoteRepositoryConfig
-    extends ArtifactRegistryRepositoryRepositoryConfig {
-  const ArtifactRegistryRepositoryRepositoryConfigRemoteRepositoryConfig(
+/// The [ArtifactRegistryRepositoryConfig.remoteRepositoryConfig] choice: sets `remote_repository_config`.
+final class ArtifactRegistryRepositoryConfigRemoteRepositoryConfig
+    extends ArtifactRegistryRepositoryConfig {
+  const ArtifactRegistryRepositoryConfigRemoteRepositoryConfig(
     this.remoteRepositoryConfig,
   );
 
@@ -802,7 +802,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
     TfArg<Map<String, String>>? labels,
     ArtifactRegistryRepositoryArtifactRegistryDockerConfig? dockerConfig,
     ArtifactRegistryRepositoryArtifactRegistryMavenConfig? mavenConfig,
-    ArtifactRegistryRepositoryRepositoryConfig? repositoryConfig,
+    ArtifactRegistryRepositoryConfig? repositoryConfig,
     List<ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy>?
     cleanupPolicies,
     TfArg<bool>? cleanupPolicyDryRun,

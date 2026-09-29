@@ -16,38 +16,24 @@ enum BigqueryAnalyticsHubDataExchangeDiscoveryType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Typed helper for the `sharing_environment_config` block of
-/// `google_bigquery_analytics_hub_data_exchange` (derived from provider schema).
-@immutable
-final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig {
-  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig({
-    required this.exchangeConfig,
-  });
-
-  final BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig
-  exchangeConfig;
-
-  Map<String, Object?> encode() => {...exchangeConfig.encode()};
-}
-
 /// Exactly one of `default_exchange_config`, `dcr_exchange_config` on the `sharing_environment_config` block of `google_bigquery_analytics_hub_data_exchange`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.defaultExchangeConfig(...)`.
-sealed class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig {
-  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig();
+sealed class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig {
+  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig();
 
   /// Sets `default_exchange_config`.
-  const factory BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig.defaultExchangeConfig(
+  const factory BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig.defaultExchangeConfig(
     BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfig
     defaultExchangeConfig,
-  ) = BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfigDefaultExchangeConfig;
+  ) = BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigChoice;
 
   /// Sets `dcr_exchange_config`.
-  const factory BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig.dcrExchangeConfig(
+  const factory BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig.dcrExchangeConfig(
     BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfig
     dcrExchangeConfig,
-  ) = BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfigDcrExchangeConfig;
+  ) = BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -55,11 +41,10 @@ sealed class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeCon
   Map<String, Object?> encode();
 }
 
-/// The [BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig.defaultExchangeConfig] choice: sets `default_exchange_config`.
-final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfigDefaultExchangeConfig
-    extends
-        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig {
-  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfigDefaultExchangeConfig(
+/// The [BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig.defaultExchangeConfig] choice: sets `default_exchange_config`.
+final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigChoice
+    extends BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig {
+  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigChoice(
     this.defaultExchangeConfig,
   );
 
@@ -75,11 +60,10 @@ final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConf
   };
 }
 
-/// The [BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig.dcrExchangeConfig] choice: sets `dcr_exchange_config`.
-final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfigDcrExchangeConfig
-    extends
-        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig {
-  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfigDcrExchangeConfig(
+/// The [BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig.dcrExchangeConfig] choice: sets `dcr_exchange_config`.
+final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfigChoice
+    extends BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig {
+  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfigChoice(
     this.dcrExchangeConfig,
   );
 

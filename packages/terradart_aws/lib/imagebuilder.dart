@@ -17,8 +17,8 @@ export 'src/imagebuilder/aws_imagebuilder_container_recipe.dart'
         ImagebuilderContainerRecipeComponentParameter,
         ImagebuilderContainerRecipeContainerType,
         ImagebuilderContainerRecipeDockerfileTemplate,
-        ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateData,
-        ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateUri,
+        ImagebuilderContainerRecipeDockerfileTemplateData,
+        ImagebuilderContainerRecipeDockerfileTemplateUri,
         ImagebuilderContainerRecipeInstanceConfiguration,
         ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMapping,
         ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbs,
@@ -51,8 +51,8 @@ export 'src/imagebuilder/aws_imagebuilder_image.dart'
         ImagebuilderImageImageTestsConfiguration,
         ImagebuilderImageLoggingConfiguration,
         ImagebuilderImageRecipeArn,
+        ImagebuilderImageRecipeArnChoice,
         ImagebuilderImageRecipeArnContainerRecipeArn,
-        ImagebuilderImageRecipeArnImageRecipeArn,
         ImagebuilderImageWorkflow,
         ImagebuilderImageWorkflowOnFailure,
         ImagebuilderImageWorkflowParameter;
@@ -90,8 +90,8 @@ export 'src/imagebuilder/aws_imagebuilder_infrastructure_configuration.dart'
         ImagebuilderInfrastructureConfigurationLoggingS3Logs,
         ImagebuilderInfrastructureConfigurationPlacement,
         ImagebuilderInfrastructureConfigurationPlacementHost,
-        ImagebuilderInfrastructureConfigurationPlacementHostHostId,
-        ImagebuilderInfrastructureConfigurationPlacementHostHostResourceGroupArn,
+        ImagebuilderInfrastructureConfigurationPlacementHostId,
+        ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArn,
         ImagebuilderInfrastructureConfigurationPlacementTenancy;
 export 'src/imagebuilder/aws_imagebuilder_lifecycle_policy.dart'
     show

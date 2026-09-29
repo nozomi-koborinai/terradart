@@ -28,7 +28,7 @@ sealed class ElasticBeanstalkEnvironmentPlatform {
   /// Sets `platform_arn`.
   const factory ElasticBeanstalkEnvironmentPlatform.platformArn(
     TfArg<String> platformArn,
-  ) = ElasticBeanstalkEnvironmentPlatformPlatformArn;
+  ) = ElasticBeanstalkEnvironmentPlatformArn;
 
   /// Sets `solution_stack_name`.
   const factory ElasticBeanstalkEnvironmentPlatform.solutionStackName(
@@ -51,9 +51,9 @@ sealed class ElasticBeanstalkEnvironmentPlatform {
 }
 
 /// The [ElasticBeanstalkEnvironmentPlatform.platformArn] choice: sets `platform_arn`.
-final class ElasticBeanstalkEnvironmentPlatformPlatformArn
+final class ElasticBeanstalkEnvironmentPlatformArn
     extends ElasticBeanstalkEnvironmentPlatform {
-  const ElasticBeanstalkEnvironmentPlatformPlatformArn(this.platformArn);
+  const ElasticBeanstalkEnvironmentPlatformArn(this.platformArn);
 
   final TfArg<String> platformArn;
 

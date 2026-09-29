@@ -12,16 +12,16 @@ const Set<String> _awsVpcIpamPoolCidrSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.cidr(...)`.
-sealed class VpcIpamPoolCidrCidr {
-  const VpcIpamPoolCidrCidr();
+sealed class VpcIpamPoolCidrRange {
+  const VpcIpamPoolCidrRange();
 
   /// Sets `cidr`.
-  const factory VpcIpamPoolCidrCidr.cidr(TfArg<String> cidr) =
-      VpcIpamPoolCidrCidrCidr;
+  const factory VpcIpamPoolCidrRange.cidr(TfArg<String> cidr) =
+      VpcIpamPoolCidrRangeCidr;
 
   /// Sets `netmask_length`.
-  const factory VpcIpamPoolCidrCidr.netmaskLength(TfArg<num> netmaskLength) =
-      VpcIpamPoolCidrCidrNetmaskLength;
+  const factory VpcIpamPoolCidrRange.netmaskLength(TfArg<num> netmaskLength) =
+      VpcIpamPoolCidrRangeNetmaskLength;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,9 +33,9 @@ sealed class VpcIpamPoolCidrCidr {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VpcIpamPoolCidrCidr.cidr] choice: sets `cidr`.
-final class VpcIpamPoolCidrCidrCidr extends VpcIpamPoolCidrCidr {
-  const VpcIpamPoolCidrCidrCidr(this.cidr);
+/// The [VpcIpamPoolCidrRange.cidr] choice: sets `cidr`.
+final class VpcIpamPoolCidrRangeCidr extends VpcIpamPoolCidrRange {
+  const VpcIpamPoolCidrRangeCidr(this.cidr);
 
   final TfArg<String> cidr;
 
@@ -49,9 +49,9 @@ final class VpcIpamPoolCidrCidrCidr extends VpcIpamPoolCidrCidr {
   Map<String, TfArg<Object?>> get argMap => {'cidr': cidr};
 }
 
-/// The [VpcIpamPoolCidrCidr.netmaskLength] choice: sets `netmask_length`.
-final class VpcIpamPoolCidrCidrNetmaskLength extends VpcIpamPoolCidrCidr {
-  const VpcIpamPoolCidrCidrNetmaskLength(this.netmaskLength);
+/// The [VpcIpamPoolCidrRange.netmaskLength] choice: sets `netmask_length`.
+final class VpcIpamPoolCidrRangeNetmaskLength extends VpcIpamPoolCidrRange {
+  const VpcIpamPoolCidrRangeNetmaskLength(this.netmaskLength);
 
   final TfArg<num> netmaskLength;
 
@@ -87,7 +87,7 @@ final class AwsVpcIpamPoolCidr extends Resource {
 
   AwsVpcIpamPoolCidr({
     required super.localName,
-    VpcIpamPoolCidrCidr? cidr,
+    VpcIpamPoolCidrRange? range,
     required TfArg<String> ipamPoolId,
     TfArg<String>? region,
     VpcIpamPoolCidrCidrAuthorizationContext? cidrAuthorizationContext,
@@ -98,7 +98,7 @@ final class AwsVpcIpamPoolCidr extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?cidr?.argMap,
+           ...?range?.argMap,
            'ipam_pool_id': ipamPoolId,
            if (region != null) 'region': region,
            if (cidrAuthorizationContext != null)

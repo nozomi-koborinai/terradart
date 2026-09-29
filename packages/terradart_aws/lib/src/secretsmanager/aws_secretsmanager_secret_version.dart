@@ -21,17 +21,17 @@ sealed class SecretsmanagerSecretVersionSecret {
   /// Sets `secret_binary`.
   const factory SecretsmanagerSecretVersionSecret.secretBinary(
     TfArg<String> secretBinary,
-  ) = SecretsmanagerSecretVersionSecretSecretBinary;
+  ) = SecretsmanagerSecretVersionSecretBinary;
 
   /// Sets `secret_string`.
   const factory SecretsmanagerSecretVersionSecret.secretString(
     TfArg<String> secretString,
-  ) = SecretsmanagerSecretVersionSecretSecretString;
+  ) = SecretsmanagerSecretVersionSecretString;
 
   /// Sets `secret_string_wo`.
   const factory SecretsmanagerSecretVersionSecret.secretStringWo(
     TfArg<String> secretStringWo,
-  ) = SecretsmanagerSecretVersionSecretSecretStringWo;
+  ) = SecretsmanagerSecretVersionSecretStringWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,9 +44,9 @@ sealed class SecretsmanagerSecretVersionSecret {
 }
 
 /// The [SecretsmanagerSecretVersionSecret.secretBinary] choice: sets `secret_binary`.
-final class SecretsmanagerSecretVersionSecretSecretBinary
+final class SecretsmanagerSecretVersionSecretBinary
     extends SecretsmanagerSecretVersionSecret {
-  const SecretsmanagerSecretVersionSecretSecretBinary(this.secretBinary);
+  const SecretsmanagerSecretVersionSecretBinary(this.secretBinary);
 
   final TfArg<String> secretBinary;
 
@@ -61,9 +61,9 @@ final class SecretsmanagerSecretVersionSecretSecretBinary
 }
 
 /// The [SecretsmanagerSecretVersionSecret.secretString] choice: sets `secret_string`.
-final class SecretsmanagerSecretVersionSecretSecretString
+final class SecretsmanagerSecretVersionSecretString
     extends SecretsmanagerSecretVersionSecret {
-  const SecretsmanagerSecretVersionSecretSecretString(this.secretString);
+  const SecretsmanagerSecretVersionSecretString(this.secretString);
 
   final TfArg<String> secretString;
 
@@ -78,9 +78,9 @@ final class SecretsmanagerSecretVersionSecretSecretString
 }
 
 /// The [SecretsmanagerSecretVersionSecret.secretStringWo] choice: sets `secret_string_wo`.
-final class SecretsmanagerSecretVersionSecretSecretStringWo
+final class SecretsmanagerSecretVersionSecretStringWo
     extends SecretsmanagerSecretVersionSecret {
-  const SecretsmanagerSecretVersionSecretSecretStringWo(this.secretStringWo);
+  const SecretsmanagerSecretVersionSecretStringWo(this.secretStringWo);
 
   final TfArg<String> secretStringWo;
 

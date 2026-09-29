@@ -16,11 +16,11 @@ sealed class LbTrustStoreName {
 
   /// Sets `name`.
   const factory LbTrustStoreName.name(TfArg<String> name) =
-      LbTrustStoreNameName;
+      LbTrustStoreNameChoice;
 
   /// Sets `name_prefix`.
   const factory LbTrustStoreName.namePrefix(TfArg<String> namePrefix) =
-      LbTrustStoreNameNamePrefix;
+      LbTrustStoreNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class LbTrustStoreName {
 }
 
 /// The [LbTrustStoreName.name] choice: sets `name`.
-final class LbTrustStoreNameName extends LbTrustStoreName {
-  const LbTrustStoreNameName(this.name);
+final class LbTrustStoreNameChoice extends LbTrustStoreName {
+  const LbTrustStoreNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class LbTrustStoreNameName extends LbTrustStoreName {
 }
 
 /// The [LbTrustStoreName.namePrefix] choice: sets `name_prefix`.
-final class LbTrustStoreNameNamePrefix extends LbTrustStoreName {
-  const LbTrustStoreNameNamePrefix(this.namePrefix);
+final class LbTrustStoreNamePrefix extends LbTrustStoreName {
+  const LbTrustStoreNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

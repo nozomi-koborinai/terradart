@@ -1756,37 +1756,37 @@
       "barrel": "compute",
       "file": "google_compute_region_health_check.dart",
       "old_name": "RegionHealthCheckHttpConfig",
-      "new_name": "ComputeRegionHealthCheckRegionHealthCheckHttpConfig"
+      "new_name": "ComputeRegionHealthCheckHttpHealthCheckConfig"
     },
     {
       "barrel": "compute",
       "file": "google_compute_region_health_check.dart",
       "old_name": "RegionHealthCheckHttpsConfig",
-      "new_name": "ComputeRegionHealthCheckRegionHealthCheckHttpsConfig"
+      "new_name": "ComputeRegionHealthCheckHttpsHealthCheckConfig"
     },
     {
       "barrel": "compute",
       "file": "google_compute_region_health_check.dart",
       "old_name": "RegionHealthCheckHttp2Config",
-      "new_name": "ComputeRegionHealthCheckRegionHealthCheckHttp2Config"
+      "new_name": "ComputeRegionHealthCheckHttp2HealthCheckConfig"
     },
     {
       "barrel": "compute",
       "file": "google_compute_region_health_check.dart",
       "old_name": "RegionHealthCheckTcpConfig",
-      "new_name": "ComputeRegionHealthCheckRegionHealthCheckTcpConfig"
+      "new_name": "ComputeRegionHealthCheckTcpHealthCheckConfig"
     },
     {
       "barrel": "compute",
       "file": "google_compute_region_health_check.dart",
       "old_name": "RegionHealthCheckSslConfig",
-      "new_name": "ComputeRegionHealthCheckRegionHealthCheckSslConfig"
+      "new_name": "ComputeRegionHealthCheckSslHealthCheckConfig"
     },
     {
       "barrel": "compute",
       "file": "google_compute_region_health_check.dart",
       "old_name": "RegionHealthCheckGrpcConfig",
-      "new_name": "ComputeRegionHealthCheckRegionHealthCheckGrpcConfig"
+      "new_name": "ComputeRegionHealthCheckGrpcHealthCheckConfig"
     },
     {
       "barrel": "compute",
@@ -2236,19 +2236,19 @@
       "barrel": "firebase_app_hosting",
       "file": "google_firebase_app_hosting_build.dart",
       "old_name": "AppHostingBuildSource",
-      "new_name": "FirebaseAppHostingBuildAppHostingBuildSource"
+      "new_name": "FirebaseAppHostingBuildSource"
     },
     {
       "barrel": "firebase_app_hosting",
       "file": "google_firebase_app_hosting_build.dart",
       "old_name": "AppHostingBuildSourceCodebase",
-      "new_name": "FirebaseAppHostingBuildAppHostingBuildSourceCodebase"
+      "new_name": "FirebaseAppHostingBuildSourceCodebase"
     },
     {
       "barrel": "firebase_app_hosting",
       "file": "google_firebase_app_hosting_build.dart",
       "old_name": "AppHostingBuildSourceContainer",
-      "new_name": "FirebaseAppHostingBuildAppHostingBuildSourceContainer"
+      "new_name": "FirebaseAppHostingBuildSourceContainer"
     },
     {
       "barrel": "firebase_app_hosting",

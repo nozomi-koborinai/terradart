@@ -55,18 +55,18 @@ enum BudgetsBudgetTimeUnit implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.costFilter(...)`.
-sealed class BudgetsBudgetFilter {
-  const BudgetsBudgetFilter();
+sealed class BudgetsBudgetScope {
+  const BudgetsBudgetScope();
 
   /// Sets `cost_filter`.
-  const factory BudgetsBudgetFilter.costFilter(
+  const factory BudgetsBudgetScope.costFilter(
     List<BudgetsBudgetCostFilter> costFilter,
-  ) = BudgetsBudgetFilterCostFilter;
+  ) = BudgetsBudgetScopeCostFilter;
 
   /// Sets `filter_expression`.
-  const factory BudgetsBudgetFilter.filterExpression(
+  const factory BudgetsBudgetScope.filterExpression(
     BudgetsBudgetFilterExpression filterExpression,
-  ) = BudgetsBudgetFilterFilterExpression;
+  ) = BudgetsBudgetScopeFilterExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -78,9 +78,9 @@ sealed class BudgetsBudgetFilter {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [BudgetsBudgetFilter.costFilter] choice: sets `cost_filter`.
-final class BudgetsBudgetFilterCostFilter extends BudgetsBudgetFilter {
-  const BudgetsBudgetFilterCostFilter(this.costFilter);
+/// The [BudgetsBudgetScope.costFilter] choice: sets `cost_filter`.
+final class BudgetsBudgetScopeCostFilter extends BudgetsBudgetScope {
+  const BudgetsBudgetScopeCostFilter(this.costFilter);
 
   final List<BudgetsBudgetCostFilter> costFilter;
 
@@ -98,9 +98,9 @@ final class BudgetsBudgetFilterCostFilter extends BudgetsBudgetFilter {
   };
 }
 
-/// The [BudgetsBudgetFilter.filterExpression] choice: sets `filter_expression`.
-final class BudgetsBudgetFilterFilterExpression extends BudgetsBudgetFilter {
-  const BudgetsBudgetFilterFilterExpression(this.filterExpression);
+/// The [BudgetsBudgetScope.filterExpression] choice: sets `filter_expression`.
+final class BudgetsBudgetScopeFilterExpression extends BudgetsBudgetScope {
+  const BudgetsBudgetScopeFilterExpression(this.filterExpression);
 
   final BudgetsBudgetFilterExpression filterExpression;
 
@@ -194,11 +194,11 @@ sealed class BudgetsBudgetName {
 
   /// Sets `name`.
   const factory BudgetsBudgetName.name(TfArg<String> name) =
-      BudgetsBudgetNameName;
+      BudgetsBudgetNameChoice;
 
   /// Sets `name_prefix`.
   const factory BudgetsBudgetName.namePrefix(TfArg<String> namePrefix) =
-      BudgetsBudgetNameNamePrefix;
+      BudgetsBudgetNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -211,8 +211,8 @@ sealed class BudgetsBudgetName {
 }
 
 /// The [BudgetsBudgetName.name] choice: sets `name`.
-final class BudgetsBudgetNameName extends BudgetsBudgetName {
-  const BudgetsBudgetNameName(this.name);
+final class BudgetsBudgetNameChoice extends BudgetsBudgetName {
+  const BudgetsBudgetNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -227,8 +227,8 @@ final class BudgetsBudgetNameName extends BudgetsBudgetName {
 }
 
 /// The [BudgetsBudgetName.namePrefix] choice: sets `name_prefix`.
-final class BudgetsBudgetNameNamePrefix extends BudgetsBudgetName {
-  const BudgetsBudgetNameNamePrefix(this.namePrefix);
+final class BudgetsBudgetNamePrefix extends BudgetsBudgetName {
+  const BudgetsBudgetNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -1816,7 +1816,7 @@ final class AwsBudgetsBudget extends Resource {
     TfArg<String>? timePeriodStart,
     required TfArg<BudgetsBudgetTimeUnit> timeUnit,
     BudgetsBudgetAutoAdjustData? autoAdjustData,
-    BudgetsBudgetFilter? filter,
+    BudgetsBudgetScope? scope,
     List<BudgetsBudgetNotification>? notification,
     List<BudgetsBudgetPlannedLimit>? plannedLimit,
     super.lifecycle,
@@ -1839,7 +1839,7 @@ final class AwsBudgetsBudget extends Resource {
            'time_unit': timeUnit,
            if (autoAdjustData != null)
              'auto_adjust_data': TfArg.literal(autoAdjustData.encode()),
-           ...?filter?.argMap,
+           ...?scope?.argMap,
            if (notification != null)
              'notification': TfArg.literal([
                for (final e in notification) e.encode(),

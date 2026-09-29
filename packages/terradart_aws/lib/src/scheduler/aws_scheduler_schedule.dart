@@ -37,11 +37,11 @@ sealed class SchedulerScheduleName {
 
   /// Sets `name`.
   const factory SchedulerScheduleName.name(TfArg<String> name) =
-      SchedulerScheduleNameName;
+      SchedulerScheduleNameChoice;
 
   /// Sets `name_prefix`.
   const factory SchedulerScheduleName.namePrefix(TfArg<String> namePrefix) =
-      SchedulerScheduleNameNamePrefix;
+      SchedulerScheduleNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -54,8 +54,8 @@ sealed class SchedulerScheduleName {
 }
 
 /// The [SchedulerScheduleName.name] choice: sets `name`.
-final class SchedulerScheduleNameName extends SchedulerScheduleName {
-  const SchedulerScheduleNameName(this.name);
+final class SchedulerScheduleNameChoice extends SchedulerScheduleName {
+  const SchedulerScheduleNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -70,8 +70,8 @@ final class SchedulerScheduleNameName extends SchedulerScheduleName {
 }
 
 /// The [SchedulerScheduleName.namePrefix] choice: sets `name_prefix`.
-final class SchedulerScheduleNameNamePrefix extends SchedulerScheduleName {
-  const SchedulerScheduleNameNamePrefix(this.namePrefix);
+final class SchedulerScheduleNamePrefix extends SchedulerScheduleName {
+  const SchedulerScheduleNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

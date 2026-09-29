@@ -60,7 +60,7 @@ sealed class SecretsmanagerSecretRotationRotationRulesSchedule {
   /// Sets `schedule_expression`.
   const factory SecretsmanagerSecretRotationRotationRulesSchedule.scheduleExpression(
     TfArg<String> scheduleExpression,
-  ) = SecretsmanagerSecretRotationRotationRulesScheduleScheduleExpression;
+  ) = SecretsmanagerSecretRotationRotationRulesScheduleExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -87,9 +87,9 @@ final class SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterD
 }
 
 /// The [SecretsmanagerSecretRotationRotationRulesSchedule.scheduleExpression] choice: sets `schedule_expression`.
-final class SecretsmanagerSecretRotationRotationRulesScheduleScheduleExpression
+final class SecretsmanagerSecretRotationRotationRulesScheduleExpression
     extends SecretsmanagerSecretRotationRotationRulesSchedule {
-  const SecretsmanagerSecretRotationRotationRulesScheduleScheduleExpression(
+  const SecretsmanagerSecretRotationRotationRulesScheduleExpression(
     this.scheduleExpression,
   );
 

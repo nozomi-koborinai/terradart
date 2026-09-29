@@ -16,11 +16,11 @@ sealed class RumAppMonitorDomain {
 
   /// Sets `domain`.
   const factory RumAppMonitorDomain.domain(TfArg<String> domain) =
-      RumAppMonitorDomainDomain;
+      RumAppMonitorDomainChoice;
 
   /// Sets `domain_list`.
   const factory RumAppMonitorDomain.domainList(TfArg<List<String>> domainList) =
-      RumAppMonitorDomainDomainList;
+      RumAppMonitorDomainList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class RumAppMonitorDomain {
 }
 
 /// The [RumAppMonitorDomain.domain] choice: sets `domain`.
-final class RumAppMonitorDomainDomain extends RumAppMonitorDomain {
-  const RumAppMonitorDomainDomain(this.domain);
+final class RumAppMonitorDomainChoice extends RumAppMonitorDomain {
+  const RumAppMonitorDomainChoice(this.domain);
 
   final TfArg<String> domain;
 
@@ -49,8 +49,8 @@ final class RumAppMonitorDomainDomain extends RumAppMonitorDomain {
 }
 
 /// The [RumAppMonitorDomain.domainList] choice: sets `domain_list`.
-final class RumAppMonitorDomainDomainList extends RumAppMonitorDomain {
-  const RumAppMonitorDomainDomainList(this.domainList);
+final class RumAppMonitorDomainList extends RumAppMonitorDomain {
+  const RumAppMonitorDomainList(this.domainList);
 
   final TfArg<List<String>> domainList;
 

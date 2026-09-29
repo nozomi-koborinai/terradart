@@ -7,33 +7,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_workspacesweb_session_logger`.
 const Set<String> _awsWorkspaceswebSessionLoggerSensitive = <String>{};
 
-/// Typed helper for the `event_filter` block of
-/// `aws_workspacesweb_session_logger` (derived from provider schema).
-@immutable
-final class WorkspaceswebSessionLoggerEventFilter {
-  const WorkspaceswebSessionLoggerEventFilter({required this.eventFilter});
-
-  final WorkspaceswebSessionLoggerEventFilterEventFilter eventFilter;
-
-  Map<String, Object?> encode() => {...eventFilter.encode()};
-}
-
 /// Exactly one of `all`, `include` on the `event_filter` block of `aws_workspacesweb_session_logger`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.all(...)`.
-sealed class WorkspaceswebSessionLoggerEventFilterEventFilter {
-  const WorkspaceswebSessionLoggerEventFilterEventFilter();
+sealed class WorkspaceswebSessionLoggerEventFilter {
+  const WorkspaceswebSessionLoggerEventFilter();
 
   /// Sets `all`.
-  const factory WorkspaceswebSessionLoggerEventFilterEventFilter.all(
+  const factory WorkspaceswebSessionLoggerEventFilter.all(
     List<WorkspaceswebSessionLoggerEventFilterAll> all,
-  ) = WorkspaceswebSessionLoggerEventFilterEventFilterAll;
+  ) = WorkspaceswebSessionLoggerEventFilterAllChoice;
 
   /// Sets `include`.
-  const factory WorkspaceswebSessionLoggerEventFilterEventFilter.include(
+  const factory WorkspaceswebSessionLoggerEventFilter.include(
     List<TfArg<WorkspaceswebSessionLoggerEventFilterInclude>> include,
-  ) = WorkspaceswebSessionLoggerEventFilterEventFilterInclude;
+  ) = WorkspaceswebSessionLoggerEventFilterIncludeChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -41,10 +30,10 @@ sealed class WorkspaceswebSessionLoggerEventFilterEventFilter {
   Map<String, Object?> encode();
 }
 
-/// The [WorkspaceswebSessionLoggerEventFilterEventFilter.all] choice: sets `all`.
-final class WorkspaceswebSessionLoggerEventFilterEventFilterAll
-    extends WorkspaceswebSessionLoggerEventFilterEventFilter {
-  const WorkspaceswebSessionLoggerEventFilterEventFilterAll(this.all);
+/// The [WorkspaceswebSessionLoggerEventFilter.all] choice: sets `all`.
+final class WorkspaceswebSessionLoggerEventFilterAllChoice
+    extends WorkspaceswebSessionLoggerEventFilter {
+  const WorkspaceswebSessionLoggerEventFilterAllChoice(this.all);
 
   final List<WorkspaceswebSessionLoggerEventFilterAll> all;
 
@@ -57,10 +46,10 @@ final class WorkspaceswebSessionLoggerEventFilterEventFilterAll
   };
 }
 
-/// The [WorkspaceswebSessionLoggerEventFilterEventFilter.include] choice: sets `include`.
-final class WorkspaceswebSessionLoggerEventFilterEventFilterInclude
-    extends WorkspaceswebSessionLoggerEventFilterEventFilter {
-  const WorkspaceswebSessionLoggerEventFilterEventFilterInclude(this.include);
+/// The [WorkspaceswebSessionLoggerEventFilter.include] choice: sets `include`.
+final class WorkspaceswebSessionLoggerEventFilterIncludeChoice
+    extends WorkspaceswebSessionLoggerEventFilter {
+  const WorkspaceswebSessionLoggerEventFilterIncludeChoice(this.include);
 
   final List<TfArg<WorkspaceswebSessionLoggerEventFilterInclude>> include;
 

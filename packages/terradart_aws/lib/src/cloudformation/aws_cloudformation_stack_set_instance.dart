@@ -90,18 +90,18 @@ final class CloudformationStackSetInstanceTargetDeploymentTargets
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.region(...)`.
-sealed class CloudformationStackSetInstanceRegion {
-  const CloudformationStackSetInstanceRegion();
+sealed class CloudformationStackSetInstanceTargetRegion {
+  const CloudformationStackSetInstanceTargetRegion();
 
   /// Sets `region`.
-  const factory CloudformationStackSetInstanceRegion.region(
+  const factory CloudformationStackSetInstanceTargetRegion.region(
     TfArg<String> region,
-  ) = CloudformationStackSetInstanceRegionRegion;
+  ) = CloudformationStackSetInstanceTargetRegionChoice;
 
   /// Sets `stack_set_instance_region`.
-  const factory CloudformationStackSetInstanceRegion.stackSetInstanceRegion(
+  const factory CloudformationStackSetInstanceTargetRegion.stackSetInstanceRegion(
     TfArg<String> stackSetInstanceRegion,
-  ) = CloudformationStackSetInstanceRegionStackSetInstanceRegion;
+  ) = CloudformationStackSetInstanceTargetRegionStackSetInstanceRegion;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -113,10 +113,10 @@ sealed class CloudformationStackSetInstanceRegion {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudformationStackSetInstanceRegion.region] choice: sets `region`.
-final class CloudformationStackSetInstanceRegionRegion
-    extends CloudformationStackSetInstanceRegion {
-  const CloudformationStackSetInstanceRegionRegion(this.region);
+/// The [CloudformationStackSetInstanceTargetRegion.region] choice: sets `region`.
+final class CloudformationStackSetInstanceTargetRegionChoice
+    extends CloudformationStackSetInstanceTargetRegion {
+  const CloudformationStackSetInstanceTargetRegionChoice(this.region);
 
   final TfArg<String> region;
 
@@ -130,10 +130,10 @@ final class CloudformationStackSetInstanceRegionRegion
   Map<String, TfArg<Object?>> get argMap => {'region': region};
 }
 
-/// The [CloudformationStackSetInstanceRegion.stackSetInstanceRegion] choice: sets `stack_set_instance_region`.
-final class CloudformationStackSetInstanceRegionStackSetInstanceRegion
-    extends CloudformationStackSetInstanceRegion {
-  const CloudformationStackSetInstanceRegionStackSetInstanceRegion(
+/// The [CloudformationStackSetInstanceTargetRegion.stackSetInstanceRegion] choice: sets `stack_set_instance_region`.
+final class CloudformationStackSetInstanceTargetRegionStackSetInstanceRegion
+    extends CloudformationStackSetInstanceTargetRegion {
+  const CloudformationStackSetInstanceTargetRegionStackSetInstanceRegion(
     this.stackSetInstanceRegion,
   );
 
@@ -234,12 +234,12 @@ sealed class CloudformationStackSetInstanceOperationPreferencesFailureTolerance 
   /// Sets `failure_tolerance_count`.
   const factory CloudformationStackSetInstanceOperationPreferencesFailureTolerance.failureToleranceCount(
     TfArg<num> failureToleranceCount,
-  ) = CloudformationStackSetInstanceOperationPreferencesFailureToleranceFailureToleranceCount;
+  ) = CloudformationStackSetInstanceOperationPreferencesFailureToleranceCount;
 
   /// Sets `failure_tolerance_percentage`.
   const factory CloudformationStackSetInstanceOperationPreferencesFailureTolerance.failureTolerancePercentage(
     TfArg<num> failureTolerancePercentage,
-  ) = CloudformationStackSetInstanceOperationPreferencesFailureToleranceFailureTolerancePercentage;
+  ) = CloudformationStackSetInstanceOperationPreferencesFailureTolerancePercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -248,9 +248,9 @@ sealed class CloudformationStackSetInstanceOperationPreferencesFailureTolerance 
 }
 
 /// The [CloudformationStackSetInstanceOperationPreferencesFailureTolerance.failureToleranceCount] choice: sets `failure_tolerance_count`.
-final class CloudformationStackSetInstanceOperationPreferencesFailureToleranceFailureToleranceCount
+final class CloudformationStackSetInstanceOperationPreferencesFailureToleranceCount
     extends CloudformationStackSetInstanceOperationPreferencesFailureTolerance {
-  const CloudformationStackSetInstanceOperationPreferencesFailureToleranceFailureToleranceCount(
+  const CloudformationStackSetInstanceOperationPreferencesFailureToleranceCount(
     this.failureToleranceCount,
   );
 
@@ -266,9 +266,9 @@ final class CloudformationStackSetInstanceOperationPreferencesFailureToleranceFa
 }
 
 /// The [CloudformationStackSetInstanceOperationPreferencesFailureTolerance.failureTolerancePercentage] choice: sets `failure_tolerance_percentage`.
-final class CloudformationStackSetInstanceOperationPreferencesFailureToleranceFailureTolerancePercentage
+final class CloudformationStackSetInstanceOperationPreferencesFailureTolerancePercentage
     extends CloudformationStackSetInstanceOperationPreferencesFailureTolerance {
-  const CloudformationStackSetInstanceOperationPreferencesFailureToleranceFailureTolerancePercentage(
+  const CloudformationStackSetInstanceOperationPreferencesFailureTolerancePercentage(
     this.failureTolerancePercentage,
   );
 
@@ -294,12 +294,12 @@ sealed class CloudformationStackSetInstanceOperationPreferencesMaxConcurrent {
   /// Sets `max_concurrent_count`.
   const factory CloudformationStackSetInstanceOperationPreferencesMaxConcurrent.maxConcurrentCount(
     TfArg<num> maxConcurrentCount,
-  ) = CloudformationStackSetInstanceOperationPreferencesMaxConcurrentMaxConcurrentCount;
+  ) = CloudformationStackSetInstanceOperationPreferencesMaxConcurrentCount;
 
   /// Sets `max_concurrent_percentage`.
   const factory CloudformationStackSetInstanceOperationPreferencesMaxConcurrent.maxConcurrentPercentage(
     TfArg<num> maxConcurrentPercentage,
-  ) = CloudformationStackSetInstanceOperationPreferencesMaxConcurrentMaxConcurrentPercentage;
+  ) = CloudformationStackSetInstanceOperationPreferencesMaxConcurrentPercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -308,9 +308,9 @@ sealed class CloudformationStackSetInstanceOperationPreferencesMaxConcurrent {
 }
 
 /// The [CloudformationStackSetInstanceOperationPreferencesMaxConcurrent.maxConcurrentCount] choice: sets `max_concurrent_count`.
-final class CloudformationStackSetInstanceOperationPreferencesMaxConcurrentMaxConcurrentCount
+final class CloudformationStackSetInstanceOperationPreferencesMaxConcurrentCount
     extends CloudformationStackSetInstanceOperationPreferencesMaxConcurrent {
-  const CloudformationStackSetInstanceOperationPreferencesMaxConcurrentMaxConcurrentCount(
+  const CloudformationStackSetInstanceOperationPreferencesMaxConcurrentCount(
     this.maxConcurrentCount,
   );
 
@@ -326,9 +326,9 @@ final class CloudformationStackSetInstanceOperationPreferencesMaxConcurrentMaxCo
 }
 
 /// The [CloudformationStackSetInstanceOperationPreferencesMaxConcurrent.maxConcurrentPercentage] choice: sets `max_concurrent_percentage`.
-final class CloudformationStackSetInstanceOperationPreferencesMaxConcurrentMaxConcurrentPercentage
+final class CloudformationStackSetInstanceOperationPreferencesMaxConcurrentPercentage
     extends CloudformationStackSetInstanceOperationPreferencesMaxConcurrent {
-  const CloudformationStackSetInstanceOperationPreferencesMaxConcurrentMaxConcurrentPercentage(
+  const CloudformationStackSetInstanceOperationPreferencesMaxConcurrentPercentage(
     this.maxConcurrentPercentage,
   );
 
@@ -378,7 +378,7 @@ final class AwsCloudformationStackSetInstance extends Resource {
     CloudformationStackSetInstanceTarget? target,
     TfArg<CloudformationStackSetInstanceCallAs>? callAs,
     TfArg<Map<String, String>>? parameterOverrides,
-    CloudformationStackSetInstanceRegion? region,
+    CloudformationStackSetInstanceTargetRegion? targetRegion,
     TfArg<bool>? retainStack,
     required TfArg<String> stackSetName,
     CloudformationStackSetInstanceOperationPreferences? operationPreferences,
@@ -393,7 +393,7 @@ final class AwsCloudformationStackSetInstance extends Resource {
            if (callAs != null) 'call_as': callAs,
            if (parameterOverrides != null)
              'parameter_overrides': parameterOverrides,
-           ...?region?.argMap,
+           ...?targetRegion?.argMap,
            if (retainStack != null) 'retain_stack': retainStack,
            'stack_set_name': stackSetName,
            if (operationPreferences != null)

@@ -29,12 +29,12 @@ sealed class SignerSigningProfilePermissionStatementId {
   /// Sets `statement_id`.
   const factory SignerSigningProfilePermissionStatementId.statementId(
     TfArg<String> statementId,
-  ) = SignerSigningProfilePermissionStatementIdStatementId;
+  ) = SignerSigningProfilePermissionStatementIdChoice;
 
   /// Sets `statement_id_prefix`.
   const factory SignerSigningProfilePermissionStatementId.statementIdPrefix(
     TfArg<String> statementIdPrefix,
-  ) = SignerSigningProfilePermissionStatementIdStatementIdPrefix;
+  ) = SignerSigningProfilePermissionStatementIdPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,9 +47,9 @@ sealed class SignerSigningProfilePermissionStatementId {
 }
 
 /// The [SignerSigningProfilePermissionStatementId.statementId] choice: sets `statement_id`.
-final class SignerSigningProfilePermissionStatementIdStatementId
+final class SignerSigningProfilePermissionStatementIdChoice
     extends SignerSigningProfilePermissionStatementId {
-  const SignerSigningProfilePermissionStatementIdStatementId(this.statementId);
+  const SignerSigningProfilePermissionStatementIdChoice(this.statementId);
 
   final TfArg<String> statementId;
 
@@ -64,11 +64,9 @@ final class SignerSigningProfilePermissionStatementIdStatementId
 }
 
 /// The [SignerSigningProfilePermissionStatementId.statementIdPrefix] choice: sets `statement_id_prefix`.
-final class SignerSigningProfilePermissionStatementIdStatementIdPrefix
+final class SignerSigningProfilePermissionStatementIdPrefix
     extends SignerSigningProfilePermissionStatementId {
-  const SignerSigningProfilePermissionStatementIdStatementIdPrefix(
-    this.statementIdPrefix,
-  );
+  const SignerSigningProfilePermissionStatementIdPrefix(this.statementIdPrefix);
 
   final TfArg<String> statementIdPrefix;
 

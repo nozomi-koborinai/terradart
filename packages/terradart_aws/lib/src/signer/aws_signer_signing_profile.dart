@@ -30,11 +30,11 @@ sealed class SignerSigningProfileName {
 
   /// Sets `name`.
   const factory SignerSigningProfileName.name(TfArg<String> name) =
-      SignerSigningProfileNameName;
+      SignerSigningProfileNameChoice;
 
   /// Sets `name_prefix`.
   const factory SignerSigningProfileName.namePrefix(TfArg<String> namePrefix) =
-      SignerSigningProfileNameNamePrefix;
+      SignerSigningProfileNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,8 +47,8 @@ sealed class SignerSigningProfileName {
 }
 
 /// The [SignerSigningProfileName.name] choice: sets `name`.
-final class SignerSigningProfileNameName extends SignerSigningProfileName {
-  const SignerSigningProfileNameName(this.name);
+final class SignerSigningProfileNameChoice extends SignerSigningProfileName {
+  const SignerSigningProfileNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -63,9 +63,8 @@ final class SignerSigningProfileNameName extends SignerSigningProfileName {
 }
 
 /// The [SignerSigningProfileName.namePrefix] choice: sets `name_prefix`.
-final class SignerSigningProfileNameNamePrefix
-    extends SignerSigningProfileName {
-  const SignerSigningProfileNameNamePrefix(this.namePrefix);
+final class SignerSigningProfileNamePrefix extends SignerSigningProfileName {
+  const SignerSigningProfileNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

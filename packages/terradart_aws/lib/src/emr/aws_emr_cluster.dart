@@ -47,12 +47,12 @@ sealed class EmrClusterConfigurations {
   /// Sets `configurations`.
   const factory EmrClusterConfigurations.configurations(
     TfArg<String> configurations,
-  ) = EmrClusterConfigurationsConfigurations;
+  ) = EmrClusterConfigurationsChoice;
 
   /// Sets `configurations_json`.
   const factory EmrClusterConfigurations.configurationsJson(
     TfArg<String> configurationsJson,
-  ) = EmrClusterConfigurationsConfigurationsJson;
+  ) = EmrClusterConfigurationsJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -65,9 +65,8 @@ sealed class EmrClusterConfigurations {
 }
 
 /// The [EmrClusterConfigurations.configurations] choice: sets `configurations`.
-final class EmrClusterConfigurationsConfigurations
-    extends EmrClusterConfigurations {
-  const EmrClusterConfigurationsConfigurations(this.configurations);
+final class EmrClusterConfigurationsChoice extends EmrClusterConfigurations {
+  const EmrClusterConfigurationsChoice(this.configurations);
 
   final TfArg<String> configurations;
 
@@ -84,9 +83,8 @@ final class EmrClusterConfigurationsConfigurations
 }
 
 /// The [EmrClusterConfigurations.configurationsJson] choice: sets `configurations_json`.
-final class EmrClusterConfigurationsConfigurationsJson
-    extends EmrClusterConfigurations {
-  const EmrClusterConfigurationsConfigurationsJson(this.configurationsJson);
+final class EmrClusterConfigurationsJson extends EmrClusterConfigurations {
+  const EmrClusterConfigurationsJson(this.configurationsJson);
 
   final TfArg<String> configurationsJson;
 
@@ -443,12 +441,12 @@ sealed class EmrClusterEc2AttributesSubnet {
 
   /// Sets `subnet_id`.
   const factory EmrClusterEc2AttributesSubnet.subnetId(TfArg<String> subnetId) =
-      EmrClusterEc2AttributesSubnetSubnetId;
+      EmrClusterEc2AttributesSubnetId;
 
   /// Sets `subnet_ids`.
   const factory EmrClusterEc2AttributesSubnet.subnetIds(
     TfArg<List<Object?>> subnetIds,
-  ) = EmrClusterEc2AttributesSubnetSubnetIds;
+  ) = EmrClusterEc2AttributesSubnetIds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -457,9 +455,9 @@ sealed class EmrClusterEc2AttributesSubnet {
 }
 
 /// The [EmrClusterEc2AttributesSubnet.subnetId] choice: sets `subnet_id`.
-final class EmrClusterEc2AttributesSubnetSubnetId
+final class EmrClusterEc2AttributesSubnetId
     extends EmrClusterEc2AttributesSubnet {
-  const EmrClusterEc2AttributesSubnetSubnetId(this.subnetId);
+  const EmrClusterEc2AttributesSubnetId(this.subnetId);
 
   final TfArg<String> subnetId;
 
@@ -471,9 +469,9 @@ final class EmrClusterEc2AttributesSubnetSubnetId
 }
 
 /// The [EmrClusterEc2AttributesSubnet.subnetIds] choice: sets `subnet_ids`.
-final class EmrClusterEc2AttributesSubnetSubnetIds
+final class EmrClusterEc2AttributesSubnetIds
     extends EmrClusterEc2AttributesSubnet {
-  const EmrClusterEc2AttributesSubnetSubnetIds(this.subnetIds);
+  const EmrClusterEc2AttributesSubnetIds(this.subnetIds);
 
   final TfArg<List<Object?>> subnetIds;
 

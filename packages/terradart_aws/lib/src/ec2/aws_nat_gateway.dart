@@ -38,7 +38,7 @@ sealed class NatGatewaySecondaryPrivateIpAddress {
   /// Sets `secondary_private_ip_address_count`.
   const factory NatGatewaySecondaryPrivateIpAddress.secondaryPrivateIpAddressCount(
     TfArg<num> secondaryPrivateIpAddressCount,
-  ) = NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddressCount;
+  ) = NatGatewaySecondaryPrivateIpAddressCount;
 
   /// Sets `secondary_private_ip_addresses`.
   const factory NatGatewaySecondaryPrivateIpAddress.secondaryPrivateIpAddresses(
@@ -56,9 +56,9 @@ sealed class NatGatewaySecondaryPrivateIpAddress {
 }
 
 /// The [NatGatewaySecondaryPrivateIpAddress.secondaryPrivateIpAddressCount] choice: sets `secondary_private_ip_address_count`.
-final class NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddressCount
+final class NatGatewaySecondaryPrivateIpAddressCount
     extends NatGatewaySecondaryPrivateIpAddress {
-  const NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddressCount(
+  const NatGatewaySecondaryPrivateIpAddressCount(
     this.secondaryPrivateIpAddressCount,
   );
 

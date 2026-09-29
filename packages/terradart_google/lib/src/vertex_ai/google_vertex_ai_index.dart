@@ -81,36 +81,22 @@ final class VertexAiIndexMetadataConfig {
   };
 }
 
-/// Typed helper for the `metadata.config.algorithm_config` block of
-/// `google_vertex_ai_index` (derived from provider schema).
-@immutable
-final class VertexAiIndexMetadataConfigAlgorithmConfig {
-  const VertexAiIndexMetadataConfigAlgorithmConfig({
-    required this.algorithmConfig,
-  });
-
-  final VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig
-  algorithmConfig;
-
-  Map<String, Object?> encode() => {...algorithmConfig.encode()};
-}
-
 /// Exactly one of `tree_ah_config`, `brute_force_config` on the `metadata.config.algorithm_config` block of `google_vertex_ai_index`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.treeAhConfig(...)`.
-sealed class VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig {
-  const VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig();
+sealed class VertexAiIndexMetadataConfigAlgorithmConfig {
+  const VertexAiIndexMetadataConfigAlgorithmConfig();
 
   /// Sets `tree_ah_config`.
-  const factory VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig.treeAhConfig(
+  const factory VertexAiIndexMetadataConfigAlgorithmConfig.treeAhConfig(
     VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig treeAhConfig,
-  ) = VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigTreeAhConfig;
+  ) = VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigChoice;
 
   /// Sets `brute_force_config`.
-  const factory VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig.bruteForceConfig(
+  const factory VertexAiIndexMetadataConfigAlgorithmConfig.bruteForceConfig(
     VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfig bruteForceConfig,
-  ) = VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigBruteForceConfig;
+  ) = VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -118,10 +104,10 @@ sealed class VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig.treeAhConfig] choice: sets `tree_ah_config`.
-final class VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigTreeAhConfig
-    extends VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig {
-  const VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigTreeAhConfig(
+/// The [VertexAiIndexMetadataConfigAlgorithmConfig.treeAhConfig] choice: sets `tree_ah_config`.
+final class VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigChoice
+    extends VertexAiIndexMetadataConfigAlgorithmConfig {
+  const VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigChoice(
     this.treeAhConfig,
   );
 
@@ -134,10 +120,10 @@ final class VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigTreeAhConfi
   Map<String, Object?> encode() => {'tree_ah_config': treeAhConfig.encode()};
 }
 
-/// The [VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig.bruteForceConfig] choice: sets `brute_force_config`.
-final class VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigBruteForceConfig
-    extends VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig {
-  const VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigBruteForceConfig(
+/// The [VertexAiIndexMetadataConfigAlgorithmConfig.bruteForceConfig] choice: sets `brute_force_config`.
+final class VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfigChoice
+    extends VertexAiIndexMetadataConfigAlgorithmConfig {
+  const VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfigChoice(
     this.bruteForceConfig,
   );
 

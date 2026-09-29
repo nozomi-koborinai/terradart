@@ -17,12 +17,12 @@ sealed class RdsClusterInstanceIdentifier {
   /// Sets `identifier`.
   const factory RdsClusterInstanceIdentifier.identifier(
     TfArg<String> identifier,
-  ) = RdsClusterInstanceIdentifierIdentifier;
+  ) = RdsClusterInstanceIdentifierChoice;
 
   /// Sets `identifier_prefix`.
   const factory RdsClusterInstanceIdentifier.identifierPrefix(
     TfArg<String> identifierPrefix,
-  ) = RdsClusterInstanceIdentifierIdentifierPrefix;
+  ) = RdsClusterInstanceIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,9 +35,9 @@ sealed class RdsClusterInstanceIdentifier {
 }
 
 /// The [RdsClusterInstanceIdentifier.identifier] choice: sets `identifier`.
-final class RdsClusterInstanceIdentifierIdentifier
+final class RdsClusterInstanceIdentifierChoice
     extends RdsClusterInstanceIdentifier {
-  const RdsClusterInstanceIdentifierIdentifier(this.identifier);
+  const RdsClusterInstanceIdentifierChoice(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -52,9 +52,9 @@ final class RdsClusterInstanceIdentifierIdentifier
 }
 
 /// The [RdsClusterInstanceIdentifier.identifierPrefix] choice: sets `identifier_prefix`.
-final class RdsClusterInstanceIdentifierIdentifierPrefix
+final class RdsClusterInstanceIdentifierPrefix
     extends RdsClusterInstanceIdentifier {
-  const RdsClusterInstanceIdentifierIdentifierPrefix(this.identifierPrefix);
+  const RdsClusterInstanceIdentifierPrefix(this.identifierPrefix);
 
   final TfArg<String> identifierPrefix;
 

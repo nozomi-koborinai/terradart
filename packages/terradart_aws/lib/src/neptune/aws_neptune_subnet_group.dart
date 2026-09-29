@@ -16,11 +16,11 @@ sealed class NeptuneSubnetGroupName {
 
   /// Sets `name`.
   const factory NeptuneSubnetGroupName.name(TfArg<String> name) =
-      NeptuneSubnetGroupNameName;
+      NeptuneSubnetGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory NeptuneSubnetGroupName.namePrefix(TfArg<String> namePrefix) =
-      NeptuneSubnetGroupNameNamePrefix;
+      NeptuneSubnetGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class NeptuneSubnetGroupName {
 }
 
 /// The [NeptuneSubnetGroupName.name] choice: sets `name`.
-final class NeptuneSubnetGroupNameName extends NeptuneSubnetGroupName {
-  const NeptuneSubnetGroupNameName(this.name);
+final class NeptuneSubnetGroupNameChoice extends NeptuneSubnetGroupName {
+  const NeptuneSubnetGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class NeptuneSubnetGroupNameName extends NeptuneSubnetGroupName {
 }
 
 /// The [NeptuneSubnetGroupName.namePrefix] choice: sets `name_prefix`.
-final class NeptuneSubnetGroupNameNamePrefix extends NeptuneSubnetGroupName {
-  const NeptuneSubnetGroupNameNamePrefix(this.namePrefix);
+final class NeptuneSubnetGroupNamePrefix extends NeptuneSubnetGroupName {
+  const NeptuneSubnetGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

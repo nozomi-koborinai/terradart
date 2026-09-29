@@ -28,12 +28,12 @@ sealed class DmsReplicationTaskCdcStart {
   /// Sets `cdc_start_position`.
   const factory DmsReplicationTaskCdcStart.cdcStartPosition(
     TfArg<String> cdcStartPosition,
-  ) = DmsReplicationTaskCdcStartCdcStartPosition;
+  ) = DmsReplicationTaskCdcStartPosition;
 
   /// Sets `cdc_start_time`.
   const factory DmsReplicationTaskCdcStart.cdcStartTime(
     TfArg<String> cdcStartTime,
-  ) = DmsReplicationTaskCdcStartCdcStartTime;
+  ) = DmsReplicationTaskCdcStartTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,9 +46,9 @@ sealed class DmsReplicationTaskCdcStart {
 }
 
 /// The [DmsReplicationTaskCdcStart.cdcStartPosition] choice: sets `cdc_start_position`.
-final class DmsReplicationTaskCdcStartCdcStartPosition
+final class DmsReplicationTaskCdcStartPosition
     extends DmsReplicationTaskCdcStart {
-  const DmsReplicationTaskCdcStartCdcStartPosition(this.cdcStartPosition);
+  const DmsReplicationTaskCdcStartPosition(this.cdcStartPosition);
 
   final TfArg<String> cdcStartPosition;
 
@@ -67,9 +67,8 @@ final class DmsReplicationTaskCdcStartCdcStartPosition
 }
 
 /// The [DmsReplicationTaskCdcStart.cdcStartTime] choice: sets `cdc_start_time`.
-final class DmsReplicationTaskCdcStartCdcStartTime
-    extends DmsReplicationTaskCdcStart {
-  const DmsReplicationTaskCdcStartCdcStartTime(this.cdcStartTime);
+final class DmsReplicationTaskCdcStartTime extends DmsReplicationTaskCdcStart {
+  const DmsReplicationTaskCdcStartTime(this.cdcStartTime);
 
   final TfArg<String> cdcStartTime;
 

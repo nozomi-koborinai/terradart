@@ -7,33 +7,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpclattice_listener_rule`.
 const Set<String> _awsVpclatticeListenerRuleSensitive = <String>{};
 
-/// Typed helper for the `action` block of
-/// `aws_vpclattice_listener_rule` (derived from provider schema).
-@immutable
-final class VpclatticeListenerRuleAction {
-  const VpclatticeListenerRuleAction({required this.action});
-
-  final VpclatticeListenerRuleActionAction action;
-
-  Map<String, Object?> encode() => {...action.encode()};
-}
-
 /// Exactly one of `fixed_response`, `forward` on the `action` block of `aws_vpclattice_listener_rule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.fixedResponse(...)`.
-sealed class VpclatticeListenerRuleActionAction {
-  const VpclatticeListenerRuleActionAction();
+sealed class VpclatticeListenerRuleAction {
+  const VpclatticeListenerRuleAction();
 
   /// Sets `fixed_response`.
-  const factory VpclatticeListenerRuleActionAction.fixedResponse(
+  const factory VpclatticeListenerRuleAction.fixedResponse(
     VpclatticeListenerRuleActionFixedResponse fixedResponse,
-  ) = VpclatticeListenerRuleActionActionFixedResponse;
+  ) = VpclatticeListenerRuleActionFixedResponseChoice;
 
   /// Sets `forward`.
-  const factory VpclatticeListenerRuleActionAction.forward(
+  const factory VpclatticeListenerRuleAction.forward(
     VpclatticeListenerRuleActionForward forward,
-  ) = VpclatticeListenerRuleActionActionForward;
+  ) = VpclatticeListenerRuleActionForwardChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -41,10 +30,10 @@ sealed class VpclatticeListenerRuleActionAction {
   Map<String, Object?> encode();
 }
 
-/// The [VpclatticeListenerRuleActionAction.fixedResponse] choice: sets `fixed_response`.
-final class VpclatticeListenerRuleActionActionFixedResponse
-    extends VpclatticeListenerRuleActionAction {
-  const VpclatticeListenerRuleActionActionFixedResponse(this.fixedResponse);
+/// The [VpclatticeListenerRuleAction.fixedResponse] choice: sets `fixed_response`.
+final class VpclatticeListenerRuleActionFixedResponseChoice
+    extends VpclatticeListenerRuleAction {
+  const VpclatticeListenerRuleActionFixedResponseChoice(this.fixedResponse);
 
   final VpclatticeListenerRuleActionFixedResponse fixedResponse;
 
@@ -55,10 +44,10 @@ final class VpclatticeListenerRuleActionActionFixedResponse
   Map<String, Object?> encode() => {'fixed_response': fixedResponse.encode()};
 }
 
-/// The [VpclatticeListenerRuleActionAction.forward] choice: sets `forward`.
-final class VpclatticeListenerRuleActionActionForward
-    extends VpclatticeListenerRuleActionAction {
-  const VpclatticeListenerRuleActionActionForward(this.forward);
+/// The [VpclatticeListenerRuleAction.forward] choice: sets `forward`.
+final class VpclatticeListenerRuleActionForwardChoice
+    extends VpclatticeListenerRuleAction {
+  const VpclatticeListenerRuleActionForwardChoice(this.forward);
 
   final VpclatticeListenerRuleActionForward forward;
 

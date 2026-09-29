@@ -16,11 +16,12 @@ sealed class PinpointAppName {
   const PinpointAppName();
 
   /// Sets `name`.
-  const factory PinpointAppName.name(TfArg<String> name) = PinpointAppNameName;
+  const factory PinpointAppName.name(TfArg<String> name) =
+      PinpointAppNameChoice;
 
   /// Sets `name_prefix`.
   const factory PinpointAppName.namePrefix(TfArg<String> namePrefix) =
-      PinpointAppNameNamePrefix;
+      PinpointAppNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +34,8 @@ sealed class PinpointAppName {
 }
 
 /// The [PinpointAppName.name] choice: sets `name`.
-final class PinpointAppNameName extends PinpointAppName {
-  const PinpointAppNameName(this.name);
+final class PinpointAppNameChoice extends PinpointAppName {
+  const PinpointAppNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +50,8 @@ final class PinpointAppNameName extends PinpointAppName {
 }
 
 /// The [PinpointAppName.namePrefix] choice: sets `name_prefix`.
-final class PinpointAppNameNamePrefix extends PinpointAppName {
-  const PinpointAppNameNamePrefix(this.namePrefix);
+final class PinpointAppNamePrefix extends PinpointAppName {
+  const PinpointAppNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

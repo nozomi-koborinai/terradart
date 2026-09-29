@@ -17,11 +17,11 @@ sealed class DbOptionGroupName {
 
   /// Sets `name`.
   const factory DbOptionGroupName.name(TfArg<String> name) =
-      DbOptionGroupNameName;
+      DbOptionGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory DbOptionGroupName.namePrefix(TfArg<String> namePrefix) =
-      DbOptionGroupNameNamePrefix;
+      DbOptionGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,8 +34,8 @@ sealed class DbOptionGroupName {
 }
 
 /// The [DbOptionGroupName.name] choice: sets `name`.
-final class DbOptionGroupNameName extends DbOptionGroupName {
-  const DbOptionGroupNameName(this.name);
+final class DbOptionGroupNameChoice extends DbOptionGroupName {
+  const DbOptionGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -50,8 +50,8 @@ final class DbOptionGroupNameName extends DbOptionGroupName {
 }
 
 /// The [DbOptionGroupName.namePrefix] choice: sets `name_prefix`.
-final class DbOptionGroupNameNamePrefix extends DbOptionGroupName {
-  const DbOptionGroupNameNamePrefix(this.namePrefix);
+final class DbOptionGroupNamePrefix extends DbOptionGroupName {
+  const DbOptionGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

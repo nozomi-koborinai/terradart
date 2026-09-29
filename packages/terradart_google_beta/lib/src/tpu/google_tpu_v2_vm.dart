@@ -18,12 +18,12 @@ sealed class TpuV2VmAccelerator {
   /// Sets `accelerator_type`.
   const factory TpuV2VmAccelerator.acceleratorType(
     TfArg<String> acceleratorType,
-  ) = TpuV2VmAcceleratorAcceleratorType;
+  ) = TpuV2VmAcceleratorType;
 
   /// Sets `accelerator_config`.
   const factory TpuV2VmAccelerator.acceleratorConfig(
     TpuV2VmAcceleratorConfig acceleratorConfig,
-  ) = TpuV2VmAcceleratorAcceleratorConfig;
+  ) = TpuV2VmAcceleratorConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,8 +36,8 @@ sealed class TpuV2VmAccelerator {
 }
 
 /// The [TpuV2VmAccelerator.acceleratorType] choice: sets `accelerator_type`.
-final class TpuV2VmAcceleratorAcceleratorType extends TpuV2VmAccelerator {
-  const TpuV2VmAcceleratorAcceleratorType(this.acceleratorType);
+final class TpuV2VmAcceleratorType extends TpuV2VmAccelerator {
+  const TpuV2VmAcceleratorType(this.acceleratorType);
 
   final TfArg<String> acceleratorType;
 
@@ -56,8 +56,8 @@ final class TpuV2VmAcceleratorAcceleratorType extends TpuV2VmAccelerator {
 }
 
 /// The [TpuV2VmAccelerator.acceleratorConfig] choice: sets `accelerator_config`.
-final class TpuV2VmAcceleratorAcceleratorConfig extends TpuV2VmAccelerator {
-  const TpuV2VmAcceleratorAcceleratorConfig(this.acceleratorConfig);
+final class TpuV2VmAcceleratorConfigChoice extends TpuV2VmAccelerator {
+  const TpuV2VmAcceleratorConfigChoice(this.acceleratorConfig);
 
   final TpuV2VmAcceleratorConfig acceleratorConfig;
 
@@ -86,12 +86,12 @@ sealed class TpuV2VmNetwork {
   /// Sets `network_config`.
   const factory TpuV2VmNetwork.networkConfig(
     TpuV2VmNetworkConfig networkConfig,
-  ) = TpuV2VmNetworkNetworkConfig;
+  ) = TpuV2VmNetworkConfigChoice;
 
   /// Sets `network_configs`.
   const factory TpuV2VmNetwork.networkConfigs(
     List<TpuV2VmNetworkConfigs> networkConfigs,
-  ) = TpuV2VmNetworkNetworkConfigs;
+  ) = TpuV2VmNetworkConfigsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -104,8 +104,8 @@ sealed class TpuV2VmNetwork {
 }
 
 /// The [TpuV2VmNetwork.networkConfig] choice: sets `network_config`.
-final class TpuV2VmNetworkNetworkConfig extends TpuV2VmNetwork {
-  const TpuV2VmNetworkNetworkConfig(this.networkConfig);
+final class TpuV2VmNetworkConfigChoice extends TpuV2VmNetwork {
+  const TpuV2VmNetworkConfigChoice(this.networkConfig);
 
   final TpuV2VmNetworkConfig networkConfig;
 
@@ -122,8 +122,8 @@ final class TpuV2VmNetworkNetworkConfig extends TpuV2VmNetwork {
 }
 
 /// The [TpuV2VmNetwork.networkConfigs] choice: sets `network_configs`.
-final class TpuV2VmNetworkNetworkConfigs extends TpuV2VmNetwork {
-  const TpuV2VmNetworkNetworkConfigs(this.networkConfigs);
+final class TpuV2VmNetworkConfigsChoice extends TpuV2VmNetwork {
+  const TpuV2VmNetworkConfigsChoice(this.networkConfigs);
 
   final List<TpuV2VmNetworkConfigs> networkConfigs;
 

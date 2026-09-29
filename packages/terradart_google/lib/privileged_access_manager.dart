@@ -19,7 +19,7 @@ export 'src/privileged_access_manager/google_privileged_access_manager_entitleme
         PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBindings,
         PrivilegedAccessManagerEntitlementRequesterJustificationConfig,
         PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatory,
-        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig,
-        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfigNotMandatory,
-        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfigUnstructured,
+        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement,
+        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory,
+        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured,
         PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured;

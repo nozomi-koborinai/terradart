@@ -31,68 +31,57 @@ final class LakeformationOptInPrincipal {
   };
 }
 
-/// Typed helper for the `resource_data` block of
-/// `aws_lakeformation_opt_in` (derived from provider schema).
-@immutable
-final class LakeformationOptInResourceData {
-  const LakeformationOptInResourceData({required this.resourceData});
-
-  final LakeformationOptInResourceDataResourceData resourceData;
-
-  Map<String, Object?> encode() => {...resourceData.encode()};
-}
-
 /// Exactly one of `catalog`, `data_cells_filter`, `data_location`, `database`, `lf_tag`, `lf_tag_expression`, `lf_tag_policy`, `table`, `table_with_columns` on the `resource_data` block of `aws_lakeformation_opt_in`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.catalog(...)`.
-sealed class LakeformationOptInResourceDataResourceData {
-  const LakeformationOptInResourceDataResourceData();
+sealed class LakeformationOptInResourceData {
+  const LakeformationOptInResourceData();
 
   /// Sets `catalog`.
-  const factory LakeformationOptInResourceDataResourceData.catalog(
+  const factory LakeformationOptInResourceData.catalog(
     List<LakeformationOptInResourceDataCatalog> catalog,
-  ) = LakeformationOptInResourceDataResourceDataCatalog;
+  ) = LakeformationOptInResourceDataCatalogChoice;
 
   /// Sets `data_cells_filter`.
-  const factory LakeformationOptInResourceDataResourceData.dataCellsFilter(
+  const factory LakeformationOptInResourceData.dataCellsFilter(
     List<LakeformationOptInResourceDataDataCellsFilter> dataCellsFilter,
-  ) = LakeformationOptInResourceDataResourceDataDataCellsFilter;
+  ) = LakeformationOptInResourceDataCellsFilter;
 
   /// Sets `data_location`.
-  const factory LakeformationOptInResourceDataResourceData.dataLocation(
+  const factory LakeformationOptInResourceData.dataLocation(
     List<LakeformationOptInResourceDataDataLocation> dataLocation,
-  ) = LakeformationOptInResourceDataResourceDataDataLocation;
+  ) = LakeformationOptInResourceDataLocation;
 
   /// Sets `database`.
-  const factory LakeformationOptInResourceDataResourceData.database(
+  const factory LakeformationOptInResourceData.database(
     List<LakeformationOptInResourceDataDatabase> database,
-  ) = LakeformationOptInResourceDataResourceDataDatabase;
+  ) = LakeformationOptInResourceDataDatabaseChoice;
 
   /// Sets `lf_tag`.
-  const factory LakeformationOptInResourceDataResourceData.lfTag(
+  const factory LakeformationOptInResourceData.lfTag(
     List<LakeformationOptInResourceDataLfTag> lfTag,
-  ) = LakeformationOptInResourceDataResourceDataLfTag;
+  ) = LakeformationOptInResourceDataLfTagChoice;
 
   /// Sets `lf_tag_expression`.
-  const factory LakeformationOptInResourceDataResourceData.lfTagExpression(
+  const factory LakeformationOptInResourceData.lfTagExpression(
     List<LakeformationOptInResourceDataLfTagExpression> lfTagExpression,
-  ) = LakeformationOptInResourceDataResourceDataLfTagExpression;
+  ) = LakeformationOptInResourceDataLfTagExpressionChoice;
 
   /// Sets `lf_tag_policy`.
-  const factory LakeformationOptInResourceDataResourceData.lfTagPolicy(
+  const factory LakeformationOptInResourceData.lfTagPolicy(
     List<LakeformationOptInResourceDataLfTagPolicy> lfTagPolicy,
-  ) = LakeformationOptInResourceDataResourceDataLfTagPolicy;
+  ) = LakeformationOptInResourceDataLfTagPolicyChoice;
 
   /// Sets `table`.
-  const factory LakeformationOptInResourceDataResourceData.table(
+  const factory LakeformationOptInResourceData.table(
     List<LakeformationOptInResourceDataTable> table,
-  ) = LakeformationOptInResourceDataResourceDataTable;
+  ) = LakeformationOptInResourceDataTableChoice;
 
   /// Sets `table_with_columns`.
-  const factory LakeformationOptInResourceDataResourceData.tableWithColumns(
+  const factory LakeformationOptInResourceData.tableWithColumns(
     List<LakeformationOptInResourceDataTableWithColumns> tableWithColumns,
-  ) = LakeformationOptInResourceDataResourceDataTableWithColumns;
+  ) = LakeformationOptInResourceDataTableWithColumnsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -100,10 +89,10 @@ sealed class LakeformationOptInResourceDataResourceData {
   Map<String, Object?> encode();
 }
 
-/// The [LakeformationOptInResourceDataResourceData.catalog] choice: sets `catalog`.
-final class LakeformationOptInResourceDataResourceDataCatalog
-    extends LakeformationOptInResourceDataResourceData {
-  const LakeformationOptInResourceDataResourceDataCatalog(this.catalog);
+/// The [LakeformationOptInResourceData.catalog] choice: sets `catalog`.
+final class LakeformationOptInResourceDataCatalogChoice
+    extends LakeformationOptInResourceData {
+  const LakeformationOptInResourceDataCatalogChoice(this.catalog);
 
   final List<LakeformationOptInResourceDataCatalog> catalog;
 
@@ -116,12 +105,10 @@ final class LakeformationOptInResourceDataResourceDataCatalog
   };
 }
 
-/// The [LakeformationOptInResourceDataResourceData.dataCellsFilter] choice: sets `data_cells_filter`.
-final class LakeformationOptInResourceDataResourceDataDataCellsFilter
-    extends LakeformationOptInResourceDataResourceData {
-  const LakeformationOptInResourceDataResourceDataDataCellsFilter(
-    this.dataCellsFilter,
-  );
+/// The [LakeformationOptInResourceData.dataCellsFilter] choice: sets `data_cells_filter`.
+final class LakeformationOptInResourceDataCellsFilter
+    extends LakeformationOptInResourceData {
+  const LakeformationOptInResourceDataCellsFilter(this.dataCellsFilter);
 
   final List<LakeformationOptInResourceDataDataCellsFilter> dataCellsFilter;
 
@@ -134,12 +121,10 @@ final class LakeformationOptInResourceDataResourceDataDataCellsFilter
   };
 }
 
-/// The [LakeformationOptInResourceDataResourceData.dataLocation] choice: sets `data_location`.
-final class LakeformationOptInResourceDataResourceDataDataLocation
-    extends LakeformationOptInResourceDataResourceData {
-  const LakeformationOptInResourceDataResourceDataDataLocation(
-    this.dataLocation,
-  );
+/// The [LakeformationOptInResourceData.dataLocation] choice: sets `data_location`.
+final class LakeformationOptInResourceDataLocation
+    extends LakeformationOptInResourceData {
+  const LakeformationOptInResourceDataLocation(this.dataLocation);
 
   final List<LakeformationOptInResourceDataDataLocation> dataLocation;
 
@@ -152,10 +137,10 @@ final class LakeformationOptInResourceDataResourceDataDataLocation
   };
 }
 
-/// The [LakeformationOptInResourceDataResourceData.database] choice: sets `database`.
-final class LakeformationOptInResourceDataResourceDataDatabase
-    extends LakeformationOptInResourceDataResourceData {
-  const LakeformationOptInResourceDataResourceDataDatabase(this.database);
+/// The [LakeformationOptInResourceData.database] choice: sets `database`.
+final class LakeformationOptInResourceDataDatabaseChoice
+    extends LakeformationOptInResourceData {
+  const LakeformationOptInResourceDataDatabaseChoice(this.database);
 
   final List<LakeformationOptInResourceDataDatabase> database;
 
@@ -168,10 +153,10 @@ final class LakeformationOptInResourceDataResourceDataDatabase
   };
 }
 
-/// The [LakeformationOptInResourceDataResourceData.lfTag] choice: sets `lf_tag`.
-final class LakeformationOptInResourceDataResourceDataLfTag
-    extends LakeformationOptInResourceDataResourceData {
-  const LakeformationOptInResourceDataResourceDataLfTag(this.lfTag);
+/// The [LakeformationOptInResourceData.lfTag] choice: sets `lf_tag`.
+final class LakeformationOptInResourceDataLfTagChoice
+    extends LakeformationOptInResourceData {
+  const LakeformationOptInResourceDataLfTagChoice(this.lfTag);
 
   final List<LakeformationOptInResourceDataLfTag> lfTag;
 
@@ -184,10 +169,10 @@ final class LakeformationOptInResourceDataResourceDataLfTag
   };
 }
 
-/// The [LakeformationOptInResourceDataResourceData.lfTagExpression] choice: sets `lf_tag_expression`.
-final class LakeformationOptInResourceDataResourceDataLfTagExpression
-    extends LakeformationOptInResourceDataResourceData {
-  const LakeformationOptInResourceDataResourceDataLfTagExpression(
+/// The [LakeformationOptInResourceData.lfTagExpression] choice: sets `lf_tag_expression`.
+final class LakeformationOptInResourceDataLfTagExpressionChoice
+    extends LakeformationOptInResourceData {
+  const LakeformationOptInResourceDataLfTagExpressionChoice(
     this.lfTagExpression,
   );
 
@@ -202,10 +187,10 @@ final class LakeformationOptInResourceDataResourceDataLfTagExpression
   };
 }
 
-/// The [LakeformationOptInResourceDataResourceData.lfTagPolicy] choice: sets `lf_tag_policy`.
-final class LakeformationOptInResourceDataResourceDataLfTagPolicy
-    extends LakeformationOptInResourceDataResourceData {
-  const LakeformationOptInResourceDataResourceDataLfTagPolicy(this.lfTagPolicy);
+/// The [LakeformationOptInResourceData.lfTagPolicy] choice: sets `lf_tag_policy`.
+final class LakeformationOptInResourceDataLfTagPolicyChoice
+    extends LakeformationOptInResourceData {
+  const LakeformationOptInResourceDataLfTagPolicyChoice(this.lfTagPolicy);
 
   final List<LakeformationOptInResourceDataLfTagPolicy> lfTagPolicy;
 
@@ -218,10 +203,10 @@ final class LakeformationOptInResourceDataResourceDataLfTagPolicy
   };
 }
 
-/// The [LakeformationOptInResourceDataResourceData.table] choice: sets `table`.
-final class LakeformationOptInResourceDataResourceDataTable
-    extends LakeformationOptInResourceDataResourceData {
-  const LakeformationOptInResourceDataResourceDataTable(this.table);
+/// The [LakeformationOptInResourceData.table] choice: sets `table`.
+final class LakeformationOptInResourceDataTableChoice
+    extends LakeformationOptInResourceData {
+  const LakeformationOptInResourceDataTableChoice(this.table);
 
   final List<LakeformationOptInResourceDataTable> table;
 
@@ -234,10 +219,10 @@ final class LakeformationOptInResourceDataResourceDataTable
   };
 }
 
-/// The [LakeformationOptInResourceDataResourceData.tableWithColumns] choice: sets `table_with_columns`.
-final class LakeformationOptInResourceDataResourceDataTableWithColumns
-    extends LakeformationOptInResourceDataResourceData {
-  const LakeformationOptInResourceDataResourceDataTableWithColumns(
+/// The [LakeformationOptInResourceData.tableWithColumns] choice: sets `table_with_columns`.
+final class LakeformationOptInResourceDataTableWithColumnsChoice
+    extends LakeformationOptInResourceData {
+  const LakeformationOptInResourceDataTableWithColumnsChoice(
     this.tableWithColumns,
   );
 

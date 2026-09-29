@@ -99,11 +99,11 @@ sealed class AlbTargetGroupName {
 
   /// Sets `name`.
   const factory AlbTargetGroupName.name(TfArg<String> name) =
-      AlbTargetGroupNameName;
+      AlbTargetGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory AlbTargetGroupName.namePrefix(TfArg<String> namePrefix) =
-      AlbTargetGroupNameNamePrefix;
+      AlbTargetGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -116,8 +116,8 @@ sealed class AlbTargetGroupName {
 }
 
 /// The [AlbTargetGroupName.name] choice: sets `name`.
-final class AlbTargetGroupNameName extends AlbTargetGroupName {
-  const AlbTargetGroupNameName(this.name);
+final class AlbTargetGroupNameChoice extends AlbTargetGroupName {
+  const AlbTargetGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -132,8 +132,8 @@ final class AlbTargetGroupNameName extends AlbTargetGroupName {
 }
 
 /// The [AlbTargetGroupName.namePrefix] choice: sets `name_prefix`.
-final class AlbTargetGroupNameNamePrefix extends AlbTargetGroupName {
-  const AlbTargetGroupNameNamePrefix(this.namePrefix);
+final class AlbTargetGroupNamePrefix extends AlbTargetGroupName {
+  const AlbTargetGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

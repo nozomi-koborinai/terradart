@@ -1020,36 +1020,22 @@ enum OsConfigPatchDeploymentRolloutMode implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Typed helper for the `rollout.disruption_budget` block of
-/// `google_os_config_patch_deployment` (derived from provider schema).
-@immutable
-final class OsConfigPatchDeploymentRolloutDisruptionBudget {
-  const OsConfigPatchDeploymentRolloutDisruptionBudget({
-    required this.disruptionBudget,
-  });
-
-  final OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget
-  disruptionBudget;
-
-  Map<String, Object?> encode() => {...disruptionBudget.encode()};
-}
-
 /// Exactly one of `fixed`, `percentage` on the `rollout.disruption_budget` block of `google_os_config_patch_deployment`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.fixed(...)`.
-sealed class OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget {
-  const OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget();
+sealed class OsConfigPatchDeploymentRolloutDisruptionBudget {
+  const OsConfigPatchDeploymentRolloutDisruptionBudget();
 
   /// Sets `fixed`.
-  const factory OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget.fixed(
+  const factory OsConfigPatchDeploymentRolloutDisruptionBudget.fixed(
     TfArg<num> fixed,
-  ) = OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudgetFixed;
+  ) = OsConfigPatchDeploymentRolloutDisruptionBudgetFixed;
 
   /// Sets `percentage`.
-  const factory OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget.percentage(
+  const factory OsConfigPatchDeploymentRolloutDisruptionBudget.percentage(
     TfArg<num> percentage,
-  ) = OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudgetPercentage;
+  ) = OsConfigPatchDeploymentRolloutDisruptionBudgetPercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1057,12 +1043,10 @@ sealed class OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget {
   Map<String, Object?> encode();
 }
 
-/// The [OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget.fixed] choice: sets `fixed`.
-final class OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudgetFixed
-    extends OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget {
-  const OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudgetFixed(
-    this.fixed,
-  );
+/// The [OsConfigPatchDeploymentRolloutDisruptionBudget.fixed] choice: sets `fixed`.
+final class OsConfigPatchDeploymentRolloutDisruptionBudgetFixed
+    extends OsConfigPatchDeploymentRolloutDisruptionBudget {
+  const OsConfigPatchDeploymentRolloutDisruptionBudgetFixed(this.fixed);
 
   final TfArg<num> fixed;
 
@@ -1073,10 +1057,10 @@ final class OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudgetFixed
   Map<String, Object?> encode() => {'fixed': fixed.toTfJson()};
 }
 
-/// The [OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget.percentage] choice: sets `percentage`.
-final class OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudgetPercentage
-    extends OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget {
-  const OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudgetPercentage(
+/// The [OsConfigPatchDeploymentRolloutDisruptionBudget.percentage] choice: sets `percentage`.
+final class OsConfigPatchDeploymentRolloutDisruptionBudgetPercentage
+    extends OsConfigPatchDeploymentRolloutDisruptionBudget {
+  const OsConfigPatchDeploymentRolloutDisruptionBudgetPercentage(
     this.percentage,
   );
 

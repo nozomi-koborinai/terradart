@@ -76,13 +76,13 @@ sealed class CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
   const factory CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedCanary(
     CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary
     timeBasedCanary,
-  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedCanary;
+  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryChoice;
 
   /// Sets `time_based_linear`.
   const factory CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedLinear(
     CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear
     timeBasedLinear,
-  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedLinear;
+  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinearChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -91,9 +91,9 @@ sealed class CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
 }
 
 /// The [CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedCanary] choice: sets `time_based_canary`.
-final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedCanary
+final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryChoice
     extends CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedCanary(
+  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryChoice(
     this.timeBasedCanary,
   );
 
@@ -110,9 +110,9 @@ final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedCana
 }
 
 /// The [CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedLinear] choice: sets `time_based_linear`.
-final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedLinear
+final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinearChoice
     extends CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedLinear(
+  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinearChoice(
     this.timeBasedLinear,
   );
 

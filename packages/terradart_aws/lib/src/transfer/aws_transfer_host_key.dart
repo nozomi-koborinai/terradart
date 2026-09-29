@@ -13,18 +13,16 @@ const Set<String> _awsTransferHostKeySensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.hostKeyBody(...)`.
-sealed class TransferHostKeyHostKeyBody {
-  const TransferHostKeyHostKeyBody();
+sealed class TransferHostKeyBody {
+  const TransferHostKeyBody();
 
   /// Sets `host_key_body`.
-  const factory TransferHostKeyHostKeyBody.hostKeyBody(
-    TfArg<String> hostKeyBody,
-  ) = TransferHostKeyHostKeyBodyHostKeyBody;
+  const factory TransferHostKeyBody.hostKeyBody(TfArg<String> hostKeyBody) =
+      TransferHostKeyBodyChoice;
 
   /// Sets `host_key_body_wo`.
-  const factory TransferHostKeyHostKeyBody.hostKeyBodyWo(
-    TfArg<String> hostKeyBodyWo,
-  ) = TransferHostKeyHostKeyBodyHostKeyBodyWo;
+  const factory TransferHostKeyBody.hostKeyBodyWo(TfArg<String> hostKeyBodyWo) =
+      TransferHostKeyBodyWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,10 +34,9 @@ sealed class TransferHostKeyHostKeyBody {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [TransferHostKeyHostKeyBody.hostKeyBody] choice: sets `host_key_body`.
-final class TransferHostKeyHostKeyBodyHostKeyBody
-    extends TransferHostKeyHostKeyBody {
-  const TransferHostKeyHostKeyBodyHostKeyBody(this.hostKeyBody);
+/// The [TransferHostKeyBody.hostKeyBody] choice: sets `host_key_body`.
+final class TransferHostKeyBodyChoice extends TransferHostKeyBody {
+  const TransferHostKeyBodyChoice(this.hostKeyBody);
 
   final TfArg<String> hostKeyBody;
 
@@ -53,10 +50,9 @@ final class TransferHostKeyHostKeyBodyHostKeyBody
   Map<String, TfArg<Object?>> get argMap => {'host_key_body': hostKeyBody};
 }
 
-/// The [TransferHostKeyHostKeyBody.hostKeyBodyWo] choice: sets `host_key_body_wo`.
-final class TransferHostKeyHostKeyBodyHostKeyBodyWo
-    extends TransferHostKeyHostKeyBody {
-  const TransferHostKeyHostKeyBodyHostKeyBodyWo(this.hostKeyBodyWo);
+/// The [TransferHostKeyBody.hostKeyBodyWo] choice: sets `host_key_body_wo`.
+final class TransferHostKeyBodyWo extends TransferHostKeyBody {
+  const TransferHostKeyBodyWo(this.hostKeyBodyWo);
 
   final TfArg<String> hostKeyBodyWo;
 
@@ -79,7 +75,7 @@ final class AwsTransferHostKey extends Resource {
   AwsTransferHostKey({
     required super.localName,
     TfArg<String>? description,
-    required TransferHostKeyHostKeyBody hostKeyBody,
+    required TransferHostKeyBody hostKeyBody,
     TfArg<String>? region,
     required TfArg<String> serverId,
     TfArg<Map<String, String>>? tags,

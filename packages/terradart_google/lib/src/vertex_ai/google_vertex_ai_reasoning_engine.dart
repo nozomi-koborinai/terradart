@@ -574,38 +574,24 @@ enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGener
   final String terraformValue;
 }
 
-/// Typed helper for the `context_spec.memory_bank_config.customization_configs.memory_topics` block of
-/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
-@immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics({
-    required this.memoryTopic,
-  });
-
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic
-  memoryTopic;
-
-  Map<String, Object?> encode() => {...memoryTopic.encode()};
-}
-
 /// Exactly one of `managed_memory_topic`, `custom_memory_topic` on the `context_spec.memory_bank_config.customization_configs.memory_topics` block of `google_vertex_ai_reasoning_engine`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.managedMemoryTopic(...)`.
-sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic();
+sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics();
 
   /// Sets `managed_memory_topic`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.managedMemoryTopic(
+  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics.managedMemoryTopic(
     VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic
     managedMemoryTopic,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicManagedMemoryTopic;
+  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicChoice;
 
   /// Sets `custom_memory_topic`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.customMemoryTopic(
+  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics.customMemoryTopic(
     VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic
     customMemoryTopic,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicCustomMemoryTopic;
+  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopicChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -613,11 +599,11 @@ sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConf
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.managedMemoryTopic] choice: sets `managed_memory_topic`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicManagedMemoryTopic
+/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics.managedMemoryTopic] choice: sets `managed_memory_topic`.
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicChoice
     extends
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicManagedMemoryTopic(
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicChoice(
     this.managedMemoryTopic,
   );
 
@@ -633,11 +619,11 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   };
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.customMemoryTopic] choice: sets `custom_memory_topic`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicCustomMemoryTopic
+/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics.customMemoryTopic] choice: sets `custom_memory_topic`.
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopicChoice
     extends
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicCustomMemoryTopic(
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopicChoice(
     this.customMemoryTopic,
   );
 
@@ -815,16 +801,17 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryCo
 @immutable
 final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig {
   const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig({
-    required this.ttl,
+    required this.policy,
     this.memoryRevisionDefaultTtl,
   });
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl ttl;
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy
+  policy;
 
   final TfArg<String>? memoryRevisionDefaultTtl;
 
   Map<String, Object?> encode() => {
-    ...ttl.encode(),
+    ...policy.encode(),
     if (memoryRevisionDefaultTtl != null)
       'memory_revision_default_ttl': memoryRevisionDefaultTtl!.toTfJson(),
   };
@@ -834,19 +821,19 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.defaultTtl(...)`.
-sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl();
+sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy();
 
   /// Sets `default_ttl`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl.defaultTtl(
+  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy.defaultTtl(
     TfArg<String> defaultTtl,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlDefaultTtl;
+  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyDefaultTtl;
 
   /// Sets `granular_ttl_config`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl.granularTtlConfig(
+  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy.granularTtlConfig(
     VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig
     granularTtlConfig,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlGranularTtlConfig;
+  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyGranularTtlConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -854,10 +841,10 @@ sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl.defaultTtl] choice: sets `default_ttl`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlDefaultTtl
-    extends VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlDefaultTtl(
+/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy.defaultTtl] choice: sets `default_ttl`.
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyDefaultTtl
+    extends VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyDefaultTtl(
     this.defaultTtl,
   );
 
@@ -870,10 +857,10 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlDefaul
   Map<String, Object?> encode() => {'default_ttl': defaultTtl.toTfJson()};
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl.granularTtlConfig] choice: sets `granular_ttl_config`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlGranularTtlConfig
-    extends VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlGranularTtlConfig(
+/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy.granularTtlConfig] choice: sets `granular_ttl_config`.
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyGranularTtlConfig
+    extends VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyGranularTtlConfig(
     this.granularTtlConfig,
   );
 

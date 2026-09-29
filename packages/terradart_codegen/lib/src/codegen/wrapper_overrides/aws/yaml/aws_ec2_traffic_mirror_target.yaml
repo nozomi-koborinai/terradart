@@ -6,4 +6,4 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "gateway_load_balancer_endpoint_id, network_interface_id, network_load_balancer_arn": target
+  "gateway_load_balancer_endpoint_id, network_interface_id, network_load_balancer_arn": destination

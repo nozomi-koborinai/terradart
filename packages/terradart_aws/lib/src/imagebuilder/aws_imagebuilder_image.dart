@@ -22,7 +22,7 @@ sealed class ImagebuilderImageRecipeArn {
   /// Sets `image_recipe_arn`.
   const factory ImagebuilderImageRecipeArn.imageRecipeArn(
     TfArg<String> imageRecipeArn,
-  ) = ImagebuilderImageRecipeArnImageRecipeArn;
+  ) = ImagebuilderImageRecipeArnChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -56,9 +56,9 @@ final class ImagebuilderImageRecipeArnContainerRecipeArn
 }
 
 /// The [ImagebuilderImageRecipeArn.imageRecipeArn] choice: sets `image_recipe_arn`.
-final class ImagebuilderImageRecipeArnImageRecipeArn
+final class ImagebuilderImageRecipeArnChoice
     extends ImagebuilderImageRecipeArn {
-  const ImagebuilderImageRecipeArnImageRecipeArn(this.imageRecipeArn);
+  const ImagebuilderImageRecipeArnChoice(this.imageRecipeArn);
 
   final TfArg<String> imageRecipeArn;
 

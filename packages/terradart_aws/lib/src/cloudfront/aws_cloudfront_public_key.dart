@@ -16,11 +16,11 @@ sealed class CloudfrontPublicKeyName {
 
   /// Sets `name`.
   const factory CloudfrontPublicKeyName.name(TfArg<String> name) =
-      CloudfrontPublicKeyNameName;
+      CloudfrontPublicKeyNameChoice;
 
   /// Sets `name_prefix`.
   const factory CloudfrontPublicKeyName.namePrefix(TfArg<String> namePrefix) =
-      CloudfrontPublicKeyNameNamePrefix;
+      CloudfrontPublicKeyNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class CloudfrontPublicKeyName {
 }
 
 /// The [CloudfrontPublicKeyName.name] choice: sets `name`.
-final class CloudfrontPublicKeyNameName extends CloudfrontPublicKeyName {
-  const CloudfrontPublicKeyNameName(this.name);
+final class CloudfrontPublicKeyNameChoice extends CloudfrontPublicKeyName {
+  const CloudfrontPublicKeyNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class CloudfrontPublicKeyNameName extends CloudfrontPublicKeyName {
 }
 
 /// The [CloudfrontPublicKeyName.namePrefix] choice: sets `name_prefix`.
-final class CloudfrontPublicKeyNameNamePrefix extends CloudfrontPublicKeyName {
-  const CloudfrontPublicKeyNameNamePrefix(this.namePrefix);
+final class CloudfrontPublicKeyNamePrefix extends CloudfrontPublicKeyName {
+  const CloudfrontPublicKeyNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
