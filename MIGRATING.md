@@ -1236,6 +1236,8 @@ names another resource takes `RefTo<R>`.
   | `EventarcTriggerCloudRunService` / `HttpEndpoint` | `EventarcTriggerDestinationCloudRunService` / `DestinationHttpEndpoint` |
   | `EventarcMessageBusLoggingConfig` (on `GoogleEventarcPipeline`) | `EventarcPipelineLoggingConfig` |
   | `Cloudfunctions2FunctionEventFilter` | `Cloudfunctions2FunctionEventTriggerEventFilters` |
+  | `StorageSource` / `RepoSource` (Cloud Functions build source) | `Cloudfunctions2FunctionBuildConfigSourceStorageSource` / `SourceRepoSource`, passed as `.storageSource(...)` / `.repoSource(...)` |
+  | `AutomaticUpdatePolicy` / `OnDeployUpdatePolicy` | `Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy` / `OnDeployUpdatePolicy`, passed as `.automaticUpdatePolicy(...)` / `.onDeployUpdatePolicy(...)` |
 
   Each helper's doc names the block it models.
 - Helper fields are `TfArg<T>`, so they take dot shorthands

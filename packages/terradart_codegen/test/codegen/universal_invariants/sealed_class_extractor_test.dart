@@ -68,9 +68,9 @@ final class RolloutPolicy extends TrafficChoice {
       expect(pByName['disabled']!.required, isFalse);
     });
 
-    test('parses google_cloudfunctions2_function.yaml prelude end-to-end', () {
+    test('parses google_vertex_ai_feature_online_store.yaml prelude end-to-end', () {
       final yaml = File(
-        'lib/src/codegen/wrapper_overrides/yaml/google_cloudfunctions2_function.yaml',
+        'lib/src/codegen/wrapper_overrides/yaml/google_vertex_ai_feature_online_store.yaml',
       ).readAsStringSync();
       // Crude prelude slice: from the `prelude:` key to the end of the yaml.
       // Component B-3 (Gate 6) parses yaml properly via the yaml package; this
@@ -83,14 +83,17 @@ final class RolloutPolicy extends TrafficChoice {
       final extracted = const SealedClassExtractor().extract(preludeText);
       expect(
         extracted.map((s) => s.name),
-        contains('Cloudfunctions2FunctionSourceConfig'),
+        contains('VertexAiFeatureOnlineStoreStorage'),
       );
       final source = extracted.singleWhere(
-        (s) => s.name == 'Cloudfunctions2FunctionSourceConfig',
+        (s) => s.name == 'VertexAiFeatureOnlineStoreStorage',
       );
       expect(
         source.members.map((m) => m.name),
-        containsAll(['StorageSource', 'RepoSource']),
+        containsAll([
+          'VertexAiFeatureOnlineStoreBigtable',
+          'VertexAiFeatureOnlineStoreOptimized',
+        ]),
       );
     });
   });

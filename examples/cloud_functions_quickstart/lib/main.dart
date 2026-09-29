@@ -8,8 +8,8 @@
 /// - a HTTP-triggered Python 3.11 function with 256 MiB memory, a 60-second
 ///   timeout, and ingress restricted to internal callers + load balancers.
 ///
-/// Demonstrates the sealed `SourceConfig` dispatch (`StorageSource` variant)
-/// and the typed enum coverage from `google_cloudfunctions2_function`.
+/// Demonstrates the sealed build `source` (`.storageSource` variant) and
+/// the typed enum coverage from `google_cloudfunctions2_function`.
 library;
 
 import 'package:terradart_core/terradart_core.dart';

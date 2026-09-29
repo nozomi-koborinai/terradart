@@ -179,17 +179,6 @@ final Map<String, Object Function()> _syntheticInstances = {
   'StorageInsightsReportConfigParquetFormat': () =>
       const StorageInsightsReportConfigParquetFormat(),
 
-  // --- SourceConfig (2) — cloudfunctions2_function -------------------------
-  'StorageSource': () => StorageSource(
-    bucket: TfArg.literal('mock-bucket'),
-    object: TfArg.literal('mock-object.zip'),
-  ),
-  'RepoSource': () => RepoSource(repoName: TfArg.literal('mock-repo')),
-
-  // --- UpdatePolicy (2) — cloudfunctions2_function -------------------------
-  'AutomaticUpdatePolicy': () => const AutomaticUpdatePolicy(),
-  'OnDeployUpdatePolicy': () => const OnDeployUpdatePolicy(),
-
   // --- ComputeHealthCheckProtocol (6) — compute_health_check ----------------
   'ComputeHealthCheckHttpHealthCheckConfig': () =>
       ComputeHealthCheckHttpHealthCheckConfig(port: TfArg.literal(80)),
