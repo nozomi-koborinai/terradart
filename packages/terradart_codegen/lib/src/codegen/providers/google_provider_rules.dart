@@ -1,7 +1,7 @@
 import '../../ir/resource_def.dart';
 import 'provider_rules.dart';
 
-final class GoogleProviderRules extends ProviderRules {
+base class GoogleProviderRules extends ProviderRules {
   const GoogleProviderRules();
 
   @override
@@ -326,4 +326,24 @@ final class GoogleProviderRules extends ProviderRules {
     'mlengine': 'vertex_ai',
     'network_security': 'network',
   };
+}
+
+/// wrap-init rules for `hashicorp/google-beta`: the google barrels, plus
+/// the derivation gates its `wrap --mm-hints` lane feeds (typed nested
+/// helpers and output getters, enums and sealed `exactly_one_of` slots) —
+/// the beta lane keeps no hand-promoted overrides.
+final class GoogleBetaProviderRules extends GoogleProviderRules {
+  const GoogleBetaProviderRules();
+
+  @override
+  String get providerId => 'hashicorp/google-beta';
+
+  @override
+  bool get typedNestedDefaults => true;
+
+  @override
+  bool get derivedEnumDefaults => true;
+
+  @override
+  bool get exactlyOneDefaults => true;
 }

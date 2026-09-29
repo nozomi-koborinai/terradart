@@ -4,6 +4,10 @@
 outputDir: api_gateway
 
 deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Authoritative IAM binding for a single `role` on a API Gateway API Config.

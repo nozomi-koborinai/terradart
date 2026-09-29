@@ -34,7 +34,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
 
 const _exitUsage = 64;
@@ -153,7 +152,6 @@ _Args? _parseArgs(List<String> args) {
 /// Where the MM YAML of a provider release comes from: the provider repo
 /// whose release tags carry the magic-modules commit, the file recording
 /// the fixture's release, and the file recording the resolved commit.
-@visibleForTesting
 class ProviderPin {
   ProviderPin({
     required this.providerRepo,
@@ -174,7 +172,6 @@ final _upstreamStamp = RegExp(r'\[upstream:([0-9a-f]{40})\]');
 /// The magic-modules ref [manifest] reads: [override] when given, the
 /// `upstream_branch` of an unpinned manifest, else the commit the pinned
 /// provider release was generated from.
-@visibleForTesting
 Future<String> resolveUpstreamRef(
   Manifest manifest, {
   String? override,

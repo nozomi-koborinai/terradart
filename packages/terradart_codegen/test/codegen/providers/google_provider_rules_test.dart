@@ -159,4 +159,19 @@ void main() {
       expect(rules.universalGetters(def), isEmpty);
     });
   });
+
+  group('GoogleBetaProviderRules', () {
+    const rules = GoogleBetaProviderRules();
+
+    test('keeps the google barrels and fills every derivation gate', () {
+      expect(rules.providerId, 'hashicorp/google-beta');
+      expect(rules.terraformTypePrefix, 'google_');
+      expect(
+          rules.outputDirAliases, const GoogleProviderRules().outputDirAliases);
+      expect(rules.typedNestedDefaults, isTrue);
+      expect(rules.derivedEnumDefaults, isTrue);
+      expect(rules.exactlyOneDefaults, isTrue);
+      expect(const GoogleProviderRules().exactlyOneDefaults, isFalse);
+    });
+  });
 }

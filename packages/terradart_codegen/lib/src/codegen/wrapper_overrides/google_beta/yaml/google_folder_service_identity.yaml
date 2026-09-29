@@ -1,5 +1,8 @@
 outputDir: folder
 deriveClassDoc: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

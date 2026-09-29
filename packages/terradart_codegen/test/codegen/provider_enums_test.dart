@@ -7,6 +7,7 @@ import 'package:terradart_codegen/src/ir/nested_block.dart';
 import 'package:terradart_codegen/src/ir/provider_schema_ir.dart';
 import 'package:terradart_codegen/src/ir/resource_def.dart';
 import 'package:terradart_codegen/src/ir/type_def.dart';
+import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:test/test.dart';
 
 Attribute _attr(
@@ -63,6 +64,36 @@ void main() {
     expect(_values(ir, 'mode'), ['h1', 'h2']);
     expect(enums.resolver('x_thing')(['settings', 'level'], available), ['l1']);
     expect(enums.resolver(null)(['settings', 'level'], available), ['a', 'b']);
+  });
+
+  test('fromMm reads MM enum values and exactly_one_of groups', () {
+    final enums = ProviderEnums.fromMm({
+      'x_thing': const MmYamlParser().parseString('''
+properties:
+  - name: mode
+    type: Enum
+    enum_values: [M1, M2]
+    exactly_one_of: [mode, other]
+  - name: rules
+    type: Array
+    item_type:
+      type: NestedObject
+      properties:
+        - name: level
+          type: Enum
+          enum_values: [L1]
+'''),
+    });
+    expect(enums.enabled, isTrue);
+    expect(enums.caseInsensitive, isFalse);
+    expect(_values(enums.enrich(_ir([_attr('mode')])), 'mode'), ['M1', 'M2']);
+    expect(enums.resolver('x_thing')(['rules', 'level'], null), ['L1']);
+    expect(enums.resolver('x_thing')(['rules', 'other'], available), isNull);
+    expect(enums.exactlyOneGroupsByBlock('x_thing'), {
+      '': [
+        ['mode', 'other'],
+      ],
+    });
   });
 
   test('top-level string and list-of-string inputs are enriched', () {

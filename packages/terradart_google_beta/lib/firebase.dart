@@ -5,7 +5,11 @@
 library;
 
 export 'src/firebase/google_firebase_ai_logic_config.dart'
-    show GoogleFirebaseAiLogicConfig;
+    show
+        FirebaseAiLogicConfigGenerativeLanguageConfig,
+        FirebaseAiLogicConfigTelemetryConfig,
+        FirebaseAiLogicConfigTrafficFilter,
+        GoogleFirebaseAiLogicConfig;
 export 'src/firebase/google_firebase_ai_logic_prompt_template.dart'
     show GoogleFirebaseAiLogicPromptTemplate;
 export 'src/firebase/google_firebase_ai_logic_prompt_template_lock.dart'
@@ -15,19 +19,35 @@ export 'src/firebase/google_firebase_android_app.dart'
 export 'src/firebase/google_firebase_apple_app.dart'
     show GoogleFirebaseAppleApp;
 export 'src/firebase/google_firebase_database_instance.dart'
-    show GoogleFirebaseDatabaseInstance;
+    show
+        FirebaseDatabaseInstanceDesiredState,
+        FirebaseDatabaseInstanceState,
+        FirebaseDatabaseInstanceType,
+        GoogleFirebaseDatabaseInstance;
 export 'src/firebase/google_firebase_extensions_instance.dart'
-    show GoogleFirebaseExtensionsInstance;
+    show
+        FirebaseExtensionsInstanceConfig,
+        FirebaseExtensionsInstanceState,
+        GoogleFirebaseExtensionsInstance;
 export 'src/firebase/google_firebase_hosting_channel.dart'
     show GoogleFirebaseHostingChannel;
 export 'src/firebase/google_firebase_hosting_custom_domain.dart'
-    show GoogleFirebaseHostingCustomDomain;
+    show
+        FirebaseHostingCustomDomainCertPreference,
+        FirebaseHostingCustomDomainOwnershipState,
+        GoogleFirebaseHostingCustomDomain;
 export 'src/firebase/google_firebase_hosting_release.dart'
-    show GoogleFirebaseHostingRelease;
+    show FirebaseHostingReleaseType, GoogleFirebaseHostingRelease;
 export 'src/firebase/google_firebase_hosting_site.dart'
     show GoogleFirebaseHostingSite;
 export 'src/firebase/google_firebase_hosting_version.dart'
-    show GoogleFirebaseHostingVersion;
+    show
+        FirebaseHostingVersionConfig,
+        FirebaseHostingVersionConfigHeaders,
+        FirebaseHostingVersionConfigRedirects,
+        FirebaseHostingVersionConfigRewrites,
+        FirebaseHostingVersionConfigRewritesRun,
+        GoogleFirebaseHostingVersion;
 export 'src/firebase/google_firebase_project.dart' show GoogleFirebaseProject;
 export 'src/firebase/google_firebase_storage_bucket.dart'
     show GoogleFirebaseStorageBucket;

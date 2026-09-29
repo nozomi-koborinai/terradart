@@ -25,6 +25,17 @@ Per-package changelogs live alongside each package and are the system of record 
   new groups in the same bump. The migration manifest derives the sealed
   shapes; the round-trip gate stays green. Synth output is unchanged. See
   `MIGRATING.md`.
+- **`terradart_google_beta` reaches the GA package's type safety**
+  (breaking) — the beta lane now reads Magic Modules YAML: every beta
+  resource is resolved to its `mmv1` file through the generated Go source of
+  `hashicorp/google-beta` at the pinned tag (`tool/sync_lane_mm_yaml.dart`,
+  no hand-kept list), and `terradart wrap --mm-hints` turns its
+  `enum_values` into enums and its `exactly_one_of` groups into sealed
+  arguments. Nested blocks take typed helper classes instead of
+  `TfArg<Map<String, dynamic>>` (114 inputs), 67 inputs are enums, and two
+  exactly-one groups are sealed. The weekly schema bump re-syncs the MM YAML
+  with the google-beta ride-along. Synth output is unchanged; see
+  [MIGRATING.md](MIGRATING.md).
 
 ## [0.30.0] - 2026-09-28
 

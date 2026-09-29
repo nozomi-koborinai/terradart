@@ -8,6 +8,7 @@ import 'provider_rules.dart';
 /// accept).
 const Map<String, ProviderRules> providerRulesById = {
   'hashicorp/google': GoogleProviderRules(),
+  'hashicorp/google-beta': GoogleBetaProviderRules(),
   'cloudflare/cloudflare': CloudflareProviderRules(),
   'hashicorp/aws': AwsProviderRules(),
 };

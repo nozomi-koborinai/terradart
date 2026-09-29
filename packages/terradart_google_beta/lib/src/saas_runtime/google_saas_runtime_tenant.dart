@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleSaasRuntimeTenantSensitive = <String>{};
 
 /// Factory wrapper for `google_saas_runtime_tenant`.
+///
+/// The Tenant resource represents the service producer's view of a service
+/// instance created for a consumer. It enables the association between the
+/// service producer's managed resources and the end consumer.
 final class GoogleSaasRuntimeTenant extends Resource {
   static const String tfType = 'google_saas_runtime_tenant';
 
@@ -41,4 +45,31 @@ final class GoogleSaasRuntimeTenant extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleSaasRuntimeTenantSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `effective_annotations` attribute.
+  TfRef<Map<String, String>> get effectiveAnnotations =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_annotations');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `uid` attribute.
+  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

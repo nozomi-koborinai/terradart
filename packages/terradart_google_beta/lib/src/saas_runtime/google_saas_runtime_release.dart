@@ -1,12 +1,79 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_saas_runtime_release`.
 const Set<String> _googleSaasRuntimeReleaseSensitive = <String>{};
 
+/// Typed helper for the `blueprint` block of
+/// `google_saas_runtime_release` (derived from provider schema).
+@immutable
+final class SaasRuntimeReleaseBlueprint {
+  const SaasRuntimeReleaseBlueprint({this.package});
+
+  final TfArg<String>? package;
+
+  Map<String, Object?> encode() => {
+    if (package != null) 'package': package!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `input_variable_defaults` block of
+/// `google_saas_runtime_release` (derived from provider schema).
+@immutable
+final class SaasRuntimeReleaseInputVariableDefaults {
+  const SaasRuntimeReleaseInputVariableDefaults({
+    this.type,
+    this.value,
+    required this.variable,
+  });
+
+  final TfArg<SaasRuntimeReleaseInputVariableDefaultsType>? type;
+
+  final TfArg<String>? value;
+
+  final TfArg<String> variable;
+
+  Map<String, Object?> encode() => {
+    if (type != null) 'type': type!.toTfJson(),
+    if (value != null) 'value': value!.toTfJson(),
+    'variable': variable.toTfJson(),
+  };
+}
+
+/// `type` — derived from the provider schema description.
+enum SaasRuntimeReleaseInputVariableDefaultsType implements TerraformEnum {
+  typeUnspecified('TYPE_UNSPECIFIED'),
+  string('STRING'),
+  int('INT'),
+  bool('BOOL');
+
+  const SaasRuntimeReleaseInputVariableDefaultsType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `release_requirements` block of
+/// `google_saas_runtime_release` (derived from provider schema).
+@immutable
+final class SaasRuntimeReleaseReleaseRequirements {
+  const SaasRuntimeReleaseReleaseRequirements({this.upgradeableFromReleases});
+
+  final TfArg<List<Object?>>? upgradeableFromReleases;
+
+  Map<String, Object?> encode() => {
+    if (upgradeableFromReleases != null)
+      'upgradeable_from_releases': upgradeableFromReleases!.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_saas_runtime_release`.
+///
+/// A version to be propagated and deployed to Units. It points to a specific
+/// version of a Blueprint that can be applied to Units, for example, via a
+/// Rollout.
 final class GoogleSaasRuntimeRelease extends Resource {
   static const String tfType = 'google_saas_runtime_release';
 
@@ -19,9 +86,9 @@ final class GoogleSaasRuntimeRelease extends Resource {
     TfArg<String>? project,
     required TfArg<String> releaseId,
     required TfArg<String> unitKind,
-    TfArg<Map<String, dynamic>>? blueprint,
-    TfArg<List<Map<String, dynamic>>>? inputVariableDefaults,
-    TfArg<Map<String, dynamic>>? releaseRequirements,
+    SaasRuntimeReleaseBlueprint? blueprint,
+    List<SaasRuntimeReleaseInputVariableDefaults>? inputVariableDefaults,
+    SaasRuntimeReleaseReleaseRequirements? releaseRequirements,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -37,14 +104,57 @@ final class GoogleSaasRuntimeRelease extends Resource {
            if (project != null) 'project': project,
            'release_id': releaseId,
            'unit_kind': unitKind,
-           if (blueprint != null) 'blueprint': blueprint,
+           if (blueprint != null)
+             'blueprint': TfArg.literal(blueprint.encode()),
            if (inputVariableDefaults != null)
-             'input_variable_defaults': inputVariableDefaults,
+             'input_variable_defaults': TfArg.literal([
+               for (final e in inputVariableDefaults) e.encode(),
+             ]),
            if (releaseRequirements != null)
-             'release_requirements': releaseRequirements,
+             'release_requirements': TfArg.literal(
+               releaseRequirements.encode(),
+             ),
          },
        );
 
   @override
   Set<String> get sensitiveFields => _googleSaasRuntimeReleaseSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `effective_annotations` attribute.
+  TfRef<Map<String, String>> get effectiveAnnotations =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_annotations');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `input_variables` attribute.
+  TfRef<List<Map<String, Object?>>> get inputVariables =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'input_variables');
+
+  /// Reference to `output_variables` attribute.
+  TfRef<List<Map<String, Object?>>> get outputVariables =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'output_variables');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `uid` attribute.
+  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

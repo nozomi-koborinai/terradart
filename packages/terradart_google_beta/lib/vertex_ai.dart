@@ -5,42 +5,64 @@
 library;
 
 export 'src/vertex_ai/google_vertex_ai_endpoint_iam_binding.dart'
-    show GoogleVertexAiEndpointIamBinding;
+    show GoogleVertexAiEndpointIamBinding, VertexAiEndpointIamBindingCondition;
 export 'src/vertex_ai/google_vertex_ai_endpoint_iam_member.dart'
-    show GoogleVertexAiEndpointIamMember;
+    show GoogleVertexAiEndpointIamMember, VertexAiEndpointIamMemberCondition;
 export 'src/vertex_ai/google_vertex_ai_endpoint_iam_policy.dart'
     show GoogleVertexAiEndpointIamPolicy;
 export 'src/vertex_ai/google_vertex_ai_feature_group_iam_binding.dart'
-    show GoogleVertexAiFeatureGroupIamBinding;
+    show
+        GoogleVertexAiFeatureGroupIamBinding,
+        VertexAiFeatureGroupIamBindingCondition;
 export 'src/vertex_ai/google_vertex_ai_feature_group_iam_member.dart'
-    show GoogleVertexAiFeatureGroupIamMember;
+    show
+        GoogleVertexAiFeatureGroupIamMember,
+        VertexAiFeatureGroupIamMemberCondition;
 export 'src/vertex_ai/google_vertex_ai_feature_group_iam_policy.dart'
     show GoogleVertexAiFeatureGroupIamPolicy;
 export 'src/vertex_ai/google_vertex_ai_feature_online_store_featureview_iam_binding.dart'
-    show GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding;
+    show
+        GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding,
+        VertexAiFeatureOnlineStoreFeatureviewIamBindingCondition;
 export 'src/vertex_ai/google_vertex_ai_feature_online_store_featureview_iam_member.dart'
-    show GoogleVertexAiFeatureOnlineStoreFeatureviewIamMember;
+    show
+        GoogleVertexAiFeatureOnlineStoreFeatureviewIamMember,
+        VertexAiFeatureOnlineStoreFeatureviewIamMemberCondition;
 export 'src/vertex_ai/google_vertex_ai_feature_online_store_featureview_iam_policy.dart'
     show GoogleVertexAiFeatureOnlineStoreFeatureviewIamPolicy;
 export 'src/vertex_ai/google_vertex_ai_feature_online_store_iam_binding.dart'
-    show GoogleVertexAiFeatureOnlineStoreIamBinding;
+    show
+        GoogleVertexAiFeatureOnlineStoreIamBinding,
+        VertexAiFeatureOnlineStoreIamBindingCondition;
 export 'src/vertex_ai/google_vertex_ai_feature_online_store_iam_member.dart'
-    show GoogleVertexAiFeatureOnlineStoreIamMember;
+    show
+        GoogleVertexAiFeatureOnlineStoreIamMember,
+        VertexAiFeatureOnlineStoreIamMemberCondition;
 export 'src/vertex_ai/google_vertex_ai_feature_online_store_iam_policy.dart'
     show GoogleVertexAiFeatureOnlineStoreIamPolicy;
 export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype_iam_binding.dart'
-    show GoogleVertexAiFeaturestoreEntitytypeIamBinding;
+    show
+        GoogleVertexAiFeaturestoreEntitytypeIamBinding,
+        VertexAiFeaturestoreEntitytypeIamBindingCondition;
 export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype_iam_member.dart'
-    show GoogleVertexAiFeaturestoreEntitytypeIamMember;
+    show
+        GoogleVertexAiFeaturestoreEntitytypeIamMember,
+        VertexAiFeaturestoreEntitytypeIamMemberCondition;
 export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype_iam_policy.dart'
     show GoogleVertexAiFeaturestoreEntitytypeIamPolicy;
 export 'src/vertex_ai/google_vertex_ai_featurestore_iam_binding.dart'
-    show GoogleVertexAiFeaturestoreIamBinding;
+    show
+        GoogleVertexAiFeaturestoreIamBinding,
+        VertexAiFeaturestoreIamBindingCondition;
 export 'src/vertex_ai/google_vertex_ai_featurestore_iam_member.dart'
-    show GoogleVertexAiFeaturestoreIamMember;
+    show
+        GoogleVertexAiFeaturestoreIamMember,
+        VertexAiFeaturestoreIamMemberCondition;
 export 'src/vertex_ai/google_vertex_ai_featurestore_iam_policy.dart'
     show GoogleVertexAiFeaturestoreIamPolicy;
 export 'src/vertex_ai/google_vertex_ai_metadata_store.dart'
-    show GoogleVertexAiMetadataStore;
+    show GoogleVertexAiMetadataStore, VertexAiMetadataStoreEncryptionSpec;
 export 'src/vertex_ai/google_vertex_ai_model_garden_enable_model.dart'
-    show GoogleVertexAiModelGardenEnableModel;
+    show
+        GoogleVertexAiModelGardenEnableModel,
+        VertexAiModelGardenEnableModelEnablementState;

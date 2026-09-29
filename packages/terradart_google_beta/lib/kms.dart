@@ -4,8 +4,17 @@
 library;
 
 export 'src/kms/google_kms_folder_kaj_policy_config.dart'
-    show GoogleKmsFolderKajPolicyConfig;
+    show
+        GoogleKmsFolderKajPolicyConfig,
+        KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy,
+        KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons;
 export 'src/kms/google_kms_organization_kaj_policy_config.dart'
-    show GoogleKmsOrganizationKajPolicyConfig;
+    show
+        GoogleKmsOrganizationKajPolicyConfig,
+        KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy,
+        KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons;
 export 'src/kms/google_kms_project_kaj_policy_config.dart'
-    show GoogleKmsProjectKajPolicyConfig;
+    show
+        GoogleKmsProjectKajPolicyConfig,
+        KmsProjectKajPolicyConfigDefaultKeyAccessJustificationPolicy,
+        KmsProjectKajPolicyConfigDefaultKeyAccessJustificationPolicyAllowedAccessReasons;

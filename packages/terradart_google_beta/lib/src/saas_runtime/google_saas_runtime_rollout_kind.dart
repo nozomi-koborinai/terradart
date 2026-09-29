@@ -1,12 +1,48 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_saas_runtime_rollout_kind`.
 const Set<String> _googleSaasRuntimeRolloutKindSensitive = <String>{};
 
+/// Saas Runtime Rollout Kind Update Unit Kind enum for `update_unit_kind_strategy`.
+enum SaasRuntimeRolloutKindUpdateUnitKindStrategy implements TerraformEnum {
+  updateUnitKindStrategyOnStart('UPDATE_UNIT_KIND_STRATEGY_ON_START'),
+  updateUnitKindStrategyNever('UPDATE_UNIT_KIND_STRATEGY_NEVER');
+
+  const SaasRuntimeRolloutKindUpdateUnitKindStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `error_budget` block of
+/// `google_saas_runtime_rollout_kind` (derived from provider schema).
+@immutable
+final class SaasRuntimeRolloutKindErrorBudget {
+  const SaasRuntimeRolloutKindErrorBudget({
+    this.allowedCount,
+    this.allowedPercentage,
+  });
+
+  final TfArg<num>? allowedCount;
+
+  final TfArg<num>? allowedPercentage;
+
+  Map<String, Object?> encode() => {
+    if (allowedCount != null) 'allowed_count': allowedCount!.toTfJson(),
+    if (allowedPercentage != null)
+      'allowed_percentage': allowedPercentage!.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_saas_runtime_rollout_kind`.
+///
+/// A RolloutKind is a reusable configuration resource that defines the
+/// policies, strategies, and targeting for Rollout operations. It acts as a
+/// template for repeatable Rollouts, providing guardrails and ensuring that
+/// updates are executed in a consistent manner across a fleet of Units.
 final class GoogleSaasRuntimeRolloutKind extends Resource {
   static const String tfType = 'google_saas_runtime_rollout_kind';
 
@@ -21,8 +57,8 @@ final class GoogleSaasRuntimeRolloutKind extends Resource {
     TfArg<String>? rolloutOrchestrationStrategy,
     TfArg<String>? unitFilter,
     required TfArg<String> unitKind,
-    TfArg<String>? updateUnitKindStrategy,
-    TfArg<Map<String, dynamic>>? errorBudget,
+    TfArg<SaasRuntimeRolloutKindUpdateUnitKindStrategy>? updateUnitKindStrategy,
+    SaasRuntimeRolloutKindErrorBudget? errorBudget,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -43,10 +79,38 @@ final class GoogleSaasRuntimeRolloutKind extends Resource {
            'unit_kind': unitKind,
            if (updateUnitKindStrategy != null)
              'update_unit_kind_strategy': updateUnitKindStrategy,
-           if (errorBudget != null) 'error_budget': errorBudget,
+           if (errorBudget != null)
+             'error_budget': TfArg.literal(errorBudget.encode()),
          },
        );
 
   @override
   Set<String> get sensitiveFields => _googleSaasRuntimeRolloutKindSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `effective_annotations` attribute.
+  TfRef<Map<String, String>> get effectiveAnnotations =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_annotations');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `uid` attribute.
+  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

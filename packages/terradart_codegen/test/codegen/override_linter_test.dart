@@ -148,6 +148,19 @@ void main() {
       final violations = lintOverride('google_x', o, mm: mm);
       expect(violations, hasLength(1));
       expect(violations.single.rule, 'exactly-one-paramorder-fanout');
+      expect(
+        lintOverride(
+          'google_x',
+          const WrapperOverride(
+            outputDir: 'bigquery',
+            paramOrder: ['copy', 'extract', 'load', 'query'],
+            deriveExactlyOne: true,
+          ),
+          mm: mm,
+        ).where((v) => v.rule.startsWith('exactly-one')),
+        isEmpty,
+        reason: 'deriveExactlyOne seals the group at wrap time',
+      );
     });
 
     test('clean: paramOrder mixes customSlot with schema slot in group', () {

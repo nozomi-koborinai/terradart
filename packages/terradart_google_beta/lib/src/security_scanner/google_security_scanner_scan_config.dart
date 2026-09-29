@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_security_scanner_scan_config`.
@@ -9,7 +10,124 @@ const Set<String> _googleSecurityScannerScanConfigSensitive = <String>{
   'authentication.google_account.password',
 };
 
+/// Security Scanner Scan Config Export To Security Command enum for `export_to_security_command_center`.
+enum SecurityScannerScanConfigExportToSecurityCommandCenter
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SecurityScannerScanConfigExportToSecurityCommandCenter(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Security Scanner Scan Config Target enum for `target_platforms`.
+enum SecurityScannerScanConfigTargetPlatforms implements TerraformEnum {
+  appEngine('APP_ENGINE'),
+  compute('COMPUTE');
+
+  const SecurityScannerScanConfigTargetPlatforms(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Security Scanner Scan Config User enum for `user_agent`.
+enum SecurityScannerScanConfigUserAgent implements TerraformEnum {
+  userAgentUnspecified('USER_AGENT_UNSPECIFIED'),
+  chromeLinux('CHROME_LINUX'),
+  chromeAndroid('CHROME_ANDROID'),
+  safariIphone('SAFARI_IPHONE');
+
+  const SecurityScannerScanConfigUserAgent(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `authentication` block of
+/// `google_security_scanner_scan_config` (derived from provider schema).
+@immutable
+final class SecurityScannerScanConfigAuthentication {
+  const SecurityScannerScanConfigAuthentication({
+    this.customAccount,
+    this.googleAccount,
+  });
+
+  final SecurityScannerScanConfigAuthenticationCustomAccount? customAccount;
+
+  final SecurityScannerScanConfigAuthenticationGoogleAccount? googleAccount;
+
+  Map<String, Object?> encode() => {
+    if (customAccount != null) 'custom_account': customAccount!.encode(),
+    if (googleAccount != null) 'google_account': googleAccount!.encode(),
+  };
+}
+
+/// Typed helper for the `authentication.custom_account` block of
+/// `google_security_scanner_scan_config` (derived from provider schema).
+@immutable
+final class SecurityScannerScanConfigAuthenticationCustomAccount {
+  const SecurityScannerScanConfigAuthenticationCustomAccount({
+    required this.loginUrl,
+    required this.password,
+    required this.username,
+  });
+
+  final TfArg<String> loginUrl;
+
+  final TfArg<String> password;
+
+  final TfArg<String> username;
+
+  Map<String, Object?> encode() => {
+    'login_url': loginUrl.toTfJson(),
+    'password': password.toTfJson(),
+    'username': username.toTfJson(),
+  };
+}
+
+/// Typed helper for the `authentication.google_account` block of
+/// `google_security_scanner_scan_config` (derived from provider schema).
+@immutable
+final class SecurityScannerScanConfigAuthenticationGoogleAccount {
+  const SecurityScannerScanConfigAuthenticationGoogleAccount({
+    required this.password,
+    required this.username,
+  });
+
+  final TfArg<String> password;
+
+  final TfArg<String> username;
+
+  Map<String, Object?> encode() => {
+    'password': password.toTfJson(),
+    'username': username.toTfJson(),
+  };
+}
+
+/// Typed helper for the `schedule` block of
+/// `google_security_scanner_scan_config` (derived from provider schema).
+@immutable
+final class SecurityScannerScanConfigSchedule {
+  const SecurityScannerScanConfigSchedule({
+    required this.intervalDurationDays,
+    this.scheduleTime,
+  });
+
+  final TfArg<num> intervalDurationDays;
+
+  final TfArg<String>? scheduleTime;
+
+  Map<String, Object?> encode() => {
+    'interval_duration_days': intervalDurationDays.toTfJson(),
+    if (scheduleTime != null) 'schedule_time': scheduleTime!.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_security_scanner_scan_config`.
+///
+/// A ScanConfig resource contains the configurations to launch a scan.
 final class GoogleSecurityScannerScanConfig extends Resource {
   static const String tfType = 'google_security_scanner_scan_config';
 
@@ -18,16 +136,17 @@ final class GoogleSecurityScannerScanConfig extends Resource {
     TfArg<List<String>>? blacklistPatterns,
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
-    TfArg<String>? exportToSecurityCommandCenter,
+    TfArg<SecurityScannerScanConfigExportToSecurityCommandCenter>?
+    exportToSecurityCommandCenter,
     TfArg<bool>? ignoreHttpStatusErrors,
     TfArg<num>? maxQps,
     TfArg<String>? project,
     required TfArg<List<String>> startingUrls,
     TfArg<bool>? staticIpScan,
-    TfArg<List<String>>? targetPlatforms,
-    TfArg<String>? userAgent,
-    TfArg<Map<String, dynamic>>? authentication,
-    TfArg<Map<String, dynamic>>? schedule,
+    List<TfArg<SecurityScannerScanConfigTargetPlatforms>>? targetPlatforms,
+    TfArg<SecurityScannerScanConfigUserAgent>? userAgent,
+    SecurityScannerScanConfigAuthentication? authentication,
+    SecurityScannerScanConfigSchedule? schedule,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -48,13 +167,23 @@ final class GoogleSecurityScannerScanConfig extends Resource {
            if (project != null) 'project': project,
            'starting_urls': startingUrls,
            if (staticIpScan != null) 'static_ip_scan': staticIpScan,
-           if (targetPlatforms != null) 'target_platforms': targetPlatforms,
+           if (targetPlatforms != null)
+             'target_platforms': TfArg.literal([
+               for (final e in targetPlatforms) e.toTfJson(),
+             ]),
            if (userAgent != null) 'user_agent': userAgent,
-           if (authentication != null) 'authentication': authentication,
-           if (schedule != null) 'schedule': schedule,
+           if (authentication != null)
+             'authentication': TfArg.literal(authentication.encode()),
+           if (schedule != null) 'schedule': TfArg.literal(schedule.encode()),
          },
        );
 
   @override
   Set<String> get sensitiveFields => _googleSecurityScannerScanConfigSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -8,6 +8,11 @@ const Set<String> _googleServiceUsageConsumerQuotaOverrideSensitive =
     <String>{};
 
 /// Factory wrapper for `google_service_usage_consumer_quota_override`.
+///
+/// A consumer override is applied to the consumer on its own authority to limit
+/// its own quota usage. Consumer overrides cannot be used to grant more quota
+/// than would be allowed by admin overrides, producer overrides, or the default
+/// limit of the service.
 final class GoogleServiceUsageConsumerQuotaOverride extends Resource {
   static const String tfType = 'google_service_usage_consumer_quota_override';
 
@@ -43,4 +48,10 @@ final class GoogleServiceUsageConsumerQuotaOverride extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleServiceUsageConsumerQuotaOverrideSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

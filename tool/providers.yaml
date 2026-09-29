@@ -38,6 +38,20 @@
 #                    (tool/extract_provider_hints.dart) and the
 #                    `Available values:` description dialect. Never set it
 #                    on a google lane — the GA schema carries that dialect.
+#   mmHints:         (optional, default false) wrap --mm-hints: type
+#                    enum-valued inputs and seal `exactly_one_of` groups from
+#                    the Magic Modules YAML in <schemaDir>/mm, the way
+#                    providerEnums does from provider hints (exclusive with
+#                    it). The google lane keeps its hand-promoted overrides.
+#   mmSync:          (optional) sync <schemaDir>/mm from the fixture itself
+#                    instead of a hand-kept manifest: tool/sync_lane_mm_yaml.dart
+#                    resolves every schema.json resource through the header of
+#                    its generated Go file at the release tag and records the
+#                    result in <schemaDir>/mm_sources.yaml. tool/wrap_lanes.dart
+#                    re-syncs on regen when that record is stale and fails the
+#                    wrap gate on it.
+#     providerRepo:  GitHub repo of the provider's Go source
+#     servicesDir:   its services directory (`<svc>/resource_<name>.go`)
 #   bump:            (optional) the weekly schema bump's coordinates for
 #                    the lane; a lane without it is never bumped by the
 #                    workflow (google-beta rides the google bump at the
@@ -96,7 +110,11 @@ providers:
     source: hashicorp/google-beta
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_beta
     schemaMode: filtered
-    mm: false
+    mm: true
+    mmHints: true
+    mmSync:
+      providerRepo: hashicorp/terraform-provider-google-beta
+      servicesDir: google-beta/services
     outputPackage: packages/terradart_google_beta
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/google_beta/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml

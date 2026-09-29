@@ -5,6 +5,11 @@ library;
 
 export 'src/dataform/google_dataform_config.dart' show GoogleDataformConfig;
 export 'src/dataform/google_dataform_repository_release_config.dart'
-    show GoogleDataformRepositoryReleaseConfig;
+    show
+        DataformRepositoryReleaseConfigCodeCompilationConfig,
+        GoogleDataformRepositoryReleaseConfig;
 export 'src/dataform/google_dataform_repository_workflow_config.dart'
-    show GoogleDataformRepositoryWorkflowConfig;
+    show
+        DataformRepositoryWorkflowConfigInvocationConfig,
+        DataformRepositoryWorkflowConfigInvocationConfigIncludedTargets,
+        GoogleDataformRepositoryWorkflowConfig;

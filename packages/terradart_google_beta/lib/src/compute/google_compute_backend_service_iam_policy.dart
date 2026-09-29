@@ -37,4 +37,13 @@ final class GoogleComputeBackendServiceIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeBackendServiceIamPolicySensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

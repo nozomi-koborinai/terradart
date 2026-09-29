@@ -1,11 +1,35 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_vertex_ai_feature_online_store_featureview_iam_binding`.
 const Set<String>
 _googleVertexAiFeatureOnlineStoreFeatureviewIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_vertex_ai_feature_online_store_featureview_iam_binding` (derived from provider schema).
+@immutable
+final class VertexAiFeatureOnlineStoreFeatureviewIamBindingCondition {
+  const VertexAiFeatureOnlineStoreFeatureviewIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    if (description != null) 'description': description!.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_vertex_ai_feature_online_store_featureview_iam_binding`.
 ///
@@ -26,7 +50,7 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> role,
-    TfArg<Map<String, dynamic>>? condition,
+    VertexAiFeatureOnlineStoreFeatureviewIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -41,11 +65,18 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding
            if (project != null) 'project': project,
            if (region != null) 'region': region,
            'role': role,
-           if (condition != null) 'condition': condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 
   @override
   Set<String> get sensitiveFields =>
       _googleVertexAiFeatureOnlineStoreFeatureviewIamBindingSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }
