@@ -5,6 +5,8 @@ outputDir: pubsub
 
 deriveClassDoc: true
 
+deriveExactlyOne: true
+
 # TODO(wrap-init): the class doc derives from the IR (lead line + MM description); uncomment curatedDoc only for artisanal notes the IR cannot derive (worked example, variant guidance, ForceNew callouts) — otherwise delete this placeholder.
 # curatedDoc:
 

@@ -57,6 +57,7 @@ class WrapLane {
     required this.migrateManifest,
     this.providerEnums = false,
     this.mmHints = false,
+    this.mmGroups = false,
     this.mmSync,
     this.hintsRepo,
   });
@@ -77,6 +78,11 @@ class WrapLane {
   /// `wrap --mm-hints`: type enum-valued inputs and seal `exactly_one_of`
   /// groups from the Magic Modules YAML in `<schemaDir>/mm`.
   final bool mmHints;
+
+  /// `wrap --mm-groups`: seal only the Magic Modules `exactly_one_of` /
+  /// `conflicts` / `at_least_one_of` groups; enum typing stays the merged
+  /// IR's (google GA).
+  final bool mmGroups;
 
   /// `mmSync:`, or null when the lane's MM YAML (if any) is synced from a
   /// hand-kept manifest (google, tool/mm_yaml_sources.yaml).
@@ -127,6 +133,7 @@ enum WrapGate {
         ],
         if (lane.providerEnums) '--provider-enums',
         if (lane.mmHints) '--mm-hints',
+        if (lane.mmGroups) '--mm-groups',
         '--migrate-manifest',
         rel(lane.migrateManifest),
         if (this == WrapGate.wrap) '--check',
@@ -179,9 +186,14 @@ WrapLane _parseLane(String name, Object? entry) {
   if (mmHints is! bool) {
     throw FormatException('lane $name: mmHints must be a bool');
   }
-  if (mmHints && providerEnums) {
+  final mmGroups = entry['mmGroups'] ?? false;
+  if (mmGroups is! bool) {
+    throw FormatException('lane $name: mmGroups must be a bool');
+  }
+  if ([mmHints, mmGroups, providerEnums].where((f) => f).length > 1) {
     throw FormatException(
-      'lane $name: mmHints and providerEnums are exclusive hint sources',
+      'lane $name: mmHints, mmGroups and providerEnums are exclusive hint '
+      'sources',
     );
   }
   MmSync? mmSync;
@@ -211,6 +223,7 @@ WrapLane _parseLane(String name, Object? entry) {
     migrateManifest: field('migrateManifest'),
     providerEnums: providerEnums,
     mmHints: mmHints,
+    mmGroups: mmGroups,
     mmSync: mmSync,
     hintsRepo: hintsRepo is String ? hintsRepo : null,
   );

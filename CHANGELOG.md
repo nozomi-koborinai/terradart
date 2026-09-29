@@ -15,6 +15,13 @@ Per-package changelogs live alongside each package and are the system of record 
   field) whose variants each set one member, beside the required sealed
   arguments of exactly-one groups. The migration manifest and the migrator
   carry them as optional sealed slots.
+- **Google GA lane reads Magic Modules groups** (`terradart_codegen`) —
+  `wrap --mm-groups` (`mmGroups: true` on the google lane) feeds
+  `deriveExactlyOne` from the MM `exactly_one_of` / `conflicts` /
+  `at_least_one_of` groups the weekly bump already re-syncs, without the
+  `--mm-hints` enum retyping GA does not use. The derivation adopts a
+  hand-written helper slot as a sealed variant. Generated output is
+  unchanged until GA overrides opt in.
 
 ### Changed
 

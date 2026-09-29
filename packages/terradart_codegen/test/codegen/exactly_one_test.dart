@@ -11,15 +11,16 @@ import 'package:terradart_codegen/src/ir/constraints.dart';
 import 'package:terradart_codegen/src/ir/nested_block.dart';
 import 'package:terradart_codegen/src/ir/resource_def.dart';
 import 'package:terradart_codegen/src/ir/type_def.dart';
+import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:test/test.dart';
 
 Attribute _attr(String name, {bool required = false}) => Attribute(
-  name: name,
-  type: const StringType(),
-  constraints: required
-      ? const Constraints(required: true)
-      : const Constraints(optional: true),
-);
+      name: name,
+      type: const StringType(),
+      constraints: required
+          ? const Constraints(required: true)
+          : const Constraints(optional: true),
+    );
 
 const _groups = ProviderEnums.on(
   exactlyOneGroups: {
@@ -72,8 +73,8 @@ void main() {
     tearDown(() => dir.deleteSync(recursive: true));
 
     void write(String body) => File(
-      p.join(dir.path, 'hints', 'aws_thing.yaml'),
-    ).writeAsStringSync('provider_version: 1.0.0\n$body');
+          p.join(dir.path, 'hints', 'aws_thing.yaml'),
+        ).writeAsStringSync('provider_version: 1.0.0\n$body');
 
     test('reads exactly_one_of_groups', () {
       write(
@@ -248,15 +249,15 @@ void main() {
 
   test('unsealedNestedGroups follows shared helpers to every copy', () {
     Map<String, dynamic> settings() => {
-      'nesting_mode': 'list',
-      'max_items': 1,
-      'block': {
-        'attributes': {
-          'x': {'type': 'string', 'optional': true},
-          'y': {'type': 'string', 'optional': true},
-        },
-      },
-    };
+          'nesting_mode': 'list',
+          'max_items': 1,
+          'block': {
+            'attributes': {
+              'x': {'type': 'string', 'optional': true},
+              'y': {'type': 'string', 'optional': true},
+            },
+          },
+        };
     const groups = {
       'one': [
         ['x', 'y'],
@@ -398,6 +399,132 @@ void main() {
     expect(o.prelude, contains('/// At most one of `c`, `d` on `aws_thing`'));
     expect(o.prelude, contains('sealed class ThingCOrD {'));
     expect(o.prelude, contains('final class ThingDOption extends ThingCOrD {'));
+  });
+
+  test('a hand helper custom slot becomes a variant of its group', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(
+        attributes: [_attr('a'), _attr('d')],
+        nestedBlocks: const [
+          NestedBlockDef(
+            name: 'b',
+            nesting: NestingMode.list,
+            block: BlockDef(),
+            constraints: Constraints(optional: true),
+          ),
+          NestedBlockDef(
+            name: 'c',
+            nesting: NestingMode.list,
+            block: BlockDef(),
+            constraints: Constraints(optional: true),
+          ),
+        ],
+      ),
+    );
+    final derived = deriveExactlyOneSlots(
+      {
+        'aws_thing': const WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+          paramOrder: ['d', 'a', 'b', 'c'],
+          argMapOrder: ['a', 'd', 'b', 'c'],
+          customSlots: {
+            'b': CustomSlot(
+              paramDeclaration: 'ThingBHelper? bee',
+              argMapEntry:
+                  "if (bee != null) 'b': TfArg.literal([bee.encode()]),",
+            ),
+            'c': CustomSlot(
+              paramDeclaration: 'required ThingCHelper c',
+              argMapEntry: "'c': TfArg.literal([c.encode()]),",
+            ),
+          },
+        ),
+      },
+      {'aws_thing': def},
+      providerEnums: const ProviderEnums.on(
+        exactlyOneGroups: {
+          'aws_thing': [
+            ['a', 'b'],
+          ],
+        },
+        atMostOneGroups: {
+          'aws_thing': [
+            ['c', 'd'],
+          ],
+        },
+      ),
+      rawSchemas: const {},
+    );
+    expect(derived.skippedAtMostOne, [
+      'aws_thing [c, d]: c is a custom slot',
+    ]);
+    final o = derived.overrides['aws_thing']!;
+    expect(o.customSlots!.keys, unorderedEquals(['a_or_b', 'c']));
+    expect(o.paramOrder, ['d', 'a_or_b', 'c']);
+    expect(o.argMapOrder, ['a_or_b', 'd', 'c']);
+    expect(o.prelude, contains('const ThingBOption({required this.bee});'));
+    expect(o.prelude, contains('final ThingBHelper bee;'));
+    expect(o.prelude, contains("{'b': [bee.encode()]};"));
+    expect(o.prelude, contains("{'b': TfArg.literal([bee.encode()])};"));
+  });
+
+  test('customSlotVariant reads only the optional helper slot shape', () {
+    expect(
+      customSlotVariant(
+        'b',
+        const CustomSlot(
+          paramDeclaration: 'List<ThingB>? bs',
+          argMapEntry:
+              "if (bs != null) 'b': TfArg.literal(bs.map((e) => e.encode()).toList()),",
+        ),
+        null,
+      )?.fieldType,
+      'List<ThingB>',
+    );
+    expect(
+      customSlotVariant(
+        'b',
+        const CustomSlot(
+          paramDeclaration: 'ThingB? b',
+          argMapEntry: "if (b != null) 'other': TfArg.literal(b.encode()),",
+        ),
+        null,
+      ),
+      isNull,
+    );
+  });
+
+  test('ProviderEnums.mmGroups seals groups with the enum gate closed', () {
+    const mm = {
+      'google_thing': MmResourceOverrides(
+        fieldOverrides: {},
+        exactlyOneOfPaths: [
+          ['a', 'b'],
+        ],
+        atMostOneOfPaths: [
+          ['c', 'd'],
+        ],
+        enumValuesByPath: {
+          'e': ['X', 'Y'],
+        },
+      ),
+    };
+    final groups = ProviderEnums.mmGroups(mm);
+    expect(groups.enabled, isFalse);
+    expect(groups.hints, isEmpty);
+    expect(groups.exactlyOneGroupsByBlock('google_thing'), {
+      '': [
+        ['a', 'b'],
+      ],
+    });
+    expect(groups.atMostOneGroupsByBlock('google_thing'), {
+      '': [
+        ['c', 'd'],
+      ],
+    });
+    expect(groups.resolver('google_thing')(['e'], 'no values'), isNull);
   });
 
   test('a nested at-most-one group becomes a nullable sealed field', () {

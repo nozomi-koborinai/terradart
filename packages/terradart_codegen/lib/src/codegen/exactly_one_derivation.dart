@@ -31,8 +31,7 @@ import 'wrapper_overrides/wrapper_override.dart';
   Map<String, WrapperOverride> overrides,
   List<String> skipped,
   List<String> skippedAtMostOne,
-})
-deriveExactlyOneSlots(
+}) deriveExactlyOneSlots(
   Map<String, WrapperOverride> overrides,
   Map<String, ResourceDef> defs, {
   required ProviderEnums providerEnums,
@@ -97,6 +96,35 @@ deriveExactlyOneSlots(
     ]);
   }
   return (overrides: out, skipped: skipped, skippedAtMostOne: skippedAtMostOne);
+}
+
+final _optionalHelperParam = RegExp(r'^([A-Za-z_][\w<>, ]*)\?\s+(\w+)$');
+
+/// The variant for group member [tfName] when a custom slot holds it as an
+/// optional hand-written helper — `Helper? ident` with the argMap entry
+/// `if (ident != null) '<tfName>': TfArg.literal(<expr>),` — so the variant
+/// keeps the helper type and its encoding. Null for any other slot shape,
+/// which keeps the group unsealed.
+ExactlyOneVariant? customSlotVariant(
+  String tfName,
+  CustomSlot slot,
+  String? deprecation,
+) {
+  final param = _optionalHelperParam.firstMatch(slot.paramDeclaration.trim());
+  if (param == null) return null;
+  final ident = param.group(2)!;
+  final prefix = "if ($ident != null) '$tfName': TfArg.literal(";
+  final entry = slot.argMapEntry.trim();
+  if (!entry.startsWith(prefix) || !entry.endsWith('),')) return null;
+  final encode = entry.substring(prefix.length, entry.length - 2);
+  return (
+    tfName: tfName,
+    ident: ident,
+    fieldType: param.group(1)!.trim(),
+    encodeExpr: encode,
+    argMapExpr: 'TfArg.literal($encode)',
+    deprecation: deprecation,
+  );
 }
 
 WrapperOverride _derive(
@@ -166,6 +194,7 @@ WrapperOverride _derive(
   final taken = <String>{};
   final declarations = StringBuffer();
   var paramOrder = order;
+  var argMapOrder = o.argMapOrder;
   for (final (:members, :optional) in groups) {
     final group = members;
     final label = '$type [${group.join(', ')}]';
@@ -179,8 +208,15 @@ WrapperOverride _derive(
       if (reason != null) break;
       if (!order.contains(m)) {
         reason = '$m is not a constructor input';
-      } else if (slots.containsKey(m)) {
-        reason = '$m is a custom slot';
+      } else if (slots[m] case final custom?) {
+        final v = customSlotVariant(m, custom, o.deprecatedParams?[m]);
+        if (v == null) {
+          reason = '$m is a custom slot';
+        } else if (taken.contains(m)) {
+          reason = '$m is in an earlier group';
+        } else {
+          variants.add(v);
+        }
       } else if (required.contains(m)) {
         reason = '$m is in requiredParams';
       } else if (taken.contains(m)) {
@@ -201,6 +237,7 @@ WrapperOverride _derive(
       continue;
     }
     taken.addAll(group);
+    group.forEach(slots.remove);
     final sealed = exactlyOneSealedName(prefix, group);
     final ident = snakeToDartIdent(slot);
     slots[slot] = optional
@@ -212,14 +249,10 @@ WrapperOverride _derive(
             paramDeclaration: 'required $sealed $ident',
             argMapEntry: '...$ident.argMap,',
           );
-    final first = paramOrder.indexWhere(group.contains);
-    paramOrder = [
-      for (var i = 0; i < paramOrder.length; i++)
-        if (i == first)
-          slot
-        else if (!group.contains(paramOrder[i]))
-          paramOrder[i],
-    ];
+    paramOrder = _replaceMembers(paramOrder, group, slot);
+    if (argMapOrder != null) {
+      argMapOrder = _replaceMembers(argMapOrder, group, slot);
+    }
     declarations
       ..writeln()
       ..write(
@@ -235,7 +268,25 @@ WrapperOverride _derive(
   if (taken.isEmpty) return o;
   return o.withExactlyOneSlots(
     paramOrder: paramOrder,
+    argMapOrder: argMapOrder,
     customSlots: slots,
     prelude: '${o.prelude ?? ''}$declarations',
   );
+}
+
+/// [order] with the first of [group]'s members replaced by [slot] and the
+/// others dropped.
+List<String> _replaceMembers(
+  List<String> order,
+  List<String> group,
+  String slot,
+) {
+  final first = order.indexWhere(group.contains);
+  return [
+    for (var i = 0; i < order.length; i++)
+      if (i == first)
+        slot
+      else if (!group.contains(order[i]))
+        order[i],
+  ];
 }
