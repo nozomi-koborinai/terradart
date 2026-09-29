@@ -37,13 +37,12 @@ final class AwsCloudfrontFunction extends Resource {
          terraformType: tfType,
          argMap: {
            'code': code,
-           if (comment != null) 'comment': comment,
-           if (keyValueStoreAssociations != null)
-             'key_value_store_associations': keyValueStoreAssociations,
+           'comment': ?comment,
+           'key_value_store_associations': ?keyValueStoreAssociations,
            'name': name,
-           if (publish != null) 'publish': publish,
+           'publish': ?publish,
            'runtime': runtime,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

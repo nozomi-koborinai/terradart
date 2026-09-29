@@ -225,19 +225,17 @@ final class DynamodbTableGlobalSecondaryIndex {
   final DynamodbTableGlobalSecondaryIndexWarmThroughput? warmThroughput;
 
   Map<String, Object?> encode() => {
-    if (hashKey != null) 'hash_key': hashKey!.toTfJson(),
+    'hash_key': ?hashKey?.toTfJson(),
     'name': name.toTfJson(),
-    if (nonKeyAttributes != null)
-      'non_key_attributes': nonKeyAttributes!.toTfJson(),
+    'non_key_attributes': ?nonKeyAttributes?.toTfJson(),
     'projection_type': projectionType.toTfJson(),
-    if (rangeKey != null) 'range_key': rangeKey!.toTfJson(),
-    if (readCapacity != null) 'read_capacity': readCapacity!.toTfJson(),
-    if (writeCapacity != null) 'write_capacity': writeCapacity!.toTfJson(),
+    'range_key': ?rangeKey?.toTfJson(),
+    'read_capacity': ?readCapacity?.toTfJson(),
+    'write_capacity': ?writeCapacity?.toTfJson(),
     if (keySchema != null)
       'key_schema': [for (final e in keySchema!) e.encode()],
-    if (onDemandThroughput != null)
-      'on_demand_throughput': onDemandThroughput!.encode(),
-    if (warmThroughput != null) 'warm_throughput': warmThroughput!.encode(),
+    'on_demand_throughput': ?onDemandThroughput?.encode(),
+    'warm_throughput': ?warmThroughput?.encode(),
   };
 }
 
@@ -296,10 +294,8 @@ final class DynamodbTableGlobalSecondaryIndexOnDemandThroughput {
   final TfArg<num>? maxWriteRequestUnits;
 
   Map<String, Object?> encode() => {
-    if (maxReadRequestUnits != null)
-      'max_read_request_units': maxReadRequestUnits!.toTfJson(),
-    if (maxWriteRequestUnits != null)
-      'max_write_request_units': maxWriteRequestUnits!.toTfJson(),
+    'max_read_request_units': ?maxReadRequestUnits?.toTfJson(),
+    'max_write_request_units': ?maxWriteRequestUnits?.toTfJson(),
   };
 }
 
@@ -317,10 +313,8 @@ final class DynamodbTableGlobalSecondaryIndexWarmThroughput {
   final TfArg<num>? writeUnitsPerSecond;
 
   Map<String, Object?> encode() => {
-    if (readUnitsPerSecond != null)
-      'read_units_per_second': readUnitsPerSecond!.toTfJson(),
-    if (writeUnitsPerSecond != null)
-      'write_units_per_second': writeUnitsPerSecond!.toTfJson(),
+    'read_units_per_second': ?readUnitsPerSecond?.toTfJson(),
+    'write_units_per_second': ?writeUnitsPerSecond?.toTfJson(),
   };
 }
 
@@ -332,9 +326,7 @@ final class DynamodbTableGlobalTableWitness {
 
   final TfArg<String>? regionName;
 
-  Map<String, Object?> encode() => {
-    if (regionName != null) 'region_name': regionName!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'region_name': ?regionName?.toTfJson()};
 }
 
 /// Typed helper for the `import_table` block of
@@ -358,11 +350,9 @@ final class DynamodbTableImportTable {
   final DynamodbTableImportTableS3BucketSource s3BucketSource;
 
   Map<String, Object?> encode() => {
-    if (inputCompressionType != null)
-      'input_compression_type': inputCompressionType!.toTfJson(),
+    'input_compression_type': ?inputCompressionType?.toTfJson(),
     'input_format': inputFormat.toTfJson(),
-    if (inputFormatOptions != null)
-      'input_format_options': inputFormatOptions!.encode(),
+    'input_format_options': ?inputFormatOptions?.encode(),
     's3_bucket_source': s3BucketSource.encode(),
   };
 }
@@ -397,7 +387,7 @@ final class DynamodbTableImportTableInputFormatOptions {
 
   final DynamodbTableImportTableInputFormatOptionsCsv? csv;
 
-  Map<String, Object?> encode() => {if (csv != null) 'csv': csv!.encode()};
+  Map<String, Object?> encode() => {'csv': ?csv?.encode()};
 }
 
 /// Typed helper for the `import_table.input_format_options.csv` block of
@@ -414,8 +404,8 @@ final class DynamodbTableImportTableInputFormatOptionsCsv {
   final TfArg<List<Object?>>? headerList;
 
   Map<String, Object?> encode() => {
-    if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
-    if (headerList != null) 'header_list': headerList!.toTfJson(),
+    'delimiter': ?delimiter?.toTfJson(),
+    'header_list': ?headerList?.toTfJson(),
   };
 }
 
@@ -437,8 +427,8 @@ final class DynamodbTableImportTableS3BucketSource {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (bucketOwner != null) 'bucket_owner': bucketOwner!.toTfJson(),
-    if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
+    'bucket_owner': ?bucketOwner?.toTfJson(),
+    'key_prefix': ?keyPrefix?.toTfJson(),
   };
 }
 
@@ -463,8 +453,7 @@ final class DynamodbTableLocalSecondaryIndex {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (nonKeyAttributes != null)
-      'non_key_attributes': nonKeyAttributes!.toTfJson(),
+    'non_key_attributes': ?nonKeyAttributes?.toTfJson(),
     'projection_type': projectionType.toTfJson(),
     'range_key': rangeKey.toTfJson(),
   };
@@ -495,10 +484,8 @@ final class DynamodbTableOnDemandThroughput {
   final TfArg<num>? maxWriteRequestUnits;
 
   Map<String, Object?> encode() => {
-    if (maxReadRequestUnits != null)
-      'max_read_request_units': maxReadRequestUnits!.toTfJson(),
-    if (maxWriteRequestUnits != null)
-      'max_write_request_units': maxWriteRequestUnits!.toTfJson(),
+    'max_read_request_units': ?maxReadRequestUnits?.toTfJson(),
+    'max_write_request_units': ?maxWriteRequestUnits?.toTfJson(),
   };
 }
 
@@ -517,8 +504,7 @@ final class DynamodbTablePointInTimeRecovery {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (recoveryPeriodInDays != null)
-      'recovery_period_in_days': recoveryPeriodInDays!.toTfJson(),
+    'recovery_period_in_days': ?recoveryPeriodInDays?.toTfJson(),
   };
 }
 
@@ -548,14 +534,11 @@ final class DynamodbTableReplica {
   final TfArg<String> regionName;
 
   Map<String, Object?> encode() => {
-    if (consistencyMode != null)
-      'consistency_mode': consistencyMode!.toTfJson(),
-    if (deletionProtectionEnabled != null)
-      'deletion_protection_enabled': deletionProtectionEnabled!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (pointInTimeRecovery != null)
-      'point_in_time_recovery': pointInTimeRecovery!.toTfJson(),
-    if (propagateTags != null) 'propagate_tags': propagateTags!.toTfJson(),
+    'consistency_mode': ?consistencyMode?.toTfJson(),
+    'deletion_protection_enabled': ?deletionProtectionEnabled?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'point_in_time_recovery': ?pointInTimeRecovery?.toTfJson(),
+    'propagate_tags': ?propagateTags?.toTfJson(),
     'region_name': regionName.toTfJson(),
   };
 }
@@ -585,7 +568,7 @@ final class DynamodbTableServerSideEncryption {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -600,8 +583,8 @@ final class DynamodbTableTtl {
   final TfArg<bool>? enabled;
 
   Map<String, Object?> encode() => {
-    if (attributeName != null) 'attribute_name': attributeName!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'attribute_name': ?attributeName?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
   };
 }
 
@@ -619,10 +602,8 @@ final class DynamodbTableWarmThroughput {
   final TfArg<num>? writeUnitsPerSecond;
 
   Map<String, Object?> encode() => {
-    if (readUnitsPerSecond != null)
-      'read_units_per_second': readUnitsPerSecond!.toTfJson(),
-    if (writeUnitsPerSecond != null)
-      'write_units_per_second': writeUnitsPerSecond!.toTfJson(),
+    'read_units_per_second': ?readUnitsPerSecond?.toTfJson(),
+    'write_units_per_second': ?writeUnitsPerSecond?.toTfJson(),
   };
 }
 
@@ -664,23 +645,21 @@ final class AwsDynamodbTable extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (billingMode != null) 'billing_mode': billingMode,
-           if (deletionProtectionEnabled != null)
-             'deletion_protection_enabled': deletionProtectionEnabled,
-           if (hashKey != null) 'hash_key': hashKey,
+           'billing_mode': ?billingMode,
+           'deletion_protection_enabled': ?deletionProtectionEnabled,
+           'hash_key': ?hashKey,
            'name': name,
-           if (rangeKey != null) 'range_key': rangeKey,
-           if (readCapacity != null) 'read_capacity': readCapacity,
-           if (region != null) 'region': region,
+           'range_key': ?rangeKey,
+           'read_capacity': ?readCapacity,
+           'region': ?region,
            ...?source?.argMap,
-           if (restoreDateTime != null) 'restore_date_time': restoreDateTime,
-           if (restoreToLatestTime != null)
-             'restore_to_latest_time': restoreToLatestTime,
-           if (streamEnabled != null) 'stream_enabled': streamEnabled,
-           if (streamViewType != null) 'stream_view_type': streamViewType,
-           if (tableClass != null) 'table_class': tableClass,
-           if (tags != null) 'tags': tags,
-           if (writeCapacity != null) 'write_capacity': writeCapacity,
+           'restore_date_time': ?restoreDateTime,
+           'restore_to_latest_time': ?restoreToLatestTime,
+           'stream_enabled': ?streamEnabled,
+           'stream_view_type': ?streamViewType,
+           'table_class': ?tableClass,
+           'tags': ?tags,
+           'write_capacity': ?writeCapacity,
            if (attribute != null)
              'attribute': TfArg.literal([
                for (final e in attribute) e.encode(),

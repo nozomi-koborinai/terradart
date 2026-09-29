@@ -24,7 +24,7 @@ final class AwsKinesisanalyticsv2ApplicationSnapshot extends Resource {
          terraformType: tfType,
          argMap: {
            'application_name': applicationName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'snapshot_name': snapshotName,
          },
        );

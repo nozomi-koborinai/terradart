@@ -29,7 +29,7 @@ final class GoogleIamWorkloadIdentityPoolIamPolicy extends Resource {
          argMap: {
            'workload_identity_pool_id': workloadIdentityPoolId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

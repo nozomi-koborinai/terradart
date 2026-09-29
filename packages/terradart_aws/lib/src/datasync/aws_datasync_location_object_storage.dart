@@ -42,18 +42,17 @@ final class AwsDatasyncLocationObjectStorage extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessKey != null) 'access_key': accessKey,
-           if (agentArns != null) 'agent_arns': agentArns,
+           'access_key': ?accessKey,
+           'agent_arns': ?agentArns,
            'bucket_name': bucketName,
-           if (region != null) 'region': region,
-           if (secretKey != null) 'secret_key': secretKey,
-           if (serverCertificate != null)
-             'server_certificate': serverCertificate,
+           'region': ?region,
+           'secret_key': ?secretKey,
+           'server_certificate': ?serverCertificate,
            'server_hostname': serverHostname,
-           if (serverPort != null) 'server_port': serverPort,
-           if (serverProtocol != null) 'server_protocol': serverProtocol,
-           if (subdirectory != null) 'subdirectory': subdirectory,
-           if (tags != null) 'tags': tags,
+           'server_port': ?serverPort,
+           'server_protocol': ?serverProtocol,
+           'subdirectory': ?subdirectory,
+           'tags': ?tags,
          },
        );
 

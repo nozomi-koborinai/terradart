@@ -19,7 +19,7 @@ final class DataAwsSecretsmanagerSecretRotation extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (region != null) 'region': region, 'secret_id': secretId},
+         argMap: {'region': ?region, 'secret_id': secretId},
        );
 
   @override

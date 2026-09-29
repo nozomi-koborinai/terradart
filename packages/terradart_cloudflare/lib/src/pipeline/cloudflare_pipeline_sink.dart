@@ -65,15 +65,15 @@ final class PipelineSinkConfig {
   Map<String, Object?> encode() => {
     'account_id': accountId.encodeAs('id').toTfJson(),
     'bucket': bucket.toTfJson(),
-    if (jurisdiction != null) 'jurisdiction': jurisdiction!.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (tableName != null) 'table_name': tableName!.toTfJson(),
-    if (token != null) 'token': token!.toTfJson(),
-    if (credentials != null) 'credentials': credentials!.encode(),
-    if (fileNaming != null) 'file_naming': fileNaming!.encode(),
-    if (partitioning != null) 'partitioning': partitioning!.encode(),
-    if (rollingPolicy != null) 'rolling_policy': rollingPolicy!.encode(),
+    'jurisdiction': ?jurisdiction?.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'table_name': ?tableName?.toTfJson(),
+    'token': ?token?.toTfJson(),
+    'credentials': ?credentials?.encode(),
+    'file_naming': ?fileNaming?.encode(),
+    'partitioning': ?partitioning?.encode(),
+    'rolling_policy': ?rollingPolicy?.encode(),
   };
 }
 
@@ -109,9 +109,9 @@ final class PipelineSinkConfigFileNaming {
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (strategy != null) 'strategy': strategy!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'strategy': ?strategy?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -135,9 +135,7 @@ final class PipelineSinkConfigPartitioning {
 
   final TfArg<String>? timePattern;
 
-  Map<String, Object?> encode() => {
-    if (timePattern != null) 'time_pattern': timePattern!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'time_pattern': ?timePattern?.toTfJson()};
 }
 
 /// Typed helper for the `config.rolling_policy` block of
@@ -157,11 +155,9 @@ final class PipelineSinkConfigRollingPolicy {
   final TfArg<num>? intervalSeconds;
 
   Map<String, Object?> encode() => {
-    if (fileSizeBytes != null) 'file_size_bytes': fileSizeBytes!.toTfJson(),
-    if (inactivitySeconds != null)
-      'inactivity_seconds': inactivitySeconds!.toTfJson(),
-    if (intervalSeconds != null)
-      'interval_seconds': intervalSeconds!.toTfJson(),
+    'file_size_bytes': ?fileSizeBytes?.toTfJson(),
+    'inactivity_seconds': ?inactivitySeconds?.toTfJson(),
+    'interval_seconds': ?intervalSeconds?.toTfJson(),
   };
 }
 
@@ -191,14 +187,12 @@ final class PipelineSinkFormat {
   final TfArg<bool>? unstructured;
 
   Map<String, Object?> encode() => {
-    if (compression != null) 'compression': compression!.toTfJson(),
-    if (decimalEncoding != null)
-      'decimal_encoding': decimalEncoding!.toTfJson(),
-    if (rowGroupBytes != null) 'row_group_bytes': rowGroupBytes!.toTfJson(),
-    if (timestampFormat != null)
-      'timestamp_format': timestampFormat!.toTfJson(),
+    'compression': ?compression?.toTfJson(),
+    'decimal_encoding': ?decimalEncoding?.toTfJson(),
+    'row_group_bytes': ?rowGroupBytes?.toTfJson(),
+    'timestamp_format': ?timestampFormat?.toTfJson(),
     'type': type.toTfJson(),
-    if (unstructured != null) 'unstructured': unstructured!.toTfJson(),
+    'unstructured': ?unstructured?.toTfJson(),
   };
 }
 
@@ -257,7 +251,7 @@ final class PipelineSinkSchema {
   final List<PipelineSinkSchemaFields>? fields;
 
   Map<String, Object?> encode() => {
-    if (inferred != null) 'inferred': inferred!.toTfJson(),
+    'inferred': ?inferred?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
   };
 }
@@ -288,12 +282,12 @@ final class PipelineSinkSchemaFields {
   final TfArg<PipelineSinkSchemaFieldsUnit>? unit;
 
   Map<String, Object?> encode() => {
-    if (metadataKey != null) 'metadata_key': metadataKey!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (sqlName != null) 'sql_name': sqlName!.toTfJson(),
+    'metadata_key': ?metadataKey?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'required': ?required?.toTfJson(),
+    'sql_name': ?sqlName?.toTfJson(),
     'type': type.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
   };
 }
 

@@ -22,7 +22,7 @@ final class DataGoogleComputeImageIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'image': image, if (project != null) 'project': project},
+         argMap: {'image': image, 'project': ?project},
        );
 
   @override

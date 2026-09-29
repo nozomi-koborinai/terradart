@@ -32,7 +32,7 @@ final class GoogleBiglakeIcebergNamespaceIamPolicy extends Resource {
            'catalog': catalog,
            'namespace_id': namespaceId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

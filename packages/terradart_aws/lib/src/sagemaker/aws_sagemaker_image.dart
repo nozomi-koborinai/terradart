@@ -27,12 +27,12 @@ final class AwsSagemakerImage extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
+           'description': ?description,
+           'display_name': ?displayName,
            'image_name': imageName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

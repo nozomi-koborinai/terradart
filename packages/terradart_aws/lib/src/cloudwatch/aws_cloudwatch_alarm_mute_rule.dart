@@ -50,7 +50,7 @@ final class CloudwatchAlarmMuteRuleRuleSchedule {
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
     'expression': expression.toTfJson(),
-    if (timezone != null) 'timezone': timezone!.toTfJson(),
+    'timezone': ?timezone?.toTfJson(),
   };
 }
 
@@ -75,12 +75,12 @@ final class AwsCloudwatchAlarmMuteRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (expireDate != null) 'expire_date': expireDate,
+           'description': ?description,
+           'expire_date': ?expireDate,
            'name': name,
-           if (region != null) 'region': region,
-           if (startDate != null) 'start_date': startDate,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'start_date': ?startDate,
+           'tags': ?tags,
            if (muteTargets != null)
              'mute_targets': TfArg.literal([
                for (final e in muteTargets) e.encode(),

@@ -24,7 +24,7 @@ final class BiglakeHiveTablePartitionKeys {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
     'name': name.toTfJson(),
     'type': type.toTfJson(),
   };
@@ -74,18 +74,17 @@ final class BiglakeHiveTableStorageDescriptor {
   final List<BiglakeHiveTableStorageDescriptorSortCols>? sortCols;
 
   Map<String, Object?> encode() => {
-    if (bucketCols != null) 'bucket_cols': bucketCols!.toTfJson(),
-    if (compressed != null) 'compressed': compressed!.toTfJson(),
-    if (inputFormat != null) 'input_format': inputFormat!.toTfJson(),
-    if (locationUri != null) 'location_uri': locationUri!.toTfJson(),
-    if (numBuckets != null) 'num_buckets': numBuckets!.toTfJson(),
-    if (outputFormat != null) 'output_format': outputFormat!.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (storedAsSubDirs != null)
-      'stored_as_sub_dirs': storedAsSubDirs!.toTfJson(),
+    'bucket_cols': ?bucketCols?.toTfJson(),
+    'compressed': ?compressed?.toTfJson(),
+    'input_format': ?inputFormat?.toTfJson(),
+    'location_uri': ?locationUri?.toTfJson(),
+    'num_buckets': ?numBuckets?.toTfJson(),
+    'output_format': ?outputFormat?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'stored_as_sub_dirs': ?storedAsSubDirs?.toTfJson(),
     'columns': [for (final e in columns) e.encode()],
-    if (serdeInfo != null) 'serde_info': serdeInfo!.encode(),
-    if (skewedInfo != null) 'skewed_info': skewedInfo!.encode(),
+    'serde_info': ?serdeInfo?.encode(),
+    'skewed_info': ?skewedInfo?.encode(),
     if (sortCols != null) 'sort_cols': [for (final e in sortCols!) e.encode()],
   };
 }
@@ -107,7 +106,7 @@ final class BiglakeHiveTableStorageDescriptorColumns {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
     'name': name.toTfJson(),
     'type': type.toTfJson(),
   };
@@ -142,15 +141,13 @@ final class BiglakeHiveTableStorageDescriptorSerdeInfo {
   final TfArg<String>? serializerClass;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (deserializerClass != null)
-      'deserializer_class': deserializerClass!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'deserializer_class': ?deserializerClass?.toTfJson(),
     'name': name.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (serdeType != null) 'serde_type': serdeType!.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'serde_type': ?serdeType?.toTfJson(),
     'serialization_lib': serializationLib.toTfJson(),
-    if (serializerClass != null)
-      'serializer_class': serializerClass!.toTfJson(),
+    'serializer_class': ?serializerClass?.toTfJson(),
   };
 }
 
@@ -277,13 +274,13 @@ final class GoogleBiglakeHiveTable extends Resource {
          argMap: {
            'catalog': catalog,
            'database': database,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'name': name,
-           if (parameters != null) 'parameters': parameters,
-           if (project != null) 'project': project,
-           if (viewExpandedText != null) 'view_expanded_text': viewExpandedText,
-           if (viewOriginalText != null) 'view_original_text': viewOriginalText,
+           'parameters': ?parameters,
+           'project': ?project,
+           'view_expanded_text': ?viewExpandedText,
+           'view_original_text': ?viewOriginalText,
            if (partitionKeys != null)
              'partition_keys': TfArg.literal([
                for (final e in partitionKeys) e.encode(),

@@ -41,11 +41,7 @@ final class GoogleKmsKeyRing extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           'location': location,
-           if (project != null) 'project': project,
-         },
+         argMap: {'name': name, 'location': location, 'project': ?project},
        );
 
   @override

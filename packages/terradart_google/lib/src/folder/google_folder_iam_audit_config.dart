@@ -21,8 +21,7 @@ final class FolderIamAuditConfigAuditLogConfig {
   final TfArg<String> logType;
 
   Map<String, Object?> encode() => {
-    if (exemptedMembers != null)
-      'exempted_members': exemptedMembers!.toTfJson(),
+    'exempted_members': ?exemptedMembers?.toTfJson(),
     'log_type': logType.toTfJson(),
   };
 }

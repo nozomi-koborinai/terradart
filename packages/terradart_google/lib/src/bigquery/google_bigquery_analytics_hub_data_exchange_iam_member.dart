@@ -28,11 +28,11 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamMember extends Resource {
          terraformType: tfType,
          argMap: {
            'data_exchange_id': dataExchangeId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'member': member,
-           if (project != null) 'project': project,
+           'project': ?project,
            'role': role,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

@@ -20,11 +20,7 @@ final class DataAwsDmsEndpoint extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'endpoint_id': endpointId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'endpoint_id': endpointId, 'region': ?region, 'tags': ?tags},
        );
 
   @override

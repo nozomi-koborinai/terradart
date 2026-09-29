@@ -125,8 +125,8 @@ final class ChronicleParserExtensionDynamicParsingOptedFields {
   final TfArg<String>? sampleValue;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
-    if (sampleValue != null) 'sample_value': sampleValue!.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'sample_value': ?sampleValue?.toTfJson(),
   };
 }
 
@@ -151,13 +151,11 @@ final class ChronicleParserExtensionFieldExtractors {
   preprocessConfig;
 
   Map<String, Object?> encode() => {
-    if (appendRepeatedFields != null)
-      'append_repeated_fields': appendRepeatedFields!.toTfJson(),
-    if (logFormat != null) 'log_format': logFormat!.toTfJson(),
+    'append_repeated_fields': ?appendRepeatedFields?.toTfJson(),
+    'log_format': ?logFormat?.toTfJson(),
     if (extractors != null)
       'extractors': [for (final e in extractors!) e.encode()],
-    if (preprocessConfig != null)
-      'preprocess_config': preprocessConfig!.encode(),
+    'preprocess_config': ?preprocessConfig?.encode(),
   };
 }
 
@@ -187,15 +185,12 @@ final class ChronicleParserExtensionFieldExtractorsExtractors {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (destinationPath != null)
-      'destination_path': destinationPath!.toTfJson(),
-    if (fieldPath != null) 'field_path': fieldPath!.toTfJson(),
-    if (preconditionOp != null) 'precondition_op': preconditionOp!.toTfJson(),
-    if (preconditionPath != null)
-      'precondition_path': preconditionPath!.toTfJson(),
-    if (preconditionValue != null)
-      'precondition_value': preconditionValue!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'destination_path': ?destinationPath?.toTfJson(),
+    'field_path': ?fieldPath?.toTfJson(),
+    'precondition_op': ?preconditionOp?.toTfJson(),
+    'precondition_path': ?preconditionPath?.toTfJson(),
+    'precondition_value': ?preconditionValue?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -213,8 +208,8 @@ final class ChronicleParserExtensionFieldExtractorsPreprocessConfig {
   final TfArg<String>? target;
 
   Map<String, Object?> encode() => {
-    if (grokRegex != null) 'grok_regex': grokRegex!.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
+    'grok_regex': ?grokRegex?.toTfJson(),
+    'target': ?target?.toTfJson(),
   };
 }
 
@@ -260,11 +255,10 @@ final class GoogleChronicleParserExtension extends Resource {
            'location': location,
            'instance': instance,
            ...?definition?.argMap,
-           if (log != null) 'log': log,
-           if (validationSkipped != null)
-             'validation_skipped': validationSkipped,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'log': ?log,
+           'validation_skipped': ?validationSkipped,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

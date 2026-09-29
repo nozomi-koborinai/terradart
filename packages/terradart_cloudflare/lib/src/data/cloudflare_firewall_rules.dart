@@ -26,11 +26,11 @@ final class DataCloudflareFirewallRules extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (action != null) 'action': action,
-           if (description != null) 'description': description,
-           if (maxItems != null) 'max_items': maxItems,
-           if (paused != null) 'paused': paused,
-           if (zoneId != null) 'zone_id': zoneId,
+           'action': ?action,
+           'description': ?description,
+           'max_items': ?maxItems,
+           'paused': ?paused,
+           'zone_id': ?zoneId,
          },
        );
 

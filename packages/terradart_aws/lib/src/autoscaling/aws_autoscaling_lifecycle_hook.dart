@@ -52,16 +52,14 @@ final class AwsAutoscalingLifecycleHook extends Resource {
          terraformType: tfType,
          argMap: {
            'autoscaling_group_name': autoscalingGroupName,
-           if (defaultResult != null) 'default_result': defaultResult,
-           if (heartbeatTimeout != null) 'heartbeat_timeout': heartbeatTimeout,
+           'default_result': ?defaultResult,
+           'heartbeat_timeout': ?heartbeatTimeout,
            'lifecycle_transition': lifecycleTransition,
            'name': name,
-           if (notificationMetadata != null)
-             'notification_metadata': notificationMetadata,
-           if (notificationTargetArn != null)
-             'notification_target_arn': notificationTargetArn,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
+           'notification_metadata': ?notificationMetadata,
+           'notification_target_arn': ?notificationTargetArn,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
          },
        );
 

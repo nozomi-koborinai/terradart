@@ -167,16 +167,15 @@ final class LaunchConfigurationEbsBlockDevice {
   final TfArg<String>? volumeType;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_name': deviceName.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (noDevice != null) 'no_device': noDevice!.toTfJson(),
-    if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'no_device': ?noDevice?.toTfJson(),
+    'snapshot_id': ?snapshotId?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -198,8 +197,8 @@ final class LaunchConfigurationEphemeralBlockDevice {
 
   Map<String, Object?> encode() => {
     'device_name': deviceName.toTfJson(),
-    if (noDevice != null) 'no_device': noDevice!.toTfJson(),
-    if (virtualName != null) 'virtual_name': virtualName!.toTfJson(),
+    'no_device': ?noDevice?.toTfJson(),
+    'virtual_name': ?virtualName?.toTfJson(),
   };
 }
 
@@ -220,10 +219,9 @@ final class LaunchConfigurationMetadataOptions {
   final TfArg<LaunchConfigurationMetadataOptionsHttpTokens>? httpTokens;
 
   Map<String, Object?> encode() => {
-    if (httpEndpoint != null) 'http_endpoint': httpEndpoint!.toTfJson(),
-    if (httpPutResponseHopLimit != null)
-      'http_put_response_hop_limit': httpPutResponseHopLimit!.toTfJson(),
-    if (httpTokens != null) 'http_tokens': httpTokens!.toTfJson(),
+    'http_endpoint': ?httpEndpoint?.toTfJson(),
+    'http_put_response_hop_limit': ?httpPutResponseHopLimit?.toTfJson(),
+    'http_tokens': ?httpTokens?.toTfJson(),
   };
 }
 
@@ -273,13 +271,12 @@ final class LaunchConfigurationRootBlockDevice {
   final TfArg<String>? volumeType;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -313,21 +310,18 @@ final class AwsLaunchConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (associatePublicIpAddress != null)
-             'associate_public_ip_address': associatePublicIpAddress,
-           if (ebsOptimized != null) 'ebs_optimized': ebsOptimized,
-           if (enableMonitoring != null) 'enable_monitoring': enableMonitoring,
-           if (iamInstanceProfile != null)
-             'iam_instance_profile': iamInstanceProfile,
+           'associate_public_ip_address': ?associatePublicIpAddress,
+           'ebs_optimized': ?ebsOptimized,
+           'enable_monitoring': ?enableMonitoring,
+           'iam_instance_profile': ?iamInstanceProfile,
            'image_id': imageId,
            'instance_type': instanceType,
-           if (keyName != null) 'key_name': keyName,
+           'key_name': ?keyName,
            ...?name?.argMap,
-           if (placementTenancy != null) 'placement_tenancy': placementTenancy,
-           if (region != null) 'region': region,
-           if (securityGroups != null)
-             'security_groups': securityGroups.encodeAs('id'),
-           if (spotPrice != null) 'spot_price': spotPrice,
+           'placement_tenancy': ?placementTenancy,
+           'region': ?region,
+           'security_groups': ?securityGroups?.encodeAs('id'),
+           'spot_price': ?spotPrice,
            ...?userData?.argMap,
            if (ebsBlockDevice != null)
              'ebs_block_device': TfArg.literal([

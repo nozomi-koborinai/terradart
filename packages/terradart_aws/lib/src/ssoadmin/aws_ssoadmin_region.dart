@@ -23,7 +23,7 @@ final class AwsSsoadminRegion extends Resource {
          terraformType: tfType,
          argMap: {
            'instance_arn': instanceArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'region_name': regionName,
          },
        );

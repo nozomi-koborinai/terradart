@@ -27,8 +27,8 @@ final class GoogleIamWorkloadIdentityPoolIamMember extends Resource {
            'workload_identity_pool_id': workloadIdentityPoolId,
            'role': role,
            'member': member,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

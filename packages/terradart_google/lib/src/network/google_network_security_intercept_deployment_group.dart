@@ -47,10 +47,10 @@ final class GoogleNetworkSecurityInterceptDeploymentGroup extends Resource {
            'location': location,
            'intercept_deployment_group_id': interceptDeploymentGroupId,
            'network': network.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

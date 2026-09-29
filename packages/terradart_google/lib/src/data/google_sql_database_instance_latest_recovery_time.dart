@@ -26,9 +26,8 @@ final class DataGoogleSqlDatabaseInstanceLatestRecoveryTime extends Data {
          terraformType: tfType,
          argMap: {
            'instance': instance,
-           if (project != null) 'project': project,
-           if (sourceInstanceDeletionTime != null)
-             'source_instance_deletion_time': sourceInstanceDeletionTime,
+           'project': ?project,
+           'source_instance_deletion_time': ?sourceInstanceDeletionTime,
          },
        );
 

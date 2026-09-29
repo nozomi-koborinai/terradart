@@ -24,9 +24,9 @@ final class AwsIamServiceLinkedRole extends Resource {
          terraformType: tfType,
          argMap: {
            'aws_service_name': awsServiceName,
-           if (customSuffix != null) 'custom_suffix': customSuffix,
-           if (description != null) 'description': description,
-           if (tags != null) 'tags': tags,
+           'custom_suffix': ?customSuffix,
+           'description': ?description,
+           'tags': ?tags,
          },
        );
 

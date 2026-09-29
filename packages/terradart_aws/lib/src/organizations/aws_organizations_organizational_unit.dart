@@ -21,11 +21,7 @@ final class AwsOrganizationsOrganizationalUnit extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           'parent_id': parentId,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'name': name, 'parent_id': parentId, 'tags': ?tags},
        );
 
   @override

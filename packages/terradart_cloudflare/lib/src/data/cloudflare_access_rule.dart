@@ -34,12 +34,12 @@ final class DataAccessRuleFilter {
   final DataAccessRuleFilterConfiguration? configuration;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (match != null) 'match': match!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (notes != null) 'notes': notes!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (configuration != null) 'configuration': configuration!.encode(),
+    'direction': ?direction?.toTfJson(),
+    'match': ?match?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'notes': ?notes?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'configuration': ?configuration?.encode(),
   };
 }
 
@@ -98,8 +98,8 @@ final class DataAccessRuleFilterConfiguration {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (target != null) 'target': target!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'target': ?target?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -135,9 +135,9 @@ final class DataCloudflareAccessRule extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (ruleId != null) 'rule_id': ruleId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'rule_id': ?ruleId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

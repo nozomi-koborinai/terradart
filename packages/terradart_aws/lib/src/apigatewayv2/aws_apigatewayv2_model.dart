@@ -27,9 +27,9 @@ final class AwsApigatewayv2Model extends Resource {
          argMap: {
            'api_id': apiId,
            'content_type': contentType,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'schema': schema,
          },
        );

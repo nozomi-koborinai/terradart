@@ -24,11 +24,11 @@ final class DataAwsEc2CapacityBlockOffering extends Data {
          terraformType: tfType,
          argMap: {
            'capacity_duration_hours': capacityDurationHours,
-           if (endDateRange != null) 'end_date_range': endDateRange,
+           'end_date_range': ?endDateRange,
            'instance_count': instanceCount,
            'instance_type': instanceType,
-           if (region != null) 'region': region,
-           if (startDateRange != null) 'start_date_range': startDateRange,
+           'region': ?region,
+           'start_date_range': ?startDateRange,
          },
        );
 

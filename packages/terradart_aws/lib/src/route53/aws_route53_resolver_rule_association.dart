@@ -25,8 +25,8 @@ final class AwsRoute53ResolverRuleAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            'resolver_rule_id': resolverRuleId,
            'vpc_id': vpcId.encodeAs('id'),
          },

@@ -29,7 +29,7 @@ final class GoogleSiteVerificationOwner extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'email': email,
            'web_resource_id': webResourceId,
          },

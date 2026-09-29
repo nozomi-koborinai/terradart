@@ -251,11 +251,11 @@ final class GoogleMonitoringSlo extends Resource {
          argMap: {
            'service': service,
            'goal': goal,
-           if (displayName != null) 'display_name': displayName,
+           'display_name': ?displayName,
            ...period.argMap,
-           if (sloId != null) 'slo_id': sloId,
-           if (userLabels != null) 'user_labels': userLabels,
-           if (project != null) 'project': project,
+           'slo_id': ?sloId,
+           'user_labels': ?userLabels,
+           'project': ?project,
            sli.blockKey: TfArg.literal(sli.encode()),
          },
        );

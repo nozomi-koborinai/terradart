@@ -16,9 +16,7 @@ final class DataMagicTransitConnectorFilter {
 
   final TfArg<DataMagicTransitConnectorFilterDeviceType>? deviceType;
 
-  Map<String, Object?> encode() => {
-    if (deviceType != null) 'device_type': deviceType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'device_type': ?deviceType?.toTfJson()};
 }
 
 /// `device_type` — derived from the provider schema description.
@@ -50,7 +48,7 @@ final class DataCloudflareMagicTransitConnector extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (connectorId != null) 'connector_id': connectorId,
+           'connector_id': ?connectorId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

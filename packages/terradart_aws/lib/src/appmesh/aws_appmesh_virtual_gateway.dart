@@ -24,9 +24,9 @@ final class AppmeshVirtualGatewaySpec {
   final AppmeshVirtualGatewaySpecLogging? logging;
 
   Map<String, Object?> encode() => {
-    if (backendDefaults != null) 'backend_defaults': backendDefaults!.encode(),
+    'backend_defaults': ?backendDefaults?.encode(),
     'listener': [for (final e in listener) e.encode()],
-    if (logging != null) 'logging': logging!.encode(),
+    'logging': ?logging?.encode(),
   };
 }
 
@@ -38,9 +38,7 @@ final class AppmeshVirtualGatewaySpecBackendDefaults {
 
   final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicy? clientPolicy;
 
-  Map<String, Object?> encode() => {
-    if (clientPolicy != null) 'client_policy': clientPolicy!.encode(),
-  };
+  Map<String, Object?> encode() => {'client_policy': ?clientPolicy?.encode()};
 }
 
 /// Typed helper for the `spec.backend_defaults.client_policy` block of
@@ -51,7 +49,7 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicy {
 
   final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTls? tls;
 
-  Map<String, Object?> encode() => {if (tls != null) 'tls': tls!.encode()};
+  Map<String, Object?> encode() => {'tls': ?tls?.encode()};
 }
 
 /// Typed helper for the `spec.backend_defaults.client_policy.tls` block of
@@ -76,9 +74,9 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTls {
   validation;
 
   Map<String, Object?> encode() => {
-    if (enforce != null) 'enforce': enforce!.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
-    if (certificate != null) 'certificate': certificate!.encode(),
+    'enforce': ?enforce?.toTfJson(),
+    'ports': ?ports?.toTfJson(),
+    'certificate': ?certificate?.encode(),
     'validation': validation.encode(),
   };
 }
@@ -204,8 +202,7 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidation {
   trust;
 
   Map<String, Object?> encode() => {
-    if (subjectAlternativeNames != null)
-      'subject_alternative_names': subjectAlternativeNames!.encode(),
+    'subject_alternative_names': ?subjectAlternativeNames?.encode(),
     'trust': trust.encode(),
   };
 }
@@ -399,10 +396,10 @@ final class AppmeshVirtualGatewaySpecListener {
   final AppmeshVirtualGatewaySpecListenerTls? tls;
 
   Map<String, Object?> encode() => {
-    if (connectionPool != null) 'connection_pool': connectionPool!.encode(),
-    if (healthCheck != null) 'health_check': healthCheck!.encode(),
+    'connection_pool': ?connectionPool?.encode(),
+    'health_check': ?healthCheck?.encode(),
     'port_mapping': portMapping.encode(),
-    if (tls != null) 'tls': tls!.encode(),
+    'tls': ?tls?.encode(),
   };
 }
 
@@ -423,9 +420,9 @@ final class AppmeshVirtualGatewaySpecListenerConnectionPool {
   final AppmeshVirtualGatewaySpecListenerConnectionPoolHttp2? http2;
 
   Map<String, Object?> encode() => {
-    if (grpc != null) 'grpc': grpc!.encode(),
-    if (http != null) 'http': http!.encode(),
-    if (http2 != null) 'http2': http2!.encode(),
+    'grpc': ?grpc?.encode(),
+    'http': ?http?.encode(),
+    'http2': ?http2?.encode(),
   };
 }
 
@@ -457,8 +454,7 @@ final class AppmeshVirtualGatewaySpecListenerConnectionPoolHttp {
 
   Map<String, Object?> encode() => {
     'max_connections': maxConnections.toTfJson(),
-    if (maxPendingRequests != null)
-      'max_pending_requests': maxPendingRequests!.toTfJson(),
+    'max_pending_requests': ?maxPendingRequests?.toTfJson(),
   };
 }
 
@@ -506,8 +502,8 @@ final class AppmeshVirtualGatewaySpecListenerHealthCheck {
   Map<String, Object?> encode() => {
     'healthy_threshold': healthyThreshold.toTfJson(),
     'interval_millis': intervalMillis.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
     'protocol': protocol.toTfJson(),
     'timeout_millis': timeoutMillis.toTfJson(),
     'unhealthy_threshold': unhealthyThreshold.toTfJson(),
@@ -580,7 +576,7 @@ final class AppmeshVirtualGatewaySpecListenerTls {
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
     'certificate': certificate.encode(),
-    if (validation != null) 'validation': validation!.encode(),
+    'validation': ?validation?.encode(),
   };
 }
 
@@ -612,9 +608,9 @@ final class AppmeshVirtualGatewaySpecListenerTlsCertificate {
   final AppmeshVirtualGatewaySpecListenerTlsCertificateSds? sds;
 
   Map<String, Object?> encode() => {
-    if (acm != null) 'acm': acm!.encode(),
-    if (file != null) 'file': file!.encode(),
-    if (sds != null) 'sds': sds!.encode(),
+    'acm': ?acm?.encode(),
+    'file': ?file?.encode(),
+    'sds': ?sds?.encode(),
   };
 }
 
@@ -680,8 +676,7 @@ final class AppmeshVirtualGatewaySpecListenerTlsValidation {
   final AppmeshVirtualGatewaySpecListenerTlsValidationTrust trust;
 
   Map<String, Object?> encode() => {
-    if (subjectAlternativeNames != null)
-      'subject_alternative_names': subjectAlternativeNames!.encode(),
+    'subject_alternative_names': ?subjectAlternativeNames?.encode(),
     'trust': trust.encode(),
   };
 }
@@ -727,8 +722,8 @@ final class AppmeshVirtualGatewaySpecListenerTlsValidationTrust {
   final AppmeshVirtualGatewaySpecListenerTlsValidationTrustSds? sds;
 
   Map<String, Object?> encode() => {
-    if (file != null) 'file': file!.encode(),
-    if (sds != null) 'sds': sds!.encode(),
+    'file': ?file?.encode(),
+    'sds': ?sds?.encode(),
   };
 }
 
@@ -768,9 +763,7 @@ final class AppmeshVirtualGatewaySpecLogging {
 
   final AppmeshVirtualGatewaySpecLoggingAccessLog? accessLog;
 
-  Map<String, Object?> encode() => {
-    if (accessLog != null) 'access_log': accessLog!.encode(),
-  };
+  Map<String, Object?> encode() => {'access_log': ?accessLog?.encode()};
 }
 
 /// Typed helper for the `spec.logging.access_log` block of
@@ -781,7 +774,7 @@ final class AppmeshVirtualGatewaySpecLoggingAccessLog {
 
   final AppmeshVirtualGatewaySpecLoggingAccessLogFile? file;
 
-  Map<String, Object?> encode() => {if (file != null) 'file': file!.encode()};
+  Map<String, Object?> encode() => {'file': ?file?.encode()};
 }
 
 /// Typed helper for the `spec.logging.access_log.file` block of
@@ -799,7 +792,7 @@ final class AppmeshVirtualGatewaySpecLoggingAccessLogFile {
 
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
-    if (format != null) 'format': format!.encode(),
+    'format': ?format?.encode(),
   };
 }
 
@@ -817,7 +810,7 @@ final class AppmeshVirtualGatewaySpecLoggingAccessLogFileFormat {
   final List<AppmeshVirtualGatewaySpecLoggingAccessLogFileFormatJson>? json;
 
   Map<String, Object?> encode() => {
-    if (text != null) 'text': text!.toTfJson(),
+    'text': ?text?.toTfJson(),
     if (json != null) 'json': [for (final e in json!) e.encode()],
   };
 }
@@ -861,10 +854,10 @@ final class AwsAppmeshVirtualGateway extends Resource {
          terraformType: tfType,
          argMap: {
            'mesh_name': meshName,
-           if (meshOwner != null) 'mesh_owner': meshOwner,
+           'mesh_owner': ?meshOwner,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'spec': TfArg.literal(spec.encode()),
          },
        );

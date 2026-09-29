@@ -37,7 +37,7 @@ final class AwsArczonalshiftAutoshiftObserverNotificationStatus
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (region != null) 'region': region, 'status': status},
+         argMap: {'region': ?region, 'status': status},
        );
 
   @override

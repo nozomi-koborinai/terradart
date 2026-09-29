@@ -27,9 +27,9 @@ final class DataGoogleCertificateManagerDnsAuthorization extends Data {
          terraformType: tfType,
          argMap: {
            'domain': domain,
-           if (location != null) 'location': location,
+           'location': ?location,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

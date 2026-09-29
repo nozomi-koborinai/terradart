@@ -21,11 +21,7 @@ final class AwsCloudfrontAnycastIpList extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'ip_count': ipCount,
-           'name': name,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'ip_count': ipCount, 'name': name, 'tags': ?tags},
        );
 
   @override

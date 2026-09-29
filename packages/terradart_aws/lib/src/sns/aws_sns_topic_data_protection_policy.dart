@@ -21,11 +21,7 @@ final class AwsSnsTopicDataProtectionPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'arn': arn,
-           'policy': policy,
-           if (region != null) 'region': region,
-         },
+         argMap: {'arn': arn, 'policy': policy, 'region': ?region},
        );
 
   @override

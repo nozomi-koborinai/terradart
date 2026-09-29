@@ -212,10 +212,8 @@ final class CognitoUserPoolAdminCreateUserConfig {
   inviteMessageTemplate;
 
   Map<String, Object?> encode() => {
-    if (allowAdminCreateUserOnly != null)
-      'allow_admin_create_user_only': allowAdminCreateUserOnly!.toTfJson(),
-    if (inviteMessageTemplate != null)
-      'invite_message_template': inviteMessageTemplate!.encode(),
+    'allow_admin_create_user_only': ?allowAdminCreateUserOnly?.toTfJson(),
+    'invite_message_template': ?inviteMessageTemplate?.encode(),
   };
 }
 
@@ -236,9 +234,9 @@ final class CognitoUserPoolAdminCreateUserConfigInviteMessageTemplate {
   final TfArg<String>? smsMessage;
 
   Map<String, Object?> encode() => {
-    if (emailMessage != null) 'email_message': emailMessage!.toTfJson(),
-    if (emailSubject != null) 'email_subject': emailSubject!.toTfJson(),
-    if (smsMessage != null) 'sms_message': smsMessage!.toTfJson(),
+    'email_message': ?emailMessage?.toTfJson(),
+    'email_subject': ?emailSubject?.toTfJson(),
+    'sms_message': ?smsMessage?.toTfJson(),
   };
 }
 
@@ -256,12 +254,10 @@ final class CognitoUserPoolDeviceConfiguration {
   final TfArg<bool>? deviceOnlyRememberedOnUserPrompt;
 
   Map<String, Object?> encode() => {
-    if (challengeRequiredOnNewDevice != null)
-      'challenge_required_on_new_device': challengeRequiredOnNewDevice!
-          .toTfJson(),
-    if (deviceOnlyRememberedOnUserPrompt != null)
-      'device_only_remembered_on_user_prompt': deviceOnlyRememberedOnUserPrompt!
-          .toTfJson(),
+    'challenge_required_on_new_device': ?challengeRequiredOnNewDevice
+        ?.toTfJson(),
+    'device_only_remembered_on_user_prompt': ?deviceOnlyRememberedOnUserPrompt
+        ?.toTfJson(),
   };
 }
 
@@ -289,15 +285,11 @@ final class CognitoUserPoolEmailConfiguration {
   final TfArg<String>? sourceArn;
 
   Map<String, Object?> encode() => {
-    if (configurationSet != null)
-      'configuration_set': configurationSet!.toTfJson(),
-    if (emailSendingAccount != null)
-      'email_sending_account': emailSendingAccount!.toTfJson(),
-    if (fromEmailAddress != null)
-      'from_email_address': fromEmailAddress!.toTfJson(),
-    if (replyToEmailAddress != null)
-      'reply_to_email_address': replyToEmailAddress!.toTfJson(),
-    if (sourceArn != null) 'source_arn': sourceArn!.toTfJson(),
+    'configuration_set': ?configurationSet?.toTfJson(),
+    'email_sending_account': ?emailSendingAccount?.toTfJson(),
+    'from_email_address': ?fromEmailAddress?.toTfJson(),
+    'reply_to_email_address': ?replyToEmailAddress?.toTfJson(),
+    'source_arn': ?sourceArn?.toTfJson(),
   };
 }
 
@@ -325,8 +317,8 @@ final class CognitoUserPoolEmailMfaConfiguration {
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (message != null) 'message': message!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'message': ?message?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -381,29 +373,20 @@ final class CognitoUserPoolLambdaConfig {
   preTokenGenerationConfig;
 
   Map<String, Object?> encode() => {
-    if (createAuthChallenge != null)
-      'create_auth_challenge': createAuthChallenge!.toTfJson(),
-    if (customMessage != null) 'custom_message': customMessage!.toTfJson(),
-    if (defineAuthChallenge != null)
-      'define_auth_challenge': defineAuthChallenge!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (postAuthentication != null)
-      'post_authentication': postAuthentication!.toTfJson(),
-    if (postConfirmation != null)
-      'post_confirmation': postConfirmation!.toTfJson(),
-    if (preAuthentication != null)
-      'pre_authentication': preAuthentication!.toTfJson(),
-    if (preSignUp != null) 'pre_sign_up': preSignUp!.toTfJson(),
-    if (preTokenGeneration != null)
-      'pre_token_generation': preTokenGeneration!.toTfJson(),
-    if (userMigration != null) 'user_migration': userMigration!.toTfJson(),
-    if (verifyAuthChallengeResponse != null)
-      'verify_auth_challenge_response': verifyAuthChallengeResponse!.toTfJson(),
-    if (customEmailSender != null)
-      'custom_email_sender': customEmailSender!.encode(),
-    if (customSmsSender != null) 'custom_sms_sender': customSmsSender!.encode(),
-    if (preTokenGenerationConfig != null)
-      'pre_token_generation_config': preTokenGenerationConfig!.encode(),
+    'create_auth_challenge': ?createAuthChallenge?.toTfJson(),
+    'custom_message': ?customMessage?.toTfJson(),
+    'define_auth_challenge': ?defineAuthChallenge?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'post_authentication': ?postAuthentication?.toTfJson(),
+    'post_confirmation': ?postConfirmation?.toTfJson(),
+    'pre_authentication': ?preAuthentication?.toTfJson(),
+    'pre_sign_up': ?preSignUp?.toTfJson(),
+    'pre_token_generation': ?preTokenGeneration?.toTfJson(),
+    'user_migration': ?userMigration?.toTfJson(),
+    'verify_auth_challenge_response': ?verifyAuthChallengeResponse?.toTfJson(),
+    'custom_email_sender': ?customEmailSender?.encode(),
+    'custom_sms_sender': ?customSmsSender?.encode(),
+    'pre_token_generation_config': ?preTokenGenerationConfig?.encode(),
   };
 }
 
@@ -534,18 +517,14 @@ final class CognitoUserPoolPasswordPolicy {
   final TfArg<num>? temporaryPasswordValidityDays;
 
   Map<String, Object?> encode() => {
-    if (minimumLength != null) 'minimum_length': minimumLength!.toTfJson(),
-    if (passwordHistorySize != null)
-      'password_history_size': passwordHistorySize!.toTfJson(),
-    if (requireLowercase != null)
-      'require_lowercase': requireLowercase!.toTfJson(),
-    if (requireNumbers != null) 'require_numbers': requireNumbers!.toTfJson(),
-    if (requireSymbols != null) 'require_symbols': requireSymbols!.toTfJson(),
-    if (requireUppercase != null)
-      'require_uppercase': requireUppercase!.toTfJson(),
-    if (temporaryPasswordValidityDays != null)
-      'temporary_password_validity_days': temporaryPasswordValidityDays!
-          .toTfJson(),
+    'minimum_length': ?minimumLength?.toTfJson(),
+    'password_history_size': ?passwordHistorySize?.toTfJson(),
+    'require_lowercase': ?requireLowercase?.toTfJson(),
+    'require_numbers': ?requireNumbers?.toTfJson(),
+    'require_symbols': ?requireSymbols?.toTfJson(),
+    'require_uppercase': ?requireUppercase?.toTfJson(),
+    'temporary_password_validity_days': ?temporaryPasswordValidityDays
+        ?.toTfJson(),
   };
 }
 
@@ -581,15 +560,12 @@ final class CognitoUserPoolSchema {
 
   Map<String, Object?> encode() => {
     'attribute_data_type': attributeDataType.toTfJson(),
-    if (developerOnlyAttribute != null)
-      'developer_only_attribute': developerOnlyAttribute!.toTfJson(),
-    if (mutable != null) 'mutable': mutable!.toTfJson(),
+    'developer_only_attribute': ?developerOnlyAttribute?.toTfJson(),
+    'mutable': ?mutable?.toTfJson(),
     'name': name.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (numberAttributeConstraints != null)
-      'number_attribute_constraints': numberAttributeConstraints!.encode(),
-    if (stringAttributeConstraints != null)
-      'string_attribute_constraints': stringAttributeConstraints!.encode(),
+    'required': ?required?.toTfJson(),
+    'number_attribute_constraints': ?numberAttributeConstraints?.encode(),
+    'string_attribute_constraints': ?stringAttributeConstraints?.encode(),
   };
 }
 
@@ -619,8 +595,8 @@ final class CognitoUserPoolSchemaNumberAttributeConstraints {
   final TfArg<String>? minValue;
 
   Map<String, Object?> encode() => {
-    if (maxValue != null) 'max_value': maxValue!.toTfJson(),
-    if (minValue != null) 'min_value': minValue!.toTfJson(),
+    'max_value': ?maxValue?.toTfJson(),
+    'min_value': ?minValue?.toTfJson(),
   };
 }
 
@@ -638,8 +614,8 @@ final class CognitoUserPoolSchemaStringAttributeConstraints {
   final TfArg<String>? minLength;
 
   Map<String, Object?> encode() => {
-    if (maxLength != null) 'max_length': maxLength!.toTfJson(),
-    if (minLength != null) 'min_length': minLength!.toTfJson(),
+    'max_length': ?maxLength?.toTfJson(),
+    'min_length': ?minLength?.toTfJson(),
   };
 }
 
@@ -693,7 +669,7 @@ final class CognitoUserPoolSmsConfiguration {
   Map<String, Object?> encode() => {
     'external_id': externalId.toTfJson(),
     'sns_caller_arn': snsCallerArn.toTfJson(),
-    if (snsRegion != null) 'sns_region': snsRegion!.toTfJson(),
+    'sns_region': ?snsRegion?.toTfJson(),
   };
 }
 
@@ -760,9 +736,8 @@ final class CognitoUserPoolUserPoolAddOns {
 
   Map<String, Object?> encode() => {
     'advanced_security_mode': advancedSecurityMode.toTfJson(),
-    if (advancedSecurityAdditionalFlows != null)
-      'advanced_security_additional_flows': advancedSecurityAdditionalFlows!
-          .encode(),
+    'advanced_security_additional_flows': ?advancedSecurityAdditionalFlows
+        ?.encode(),
   };
 }
 
@@ -792,7 +767,7 @@ final class CognitoUserPoolUserPoolAddOnsAdvancedSecurityAdditionalFlows {
   customAuthMode;
 
   Map<String, Object?> encode() => {
-    if (customAuthMode != null) 'custom_auth_mode': customAuthMode!.toTfJson(),
+    'custom_auth_mode': ?customAuthMode?.toTfJson(),
   };
 }
 
@@ -818,7 +793,7 @@ final class CognitoUserPoolUsernameConfiguration {
   final TfArg<bool>? caseSensitive;
 
   Map<String, Object?> encode() => {
-    if (caseSensitive != null) 'case_sensitive': caseSensitive!.toTfJson(),
+    'case_sensitive': ?caseSensitive?.toTfJson(),
   };
 }
 
@@ -849,15 +824,12 @@ final class CognitoUserPoolVerificationMessageTemplate {
   final TfArg<String>? smsMessage;
 
   Map<String, Object?> encode() => {
-    if (defaultEmailOption != null)
-      'default_email_option': defaultEmailOption!.toTfJson(),
-    if (emailMessage != null) 'email_message': emailMessage!.toTfJson(),
-    if (emailMessageByLink != null)
-      'email_message_by_link': emailMessageByLink!.toTfJson(),
-    if (emailSubject != null) 'email_subject': emailSubject!.toTfJson(),
-    if (emailSubjectByLink != null)
-      'email_subject_by_link': emailSubjectByLink!.toTfJson(),
-    if (smsMessage != null) 'sms_message': smsMessage!.toTfJson(),
+    'default_email_option': ?defaultEmailOption?.toTfJson(),
+    'email_message': ?emailMessage?.toTfJson(),
+    'email_message_by_link': ?emailMessageByLink?.toTfJson(),
+    'email_subject': ?emailSubject?.toTfJson(),
+    'email_subject_by_link': ?emailSubjectByLink?.toTfJson(),
+    'sms_message': ?smsMessage?.toTfJson(),
   };
 }
 
@@ -889,9 +861,8 @@ final class CognitoUserPoolWebAuthnConfiguration {
   userVerification;
 
   Map<String, Object?> encode() => {
-    if (relyingPartyId != null) 'relying_party_id': relyingPartyId!.toTfJson(),
-    if (userVerification != null)
-      'user_verification': userVerification!.toTfJson(),
+    'relying_party_id': ?relyingPartyId?.toTfJson(),
+    'user_verification': ?userVerification?.toTfJson(),
   };
 }
 
@@ -954,21 +925,16 @@ final class AwsCognitoUserPool extends Resource {
              'auto_verified_attributes': TfArg.literal([
                for (final e in autoVerifiedAttributes) e.toTfJson(),
              ]),
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (emailVerificationMessage != null)
-             'email_verification_message': emailVerificationMessage,
-           if (emailVerificationSubject != null)
-             'email_verification_subject': emailVerificationSubject,
-           if (mfaConfiguration != null) 'mfa_configuration': mfaConfiguration,
+           'deletion_protection': ?deletionProtection,
+           'email_verification_message': ?emailVerificationMessage,
+           'email_verification_subject': ?emailVerificationSubject,
+           'mfa_configuration': ?mfaConfiguration,
            'name': name,
-           if (region != null) 'region': region,
-           if (smsAuthenticationMessage != null)
-             'sms_authentication_message': smsAuthenticationMessage,
-           if (smsVerificationMessage != null)
-             'sms_verification_message': smsVerificationMessage,
-           if (tags != null) 'tags': tags,
-           if (userPoolTier != null) 'user_pool_tier': userPoolTier,
+           'region': ?region,
+           'sms_authentication_message': ?smsAuthenticationMessage,
+           'sms_verification_message': ?smsVerificationMessage,
+           'tags': ?tags,
+           'user_pool_tier': ?userPoolTier,
            if (accountRecoverySetting != null)
              'account_recovery_setting': TfArg.literal(
                accountRecoverySetting.encode(),

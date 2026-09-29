@@ -27,10 +27,10 @@ final class AwsApprunnerVpcConnector extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_groups': securityGroups.encodeAs('id'),
            'subnets': subnets.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'vpc_connector_name': vpcConnectorName,
          },
        );

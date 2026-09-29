@@ -27,10 +27,10 @@ final class SecuritylakeAwsLogSourceSource {
   final TfArg<String>? sourceVersion;
 
   Map<String, Object?> encode() => {
-    if (accounts != null) 'accounts': accounts!.toTfJson(),
+    'accounts': ?accounts?.toTfJson(),
     'regions': regions.toTfJson(),
     'source_name': sourceName.toTfJson(),
-    if (sourceVersion != null) 'source_version': sourceVersion!.toTfJson(),
+    'source_version': ?sourceVersion?.toTfJson(),
   };
 }
 
@@ -49,7 +49,7 @@ final class AwsSecuritylakeAwsLogSource extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (source != null)
              'source': TfArg.literal([for (final e in source) e.encode()]),
          },

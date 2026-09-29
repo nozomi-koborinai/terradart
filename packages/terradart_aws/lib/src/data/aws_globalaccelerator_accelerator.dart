@@ -17,10 +17,7 @@ final class DataAwsGlobalacceleratorAccelerator extends Data {
     TfArg<String>? name,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (arn != null) 'arn': arn, if (name != null) 'name': name},
-       );
+  }) : super(terraformType: tfType, argMap: {'arn': ?arn, 'name': ?name});
 
   @override
   Set<String> get sensitiveFields => _awsGlobalacceleratorAcceleratorSensitive;

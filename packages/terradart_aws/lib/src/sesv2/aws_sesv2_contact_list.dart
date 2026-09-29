@@ -29,7 +29,7 @@ final class Sesv2ContactListTopic {
 
   Map<String, Object?> encode() => {
     'default_subscription_status': defaultSubscriptionStatus.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'display_name': displayName.toTfJson(),
     'topic_name': topicName.toTfJson(),
   };
@@ -64,9 +64,9 @@ final class AwsSesv2ContactList extends Resource {
          terraformType: tfType,
          argMap: {
            'contact_list_name': contactListName,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'region': ?region,
+           'tags': ?tags,
            if (topic != null)
              'topic': TfArg.literal([for (final e in topic) e.encode()]),
          },

@@ -18,10 +18,7 @@ final class DataAwsOrganizationsOrganization extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (returnOrganizationOnly != null)
-             'return_organization_only': returnOrganizationOnly,
-         },
+         argMap: {'return_organization_only': ?returnOrganizationOnly},
        );
 
   @override

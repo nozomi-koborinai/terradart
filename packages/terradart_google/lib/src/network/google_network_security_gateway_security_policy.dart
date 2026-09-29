@@ -49,11 +49,10 @@ final class GoogleNetworkSecurityGatewaySecurityPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (tlsInspectionPolicy != null)
-             'tls_inspection_policy': tlsInspectionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'description': ?description,
+           'tls_inspection_policy': ?tlsInspectionPolicy,
+           'project': ?project,
          },
        );
 

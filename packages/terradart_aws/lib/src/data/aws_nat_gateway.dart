@@ -41,11 +41,11 @@ final class DataAwsNatGateway extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (state != null) 'state': state,
-           if (subnetId != null) 'subnet_id': subnetId,
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
+           'region': ?region,
+           'state': ?state,
+           'subnet_id': ?subnetId,
+           'tags': ?tags,
+           'vpc_id': ?vpcId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

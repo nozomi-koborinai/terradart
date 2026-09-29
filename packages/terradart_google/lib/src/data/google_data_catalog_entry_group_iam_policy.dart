@@ -25,8 +25,8 @@ final class DataGoogleDataCatalogEntryGroupIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'entry_group': entryGroup,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

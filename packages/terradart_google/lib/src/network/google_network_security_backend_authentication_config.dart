@@ -72,15 +72,14 @@ final class GoogleNetworkSecurityBackendAuthenticationConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (wellKnownRoots != null) 'well_known_roots': wellKnownRoots,
-           if (trustConfig != null) 'trust_config': trustConfig,
-           if (clientCertificate != null)
-             'client_certificate': clientCertificate,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'description': ?description,
+           'well_known_roots': ?wellKnownRoots,
+           'trust_config': ?trustConfig,
+           'client_certificate': ?clientCertificate,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

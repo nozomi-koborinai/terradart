@@ -55,12 +55,12 @@ final class GoogleDialogflowCxEnvironment extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (parent != null) 'parent': parent,
-           if (description != null) 'description': description,
+           'parent': ?parent,
+           'description': ?description,
            'version_configs': TfArg.literal([
              for (final e in versionConfigs) e.encode(),
            ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

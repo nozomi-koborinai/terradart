@@ -21,11 +21,7 @@ final class AwsIotPolicyAttachment extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'policy': policy,
-           if (region != null) 'region': region,
-           'target': target,
-         },
+         argMap: {'policy': policy, 'region': ?region, 'target': target},
        );
 
   @override

@@ -19,8 +19,8 @@ final class DataZeroTrustAccessServiceTokenFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -43,9 +43,9 @@ final class DataCloudflareZeroTrustAccessServiceToken extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (serviceTokenId != null) 'service_token_id': serviceTokenId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'service_token_id': ?serviceTokenId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

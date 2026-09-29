@@ -23,11 +23,11 @@ final class DataAwsConnectUserHierarchyGroup extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (hierarchyGroupId != null) 'hierarchy_group_id': hierarchyGroupId,
+           'hierarchy_group_id': ?hierarchyGroupId,
            'instance_id': instanceId,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -27,11 +27,10 @@ final class GoogleObservabilityProjectSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultStorageLocation != null)
-             'default_storage_location': defaultStorageLocation,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
+           'default_storage_location': ?defaultStorageLocation,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -98,10 +98,9 @@ final class CloudflareD1Database extends Resource {
            'account_id': accountId.encodeAs('id'),
            if (fields != null)
              'fields': TfArg.literal([for (final e in fields) e.toTfJson()]),
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
+           'jurisdiction': ?jurisdiction,
            'name': name,
-           if (primaryLocationHint != null)
-             'primary_location_hint': primaryLocationHint,
+           'primary_location_hint': ?primaryLocationHint,
            if (readReplication != null)
              'read_replication': TfArg.literal(readReplication.encode()),
          },

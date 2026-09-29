@@ -24,14 +24,12 @@ final class DataAwsLambdaLayerVersion extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (compatibleArchitecture != null)
-             'compatible_architecture': compatibleArchitecture,
-           if (compatibleRuntime != null)
-             'compatible_runtime': compatibleRuntime,
-           if (layerName != null) 'layer_name': layerName,
-           if (layerVersionArn != null) 'layer_version_arn': layerVersionArn,
-           if (region != null) 'region': region,
-           if (version != null) 'version': version,
+           'compatible_architecture': ?compatibleArchitecture,
+           'compatible_runtime': ?compatibleRuntime,
+           'layer_name': ?layerName,
+           'layer_version_arn': ?layerVersionArn,
+           'region': ?region,
+           'version': ?version,
          },
        );
 

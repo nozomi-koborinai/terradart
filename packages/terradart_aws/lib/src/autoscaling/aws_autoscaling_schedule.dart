@@ -30,15 +30,15 @@ final class AwsAutoscalingSchedule extends Resource {
          terraformType: tfType,
          argMap: {
            'autoscaling_group_name': autoscalingGroupName,
-           if (desiredCapacity != null) 'desired_capacity': desiredCapacity,
-           if (endTime != null) 'end_time': endTime,
-           if (maxSize != null) 'max_size': maxSize,
-           if (minSize != null) 'min_size': minSize,
-           if (recurrence != null) 'recurrence': recurrence,
-           if (region != null) 'region': region,
+           'desired_capacity': ?desiredCapacity,
+           'end_time': ?endTime,
+           'max_size': ?maxSize,
+           'min_size': ?minSize,
+           'recurrence': ?recurrence,
+           'region': ?region,
            'scheduled_action_name': scheduledActionName,
-           if (startTime != null) 'start_time': startTime,
-           if (timeZone != null) 'time_zone': timeZone,
+           'start_time': ?startTime,
+           'time_zone': ?timeZone,
          },
        );
 

@@ -15,9 +15,7 @@ final class NetworkmanagerConnectAttachmentOptions {
 
   final TfArg<NetworkmanagerConnectAttachmentOptionsProtocol>? protocol;
 
-  Map<String, Object?> encode() => {
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'protocol': ?protocol?.toTfJson()};
 }
 
 /// `protocol` — derived from the provider schema description.
@@ -51,9 +49,8 @@ final class AwsNetworkmanagerConnectAttachment extends Resource {
          argMap: {
            'core_network_id': coreNetworkId,
            'edge_location': edgeLocation,
-           if (routingPolicyLabel != null)
-             'routing_policy_label': routingPolicyLabel,
-           if (tags != null) 'tags': tags,
+           'routing_policy_label': ?routingPolicyLabel,
+           'tags': ?tags,
            'transport_attachment_id': transportAttachmentId,
            'options': TfArg.literal(options.encode()),
          },

@@ -26,7 +26,7 @@ final class AwsWorkspaceswebUserAccessLoggingSettingsAssociation
          terraformType: tfType,
          argMap: {
            'portal_arn': portalArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'user_access_logging_settings_arn': userAccessLoggingSettingsArn,
          },
        );

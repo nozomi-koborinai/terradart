@@ -42,9 +42,8 @@ final class GkeonpremBareMetalNodePoolNodePoolConfig {
   final List<GkeonpremBareMetalNodePoolNodePoolConfigTaints>? taints;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (operatingSystem != null)
-      'operating_system': operatingSystem!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'operating_system': ?operatingSystem?.toTfJson(),
     'node_configs': [for (final e in nodeConfigs) e.encode()],
     if (taints != null) 'taints': [for (final e in taints!) e.encode()],
   };
@@ -64,8 +63,8 @@ final class GkeonpremBareMetalNodePoolNodePoolConfigNodeConfigs {
   final TfArg<String>? nodeIp;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (nodeIp != null) 'node_ip': nodeIp!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'node_ip': ?nodeIp?.toTfJson(),
   };
 }
 
@@ -86,9 +85,9 @@ final class GkeonpremBareMetalNodePoolNodePoolConfigTaints {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (effect != null) 'effect': effect!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'effect': ?effect?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -144,10 +143,10 @@ final class GoogleGkeonpremBareMetalNodePool extends Resource {
            'location': location,
            'bare_metal_cluster': bareMetalCluster,
            'node_pool_config': TfArg.literal(nodePoolConfig.encode()),
-           if (displayName != null) 'display_name': displayName,
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

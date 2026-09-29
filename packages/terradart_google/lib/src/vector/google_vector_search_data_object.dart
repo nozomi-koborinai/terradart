@@ -25,8 +25,8 @@ final class VectorSearchDataObjectVectors {
 
   Map<String, Object?> encode() => {
     'field_name': fieldName.toTfJson(),
-    if (dense != null) 'dense': dense!.encode(),
-    if (sparse != null) 'sparse': sparse!.encode(),
+    'dense': ?dense?.encode(),
+    'sparse': ?sparse?.encode(),
   };
 }
 
@@ -121,12 +121,12 @@ final class GoogleVectorSearchDataObject extends Resource {
            'location': location,
            'collection_id': collectionId,
            'data_object_id': dataObjectId,
-           if (data != null) 'data': data,
+           'data': ?data,
            if (vectors != null)
              'vectors': TfArg.literal([for (final e in vectors) e.encode()]),
-           if (etag != null) 'etag': etag,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'etag': ?etag,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

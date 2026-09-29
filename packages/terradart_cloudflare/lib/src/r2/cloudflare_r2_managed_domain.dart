@@ -39,7 +39,7 @@ final class CloudflareR2ManagedDomain extends Resource {
            'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
            'enabled': enabled,
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
+           'jurisdiction': ?jurisdiction,
          },
        );
 

@@ -24,9 +24,9 @@ final class ShieldProactiveEngagementEmergencyContact {
   final TfArg<String>? phoneNumber;
 
   Map<String, Object?> encode() => {
-    if (contactNotes != null) 'contact_notes': contactNotes!.toTfJson(),
+    'contact_notes': ?contactNotes?.toTfJson(),
     'email_address': emailAddress.toTfJson(),
-    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
+    'phone_number': ?phoneNumber?.toTfJson(),
   };
 }
 

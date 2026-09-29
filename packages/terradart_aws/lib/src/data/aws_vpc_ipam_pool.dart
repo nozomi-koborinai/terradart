@@ -40,11 +40,10 @@ final class DataAwsVpcIpamPool extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allocationResourceTags != null)
-             'allocation_resource_tags': allocationResourceTags,
-           if (ipamPoolId != null) 'ipam_pool_id': ipamPoolId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'allocation_resource_tags': ?allocationResourceTags,
+           'ipam_pool_id': ?ipamPoolId,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

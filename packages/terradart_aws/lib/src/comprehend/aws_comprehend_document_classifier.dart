@@ -125,10 +125,10 @@ final class ComprehendDocumentClassifierInputDataConfig {
   final TfArg<String>? testS3Uri;
 
   Map<String, Object?> encode() => {
-    if (dataFormat != null) 'data_format': dataFormat!.toTfJson(),
-    if (labelDelimiter != null) 'label_delimiter': labelDelimiter!.toTfJson(),
+    'data_format': ?dataFormat?.toTfJson(),
+    'label_delimiter': ?labelDelimiter?.toTfJson(),
     ...source.encode(),
-    if (testS3Uri != null) 'test_s3_uri': testS3Uri!.toTfJson(),
+    'test_s3_uri': ?testS3Uri?.toTfJson(),
   };
 }
 
@@ -266,14 +266,12 @@ final class ComprehendDocumentClassifierInputDataConfigAugmentedManifests {
   split;
 
   Map<String, Object?> encode() => {
-    if (annotationDataS3Uri != null)
-      'annotation_data_s3_uri': annotationDataS3Uri!.toTfJson(),
+    'annotation_data_s3_uri': ?annotationDataS3Uri?.toTfJson(),
     'attribute_names': attributeNames.toTfJson(),
-    if (documentType != null) 'document_type': documentType!.toTfJson(),
+    'document_type': ?documentType?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
-    if (sourceDocumentsS3Uri != null)
-      'source_documents_s3_uri': sourceDocumentsS3Uri!.toTfJson(),
-    if (split != null) 'split': split!.toTfJson(),
+    'source_documents_s3_uri': ?sourceDocumentsS3Uri?.toTfJson(),
+    'split': ?split?.toTfJson(),
   };
 }
 
@@ -317,7 +315,7 @@ final class ComprehendDocumentClassifierOutputDataConfig {
   final TfArg<String> s3Uri;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_uri': s3Uri.toTfJson(),
   };
 }
@@ -368,13 +366,13 @@ final class AwsComprehendDocumentClassifier extends Resource {
          argMap: {
            'data_access_role_arn': dataAccessRoleArn,
            'language_code': languageCode,
-           if (mode != null) 'mode': mode,
-           if (modelKmsKeyId != null) 'model_kms_key_id': modelKmsKeyId,
+           'mode': ?mode,
+           'model_kms_key_id': ?modelKmsKeyId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            ...?versionName?.argMap,
-           if (volumeKmsKeyId != null) 'volume_kms_key_id': volumeKmsKeyId,
+           'volume_kms_key_id': ?volumeKmsKeyId,
            'input_data_config': TfArg.literal(inputDataConfig.encode()),
            if (outputDataConfig != null)
              'output_data_config': TfArg.literal(outputDataConfig.encode()),

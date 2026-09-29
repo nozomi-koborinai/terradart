@@ -45,7 +45,7 @@ final class AwsCloudfrontkeyvaluestoreKeysExclusive extends Resource {
          terraformType: tfType,
          argMap: {
            'key_value_store_arn': keyValueStoreArn,
-           if (maxBatchSize != null) 'max_batch_size': maxBatchSize,
+           'max_batch_size': ?maxBatchSize,
            if (resourceKeyValuePair != null)
              'resource_key_value_pair': TfArg.literal([
                for (final e in resourceKeyValuePair) e.encode(),

@@ -37,10 +37,10 @@ final class ComputeRouterNamedSetElements {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -96,12 +96,12 @@ final class GoogleComputeRouterNamedSet extends Resource {
            'name': name,
            'router': router,
            'type': type,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
+           'region': ?region,
+           'description': ?description,
            if (elements != null)
              'elements': TfArg.literal([for (final e in elements) e.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

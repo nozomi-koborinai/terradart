@@ -25,8 +25,8 @@ final class DataGoogleDataplexAspectTypeIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'aspect_type_id': aspectTypeId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

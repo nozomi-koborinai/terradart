@@ -18,10 +18,7 @@ final class DataAwsCognitoUserPoolClients extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'user_pool_id': userPoolId,
-         },
+         argMap: {'region': ?region, 'user_pool_id': userPoolId},
        );
 
   @override

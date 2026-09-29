@@ -39,9 +39,9 @@ final class DataAwsEip extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (publicIp != null) 'public_ip': publicIp,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'public_ip': ?publicIp,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

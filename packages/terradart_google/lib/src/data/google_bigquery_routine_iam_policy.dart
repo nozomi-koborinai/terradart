@@ -25,7 +25,7 @@ final class DataGoogleBigqueryRoutineIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'dataset_id': datasetId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'routine_id': routineId,
          },
        );

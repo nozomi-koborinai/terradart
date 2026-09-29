@@ -37,11 +37,11 @@ final class GoogleSccV2FolderMuteConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'filter': filter,
            'folder': folder,
-           if (location != null) 'location': location,
+           'location': ?location,
            'mute_config_id': muteConfigId,
            'type': type,
          },

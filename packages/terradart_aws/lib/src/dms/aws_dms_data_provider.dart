@@ -120,11 +120,11 @@ final class DmsDataProviderSettingsDocDbSettings {
   final TfArg<String>? sslMode;
 
   Map<String, Object?> encode() => {
-    if (certificateArn != null) 'certificate_arn': certificateArn!.toTfJson(),
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    'certificate_arn': ?certificateArn?.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
   };
 }
 
@@ -163,18 +163,15 @@ final class DmsDataProviderSettingsIbmDb2LuwSettings {
   final TfArg<String>? sslMode;
 
   Map<String, Object?> encode() => {
-    if (certificateArn != null) 'certificate_arn': certificateArn!.toTfJson(),
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (encryptionAlgorithm != null)
-      'encryption_algorithm': encryptionAlgorithm!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (s3AccessRoleArn != null)
-      's3_access_role_arn': s3AccessRoleArn!.toTfJson(),
-    if (s3Path != null) 's3_path': s3Path!.toTfJson(),
-    if (securityMechanism != null)
-      'security_mechanism': securityMechanism!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    'certificate_arn': ?certificateArn?.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'encryption_algorithm': ?encryptionAlgorithm?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    's3_access_role_arn': ?s3AccessRoleArn?.toTfJson(),
+    's3_path': ?s3Path?.toTfJson(),
+    'security_mechanism': ?securityMechanism?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
   };
 }
 
@@ -207,14 +204,13 @@ final class DmsDataProviderSettingsIbmDb2ZosSettings {
   final TfArg<String>? sslMode;
 
   Map<String, Object?> encode() => {
-    if (certificateArn != null) 'certificate_arn': certificateArn!.toTfJson(),
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (s3AccessRoleArn != null)
-      's3_access_role_arn': s3AccessRoleArn!.toTfJson(),
-    if (s3Path != null) 's3_path': s3Path!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    'certificate_arn': ?certificateArn?.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    's3_access_role_arn': ?s3AccessRoleArn?.toTfJson(),
+    's3_path': ?s3Path?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
   };
 }
 
@@ -244,13 +240,12 @@ final class DmsDataProviderSettingsMariaDbSettings {
   final TfArg<String>? sslMode;
 
   Map<String, Object?> encode() => {
-    if (certificateArn != null) 'certificate_arn': certificateArn!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (s3AccessRoleArn != null)
-      's3_access_role_arn': s3AccessRoleArn!.toTfJson(),
-    if (s3Path != null) 's3_path': s3Path!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    'certificate_arn': ?certificateArn?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    's3_access_role_arn': ?s3AccessRoleArn?.toTfJson(),
+    's3_path': ?s3Path?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
   };
 }
 
@@ -283,14 +278,13 @@ final class DmsDataProviderSettingsMicrosoftSqlServerSettings {
   final TfArg<String>? sslMode;
 
   Map<String, Object?> encode() => {
-    if (certificateArn != null) 'certificate_arn': certificateArn!.toTfJson(),
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (s3AccessRoleArn != null)
-      's3_access_role_arn': s3AccessRoleArn!.toTfJson(),
-    if (s3Path != null) 's3_path': s3Path!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    'certificate_arn': ?certificateArn?.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    's3_access_role_arn': ?s3AccessRoleArn?.toTfJson(),
+    's3_path': ?s3Path?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
   };
 }
 
@@ -327,14 +321,14 @@ final class DmsDataProviderSettingsMongoDbSettings {
   final TfArg<String>? sslMode;
 
   Map<String, Object?> encode() => {
-    if (authMechanism != null) 'auth_mechanism': authMechanism!.toTfJson(),
-    if (authSource != null) 'auth_source': authSource!.toTfJson(),
-    if (authType != null) 'auth_type': authType!.toTfJson(),
-    if (certificateArn != null) 'certificate_arn': certificateArn!.toTfJson(),
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    'auth_mechanism': ?authMechanism?.toTfJson(),
+    'auth_source': ?authSource?.toTfJson(),
+    'auth_type': ?authType?.toTfJson(),
+    'certificate_arn': ?certificateArn?.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
   };
 }
 
@@ -388,13 +382,12 @@ final class DmsDataProviderSettingsMysqlSettings {
   final TfArg<String>? sslMode;
 
   Map<String, Object?> encode() => {
-    if (certificateArn != null) 'certificate_arn': certificateArn!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (s3AccessRoleArn != null)
-      's3_access_role_arn': s3AccessRoleArn!.toTfJson(),
-    if (s3Path != null) 's3_path': s3Path!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    'certificate_arn': ?certificateArn?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    's3_access_role_arn': ?s3AccessRoleArn?.toTfJson(),
+    's3_path': ?s3Path?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
   };
 }
 
@@ -442,27 +435,22 @@ final class DmsDataProviderSettingsOracleSettings {
   final TfArg<String>? sslMode;
 
   Map<String, Object?> encode() => {
-    if (asmServer != null) 'asm_server': asmServer!.toTfJson(),
-    if (certificateArn != null) 'certificate_arn': certificateArn!.toTfJson(),
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (s3AccessRoleArn != null)
-      's3_access_role_arn': s3AccessRoleArn!.toTfJson(),
-    if (s3Path != null) 's3_path': s3Path!.toTfJson(),
-    if (secretsManagerOracleAsmAccessRoleArn != null)
-      'secrets_manager_oracle_asm_access_role_arn':
-          secretsManagerOracleAsmAccessRoleArn!.toTfJson(),
-    if (secretsManagerOracleAsmSecretId != null)
-      'secrets_manager_oracle_asm_secret_id': secretsManagerOracleAsmSecretId!
-          .toTfJson(),
-    if (secretsManagerSecurityDbEncryptionAccessRoleArn != null)
-      'secrets_manager_security_db_encryption_access_role_arn':
-          secretsManagerSecurityDbEncryptionAccessRoleArn!.toTfJson(),
-    if (secretsManagerSecurityDbEncryptionSecretId != null)
-      'secrets_manager_security_db_encryption_secret_id':
-          secretsManagerSecurityDbEncryptionSecretId!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    'asm_server': ?asmServer?.toTfJson(),
+    'certificate_arn': ?certificateArn?.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    's3_access_role_arn': ?s3AccessRoleArn?.toTfJson(),
+    's3_path': ?s3Path?.toTfJson(),
+    'secrets_manager_oracle_asm_access_role_arn':
+        ?secretsManagerOracleAsmAccessRoleArn?.toTfJson(),
+    'secrets_manager_oracle_asm_secret_id': ?secretsManagerOracleAsmSecretId
+        ?.toTfJson(),
+    'secrets_manager_security_db_encryption_access_role_arn':
+        ?secretsManagerSecurityDbEncryptionAccessRoleArn?.toTfJson(),
+    'secrets_manager_security_db_encryption_secret_id':
+        ?secretsManagerSecurityDbEncryptionSecretId?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
   };
 }
 
@@ -495,14 +483,13 @@ final class DmsDataProviderSettingsPostgresqlSettings {
   final TfArg<String>? sslMode;
 
   Map<String, Object?> encode() => {
-    if (certificateArn != null) 'certificate_arn': certificateArn!.toTfJson(),
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (s3AccessRoleArn != null)
-      's3_access_role_arn': s3AccessRoleArn!.toTfJson(),
-    if (s3Path != null) 's3_path': s3Path!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    'certificate_arn': ?certificateArn?.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    's3_access_role_arn': ?s3AccessRoleArn?.toTfJson(),
+    's3_path': ?s3Path?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
   };
 }
 
@@ -529,12 +516,11 @@ final class DmsDataProviderSettingsRedshiftSettings {
   final TfArg<String>? serverName;
 
   Map<String, Object?> encode() => {
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (s3AccessRoleArn != null)
-      's3_access_role_arn': s3AccessRoleArn!.toTfJson(),
-    if (s3Path != null) 's3_path': s3Path!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    's3_access_role_arn': ?s3AccessRoleArn?.toTfJson(),
+    's3_path': ?s3Path?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
   };
 }
 
@@ -564,13 +550,12 @@ final class DmsDataProviderSettingsSybaseAseSettings {
   final TfArg<String>? sslMode;
 
   Map<String, Object?> encode() => {
-    if (certificateArn != null) 'certificate_arn': certificateArn!.toTfJson(),
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (encryptPassword != null)
-      'encrypt_password': encryptPassword!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (serverName != null) 'server_name': serverName!.toTfJson(),
-    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    'certificate_arn': ?certificateArn?.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'encrypt_password': ?encryptPassword?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'server_name': ?serverName?.toTfJson(),
+    'ssl_mode': ?sslMode?.toTfJson(),
   };
 }
 
@@ -594,12 +579,12 @@ final class AwsDmsDataProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'engine': engine,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (virtual != null) 'virtual': virtual,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
+           'virtual': ?virtual,
            if (settings != null)
              'settings': TfArg.literal([for (final e in settings) e.encode()]),
          },

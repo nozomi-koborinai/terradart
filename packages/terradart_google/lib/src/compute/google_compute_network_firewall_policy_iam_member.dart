@@ -28,7 +28,7 @@ final class GoogleComputeNetworkFirewallPolicyIamMember extends Resource {
            'name': name,
            'role': role,
            'member': member,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

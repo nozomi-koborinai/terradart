@@ -113,29 +113,24 @@ final class GoogleComputeVpnTunnel extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (targetVpnGateway != null) 'target_vpn_gateway': targetVpnGateway,
-           if (vpnGateway != null) 'vpn_gateway': vpnGateway,
-           if (vpnGatewayInterface != null)
-             'vpn_gateway_interface': vpnGatewayInterface,
-           if (peerIp != null) 'peer_ip': peerIp,
+           'region': ?region,
+           'target_vpn_gateway': ?targetVpnGateway,
+           'vpn_gateway': ?vpnGateway,
+           'vpn_gateway_interface': ?vpnGatewayInterface,
+           'peer_ip': ?peerIp,
            ...?peer?.argMap,
-           if (peerExternalGatewayInterface != null)
-             'peer_external_gateway_interface': peerExternalGatewayInterface,
-           if (sharedSecret != null) 'shared_secret': sharedSecret,
-           if (sharedSecretWo != null) 'shared_secret_wo': sharedSecretWo,
-           if (sharedSecretWoVersion != null)
-             'shared_secret_wo_version': sharedSecretWoVersion,
-           if (router != null) 'router': router,
-           if (description != null) 'description': description,
-           if (ikeVersion != null) 'ike_version': ikeVersion,
-           if (localTrafficSelector != null)
-             'local_traffic_selector': localTrafficSelector,
-           if (remoteTrafficSelector != null)
-             'remote_traffic_selector': remoteTrafficSelector,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'peer_external_gateway_interface': ?peerExternalGatewayInterface,
+           'shared_secret': ?sharedSecret,
+           'shared_secret_wo': ?sharedSecretWo,
+           'shared_secret_wo_version': ?sharedSecretWoVersion,
+           'router': ?router,
+           'description': ?description,
+           'ike_version': ?ikeVersion,
+           'local_traffic_selector': ?localTrafficSelector,
+           'remote_traffic_selector': ?remoteTrafficSelector,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -43,11 +43,11 @@ final class GoogleEdgenetworkNetwork extends Resource {
            'network_id': networkId,
            'location': location,
            'zone': zone,
-           if (description != null) 'description': description,
-           if (mtu != null) 'mtu': mtu,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'mtu': ?mtu,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

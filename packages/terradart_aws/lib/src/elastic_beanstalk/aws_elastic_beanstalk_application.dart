@@ -29,10 +29,9 @@ final class ElasticBeanstalkApplicationAppversionLifecycle {
   final RefTo<AwsIamRole> serviceRole;
 
   Map<String, Object?> encode() => {
-    if (deleteSourceFromS3 != null)
-      'delete_source_from_s3': deleteSourceFromS3!.toTfJson(),
-    if (maxAgeInDays != null) 'max_age_in_days': maxAgeInDays!.toTfJson(),
-    if (maxCount != null) 'max_count': maxCount!.toTfJson(),
+    'delete_source_from_s3': ?deleteSourceFromS3?.toTfJson(),
+    'max_age_in_days': ?maxAgeInDays?.toTfJson(),
+    'max_count': ?maxCount?.toTfJson(),
     'service_role': serviceRole.encodeAs('arn').toTfJson(),
   };
 }
@@ -55,10 +54,10 @@ final class AwsElasticBeanstalkApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (appversionLifecycle != null)
              'appversion_lifecycle': TfArg.literal(
                appversionLifecycle.encode(),

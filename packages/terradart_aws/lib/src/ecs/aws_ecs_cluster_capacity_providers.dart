@@ -24,9 +24,9 @@ final class EcsClusterCapacityProvidersDefaultCapacityProviderStrategy {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (base != null) 'base': base!.toTfJson(),
+    'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -48,10 +48,9 @@ final class AwsEcsClusterCapacityProviders extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (capacityProviders != null)
-             'capacity_providers': capacityProviders,
+           'capacity_providers': ?capacityProviders,
            'cluster_name': clusterName,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (defaultCapacityProviderStrategy != null)
              'default_capacity_provider_strategy': TfArg.literal([
                for (final e in defaultCapacityProviderStrategy) e.encode(),

@@ -36,18 +36,12 @@ final class AppEngineStandardAppVersionAutomaticScaling {
   standardSchedulerSettings;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentRequests != null)
-      'max_concurrent_requests': maxConcurrentRequests!.toTfJson(),
-    if (maxIdleInstances != null)
-      'max_idle_instances': maxIdleInstances!.toTfJson(),
-    if (maxPendingLatency != null)
-      'max_pending_latency': maxPendingLatency!.toTfJson(),
-    if (minIdleInstances != null)
-      'min_idle_instances': minIdleInstances!.toTfJson(),
-    if (minPendingLatency != null)
-      'min_pending_latency': minPendingLatency!.toTfJson(),
-    if (standardSchedulerSettings != null)
-      'standard_scheduler_settings': standardSchedulerSettings!.encode(),
+    'max_concurrent_requests': ?maxConcurrentRequests?.toTfJson(),
+    'max_idle_instances': ?maxIdleInstances?.toTfJson(),
+    'max_pending_latency': ?maxPendingLatency?.toTfJson(),
+    'min_idle_instances': ?minIdleInstances?.toTfJson(),
+    'min_pending_latency': ?minPendingLatency?.toTfJson(),
+    'standard_scheduler_settings': ?standardSchedulerSettings?.encode(),
   };
 }
 
@@ -71,12 +65,10 @@ final class AppEngineStandardAppVersionAutomaticScalingStandardSchedulerSettings
   final TfArg<num>? targetThroughputUtilization;
 
   Map<String, Object?> encode() => {
-    if (maxInstances != null) 'max_instances': maxInstances!.toTfJson(),
-    if (minInstances != null) 'min_instances': minInstances!.toTfJson(),
-    if (targetCpuUtilization != null)
-      'target_cpu_utilization': targetCpuUtilization!.toTfJson(),
-    if (targetThroughputUtilization != null)
-      'target_throughput_utilization': targetThroughputUtilization!.toTfJson(),
+    'max_instances': ?maxInstances?.toTfJson(),
+    'min_instances': ?minInstances?.toTfJson(),
+    'target_cpu_utilization': ?targetCpuUtilization?.toTfJson(),
+    'target_throughput_utilization': ?targetThroughputUtilization?.toTfJson(),
   };
 }
 
@@ -94,7 +86,7 @@ final class AppEngineStandardAppVersionBasicScaling {
   final TfArg<num> maxInstances;
 
   Map<String, Object?> encode() => {
-    if (idleTimeout != null) 'idle_timeout': idleTimeout!.toTfJson(),
+    'idle_timeout': ?idleTimeout?.toTfJson(),
     'max_instances': maxInstances.toTfJson(),
   };
 }
@@ -111,7 +103,7 @@ final class AppEngineStandardAppVersionDeployment {
 
   Map<String, Object?> encode() => {
     if (files != null) 'files': [for (final e in files!) e.encode()],
-    if (zip != null) 'zip': zip!.encode(),
+    'zip': ?zip?.encode(),
   };
 }
 
@@ -133,7 +125,7 @@ final class AppEngineStandardAppVersionDeploymentFiles {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (sha1Sum != null) 'sha1_sum': sha1Sum!.toTfJson(),
+    'sha1_sum': ?sha1Sum?.toTfJson(),
     'source_url': sourceUrl.toTfJson(),
   };
 }
@@ -152,7 +144,7 @@ final class AppEngineStandardAppVersionDeploymentZip {
   final TfArg<String> sourceUrl;
 
   Map<String, Object?> encode() => {
-    if (filesCount != null) 'files_count': filesCount!.toTfJson(),
+    'files_count': ?filesCount?.toTfJson(),
     'source_url': sourceUrl.toTfJson(),
   };
 }
@@ -199,14 +191,13 @@ final class AppEngineStandardAppVersionHandlers {
   final AppEngineStandardAppVersionHandlersStaticFiles? staticFiles;
 
   Map<String, Object?> encode() => {
-    if (authFailAction != null) 'auth_fail_action': authFailAction!.toTfJson(),
-    if (login != null) 'login': login!.toTfJson(),
-    if (redirectHttpResponseCode != null)
-      'redirect_http_response_code': redirectHttpResponseCode!.toTfJson(),
-    if (securityLevel != null) 'security_level': securityLevel!.toTfJson(),
-    if (urlRegex != null) 'url_regex': urlRegex!.toTfJson(),
-    if (script != null) 'script': script!.encode(),
-    if (staticFiles != null) 'static_files': staticFiles!.encode(),
+    'auth_fail_action': ?authFailAction?.toTfJson(),
+    'login': ?login?.toTfJson(),
+    'redirect_http_response_code': ?redirectHttpResponseCode?.toTfJson(),
+    'security_level': ?securityLevel?.toTfJson(),
+    'url_regex': ?urlRegex?.toTfJson(),
+    'script': ?script?.encode(),
+    'static_files': ?staticFiles?.encode(),
   };
 }
 
@@ -299,16 +290,13 @@ final class AppEngineStandardAppVersionHandlersStaticFiles {
   final TfArg<String>? uploadPathRegex;
 
   Map<String, Object?> encode() => {
-    if (applicationReadable != null)
-      'application_readable': applicationReadable!.toTfJson(),
-    if (expiration != null) 'expiration': expiration!.toTfJson(),
-    if (httpHeaders != null) 'http_headers': httpHeaders!.toTfJson(),
-    if (mimeType != null) 'mime_type': mimeType!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (requireMatchingFile != null)
-      'require_matching_file': requireMatchingFile!.toTfJson(),
-    if (uploadPathRegex != null)
-      'upload_path_regex': uploadPathRegex!.toTfJson(),
+    'application_readable': ?applicationReadable?.toTfJson(),
+    'expiration': ?expiration?.toTfJson(),
+    'http_headers': ?httpHeaders?.toTfJson(),
+    'mime_type': ?mimeType?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'require_matching_file': ?requireMatchingFile?.toTfJson(),
+    'upload_path_regex': ?uploadPathRegex?.toTfJson(),
   };
 }
 
@@ -323,8 +311,8 @@ final class AppEngineStandardAppVersionLibraries {
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -353,7 +341,7 @@ final class AppEngineStandardAppVersionVpcAccessConnector {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (egressSetting != null) 'egress_setting': egressSetting!.toTfJson(),
+    'egress_setting': ?egressSetting?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -398,12 +386,11 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
          terraformType: tfType,
          argMap: {
            'service': service,
-           if (versionId != null) 'version_id': versionId,
+           'version_id': ?versionId,
            'runtime': runtime,
-           if (runtimeApiVersion != null)
-             'runtime_api_version': runtimeApiVersion,
-           if (instanceClass != null) 'instance_class': instanceClass,
-           if (envVariables != null) 'env_variables': envVariables,
+           'runtime_api_version': ?runtimeApiVersion,
+           'instance_class': ?instanceClass,
+           'env_variables': ?envVariables,
            if (handlers != null)
              'handlers': TfArg.literal([for (final e in handlers) e.encode()]),
            'deployment': TfArg.literal(deployment.encode()),
@@ -414,16 +401,14 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
              'manual_scaling': TfArg.literal(manualScaling.encode()),
            if (vpcAccessConnector != null)
              'vpc_access_connector': TfArg.literal(vpcAccessConnector.encode()),
-           if (appEngineApis != null) 'app_engine_apis': appEngineApis,
-           if (deleteServiceOnDestroy != null)
-             'delete_service_on_destroy': deleteServiceOnDestroy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (noopOnDestroy != null) 'noop_on_destroy': noopOnDestroy,
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('email'),
-           if (threadsafe != null) 'threadsafe': threadsafe,
-           if (inboundServices != null) 'inbound_services': inboundServices,
-           if (project != null) 'project': project,
+           'app_engine_apis': ?appEngineApis,
+           'delete_service_on_destroy': ?deleteServiceOnDestroy,
+           'deletion_policy': ?deletionPolicy,
+           'noop_on_destroy': ?noopOnDestroy,
+           'service_account': ?serviceAccount?.encodeAs('email'),
+           'threadsafe': ?threadsafe,
+           'inbound_services': ?inboundServices,
+           'project': ?project,
          },
        );
 

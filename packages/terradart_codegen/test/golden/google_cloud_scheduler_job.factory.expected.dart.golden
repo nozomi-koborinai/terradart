@@ -282,14 +282,14 @@ final class GoogleCloudSchedulerJob extends Resource {
          argMap: {
            'name': name,
            'region': region,
-           if (description != null) 'description': description,
-           if (schedule != null) 'schedule': schedule,
-           if (timeZone != null) 'time_zone': timeZone,
-           if (paused != null) 'paused': paused,
-           if (attemptDeadline != null) 'attempt_deadline': attemptDeadline,
+           'description': ?description,
+           'schedule': ?schedule,
+           'time_zone': ?timeZone,
+           'paused': ?paused,
+           'attempt_deadline': ?attemptDeadline,
            if (retryConfig != null)
              'retry_config': TfArg.literal(retryConfig.encode()),
-           if (project != null) 'project': project,
+           'project': ?project,
            target.blockKey: TfArg.literal(target.encode()),
          },
        );

@@ -33,10 +33,10 @@ final class CloudflareWorkersKv extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (expiration != null) 'expiration': expiration,
-           if (expirationTtl != null) 'expiration_ttl': expirationTtl,
+           'expiration': ?expiration,
+           'expiration_ttl': ?expirationTtl,
            'key_name': keyName,
-           if (metadata != null) 'metadata': metadata,
+           'metadata': ?metadata,
            'namespace_id': namespaceId,
            'value': value,
          },

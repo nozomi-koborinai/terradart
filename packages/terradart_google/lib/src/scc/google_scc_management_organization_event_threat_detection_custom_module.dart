@@ -56,13 +56,13 @@ final class GoogleSccManagementOrganizationEventThreatDetectionCustomModule
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (config != null) 'config': config,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (enablementState != null) 'enablement_state': enablementState,
-           if (location != null) 'location': location,
+           'config': ?config,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'enablement_state': ?enablementState,
+           'location': ?location,
            'organization': organization,
-           if (type != null) 'type': type,
+           'type': ?type,
          },
        );
 

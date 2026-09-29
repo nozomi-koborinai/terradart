@@ -32,8 +32,8 @@ final class GoogleDataprocClusterIamPolicy extends Resource {
          argMap: {
            'cluster': cluster,
            'policy_data': policyData,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'project': ?project,
          },
        );
 

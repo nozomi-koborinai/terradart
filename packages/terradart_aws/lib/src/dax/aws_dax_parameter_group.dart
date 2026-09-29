@@ -40,9 +40,9 @@ final class AwsDaxParameterGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (parameters != null)
              'parameters': TfArg.literal([
                for (final e in parameters) e.encode(),

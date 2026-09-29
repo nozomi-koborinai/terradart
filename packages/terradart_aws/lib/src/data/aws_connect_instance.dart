@@ -22,10 +22,10 @@ final class DataAwsConnectInstance extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (instanceAlias != null) 'instance_alias': instanceAlias,
-           if (instanceId != null) 'instance_id': instanceId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'instance_alias': ?instanceAlias,
+           'instance_id': ?instanceId,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

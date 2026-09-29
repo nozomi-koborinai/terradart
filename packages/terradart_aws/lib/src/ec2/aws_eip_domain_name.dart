@@ -24,7 +24,7 @@ final class AwsEipDomainName extends Resource {
          argMap: {
            'allocation_id': allocationId,
            'domain_name': domainName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

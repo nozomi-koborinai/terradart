@@ -44,10 +44,10 @@ final class MagicTransitSiteAclLan1 {
 
   Map<String, Object?> encode() => {
     'lan_id': lanId.toTfJson(),
-    if (lanName != null) 'lan_name': lanName!.toTfJson(),
-    if (portRanges != null) 'port_ranges': portRanges!.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
-    if (subnets != null) 'subnets': subnets!.toTfJson(),
+    'lan_name': ?lanName?.toTfJson(),
+    'port_ranges': ?portRanges?.toTfJson(),
+    'ports': ?ports?.toTfJson(),
+    'subnets': ?subnets?.toTfJson(),
   };
 }
 
@@ -75,10 +75,10 @@ final class MagicTransitSiteAclLan2 {
 
   Map<String, Object?> encode() => {
     'lan_id': lanId.toTfJson(),
-    if (lanName != null) 'lan_name': lanName!.toTfJson(),
-    if (portRanges != null) 'port_ranges': portRanges!.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
-    if (subnets != null) 'subnets': subnets!.toTfJson(),
+    'lan_name': ?lanName?.toTfJson(),
+    'port_ranges': ?portRanges?.toTfJson(),
+    'ports': ?ports?.toTfJson(),
+    'subnets': ?subnets?.toTfJson(),
   };
 }
 
@@ -110,15 +110,15 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (forwardLocally != null) 'forward_locally': forwardLocally,
+           'description': ?description,
+           'forward_locally': ?forwardLocally,
            'name': name,
            if (protocols != null)
              'protocols': TfArg.literal([
                for (final e in protocols) e.toTfJson(),
              ]),
            'site_id': siteId,
-           if (unidirectional != null) 'unidirectional': unidirectional,
+           'unidirectional': ?unidirectional,
            'lan_1': TfArg.literal(lan1.encode()),
            'lan_2': TfArg.literal(lan2.encode()),
          },

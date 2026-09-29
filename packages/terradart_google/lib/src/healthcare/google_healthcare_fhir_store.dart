@@ -65,11 +65,9 @@ final class HealthcareFhirStoreNotificationConfigs {
 
   Map<String, Object?> encode() => {
     'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
-    if (sendFullResource != null)
-      'send_full_resource': sendFullResource!.toTfJson(),
-    if (sendPreviousResourceOnDelete != null)
-      'send_previous_resource_on_delete': sendPreviousResourceOnDelete!
-          .toTfJson(),
+    'send_full_resource': ?sendFullResource?.toTfJson(),
+    'send_previous_resource_on_delete': ?sendPreviousResourceOnDelete
+        ?.toTfJson(),
   };
 }
 
@@ -96,18 +94,13 @@ final class HealthcareFhirStoreValidationConfig {
   final TfArg<List<Object?>>? enabledImplementationGuides;
 
   Map<String, Object?> encode() => {
-    if (disableFhirpathValidation != null)
-      'disable_fhirpath_validation': disableFhirpathValidation!.toTfJson(),
-    if (disableProfileValidation != null)
-      'disable_profile_validation': disableProfileValidation!.toTfJson(),
-    if (disableReferenceTypeValidation != null)
-      'disable_reference_type_validation': disableReferenceTypeValidation!
-          .toTfJson(),
-    if (disableRequiredFieldValidation != null)
-      'disable_required_field_validation': disableRequiredFieldValidation!
-          .toTfJson(),
-    if (enabledImplementationGuides != null)
-      'enabled_implementation_guides': enabledImplementationGuides!.toTfJson(),
+    'disable_fhirpath_validation': ?disableFhirpathValidation?.toTfJson(),
+    'disable_profile_validation': ?disableProfileValidation?.toTfJson(),
+    'disable_reference_type_validation': ?disableReferenceTypeValidation
+        ?.toTfJson(),
+    'disable_required_field_validation': ?disableRequiredFieldValidation
+        ?.toTfJson(),
+    'enabled_implementation_guides': ?enabledImplementationGuides?.toTfJson(),
   };
 }
 
@@ -150,14 +143,11 @@ final class GoogleHealthcareFhirStore extends Resource {
            'name': name,
            'dataset': dataset,
            'version': version,
-           if (enableUpdateCreate != null)
-             'enable_update_create': enableUpdateCreate,
-           if (disableReferentialIntegrity != null)
-             'disable_referential_integrity': disableReferentialIntegrity,
-           if (disableResourceVersioning != null)
-             'disable_resource_versioning': disableResourceVersioning,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'enable_update_create': ?enableUpdateCreate,
+           'disable_referential_integrity': ?disableReferentialIntegrity,
+           'disable_resource_versioning': ?disableResourceVersioning,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

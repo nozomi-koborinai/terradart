@@ -39,10 +39,9 @@ final class FsxOntapStorageVirtualMachineActiveDirectoryConfiguration {
   selfManagedActiveDirectoryConfiguration;
 
   Map<String, Object?> encode() => {
-    if (netbiosName != null) 'netbios_name': netbiosName!.toTfJson(),
-    if (selfManagedActiveDirectoryConfiguration != null)
-      'self_managed_active_directory_configuration':
-          selfManagedActiveDirectoryConfiguration!.encode(),
+    'netbios_name': ?netbiosName?.toTfJson(),
+    'self_managed_active_directory_configuration':
+        ?selfManagedActiveDirectoryConfiguration?.encode(),
   };
 }
 
@@ -74,12 +73,10 @@ final class FsxOntapStorageVirtualMachineActiveDirectoryConfigurationSelfManaged
   Map<String, Object?> encode() => {
     'dns_ips': dnsIps.toTfJson(),
     'domain_name': domainName.toTfJson(),
-    if (fileSystemAdministratorsGroup != null)
-      'file_system_administrators_group': fileSystemAdministratorsGroup!
-          .toTfJson(),
-    if (organizationalUnitDistinguishedName != null)
-      'organizational_unit_distinguished_name':
-          organizationalUnitDistinguishedName!.toTfJson(),
+    'file_system_administrators_group': ?fileSystemAdministratorsGroup
+        ?.toTfJson(),
+    'organizational_unit_distinguished_name':
+        ?organizationalUnitDistinguishedName?.toTfJson(),
     'password': password.toTfJson(),
     'username': username.toTfJson(),
   };
@@ -109,11 +106,10 @@ final class AwsFsxOntapStorageVirtualMachine extends Resource {
          argMap: {
            'file_system_id': fileSystemId,
            'name': name,
-           if (region != null) 'region': region,
-           if (rootVolumeSecurityStyle != null)
-             'root_volume_security_style': rootVolumeSecurityStyle,
-           if (svmAdminPassword != null) 'svm_admin_password': svmAdminPassword,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'root_volume_security_style': ?rootVolumeSecurityStyle,
+           'svm_admin_password': ?svmAdminPassword,
+           'tags': ?tags,
            if (activeDirectoryConfiguration != null)
              'active_directory_configuration': TfArg.literal(
                activeDirectoryConfiguration.encode(),

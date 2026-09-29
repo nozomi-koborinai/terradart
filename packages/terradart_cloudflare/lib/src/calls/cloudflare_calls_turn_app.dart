@@ -29,8 +29,8 @@ final class CloudflareCallsTurnApp extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (keyId != null) 'key_id': keyId,
-           if (name != null) 'name': name,
+           'key_id': ?keyId,
+           'name': ?name,
          },
        );
 

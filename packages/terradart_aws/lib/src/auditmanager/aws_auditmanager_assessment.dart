@@ -132,11 +132,11 @@ final class AwsAuditmanagerAssessment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'framework_id': frameworkId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (assessmentReportsDestination != null)
              'assessment_reports_destination': TfArg.literal([
                for (final e in assessmentReportsDestination) e.encode(),

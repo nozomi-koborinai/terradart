@@ -38,9 +38,8 @@ final class BedrockagentPromptVariant {
   templateConfiguration;
 
   Map<String, Object?> encode() => {
-    if (additionalModelRequestFields != null)
-      'additional_model_request_fields': additionalModelRequestFields!
-          .toTfJson(),
+    'additional_model_request_fields': ?additionalModelRequestFields
+        ?.toTfJson(),
     ...model.encode(),
     'name': name.toTfJson(),
     'template_type': templateType.toTfJson(),
@@ -179,10 +178,10 @@ final class BedrockagentPromptVariantInferenceConfigurationText {
   final TfArg<num>? topP;
 
   Map<String, Object?> encode() => {
-    if (maxTokens != null) 'max_tokens': maxTokens!.toTfJson(),
-    if (stopSequences != null) 'stop_sequences': stopSequences!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
-    if (topP != null) 'top_p': topP!.toTfJson(),
+    'max_tokens': ?maxTokens?.toTfJson(),
+    'stop_sequences': ?stopSequences?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'top_p': ?topP?.toTfJson(),
   };
 }
 
@@ -729,7 +728,7 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
   inputSchema;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
     if (inputSchema != null)
       'input_schema': [for (final e in inputSchema!) e.encode()],
@@ -746,7 +745,7 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
 
   final TfArg<String>? json;
 
-  Map<String, Object?> encode() => {if (json != null) 'json': json!.toTfJson()};
+  Map<String, Object?> encode() => {'json': ?json?.toTfJson()};
 }
 
 /// Typed helper for the `variant.template_configuration.chat.tool_configuration.tool_choice` block of
@@ -983,13 +982,12 @@ final class AwsBedrockagentPrompt extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customerEncryptionKeyArn != null)
-             'customer_encryption_key_arn': customerEncryptionKeyArn,
-           if (defaultVariant != null) 'default_variant': defaultVariant,
-           if (description != null) 'description': description,
+           'customer_encryption_key_arn': ?customerEncryptionKeyArn,
+           'default_variant': ?defaultVariant,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (variant != null)
              'variant': TfArg.literal([for (final e in variant) e.encode()]),
          },

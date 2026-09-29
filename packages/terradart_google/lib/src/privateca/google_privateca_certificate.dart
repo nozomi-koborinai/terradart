@@ -327,13 +327,11 @@ final class GooglePrivatecaCertificate extends Resource {
            'name': name,
            'pool': pool,
            'location': location,
-           if (certificateAuthority != null)
-             'certificate_authority': certificateAuthority,
-           if (lifetime != null) 'lifetime': lifetime,
+           'certificate_authority': ?certificateAuthority,
+           'lifetime': ?lifetime,
            ...request.argMap,
-           if (certificateTemplate != null)
-             'certificate_template': certificateTemplate,
-           if (labels != null) 'labels': labels,
+           'certificate_template': ?certificateTemplate,
+           'labels': ?labels,
          },
        );
 

@@ -30,15 +30,14 @@ final class DataCloudflareTokenValidationRulesList extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (action != null) 'action': action,
-           if (enabled != null) 'enabled': enabled,
-           if (host != null) 'host': host,
-           if (hostname != null) 'hostname': hostname,
-           if (maxItems != null) 'max_items': maxItems,
-           if (ruleId != null) 'rule_id': ruleId,
-           if (tokenConfiguration != null)
-             'token_configuration': tokenConfiguration,
-           if (zoneId != null) 'zone_id': zoneId,
+           'action': ?action,
+           'enabled': ?enabled,
+           'host': ?host,
+           'hostname': ?hostname,
+           'max_items': ?maxItems,
+           'rule_id': ?ruleId,
+           'token_configuration': ?tokenConfiguration,
+           'zone_id': ?zoneId,
          },
        );
 

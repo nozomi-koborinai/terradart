@@ -16,9 +16,7 @@ final class DataLoadBalancerPoolFilter {
 
   final TfArg<String>? monitor;
 
-  Map<String, Object?> encode() => {
-    if (monitor != null) 'monitor': monitor!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'monitor': ?monitor?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_load_balancer_pool`.
@@ -40,8 +38,8 @@ final class DataCloudflareLoadBalancerPool extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (poolId != null) 'pool_id': poolId,
+           'account_id': ?accountId,
+           'pool_id': ?poolId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

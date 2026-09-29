@@ -24,10 +24,7 @@ final class DataCloudflareMagicWanGreTunnel extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'gre_tunnel_id': greTunnelId,
-         },
+         argMap: {'account_id': ?accountId, 'gre_tunnel_id': greTunnelId},
        );
 
   @override

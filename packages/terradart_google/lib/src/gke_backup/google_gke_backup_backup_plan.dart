@@ -93,11 +93,10 @@ final class GkeBackupBackupPlanBackupConfig {
 
   Map<String, Object?> encode() => {
     ...scope.encode(),
-    if (includeSecrets != null) 'include_secrets': includeSecrets!.toTfJson(),
-    if (includeVolumeData != null)
-      'include_volume_data': includeVolumeData!.toTfJson(),
-    if (permissiveMode != null) 'permissive_mode': permissiveMode!.toTfJson(),
-    if (encryptionKey != null) 'encryption_key': encryptionKey!.encode(),
+    'include_secrets': ?includeSecrets?.toTfJson(),
+    'include_volume_data': ?includeVolumeData?.toTfJson(),
+    'permissive_mode': ?permissiveMode?.toTfJson(),
+    'encryption_key': ?encryptionKey?.encode(),
   };
 }
 
@@ -322,11 +321,9 @@ final class GkeBackupBackupPlanRetentionPolicy {
   final TfArg<bool>? locked;
 
   Map<String, Object?> encode() => {
-    if (backupDeleteLockDays != null)
-      'backup_delete_lock_days': backupDeleteLockDays!.toTfJson(),
-    if (backupRetainDays != null)
-      'backup_retain_days': backupRetainDays!.toTfJson(),
-    if (locked != null) 'locked': locked!.toTfJson(),
+    'backup_delete_lock_days': ?backupDeleteLockDays?.toTfJson(),
+    'backup_retain_days': ?backupRetainDays?.toTfJson(),
+    'locked': ?locked?.toTfJson(),
   };
 }
 
@@ -369,16 +366,16 @@ final class GoogleGkeBackupBackupPlan extends Resource {
            'name': name,
            'location': location,
            'cluster': cluster,
-           if (description != null) 'description': description,
-           if (deactivated != null) 'deactivated': deactivated,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'deactivated': ?deactivated,
+           'labels': ?labels,
            if (backupConfig != null)
              'backup_config': TfArg.literal(backupConfig.encode()),
            if (backupSchedule != null)
              'backup_schedule': TfArg.literal([backupSchedule.encode()]),
            if (retentionPolicy != null)
              'retention_policy': TfArg.literal(retentionPolicy.encode()),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

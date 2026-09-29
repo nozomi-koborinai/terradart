@@ -39,10 +39,10 @@ final class Route53ResolverRuleTargetIp {
   final TfArg<Route53ResolverRuleTargetIpProtocol>? protocol;
 
   Map<String, Object?> encode() => {
-    if (ip != null) 'ip': ip!.toTfJson(),
-    if (ipv6 != null) 'ipv6': ipv6!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
+    'ip': ?ip?.toTfJson(),
+    'ipv6': ?ipv6?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
   };
 }
 
@@ -78,12 +78,11 @@ final class AwsRoute53ResolverRule extends Resource {
          terraformType: tfType,
          argMap: {
            'domain_name': domainName,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (resolverEndpointId != null)
-             'resolver_endpoint_id': resolverEndpointId,
+           'name': ?name,
+           'region': ?region,
+           'resolver_endpoint_id': ?resolverEndpointId,
            'rule_type': ruleType,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (targetIp != null)
              'target_ip': TfArg.literal([for (final e in targetIp) e.encode()]),
          },

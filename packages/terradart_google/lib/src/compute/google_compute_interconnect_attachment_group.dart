@@ -22,7 +22,7 @@ final class ComputeInterconnectAttachmentGroupAttachments {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (attachment != null) 'attachment': attachment!.toTfJson(),
+    'attachment': ?attachment?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -37,8 +37,7 @@ final class ComputeInterconnectAttachmentGroupIntent {
   availabilitySla;
 
   Map<String, Object?> encode() => {
-    if (availabilitySla != null)
-      'availability_sla': availabilitySla!.toTfJson(),
+    'availability_sla': ?availabilitySla?.toTfJson(),
   };
 }
 
@@ -92,14 +91,13 @@ final class GoogleComputeInterconnectAttachmentGroup extends Resource {
          argMap: {
            'name': name,
            'intent': TfArg.literal(intent.encode()),
-           if (interconnectGroup != null)
-             'interconnect_group': interconnectGroup,
+           'interconnect_group': ?interconnectGroup,
            if (attachments != null)
              'attachments': TfArg.literal([
                for (final e in attachments) e.encode(),
              ]),
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

@@ -16,10 +16,7 @@ final class DataCloudflareZeroTrustGatewaySettings extends Data {
     TfArg<String>? accountId,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (accountId != null) 'account_id': accountId},
-       );
+  }) : super(terraformType: tfType, argMap: {'account_id': ?accountId});
 
   @override
   Set<String> get sensitiveFields =>

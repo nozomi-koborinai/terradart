@@ -45,11 +45,11 @@ final class GoogleGeminiCodeRepositoryIndex extends Resource {
          argMap: {
            'code_repository_index_id': codeRepositoryIndexId,
            'location': location,
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
-           if (labels != null) 'labels': labels,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'kms_key': ?kmsKey?.encodeAs('id'),
+           'labels': ?labels,
+           'force_destroy': ?forceDestroy,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

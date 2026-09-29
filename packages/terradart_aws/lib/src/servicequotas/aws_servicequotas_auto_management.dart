@@ -43,11 +43,11 @@ final class AwsServicequotasAutoManagement extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (exclusionList != null) 'exclusion_list': exclusionList,
-           if (notificationArn != null) 'notification_arn': notificationArn,
+           'exclusion_list': ?exclusionList,
+           'notification_arn': ?notificationArn,
            'opt_in_level': optInLevel,
            'opt_in_type': optInType,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

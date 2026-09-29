@@ -24,7 +24,7 @@ final class ApiGatewayApiConfigIamMemberCondition {
   final TfArg<String> title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
     'title': title.toTfJson(),
   };
@@ -53,7 +53,7 @@ final class GoogleApiGatewayApiConfigIamMember extends Resource {
            'api': api,
            'api_config': apiConfig,
            'member': member,
-           if (project != null) 'project': project,
+           'project': ?project,
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

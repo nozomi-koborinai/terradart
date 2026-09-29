@@ -20,11 +20,7 @@ final class DataAwsLocationPlaceIndex extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'index_name': indexName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'index_name': indexName, 'region': ?region, 'tags': ?tags},
        );
 
   @override

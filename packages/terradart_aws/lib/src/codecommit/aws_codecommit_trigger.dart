@@ -30,8 +30,8 @@ final class CodecommitTriggerTrigger {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (branches != null) 'branches': branches!.toTfJson(),
-    if (customData != null) 'custom_data': customData!.toTfJson(),
+    'branches': ?branches?.toTfJson(),
+    'custom_data': ?customData?.toTfJson(),
     'destination_arn': destinationArn.toTfJson(),
     'events': [for (final e in events) e.toTfJson()],
     'name': name.toTfJson(),
@@ -66,7 +66,7 @@ final class AwsCodecommitTrigger extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'repository_name': repositoryName,
            'trigger': TfArg.literal([for (final e in trigger) e.encode()]),
          },

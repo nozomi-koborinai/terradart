@@ -26,7 +26,7 @@ final class GoogleFolderIamMember extends Resource {
            'folder': folder,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

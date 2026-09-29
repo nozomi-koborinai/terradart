@@ -26,9 +26,8 @@ final class GoogleDataformConfig extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (defaultKmsKeyName != null)
-             'default_kms_key_name': defaultKmsKeyName,
-           if (project != null) 'project': project,
+           'default_kms_key_name': ?defaultKmsKeyName,
+           'project': ?project,
            'region': region,
          },
        );

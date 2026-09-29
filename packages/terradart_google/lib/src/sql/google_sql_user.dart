@@ -114,15 +114,14 @@ final class GoogleSqlUser extends Resource {
          argMap: {
            'name': name,
            'instance': instance,
-           if (type != null) 'type': type,
-           if (password != null) 'password': password,
-           if (passwordWo != null) 'password_wo': passwordWo,
-           if (passwordWoVersion != null)
-             'password_wo_version': passwordWoVersion,
-           if (host != null) 'host': host,
-           if (databaseRoles != null) 'database_roles': databaseRoles,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'type': ?type,
+           'password': ?password,
+           'password_wo': ?passwordWo,
+           'password_wo_version': ?passwordWoVersion,
+           'host': ?host,
+           'database_roles': ?databaseRoles,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

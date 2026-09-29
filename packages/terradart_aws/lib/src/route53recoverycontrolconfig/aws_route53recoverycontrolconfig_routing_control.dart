@@ -25,7 +25,7 @@ final class AwsRoute53recoverycontrolconfigRoutingControl extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_arn': clusterArn,
-           if (controlPanelArn != null) 'control_panel_arn': controlPanelArn,
+           'control_panel_arn': ?controlPanelArn,
            'name': name,
          },
        );

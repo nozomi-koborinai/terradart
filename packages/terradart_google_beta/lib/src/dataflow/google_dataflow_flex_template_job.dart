@@ -47,43 +47,33 @@ final class GoogleDataflowFlexTemplateJob extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (additionalExperiments != null)
-             'additional_experiments': additionalExperiments,
-           if (additionalPipelineOptions != null)
-             'additional_pipeline_options': additionalPipelineOptions,
-           if (autoscalingAlgorithm != null)
-             'autoscaling_algorithm': autoscalingAlgorithm,
+           'additional_experiments': ?additionalExperiments,
+           'additional_pipeline_options': ?additionalPipelineOptions,
+           'autoscaling_algorithm': ?autoscalingAlgorithm,
            'container_spec_gcs_path': containerSpecGcsPath,
-           if (createIgnoreAlreadyExists != null)
-             'create_ignore_already_exists': createIgnoreAlreadyExists,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (enableStreamingEngine != null)
-             'enable_streaming_engine': enableStreamingEngine,
-           if (ipConfiguration != null) 'ip_configuration': ipConfiguration,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
-           if (labels != null) 'labels': labels,
-           if (launcherMachineType != null)
-             'launcher_machine_type': launcherMachineType,
-           if (machineType != null) 'machine_type': machineType,
-           if (maxWorkers != null) 'max_workers': maxWorkers,
+           'create_ignore_already_exists': ?createIgnoreAlreadyExists,
+           'deletion_policy': ?deletionPolicy,
+           'enable_streaming_engine': ?enableStreamingEngine,
+           'ip_configuration': ?ipConfiguration,
+           'kms_key_name': ?kmsKeyName,
+           'labels': ?labels,
+           'launcher_machine_type': ?launcherMachineType,
+           'machine_type': ?machineType,
+           'max_workers': ?maxWorkers,
            'name': name,
-           if (network != null) 'network': network,
-           if (numWorkers != null) 'num_workers': numWorkers,
-           if (onDelete != null) 'on_delete': onDelete,
-           if (parameters != null) 'parameters': parameters,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (sdkContainerImage != null)
-             'sdk_container_image': sdkContainerImage,
-           if (serviceAccountEmail != null)
-             'service_account_email': serviceAccountEmail,
-           if (skipWaitOnJobTermination != null)
-             'skip_wait_on_job_termination': skipWaitOnJobTermination,
-           if (stagingLocation != null) 'staging_location': stagingLocation,
-           if (subnetwork != null) 'subnetwork': subnetwork,
-           if (tempLocation != null) 'temp_location': tempLocation,
-           if (transformNameMapping != null)
-             'transform_name_mapping': transformNameMapping,
+           'network': ?network,
+           'num_workers': ?numWorkers,
+           'on_delete': ?onDelete,
+           'parameters': ?parameters,
+           'project': ?project,
+           'region': ?region,
+           'sdk_container_image': ?sdkContainerImage,
+           'service_account_email': ?serviceAccountEmail,
+           'skip_wait_on_job_termination': ?skipWaitOnJobTermination,
+           'staging_location': ?stagingLocation,
+           'subnetwork': ?subnetwork,
+           'temp_location': ?tempLocation,
+           'transform_name_mapping': ?transformNameMapping,
          },
        );
 

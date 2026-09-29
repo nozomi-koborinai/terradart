@@ -110,8 +110,8 @@ final class WaitingRoomAdditionalRoutes {
   final TfArg<String>? path;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -126,8 +126,8 @@ final class WaitingRoomCookieAttributes {
   final TfArg<WaitingRoomCookieAttributesSecure>? secure;
 
   Map<String, Object?> encode() => {
-    if (samesite != null) 'samesite': samesite!.toTfJson(),
-    if (secure != null) 'secure': secure!.toTfJson(),
+    'samesite': ?samesite?.toTfJson(),
+    'secure': ?secure?.toTfJson(),
   };
 }
 
@@ -193,32 +193,28 @@ final class CloudflareWaitingRoom extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cookieSuffix != null) 'cookie_suffix': cookieSuffix,
-           if (customPageHtml != null) 'custom_page_html': customPageHtml,
-           if (defaultTemplateLanguage != null)
-             'default_template_language': defaultTemplateLanguage,
-           if (description != null) 'description': description,
-           if (disableSessionRenewal != null)
-             'disable_session_renewal': disableSessionRenewal,
+           'cookie_suffix': ?cookieSuffix,
+           'custom_page_html': ?customPageHtml,
+           'default_template_language': ?defaultTemplateLanguage,
+           'description': ?description,
+           'disable_session_renewal': ?disableSessionRenewal,
            if (enabledOriginCommands != null)
              'enabled_origin_commands': TfArg.literal([
                for (final e in enabledOriginCommands) e.toTfJson(),
              ]),
            'host': host,
-           if (jsonResponseEnabled != null)
-             'json_response_enabled': jsonResponseEnabled,
+           'json_response_enabled': ?jsonResponseEnabled,
            'name': name,
            'new_users_per_minute': newUsersPerMinute,
-           if (path != null) 'path': path,
-           if (queueAll != null) 'queue_all': queueAll,
-           if (queueingMethod != null) 'queueing_method': queueingMethod,
-           if (queueingStatusCode != null)
-             'queueing_status_code': queueingStatusCode,
-           if (sessionDuration != null) 'session_duration': sessionDuration,
-           if (suspended != null) 'suspended': suspended,
+           'path': ?path,
+           'queue_all': ?queueAll,
+           'queueing_method': ?queueingMethod,
+           'queueing_status_code': ?queueingStatusCode,
+           'session_duration': ?sessionDuration,
+           'suspended': ?suspended,
            'total_active_users': totalActiveUsers,
-           if (turnstileAction != null) 'turnstile_action': turnstileAction,
-           if (turnstileMode != null) 'turnstile_mode': turnstileMode,
+           'turnstile_action': ?turnstileAction,
+           'turnstile_mode': ?turnstileMode,
            'zone_id': zoneId.encodeAs('id'),
            if (additionalRoutes != null)
              'additional_routes': TfArg.literal([

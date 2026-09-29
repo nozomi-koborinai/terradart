@@ -21,8 +21,8 @@ final class WorkstationsWorkstationConfigAllowedPorts {
   final TfArg<num>? last;
 
   Map<String, Object?> encode() => {
-    if (first != null) 'first': first!.toTfJson(),
-    if (last != null) 'last': last!.toTfJson(),
+    'first': ?first?.toTfJson(),
+    'last': ?last?.toTfJson(),
   };
 }
 
@@ -52,12 +52,12 @@ final class WorkstationsWorkstationConfigContainer {
   final TfArg<String>? workingDir;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (command != null) 'command': command!.toTfJson(),
-    if (env != null) 'env': env!.toTfJson(),
-    if (image != null) 'image': image!.toTfJson(),
-    if (runAsUser != null) 'run_as_user': runAsUser!.toTfJson(),
-    if (workingDir != null) 'working_dir': workingDir!.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'env': ?env?.toTfJson(),
+    'image': ?image?.toTfJson(),
+    'run_as_user': ?runAsUser?.toTfJson(),
+    'working_dir': ?workingDir?.toTfJson(),
   };
 }
 
@@ -94,8 +94,8 @@ final class WorkstationsWorkstationConfigEphemeralDirectories {
   final WorkstationsWorkstationConfigEphemeralDirectoriesGcePd? gcePd;
 
   Map<String, Object?> encode() => {
-    if (mountPath != null) 'mount_path': mountPath!.toTfJson(),
-    if (gcePd != null) 'gce_pd': gcePd!.encode(),
+    'mount_path': ?mountPath?.toTfJson(),
+    'gce_pd': ?gcePd?.encode(),
   };
 }
 
@@ -119,10 +119,10 @@ final class WorkstationsWorkstationConfigEphemeralDirectoriesGcePd {
   final TfArg<String>? sourceSnapshot;
 
   Map<String, Object?> encode() => {
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-    if (sourceImage != null) 'source_image': sourceImage!.toTfJson(),
-    if (sourceSnapshot != null) 'source_snapshot': sourceSnapshot!.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
+    'source_image': ?sourceImage?.toTfJson(),
+    'source_snapshot': ?sourceSnapshot?.toTfJson(),
   };
 }
 
@@ -134,9 +134,7 @@ final class WorkstationsWorkstationConfigHost {
 
   final WorkstationsWorkstationConfigHostGceInstance? gceInstance;
 
-  Map<String, Object?> encode() => {
-    if (gceInstance != null) 'gce_instance': gceInstance!.encode(),
-  };
+  Map<String, Object?> encode() => {'gce_instance': ?gceInstance?.encode()};
 }
 
 /// Typed helper for the `host.gce_instance` block of
@@ -196,30 +194,23 @@ final class WorkstationsWorkstationConfigHostGceInstance {
   shieldedInstanceConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (disablePublicIpAddresses != null)
-      'disable_public_ip_addresses': disablePublicIpAddresses!.toTfJson(),
-    if (disableSsh != null) 'disable_ssh': disableSsh!.toTfJson(),
-    if (enableNestedVirtualization != null)
-      'enable_nested_virtualization': enableNestedVirtualization!.toTfJson(),
-    if (instanceMetadata != null)
-      'instance_metadata': instanceMetadata!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (poolSize != null) 'pool_size': poolSize!.toTfJson(),
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
-    if (serviceAccountScopes != null)
-      'service_account_scopes': serviceAccountScopes!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (vmTags != null) 'vm_tags': vmTags!.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'disable_public_ip_addresses': ?disablePublicIpAddresses?.toTfJson(),
+    'disable_ssh': ?disableSsh?.toTfJson(),
+    'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
+    'instance_metadata': ?instanceMetadata?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'pool_size': ?poolSize?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'service_account_scopes': ?serviceAccountScopes?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'vm_tags': ?vmTags?.toTfJson(),
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
     if (boostConfigs != null)
       'boost_configs': [for (final e in boostConfigs!) e.encode()],
-    if (confidentialInstanceConfig != null)
-      'confidential_instance_config': confidentialInstanceConfig!.encode(),
-    if (shieldedInstanceConfig != null)
-      'shielded_instance_config': shieldedInstanceConfig!.encode(),
+    'confidential_instance_config': ?confidentialInstanceConfig?.encode(),
+    'shielded_instance_config': ?shieldedInstanceConfig?.encode(),
   };
 }
 
@@ -271,12 +262,11 @@ final class WorkstationsWorkstationConfigHostGceInstanceBoostConfigs {
   accelerators;
 
   Map<String, Object?> encode() => {
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (enableNestedVirtualization != null)
-      'enable_nested_virtualization': enableNestedVirtualization!.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
     'id': id.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (poolSize != null) 'pool_size': poolSize!.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'pool_size': ?poolSize?.toTfJson(),
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
   };
@@ -312,8 +302,7 @@ final class WorkstationsWorkstationConfigHostGceInstanceConfidentialInstanceConf
   final TfArg<bool>? enableConfidentialCompute;
 
   Map<String, Object?> encode() => {
-    if (enableConfidentialCompute != null)
-      'enable_confidential_compute': enableConfidentialCompute!.toTfJson(),
+    'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
 }
 
@@ -334,11 +323,9 @@ final class WorkstationsWorkstationConfigHostGceInstanceShieldedInstanceConfig {
   final TfArg<bool>? enableVtpm;
 
   Map<String, Object?> encode() => {
-    if (enableIntegrityMonitoring != null)
-      'enable_integrity_monitoring': enableIntegrityMonitoring!.toTfJson(),
-    if (enableSecureBoot != null)
-      'enable_secure_boot': enableSecureBoot!.toTfJson(),
-    if (enableVtpm != null) 'enable_vtpm': enableVtpm!.toTfJson(),
+    'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
+    'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
+    'enable_vtpm': ?enableVtpm?.toTfJson(),
   };
 }
 
@@ -359,9 +346,9 @@ final class WorkstationsWorkstationConfigPersistentDirectories {
   final WorkstationsWorkstationConfigPersistentDirectoriesGcePd? gcePd;
 
   Map<String, Object?> encode() => {
-    if (mountPath != null) 'mount_path': mountPath!.toTfJson(),
-    if (gceHd != null) 'gce_hd': gceHd!.encode(),
-    if (gcePd != null) 'gce_pd': gcePd!.encode(),
+    'mount_path': ?mountPath?.toTfJson(),
+    'gce_hd': ?gceHd?.encode(),
+    'gce_pd': ?gcePd?.encode(),
   };
 }
 
@@ -388,10 +375,10 @@ final class WorkstationsWorkstationConfigPersistentDirectoriesGceHd {
   final TfArg<String>? sourceSnapshot;
 
   Map<String, Object?> encode() => {
-    if (archiveTimeout != null) 'archive_timeout': archiveTimeout!.toTfJson(),
-    if (reclaimPolicy != null) 'reclaim_policy': reclaimPolicy!.toTfJson(),
-    if (sizeGb != null) 'size_gb': sizeGb!.toTfJson(),
-    if (sourceSnapshot != null) 'source_snapshot': sourceSnapshot!.toTfJson(),
+    'archive_timeout': ?archiveTimeout?.toTfJson(),
+    'reclaim_policy': ?reclaimPolicy?.toTfJson(),
+    'size_gb': ?sizeGb?.toTfJson(),
+    'source_snapshot': ?sourceSnapshot?.toTfJson(),
   };
 }
 
@@ -434,11 +421,11 @@ final class WorkstationsWorkstationConfigPersistentDirectoriesGcePd {
   final TfArg<String>? sourceSnapshot;
 
   Map<String, Object?> encode() => {
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (fsType != null) 'fs_type': fsType!.toTfJson(),
-    if (reclaimPolicy != null) 'reclaim_policy': reclaimPolicy!.toTfJson(),
-    if (sizeGb != null) 'size_gb': sizeGb!.toTfJson(),
-    if (sourceSnapshot != null) 'source_snapshot': sourceSnapshot!.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'fs_type': ?fsType?.toTfJson(),
+    'reclaim_policy': ?reclaimPolicy?.toTfJson(),
+    'size_gb': ?sizeGb?.toTfJson(),
+    'source_snapshot': ?sourceSnapshot?.toTfJson(),
   };
 }
 
@@ -540,11 +527,11 @@ final class GoogleWorkstationsWorkstationConfig extends Resource {
            'workstation_config_id': workstationConfigId,
            'workstation_cluster_id': workstationClusterId,
            'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
-           if (idleTimeout != null) 'idle_timeout': idleTimeout,
-           if (runningTimeout != null) 'running_timeout': runningTimeout,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'annotations': ?annotations,
+           'idle_timeout': ?idleTimeout,
+           'running_timeout': ?runningTimeout,
            if (host != null) 'host': TfArg.literal(host.encode()),
            if (container != null)
              'container': TfArg.literal(container.encode()),
@@ -566,14 +553,12 @@ final class GoogleWorkstationsWorkstationConfig extends Resource {
              'readiness_checks': TfArg.literal([
                for (final e in readinessChecks) e.encode(),
              ]),
-           if (disableTcpConnections != null)
-             'disable_tcp_connections': disableTcpConnections,
-           if (enableAuditAgent != null) 'enable_audit_agent': enableAuditAgent,
-           if (maxUsableWorkstations != null)
-             'max_usable_workstations': maxUsableWorkstations,
-           if (replicaZones != null) 'replica_zones': replicaZones,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'disable_tcp_connections': ?disableTcpConnections,
+           'enable_audit_agent': ?enableAuditAgent,
+           'max_usable_workstations': ?maxUsableWorkstations,
+           'replica_zones': ?replicaZones,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

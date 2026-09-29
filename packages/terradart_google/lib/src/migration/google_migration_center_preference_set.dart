@@ -47,10 +47,10 @@ final class GoogleMigrationCenterPreferenceSet extends Resource {
          argMap: {
            'location': location,
            'preference_set_id': preferenceSetId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

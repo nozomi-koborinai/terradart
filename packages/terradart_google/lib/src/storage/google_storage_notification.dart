@@ -139,8 +139,8 @@ final class GoogleStorageNotification extends Resource {
              'event_types': TfArg.literal(
                eventTypes.map((e) => e.terraformValue).toList(),
              ),
-           if (objectNamePrefix != null) 'object_name_prefix': objectNamePrefix,
-           if (customAttributes != null) 'custom_attributes': customAttributes,
+           'object_name_prefix': ?objectNamePrefix,
+           'custom_attributes': ?customAttributes,
          },
        );
 

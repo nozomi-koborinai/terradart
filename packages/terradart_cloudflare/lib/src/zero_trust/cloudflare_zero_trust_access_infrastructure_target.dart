@@ -21,8 +21,8 @@ final class ZeroTrustAccessInfrastructureTargetIp {
   final ZeroTrustAccessInfrastructureTargetIpIpv6? ipv6;
 
   Map<String, Object?> encode() => {
-    if (ipv4 != null) 'ipv4': ipv4!.encode(),
-    if (ipv6 != null) 'ipv6': ipv6!.encode(),
+    'ipv4': ?ipv4?.encode(),
+    'ipv6': ?ipv6?.encode(),
   };
 }
 
@@ -40,9 +40,8 @@ final class ZeroTrustAccessInfrastructureTargetIpIpv4 {
   final TfArg<String>? virtualNetworkId;
 
   Map<String, Object?> encode() => {
-    if (ipAddr != null) 'ip_addr': ipAddr!.toTfJson(),
-    if (virtualNetworkId != null)
-      'virtual_network_id': virtualNetworkId!.toTfJson(),
+    'ip_addr': ?ipAddr?.toTfJson(),
+    'virtual_network_id': ?virtualNetworkId?.toTfJson(),
   };
 }
 
@@ -60,9 +59,8 @@ final class ZeroTrustAccessInfrastructureTargetIpIpv6 {
   final TfArg<String>? virtualNetworkId;
 
   Map<String, Object?> encode() => {
-    if (ipAddr != null) 'ip_addr': ipAddr!.toTfJson(),
-    if (virtualNetworkId != null)
-      'virtual_network_id': virtualNetworkId!.toTfJson(),
+    'ip_addr': ?ipAddr?.toTfJson(),
+    'virtual_network_id': ?virtualNetworkId?.toTfJson(),
   };
 }
 
@@ -86,7 +84,7 @@ final class CloudflareZeroTrustAccessInfrastructureTarget extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'hostname': hostname,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'ip': TfArg.literal(ip.encode()),
          },
        );

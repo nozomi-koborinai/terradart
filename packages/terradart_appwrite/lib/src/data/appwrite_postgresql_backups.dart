@@ -25,8 +25,8 @@ final class DataAppwritePostgresqlBackups extends Data {
          terraformType: tfType,
          argMap: {
            'database_id': databaseId,
-           if (projectId != null) 'project_id': projectId,
-           if (queries != null) 'queries': queries,
+           'project_id': ?projectId,
+           'queries': ?queries,
          },
        );
 

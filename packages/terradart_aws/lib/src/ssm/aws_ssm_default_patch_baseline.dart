@@ -47,7 +47,7 @@ final class AwsSsmDefaultPatchBaseline extends Resource {
          argMap: {
            'baseline_id': baselineId,
            'operating_system': operatingSystem,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

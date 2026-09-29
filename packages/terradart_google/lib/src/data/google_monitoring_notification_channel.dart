@@ -26,11 +26,11 @@ final class DataGoogleMonitoringNotificationChannel extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (type != null) 'type': type,
-           if (userLabels != null) 'user_labels': userLabels,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'project': ?project,
+           'type': ?type,
+           'user_labels': ?userLabels,
          },
        );
 

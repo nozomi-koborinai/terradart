@@ -21,9 +21,8 @@ final class IamAccessBoundaryPolicyRules {
   final IamAccessBoundaryPolicyRulesAccessBoundaryRule? accessBoundaryRule;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (accessBoundaryRule != null)
-      'access_boundary_rule': accessBoundaryRule!.encode(),
+    'description': ?description?.toTfJson(),
+    'access_boundary_rule': ?accessBoundaryRule?.encode(),
   };
 }
 
@@ -45,12 +44,9 @@ final class IamAccessBoundaryPolicyRulesAccessBoundaryRule {
   availabilityCondition;
 
   Map<String, Object?> encode() => {
-    if (availablePermissions != null)
-      'available_permissions': availablePermissions!.toTfJson(),
-    if (availableResource != null)
-      'available_resource': availableResource!.toTfJson(),
-    if (availabilityCondition != null)
-      'availability_condition': availabilityCondition!.encode(),
+    'available_permissions': ?availablePermissions?.toTfJson(),
+    'available_resource': ?availableResource?.toTfJson(),
+    'availability_condition': ?availabilityCondition?.encode(),
   };
 }
 
@@ -74,10 +70,10 @@ final class IamAccessBoundaryPolicyRulesAccessBoundaryRuleAvailabilityCondition 
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -106,8 +102,8 @@ final class GoogleIamAccessBoundaryPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
            'name': name,
            'parent': parent,
            'rules': TfArg.literal([for (final e in rules) e.encode()]),

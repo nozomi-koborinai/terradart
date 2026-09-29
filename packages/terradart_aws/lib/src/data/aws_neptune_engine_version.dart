@@ -28,21 +28,17 @@ final class DataAwsNeptuneEngineVersion extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultOnly != null) 'default_only': defaultOnly,
-           if (engine != null) 'engine': engine,
-           if (hasMajorTarget != null) 'has_major_target': hasMajorTarget,
-           if (hasMinorTarget != null) 'has_minor_target': hasMinorTarget,
-           if (latest != null) 'latest': latest,
-           if (parameterGroupFamily != null)
-             'parameter_group_family': parameterGroupFamily,
-           if (preferredMajorTargets != null)
-             'preferred_major_targets': preferredMajorTargets,
-           if (preferredUpgradeTargets != null)
-             'preferred_upgrade_targets': preferredUpgradeTargets,
-           if (preferredVersions != null)
-             'preferred_versions': preferredVersions,
-           if (region != null) 'region': region,
-           if (version != null) 'version': version,
+           'default_only': ?defaultOnly,
+           'engine': ?engine,
+           'has_major_target': ?hasMajorTarget,
+           'has_minor_target': ?hasMinorTarget,
+           'latest': ?latest,
+           'parameter_group_family': ?parameterGroupFamily,
+           'preferred_major_targets': ?preferredMajorTargets,
+           'preferred_upgrade_targets': ?preferredUpgradeTargets,
+           'preferred_versions': ?preferredVersions,
+           'region': ?region,
+           'version': ?version,
          },
        );
 

@@ -59,14 +59,14 @@ final class AwsKendraFaq extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (fileFormat != null) 'file_format': fileFormat,
+           'description': ?description,
+           'file_format': ?fileFormat,
            'index_id': indexId,
-           if (languageCode != null) 'language_code': languageCode,
+           'language_code': ?languageCode,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            's3_path': TfArg.literal(s3Path.encode()),
          },
        );

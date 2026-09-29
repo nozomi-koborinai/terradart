@@ -43,7 +43,7 @@ final class GoogleVertexAiModelGardenEnableModel extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (project != null) 'project': project,
+           'project': ?project,
            'publisher_model_name': publisherModelName,
          },
        );

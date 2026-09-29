@@ -29,12 +29,12 @@ final class DataCloudflareEmailSecurityBlockSenders extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
-           if (pattern != null) 'pattern': pattern,
-           if (patternType != null) 'pattern_type': patternType,
-           if (search != null) 'search': search,
+           'direction': ?direction,
+           'max_items': ?maxItems,
+           'order': ?order,
+           'pattern': ?pattern,
+           'pattern_type': ?patternType,
+           'search': ?search,
          },
        );
 

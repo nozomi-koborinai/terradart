@@ -21,7 +21,7 @@ final class WorkspaceswebIpAccessSettingsIpRule {
   final TfArg<String> ipRange;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'ip_range': ipRange.toTfJson(),
   };
 }
@@ -46,14 +46,12 @@ final class AwsWorkspaceswebIpAccessSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalEncryptionContext != null)
-             'additional_encryption_context': additionalEncryptionContext,
-           if (customerManagedKey != null)
-             'customer_managed_key': customerManagedKey,
-           if (description != null) 'description': description,
+           'additional_encryption_context': ?additionalEncryptionContext,
+           'customer_managed_key': ?customerManagedKey,
+           'description': ?description,
            'display_name': displayName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (ipRule != null)
              'ip_rule': TfArg.literal([for (final e in ipRule) e.encode()]),
          },

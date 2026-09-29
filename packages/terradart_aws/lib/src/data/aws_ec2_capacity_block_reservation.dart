@@ -40,7 +40,7 @@ final class DataAwsEc2CapacityBlockReservation extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

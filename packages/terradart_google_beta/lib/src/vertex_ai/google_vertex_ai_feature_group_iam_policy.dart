@@ -31,8 +31,8 @@ final class GoogleVertexAiFeatureGroupIamPolicy extends Resource {
          argMap: {
            'feature_group': featureGroup,
            'policy_data': policyData,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

@@ -18,8 +18,7 @@ final class CesEvaluationGolden {
   final List<CesEvaluationGoldenTurns> turns;
 
   Map<String, Object?> encode() => {
-    if (evaluationExpectations != null)
-      'evaluation_expectations': evaluationExpectations!.toTfJson(),
+    'evaluation_expectations': ?evaluationExpectations?.toTfJson(),
     'turns': [for (final e in turns) e.encode()],
   };
 }
@@ -54,9 +53,9 @@ final class CesEvaluationGoldenTurnsSteps {
   final CesEvaluationGoldenTurnsStepsUserInput? userInput;
 
   Map<String, Object?> encode() => {
-    if (agentTransfer != null) 'agent_transfer': agentTransfer!.encode(),
-    if (expectation != null) 'expectation': expectation!.encode(),
-    if (userInput != null) 'user_input': userInput!.encode(),
+    'agent_transfer': ?agentTransfer?.encode(),
+    'expectation': ?expectation?.encode(),
+    'user_input': ?userInput?.encode(),
   };
 }
 
@@ -102,15 +101,13 @@ final class CesEvaluationGoldenTurnsStepsExpectation {
   updatedVariables;
 
   Map<String, Object?> encode() => {
-    if (note != null) 'note': note!.toTfJson(),
-    if (agentResponse != null) 'agent_response': agentResponse!.encode(),
-    if (agentTransfer != null) 'agent_transfer': agentTransfer!.encode(),
-    if (mockToolResponse != null)
-      'mock_tool_response': mockToolResponse!.encode(),
-    if (toolCall != null) 'tool_call': toolCall!.encode(),
-    if (toolResponse != null) 'tool_response': toolResponse!.encode(),
-    if (updatedVariables != null)
-      'updated_variables': updatedVariables!.encode(),
+    'note': ?note?.toTfJson(),
+    'agent_response': ?agentResponse?.encode(),
+    'agent_transfer': ?agentTransfer?.encode(),
+    'mock_tool_response': ?mockToolResponse?.encode(),
+    'tool_call': ?toolCall?.encode(),
+    'tool_response': ?toolResponse?.encode(),
+    'updated_variables': ?updatedVariables?.encode(),
   };
 }
 
@@ -129,7 +126,7 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponse {
   chunks;
 
   Map<String, Object?> encode() => {
-    if (role != null) 'role': role!.toTfJson(),
+    'role': ?role?.toTfJson(),
     if (chunks != null) 'chunks': [for (final e in chunks!) e.encode()],
   };
 }
@@ -166,14 +163,13 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunks {
   toolResponse;
 
   Map<String, Object?> encode() => {
-    if (text != null) 'text': text!.toTfJson(),
-    if (updatedVariables != null)
-      'updated_variables': updatedVariables!.toTfJson(),
-    if (agentTransfer != null) 'agent_transfer': agentTransfer!.encode(),
-    if (blob != null) 'blob': blob!.encode(),
-    if (image != null) 'image': image!.encode(),
-    if (toolCall != null) 'tool_call': toolCall!.encode(),
-    if (toolResponse != null) 'tool_response': toolResponse!.encode(),
+    'text': ?text?.toTfJson(),
+    'updated_variables': ?updatedVariables?.toTfJson(),
+    'agent_transfer': ?agentTransfer?.encode(),
+    'blob': ?blob?.encode(),
+    'image': ?image?.encode(),
+    'tool_call': ?toolCall?.encode(),
+    'tool_response': ?toolResponse?.encode(),
   };
 }
 
@@ -249,10 +245,10 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCall 
   toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'args': ?args?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -270,7 +266,7 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCallT
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -296,10 +292,10 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolRespo
   toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (response != null) 'response': response!.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'id': ?id?.toTfJson(),
+    'response': ?response?.toTfJson(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -317,7 +313,7 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolRespo
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -336,8 +332,8 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentTransfer {
   final TfArg<String>? targetAgent;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (targetAgent != null) 'target_agent': targetAgent!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'target_agent': ?targetAgent?.toTfJson(),
   };
 }
 
@@ -362,10 +358,10 @@ final class CesEvaluationGoldenTurnsStepsExpectationMockToolResponse {
   toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (response != null) 'response': response!.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'id': ?id?.toTfJson(),
+    'response': ?response?.toTfJson(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -383,7 +379,7 @@ final class CesEvaluationGoldenTurnsStepsExpectationMockToolResponseToolsetTool 
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -409,10 +405,10 @@ final class CesEvaluationGoldenTurnsStepsExpectationToolCall {
   toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'args': ?args?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -430,7 +426,7 @@ final class CesEvaluationGoldenTurnsStepsExpectationToolCallToolsetTool {
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -456,10 +452,10 @@ final class CesEvaluationGoldenTurnsStepsExpectationToolResponse {
   toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (response != null) 'response': response!.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'id': ?id?.toTfJson(),
+    'response': ?response?.toTfJson(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -477,7 +473,7 @@ final class CesEvaluationGoldenTurnsStepsExpectationToolResponseToolsetTool {
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -490,9 +486,7 @@ final class CesEvaluationGoldenTurnsStepsExpectationUpdatedVariables {
 
   final TfArg<String>? notes;
 
-  Map<String, Object?> encode() => {
-    if (notes != null) 'notes': notes!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'notes': ?notes?.toTfJson()};
 }
 
 /// Typed helper for the `golden.turns.steps.user_input` block of
@@ -530,15 +524,15 @@ final class CesEvaluationGoldenTurnsStepsUserInput {
   final CesEvaluationGoldenTurnsStepsUserInputToolResponses? toolResponses;
 
   Map<String, Object?> encode() => {
-    if (audio != null) 'audio': audio!.toTfJson(),
-    if (dtmf != null) 'dtmf': dtmf!.toTfJson(),
-    if (text != null) 'text': text!.toTfJson(),
-    if (variables != null) 'variables': variables!.toTfJson(),
-    if (willContinue != null) 'will_continue': willContinue!.toTfJson(),
-    if (blob != null) 'blob': blob!.encode(),
-    if (event != null) 'event': event!.encode(),
-    if (image != null) 'image': image!.encode(),
-    if (toolResponses != null) 'tool_responses': toolResponses!.encode(),
+    'audio': ?audio?.toTfJson(),
+    'dtmf': ?dtmf?.toTfJson(),
+    'text': ?text?.toTfJson(),
+    'variables': ?variables?.toTfJson(),
+    'will_continue': ?willContinue?.toTfJson(),
+    'blob': ?blob?.encode(),
+    'event': ?event?.encode(),
+    'image': ?image?.encode(),
+    'tool_responses': ?toolResponses?.encode(),
   };
 }
 
@@ -629,10 +623,10 @@ final class CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponses {
   toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
+    'id': ?id?.toTfJson(),
     'response': response.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -650,7 +644,7 @@ final class CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponsesTool
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -690,17 +684,13 @@ final class CesEvaluationScenario {
   final List<CesEvaluationScenarioUserFacts>? userFacts;
 
   Map<String, Object?> encode() => {
-    if (evaluationExpectations != null)
-      'evaluation_expectations': evaluationExpectations!.toTfJson(),
-    if (maxTurns != null) 'max_turns': maxTurns!.toTfJson(),
+    'evaluation_expectations': ?evaluationExpectations?.toTfJson(),
+    'max_turns': ?maxTurns?.toTfJson(),
     'rubrics': rubrics.toTfJson(),
     'task': task.toTfJson(),
-    if (taskCompletionBehavior != null)
-      'task_completion_behavior': taskCompletionBehavior!.toTfJson(),
-    if (userGoalBehavior != null)
-      'user_goal_behavior': userGoalBehavior!.toTfJson(),
-    if (variableOverrides != null)
-      'variable_overrides': variableOverrides!.toTfJson(),
+    'task_completion_behavior': ?taskCompletionBehavior?.toTfJson(),
+    'user_goal_behavior': ?userGoalBehavior?.toTfJson(),
+    'variable_overrides': ?variableOverrides?.toTfJson(),
     'scenario_expectations': [for (final e in scenarioExpectations) e.encode()],
     if (userFacts != null)
       'user_facts': [for (final e in userFacts!) e.encode()],
@@ -722,8 +712,8 @@ final class CesEvaluationScenarioScenarioExpectations {
   toolExpectation;
 
   Map<String, Object?> encode() => {
-    if (agentResponse != null) 'agent_response': agentResponse!.encode(),
-    if (toolExpectation != null) 'tool_expectation': toolExpectation!.encode(),
+    'agent_response': ?agentResponse?.encode(),
+    'tool_expectation': ?toolExpectation?.encode(),
   };
 }
 
@@ -742,7 +732,7 @@ final class CesEvaluationScenarioScenarioExpectationsAgentResponse {
   chunks;
 
   Map<String, Object?> encode() => {
-    if (role != null) 'role': role!.toTfJson(),
+    'role': ?role?.toTfJson(),
     if (chunks != null) 'chunks': [for (final e in chunks!) e.encode()],
   };
 }
@@ -780,14 +770,13 @@ final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunks {
   toolResponse;
 
   Map<String, Object?> encode() => {
-    if (text != null) 'text': text!.toTfJson(),
-    if (updatedVariables != null)
-      'updated_variables': updatedVariables!.toTfJson(),
-    if (agentTransfer != null) 'agent_transfer': agentTransfer!.encode(),
-    if (blob != null) 'blob': blob!.encode(),
-    if (image != null) 'image': image!.encode(),
-    if (toolCall != null) 'tool_call': toolCall!.encode(),
-    if (toolResponse != null) 'tool_response': toolResponse!.encode(),
+    'text': ?text?.toTfJson(),
+    'updated_variables': ?updatedVariables?.toTfJson(),
+    'agent_transfer': ?agentTransfer?.encode(),
+    'blob': ?blob?.encode(),
+    'image': ?image?.encode(),
+    'tool_call': ?toolCall?.encode(),
+    'tool_response': ?toolResponse?.encode(),
   };
 }
 
@@ -863,10 +852,10 @@ final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolCall
   toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'args': ?args?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -884,7 +873,7 @@ final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolCall
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -910,10 +899,10 @@ final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolResp
   toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (response != null) 'response': response!.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'id': ?id?.toTfJson(),
+    'response': ?response?.toTfJson(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -931,7 +920,7 @@ final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolResp
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -952,10 +941,8 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectation {
   mockToolResponse;
 
   Map<String, Object?> encode() => {
-    if (expectedToolCall != null)
-      'expected_tool_call': expectedToolCall!.encode(),
-    if (mockToolResponse != null)
-      'mock_tool_response': mockToolResponse!.encode(),
+    'expected_tool_call': ?expectedToolCall?.encode(),
+    'mock_tool_response': ?mockToolResponse?.encode(),
   };
 }
 
@@ -980,10 +967,10 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedTool
   toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'args': ?args?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -1001,8 +988,8 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedTool
   final TfArg<String>? toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
-    if (toolset != null) 'toolset': toolset!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
+    'toolset': ?toolset?.toTfJson(),
   };
 }
 
@@ -1027,10 +1014,10 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResp
   toolsetTool;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (response != null) 'response': response!.toTfJson(),
-    if (tool != null) 'tool': tool!.toTfJson(),
-    if (toolsetTool != null) 'toolset_tool': toolsetTool!.encode(),
+    'id': ?id?.toTfJson(),
+    'response': ?response?.toTfJson(),
+    'tool': ?tool?.toTfJson(),
+    'toolset_tool': ?toolsetTool?.encode(),
   };
 }
 
@@ -1048,8 +1035,8 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResp
   final TfArg<String>? toolset;
 
   Map<String, Object?> encode() => {
-    if (toolId != null) 'tool_id': toolId!.toTfJson(),
-    if (toolset != null) 'toolset': toolset!.toTfJson(),
+    'tool_id': ?toolId?.toTfJson(),
+    'toolset': ?toolset?.toTfJson(),
   };
 }
 
@@ -1099,13 +1086,13 @@ final class GoogleCesEvaluation extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'app': app,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'display_name': displayName,
            'evaluation_id': evaluationId,
            'location': location,
-           if (project != null) 'project': project,
-           if (tags != null) 'tags': tags,
+           'project': ?project,
+           'tags': ?tags,
            if (golden != null) 'golden': TfArg.literal(golden.encode()),
            if (scenario != null) 'scenario': TfArg.literal(scenario.encode()),
          },

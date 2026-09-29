@@ -67,10 +67,10 @@ final class AwsCloudwatchEventPermission extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (action != null) 'action': action,
-           if (eventBusName != null) 'event_bus_name': eventBusName,
+           'action': ?action,
+           'event_bus_name': ?eventBusName,
            'principal': principal,
-           if (region != null) 'region': region,
+           'region': ?region,
            'statement_id': statementId,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

@@ -22,7 +22,7 @@ final class AwsVpcRouteServerPropagation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'route_server_id': routeServerId,
            'route_table_id': routeTableId,
          },

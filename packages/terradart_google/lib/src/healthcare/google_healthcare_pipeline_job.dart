@@ -121,8 +121,7 @@ final class HealthcarePipelineJobBackfillPipelineJob {
   final TfArg<String>? mappingPipelineJob;
 
   Map<String, Object?> encode() => {
-    if (mappingPipelineJob != null)
-      'mapping_pipeline_job': mappingPipelineJob!.toTfJson(),
+    'mapping_pipeline_job': ?mappingPipelineJob?.toTfJson(),
   };
 }
 
@@ -145,8 +144,7 @@ final class HealthcarePipelineJobMappingPipelineJob {
 
   Map<String, Object?> encode() => {
     ...?destination?.encode(),
-    if (fhirStreamingSource != null)
-      'fhir_streaming_source': fhirStreamingSource!.encode(),
+    'fhir_streaming_source': ?fhirStreamingSource?.encode(),
     'mapping_config': mappingConfig.encode(),
   };
 }
@@ -225,7 +223,7 @@ final class HealthcarePipelineJobMappingPipelineJobFhirStreamingSource {
   final TfArg<String> fhirStore;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'fhir_store': fhirStore.toTfJson(),
   };
 }
@@ -245,9 +243,8 @@ final class HealthcarePipelineJobMappingPipelineJobMappingConfig {
   whistleConfigSource;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (whistleConfigSource != null)
-      'whistle_config_source': whistleConfigSource!.encode(),
+    'description': ?description?.toTfJson(),
+    'whistle_config_source': ?whistleConfigSource?.encode(),
   };
 }
 
@@ -287,8 +284,7 @@ final class HealthcarePipelineJobReconciliationPipelineJob {
   final HealthcarePipelineJobReconciliationPipelineJobMergeConfig mergeConfig;
 
   Map<String, Object?> encode() => {
-    if (fhirStoreDestination != null)
-      'fhir_store_destination': fhirStoreDestination!.toTfJson(),
+    'fhir_store_destination': ?fhirStoreDestination?.toTfJson(),
     'matching_uri_prefix': matchingUriPrefix.toTfJson(),
     'merge_config': mergeConfig.encode(),
   };
@@ -309,7 +305,7 @@ final class HealthcarePipelineJobReconciliationPipelineJobMergeConfig {
   whistleConfigSource;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'whistle_config_source': whistleConfigSource.encode(),
   };
 }
@@ -364,9 +360,9 @@ final class GoogleHealthcarePipelineJob extends Resource {
          terraformType: tfType,
          argMap: {
            'dataset': dataset,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (disableLineage != null) 'disable_lineage': disableLineage,
-           if (labels != null) 'labels': labels,
+           'deletion_policy': ?deletionPolicy,
+           'disable_lineage': ?disableLineage,
+           'labels': ?labels,
            'location': location,
            'name': name,
            ...?pipelineJob?.argMap,

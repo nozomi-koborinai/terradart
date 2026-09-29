@@ -28,11 +28,10 @@ final class AwsChimeVoiceConnectorTermination extends Resource {
          argMap: {
            'calling_regions': callingRegions,
            'cidr_allow_list': cidrAllowList,
-           if (cpsLimit != null) 'cps_limit': cpsLimit,
-           if (defaultPhoneNumber != null)
-             'default_phone_number': defaultPhoneNumber,
-           if (disabled != null) 'disabled': disabled,
-           if (region != null) 'region': region,
+           'cps_limit': ?cpsLimit,
+           'default_phone_number': ?defaultPhoneNumber,
+           'disabled': ?disabled,
+           'region': ?region,
            'voice_connector_id': voiceConnectorId,
          },
        );

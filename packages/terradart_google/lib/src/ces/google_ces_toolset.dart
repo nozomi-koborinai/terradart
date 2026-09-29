@@ -27,7 +27,7 @@ final class CesToolsetConnectorToolset {
 
   Map<String, Object?> encode() => {
     'connection': connection.toTfJson(),
-    if (authConfig != null) 'auth_config': authConfig!.encode(),
+    'auth_config': ?authConfig?.encode(),
     'connector_actions': [for (final e in connectorActions) e.encode()],
   };
 }
@@ -48,10 +48,8 @@ final class CesToolsetConnectorToolsetAuthConfig {
   oauth2JwtBearerConfig;
 
   Map<String, Object?> encode() => {
-    if (oauth2AuthCodeConfig != null)
-      'oauth2_auth_code_config': oauth2AuthCodeConfig!.encode(),
-    if (oauth2JwtBearerConfig != null)
-      'oauth2_jwt_bearer_config': oauth2JwtBearerConfig!.encode(),
+    'oauth2_auth_code_config': ?oauth2AuthCodeConfig?.encode(),
+    'oauth2_jwt_bearer_config': ?oauth2JwtBearerConfig?.encode(),
   };
 }
 
@@ -112,11 +110,10 @@ final class CesToolsetConnectorToolsetConnectorActions {
   entityOperation;
 
   Map<String, Object?> encode() => {
-    if (connectionActionId != null)
-      'connection_action_id': connectionActionId!.toTfJson(),
-    if (inputFields != null) 'input_fields': inputFields!.toTfJson(),
-    if (outputFields != null) 'output_fields': outputFields!.toTfJson(),
-    if (entityOperation != null) 'entity_operation': entityOperation!.encode(),
+    'connection_action_id': ?connectionActionId?.toTfJson(),
+    'input_fields': ?inputFields?.toTfJson(),
+    'output_fields': ?outputFields?.toTfJson(),
+    'entity_operation': ?entityOperation?.encode(),
   };
 }
 
@@ -165,13 +162,11 @@ final class CesToolsetMcpToolset {
   final List<CesToolsetMcpToolsetToolOverrides>? toolOverrides;
 
   Map<String, Object?> encode() => {
-    if (customHeaders != null) 'custom_headers': customHeaders!.toTfJson(),
+    'custom_headers': ?customHeaders?.toTfJson(),
     'server_address': serverAddress.toTfJson(),
-    if (apiAuthentication != null)
-      'api_authentication': apiAuthentication!.encode(),
-    if (serviceDirectoryConfig != null)
-      'service_directory_config': serviceDirectoryConfig!.encode(),
-    if (tlsConfig != null) 'tls_config': tlsConfig!.encode(),
+    'api_authentication': ?apiAuthentication?.encode(),
+    'service_directory_config': ?serviceDirectoryConfig?.encode(),
+    'tls_config': ?tlsConfig?.encode(),
     if (toolOverrides != null)
       'tool_overrides': [for (final e in toolOverrides!) e.encode()],
   };
@@ -203,15 +198,12 @@ final class CesToolsetMcpToolsetApiAuthentication {
   serviceAgentIdTokenAuthConfig;
 
   Map<String, Object?> encode() => {
-    if (apiKeyConfig != null) 'api_key_config': apiKeyConfig!.encode(),
-    if (bearerTokenConfig != null)
-      'bearer_token_config': bearerTokenConfig!.encode(),
-    if (oauthConfig != null) 'oauth_config': oauthConfig!.encode(),
-    if (serviceAccountAuthConfig != null)
-      'service_account_auth_config': serviceAccountAuthConfig!.encode(),
-    if (serviceAgentIdTokenAuthConfig != null)
-      'service_agent_id_token_auth_config': serviceAgentIdTokenAuthConfig!
-          .encode(),
+    'api_key_config': ?apiKeyConfig?.encode(),
+    'bearer_token_config': ?bearerTokenConfig?.encode(),
+    'oauth_config': ?oauthConfig?.encode(),
+    'service_account_auth_config': ?serviceAccountAuthConfig?.encode(),
+    'service_agent_id_token_auth_config': ?serviceAgentIdTokenAuthConfig
+        ?.encode(),
   };
 }
 
@@ -246,9 +238,7 @@ final class CesToolsetMcpToolsetApiAuthenticationBearerTokenConfig {
 
   final TfArg<String>? token;
 
-  Map<String, Object?> encode() => {
-    if (token != null) 'token': token!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'token': ?token?.toTfJson()};
 }
 
 /// Typed helper for the `mcp_toolset.api_authentication.oauth_config` block of
@@ -277,7 +267,7 @@ final class CesToolsetMcpToolsetApiAuthenticationOauthConfig {
     'client_id': clientId.toTfJson(),
     'client_secret_version': clientSecretVersion.toTfJson(),
     'oauth_grant_type': oauthGrantType.toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
   };
 }
@@ -296,7 +286,7 @@ final class CesToolsetMcpToolsetApiAuthenticationServiceAccountAuthConfig {
   final RefTo<GoogleServiceAccount> serviceAccount;
 
   Map<String, Object?> encode() => {
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
@@ -370,9 +360,8 @@ final class CesToolsetMcpToolsetToolOverrides {
   final TfArg<String> tool;
 
   Map<String, Object?> encode() => {
-    if (descriptionOverride != null)
-      'description_override': descriptionOverride!.toTfJson(),
-    if (nameOverride != null) 'name_override': nameOverride!.toTfJson(),
+    'description_override': ?descriptionOverride?.toTfJson(),
+    'name_override': ?nameOverride?.toTfJson(),
     'tool': tool.toTfJson(),
   };
 }
@@ -400,14 +389,11 @@ final class CesToolsetOpenApiToolset {
   final CesToolsetOpenApiToolsetTlsConfig? tlsConfig;
 
   Map<String, Object?> encode() => {
-    if (ignoreUnknownFields != null)
-      'ignore_unknown_fields': ignoreUnknownFields!.toTfJson(),
+    'ignore_unknown_fields': ?ignoreUnknownFields?.toTfJson(),
     'open_api_schema': openApiSchema.toTfJson(),
-    if (apiAuthentication != null)
-      'api_authentication': apiAuthentication!.encode(),
-    if (serviceDirectoryConfig != null)
-      'service_directory_config': serviceDirectoryConfig!.encode(),
-    if (tlsConfig != null) 'tls_config': tlsConfig!.encode(),
+    'api_authentication': ?apiAuthentication?.encode(),
+    'service_directory_config': ?serviceDirectoryConfig?.encode(),
+    'tls_config': ?tlsConfig?.encode(),
   };
 }
 
@@ -437,15 +423,12 @@ final class CesToolsetOpenApiToolsetApiAuthentication {
   serviceAgentIdTokenAuthConfig;
 
   Map<String, Object?> encode() => {
-    if (apiKeyConfig != null) 'api_key_config': apiKeyConfig!.encode(),
-    if (bearerTokenConfig != null)
-      'bearer_token_config': bearerTokenConfig!.encode(),
-    if (oauthConfig != null) 'oauth_config': oauthConfig!.encode(),
-    if (serviceAccountAuthConfig != null)
-      'service_account_auth_config': serviceAccountAuthConfig!.encode(),
-    if (serviceAgentIdTokenAuthConfig != null)
-      'service_agent_id_token_auth_config': serviceAgentIdTokenAuthConfig!
-          .encode(),
+    'api_key_config': ?apiKeyConfig?.encode(),
+    'bearer_token_config': ?bearerTokenConfig?.encode(),
+    'oauth_config': ?oauthConfig?.encode(),
+    'service_account_auth_config': ?serviceAccountAuthConfig?.encode(),
+    'service_agent_id_token_auth_config': ?serviceAgentIdTokenAuthConfig
+        ?.encode(),
   };
 }
 
@@ -482,9 +465,7 @@ final class CesToolsetOpenApiToolsetApiAuthenticationBearerTokenConfig {
 
   final TfArg<String>? token;
 
-  Map<String, Object?> encode() => {
-    if (token != null) 'token': token!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'token': ?token?.toTfJson()};
 }
 
 /// Typed helper for the `open_api_toolset.api_authentication.oauth_config` block of
@@ -513,7 +494,7 @@ final class CesToolsetOpenApiToolsetApiAuthenticationOauthConfig {
     'client_id': clientId.toTfJson(),
     'client_secret_version': clientSecretVersion.toTfJson(),
     'oauth_grant_type': oauthGrantType.toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
   };
 }
@@ -532,7 +513,7 @@ final class CesToolsetOpenApiToolsetApiAuthenticationServiceAccountAuthConfig {
   final RefTo<GoogleServiceAccount> serviceAccount;
 
   Map<String, Object?> encode() => {
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
@@ -600,8 +581,8 @@ final class CesToolsetToolFakeConfig {
   final CesToolsetToolFakeConfigCodeBlock? codeBlock;
 
   Map<String, Object?> encode() => {
-    if (enableFakeMode != null) 'enable_fake_mode': enableFakeMode!.toTfJson(),
-    if (codeBlock != null) 'code_block': codeBlock!.encode(),
+    'enable_fake_mode': ?enableFakeMode?.toTfJson(),
+    'code_block': ?codeBlock?.encode(),
   };
 }
 
@@ -674,17 +655,17 @@ final class GoogleCesToolset extends Resource {
            'location': location,
            'app': app,
            'toolset_id': toolsetId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (executionType != null) 'execution_type': executionType,
+           'display_name': ?displayName,
+           'description': ?description,
+           'execution_type': ?executionType,
            if (openApiToolset != null)
              'open_api_toolset': TfArg.literal(openApiToolset.encode()),
            if (mcpToolset != null)
              'mcp_toolset': TfArg.literal(mcpToolset.encode()),
            if (toolFakeConfig != null)
              'tool_fake_config': TfArg.literal(toolFakeConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

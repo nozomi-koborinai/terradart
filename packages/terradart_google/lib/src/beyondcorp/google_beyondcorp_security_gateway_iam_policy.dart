@@ -31,8 +31,8 @@ final class GoogleBeyondcorpSecurityGatewayIamPolicy extends Resource {
          argMap: {
            'security_gateway_id': securityGatewayId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

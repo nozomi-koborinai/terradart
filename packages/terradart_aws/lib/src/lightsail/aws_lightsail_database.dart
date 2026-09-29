@@ -35,28 +35,22 @@ final class AwsLightsailDatabase extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (backupRetentionEnabled != null)
-             'backup_retention_enabled': backupRetentionEnabled,
+           'apply_immediately': ?applyImmediately,
+           'availability_zone': ?availabilityZone,
+           'backup_retention_enabled': ?backupRetentionEnabled,
            'blueprint_id': blueprintId,
            'bundle_id': bundleId,
-           if (finalSnapshotName != null)
-             'final_snapshot_name': finalSnapshotName,
+           'final_snapshot_name': ?finalSnapshotName,
            'master_database_name': masterDatabaseName,
            'master_password': masterPassword,
            'master_username': masterUsername,
-           if (preferredBackupWindow != null)
-             'preferred_backup_window': preferredBackupWindow,
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
+           'preferred_backup_window': ?preferredBackupWindow,
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
            'relational_database_name': relationalDatabaseName,
-           if (skipFinalSnapshot != null)
-             'skip_final_snapshot': skipFinalSnapshot,
-           if (tags != null) 'tags': tags,
+           'skip_final_snapshot': ?skipFinalSnapshot,
+           'tags': ?tags,
          },
        );
 

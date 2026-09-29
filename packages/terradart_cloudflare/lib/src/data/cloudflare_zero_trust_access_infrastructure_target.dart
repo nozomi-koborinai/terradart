@@ -75,27 +75,25 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
   final TfArg<String>? virtualNetworkId;
 
   Map<String, Object?> encode() => {
-    if (createdAfter != null) 'created_after': createdAfter!.toTfJson(),
-    if (createdBefore != null) 'created_before': createdBefore!.toTfJson(),
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (hostnameContains != null)
-      'hostname_contains': hostnameContains!.toTfJson(),
-    if (ipLike != null) 'ip_like': ipLike!.toTfJson(),
-    if (ipV4 != null) 'ip_v4': ipV4!.toTfJson(),
-    if (ipV6 != null) 'ip_v6': ipV6!.toTfJson(),
-    if (ips != null) 'ips': ips!.toTfJson(),
-    if (ipv4End != null) 'ipv4_end': ipv4End!.toTfJson(),
-    if (ipv4Start != null) 'ipv4_start': ipv4Start!.toTfJson(),
-    if (ipv6End != null) 'ipv6_end': ipv6End!.toTfJson(),
-    if (ipv6Start != null) 'ipv6_start': ipv6Start!.toTfJson(),
-    if (modifiedAfter != null) 'modified_after': modifiedAfter!.toTfJson(),
-    if (modifiedBefore != null) 'modified_before': modifiedBefore!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
-    if (targetIds != null) 'target_ids': targetIds!.toTfJson(),
-    if (virtualNetworkId != null)
-      'virtual_network_id': virtualNetworkId!.toTfJson(),
+    'created_after': ?createdAfter?.toTfJson(),
+    'created_before': ?createdBefore?.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'hostname_contains': ?hostnameContains?.toTfJson(),
+    'ip_like': ?ipLike?.toTfJson(),
+    'ip_v4': ?ipV4?.toTfJson(),
+    'ip_v6': ?ipV6?.toTfJson(),
+    'ips': ?ips?.toTfJson(),
+    'ipv4_end': ?ipv4End?.toTfJson(),
+    'ipv4_start': ?ipv4Start?.toTfJson(),
+    'ipv6_end': ?ipv6End?.toTfJson(),
+    'ipv6_start': ?ipv6Start?.toTfJson(),
+    'modified_after': ?modifiedAfter?.toTfJson(),
+    'modified_before': ?modifiedBefore?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
+    'target_ids': ?targetIds?.toTfJson(),
+    'virtual_network_id': ?virtualNetworkId?.toTfJson(),
   };
 }
 
@@ -138,8 +136,8 @@ final class DataCloudflareZeroTrustAccessInfrastructureTarget extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (targetId != null) 'target_id': targetId,
+           'account_id': ?accountId,
+           'target_id': ?targetId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

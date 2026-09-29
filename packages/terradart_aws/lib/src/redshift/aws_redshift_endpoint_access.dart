@@ -29,11 +29,10 @@ final class AwsRedshiftEndpointAccess extends Resource {
          argMap: {
            'cluster_identifier': clusterIdentifier,
            'endpoint_name': endpointName,
-           if (region != null) 'region': region,
-           if (resourceOwner != null) 'resource_owner': resourceOwner,
+           'region': ?region,
+           'resource_owner': ?resourceOwner,
            'subnet_group_name': subnetGroupName,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
          },
        );
 

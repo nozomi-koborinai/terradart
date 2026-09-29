@@ -51,19 +51,14 @@ final class SagemakerSpaceSpaceSettings {
   final SagemakerSpaceSpaceSettingsSpaceStorageSettings? spaceStorageSettings;
 
   Map<String, Object?> encode() => {
-    if (appType != null) 'app_type': appType!.toTfJson(),
-    if (codeEditorAppSettings != null)
-      'code_editor_app_settings': codeEditorAppSettings!.encode(),
+    'app_type': ?appType?.toTfJson(),
+    'code_editor_app_settings': ?codeEditorAppSettings?.encode(),
     if (customFileSystem != null)
       'custom_file_system': [for (final e in customFileSystem!) e.encode()],
-    if (jupyterLabAppSettings != null)
-      'jupyter_lab_app_settings': jupyterLabAppSettings!.encode(),
-    if (jupyterServerAppSettings != null)
-      'jupyter_server_app_settings': jupyterServerAppSettings!.encode(),
-    if (kernelGatewayAppSettings != null)
-      'kernel_gateway_app_settings': kernelGatewayAppSettings!.encode(),
-    if (spaceStorageSettings != null)
-      'space_storage_settings': spaceStorageSettings!.encode(),
+    'jupyter_lab_app_settings': ?jupyterLabAppSettings?.encode(),
+    'jupyter_server_app_settings': ?jupyterServerAppSettings?.encode(),
+    'kernel_gateway_app_settings': ?kernelGatewayAppSettings?.encode(),
+    'space_storage_settings': ?spaceStorageSettings?.encode(),
   };
 }
 
@@ -100,8 +95,7 @@ final class SagemakerSpaceSpaceSettingsCodeEditorAppSettings {
   defaultResourceSpec;
 
   Map<String, Object?> encode() => {
-    if (appLifecycleManagement != null)
-      'app_lifecycle_management': appLifecycleManagement!.encode(),
+    'app_lifecycle_management': ?appLifecycleManagement?.encode(),
     'default_resource_spec': defaultResourceSpec.encode(),
   };
 }
@@ -117,9 +111,7 @@ final class SagemakerSpaceSpaceSettingsCodeEditorAppSettingsAppLifecycleManageme
   final SagemakerSpaceSpaceSettingsCodeEditorAppSettingsAppLifecycleManagementIdleSettings?
   idleSettings;
 
-  Map<String, Object?> encode() => {
-    if (idleSettings != null) 'idle_settings': idleSettings!.encode(),
-  };
+  Map<String, Object?> encode() => {'idle_settings': ?idleSettings?.encode()};
 }
 
 /// Typed helper for the `space_settings.code_editor_app_settings.app_lifecycle_management.idle_settings` block of
@@ -133,8 +125,7 @@ final class SagemakerSpaceSpaceSettingsCodeEditorAppSettingsAppLifecycleManageme
   final TfArg<num>? idleTimeoutInMinutes;
 
   Map<String, Object?> encode() => {
-    if (idleTimeoutInMinutes != null)
-      'idle_timeout_in_minutes': idleTimeoutInMinutes!.toTfJson(),
+    'idle_timeout_in_minutes': ?idleTimeoutInMinutes?.toTfJson(),
   };
 }
 
@@ -164,15 +155,11 @@ final class SagemakerSpaceSpaceSettingsCodeEditorAppSettingsDefaultResourceSpec 
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -409,8 +396,7 @@ final class SagemakerSpaceSpaceSettingsJupyterLabAppSettings {
   defaultResourceSpec;
 
   Map<String, Object?> encode() => {
-    if (appLifecycleManagement != null)
-      'app_lifecycle_management': appLifecycleManagement!.encode(),
+    'app_lifecycle_management': ?appLifecycleManagement?.encode(),
     if (codeRepository != null)
       'code_repository': [for (final e in codeRepository!) e.encode()],
     'default_resource_spec': defaultResourceSpec.encode(),
@@ -428,9 +414,7 @@ final class SagemakerSpaceSpaceSettingsJupyterLabAppSettingsAppLifecycleManageme
   final SagemakerSpaceSpaceSettingsJupyterLabAppSettingsAppLifecycleManagementIdleSettings?
   idleSettings;
 
-  Map<String, Object?> encode() => {
-    if (idleSettings != null) 'idle_settings': idleSettings!.encode(),
-  };
+  Map<String, Object?> encode() => {'idle_settings': ?idleSettings?.encode()};
 }
 
 /// Typed helper for the `space_settings.jupyter_lab_app_settings.app_lifecycle_management.idle_settings` block of
@@ -444,8 +428,7 @@ final class SagemakerSpaceSpaceSettingsJupyterLabAppSettingsAppLifecycleManageme
   final TfArg<num>? idleTimeoutInMinutes;
 
   Map<String, Object?> encode() => {
-    if (idleTimeoutInMinutes != null)
-      'idle_timeout_in_minutes': idleTimeoutInMinutes!.toTfJson(),
+    'idle_timeout_in_minutes': ?idleTimeoutInMinutes?.toTfJson(),
   };
 }
 
@@ -488,15 +471,11 @@ final class SagemakerSpaceSpaceSettingsJupyterLabAppSettingsDefaultResourceSpec 
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -706,8 +685,7 @@ final class SagemakerSpaceSpaceSettingsJupyterServerAppSettings {
   defaultResourceSpec;
 
   Map<String, Object?> encode() => {
-    if (lifecycleConfigArns != null)
-      'lifecycle_config_arns': lifecycleConfigArns!.toTfJson(),
+    'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
     if (codeRepository != null)
       'code_repository': [for (final e in codeRepository!) e.encode()],
     'default_resource_spec': defaultResourceSpec.encode(),
@@ -753,15 +731,11 @@ final class SagemakerSpaceSpaceSettingsJupyterServerAppSettingsDefaultResourceSp
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -971,8 +945,7 @@ final class SagemakerSpaceSpaceSettingsKernelGatewayAppSettings {
   defaultResourceSpec;
 
   Map<String, Object?> encode() => {
-    if (lifecycleConfigArns != null)
-      'lifecycle_config_arns': lifecycleConfigArns!.toTfJson(),
+    'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
     if (customImage != null)
       'custom_image': [for (final e in customImage!) e.encode()],
     'default_resource_spec': defaultResourceSpec.encode(),
@@ -998,8 +971,7 @@ final class SagemakerSpaceSpaceSettingsKernelGatewayAppSettingsCustomImage {
   Map<String, Object?> encode() => {
     'app_image_config_name': appImageConfigName.toTfJson(),
     'image_name': imageName.toTfJson(),
-    if (imageVersionNumber != null)
-      'image_version_number': imageVersionNumber!.toTfJson(),
+    'image_version_number': ?imageVersionNumber?.toTfJson(),
   };
 }
 
@@ -1029,15 +1001,11 @@ final class SagemakerSpaceSpaceSettingsKernelGatewayAppSettingsDefaultResourceSp
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -1302,10 +1270,10 @@ final class AwsSagemakerSpace extends Resource {
          terraformType: tfType,
          argMap: {
            'domain_id': domainId,
-           if (region != null) 'region': region,
-           if (spaceDisplayName != null) 'space_display_name': spaceDisplayName,
+           'region': ?region,
+           'space_display_name': ?spaceDisplayName,
            'space_name': spaceName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (ownershipSettings != null)
              'ownership_settings': TfArg.literal(ownershipSettings.encode()),
            if (spaceSettings != null)

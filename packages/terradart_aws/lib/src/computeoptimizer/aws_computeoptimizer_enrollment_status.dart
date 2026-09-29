@@ -32,9 +32,8 @@ final class AwsComputeoptimizerEnrollmentStatus extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (includeMemberAccounts != null)
-             'include_member_accounts': includeMemberAccounts,
-           if (region != null) 'region': region,
+           'include_member_accounts': ?includeMemberAccounts,
+           'region': ?region,
            'status': status,
          },
        );

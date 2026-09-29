@@ -79,12 +79,12 @@ final class GoogleSccV2ProjectNotificationConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'config_id': configId,
-           if (pubsubTopic != null) 'pubsub_topic': pubsubTopic.encodeAs('id'),
+           'pubsub_topic': ?pubsubTopic?.encodeAs('id'),
            'streaming_config': TfArg.literal(streamingConfig.encode()),
-           if (description != null) 'description': description,
-           if (location != null) 'location': location,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'location': ?location,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -26,9 +26,9 @@ final class GoogleGkeHubScope extends Resource {
          terraformType: tfType,
          argMap: {
            'scope_id': scopeId,
-           if (labels != null) 'labels': labels,
-           if (namespaceLabels != null) 'namespace_labels': namespaceLabels,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'namespace_labels': ?namespaceLabels,
+           'project': ?project,
          },
        );
 

@@ -50,11 +50,11 @@ final class GoogleDataCatalogEntryGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'entry_group_id': entryGroupId,
-           if (region != null) 'region': region,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'region': ?region,
+           'display_name': ?displayName,
+           'description': ?description,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

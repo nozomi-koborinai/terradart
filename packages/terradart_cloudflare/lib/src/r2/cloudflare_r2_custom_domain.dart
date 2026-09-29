@@ -59,11 +59,11 @@ final class CloudflareR2CustomDomain extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
-           if (ciphers != null) 'ciphers': ciphers,
+           'ciphers': ?ciphers,
            'domain': domain,
            'enabled': enabled,
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
-           if (minTls != null) 'min_tls': minTls,
+           'jurisdiction': ?jurisdiction,
+           'min_tls': ?minTls,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

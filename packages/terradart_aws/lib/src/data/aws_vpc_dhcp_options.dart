@@ -39,9 +39,9 @@ final class DataAwsVpcDhcpOptions extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dhcpOptionsId != null) 'dhcp_options_id': dhcpOptionsId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'dhcp_options_id': ?dhcpOptionsId,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

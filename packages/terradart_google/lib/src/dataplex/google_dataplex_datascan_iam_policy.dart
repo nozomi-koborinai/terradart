@@ -30,8 +30,8 @@ final class GoogleDataplexDatascanIamPolicy extends Resource {
          argMap: {
            'data_scan_id': dataScanId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

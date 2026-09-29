@@ -93,11 +93,9 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfig {
   dedicatedResources;
 
   Map<String, Object?> encode() => {
-    if (fastTryoutEnabled != null)
-      'fast_tryout_enabled': fastTryoutEnabled!.toTfJson(),
-    if (systemLabels != null) 'system_labels': systemLabels!.toTfJson(),
-    if (dedicatedResources != null)
-      'dedicated_resources': dedicatedResources!.encode(),
+    'fast_tryout_enabled': ?fastTryoutEnabled?.toTfJson(),
+    'system_labels': ?systemLabels?.toTfJson(),
+    'dedicated_resources': ?dedicatedResources?.encode(),
   };
 }
 
@@ -131,12 +129,10 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResour
   machineSpec;
 
   Map<String, Object?> encode() => {
-    if (maxReplicaCount != null)
-      'max_replica_count': maxReplicaCount!.toTfJson(),
+    'max_replica_count': ?maxReplicaCount?.toTfJson(),
     'min_replica_count': minReplicaCount.toTfJson(),
-    if (requiredReplicaCount != null)
-      'required_replica_count': requiredReplicaCount!.toTfJson(),
-    if (spot != null) 'spot': spot!.toTfJson(),
+    'required_replica_count': ?requiredReplicaCount?.toTfJson(),
+    'spot': ?spot?.toTfJson(),
     if (autoscalingMetricSpecs != null)
       'autoscaling_metric_specs': [
         for (final e in autoscalingMetricSpecs!) e.encode(),
@@ -160,7 +156,7 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResour
 
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
+    'target': ?target?.toTfJson(),
   };
 }
 
@@ -191,16 +187,12 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResour
   reservationAffinity;
 
   Map<String, Object?> encode() => {
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.toTfJson(),
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (multihostGpuNodeCount != null)
-      'multihost_gpu_node_count': multihostGpuNodeCount!.toTfJson(),
-    if (tpuTopology != null) 'tpu_topology': tpuTopology!.toTfJson(),
-    if (reservationAffinity != null)
-      'reservation_affinity': reservationAffinity!.encode(),
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'multihost_gpu_node_count': ?multihostGpuNodeCount?.toTfJson(),
+    'tpu_topology': ?tpuTopology?.toTfJson(),
+    'reservation_affinity': ?reservationAffinity?.encode(),
   };
 }
 
@@ -221,9 +213,9 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResour
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     'reservation_affinity_type': reservationAffinityType.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -245,12 +237,9 @@ final class VertexAiEndpointWithModelGardenDeploymentEndpointConfig {
   privateServiceConnectConfig;
 
   Map<String, Object?> encode() => {
-    if (dedicatedEndpointEnabled != null)
-      'dedicated_endpoint_enabled': dedicatedEndpointEnabled!.toTfJson(),
-    if (endpointDisplayName != null)
-      'endpoint_display_name': endpointDisplayName!.toTfJson(),
-    if (privateServiceConnectConfig != null)
-      'private_service_connect_config': privateServiceConnectConfig!.encode(),
+    'dedicated_endpoint_enabled': ?dedicatedEndpointEnabled?.toTfJson(),
+    'endpoint_display_name': ?endpointDisplayName?.toTfJson(),
+    'private_service_connect_config': ?privateServiceConnectConfig?.encode(),
   };
 }
 
@@ -273,10 +262,8 @@ final class VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServic
 
   Map<String, Object?> encode() => {
     'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),
-    if (projectAllowlist != null)
-      'project_allowlist': projectAllowlist!.toTfJson(),
-    if (pscAutomationConfigs != null)
-      'psc_automation_configs': pscAutomationConfigs!.encode(),
+    'project_allowlist': ?projectAllowlist?.toTfJson(),
+    'psc_automation_configs': ?pscAutomationConfigs?.encode(),
   };
 }
 
@@ -323,14 +310,11 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfig {
   containerSpec;
 
   Map<String, Object?> encode() => {
-    if (acceptEula != null) 'accept_eula': acceptEula!.toTfJson(),
-    if (huggingFaceAccessToken != null)
-      'hugging_face_access_token': huggingFaceAccessToken!.toTfJson(),
-    if (huggingFaceCacheEnabled != null)
-      'hugging_face_cache_enabled': huggingFaceCacheEnabled!.toTfJson(),
-    if (modelDisplayName != null)
-      'model_display_name': modelDisplayName!.toTfJson(),
-    if (containerSpec != null) 'container_spec': containerSpec!.encode(),
+    'accept_eula': ?acceptEula?.toTfJson(),
+    'hugging_face_access_token': ?huggingFaceAccessToken?.toTfJson(),
+    'hugging_face_cache_enabled': ?huggingFaceCacheEnabled?.toTfJson(),
+    'model_display_name': ?modelDisplayName?.toTfJson(),
+    'container_spec': ?containerSpec?.encode(),
   };
 }
 
@@ -393,22 +377,20 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpec {
   startupProbe;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (command != null) 'command': command!.toTfJson(),
-    if (deploymentTimeout != null)
-      'deployment_timeout': deploymentTimeout!.toTfJson(),
-    if (healthRoute != null) 'health_route': healthRoute!.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'deployment_timeout': ?deploymentTimeout?.toTfJson(),
+    'health_route': ?healthRoute?.toTfJson(),
     'image_uri': imageUri.toTfJson(),
-    if (predictRoute != null) 'predict_route': predictRoute!.toTfJson(),
-    if (sharedMemorySizeMb != null)
-      'shared_memory_size_mb': sharedMemorySizeMb!.toTfJson(),
+    'predict_route': ?predictRoute?.toTfJson(),
+    'shared_memory_size_mb': ?sharedMemorySizeMb?.toTfJson(),
     if (env != null) 'env': [for (final e in env!) e.encode()],
     if (grpcPorts != null)
       'grpc_ports': [for (final e in grpcPorts!) e.encode()],
-    if (healthProbe != null) 'health_probe': healthProbe!.encode(),
-    if (livenessProbe != null) 'liveness_probe': livenessProbe!.encode(),
+    'health_probe': ?healthProbe?.encode(),
+    'liveness_probe': ?livenessProbe?.encode(),
     if (ports != null) 'ports': [for (final e in ports!) e.encode()],
-    if (startupProbe != null) 'startup_probe': startupProbe!.encode(),
+    'startup_probe': ?startupProbe?.encode(),
   };
 }
 
@@ -442,7 +424,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecGrp
   final TfArg<num>? containerPort;
 
   Map<String, Object?> encode() => {
-    if (containerPort != null) 'container_port': containerPort!.toTfJson(),
+    'container_port': ?containerPort?.toTfJson(),
   };
 }
 
@@ -485,18 +467,15 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
   tcpSocket;
 
   Map<String, Object?> encode() => {
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
-    if (initialDelaySeconds != null)
-      'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
-    if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
-    if (successThreshold != null)
-      'success_threshold': successThreshold!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (exec != null) 'exec': exec!.encode(),
-    if (grpc != null) 'grpc': grpc!.encode(),
-    if (httpGet != null) 'http_get': httpGet!.encode(),
-    if (tcpSocket != null) 'tcp_socket': tcpSocket!.encode(),
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
+    'period_seconds': ?periodSeconds?.toTfJson(),
+    'success_threshold': ?successThreshold?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
+    'exec': ?exec?.encode(),
+    'grpc': ?grpc?.encode(),
+    'http_get': ?httpGet?.encode(),
+    'tcp_socket': ?tcpSocket?.encode(),
   };
 }
 
@@ -510,9 +489,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
 
   final TfArg<List<Object?>>? command;
 
-  Map<String, Object?> encode() => {
-    if (command != null) 'command': command!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'command': ?command?.toTfJson()};
 }
 
 /// Typed helper for the `model_config.container_spec.health_probe.grpc` block of
@@ -529,8 +506,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
   final TfArg<String>? service;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'service': ?service?.toTfJson(),
   };
 }
 
@@ -560,10 +537,10 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
   httpHeaders;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (scheme != null) 'scheme': scheme!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'scheme': ?scheme?.toTfJson(),
     if (httpHeaders != null)
       'http_headers': [for (final e in httpHeaders!) e.encode()],
   };
@@ -583,8 +560,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -602,8 +579,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHea
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -646,18 +623,15 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLiv
   tcpSocket;
 
   Map<String, Object?> encode() => {
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
-    if (initialDelaySeconds != null)
-      'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
-    if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
-    if (successThreshold != null)
-      'success_threshold': successThreshold!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (exec != null) 'exec': exec!.encode(),
-    if (grpc != null) 'grpc': grpc!.encode(),
-    if (httpGet != null) 'http_get': httpGet!.encode(),
-    if (tcpSocket != null) 'tcp_socket': tcpSocket!.encode(),
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
+    'period_seconds': ?periodSeconds?.toTfJson(),
+    'success_threshold': ?successThreshold?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
+    'exec': ?exec?.encode(),
+    'grpc': ?grpc?.encode(),
+    'http_get': ?httpGet?.encode(),
+    'tcp_socket': ?tcpSocket?.encode(),
   };
 }
 
@@ -671,9 +645,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLiv
 
   final TfArg<List<Object?>>? command;
 
-  Map<String, Object?> encode() => {
-    if (command != null) 'command': command!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'command': ?command?.toTfJson()};
 }
 
 /// Typed helper for the `model_config.container_spec.liveness_probe.grpc` block of
@@ -690,8 +662,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLiv
   final TfArg<String>? service;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'service': ?service?.toTfJson(),
   };
 }
 
@@ -721,10 +693,10 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLiv
   httpHeaders;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (scheme != null) 'scheme': scheme!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'scheme': ?scheme?.toTfJson(),
     if (httpHeaders != null)
       'http_headers': [for (final e in httpHeaders!) e.encode()],
   };
@@ -744,8 +716,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLiv
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -763,8 +735,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLiv
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -779,7 +751,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecPor
   final TfArg<num>? containerPort;
 
   Map<String, Object?> encode() => {
-    if (containerPort != null) 'container_port': containerPort!.toTfJson(),
+    'container_port': ?containerPort?.toTfJson(),
   };
 }
 
@@ -822,18 +794,15 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecSta
   tcpSocket;
 
   Map<String, Object?> encode() => {
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
-    if (initialDelaySeconds != null)
-      'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
-    if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
-    if (successThreshold != null)
-      'success_threshold': successThreshold!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (exec != null) 'exec': exec!.encode(),
-    if (grpc != null) 'grpc': grpc!.encode(),
-    if (httpGet != null) 'http_get': httpGet!.encode(),
-    if (tcpSocket != null) 'tcp_socket': tcpSocket!.encode(),
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
+    'period_seconds': ?periodSeconds?.toTfJson(),
+    'success_threshold': ?successThreshold?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
+    'exec': ?exec?.encode(),
+    'grpc': ?grpc?.encode(),
+    'http_get': ?httpGet?.encode(),
+    'tcp_socket': ?tcpSocket?.encode(),
   };
 }
 
@@ -847,9 +816,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecSta
 
   final TfArg<List<Object?>>? command;
 
-  Map<String, Object?> encode() => {
-    if (command != null) 'command': command!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'command': ?command?.toTfJson()};
 }
 
 /// Typed helper for the `model_config.container_spec.startup_probe.grpc` block of
@@ -866,8 +833,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecSta
   final TfArg<String>? service;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'service': ?service?.toTfJson(),
   };
 }
 
@@ -897,10 +864,10 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecSta
   httpHeaders;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (scheme != null) 'scheme': scheme!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'scheme': ?scheme?.toTfJson(),
     if (httpHeaders != null)
       'http_headers': [for (final e in httpHeaders!) e.encode()],
   };
@@ -920,8 +887,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecSta
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -939,8 +906,8 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecSta
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -1005,8 +972,8 @@ final class GoogleVertexAiEndpointWithModelGardenDeployment extends Resource {
              'endpoint_config': TfArg.literal(endpointConfig.encode()),
            if (deployConfig != null)
              'deploy_config': TfArg.literal(deployConfig.encode()),
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
            model.blockKey: model.value,
          },
        );

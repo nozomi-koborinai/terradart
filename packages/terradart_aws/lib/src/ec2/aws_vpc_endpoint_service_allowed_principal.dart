@@ -23,7 +23,7 @@ final class AwsVpcEndpointServiceAllowedPrincipal extends Resource {
          terraformType: tfType,
          argMap: {
            'principal_arn': principalArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'vpc_endpoint_service_id': vpcEndpointServiceId,
          },
        );

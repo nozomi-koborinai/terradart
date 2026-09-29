@@ -42,10 +42,9 @@ final class Ec2AllowedImagesSettingsImageCriterion {
   deprecationTimeCondition;
 
   Map<String, Object?> encode() => {
-    if (imageNames != null) 'image_names': imageNames!.toTfJson(),
-    if (imageProviders != null) 'image_providers': imageProviders!.toTfJson(),
-    if (marketplaceProductCodes != null)
-      'marketplace_product_codes': marketplaceProductCodes!.toTfJson(),
+    'image_names': ?imageNames?.toTfJson(),
+    'image_providers': ?imageProviders?.toTfJson(),
+    'marketplace_product_codes': ?marketplaceProductCodes?.toTfJson(),
     if (creationDateCondition != null)
       'creation_date_condition': [
         for (final e in creationDateCondition!) e.encode(),
@@ -68,8 +67,7 @@ final class Ec2AllowedImagesSettingsImageCriterionCreationDateCondition {
   final TfArg<num>? maximumDaysSinceCreated;
 
   Map<String, Object?> encode() => {
-    if (maximumDaysSinceCreated != null)
-      'maximum_days_since_created': maximumDaysSinceCreated!.toTfJson(),
+    'maximum_days_since_created': ?maximumDaysSinceCreated?.toTfJson(),
   };
 }
 
@@ -84,8 +82,7 @@ final class Ec2AllowedImagesSettingsImageCriterionDeprecationTimeCondition {
   final TfArg<num>? maximumDaysSinceDeprecated;
 
   Map<String, Object?> encode() => {
-    if (maximumDaysSinceDeprecated != null)
-      'maximum_days_since_deprecated': maximumDaysSinceDeprecated!.toTfJson(),
+    'maximum_days_since_deprecated': ?maximumDaysSinceDeprecated?.toTfJson(),
   };
 }
 
@@ -105,7 +102,7 @@ final class AwsEc2AllowedImagesSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'state': state,
            if (imageCriterion != null)
              'image_criterion': TfArg.literal([

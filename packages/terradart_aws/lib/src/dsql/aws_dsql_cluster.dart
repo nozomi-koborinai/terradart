@@ -18,8 +18,8 @@ final class DsqlClusterMultiRegionProperties {
   final TfArg<String>? witnessRegion;
 
   Map<String, Object?> encode() => {
-    if (clusters != null) 'clusters': clusters!.toTfJson(),
-    if (witnessRegion != null) 'witness_region': witnessRegion!.toTfJson(),
+    'clusters': ?clusters?.toTfJson(),
+    'witness_region': ?witnessRegion?.toTfJson(),
   };
 }
 
@@ -42,12 +42,11 @@ final class AwsDsqlCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionProtectionEnabled != null)
-             'deletion_protection_enabled': deletionProtectionEnabled,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (kmsEncryptionKey != null) 'kms_encryption_key': kmsEncryptionKey,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'deletion_protection_enabled': ?deletionProtectionEnabled,
+           'force_destroy': ?forceDestroy,
+           'kms_encryption_key': ?kmsEncryptionKey,
+           'region': ?region,
+           'tags': ?tags,
            if (multiRegionProperties != null)
              'multi_region_properties': TfArg.literal([
                for (final e in multiRegionProperties) e.encode(),

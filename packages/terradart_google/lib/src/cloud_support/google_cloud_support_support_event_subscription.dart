@@ -42,7 +42,7 @@ final class GoogleCloudSupportSupportEventSubscription extends Resource {
          argMap: {
            'organization': organization,
            'pub_sub_topic': pubSubTopic,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

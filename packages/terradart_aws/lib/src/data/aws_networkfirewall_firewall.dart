@@ -21,12 +21,7 @@ final class DataAwsNetworkfirewallFirewall extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (arn != null) 'arn': arn,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'arn': ?arn, 'name': ?name, 'region': ?region, 'tags': ?tags},
        );
 
   @override

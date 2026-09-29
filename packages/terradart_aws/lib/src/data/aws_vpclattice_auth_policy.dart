@@ -22,10 +22,10 @@ final class DataAwsVpclatticeAuthPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
+           'policy': ?policy,
+           'region': ?region,
            'resource_identifier': resourceIdentifier,
-           if (state != null) 'state': state,
+           'state': ?state,
          },
        );
 

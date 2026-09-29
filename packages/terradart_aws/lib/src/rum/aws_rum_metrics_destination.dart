@@ -38,9 +38,9 @@ final class AwsRumMetricsDestination extends Resource {
          argMap: {
            'app_monitor_name': appMonitorName,
            'destination': destination,
-           if (destinationArn != null) 'destination_arn': destinationArn,
-           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'destination_arn': ?destinationArn,
+           'iam_role_arn': ?iamRoleArn?.encodeAs('arn'),
+           'region': ?region,
          },
        );
 

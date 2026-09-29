@@ -22,7 +22,7 @@ final class DataplexDataAssetAccessGroupConfigs {
 
   Map<String, Object?> encode() => {
     'access_group': accessGroup.toTfJson(),
-    if (iamRoles != null) 'iam_roles': iamRoles!.toTfJson(),
+    'iam_roles': ?iamRoles?.toTfJson(),
   };
 }
 
@@ -52,10 +52,10 @@ final class GoogleDataplexDataAsset extends Resource {
          argMap: {
            'data_asset_id': dataAssetId,
            'data_product_id': dataProductId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'resource': resource,
            if (accessGroupConfigs != null)
              'access_group_configs': TfArg.literal([

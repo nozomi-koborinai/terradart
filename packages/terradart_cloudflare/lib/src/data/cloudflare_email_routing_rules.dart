@@ -24,9 +24,9 @@ final class DataCloudflareEmailRoutingRules extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
-           if (maxItems != null) 'max_items': maxItems,
-           if (zoneId != null) 'zone_id': zoneId,
+           'enabled': ?enabled,
+           'max_items': ?maxItems,
+           'zone_id': ?zoneId,
          },
        );
 

@@ -29,7 +29,7 @@ final class DataAwsS3filesFileSystems extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (fileSystems != null)
              'file_systems': TfArg.literal([
                for (final e in fileSystems) e.encode(),

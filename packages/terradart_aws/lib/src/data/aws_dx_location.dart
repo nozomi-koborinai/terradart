@@ -18,10 +18,7 @@ final class DataAwsDxLocation extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'location_code': locationCode,
-           if (region != null) 'region': region,
-         },
+         argMap: {'location_code': locationCode, 'region': ?region},
        );
 
   @override

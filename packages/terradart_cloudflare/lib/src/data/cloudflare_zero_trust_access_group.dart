@@ -19,8 +19,8 @@ final class DataZeroTrustAccessGroupFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -44,9 +44,9 @@ final class DataCloudflareZeroTrustAccessGroup extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (groupId != null) 'group_id': groupId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'group_id': ?groupId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

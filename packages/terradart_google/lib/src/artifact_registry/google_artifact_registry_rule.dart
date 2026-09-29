@@ -48,10 +48,10 @@ final class ArtifactRegistryRuleCondition {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -105,15 +105,15 @@ final class GoogleArtifactRegistryRule extends Resource {
          terraformType: tfType,
          argMap: {
            'repository_id': repositoryId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'rule_id': ruleId,
-           if (action != null) 'action': action,
-           if (operation != null) 'operation': operation,
-           if (packageId != null) 'package_id': packageId,
+           'action': ?action,
+           'operation': ?operation,
+           'package_id': ?packageId,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -26,10 +26,7 @@ final class CloudflareUniversalSslSetting extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (enabled != null) 'enabled': enabled,
-           'zone_id': zoneId.encodeAs('id'),
-         },
+         argMap: {'enabled': ?enabled, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

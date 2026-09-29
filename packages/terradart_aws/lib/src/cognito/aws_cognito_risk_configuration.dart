@@ -23,8 +23,7 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfiguration {
 
   Map<String, Object?> encode() => {
     'actions': actions.encode(),
-    if (notifyConfiguration != null)
-      'notify_configuration': notifyConfiguration!.encode(),
+    'notify_configuration': ?notifyConfiguration?.encode(),
   };
 }
 
@@ -48,9 +47,9 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActions {
   mediumAction;
 
   Map<String, Object?> encode() => {
-    if (highAction != null) 'high_action': highAction!.encode(),
-    if (lowAction != null) 'low_action': lowAction!.encode(),
-    if (mediumAction != null) 'medium_action': mediumAction!.encode(),
+    'high_action': ?highAction?.encode(),
+    'low_action': ?lowAction?.encode(),
+    'medium_action': ?mediumAction?.encode(),
   };
 }
 
@@ -194,12 +193,12 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfig
   noActionEmail;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (replyTo != null) 'reply_to': replyTo!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'reply_to': ?replyTo?.toTfJson(),
     'source_arn': sourceArn.toTfJson(),
-    if (blockEmail != null) 'block_email': blockEmail!.encode(),
-    if (mfaEmail != null) 'mfa_email': mfaEmail!.encode(),
-    if (noActionEmail != null) 'no_action_email': noActionEmail!.encode(),
+    'block_email': ?blockEmail?.encode(),
+    'mfa_email': ?mfaEmail?.encode(),
+    'no_action_email': ?noActionEmail?.encode(),
   };
 }
 
@@ -355,10 +354,8 @@ final class CognitoRiskConfigurationRiskExceptionConfiguration {
   final TfArg<List<Object?>>? skippedIpRangeList;
 
   Map<String, Object?> encode() => {
-    if (blockedIpRangeList != null)
-      'blocked_ip_range_list': blockedIpRangeList!.toTfJson(),
-    if (skippedIpRangeList != null)
-      'skipped_ip_range_list': skippedIpRangeList!.toTfJson(),
+    'blocked_ip_range_list': ?blockedIpRangeList?.toTfJson(),
+    'skipped_ip_range_list': ?skippedIpRangeList?.toTfJson(),
   };
 }
 
@@ -384,8 +381,8 @@ final class AwsCognitoRiskConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clientId != null) 'client_id': clientId,
-           if (region != null) 'region': region,
+           'client_id': ?clientId,
+           'region': ?region,
            'user_pool_id': userPoolId,
            if (accountTakeoverRiskConfiguration != null)
              'account_takeover_risk_configuration': TfArg.literal(

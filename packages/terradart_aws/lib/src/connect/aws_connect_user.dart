@@ -27,10 +27,10 @@ final class ConnectUserIdentityInfo {
   final TfArg<String>? secondaryEmail;
 
   Map<String, Object?> encode() => {
-    if (email != null) 'email': email!.toTfJson(),
-    if (firstName != null) 'first_name': firstName!.toTfJson(),
-    if (lastName != null) 'last_name': lastName!.toTfJson(),
-    if (secondaryEmail != null) 'secondary_email': secondaryEmail!.toTfJson(),
+    'email': ?email?.toTfJson(),
+    'first_name': ?firstName?.toTfJson(),
+    'last_name': ?lastName?.toTfJson(),
+    'secondary_email': ?secondaryEmail?.toTfJson(),
   };
 }
 
@@ -54,11 +54,9 @@ final class ConnectUserPhoneConfig {
   final TfArg<ConnectUserPhoneConfigPhoneType> phoneType;
 
   Map<String, Object?> encode() => {
-    if (afterContactWorkTimeLimit != null)
-      'after_contact_work_time_limit': afterContactWorkTimeLimit!.toTfJson(),
-    if (autoAccept != null) 'auto_accept': autoAccept!.toTfJson(),
-    if (deskPhoneNumber != null)
-      'desk_phone_number': deskPhoneNumber!.toTfJson(),
+    'after_contact_work_time_limit': ?afterContactWorkTimeLimit?.toTfJson(),
+    'auto_accept': ?autoAccept?.toTfJson(),
+    'desk_phone_number': ?deskPhoneNumber?.toTfJson(),
     'phone_type': phoneType.toTfJson(),
   };
 }
@@ -97,15 +95,15 @@ final class AwsConnectUser extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (directoryUserId != null) 'directory_user_id': directoryUserId,
-           if (hierarchyGroupId != null) 'hierarchy_group_id': hierarchyGroupId,
+           'directory_user_id': ?directoryUserId,
+           'hierarchy_group_id': ?hierarchyGroupId,
            'instance_id': instanceId,
            'name': name,
-           if (password != null) 'password': password,
-           if (region != null) 'region': region,
+           'password': ?password,
+           'region': ?region,
            'routing_profile_id': routingProfileId,
            'security_profile_ids': securityProfileIds,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (identityInfo != null)
              'identity_info': TfArg.literal(identityInfo.encode()),
            'phone_config': TfArg.literal(phoneConfig.encode()),

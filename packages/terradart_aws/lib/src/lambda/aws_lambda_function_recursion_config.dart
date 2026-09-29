@@ -36,7 +36,7 @@ final class AwsLambdaFunctionRecursionConfig extends Resource {
          argMap: {
            'function_name': functionName.encodeAs('function_name'),
            'recursive_loop': recursiveLoop,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

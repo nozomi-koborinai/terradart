@@ -29,17 +29,16 @@ final class DataCloudflareShares extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (includeRecipientCounts != null)
-             'include_recipient_counts': includeRecipientCounts,
-           if (includeResources != null) 'include_resources': includeResources,
-           if (kind != null) 'kind': kind,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
-           if (resourceTypes != null) 'resource_types': resourceTypes,
-           if (status != null) 'status': status,
-           if (tag != null) 'tag': tag,
-           if (targetType != null) 'target_type': targetType,
+           'direction': ?direction,
+           'include_recipient_counts': ?includeRecipientCounts,
+           'include_resources': ?includeResources,
+           'kind': ?kind,
+           'max_items': ?maxItems,
+           'order': ?order,
+           'resource_types': ?resourceTypes,
+           'status': ?status,
+           'tag': ?tag,
+           'target_type': ?targetType,
          },
        );
 

@@ -21,10 +21,7 @@ final class DataGoogleOrganization extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (domain != null) 'domain': domain,
-           if (organization != null) 'organization': organization,
-         },
+         argMap: {'domain': ?domain, 'organization': ?organization},
        );
 
   @override

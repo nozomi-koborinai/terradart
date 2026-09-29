@@ -33,7 +33,7 @@ final class GoogleBigqueryTableIamPolicy extends Resource {
            'dataset_id': datasetId.encodeAs('dataset_id'),
            'table_id': tableId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

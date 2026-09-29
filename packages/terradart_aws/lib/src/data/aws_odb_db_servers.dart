@@ -20,7 +20,7 @@ final class DataAwsOdbDbServers extends Data {
          terraformType: tfType,
          argMap: {
            'cloud_exadata_infrastructure_id': cloudExadataInfrastructureId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

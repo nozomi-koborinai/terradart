@@ -22,10 +22,7 @@ final class DataGoogleIamWorkforcePoolIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (location != null) 'location': location,
-           'workforce_pool_id': workforcePoolId,
-         },
+         argMap: {'location': ?location, 'workforce_pool_id': workforcePoolId},
        );
 
   @override

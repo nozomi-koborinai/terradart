@@ -22,9 +22,9 @@ final class DataAwsSsmParametersByPath extends Data {
          terraformType: tfType,
          argMap: {
            'path': path,
-           if (recursive != null) 'recursive': recursive,
-           if (region != null) 'region': region,
-           if (withDecryption != null) 'with_decryption': withDecryption,
+           'recursive': ?recursive,
+           'region': ?region,
+           'with_decryption': ?withDecryption,
          },
        );
 

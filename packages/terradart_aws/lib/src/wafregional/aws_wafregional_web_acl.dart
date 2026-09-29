@@ -44,7 +44,7 @@ final class WafregionalWebAclLoggingConfiguration {
 
   Map<String, Object?> encode() => {
     'log_destination': logDestination.toTfJson(),
-    if (redactedFields != null) 'redacted_fields': redactedFields!.encode(),
+    'redacted_fields': ?redactedFields?.encode(),
   };
 }
 
@@ -81,7 +81,7 @@ final class WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatch {
   type;
 
   Map<String, Object?> encode() => {
-    if (data != null) 'data': data!.toTfJson(),
+    'data': ?data?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -129,9 +129,9 @@ final class WafregionalWebAclRule {
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'rule_id': ruleId.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (action != null) 'action': action!.encode(),
-    if (overrideAction != null) 'override_action': overrideAction!.encode(),
+    'type': ?type?.toTfJson(),
+    'action': ?action?.encode(),
+    'override_action': ?overrideAction?.encode(),
   };
 }
 
@@ -211,8 +211,8 @@ final class AwsWafregionalWebAcl extends Resource {
          argMap: {
            'metric_name': metricName,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'default_action': TfArg.literal(defaultAction.encode()),
            if (loggingConfiguration != null)
              'logging_configuration': TfArg.literal(

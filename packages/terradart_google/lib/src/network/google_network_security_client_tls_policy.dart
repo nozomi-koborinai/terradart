@@ -54,16 +54,14 @@ final class GoogleNetworkSecurityClientTlsPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (sni != null) 'sni': sni,
-           if (clientCertificate != null)
-             'client_certificate': clientCertificate,
-           if (serverValidationCa != null)
-             'server_validation_ca': serverValidationCa,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'description': ?description,
+           'sni': ?sni,
+           'client_certificate': ?clientCertificate,
+           'server_validation_ca': ?serverValidationCa,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

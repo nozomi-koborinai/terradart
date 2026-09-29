@@ -24,9 +24,9 @@ final class DataOrganizationsContaining {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (account != null) 'account': account!.toTfJson(),
-    if (organization != null) 'organization': organization!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'account': ?account?.toTfJson(),
+    'organization': ?organization?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -43,9 +43,9 @@ final class DataOrganizationsName {
   final TfArg<String>? startsWith;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endsWith != null) 'ends_with': endsWith!.toTfJson(),
-    if (startsWith != null) 'starts_with': startsWith!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'ends_with': ?endsWith?.toTfJson(),
+    'starts_with': ?startsWith?.toTfJson(),
   };
 }
 
@@ -79,9 +79,9 @@ final class DataCloudflareOrganizations extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (maxItems != null) 'max_items': maxItems,
-           if (pageSize != null) 'page_size': pageSize,
-           if (pageToken != null) 'page_token': pageToken,
+           'max_items': ?maxItems,
+           'page_size': ?pageSize,
+           'page_token': ?pageToken,
            if (containing != null)
              'containing': TfArg.literal(containing.encode()),
            if (name != null) 'name': TfArg.literal(name.encode()),

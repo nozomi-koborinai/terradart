@@ -172,12 +172,11 @@ final class GoogleComputeRoute extends Resource {
            'name': name,
            'network': network.encodeAs('id'),
            'dest_range': destRange,
-           if (description != null) 'description': description,
-           if (priority != null) 'priority': priority,
-           if (nextHopInstanceZone != null)
-             'next_hop_instance_zone': nextHopInstanceZone,
-           if (tags != null) 'tags': tags,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'priority': ?priority,
+           'next_hop_instance_zone': ?nextHopInstanceZone,
+           'tags': ?tags,
+           'project': ?project,
            nextHop.blockKey: nextHop.value,
          },
        );

@@ -25,10 +25,9 @@ final class AwsGlacierVaultLock extends Resource {
          terraformType: tfType,
          argMap: {
            'complete_lock': completeLock,
-           if (ignoreDeletionError != null)
-             'ignore_deletion_error': ignoreDeletionError,
+           'ignore_deletion_error': ?ignoreDeletionError,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
            'vault_name': vaultName,
          },
        );

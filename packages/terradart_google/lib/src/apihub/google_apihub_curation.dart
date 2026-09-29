@@ -79,10 +79,10 @@ final class GoogleApihubCuration extends Resource {
            'location': location,
            'curation_id': curationId,
            'display_name': displayName,
-           if (description != null) 'description': description,
+           'description': ?description,
            'endpoint': TfArg.literal(endpoint.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

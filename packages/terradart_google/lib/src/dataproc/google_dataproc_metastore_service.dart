@@ -116,21 +116,20 @@ final class GoogleDataprocMetastoreService extends Resource {
          terraformType: tfType,
          argMap: {
            'service_id': serviceId,
-           if (location != null) 'location': location,
-           if (tier != null) 'tier': tier,
-           if (databaseType != null) 'database_type': databaseType,
-           if (releaseChannel != null) 'release_channel': releaseChannel,
+           'location': ?location,
+           'tier': ?tier,
+           'database_type': ?databaseType,
+           'release_channel': ?releaseChannel,
            if (hiveMetastoreConfig != null)
              'hive_metastore_config': TfArg.literal([
                hiveMetastoreConfig.toArgMap(),
              ]),
-           if (network != null) 'network': network.encodeAs('id'),
-           if (port != null) 'port': port,
-           if (labels != null) 'labels': labels,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'network': ?network?.encodeAs('id'),
+           'port': ?port,
+           'labels': ?labels,
+           'deletion_protection': ?deletionProtection,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

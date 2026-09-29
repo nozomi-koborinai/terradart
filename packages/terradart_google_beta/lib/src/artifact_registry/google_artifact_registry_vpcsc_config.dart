@@ -35,9 +35,9 @@ final class GoogleArtifactRegistryVpcscConfig extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
-           if (vpcscPolicy != null) 'vpcsc_policy': vpcscPolicy,
+           'location': ?location,
+           'project': ?project,
+           'vpcsc_policy': ?vpcscPolicy,
          },
        );
 

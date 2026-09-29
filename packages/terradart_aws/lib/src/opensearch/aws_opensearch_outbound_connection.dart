@@ -29,8 +29,7 @@ final class OpensearchOutboundConnectionConnectionProperties {
   crossClusterSearch;
 
   Map<String, Object?> encode() => {
-    if (crossClusterSearch != null)
-      'cross_cluster_search': crossClusterSearch!.encode(),
+    'cross_cluster_search': ?crossClusterSearch?.encode(),
   };
 }
 
@@ -45,8 +44,7 @@ final class OpensearchOutboundConnectionConnectionPropertiesCrossClusterSearch {
   final TfArg<String>? skipUnavailable;
 
   Map<String, Object?> encode() => {
-    if (skipUnavailable != null)
-      'skip_unavailable': skipUnavailable!.toTfJson(),
+    'skip_unavailable': ?skipUnavailable?.toTfJson(),
   };
 }
 
@@ -116,10 +114,10 @@ final class AwsOpensearchOutboundConnection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptConnection != null) 'accept_connection': acceptConnection,
+           'accept_connection': ?acceptConnection,
            'connection_alias': connectionAlias,
-           if (connectionMode != null) 'connection_mode': connectionMode,
-           if (region != null) 'region': region,
+           'connection_mode': ?connectionMode,
+           'region': ?region,
            if (connectionProperties != null)
              'connection_properties': TfArg.literal(
                connectionProperties.encode(),

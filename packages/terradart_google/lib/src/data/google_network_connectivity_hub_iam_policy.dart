@@ -20,10 +20,7 @@ final class DataGoogleNetworkConnectivityHubIamPolicy extends Data {
     TfArg<String>? project,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {'hub': hub, if (project != null) 'project': project},
-       );
+  }) : super(terraformType: tfType, argMap: {'hub': hub, 'project': ?project});
 
   @override
   Set<String> get sensitiveFields =>

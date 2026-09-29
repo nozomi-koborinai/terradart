@@ -628,8 +628,7 @@ final class GameliftFleetCertificateConfiguration {
   certificateType;
 
   Map<String, Object?> encode() => {
-    if (certificateType != null)
-      'certificate_type': certificateType!.toTfJson(),
+    'certificate_type': ?certificateType?.toTfJson(),
   };
 }
 
@@ -697,10 +696,8 @@ final class GameliftFleetResourceCreationLimitPolicy {
   final TfArg<num>? policyPeriodInMinutes;
 
   Map<String, Object?> encode() => {
-    if (newGameSessionsPerCreator != null)
-      'new_game_sessions_per_creator': newGameSessionsPerCreator!.toTfJson(),
-    if (policyPeriodInMinutes != null)
-      'policy_period_in_minutes': policyPeriodInMinutes!.toTfJson(),
+    'new_game_sessions_per_creator': ?newGameSessionsPerCreator?.toTfJson(),
+    'policy_period_in_minutes': ?policyPeriodInMinutes?.toTfJson(),
   };
 }
 
@@ -721,12 +718,10 @@ final class GameliftFleetRuntimeConfiguration {
   final List<GameliftFleetRuntimeConfigurationServerProcess>? serverProcess;
 
   Map<String, Object?> encode() => {
-    if (gameSessionActivationTimeoutSeconds != null)
-      'game_session_activation_timeout_seconds':
-          gameSessionActivationTimeoutSeconds!.toTfJson(),
-    if (maxConcurrentGameSessionActivations != null)
-      'max_concurrent_game_session_activations':
-          maxConcurrentGameSessionActivations!.toTfJson(),
+    'game_session_activation_timeout_seconds':
+        ?gameSessionActivationTimeoutSeconds?.toTfJson(),
+    'max_concurrent_game_session_activations':
+        ?maxConcurrentGameSessionActivations?.toTfJson(),
     if (serverProcess != null)
       'server_process': [for (final e in serverProcess!) e.encode()],
   };
@@ -751,7 +746,7 @@ final class GameliftFleetRuntimeConfigurationServerProcess {
   Map<String, Object?> encode() => {
     'concurrent_executions': concurrentExecutions.toTfJson(),
     'launch_path': launchPath.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
   };
 }
 
@@ -784,17 +779,16 @@ final class AwsGameliftFleet extends Resource {
          terraformType: tfType,
          argMap: {
            ...artifact.argMap,
-           if (description != null) 'description': description,
+           'description': ?description,
            'ec2_instance_type': ec2InstanceType,
-           if (fleetType != null) 'fleet_type': fleetType,
-           if (instanceRoleArn != null) 'instance_role_arn': instanceRoleArn,
-           if (metricGroups != null) 'metric_groups': metricGroups,
+           'fleet_type': ?fleetType,
+           'instance_role_arn': ?instanceRoleArn,
+           'metric_groups': ?metricGroups,
            'name': name,
-           if (newGameSessionProtectionPolicy != null)
-             'new_game_session_protection_policy':
-                 newGameSessionProtectionPolicy,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'new_game_session_protection_policy':
+               ?newGameSessionProtectionPolicy,
+           'region': ?region,
+           'tags': ?tags,
            if (certificateConfiguration != null)
              'certificate_configuration': TfArg.literal(
                certificateConfiguration.encode(),

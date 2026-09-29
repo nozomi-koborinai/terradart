@@ -56,19 +56,16 @@ final class ComputeFirewallPolicyWithRulesRule {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (enableLogging != null) 'enable_logging': enableLogging!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'enable_logging': ?enableLogging?.toTfJson(),
     'priority': priority.toTfJson(),
-    if (ruleName != null) 'rule_name': ruleName!.toTfJson(),
-    if (securityProfileGroup != null)
-      'security_profile_group': securityProfileGroup!.toTfJson(),
-    if (targetResources != null)
-      'target_resources': targetResources!.toTfJson(),
-    if (targetServiceAccounts != null)
-      'target_service_accounts': targetServiceAccounts!.toTfJson(),
-    if (tlsInspect != null) 'tls_inspect': tlsInspect!.toTfJson(),
+    'rule_name': ?ruleName?.toTfJson(),
+    'security_profile_group': ?securityProfileGroup?.toTfJson(),
+    'target_resources': ?targetResources?.toTfJson(),
+    'target_service_accounts': ?targetServiceAccounts?.toTfJson(),
+    'tls_inspect': ?tlsInspect?.toTfJson(),
     'match': match.encode(),
     if (targetSecureTag != null)
       'target_secure_tag': [for (final e in targetSecureTag!) e.encode()],
@@ -129,21 +126,16 @@ final class ComputeFirewallPolicyWithRulesRuleMatch {
   final List<ComputeFirewallPolicyWithRulesRuleMatchSrcSecureTag>? srcSecureTag;
 
   Map<String, Object?> encode() => {
-    if (destAddressGroups != null)
-      'dest_address_groups': destAddressGroups!.toTfJson(),
-    if (destFqdns != null) 'dest_fqdns': destFqdns!.toTfJson(),
-    if (destIpRanges != null) 'dest_ip_ranges': destIpRanges!.toTfJson(),
-    if (destRegionCodes != null)
-      'dest_region_codes': destRegionCodes!.toTfJson(),
-    if (destThreatIntelligences != null)
-      'dest_threat_intelligences': destThreatIntelligences!.toTfJson(),
-    if (srcAddressGroups != null)
-      'src_address_groups': srcAddressGroups!.toTfJson(),
-    if (srcFqdns != null) 'src_fqdns': srcFqdns!.toTfJson(),
-    if (srcIpRanges != null) 'src_ip_ranges': srcIpRanges!.toTfJson(),
-    if (srcRegionCodes != null) 'src_region_codes': srcRegionCodes!.toTfJson(),
-    if (srcThreatIntelligences != null)
-      'src_threat_intelligences': srcThreatIntelligences!.toTfJson(),
+    'dest_address_groups': ?destAddressGroups?.toTfJson(),
+    'dest_fqdns': ?destFqdns?.toTfJson(),
+    'dest_ip_ranges': ?destIpRanges?.toTfJson(),
+    'dest_region_codes': ?destRegionCodes?.toTfJson(),
+    'dest_threat_intelligences': ?destThreatIntelligences?.toTfJson(),
+    'src_address_groups': ?srcAddressGroups?.toTfJson(),
+    'src_fqdns': ?srcFqdns?.toTfJson(),
+    'src_ip_ranges': ?srcIpRanges?.toTfJson(),
+    'src_region_codes': ?srcRegionCodes?.toTfJson(),
+    'src_threat_intelligences': ?srcThreatIntelligences?.toTfJson(),
     'layer4_config': [for (final e in layer4Config) e.encode()],
     if (srcSecureTag != null)
       'src_secure_tag': [for (final e in srcSecureTag!) e.encode()],
@@ -165,7 +157,7 @@ final class ComputeFirewallPolicyWithRulesRuleMatchLayer4Config {
 
   Map<String, Object?> encode() => {
     'ip_protocol': ipProtocol.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
+    'ports': ?ports?.toTfJson(),
   };
 }
 
@@ -177,7 +169,7 @@ final class ComputeFirewallPolicyWithRulesRuleMatchSrcSecureTag {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `rule.target_secure_tag` block of
@@ -188,7 +180,7 @@ final class ComputeFirewallPolicyWithRulesRuleTargetSecureTag {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_firewall_policy_with_rules`.
@@ -218,8 +210,8 @@ final class GoogleComputeFirewallPolicyWithRules extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'parent': parent,
            'short_name': shortName,
            'rule': TfArg.literal([for (final e in rule) e.encode()]),

@@ -45,10 +45,10 @@ final class GoogleIntegrationConnectorsManagedZone extends Resource {
            'dns': dns,
            'target_project': targetProject,
            'target_vpc': targetVpc,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

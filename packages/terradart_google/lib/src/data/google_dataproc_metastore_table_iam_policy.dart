@@ -27,8 +27,8 @@ final class DataGoogleDataprocMetastoreTableIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'database_id': databaseId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
            'service_id': serviceId,
            'table': table,
          },

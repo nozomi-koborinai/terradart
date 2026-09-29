@@ -56,19 +56,15 @@ final class GoogleComputeNetworkPeering extends Resource {
            'name': name,
            'network': network.encodeAs('id'),
            'peer_network': peerNetwork.encodeAs('id'),
-           if (exportCustomRoutes != null)
-             'export_custom_routes': exportCustomRoutes,
-           if (importCustomRoutes != null)
-             'import_custom_routes': importCustomRoutes,
-           if (exportSubnetRoutesWithPublicIp != null)
-             'export_subnet_routes_with_public_ip':
-                 exportSubnetRoutesWithPublicIp,
-           if (importSubnetRoutesWithPublicIp != null)
-             'import_subnet_routes_with_public_ip':
-                 importSubnetRoutesWithPublicIp,
-           if (stackType != null) 'stack_type': stackType,
-           if (updateStrategy != null) 'update_strategy': updateStrategy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'export_custom_routes': ?exportCustomRoutes,
+           'import_custom_routes': ?importCustomRoutes,
+           'export_subnet_routes_with_public_ip':
+               ?exportSubnetRoutesWithPublicIp,
+           'import_subnet_routes_with_public_ip':
+               ?importSubnetRoutesWithPublicIp,
+           'stack_type': ?stackType,
+           'update_strategy': ?updateStrategy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

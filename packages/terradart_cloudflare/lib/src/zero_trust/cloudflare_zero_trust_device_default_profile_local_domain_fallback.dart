@@ -28,8 +28,8 @@ final class ZeroTrustDeviceDefaultProfileLocalDomainFallbackDomains {
   final TfArg<String> suffix;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (dnsServer != null) 'dns_server': dnsServer!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'dns_server': ?dnsServer?.toTfJson(),
     'suffix': suffix.toTfJson(),
   };
 }

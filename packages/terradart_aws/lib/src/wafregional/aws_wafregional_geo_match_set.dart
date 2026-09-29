@@ -43,7 +43,7 @@ final class AwsWafregionalGeoMatchSet extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (geoMatchConstraint != null)
              'geo_match_constraint': TfArg.literal([
                for (final e in geoMatchConstraint) e.encode(),

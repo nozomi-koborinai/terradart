@@ -28,7 +28,7 @@ final class AwsRedshiftPartner extends Resource {
            'cluster_identifier': clusterIdentifier,
            'database_name': databaseName,
            'partner_name': partnerName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

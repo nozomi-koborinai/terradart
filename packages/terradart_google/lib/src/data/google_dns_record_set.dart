@@ -27,7 +27,7 @@ final class DataGoogleDnsRecordSet extends Data {
          argMap: {
            'managed_zone': managedZone,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'type': type,
          },
        );

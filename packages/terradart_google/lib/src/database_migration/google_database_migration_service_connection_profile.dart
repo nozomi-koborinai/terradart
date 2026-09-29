@@ -42,7 +42,7 @@ final class DatabaseMigrationServiceConnectionProfileAlloydb {
 
   Map<String, Object?> encode() => {
     'cluster_id': clusterId.toTfJson(),
-    if (settings != null) 'settings': settings!.encode(),
+    'settings': ?settings?.encode(),
   };
 }
 
@@ -68,11 +68,10 @@ final class DatabaseMigrationServiceConnectionProfileAlloydbSettings {
   primaryInstanceSettings;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
     'vpc_network': vpcNetwork.encodeAs('id').toTfJson(),
     'initial_user': initialUser.encode(),
-    if (primaryInstanceSettings != null)
-      'primary_instance_settings': primaryInstanceSettings!.encode(),
+    'primary_instance_settings': ?primaryInstanceSettings?.encode(),
   };
 }
 
@@ -116,9 +115,9 @@ final class DatabaseMigrationServiceConnectionProfileAlloydbSettingsPrimaryInsta
   machineConfig;
 
   Map<String, Object?> encode() => {
-    if (databaseFlags != null) 'database_flags': databaseFlags!.toTfJson(),
+    'database_flags': ?databaseFlags?.toTfJson(),
     'id': id.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
     'machine_config': machineConfig.encode(),
   };
 }
@@ -144,9 +143,7 @@ final class DatabaseMigrationServiceConnectionProfileCloudsql {
 
   final DatabaseMigrationServiceConnectionProfileCloudsqlSettings? settings;
 
-  Map<String, Object?> encode() => {
-    if (settings != null) 'settings': settings!.encode(),
-  };
+  Map<String, Object?> encode() => {'settings': ?settings?.encode()};
 }
 
 /// Typed helper for the `cloudsql.settings` block of
@@ -213,26 +210,22 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
   ipConfig;
 
   Map<String, Object?> encode() => {
-    if (activationPolicy != null)
-      'activation_policy': activationPolicy!.toTfJson(),
-    if (autoStorageIncrease != null)
-      'auto_storage_increase': autoStorageIncrease!.toTfJson(),
-    if (cmekKeyName != null) 'cmek_key_name': cmekKeyName!.toTfJson(),
-    if (collation != null) 'collation': collation!.toTfJson(),
-    if (dataDiskSizeGb != null) 'data_disk_size_gb': dataDiskSizeGb!.toTfJson(),
-    if (dataDiskType != null) 'data_disk_type': dataDiskType!.toTfJson(),
-    if (databaseFlags != null) 'database_flags': databaseFlags!.toTfJson(),
-    if (databaseVersion != null)
-      'database_version': databaseVersion!.toTfJson(),
-    if (edition != null) 'edition': edition!.toTfJson(),
-    if (rootPassword != null) 'root_password': rootPassword!.toTfJson(),
+    'activation_policy': ?activationPolicy?.toTfJson(),
+    'auto_storage_increase': ?autoStorageIncrease?.toTfJson(),
+    'cmek_key_name': ?cmekKeyName?.toTfJson(),
+    'collation': ?collation?.toTfJson(),
+    'data_disk_size_gb': ?dataDiskSizeGb?.toTfJson(),
+    'data_disk_type': ?dataDiskType?.toTfJson(),
+    'database_flags': ?databaseFlags?.toTfJson(),
+    'database_version': ?databaseVersion?.toTfJson(),
+    'edition': ?edition?.toTfJson(),
+    'root_password': ?rootPassword?.toTfJson(),
     'source_id': sourceId.toTfJson(),
-    if (storageAutoResizeLimit != null)
-      'storage_auto_resize_limit': storageAutoResizeLimit!.toTfJson(),
-    if (tier != null) 'tier': tier!.toTfJson(),
-    if (userLabels != null) 'user_labels': userLabels!.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
-    if (ipConfig != null) 'ip_config': ipConfig!.encode(),
+    'storage_auto_resize_limit': ?storageAutoResizeLimit?.toTfJson(),
+    'tier': ?tier?.toTfJson(),
+    'user_labels': ?userLabels?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
+    'ip_config': ?ipConfig?.encode(),
   };
 }
 
@@ -298,9 +291,9 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfig {
   authorizedNetworks;
 
   Map<String, Object?> encode() => {
-    if (enableIpv4 != null) 'enable_ipv4': enableIpv4!.toTfJson(),
-    if (privateNetwork != null) 'private_network': privateNetwork!.toTfJson(),
-    if (requireSsl != null) 'require_ssl': requireSsl!.toTfJson(),
+    'enable_ipv4': ?enableIpv4?.toTfJson(),
+    'private_network': ?privateNetwork?.toTfJson(),
+    'require_ssl': ?requireSsl?.toTfJson(),
     if (authorizedNetworks != null)
       'authorized_networks': [for (final e in authorizedNetworks!) e.encode()],
   };
@@ -325,7 +318,7 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAut
 
   Map<String, Object?> encode() => {
     ...expiration.encode(),
-    if (label != null) 'label': label!.toTfJson(),
+    'label': ?label?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -413,12 +406,12 @@ final class DatabaseMigrationServiceConnectionProfileMysql {
   final DatabaseMigrationServiceConnectionProfileMysqlSsl? ssl;
 
   Map<String, Object?> encode() => {
-    if (cloudSqlId != null) 'cloud_sql_id': cloudSqlId!.toTfJson(),
-    if (host != null) 'host': host!.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
-    if (ssl != null) 'ssl': ssl!.encode(),
+    'cloud_sql_id': ?cloudSqlId?.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'username': ?username?.toTfJson(),
+    'ssl': ?ssl?.encode(),
   };
 }
 
@@ -442,11 +435,10 @@ final class DatabaseMigrationServiceConnectionProfileMysqlSsl {
   final TfArg<DatabaseMigrationServiceConnectionProfileMysqlSslType>? type;
 
   Map<String, Object?> encode() => {
-    if (caCertificate != null) 'ca_certificate': caCertificate!.toTfJson(),
-    if (clientCertificate != null)
-      'client_certificate': clientCertificate!.toTfJson(),
-    if (clientKey != null) 'client_key': clientKey!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'ca_certificate': ?caCertificate?.toTfJson(),
+    'client_certificate': ?clientCertificate?.toTfJson(),
+    'client_key': ?clientKey?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -501,7 +493,7 @@ final class DatabaseMigrationServiceConnectionProfileOracle {
     'port': port.toTfJson(),
     'username': username.toTfJson(),
     ...connectivity.encode(),
-    if (ssl != null) 'ssl': ssl!.encode(),
+    'ssl': ?ssl?.encode(),
   };
 }
 
@@ -710,10 +702,9 @@ final class DatabaseMigrationServiceConnectionProfileOracleSsl {
   final TfArg<String>? clientKey;
 
   Map<String, Object?> encode() => {
-    if (caCertificate != null) 'ca_certificate': caCertificate!.toTfJson(),
-    if (clientCertificate != null)
-      'client_certificate': clientCertificate!.toTfJson(),
-    if (clientKey != null) 'client_key': clientKey!.toTfJson(),
+    'ca_certificate': ?caCertificate?.toTfJson(),
+    'client_certificate': ?clientCertificate?.toTfJson(),
+    'client_key': ?clientKey?.toTfJson(),
   };
 }
 
@@ -762,17 +753,15 @@ final class DatabaseMigrationServiceConnectionProfilePostgresql {
   final DatabaseMigrationServiceConnectionProfilePostgresqlSsl? ssl;
 
   Map<String, Object?> encode() => {
-    if (alloydbClusterId != null)
-      'alloydb_cluster_id': alloydbClusterId!.toTfJson(),
-    if (cloudSqlId != null) 'cloud_sql_id': cloudSqlId!.toTfJson(),
-    if (database != null) 'database': database!.toTfJson(),
-    if (host != null) 'host': host!.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
-    if (privateConnectivity != null)
-      'private_connectivity': privateConnectivity!.encode(),
-    if (ssl != null) 'ssl': ssl!.encode(),
+    'alloydb_cluster_id': ?alloydbClusterId?.toTfJson(),
+    'cloud_sql_id': ?cloudSqlId?.toTfJson(),
+    'database': ?database?.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'username': ?username?.toTfJson(),
+    'private_connectivity': ?privateConnectivity?.encode(),
+    'ssl': ?ssl?.encode(),
   };
 }
 
@@ -811,11 +800,10 @@ final class DatabaseMigrationServiceConnectionProfilePostgresqlSsl {
   final TfArg<DatabaseMigrationServiceConnectionProfilePostgresqlSslType>? type;
 
   Map<String, Object?> encode() => {
-    if (caCertificate != null) 'ca_certificate': caCertificate!.toTfJson(),
-    if (clientCertificate != null)
-      'client_certificate': clientCertificate!.toTfJson(),
-    if (clientKey != null) 'client_key': clientKey!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'ca_certificate': ?caCertificate?.toTfJson(),
+    'client_certificate': ?clientCertificate?.toTfJson(),
+    'client_key': ?clientKey?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -866,12 +854,12 @@ final class GoogleDatabaseMigrationServiceConnectionProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'connection_profile_id': connectionProfileId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
-           if (role != null) 'role': role,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'location': ?location,
+           'project': ?project,
+           'role': ?role,
            if (postgresql != null)
              'postgresql': TfArg.literal(postgresql.encode()),
          },

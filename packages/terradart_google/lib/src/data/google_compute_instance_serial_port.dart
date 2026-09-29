@@ -26,8 +26,8 @@ final class DataGoogleComputeInstanceSerialPort extends Data {
          argMap: {
            'instance': instance,
            'port': port,
-           if (project != null) 'project': project,
-           if (zone != null) 'zone': zone,
+           'project': ?project,
+           'zone': ?zone,
          },
        );
 

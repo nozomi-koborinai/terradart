@@ -45,10 +45,8 @@ final class KendraIndexCapacityUnits {
   final TfArg<num>? storageCapacityUnits;
 
   Map<String, Object?> encode() => {
-    if (queryCapacityUnits != null)
-      'query_capacity_units': queryCapacityUnits!.toTfJson(),
-    if (storageCapacityUnits != null)
-      'storage_capacity_units': storageCapacityUnits!.toTfJson(),
+    'query_capacity_units': ?queryCapacityUnits?.toTfJson(),
+    'storage_capacity_units': ?storageCapacityUnits?.toTfJson(),
   };
 }
 
@@ -74,8 +72,8 @@ final class KendraIndexDocumentMetadataConfigurationUpdates {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
-    if (relevance != null) 'relevance': relevance!.encode(),
-    if (search != null) 'search': search!.encode(),
+    'relevance': ?relevance?.encode(),
+    'search': ?search?.encode(),
   };
 }
 
@@ -120,12 +118,11 @@ final class KendraIndexDocumentMetadataConfigurationUpdatesRelevance {
   final TfArg<Map<String, num>>? valuesImportanceMap;
 
   Map<String, Object?> encode() => {
-    if (duration != null) 'duration': duration!.toTfJson(),
-    if (freshness != null) 'freshness': freshness!.toTfJson(),
-    if (importance != null) 'importance': importance!.toTfJson(),
-    if (rankOrder != null) 'rank_order': rankOrder!.toTfJson(),
-    if (valuesImportanceMap != null)
-      'values_importance_map': valuesImportanceMap!.toTfJson(),
+    'duration': ?duration?.toTfJson(),
+    'freshness': ?freshness?.toTfJson(),
+    'importance': ?importance?.toTfJson(),
+    'rank_order': ?rankOrder?.toTfJson(),
+    'values_importance_map': ?valuesImportanceMap?.toTfJson(),
   };
 }
 
@@ -162,10 +159,10 @@ final class KendraIndexDocumentMetadataConfigurationUpdatesSearch {
   final TfArg<bool>? sortable;
 
   Map<String, Object?> encode() => {
-    if (displayable != null) 'displayable': displayable!.toTfJson(),
-    if (facetable != null) 'facetable': facetable!.toTfJson(),
-    if (searchable != null) 'searchable': searchable!.toTfJson(),
-    if (sortable != null) 'sortable': sortable!.toTfJson(),
+    'displayable': ?displayable?.toTfJson(),
+    'facetable': ?facetable?.toTfJson(),
+    'searchable': ?searchable?.toTfJson(),
+    'sortable': ?sortable?.toTfJson(),
   };
 }
 
@@ -178,7 +175,7 @@ final class KendraIndexServerSideEncryptionConfiguration {
   final RefTo<AwsKmsKey>? kmsKeyId;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -229,10 +226,8 @@ final class KendraIndexUserTokenConfigurations {
   jwtTokenTypeConfiguration;
 
   Map<String, Object?> encode() => {
-    if (jsonTokenTypeConfiguration != null)
-      'json_token_type_configuration': jsonTokenTypeConfiguration!.encode(),
-    if (jwtTokenTypeConfiguration != null)
-      'jwt_token_type_configuration': jwtTokenTypeConfiguration!.encode(),
+    'json_token_type_configuration': ?jsonTokenTypeConfiguration?.encode(),
+    'jwt_token_type_configuration': ?jwtTokenTypeConfiguration?.encode(),
   };
 }
 
@@ -287,16 +282,13 @@ final class KendraIndexUserTokenConfigurationsJwtTokenTypeConfiguration {
   final TfArg<String>? userNameAttributeField;
 
   Map<String, Object?> encode() => {
-    if (claimRegex != null) 'claim_regex': claimRegex!.toTfJson(),
-    if (groupAttributeField != null)
-      'group_attribute_field': groupAttributeField!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
+    'claim_regex': ?claimRegex?.toTfJson(),
+    'group_attribute_field': ?groupAttributeField?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
     'key_location': keyLocation.toTfJson(),
-    if (secretsManagerArn != null)
-      'secrets_manager_arn': secretsManagerArn!.toTfJson(),
-    if (url != null) 'url': url!.toTfJson(),
-    if (userNameAttributeField != null)
-      'user_name_attribute_field': userNameAttributeField!.toTfJson(),
+    'secrets_manager_arn': ?secretsManagerArn?.toTfJson(),
+    'url': ?url?.toTfJson(),
+    'user_name_attribute_field': ?userNameAttributeField?.toTfJson(),
   };
 }
 
@@ -341,14 +333,13 @@ final class AwsKendraIndex extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (edition != null) 'edition': edition,
+           'description': ?description,
+           'edition': ?edition,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
-           if (userContextPolicy != null)
-             'user_context_policy': userContextPolicy,
+           'tags': ?tags,
+           'user_context_policy': ?userContextPolicy,
            if (capacityUnits != null)
              'capacity_units': TfArg.literal(capacityUnits.encode()),
            if (documentMetadataConfigurationUpdates != null)

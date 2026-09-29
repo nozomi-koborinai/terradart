@@ -30,7 +30,7 @@ final class IdentityPlatformInboundSamlConfigIdpConfig {
 
   Map<String, Object?> encode() => {
     'idp_entity_id': idpEntityId.toTfJson(),
-    if (signRequest != null) 'sign_request': signRequest!.toTfJson(),
+    'sign_request': ?signRequest?.toTfJson(),
     'sso_url': ssoUrl.toTfJson(),
     'idp_certificates': [for (final e in idpCertificates) e.encode()],
   };
@@ -47,8 +47,7 @@ final class IdentityPlatformInboundSamlConfigIdpConfigIdpCertificates {
   final TfArg<String>? x509Certificate;
 
   Map<String, Object?> encode() => {
-    if (x509Certificate != null)
-      'x509_certificate': x509Certificate!.toTfJson(),
+    'x509_certificate': ?x509Certificate?.toTfJson(),
   };
 }
 
@@ -66,8 +65,8 @@ final class IdentityPlatformInboundSamlConfigSpConfig {
   final TfArg<String>? spEntityId;
 
   Map<String, Object?> encode() => {
-    if (callbackUri != null) 'callback_uri': callbackUri!.toTfJson(),
-    if (spEntityId != null) 'sp_entity_id': spEntityId!.toTfJson(),
+    'callback_uri': ?callbackUri?.toTfJson(),
+    'sp_entity_id': ?spEntityId?.toTfJson(),
   };
 }
 
@@ -104,11 +103,11 @@ final class GoogleIdentityPlatformInboundSamlConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'idp_config': TfArg.literal(idpConfig.encode()),
            'sp_config': TfArg.literal(spConfig.encode()),
          },

@@ -46,8 +46,8 @@ final class BedrockModelInvocationJobInputDataConfigS3InputDataConfig {
   final TfArg<String> s3Uri;
 
   Map<String, Object?> encode() => {
-    if (s3BucketOwner != null) 's3_bucket_owner': s3BucketOwner!.toTfJson(),
-    if (s3InputFormat != null) 's3_input_format': s3InputFormat!.toTfJson(),
+    's3_bucket_owner': ?s3BucketOwner?.toTfJson(),
+    's3_input_format': ?s3InputFormat?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
   };
 }
@@ -98,9 +98,8 @@ final class BedrockModelInvocationJobOutputDataConfigS3OutputDataConfig {
   final TfArg<String> s3Uri;
 
   Map<String, Object?> encode() => {
-    if (s3BucketOwner != null) 's3_bucket_owner': s3BucketOwner!.toTfJson(),
-    if (s3EncryptionKeyId != null)
-      's3_encryption_key_id': s3EncryptionKeyId!.toTfJson(),
+    's3_bucket_owner': ?s3BucketOwner?.toTfJson(),
+    's3_encryption_key_id': ?s3EncryptionKeyId?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
   };
 }
@@ -148,11 +147,10 @@ final class AwsBedrockModelInvocationJob extends Resource {
          argMap: {
            'job_name': jobName,
            'model_id': modelId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (timeoutDurationInHours != null)
-             'timeout_duration_in_hours': timeoutDurationInHours,
+           'skip_destroy': ?skipDestroy,
+           'timeout_duration_in_hours': ?timeoutDurationInHours,
            if (inputDataConfig != null)
              'input_data_config': TfArg.literal([
                for (final e in inputDataConfig) e.encode(),

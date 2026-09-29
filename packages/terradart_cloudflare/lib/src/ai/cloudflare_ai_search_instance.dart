@@ -103,9 +103,8 @@ final class AiSearchInstanceIndexingOptions {
   final TfArg<bool>? useOcr;
 
   Map<String, Object?> encode() => {
-    if (keywordTokenizer != null)
-      'keyword_tokenizer': keywordTokenizer!.toTfJson(),
-    if (useOcr != null) 'use_ocr': useOcr!.toTfJson(),
+    'keyword_tokenizer': ?keywordTokenizer?.toTfJson(),
+    'use_ocr': ?useOcr?.toTfJson(),
   };
 }
 
@@ -133,9 +132,8 @@ final class AiSearchInstanceMetadata {
   final TfArg<String>? workerDomain;
 
   Map<String, Object?> encode() => {
-    if (createdFromAisearchWizard != null)
-      'created_from_aisearch_wizard': createdFromAisearchWizard!.toTfJson(),
-    if (workerDomain != null) 'worker_domain': workerDomain!.toTfJson(),
+    'created_from_aisearch_wizard': ?createdFromAisearchWizard?.toTfJson(),
+    'worker_domain': ?workerDomain?.toTfJson(),
   };
 }
 
@@ -172,17 +170,14 @@ final class AiSearchInstancePublicEndpointParams {
   final AiSearchInstancePublicEndpointParamsSearchEndpoint? searchEndpoint;
 
   Map<String, Object?> encode() => {
-    if (authorizedHosts != null)
-      'authorized_hosts': authorizedHosts!.toTfJson(),
-    if (customDomains != null) 'custom_domains': customDomains!.toTfJson(),
-    if (defaultDomainEnabled != null)
-      'default_domain_enabled': defaultDomainEnabled!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (chatCompletionsEndpoint != null)
-      'chat_completions_endpoint': chatCompletionsEndpoint!.encode(),
-    if (mcp != null) 'mcp': mcp!.encode(),
-    if (rateLimit != null) 'rate_limit': rateLimit!.encode(),
-    if (searchEndpoint != null) 'search_endpoint': searchEndpoint!.encode(),
+    'authorized_hosts': ?authorizedHosts?.toTfJson(),
+    'custom_domains': ?customDomains?.toTfJson(),
+    'default_domain_enabled': ?defaultDomainEnabled?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'chat_completions_endpoint': ?chatCompletionsEndpoint?.encode(),
+    'mcp': ?mcp?.encode(),
+    'rate_limit': ?rateLimit?.encode(),
+    'search_endpoint': ?searchEndpoint?.encode(),
   };
 }
 
@@ -196,9 +191,7 @@ final class AiSearchInstancePublicEndpointParamsChatCompletionsEndpoint {
 
   final TfArg<bool>? disabled;
 
-  Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
 }
 
 /// Typed helper for the `public_endpoint_params.mcp` block of
@@ -215,8 +208,8 @@ final class AiSearchInstancePublicEndpointParamsMcp {
   final TfArg<bool>? disabled;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
   };
 }
 
@@ -238,9 +231,9 @@ final class AiSearchInstancePublicEndpointParamsRateLimit {
   technique;
 
   Map<String, Object?> encode() => {
-    if (periodMs != null) 'period_ms': periodMs!.toTfJson(),
-    if (requests != null) 'requests': requests!.toTfJson(),
-    if (technique != null) 'technique': technique!.toTfJson(),
+    'period_ms': ?periodMs?.toTfJson(),
+    'requests': ?requests?.toTfJson(),
+    'technique': ?technique?.toTfJson(),
   };
 }
 
@@ -265,9 +258,7 @@ final class AiSearchInstancePublicEndpointParamsSearchEndpoint {
 
   final TfArg<bool>? disabled;
 
-  Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
 }
 
 /// Typed helper for the `retrieval_options` block of
@@ -282,8 +273,7 @@ final class AiSearchInstanceRetrievalOptions {
   final List<AiSearchInstanceRetrievalOptionsBoostBy>? boostBy;
 
   Map<String, Object?> encode() => {
-    if (keywordMatchMode != null)
-      'keyword_match_mode': keywordMatchMode!.toTfJson(),
+    'keyword_match_mode': ?keywordMatchMode?.toTfJson(),
     if (boostBy != null) 'boost_by': [for (final e in boostBy!) e.encode()],
   };
 }
@@ -312,7 +302,7 @@ final class AiSearchInstanceRetrievalOptionsBoostBy {
   final TfArg<String> field;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
     'field': field.toTfJson(),
   };
 }
@@ -352,11 +342,11 @@ final class AiSearchInstanceSourceParams {
   final AiSearchInstanceSourceParamsWebCrawler? webCrawler;
 
   Map<String, Object?> encode() => {
-    if (excludeItems != null) 'exclude_items': excludeItems!.toTfJson(),
-    if (includeItems != null) 'include_items': includeItems!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (r2Jurisdiction != null) 'r2_jurisdiction': r2Jurisdiction!.toTfJson(),
-    if (webCrawler != null) 'web_crawler': webCrawler!.encode(),
+    'exclude_items': ?excludeItems?.toTfJson(),
+    'include_items': ?includeItems?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'r2_jurisdiction': ?r2Jurisdiction?.toTfJson(),
+    'web_crawler': ?webCrawler?.encode(),
   };
 }
 
@@ -377,9 +367,9 @@ final class AiSearchInstanceSourceParamsWebCrawler {
   final AiSearchInstanceSourceParamsWebCrawlerParseOptions? parseOptions;
 
   Map<String, Object?> encode() => {
-    if (parseType != null) 'parse_type': parseType!.toTfJson(),
-    if (discoverOptions != null) 'discover_options': discoverOptions!.encode(),
-    if (parseOptions != null) 'parse_options': parseOptions!.encode(),
+    'parse_type': ?parseType?.toTfJson(),
+    'discover_options': ?discoverOptions?.encode(),
+    'parse_options': ?parseOptions?.encode(),
   };
 }
 
@@ -420,14 +410,12 @@ final class AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions {
   source;
 
   Map<String, Object?> encode() => {
-    if (depth != null) 'depth': depth!.toTfJson(),
-    if (includeExternalLinks != null)
-      'include_external_links': includeExternalLinks!.toTfJson(),
-    if (includeSubdomains != null)
-      'include_subdomains': includeSubdomains!.toTfJson(),
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (maxAge != null) 'max_age': maxAge!.toTfJson(),
-    if (source != null) 'source': source!.toTfJson(),
+    'depth': ?depth?.toTfJson(),
+    'include_external_links': ?includeExternalLinks?.toTfJson(),
+    'include_subdomains': ?includeSubdomains?.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
+    'source': ?source?.toTfJson(),
   };
 }
 
@@ -469,12 +457,10 @@ final class AiSearchInstanceSourceParamsWebCrawlerParseOptions {
   contentSelector;
 
   Map<String, Object?> encode() => {
-    if (includeHeaders != null) 'include_headers': includeHeaders!.toTfJson(),
-    if (includeImages != null) 'include_images': includeImages!.toTfJson(),
-    if (specificSitemaps != null)
-      'specific_sitemaps': specificSitemaps!.toTfJson(),
-    if (useBrowserRendering != null)
-      'use_browser_rendering': useBrowserRendering!.toTfJson(),
+    'include_headers': ?includeHeaders?.toTfJson(),
+    'include_images': ?includeImages?.toTfJson(),
+    'specific_sitemaps': ?specificSitemaps?.toTfJson(),
+    'use_browser_rendering': ?useBrowserRendering?.toTfJson(),
     if (contentSelector != null)
       'content_selector': [for (final e in contentSelector!) e.encode()],
   };
@@ -549,40 +535,34 @@ final class CloudflareAiSearchInstance extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (aiGatewayId != null) 'ai_gateway_id': aiGatewayId,
-           if (aisearchModel != null) 'aisearch_model': aisearchModel,
-           if (cache != null) 'cache': cache,
-           if (cacheThreshold != null) 'cache_threshold': cacheThreshold,
-           if (cacheTtl != null) 'cache_ttl': cacheTtl,
-           if (chunk != null) 'chunk': chunk,
-           if (chunkOverlap != null) 'chunk_overlap': chunkOverlap,
-           if (chunkSize != null) 'chunk_size': chunkSize,
-           if (embeddingModel != null) 'embedding_model': embeddingModel,
-           if (fusionMethod != null) 'fusion_method': fusionMethod,
-           if (hybridSearchEnabled != null)
-             'hybrid_search_enabled': hybridSearchEnabled,
+           'ai_gateway_id': ?aiGatewayId,
+           'aisearch_model': ?aisearchModel,
+           'cache': ?cache,
+           'cache_threshold': ?cacheThreshold,
+           'cache_ttl': ?cacheTtl,
+           'chunk': ?chunk,
+           'chunk_overlap': ?chunkOverlap,
+           'chunk_size': ?chunkSize,
+           'embedding_model': ?embeddingModel,
+           'fusion_method': ?fusionMethod,
+           'hybrid_search_enabled': ?hybridSearchEnabled,
            'id': id,
-           if (maxNumResults != null) 'max_num_results': maxNumResults,
-           if (paused != null) 'paused': paused,
-           if (reranking != null) 'reranking': reranking,
-           if (rerankingModel != null) 'reranking_model': rerankingModel,
-           if (rewriteModel != null) 'rewrite_model': rewriteModel,
-           if (rewriteQuery != null) 'rewrite_query': rewriteQuery,
-           if (scoreThreshold != null) 'score_threshold': scoreThreshold,
-           if (source != null) 'source': source,
-           if (summarization != null) 'summarization': summarization,
-           if (summarizationModel != null)
-             'summarization_model': summarizationModel,
-           if (syncInterval != null) 'sync_interval': syncInterval,
-           if (systemPromptAisearch != null)
-             'system_prompt_aisearch': systemPromptAisearch,
-           if (systemPromptIndexSummarization != null)
-             'system_prompt_index_summarization':
-                 systemPromptIndexSummarization,
-           if (systemPromptRewriteQuery != null)
-             'system_prompt_rewrite_query': systemPromptRewriteQuery,
-           if (tokenId != null) 'token_id': tokenId,
-           if (type != null) 'type': type,
+           'max_num_results': ?maxNumResults,
+           'paused': ?paused,
+           'reranking': ?reranking,
+           'reranking_model': ?rerankingModel,
+           'rewrite_model': ?rewriteModel,
+           'rewrite_query': ?rewriteQuery,
+           'score_threshold': ?scoreThreshold,
+           'source': ?source,
+           'summarization': ?summarization,
+           'summarization_model': ?summarizationModel,
+           'sync_interval': ?syncInterval,
+           'system_prompt_aisearch': ?systemPromptAisearch,
+           'system_prompt_index_summarization': ?systemPromptIndexSummarization,
+           'system_prompt_rewrite_query': ?systemPromptRewriteQuery,
+           'token_id': ?tokenId,
+           'type': ?type,
            if (customMetadata != null)
              'custom_metadata': TfArg.literal([
                for (final e in customMetadata) e.encode(),

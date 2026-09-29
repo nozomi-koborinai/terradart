@@ -287,7 +287,7 @@ final class ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetric
 
   Map<String, Object?> encode() => {
     'headroom': headroom.toTfJson(),
-    if (threshold != null) 'threshold': threshold!.toTfJson(),
+    'threshold': ?threshold?.toTfJson(),
   };
 }
 
@@ -354,15 +354,12 @@ final class AwsComputeoptimizerRecommendationPreferences extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enhancedInfrastructureMetrics != null)
-             'enhanced_infrastructure_metrics': enhancedInfrastructureMetrics,
-           if (inferredWorkloadTypes != null)
-             'inferred_workload_types': inferredWorkloadTypes,
-           if (lookBackPeriod != null) 'look_back_period': lookBackPeriod,
-           if (region != null) 'region': region,
+           'enhanced_infrastructure_metrics': ?enhancedInfrastructureMetrics,
+           'inferred_workload_types': ?inferredWorkloadTypes,
+           'look_back_period': ?lookBackPeriod,
+           'region': ?region,
            'resource_type': resourceType,
-           if (savingsEstimationMode != null)
-             'savings_estimation_mode': savingsEstimationMode,
+           'savings_estimation_mode': ?savingsEstimationMode,
            if (externalMetricsPreference != null)
              'external_metrics_preference': TfArg.literal([
                for (final e in externalMetricsPreference) e.encode(),

@@ -78,13 +78,12 @@ final class DbProxyAuth {
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (authScheme != null) 'auth_scheme': authScheme!.toTfJson(),
-    if (clientPasswordAuthType != null)
-      'client_password_auth_type': clientPasswordAuthType!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (iamAuth != null) 'iam_auth': iamAuth!.toTfJson(),
-    if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'auth_scheme': ?authScheme?.toTfJson(),
+    'client_password_auth_type': ?clientPasswordAuthType?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'iam_auth': ?iamAuth?.toTfJson(),
+    'secret_arn': ?secretArn?.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -148,23 +147,18 @@ final class AwsDbProxy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (debugLogging != null) 'debug_logging': debugLogging,
-           if (defaultAuthScheme != null)
-             'default_auth_scheme': defaultAuthScheme,
-           if (endpointNetworkType != null)
-             'endpoint_network_type': endpointNetworkType,
+           'debug_logging': ?debugLogging,
+           'default_auth_scheme': ?defaultAuthScheme,
+           'endpoint_network_type': ?endpointNetworkType,
            'engine_family': engineFamily,
-           if (idleClientTimeout != null)
-             'idle_client_timeout': idleClientTimeout,
+           'idle_client_timeout': ?idleClientTimeout,
            'name': name,
-           if (region != null) 'region': region,
-           if (requireTls != null) 'require_tls': requireTls,
+           'region': ?region,
+           'require_tls': ?requireTls,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
-           if (targetConnectionNetworkType != null)
-             'target_connection_network_type': targetConnectionNetworkType,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'tags': ?tags,
+           'target_connection_network_type': ?targetConnectionNetworkType,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
            'vpc_subnet_ids': vpcSubnetIds,
            if (auth != null)
              'auth': TfArg.literal([for (final e in auth) e.encode()]),

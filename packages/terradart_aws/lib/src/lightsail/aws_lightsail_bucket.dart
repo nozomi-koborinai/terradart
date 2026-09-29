@@ -25,10 +25,10 @@ final class AwsLightsailBucket extends Resource {
          terraformType: tfType,
          argMap: {
            'bundle_id': bundleId,
-           if (forceDelete != null) 'force_delete': forceDelete,
+           'force_delete': ?forceDelete,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

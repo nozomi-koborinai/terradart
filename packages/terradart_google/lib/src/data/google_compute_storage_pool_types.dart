@@ -23,7 +23,7 @@ final class DataGoogleComputeStoragePoolTypes extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (project != null) 'project': project,
+           'project': ?project,
            'storage_pool_type': storagePoolType,
            'zone': zone,
          },

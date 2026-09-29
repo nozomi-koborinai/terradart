@@ -19,10 +19,7 @@ final class DataGoogleVmwareengineAnnouncements extends Data {
     required TfArg<String> parent,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (name != null) 'name': name, 'parent': parent},
-       );
+  }) : super(terraformType: tfType, argMap: {'name': ?name, 'parent': parent});
 
   @override
   Set<String> get sensitiveFields => _googleVmwareengineAnnouncementsSensitive;

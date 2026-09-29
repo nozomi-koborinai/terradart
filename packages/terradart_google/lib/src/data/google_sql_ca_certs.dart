@@ -21,10 +21,7 @@ final class DataGoogleSqlCaCerts extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'instance': instance,
-           if (project != null) 'project': project,
-         },
+         argMap: {'instance': instance, 'project': ?project},
        );
 
   @override

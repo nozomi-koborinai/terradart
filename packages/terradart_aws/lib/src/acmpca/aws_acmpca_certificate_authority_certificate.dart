@@ -26,8 +26,8 @@ final class AwsAcmpcaCertificateAuthorityCertificate extends Resource {
          argMap: {
            'certificate': certificate,
            'certificate_authority_arn': certificateAuthorityArn,
-           if (certificateChain != null) 'certificate_chain': certificateChain,
-           if (region != null) 'region': region,
+           'certificate_chain': ?certificateChain,
+           'region': ?region,
          },
        );
 

@@ -32,8 +32,8 @@ final class GoogleGkeBackupRestorePlanIamPolicy extends Resource {
          argMap: {
            'name': name,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

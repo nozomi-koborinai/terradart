@@ -50,8 +50,8 @@ final class GoogleHealthcareWorkspace extends Resource {
            'dataset': dataset,
            'name': name,
            'settings': TfArg.literal(settings.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

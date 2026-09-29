@@ -25,10 +25,7 @@ final class DataAppwriteMongoDatabaseStatus extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'database_id': databaseId,
-           if (projectId != null) 'project_id': projectId,
-         },
+         argMap: {'database_id': databaseId, 'project_id': ?projectId},
        );
 
   @override

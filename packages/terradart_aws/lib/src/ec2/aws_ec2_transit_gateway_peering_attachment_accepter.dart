@@ -24,8 +24,8 @@ final class AwsEc2TransitGatewayPeeringAttachmentAccepter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'transit_gateway_attachment_id': transitGatewayAttachmentId,
          },
        );

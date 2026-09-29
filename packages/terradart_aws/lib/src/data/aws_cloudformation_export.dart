@@ -16,10 +16,7 @@ final class DataAwsCloudformationExport extends Data {
     TfArg<String>? region,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {'name': name, if (region != null) 'region': region},
-       );
+  }) : super(terraformType: tfType, argMap: {'name': name, 'region': ?region});
 
   @override
   Set<String> get sensitiveFields => _awsCloudformationExportSensitive;

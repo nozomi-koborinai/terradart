@@ -19,8 +19,7 @@ final class LightsailContainerServicePrivateRegistryAccess {
   ecrImagePullerRole;
 
   Map<String, Object?> encode() => {
-    if (ecrImagePullerRole != null)
-      'ecr_image_puller_role': ecrImagePullerRole!.encode(),
+    'ecr_image_puller_role': ?ecrImagePullerRole?.encode(),
   };
 }
 
@@ -34,9 +33,7 @@ final class LightsailContainerServicePrivateRegistryAccessEcrImagePullerRole {
 
   final TfArg<bool>? isActive;
 
-  Map<String, Object?> encode() => {
-    if (isActive != null) 'is_active': isActive!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'is_active': ?isActive?.toTfJson()};
 }
 
 /// Typed helper for the `public_domain_names` block of
@@ -92,12 +89,12 @@ final class AwsLightsailContainerService extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (isDisabled != null) 'is_disabled': isDisabled,
+           'is_disabled': ?isDisabled,
            'name': name,
            'power': power,
-           if (region != null) 'region': region,
+           'region': ?region,
            'scale': scale,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (privateRegistryAccess != null)
              'private_registry_access': TfArg.literal(
                privateRegistryAccess.encode(),

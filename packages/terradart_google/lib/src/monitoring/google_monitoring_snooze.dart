@@ -33,7 +33,7 @@ final class GoogleMonitoringSnooze extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (project != null) 'project': project,
+           'project': ?project,
            'criteria': criteria,
            'interval': interval,
          },

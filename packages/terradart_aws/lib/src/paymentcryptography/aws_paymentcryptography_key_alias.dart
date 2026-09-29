@@ -23,8 +23,8 @@ final class AwsPaymentcryptographyKeyAlias extends Resource {
          terraformType: tfType,
          argMap: {
            'alias_name': aliasName,
-           if (keyArn != null) 'key_arn': keyArn,
-           if (region != null) 'region': region,
+           'key_arn': ?keyArn,
+           'region': ?region,
          },
        );
 

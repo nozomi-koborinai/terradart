@@ -42,9 +42,9 @@ final class GoogleLoggingLogScope extends Resource {
          argMap: {
            'name': name,
            'resource_names': resourceNames,
-           if (description != null) 'description': description,
-           if (location != null) 'location': location,
-           if (parent != null) 'parent': parent,
+           'description': ?description,
+           'location': ?location,
+           'parent': ?parent,
          },
        );
 

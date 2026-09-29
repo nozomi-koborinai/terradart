@@ -33,13 +33,13 @@ final class AwsStoragegatewayStoredIscsiVolume extends Resource {
          argMap: {
            'disk_id': diskId,
            'gateway_arn': gatewayArn,
-           if (kmsEncrypted != null) 'kms_encrypted': kmsEncrypted,
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('arn'),
+           'kms_encrypted': ?kmsEncrypted,
+           'kms_key': ?kmsKey?.encodeAs('arn'),
            'network_interface_id': networkInterfaceId,
            'preserve_existing_data': preserveExistingData,
-           if (region != null) 'region': region,
-           if (snapshotId != null) 'snapshot_id': snapshotId,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'snapshot_id': ?snapshotId,
+           'tags': ?tags,
            'target_name': targetName,
          },
        );

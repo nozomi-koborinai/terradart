@@ -40,7 +40,7 @@ final class DataAwsEc2TransitGatewayRouteTableRoutes extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'transit_gateway_route_table_id': transitGatewayRouteTableId,
            'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

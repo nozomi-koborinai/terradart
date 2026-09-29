@@ -27,10 +27,10 @@ final class SecureSourceManagerRepositoryInitialConfig {
   final TfArg<String>? readme;
 
   Map<String, Object?> encode() => {
-    if (defaultBranch != null) 'default_branch': defaultBranch!.toTfJson(),
-    if (gitignores != null) 'gitignores': gitignores!.toTfJson(),
-    if (license != null) 'license': license!.toTfJson(),
-    if (readme != null) 'readme': readme!.toTfJson(),
+    'default_branch': ?defaultBranch?.toTfJson(),
+    'gitignores': ?gitignores?.toTfJson(),
+    'license': ?license?.toTfJson(),
+    'readme': ?readme?.toTfJson(),
   };
 }
 
@@ -44,8 +44,7 @@ final class SecureSourceManagerRepositoryScanConfig {
   secretScanConfig;
 
   Map<String, Object?> encode() => {
-    if (secretScanConfig != null)
-      'secret_scan_config': secretScanConfig!.encode(),
+    'secret_scan_config': ?secretScanConfig?.encode(),
   };
 }
 
@@ -63,9 +62,8 @@ final class SecureSourceManagerRepositoryScanConfigSecretScanConfig {
   final TfArg<String>? inspectTemplate;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (inspectTemplate != null)
-      'inspect_template': inspectTemplate!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'inspect_template': ?inspectTemplate?.toTfJson(),
   };
 }
 
@@ -106,11 +104,11 @@ final class GoogleSecureSourceManagerRepository extends Resource {
            'location': location,
            'repository_id': repositoryId,
            'instance': instance,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (initialConfig != null)
              'initial_config': TfArg.literal(initialConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -55,12 +55,12 @@ final class GoogleNetappVolumeQuotaRule extends Resource {
            'volume_name': volumeName,
            'type': type,
            'disk_limit_mib': diskLimitMib,
-           if (target != null) 'target': target,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'target': ?target,
+           'location': ?location,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

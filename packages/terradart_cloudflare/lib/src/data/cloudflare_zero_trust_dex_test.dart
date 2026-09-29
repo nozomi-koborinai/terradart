@@ -19,8 +19,8 @@ final class DataZeroTrustDexTestFilter {
   final TfArg<String>? testName;
 
   Map<String, Object?> encode() => {
-    if (kind != null) 'kind': kind!.toTfJson(),
-    if (testName != null) 'test_name': testName!.toTfJson(),
+    'kind': ?kind?.toTfJson(),
+    'test_name': ?testName?.toTfJson(),
   };
 }
 
@@ -63,8 +63,8 @@ final class DataCloudflareZeroTrustDexTest extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (dexTestId != null) 'dex_test_id': dexTestId,
+           'account_id': ?accountId,
+           'dex_test_id': ?dexTestId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
            if (targetPolicies != null)
              'target_policies': TfArg.literal([

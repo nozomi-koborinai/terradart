@@ -23,7 +23,7 @@ final class BedrockGuardrailContentPolicyConfig {
   final List<BedrockGuardrailContentPolicyConfigFiltersConfig>? filtersConfig;
 
   Map<String, Object?> encode() => {
-    if (tierConfig != null) 'tier_config': tierConfig!.toTfJson(),
+    'tier_config': ?tierConfig?.toTfJson(),
     if (filtersConfig != null)
       'filters_config': [for (final e in filtersConfig!) e.encode()],
   };
@@ -74,13 +74,13 @@ final class BedrockGuardrailContentPolicyConfigFiltersConfig {
   final TfArg<BedrockGuardrailContentPolicyConfigFiltersConfigType> type;
 
   Map<String, Object?> encode() => {
-    if (inputAction != null) 'input_action': inputAction!.toTfJson(),
-    if (inputEnabled != null) 'input_enabled': inputEnabled!.toTfJson(),
+    'input_action': ?inputAction?.toTfJson(),
+    'input_enabled': ?inputEnabled?.toTfJson(),
     if (inputModalities != null)
       'input_modalities': [for (final e in inputModalities!) e.toTfJson()],
     'input_strength': inputStrength.toTfJson(),
-    if (outputAction != null) 'output_action': outputAction!.toTfJson(),
-    if (outputEnabled != null) 'output_enabled': outputEnabled!.toTfJson(),
+    'output_action': ?outputAction?.toTfJson(),
+    'output_enabled': ?outputEnabled?.toTfJson(),
     if (outputModalities != null)
       'output_modalities': [for (final e in outputModalities!) e.toTfJson()],
     'output_strength': outputStrength.toTfJson(),
@@ -312,10 +312,10 @@ final class BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfig {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (inputAction != null) 'input_action': inputAction!.toTfJson(),
-    if (inputEnabled != null) 'input_enabled': inputEnabled!.toTfJson(),
-    if (outputAction != null) 'output_action': outputAction!.toTfJson(),
-    if (outputEnabled != null) 'output_enabled': outputEnabled!.toTfJson(),
+    'input_action': ?inputAction?.toTfJson(),
+    'input_enabled': ?inputEnabled?.toTfJson(),
+    'output_action': ?outputAction?.toTfJson(),
+    'output_enabled': ?outputEnabled?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -448,12 +448,12 @@ final class BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfig {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (inputAction != null) 'input_action': inputAction!.toTfJson(),
-    if (inputEnabled != null) 'input_enabled': inputEnabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'input_action': ?inputAction?.toTfJson(),
+    'input_enabled': ?inputEnabled?.toTfJson(),
     'name': name.toTfJson(),
-    if (outputAction != null) 'output_action': outputAction!.toTfJson(),
-    if (outputEnabled != null) 'output_enabled': outputEnabled!.toTfJson(),
+    'output_action': ?outputAction?.toTfJson(),
+    'output_enabled': ?outputEnabled?.toTfJson(),
     'pattern': pattern.toTfJson(),
   };
 }
@@ -511,7 +511,7 @@ final class BedrockGuardrailTopicPolicyConfig {
   final List<BedrockGuardrailTopicPolicyConfigTopicsConfig>? topicsConfig;
 
   Map<String, Object?> encode() => {
-    if (tierConfig != null) 'tier_config': tierConfig!.toTfJson(),
+    'tier_config': ?tierConfig?.toTfJson(),
     if (topicsConfig != null)
       'topics_config': [for (final e in topicsConfig!) e.encode()],
   };
@@ -538,7 +538,7 @@ final class BedrockGuardrailTopicPolicyConfigTopicsConfig {
 
   Map<String, Object?> encode() => {
     'definition': definition.toTfJson(),
-    if (examples != null) 'examples': examples!.toTfJson(),
+    'examples': ?examples?.toTfJson(),
     'name': name.toTfJson(),
     'type': type.toTfJson(),
   };
@@ -607,10 +607,10 @@ final class BedrockGuardrailWordPolicyConfigManagedWordListsConfig {
   final TfArg<BedrockGuardrailWordPolicyConfigManagedWordListsConfigType> type;
 
   Map<String, Object?> encode() => {
-    if (inputAction != null) 'input_action': inputAction!.toTfJson(),
-    if (inputEnabled != null) 'input_enabled': inputEnabled!.toTfJson(),
-    if (outputAction != null) 'output_action': outputAction!.toTfJson(),
-    if (outputEnabled != null) 'output_enabled': outputEnabled!.toTfJson(),
+    'input_action': ?inputAction?.toTfJson(),
+    'input_enabled': ?inputEnabled?.toTfJson(),
+    'output_action': ?outputAction?.toTfJson(),
+    'output_enabled': ?outputEnabled?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -678,10 +678,10 @@ final class BedrockGuardrailWordPolicyConfigWordsConfig {
   final TfArg<String> text;
 
   Map<String, Object?> encode() => {
-    if (inputAction != null) 'input_action': inputAction!.toTfJson(),
-    if (inputEnabled != null) 'input_enabled': inputEnabled!.toTfJson(),
-    if (outputAction != null) 'output_action': outputAction!.toTfJson(),
-    if (outputEnabled != null) 'output_enabled': outputEnabled!.toTfJson(),
+    'input_action': ?inputAction?.toTfJson(),
+    'input_enabled': ?inputEnabled?.toTfJson(),
+    'output_action': ?outputAction?.toTfJson(),
+    'output_enabled': ?outputEnabled?.toTfJson(),
     'text': text.toTfJson(),
   };
 }
@@ -742,11 +742,11 @@ final class AwsBedrockGuardrail extends Resource {
          argMap: {
            'blocked_input_messaging': blockedInputMessaging,
            'blocked_outputs_messaging': blockedOutputsMessaging,
-           if (description != null) 'description': description,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'description': ?description,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (contentPolicyConfig != null)
              'content_policy_config': TfArg.literal([
                for (final e in contentPolicyConfig) e.encode(),

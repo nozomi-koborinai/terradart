@@ -23,9 +23,9 @@ final class DataAwsLocationGeofenceCollection extends Data {
          terraformType: tfType,
          argMap: {
            'collection_name': collectionName,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'kms_key_id': ?kmsKeyId,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

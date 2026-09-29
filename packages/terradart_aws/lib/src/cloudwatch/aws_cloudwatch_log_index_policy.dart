@@ -26,7 +26,7 @@ final class AwsCloudwatchLogIndexPolicy extends Resource {
          argMap: {
            'log_group_name': logGroupName.encodeAs('name'),
            'policy_document': policyDocument,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

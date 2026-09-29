@@ -47,7 +47,7 @@ final class AwsAutoscalingGroupTag extends Resource {
          terraformType: tfType,
          argMap: {
            'autoscaling_group_name': autoscalingGroupName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'tag': TfArg.literal(tag.encode()),
          },
        );

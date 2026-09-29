@@ -24,10 +24,10 @@ final class AwsQuicksightUserCustomPermission extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'custom_permissions_name': customPermissionsName,
-           if (namespace != null) 'namespace': namespace,
-           if (region != null) 'region': region,
+           'namespace': ?namespace,
+           'region': ?region,
            'user_name': userName,
          },
        );

@@ -39,17 +39,14 @@ final class DataformRepositoryReleaseConfigCodeCompilationConfig {
   final TfArg<Map<String, String>>? vars;
 
   Map<String, Object?> encode() => {
-    if (assertionSchema != null)
-      'assertion_schema': assertionSchema!.toTfJson(),
-    if (databaseSuffix != null) 'database_suffix': databaseSuffix!.toTfJson(),
-    if (defaultDatabase != null)
-      'default_database': defaultDatabase!.toTfJson(),
-    if (defaultLocation != null)
-      'default_location': defaultLocation!.toTfJson(),
-    if (defaultSchema != null) 'default_schema': defaultSchema!.toTfJson(),
-    if (schemaSuffix != null) 'schema_suffix': schemaSuffix!.toTfJson(),
-    if (tablePrefix != null) 'table_prefix': tablePrefix!.toTfJson(),
-    if (vars != null) 'vars': vars!.toTfJson(),
+    'assertion_schema': ?assertionSchema?.toTfJson(),
+    'database_suffix': ?databaseSuffix?.toTfJson(),
+    'default_database': ?defaultDatabase?.toTfJson(),
+    'default_location': ?defaultLocation?.toTfJson(),
+    'default_schema': ?defaultSchema?.toTfJson(),
+    'schema_suffix': ?schemaSuffix?.toTfJson(),
+    'table_prefix': ?tablePrefix?.toTfJson(),
+    'vars': ?vars?.toTfJson(),
   };
 }
 
@@ -79,15 +76,15 @@ final class GoogleDataformRepositoryReleaseConfig extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (cronSchedule != null) 'cron_schedule': cronSchedule,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (disabled != null) 'disabled': disabled,
+           'cron_schedule': ?cronSchedule,
+           'deletion_policy': ?deletionPolicy,
+           'disabled': ?disabled,
            'git_commitish': gitCommitish,
            'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (repository != null) 'repository': repository,
-           if (timeZone != null) 'time_zone': timeZone,
+           'project': ?project,
+           'region': ?region,
+           'repository': ?repository,
+           'time_zone': ?timeZone,
            if (codeCompilationConfig != null)
              'code_compilation_config': TfArg.literal(
                codeCompilationConfig.encode(),

@@ -54,10 +54,10 @@ final class GoogleCesAppVersion extends Resource {
            'location': location,
            'app': app,
            'app_version_id': appVersionId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

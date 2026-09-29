@@ -20,9 +20,9 @@ final class DevicefarmDevicePoolRule {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'attribute': ?attribute?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -83,12 +83,12 @@ final class AwsDevicefarmDevicePool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (maxDevices != null) 'max_devices': maxDevices,
+           'description': ?description,
+           'max_devices': ?maxDevices,
            'name': name,
            'project_arn': projectArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'rule': TfArg.literal([for (final e in rule) e.encode()]),
          },
        );

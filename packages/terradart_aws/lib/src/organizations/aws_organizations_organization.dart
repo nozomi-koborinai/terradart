@@ -55,15 +55,13 @@ final class AwsOrganizationsOrganization extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsServiceAccessPrincipals != null)
-             'aws_service_access_principals': awsServiceAccessPrincipals,
+           'aws_service_access_principals': ?awsServiceAccessPrincipals,
            if (enabledPolicyTypes != null)
              'enabled_policy_types': TfArg.literal([
                for (final e in enabledPolicyTypes) e.toTfJson(),
              ]),
-           if (featureSet != null) 'feature_set': featureSet,
-           if (returnOrganizationOnly != null)
-             'return_organization_only': returnOrganizationOnly,
+           'feature_set': ?featureSet,
+           'return_organization_only': ?returnOrganizationOnly,
          },
        );
 

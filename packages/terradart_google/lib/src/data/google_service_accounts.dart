@@ -22,11 +22,7 @@ final class DataGoogleServiceAccounts extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (prefix != null) 'prefix': prefix,
-           if (project != null) 'project': project,
-           if (regex != null) 'regex': regex,
-         },
+         argMap: {'prefix': ?prefix, 'project': ?project, 'regex': ?regex},
        );
 
   @override

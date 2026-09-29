@@ -105,8 +105,8 @@ final class AwsRdsClusterEndpoint extends Resource {
            'cluster_identifier': clusterIdentifier,
            'custom_endpoint_type': customEndpointType,
            ...?members?.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

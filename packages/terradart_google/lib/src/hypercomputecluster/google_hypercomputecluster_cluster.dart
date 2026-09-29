@@ -54,14 +54,10 @@ final class HypercomputeclusterClusterComputeResourcesConfig {
   newSpotInstances;
 
   Map<String, Object?> encode() => {
-    if (newFlexStartInstances != null)
-      'new_flex_start_instances': newFlexStartInstances!.encode(),
-    if (newOnDemandInstances != null)
-      'new_on_demand_instances': newOnDemandInstances!.encode(),
-    if (newReservedInstances != null)
-      'new_reserved_instances': newReservedInstances!.encode(),
-    if (newSpotInstances != null)
-      'new_spot_instances': newSpotInstances!.encode(),
+    'new_flex_start_instances': ?newFlexStartInstances?.encode(),
+    'new_on_demand_instances': ?newOnDemandInstances?.encode(),
+    'new_reserved_instances': ?newReservedInstances?.encode(),
+    'new_spot_instances': ?newSpotInstances?.encode(),
   };
 }
 
@@ -117,9 +113,7 @@ final class HypercomputeclusterClusterComputeResourcesConfigNewReservedInstances
 
   final TfArg<String>? reservation;
 
-  Map<String, Object?> encode() => {
-    if (reservation != null) 'reservation': reservation!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'reservation': ?reservation?.toTfJson()};
 }
 
 /// Typed helper for the `compute_resources.config.new_spot_instances` block of
@@ -140,8 +134,7 @@ final class HypercomputeclusterClusterComputeResourcesConfigNewSpotInstances {
 
   Map<String, Object?> encode() => {
     'machine_type': machineType.toTfJson(),
-    if (terminationAction != null)
-      'termination_action': terminationAction!.toTfJson(),
+    'termination_action': ?terminationAction?.toTfJson(),
     'zone': zone.toTfJson(),
   };
 }
@@ -161,7 +154,7 @@ final class HypercomputeclusterClusterNetworkResources {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (config != null) 'config': config!.encode(),
+    'config': ?config?.encode(),
   };
 }
 
@@ -180,8 +173,8 @@ final class HypercomputeclusterClusterNetworkResourcesConfig {
   final HypercomputeclusterClusterNetworkResourcesConfigNewNetwork? newNetwork;
 
   Map<String, Object?> encode() => {
-    if (existingNetwork != null) 'existing_network': existingNetwork!.encode(),
-    if (newNetwork != null) 'new_network': newNetwork!.encode(),
+    'existing_network': ?existingNetwork?.encode(),
+    'new_network': ?newNetwork?.encode(),
   };
 }
 
@@ -218,7 +211,7 @@ final class HypercomputeclusterClusterNetworkResourcesConfigNewNetwork {
   final TfArg<String> network;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'network': network.toTfJson(),
   };
 }
@@ -231,9 +224,7 @@ final class HypercomputeclusterClusterOrchestrator {
 
   final HypercomputeclusterClusterOrchestratorSlurm? slurm;
 
-  Map<String, Object?> encode() => {
-    if (slurm != null) 'slurm': slurm!.encode(),
-  };
+  Map<String, Object?> encode() => {'slurm': ?slurm?.encode()};
 }
 
 /// Typed helper for the `orchestrator.slurm` block of
@@ -262,12 +253,9 @@ final class HypercomputeclusterClusterOrchestratorSlurm {
   final List<HypercomputeclusterClusterOrchestratorSlurmPartitions> partitions;
 
   Map<String, Object?> encode() => {
-    if (defaultPartition != null)
-      'default_partition': defaultPartition!.toTfJson(),
-    if (epilogBashScripts != null)
-      'epilog_bash_scripts': epilogBashScripts!.toTfJson(),
-    if (prologBashScripts != null)
-      'prolog_bash_scripts': prologBashScripts!.toTfJson(),
+    'default_partition': ?defaultPartition?.toTfJson(),
+    'epilog_bash_scripts': ?epilogBashScripts?.toTfJson(),
+    'prolog_bash_scripts': ?prologBashScripts?.toTfJson(),
     'login_nodes': loginNodes.encode(),
     'node_sets': [for (final e in nodeSets) e.encode()],
     'partitions': [for (final e in partitions) e.encode()],
@@ -313,14 +301,13 @@ final class HypercomputeclusterClusterOrchestratorSlurmLoginNodes {
 
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
-    if (enableOsLogin != null) 'enable_os_login': enableOsLogin!.toTfJson(),
-    if (enablePublicIps != null)
-      'enable_public_ips': enablePublicIps!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
+    'enable_os_login': ?enableOsLogin?.toTfJson(),
+    'enable_public_ips': ?enablePublicIps?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
     'machine_type': machineType.toTfJson(),
-    if (startupScript != null) 'startup_script': startupScript!.toTfJson(),
+    'startup_script': ?startupScript?.toTfJson(),
     'zone': zone.toTfJson(),
-    if (bootDisk != null) 'boot_disk': bootDisk!.encode(),
+    'boot_disk': ?bootDisk?.encode(),
     if (storageConfigs != null)
       'storage_configs': [for (final e in storageConfigs!) e.encode()],
   };
@@ -392,13 +379,11 @@ final class HypercomputeclusterClusterOrchestratorSlurmNodeSets {
   storageConfigs;
 
   Map<String, Object?> encode() => {
-    if (computeId != null) 'compute_id': computeId!.toTfJson(),
+    'compute_id': ?computeId?.toTfJson(),
     'id': id.toTfJson(),
-    if (maxDynamicNodeCount != null)
-      'max_dynamic_node_count': maxDynamicNodeCount!.toTfJson(),
-    if (staticNodeCount != null)
-      'static_node_count': staticNodeCount!.toTfJson(),
-    if (computeInstance != null) 'compute_instance': computeInstance!.encode(),
+    'max_dynamic_node_count': ?maxDynamicNodeCount?.toTfJson(),
+    'static_node_count': ?staticNodeCount?.toTfJson(),
+    'compute_instance': ?computeInstance?.encode(),
     if (storageConfigs != null)
       'storage_configs': [for (final e in storageConfigs!) e.encode()],
   };
@@ -422,9 +407,9 @@ final class HypercomputeclusterClusterOrchestratorSlurmNodeSetsComputeInstance {
   bootDisk;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (startupScript != null) 'startup_script': startupScript!.toTfJson(),
-    if (bootDisk != null) 'boot_disk': bootDisk!.encode(),
+    'labels': ?labels?.toTfJson(),
+    'startup_script': ?startupScript?.toTfJson(),
+    'boot_disk': ?bootDisk?.encode(),
   };
 }
 
@@ -534,13 +519,12 @@ final class HypercomputeclusterClusterStorageResourcesConfig {
   final HypercomputeclusterClusterStorageResourcesConfigNewLustre? newLustre;
 
   Map<String, Object?> encode() => {
-    if (existingBucket != null) 'existing_bucket': existingBucket!.encode(),
-    if (existingFilestore != null)
-      'existing_filestore': existingFilestore!.encode(),
-    if (existingLustre != null) 'existing_lustre': existingLustre!.encode(),
-    if (newBucket != null) 'new_bucket': newBucket!.encode(),
-    if (newFilestore != null) 'new_filestore': newFilestore!.encode(),
-    if (newLustre != null) 'new_lustre': newLustre!.encode(),
+    'existing_bucket': ?existingBucket?.encode(),
+    'existing_filestore': ?existingFilestore?.encode(),
+    'existing_lustre': ?existingLustre?.encode(),
+    'new_bucket': ?newBucket?.encode(),
+    'new_filestore': ?newFilestore?.encode(),
+    'new_lustre': ?newLustre?.encode(),
   };
 }
 
@@ -608,10 +592,9 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewBucket {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.toTfJson(),
-    if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
-    if (autoclass != null) 'autoclass': autoclass!.encode(),
-    if (hierarchicalNamespace != null)
-      'hierarchical_namespace': hierarchicalNamespace!.encode(),
+    'storage_class': ?storageClass?.toTfJson(),
+    'autoclass': ?autoclass?.encode(),
+    'hierarchical_namespace': ?hierarchicalNamespace?.encode(),
   };
 }
 
@@ -630,8 +613,7 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewBucketAutoclass {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (terminalStorageClass != null)
-      'terminal_storage_class': terminalStorageClass!.toTfJson(),
+    'terminal_storage_class': ?terminalStorageClass?.toTfJson(),
   };
 }
 
@@ -645,9 +627,7 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewBucketHierarchica
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_resources.config.new_filestore` block of
@@ -680,9 +660,9 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewFilestore {
   fileShares;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'filestore': filestore.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
     'tier': tier.toTfJson(),
     'file_shares': [for (final e in fileShares) e.encode()],
   };
@@ -759,11 +739,10 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewLustre {
 
   Map<String, Object?> encode() => {
     'capacity_gb': capacityGb.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'filesystem': filesystem.toTfJson(),
     'lustre': lustre.toTfJson(),
-    if (perUnitStorageThroughput != null)
-      'per_unit_storage_throughput': perUnitStorageThroughput!.toTfJson(),
+    'per_unit_storage_throughput': ?perUnitStorageThroughput?.toTfJson(),
   };
 }
 
@@ -824,9 +803,9 @@ final class GoogleHypercomputeclusterCluster extends Resource {
              ]),
            if (orchestrator != null)
              'orchestrator': TfArg.literal(orchestrator.encode()),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

@@ -25,8 +25,8 @@ final class DataGoogleAlloydbCluster extends Data {
          terraformType: tfType,
          argMap: {
            'cluster_id': clusterId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

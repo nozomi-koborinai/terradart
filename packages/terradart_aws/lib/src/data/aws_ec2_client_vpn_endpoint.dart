@@ -42,10 +42,9 @@ final class DataAwsEc2ClientVpnEndpoint extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clientVpnEndpointId != null)
-             'client_vpn_endpoint_id': clientVpnEndpointId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'client_vpn_endpoint_id': ?clientVpnEndpointId,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

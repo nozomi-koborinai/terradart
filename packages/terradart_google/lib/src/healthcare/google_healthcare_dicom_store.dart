@@ -25,11 +25,7 @@ final class GoogleHealthcareDicomStore extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           'dataset': dataset,
-           if (labels != null) 'labels': labels,
-         },
+         argMap: {'name': name, 'dataset': dataset, 'labels': ?labels},
        );
 
   @override

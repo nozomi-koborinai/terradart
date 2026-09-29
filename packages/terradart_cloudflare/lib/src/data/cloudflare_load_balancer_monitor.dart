@@ -24,10 +24,7 @@ final class DataCloudflareLoadBalancerMonitor extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'monitor_id': monitorId,
-         },
+         argMap: {'account_id': ?accountId, 'monitor_id': monitorId},
        );
 
   @override

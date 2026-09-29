@@ -91,18 +91,13 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsDestinationPacketHeaderStat
   final TfArg<List<Object?>>? sourcePrefixLists;
 
   Map<String, Object?> encode() => {
-    if (destinationAddresses != null)
-      'destination_addresses': destinationAddresses!.toTfJson(),
-    if (destinationPorts != null)
-      'destination_ports': destinationPorts!.toTfJson(),
-    if (destinationPrefixLists != null)
-      'destination_prefix_lists': destinationPrefixLists!.toTfJson(),
-    if (protocols != null) 'protocols': protocols!.toTfJson(),
-    if (sourceAddresses != null)
-      'source_addresses': sourceAddresses!.toTfJson(),
-    if (sourcePorts != null) 'source_ports': sourcePorts!.toTfJson(),
-    if (sourcePrefixLists != null)
-      'source_prefix_lists': sourcePrefixLists!.toTfJson(),
+    'destination_addresses': ?destinationAddresses?.toTfJson(),
+    'destination_ports': ?destinationPorts?.toTfJson(),
+    'destination_prefix_lists': ?destinationPrefixLists?.toTfJson(),
+    'protocols': ?protocols?.toTfJson(),
+    'source_addresses': ?sourceAddresses?.toTfJson(),
+    'source_ports': ?sourcePorts?.toTfJson(),
+    'source_prefix_lists': ?sourcePrefixLists?.toTfJson(),
   };
 }
 
@@ -120,8 +115,8 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsDestinationResourceStatemen
   final TfArg<List<Object?>>? resources;
 
   Map<String, Object?> encode() => {
-    if (resourceTypes != null) 'resource_types': resourceTypes!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
+    'resource_types': ?resourceTypes?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
   };
 }
 
@@ -181,18 +176,13 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsSourcePacketHeaderStatement
   final TfArg<List<Object?>>? sourcePrefixLists;
 
   Map<String, Object?> encode() => {
-    if (destinationAddresses != null)
-      'destination_addresses': destinationAddresses!.toTfJson(),
-    if (destinationPorts != null)
-      'destination_ports': destinationPorts!.toTfJson(),
-    if (destinationPrefixLists != null)
-      'destination_prefix_lists': destinationPrefixLists!.toTfJson(),
-    if (protocols != null) 'protocols': protocols!.toTfJson(),
-    if (sourceAddresses != null)
-      'source_addresses': sourceAddresses!.toTfJson(),
-    if (sourcePorts != null) 'source_ports': sourcePorts!.toTfJson(),
-    if (sourcePrefixLists != null)
-      'source_prefix_lists': sourcePrefixLists!.toTfJson(),
+    'destination_addresses': ?destinationAddresses?.toTfJson(),
+    'destination_ports': ?destinationPorts?.toTfJson(),
+    'destination_prefix_lists': ?destinationPrefixLists?.toTfJson(),
+    'protocols': ?protocols?.toTfJson(),
+    'source_addresses': ?sourceAddresses?.toTfJson(),
+    'source_ports': ?sourcePorts?.toTfJson(),
+    'source_prefix_lists': ?sourcePrefixLists?.toTfJson(),
   };
 }
 
@@ -210,8 +200,8 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsSourceResourceStatement {
   final TfArg<List<Object?>>? resources;
 
   Map<String, Object?> encode() => {
-    if (resourceTypes != null) 'resource_types': resourceTypes!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
+    'resource_types': ?resourceTypes?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
   };
 }
 
@@ -248,8 +238,8 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsThroughResourcesResourceSta
   final TfArg<List<Object?>>? resources;
 
   Map<String, Object?> encode() => {
-    if (resourceTypes != null) 'resource_types': resourceTypes!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
+    'resource_types': ?resourceTypes?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
   };
 }
 
@@ -331,18 +321,13 @@ final class Ec2NetworkInsightsAccessScopeMatchPathsDestinationPacketHeaderStatem
   final TfArg<List<Object?>>? sourcePrefixLists;
 
   Map<String, Object?> encode() => {
-    if (destinationAddresses != null)
-      'destination_addresses': destinationAddresses!.toTfJson(),
-    if (destinationPorts != null)
-      'destination_ports': destinationPorts!.toTfJson(),
-    if (destinationPrefixLists != null)
-      'destination_prefix_lists': destinationPrefixLists!.toTfJson(),
-    if (protocols != null) 'protocols': protocols!.toTfJson(),
-    if (sourceAddresses != null)
-      'source_addresses': sourceAddresses!.toTfJson(),
-    if (sourcePorts != null) 'source_ports': sourcePorts!.toTfJson(),
-    if (sourcePrefixLists != null)
-      'source_prefix_lists': sourcePrefixLists!.toTfJson(),
+    'destination_addresses': ?destinationAddresses?.toTfJson(),
+    'destination_ports': ?destinationPorts?.toTfJson(),
+    'destination_prefix_lists': ?destinationPrefixLists?.toTfJson(),
+    'protocols': ?protocols?.toTfJson(),
+    'source_addresses': ?sourceAddresses?.toTfJson(),
+    'source_ports': ?sourcePorts?.toTfJson(),
+    'source_prefix_lists': ?sourcePrefixLists?.toTfJson(),
   };
 }
 
@@ -360,8 +345,8 @@ final class Ec2NetworkInsightsAccessScopeMatchPathsDestinationResourceStatement 
   final TfArg<List<Object?>>? resources;
 
   Map<String, Object?> encode() => {
-    if (resourceTypes != null) 'resource_types': resourceTypes!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
+    'resource_types': ?resourceTypes?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
   };
 }
 
@@ -421,18 +406,13 @@ final class Ec2NetworkInsightsAccessScopeMatchPathsSourcePacketHeaderStatement {
   final TfArg<List<Object?>>? sourcePrefixLists;
 
   Map<String, Object?> encode() => {
-    if (destinationAddresses != null)
-      'destination_addresses': destinationAddresses!.toTfJson(),
-    if (destinationPorts != null)
-      'destination_ports': destinationPorts!.toTfJson(),
-    if (destinationPrefixLists != null)
-      'destination_prefix_lists': destinationPrefixLists!.toTfJson(),
-    if (protocols != null) 'protocols': protocols!.toTfJson(),
-    if (sourceAddresses != null)
-      'source_addresses': sourceAddresses!.toTfJson(),
-    if (sourcePorts != null) 'source_ports': sourcePorts!.toTfJson(),
-    if (sourcePrefixLists != null)
-      'source_prefix_lists': sourcePrefixLists!.toTfJson(),
+    'destination_addresses': ?destinationAddresses?.toTfJson(),
+    'destination_ports': ?destinationPorts?.toTfJson(),
+    'destination_prefix_lists': ?destinationPrefixLists?.toTfJson(),
+    'protocols': ?protocols?.toTfJson(),
+    'source_addresses': ?sourceAddresses?.toTfJson(),
+    'source_ports': ?sourcePorts?.toTfJson(),
+    'source_prefix_lists': ?sourcePrefixLists?.toTfJson(),
   };
 }
 
@@ -450,8 +430,8 @@ final class Ec2NetworkInsightsAccessScopeMatchPathsSourceResourceStatement {
   final TfArg<List<Object?>>? resources;
 
   Map<String, Object?> encode() => {
-    if (resourceTypes != null) 'resource_types': resourceTypes!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
+    'resource_types': ?resourceTypes?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
   };
 }
 
@@ -472,8 +452,8 @@ final class AwsEc2NetworkInsightsAccessScope extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (excludePaths != null)
              'exclude_paths': TfArg.literal([
                for (final e in excludePaths) e.encode(),

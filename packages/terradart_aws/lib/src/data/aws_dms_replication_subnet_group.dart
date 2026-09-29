@@ -21,9 +21,9 @@ final class DataAwsDmsReplicationSubnetGroup extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'replication_subnet_group_id': replicationSubnetGroupId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

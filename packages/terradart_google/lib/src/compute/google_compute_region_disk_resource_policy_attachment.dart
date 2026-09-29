@@ -39,9 +39,9 @@ final class GoogleComputeRegionDiskResourcePolicyAttachment extends Resource {
          argMap: {
            'disk': disk,
            'name': name,
-           if (region != null) 'region': region,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

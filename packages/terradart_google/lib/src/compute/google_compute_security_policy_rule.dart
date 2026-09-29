@@ -156,12 +156,12 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
          terraformType: tfType,
          argMap: {
            'action': action,
-           if (description != null) 'description': description,
-           if (preview != null) 'preview': preview,
+           'description': ?description,
+           'preview': ?preview,
            'priority': priority,
-           if (project != null) 'project': project,
+           'project': ?project,
            'security_policy': securityPolicy,
-           if (headerAction != null) 'header_action': headerAction,
+           'header_action': ?headerAction,
            if (match != null) 'match': TfArg.literal([match.toArgMap()]),
            if (preconfiguredWafConfig != null)
              'preconfigured_waf_config': TfArg.literal([
@@ -169,7 +169,7 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
              ]),
            if (rateLimitOptions != null)
              'rate_limit_options': TfArg.literal([rateLimitOptions.toArgMap()]),
-           if (redirectOptions != null) 'redirect_options': redirectOptions,
+           'redirect_options': ?redirectOptions,
          },
        );
 

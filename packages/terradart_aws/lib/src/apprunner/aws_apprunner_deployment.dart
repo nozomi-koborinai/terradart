@@ -20,10 +20,7 @@ final class AwsApprunnerDeployment extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'service_arn': serviceArn,
-         },
+         argMap: {'region': ?region, 'service_arn': serviceArn},
        );
 
   @override

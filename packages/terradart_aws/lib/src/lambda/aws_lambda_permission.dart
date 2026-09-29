@@ -110,18 +110,16 @@ final class AwsLambdaPermission extends Resource {
          terraformType: tfType,
          argMap: {
            'action': action,
-           if (eventSourceToken != null) 'event_source_token': eventSourceToken,
+           'event_source_token': ?eventSourceToken,
            'function_name': functionName.encodeAs('function_name'),
-           if (functionUrlAuthType != null)
-             'function_url_auth_type': functionUrlAuthType,
-           if (invokedViaFunctionUrl != null)
-             'invoked_via_function_url': invokedViaFunctionUrl,
+           'function_url_auth_type': ?functionUrlAuthType,
+           'invoked_via_function_url': ?invokedViaFunctionUrl,
            'principal': principal,
-           if (principalOrgId != null) 'principal_org_id': principalOrgId,
-           if (qualifier != null) 'qualifier': qualifier,
-           if (region != null) 'region': region,
-           if (sourceAccount != null) 'source_account': sourceAccount,
-           if (sourceArn != null) 'source_arn': sourceArn,
+           'principal_org_id': ?principalOrgId,
+           'qualifier': ?qualifier,
+           'region': ?region,
+           'source_account': ?sourceAccount,
+           'source_arn': ?sourceArn,
            ...?statementId?.argMap,
          },
        );

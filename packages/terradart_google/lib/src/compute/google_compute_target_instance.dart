@@ -49,11 +49,11 @@ final class GoogleComputeTargetInstance extends Resource {
          argMap: {
            'name': name,
            'instance': instance,
-           if (zone != null) 'zone': zone,
-           if (description != null) 'description': description,
-           if (natPolicy != null) 'nat_policy': natPolicy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'zone': ?zone,
+           'description': ?description,
+           'nat_policy': ?natPolicy,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

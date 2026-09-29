@@ -54,10 +54,10 @@ final class GoogleNetappVolumeSnapshot extends Resource {
            'name': name,
            'location': location,
            'volume_name': volumeName,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

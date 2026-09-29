@@ -97,7 +97,7 @@ final class AwsEcrRegistryScanningConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'scan_type': scanType,
            if (rule != null)
              'rule': TfArg.literal([for (final e in rule) e.encode()]),

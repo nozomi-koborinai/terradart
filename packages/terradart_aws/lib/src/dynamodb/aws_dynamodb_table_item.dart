@@ -26,8 +26,8 @@ final class AwsDynamodbTableItem extends Resource {
          argMap: {
            'hash_key': hashKey,
            'item': item,
-           if (rangeKey != null) 'range_key': rangeKey,
-           if (region != null) 'region': region,
+           'range_key': ?rangeKey,
+           'region': ?region,
            'table_name': tableName,
          },
        );

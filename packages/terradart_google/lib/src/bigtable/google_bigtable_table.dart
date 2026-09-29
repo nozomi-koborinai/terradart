@@ -61,12 +61,10 @@ final class GoogleBigtableTable extends Resource {
              'column_family': TfArg.literal(
                columnFamily.map((c) => c.toArgMap()).toList(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (changeStreamRetention != null)
-             'change_stream_retention': changeStreamRetention,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'change_stream_retention': ?changeStreamRetention,
+           'project': ?project,
          },
        );
 

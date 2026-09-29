@@ -30,11 +30,9 @@ final class ApihubPluginInstanceActions {
 
   Map<String, Object?> encode() => {
     'action_id': actionId.toTfJson(),
-    if (scheduleCronExpression != null)
-      'schedule_cron_expression': scheduleCronExpression!.toTfJson(),
-    if (scheduleTimeZone != null)
-      'schedule_time_zone': scheduleTimeZone!.toTfJson(),
-    if (curationConfig != null) 'curation_config': curationConfig!.encode(),
+    'schedule_cron_expression': ?scheduleCronExpression?.toTfJson(),
+    'schedule_time_zone': ?scheduleTimeZone?.toTfJson(),
+    'curation_config': ?curationConfig?.encode(),
   };
 }
 
@@ -52,8 +50,8 @@ final class ApihubPluginInstanceActionsCurationConfig {
   final ApihubPluginInstanceActionsCurationConfigCustomCuration? customCuration;
 
   Map<String, Object?> encode() => {
-    if (curationType != null) 'curation_type': curationType!.toTfJson(),
-    if (customCuration != null) 'custom_curation': customCuration!.encode(),
+    'curation_type': ?curationType?.toTfJson(),
+    'custom_curation': ?customCuration?.encode(),
   };
 }
 
@@ -96,14 +94,11 @@ final class ApihubPluginInstanceAuthConfig {
 
   Map<String, Object?> encode() => {
     'auth_type': authType.toTfJson(),
-    if (apiKeyConfig != null) 'api_key_config': apiKeyConfig!.encode(),
-    if (googleServiceAccountConfig != null)
-      'google_service_account_config': googleServiceAccountConfig!.encode(),
-    if (oauth2ClientCredentialsConfig != null)
-      'oauth2_client_credentials_config': oauth2ClientCredentialsConfig!
-          .encode(),
-    if (userPasswordConfig != null)
-      'user_password_config': userPasswordConfig!.encode(),
+    'api_key_config': ?apiKeyConfig?.encode(),
+    'google_service_account_config': ?googleServiceAccountConfig?.encode(),
+    'oauth2_client_credentials_config': ?oauth2ClientCredentialsConfig
+        ?.encode(),
+    'user_password_config': ?userPasswordConfig?.encode(),
   };
 }
 
@@ -262,13 +257,13 @@ final class GoogleApihubPluginInstance extends Resource {
            'plugin': plugin,
            'plugin_instance_id': pluginInstanceId,
            'display_name': displayName,
-           if (disable != null) 'disable': disable,
+           'disable': ?disable,
            if (authConfig != null)
              'auth_config': TfArg.literal(authConfig.encode()),
            if (actions != null)
              'actions': TfArg.literal([for (final e in actions) e.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

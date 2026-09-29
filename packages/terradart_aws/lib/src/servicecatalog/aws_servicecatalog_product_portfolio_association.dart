@@ -41,12 +41,11 @@ final class AwsServicecatalogProductPortfolioAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
+           'accept_language': ?acceptLanguage,
            'portfolio_id': portfolioId,
            'product_id': productId,
-           if (region != null) 'region': region,
-           if (sourcePortfolioId != null)
-             'source_portfolio_id': sourcePortfolioId,
+           'region': ?region,
+           'source_portfolio_id': ?sourcePortfolioId,
          },
        );
 

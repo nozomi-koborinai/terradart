@@ -22,10 +22,8 @@ final class VertexAiIndexEndpointDeployedIndexAutomaticResources {
   final TfArg<num>? minReplicaCount;
 
   Map<String, Object?> encode() => {
-    if (maxReplicaCount != null)
-      'max_replica_count': maxReplicaCount!.toTfJson(),
-    if (minReplicaCount != null)
-      'min_replica_count': minReplicaCount!.toTfJson(),
+    'max_replica_count': ?maxReplicaCount?.toTfJson(),
+    'min_replica_count': ?minReplicaCount?.toTfJson(),
   };
 }
 
@@ -47,8 +45,7 @@ final class VertexAiIndexEndpointDeployedIndexDedicatedResources {
   machineSpec;
 
   Map<String, Object?> encode() => {
-    if (maxReplicaCount != null)
-      'max_replica_count': maxReplicaCount!.toTfJson(),
+    'max_replica_count': ?maxReplicaCount?.toTfJson(),
     'min_replica_count': minReplicaCount.toTfJson(),
     'machine_spec': machineSpec.encode(),
   };
@@ -64,9 +61,7 @@ final class VertexAiIndexEndpointDeployedIndexDedicatedResourcesMachineSpec {
 
   final TfArg<String>? machineType;
 
-  Map<String, Object?> encode() => {
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'machine_type': ?machineType?.toTfJson()};
 }
 
 /// Typed helper for the `deployed_index_auth_config` block of
@@ -80,9 +75,7 @@ final class VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfig {
   final VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfigAuthProvider?
   authProvider;
 
-  Map<String, Object?> encode() => {
-    if (authProvider != null) 'auth_provider': authProvider!.encode(),
-  };
+  Map<String, Object?> encode() => {'auth_provider': ?authProvider?.encode()};
 }
 
 /// Typed helper for the `deployed_index_auth_config.auth_provider` block of
@@ -99,8 +92,8 @@ final class VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfigAuthProvide
   final TfArg<List<Object?>>? audiences;
 
   Map<String, Object?> encode() => {
-    if (allowedIssuers != null) 'allowed_issuers': allowedIssuers!.toTfJson(),
-    if (audiences != null) 'audiences': audiences!.toTfJson(),
+    'allowed_issuers': ?allowedIssuers?.toTfJson(),
+    'audiences': ?audiences?.toTfJson(),
   };
 }
 
@@ -165,8 +158,8 @@ final class GoogleVertexAiIndexEndpointDeployedIndex extends Resource {
            'deployed_index_id': deployedIndexId,
            'index_endpoint': indexEndpoint,
            'index': index,
-           if (region != null) 'region': region,
-           if (displayName != null) 'display_name': displayName,
+           'region': ?region,
+           'display_name': ?displayName,
            if (automaticResources != null)
              'automatic_resources': TfArg.literal(automaticResources.encode()),
            if (dedicatedResources != null)
@@ -175,11 +168,10 @@ final class GoogleVertexAiIndexEndpointDeployedIndex extends Resource {
              'deployed_index_auth_config': TfArg.literal(
                deployedIndexAuthConfig.encode(),
              ),
-           if (deploymentGroup != null) 'deployment_group': deploymentGroup,
-           if (enableAccessLogging != null)
-             'enable_access_logging': enableAccessLogging,
-           if (reservedIpRanges != null) 'reserved_ip_ranges': reservedIpRanges,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deployment_group': ?deploymentGroup,
+           'enable_access_logging': ?enableAccessLogging,
+           'reserved_ip_ranges': ?reservedIpRanges,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

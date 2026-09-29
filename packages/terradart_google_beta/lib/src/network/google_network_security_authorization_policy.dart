@@ -62,7 +62,7 @@ final class NetworkSecurityAuthorizationPolicyRulesDestinations {
     'hosts': hosts.toTfJson(),
     'methods': methods.toTfJson(),
     'ports': ports.toTfJson(),
-    if (httpHeaderMatch != null) 'http_header_match': httpHeaderMatch!.encode(),
+    'http_header_match': ?httpHeaderMatch?.encode(),
   };
 }
 
@@ -99,8 +99,8 @@ final class NetworkSecurityAuthorizationPolicyRulesSources {
   final TfArg<List<Object?>>? principals;
 
   Map<String, Object?> encode() => {
-    if (ipBlocks != null) 'ip_blocks': ipBlocks!.toTfJson(),
-    if (principals != null) 'principals': principals!.toTfJson(),
+    'ip_blocks': ?ipBlocks?.toTfJson(),
+    'principals': ?principals?.toTfJson(),
   };
 }
 
@@ -132,12 +132,12 @@ final class GoogleNetworkSecurityAuthorizationPolicy extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'action': action,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (location != null) 'location': location,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'location': ?location,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (rules != null)
              'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },

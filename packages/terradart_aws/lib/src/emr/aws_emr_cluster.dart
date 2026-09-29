@@ -114,9 +114,7 @@ final class EmrClusterAutoTerminationPolicy {
 
   final TfArg<num>? idleTimeout;
 
-  Map<String, Object?> encode() => {
-    if (idleTimeout != null) 'idle_timeout': idleTimeout!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'idle_timeout': ?idleTimeout?.toTfJson()};
 }
 
 /// Typed helper for the `bootstrap_action` block of
@@ -136,7 +134,7 @@ final class EmrClusterBootstrapAction {
   final TfArg<String> path;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
+    'args': ?args?.toTfJson(),
     'name': name.toTfJson(),
     'path': path.toTfJson(),
   };
@@ -166,17 +164,14 @@ final class EmrClusterCoreInstanceFleet {
   final EmrClusterCoreInstanceFleetLaunchSpecifications? launchSpecifications;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (targetOnDemandCapacity != null)
-      'target_on_demand_capacity': targetOnDemandCapacity!.toTfJson(),
-    if (targetSpotCapacity != null)
-      'target_spot_capacity': targetSpotCapacity!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'target_on_demand_capacity': ?targetOnDemandCapacity?.toTfJson(),
+    'target_spot_capacity': ?targetSpotCapacity?.toTfJson(),
     if (instanceTypeConfigs != null)
       'instance_type_configs': [
         for (final e in instanceTypeConfigs!) e.encode(),
       ],
-    if (launchSpecifications != null)
-      'launch_specifications': launchSpecifications!.encode(),
+    'launch_specifications': ?launchSpecifications?.encode(),
   };
 }
 
@@ -204,13 +199,11 @@ final class EmrClusterCoreInstanceFleetInstanceTypeConfigs {
   ebsConfig;
 
   Map<String, Object?> encode() => {
-    if (bidPrice != null) 'bid_price': bidPrice!.toTfJson(),
-    if (bidPriceAsPercentageOfOnDemandPrice != null)
-      'bid_price_as_percentage_of_on_demand_price':
-          bidPriceAsPercentageOfOnDemandPrice!.toTfJson(),
+    'bid_price': ?bidPrice?.toTfJson(),
+    'bid_price_as_percentage_of_on_demand_price':
+        ?bidPriceAsPercentageOfOnDemandPrice?.toTfJson(),
     'instance_type': instanceType.toTfJson(),
-    if (weightedCapacity != null)
-      'weighted_capacity': weightedCapacity!.toTfJson(),
+    'weighted_capacity': ?weightedCapacity?.toTfJson(),
     if (ebsConfig != null)
       'ebs_config': [for (final e in ebsConfig!) e.encode()],
   };
@@ -236,11 +229,10 @@ final class EmrClusterCoreInstanceFleetInstanceTypeConfigsEbsConfig {
   final TfArg<num>? volumesPerInstance;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
     'size': size.toTfJson(),
     'type': type.toTfJson(),
-    if (volumesPerInstance != null)
-      'volumes_per_instance': volumesPerInstance!.toTfJson(),
+    'volumes_per_instance': ?volumesPerInstance?.toTfJson(),
   };
 }
 
@@ -307,8 +299,7 @@ final class EmrClusterCoreInstanceFleetLaunchSpecificationsSpotSpecification {
 
   Map<String, Object?> encode() => {
     'allocation_strategy': allocationStrategy.toTfJson(),
-    if (blockDurationMinutes != null)
-      'block_duration_minutes': blockDurationMinutes!.toTfJson(),
+    'block_duration_minutes': ?blockDurationMinutes?.toTfJson(),
     'timeout_action': timeoutAction.toTfJson(),
     'timeout_duration_minutes': timeoutDurationMinutes.toTfJson(),
   };
@@ -340,12 +331,11 @@ final class EmrClusterCoreInstanceGroup {
   final List<EmrClusterCoreInstanceGroupEbsConfig>? ebsConfig;
 
   Map<String, Object?> encode() => {
-    if (autoscalingPolicy != null)
-      'autoscaling_policy': autoscalingPolicy!.toTfJson(),
-    if (bidPrice != null) 'bid_price': bidPrice!.toTfJson(),
-    if (instanceCount != null) 'instance_count': instanceCount!.toTfJson(),
+    'autoscaling_policy': ?autoscalingPolicy?.toTfJson(),
+    'bid_price': ?bidPrice?.toTfJson(),
+    'instance_count': ?instanceCount?.toTfJson(),
     'instance_type': instanceType.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (ebsConfig != null)
       'ebs_config': [for (final e in ebsConfig!) e.encode()],
   };
@@ -374,12 +364,11 @@ final class EmrClusterCoreInstanceGroupEbsConfig {
   final TfArg<num>? volumesPerInstance;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
     'size': size.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
     'type': type.toTfJson(),
-    if (volumesPerInstance != null)
-      'volumes_per_instance': volumesPerInstance!.toTfJson(),
+    'volumes_per_instance': ?volumesPerInstance?.toTfJson(),
   };
 }
 
@@ -415,22 +404,17 @@ final class EmrClusterEc2Attributes {
   final EmrClusterEc2AttributesSubnet? subnet;
 
   Map<String, Object?> encode() => {
-    if (additionalMasterSecurityGroups != null)
-      'additional_master_security_groups': additionalMasterSecurityGroups!
-          .toTfJson(),
-    if (additionalSlaveSecurityGroups != null)
-      'additional_slave_security_groups': additionalSlaveSecurityGroups!
-          .toTfJson(),
-    if (emrManagedMasterSecurityGroup != null)
-      'emr_managed_master_security_group': emrManagedMasterSecurityGroup!
-          .toTfJson(),
-    if (emrManagedSlaveSecurityGroup != null)
-      'emr_managed_slave_security_group': emrManagedSlaveSecurityGroup!
-          .toTfJson(),
+    'additional_master_security_groups': ?additionalMasterSecurityGroups
+        ?.toTfJson(),
+    'additional_slave_security_groups': ?additionalSlaveSecurityGroups
+        ?.toTfJson(),
+    'emr_managed_master_security_group': ?emrManagedMasterSecurityGroup
+        ?.toTfJson(),
+    'emr_managed_slave_security_group': ?emrManagedSlaveSecurityGroup
+        ?.toTfJson(),
     'instance_profile': instanceProfile.toTfJson(),
-    if (keyName != null) 'key_name': keyName!.toTfJson(),
-    if (serviceAccessSecurityGroup != null)
-      'service_access_security_group': serviceAccessSecurityGroup!.toTfJson(),
+    'key_name': ?keyName?.toTfJson(),
+    'service_access_security_group': ?serviceAccessSecurityGroup?.toTfJson(),
     ...?subnet?.encode(),
   };
 }
@@ -509,13 +493,10 @@ final class EmrClusterKerberosAttributes {
   final TfArg<String> realm;
 
   Map<String, Object?> encode() => {
-    if (adDomainJoinPassword != null)
-      'ad_domain_join_password': adDomainJoinPassword!.toTfJson(),
-    if (adDomainJoinUser != null)
-      'ad_domain_join_user': adDomainJoinUser!.toTfJson(),
-    if (crossRealmTrustPrincipalPassword != null)
-      'cross_realm_trust_principal_password': crossRealmTrustPrincipalPassword!
-          .toTfJson(),
+    'ad_domain_join_password': ?adDomainJoinPassword?.toTfJson(),
+    'ad_domain_join_user': ?adDomainJoinUser?.toTfJson(),
+    'cross_realm_trust_principal_password': ?crossRealmTrustPrincipalPassword
+        ?.toTfJson(),
     'kdc_admin_password': kdcAdminPassword.toTfJson(),
     'realm': realm.toTfJson(),
   };
@@ -545,17 +526,14 @@ final class EmrClusterMasterInstanceFleet {
   final EmrClusterMasterInstanceFleetLaunchSpecifications? launchSpecifications;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (targetOnDemandCapacity != null)
-      'target_on_demand_capacity': targetOnDemandCapacity!.toTfJson(),
-    if (targetSpotCapacity != null)
-      'target_spot_capacity': targetSpotCapacity!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'target_on_demand_capacity': ?targetOnDemandCapacity?.toTfJson(),
+    'target_spot_capacity': ?targetSpotCapacity?.toTfJson(),
     if (instanceTypeConfigs != null)
       'instance_type_configs': [
         for (final e in instanceTypeConfigs!) e.encode(),
       ],
-    if (launchSpecifications != null)
-      'launch_specifications': launchSpecifications!.encode(),
+    'launch_specifications': ?launchSpecifications?.encode(),
   };
 }
 
@@ -583,13 +561,11 @@ final class EmrClusterMasterInstanceFleetInstanceTypeConfigs {
   ebsConfig;
 
   Map<String, Object?> encode() => {
-    if (bidPrice != null) 'bid_price': bidPrice!.toTfJson(),
-    if (bidPriceAsPercentageOfOnDemandPrice != null)
-      'bid_price_as_percentage_of_on_demand_price':
-          bidPriceAsPercentageOfOnDemandPrice!.toTfJson(),
+    'bid_price': ?bidPrice?.toTfJson(),
+    'bid_price_as_percentage_of_on_demand_price':
+        ?bidPriceAsPercentageOfOnDemandPrice?.toTfJson(),
     'instance_type': instanceType.toTfJson(),
-    if (weightedCapacity != null)
-      'weighted_capacity': weightedCapacity!.toTfJson(),
+    'weighted_capacity': ?weightedCapacity?.toTfJson(),
     if (ebsConfig != null)
       'ebs_config': [for (final e in ebsConfig!) e.encode()],
   };
@@ -615,11 +591,10 @@ final class EmrClusterMasterInstanceFleetInstanceTypeConfigsEbsConfig {
   final TfArg<num>? volumesPerInstance;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
     'size': size.toTfJson(),
     'type': type.toTfJson(),
-    if (volumesPerInstance != null)
-      'volumes_per_instance': volumesPerInstance!.toTfJson(),
+    'volumes_per_instance': ?volumesPerInstance?.toTfJson(),
   };
 }
 
@@ -688,8 +663,7 @@ final class EmrClusterMasterInstanceFleetLaunchSpecificationsSpotSpecification {
 
   Map<String, Object?> encode() => {
     'allocation_strategy': allocationStrategy.toTfJson(),
-    if (blockDurationMinutes != null)
-      'block_duration_minutes': blockDurationMinutes!.toTfJson(),
+    'block_duration_minutes': ?blockDurationMinutes?.toTfJson(),
     'timeout_action': timeoutAction.toTfJson(),
     'timeout_duration_minutes': timeoutDurationMinutes.toTfJson(),
   };
@@ -718,10 +692,10 @@ final class EmrClusterMasterInstanceGroup {
   final List<EmrClusterMasterInstanceGroupEbsConfig>? ebsConfig;
 
   Map<String, Object?> encode() => {
-    if (bidPrice != null) 'bid_price': bidPrice!.toTfJson(),
-    if (instanceCount != null) 'instance_count': instanceCount!.toTfJson(),
+    'bid_price': ?bidPrice?.toTfJson(),
+    'instance_count': ?instanceCount?.toTfJson(),
     'instance_type': instanceType.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (ebsConfig != null)
       'ebs_config': [for (final e in ebsConfig!) e.encode()],
   };
@@ -750,12 +724,11 @@ final class EmrClusterMasterInstanceGroupEbsConfig {
   final TfArg<num>? volumesPerInstance;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
     'size': size.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
     'type': type.toTfJson(),
-    if (volumesPerInstance != null)
-      'volumes_per_instance': volumesPerInstance!.toTfJson(),
+    'volumes_per_instance': ?volumesPerInstance?.toTfJson(),
   };
 }
 
@@ -804,43 +777,33 @@ final class AwsEmrCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalInfo != null) 'additional_info': additionalInfo,
-           if (applications != null) 'applications': applications,
-           if (autoscalingRole != null) 'autoscaling_role': autoscalingRole,
+           'additional_info': ?additionalInfo,
+           'applications': ?applications,
+           'autoscaling_role': ?autoscalingRole,
            ...?configurations?.argMap,
-           if (customAmiId != null) 'custom_ami_id': customAmiId,
-           if (ebsRootVolumeSize != null)
-             'ebs_root_volume_size': ebsRootVolumeSize,
-           if (keepJobFlowAliveWhenNoSteps != null)
-             'keep_job_flow_alive_when_no_steps': keepJobFlowAliveWhenNoSteps,
+           'custom_ami_id': ?customAmiId,
+           'ebs_root_volume_size': ?ebsRootVolumeSize,
+           'keep_job_flow_alive_when_no_steps': ?keepJobFlowAliveWhenNoSteps,
            if (listStepsStates != null)
              'list_steps_states': TfArg.literal([
                for (final e in listStepsStates) e.toTfJson(),
              ]),
-           if (logEncryptionKmsKeyId != null)
-             'log_encryption_kms_key_id': logEncryptionKmsKeyId,
-           if (logUri != null) 'log_uri': logUri,
+           'log_encryption_kms_key_id': ?logEncryptionKmsKeyId,
+           'log_uri': ?logUri,
            'name': name,
-           if (osReleaseLabel != null) 'os_release_label': osReleaseLabel,
-           if (placementGroupConfig != null)
-             'placement_group_config': placementGroupConfig,
-           if (region != null) 'region': region,
+           'os_release_label': ?osReleaseLabel,
+           'placement_group_config': ?placementGroupConfig,
+           'region': ?region,
            'release_label': releaseLabel,
-           if (scaleDownBehavior != null)
-             'scale_down_behavior': scaleDownBehavior,
-           if (securityConfiguration != null)
-             'security_configuration': securityConfiguration,
+           'scale_down_behavior': ?scaleDownBehavior,
+           'security_configuration': ?securityConfiguration,
            'service_role': serviceRole.encodeAs('arn'),
-           if (step != null) 'step': step,
-           if (stepConcurrencyLevel != null)
-             'step_concurrency_level': stepConcurrencyLevel,
-           if (tags != null) 'tags': tags,
-           if (terminationProtection != null)
-             'termination_protection': terminationProtection,
-           if (unhealthyNodeReplacement != null)
-             'unhealthy_node_replacement': unhealthyNodeReplacement,
-           if (visibleToAllUsers != null)
-             'visible_to_all_users': visibleToAllUsers,
+           'step': ?step,
+           'step_concurrency_level': ?stepConcurrencyLevel,
+           'tags': ?tags,
+           'termination_protection': ?terminationProtection,
+           'unhealthy_node_replacement': ?unhealthyNodeReplacement,
+           'visible_to_all_users': ?visibleToAllUsers,
            if (autoTerminationPolicy != null)
              'auto_termination_policy': TfArg.literal(
                autoTerminationPolicy.encode(),

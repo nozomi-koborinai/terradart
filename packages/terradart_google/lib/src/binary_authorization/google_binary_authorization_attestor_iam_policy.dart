@@ -31,7 +31,7 @@ final class GoogleBinaryAuthorizationAttestorIamPolicy extends Resource {
          argMap: {
            'attestor': attestor,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

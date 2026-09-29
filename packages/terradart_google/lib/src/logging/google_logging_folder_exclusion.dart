@@ -31,8 +31,8 @@ final class GoogleLoggingFolderExclusion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
+           'description': ?description,
+           'disabled': ?disabled,
            'filter': filter,
            'folder': folder,
            'name': name,

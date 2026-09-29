@@ -28,9 +28,9 @@ final class GoogleFirebaseAppCheckRecaptchaV3Config extends Resource {
          terraformType: tfType,
          argMap: {
            'app_id': appId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'site_secret': siteSecret,
-           if (tokenTtl != null) 'token_ttl': tokenTtl,
+           'token_ttl': ?tokenTtl,
          },
        );
 

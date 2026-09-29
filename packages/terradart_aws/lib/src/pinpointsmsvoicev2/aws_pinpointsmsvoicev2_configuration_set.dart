@@ -38,12 +38,11 @@ final class AwsPinpointsmsvoicev2ConfigurationSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultMessageType != null)
-             'default_message_type': defaultMessageType,
-           if (defaultSenderId != null) 'default_sender_id': defaultSenderId,
+           'default_message_type': ?defaultMessageType,
+           'default_sender_id': ?defaultSenderId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

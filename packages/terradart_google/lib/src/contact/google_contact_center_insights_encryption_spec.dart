@@ -43,7 +43,7 @@ final class GoogleContactCenterInsightsEncryptionSpec extends Resource {
          argMap: {
            'location': location,
            'kms_key': kmsKey.encodeAs('id'),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

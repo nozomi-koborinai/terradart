@@ -29,8 +29,8 @@ final class GoogleObservabilityTraceScope extends Resource {
            'trace_scope_id': traceScopeId,
            'location': location,
            'resource_names': resourceNames,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

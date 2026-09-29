@@ -32,7 +32,7 @@ final class GoogleAccessContextManagerIngressPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'ingress_policy_name': ingressPolicyName,
            'resource': resource,
          },

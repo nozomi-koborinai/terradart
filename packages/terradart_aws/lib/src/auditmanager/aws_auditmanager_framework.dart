@@ -53,11 +53,11 @@ final class AwsAuditmanagerFramework extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (complianceType != null) 'compliance_type': complianceType,
-           if (description != null) 'description': description,
+           'compliance_type': ?complianceType,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (controlSets != null)
              'control_sets': TfArg.literal([
                for (final e in controlSets) e.encode(),

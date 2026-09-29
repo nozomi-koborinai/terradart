@@ -25,10 +25,10 @@ final class DataGoogleDiscoveryEngineDataStore extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dataStoreId != null) 'data_store_id': dataStoreId,
-           if (displayName != null) 'display_name': displayName,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'data_store_id': ?dataStoreId,
+           'display_name': ?displayName,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

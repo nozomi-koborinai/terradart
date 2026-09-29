@@ -27,8 +27,8 @@ final class NetworkServicesEdgeCacheKeysetPublicKey {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (managed != null) 'managed': managed!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'managed': ?managed?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -83,7 +83,7 @@ final class GoogleNetworkServicesEdgeCacheKeyset extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (publicKey != null)
              'public_key': TfArg.literal([
                for (final e in publicKey) e.encode(),
@@ -92,9 +92,9 @@ final class GoogleNetworkServicesEdgeCacheKeyset extends Resource {
              'validation_shared_keys': TfArg.literal([
                for (final e in validationSharedKeys) e.encode(),
              ]),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -26,7 +26,7 @@ final class GoogleKmsKeyRingIamMember extends Resource {
            'key_ring_id': keyRingId,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

@@ -28,8 +28,8 @@ final class ApigeeAppGroupAttributes {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -65,10 +65,10 @@ final class GoogleApigeeAppGroup extends Resource {
          argMap: {
            'name': name,
            'org_id': orgId,
-           if (displayName != null) 'display_name': displayName,
-           if (channelId != null) 'channel_id': channelId,
-           if (channelUri != null) 'channel_uri': channelUri,
-           if (status != null) 'status': status,
+           'display_name': ?displayName,
+           'channel_id': ?channelId,
+           'channel_uri': ?channelUri,
+           'status': ?status,
            if (attributes != null)
              'attributes': TfArg.literal([
                for (final e in attributes) e.encode(),

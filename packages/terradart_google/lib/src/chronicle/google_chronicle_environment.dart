@@ -79,13 +79,11 @@ final class GoogleChronicleEnvironment extends Resource {
            'contact_emails': contactEmails,
            'contact_phone': contactPhone,
            'description': description,
-           if (aliasesJson != null) 'aliases_json': aliasesJson,
-           if (dataAccessScopesJson != null)
-             'data_access_scopes_json': dataAccessScopesJson,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'aliases_json': ?aliasesJson,
+           'data_access_scopes_json': ?dataAccessScopesJson,
+           'deletion_protection': ?deletionProtection,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

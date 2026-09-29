@@ -35,17 +35,15 @@ final class GoogleSecretManagerRegionalSecret extends Resource {
          argMap: {
            'secret_id': secretId,
            'location': location,
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
-           if (versionAliases != null) 'version_aliases': versionAliases,
-           if (versionDestroyTtl != null)
-             'version_destroy_ttl': versionDestroyTtl,
-           if (expireTime != null) 'expire_time': expireTime,
-           if (ttl != null) 'ttl': ttl,
-           if (tags != null) 'tags': tags,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'annotations': ?annotations,
+           'version_aliases': ?versionAliases,
+           'version_destroy_ttl': ?versionDestroyTtl,
+           'expire_time': ?expireTime,
+           'ttl': ?ttl,
+           'tags': ?tags,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

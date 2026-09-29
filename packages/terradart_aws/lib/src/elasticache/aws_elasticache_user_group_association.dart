@@ -22,7 +22,7 @@ final class AwsElasticacheUserGroupAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'user_group_id': userGroupId,
            'user_id': userId,
          },

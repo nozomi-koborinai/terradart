@@ -37,7 +37,7 @@ final class AwsVpcBlockPublicAccessOptions extends Resource {
          terraformType: tfType,
          argMap: {
            'internet_gateway_block_mode': internetGatewayBlockMode,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

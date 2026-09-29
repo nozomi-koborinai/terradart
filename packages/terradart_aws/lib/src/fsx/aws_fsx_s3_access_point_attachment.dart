@@ -96,7 +96,7 @@ final class FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityPosi
 
   Map<String, Object?> encode() => {
     'gid': gid.toTfJson(),
-    if (secondaryGids != null) 'secondary_gids': secondaryGids!.toTfJson(),
+    'secondary_gids': ?secondaryGids?.toTfJson(),
     'uid': uid.toTfJson(),
   };
 }
@@ -116,7 +116,7 @@ final class FsxS3AccessPointAttachmentS3AccessPoint {
   vpcConfiguration;
 
   Map<String, Object?> encode() => {
-    if (policy != null) 'policy': policy!.toTfJson(),
+    'policy': ?policy?.toTfJson(),
     if (vpcConfiguration != null)
       'vpc_configuration': [for (final e in vpcConfiguration!) e.encode()],
   };
@@ -131,7 +131,7 @@ final class FsxS3AccessPointAttachmentS3AccessPointVpcConfiguration {
   final RefTo<AwsVpc>? vpcId;
 
   Map<String, Object?> encode() => {
-    if (vpcId != null) 'vpc_id': vpcId!.encodeAs('id').toTfJson(),
+    'vpc_id': ?vpcId?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -154,7 +154,7 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'type': type,
            if (openzfsConfiguration != null)
              'openzfs_configuration': TfArg.literal([

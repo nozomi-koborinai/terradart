@@ -21,7 +21,7 @@ final class ComputeResizeRequestRequestedRunDuration {
   final TfArg<String> seconds;
 
   Map<String, Object?> encode() => {
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
   };
 }
@@ -72,16 +72,16 @@ final class GoogleComputeResizeRequest extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (zone != null) 'zone': zone,
+           'zone': ?zone,
            'instance_group_manager': instanceGroupManager,
            'resize_by': resizeBy,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (requestedRunDuration != null)
              'requested_run_duration': TfArg.literal(
                requestedRunDuration.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

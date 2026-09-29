@@ -21,7 +21,7 @@ final class DataAwsBedrockInferenceProfile extends Data {
          terraformType: tfType,
          argMap: {
            'inference_profile_id': inferenceProfileId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

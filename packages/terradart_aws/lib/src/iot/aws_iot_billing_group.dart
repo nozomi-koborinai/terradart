@@ -15,9 +15,7 @@ final class IotBillingGroupProperties {
 
   final TfArg<String>? description;
 
-  Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'description': ?description?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_iot_billing_group`.
@@ -38,8 +36,8 @@ final class AwsIotBillingGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (properties != null)
              'properties': TfArg.literal([
                for (final e in properties) e.encode(),

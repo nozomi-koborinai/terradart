@@ -29,7 +29,7 @@ final class GoogleSourcerepoRepositoryIamPolicy extends Resource {
          argMap: {
            'repository': repository,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

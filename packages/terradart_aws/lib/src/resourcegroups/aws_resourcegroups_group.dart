@@ -55,7 +55,7 @@ final class ResourcegroupsGroupResourceQuery {
 
   Map<String, Object?> encode() => {
     'query': query.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -87,10 +87,10 @@ final class AwsResourcegroupsGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (configuration != null)
              'configuration': TfArg.literal([
                for (final e in configuration) e.encode(),

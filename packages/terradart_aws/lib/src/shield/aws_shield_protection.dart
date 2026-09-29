@@ -21,11 +21,7 @@ final class AwsShieldProtection extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           'resource_arn': resourceArn,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'name': name, 'resource_arn': resourceArn, 'tags': ?tags},
        );
 
   @override

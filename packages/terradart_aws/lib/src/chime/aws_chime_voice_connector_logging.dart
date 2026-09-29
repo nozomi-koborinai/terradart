@@ -23,10 +23,9 @@ final class AwsChimeVoiceConnectorLogging extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enableMediaMetricLogs != null)
-             'enable_media_metric_logs': enableMediaMetricLogs,
-           if (enableSipLogs != null) 'enable_sip_logs': enableSipLogs,
-           if (region != null) 'region': region,
+           'enable_media_metric_logs': ?enableMediaMetricLogs,
+           'enable_sip_logs': ?enableSipLogs,
+           'region': ?region,
            'voice_connector_id': voiceConnectorId,
          },
        );

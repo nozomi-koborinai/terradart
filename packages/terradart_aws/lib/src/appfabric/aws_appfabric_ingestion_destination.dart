@@ -96,7 +96,7 @@ final class AppfabricIngestionDestinationDestinationConfigurationAuditLogDestina
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -188,8 +188,8 @@ final class AwsAppfabricIngestionDestination extends Resource {
          argMap: {
            'app_bundle_arn': appBundleArn,
            'ingestion_arn': ingestionArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (destinationConfiguration != null)
              'destination_configuration': TfArg.literal([
                for (final e in destinationConfiguration) e.encode(),

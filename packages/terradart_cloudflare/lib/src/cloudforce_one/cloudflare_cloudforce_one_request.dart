@@ -45,11 +45,11 @@ final class CloudflareCloudforceOneRequest extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (content != null) 'content': content,
-           if (priority != null) 'priority': priority,
-           if (requestType != null) 'request_type': requestType,
-           if (summary != null) 'summary': summary,
-           if (tlp != null) 'tlp': tlp,
+           'content': ?content,
+           'priority': ?priority,
+           'request_type': ?requestType,
+           'summary': ?summary,
+           'tlp': ?tlp,
          },
        );
 

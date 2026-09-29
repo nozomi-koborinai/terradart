@@ -23,8 +23,8 @@ final class AwsApiGatewayDocumentationVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'region': ?region,
            'rest_api_id': restApiId,
            'version': version,
          },

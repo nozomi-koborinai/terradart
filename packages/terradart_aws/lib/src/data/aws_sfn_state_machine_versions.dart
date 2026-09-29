@@ -18,10 +18,7 @@ final class DataAwsSfnStateMachineVersions extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'statemachine_arn': statemachineArn,
-         },
+         argMap: {'region': ?region, 'statemachine_arn': statemachineArn},
        );
 
   @override

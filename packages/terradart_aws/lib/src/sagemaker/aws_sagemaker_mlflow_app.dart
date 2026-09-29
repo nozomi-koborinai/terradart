@@ -50,19 +50,15 @@ final class AwsSagemakerMlflowApp extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountDefaultStatus != null)
-             'account_default_status': accountDefaultStatus,
+           'account_default_status': ?accountDefaultStatus,
            'artifact_store_uri': artifactStoreUri,
-           if (defaultDomainIdList != null)
-             'default_domain_id_list': defaultDomainIdList,
-           if (modelRegistrationMode != null)
-             'model_registration_mode': modelRegistrationMode,
+           'default_domain_id_list': ?defaultDomainIdList,
+           'model_registration_mode': ?modelRegistrationMode,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
-           if (weeklyMaintenanceWindowStart != null)
-             'weekly_maintenance_window_start': weeklyMaintenanceWindowStart,
+           'tags': ?tags,
+           'weekly_maintenance_window_start': ?weeklyMaintenanceWindowStart,
          },
        );
 

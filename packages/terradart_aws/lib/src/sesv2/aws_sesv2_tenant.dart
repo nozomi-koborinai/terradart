@@ -21,11 +21,7 @@ final class AwsSesv2Tenant extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           'tenant_name': tenantName,
-         },
+         argMap: {'region': ?region, 'tags': ?tags, 'tenant_name': tenantName},
        );
 
   @override

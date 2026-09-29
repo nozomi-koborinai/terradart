@@ -28,8 +28,8 @@ final class DataGoogleIapWebRegionForwardingRuleServiceIamPolicy extends Data {
          argMap: {
            'forwarding_rule_region_service_name':
                forwardingRuleRegionServiceName,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

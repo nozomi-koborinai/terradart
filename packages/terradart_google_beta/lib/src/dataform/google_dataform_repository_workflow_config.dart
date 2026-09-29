@@ -34,17 +34,13 @@ final class DataformRepositoryWorkflowConfigInvocationConfig {
   includedTargets;
 
   Map<String, Object?> encode() => {
-    if (fullyRefreshIncrementalTablesEnabled != null)
-      'fully_refresh_incremental_tables_enabled':
-          fullyRefreshIncrementalTablesEnabled!.toTfJson(),
-    if (includedTags != null) 'included_tags': includedTags!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
-    if (transitiveDependenciesIncluded != null)
-      'transitive_dependencies_included': transitiveDependenciesIncluded!
-          .toTfJson(),
-    if (transitiveDependentsIncluded != null)
-      'transitive_dependents_included': transitiveDependentsIncluded!
-          .toTfJson(),
+    'fully_refresh_incremental_tables_enabled':
+        ?fullyRefreshIncrementalTablesEnabled?.toTfJson(),
+    'included_tags': ?includedTags?.toTfJson(),
+    'service_account': ?serviceAccount?.toTfJson(),
+    'transitive_dependencies_included': ?transitiveDependenciesIncluded
+        ?.toTfJson(),
+    'transitive_dependents_included': ?transitiveDependentsIncluded?.toTfJson(),
     if (includedTargets != null)
       'included_targets': [for (final e in includedTargets!) e.encode()],
   };
@@ -67,9 +63,9 @@ final class DataformRepositoryWorkflowConfigInvocationConfigIncludedTargets {
   final TfArg<String>? schema;
 
   Map<String, Object?> encode() => {
-    if (database != null) 'database': database!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (schema != null) 'schema': schema!.toTfJson(),
+    'database': ?database?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'schema': ?schema?.toTfJson(),
   };
 }
 
@@ -99,15 +95,15 @@ final class GoogleDataformRepositoryWorkflowConfig extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (cronSchedule != null) 'cron_schedule': cronSchedule,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (disabled != null) 'disabled': disabled,
+           'cron_schedule': ?cronSchedule,
+           'deletion_policy': ?deletionPolicy,
+           'disabled': ?disabled,
            'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
            'release_config': releaseConfig,
-           if (repository != null) 'repository': repository,
-           if (timeZone != null) 'time_zone': timeZone,
+           'repository': ?repository,
+           'time_zone': ?timeZone,
            if (invocationConfig != null)
              'invocation_config': TfArg.literal(invocationConfig.encode()),
          },

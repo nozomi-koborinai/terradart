@@ -26,7 +26,7 @@ final class AwsSesIdentityPolicy extends Resource {
            'identity': identity,
            'name': name,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

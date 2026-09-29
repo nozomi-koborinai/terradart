@@ -50,10 +50,10 @@ final class GoogleNetworkServicesMulticastConsumerAssociation extends Resource {
            'multicast_consumer_association_id': multicastConsumerAssociationId,
            'multicast_domain_activation': multicastDomainActivation,
            'network': network.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

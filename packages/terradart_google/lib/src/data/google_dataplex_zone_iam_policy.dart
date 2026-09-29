@@ -27,8 +27,8 @@ final class DataGoogleDataplexZoneIamPolicy extends Data {
          argMap: {
            'dataplex_zone': dataplexZone,
            'lake': lake,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

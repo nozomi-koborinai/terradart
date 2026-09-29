@@ -42,12 +42,12 @@ final class DataAwsVpc extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cidrBlock != null) 'cidr_block': cidrBlock,
-           if (defaultCase != null) 'default': defaultCase,
-           if (dhcpOptionsId != null) 'dhcp_options_id': dhcpOptionsId,
-           if (region != null) 'region': region,
-           if (state != null) 'state': state,
-           if (tags != null) 'tags': tags,
+           'cidr_block': ?cidrBlock,
+           'default': ?defaultCase,
+           'dhcp_options_id': ?dhcpOptionsId,
+           'region': ?region,
+           'state': ?state,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

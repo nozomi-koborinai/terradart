@@ -30,16 +30,15 @@ final class AwsRdsClusterSnapshotCopy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (copyTags != null) 'copy_tags': copyTags,
-           if (destinationRegion != null)
-             'destination_region': destinationRegion,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (presignedUrl != null) 'presigned_url': presignedUrl,
-           if (region != null) 'region': region,
-           if (sharedAccounts != null) 'shared_accounts': sharedAccounts,
+           'copy_tags': ?copyTags,
+           'destination_region': ?destinationRegion,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'presigned_url': ?presignedUrl,
+           'region': ?region,
+           'shared_accounts': ?sharedAccounts,
            'source_db_cluster_snapshot_identifier':
                sourceDbClusterSnapshotIdentifier,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'target_db_cluster_snapshot_identifier':
                targetDbClusterSnapshotIdentifier,
          },

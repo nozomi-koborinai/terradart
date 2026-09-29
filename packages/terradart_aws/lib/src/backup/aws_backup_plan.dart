@@ -79,24 +79,19 @@ final class BackupPlanRule {
   final List<BackupPlanRuleScanAction>? scanAction;
 
   Map<String, Object?> encode() => {
-    if (completionWindow != null)
-      'completion_window': completionWindow!.toTfJson(),
-    if (enableContinuousBackup != null)
-      'enable_continuous_backup': enableContinuousBackup!.toTfJson(),
-    if (recoveryPointTags != null)
-      'recovery_point_tags': recoveryPointTags!.toTfJson(),
+    'completion_window': ?completionWindow?.toTfJson(),
+    'enable_continuous_backup': ?enableContinuousBackup?.toTfJson(),
+    'recovery_point_tags': ?recoveryPointTags?.toTfJson(),
     'rule_name': ruleName.toTfJson(),
-    if (schedule != null) 'schedule': schedule!.toTfJson(),
-    if (scheduleExpressionTimezone != null)
-      'schedule_expression_timezone': scheduleExpressionTimezone!.toTfJson(),
-    if (startWindow != null) 'start_window': startWindow!.toTfJson(),
-    if (targetLogicallyAirGappedBackupVaultArn != null)
-      'target_logically_air_gapped_backup_vault_arn':
-          targetLogicallyAirGappedBackupVaultArn!.toTfJson(),
+    'schedule': ?schedule?.toTfJson(),
+    'schedule_expression_timezone': ?scheduleExpressionTimezone?.toTfJson(),
+    'start_window': ?startWindow?.toTfJson(),
+    'target_logically_air_gapped_backup_vault_arn':
+        ?targetLogicallyAirGappedBackupVaultArn?.toTfJson(),
     'target_vault_name': targetVaultName.toTfJson(),
     if (copyAction != null)
       'copy_action': [for (final e in copyAction!) e.encode()],
-    if (lifecycle != null) 'lifecycle': lifecycle!.encode(),
+    'lifecycle': ?lifecycle?.encode(),
     if (scanAction != null)
       'scan_action': [for (final e in scanAction!) e.encode()],
   };
@@ -117,7 +112,7 @@ final class BackupPlanRuleCopyAction {
 
   Map<String, Object?> encode() => {
     'destination_vault_arn': destinationVaultArn.toTfJson(),
-    if (lifecycle != null) 'lifecycle': lifecycle!.encode(),
+    'lifecycle': ?lifecycle?.encode(),
   };
 }
 
@@ -138,12 +133,10 @@ final class BackupPlanRuleCopyActionLifecycle {
   final TfArg<bool>? optInToArchiveForSupportedResources;
 
   Map<String, Object?> encode() => {
-    if (coldStorageAfter != null)
-      'cold_storage_after': coldStorageAfter!.toTfJson(),
-    if (deleteAfter != null) 'delete_after': deleteAfter!.toTfJson(),
-    if (optInToArchiveForSupportedResources != null)
-      'opt_in_to_archive_for_supported_resources':
-          optInToArchiveForSupportedResources!.toTfJson(),
+    'cold_storage_after': ?coldStorageAfter?.toTfJson(),
+    'delete_after': ?deleteAfter?.toTfJson(),
+    'opt_in_to_archive_for_supported_resources':
+        ?optInToArchiveForSupportedResources?.toTfJson(),
   };
 }
 
@@ -164,12 +157,10 @@ final class BackupPlanRuleLifecycle {
   final TfArg<bool>? optInToArchiveForSupportedResources;
 
   Map<String, Object?> encode() => {
-    if (coldStorageAfter != null)
-      'cold_storage_after': coldStorageAfter!.toTfJson(),
-    if (deleteAfter != null) 'delete_after': deleteAfter!.toTfJson(),
-    if (optInToArchiveForSupportedResources != null)
-      'opt_in_to_archive_for_supported_resources':
-          optInToArchiveForSupportedResources!.toTfJson(),
+    'cold_storage_after': ?coldStorageAfter?.toTfJson(),
+    'delete_after': ?deleteAfter?.toTfJson(),
+    'opt_in_to_archive_for_supported_resources':
+        ?optInToArchiveForSupportedResources?.toTfJson(),
   };
 }
 
@@ -263,8 +254,8 @@ final class AwsBackupPlan extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (advancedBackupSetting != null)
              'advanced_backup_setting': TfArg.literal([
                for (final e in advancedBackupSetting) e.encode(),

@@ -87,15 +87,14 @@ final class AwsSecurityGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (egress != null) 'egress': egress,
-           if (ingress != null) 'ingress': ingress,
+           'description': ?description,
+           'egress': ?egress,
+           'ingress': ?ingress,
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (revokeRulesOnDelete != null)
-             'revoke_rules_on_delete': revokeRulesOnDelete,
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
+           'region': ?region,
+           'revoke_rules_on_delete': ?revokeRulesOnDelete,
+           'tags': ?tags,
+           'vpc_id': ?vpcId?.encodeAs('id'),
          },
        );
 

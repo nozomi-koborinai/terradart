@@ -211,23 +211,20 @@ final class GoogleComputeFirewall extends Resource {
          argMap: {
            'name': name,
            'network': network.encodeAs('id'),
-           if (direction != null) 'direction': direction,
-           if (priority != null) 'priority': priority,
-           if (sourceRanges != null) 'source_ranges': sourceRanges,
-           if (sourceTags != null) 'source_tags': sourceTags,
-           if (sourceServiceAccounts != null)
-             'source_service_accounts': sourceServiceAccounts,
-           if (targetTags != null) 'target_tags': targetTags,
-           if (targetServiceAccounts != null)
-             'target_service_accounts': targetServiceAccounts,
-           if (destinationRanges != null)
-             'destination_ranges': destinationRanges,
+           'direction': ?direction,
+           'priority': ?priority,
+           'source_ranges': ?sourceRanges,
+           'source_tags': ?sourceTags,
+           'source_service_accounts': ?sourceServiceAccounts,
+           'target_tags': ?targetTags,
+           'target_service_accounts': ?targetServiceAccounts,
+           'destination_ranges': ?destinationRanges,
            if (logConfig != null)
              'log_config': TfArg.literal([logConfig.toArgMap()]),
-           if (disabled != null) 'disabled': disabled,
-           if (enableLogging != null) 'enable_logging': enableLogging,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'disabled': ?disabled,
+           'enable_logging': ?enableLogging,
+           'description': ?description,
+           'project': ?project,
            rulePolicy.blockKey: TfArg.literal(rulePolicy.encode()),
          },
        );

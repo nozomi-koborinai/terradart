@@ -83,12 +83,9 @@ final class BedrockagentcoreGatewayTargetCredentialProviderConfigurationApiKey {
   final TfArg<String> providerArn;
 
   Map<String, Object?> encode() => {
-    if (credentialLocation != null)
-      'credential_location': credentialLocation!.toTfJson(),
-    if (credentialParameterName != null)
-      'credential_parameter_name': credentialParameterName!.toTfJson(),
-    if (credentialPrefix != null)
-      'credential_prefix': credentialPrefix!.toTfJson(),
+    'credential_location': ?credentialLocation?.toTfJson(),
+    'credential_parameter_name': ?credentialParameterName?.toTfJson(),
+    'credential_prefix': ?credentialPrefix?.toTfJson(),
     'provider_arn': providerArn.toTfJson(),
   };
 }
@@ -120,7 +117,7 @@ final class BedrockagentcoreGatewayTargetCredentialProviderConfigurationCallerIa
   final TfArg<String> service;
 
   Map<String, Object?> encode() => {
-    if (region != null) 'region': region!.toTfJson(),
+    'region': ?region?.toTfJson(),
     'service': service.toTfJson(),
   };
 }
@@ -139,8 +136,8 @@ final class BedrockagentcoreGatewayTargetCredentialProviderConfigurationGatewayI
   final TfArg<String>? service;
 
   Map<String, Object?> encode() => {
-    if (region != null) 'region': region!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'service': ?service?.toTfJson(),
   };
 }
 
@@ -179,11 +176,9 @@ final class BedrockagentcoreGatewayTargetCredentialProviderConfigurationOauth {
   final TfArg<List<Object?>> scopes;
 
   Map<String, Object?> encode() => {
-    if (customParameters != null)
-      'custom_parameters': customParameters!.toTfJson(),
-    if (defaultReturnUrl != null)
-      'default_return_url': defaultReturnUrl!.toTfJson(),
-    if (grantType != null) 'grant_type': grantType!.toTfJson(),
+    'custom_parameters': ?customParameters?.toTfJson(),
+    'default_return_url': ?defaultReturnUrl?.toTfJson(),
+    'grant_type': ?grantType?.toTfJson(),
     'provider_arn': providerArn.toTfJson(),
     'scopes': scopes.toTfJson(),
   };
@@ -220,12 +215,9 @@ final class BedrockagentcoreGatewayTargetMetadataConfiguration {
   final TfArg<List<Object?>>? allowedResponseHeaders;
 
   Map<String, Object?> encode() => {
-    if (allowedQueryParameters != null)
-      'allowed_query_parameters': allowedQueryParameters!.toTfJson(),
-    if (allowedRequestHeaders != null)
-      'allowed_request_headers': allowedRequestHeaders!.toTfJson(),
-    if (allowedResponseHeaders != null)
-      'allowed_response_headers': allowedResponseHeaders!.toTfJson(),
+    'allowed_query_parameters': ?allowedQueryParameters?.toTfJson(),
+    'allowed_request_headers': ?allowedRequestHeaders?.toTfJson(),
+    'allowed_response_headers': ?allowedResponseHeaders?.toTfJson(),
   };
 }
 
@@ -286,11 +278,10 @@ final class BedrockagentcoreGatewayTargetPrivateEndpointManagedVpcResource {
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -319,9 +310,8 @@ final class BedrockagentcoreGatewayTargetPrivateEndpointSelfManagedLatticeResour
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -396,7 +386,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationHttpAgentcoreRuntime
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (qualifier != null) 'qualifier': qualifier!.toTfJson(),
+    'qualifier': ?qualifier?.toTfJson(),
     if (schema != null) 'schema': [for (final e in schema!) e.encode()],
   };
 }
@@ -472,9 +462,8 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationHttpAgentcoreRuntime
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (bucketOwnerAccountId != null)
-      'bucket_owner_account_id': bucketOwnerAccountId!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'bucket_owner_account_id': ?bucketOwnerAccountId?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -518,11 +507,9 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthrough {
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'protocol_type': protocolType.toTfJson(),
-    if (staticQueryParameterConflictResolution != null)
-      'static_query_parameter_conflict_resolution':
-          staticQueryParameterConflictResolution!.toTfJson(),
-    if (staticQueryParameters != null)
-      'static_query_parameters': staticQueryParameters!.toTfJson(),
+    'static_query_parameter_conflict_resolution':
+        ?staticQueryParameterConflictResolution?.toTfJson(),
+    'static_query_parameters': ?staticQueryParameters?.toTfJson(),
     if (schema != null) 'schema': [for (final e in schema!) e.encode()],
     if (stickinessConfiguration != null)
       'stickiness_configuration': [
@@ -630,9 +617,8 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughSchem
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (bucketOwnerAccountId != null)
-      'bucket_owner_account_id': bucketOwnerAccountId!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'bucket_owner_account_id': ?bucketOwnerAccountId?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -653,10 +639,9 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughStick
   final TfArg<num>? timeout;
 
   Map<String, Object?> encode() => {
-    if (compositeIdentifier != null)
-      'composite_identifier': compositeIdentifier!.toTfJson(),
+    'composite_identifier': ?compositeIdentifier?.toTfJson(),
     'identifier': identifier.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
   };
 }
 
@@ -779,8 +764,8 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationInferenceProviderMod
   final TfArg<bool>? strip;
 
   Map<String, Object?> encode() => {
-    if (separator != null) 'separator': separator!.toTfJson(),
-    if (strip != null) 'strip': strip!.toTfJson(),
+    'separator': ?separator?.toTfJson(),
+    'strip': ?strip?.toTfJson(),
   };
 }
 
@@ -805,7 +790,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationInferenceProviderOpe
 
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
-    if (providerPath != null) 'provider_path': providerPath!.toTfJson(),
+    'provider_path': ?providerPath?.toTfJson(),
     if (model != null) 'model': [for (final e in model!) e.encode()],
   };
 }
@@ -989,7 +974,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGate
   final TfArg<String> path;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'method': method.toTfJson(),
     'name': name.toTfJson(),
     'path': path.toTfJson(),
@@ -1037,7 +1022,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpConnector {
   source;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (configuration != null)
       'configuration': [for (final e in configuration!) e.encode()],
     if (source != null) 'source': [for (final e in source!) e.encode()],
@@ -1067,10 +1052,9 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpConnectorConfigur
   parameterOverride;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (parameterValues != null)
-      'parameter_values': parameterValues!.toTfJson(),
+    'parameter_values': ?parameterValues?.toTfJson(),
     if (parameterOverride != null)
       'parameter_override': [for (final e in parameterOverride!) e.encode()],
   };
@@ -1093,9 +1077,9 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpConnectorConfigur
   final TfArg<bool>? visible;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'path': path.toTfJson(),
-    if (visible != null) 'visible': visible!.toTfJson(),
+    'visible': ?visible?.toTfJson(),
   };
 }
 
@@ -1114,7 +1098,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpConnectorSource {
 
   Map<String, Object?> encode() => {
     'connector_id': connectorId.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -1231,7 +1215,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   property;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'type': type.toTfJson(),
     if (items != null) 'items': [for (final e in items!) e.encode()],
     if (property != null) 'property': [for (final e in property!) e.encode()],
@@ -1284,7 +1268,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   property;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'type': type.toTfJson(),
     if (items != null) 'items': [for (final e in items!) e.encode()],
     if (property != null) 'property': [for (final e in property!) e.encode()],
@@ -1331,9 +1315,9 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (itemsJson != null) 'items_json': itemsJson!.toTfJson(),
-    if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'items_json': ?itemsJson?.toTfJson(),
+    'properties_json': ?propertiesJson?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -1384,11 +1368,11 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (itemsJson != null) 'items_json': itemsJson!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'items_json': ?itemsJson?.toTfJson(),
     'name': name.toTfJson(),
-    if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'properties_json': ?propertiesJson?.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -1445,9 +1429,9 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   property;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type': type.toTfJson(),
     if (items != null) 'items': [for (final e in items!) e.encode()],
     if (property != null) 'property': [for (final e in property!) e.encode()],
@@ -1500,7 +1484,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   property;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'type': type.toTfJson(),
     if (items != null) 'items': [for (final e in items!) e.encode()],
     if (property != null) 'property': [for (final e in property!) e.encode()],
@@ -1547,9 +1531,9 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (itemsJson != null) 'items_json': itemsJson!.toTfJson(),
-    if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'items_json': ?itemsJson?.toTfJson(),
+    'properties_json': ?propertiesJson?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -1600,11 +1584,11 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (itemsJson != null) 'items_json': itemsJson!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'items_json': ?itemsJson?.toTfJson(),
     'name': name.toTfJson(),
-    if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'properties_json': ?propertiesJson?.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -1655,11 +1639,11 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (itemsJson != null) 'items_json': itemsJson!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'items_json': ?itemsJson?.toTfJson(),
     'name': name.toTfJson(),
-    if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'properties_json': ?propertiesJson?.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -1710,7 +1694,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   property;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'type': type.toTfJson(),
     if (items != null) 'items': [for (final e in items!) e.encode()],
     if (property != null) 'property': [for (final e in property!) e.encode()],
@@ -1763,7 +1747,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   property;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'type': type.toTfJson(),
     if (items != null) 'items': [for (final e in items!) e.encode()],
     if (property != null) 'property': [for (final e in property!) e.encode()],
@@ -1810,9 +1794,9 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (itemsJson != null) 'items_json': itemsJson!.toTfJson(),
-    if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'items_json': ?itemsJson?.toTfJson(),
+    'properties_json': ?propertiesJson?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -1863,11 +1847,11 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (itemsJson != null) 'items_json': itemsJson!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'items_json': ?itemsJson?.toTfJson(),
     'name': name.toTfJson(),
-    if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'properties_json': ?propertiesJson?.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -1924,9 +1908,9 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   property;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type': type.toTfJson(),
     if (items != null) 'items': [for (final e in items!) e.encode()],
     if (property != null) 'property': [for (final e in property!) e.encode()],
@@ -1979,7 +1963,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   property;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'type': type.toTfJson(),
     if (items != null) 'items': [for (final e in items!) e.encode()],
     if (property != null) 'property': [for (final e in property!) e.encode()],
@@ -2026,9 +2010,9 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (itemsJson != null) 'items_json': itemsJson!.toTfJson(),
-    if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'items_json': ?itemsJson?.toTfJson(),
+    'properties_json': ?propertiesJson?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -2079,11 +2063,11 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (itemsJson != null) 'items_json': itemsJson!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'items_json': ?itemsJson?.toTfJson(),
     'name': name.toTfJson(),
-    if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'properties_json': ?propertiesJson?.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -2134,11 +2118,11 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   type;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (itemsJson != null) 'items_json': itemsJson!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'items_json': ?itemsJson?.toTfJson(),
     'name': name.toTfJson(),
-    if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'properties_json': ?propertiesJson?.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -2174,9 +2158,8 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaS
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (bucketOwnerAccountId != null)
-      'bucket_owner_account_id': bucketOwnerAccountId!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'bucket_owner_account_id': ?bucketOwnerAccountId?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -2207,9 +2190,8 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServer {
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
-    if (listingMode != null) 'listing_mode': listingMode!.toTfJson(),
-    if (resourcePriority != null)
-      'resource_priority': resourcePriority!.toTfJson(),
+    'listing_mode': ?listingMode?.toTfJson(),
+    'resource_priority': ?resourcePriority?.toTfJson(),
     if (mcpToolSchema != null)
       'mcp_tool_schema': [for (final e in mcpToolSchema!) e.encode()],
   };
@@ -2281,8 +2263,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServerMcpToolS
   final TfArg<String> uri;
 
   Map<String, Object?> encode() => {
-    if (bucketOwnerAccountId != null)
-      'bucket_owner_account_id': bucketOwnerAccountId!.toTfJson(),
+    'bucket_owner_account_id': ?bucketOwnerAccountId?.toTfJson(),
     'uri': uri.toTfJson(),
   };
 }
@@ -2340,9 +2321,8 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpOpenApiSchemaS3 {
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (bucketOwnerAccountId != null)
-      'bucket_owner_account_id': bucketOwnerAccountId!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'bucket_owner_account_id': ?bucketOwnerAccountId?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -2397,9 +2377,8 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpSmithyModelS3 {
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (bucketOwnerAccountId != null)
-      'bucket_owner_account_id': bucketOwnerAccountId!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'bucket_owner_account_id': ?bucketOwnerAccountId?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -2426,10 +2405,10 @@ final class AwsBedrockagentcoreGatewayTarget extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'gateway_identifier': gatewayIdentifier,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (credentialProviderConfiguration != null)
              'credential_provider_configuration': TfArg.literal([
                for (final e in credentialProviderConfiguration) e.encode(),

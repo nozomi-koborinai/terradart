@@ -19,10 +19,7 @@ final class DataGoogleIapWebIamPolicy extends Data {
     TfArg<String>? project,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (project != null) 'project': project},
-       );
+  }) : super(terraformType: tfType, argMap: {'project': ?project});
 
   @override
   Set<String> get sensitiveFields => _googleIapWebIamPolicySensitive;

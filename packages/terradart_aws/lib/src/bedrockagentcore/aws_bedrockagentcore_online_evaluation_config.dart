@@ -159,9 +159,9 @@ final class BedrockagentcoreOnlineEvaluationConfigRuleFilterValue {
   final TfArg<String>? stringValue;
 
   Map<String, Object?> encode() => {
-    if (booleanValue != null) 'boolean_value': booleanValue!.toTfJson(),
-    if (doubleValue != null) 'double_value': doubleValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    'boolean_value': ?booleanValue?.toTfJson(),
+    'double_value': ?doubleValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
   };
 }
 
@@ -220,13 +220,13 @@ final class AwsBedrockagentcoreOnlineEvaluationConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'enable_on_create': enableOnCreate,
            'evaluation_execution_role_arn': evaluationExecutionRoleArn,
-           if (executionStatus != null) 'execution_status': executionStatus,
+           'execution_status': ?executionStatus,
            'online_evaluation_config_name': onlineEvaluationConfigName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (dataSourceConfig != null)
              'data_source_config': TfArg.literal([
                for (final e in dataSourceConfig) e.encode(),

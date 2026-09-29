@@ -94,8 +94,7 @@ final class CognitoLogDeliveryConfigurationLogConfigurationsCloudWatchLogsConfig
   final RefTo<AwsCloudwatchLogGroup>? logGroupArn;
 
   Map<String, Object?> encode() => {
-    if (logGroupArn != null)
-      'log_group_arn': logGroupArn!.encodeAs('arn').toTfJson(),
+    'log_group_arn': ?logGroupArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -109,9 +108,7 @@ final class CognitoLogDeliveryConfigurationLogConfigurationsFirehoseConfiguratio
 
   final TfArg<String>? streamArn;
 
-  Map<String, Object?> encode() => {
-    if (streamArn != null) 'stream_arn': streamArn!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'stream_arn': ?streamArn?.toTfJson()};
 }
 
 /// Typed helper for the `log_configurations.s3_configuration` block of
@@ -125,7 +122,7 @@ final class CognitoLogDeliveryConfigurationLogConfigurationsS3Configuration {
   final RefTo<AwsS3Bucket>? bucketArn;
 
   Map<String, Object?> encode() => {
-    if (bucketArn != null) 'bucket_arn': bucketArn!.encodeAs('arn').toTfJson(),
+    'bucket_arn': ?bucketArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -145,7 +142,7 @@ final class AwsCognitoLogDeliveryConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'user_pool_id': userPoolId,
            if (logConfigurations != null)
              'log_configurations': TfArg.literal([

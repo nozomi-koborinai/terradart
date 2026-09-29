@@ -30,10 +30,9 @@ final class OsConfigGuestPoliciesAssignment {
   final List<OsConfigGuestPoliciesAssignmentOsTypes>? osTypes;
 
   Map<String, Object?> encode() => {
-    if (instanceNamePrefixes != null)
-      'instance_name_prefixes': instanceNamePrefixes!.toTfJson(),
-    if (instances != null) 'instances': instances!.toTfJson(),
-    if (zones != null) 'zones': zones!.toTfJson(),
+    'instance_name_prefixes': ?instanceNamePrefixes?.toTfJson(),
+    'instances': ?instances?.toTfJson(),
+    'zones': ?zones?.toTfJson(),
     if (groupLabels != null)
       'group_labels': [for (final e in groupLabels!) e.encode()],
     if (osTypes != null) 'os_types': [for (final e in osTypes!) e.encode()],
@@ -68,9 +67,9 @@ final class OsConfigGuestPoliciesAssignmentOsTypes {
   final TfArg<String>? osVersion;
 
   Map<String, Object?> encode() => {
-    if (osArchitecture != null) 'os_architecture': osArchitecture!.toTfJson(),
-    if (osShortName != null) 'os_short_name': osShortName!.toTfJson(),
-    if (osVersion != null) 'os_version': osVersion!.toTfJson(),
+    'os_architecture': ?osArchitecture?.toTfJson(),
+    'os_short_name': ?osShortName?.toTfJson(),
+    'os_version': ?osVersion?.toTfJson(),
   };
 }
 
@@ -94,10 +93,10 @@ final class OsConfigGuestPoliciesPackageRepositories {
   final OsConfigGuestPoliciesPackageRepositoriesZypper? zypper;
 
   Map<String, Object?> encode() => {
-    if (apt != null) 'apt': apt!.encode(),
-    if (goo != null) 'goo': goo!.encode(),
-    if (yum != null) 'yum': yum!.encode(),
-    if (zypper != null) 'zypper': zypper!.encode(),
+    'apt': ?apt?.encode(),
+    'goo': ?goo?.encode(),
+    'yum': ?yum?.encode(),
+    'zypper': ?zypper?.encode(),
   };
 }
 
@@ -125,10 +124,10 @@ final class OsConfigGuestPoliciesPackageRepositoriesApt {
   final TfArg<String> uri;
 
   Map<String, Object?> encode() => {
-    if (archiveType != null) 'archive_type': archiveType!.toTfJson(),
+    'archive_type': ?archiveType?.toTfJson(),
     'components': components.toTfJson(),
     'distribution': distribution.toTfJson(),
-    if (gpgKey != null) 'gpg_key': gpgKey!.toTfJson(),
+    'gpg_key': ?gpgKey?.toTfJson(),
     'uri': uri.toTfJson(),
   };
 }
@@ -186,8 +185,8 @@ final class OsConfigGuestPoliciesPackageRepositoriesYum {
 
   Map<String, Object?> encode() => {
     'base_url': baseUrl.toTfJson(),
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (gpgKeys != null) 'gpg_keys': gpgKeys!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'gpg_keys': ?gpgKeys?.toTfJson(),
     'id': id.toTfJson(),
   };
 }
@@ -213,8 +212,8 @@ final class OsConfigGuestPoliciesPackageRepositoriesZypper {
 
   Map<String, Object?> encode() => {
     'base_url': baseUrl.toTfJson(),
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (gpgKeys != null) 'gpg_keys': gpgKeys!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'gpg_keys': ?gpgKeys?.toTfJson(),
     'id': id.toTfJson(),
   };
 }
@@ -236,8 +235,8 @@ final class OsConfigGuestPoliciesPackages {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (desiredState != null) 'desired_state': desiredState!.toTfJson(),
-    if (manager != null) 'manager': manager!.toTfJson(),
+    'desired_state': ?desiredState?.toTfJson(),
+    'manager': ?manager?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -292,9 +291,9 @@ final class OsConfigGuestPoliciesRecipes {
   final List<OsConfigGuestPoliciesRecipesUpdateSteps>? updateSteps;
 
   Map<String, Object?> encode() => {
-    if (desiredState != null) 'desired_state': desiredState!.toTfJson(),
+    'desired_state': ?desiredState?.toTfJson(),
     'name': name.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
     if (artifacts != null)
       'artifacts': [for (final e in artifacts!) e.encode()],
     if (installSteps != null)
@@ -335,10 +334,10 @@ final class OsConfigGuestPoliciesRecipesArtifacts {
   final OsConfigGuestPoliciesRecipesArtifactsRemote? remote;
 
   Map<String, Object?> encode() => {
-    if (allowInsecure != null) 'allow_insecure': allowInsecure!.toTfJson(),
+    'allow_insecure': ?allowInsecure?.toTfJson(),
     'id': id.toTfJson(),
-    if (gcs != null) 'gcs': gcs!.encode(),
-    if (remote != null) 'remote': remote!.encode(),
+    'gcs': ?gcs?.encode(),
+    'remote': ?remote?.encode(),
   };
 }
 
@@ -359,9 +358,9 @@ final class OsConfigGuestPoliciesRecipesArtifactsGcs {
   final TfArg<String>? object;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
-    if (generation != null) 'generation': generation!.toTfJson(),
-    if (object != null) 'object': object!.toTfJson(),
+    'bucket': ?bucket?.toTfJson(),
+    'generation': ?generation?.toTfJson(),
+    'object': ?object?.toTfJson(),
   };
 }
 
@@ -376,8 +375,8 @@ final class OsConfigGuestPoliciesRecipesArtifactsRemote {
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (checkSum != null) 'check_sum': checkSum!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'check_sum': ?checkSum?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -414,15 +413,13 @@ final class OsConfigGuestPoliciesRecipesInstallSteps {
   final OsConfigGuestPoliciesRecipesInstallStepsScriptRun? scriptRun;
 
   Map<String, Object?> encode() => {
-    if (archiveExtraction != null)
-      'archive_extraction': archiveExtraction!.encode(),
-    if (dpkgInstallation != null)
-      'dpkg_installation': dpkgInstallation!.encode(),
-    if (fileCopy != null) 'file_copy': fileCopy!.encode(),
-    if (fileExec != null) 'file_exec': fileExec!.encode(),
-    if (msiInstallation != null) 'msi_installation': msiInstallation!.encode(),
-    if (rpmInstallation != null) 'rpm_installation': rpmInstallation!.encode(),
-    if (scriptRun != null) 'script_run': scriptRun!.encode(),
+    'archive_extraction': ?archiveExtraction?.encode(),
+    'dpkg_installation': ?dpkgInstallation?.encode(),
+    'file_copy': ?fileCopy?.encode(),
+    'file_exec': ?fileExec?.encode(),
+    'msi_installation': ?msiInstallation?.encode(),
+    'rpm_installation': ?rpmInstallation?.encode(),
+    'script_run': ?scriptRun?.encode(),
   };
 }
 
@@ -445,7 +442,7 @@ final class OsConfigGuestPoliciesRecipesInstallStepsArchiveExtraction {
 
   Map<String, Object?> encode() => {
     'artifact_id': artifactId.toTfJson(),
-    if (destination != null) 'destination': destination!.toTfJson(),
+    'destination': ?destination?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -502,8 +499,8 @@ final class OsConfigGuestPoliciesRecipesInstallStepsFileCopy {
   Map<String, Object?> encode() => {
     'artifact_id': artifactId.toTfJson(),
     'destination': destination.toTfJson(),
-    if (overwrite != null) 'overwrite': overwrite!.toTfJson(),
-    if (permissions != null) 'permissions': permissions!.toTfJson(),
+    'overwrite': ?overwrite?.toTfJson(),
+    'permissions': ?permissions?.toTfJson(),
   };
 }
 
@@ -527,11 +524,10 @@ final class OsConfigGuestPoliciesRecipesInstallStepsFileExec {
   final TfArg<String>? localPath;
 
   Map<String, Object?> encode() => {
-    if (allowedExitCodes != null)
-      'allowed_exit_codes': allowedExitCodes!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (artifactId != null) 'artifact_id': artifactId!.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
+    'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'artifact_id': ?artifactId?.toTfJson(),
+    'local_path': ?localPath?.toTfJson(),
   };
 }
 
@@ -552,10 +548,9 @@ final class OsConfigGuestPoliciesRecipesInstallStepsMsiInstallation {
   final TfArg<List<Object?>>? flags;
 
   Map<String, Object?> encode() => {
-    if (allowedExitCodes != null)
-      'allowed_exit_codes': allowedExitCodes!.toTfJson(),
+    'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
     'artifact_id': artifactId.toTfJson(),
-    if (flags != null) 'flags': flags!.toTfJson(),
+    'flags': ?flags?.toTfJson(),
   };
 }
 
@@ -590,9 +585,8 @@ final class OsConfigGuestPoliciesRecipesInstallStepsScriptRun {
   final TfArg<String> script;
 
   Map<String, Object?> encode() => {
-    if (allowedExitCodes != null)
-      'allowed_exit_codes': allowedExitCodes!.toTfJson(),
-    if (interpreter != null) 'interpreter': interpreter!.toTfJson(),
+    'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
+    'interpreter': ?interpreter?.toTfJson(),
     'script': script.toTfJson(),
   };
 }
@@ -641,15 +635,13 @@ final class OsConfigGuestPoliciesRecipesUpdateSteps {
   final OsConfigGuestPoliciesRecipesUpdateStepsScriptRun? scriptRun;
 
   Map<String, Object?> encode() => {
-    if (archiveExtraction != null)
-      'archive_extraction': archiveExtraction!.encode(),
-    if (dpkgInstallation != null)
-      'dpkg_installation': dpkgInstallation!.encode(),
-    if (fileCopy != null) 'file_copy': fileCopy!.encode(),
-    if (fileExec != null) 'file_exec': fileExec!.encode(),
-    if (msiInstallation != null) 'msi_installation': msiInstallation!.encode(),
-    if (rpmInstallation != null) 'rpm_installation': rpmInstallation!.encode(),
-    if (scriptRun != null) 'script_run': scriptRun!.encode(),
+    'archive_extraction': ?archiveExtraction?.encode(),
+    'dpkg_installation': ?dpkgInstallation?.encode(),
+    'file_copy': ?fileCopy?.encode(),
+    'file_exec': ?fileExec?.encode(),
+    'msi_installation': ?msiInstallation?.encode(),
+    'rpm_installation': ?rpmInstallation?.encode(),
+    'script_run': ?scriptRun?.encode(),
   };
 }
 
@@ -672,7 +664,7 @@ final class OsConfigGuestPoliciesRecipesUpdateStepsArchiveExtraction {
 
   Map<String, Object?> encode() => {
     'artifact_id': artifactId.toTfJson(),
-    if (destination != null) 'destination': destination!.toTfJson(),
+    'destination': ?destination?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -729,8 +721,8 @@ final class OsConfigGuestPoliciesRecipesUpdateStepsFileCopy {
   Map<String, Object?> encode() => {
     'artifact_id': artifactId.toTfJson(),
     'destination': destination.toTfJson(),
-    if (overwrite != null) 'overwrite': overwrite!.toTfJson(),
-    if (permissions != null) 'permissions': permissions!.toTfJson(),
+    'overwrite': ?overwrite?.toTfJson(),
+    'permissions': ?permissions?.toTfJson(),
   };
 }
 
@@ -754,11 +746,10 @@ final class OsConfigGuestPoliciesRecipesUpdateStepsFileExec {
   final TfArg<String>? localPath;
 
   Map<String, Object?> encode() => {
-    if (allowedExitCodes != null)
-      'allowed_exit_codes': allowedExitCodes!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (artifactId != null) 'artifact_id': artifactId!.toTfJson(),
-    if (localPath != null) 'local_path': localPath!.toTfJson(),
+    'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'artifact_id': ?artifactId?.toTfJson(),
+    'local_path': ?localPath?.toTfJson(),
   };
 }
 
@@ -779,10 +770,9 @@ final class OsConfigGuestPoliciesRecipesUpdateStepsMsiInstallation {
   final TfArg<List<Object?>>? flags;
 
   Map<String, Object?> encode() => {
-    if (allowedExitCodes != null)
-      'allowed_exit_codes': allowedExitCodes!.toTfJson(),
+    'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
     'artifact_id': artifactId.toTfJson(),
-    if (flags != null) 'flags': flags!.toTfJson(),
+    'flags': ?flags?.toTfJson(),
   };
 }
 
@@ -817,9 +807,8 @@ final class OsConfigGuestPoliciesRecipesUpdateStepsScriptRun {
   final TfArg<String> script;
 
   Map<String, Object?> encode() => {
-    if (allowedExitCodes != null)
-      'allowed_exit_codes': allowedExitCodes!.toTfJson(),
-    if (interpreter != null) 'interpreter': interpreter!.toTfJson(),
+    'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
+    'interpreter': ?interpreter?.toTfJson(),
     'script': script.toTfJson(),
   };
 }
@@ -865,11 +854,11 @@ final class GoogleOsConfigGuestPolicies extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (etag != null) 'etag': etag,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'etag': ?etag,
            'guest_policy_id': guestPolicyId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'assignment': TfArg.literal(assignment.encode()),
            if (packageRepositories != null)
              'package_repositories': TfArg.literal([

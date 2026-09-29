@@ -27,9 +27,9 @@ final class AwsCloudwatchLogDestination extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'target_arn': targetArn,
          },
        );

@@ -58,7 +58,7 @@ final class VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfigu
   groupConfiguration;
 
   Map<String, Object?> encode() => {
-    if (clientIds != null) 'client_ids': clientIds!.toTfJson(),
+    'client_ids': ?clientIds?.toTfJson(),
     'user_pool_arn': userPoolArn.toTfJson(),
     if (groupConfiguration != null)
       'group_configuration': [for (final e in groupConfiguration!) e.encode()],
@@ -106,7 +106,7 @@ final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigura
   tokenSelection;
 
   Map<String, Object?> encode() => {
-    if (entityIdPrefix != null) 'entity_id_prefix': entityIdPrefix!.toTfJson(),
+    'entity_id_prefix': ?entityIdPrefix?.toTfJson(),
     'issuer': issuer.toTfJson(),
     if (groupConfiguration != null)
       'group_configuration': [for (final e in groupConfiguration!) e.encode()],
@@ -175,9 +175,8 @@ final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigura
   final TfArg<String>? principalIdClaim;
 
   Map<String, Object?> encode() => {
-    if (audiences != null) 'audiences': audiences!.toTfJson(),
-    if (principalIdClaim != null)
-      'principal_id_claim': principalIdClaim!.toTfJson(),
+    'audiences': ?audiences?.toTfJson(),
+    'principal_id_claim': ?principalIdClaim?.toTfJson(),
   };
 }
 
@@ -195,9 +194,8 @@ final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigura
   final TfArg<String>? principalIdClaim;
 
   Map<String, Object?> encode() => {
-    if (clientIds != null) 'client_ids': clientIds!.toTfJson(),
-    if (principalIdClaim != null)
-      'principal_id_claim': principalIdClaim!.toTfJson(),
+    'client_ids': ?clientIds?.toTfJson(),
+    'principal_id_claim': ?principalIdClaim?.toTfJson(),
   };
 }
 
@@ -219,9 +217,8 @@ final class AwsVerifiedpermissionsIdentitySource extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_store_id': policyStoreId,
-           if (principalEntityType != null)
-             'principal_entity_type': principalEntityType,
-           if (region != null) 'region': region,
+           'principal_entity_type': ?principalEntityType,
+           'region': ?region,
            if (configuration != null)
              'configuration': TfArg.literal([
                for (final e in configuration) e.encode(),

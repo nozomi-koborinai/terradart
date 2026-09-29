@@ -31,7 +31,7 @@ final class EmailRoutingRuleActions {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -59,9 +59,9 @@ final class EmailRoutingRuleMatchers {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (field != null) 'field': field!.toTfJson(),
+    'field': ?field?.toTfJson(),
     'type': type.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -109,11 +109,11 @@ final class CloudflareEmailRoutingRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
-           if (name != null) 'name': name,
-           if (ownerWorkerTag != null) 'owner_worker_tag': ownerWorkerTag,
-           if (priority != null) 'priority': priority,
-           if (source != null) 'source': source,
+           'enabled': ?enabled,
+           'name': ?name,
+           'owner_worker_tag': ?ownerWorkerTag,
+           'priority': ?priority,
+           'source': ?source,
            'zone_id': zoneId.encodeAs('id'),
            'actions': TfArg.literal([for (final e in actions) e.encode()]),
            'matchers': TfArg.literal([for (final e in matchers) e.encode()]),

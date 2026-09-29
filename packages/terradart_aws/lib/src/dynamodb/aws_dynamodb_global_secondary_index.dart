@@ -66,10 +66,8 @@ final class DynamodbGlobalSecondaryIndexOnDemandThroughput {
   final TfArg<num>? maxWriteRequestUnits;
 
   Map<String, Object?> encode() => {
-    if (maxReadRequestUnits != null)
-      'max_read_request_units': maxReadRequestUnits!.toTfJson(),
-    if (maxWriteRequestUnits != null)
-      'max_write_request_units': maxWriteRequestUnits!.toTfJson(),
+    'max_read_request_units': ?maxReadRequestUnits?.toTfJson(),
+    'max_write_request_units': ?maxWriteRequestUnits?.toTfJson(),
   };
 }
 
@@ -88,8 +86,7 @@ final class DynamodbGlobalSecondaryIndexProjection {
   projectionType;
 
   Map<String, Object?> encode() => {
-    if (nonKeyAttributes != null)
-      'non_key_attributes': nonKeyAttributes!.toTfJson(),
+    'non_key_attributes': ?nonKeyAttributes?.toTfJson(),
     'projection_type': projectionType.toTfJson(),
   };
 }
@@ -122,10 +119,8 @@ final class DynamodbGlobalSecondaryIndexProvisionedThroughput {
   final TfArg<num>? writeCapacityUnits;
 
   Map<String, Object?> encode() => {
-    if (readCapacityUnits != null)
-      'read_capacity_units': readCapacityUnits!.toTfJson(),
-    if (writeCapacityUnits != null)
-      'write_capacity_units': writeCapacityUnits!.toTfJson(),
+    'read_capacity_units': ?readCapacityUnits?.toTfJson(),
+    'write_capacity_units': ?writeCapacityUnits?.toTfJson(),
   };
 }
 
@@ -152,9 +147,9 @@ final class AwsDynamodbGlobalSecondaryIndex extends Resource {
          terraformType: tfType,
          argMap: {
            'index_name': indexName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'table_name': tableName,
-           if (warmThroughput != null) 'warm_throughput': warmThroughput,
+           'warm_throughput': ?warmThroughput,
            if (keySchema != null)
              'key_schema': TfArg.literal([
                for (final e in keySchema) e.encode(),

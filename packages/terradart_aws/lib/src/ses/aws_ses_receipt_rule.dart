@@ -76,8 +76,8 @@ final class SesReceiptRuleBounceAction {
     'position': position.toTfJson(),
     'sender': sender.toTfJson(),
     'smtp_reply_code': smtpReplyCode.toTfJson(),
-    if (statusCode != null) 'status_code': statusCode!.toTfJson(),
-    if (topicArn != null) 'topic_arn': topicArn!.encodeAs('arn').toTfJson(),
+    'status_code': ?statusCode?.toTfJson(),
+    'topic_arn': ?topicArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -102,9 +102,9 @@ final class SesReceiptRuleLambdaAction {
 
   Map<String, Object?> encode() => {
     'function_arn': functionArn.encodeAs('arn').toTfJson(),
-    if (invocationType != null) 'invocation_type': invocationType!.toTfJson(),
+    'invocation_type': ?invocationType?.toTfJson(),
     'position': position.toTfJson(),
-    if (topicArn != null) 'topic_arn': topicArn!.encodeAs('arn').toTfJson(),
+    'topic_arn': ?topicArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -145,13 +145,11 @@ final class SesReceiptRuleS3Action {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (iamRoleArn != null)
-      'iam_role_arn': iamRoleArn!.encodeAs('arn').toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (objectKeyPrefix != null)
-      'object_key_prefix': objectKeyPrefix!.toTfJson(),
+    'iam_role_arn': ?iamRoleArn?.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'object_key_prefix': ?objectKeyPrefix?.toTfJson(),
     'position': position.toTfJson(),
-    if (topicArn != null) 'topic_arn': topicArn!.encodeAs('arn').toTfJson(),
+    'topic_arn': ?topicArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -172,7 +170,7 @@ final class SesReceiptRuleSnsAction {
   final RefTo<AwsSnsTopic> topicArn;
 
   Map<String, Object?> encode() => {
-    if (encoding != null) 'encoding': encoding!.toTfJson(),
+    'encoding': ?encoding?.toTfJson(),
     'position': position.toTfJson(),
     'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };
@@ -207,7 +205,7 @@ final class SesReceiptRuleStopAction {
   Map<String, Object?> encode() => {
     'position': position.toTfJson(),
     'scope': scope.toTfJson(),
-    if (topicArn != null) 'topic_arn': topicArn!.encodeAs('arn').toTfJson(),
+    'topic_arn': ?topicArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -239,7 +237,7 @@ final class SesReceiptRuleWorkmailAction {
   Map<String, Object?> encode() => {
     'organization_arn': organizationArn.toTfJson(),
     'position': position.toTfJson(),
-    if (topicArn != null) 'topic_arn': topicArn!.encodeAs('arn').toTfJson(),
+    'topic_arn': ?topicArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -271,14 +269,14 @@ final class AwsSesReceiptRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (after != null) 'after': after,
-           if (enabled != null) 'enabled': enabled,
+           'after': ?after,
+           'enabled': ?enabled,
            'name': name,
-           if (recipients != null) 'recipients': recipients,
-           if (region != null) 'region': region,
+           'recipients': ?recipients,
+           'region': ?region,
            'rule_set_name': ruleSetName,
-           if (scanEnabled != null) 'scan_enabled': scanEnabled,
-           if (tlsPolicy != null) 'tls_policy': tlsPolicy,
+           'scan_enabled': ?scanEnabled,
+           'tls_policy': ?tlsPolicy,
            if (addHeaderAction != null)
              'add_header_action': TfArg.literal([
                for (final e in addHeaderAction) e.encode(),

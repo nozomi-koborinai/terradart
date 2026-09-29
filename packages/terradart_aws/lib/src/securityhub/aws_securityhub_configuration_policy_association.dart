@@ -25,7 +25,7 @@ final class AwsSecurityhubConfigurationPolicyAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_id': policyId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'target_id': targetId,
          },
        );

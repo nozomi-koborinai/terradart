@@ -30,7 +30,7 @@ final class CloudflareClientCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'csr': csr,
-           if (reactivate != null) 'reactivate': reactivate,
+           'reactivate': ?reactivate,
            'validity_days': validityDays,
            'zone_id': zoneId.encodeAs('id'),
          },

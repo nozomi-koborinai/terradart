@@ -59,12 +59,11 @@ final class AwsOpensearchPackage extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (packageDescription != null)
-             'package_description': packageDescription,
+           'engine_version': ?engineVersion,
+           'package_description': ?packageDescription,
            'package_name': packageName,
            'package_type': packageType,
-           if (region != null) 'region': region,
+           'region': ?region,
            'package_source': TfArg.literal(packageSource.encode()),
          },
        );

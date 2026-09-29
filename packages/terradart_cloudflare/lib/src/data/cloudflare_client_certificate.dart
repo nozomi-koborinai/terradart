@@ -21,9 +21,9 @@ final class DataClientCertificateFilter {
   final TfArg<DataClientCertificateFilterStatus>? status;
 
   Map<String, Object?> encode() => {
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (offset != null) 'offset': offset!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'offset': ?offset?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -58,9 +58,8 @@ final class DataCloudflareClientCertificate extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clientCertificateId != null)
-             'client_certificate_id': clientCertificateId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'client_certificate_id': ?clientCertificateId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

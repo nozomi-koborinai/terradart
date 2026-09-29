@@ -84,7 +84,7 @@ final class GoogleKmsKeyRingImportJob extends Resource {
            'import_job_id': importJobId,
            'import_method': importMethod,
            'protection_level': protectionLevel,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

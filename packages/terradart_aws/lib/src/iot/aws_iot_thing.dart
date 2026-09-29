@@ -23,10 +23,10 @@ final class AwsIotThing extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (attributes != null) 'attributes': attributes,
+           'attributes': ?attributes,
            'name': name,
-           if (region != null) 'region': region,
-           if (thingTypeName != null) 'thing_type_name': thingTypeName,
+           'region': ?region,
+           'thing_type_name': ?thingTypeName,
          },
        );
 

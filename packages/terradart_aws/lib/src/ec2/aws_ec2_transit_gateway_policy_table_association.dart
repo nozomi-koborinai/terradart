@@ -24,7 +24,7 @@ final class AwsEc2TransitGatewayPolicyTableAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'transit_gateway_attachment_id': transitGatewayAttachmentId,
            'transit_gateway_policy_table_id': transitGatewayPolicyTableId,
          },

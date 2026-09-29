@@ -69,17 +69,16 @@ final class AwsCloud9EnvironmentEc2 extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (automaticStopTimeMinutes != null)
-             'automatic_stop_time_minutes': automaticStopTimeMinutes,
-           if (connectionType != null) 'connection_type': connectionType,
-           if (description != null) 'description': description,
+           'automatic_stop_time_minutes': ?automaticStopTimeMinutes,
+           'connection_type': ?connectionType,
+           'description': ?description,
            'image_id': imageId,
            'instance_type': instanceType,
            'name': name,
-           if (ownerArn != null) 'owner_arn': ownerArn,
-           if (region != null) 'region': region,
-           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'owner_arn': ?ownerArn,
+           'region': ?region,
+           'subnet_id': ?subnetId?.encodeAs('id'),
+           'tags': ?tags,
          },
        );
 

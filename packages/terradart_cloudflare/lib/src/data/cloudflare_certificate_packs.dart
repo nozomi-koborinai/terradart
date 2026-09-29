@@ -25,10 +25,10 @@ final class DataCloudflareCertificatePacks extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deploy != null) 'deploy': deploy,
-           if (maxItems != null) 'max_items': maxItems,
-           if (status != null) 'status': status,
-           if (zoneId != null) 'zone_id': zoneId,
+           'deploy': ?deploy,
+           'max_items': ?maxItems,
+           'status': ?status,
+           'zone_id': ?zoneId,
          },
        );
 

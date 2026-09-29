@@ -38,10 +38,10 @@ final class GoogleComputeRegionCompositeHealthCheck extends Resource {
            'name': name,
            'region': region,
            'health_destination': healthDestination,
-           if (healthSources != null) 'health_sources': healthSources,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'health_sources': ?healthSources,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

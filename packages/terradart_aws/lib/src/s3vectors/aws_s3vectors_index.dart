@@ -66,11 +66,10 @@ final class AwsS3vectorsIndex extends Resource {
            'data_type': dataType,
            'dimension': dimension,
            'distance_metric': distanceMetric,
-           if (encryptionConfiguration != null)
-             'encryption_configuration': encryptionConfiguration,
+           'encryption_configuration': ?encryptionConfiguration,
            'index_name': indexName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'vector_bucket_name': vectorBucketName,
            if (metadataConfiguration != null)
              'metadata_configuration': TfArg.literal([

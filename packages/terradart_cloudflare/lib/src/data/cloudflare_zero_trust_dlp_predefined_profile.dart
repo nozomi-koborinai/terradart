@@ -24,10 +24,7 @@ final class DataCloudflareZeroTrustDlpPredefinedProfile extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'profile_id': profileId,
-         },
+         argMap: {'account_id': ?accountId, 'profile_id': profileId},
        );
 
   @override

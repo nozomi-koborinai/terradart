@@ -68,7 +68,7 @@ final class AwsBackupVaultNotifications extends Resource {
              for (final e in backupVaultEvents) e.toTfJson(),
            ]),
            'backup_vault_name': backupVaultName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'sns_topic_arn': snsTopicArn.encodeAs('arn'),
          },
        );

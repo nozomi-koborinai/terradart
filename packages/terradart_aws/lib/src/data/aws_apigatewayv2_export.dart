@@ -25,13 +25,12 @@ final class DataAwsApigatewayv2Export extends Data {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (exportVersion != null) 'export_version': exportVersion,
-           if (includeExtensions != null)
-             'include_extensions': includeExtensions,
+           'export_version': ?exportVersion,
+           'include_extensions': ?includeExtensions,
            'output_type': outputType,
-           if (region != null) 'region': region,
+           'region': ?region,
            'specification': specification,
-           if (stageName != null) 'stage_name': stageName,
+           'stage_name': ?stageName,
          },
        );
 

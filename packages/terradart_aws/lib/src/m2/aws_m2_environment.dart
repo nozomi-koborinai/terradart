@@ -168,25 +168,21 @@ final class AwsM2Environment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyChangesDuringMaintenanceWindow != null)
-             'apply_changes_during_maintenance_window':
-                 applyChangesDuringMaintenanceWindow,
-           if (description != null) 'description': description,
+           'apply_changes_during_maintenance_window':
+               ?applyChangesDuringMaintenanceWindow,
+           'description': ?description,
            'engine_type': engineType,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (forceUpdate != null) 'force_update': forceUpdate,
+           'engine_version': ?engineVersion,
+           'force_update': ?forceUpdate,
            'instance_type': instanceType,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
+           'tags': ?tags,
            if (highAvailabilityConfig != null)
              'high_availability_config': TfArg.literal([
                for (final e in highAvailabilityConfig) e.encode(),

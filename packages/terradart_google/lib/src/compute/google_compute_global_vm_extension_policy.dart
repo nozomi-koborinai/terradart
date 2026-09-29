@@ -25,8 +25,8 @@ final class ComputeGlobalVmExtensionPolicyExtensionPolicies {
 
   Map<String, Object?> encode() => {
     'extension_name': extensionName.toTfJson(),
-    if (pinnedVersion != null) 'pinned_version': pinnedVersion!.toTfJson(),
-    if (stringConfig != null) 'string_config': stringConfig!.toTfJson(),
+    'pinned_version': ?pinnedVersion?.toTfJson(),
+    'string_config': ?stringConfig?.toTfJson(),
   };
 }
 
@@ -39,9 +39,7 @@ final class ComputeGlobalVmExtensionPolicyInstanceSelectors {
   final ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector?
   labelSelector;
 
-  Map<String, Object?> encode() => {
-    if (labelSelector != null) 'label_selector': labelSelector!.encode(),
-  };
+  Map<String, Object?> encode() => {'label_selector': ?labelSelector?.encode()};
 }
 
 /// Typed helper for the `instance_selectors.label_selector` block of
@@ -55,8 +53,7 @@ final class ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector {
   final TfArg<Map<String, String>>? inclusionLabels;
 
   Map<String, Object?> encode() => {
-    if (inclusionLabels != null)
-      'inclusion_labels': inclusionLabels!.toTfJson(),
+    'inclusion_labels': ?inclusionLabels?.toTfJson(),
   };
 }
 
@@ -90,10 +87,9 @@ final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput {
   final TfArg<String>? retryUuid;
 
   Map<String, Object?> encode() => {
-    if (conflictBehavior != null)
-      'conflict_behavior': conflictBehavior!.toTfJson(),
+    'conflict_behavior': ?conflictBehavior?.toTfJson(),
     ...plan.encode(),
-    if (retryUuid != null) 'retry_uuid': retryUuid!.toTfJson(),
+    'retry_uuid': ?retryUuid?.toTfJson(),
   };
 }
 
@@ -195,8 +191,8 @@ final class GoogleComputeGlobalVmExtensionPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (description != null) 'description': description,
-           if (priority != null) 'priority': priority,
+           'description': ?description,
+           'priority': ?priority,
            'extension_policies': TfArg.literal([
              for (final e in extensionPolicies) e.encode(),
            ]),
@@ -205,8 +201,8 @@ final class GoogleComputeGlobalVmExtensionPolicy extends Resource {
                for (final e in instanceSelectors) e.encode(),
              ]),
            'rollout_operation': TfArg.literal(rolloutOperation.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

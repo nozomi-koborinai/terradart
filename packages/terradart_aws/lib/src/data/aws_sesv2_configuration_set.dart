@@ -22,8 +22,8 @@ final class DataAwsSesv2ConfigurationSet extends Data {
          terraformType: tfType,
          argMap: {
            'configuration_set_name': configurationSetName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

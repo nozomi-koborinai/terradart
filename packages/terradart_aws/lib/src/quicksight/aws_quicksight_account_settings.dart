@@ -23,11 +23,10 @@ final class AwsQuicksightAccountSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
-           if (defaultNamespace != null) 'default_namespace': defaultNamespace,
-           if (region != null) 'region': region,
-           if (terminationProtectionEnabled != null)
-             'termination_protection_enabled': terminationProtectionEnabled,
+           'aws_account_id': ?awsAccountId,
+           'default_namespace': ?defaultNamespace,
+           'region': ?region,
+           'termination_protection_enabled': ?terminationProtectionEnabled,
          },
        );
 

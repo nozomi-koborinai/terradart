@@ -22,10 +22,10 @@ final class DataAwsEfsMountTarget extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessPointId != null) 'access_point_id': accessPointId,
-           if (fileSystemId != null) 'file_system_id': fileSystemId,
-           if (mountTargetId != null) 'mount_target_id': mountTargetId,
-           if (region != null) 'region': region,
+           'access_point_id': ?accessPointId,
+           'file_system_id': ?fileSystemId,
+           'mount_target_id': ?mountTargetId,
+           'region': ?region,
          },
        );
 

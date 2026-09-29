@@ -39,13 +39,13 @@ final class GoogleIamOauthClientCredential extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (disabled != null) 'disabled': disabled,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'disabled': ?disabled,
+           'display_name': ?displayName,
            'location': location,
            'oauth_client_credential_id': oauthClientCredentialId,
            'oauthclient': oauthclient,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

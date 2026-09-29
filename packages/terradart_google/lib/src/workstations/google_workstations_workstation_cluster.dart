@@ -35,8 +35,7 @@ final class WorkstationsWorkstationClusterPrivateClusterConfig {
   final TfArg<bool> enablePrivateEndpoint;
 
   Map<String, Object?> encode() => {
-    if (allowedProjects != null)
-      'allowed_projects': allowedProjects!.toTfJson(),
+    'allowed_projects': ?allowedProjects?.toTfJson(),
     'enable_private_endpoint': enablePrivateEndpoint.toTfJson(),
   };
 }
@@ -92,21 +91,21 @@ final class GoogleWorkstationsWorkstationCluster extends Resource {
          terraformType: tfType,
          argMap: {
            'workstation_cluster_id': workstationClusterId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'network': network.encodeAs('id'),
            'subnetwork': subnetwork.encodeAs('id'),
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
-           if (tags != null) 'tags': tags,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'annotations': ?annotations,
+           'tags': ?tags,
            if (domainConfig != null)
              'domain_config': TfArg.literal(domainConfig.encode()),
            if (privateClusterConfig != null)
              'private_cluster_config': TfArg.literal(
                privateClusterConfig.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

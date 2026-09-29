@@ -47,8 +47,8 @@ final class GoogleDataformTeamFolder extends Resource {
          argMap: {
            'display_name': displayName,
            'region': region,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

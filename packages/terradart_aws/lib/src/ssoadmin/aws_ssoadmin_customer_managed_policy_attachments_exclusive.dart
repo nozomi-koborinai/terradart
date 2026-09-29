@@ -23,7 +23,7 @@ final class SsoadminCustomerManagedPolicyAttachmentsExclusiveCustomerManagedPoli
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -51,7 +51,7 @@ final class AwsSsoadminCustomerManagedPolicyAttachmentsExclusive
          argMap: {
            'instance_arn': instanceArn,
            'permission_set_arn': permissionSetArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (customerManagedPolicyReference != null)
              'customer_managed_policy_reference': TfArg.literal([
                for (final e in customerManagedPolicyReference) e.encode(),

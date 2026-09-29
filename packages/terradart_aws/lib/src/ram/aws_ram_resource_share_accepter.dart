@@ -20,7 +20,7 @@ final class AwsRamResourceShareAccepter extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (region != null) 'region': region, 'share_arn': shareArn},
+         argMap: {'region': ?region, 'share_arn': shareArn},
        );
 
   @override

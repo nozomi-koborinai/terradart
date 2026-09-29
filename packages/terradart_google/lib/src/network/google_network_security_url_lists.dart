@@ -30,8 +30,8 @@ final class GoogleNetworkSecurityUrlLists extends Resource {
            'name': name,
            'location': location,
            'values': values,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

@@ -95,9 +95,7 @@ final class DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptions {
   final TfArg<DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion>?
   version;
 
-  Map<String, Object?> encode() => {
-    if (version != null) 'version': version!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
@@ -132,7 +130,7 @@ final class DatasyncLocationFsxOntapFileSystemProtocolSmb {
   final DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptions mountOptions;
 
   Map<String, Object?> encode() => {
-    if (domain != null) 'domain': domain!.toTfJson(),
+    'domain': ?domain?.toTfJson(),
     'password': password.toTfJson(),
     'user': user.toTfJson(),
     'mount_options': mountOptions.encode(),
@@ -150,9 +148,7 @@ final class DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptions {
   final TfArg<DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion>?
   version;
 
-  Map<String, Object?> encode() => {
-    if (version != null) 'version': version!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
@@ -189,11 +185,11 @@ final class AwsDatasyncLocationFsxOntapFileSystem extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_group_arns': securityGroupArns,
            'storage_virtual_machine_arn': storageVirtualMachineArn,
-           if (subdirectory != null) 'subdirectory': subdirectory,
-           if (tags != null) 'tags': tags,
+           'subdirectory': ?subdirectory,
+           'tags': ?tags,
            'protocol': TfArg.literal(protocol.encode()),
          },
        );

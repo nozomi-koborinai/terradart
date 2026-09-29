@@ -24,8 +24,8 @@ final class AwsAppconfigExtensionAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'extension_arn': extensionArn,
-           if (parameters != null) 'parameters': parameters,
-           if (region != null) 'region': region,
+           'parameters': ?parameters,
+           'region': ?region,
            'resource_arn': resourceArn,
          },
        );

@@ -22,8 +22,8 @@ final class DataAwsEcrRepositoryCreationTemplate extends Data {
          terraformType: tfType,
          argMap: {
            'prefix': prefix,
-           if (region != null) 'region': region,
-           if (resourceTags != null) 'resource_tags': resourceTags,
+           'region': ?region,
+           'resource_tags': ?resourceTags,
          },
        );
 

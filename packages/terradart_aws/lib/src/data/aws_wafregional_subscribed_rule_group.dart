@@ -19,11 +19,7 @@ final class DataAwsWafregionalSubscribedRuleGroup extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (metricName != null) 'metric_name': metricName,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-         },
+         argMap: {'metric_name': ?metricName, 'name': ?name, 'region': ?region},
        );
 
   @override

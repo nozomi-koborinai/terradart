@@ -24,9 +24,9 @@ final class AwsS3controlAccessGrantsInstanceResourcePolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

@@ -23,9 +23,8 @@ final class AwsAcmCertificateValidation extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate_arn': certificateArn,
-           if (region != null) 'region': region,
-           if (validationRecordFqdns != null)
-             'validation_record_fqdns': validationRecordFqdns,
+           'region': ?region,
+           'validation_record_fqdns': ?validationRecordFqdns,
          },
        );
 

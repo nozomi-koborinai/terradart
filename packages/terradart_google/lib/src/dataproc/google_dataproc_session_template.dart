@@ -27,9 +27,8 @@ final class DataprocSessionTemplateEnvironmentConfig {
   peripheralsConfig;
 
   Map<String, Object?> encode() => {
-    if (executionConfig != null) 'execution_config': executionConfig!.encode(),
-    if (peripheralsConfig != null)
-      'peripherals_config': peripheralsConfig!.encode(),
+    'execution_config': ?executionConfig?.encode(),
+    'peripherals_config': ?peripheralsConfig?.encode(),
   };
 }
 
@@ -66,17 +65,14 @@ final class DataprocSessionTemplateEnvironmentConfigExecutionConfig {
   authenticationConfig;
 
   Map<String, Object?> encode() => {
-    if (idleTtl != null) 'idle_ttl': idleTtl!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
-    if (networkTags != null) 'network_tags': networkTags!.toTfJson(),
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
-    if (stagingBucket != null) 'staging_bucket': stagingBucket!.toTfJson(),
-    if (subnetworkUri != null)
-      'subnetwork_uri': subnetworkUri!.encodeAs('id').toTfJson(),
-    if (ttl != null) 'ttl': ttl!.toTfJson(),
-    if (authenticationConfig != null)
-      'authentication_config': authenticationConfig!.encode(),
+    'idle_ttl': ?idleTtl?.toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
+    'network_tags': ?networkTags?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'staging_bucket': ?stagingBucket?.toTfJson(),
+    'subnetwork_uri': ?subnetworkUri?.encodeAs('id').toTfJson(),
+    'ttl': ?ttl?.toTfJson(),
+    'authentication_config': ?authenticationConfig?.encode(),
   };
 }
 
@@ -94,9 +90,8 @@ final class DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticatio
   userWorkloadAuthenticationType;
 
   Map<String, Object?> encode() => {
-    if (userWorkloadAuthenticationType != null)
-      'user_workload_authentication_type': userWorkloadAuthenticationType!
-          .toTfJson(),
+    'user_workload_authentication_type': ?userWorkloadAuthenticationType
+        ?.toTfJson(),
   };
 }
 
@@ -128,10 +123,8 @@ final class DataprocSessionTemplateEnvironmentConfigPeripheralsConfig {
   sparkHistoryServerConfig;
 
   Map<String, Object?> encode() => {
-    if (metastoreService != null)
-      'metastore_service': metastoreService!.toTfJson(),
-    if (sparkHistoryServerConfig != null)
-      'spark_history_server_config': sparkHistoryServerConfig!.encode(),
+    'metastore_service': ?metastoreService?.toTfJson(),
+    'spark_history_server_config': ?sparkHistoryServerConfig?.encode(),
   };
 }
 
@@ -146,8 +139,7 @@ final class DataprocSessionTemplateEnvironmentConfigPeripheralsConfigSparkHistor
   final TfArg<String>? dataprocCluster;
 
   Map<String, Object?> encode() => {
-    if (dataprocCluster != null)
-      'dataproc_cluster': dataprocCluster!.toTfJson(),
+    'dataproc_cluster': ?dataprocCluster?.toTfJson(),
   };
 }
 
@@ -162,8 +154,8 @@ final class DataprocSessionTemplateJupyterSession {
   final TfArg<DataprocSessionTemplateJupyterSessionKernel>? kernel;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (kernel != null) 'kernel': kernel!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'kernel': ?kernel?.toTfJson(),
   };
 }
 
@@ -194,9 +186,9 @@ final class DataprocSessionTemplateRuntimeConfig {
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    if (containerImage != null) 'container_image': containerImage!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'container_image': ?containerImage?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -248,8 +240,8 @@ final class GoogleDataprocSessionTemplate extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
-           if (labels != null) 'labels': labels,
+           'location': ?location,
+           'labels': ?labels,
            if (runtimeConfig != null)
              'runtime_config': TfArg.literal(runtimeConfig.encode()),
            if (environmentConfig != null)
@@ -260,8 +252,8 @@ final class GoogleDataprocSessionTemplate extends Resource {
              'spark_connect_session': TfArg.literal(
                sparkConnectSession.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

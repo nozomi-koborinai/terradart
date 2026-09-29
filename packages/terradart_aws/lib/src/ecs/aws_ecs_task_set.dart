@@ -110,7 +110,7 @@ final class EcsTaskSetCapacityProviderStrategy {
   final TfArg<num> weight;
 
   Map<String, Object?> encode() => {
-    if (base != null) 'base': base!.toTfJson(),
+    'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
     'weight': weight.toTfJson(),
   };
@@ -137,10 +137,9 @@ final class EcsTaskSetLoadBalancer {
 
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
-    if (containerPort != null) 'container_port': containerPort!.toTfJson(),
-    if (loadBalancerName != null)
-      'load_balancer_name': loadBalancerName!.toTfJson(),
-    if (targetGroupArn != null) 'target_group_arn': targetGroupArn!.toTfJson(),
+    'container_port': ?containerPort?.toTfJson(),
+    'load_balancer_name': ?loadBalancerName?.toTfJson(),
+    'target_group_arn': ?targetGroupArn?.toTfJson(),
   };
 }
 
@@ -161,9 +160,8 @@ final class EcsTaskSetNetworkConfiguration {
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    if (assignPublicIp != null) 'assign_public_ip': assignPublicIp!.toTfJson(),
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    'assign_public_ip': ?assignPublicIp?.toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
@@ -179,8 +177,8 @@ final class EcsTaskSetScale {
   final TfArg<num>? value;
 
   Map<String, Object?> encode() => {
-    if (unit != null) 'unit': unit!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -213,9 +211,9 @@ final class EcsTaskSetServiceRegistries {
   final TfArg<String> registryArn;
 
   Map<String, Object?> encode() => {
-    if (containerName != null) 'container_name': containerName!.toTfJson(),
-    if (containerPort != null) 'container_port': containerPort!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'container_name': ?containerName?.toTfJson(),
+    'container_port': ?containerPort?.toTfJson(),
+    'port': ?port?.toTfJson(),
     'registry_arn': registryArn.toTfJson(),
   };
 }
@@ -249,17 +247,16 @@ final class AwsEcsTaskSet extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster': cluster,
-           if (externalId != null) 'external_id': externalId,
-           if (forceDelete != null) 'force_delete': forceDelete,
+           'external_id': ?externalId,
+           'force_delete': ?forceDelete,
            ...?capacity?.argMap,
-           if (platformVersion != null) 'platform_version': platformVersion,
-           if (region != null) 'region': region,
+           'platform_version': ?platformVersion,
+           'region': ?region,
            'service': service,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'task_definition': taskDefinition,
-           if (waitUntilStable != null) 'wait_until_stable': waitUntilStable,
-           if (waitUntilStableTimeout != null)
-             'wait_until_stable_timeout': waitUntilStableTimeout,
+           'wait_until_stable': ?waitUntilStable,
+           'wait_until_stable_timeout': ?waitUntilStableTimeout,
            if (loadBalancer != null)
              'load_balancer': TfArg.literal([
                for (final e in loadBalancer) e.encode(),

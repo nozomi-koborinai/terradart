@@ -26,10 +26,10 @@ final class DataGoogleComputeRegionInstanceGroupManager extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (selfLink != null) 'self_link': selfLink,
+           'name': ?name,
+           'project': ?project,
+           'region': ?region,
+           'self_link': ?selfLink,
          },
        );
 

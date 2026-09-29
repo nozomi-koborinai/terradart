@@ -40,7 +40,7 @@ final class CloudflareEmailRoutingAddress extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'email': email,
-           if (status != null) 'status': status,
+           'status': ?status,
          },
        );
 

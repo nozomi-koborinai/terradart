@@ -200,23 +200,19 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
   vpcConfig;
 
   Map<String, Object?> encode() => {
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
     ...?domain?.encode(),
     'index_name': indexName.toTfJson(),
-    if (indexRotationPeriod != null)
-      'index_rotation_period': indexRotationPeriod!.toTfJson(),
-    if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
+    'index_rotation_period': ?indexRotationPeriod?.toTfJson(),
+    'retry_duration': ?retryDuration?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
-    if (typeName != null) 'type_name': typeName!.toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
-    if (processingConfiguration != null)
-      'processing_configuration': processingConfiguration!.encode(),
+    's3_backup_mode': ?s3BackupMode?.toTfJson(),
+    'type_name': ?typeName?.toTfJson(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
+    'processing_configuration': ?processingConfiguration?.encode(),
     's3_configuration': s3Configuration.encode(),
-    if (vpcConfig != null) 'vpc_config': vpcConfig!.encode(),
+    'vpc_config': ?vpcConfig?.encode(),
   };
 }
 
@@ -324,10 +320,9 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationCloudwatchLog
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -348,7 +343,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingCon
   processors;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (processors != null)
       'processors': [for (final e in processors!) e.encode()],
   };
@@ -433,18 +428,14 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configurati
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
   };
 }
 
@@ -465,10 +456,9 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configurati
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -561,31 +551,23 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (customTimeZone != null) 'custom_time_zone': customTimeZone!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (fileExtension != null) 'file_extension': fileExtension!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'custom_time_zone': ?customTimeZone?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'file_extension': ?fileExtension?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
-    if (dataFormatConversionConfiguration != null)
-      'data_format_conversion_configuration': dataFormatConversionConfiguration!
-          .encode(),
-    if (dynamicPartitioningConfiguration != null)
-      'dynamic_partitioning_configuration': dynamicPartitioningConfiguration!
-          .encode(),
-    if (processingConfiguration != null)
-      'processing_configuration': processingConfiguration!.encode(),
-    if (s3BackupConfiguration != null)
-      's3_backup_configuration': s3BackupConfiguration!.encode(),
+    's3_backup_mode': ?s3BackupMode?.toTfJson(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
+    'data_format_conversion_configuration': ?dataFormatConversionConfiguration
+        ?.encode(),
+    'dynamic_partitioning_configuration': ?dynamicPartitioningConfiguration
+        ?.encode(),
+    'processing_configuration': ?processingConfiguration?.encode(),
+    's3_backup_configuration': ?s3BackupConfiguration?.encode(),
   };
 }
 
@@ -635,10 +617,9 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCloudwatchLoggin
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -665,7 +646,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   schemaConfiguration;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'input_format_configuration': inputFormatConfiguration.encode(),
     'output_format_configuration': outputFormatConfiguration.encode(),
     'schema_configuration': schemaConfiguration.encode(),
@@ -775,8 +756,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   final TfArg<List<Object?>>? timestampFormats;
 
   Map<String, Object?> encode() => {
-    if (timestampFormats != null)
-      'timestamp_formats': timestampFormats!.toTfJson(),
+    'timestamp_formats': ?timestampFormats?.toTfJson(),
   };
 }
 
@@ -797,13 +777,10 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   final TfArg<bool>? convertDotsInJsonKeysToUnderscores;
 
   Map<String, Object?> encode() => {
-    if (caseInsensitive != null)
-      'case_insensitive': caseInsensitive!.toTfJson(),
-    if (columnToJsonKeyMappings != null)
-      'column_to_json_key_mappings': columnToJsonKeyMappings!.toTfJson(),
-    if (convertDotsInJsonKeysToUnderscores != null)
-      'convert_dots_in_json_keys_to_underscores':
-          convertDotsInJsonKeysToUnderscores!.toTfJson(),
+    'case_insensitive': ?caseInsensitive?.toTfJson(),
+    'column_to_json_key_mappings': ?columnToJsonKeyMappings?.toTfJson(),
+    'convert_dots_in_json_keys_to_underscores':
+        ?convertDotsInJsonKeysToUnderscores?.toTfJson(),
   };
 }
 
@@ -941,22 +918,17 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   final TfArg<num>? stripeSizeBytes;
 
   Map<String, Object?> encode() => {
-    if (blockSizeBytes != null) 'block_size_bytes': blockSizeBytes!.toTfJson(),
-    if (bloomFilterColumns != null)
-      'bloom_filter_columns': bloomFilterColumns!.toTfJson(),
-    if (bloomFilterFalsePositiveProbability != null)
-      'bloom_filter_false_positive_probability':
-          bloomFilterFalsePositiveProbability!.toTfJson(),
-    if (compression != null) 'compression': compression!.toTfJson(),
-    if (dictionaryKeyThreshold != null)
-      'dictionary_key_threshold': dictionaryKeyThreshold!.toTfJson(),
-    if (enablePadding != null) 'enable_padding': enablePadding!.toTfJson(),
-    if (formatVersion != null) 'format_version': formatVersion!.toTfJson(),
-    if (paddingTolerance != null)
-      'padding_tolerance': paddingTolerance!.toTfJson(),
-    if (rowIndexStride != null) 'row_index_stride': rowIndexStride!.toTfJson(),
-    if (stripeSizeBytes != null)
-      'stripe_size_bytes': stripeSizeBytes!.toTfJson(),
+    'block_size_bytes': ?blockSizeBytes?.toTfJson(),
+    'bloom_filter_columns': ?bloomFilterColumns?.toTfJson(),
+    'bloom_filter_false_positive_probability':
+        ?bloomFilterFalsePositiveProbability?.toTfJson(),
+    'compression': ?compression?.toTfJson(),
+    'dictionary_key_threshold': ?dictionaryKeyThreshold?.toTfJson(),
+    'enable_padding': ?enablePadding?.toTfJson(),
+    'format_version': ?formatVersion?.toTfJson(),
+    'padding_tolerance': ?paddingTolerance?.toTfJson(),
+    'row_index_stride': ?rowIndexStride?.toTfJson(),
+    'stripe_size_bytes': ?stripeSizeBytes?.toTfJson(),
   };
 }
 
@@ -1019,14 +991,12 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   writerVersion;
 
   Map<String, Object?> encode() => {
-    if (blockSizeBytes != null) 'block_size_bytes': blockSizeBytes!.toTfJson(),
-    if (compression != null) 'compression': compression!.toTfJson(),
-    if (enableDictionaryCompression != null)
-      'enable_dictionary_compression': enableDictionaryCompression!.toTfJson(),
-    if (maxPaddingBytes != null)
-      'max_padding_bytes': maxPaddingBytes!.toTfJson(),
-    if (pageSizeBytes != null) 'page_size_bytes': pageSizeBytes!.toTfJson(),
-    if (writerVersion != null) 'writer_version': writerVersion!.toTfJson(),
+    'block_size_bytes': ?blockSizeBytes?.toTfJson(),
+    'compression': ?compression?.toTfJson(),
+    'enable_dictionary_compression': ?enableDictionaryCompression?.toTfJson(),
+    'max_padding_bytes': ?maxPaddingBytes?.toTfJson(),
+    'page_size_bytes': ?pageSizeBytes?.toTfJson(),
+    'writer_version': ?writerVersion?.toTfJson(),
   };
 }
 
@@ -1083,12 +1053,12 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   final TfArg<String>? versionId;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'region': ?region?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'table_name': tableName.toTfJson(),
-    if (versionId != null) 'version_id': versionId!.toTfJson(),
+    'version_id': ?versionId?.toTfJson(),
   };
 }
 
@@ -1106,8 +1076,8 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDynamicPartition
   final TfArg<num>? retryDuration;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'retry_duration': ?retryDuration?.toTfJson(),
   };
 }
 
@@ -1128,7 +1098,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfig
   processors;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (processors != null)
       'processors': [for (final e in processors!) e.encode()],
   };
@@ -1213,18 +1183,14 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigur
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
   };
 }
 
@@ -1245,10 +1211,9 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigur
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -1307,24 +1272,19 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
   secretsManagerConfiguration;
 
   Map<String, Object?> encode() => {
-    if (accessKey != null) 'access_key': accessKey!.toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
+    'access_key': ?accessKey?.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'retry_duration': ?retryDuration?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    's3_backup_mode': ?s3BackupMode?.toTfJson(),
     'url': url.toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
-    if (processingConfiguration != null)
-      'processing_configuration': processingConfiguration!.encode(),
-    if (requestConfiguration != null)
-      'request_configuration': requestConfiguration!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
+    'processing_configuration': ?processingConfiguration?.encode(),
+    'request_configuration': ?requestConfiguration?.encode(),
     's3_configuration': s3Configuration.encode(),
-    if (secretsManagerConfiguration != null)
-      'secrets_manager_configuration': secretsManagerConfiguration!.encode(),
+    'secrets_manager_configuration': ?secretsManagerConfiguration?.encode(),
   };
 }
 
@@ -1358,10 +1318,9 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationCloudwatchLogg
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -1382,7 +1341,7 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationProcessingConf
   processors;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (processors != null)
       'processors': [for (final e in processors!) e.encode()],
   };
@@ -1447,8 +1406,7 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationRequestConfigu
   commonAttributes;
 
   Map<String, Object?> encode() => {
-    if (contentEncoding != null)
-      'content_encoding': contentEncoding!.toTfJson(),
+    'content_encoding': ?contentEncoding?.toTfJson(),
     if (commonAttributes != null)
       'common_attributes': [for (final e in commonAttributes!) e.encode()],
   };
@@ -1510,18 +1468,14 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3Configuratio
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
   };
 }
 
@@ -1542,10 +1496,9 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3Configuratio
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -1566,9 +1519,9 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationSecretsManager
   final TfArg<String>? secretArn;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'secret_arn': ?secretArn?.toTfJson(),
   };
 }
 
@@ -1620,22 +1573,19 @@ final class KinesisFirehoseDeliveryStreamIcebergConfiguration {
   s3Configuration;
 
   Map<String, Object?> encode() => {
-    if (appendOnly != null) 'append_only': appendOnly!.toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
+    'append_only': ?appendOnly?.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
     'catalog_arn': catalogArn.toTfJson(),
-    if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
+    'retry_duration': ?retryDuration?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    's3_backup_mode': ?s3BackupMode?.toTfJson(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
     if (destinationTableConfiguration != null)
       'destination_table_configuration': [
         for (final e in destinationTableConfiguration!) e.encode(),
       ],
-    if (processingConfiguration != null)
-      'processing_configuration': processingConfiguration!.encode(),
+    'processing_configuration': ?processingConfiguration?.encode(),
     's3_configuration': s3Configuration.encode(),
   };
 }
@@ -1670,10 +1620,9 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationCloudwatchLoggingOp
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -1698,10 +1647,9 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationDestinationTableCon
 
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
-    if (s3ErrorOutputPrefix != null)
-      's3_error_output_prefix': s3ErrorOutputPrefix!.toTfJson(),
+    's3_error_output_prefix': ?s3ErrorOutputPrefix?.toTfJson(),
     'table_name': tableName.toTfJson(),
-    if (uniqueKeys != null) 'unique_keys': uniqueKeys!.toTfJson(),
+    'unique_keys': ?uniqueKeys?.toTfJson(),
   };
 }
 
@@ -1722,7 +1670,7 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationProcessingConfigura
   processors;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (processors != null)
       'processors': [for (final e in processors!) e.encode()],
   };
@@ -1807,18 +1755,14 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationS3Configuration {
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
   };
 }
 
@@ -1839,10 +1783,9 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationS3ConfigurationClou
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -1887,8 +1830,7 @@ final class KinesisFirehoseDeliveryStreamMskSourceConfiguration {
 
   Map<String, Object?> encode() => {
     'msk_cluster_arn': mskClusterArn.toTfJson(),
-    if (readFromTimestamp != null)
-      'read_from_timestamp': readFromTimestamp!.toTfJson(),
+    'read_from_timestamp': ?readFromTimestamp?.toTfJson(),
     'topic_name': topicName.toTfJson(),
     'authentication_configuration': authenticationConfiguration.encode(),
   };
@@ -1988,25 +1930,20 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
   vpcConfig;
 
   Map<String, Object?> encode() => {
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
     ...?domain?.encode(),
     'index_name': indexName.toTfJson(),
-    if (indexRotationPeriod != null)
-      'index_rotation_period': indexRotationPeriod!.toTfJson(),
-    if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
+    'index_rotation_period': ?indexRotationPeriod?.toTfJson(),
+    'retry_duration': ?retryDuration?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
-    if (typeName != null) 'type_name': typeName!.toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
-    if (documentIdOptions != null)
-      'document_id_options': documentIdOptions!.encode(),
-    if (processingConfiguration != null)
-      'processing_configuration': processingConfiguration!.encode(),
+    's3_backup_mode': ?s3BackupMode?.toTfJson(),
+    'type_name': ?typeName?.toTfJson(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
+    'document_id_options': ?documentIdOptions?.encode(),
+    'processing_configuration': ?processingConfiguration?.encode(),
     's3_configuration': s3Configuration.encode(),
-    if (vpcConfig != null) 'vpc_config': vpcConfig!.encode(),
+    'vpc_config': ?vpcConfig?.encode(),
   };
 }
 
@@ -2114,10 +2051,9 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationCloudwatchLoggin
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -2169,7 +2105,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfig
   processors;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (processors != null)
       'processors': [for (final e in processors!) e.encode()],
   };
@@ -2254,18 +2190,14 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationS3Configuration 
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
   };
 }
 
@@ -2286,10 +2218,9 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationS3ConfigurationC
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -2364,20 +2295,17 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration {
   vpcConfig;
 
   Map<String, Object?> encode() => {
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
     'collection_endpoint': collectionEndpoint.toTfJson(),
     'index_name': indexName.toTfJson(),
-    if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
+    'retry_duration': ?retryDuration?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
-    if (processingConfiguration != null)
-      'processing_configuration': processingConfiguration!.encode(),
+    's3_backup_mode': ?s3BackupMode?.toTfJson(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
+    'processing_configuration': ?processingConfiguration?.encode(),
     's3_configuration': s3Configuration.encode(),
-    if (vpcConfig != null) 'vpc_config': vpcConfig!.encode(),
+    'vpc_config': ?vpcConfig?.encode(),
   };
 }
 
@@ -2411,10 +2339,9 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationCloudw
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -2435,7 +2362,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationProces
   processors;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (processors != null)
       'processors': [for (final e in processors!) e.encode()],
   };
@@ -2520,18 +2447,14 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3Conf
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
   };
 }
 
@@ -2552,10 +2475,9 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3Conf
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -2639,24 +2561,19 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfiguration {
 
   Map<String, Object?> encode() => {
     'cluster_jdbcurl': clusterJdbcurl.toTfJson(),
-    if (copyOptions != null) 'copy_options': copyOptions!.toTfJson(),
-    if (dataTableColumns != null)
-      'data_table_columns': dataTableColumns!.toTfJson(),
+    'copy_options': ?copyOptions?.toTfJson(),
+    'data_table_columns': ?dataTableColumns?.toTfJson(),
     'data_table_name': dataTableName.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'retry_duration': ?retryDuration?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
-    if (processingConfiguration != null)
-      'processing_configuration': processingConfiguration!.encode(),
-    if (s3BackupConfiguration != null)
-      's3_backup_configuration': s3BackupConfiguration!.encode(),
+    's3_backup_mode': ?s3BackupMode?.toTfJson(),
+    'username': ?username?.toTfJson(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
+    'processing_configuration': ?processingConfiguration?.encode(),
+    's3_backup_configuration': ?s3BackupConfiguration?.encode(),
     's3_configuration': s3Configuration.encode(),
-    if (secretsManagerConfiguration != null)
-      'secrets_manager_configuration': secretsManagerConfiguration!.encode(),
+    'secrets_manager_configuration': ?secretsManagerConfiguration?.encode(),
   };
 }
 
@@ -2690,10 +2607,9 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationCloudwatchLoggingO
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -2714,7 +2630,7 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationProcessingConfigur
   processors;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (processors != null)
       'processors': [for (final e in processors!) e.encode()],
   };
@@ -2799,18 +2715,14 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurat
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
   };
 }
 
@@ -2831,10 +2743,9 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurat
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -2875,18 +2786,14 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3Configuration {
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
   };
 }
 
@@ -2907,10 +2814,9 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3ConfigurationClo
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -2931,9 +2837,9 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfigurationSecretsManagerConf
   final TfArg<String>? secretArn;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'secret_arn': ?secretArn?.toTfJson(),
   };
 }
 
@@ -2955,9 +2861,9 @@ final class KinesisFirehoseDeliveryStreamServerSideEncryption {
   keyType;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (keyArn != null) 'key_arn': keyArn!.encodeAs('arn').toTfJson(),
-    if (keyType != null) 'key_type': keyType!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'key_arn': ?keyArn?.encodeAs('arn').toTfJson(),
+    'key_type': ?keyType?.toTfJson(),
   };
 }
 
@@ -3056,35 +2962,26 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 
   Map<String, Object?> encode() => {
     'account_url': accountUrl.toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (contentColumnName != null)
-      'content_column_name': contentColumnName!.toTfJson(),
-    if (dataLoadingOption != null)
-      'data_loading_option': dataLoadingOption!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'content_column_name': ?contentColumnName?.toTfJson(),
+    'data_loading_option': ?dataLoadingOption?.toTfJson(),
     'database': database.toTfJson(),
-    if (keyPassphrase != null) 'key_passphrase': keyPassphrase!.toTfJson(),
-    if (metadataColumnName != null)
-      'metadata_column_name': metadataColumnName!.toTfJson(),
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-    if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
+    'key_passphrase': ?keyPassphrase?.toTfJson(),
+    'metadata_column_name': ?metadataColumnName?.toTfJson(),
+    'private_key': ?privateKey?.toTfJson(),
+    'retry_duration': ?retryDuration?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
+    's3_backup_mode': ?s3BackupMode?.toTfJson(),
     'schema': schema.toTfJson(),
     'table': table.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
-    if (processingConfiguration != null)
-      'processing_configuration': processingConfiguration!.encode(),
+    'user': ?user?.toTfJson(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
+    'processing_configuration': ?processingConfiguration?.encode(),
     's3_configuration': s3Configuration.encode(),
-    if (secretsManagerConfiguration != null)
-      'secrets_manager_configuration': secretsManagerConfiguration!.encode(),
-    if (snowflakeRoleConfiguration != null)
-      'snowflake_role_configuration': snowflakeRoleConfiguration!.encode(),
-    if (snowflakeVpcConfiguration != null)
-      'snowflake_vpc_configuration': snowflakeVpcConfiguration!.encode(),
+    'secrets_manager_configuration': ?secretsManagerConfiguration?.encode(),
+    'snowflake_role_configuration': ?snowflakeRoleConfiguration?.encode(),
+    'snowflake_vpc_configuration': ?snowflakeVpcConfiguration?.encode(),
   };
 }
 
@@ -3132,10 +3029,9 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationCloudwatchLogging
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -3156,7 +3052,7 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationProcessingConfigu
   processors;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (processors != null)
       'processors': [for (final e in processors!) e.encode()],
   };
@@ -3241,18 +3137,14 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3Configuration {
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
   };
 }
 
@@ -3273,10 +3165,9 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3ConfigurationCl
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -3297,9 +3188,9 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationSecretsManagerCon
   final TfArg<String>? secretArn;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'secret_arn': ?secretArn?.toTfJson(),
   };
 }
 
@@ -3317,8 +3208,8 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationSnowflakeRoleConf
   final TfArg<String>? snowflakeRole;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (snowflakeRole != null) 'snowflake_role': snowflakeRole!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'snowflake_role': ?snowflakeRole?.toTfJson(),
   };
 }
 
@@ -3387,24 +3278,18 @@ final class KinesisFirehoseDeliveryStreamSplunkConfiguration {
   secretsManagerConfiguration;
 
   Map<String, Object?> encode() => {
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (hecAcknowledgmentTimeout != null)
-      'hec_acknowledgment_timeout': hecAcknowledgmentTimeout!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'hec_acknowledgment_timeout': ?hecAcknowledgmentTimeout?.toTfJson(),
     'hec_endpoint': hecEndpoint.toTfJson(),
-    if (hecEndpointType != null)
-      'hec_endpoint_type': hecEndpointType!.toTfJson(),
-    if (hecToken != null) 'hec_token': hecToken!.toTfJson(),
-    if (retryDuration != null) 'retry_duration': retryDuration!.toTfJson(),
-    if (s3BackupMode != null) 's3_backup_mode': s3BackupMode!.toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
-    if (processingConfiguration != null)
-      'processing_configuration': processingConfiguration!.encode(),
+    'hec_endpoint_type': ?hecEndpointType?.toTfJson(),
+    'hec_token': ?hecToken?.toTfJson(),
+    'retry_duration': ?retryDuration?.toTfJson(),
+    's3_backup_mode': ?s3BackupMode?.toTfJson(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
+    'processing_configuration': ?processingConfiguration?.encode(),
     's3_configuration': s3Configuration.encode(),
-    if (secretsManagerConfiguration != null)
-      'secrets_manager_configuration': secretsManagerConfiguration!.encode(),
+    'secrets_manager_configuration': ?secretsManagerConfiguration?.encode(),
   };
 }
 
@@ -3451,10 +3336,9 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationCloudwatchLoggingOpt
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -3475,7 +3359,7 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationProcessingConfigurat
   processors;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (processors != null)
       'processors': [for (final e in processors!) e.encode()],
   };
@@ -3560,18 +3444,14 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationS3Configuration {
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (bufferingInterval != null)
-      'buffering_interval': bufferingInterval!.toTfJson(),
-    if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (compressionFormat != null)
-      'compression_format': compressionFormat!.toTfJson(),
-    if (errorOutputPrefix != null)
-      'error_output_prefix': errorOutputPrefix!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'buffering_interval': ?bufferingInterval?.toTfJson(),
+    'buffering_size': ?bufferingSize?.toTfJson(),
+    'compression_format': ?compressionFormat?.toTfJson(),
+    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (cloudwatchLoggingOptions != null)
-      'cloudwatch_logging_options': cloudwatchLoggingOptions!.encode(),
+    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
   };
 }
 
@@ -3592,10 +3472,9 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationS3ConfigurationCloud
   final TfArg<String>? logStreamName;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -3616,9 +3495,9 @@ final class KinesisFirehoseDeliveryStreamSplunkConfigurationSecretsManagerConfig
   final TfArg<String>? secretArn;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'secret_arn': ?secretArn?.toTfJson(),
   };
 }
 
@@ -3657,13 +3536,13 @@ final class AwsKinesisFirehoseDeliveryStream extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
+           'arn': ?arn,
            'destination': destination,
-           if (destinationId != null) 'destination_id': destinationId,
+           'destination_id': ?destinationId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (versionId != null) 'version_id': versionId,
+           'region': ?region,
+           'tags': ?tags,
+           'version_id': ?versionId,
            if (elasticsearchConfiguration != null)
              'elasticsearch_configuration': TfArg.literal(
                elasticsearchConfiguration.encode(),

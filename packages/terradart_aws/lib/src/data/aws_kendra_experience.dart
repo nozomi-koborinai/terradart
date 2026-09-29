@@ -23,7 +23,7 @@ final class DataAwsKendraExperience extends Data {
          argMap: {
            'experience_id': experienceId,
            'index_id': indexId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

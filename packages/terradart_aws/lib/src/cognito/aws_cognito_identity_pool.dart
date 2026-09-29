@@ -24,10 +24,9 @@ final class CognitoIdentityPoolCognitoIdentityProviders {
   final TfArg<bool>? serverSideTokenCheck;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (providerName != null) 'provider_name': providerName!.toTfJson(),
-    if (serverSideTokenCheck != null)
-      'server_side_token_check': serverSideTokenCheck!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'provider_name': ?providerName?.toTfJson(),
+    'server_side_token_check': ?serverSideTokenCheck?.toTfJson(),
   };
 }
 
@@ -54,19 +53,15 @@ final class AwsCognitoIdentityPool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowClassicFlow != null) 'allow_classic_flow': allowClassicFlow,
-           if (allowUnauthenticatedIdentities != null)
-             'allow_unauthenticated_identities': allowUnauthenticatedIdentities,
-           if (developerProviderName != null)
-             'developer_provider_name': developerProviderName,
+           'allow_classic_flow': ?allowClassicFlow,
+           'allow_unauthenticated_identities': ?allowUnauthenticatedIdentities,
+           'developer_provider_name': ?developerProviderName,
            'identity_pool_name': identityPoolName,
-           if (openidConnectProviderArns != null)
-             'openid_connect_provider_arns': openidConnectProviderArns,
-           if (region != null) 'region': region,
-           if (samlProviderArns != null) 'saml_provider_arns': samlProviderArns,
-           if (supportedLoginProviders != null)
-             'supported_login_providers': supportedLoginProviders,
-           if (tags != null) 'tags': tags,
+           'openid_connect_provider_arns': ?openidConnectProviderArns,
+           'region': ?region,
+           'saml_provider_arns': ?samlProviderArns,
+           'supported_login_providers': ?supportedLoginProviders,
+           'tags': ?tags,
            if (cognitoIdentityProviders != null)
              'cognito_identity_providers': TfArg.literal([
                for (final e in cognitoIdentityProviders) e.encode(),

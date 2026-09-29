@@ -34,7 +34,7 @@ final class Resiliencehubv2ServiceAssociatedSystem {
 
   Map<String, Object?> encode() => {
     'system_arn': systemArn.toTfJson(),
-    if (userJourneyIds != null) 'user_journey_ids': userJourneyIds!.toTfJson(),
+    'user_journey_ids': ?userJourneyIds?.toTfJson(),
   };
 }
 
@@ -74,7 +74,7 @@ final class Resiliencehubv2ServicePermissionModelCrossAccountRole {
 
   Map<String, Object?> encode() => {
     'cross_account_role_arn': crossAccountRoleArn.toTfJson(),
-    if (externalId != null) 'external_id': externalId!.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
   };
 }
 
@@ -101,15 +101,14 @@ final class AwsResiliencehubv2Service extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dependencyDiscovery != null)
-             'dependency_discovery': dependencyDiscovery,
-           if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'dependency_discovery': ?dependencyDiscovery,
+           'description': ?description,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
-           if (policyArn != null) 'policy_arn': policyArn,
-           if (region != null) 'region': region,
+           'policy_arn': ?policyArn,
+           'region': ?region,
            'regions': regions,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (associatedSystem != null)
              'associated_system': TfArg.literal([
                for (final e in associatedSystem) e.encode(),

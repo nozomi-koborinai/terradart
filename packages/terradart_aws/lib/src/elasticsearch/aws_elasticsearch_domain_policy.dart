@@ -24,7 +24,7 @@ final class AwsElasticsearchDomainPolicy extends Resource {
          argMap: {
            'access_policies': accessPolicies,
            'domain_name': domainName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

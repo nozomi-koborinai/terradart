@@ -28,11 +28,11 @@ final class GoogleSecretManagerRegionalSecretIamMember extends Resource {
          terraformType: tfType,
          argMap: {
            'secret_id': secretId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

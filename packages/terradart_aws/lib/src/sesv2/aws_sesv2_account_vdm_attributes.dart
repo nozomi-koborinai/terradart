@@ -27,8 +27,7 @@ final class Sesv2AccountVdmAttributesDashboardAttributes {
   engagementMetrics;
 
   Map<String, Object?> encode() => {
-    if (engagementMetrics != null)
-      'engagement_metrics': engagementMetrics!.toTfJson(),
+    'engagement_metrics': ?engagementMetrics?.toTfJson(),
   };
 }
 
@@ -59,8 +58,7 @@ final class Sesv2AccountVdmAttributesGuardianAttributes {
   optimizedSharedDelivery;
 
   Map<String, Object?> encode() => {
-    if (optimizedSharedDelivery != null)
-      'optimized_shared_delivery': optimizedSharedDelivery!.toTfJson(),
+    'optimized_shared_delivery': ?optimizedSharedDelivery?.toTfJson(),
   };
 }
 
@@ -94,7 +92,7 @@ final class AwsSesv2AccountVdmAttributes extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'vdm_enabled': vdmEnabled,
            if (dashboardAttributes != null)
              'dashboard_attributes': TfArg.literal(

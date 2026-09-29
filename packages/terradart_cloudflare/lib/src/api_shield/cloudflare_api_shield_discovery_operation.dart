@@ -39,8 +39,8 @@ final class CloudflareApiShieldDiscoveryOperation extends Resource {
          terraformType: tfType,
          argMap: {
            'operation_id': operationId,
-           if (state != null) 'state': state,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'state': ?state,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

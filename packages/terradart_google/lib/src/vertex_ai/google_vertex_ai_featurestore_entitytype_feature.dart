@@ -54,10 +54,10 @@ final class GoogleVertexAiFeaturestoreEntitytypeFeature extends Resource {
          terraformType: tfType,
          argMap: {
            'entitytype': entitytype,
-           if (name != null) 'name': name,
+           'name': ?name,
            'value_type': valueType,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'labels': ?labels,
          },
        );
 

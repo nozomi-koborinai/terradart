@@ -103,8 +103,7 @@ final class RbinRuleExcludeResourceTags {
 
   Map<String, Object?> encode() => {
     'resource_tag_key': resourceTagKey.toTfJson(),
-    if (resourceTagValue != null)
-      'resource_tag_value': resourceTagValue!.toTfJson(),
+    'resource_tag_value': ?resourceTagValue?.toTfJson(),
   };
 }
 
@@ -166,8 +165,7 @@ final class RbinRuleResourceTags {
 
   Map<String, Object?> encode() => {
     'resource_tag_key': resourceTagKey.toTfJson(),
-    if (resourceTagValue != null)
-      'resource_tag_value': resourceTagValue!.toTfJson(),
+    'resource_tag_value': ?resourceTagValue?.toTfJson(),
   };
 }
 
@@ -219,10 +217,10 @@ final class AwsRbinRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'region': ?region,
            'resource_type': resourceType,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            ...?tagFilter?.argMap,
            if (lockConfiguration != null)
              'lock_configuration': TfArg.literal(lockConfiguration.encode()),

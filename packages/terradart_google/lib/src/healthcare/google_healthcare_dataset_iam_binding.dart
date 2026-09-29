@@ -32,7 +32,7 @@ final class GoogleHealthcareDatasetIamBinding extends Resource {
            'dataset_id': datasetId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

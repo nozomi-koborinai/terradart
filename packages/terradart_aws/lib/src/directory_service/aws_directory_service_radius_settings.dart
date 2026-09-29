@@ -54,9 +54,9 @@ final class AwsDirectoryServiceRadiusSettings extends Resource {
            'radius_retries': radiusRetries,
            'radius_servers': radiusServers,
            'radius_timeout': radiusTimeout,
-           if (region != null) 'region': region,
+           'region': ?region,
            'shared_secret': sharedSecret,
-           if (useSameUsername != null) 'use_same_username': useSameUsername,
+           'use_same_username': ?useSameUsername,
          },
        );
 

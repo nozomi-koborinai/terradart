@@ -25,11 +25,10 @@ final class AwsAmplifyBackendEnvironment extends Resource {
          terraformType: tfType,
          argMap: {
            'app_id': appId,
-           if (deploymentArtifacts != null)
-             'deployment_artifacts': deploymentArtifacts,
+           'deployment_artifacts': ?deploymentArtifacts,
            'environment_name': environmentName,
-           if (region != null) 'region': region,
-           if (stackName != null) 'stack_name': stackName,
+           'region': ?region,
+           'stack_name': ?stackName,
          },
        );
 

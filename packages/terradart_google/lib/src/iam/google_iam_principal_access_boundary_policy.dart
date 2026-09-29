@@ -21,8 +21,7 @@ final class IamPrincipalAccessBoundaryPolicyDetails {
   final List<IamPrincipalAccessBoundaryPolicyDetailsRules> rules;
 
   Map<String, Object?> encode() => {
-    if (enforcementVersion != null)
-      'enforcement_version': enforcementVersion!.toTfJson(),
+    'enforcement_version': ?enforcementVersion?.toTfJson(),
     'rules': [for (final e in rules) e.encode()],
   };
 }
@@ -44,7 +43,7 @@ final class IamPrincipalAccessBoundaryPolicyDetailsRules {
   final TfArg<List<Object?>> resources;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'effect': effect.toTfJson(),
     'resources': resources.toTfJson(),
   };
@@ -77,9 +76,9 @@ final class GoogleIamPrincipalAccessBoundaryPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
            'location': location,
            'organization': organization,
            'principal_access_boundary_policy_id':

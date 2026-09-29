@@ -39,10 +39,9 @@ final class AwsDynamodbKinesisStreamingDestination extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (approximateCreationDateTimePrecision != null)
-             'approximate_creation_date_time_precision':
-                 approximateCreationDateTimePrecision,
-           if (region != null) 'region': region,
+           'approximate_creation_date_time_precision':
+               ?approximateCreationDateTimePrecision,
+           'region': ?region,
            'stream_arn': streamArn,
            'table_name': tableName,
          },

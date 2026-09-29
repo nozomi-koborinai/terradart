@@ -75,12 +75,12 @@ final class CloudflareKeylessCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bundleMethod != null) 'bundle_method': bundleMethod,
+           'bundle_method': ?bundleMethod,
            'certificate': certificate,
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'host': host,
-           if (name != null) 'name': name,
-           if (port != null) 'port': port,
+           'name': ?name,
+           'port': ?port,
            'zone_id': zoneId.encodeAs('id'),
            if (tunnel != null) 'tunnel': TfArg.literal(tunnel.encode()),
          },

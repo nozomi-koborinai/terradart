@@ -18,10 +18,7 @@ final class AwsLightsailStaticIp extends Resource {
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {'name': name, if (region != null) 'region': region},
-       );
+  }) : super(terraformType: tfType, argMap: {'name': name, 'region': ?region});
 
   @override
   Set<String> get sensitiveFields => _awsLightsailStaticIpSensitive;

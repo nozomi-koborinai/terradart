@@ -89,7 +89,7 @@ final class LexIntentConclusionStatement {
   final List<LexIntentConclusionStatementMessage> message;
 
   Map<String, Object?> encode() => {
-    if (responseCard != null) 'response_card': responseCard!.toTfJson(),
+    'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
   };
 }
@@ -113,7 +113,7 @@ final class LexIntentConclusionStatementMessage {
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
-    if (groupNumber != null) 'group_number': groupNumber!.toTfJson(),
+    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -135,7 +135,7 @@ final class LexIntentConfirmationPrompt {
 
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
-    if (responseCard != null) 'response_card': responseCard!.toTfJson(),
+    'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
   };
 }
@@ -159,7 +159,7 @@ final class LexIntentConfirmationPromptMessage {
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
-    if (groupNumber != null) 'group_number': groupNumber!.toTfJson(),
+    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -219,7 +219,7 @@ final class LexIntentFollowUpPromptPrompt {
 
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
-    if (responseCard != null) 'response_card': responseCard!.toTfJson(),
+    'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
   };
 }
@@ -243,7 +243,7 @@ final class LexIntentFollowUpPromptPromptMessage {
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
-    if (groupNumber != null) 'group_number': groupNumber!.toTfJson(),
+    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -261,7 +261,7 @@ final class LexIntentFollowUpPromptRejectionStatement {
   final List<LexIntentFollowUpPromptRejectionStatementMessage> message;
 
   Map<String, Object?> encode() => {
-    if (responseCard != null) 'response_card': responseCard!.toTfJson(),
+    'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
   };
 }
@@ -285,7 +285,7 @@ final class LexIntentFollowUpPromptRejectionStatementMessage {
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
-    if (groupNumber != null) 'group_number': groupNumber!.toTfJson(),
+    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -301,7 +301,7 @@ final class LexIntentFulfillmentActivity {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (codeHook != null) 'code_hook': codeHook!.encode(),
+    'code_hook': ?codeHook?.encode(),
   };
 }
 
@@ -345,7 +345,7 @@ final class LexIntentRejectionStatement {
   final List<LexIntentRejectionStatementMessage> message;
 
   Map<String, Object?> encode() => {
-    if (responseCard != null) 'response_card': responseCard!.toTfJson(),
+    'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
   };
 }
@@ -369,7 +369,7 @@ final class LexIntentRejectionStatementMessage {
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
-    if (groupNumber != null) 'group_number': groupNumber!.toTfJson(),
+    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -408,18 +408,15 @@ final class LexIntentSlot {
   final LexIntentSlotValueElicitationPrompt? valueElicitationPrompt;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (priority != null) 'priority': priority!.toTfJson(),
-    if (responseCard != null) 'response_card': responseCard!.toTfJson(),
-    if (sampleUtterances != null)
-      'sample_utterances': sampleUtterances!.toTfJson(),
+    'priority': ?priority?.toTfJson(),
+    'response_card': ?responseCard?.toTfJson(),
+    'sample_utterances': ?sampleUtterances?.toTfJson(),
     'slot_constraint': slotConstraint.toTfJson(),
     'slot_type': slotType.toTfJson(),
-    if (slotTypeVersion != null)
-      'slot_type_version': slotTypeVersion!.toTfJson(),
-    if (valueElicitationPrompt != null)
-      'value_elicitation_prompt': valueElicitationPrompt!.encode(),
+    'slot_type_version': ?slotTypeVersion?.toTfJson(),
+    'value_elicitation_prompt': ?valueElicitationPrompt?.encode(),
   };
 }
 
@@ -451,7 +448,7 @@ final class LexIntentSlotValueElicitationPrompt {
 
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
-    if (responseCard != null) 'response_card': responseCard!.toTfJson(),
+    'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
   };
 }
@@ -475,7 +472,7 @@ final class LexIntentSlotValueElicitationPromptMessage {
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
-    if (groupNumber != null) 'group_number': groupNumber!.toTfJson(),
+    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -504,13 +501,12 @@ final class AwsLexIntent extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (createVersion != null) 'create_version': createVersion,
-           if (description != null) 'description': description,
+           'create_version': ?createVersion,
+           'description': ?description,
            'name': name,
-           if (parentIntentSignature != null)
-             'parent_intent_signature': parentIntentSignature,
-           if (region != null) 'region': region,
-           if (sampleUtterances != null) 'sample_utterances': sampleUtterances,
+           'parent_intent_signature': ?parentIntentSignature,
+           'region': ?region,
+           'sample_utterances': ?sampleUtterances,
            ...?closing?.argMap,
            if (confirmationPrompt != null)
              'confirmation_prompt': TfArg.literal(confirmationPrompt.encode()),

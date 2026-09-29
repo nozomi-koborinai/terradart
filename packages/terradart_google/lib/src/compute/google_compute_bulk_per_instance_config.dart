@@ -25,10 +25,10 @@ final class GoogleComputeBulkPerInstanceConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'instance_group_manager': instanceGroupManager,
-           if (instances != null) 'instances': instances,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (zone != null) 'zone': zone,
-           if (project != null) 'project': project,
+           'instances': ?instances,
+           'deletion_policy': ?deletionPolicy,
+           'zone': ?zone,
+           'project': ?project,
          },
        );
 

@@ -87,7 +87,7 @@ final class AwsAutoscalingAttachment extends Resource {
          argMap: {
            'autoscaling_group_name': autoscalingGroupName,
            ...target.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

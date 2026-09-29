@@ -63,10 +63,10 @@ final class LoadBalancerPoolLoadShedding {
   final TfArg<LoadBalancerPoolLoadSheddingSessionPolicy>? sessionPolicy;
 
   Map<String, Object?> encode() => {
-    if (defaultPercent != null) 'default_percent': defaultPercent!.toTfJson(),
-    if (defaultPolicy != null) 'default_policy': defaultPolicy!.toTfJson(),
-    if (sessionPercent != null) 'session_percent': sessionPercent!.toTfJson(),
-    if (sessionPolicy != null) 'session_policy': sessionPolicy!.toTfJson(),
+    'default_percent': ?defaultPercent?.toTfJson(),
+    'default_policy': ?defaultPolicy?.toTfJson(),
+    'session_percent': ?sessionPercent?.toTfJson(),
+    'session_policy': ?sessionPolicy?.toTfJson(),
   };
 }
 
@@ -100,8 +100,8 @@ final class LoadBalancerPoolNotificationFilter {
   final LoadBalancerPoolNotificationFilterPool? pool;
 
   Map<String, Object?> encode() => {
-    if (origin != null) 'origin': origin!.encode(),
-    if (pool != null) 'pool': pool!.encode(),
+    'origin': ?origin?.encode(),
+    'pool': ?pool?.encode(),
   };
 }
 
@@ -116,8 +116,8 @@ final class LoadBalancerPoolNotificationFilterOrigin {
   final TfArg<bool>? healthy;
 
   Map<String, Object?> encode() => {
-    if (disable != null) 'disable': disable!.toTfJson(),
-    if (healthy != null) 'healthy': healthy!.toTfJson(),
+    'disable': ?disable?.toTfJson(),
+    'healthy': ?healthy?.toTfJson(),
   };
 }
 
@@ -132,8 +132,8 @@ final class LoadBalancerPoolNotificationFilterPool {
   final TfArg<bool>? healthy;
 
   Map<String, Object?> encode() => {
-    if (disable != null) 'disable': disable!.toTfJson(),
-    if (healthy != null) 'healthy': healthy!.toTfJson(),
+    'disable': ?disable?.toTfJson(),
+    'healthy': ?healthy?.toTfJson(),
   };
 }
 
@@ -145,9 +145,7 @@ final class LoadBalancerPoolOriginSteering {
 
   final TfArg<LoadBalancerPoolOriginSteeringPolicy>? policy;
 
-  Map<String, Object?> encode() => {
-    if (policy != null) 'policy': policy!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
 /// `policy` — derived from the provider schema description.
@@ -194,15 +192,14 @@ final class LoadBalancerPoolOrigins {
   final LoadBalancerPoolOriginsHeader? header;
 
   Map<String, Object?> encode() => {
-    if (address != null) 'address': address!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (flattenCname != null) 'flatten_cname': flattenCname!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (virtualNetworkId != null)
-      'virtual_network_id': virtualNetworkId!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
-    if (header != null) 'header': header!.encode(),
+    'address': ?address?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'flatten_cname': ?flattenCname?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'virtual_network_id': ?virtualNetworkId?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
+    'header': ?header?.encode(),
   };
 }
 
@@ -214,7 +211,7 @@ final class LoadBalancerPoolOriginsHeader {
 
   final TfArg<List<Object?>>? host;
 
-  Map<String, Object?> encode() => {if (host != null) 'host': host!.toTfJson()};
+  Map<String, Object?> encode() => {'host': ?host?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_load_balancer_pool`.
@@ -256,20 +253,19 @@ final class CloudflareLoadBalancerPool extends Resource {
              'check_regions': TfArg.literal([
                for (final e in checkRegions) e.toTfJson(),
              ]),
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
+           'description': ?description,
+           'enabled': ?enabled,
            if (healthSources != null)
              'health_sources': TfArg.literal([
                for (final e in healthSources) e.toTfJson(),
              ]),
-           if (latitude != null) 'latitude': latitude,
-           if (longitude != null) 'longitude': longitude,
-           if (minimumOrigins != null) 'minimum_origins': minimumOrigins,
-           if (monitor != null) 'monitor': monitor,
-           if (monitorGroup != null) 'monitor_group': monitorGroup,
+           'latitude': ?latitude,
+           'longitude': ?longitude,
+           'minimum_origins': ?minimumOrigins,
+           'monitor': ?monitor,
+           'monitor_group': ?monitorGroup,
            'name': name,
-           if (notificationEmail != null)
-             'notification_email': notificationEmail,
+           'notification_email': ?notificationEmail,
            if (loadShedding != null)
              'load_shedding': TfArg.literal(loadShedding.encode()),
            if (notificationFilter != null)

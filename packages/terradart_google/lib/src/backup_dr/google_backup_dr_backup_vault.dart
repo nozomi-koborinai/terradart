@@ -44,8 +44,7 @@ final class BackupDrBackupVaultEncryptionConfig {
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -109,25 +108,21 @@ final class GoogleBackupDrBackupVault extends Resource {
            'location': location,
            'backup_minimum_enforced_retention_duration':
                backupMinimumEnforcedRetentionDuration,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
-           if (accessRestriction != null)
-             'access_restriction': accessRestriction,
-           if (backupRetentionInheritance != null)
-             'backup_retention_inheritance': backupRetentionInheritance,
+           'description': ?description,
+           'labels': ?labels,
+           'annotations': ?annotations,
+           'access_restriction': ?accessRestriction,
+           'backup_retention_inheritance': ?backupRetentionInheritance,
            if (encryptionConfig != null)
              'encryption_config': TfArg.literal(encryptionConfig.encode()),
-           if (effectiveTime != null) 'effective_time': effectiveTime,
-           if (forceUpdate != null) 'force_update': forceUpdate,
-           if (forceDelete != null) 'force_delete': forceDelete,
-           if (allowMissing != null) 'allow_missing': allowMissing,
-           if (ignoreBackupPlanReferences != null)
-             'ignore_backup_plan_references': ignoreBackupPlanReferences,
-           if (ignoreInactiveDatasources != null)
-             'ignore_inactive_datasources': ignoreInactiveDatasources,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'effective_time': ?effectiveTime,
+           'force_update': ?forceUpdate,
+           'force_delete': ?forceDelete,
+           'allow_missing': ?allowMissing,
+           'ignore_backup_plan_references': ?ignoreBackupPlanReferences,
+           'ignore_inactive_datasources': ?ignoreInactiveDatasources,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -22,10 +22,7 @@ final class AwsEbsDefaultKmsKey extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'key_arn': keyArn.encodeAs('arn'),
-           if (region != null) 'region': region,
-         },
+         argMap: {'key_arn': keyArn.encodeAs('arn'), 'region': ?region},
        );
 
   @override

@@ -19,9 +19,8 @@ final class DataAwsSecurityhubEnabledStandards extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (standardsSubscriptionArns != null)
-             'standards_subscription_arns': standardsSubscriptionArns,
+           'region': ?region,
+           'standards_subscription_arns': ?standardsSubscriptionArns,
          },
        );
 

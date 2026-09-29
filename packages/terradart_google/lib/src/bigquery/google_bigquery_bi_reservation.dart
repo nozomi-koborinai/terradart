@@ -26,9 +26,9 @@ final class GoogleBigqueryBiReservation extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (project != null) 'project': project,
-           if (size != null) 'size': size,
-           if (preferredTables != null) 'preferred_tables': preferredTables,
+           'project': ?project,
+           'size': ?size,
+           'preferred_tables': ?preferredTables,
          },
        );
 

@@ -29,7 +29,7 @@ final class GoogleIamWorkforcePoolIamPolicy extends Resource {
          argMap: {
            'workforce_pool_id': workforcePoolId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
+           'location': ?location,
          },
        );
 

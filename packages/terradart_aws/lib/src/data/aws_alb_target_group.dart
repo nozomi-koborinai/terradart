@@ -23,13 +23,11 @@ final class DataAwsAlbTargetGroup extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (loadBalancingAnomalyMitigation != null)
-             'load_balancing_anomaly_mitigation':
-                 loadBalancingAnomalyMitigation,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'arn': ?arn,
+           'load_balancing_anomaly_mitigation': ?loadBalancingAnomalyMitigation,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

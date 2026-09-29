@@ -37,23 +37,21 @@ final class DataCloudflarePageShieldScriptsList extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (direction != null) 'direction': direction,
-           if (excludeCdnCgi != null) 'exclude_cdn_cgi': excludeCdnCgi,
-           if (excludeDuplicates != null)
-             'exclude_duplicates': excludeDuplicates,
-           if (excludeUrls != null) 'exclude_urls': excludeUrls,
-           if (export != null) 'export': export,
-           if (hosts != null) 'hosts': hosts,
-           if (maxItems != null) 'max_items': maxItems,
-           if (orderBy != null) 'order_by': orderBy,
-           if (page != null) 'page': page,
-           if (pageUrl != null) 'page_url': pageUrl,
-           if (perPage != null) 'per_page': perPage,
-           if (prioritizeMalicious != null)
-             'prioritize_malicious': prioritizeMalicious,
-           if (status != null) 'status': status,
-           if (urls != null) 'urls': urls,
-           if (zoneId != null) 'zone_id': zoneId,
+           'direction': ?direction,
+           'exclude_cdn_cgi': ?excludeCdnCgi,
+           'exclude_duplicates': ?excludeDuplicates,
+           'exclude_urls': ?excludeUrls,
+           'export': ?export,
+           'hosts': ?hosts,
+           'max_items': ?maxItems,
+           'order_by': ?orderBy,
+           'page': ?page,
+           'page_url': ?pageUrl,
+           'per_page': ?perPage,
+           'prioritize_malicious': ?prioritizeMalicious,
+           'status': ?status,
+           'urls': ?urls,
+           'zone_id': ?zoneId,
          },
        );
 

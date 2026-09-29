@@ -56,15 +56,14 @@ final class GoogleComputePublicAdvertisedPrefix extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (dnsVerificationIp != null)
-             'dns_verification_ip': dnsVerificationIp,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'dns_verification_ip': ?dnsVerificationIp,
            'ip_cidr_range': ipCidrRange,
-           if (ipv6AccessType != null) 'ipv6_access_type': ipv6AccessType,
+           'ipv6_access_type': ?ipv6AccessType,
            'name': name,
-           if (pdpScope != null) 'pdp_scope': pdpScope,
-           if (project != null) 'project': project,
+           'pdp_scope': ?pdpScope,
+           'project': ?project,
          },
        );
 

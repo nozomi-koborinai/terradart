@@ -22,7 +22,7 @@ final class AwsSsmServiceSetting extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'setting_id': settingId,
            'setting_value': settingValue,
          },

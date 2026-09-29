@@ -36,7 +36,7 @@ final class AwsNetworkInterfacePermission extends Resource {
            'aws_account_id': awsAccountId,
            'network_interface_id': networkInterfaceId,
            'permission': permission,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

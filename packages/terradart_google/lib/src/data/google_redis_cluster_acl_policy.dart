@@ -24,8 +24,8 @@ final class DataGoogleRedisClusterAclPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'acl_policy_id': aclPolicyId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

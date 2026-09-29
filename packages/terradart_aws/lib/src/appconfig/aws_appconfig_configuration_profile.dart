@@ -35,7 +35,7 @@ final class AppconfigConfigurationProfileValidator {
   final TfArg<AppconfigConfigurationProfileValidatorType> type;
 
   Map<String, Object?> encode() => {
-    if (content != null) 'content': content!.toTfJson(),
+    'content': ?content?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -74,15 +74,14 @@ final class AwsAppconfigConfigurationProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'application_id': applicationId,
-           if (description != null) 'description': description,
-           if (kmsKeyIdentifier != null)
-             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
+           'description': ?description,
+           'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn'),
            'location_uri': locationUri,
            'name': name,
-           if (region != null) 'region': region,
-           if (retrievalRoleArn != null) 'retrieval_role_arn': retrievalRoleArn,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'region': ?region,
+           'retrieval_role_arn': ?retrievalRoleArn,
+           'tags': ?tags,
+           'type': ?type,
            if (validator != null)
              'validator': TfArg.literal([
                for (final e in validator) e.encode(),

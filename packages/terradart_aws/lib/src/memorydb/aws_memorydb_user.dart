@@ -20,7 +20,7 @@ final class MemorydbUserAuthenticationMode {
   final TfArg<MemorydbUserAuthenticationModeType> type;
 
   Map<String, Object?> encode() => {
-    if (passwords != null) 'passwords': passwords!.toTfJson(),
+    'passwords': ?passwords?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -54,8 +54,8 @@ final class AwsMemorydbUser extends Resource {
          terraformType: tfType,
          argMap: {
            'access_string': accessString,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'user_name': userName,
            'authentication_mode': TfArg.literal(authenticationMode.encode()),
          },

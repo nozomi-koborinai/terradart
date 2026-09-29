@@ -88,13 +88,12 @@ final class AwsEipAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allocationId != null) 'allocation_id': allocationId,
-           if (allowReassociation != null)
-             'allow_reassociation': allowReassociation,
+           'allocation_id': ?allocationId,
+           'allow_reassociation': ?allowReassociation,
            ...target.argMap,
-           if (privateIpAddress != null) 'private_ip_address': privateIpAddress,
-           if (publicIp != null) 'public_ip': publicIp,
-           if (region != null) 'region': region,
+           'private_ip_address': ?privateIpAddress,
+           'public_ip': ?publicIp,
+           'region': ?region,
          },
        );
 

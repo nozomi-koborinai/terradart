@@ -41,12 +41,12 @@ final class AwsEksAccessEntry extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_name': clusterName,
-           if (kubernetesGroups != null) 'kubernetes_groups': kubernetesGroups,
+           'kubernetes_groups': ?kubernetesGroups,
            'principal_arn': principalArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
-           if (userName != null) 'user_name': userName,
+           'region': ?region,
+           'tags': ?tags,
+           'type': ?type,
+           'user_name': ?userName,
          },
        );
 

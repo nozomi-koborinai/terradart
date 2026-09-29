@@ -36,12 +36,12 @@ final class GoogleGkeHubMembershipBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
            'membership_binding_id': membershipBindingId,
            'membership_id': membershipId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'scope': scope,
          },
        );

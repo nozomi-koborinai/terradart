@@ -32,10 +32,10 @@ final class CloudflareEmailSecurityTrustedDomains extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (comments != null) 'comments': comments,
-           if (isRecent != null) 'is_recent': isRecent,
-           if (isRegex != null) 'is_regex': isRegex,
-           if (isSimilarity != null) 'is_similarity': isSimilarity,
+           'comments': ?comments,
+           'is_recent': ?isRecent,
+           'is_regex': ?isRegex,
+           'is_similarity': ?isSimilarity,
            'pattern': pattern,
          },
        );

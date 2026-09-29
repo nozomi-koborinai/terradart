@@ -47,12 +47,11 @@ final class GoogleIntegrationConnectorsEndpointAttachment extends Resource {
            'name': name,
            'location': location,
            'service_attachment': serviceAttachment,
-           if (description != null) 'description': description,
-           if (endpointGlobalAccess != null)
-             'endpoint_global_access': endpointGlobalAccess,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'endpoint_global_access': ?endpointGlobalAccess,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

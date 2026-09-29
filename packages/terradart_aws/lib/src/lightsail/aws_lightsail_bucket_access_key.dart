@@ -22,10 +22,7 @@ final class AwsLightsailBucketAccessKey extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'bucket_name': bucketName,
-           if (region != null) 'region': region,
-         },
+         argMap: {'bucket_name': bucketName, 'region': ?region},
        );
 
   @override

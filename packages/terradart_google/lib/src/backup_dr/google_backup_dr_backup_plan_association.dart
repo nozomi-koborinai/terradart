@@ -43,8 +43,8 @@ final class GoogleBackupDrBackupPlanAssociation extends Resource {
            'backup_plan': backupPlan,
            'resource': resource,
            'resource_type': resourceType,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -85,7 +85,7 @@ final class AwsCloudwatchLogResourcePolicy extends Resource {
          argMap: {
            'policy_document': policyDocument,
            ...scope.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

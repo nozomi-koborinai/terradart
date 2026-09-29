@@ -67,19 +67,16 @@ final class GoogleDataformRepository extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (displayName != null) 'display_name': displayName,
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('email'),
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
-           if (npmrcEnvironmentVariablesSecretVersion != null)
-             'npmrc_environment_variables_secret_version':
-                 npmrcEnvironmentVariablesSecretVersion,
-           if (workspaceCompilationOverrides != null)
-             'workspace_compilation_overrides': workspaceCompilationOverrides,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'display_name': ?displayName,
+           'service_account': ?serviceAccount?.encodeAs('email'),
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'npmrc_environment_variables_secret_version':
+               ?npmrcEnvironmentVariablesSecretVersion,
+           'workspace_compilation_overrides': ?workspaceCompilationOverrides,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

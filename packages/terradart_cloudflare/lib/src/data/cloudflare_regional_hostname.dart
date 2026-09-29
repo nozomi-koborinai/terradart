@@ -23,7 +23,7 @@ final class DataCloudflareRegionalHostname extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'hostname': hostname, if (zoneId != null) 'zone_id': zoneId},
+         argMap: {'hostname': hostname, 'zone_id': ?zoneId},
        );
 
   @override

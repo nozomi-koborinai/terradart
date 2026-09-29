@@ -24,10 +24,7 @@ final class DataCloudflareZeroTrustDexRule extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'rule_id': ruleId,
-         },
+         argMap: {'account_id': ?accountId, 'rule_id': ruleId},
        );
 
   @override

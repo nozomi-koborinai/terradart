@@ -35,11 +35,11 @@ final class DataZeroTrustAccessApplicationFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (aud != null) 'aud': aud!.toTfJson(),
-    if (domain != null) 'domain': domain!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'aud': ?aud?.toTfJson(),
+    'domain': ?domain?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -58,9 +58,9 @@ final class DataCloudflareZeroTrustAccessApplication extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (appId != null) 'app_id': appId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'app_id': ?appId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

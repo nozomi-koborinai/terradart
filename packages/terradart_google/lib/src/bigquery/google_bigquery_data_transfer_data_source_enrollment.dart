@@ -37,9 +37,9 @@ final class GoogleBigqueryDataTransferDataSourceEnrollment extends Resource {
          terraformType: tfType,
          argMap: {
            'data_source_id': dataSourceId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
-           if (unenrollLocation != null) 'unenroll_location': unenrollLocation,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
+           'unenroll_location': ?unenrollLocation,
          },
        );
 

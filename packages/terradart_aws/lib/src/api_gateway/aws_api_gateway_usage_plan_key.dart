@@ -25,7 +25,7 @@ final class AwsApiGatewayUsagePlanKey extends Resource {
          argMap: {
            'key_id': keyId,
            'key_type': keyType,
-           if (region != null) 'region': region,
+           'region': ?region,
            'usage_plan_id': usagePlanId,
          },
        );

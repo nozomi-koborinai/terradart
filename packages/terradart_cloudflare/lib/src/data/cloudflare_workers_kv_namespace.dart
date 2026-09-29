@@ -19,8 +19,8 @@ final class DataWorkersKvNamespaceFilter {
   final TfArg<DataWorkersKvNamespaceFilterOrder>? order;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'order': ?order?.toTfJson(),
   };
 }
 
@@ -62,8 +62,8 @@ final class DataCloudflareWorkersKvNamespace extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (namespaceId != null) 'namespace_id': namespaceId,
+           'account_id': ?accountId,
+           'namespace_id': ?namespaceId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

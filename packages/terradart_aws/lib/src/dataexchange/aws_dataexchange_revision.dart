@@ -23,10 +23,10 @@ final class AwsDataexchangeRevision extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'data_set_id': dataSetId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

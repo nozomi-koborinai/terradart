@@ -31,8 +31,8 @@ final class GoogleParameterManagerParameterVersion extends Resource {
            'parameter': parameter,
            'parameter_version_id': parameterVersionId,
            'parameter_data': parameterData,
-           if (disabled != null) 'disabled': disabled,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'disabled': ?disabled,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

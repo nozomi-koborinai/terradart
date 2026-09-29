@@ -23,7 +23,7 @@ final class DataAwsAuditmanagerFramework extends Data {
          argMap: {
            'framework_type': frameworkType,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

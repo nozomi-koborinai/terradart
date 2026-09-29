@@ -39,8 +39,8 @@ final class ApigeeApiProductAttributes {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -60,8 +60,7 @@ final class ApigeeApiProductGraphqlOperationGroup {
   operationConfigs;
 
   Map<String, Object?> encode() => {
-    if (operationConfigType != null)
-      'operation_config_type': operationConfigType!.toTfJson(),
+    'operation_config_type': ?operationConfigType?.toTfJson(),
     if (operationConfigs != null)
       'operation_configs': [for (final e in operationConfigs!) e.encode()],
   };
@@ -102,12 +101,12 @@ final class ApigeeApiProductGraphqlOperationGroupOperationConfigs {
   final ApigeeApiProductGraphqlOperationGroupOperationConfigsQuota? quota;
 
   Map<String, Object?> encode() => {
-    if (apiSource != null) 'api_source': apiSource!.toTfJson(),
+    'api_source': ?apiSource?.toTfJson(),
     if (attributes != null)
       'attributes': [for (final e in attributes!) e.encode()],
     if (operations != null)
       'operations': [for (final e in operations!) e.encode()],
-    if (quota != null) 'quota': quota!.encode(),
+    'quota': ?quota?.encode(),
   };
 }
 
@@ -125,8 +124,8 @@ final class ApigeeApiProductGraphqlOperationGroupOperationConfigsAttributes {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -144,8 +143,8 @@ final class ApigeeApiProductGraphqlOperationGroupOperationConfigsOperations {
   final TfArg<List<Object?>>? operationTypes;
 
   Map<String, Object?> encode() => {
-    if (operation != null) 'operation': operation!.toTfJson(),
-    if (operationTypes != null) 'operation_types': operationTypes!.toTfJson(),
+    'operation': ?operation?.toTfJson(),
+    'operation_types': ?operationTypes?.toTfJson(),
   };
 }
 
@@ -166,9 +165,9 @@ final class ApigeeApiProductGraphqlOperationGroupOperationConfigsQuota {
   final TfArg<String>? timeUnit;
 
   Map<String, Object?> encode() => {
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (timeUnit != null) 'time_unit': timeUnit!.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'time_unit': ?timeUnit?.toTfJson(),
   };
 }
 
@@ -211,12 +210,12 @@ final class ApigeeApiProductGrpcOperationGroupOperationConfigs {
   final ApigeeApiProductGrpcOperationGroupOperationConfigsQuota? quota;
 
   Map<String, Object?> encode() => {
-    if (apiSource != null) 'api_source': apiSource!.toTfJson(),
-    if (methods != null) 'methods': methods!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'api_source': ?apiSource?.toTfJson(),
+    'methods': ?methods?.toTfJson(),
+    'service': ?service?.toTfJson(),
     if (attributes != null)
       'attributes': [for (final e in attributes!) e.encode()],
-    if (quota != null) 'quota': quota!.encode(),
+    'quota': ?quota?.encode(),
   };
 }
 
@@ -234,8 +233,8 @@ final class ApigeeApiProductGrpcOperationGroupOperationConfigsAttributes {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -256,9 +255,9 @@ final class ApigeeApiProductGrpcOperationGroupOperationConfigsQuota {
   final TfArg<String>? timeUnit;
 
   Map<String, Object?> encode() => {
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (timeUnit != null) 'time_unit': timeUnit!.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'time_unit': ?timeUnit?.toTfJson(),
   };
 }
 
@@ -277,8 +276,7 @@ final class ApigeeApiProductOperationGroup {
   final List<ApigeeApiProductOperationGroupOperationConfigs>? operationConfigs;
 
   Map<String, Object?> encode() => {
-    if (operationConfigType != null)
-      'operation_config_type': operationConfigType!.toTfJson(),
+    'operation_config_type': ?operationConfigType?.toTfJson(),
     if (operationConfigs != null)
       'operation_configs': [for (final e in operationConfigs!) e.encode()],
   };
@@ -317,12 +315,12 @@ final class ApigeeApiProductOperationGroupOperationConfigs {
   final ApigeeApiProductOperationGroupOperationConfigsQuota? quota;
 
   Map<String, Object?> encode() => {
-    if (apiSource != null) 'api_source': apiSource!.toTfJson(),
+    'api_source': ?apiSource?.toTfJson(),
     if (attributes != null)
       'attributes': [for (final e in attributes!) e.encode()],
     if (operations != null)
       'operations': [for (final e in operations!) e.encode()],
-    if (quota != null) 'quota': quota!.encode(),
+    'quota': ?quota?.encode(),
   };
 }
 
@@ -340,8 +338,8 @@ final class ApigeeApiProductOperationGroupOperationConfigsAttributes {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -359,8 +357,8 @@ final class ApigeeApiProductOperationGroupOperationConfigsOperations {
   final TfArg<String>? resource;
 
   Map<String, Object?> encode() => {
-    if (methods != null) 'methods': methods!.toTfJson(),
-    if (resource != null) 'resource': resource!.toTfJson(),
+    'methods': ?methods?.toTfJson(),
+    'resource': ?resource?.toTfJson(),
   };
 }
 
@@ -381,9 +379,9 @@ final class ApigeeApiProductOperationGroupOperationConfigsQuota {
   final TfArg<String>? timeUnit;
 
   Map<String, Object?> encode() => {
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (timeUnit != null) 'time_unit': timeUnit!.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'time_unit': ?timeUnit?.toTfJson(),
   };
 }
 
@@ -432,18 +430,17 @@ final class GoogleApigeeApiProduct extends Resource {
            'name': name,
            'org_id': orgId,
            'display_name': displayName,
-           if (description != null) 'description': description,
-           if (approvalType != null) 'approval_type': approvalType,
-           if (apiResources != null) 'api_resources': apiResources,
-           if (environments != null) 'environments': environments,
-           if (proxies != null) 'proxies': proxies,
-           if (scopes != null) 'scopes': scopes,
-           if (space != null) 'space': space,
-           if (quota != null) 'quota': quota,
-           if (quotaInterval != null) 'quota_interval': quotaInterval,
-           if (quotaTimeUnit != null) 'quota_time_unit': quotaTimeUnit,
-           if (quotaCounterScope != null)
-             'quota_counter_scope': quotaCounterScope,
+           'description': ?description,
+           'approval_type': ?approvalType,
+           'api_resources': ?apiResources,
+           'environments': ?environments,
+           'proxies': ?proxies,
+           'scopes': ?scopes,
+           'space': ?space,
+           'quota': ?quota,
+           'quota_interval': ?quotaInterval,
+           'quota_time_unit': ?quotaTimeUnit,
+           'quota_counter_scope': ?quotaCounterScope,
            if (attributes != null)
              'attributes': TfArg.literal([
                for (final e in attributes) e.encode(),

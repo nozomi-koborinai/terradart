@@ -27,14 +27,13 @@ final class AwsEbsSnapshot extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (outpostArn != null) 'outpost_arn': outpostArn,
-           if (permanentRestore != null) 'permanent_restore': permanentRestore,
-           if (region != null) 'region': region,
-           if (storageTier != null) 'storage_tier': storageTier,
-           if (tags != null) 'tags': tags,
-           if (temporaryRestoreDays != null)
-             'temporary_restore_days': temporaryRestoreDays,
+           'description': ?description,
+           'outpost_arn': ?outpostArn,
+           'permanent_restore': ?permanentRestore,
+           'region': ?region,
+           'storage_tier': ?storageTier,
+           'tags': ?tags,
+           'temporary_restore_days': ?temporaryRestoreDays,
            'volume_id': volumeId,
          },
        );

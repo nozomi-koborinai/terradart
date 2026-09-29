@@ -29,7 +29,7 @@ final class GoogleGkeHubScopeIamPolicy extends Resource {
          argMap: {
            'scope_id': scopeId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

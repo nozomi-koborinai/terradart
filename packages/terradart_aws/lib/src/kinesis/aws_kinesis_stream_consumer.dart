@@ -24,9 +24,9 @@ final class AwsKinesisStreamConsumer extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'stream_arn': streamArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

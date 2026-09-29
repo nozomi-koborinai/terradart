@@ -26,16 +26,14 @@ final class DataAwsDbClusterSnapshot extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dbClusterIdentifier != null)
-             'db_cluster_identifier': dbClusterIdentifier,
-           if (dbClusterSnapshotIdentifier != null)
-             'db_cluster_snapshot_identifier': dbClusterSnapshotIdentifier,
-           if (includePublic != null) 'include_public': includePublic,
-           if (includeShared != null) 'include_shared': includeShared,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (region != null) 'region': region,
-           if (snapshotType != null) 'snapshot_type': snapshotType,
-           if (tags != null) 'tags': tags,
+           'db_cluster_identifier': ?dbClusterIdentifier,
+           'db_cluster_snapshot_identifier': ?dbClusterSnapshotIdentifier,
+           'include_public': ?includePublic,
+           'include_shared': ?includeShared,
+           'most_recent': ?mostRecent,
+           'region': ?region,
+           'snapshot_type': ?snapshotType,
+           'tags': ?tags,
          },
        );
 

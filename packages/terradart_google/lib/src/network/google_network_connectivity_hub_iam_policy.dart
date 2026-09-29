@@ -26,11 +26,7 @@ final class GoogleNetworkConnectivityHubIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'hub': hub,
-           'policy_data': policyData,
-           if (project != null) 'project': project,
-         },
+         argMap: {'hub': hub, 'policy_data': policyData, 'project': ?project},
        );
 
   @override

@@ -50,10 +50,10 @@ final class GoogleNetworkServicesMulticastProducerAssociation extends Resource {
            'multicast_producer_association_id': multicastProducerAssociationId,
            'multicast_domain_activation': multicastDomainActivation,
            'network': network.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

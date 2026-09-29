@@ -30,8 +30,8 @@ final class AwsPinpointAdmChannel extends Resource {
            'application_id': applicationId,
            'client_id': clientId,
            'client_secret': clientSecret,
-           if (enabled != null) 'enabled': enabled,
-           if (region != null) 'region': region,
+           'enabled': ?enabled,
+           'region': ?region,
          },
        );
 

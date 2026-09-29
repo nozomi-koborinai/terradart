@@ -32,8 +32,8 @@ final class GoogleBillingProjectInfo extends Resource {
          terraformType: tfType,
          argMap: {
            'billing_account': billingAccount,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

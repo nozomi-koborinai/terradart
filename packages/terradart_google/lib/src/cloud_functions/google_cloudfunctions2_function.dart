@@ -691,16 +691,16 @@ final class GoogleCloudfunctions2Function extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (buildConfig != null)
              'build_config': TfArg.literal([buildConfig.encode()]),
            if (serviceConfig != null)
              'service_config': TfArg.literal([serviceConfig.encode()]),
            if (eventTrigger != null)
              'event_trigger': TfArg.literal([eventTrigger.encode()]),
-           if (labels != null) 'labels': labels,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'project': ?project,
          },
        );
 

@@ -56,10 +56,10 @@ final class GoogleGeminiRepositoryGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'code_repository_index': codeRepositoryIndex,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'repository_group_id': repositoryGroupId,
            'repositories': TfArg.literal([
              for (final e in repositories) e.encode(),

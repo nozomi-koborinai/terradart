@@ -56,12 +56,12 @@ final class AwsCodeartifactRepository extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'domain': domain,
-           if (domainOwner != null) 'domain_owner': domainOwner,
-           if (region != null) 'region': region,
+           'domain_owner': ?domainOwner,
+           'region': ?region,
            'repository': repository,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (externalConnections != null)
              'external_connections': TfArg.literal(
                externalConnections.encode(),

@@ -24,10 +24,10 @@ final class FilterBody {
   final TfArg<String>? ref;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (paused != null) 'paused': paused!.toTfJson(),
-    if (ref != null) 'ref': ref!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'expression': ?expression?.toTfJson(),
+    'paused': ?paused?.toTfJson(),
+    'ref': ?ref?.toTfJson(),
   };
 }
 
@@ -54,10 +54,10 @@ final class CloudflareFilter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (expression != null) 'expression': expression,
-           if (paused != null) 'paused': paused,
-           if (ref != null) 'ref': ref,
+           'description': ?description,
+           'expression': ?expression,
+           'paused': ?paused,
+           'ref': ?ref,
            'zone_id': zoneId.encodeAs('id'),
            'body': TfArg.literal([for (final e in body) e.encode()]),
          },

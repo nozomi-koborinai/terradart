@@ -42,10 +42,9 @@ final class DataAwsEc2TransitGatewayConnectPeer extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (transitGatewayConnectPeerId != null)
-             'transit_gateway_connect_peer_id': transitGatewayConnectPeerId,
+           'region': ?region,
+           'tags': ?tags,
+           'transit_gateway_connect_peer_id': ?transitGatewayConnectPeerId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

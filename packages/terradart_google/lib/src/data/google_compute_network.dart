@@ -25,10 +25,10 @@ final class DataGoogleComputeNetwork extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (networkProfile != null) 'network_profile': networkProfile,
-           if (project != null) 'project': project,
-           if (selfLink != null) 'self_link': selfLink,
+           'name': ?name,
+           'network_profile': ?networkProfile,
+           'project': ?project,
+           'self_link': ?selfLink,
          },
        );
 

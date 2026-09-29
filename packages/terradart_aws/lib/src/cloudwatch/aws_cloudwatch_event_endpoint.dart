@@ -28,9 +28,7 @@ final class CloudwatchEventEndpointReplicationConfig {
 
   final TfArg<CloudwatchEventEndpointReplicationConfigState>? state;
 
-  Map<String, Object?> encode() => {
-    if (state != null) 'state': state!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'state': ?state?.toTfJson()};
 }
 
 /// `state` — derived from the provider schema description.
@@ -83,9 +81,7 @@ final class CloudwatchEventEndpointRoutingConfigFailoverConfigPrimary {
 
   final TfArg<String>? healthCheck;
 
-  Map<String, Object?> encode() => {
-    if (healthCheck != null) 'health_check': healthCheck!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'health_check': ?healthCheck?.toTfJson()};
 }
 
 /// Typed helper for the `routing_config.failover_config.secondary` block of
@@ -98,9 +94,7 @@ final class CloudwatchEventEndpointRoutingConfigFailoverConfigSecondary {
 
   final TfArg<String>? route;
 
-  Map<String, Object?> encode() => {
-    if (route != null) 'route': route!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'route': ?route?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_cloudwatch_event_endpoint`.
@@ -123,10 +117,10 @@ final class AwsCloudwatchEventEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
            'event_bus': TfArg.literal([for (final e in eventBus) e.encode()]),
            if (replicationConfig != null)
              'replication_config': TfArg.literal(replicationConfig.encode()),

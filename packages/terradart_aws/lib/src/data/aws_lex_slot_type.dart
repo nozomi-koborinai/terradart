@@ -20,11 +20,7 @@ final class DataAwsLexSlotType extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (region != null) 'region': region,
-           if (version != null) 'version': version,
-         },
+         argMap: {'name': name, 'region': ?region, 'version': ?version},
        );
 
   @override

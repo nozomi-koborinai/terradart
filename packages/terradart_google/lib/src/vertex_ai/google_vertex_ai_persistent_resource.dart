@@ -38,8 +38,7 @@ final class VertexAiPersistentResourcePscInterfaceConfig {
   dnsPeeringConfigs;
 
   Map<String, Object?> encode() => {
-    if (networkAttachment != null)
-      'network_attachment': networkAttachment!.toTfJson(),
+    'network_attachment': ?networkAttachment?.toTfJson(),
     if (dnsPeeringConfigs != null)
       'dns_peering_configs': [for (final e in dnsPeeringConfigs!) e.encode()],
   };
@@ -91,10 +90,10 @@ final class VertexAiPersistentResourceResourcePools {
   final VertexAiPersistentResourceResourcePoolsMachineSpec machineSpec;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (replicaCount != null) 'replica_count': replicaCount!.toTfJson(),
-    if (autoscalingSpec != null) 'autoscaling_spec': autoscalingSpec!.encode(),
-    if (diskSpec != null) 'disk_spec': diskSpec!.encode(),
+    'id': ?id?.toTfJson(),
+    'replica_count': ?replicaCount?.toTfJson(),
+    'autoscaling_spec': ?autoscalingSpec?.encode(),
+    'disk_spec': ?diskSpec?.encode(),
     'machine_spec': machineSpec.encode(),
   };
 }
@@ -113,10 +112,8 @@ final class VertexAiPersistentResourceResourcePoolsAutoscalingSpec {
   final TfArg<String>? minReplicaCount;
 
   Map<String, Object?> encode() => {
-    if (maxReplicaCount != null)
-      'max_replica_count': maxReplicaCount!.toTfJson(),
-    if (minReplicaCount != null)
-      'min_replica_count': minReplicaCount!.toTfJson(),
+    'max_replica_count': ?maxReplicaCount?.toTfJson(),
+    'min_replica_count': ?minReplicaCount?.toTfJson(),
   };
 }
 
@@ -134,8 +131,8 @@ final class VertexAiPersistentResourceResourcePoolsDiskSpec {
   final TfArg<String>? bootDiskType;
 
   Map<String, Object?> encode() => {
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
   };
 }
 
@@ -156,11 +153,9 @@ final class VertexAiPersistentResourceResourcePoolsMachineSpec {
   final TfArg<String>? machineType;
 
   Map<String, Object?> encode() => {
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.toTfJson(),
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
   };
 }
 
@@ -176,8 +171,7 @@ final class VertexAiPersistentResourceResourceRuntimeSpec {
   serviceAccountSpec;
 
   Map<String, Object?> encode() => {
-    if (serviceAccountSpec != null)
-      'service_account_spec': serviceAccountSpec!.encode(),
+    'service_account_spec': ?serviceAccountSpec?.encode(),
   };
 }
 
@@ -241,13 +235,13 @@ final class GoogleVertexAiPersistentResource extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
-           if (displayName != null) 'display_name': displayName,
+           'location': ?location,
+           'display_name': ?displayName,
            'resource_pools': TfArg.literal([
              for (final e in resourcePools) e.encode(),
            ]),
-           if (network != null) 'network': network.encodeAs('id'),
-           if (reservedIpRanges != null) 'reserved_ip_ranges': reservedIpRanges,
+           'network': ?network?.encodeAs('id'),
+           'reserved_ip_ranges': ?reservedIpRanges,
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),
            if (pscInterfaceConfig != null)
@@ -256,9 +250,9 @@ final class GoogleVertexAiPersistentResource extends Resource {
              'resource_runtime_spec': TfArg.literal(
                resourceRuntimeSpec.encode(),
              ),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

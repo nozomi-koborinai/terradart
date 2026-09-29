@@ -59,8 +59,7 @@ final class StoragegatewayNfsFileShareCacheAttributes {
   final TfArg<num>? cacheStaleTimeoutInSeconds;
 
   Map<String, Object?> encode() => {
-    if (cacheStaleTimeoutInSeconds != null)
-      'cache_stale_timeout_in_seconds': cacheStaleTimeoutInSeconds!.toTfJson(),
+    'cache_stale_timeout_in_seconds': ?cacheStaleTimeoutInSeconds?.toTfJson(),
   };
 }
 
@@ -84,10 +83,10 @@ final class StoragegatewayNfsFileShareNfsFileShareDefaults {
   final TfArg<String>? ownerId;
 
   Map<String, Object?> encode() => {
-    if (directoryMode != null) 'directory_mode': directoryMode!.toTfJson(),
-    if (fileMode != null) 'file_mode': fileMode!.toTfJson(),
-    if (groupId != null) 'group_id': groupId!.toTfJson(),
-    if (ownerId != null) 'owner_id': ownerId!.toTfJson(),
+    'directory_mode': ?directoryMode?.toTfJson(),
+    'file_mode': ?fileMode?.toTfJson(),
+    'group_id': ?groupId?.toTfJson(),
+    'owner_id': ?ownerId?.toTfJson(),
   };
 }
 
@@ -125,30 +124,25 @@ final class AwsStoragegatewayNfsFileShare extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (auditDestinationArn != null)
-             'audit_destination_arn': auditDestinationArn,
-           if (bucketRegion != null) 'bucket_region': bucketRegion,
+           'audit_destination_arn': ?auditDestinationArn,
+           'bucket_region': ?bucketRegion,
            'client_list': clientList,
-           if (defaultStorageClass != null)
-             'default_storage_class': defaultStorageClass,
-           if (fileShareName != null) 'file_share_name': fileShareName,
+           'default_storage_class': ?defaultStorageClass,
+           'file_share_name': ?fileShareName,
            'gateway_arn': gatewayArn,
-           if (guessMimeTypeEnabled != null)
-             'guess_mime_type_enabled': guessMimeTypeEnabled,
-           if (kmsEncrypted != null) 'kms_encrypted': kmsEncrypted,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'guess_mime_type_enabled': ?guessMimeTypeEnabled,
+           'kms_encrypted': ?kmsEncrypted,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'location_arn': locationArn,
-           if (notificationPolicy != null)
-             'notification_policy': notificationPolicy,
-           if (objectAcl != null) 'object_acl': objectAcl,
-           if (readOnly != null) 'read_only': readOnly,
-           if (region != null) 'region': region,
-           if (requesterPays != null) 'requester_pays': requesterPays,
+           'notification_policy': ?notificationPolicy,
+           'object_acl': ?objectAcl,
+           'read_only': ?readOnly,
+           'region': ?region,
+           'requester_pays': ?requesterPays,
            'role_arn': roleArn.encodeAs('arn'),
-           if (squash != null) 'squash': squash,
-           if (tags != null) 'tags': tags,
-           if (vpcEndpointDnsName != null)
-             'vpc_endpoint_dns_name': vpcEndpointDnsName,
+           'squash': ?squash,
+           'tags': ?tags,
+           'vpc_endpoint_dns_name': ?vpcEndpointDnsName,
            if (cacheAttributes != null)
              'cache_attributes': TfArg.literal(cacheAttributes.encode()),
            if (nfsFileShareDefaults != null)

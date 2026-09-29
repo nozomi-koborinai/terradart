@@ -35,7 +35,7 @@ final class AwsDynamodbGlobalTable extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'replica': TfArg.literal([for (final e in replica) e.encode()]),
          },
        );

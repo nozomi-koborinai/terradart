@@ -47,8 +47,8 @@ final class AwsAcmpcaPermission extends Resource {
            'actions': TfArg.literal([for (final e in actions) e.toTfJson()]),
            'certificate_authority_arn': certificateAuthorityArn,
            'principal': principal,
-           if (region != null) 'region': region,
-           if (sourceAccount != null) 'source_account': sourceAccount,
+           'region': ?region,
+           'source_account': ?sourceAccount,
          },
        );
 

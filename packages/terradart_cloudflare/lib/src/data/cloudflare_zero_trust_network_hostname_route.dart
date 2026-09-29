@@ -35,12 +35,12 @@ final class DataZeroTrustNetworkHostnameRouteFilter {
   final TfArg<String>? tunnelId;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
-    if (existedAt != null) 'existed_at': existedAt!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (isDeleted != null) 'is_deleted': isDeleted!.toTfJson(),
-    if (tunnelId != null) 'tunnel_id': tunnelId!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
+    'existed_at': ?existedAt?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'is_deleted': ?isDeleted?.toTfJson(),
+    'tunnel_id': ?tunnelId?.toTfJson(),
   };
 }
 
@@ -63,8 +63,8 @@ final class DataCloudflareZeroTrustNetworkHostnameRoute extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (hostnameRouteId != null) 'hostname_route_id': hostnameRouteId,
+           'account_id': ?accountId,
+           'hostname_route_id': ?hostnameRouteId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

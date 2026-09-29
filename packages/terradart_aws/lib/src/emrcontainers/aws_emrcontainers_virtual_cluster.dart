@@ -62,9 +62,7 @@ final class EmrcontainersVirtualClusterContainerProviderInfoEksInfo {
 
   final TfArg<String>? namespace;
 
-  Map<String, Object?> encode() => {
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'namespace': ?namespace?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_emrcontainers_virtual_cluster`.
@@ -85,8 +83,8 @@ final class AwsEmrcontainersVirtualCluster extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'container_provider': TfArg.literal(containerProvider.encode()),
          },
        );

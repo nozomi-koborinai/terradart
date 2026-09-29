@@ -24,7 +24,7 @@ final class DataCloudflarePageShieldPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'policy_id': policyId, if (zoneId != null) 'zone_id': zoneId},
+         argMap: {'policy_id': policyId, 'zone_id': ?zoneId},
        );
 
   @override

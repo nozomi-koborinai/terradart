@@ -30,12 +30,12 @@ final class GoogleBiglakeHiveDatabase extends Resource {
          terraformType: tfType,
          argMap: {
            'catalog': catalog,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (locationUri != null) 'location_uri': locationUri,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'location_uri': ?locationUri,
            'name': name,
-           if (parameters != null) 'parameters': parameters,
-           if (project != null) 'project': project,
+           'parameters': ?parameters,
+           'project': ?project,
          },
        );
 

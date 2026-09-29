@@ -23,10 +23,10 @@ final class AwsFsxBackup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (fileSystemId != null) 'file_system_id': fileSystemId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (volumeId != null) 'volume_id': volumeId,
+           'file_system_id': ?fileSystemId,
+           'region': ?region,
+           'tags': ?tags,
+           'volume_id': ?volumeId,
          },
        );
 

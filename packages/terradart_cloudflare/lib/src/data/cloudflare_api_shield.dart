@@ -24,10 +24,7 @@ final class DataCloudflareApiShield extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (normalize != null) 'normalize': normalize,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'normalize': ?normalize, 'zone_id': ?zoneId},
        );
 
   @override

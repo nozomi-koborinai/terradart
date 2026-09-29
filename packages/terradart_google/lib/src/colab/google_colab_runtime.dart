@@ -81,12 +81,12 @@ final class GoogleColabRuntime extends Resource {
              'notebook_runtime_template_ref': TfArg.literal(
                notebookRuntimeTemplateRef.encode(),
              ),
-           if (name != null) 'name': name,
-           if (description != null) 'description': description,
-           if (desiredState != null) 'desired_state': desiredState,
-           if (autoUpgrade != null) 'auto_upgrade': autoUpgrade,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'name': ?name,
+           'description': ?description,
+           'desired_state': ?desiredState,
+           'auto_upgrade': ?autoUpgrade,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

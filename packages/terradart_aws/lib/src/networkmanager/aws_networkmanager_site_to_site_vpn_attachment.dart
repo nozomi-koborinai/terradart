@@ -25,9 +25,8 @@ final class AwsNetworkmanagerSiteToSiteVpnAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'core_network_id': coreNetworkId,
-           if (routingPolicyLabel != null)
-             'routing_policy_label': routingPolicyLabel,
-           if (tags != null) 'tags': tags,
+           'routing_policy_label': ?routingPolicyLabel,
+           'tags': ?tags,
            'vpn_connection_arn': vpnConnectionArn,
          },
        );

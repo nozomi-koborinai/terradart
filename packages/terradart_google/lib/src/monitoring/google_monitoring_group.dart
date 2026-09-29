@@ -43,9 +43,9 @@ final class GoogleMonitoringGroup extends Resource {
          argMap: {
            'display_name': displayName,
            'filter': filter,
-           if (isCluster != null) 'is_cluster': isCluster,
-           if (parentName != null) 'parent_name': parentName,
-           if (project != null) 'project': project,
+           'is_cluster': ?isCluster,
+           'parent_name': ?parentName,
+           'project': ?project,
          },
        );
 

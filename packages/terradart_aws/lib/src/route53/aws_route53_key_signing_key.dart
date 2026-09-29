@@ -36,7 +36,7 @@ final class AwsRoute53KeySigningKey extends Resource {
            'hosted_zone_id': hostedZoneId,
            'key_management_service_arn': keyManagementServiceArn,
            'name': name,
-           if (status != null) 'status': status,
+           'status': ?status,
          },
        );
 

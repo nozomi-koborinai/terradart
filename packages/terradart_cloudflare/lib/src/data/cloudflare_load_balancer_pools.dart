@@ -25,9 +25,9 @@ final class DataCloudflareLoadBalancerPools extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (monitor != null) 'monitor': monitor,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'monitor': ?monitor,
          },
        );
 

@@ -86,10 +86,10 @@ final class AwsSecuritylakeCustomLogSource extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (eventClasses != null) 'event_classes': eventClasses,
-           if (region != null) 'region': region,
+           'event_classes': ?eventClasses,
+           'region': ?region,
            'source_name': sourceName,
-           if (sourceVersion != null) 'source_version': sourceVersion,
+           'source_version': ?sourceVersion,
            if (configuration != null)
              'configuration': TfArg.literal([
                for (final e in configuration) e.encode(),

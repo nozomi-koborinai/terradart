@@ -34,13 +34,12 @@ final class OdbCloudAutonomousVmClusterMaintenanceWindow {
   final TfArg<List<Object?>>? weeksOfMonth;
 
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null) 'days_of_week': daysOfWeek!.toTfJson(),
-    if (hoursOfDay != null) 'hours_of_day': hoursOfDay!.toTfJson(),
-    if (leadTimeInWeeks != null)
-      'lead_time_in_weeks': leadTimeInWeeks!.toTfJson(),
-    if (months != null) 'months': months!.toTfJson(),
+    'days_of_week': ?daysOfWeek?.toTfJson(),
+    'hours_of_day': ?hoursOfDay?.toTfJson(),
+    'lead_time_in_weeks': ?leadTimeInWeeks?.toTfJson(),
+    'months': ?months?.toTfJson(),
     'preference': preference.toTfJson(),
-    if (weeksOfMonth != null) 'weeks_of_month': weeksOfMonth!.toTfJson(),
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 
@@ -91,26 +90,23 @@ final class AwsOdbCloudAutonomousVmCluster extends Resource {
          argMap: {
            'autonomous_data_storage_size_in_tbs':
                autonomousDataStorageSizeInTbs,
-           if (cloudExadataInfrastructureArn != null)
-             'cloud_exadata_infrastructure_arn': cloudExadataInfrastructureArn,
-           if (cloudExadataInfrastructureId != null)
-             'cloud_exadata_infrastructure_id': cloudExadataInfrastructureId,
+           'cloud_exadata_infrastructure_arn': ?cloudExadataInfrastructureArn,
+           'cloud_exadata_infrastructure_id': ?cloudExadataInfrastructureId,
            'cpu_core_count_per_node': cpuCoreCountPerNode,
            'db_servers': dbServers,
-           if (description != null) 'description': description,
+           'description': ?description,
            'display_name': displayName,
-           if (isMtlsEnabledVmCluster != null)
-             'is_mtls_enabled_vm_cluster': isMtlsEnabledVmCluster,
-           if (licenseModel != null) 'license_model': licenseModel,
+           'is_mtls_enabled_vm_cluster': ?isMtlsEnabledVmCluster,
+           'license_model': ?licenseModel,
            'memory_per_oracle_compute_unit_in_gbs':
                memoryPerOracleComputeUnitInGbs,
-           if (odbNetworkArn != null) 'odb_network_arn': odbNetworkArn,
-           if (odbNetworkId != null) 'odb_network_id': odbNetworkId,
-           if (region != null) 'region': region,
+           'odb_network_arn': ?odbNetworkArn,
+           'odb_network_id': ?odbNetworkId,
+           'region': ?region,
            'scan_listener_port_non_tls': scanListenerPortNonTls,
            'scan_listener_port_tls': scanListenerPortTls,
-           if (tags != null) 'tags': tags,
-           if (timeZone != null) 'time_zone': timeZone,
+           'tags': ?tags,
+           'time_zone': ?timeZone,
            'total_container_databases': totalContainerDatabases,
            if (maintenanceWindow != null)
              'maintenance_window': TfArg.literal([

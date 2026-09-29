@@ -25,7 +25,7 @@ final class DataGoogleDataprocMetastoreService extends Data {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'service_id': serviceId,
          },
        );

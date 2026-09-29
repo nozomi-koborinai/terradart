@@ -25,11 +25,10 @@ final class AwsWorkmailGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'email': email,
-           if (hiddenFromGlobalAddressList != null)
-             'hidden_from_global_address_list': hiddenFromGlobalAddressList,
+           'hidden_from_global_address_list': ?hiddenFromGlobalAddressList,
            'name': name,
            'organization_id': organizationId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

@@ -41,8 +41,8 @@ final class Apigatewayv2AuthorizerJwtConfiguration {
   final TfArg<String>? issuer;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
   };
 }
 
@@ -72,20 +72,15 @@ final class AwsApigatewayv2Authorizer extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (authorizerCredentialsArn != null)
-             'authorizer_credentials_arn': authorizerCredentialsArn,
-           if (authorizerPayloadFormatVersion != null)
-             'authorizer_payload_format_version':
-                 authorizerPayloadFormatVersion,
-           if (authorizerResultTtlInSeconds != null)
-             'authorizer_result_ttl_in_seconds': authorizerResultTtlInSeconds,
+           'authorizer_credentials_arn': ?authorizerCredentialsArn,
+           'authorizer_payload_format_version': ?authorizerPayloadFormatVersion,
+           'authorizer_result_ttl_in_seconds': ?authorizerResultTtlInSeconds,
            'authorizer_type': authorizerType,
-           if (authorizerUri != null) 'authorizer_uri': authorizerUri,
-           if (enableSimpleResponses != null)
-             'enable_simple_responses': enableSimpleResponses,
-           if (identitySources != null) 'identity_sources': identitySources,
+           'authorizer_uri': ?authorizerUri,
+           'enable_simple_responses': ?enableSimpleResponses,
+           'identity_sources': ?identitySources,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (jwtConfiguration != null)
              'jwt_configuration': TfArg.literal(jwtConfiguration.encode()),
          },

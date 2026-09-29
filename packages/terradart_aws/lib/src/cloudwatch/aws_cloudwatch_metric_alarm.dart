@@ -349,9 +349,9 @@ final class CloudwatchMetricAlarmEvaluationCriteriaPromqlCriteria {
   final TfArg<num>? recoveryPeriod;
 
   Map<String, Object?> encode() => {
-    if (pendingPeriod != null) 'pending_period': pendingPeriod!.toTfJson(),
+    'pending_period': ?pendingPeriod?.toTfJson(),
     'query': query.toTfJson(),
-    if (recoveryPeriod != null) 'recovery_period': recoveryPeriod!.toTfJson(),
+    'recovery_period': ?recoveryPeriod?.toTfJson(),
   };
 }
 
@@ -384,13 +384,13 @@ final class CloudwatchMetricAlarmMetricQuery {
   final CloudwatchMetricAlarmMetricQueryMetric? metric;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'account_id': ?accountId?.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'id': id.toTfJson(),
-    if (label != null) 'label': label!.toTfJson(),
-    if (period != null) 'period': period!.toTfJson(),
-    if (returnData != null) 'return_data': returnData!.toTfJson(),
-    if (metric != null) 'metric': metric!.encode(),
+    'label': ?label?.toTfJson(),
+    'period': ?period?.toTfJson(),
+    'return_data': ?returnData?.toTfJson(),
+    'metric': ?metric?.encode(),
   };
 }
 
@@ -420,12 +420,12 @@ final class CloudwatchMetricAlarmMetricQueryMetric {
   final TfArg<CloudwatchMetricAlarmMetricQueryMetricUnit>? unit;
 
   Map<String, Object?> encode() => {
-    if (dimensions != null) 'dimensions': dimensions!.toTfJson(),
+    'dimensions': ?dimensions?.toTfJson(),
     'metric_name': metricName.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
     'period': period.toTfJson(),
     'stat': stat.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
   };
 }
 
@@ -491,9 +491,8 @@ final class CloudwatchMetricAlarmWarmUpConfiguration {
   final TfArg<num> warmUpPeriodDurationInMinutes;
 
   Map<String, Object?> encode() => {
-    if (onlyStartEvaluatingAfterWarmUpPeriodEnds != null)
-      'only_start_evaluating_after_warm_up_period_ends':
-          onlyStartEvaluatingAfterWarmUpPeriodEnds!.toTfJson(),
+    'only_start_evaluating_after_warm_up_period_ends':
+        ?onlyStartEvaluatingAfterWarmUpPeriodEnds?.toTfJson(),
     'warm_up_period_duration_in_minutes': warmUpPeriodDurationInMinutes
         .toTfJson(),
   };
@@ -535,34 +534,28 @@ final class AwsCloudwatchMetricAlarm extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (actionsEnabled != null) 'actions_enabled': actionsEnabled,
-           if (alarmActions != null) 'alarm_actions': alarmActions,
-           if (alarmDescription != null) 'alarm_description': alarmDescription,
+           'actions_enabled': ?actionsEnabled,
+           'alarm_actions': ?alarmActions,
+           'alarm_description': ?alarmDescription,
            'alarm_name': alarmName,
-           if (comparisonOperator != null)
-             'comparison_operator': comparisonOperator,
-           if (datapointsToAlarm != null)
-             'datapoints_to_alarm': datapointsToAlarm,
-           if (dimensions != null) 'dimensions': dimensions,
-           if (evaluateLowSampleCountPercentiles != null)
-             'evaluate_low_sample_count_percentiles':
-                 evaluateLowSampleCountPercentiles,
-           if (evaluationInterval != null)
-             'evaluation_interval': evaluationInterval,
-           if (evaluationPeriods != null)
-             'evaluation_periods': evaluationPeriods,
+           'comparison_operator': ?comparisonOperator,
+           'datapoints_to_alarm': ?datapointsToAlarm,
+           'dimensions': ?dimensions,
+           'evaluate_low_sample_count_percentiles':
+               ?evaluateLowSampleCountPercentiles,
+           'evaluation_interval': ?evaluationInterval,
+           'evaluation_periods': ?evaluationPeriods,
            ...?aggregation?.argMap,
-           if (insufficientDataActions != null)
-             'insufficient_data_actions': insufficientDataActions,
+           'insufficient_data_actions': ?insufficientDataActions,
            ...metric.argMap,
-           if (namespace != null) 'namespace': namespace,
-           if (okActions != null) 'ok_actions': okActions,
-           if (period != null) 'period': period,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'namespace': ?namespace,
+           'ok_actions': ?okActions,
+           'period': ?period,
+           'region': ?region,
+           'tags': ?tags,
            ...?threshold?.argMap,
-           if (treatMissingData != null) 'treat_missing_data': treatMissingData,
-           if (unit != null) 'unit': unit,
+           'treat_missing_data': ?treatMissingData,
+           'unit': ?unit,
            if (warmUpConfiguration != null)
              'warm_up_configuration': TfArg.literal(
                warmUpConfiguration.encode(),

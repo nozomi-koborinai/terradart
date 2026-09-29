@@ -29,7 +29,7 @@ final class GoogleIapWebTypeAppEngineIamPolicy extends Resource {
          argMap: {
            'app_id': appId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

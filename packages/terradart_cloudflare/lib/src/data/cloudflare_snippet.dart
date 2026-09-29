@@ -23,10 +23,7 @@ final class DataCloudflareSnippet extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'snippet_name': snippetName,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'snippet_name': snippetName, 'zone_id': ?zoneId},
        );
 
   @override

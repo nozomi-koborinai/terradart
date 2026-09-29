@@ -62,12 +62,11 @@ final class ElastictranscoderPresetAudio {
   final TfArg<ElastictranscoderPresetAudioSampleRate>? sampleRate;
 
   Map<String, Object?> encode() => {
-    if (audioPackingMode != null)
-      'audio_packing_mode': audioPackingMode!.toTfJson(),
-    if (bitRate != null) 'bit_rate': bitRate!.toTfJson(),
-    if (channels != null) 'channels': channels!.toTfJson(),
-    if (codec != null) 'codec': codec!.toTfJson(),
-    if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
+    'audio_packing_mode': ?audioPackingMode?.toTfJson(),
+    'bit_rate': ?bitRate?.toTfJson(),
+    'channels': ?channels?.toTfJson(),
+    'codec': ?codec?.toTfJson(),
+    'sample_rate': ?sampleRate?.toTfJson(),
   };
 }
 
@@ -142,10 +141,10 @@ final class ElastictranscoderPresetAudioCodecOptions {
   final TfArg<ElastictranscoderPresetAudioCodecOptionsSigned>? signed;
 
   Map<String, Object?> encode() => {
-    if (bitDepth != null) 'bit_depth': bitDepth!.toTfJson(),
-    if (bitOrder != null) 'bit_order': bitOrder!.toTfJson(),
-    if (profile != null) 'profile': profile!.toTfJson(),
-    if (signed != null) 'signed': signed!.toTfJson(),
+    'bit_depth': ?bitDepth?.toTfJson(),
+    'bit_order': ?bitOrder?.toTfJson(),
+    'profile': ?profile?.toTfJson(),
+    'signed': ?signed?.toTfJson(),
   };
 }
 
@@ -224,14 +223,14 @@ final class ElastictranscoderPresetThumbnails {
   final TfArg<ElastictranscoderPresetThumbnailsSizingPolicy>? sizingPolicy;
 
   Map<String, Object?> encode() => {
-    if (aspectRatio != null) 'aspect_ratio': aspectRatio!.toTfJson(),
-    if (format != null) 'format': format!.toTfJson(),
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (maxHeight != null) 'max_height': maxHeight!.toTfJson(),
-    if (maxWidth != null) 'max_width': maxWidth!.toTfJson(),
-    if (paddingPolicy != null) 'padding_policy': paddingPolicy!.toTfJson(),
-    if (resolution != null) 'resolution': resolution!.toTfJson(),
-    if (sizingPolicy != null) 'sizing_policy': sizingPolicy!.toTfJson(),
+    'aspect_ratio': ?aspectRatio?.toTfJson(),
+    'format': ?format?.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'max_height': ?maxHeight?.toTfJson(),
+    'max_width': ?maxWidth?.toTfJson(),
+    'padding_policy': ?paddingPolicy?.toTfJson(),
+    'resolution': ?resolution?.toTfJson(),
+    'sizing_policy': ?sizingPolicy?.toTfJson(),
   };
 }
 
@@ -330,21 +329,19 @@ final class ElastictranscoderPresetVideo {
   final TfArg<ElastictranscoderPresetVideoSizingPolicy>? sizingPolicy;
 
   Map<String, Object?> encode() => {
-    if (aspectRatio != null) 'aspect_ratio': aspectRatio!.toTfJson(),
-    if (bitRate != null) 'bit_rate': bitRate!.toTfJson(),
-    if (codec != null) 'codec': codec!.toTfJson(),
-    if (displayAspectRatio != null)
-      'display_aspect_ratio': displayAspectRatio!.toTfJson(),
-    if (fixedGop != null) 'fixed_gop': fixedGop!.toTfJson(),
-    if (frameRate != null) 'frame_rate': frameRate!.toTfJson(),
-    if (keyframesMaxDist != null)
-      'keyframes_max_dist': keyframesMaxDist!.toTfJson(),
-    if (maxFrameRate != null) 'max_frame_rate': maxFrameRate!.toTfJson(),
-    if (maxHeight != null) 'max_height': maxHeight!.toTfJson(),
-    if (maxWidth != null) 'max_width': maxWidth!.toTfJson(),
-    if (paddingPolicy != null) 'padding_policy': paddingPolicy!.toTfJson(),
-    if (resolution != null) 'resolution': resolution!.toTfJson(),
-    if (sizingPolicy != null) 'sizing_policy': sizingPolicy!.toTfJson(),
+    'aspect_ratio': ?aspectRatio?.toTfJson(),
+    'bit_rate': ?bitRate?.toTfJson(),
+    'codec': ?codec?.toTfJson(),
+    'display_aspect_ratio': ?displayAspectRatio?.toTfJson(),
+    'fixed_gop': ?fixedGop?.toTfJson(),
+    'frame_rate': ?frameRate?.toTfJson(),
+    'keyframes_max_dist': ?keyframesMaxDist?.toTfJson(),
+    'max_frame_rate': ?maxFrameRate?.toTfJson(),
+    'max_height': ?maxHeight?.toTfJson(),
+    'max_width': ?maxWidth?.toTfJson(),
+    'padding_policy': ?paddingPolicy?.toTfJson(),
+    'resolution': ?resolution?.toTfJson(),
+    'sizing_policy': ?sizingPolicy?.toTfJson(),
   };
 }
 
@@ -496,18 +493,16 @@ final class ElastictranscoderPresetVideoWatermarks {
   final TfArg<String>? verticalOffset;
 
   Map<String, Object?> encode() => {
-    if (horizontalAlign != null)
-      'horizontal_align': horizontalAlign!.toTfJson(),
-    if (horizontalOffset != null)
-      'horizontal_offset': horizontalOffset!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (maxHeight != null) 'max_height': maxHeight!.toTfJson(),
-    if (maxWidth != null) 'max_width': maxWidth!.toTfJson(),
-    if (opacity != null) 'opacity': opacity!.toTfJson(),
-    if (sizingPolicy != null) 'sizing_policy': sizingPolicy!.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
-    if (verticalAlign != null) 'vertical_align': verticalAlign!.toTfJson(),
-    if (verticalOffset != null) 'vertical_offset': verticalOffset!.toTfJson(),
+    'horizontal_align': ?horizontalAlign?.toTfJson(),
+    'horizontal_offset': ?horizontalOffset?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'max_height': ?maxHeight?.toTfJson(),
+    'max_width': ?maxWidth?.toTfJson(),
+    'opacity': ?opacity?.toTfJson(),
+    'sizing_policy': ?sizingPolicy?.toTfJson(),
+    'target': ?target?.toTfJson(),
+    'vertical_align': ?verticalAlign?.toTfJson(),
+    'vertical_offset': ?verticalOffset?.toTfJson(),
   };
 }
 
@@ -586,12 +581,11 @@ final class AwsElastictranscoderPreset extends Resource {
          terraformType: tfType,
          argMap: {
            'container': container,
-           if (description != null) 'description': description,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (type != null) 'type': type,
-           if (videoCodecOptions != null)
-             'video_codec_options': videoCodecOptions,
+           'description': ?description,
+           'name': ?name,
+           'region': ?region,
+           'type': ?type,
+           'video_codec_options': ?videoCodecOptions,
            if (audio != null) 'audio': TfArg.literal(audio.encode()),
            if (audioCodecOptions != null)
              'audio_codec_options': TfArg.literal(audioCodecOptions.encode()),

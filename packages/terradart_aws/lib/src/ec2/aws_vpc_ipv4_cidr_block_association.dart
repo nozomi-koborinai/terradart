@@ -26,11 +26,10 @@ final class AwsVpcIpv4CidrBlockAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cidrBlock != null) 'cidr_block': cidrBlock,
-           if (ipv4IpamPoolId != null) 'ipv4_ipam_pool_id': ipv4IpamPoolId,
-           if (ipv4NetmaskLength != null)
-             'ipv4_netmask_length': ipv4NetmaskLength,
-           if (region != null) 'region': region,
+           'cidr_block': ?cidrBlock,
+           'ipv4_ipam_pool_id': ?ipv4IpamPoolId,
+           'ipv4_netmask_length': ?ipv4NetmaskLength,
+           'region': ?region,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

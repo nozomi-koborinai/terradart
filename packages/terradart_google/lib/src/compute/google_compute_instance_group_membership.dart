@@ -43,9 +43,9 @@ final class GoogleComputeInstanceGroupMembership extends Resource {
          argMap: {
            'instance': instance,
            'instance_group': instanceGroup,
-           if (zone != null) 'zone': zone,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'zone': ?zone,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

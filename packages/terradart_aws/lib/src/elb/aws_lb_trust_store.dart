@@ -85,12 +85,11 @@ final class AwsLbTrustStore extends Resource {
          argMap: {
            'ca_certificates_bundle_s3_bucket': caCertificatesBundleS3Bucket,
            'ca_certificates_bundle_s3_key': caCertificatesBundleS3Key,
-           if (caCertificatesBundleS3ObjectVersion != null)
-             'ca_certificates_bundle_s3_object_version':
-                 caCertificatesBundleS3ObjectVersion,
+           'ca_certificates_bundle_s3_object_version':
+               ?caCertificatesBundleS3ObjectVersion,
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

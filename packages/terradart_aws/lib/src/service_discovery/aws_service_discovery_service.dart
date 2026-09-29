@@ -34,7 +34,7 @@ final class ServiceDiscoveryServiceDnsConfig {
 
   Map<String, Object?> encode() => {
     'namespace_id': namespaceId.toTfJson(),
-    if (routingPolicy != null) 'routing_policy': routingPolicy!.toTfJson(),
+    'routing_policy': ?routingPolicy?.toTfJson(),
     'dns_records': [for (final e in dnsRecords) e.encode()],
   };
 }
@@ -97,10 +97,9 @@ final class ServiceDiscoveryServiceHealthCheckConfig {
   final TfArg<ServiceDiscoveryServiceHealthCheckConfigType>? type;
 
   Map<String, Object?> encode() => {
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
-    if (resourcePath != null) 'resource_path': resourcePath!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'resource_path': ?resourcePath?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -124,8 +123,7 @@ final class ServiceDiscoveryServiceHealthCheckCustomConfig {
   final TfArg<num>? failureThreshold;
 
   Map<String, Object?> encode() => {
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
+    'failure_threshold': ?failureThreshold?.toTfJson(),
   };
 }
 
@@ -152,13 +150,13 @@ final class AwsServiceDiscoveryService extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'description': ?description,
+           'force_destroy': ?forceDestroy,
            'name': name,
-           if (namespaceId != null) 'namespace_id': namespaceId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'namespace_id': ?namespaceId,
+           'region': ?region,
+           'tags': ?tags,
+           'type': ?type,
            if (dnsConfig != null)
              'dns_config': TfArg.literal(dnsConfig.encode()),
            if (healthCheckConfig != null)

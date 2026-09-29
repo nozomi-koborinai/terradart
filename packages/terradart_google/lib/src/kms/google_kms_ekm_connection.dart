@@ -38,7 +38,7 @@ final class KmsEkmConnectionServiceResolvers {
   serverCertificates;
 
   Map<String, Object?> encode() => {
-    if (endpointFilter != null) 'endpoint_filter': endpointFilter!.toTfJson(),
+    'endpoint_filter': ?endpointFilter?.toTfJson(),
     'hostname': hostname.toTfJson(),
     'service_directory_service': serviceDirectoryService.toTfJson(),
     'server_certificates': [for (final e in serverCertificates) e.encode()],
@@ -60,8 +60,7 @@ final class KmsEkmConnectionServiceResolversServerCertificates {
 
   Map<String, Object?> encode() => {
     'raw_der': rawDer.toTfJson(),
-    if (subjectAlternativeDnsNames != null)
-      'subject_alternative_dns_names': subjectAlternativeDnsNames!.toTfJson(),
+    'subject_alternative_dns_names': ?subjectAlternativeDnsNames?.toTfJson(),
   };
 }
 
@@ -108,11 +107,10 @@ final class GoogleKmsEkmConnection extends Resource {
            'service_resolvers': TfArg.literal([
              for (final e in serviceResolvers) e.encode(),
            ]),
-           if (keyManagementMode != null)
-             'key_management_mode': keyManagementMode,
-           if (cryptoSpacePath != null) 'crypto_space_path': cryptoSpacePath,
-           if (etag != null) 'etag': etag,
-           if (project != null) 'project': project,
+           'key_management_mode': ?keyManagementMode,
+           'crypto_space_path': ?cryptoSpacePath,
+           'etag': ?etag,
+           'project': ?project,
          },
        );
 

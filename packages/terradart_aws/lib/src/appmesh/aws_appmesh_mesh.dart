@@ -18,9 +18,8 @@ final class AppmeshMeshSpec {
   final AppmeshMeshSpecServiceDiscovery? serviceDiscovery;
 
   Map<String, Object?> encode() => {
-    if (egressFilter != null) 'egress_filter': egressFilter!.encode(),
-    if (serviceDiscovery != null)
-      'service_discovery': serviceDiscovery!.encode(),
+    'egress_filter': ?egressFilter?.encode(),
+    'service_discovery': ?serviceDiscovery?.encode(),
   };
 }
 
@@ -32,7 +31,7 @@ final class AppmeshMeshSpecEgressFilter {
 
   final TfArg<AppmeshMeshSpecEgressFilterType>? type;
 
-  Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
@@ -53,9 +52,7 @@ final class AppmeshMeshSpecServiceDiscovery {
 
   final TfArg<AppmeshMeshSpecServiceDiscoveryIpPreference>? ipPreference;
 
-  Map<String, Object?> encode() => {
-    if (ipPreference != null) 'ip_preference': ipPreference!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'ip_preference': ?ipPreference?.toTfJson()};
 }
 
 /// `ip_preference` — derived from the provider schema description.
@@ -88,8 +85,8 @@ final class AwsAppmeshMesh extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (spec != null) 'spec': TfArg.literal(spec.encode()),
          },
        );

@@ -38,13 +38,13 @@ final class AwsNetworkmonitorProbe extends Resource {
          terraformType: tfType,
          argMap: {
            'destination': destination,
-           if (destinationPort != null) 'destination_port': destinationPort,
+           'destination_port': ?destinationPort,
            'monitor_name': monitorName,
-           if (packetSize != null) 'packet_size': packetSize,
+           'packet_size': ?packetSize,
            'protocol': protocol,
-           if (region != null) 'region': region,
+           'region': ?region,
            'source_arn': sourceArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

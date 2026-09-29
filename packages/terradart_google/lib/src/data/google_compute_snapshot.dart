@@ -25,10 +25,10 @@ final class DataGoogleComputeSnapshot extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (filter != null) 'filter': filter,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (name != null) 'name': name,
-           if (project != null) 'project': project,
+           'filter': ?filter,
+           'most_recent': ?mostRecent,
+           'name': ?name,
+           'project': ?project,
          },
        );
 

@@ -48,7 +48,7 @@ final class AwsFisSafetyLeverState extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (state != null)
              'state': TfArg.literal([for (final e in state) e.encode()]),
          },

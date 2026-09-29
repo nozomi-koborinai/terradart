@@ -24,7 +24,7 @@ final class AwsOpensearchPackageAssociation extends Resource {
          argMap: {
            'domain_name': domainName,
            'package_id': packageId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

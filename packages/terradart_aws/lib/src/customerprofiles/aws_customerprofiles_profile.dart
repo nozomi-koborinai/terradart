@@ -45,16 +45,16 @@ final class CustomerprofilesProfileAddress {
   final TfArg<String>? state;
 
   Map<String, Object?> encode() => {
-    if (address1 != null) 'address_1': address1!.toTfJson(),
-    if (address2 != null) 'address_2': address2!.toTfJson(),
-    if (address3 != null) 'address_3': address3!.toTfJson(),
-    if (address4 != null) 'address_4': address4!.toTfJson(),
-    if (city != null) 'city': city!.toTfJson(),
-    if (country != null) 'country': country!.toTfJson(),
-    if (county != null) 'county': county!.toTfJson(),
-    if (postalCode != null) 'postal_code': postalCode!.toTfJson(),
-    if (province != null) 'province': province!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
+    'address_1': ?address1?.toTfJson(),
+    'address_2': ?address2?.toTfJson(),
+    'address_3': ?address3?.toTfJson(),
+    'address_4': ?address4?.toTfJson(),
+    'city': ?city?.toTfJson(),
+    'country': ?country?.toTfJson(),
+    'county': ?county?.toTfJson(),
+    'postal_code': ?postalCode?.toTfJson(),
+    'province': ?province?.toTfJson(),
+    'state': ?state?.toTfJson(),
   };
 }
 
@@ -96,16 +96,16 @@ final class CustomerprofilesProfileBillingAddress {
   final TfArg<String>? state;
 
   Map<String, Object?> encode() => {
-    if (address1 != null) 'address_1': address1!.toTfJson(),
-    if (address2 != null) 'address_2': address2!.toTfJson(),
-    if (address3 != null) 'address_3': address3!.toTfJson(),
-    if (address4 != null) 'address_4': address4!.toTfJson(),
-    if (city != null) 'city': city!.toTfJson(),
-    if (country != null) 'country': country!.toTfJson(),
-    if (county != null) 'county': county!.toTfJson(),
-    if (postalCode != null) 'postal_code': postalCode!.toTfJson(),
-    if (province != null) 'province': province!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
+    'address_1': ?address1?.toTfJson(),
+    'address_2': ?address2?.toTfJson(),
+    'address_3': ?address3?.toTfJson(),
+    'address_4': ?address4?.toTfJson(),
+    'city': ?city?.toTfJson(),
+    'country': ?country?.toTfJson(),
+    'county': ?county?.toTfJson(),
+    'postal_code': ?postalCode?.toTfJson(),
+    'province': ?province?.toTfJson(),
+    'state': ?state?.toTfJson(),
   };
 }
 
@@ -147,16 +147,16 @@ final class CustomerprofilesProfileMailingAddress {
   final TfArg<String>? state;
 
   Map<String, Object?> encode() => {
-    if (address1 != null) 'address_1': address1!.toTfJson(),
-    if (address2 != null) 'address_2': address2!.toTfJson(),
-    if (address3 != null) 'address_3': address3!.toTfJson(),
-    if (address4 != null) 'address_4': address4!.toTfJson(),
-    if (city != null) 'city': city!.toTfJson(),
-    if (country != null) 'country': country!.toTfJson(),
-    if (county != null) 'county': county!.toTfJson(),
-    if (postalCode != null) 'postal_code': postalCode!.toTfJson(),
-    if (province != null) 'province': province!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
+    'address_1': ?address1?.toTfJson(),
+    'address_2': ?address2?.toTfJson(),
+    'address_3': ?address3?.toTfJson(),
+    'address_4': ?address4?.toTfJson(),
+    'city': ?city?.toTfJson(),
+    'country': ?country?.toTfJson(),
+    'county': ?county?.toTfJson(),
+    'postal_code': ?postalCode?.toTfJson(),
+    'province': ?province?.toTfJson(),
+    'state': ?state?.toTfJson(),
   };
 }
 
@@ -198,16 +198,16 @@ final class CustomerprofilesProfileShippingAddress {
   final TfArg<String>? state;
 
   Map<String, Object?> encode() => {
-    if (address1 != null) 'address_1': address1!.toTfJson(),
-    if (address2 != null) 'address_2': address2!.toTfJson(),
-    if (address3 != null) 'address_3': address3!.toTfJson(),
-    if (address4 != null) 'address_4': address4!.toTfJson(),
-    if (city != null) 'city': city!.toTfJson(),
-    if (country != null) 'country': country!.toTfJson(),
-    if (county != null) 'county': county!.toTfJson(),
-    if (postalCode != null) 'postal_code': postalCode!.toTfJson(),
-    if (province != null) 'province': province!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
+    'address_1': ?address1?.toTfJson(),
+    'address_2': ?address2?.toTfJson(),
+    'address_3': ?address3?.toTfJson(),
+    'address_4': ?address4?.toTfJson(),
+    'city': ?city?.toTfJson(),
+    'country': ?country?.toTfJson(),
+    'county': ?county?.toTfJson(),
+    'postal_code': ?postalCode?.toTfJson(),
+    'province': ?province?.toTfJson(),
+    'state': ?state?.toTfJson(),
   };
 }
 
@@ -247,30 +247,25 @@ final class AwsCustomerprofilesProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountNumber != null) 'account_number': accountNumber,
-           if (additionalInformation != null)
-             'additional_information': additionalInformation,
-           if (attributes != null) 'attributes': attributes,
-           if (birthDate != null) 'birth_date': birthDate,
-           if (businessEmailAddress != null)
-             'business_email_address': businessEmailAddress,
-           if (businessName != null) 'business_name': businessName,
-           if (businessPhoneNumber != null)
-             'business_phone_number': businessPhoneNumber,
+           'account_number': ?accountNumber,
+           'additional_information': ?additionalInformation,
+           'attributes': ?attributes,
+           'birth_date': ?birthDate,
+           'business_email_address': ?businessEmailAddress,
+           'business_name': ?businessName,
+           'business_phone_number': ?businessPhoneNumber,
            'domain_name': domainName,
-           if (emailAddress != null) 'email_address': emailAddress,
-           if (firstName != null) 'first_name': firstName,
-           if (genderString != null) 'gender_string': genderString,
-           if (homePhoneNumber != null) 'home_phone_number': homePhoneNumber,
-           if (lastName != null) 'last_name': lastName,
-           if (middleName != null) 'middle_name': middleName,
-           if (mobilePhoneNumber != null)
-             'mobile_phone_number': mobilePhoneNumber,
-           if (partyTypeString != null) 'party_type_string': partyTypeString,
-           if (personalEmailAddress != null)
-             'personal_email_address': personalEmailAddress,
-           if (phoneNumber != null) 'phone_number': phoneNumber,
-           if (region != null) 'region': region,
+           'email_address': ?emailAddress,
+           'first_name': ?firstName,
+           'gender_string': ?genderString,
+           'home_phone_number': ?homePhoneNumber,
+           'last_name': ?lastName,
+           'middle_name': ?middleName,
+           'mobile_phone_number': ?mobilePhoneNumber,
+           'party_type_string': ?partyTypeString,
+           'personal_email_address': ?personalEmailAddress,
+           'phone_number': ?phoneNumber,
+           'region': ?region,
            if (address != null) 'address': TfArg.literal(address.encode()),
            if (billingAddress != null)
              'billing_address': TfArg.literal(billingAddress.encode()),

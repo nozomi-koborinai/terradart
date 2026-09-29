@@ -49,18 +49,16 @@ final class AwsDirectoryServiceTrust extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (conditionalForwarderIpAddrs != null)
-             'conditional_forwarder_ip_addrs': conditionalForwarderIpAddrs,
-           if (deleteAssociatedConditionalForwarder != null)
-             'delete_associated_conditional_forwarder':
-                 deleteAssociatedConditionalForwarder,
+           'conditional_forwarder_ip_addrs': ?conditionalForwarderIpAddrs,
+           'delete_associated_conditional_forwarder':
+               ?deleteAssociatedConditionalForwarder,
            'directory_id': directoryId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'remote_domain_name': remoteDomainName,
-           if (selectiveAuth != null) 'selective_auth': selectiveAuth,
+           'selective_auth': ?selectiveAuth,
            'trust_direction': trustDirection,
            'trust_password': trustPassword,
-           if (trustType != null) 'trust_type': trustType,
+           'trust_type': ?trustType,
          },
        );
 

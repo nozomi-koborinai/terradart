@@ -16,9 +16,7 @@ final class NetworkServicesMulticastGroupRangeLogConfig {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `google_network_services_multicast_group_range`.
@@ -64,18 +62,15 @@ final class GoogleNetworkServicesMulticastGroupRange extends Resource {
            'multicast_group_range_id': multicastGroupRangeId,
            'multicast_domain': multicastDomain,
            'reserved_internal_range': reservedInternalRange,
-           if (distributionScope != null)
-             'distribution_scope': distributionScope,
-           if (requireExplicitAccept != null)
-             'require_explicit_accept': requireExplicitAccept,
-           if (consumerAcceptList != null)
-             'consumer_accept_list': consumerAcceptList,
+           'distribution_scope': ?distributionScope,
+           'require_explicit_accept': ?requireExplicitAccept,
+           'consumer_accept_list': ?consumerAcceptList,
            if (logConfig != null)
              'log_config': TfArg.literal(logConfig.encode()),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

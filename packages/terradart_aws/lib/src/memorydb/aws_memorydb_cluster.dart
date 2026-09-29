@@ -202,41 +202,32 @@ final class AwsMemorydbCluster extends Resource {
          terraformType: tfType,
          argMap: {
            'acl_name': aclName,
-           if (autoMinorVersionUpgrade != null)
-             'auto_minor_version_upgrade': autoMinorVersionUpgrade,
-           if (dataTiering != null) 'data_tiering': dataTiering,
-           if (description != null) 'description': description,
-           if (engine != null) 'engine': engine,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (finalSnapshotName != null)
-             'final_snapshot_name': finalSnapshotName,
-           if (ipDiscovery != null) 'ip_discovery': ipDiscovery,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (maintenanceWindow != null)
-             'maintenance_window': maintenanceWindow,
-           if (multiRegionClusterName != null)
-             'multi_region_cluster_name': multiRegionClusterName,
+           'auto_minor_version_upgrade': ?autoMinorVersionUpgrade,
+           'data_tiering': ?dataTiering,
+           'description': ?description,
+           'engine': ?engine,
+           'engine_version': ?engineVersion,
+           'final_snapshot_name': ?finalSnapshotName,
+           'ip_discovery': ?ipDiscovery,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
+           'maintenance_window': ?maintenanceWindow,
+           'multi_region_cluster_name': ?multiRegionClusterName,
            ...?name?.argMap,
-           if (networkType != null) 'network_type': networkType,
+           'network_type': ?networkType,
            'node_type': nodeType,
-           if (numReplicasPerShard != null)
-             'num_replicas_per_shard': numReplicasPerShard,
-           if (numShards != null) 'num_shards': numShards,
-           if (parameterGroupName != null)
-             'parameter_group_name': parameterGroupName,
-           if (port != null) 'port': port,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
+           'num_replicas_per_shard': ?numReplicasPerShard,
+           'num_shards': ?numShards,
+           'parameter_group_name': ?parameterGroupName,
+           'port': ?port,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
            ...?snapshot?.argMap,
-           if (snapshotRetentionLimit != null)
-             'snapshot_retention_limit': snapshotRetentionLimit,
-           if (snapshotWindow != null) 'snapshot_window': snapshotWindow,
-           if (snsTopicArn != null)
-             'sns_topic_arn': snsTopicArn.encodeAs('arn'),
-           if (subnetGroupName != null) 'subnet_group_name': subnetGroupName,
-           if (tags != null) 'tags': tags,
-           if (tlsEnabled != null) 'tls_enabled': tlsEnabled,
+           'snapshot_retention_limit': ?snapshotRetentionLimit,
+           'snapshot_window': ?snapshotWindow,
+           'sns_topic_arn': ?snsTopicArn?.encodeAs('arn'),
+           'subnet_group_name': ?subnetGroupName,
+           'tags': ?tags,
+           'tls_enabled': ?tlsEnabled,
          },
        );
 

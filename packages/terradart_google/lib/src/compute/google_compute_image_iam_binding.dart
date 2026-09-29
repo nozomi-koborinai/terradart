@@ -32,8 +32,8 @@ final class GoogleComputeImageIamBinding extends Resource {
            'image': image,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

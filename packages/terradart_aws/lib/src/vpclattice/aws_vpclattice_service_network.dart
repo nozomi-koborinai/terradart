@@ -33,10 +33,10 @@ final class AwsVpclatticeServiceNetwork extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (authType != null) 'auth_type': authType,
+           'auth_type': ?authType,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

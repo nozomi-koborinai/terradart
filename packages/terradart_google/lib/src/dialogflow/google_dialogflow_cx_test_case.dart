@@ -22,9 +22,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurns {
   virtualAgentOutput;
 
   Map<String, Object?> encode() => {
-    if (userInput != null) 'user_input': userInput!.encode(),
-    if (virtualAgentOutput != null)
-      'virtual_agent_output': virtualAgentOutput!.encode(),
+    'user_input': ?userInput?.encode(),
+    'virtual_agent_output': ?virtualAgentOutput?.encode(),
   };
 }
 
@@ -48,13 +47,10 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsUserInput {
   final DialogflowCxTestCaseTestCaseConversationTurnsUserInputInput? input;
 
   Map<String, Object?> encode() => {
-    if (enableSentimentAnalysis != null)
-      'enable_sentiment_analysis': enableSentimentAnalysis!.toTfJson(),
-    if (injectedParameters != null)
-      'injected_parameters': injectedParameters!.toTfJson(),
-    if (isWebhookEnabled != null)
-      'is_webhook_enabled': isWebhookEnabled!.toTfJson(),
-    if (input != null) 'input': input!.encode(),
+    'enable_sentiment_analysis': ?enableSentimentAnalysis?.toTfJson(),
+    'injected_parameters': ?injectedParameters?.toTfJson(),
+    'is_webhook_enabled': ?isWebhookEnabled?.toTfJson(),
+    'input': ?input?.encode(),
   };
 }
 
@@ -78,10 +74,10 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInput {
   final DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputText? text;
 
   Map<String, Object?> encode() => {
-    if (languageCode != null) 'language_code': languageCode!.toTfJson(),
-    if (dtmf != null) 'dtmf': dtmf!.encode(),
-    if (event != null) 'event': event!.encode(),
-    if (text != null) 'text': text!.encode(),
+    'language_code': ?languageCode?.toTfJson(),
+    'dtmf': ?dtmf?.encode(),
+    'event': ?event?.encode(),
+    'text': ?text?.encode(),
   };
 }
 
@@ -99,8 +95,8 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputDtmf {
   final TfArg<String>? finishDigit;
 
   Map<String, Object?> encode() => {
-    if (digits != null) 'digits': digits!.toTfJson(),
-    if (finishDigit != null) 'finish_digit': finishDigit!.toTfJson(),
+    'digits': ?digits?.toTfJson(),
+    'finish_digit': ?finishDigit?.toTfJson(),
   };
 }
 
@@ -155,12 +151,11 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutput {
   triggeredIntent;
 
   Map<String, Object?> encode() => {
-    if (sessionParameters != null)
-      'session_parameters': sessionParameters!.toTfJson(),
-    if (currentPage != null) 'current_page': currentPage!.encode(),
+    'session_parameters': ?sessionParameters?.toTfJson(),
+    'current_page': ?currentPage?.encode(),
     if (textResponses != null)
       'text_responses': [for (final e in textResponses!) e.encode()],
-    if (triggeredIntent != null) 'triggered_intent': triggeredIntent!.encode(),
+    'triggered_intent': ?triggeredIntent?.encode(),
   };
 }
 
@@ -174,7 +169,7 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputCurre
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `test_case_conversation_turns.virtual_agent_output.text_responses` block of
@@ -187,7 +182,7 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTextR
 
   final TfArg<List<Object?>>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Typed helper for the `test_case_conversation_turns.virtual_agent_output.triggered_intent` block of
@@ -200,7 +195,7 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTrigg
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `test_config` block of
@@ -215,8 +210,7 @@ final class DialogflowCxTestCaseTestConfig {
 
   Map<String, Object?> encode() => {
     ...?start?.encode(),
-    if (trackingParameters != null)
-      'tracking_parameters': trackingParameters!.toTfJson(),
+    'tracking_parameters': ?trackingParameters?.toTfJson(),
   };
 }
 
@@ -305,16 +299,16 @@ final class GoogleDialogflowCxTestCase extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (parent != null) 'parent': parent,
-           if (notes != null) 'notes': notes,
-           if (tags != null) 'tags': tags,
+           'parent': ?parent,
+           'notes': ?notes,
+           'tags': ?tags,
            if (testConfig != null)
              'test_config': TfArg.literal(testConfig.encode()),
            if (testCaseConversationTurns != null)
              'test_case_conversation_turns': TfArg.literal([
                for (final e in testCaseConversationTurns) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

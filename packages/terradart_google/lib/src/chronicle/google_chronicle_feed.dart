@@ -107,9 +107,9 @@ final class ChronicleFeedDetails {
   final ChronicleFeedDetailsSource source;
 
   Map<String, Object?> encode() => {
-    if (assetNamespace != null) 'asset_namespace': assetNamespace!.toTfJson(),
-    if (feedSourceType != null) 'feed_source_type': feedSourceType!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
+    'asset_namespace': ?assetNamespace?.toTfJson(),
+    'feed_source_type': ?feedSourceType?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
     'log_type': logType.toTfJson(),
     ...source.encode(),
   };
@@ -1870,7 +1870,7 @@ final class ChronicleFeedDetailsAmazonS3Settings {
     's3_uri': s3Uri.toTfJson(),
     'source_deletion_option': sourceDeletionOption.toTfJson(),
     'source_type': sourceType.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -1900,13 +1900,12 @@ final class ChronicleFeedDetailsAmazonS3SettingsAuthentication {
   final TfArg<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
-    if (accessKeyId != null) 'access_key_id': accessKeyId!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (refreshUri != null) 'refresh_uri': refreshUri!.toTfJson(),
+    'access_key_id': ?accessKeyId?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'refresh_uri': ?refreshUri?.toTfJson(),
     'region': region.toTfJson(),
-    if (secretAccessKey != null)
-      'secret_access_key': secretAccessKey!.toTfJson(),
+    'secret_access_key': ?secretAccessKey?.toTfJson(),
   };
 }
 
@@ -1930,11 +1929,9 @@ final class ChronicleFeedDetailsAmazonS3V2Settings {
   final ChronicleFeedDetailsAmazonS3V2SettingsAuthentication authentication;
 
   Map<String, Object?> encode() => {
-    if (maxLookbackDays != null)
-      'max_lookback_days': maxLookbackDays!.toTfJson(),
+    'max_lookback_days': ?maxLookbackDays?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
-    if (sourceDeletionOption != null)
-      'source_deletion_option': sourceDeletionOption!.toTfJson(),
+    'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
     'authentication': authentication.encode(),
   };
 }
@@ -1955,9 +1952,8 @@ final class ChronicleFeedDetailsAmazonS3V2SettingsAuthentication {
   awsIamRoleAuth;
 
   Map<String, Object?> encode() => {
-    if (accessKeySecretAuth != null)
-      'access_key_secret_auth': accessKeySecretAuth!.encode(),
-    if (awsIamRoleAuth != null) 'aws_iam_role_auth': awsIamRoleAuth!.encode(),
+    'access_key_secret_auth': ?accessKeySecretAuth?.encode(),
+    'aws_iam_role_auth': ?awsIamRoleAuth?.encode(),
   };
 }
 
@@ -1994,8 +1990,8 @@ final class ChronicleFeedDetailsAmazonS3V2SettingsAuthenticationAwsIamRoleAuth {
   final TfArg<String>? subjectId;
 
   Map<String, Object?> encode() => {
-    if (awsIamRoleArn != null) 'aws_iam_role_arn': awsIamRoleArn!.toTfJson(),
-    if (subjectId != null) 'subject_id': subjectId!.toTfJson(),
+    'aws_iam_role_arn': ?awsIamRoleArn?.toTfJson(),
+    'subject_id': ?subjectId?.toTfJson(),
   };
 }
 
@@ -2022,12 +2018,11 @@ final class ChronicleFeedDetailsAmazonSqsSettings {
   final ChronicleFeedDetailsAmazonSqsSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (accountNumber != null) 'account_number': accountNumber!.toTfJson(),
-    if (queue != null) 'queue': queue!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (sourceDeletionOption != null)
-      'source_deletion_option': sourceDeletionOption!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'account_number': ?accountNumber?.toTfJson(),
+    'queue': ?queue?.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2047,11 +2042,9 @@ final class ChronicleFeedDetailsAmazonSqsSettingsAuthentication {
   sqsAccessKeySecretAuth;
 
   Map<String, Object?> encode() => {
-    if (additionalS3AccessKeySecretAuth != null)
-      'additional_s3_access_key_secret_auth': additionalS3AccessKeySecretAuth!
-          .encode(),
-    if (sqsAccessKeySecretAuth != null)
-      'sqs_access_key_secret_auth': sqsAccessKeySecretAuth!.encode(),
+    'additional_s3_access_key_secret_auth': ?additionalS3AccessKeySecretAuth
+        ?.encode(),
+    'sqs_access_key_secret_auth': ?sqsAccessKeySecretAuth?.encode(),
   };
 }
 
@@ -2069,9 +2062,8 @@ final class ChronicleFeedDetailsAmazonSqsSettingsAuthenticationAdditionalS3Acces
   final TfArg<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
-    if (accessKeyId != null) 'access_key_id': accessKeyId!.toTfJson(),
-    if (secretAccessKey != null)
-      'secret_access_key': secretAccessKey!.toTfJson(),
+    'access_key_id': ?accessKeyId?.toTfJson(),
+    'secret_access_key': ?secretAccessKey?.toTfJson(),
   };
 }
 
@@ -2089,9 +2081,8 @@ final class ChronicleFeedDetailsAmazonSqsSettingsAuthenticationSqsAccessKeySecre
   final TfArg<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
-    if (accessKeyId != null) 'access_key_id': accessKeyId!.toTfJson(),
-    if (secretAccessKey != null)
-      'secret_access_key': secretAccessKey!.toTfJson(),
+    'access_key_id': ?accessKeyId?.toTfJson(),
+    'secret_access_key': ?secretAccessKey?.toTfJson(),
   };
 }
 
@@ -2118,12 +2109,10 @@ final class ChronicleFeedDetailsAmazonSqsV2Settings {
   final ChronicleFeedDetailsAmazonSqsV2SettingsAuthentication authentication;
 
   Map<String, Object?> encode() => {
-    if (maxLookbackDays != null)
-      'max_lookback_days': maxLookbackDays!.toTfJson(),
+    'max_lookback_days': ?maxLookbackDays?.toTfJson(),
     'queue': queue.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
-    if (sourceDeletionOption != null)
-      'source_deletion_option': sourceDeletionOption!.toTfJson(),
+    'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
     'authentication': authentication.encode(),
   };
 }
@@ -2163,8 +2152,8 @@ final class ChronicleFeedDetailsAmazonSqsV2SettingsAuthenticationAwsIamRoleAuth 
   final TfArg<String>? subjectId;
 
   Map<String, Object?> encode() => {
-    if (awsIamRoleArn != null) 'aws_iam_role_arn': awsIamRoleArn!.toTfJson(),
-    if (subjectId != null) 'subject_id': subjectId!.toTfJson(),
+    'aws_iam_role_arn': ?awsIamRoleArn?.toTfJson(),
+    'subject_id': ?subjectId?.toTfJson(),
   };
 }
 
@@ -2182,9 +2171,8 @@ final class ChronicleFeedDetailsAmazonSqsV2SettingsAuthenticationSqsV2AccessKeyS
   final TfArg<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
-    if (accessKeyId != null) 'access_key_id': accessKeyId!.toTfJson(),
-    if (secretAccessKey != null)
-      'secret_access_key': secretAccessKey!.toTfJson(),
+    'access_key_id': ?accessKeyId?.toTfJson(),
+    'secret_access_key': ?secretAccessKey?.toTfJson(),
   };
 }
 
@@ -2197,7 +2185,7 @@ final class ChronicleFeedDetailsAnomaliSettings {
   final ChronicleFeedDetailsAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2215,8 +2203,8 @@ final class ChronicleFeedDetailsAnomaliSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -2229,7 +2217,7 @@ final class ChronicleFeedDetailsAwsEc2HostsSettings {
   final ChronicleFeedDetailsAwsEc2HostsSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2247,8 +2235,8 @@ final class ChronicleFeedDetailsAwsEc2HostsSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -2262,7 +2250,7 @@ final class ChronicleFeedDetailsAwsEc2InstancesSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2280,8 +2268,8 @@ final class ChronicleFeedDetailsAwsEc2InstancesSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -2294,7 +2282,7 @@ final class ChronicleFeedDetailsAwsEc2VpcsSettings {
   final ChronicleFeedDetailsAwsEc2VpcsSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2312,8 +2300,8 @@ final class ChronicleFeedDetailsAwsEc2VpcsSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -2328,8 +2316,8 @@ final class ChronicleFeedDetailsAwsIamSettings {
   final ChronicleFeedDetailsAwsIamSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (apiType != null) 'api_type': apiType!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'api_type': ?apiType?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2347,8 +2335,8 @@ final class ChronicleFeedDetailsAwsIamSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -2372,10 +2360,10 @@ final class ChronicleFeedDetailsAzureAdAuditSettings {
   final ChronicleFeedDetailsAzureAdAuditSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (authEndpoint != null) 'auth_endpoint': authEndpoint!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'auth_endpoint': ?authEndpoint?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2393,8 +2381,8 @@ final class ChronicleFeedDetailsAzureAdAuditSettingsAuthentication {
   final TfArg<String>? clientSecret;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
   };
 }
 
@@ -2425,13 +2413,12 @@ final class ChronicleFeedDetailsAzureAdContextSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (authEndpoint != null) 'auth_endpoint': authEndpoint!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (retrieveDevices != null)
-      'retrieve_devices': retrieveDevices!.toTfJson(),
-    if (retrieveGroups != null) 'retrieve_groups': retrieveGroups!.toTfJson(),
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'auth_endpoint': ?authEndpoint?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'retrieve_devices': ?retrieveDevices?.toTfJson(),
+    'retrieve_groups': ?retrieveGroups?.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2449,8 +2436,8 @@ final class ChronicleFeedDetailsAzureAdContextSettingsAuthentication {
   final TfArg<String>? clientSecret;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
   };
 }
 
@@ -2474,10 +2461,10 @@ final class ChronicleFeedDetailsAzureAdSettings {
   final ChronicleFeedDetailsAzureAdSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (authEndpoint != null) 'auth_endpoint': authEndpoint!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'auth_endpoint': ?authEndpoint?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2495,8 +2482,8 @@ final class ChronicleFeedDetailsAzureAdSettingsAuthentication {
   final TfArg<String>? clientSecret;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
   };
 }
 
@@ -2521,11 +2508,10 @@ final class ChronicleFeedDetailsAzureBlobStoreSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (azureUri != null) 'azure_uri': azureUri!.toTfJson(),
-    if (sourceDeletionOption != null)
-      'source_deletion_option': sourceDeletionOption!.toTfJson(),
-    if (sourceType != null) 'source_type': sourceType!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'azure_uri': ?azureUri?.toTfJson(),
+    'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
+    'source_type': ?sourceType?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2543,8 +2529,8 @@ final class ChronicleFeedDetailsAzureBlobStoreSettingsAuthentication {
   final TfArg<String>? sharedKey;
 
   Map<String, Object?> encode() => {
-    if (sasToken != null) 'sas_token': sasToken!.toTfJson(),
-    if (sharedKey != null) 'shared_key': sharedKey!.toTfJson(),
+    'sas_token': ?sasToken?.toTfJson(),
+    'shared_key': ?sharedKey?.toTfJson(),
   };
 }
 
@@ -2570,10 +2556,8 @@ final class ChronicleFeedDetailsAzureBlobStoreV2Settings {
 
   Map<String, Object?> encode() => {
     'azure_uri': azureUri.toTfJson(),
-    if (maxLookbackDays != null)
-      'max_lookback_days': maxLookbackDays!.toTfJson(),
-    if (sourceDeletionOption != null)
-      'source_deletion_option': sourceDeletionOption!.toTfJson(),
+    'max_lookback_days': ?maxLookbackDays?.toTfJson(),
+    'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
     'authentication': authentication.encode(),
   };
 }
@@ -2652,12 +2636,10 @@ final class ChronicleFeedDetailsAzureEventHubSettings {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (azureSasToken != null) 'azure_sas_token': azureSasToken!.toTfJson(),
-    if (azureStorageConnectionString != null)
-      'azure_storage_connection_string': azureStorageConnectionString!
-          .toTfJson(),
-    if (azureStorageContainer != null)
-      'azure_storage_container': azureStorageContainer!.toTfJson(),
+    'azure_sas_token': ?azureSasToken?.toTfJson(),
+    'azure_storage_connection_string': ?azureStorageConnectionString
+        ?.toTfJson(),
+    'azure_storage_container': ?azureStorageContainer?.toTfJson(),
     'consumer_group': consumerGroup.toTfJson(),
     'event_hub_connection_string': eventHubConnectionString.toTfJson(),
     'name': name.toTfJson(),
@@ -2685,10 +2667,10 @@ final class ChronicleFeedDetailsAzureMdmIntuneSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (authEndpoint != null) 'auth_endpoint': authEndpoint!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'auth_endpoint': ?authEndpoint?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2706,8 +2688,8 @@ final class ChronicleFeedDetailsAzureMdmIntuneSettingsAuthentication {
   final TfArg<String>? clientSecret;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
   };
 }
 
@@ -2725,8 +2707,8 @@ final class ChronicleFeedDetailsCloudPassageSettings {
   final ChronicleFeedDetailsCloudPassageSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (eventTypes != null) 'event_types': eventTypes!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'event_types': ?eventTypes?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2744,8 +2726,8 @@ final class ChronicleFeedDetailsCloudPassageSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -2766,9 +2748,9 @@ final class ChronicleFeedDetailsCortexXdrSettings {
   final ChronicleFeedDetailsCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (endpoint != null) 'endpoint': endpoint!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'endpoint': ?endpoint?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2805,8 +2787,8 @@ final class ChronicleFeedDetailsCortexXdrSettingsAuthenticationHeaderKeyValues {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -2829,7 +2811,7 @@ final class ChronicleFeedDetailsCrowdstrikeAlertsSettings {
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
-    if (ingestionType != null) 'ingestion_type': ingestionType!.toTfJson(),
+    'ingestion_type': ?ingestionType?.toTfJson(),
     'authentication': authentication.encode(),
   };
 }
@@ -2851,9 +2833,9 @@ final class ChronicleFeedDetailsCrowdstrikeAlertsSettingsAuthentication {
   final TfArg<String>? tokenEndpoint;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
   };
 }
 
@@ -2875,9 +2857,9 @@ final class ChronicleFeedDetailsCrowdstrikeDetectsSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (ingestionType != null) 'ingestion_type': ingestionType!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'ingestion_type': ?ingestionType?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2898,9 +2880,9 @@ final class ChronicleFeedDetailsCrowdstrikeDetectsSettingsAuthentication {
   final TfArg<String>? tokenEndpoint;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
   };
 }
 
@@ -2918,8 +2900,8 @@ final class ChronicleFeedDetailsDummyLogTypeSettings {
   final ChronicleFeedDetailsDummyLogTypeSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (apiEndpoint != null) 'api_endpoint': apiEndpoint!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'api_endpoint': ?apiEndpoint?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2956,8 +2938,8 @@ final class ChronicleFeedDetailsDummyLogTypeSettingsAuthenticationHeaderKeyValue
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -2975,8 +2957,8 @@ final class ChronicleFeedDetailsDuoAuthSettings {
   final ChronicleFeedDetailsDuoAuthSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -2994,8 +2976,8 @@ final class ChronicleFeedDetailsDuoAuthSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -3014,8 +2996,8 @@ final class ChronicleFeedDetailsDuoUserContextSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3033,8 +3015,8 @@ final class ChronicleFeedDetailsDuoUserContextSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -3058,10 +3040,10 @@ final class ChronicleFeedDetailsFoxItStixSettings {
   final ChronicleFeedDetailsFoxItStixSettingsSsl? ssl;
 
   Map<String, Object?> encode() => {
-    if (collection != null) 'collection': collection!.toTfJson(),
-    if (pollServiceUri != null) 'poll_service_uri': pollServiceUri!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
-    if (ssl != null) 'ssl': ssl!.encode(),
+    'collection': ?collection?.toTfJson(),
+    'poll_service_uri': ?pollServiceUri?.toTfJson(),
+    'authentication': ?authentication?.encode(),
+    'ssl': ?ssl?.encode(),
   };
 }
 
@@ -3079,8 +3061,8 @@ final class ChronicleFeedDetailsFoxItStixSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -3098,9 +3080,8 @@ final class ChronicleFeedDetailsFoxItStixSettingsSsl {
   final TfArg<String>? sslCertificate;
 
   Map<String, Object?> encode() => {
-    if (encodedPrivateKey != null)
-      'encoded_private_key': encodedPrivateKey!.toTfJson(),
-    if (sslCertificate != null) 'ssl_certificate': sslCertificate!.toTfJson(),
+    'encoded_private_key': ?encodedPrivateKey?.toTfJson(),
+    'ssl_certificate': ?sslCertificate?.toTfJson(),
   };
 }
 
@@ -3121,10 +3102,9 @@ final class ChronicleFeedDetailsGcsSettings {
   final TfArg<String>? sourceType;
 
   Map<String, Object?> encode() => {
-    if (bucketUri != null) 'bucket_uri': bucketUri!.toTfJson(),
-    if (sourceDeletionOption != null)
-      'source_deletion_option': sourceDeletionOption!.toTfJson(),
-    if (sourceType != null) 'source_type': sourceType!.toTfJson(),
+    'bucket_uri': ?bucketUri?.toTfJson(),
+    'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
+    'source_type': ?sourceType?.toTfJson(),
   };
 }
 
@@ -3146,10 +3126,8 @@ final class ChronicleFeedDetailsGcsV2Settings {
 
   Map<String, Object?> encode() => {
     'bucket_uri': bucketUri.toTfJson(),
-    if (maxLookbackDays != null)
-      'max_lookback_days': maxLookbackDays!.toTfJson(),
-    if (sourceDeletionOption != null)
-      'source_deletion_option': sourceDeletionOption!.toTfJson(),
+    'max_lookback_days': ?maxLookbackDays?.toTfJson(),
+    'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
   };
 }
 
@@ -3165,7 +3143,7 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3188,9 +3166,9 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthentica
   rsCredentials;
 
   Map<String, Object?> encode() => {
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (claims != null) 'claims': claims!.encode(),
-    if (rsCredentials != null) 'rs_credentials': rsCredentials!.encode(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'claims': ?claims?.encode(),
+    'rs_credentials': ?rsCredentials?.encode(),
   };
 }
 
@@ -3211,9 +3189,9 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthentica
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -3227,9 +3205,7 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthentica
 
   final TfArg<String>? privateKey;
 
-  Map<String, Object?> encode() => {
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.google_cloud_identity_devices_settings` block of
@@ -3247,8 +3223,8 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (apiVersion != null) 'api_version': apiVersion!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'api_version': ?apiVersion?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3271,9 +3247,9 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthentication
   rsCredentials;
 
   Map<String, Object?> encode() => {
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (claims != null) 'claims': claims!.encode(),
-    if (rsCredentials != null) 'rs_credentials': rsCredentials!.encode(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'claims': ?claims?.encode(),
+    'rs_credentials': ?rsCredentials?.encode(),
   };
 }
 
@@ -3294,9 +3270,9 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthentication
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -3310,9 +3286,7 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthentication
 
   final TfArg<String>? privateKey;
 
-  Map<String, Object?> encode() => {
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.google_cloud_storage_event_driven_settings` block of
@@ -3336,11 +3310,9 @@ final class ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings {
 
   Map<String, Object?> encode() => {
     'bucket_uri': bucketUri.toTfJson(),
-    if (maxLookbackDays != null)
-      'max_lookback_days': maxLookbackDays!.toTfJson(),
+    'max_lookback_days': ?maxLookbackDays?.toTfJson(),
     'pubsub_subscription': pubsubSubscription.toTfJson(),
-    if (sourceDeletionOption != null)
-      'source_deletion_option': sourceDeletionOption!.toTfJson(),
+    'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
   };
 }
 
@@ -3361,10 +3333,9 @@ final class ChronicleFeedDetailsHttpSettings {
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (sourceDeletionOption != null)
-      'source_deletion_option': sourceDeletionOption!.toTfJson(),
-    if (sourceType != null) 'source_type': sourceType!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
+    'source_type': ?sourceType?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -3379,7 +3350,7 @@ final class ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings {
   final TfArg<String>? splitDelimiter;
 
   Map<String, Object?> encode() => {
-    if (splitDelimiter != null) 'split_delimiter': splitDelimiter!.toTfJson(),
+    'split_delimiter': ?splitDelimiter?.toTfJson(),
   };
 }
 
@@ -3394,7 +3365,7 @@ final class ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings {
   final TfArg<String>? splitDelimiter;
 
   Map<String, Object?> encode() => {
-    if (splitDelimiter != null) 'split_delimiter': splitDelimiter!.toTfJson(),
+    'split_delimiter': ?splitDelimiter?.toTfJson(),
   };
 }
 
@@ -3407,7 +3378,7 @@ final class ChronicleFeedDetailsHttpsPushWebhookSettings {
   final TfArg<String>? splitDelimiter;
 
   Map<String, Object?> encode() => {
-    if (splitDelimiter != null) 'split_delimiter': splitDelimiter!.toTfJson(),
+    'split_delimiter': ?splitDelimiter?.toTfJson(),
   };
 }
 
@@ -3420,7 +3391,7 @@ final class ChronicleFeedDetailsImpervaWafSettings {
   final ChronicleFeedDetailsImpervaWafSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3457,8 +3428,8 @@ final class ChronicleFeedDetailsImpervaWafSettingsAuthenticationHeaderKeyValues 
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -3476,8 +3447,8 @@ final class ChronicleFeedDetailsMandiantIocSettings {
   final ChronicleFeedDetailsMandiantIocSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (startTime != null) 'start_time': startTime!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'start_time': ?startTime?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3514,8 +3485,8 @@ final class ChronicleFeedDetailsMandiantIocSettingsAuthenticationHeaderKeyValues
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -3540,10 +3511,10 @@ final class ChronicleFeedDetailsMicrosoftGraphAlertSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (authEndpoint != null) 'auth_endpoint': authEndpoint!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'auth_endpoint': ?authEndpoint?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3561,8 +3532,8 @@ final class ChronicleFeedDetailsMicrosoftGraphAlertSettingsAuthentication {
   final TfArg<String>? clientSecret;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
   };
 }
 
@@ -3590,11 +3561,11 @@ final class ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (authEndpoint != null) 'auth_endpoint': authEndpoint!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (subscriptionId != null) 'subscription_id': subscriptionId!.toTfJson(),
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'auth_endpoint': ?authEndpoint?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'subscription_id': ?subscriptionId?.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3612,8 +3583,8 @@ final class ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettingsAuthenticati
   final TfArg<String>? clientSecret;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
   };
 }
 
@@ -3631,8 +3602,8 @@ final class ChronicleFeedDetailsMimecastMailSettings {
   final ChronicleFeedDetailsMimecastMailSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3669,8 +3640,8 @@ final class ChronicleFeedDetailsMimecastMailSettingsAuthenticationHeaderKeyValue
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -3684,7 +3655,7 @@ final class ChronicleFeedDetailsMimecastMailV2Settings {
   authCredentials;
 
   Map<String, Object?> encode() => {
-    if (authCredentials != null) 'auth_credentials': authCredentials!.encode(),
+    'auth_credentials': ?authCredentials?.encode(),
   };
 }
 
@@ -3702,8 +3673,8 @@ final class ChronicleFeedDetailsMimecastMailV2SettingsAuthCredentials {
   final TfArg<String>? clientSecret;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
   };
 }
 
@@ -3727,10 +3698,10 @@ final class ChronicleFeedDetailsNetskopeAlertSettings {
   final ChronicleFeedDetailsNetskopeAlertSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
-    if (feedname != null) 'feedname': feedname!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'content_type': ?contentType?.toTfJson(),
+    'feedname': ?feedname?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3767,8 +3738,8 @@ final class ChronicleFeedDetailsNetskopeAlertSettingsAuthenticationHeaderKeyValu
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -3793,11 +3764,10 @@ final class ChronicleFeedDetailsNetskopeAlertV2Settings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (contentCategory != null)
-      'content_category': contentCategory!.toTfJson(),
-    if (contentTypes != null) 'content_types': contentTypes!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'content_category': ?contentCategory?.toTfJson(),
+    'content_types': ?contentTypes?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3834,8 +3804,8 @@ final class ChronicleFeedDetailsNetskopeAlertV2SettingsAuthenticationHeaderKeyVa
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -3862,11 +3832,11 @@ final class ChronicleFeedDetailsOffice365Settings {
   final ChronicleFeedDetailsOffice365SettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (authEndpoint != null) 'auth_endpoint': authEndpoint!.toTfJson(),
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'auth_endpoint': ?authEndpoint?.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3884,8 +3854,8 @@ final class ChronicleFeedDetailsOffice365SettingsAuthentication {
   final TfArg<String>? clientSecret;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
   };
 }
 
@@ -3900,8 +3870,8 @@ final class ChronicleFeedDetailsOktaSettings {
   final ChronicleFeedDetailsOktaSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3934,8 +3904,8 @@ final class ChronicleFeedDetailsOktaSettingsAuthenticationHeaderKeyValues {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -3957,10 +3927,9 @@ final class ChronicleFeedDetailsOktaUserContextSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (managerIdReferenceField != null)
-      'manager_id_reference_field': managerIdReferenceField!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'manager_id_reference_field': ?managerIdReferenceField?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -3997,8 +3966,8 @@ final class ChronicleFeedDetailsOktaUserContextSettingsAuthenticationHeaderKeyVa
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -4019,9 +3988,9 @@ final class ChronicleFeedDetailsPanIocSettings {
   final ChronicleFeedDetailsPanIocSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (feed != null) 'feed': feed!.toTfJson(),
-    if (feedId != null) 'feed_id': feedId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'feed': ?feed?.toTfJson(),
+    'feed_id': ?feedId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4056,8 +4025,8 @@ final class ChronicleFeedDetailsPanIocSettingsAuthenticationHeaderKeyValues {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -4076,8 +4045,8 @@ final class ChronicleFeedDetailsPanPrismaCloudSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4095,8 +4064,8 @@ final class ChronicleFeedDetailsPanPrismaCloudSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (password != null) 'password': password!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -4110,7 +4079,7 @@ final class ChronicleFeedDetailsProofpointMailSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4128,8 +4097,8 @@ final class ChronicleFeedDetailsProofpointMailSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -4148,8 +4117,8 @@ final class ChronicleFeedDetailsProofpointOnDemandSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (clusterId != null) 'cluster_id': clusterId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'cluster_id': ?clusterId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4186,8 +4155,8 @@ final class ChronicleFeedDetailsProofpointOnDemandSettingsAuthenticationHeaderKe
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -4200,8 +4169,7 @@ final class ChronicleFeedDetailsPubsubSettings {
   final TfArg<String>? googleServiceAccountEmail;
 
   Map<String, Object?> encode() => {
-    if (googleServiceAccountEmail != null)
-      'google_service_account_email': googleServiceAccountEmail!.toTfJson(),
+    'google_service_account_email': ?googleServiceAccountEmail?.toTfJson(),
   };
 }
 
@@ -4222,9 +4190,9 @@ final class ChronicleFeedDetailsQualysScanSettings {
   final ChronicleFeedDetailsQualysScanSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (apiType != null) 'api_type': apiType!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'api_type': ?apiType?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4242,8 +4210,8 @@ final class ChronicleFeedDetailsQualysScanSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -4261,8 +4229,8 @@ final class ChronicleFeedDetailsQualysVmSettings {
   final ChronicleFeedDetailsQualysVmSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4280,8 +4248,8 @@ final class ChronicleFeedDetailsQualysVmSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -4302,9 +4270,9 @@ final class ChronicleFeedDetailsRapid7InsightSettings {
   final ChronicleFeedDetailsRapid7InsightSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (endpoint != null) 'endpoint': endpoint!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'endpoint': ?endpoint?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4341,8 +4309,8 @@ final class ChronicleFeedDetailsRapid7InsightSettingsAuthenticationHeaderKeyValu
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -4356,7 +4324,7 @@ final class ChronicleFeedDetailsRecordedFutureIocSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4393,8 +4361,8 @@ final class ChronicleFeedDetailsRecordedFutureIocSettingsAuthenticationHeaderKey
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -4407,7 +4375,7 @@ final class ChronicleFeedDetailsRhIsacIocSettings {
   final ChronicleFeedDetailsRhIsacIocSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4428,9 +4396,9 @@ final class ChronicleFeedDetailsRhIsacIocSettingsAuthentication {
   final TfArg<String>? tokenEndpoint;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
   };
 }
 
@@ -4453,11 +4421,9 @@ final class ChronicleFeedDetailsSalesforceSettings {
   oauthPasswordGrantAuth;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (oauthJwtCredentials != null)
-      'oauth_jwt_credentials': oauthJwtCredentials!.encode(),
-    if (oauthPasswordGrantAuth != null)
-      'oauth_password_grant_auth': oauthPasswordGrantAuth!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'oauth_jwt_credentials': ?oauthJwtCredentials?.encode(),
+    'oauth_password_grant_auth': ?oauthPasswordGrantAuth?.encode(),
   };
 }
 
@@ -4479,9 +4445,9 @@ final class ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentials {
   rsCredentials;
 
   Map<String, Object?> encode() => {
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (claims != null) 'claims': claims!.encode(),
-    if (rsCredentials != null) 'rs_credentials': rsCredentials!.encode(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'claims': ?claims?.encode(),
+    'rs_credentials': ?rsCredentials?.encode(),
   };
 }
 
@@ -4502,9 +4468,9 @@ final class ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentialsClaims {
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -4518,9 +4484,7 @@ final class ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentialsRsCredentia
 
   final TfArg<String>? privateKey;
 
-  Map<String, Object?> encode() => {
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.salesforce_settings.oauth_password_grant_auth` block of
@@ -4546,11 +4510,11 @@ final class ChronicleFeedDetailsSalesforceSettingsOauthPasswordGrantAuth {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -4575,12 +4539,10 @@ final class ChronicleFeedDetailsSentineloneAlertSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (initialStartTime != null)
-      'initial_start_time': initialStartTime!.toTfJson(),
-    if (isAlertApiSubscribed != null)
-      'is_alert_api_subscribed': isAlertApiSubscribed!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'initial_start_time': ?initialStartTime?.toTfJson(),
+    'is_alert_api_subscribed': ?isAlertApiSubscribed?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4617,8 +4579,8 @@ final class ChronicleFeedDetailsSentineloneAlertSettingsAuthenticationHeaderKeyV
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -4640,9 +4602,9 @@ final class ChronicleFeedDetailsServiceNowCmdbSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (feedname != null) 'feedname': feedname!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'feedname': ?feedname?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4660,8 +4622,8 @@ final class ChronicleFeedDetailsServiceNowCmdbSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -4685,11 +4647,10 @@ final class ChronicleFeedDetailsSftpSettings {
   final ChronicleFeedDetailsSftpSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (sourceDeletionOption != null)
-      'source_deletion_option': sourceDeletionOption!.toTfJson(),
-    if (sourceType != null) 'source_type': sourceType!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
+    'source_type': ?sourceType?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4713,11 +4674,10 @@ final class ChronicleFeedDetailsSftpSettingsAuthentication {
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (password != null) 'password': password!.toTfJson(),
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-    if (privateKeyPassphrase != null)
-      'private_key_passphrase': privateKeyPassphrase!.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'private_key': ?privateKey?.toTfJson(),
+    'private_key_passphrase': ?privateKeyPassphrase?.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -4731,7 +4691,7 @@ final class ChronicleFeedDetailsSymantecEventExportSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4755,10 +4715,10 @@ final class ChronicleFeedDetailsSymantecEventExportSettingsAuthentication {
   final TfArg<String>? tokenEndpoint;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (refreshToken != null) 'refresh_token': refreshToken!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'refresh_token': ?refreshToken?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
   };
 }
 
@@ -4776,8 +4736,8 @@ final class ChronicleFeedDetailsThinkstCanarySettings {
   final ChronicleFeedDetailsThinkstCanarySettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4814,8 +4774,8 @@ final class ChronicleFeedDetailsThinkstCanarySettingsAuthenticationHeaderKeyValu
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -4837,9 +4797,9 @@ final class ChronicleFeedDetailsThreatConnectIocSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (owners != null) 'owners': owners!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'owners': ?owners?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4857,8 +4817,8 @@ final class ChronicleFeedDetailsThreatConnectIocSettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -4889,12 +4849,12 @@ final class ChronicleFeedDetailsThreatConnectIocV3Settings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (fields != null) 'fields': fields!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (owners != null) 'owners': owners!.toTfJson(),
-    if (schedule != null) 'schedule': schedule!.toTfJson(),
-    if (tqlQuery != null) 'tql_query': tqlQuery!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'fields': ?fields?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'owners': ?owners?.toTfJson(),
+    'schedule': ?schedule?.toTfJson(),
+    'tql_query': ?tqlQuery?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4912,8 +4872,8 @@ final class ChronicleFeedDetailsThreatConnectIocV3SettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -4932,8 +4892,8 @@ final class ChronicleFeedDetailsTrellixHxAlertsSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (endpoint != null) 'endpoint': endpoint!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'endpoint': ?endpoint?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -4952,8 +4912,8 @@ final class ChronicleFeedDetailsTrellixHxAlertsSettingsAuthentication {
   trellixIam;
 
   Map<String, Object?> encode() => {
-    if (msso != null) 'msso': msso!.encode(),
-    if (trellixIam != null) 'trellix_iam': trellixIam!.encode(),
+    'msso': ?msso?.encode(),
+    'trellix_iam': ?trellixIam?.encode(),
   };
 }
 
@@ -4974,9 +4934,9 @@ final class ChronicleFeedDetailsTrellixHxAlertsSettingsAuthenticationMsso {
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (apiEndpoint != null) 'api_endpoint': apiEndpoint!.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'api_endpoint': ?apiEndpoint?.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -4997,9 +4957,9 @@ final class ChronicleFeedDetailsTrellixHxAlertsSettingsAuthenticationTrellixIam 
   final TfArg<String>? scope;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
   };
 }
 
@@ -5019,7 +4979,7 @@ final class ChronicleFeedDetailsTrellixHxBulkAcqsSettings {
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -5038,8 +4998,8 @@ final class ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthentication {
   trellixIam;
 
   Map<String, Object?> encode() => {
-    if (msso != null) 'msso': msso!.encode(),
-    if (trellixIam != null) 'trellix_iam': trellixIam!.encode(),
+    'msso': ?msso?.encode(),
+    'trellix_iam': ?trellixIam?.encode(),
   };
 }
 
@@ -5105,7 +5065,7 @@ final class ChronicleFeedDetailsTrellixHxHostsSettings {
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -5124,8 +5084,8 @@ final class ChronicleFeedDetailsTrellixHxHostsSettingsAuthentication {
   trellixIam;
 
   Map<String, Object?> encode() => {
-    if (msso != null) 'msso': msso!.encode(),
-    if (trellixIam != null) 'trellix_iam': trellixIam!.encode(),
+    'msso': ?msso?.encode(),
+    'trellix_iam': ?trellixIam?.encode(),
   };
 }
 
@@ -5201,9 +5161,9 @@ final class ChronicleFeedDetailsWorkdaySettings {
   final ChronicleFeedDetailsWorkdaySettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'hostname': ?hostname?.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -5233,12 +5193,12 @@ final class ChronicleFeedDetailsWorkdaySettingsAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (refreshToken != null) 'refresh_token': refreshToken!.toTfJson(),
-    if (secret != null) 'secret': secret!.toTfJson(),
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'refresh_token': ?refreshToken?.toTfJson(),
+    'secret': ?secret?.toTfJson(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -5260,10 +5220,9 @@ final class ChronicleFeedDetailsWorkspaceActivitySettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (applications != null) 'applications': applications!.toTfJson(),
-    if (workspaceCustomerId != null)
-      'workspace_customer_id': workspaceCustomerId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'applications': ?applications?.toTfJson(),
+    'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -5286,9 +5245,9 @@ final class ChronicleFeedDetailsWorkspaceActivitySettingsAuthentication {
   rsCredentials;
 
   Map<String, Object?> encode() => {
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (claims != null) 'claims': claims!.encode(),
-    if (rsCredentials != null) 'rs_credentials': rsCredentials!.encode(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'claims': ?claims?.encode(),
+    'rs_credentials': ?rsCredentials?.encode(),
   };
 }
 
@@ -5309,9 +5268,9 @@ final class ChronicleFeedDetailsWorkspaceActivitySettingsAuthenticationClaims {
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -5325,9 +5284,7 @@ final class ChronicleFeedDetailsWorkspaceActivitySettingsAuthenticationRsCredent
 
   final TfArg<String>? privateKey;
 
-  Map<String, Object?> encode() => {
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.workspace_alerts_settings` block of
@@ -5345,9 +5302,8 @@ final class ChronicleFeedDetailsWorkspaceAlertsSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (workspaceCustomerId != null)
-      'workspace_customer_id': workspaceCustomerId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -5369,9 +5325,9 @@ final class ChronicleFeedDetailsWorkspaceAlertsSettingsAuthentication {
   rsCredentials;
 
   Map<String, Object?> encode() => {
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (claims != null) 'claims': claims!.encode(),
-    if (rsCredentials != null) 'rs_credentials': rsCredentials!.encode(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'claims': ?claims?.encode(),
+    'rs_credentials': ?rsCredentials?.encode(),
   };
 }
 
@@ -5392,9 +5348,9 @@ final class ChronicleFeedDetailsWorkspaceAlertsSettingsAuthenticationClaims {
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -5408,9 +5364,7 @@ final class ChronicleFeedDetailsWorkspaceAlertsSettingsAuthenticationRsCredentia
 
   final TfArg<String>? privateKey;
 
-  Map<String, Object?> encode() => {
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.workspace_chrome_os_settings` block of
@@ -5428,9 +5382,8 @@ final class ChronicleFeedDetailsWorkspaceChromeOsSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (workspaceCustomerId != null)
-      'workspace_customer_id': workspaceCustomerId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -5453,9 +5406,9 @@ final class ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthentication {
   rsCredentials;
 
   Map<String, Object?> encode() => {
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (claims != null) 'claims': claims!.encode(),
-    if (rsCredentials != null) 'rs_credentials': rsCredentials!.encode(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'claims': ?claims?.encode(),
+    'rs_credentials': ?rsCredentials?.encode(),
   };
 }
 
@@ -5476,9 +5429,9 @@ final class ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthenticationClaims {
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -5492,9 +5445,7 @@ final class ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthenticationRsCredent
 
   final TfArg<String>? privateKey;
 
-  Map<String, Object?> encode() => {
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.workspace_groups_settings` block of
@@ -5512,9 +5463,8 @@ final class ChronicleFeedDetailsWorkspaceGroupsSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (workspaceCustomerId != null)
-      'workspace_customer_id': workspaceCustomerId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -5536,9 +5486,9 @@ final class ChronicleFeedDetailsWorkspaceGroupsSettingsAuthentication {
   rsCredentials;
 
   Map<String, Object?> encode() => {
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (claims != null) 'claims': claims!.encode(),
-    if (rsCredentials != null) 'rs_credentials': rsCredentials!.encode(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'claims': ?claims?.encode(),
+    'rs_credentials': ?rsCredentials?.encode(),
   };
 }
 
@@ -5559,9 +5509,9 @@ final class ChronicleFeedDetailsWorkspaceGroupsSettingsAuthenticationClaims {
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -5575,9 +5525,7 @@ final class ChronicleFeedDetailsWorkspaceGroupsSettingsAuthenticationRsCredentia
 
   final TfArg<String>? privateKey;
 
-  Map<String, Object?> encode() => {
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.workspace_mobile_settings` block of
@@ -5595,9 +5543,8 @@ final class ChronicleFeedDetailsWorkspaceMobileSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (workspaceCustomerId != null)
-      'workspace_customer_id': workspaceCustomerId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -5619,9 +5566,9 @@ final class ChronicleFeedDetailsWorkspaceMobileSettingsAuthentication {
   rsCredentials;
 
   Map<String, Object?> encode() => {
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (claims != null) 'claims': claims!.encode(),
-    if (rsCredentials != null) 'rs_credentials': rsCredentials!.encode(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'claims': ?claims?.encode(),
+    'rs_credentials': ?rsCredentials?.encode(),
   };
 }
 
@@ -5642,9 +5589,9 @@ final class ChronicleFeedDetailsWorkspaceMobileSettingsAuthenticationClaims {
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -5658,9 +5605,7 @@ final class ChronicleFeedDetailsWorkspaceMobileSettingsAuthenticationRsCredentia
 
   final TfArg<String>? privateKey;
 
-  Map<String, Object?> encode() => {
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.workspace_privileges_settings` block of
@@ -5678,9 +5623,8 @@ final class ChronicleFeedDetailsWorkspacePrivilegesSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (workspaceCustomerId != null)
-      'workspace_customer_id': workspaceCustomerId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -5703,9 +5647,9 @@ final class ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthentication {
   rsCredentials;
 
   Map<String, Object?> encode() => {
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (claims != null) 'claims': claims!.encode(),
-    if (rsCredentials != null) 'rs_credentials': rsCredentials!.encode(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'claims': ?claims?.encode(),
+    'rs_credentials': ?rsCredentials?.encode(),
   };
 }
 
@@ -5726,9 +5670,9 @@ final class ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthenticationClaims 
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -5742,9 +5686,7 @@ final class ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthenticationRsCrede
 
   final TfArg<String>? privateKey;
 
-  Map<String, Object?> encode() => {
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.workspace_users_settings` block of
@@ -5765,10 +5707,9 @@ final class ChronicleFeedDetailsWorkspaceUsersSettings {
   authentication;
 
   Map<String, Object?> encode() => {
-    if (projectionType != null) 'projection_type': projectionType!.toTfJson(),
-    if (workspaceCustomerId != null)
-      'workspace_customer_id': workspaceCustomerId!.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'projection_type': ?projectionType?.toTfJson(),
+    'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
+    'authentication': ?authentication?.encode(),
   };
 }
 
@@ -5790,9 +5731,9 @@ final class ChronicleFeedDetailsWorkspaceUsersSettingsAuthentication {
   rsCredentials;
 
   Map<String, Object?> encode() => {
-    if (tokenEndpoint != null) 'token_endpoint': tokenEndpoint!.toTfJson(),
-    if (claims != null) 'claims': claims!.encode(),
-    if (rsCredentials != null) 'rs_credentials': rsCredentials!.encode(),
+    'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'claims': ?claims?.encode(),
+    'rs_credentials': ?rsCredentials?.encode(),
   };
 }
 
@@ -5813,9 +5754,9 @@ final class ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationClaims {
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -5829,9 +5770,7 @@ final class ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationRsCredential
 
   final TfArg<String>? privateKey;
 
-  Map<String, Object?> encode() => {
-    if (privateKey != null) 'private_key': privateKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `failure_details` block of
@@ -5884,12 +5823,12 @@ final class GoogleChronicleFeed extends Resource {
          argMap: {
            'location': location,
            'instance': instance,
-           if (displayName != null) 'display_name': displayName,
-           if (enabled != null) 'enabled': enabled,
+           'display_name': ?displayName,
+           'enabled': ?enabled,
            if (details != null) 'details': TfArg.literal(details.encode()),
-           if (feed != null) 'feed': feed,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'feed': ?feed,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

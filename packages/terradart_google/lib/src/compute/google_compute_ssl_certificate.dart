@@ -85,15 +85,14 @@ final class GoogleComputeSslCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           'name': ?name,
+           'name_prefix': ?namePrefix,
            'certificate': certificate,
-           if (privateKey != null) 'private_key': privateKey,
-           if (privateKeyWo != null) 'private_key_wo': privateKeyWo,
-           if (privateKeyWoVersion != null)
-             'private_key_wo_version': privateKeyWoVersion,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'private_key': ?privateKey,
+           'private_key_wo': ?privateKeyWo,
+           'private_key_wo_version': ?privateKeyWoVersion,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

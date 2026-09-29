@@ -57,8 +57,7 @@ final class GoogleKmsSecretCiphertext extends Resource {
          argMap: {
            'crypto_key': cryptoKey.encodeAs('id'),
            'plaintext': plaintext,
-           if (additionalAuthenticatedData != null)
-             'additional_authenticated_data': additionalAuthenticatedData,
+           'additional_authenticated_data': ?additionalAuthenticatedData,
          },
        );
 

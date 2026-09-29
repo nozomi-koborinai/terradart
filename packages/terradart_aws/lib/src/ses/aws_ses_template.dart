@@ -24,11 +24,11 @@ final class AwsSesTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (html != null) 'html': html,
+           'html': ?html,
            'name': name,
-           if (region != null) 'region': region,
-           if (subject != null) 'subject': subject,
-           if (text != null) 'text': text,
+           'region': ?region,
+           'subject': ?subject,
+           'text': ?text,
          },
        );
 

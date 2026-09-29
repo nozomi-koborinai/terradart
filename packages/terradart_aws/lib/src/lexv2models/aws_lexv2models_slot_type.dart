@@ -198,8 +198,7 @@ final class Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSetting {
   audioRecognitionStrategy;
 
   Map<String, Object?> encode() => {
-    if (audioRecognitionStrategy != null)
-      'audio_recognition_strategy': audioRecognitionStrategy!.toTfJson(),
+    'audio_recognition_strategy': ?audioRecognitionStrategy?.toTfJson(),
   };
 }
 
@@ -254,12 +253,11 @@ final class AwsLexv2modelsSlotType extends Resource {
          argMap: {
            'bot_id': botId,
            'bot_version': botVersion,
-           if (description != null) 'description': description,
+           'description': ?description,
            'locale_id': localeId,
            'name': name,
-           if (parentSlotTypeSignature != null)
-             'parent_slot_type_signature': parentSlotTypeSignature,
-           if (region != null) 'region': region,
+           'parent_slot_type_signature': ?parentSlotTypeSignature,
+           'region': ?region,
            if (compositeSlotTypeSetting != null)
              'composite_slot_type_setting': TfArg.literal([
                for (final e in compositeSlotTypeSetting) e.encode(),

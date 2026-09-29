@@ -24,11 +24,11 @@ final class AwsDxMacsecKeyAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cak != null) 'cak': cak,
-           if (ckn != null) 'ckn': ckn,
+           'cak': ?cak,
+           'ckn': ?ckn,
            'connection_id': connectionId,
-           if (region != null) 'region': region,
-           if (secretArn != null) 'secret_arn': secretArn,
+           'region': ?region,
+           'secret_arn': ?secretArn,
          },
        );
 

@@ -53,12 +53,9 @@ final class AccessContextManagerAccessLevelConditionDevicePolicy {
       'allowed_encryption_statuses': [
         for (final e in allowedEncryptionStatuses!) e.toTfJson(),
       ],
-    if (requireAdminApproval != null)
-      'require_admin_approval': requireAdminApproval!.toTfJson(),
-    if (requireCorpOwned != null)
-      'require_corp_owned': requireCorpOwned!.toTfJson(),
-    if (requireScreenLock != null)
-      'require_screen_lock': requireScreenLock!.toTfJson(),
+    'require_admin_approval': ?requireAdminApproval?.toTfJson(),
+    'require_corp_owned': ?requireCorpOwned?.toTfJson(),
+    'require_screen_lock': ?requireScreenLock?.toTfJson(),
     if (osConstraints != null)
       'os_constraints': [for (final e in osConstraints!) e.encode()],
   };
@@ -111,7 +108,7 @@ final class AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints {
   osType;
 
   Map<String, Object?> encode() => {
-    if (minimumVersion != null) 'minimum_version': minimumVersion!.toTfJson(),
+    'minimum_version': ?minimumVersion?.toTfJson(),
     'os_type': osType.toTfJson(),
   };
 }
@@ -145,9 +142,7 @@ final class AccessContextManagerAccessLevelConditionVpcNetworkSources {
   final AccessContextManagerAccessLevelConditionVpcNetworkSourcesVpcSubnetwork?
   vpcSubnetwork;
 
-  Map<String, Object?> encode() => {
-    if (vpcSubnetwork != null) 'vpc_subnetwork': vpcSubnetwork!.encode(),
-  };
+  Map<String, Object?> encode() => {'vpc_subnetwork': ?vpcSubnetwork?.encode()};
 }
 
 /// Typed helper for the `vpc_network_sources.vpc_subnetwork` block of
@@ -165,8 +160,7 @@ final class AccessContextManagerAccessLevelConditionVpcNetworkSourcesVpcSubnetwo
 
   Map<String, Object?> encode() => {
     'network': network.toTfJson(),
-    if (vpcIpSubnetworks != null)
-      'vpc_ip_subnetworks': vpcIpSubnetworks!.toTfJson(),
+    'vpc_ip_subnetworks': ?vpcIpSubnetworks?.toTfJson(),
   };
 }
 
@@ -250,19 +244,18 @@ final class GoogleAccessContextManagerAccessLevelCondition extends Resource {
          terraformType: tfType,
          argMap: {
            'access_level': accessLevel,
-           if (ipSubnetworks != null) 'ip_subnetworks': ipSubnetworks,
-           if (members != null) 'members': members,
-           if (negate != null) 'negate': negate,
+           'ip_subnetworks': ?ipSubnetworks,
+           'members': ?members,
+           'negate': ?negate,
            if (devicePolicy != null)
              'device_policy': TfArg.literal(devicePolicy.encode()),
-           if (regions != null) 'regions': regions,
-           if (requiredAccessLevels != null)
-             'required_access_levels': requiredAccessLevels,
+           'regions': ?regions,
+           'required_access_levels': ?requiredAccessLevels,
            if (vpcNetworkSources != null)
              'vpc_network_sources': TfArg.literal([
                for (final e in vpcNetworkSources) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

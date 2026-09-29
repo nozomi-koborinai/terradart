@@ -35,16 +35,15 @@ final class AwsPinpointsmsvoicev2SenderId extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionProtectionEnabled != null)
-             'deletion_protection_enabled': deletionProtectionEnabled,
+           'deletion_protection_enabled': ?deletionProtectionEnabled,
            'iso_country_code': isoCountryCode,
            if (messageTypes != null)
              'message_types': TfArg.literal([
                for (final e in messageTypes) e.toTfJson(),
              ]),
-           if (region != null) 'region': region,
+           'region': ?region,
            'sender_id': senderId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

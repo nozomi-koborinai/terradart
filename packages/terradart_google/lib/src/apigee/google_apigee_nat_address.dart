@@ -37,8 +37,8 @@ final class GoogleApigeeNatAddress extends Resource {
          argMap: {
            'name': name,
            'instance_id': instanceId,
-           if (activate != null) 'activate': activate,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'activate': ?activate,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

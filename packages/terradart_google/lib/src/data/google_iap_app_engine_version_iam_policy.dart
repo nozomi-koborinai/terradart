@@ -26,7 +26,7 @@ final class DataGoogleIapAppEngineVersionIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'app_id': appId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'service': service,
            'version_id': versionId,
          },

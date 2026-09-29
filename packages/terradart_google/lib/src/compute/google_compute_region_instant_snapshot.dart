@@ -65,12 +65,12 @@ final class GoogleComputeRegionInstantSnapshot extends Resource {
          argMap: {
            'name': name,
            'source_disk': sourceDisk,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
            if (params != null) 'params': TfArg.literal([params.toArgMap()]),
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'project': ?project,
          },
        );
 

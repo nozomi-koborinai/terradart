@@ -33,10 +33,8 @@ final class RedshiftIdcApplicationAuthorizedTokenIssuer {
   final TfArg<String>? trustedTokenIssuerArn;
 
   Map<String, Object?> encode() => {
-    if (authorizedAudiencesList != null)
-      'authorized_audiences_list': authorizedAudiencesList!.toTfJson(),
-    if (trustedTokenIssuerArn != null)
-      'trusted_token_issuer_arn': trustedTokenIssuerArn!.toTfJson(),
+    'authorized_audiences_list': ?authorizedAudiencesList?.toTfJson(),
+    'trusted_token_issuer_arn': ?trustedTokenIssuerArn?.toTfJson(),
   };
 }
 
@@ -228,15 +226,14 @@ final class AwsRedshiftIdcApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applicationType != null) 'application_type': applicationType,
+           'application_type': ?applicationType,
            'iam_role_arn': iamRoleArn.encodeAs('arn'),
            'idc_display_name': idcDisplayName,
            'idc_instance_arn': idcInstanceArn,
-           if (identityNamespace != null)
-             'identity_namespace': identityNamespace,
+           'identity_namespace': ?identityNamespace,
            'redshift_idc_application_name': redshiftIdcApplicationName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (authorizedTokenIssuer != null)
              'authorized_token_issuer': TfArg.literal([
                for (final e in authorizedTokenIssuer) e.encode(),

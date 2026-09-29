@@ -69,13 +69,13 @@ final class AwsGlueUserDefinedFunction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
+           'catalog_id': ?catalogId,
            'class_name': className,
            'database_name': databaseName,
            'name': name,
            'owner_name': ownerName,
            'owner_type': ownerType,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (resourceUris != null)
              'resource_uris': TfArg.literal([
                for (final e in resourceUris) e.encode(),

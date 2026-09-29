@@ -35,10 +35,10 @@ final class DataCloudflareAccountPermissionGroups extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (label != null) 'label': label,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
+           'account_id': ?accountId,
+           'label': ?label,
+           'max_items': ?maxItems,
+           'name': ?name,
          },
        );
 

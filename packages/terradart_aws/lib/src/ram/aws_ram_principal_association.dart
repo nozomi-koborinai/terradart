@@ -23,7 +23,7 @@ final class AwsRamPrincipalAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'principal': principal,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_share_arn': resourceShareArn,
          },
        );

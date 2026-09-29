@@ -56,14 +56,13 @@ final class GoogleFirebaseHostingCustomDomain extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (certPreference != null) 'cert_preference': certPreference,
+           'cert_preference': ?certPreference,
            'custom_domain': customDomain,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
-           if (redirectTarget != null) 'redirect_target': redirectTarget,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
+           'redirect_target': ?redirectTarget,
            'site_id': siteId,
-           if (waitDnsVerification != null)
-             'wait_dns_verification': waitDnsVerification,
+           'wait_dns_verification': ?waitDnsVerification,
          },
        );
 

@@ -26,13 +26,13 @@ final class DataAwsRedshiftClusterCredentials extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoCreate != null) 'auto_create': autoCreate,
+           'auto_create': ?autoCreate,
            'cluster_identifier': clusterIdentifier,
-           if (dbGroups != null) 'db_groups': dbGroups,
-           if (dbName != null) 'db_name': dbName,
+           'db_groups': ?dbGroups,
+           'db_name': ?dbName,
            'db_user': dbUser,
-           if (durationSeconds != null) 'duration_seconds': durationSeconds,
-           if (region != null) 'region': region,
+           'duration_seconds': ?durationSeconds,
+           'region': ?region,
          },
        );
 

@@ -135,9 +135,8 @@ final class ZeroTrustAccessApplicationCorsHeaders {
     ...?headers?.encode(),
     ...methods.encode(),
     ...origins.encode(),
-    if (allowCredentials != null)
-      'allow_credentials': allowCredentials!.toTfJson(),
-    if (maxAge != null) 'max_age': maxAge!.toTfJson(),
+    'allow_credentials': ?allowCredentials?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
   };
 }
 
@@ -376,15 +375,15 @@ final class ZeroTrustAccessApplicationDestinations {
   final TfArg<String>? workerId;
 
   Map<String, Object?> encode() => {
-    if (cidr != null) 'cidr': cidr!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (l4Protocol != null) 'l4_protocol': l4Protocol!.toTfJson(),
-    if (mcpServerId != null) 'mcp_server_id': mcpServerId!.toTfJson(),
-    if (portRange != null) 'port_range': portRange!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
-    if (vnetId != null) 'vnet_id': vnetId!.toTfJson(),
-    if (workerId != null) 'worker_id': workerId!.toTfJson(),
+    'cidr': ?cidr?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'l4_protocol': ?l4Protocol?.toTfJson(),
+    'mcp_server_id': ?mcpServerId?.toTfJson(),
+    'port_range': ?portRange?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
+    'vnet_id': ?vnetId?.toTfJson(),
+    'worker_id': ?workerId?.toTfJson(),
   };
 }
 
@@ -455,12 +454,11 @@ final class ZeroTrustAccessApplicationLandingPageDesign {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (buttonColor != null) 'button_color': buttonColor!.toTfJson(),
-    if (buttonTextColor != null)
-      'button_text_color': buttonTextColor!.toTfJson(),
-    if (imageUrl != null) 'image_url': imageUrl!.toTfJson(),
-    if (message != null) 'message': message!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'button_color': ?buttonColor?.toTfJson(),
+    'button_text_color': ?buttonTextColor?.toTfJson(),
+    'image_url': ?imageUrl?.toTfJson(),
+    'message': ?message?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -486,9 +484,8 @@ final class ZeroTrustAccessApplicationMfaConfig {
       'allowed_authenticators': [
         for (final e in allowedAuthenticators!) e.toTfJson(),
       ],
-    if (mfaDisabled != null) 'mfa_disabled': mfaDisabled!.toTfJson(),
-    if (sessionDuration != null)
-      'session_duration': sessionDuration!.toTfJson(),
+    'mfa_disabled': ?mfaDisabled?.toTfJson(),
+    'session_duration': ?sessionDuration?.toTfJson(),
   };
 }
 
@@ -524,10 +521,9 @@ final class ZeroTrustAccessApplicationOauthConfiguration {
   final ZeroTrustAccessApplicationOauthConfigurationGrant? grant;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (dynamicClientRegistration != null)
-      'dynamic_client_registration': dynamicClientRegistration!.encode(),
-    if (grant != null) 'grant': grant!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'dynamic_client_registration': ?dynamicClientRegistration?.encode(),
+    'grant': ?grant?.encode(),
   };
 }
 
@@ -551,12 +547,10 @@ final class ZeroTrustAccessApplicationOauthConfigurationDynamicClientRegistratio
   final TfArg<bool>? enabled;
 
   Map<String, Object?> encode() => {
-    if (allowAnyOnLocalhost != null)
-      'allow_any_on_localhost': allowAnyOnLocalhost!.toTfJson(),
-    if (allowAnyOnLoopback != null)
-      'allow_any_on_loopback': allowAnyOnLoopback!.toTfJson(),
-    if (allowedUris != null) 'allowed_uris': allowedUris!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'allow_any_on_localhost': ?allowAnyOnLocalhost?.toTfJson(),
+    'allow_any_on_loopback': ?allowAnyOnLoopback?.toTfJson(),
+    'allowed_uris': ?allowedUris?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
   };
 }
 
@@ -574,10 +568,8 @@ final class ZeroTrustAccessApplicationOauthConfigurationGrant {
   final TfArg<String>? sessionDuration;
 
   Map<String, Object?> encode() => {
-    if (accessTokenLifetime != null)
-      'access_token_lifetime': accessTokenLifetime!.toTfJson(),
-    if (sessionDuration != null)
-      'session_duration': sessionDuration!.toTfJson(),
+    'access_token_lifetime': ?accessTokenLifetime?.toTfJson(),
+    'session_duration': ?sessionDuration?.toTfJson(),
   };
 }
 
@@ -613,13 +605,13 @@ final class ZeroTrustAccessApplicationPolicies {
   final List<ZeroTrustAccessApplicationPoliciesRequire>? require;
 
   Map<String, Object?> encode() => {
-    if (decision != null) 'decision': decision!.toTfJson(),
+    'decision': ?decision?.toTfJson(),
     ...policy.encode(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (precedence != null) 'precedence': precedence!.toTfJson(),
-    if (connectionRules != null) 'connection_rules': connectionRules!.encode(),
+    'name': ?name?.toTfJson(),
+    'precedence': ?precedence?.toTfJson(),
+    'connection_rules': ?connectionRules?.encode(),
     if (exclude != null) 'exclude': [for (final e in exclude!) e.encode()],
-    if (mfaConfig != null) 'mfa_config': mfaConfig!.encode(),
+    'mfa_config': ?mfaConfig?.encode(),
     if (require != null) 'require': [for (final e in require!) e.encode()],
   };
 }
@@ -699,8 +691,8 @@ final class ZeroTrustAccessApplicationPoliciesConnectionRules {
   final ZeroTrustAccessApplicationPoliciesConnectionRulesSsh? ssh;
 
   Map<String, Object?> encode() => {
-    if (rdp != null) 'rdp': rdp!.encode(),
-    if (ssh != null) 'ssh': ssh!.encode(),
+    'rdp': ?rdp?.encode(),
+    'ssh': ?ssh?.encode(),
   };
 }
 
@@ -779,8 +771,7 @@ final class ZeroTrustAccessApplicationPoliciesConnectionRulesSsh {
   final TfArg<List<Object?>> usernames;
 
   Map<String, Object?> encode() => {
-    if (allowEmailAlias != null)
-      'allow_email_alias': allowEmailAlias!.toTfJson(),
+    'allow_email_alias': ?allowEmailAlias?.toTfJson(),
     'usernames': usernames.toTfJson(),
   };
 }
@@ -868,33 +859,30 @@ final class ZeroTrustAccessApplicationPoliciesExclude {
   final ZeroTrustAccessApplicationPoliciesExcludeServiceToken? serviceToken;
 
   Map<String, Object?> encode() => {
-    if (anyValidServiceToken != null)
-      'any_valid_service_token': anyValidServiceToken!.encode(),
-    if (authContext != null) 'auth_context': authContext!.encode(),
-    if (authMethod != null) 'auth_method': authMethod!.encode(),
-    if (azureAd != null) 'azure_ad': azureAd!.encode(),
-    if (certificate != null) 'certificate': certificate!.encode(),
-    if (commonName != null) 'common_name': commonName!.encode(),
-    if (devicePosture != null) 'device_posture': devicePosture!.encode(),
-    if (email != null) 'email': email!.encode(),
-    if (emailDomain != null) 'email_domain': emailDomain!.encode(),
-    if (emailList != null) 'email_list': emailList!.encode(),
-    if (everyone != null) 'everyone': everyone!.encode(),
-    if (externalEvaluation != null)
-      'external_evaluation': externalEvaluation!.encode(),
-    if (geo != null) 'geo': geo!.encode(),
-    if (githubOrganization != null)
-      'github_organization': githubOrganization!.encode(),
-    if (group != null) 'group': group!.encode(),
-    if (gsuite != null) 'gsuite': gsuite!.encode(),
-    if (ip != null) 'ip': ip!.encode(),
-    if (ipList != null) 'ip_list': ipList!.encode(),
-    if (linkedAppToken != null) 'linked_app_token': linkedAppToken!.encode(),
-    if (loginMethod != null) 'login_method': loginMethod!.encode(),
-    if (oidc != null) 'oidc': oidc!.encode(),
-    if (okta != null) 'okta': okta!.encode(),
-    if (saml != null) 'saml': saml!.encode(),
-    if (serviceToken != null) 'service_token': serviceToken!.encode(),
+    'any_valid_service_token': ?anyValidServiceToken?.encode(),
+    'auth_context': ?authContext?.encode(),
+    'auth_method': ?authMethod?.encode(),
+    'azure_ad': ?azureAd?.encode(),
+    'certificate': ?certificate?.encode(),
+    'common_name': ?commonName?.encode(),
+    'device_posture': ?devicePosture?.encode(),
+    'email': ?email?.encode(),
+    'email_domain': ?emailDomain?.encode(),
+    'email_list': ?emailList?.encode(),
+    'everyone': ?everyone?.encode(),
+    'external_evaluation': ?externalEvaluation?.encode(),
+    'geo': ?geo?.encode(),
+    'github_organization': ?githubOrganization?.encode(),
+    'group': ?group?.encode(),
+    'gsuite': ?gsuite?.encode(),
+    'ip': ?ip?.encode(),
+    'ip_list': ?ipList?.encode(),
+    'linked_app_token': ?linkedAppToken?.encode(),
+    'login_method': ?loginMethod?.encode(),
+    'oidc': ?oidc?.encode(),
+    'okta': ?okta?.encode(),
+    'saml': ?saml?.encode(),
+    'service_token': ?serviceToken?.encode(),
   };
 }
 
@@ -1094,7 +1082,7 @@ final class ZeroTrustAccessApplicationPoliciesExcludeGithubOrganization {
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
-    if (team != null) 'team': team!.toTfJson(),
+    'team': ?team?.toTfJson(),
   };
 }
 
@@ -1337,33 +1325,30 @@ final class ZeroTrustAccessApplicationPoliciesInclude {
   final ZeroTrustAccessApplicationPoliciesIncludeServiceToken? serviceToken;
 
   Map<String, Object?> encode() => {
-    if (anyValidServiceToken != null)
-      'any_valid_service_token': anyValidServiceToken!.encode(),
-    if (authContext != null) 'auth_context': authContext!.encode(),
-    if (authMethod != null) 'auth_method': authMethod!.encode(),
-    if (azureAd != null) 'azure_ad': azureAd!.encode(),
-    if (certificate != null) 'certificate': certificate!.encode(),
-    if (commonName != null) 'common_name': commonName!.encode(),
-    if (devicePosture != null) 'device_posture': devicePosture!.encode(),
-    if (email != null) 'email': email!.encode(),
-    if (emailDomain != null) 'email_domain': emailDomain!.encode(),
-    if (emailList != null) 'email_list': emailList!.encode(),
-    if (everyone != null) 'everyone': everyone!.encode(),
-    if (externalEvaluation != null)
-      'external_evaluation': externalEvaluation!.encode(),
-    if (geo != null) 'geo': geo!.encode(),
-    if (githubOrganization != null)
-      'github_organization': githubOrganization!.encode(),
-    if (group != null) 'group': group!.encode(),
-    if (gsuite != null) 'gsuite': gsuite!.encode(),
-    if (ip != null) 'ip': ip!.encode(),
-    if (ipList != null) 'ip_list': ipList!.encode(),
-    if (linkedAppToken != null) 'linked_app_token': linkedAppToken!.encode(),
-    if (loginMethod != null) 'login_method': loginMethod!.encode(),
-    if (oidc != null) 'oidc': oidc!.encode(),
-    if (okta != null) 'okta': okta!.encode(),
-    if (saml != null) 'saml': saml!.encode(),
-    if (serviceToken != null) 'service_token': serviceToken!.encode(),
+    'any_valid_service_token': ?anyValidServiceToken?.encode(),
+    'auth_context': ?authContext?.encode(),
+    'auth_method': ?authMethod?.encode(),
+    'azure_ad': ?azureAd?.encode(),
+    'certificate': ?certificate?.encode(),
+    'common_name': ?commonName?.encode(),
+    'device_posture': ?devicePosture?.encode(),
+    'email': ?email?.encode(),
+    'email_domain': ?emailDomain?.encode(),
+    'email_list': ?emailList?.encode(),
+    'everyone': ?everyone?.encode(),
+    'external_evaluation': ?externalEvaluation?.encode(),
+    'geo': ?geo?.encode(),
+    'github_organization': ?githubOrganization?.encode(),
+    'group': ?group?.encode(),
+    'gsuite': ?gsuite?.encode(),
+    'ip': ?ip?.encode(),
+    'ip_list': ?ipList?.encode(),
+    'linked_app_token': ?linkedAppToken?.encode(),
+    'login_method': ?loginMethod?.encode(),
+    'oidc': ?oidc?.encode(),
+    'okta': ?okta?.encode(),
+    'saml': ?saml?.encode(),
+    'service_token': ?serviceToken?.encode(),
   };
 }
 
@@ -1563,7 +1548,7 @@ final class ZeroTrustAccessApplicationPoliciesIncludeGithubOrganization {
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
-    if (team != null) 'team': team!.toTfJson(),
+    'team': ?team?.toTfJson(),
   };
 }
 
@@ -1747,9 +1732,8 @@ final class ZeroTrustAccessApplicationPoliciesMfaConfig {
       'allowed_authenticators': [
         for (final e in allowedAuthenticators!) e.toTfJson(),
       ],
-    if (mfaDisabled != null) 'mfa_disabled': mfaDisabled!.toTfJson(),
-    if (sessionDuration != null)
-      'session_duration': sessionDuration!.toTfJson(),
+    'mfa_disabled': ?mfaDisabled?.toTfJson(),
+    'session_duration': ?sessionDuration?.toTfJson(),
   };
 }
 
@@ -1851,33 +1835,30 @@ final class ZeroTrustAccessApplicationPoliciesRequire {
   final ZeroTrustAccessApplicationPoliciesRequireServiceToken? serviceToken;
 
   Map<String, Object?> encode() => {
-    if (anyValidServiceToken != null)
-      'any_valid_service_token': anyValidServiceToken!.encode(),
-    if (authContext != null) 'auth_context': authContext!.encode(),
-    if (authMethod != null) 'auth_method': authMethod!.encode(),
-    if (azureAd != null) 'azure_ad': azureAd!.encode(),
-    if (certificate != null) 'certificate': certificate!.encode(),
-    if (commonName != null) 'common_name': commonName!.encode(),
-    if (devicePosture != null) 'device_posture': devicePosture!.encode(),
-    if (email != null) 'email': email!.encode(),
-    if (emailDomain != null) 'email_domain': emailDomain!.encode(),
-    if (emailList != null) 'email_list': emailList!.encode(),
-    if (everyone != null) 'everyone': everyone!.encode(),
-    if (externalEvaluation != null)
-      'external_evaluation': externalEvaluation!.encode(),
-    if (geo != null) 'geo': geo!.encode(),
-    if (githubOrganization != null)
-      'github_organization': githubOrganization!.encode(),
-    if (group != null) 'group': group!.encode(),
-    if (gsuite != null) 'gsuite': gsuite!.encode(),
-    if (ip != null) 'ip': ip!.encode(),
-    if (ipList != null) 'ip_list': ipList!.encode(),
-    if (linkedAppToken != null) 'linked_app_token': linkedAppToken!.encode(),
-    if (loginMethod != null) 'login_method': loginMethod!.encode(),
-    if (oidc != null) 'oidc': oidc!.encode(),
-    if (okta != null) 'okta': okta!.encode(),
-    if (saml != null) 'saml': saml!.encode(),
-    if (serviceToken != null) 'service_token': serviceToken!.encode(),
+    'any_valid_service_token': ?anyValidServiceToken?.encode(),
+    'auth_context': ?authContext?.encode(),
+    'auth_method': ?authMethod?.encode(),
+    'azure_ad': ?azureAd?.encode(),
+    'certificate': ?certificate?.encode(),
+    'common_name': ?commonName?.encode(),
+    'device_posture': ?devicePosture?.encode(),
+    'email': ?email?.encode(),
+    'email_domain': ?emailDomain?.encode(),
+    'email_list': ?emailList?.encode(),
+    'everyone': ?everyone?.encode(),
+    'external_evaluation': ?externalEvaluation?.encode(),
+    'geo': ?geo?.encode(),
+    'github_organization': ?githubOrganization?.encode(),
+    'group': ?group?.encode(),
+    'gsuite': ?gsuite?.encode(),
+    'ip': ?ip?.encode(),
+    'ip_list': ?ipList?.encode(),
+    'linked_app_token': ?linkedAppToken?.encode(),
+    'login_method': ?loginMethod?.encode(),
+    'oidc': ?oidc?.encode(),
+    'okta': ?okta?.encode(),
+    'saml': ?saml?.encode(),
+    'service_token': ?serviceToken?.encode(),
   };
 }
 
@@ -2077,7 +2058,7 @@ final class ZeroTrustAccessApplicationPoliciesRequireGithubOrganization {
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
-    if (team != null) 'team': team!.toTfJson(),
+    'team': ?team?.toTfJson(),
   };
 }
 
@@ -2308,40 +2289,31 @@ final class ZeroTrustAccessApplicationSaasApp {
   refreshTokenOptions;
 
   Map<String, Object?> encode() => {
-    if (accessTokenLifetime != null)
-      'access_token_lifetime': accessTokenLifetime!.toTfJson(),
-    if (allowPkceWithoutClientSecret != null)
-      'allow_pkce_without_client_secret': allowPkceWithoutClientSecret!
-          .toTfJson(),
-    if (appLauncherUrl != null) 'app_launcher_url': appLauncherUrl!.toTfJson(),
-    if (authType != null) 'auth_type': authType!.toTfJson(),
-    if (consumerServiceUrl != null)
-      'consumer_service_url': consumerServiceUrl!.toTfJson(),
-    if (defaultRelayState != null)
-      'default_relay_state': defaultRelayState!.toTfJson(),
+    'access_token_lifetime': ?accessTokenLifetime?.toTfJson(),
+    'allow_pkce_without_client_secret': ?allowPkceWithoutClientSecret
+        ?.toTfJson(),
+    'app_launcher_url': ?appLauncherUrl?.toTfJson(),
+    'auth_type': ?authType?.toTfJson(),
+    'consumer_service_url': ?consumerServiceUrl?.toTfJson(),
+    'default_relay_state': ?defaultRelayState?.toTfJson(),
     if (grantTypes != null)
       'grant_types': [for (final e in grantTypes!) e.toTfJson()],
-    if (groupFilterRegex != null)
-      'group_filter_regex': groupFilterRegex!.toTfJson(),
-    if (idpEntityId != null) 'idp_entity_id': idpEntityId!.toTfJson(),
-    if (nameIdFormat != null) 'name_id_format': nameIdFormat!.toTfJson(),
-    if (nameIdTransformJsonata != null)
-      'name_id_transform_jsonata': nameIdTransformJsonata!.toTfJson(),
-    if (redirectUris != null) 'redirect_uris': redirectUris!.toTfJson(),
-    if (samlAttributeTransformJsonata != null)
-      'saml_attribute_transform_jsonata': samlAttributeTransformJsonata!
-          .toTfJson(),
+    'group_filter_regex': ?groupFilterRegex?.toTfJson(),
+    'idp_entity_id': ?idpEntityId?.toTfJson(),
+    'name_id_format': ?nameIdFormat?.toTfJson(),
+    'name_id_transform_jsonata': ?nameIdTransformJsonata?.toTfJson(),
+    'redirect_uris': ?redirectUris?.toTfJson(),
+    'saml_attribute_transform_jsonata': ?samlAttributeTransformJsonata
+        ?.toTfJson(),
     if (scopes != null) 'scopes': [for (final e in scopes!) e.toTfJson()],
-    if (spEntityId != null) 'sp_entity_id': spEntityId!.toTfJson(),
-    if (ssoEndpoint != null) 'sso_endpoint': ssoEndpoint!.toTfJson(),
+    'sp_entity_id': ?spEntityId?.toTfJson(),
+    'sso_endpoint': ?ssoEndpoint?.toTfJson(),
     if (customAttributes != null)
       'custom_attributes': [for (final e in customAttributes!) e.encode()],
     if (customClaims != null)
       'custom_claims': [for (final e in customClaims!) e.encode()],
-    if (hybridAndImplicitOptions != null)
-      'hybrid_and_implicit_options': hybridAndImplicitOptions!.encode(),
-    if (refreshTokenOptions != null)
-      'refresh_token_options': refreshTokenOptions!.encode(),
+    'hybrid_and_implicit_options': ?hybridAndImplicitOptions?.encode(),
+    'refresh_token_options': ?refreshTokenOptions?.encode(),
   };
 }
 
@@ -2414,11 +2386,11 @@ final class ZeroTrustAccessApplicationSaasAppCustomAttributes {
   final ZeroTrustAccessApplicationSaasAppCustomAttributesSource? source;
 
   Map<String, Object?> encode() => {
-    if (friendlyName != null) 'friendly_name': friendlyName!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (nameFormat != null) 'name_format': nameFormat!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (source != null) 'source': source!.encode(),
+    'friendly_name': ?friendlyName?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'name_format': ?nameFormat?.toTfJson(),
+    'required': ?required?.toTfJson(),
+    'source': ?source?.encode(),
   };
 }
 
@@ -2457,7 +2429,7 @@ final class ZeroTrustAccessApplicationSaasAppCustomAttributesSource {
   nameByIdp;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (nameByIdp != null)
       'name_by_idp': [for (final e in nameByIdp!) e.encode()],
   };
@@ -2477,8 +2449,8 @@ final class ZeroTrustAccessApplicationSaasAppCustomAttributesSourceNameByIdp {
   final TfArg<String>? sourceName;
 
   Map<String, Object?> encode() => {
-    if (idpId != null) 'idp_id': idpId!.toTfJson(),
-    if (sourceName != null) 'source_name': sourceName!.toTfJson(),
+    'idp_id': ?idpId?.toTfJson(),
+    'source_name': ?sourceName?.toTfJson(),
   };
 }
 
@@ -2502,10 +2474,10 @@ final class ZeroTrustAccessApplicationSaasAppCustomClaims {
   final ZeroTrustAccessApplicationSaasAppCustomClaimsSource? source;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (source != null) 'source': source!.encode(),
+    'name': ?name?.toTfJson(),
+    'required': ?required?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'source': ?source?.encode(),
   };
 }
 
@@ -2536,8 +2508,8 @@ final class ZeroTrustAccessApplicationSaasAppCustomClaimsSource {
   final TfArg<Map<String, String>>? nameByIdp;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (nameByIdp != null) 'name_by_idp': nameByIdp!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'name_by_idp': ?nameByIdp?.toTfJson(),
   };
 }
 
@@ -2555,12 +2527,10 @@ final class ZeroTrustAccessApplicationSaasAppHybridAndImplicitOptions {
   final TfArg<bool>? returnIdTokenFromAuthorizationEndpoint;
 
   Map<String, Object?> encode() => {
-    if (returnAccessTokenFromAuthorizationEndpoint != null)
-      'return_access_token_from_authorization_endpoint':
-          returnAccessTokenFromAuthorizationEndpoint!.toTfJson(),
-    if (returnIdTokenFromAuthorizationEndpoint != null)
-      'return_id_token_from_authorization_endpoint':
-          returnIdTokenFromAuthorizationEndpoint!.toTfJson(),
+    'return_access_token_from_authorization_endpoint':
+        ?returnAccessTokenFromAuthorizationEndpoint?.toTfJson(),
+    'return_id_token_from_authorization_endpoint':
+        ?returnIdTokenFromAuthorizationEndpoint?.toTfJson(),
   };
 }
 
@@ -2572,9 +2542,7 @@ final class ZeroTrustAccessApplicationSaasAppRefreshTokenOptions {
 
   final TfArg<String>? lifetime;
 
-  Map<String, Object?> encode() => {
-    if (lifetime != null) 'lifetime': lifetime!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'lifetime': ?lifetime?.toTfJson()};
 }
 
 /// Typed helper for the `scim_config` block of
@@ -2603,12 +2571,11 @@ final class ZeroTrustAccessApplicationScimConfig {
   final List<ZeroTrustAccessApplicationScimConfigMappings>? mappings;
 
   Map<String, Object?> encode() => {
-    if (deactivateOnDelete != null)
-      'deactivate_on_delete': deactivateOnDelete!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'deactivate_on_delete': ?deactivateOnDelete?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'idp_uid': idpUid.toTfJson(),
     'remote_uri': remoteUri.toTfJson(),
-    if (authentication != null) 'authentication': authentication!.encode(),
+    'authentication': ?authentication?.encode(),
     if (mappings != null) 'mappings': [for (final e in mappings!) e.encode()],
   };
 }
@@ -2648,16 +2615,15 @@ final class ZeroTrustAccessApplicationScimConfigAuthentication {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (authorizationUrl != null)
-      'authorization_url': authorizationUrl!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
+    'authorization_url': ?authorizationUrl?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'password': ?password?.toTfJson(),
     'scheme': scheme.toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
-    if (token != null) 'token': token!.toTfJson(),
-    if (tokenUrl != null) 'token_url': tokenUrl!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
+    'token': ?token?.toTfJson(),
+    'token_url': ?tokenUrl?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -2703,13 +2669,12 @@ final class ZeroTrustAccessApplicationScimConfigMappings {
   final ZeroTrustAccessApplicationScimConfigMappingsOperations? operations;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'filter': ?filter?.toTfJson(),
     'schema': schema.toTfJson(),
-    if (strictness != null) 'strictness': strictness!.toTfJson(),
-    if (transformJsonata != null)
-      'transform_jsonata': transformJsonata!.toTfJson(),
-    if (operations != null) 'operations': operations!.encode(),
+    'strictness': ?strictness?.toTfJson(),
+    'transform_jsonata': ?transformJsonata?.toTfJson(),
+    'operations': ?operations?.encode(),
   };
 }
 
@@ -2743,9 +2708,9 @@ final class ZeroTrustAccessApplicationScimConfigMappingsOperations {
   final TfArg<bool>? update;
 
   Map<String, Object?> encode() => {
-    if (create != null) 'create': create!.toTfJson(),
-    if (delete != null) 'delete': delete!.toTfJson(),
-    if (update != null) 'update': update!.toTfJson(),
+    'create': ?create?.toTfJson(),
+    'delete': ?delete?.toTfJson(),
+    'update': ?update?.toTfJson(),
   };
 }
 
@@ -2834,50 +2799,36 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
-           if (allowAuthenticateViaWarp != null)
-             'allow_authenticate_via_warp': allowAuthenticateViaWarp,
-           if (allowIframe != null) 'allow_iframe': allowIframe,
-           if (allowedIdps != null) 'allowed_idps': allowedIdps,
-           if (appLauncherLogoUrl != null)
-             'app_launcher_logo_url': appLauncherLogoUrl,
-           if (appLauncherVisible != null)
-             'app_launcher_visible': appLauncherVisible,
-           if (autoRedirectToIdentity != null)
-             'auto_redirect_to_identity': autoRedirectToIdentity,
-           if (bgColor != null) 'bg_color': bgColor,
-           if (customDenyMessage != null)
-             'custom_deny_message': customDenyMessage,
-           if (customDenyUrl != null) 'custom_deny_url': customDenyUrl,
-           if (customNonIdentityDenyUrl != null)
-             'custom_non_identity_deny_url': customNonIdentityDenyUrl,
-           if (customPages != null) 'custom_pages': customPages,
-           if (domain != null) 'domain': domain,
-           if (enableBindingCookie != null)
-             'enable_binding_cookie': enableBindingCookie,
-           if (headerBgColor != null) 'header_bg_color': headerBgColor,
-           if (httpOnlyCookieAttribute != null)
-             'http_only_cookie_attribute': httpOnlyCookieAttribute,
-           if (logoUrl != null) 'logo_url': logoUrl,
-           if (name != null) 'name': name,
-           if (optionsPreflightBypass != null)
-             'options_preflight_bypass': optionsPreflightBypass,
-           if (pathCookieAttribute != null)
-             'path_cookie_attribute': pathCookieAttribute,
-           if (readServiceTokensFromHeader != null)
-             'read_service_tokens_from_header': readServiceTokensFromHeader,
-           if (sameSiteCookieAttribute != null)
-             'same_site_cookie_attribute': sameSiteCookieAttribute,
+           'account_id': ?accountId?.encodeAs('id'),
+           'allow_authenticate_via_warp': ?allowAuthenticateViaWarp,
+           'allow_iframe': ?allowIframe,
+           'allowed_idps': ?allowedIdps,
+           'app_launcher_logo_url': ?appLauncherLogoUrl,
+           'app_launcher_visible': ?appLauncherVisible,
+           'auto_redirect_to_identity': ?autoRedirectToIdentity,
+           'bg_color': ?bgColor,
+           'custom_deny_message': ?customDenyMessage,
+           'custom_deny_url': ?customDenyUrl,
+           'custom_non_identity_deny_url': ?customNonIdentityDenyUrl,
+           'custom_pages': ?customPages,
+           'domain': ?domain,
+           'enable_binding_cookie': ?enableBindingCookie,
+           'header_bg_color': ?headerBgColor,
+           'http_only_cookie_attribute': ?httpOnlyCookieAttribute,
+           'logo_url': ?logoUrl,
+           'name': ?name,
+           'options_preflight_bypass': ?optionsPreflightBypass,
+           'path_cookie_attribute': ?pathCookieAttribute,
+           'read_service_tokens_from_header': ?readServiceTokensFromHeader,
+           'same_site_cookie_attribute': ?sameSiteCookieAttribute,
            ...?targets?.argMap,
-           if (serviceAuth401Redirect != null)
-             'service_auth_401_redirect': serviceAuth401Redirect,
-           if (sessionDuration != null) 'session_duration': sessionDuration,
-           if (skipAppLauncherLoginPage != null)
-             'skip_app_launcher_login_page': skipAppLauncherLoginPage,
-           if (skipInterstitial != null) 'skip_interstitial': skipInterstitial,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'service_auth_401_redirect': ?serviceAuth401Redirect,
+           'session_duration': ?sessionDuration,
+           'skip_app_launcher_login_page': ?skipAppLauncherLoginPage,
+           'skip_interstitial': ?skipInterstitial,
+           'tags': ?tags,
+           'type': ?type,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (corsHeaders != null)
              'cors_headers': TfArg.literal(corsHeaders.encode()),
            if (footerLinks != null)

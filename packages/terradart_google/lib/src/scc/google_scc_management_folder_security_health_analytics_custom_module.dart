@@ -54,13 +54,12 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfig {
   resourceSelector;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (recommendation != null) 'recommendation': recommendation!.toTfJson(),
-    if (severity != null) 'severity': severity!.toTfJson(),
-    if (customOutput != null) 'custom_output': customOutput!.encode(),
-    if (predicate != null) 'predicate': predicate!.encode(),
-    if (resourceSelector != null)
-      'resource_selector': resourceSelector!.encode(),
+    'description': ?description?.toTfJson(),
+    'recommendation': ?recommendation?.toTfJson(),
+    'severity': ?severity?.toTfJson(),
+    'custom_output': ?customOutput?.encode(),
+    'predicate': ?predicate?.encode(),
+    'resource_selector': ?resourceSelector?.encode(),
   };
 }
 
@@ -113,8 +112,8 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigCu
   valueExpression;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (valueExpression != null) 'value_expression': valueExpression!.encode(),
+    'name': ?name?.toTfJson(),
+    'value_expression': ?valueExpression?.encode(),
   };
 }
 
@@ -138,10 +137,10 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigCu
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -165,10 +164,10 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigPr
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -222,11 +221,11 @@ final class GoogleSccManagementFolderSecurityHealthAnalyticsCustomModule
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (enablementState != null) 'enablement_state': enablementState,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'enablement_state': ?enablementState,
            'folder': folder,
-           if (location != null) 'location': location,
+           'location': ?location,
            if (customConfig != null)
              'custom_config': TfArg.literal(customConfig.encode()),
          },

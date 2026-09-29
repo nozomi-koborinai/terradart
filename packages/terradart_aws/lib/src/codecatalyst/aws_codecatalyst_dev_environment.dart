@@ -30,8 +30,8 @@ final class CodecatalystDevEnvironmentIdes {
   final TfArg<String>? runtime;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (runtime != null) 'runtime': runtime!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'runtime': ?runtime?.toTfJson(),
   };
 }
 
@@ -60,7 +60,7 @@ final class CodecatalystDevEnvironmentRepositories {
   final TfArg<String> repositoryName;
 
   Map<String, Object?> encode() => {
-    if (branchName != null) 'branch_name': branchName!.toTfJson(),
+    'branch_name': ?branchName?.toTfJson(),
     'repository_name': repositoryName.toTfJson(),
   };
 }
@@ -87,12 +87,11 @@ final class AwsCodecatalystDevEnvironment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (alias != null) 'alias': alias,
-           if (inactivityTimeoutMinutes != null)
-             'inactivity_timeout_minutes': inactivityTimeoutMinutes,
+           'alias': ?alias,
+           'inactivity_timeout_minutes': ?inactivityTimeoutMinutes,
            'instance_type': instanceType,
            'project_name': projectName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'space_name': spaceName,
            'ides': TfArg.literal(ides.encode()),
            'persistent_storage': TfArg.literal(persistentStorage.encode()),

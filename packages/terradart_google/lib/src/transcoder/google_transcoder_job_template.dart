@@ -58,10 +58,9 @@ final class TranscoderJobTemplateConfig {
       'manifests': [for (final e in manifests!) e.encode()],
     if (muxStreams != null)
       'mux_streams': [for (final e in muxStreams!) e.encode()],
-    if (output != null) 'output': output!.encode(),
+    'output': ?output?.encode(),
     if (overlays != null) 'overlays': [for (final e in overlays!) e.encode()],
-    if (pubsubDestination != null)
-      'pubsub_destination': pubsubDestination!.encode(),
+    'pubsub_destination': ?pubsubDestination?.encode(),
   };
 }
 
@@ -74,8 +73,7 @@ final class TranscoderJobTemplateConfigAdBreaks {
   final TfArg<String>? startTimeOffset;
 
   Map<String, Object?> encode() => {
-    if (startTimeOffset != null)
-      'start_time_offset': startTimeOffset!.toTfJson(),
+    'start_time_offset': ?startTimeOffset?.toTfJson(),
   };
 }
 
@@ -96,10 +94,9 @@ final class TranscoderJobTemplateConfigEditList {
   final TfArg<String>? startTimeOffset;
 
   Map<String, Object?> encode() => {
-    if (inputs != null) 'inputs': inputs!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (startTimeOffset != null)
-      'start_time_offset': startTimeOffset!.toTfJson(),
+    'inputs': ?inputs?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'start_time_offset': ?startTimeOffset?.toTfJson(),
   };
 }
 
@@ -120,9 +117,9 @@ final class TranscoderJobTemplateConfigElementaryStreams {
   final TranscoderJobTemplateConfigElementaryStreamsVideoStream? videoStream;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (audioStream != null) 'audio_stream': audioStream!.encode(),
-    if (videoStream != null) 'video_stream': videoStream!.encode(),
+    'key': ?key?.toTfJson(),
+    'audio_stream': ?audioStream?.encode(),
+    'video_stream': ?videoStream?.encode(),
   };
 }
 
@@ -150,11 +147,10 @@ final class TranscoderJobTemplateConfigElementaryStreamsAudioStream {
 
   Map<String, Object?> encode() => {
     'bitrate_bps': bitrateBps.toTfJson(),
-    if (channelCount != null) 'channel_count': channelCount!.toTfJson(),
-    if (channelLayout != null) 'channel_layout': channelLayout!.toTfJson(),
-    if (codec != null) 'codec': codec!.toTfJson(),
-    if (sampleRateHertz != null)
-      'sample_rate_hertz': sampleRateHertz!.toTfJson(),
+    'channel_count': ?channelCount?.toTfJson(),
+    'channel_layout': ?channelLayout?.toTfJson(),
+    'codec': ?codec?.toTfJson(),
+    'sample_rate_hertz': ?sampleRateHertz?.toTfJson(),
   };
 }
 
@@ -166,7 +162,7 @@ final class TranscoderJobTemplateConfigElementaryStreamsVideoStream {
 
   final TranscoderJobTemplateConfigElementaryStreamsVideoStreamH264? h264;
 
-  Map<String, Object?> encode() => {if (h264 != null) 'h264': h264!.encode()};
+  Map<String, Object?> encode() => {'h264': ?h264?.encode()};
 }
 
 /// Typed helper for the `config.elementary_streams.video_stream.h264` block of
@@ -223,22 +219,20 @@ final class TranscoderJobTemplateConfigElementaryStreamsVideoStreamH264 {
 
   Map<String, Object?> encode() => {
     'bitrate_bps': bitrateBps.toTfJson(),
-    if (crfLevel != null) 'crf_level': crfLevel!.toTfJson(),
-    if (entropyCoder != null) 'entropy_coder': entropyCoder!.toTfJson(),
+    'crf_level': ?crfLevel?.toTfJson(),
+    'entropy_coder': ?entropyCoder?.toTfJson(),
     'frame_rate': frameRate.toTfJson(),
-    if (gopDuration != null) 'gop_duration': gopDuration!.toTfJson(),
-    if (heightPixels != null) 'height_pixels': heightPixels!.toTfJson(),
-    if (pixelFormat != null) 'pixel_format': pixelFormat!.toTfJson(),
-    if (preset != null) 'preset': preset!.toTfJson(),
-    if (profile != null) 'profile': profile!.toTfJson(),
-    if (rateControlMode != null)
-      'rate_control_mode': rateControlMode!.toTfJson(),
-    if (vbvFullnessBits != null)
-      'vbv_fullness_bits': vbvFullnessBits!.toTfJson(),
-    if (vbvSizeBits != null) 'vbv_size_bits': vbvSizeBits!.toTfJson(),
-    if (widthPixels != null) 'width_pixels': widthPixels!.toTfJson(),
-    if (hlg != null) 'hlg': hlg!.encode(),
-    if (sdr != null) 'sdr': sdr!.encode(),
+    'gop_duration': ?gopDuration?.toTfJson(),
+    'height_pixels': ?heightPixels?.toTfJson(),
+    'pixel_format': ?pixelFormat?.toTfJson(),
+    'preset': ?preset?.toTfJson(),
+    'profile': ?profile?.toTfJson(),
+    'rate_control_mode': ?rateControlMode?.toTfJson(),
+    'vbv_fullness_bits': ?vbvFullnessBits?.toTfJson(),
+    'vbv_size_bits': ?vbvSizeBits?.toTfJson(),
+    'width_pixels': ?widthPixels?.toTfJson(),
+    'hlg': ?hlg?.encode(),
+    'sdr': ?sdr?.encode(),
   };
 }
 
@@ -288,12 +282,11 @@ final class TranscoderJobTemplateConfigEncryptions {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (aes128 != null) 'aes128': aes128!.encode(),
-    if (drmSystems != null) 'drm_systems': drmSystems!.encode(),
-    if (mpegCenc != null) 'mpeg_cenc': mpegCenc!.encode(),
-    if (sampleAes != null) 'sample_aes': sampleAes!.encode(),
-    if (secretManagerKeySource != null)
-      'secret_manager_key_source': secretManagerKeySource!.encode(),
+    'aes128': ?aes128?.encode(),
+    'drm_systems': ?drmSystems?.encode(),
+    'mpeg_cenc': ?mpegCenc?.encode(),
+    'sample_aes': ?sampleAes?.encode(),
+    'secret_manager_key_source': ?secretManagerKeySource?.encode(),
   };
 }
 
@@ -326,10 +319,10 @@ final class TranscoderJobTemplateConfigEncryptionsDrmSystems {
   final TranscoderJobTemplateConfigEncryptionsDrmSystemsWidevine? widevine;
 
   Map<String, Object?> encode() => {
-    if (clearkey != null) 'clearkey': clearkey!.encode(),
-    if (fairplay != null) 'fairplay': fairplay!.encode(),
-    if (playready != null) 'playready': playready!.encode(),
-    if (widevine != null) 'widevine': widevine!.encode(),
+    'clearkey': ?clearkey?.encode(),
+    'fairplay': ?fairplay?.encode(),
+    'playready': ?playready?.encode(),
+    'widevine': ?widevine?.encode(),
   };
 }
 
@@ -413,8 +406,8 @@ final class TranscoderJobTemplateConfigInputs {
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -435,9 +428,9 @@ final class TranscoderJobTemplateConfigManifests {
   final TfArg<TranscoderJobTemplateConfigManifestsType>? type;
 
   Map<String, Object?> encode() => {
-    if (fileName != null) 'file_name': fileName!.toTfJson(),
-    if (muxStreams != null) 'mux_streams': muxStreams!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'file_name': ?fileName?.toTfJson(),
+    'mux_streams': ?muxStreams?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -478,13 +471,12 @@ final class TranscoderJobTemplateConfigMuxStreams {
   final TranscoderJobTemplateConfigMuxStreamsSegmentSettings? segmentSettings;
 
   Map<String, Object?> encode() => {
-    if (container != null) 'container': container!.toTfJson(),
-    if (elementaryStreams != null)
-      'elementary_streams': elementaryStreams!.toTfJson(),
-    if (encryptionId != null) 'encryption_id': encryptionId!.toTfJson(),
-    if (fileName != null) 'file_name': fileName!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (segmentSettings != null) 'segment_settings': segmentSettings!.encode(),
+    'container': ?container?.toTfJson(),
+    'elementary_streams': ?elementaryStreams?.toTfJson(),
+    'encryption_id': ?encryptionId?.toTfJson(),
+    'file_name': ?fileName?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'segment_settings': ?segmentSettings?.encode(),
   };
 }
 
@@ -499,8 +491,7 @@ final class TranscoderJobTemplateConfigMuxStreamsSegmentSettings {
   final TfArg<String>? segmentDuration;
 
   Map<String, Object?> encode() => {
-    if (segmentDuration != null)
-      'segment_duration': segmentDuration!.toTfJson(),
+    'segment_duration': ?segmentDuration?.toTfJson(),
   };
 }
 
@@ -512,7 +503,7 @@ final class TranscoderJobTemplateConfigOutput {
 
   final TfArg<String>? uri;
 
-  Map<String, Object?> encode() => {if (uri != null) 'uri': uri!.toTfJson()};
+  Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
 /// Typed helper for the `config.overlays` block of
@@ -528,7 +519,7 @@ final class TranscoderJobTemplateConfigOverlays {
   Map<String, Object?> encode() => {
     if (animations != null)
       'animations': [for (final e in animations!) e.encode()],
-    if (image != null) 'image': image!.encode(),
+    'image': ?image?.encode(),
   };
 }
 
@@ -541,9 +532,7 @@ final class TranscoderJobTemplateConfigOverlaysAnimations {
   final TranscoderJobTemplateConfigOverlaysAnimationsAnimationFade?
   animationFade;
 
-  Map<String, Object?> encode() => {
-    if (animationFade != null) 'animation_fade': animationFade!.encode(),
-  };
+  Map<String, Object?> encode() => {'animation_fade': ?animationFade?.encode()};
 }
 
 /// Typed helper for the `config.overlays.animations.animation_fade` block of
@@ -569,11 +558,10 @@ final class TranscoderJobTemplateConfigOverlaysAnimationsAnimationFade {
   final TranscoderJobTemplateConfigOverlaysAnimationsAnimationFadeXy? xy;
 
   Map<String, Object?> encode() => {
-    if (endTimeOffset != null) 'end_time_offset': endTimeOffset!.toTfJson(),
+    'end_time_offset': ?endTimeOffset?.toTfJson(),
     'fade_type': fadeType.toTfJson(),
-    if (startTimeOffset != null)
-      'start_time_offset': startTimeOffset!.toTfJson(),
-    if (xy != null) 'xy': xy!.encode(),
+    'start_time_offset': ?startTimeOffset?.toTfJson(),
+    'xy': ?xy?.encode(),
   };
 }
 
@@ -604,10 +592,7 @@ final class TranscoderJobTemplateConfigOverlaysAnimationsAnimationFadeXy {
 
   final TfArg<num>? y;
 
-  Map<String, Object?> encode() => {
-    if (x != null) 'x': x!.toTfJson(),
-    if (y != null) 'y': y!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'x': ?x?.toTfJson(), 'y': ?y?.toTfJson()};
 }
 
 /// Typed helper for the `config.overlays.image` block of
@@ -629,9 +614,7 @@ final class TranscoderJobTemplateConfigPubsubDestination {
 
   final RefTo<GooglePubsubTopic>? topic;
 
-  Map<String, Object?> encode() => {
-    if (topic != null) 'topic': topic!.encodeAs('id').toTfJson(),
-  };
+  Map<String, Object?> encode() => {'topic': ?topic?.encodeAs('id').toTfJson()};
 }
 
 /// Factory wrapper for `google_transcoder_job_template`.
@@ -691,9 +674,9 @@ final class GoogleTranscoderJobTemplate extends Resource {
            'job_template_id': jobTemplateId,
            'location': location,
            if (config != null) 'config': TfArg.literal(config.encode()),
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

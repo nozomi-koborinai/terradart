@@ -29,7 +29,7 @@ final class WafRuleGroupActivatedRule {
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'rule_id': ruleId.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     'action': action.encode(),
   };
 }
@@ -64,7 +64,7 @@ final class AwsWafRuleGroup extends Resource {
          argMap: {
            'metric_name': metricName,
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (activatedRule != null)
              'activated_rule': TfArg.literal([
                for (final e in activatedRule) e.encode(),

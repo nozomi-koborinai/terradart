@@ -108,16 +108,15 @@ final class ContainerAzureClusterControlPlane {
 
   Map<String, Object?> encode() => {
     'subnet_id': subnetId.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'version': version.toTfJson(),
-    if (vmSize != null) 'vm_size': vmSize!.toTfJson(),
-    if (databaseEncryption != null)
-      'database_encryption': databaseEncryption!.encode(),
-    if (mainVolume != null) 'main_volume': mainVolume!.encode(),
-    if (proxyConfig != null) 'proxy_config': proxyConfig!.encode(),
+    'vm_size': ?vmSize?.toTfJson(),
+    'database_encryption': ?databaseEncryption?.encode(),
+    'main_volume': ?mainVolume?.encode(),
+    'proxy_config': ?proxyConfig?.encode(),
     if (replicaPlacements != null)
       'replica_placements': [for (final e in replicaPlacements!) e.encode()],
-    if (rootVolume != null) 'root_volume': rootVolume!.encode(),
+    'root_volume': ?rootVolume?.encode(),
     'ssh_config': sshConfig.encode(),
   };
 }
@@ -143,9 +142,7 @@ final class ContainerAzureClusterControlPlaneMainVolume {
 
   final TfArg<num>? sizeGib;
 
-  Map<String, Object?> encode() => {
-    if (sizeGib != null) 'size_gib': sizeGib!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'size_gib': ?sizeGib?.toTfJson()};
 }
 
 /// Typed helper for the `control_plane.proxy_config` block of
@@ -194,9 +191,7 @@ final class ContainerAzureClusterControlPlaneRootVolume {
 
   final TfArg<num>? sizeGib;
 
-  Map<String, Object?> encode() => {
-    if (sizeGib != null) 'size_gib': sizeGib!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'size_gib': ?sizeGib?.toTfJson()};
 }
 
 /// Typed helper for the `control_plane.ssh_config` block of
@@ -220,9 +215,7 @@ final class ContainerAzureClusterFleet {
 
   final TfArg<String>? project;
 
-  Map<String, Object?> encode() => {
-    if (project != null) 'project': project!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'project': ?project?.toTfJson()};
 }
 
 /// Typed helper for the `networking` block of
@@ -299,10 +292,10 @@ final class GoogleContainerAzureCluster extends Resource {
              'azure_services_authentication': TfArg.literal(
                azureServicesAuthentication.encode(),
              ),
-           if (client != null) 'client': client,
-           if (description != null) 'description': description,
-           if (annotations != null) 'annotations': annotations,
-           if (project != null) 'project': project,
+           'client': ?client,
+           'description': ?description,
+           'annotations': ?annotations,
+           'project': ?project,
          },
        );
 

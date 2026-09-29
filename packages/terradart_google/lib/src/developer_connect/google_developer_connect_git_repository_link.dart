@@ -38,15 +38,15 @@ final class GoogleDeveloperConnectGitRepositoryLink extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (annotations != null) 'annotations': annotations,
+           'annotations': ?annotations,
            'clone_uri': cloneUri,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (etag != null) 'etag': etag,
+           'deletion_policy': ?deletionPolicy,
+           'etag': ?etag,
            'git_repository_link_id': gitRepositoryLinkId,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            'location': location,
            'parent_connection': parentConnection,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -25,10 +25,10 @@ final class DataCloudflareCustomOriginTrustStores extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (limit != null) 'limit': limit,
-           if (maxItems != null) 'max_items': maxItems,
-           if (offset != null) 'offset': offset,
-           if (zoneId != null) 'zone_id': zoneId,
+           'limit': ?limit,
+           'max_items': ?maxItems,
+           'offset': ?offset,
+           'zone_id': ?zoneId,
          },
        );
 

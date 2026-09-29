@@ -24,7 +24,7 @@ final class AwsProxyProtocolPolicy extends Resource {
          argMap: {
            'instance_ports': instancePorts,
            'load_balancer': loadBalancer,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

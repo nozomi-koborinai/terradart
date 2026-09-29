@@ -63,10 +63,9 @@ final class ApiGatewayStageCanarySettings {
 
   Map<String, Object?> encode() => {
     'deployment_id': deploymentId.toTfJson(),
-    if (percentTraffic != null) 'percent_traffic': percentTraffic!.toTfJson(),
-    if (stageVariableOverrides != null)
-      'stage_variable_overrides': stageVariableOverrides!.toTfJson(),
-    if (useStageCache != null) 'use_stage_cache': useStageCache!.toTfJson(),
+    'percent_traffic': ?percentTraffic?.toTfJson(),
+    'stage_variable_overrides': ?stageVariableOverrides?.toTfJson(),
+    'use_stage_cache': ?useStageCache?.toTfJson(),
   };
 }
 
@@ -97,22 +96,18 @@ final class AwsApiGatewayStage extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cacheClusterEnabled != null)
-             'cache_cluster_enabled': cacheClusterEnabled,
-           if (cacheClusterSize != null) 'cache_cluster_size': cacheClusterSize,
-           if (clientCertificateId != null)
-             'client_certificate_id': clientCertificateId,
+           'cache_cluster_enabled': ?cacheClusterEnabled,
+           'cache_cluster_size': ?cacheClusterSize,
+           'client_certificate_id': ?clientCertificateId,
            'deployment_id': deploymentId,
-           if (description != null) 'description': description,
-           if (documentationVersion != null)
-             'documentation_version': documentationVersion,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'documentation_version': ?documentationVersion,
+           'region': ?region,
            'rest_api_id': restApiId,
            'stage_name': stageName,
-           if (tags != null) 'tags': tags,
-           if (variables != null) 'variables': variables,
-           if (xrayTracingEnabled != null)
-             'xray_tracing_enabled': xrayTracingEnabled,
+           'tags': ?tags,
+           'variables': ?variables,
+           'xray_tracing_enabled': ?xrayTracingEnabled,
            if (accessLogSettings != null)
              'access_log_settings': TfArg.literal(accessLogSettings.encode()),
            if (canarySettings != null)

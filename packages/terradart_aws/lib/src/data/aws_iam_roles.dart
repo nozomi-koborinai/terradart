@@ -18,10 +18,7 @@ final class DataAwsIamRoles extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (nameRegex != null) 'name_regex': nameRegex,
-           if (pathPrefix != null) 'path_prefix': pathPrefix,
-         },
+         argMap: {'name_regex': ?nameRegex, 'path_prefix': ?pathPrefix},
        );
 
   @override

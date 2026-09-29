@@ -25,8 +25,8 @@ final class DataGoogleArtifactRegistryRepositoryIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
            'repository': repository,
          },
        );

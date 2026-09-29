@@ -28,8 +28,8 @@ final class DatazoneGlossaryTermTermRelations {
   final TfArg<List<Object?>>? isA;
 
   Map<String, Object?> encode() => {
-    if (classifies != null) 'classifies': classifies!.toTfJson(),
-    if (isA != null) 'is_a': isA!.toTfJson(),
+    'classifies': ?classifies?.toTfJson(),
+    'is_a': ?isA?.toTfJson(),
   };
 }
 
@@ -54,13 +54,13 @@ final class AwsDatazoneGlossaryTerm extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (domainIdentifier != null) 'domain_identifier': domainIdentifier,
+           'domain_identifier': ?domainIdentifier,
            'glossary_identifier': glossaryIdentifier,
-           if (longDescription != null) 'long_description': longDescription,
+           'long_description': ?longDescription,
            'name': name,
-           if (region != null) 'region': region,
-           if (shortDescription != null) 'short_description': shortDescription,
-           if (status != null) 'status': status,
+           'region': ?region,
+           'short_description': ?shortDescription,
+           'status': ?status,
            if (termRelations != null)
              'term_relations': TfArg.literal([
                for (final e in termRelations) e.encode(),

@@ -27,8 +27,8 @@ final class DataGoogleComposerUserWorkloadsConfigMap extends Data {
          argMap: {
            'environment': environment,
            'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

@@ -47,7 +47,7 @@ final class CodeconnectionsHostVpcConfiguration {
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tlsCertificate != null) 'tls_certificate': tlsCertificate!.toTfJson(),
+    'tls_certificate': ?tlsCertificate?.toTfJson(),
     'vpc_id': vpcId.encodeAs('id').toTfJson(),
   };
 }
@@ -74,8 +74,8 @@ final class AwsCodeconnectionsHost extends Resource {
            'name': name,
            'provider_endpoint': providerEndpoint,
            'provider_type': providerType,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (vpcConfiguration != null)
              'vpc_configuration': TfArg.literal([
                for (final e in vpcConfiguration) e.encode(),

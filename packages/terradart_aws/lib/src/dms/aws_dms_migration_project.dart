@@ -21,9 +21,8 @@ final class DmsMigrationProjectSchemaConversionApplicationAttributes {
   final TfArg<String>? s3BucketRoleArn;
 
   Map<String, Object?> encode() => {
-    if (s3BucketPath != null) 's3_bucket_path': s3BucketPath!.toTfJson(),
-    if (s3BucketRoleArn != null)
-      's3_bucket_role_arn': s3BucketRoleArn!.toTfJson(),
+    's3_bucket_path': ?s3BucketPath?.toTfJson(),
+    's3_bucket_role_arn': ?s3BucketRoleArn?.toTfJson(),
   };
 }
 
@@ -45,11 +44,8 @@ final class DmsMigrationProjectSourceDataProviderDescriptor {
 
   Map<String, Object?> encode() => {
     'data_provider_arn': dataProviderArn.toTfJson(),
-    if (secretsManagerAccessRoleArn != null)
-      'secrets_manager_access_role_arn': secretsManagerAccessRoleArn!
-          .toTfJson(),
-    if (secretsManagerSecretId != null)
-      'secrets_manager_secret_id': secretsManagerSecretId!.toTfJson(),
+    'secrets_manager_access_role_arn': ?secretsManagerAccessRoleArn?.toTfJson(),
+    'secrets_manager_secret_id': ?secretsManagerSecretId?.toTfJson(),
   };
 }
 
@@ -71,11 +67,8 @@ final class DmsMigrationProjectTargetDataProviderDescriptor {
 
   Map<String, Object?> encode() => {
     'data_provider_arn': dataProviderArn.toTfJson(),
-    if (secretsManagerAccessRoleArn != null)
-      'secrets_manager_access_role_arn': secretsManagerAccessRoleArn!
-          .toTfJson(),
-    if (secretsManagerSecretId != null)
-      'secrets_manager_secret_id': secretsManagerSecretId!.toTfJson(),
+    'secrets_manager_access_role_arn': ?secretsManagerAccessRoleArn?.toTfJson(),
+    'secrets_manager_secret_id': ?secretsManagerSecretId?.toTfJson(),
   };
 }
 
@@ -104,13 +97,12 @@ final class AwsDmsMigrationProject extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'instance_profile_arn': instanceProfileArn,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (transformationRules != null)
-             'transformation_rules': transformationRules,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
+           'transformation_rules': ?transformationRules,
            if (schemaConversionApplicationAttributes != null)
              'schema_conversion_application_attributes': TfArg.literal([
                for (final e in schemaConversionApplicationAttributes)

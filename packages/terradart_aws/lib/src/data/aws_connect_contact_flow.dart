@@ -24,12 +24,12 @@ final class DataAwsConnectContactFlow extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (contactFlowId != null) 'contact_flow_id': contactFlowId,
+           'contact_flow_id': ?contactFlowId,
            'instance_id': instanceId,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
+           'type': ?type,
          },
        );
 

@@ -25,7 +25,7 @@ final class AwsWorkspaceswebNetworkSettingsAssociation extends Resource {
          argMap: {
            'network_settings_arn': networkSettingsArn,
            'portal_arn': portalArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

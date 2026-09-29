@@ -43,24 +43,20 @@ final class AwsDevicefarmNetworkProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (downlinkBandwidthBits != null)
-             'downlink_bandwidth_bits': downlinkBandwidthBits,
-           if (downlinkDelayMs != null) 'downlink_delay_ms': downlinkDelayMs,
-           if (downlinkJitterMs != null) 'downlink_jitter_ms': downlinkJitterMs,
-           if (downlinkLossPercent != null)
-             'downlink_loss_percent': downlinkLossPercent,
+           'description': ?description,
+           'downlink_bandwidth_bits': ?downlinkBandwidthBits,
+           'downlink_delay_ms': ?downlinkDelayMs,
+           'downlink_jitter_ms': ?downlinkJitterMs,
+           'downlink_loss_percent': ?downlinkLossPercent,
            'name': name,
            'project_arn': projectArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
-           if (uplinkBandwidthBits != null)
-             'uplink_bandwidth_bits': uplinkBandwidthBits,
-           if (uplinkDelayMs != null) 'uplink_delay_ms': uplinkDelayMs,
-           if (uplinkJitterMs != null) 'uplink_jitter_ms': uplinkJitterMs,
-           if (uplinkLossPercent != null)
-             'uplink_loss_percent': uplinkLossPercent,
+           'region': ?region,
+           'tags': ?tags,
+           'type': ?type,
+           'uplink_bandwidth_bits': ?uplinkBandwidthBits,
+           'uplink_delay_ms': ?uplinkDelayMs,
+           'uplink_jitter_ms': ?uplinkJitterMs,
+           'uplink_loss_percent': ?uplinkLossPercent,
          },
        );
 

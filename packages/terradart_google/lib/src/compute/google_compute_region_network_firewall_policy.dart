@@ -40,10 +40,10 @@ final class GoogleComputeRegionNetworkFirewallPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
-           if (policyType != null) 'policy_type': policyType,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'description': ?description,
+           'policy_type': ?policyType,
+           'project': ?project,
          },
        );
 

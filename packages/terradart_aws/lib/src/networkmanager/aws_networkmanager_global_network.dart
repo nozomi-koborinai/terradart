@@ -20,10 +20,7 @@ final class AwsNetworkmanagerGlobalNetwork extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (description != null) 'description': description,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'description': ?description, 'tags': ?tags},
        );
 
   @override

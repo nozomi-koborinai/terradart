@@ -27,7 +27,7 @@ final class DataGoogleMonitoringIstioCanonicalService extends Data {
            'canonical_service': canonicalService,
            'canonical_service_namespace': canonicalServiceNamespace,
            'mesh_uid': meshUid,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

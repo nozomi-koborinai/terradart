@@ -95,11 +95,10 @@ final class SfnStateMachineEncryptionConfiguration {
   final TfArg<SfnStateMachineEncryptionConfigurationType>? type;
 
   Map<String, Object?> encode() => {
-    if (kmsDataKeyReusePeriodSeconds != null)
-      'kms_data_key_reuse_period_seconds': kmsDataKeyReusePeriodSeconds!
-          .toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'kms_data_key_reuse_period_seconds': ?kmsDataKeyReusePeriodSeconds
+        ?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -130,10 +129,9 @@ final class SfnStateMachineLoggingConfiguration {
   final TfArg<String>? logDestination;
 
   Map<String, Object?> encode() => {
-    if (includeExecutionData != null)
-      'include_execution_data': includeExecutionData!.toTfJson(),
-    if (level != null) 'level': level!.toTfJson(),
-    if (logDestination != null) 'log_destination': logDestination!.toTfJson(),
+    'include_execution_data': ?includeExecutionData?.toTfJson(),
+    'level': ?level?.toTfJson(),
+    'log_destination': ?logDestination?.toTfJson(),
   };
 }
 
@@ -157,9 +155,7 @@ final class SfnStateMachineTracingConfiguration {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_sfn_state_machine`.
@@ -187,11 +183,11 @@ final class AwsSfnStateMachine extends Resource {
          argMap: {
            'definition': definition,
            ...?name?.argMap,
-           if (publish != null) 'publish': publish,
-           if (region != null) 'region': region,
+           'publish': ?publish,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'tags': ?tags,
+           'type': ?type,
            if (encryptionConfiguration != null)
              'encryption_configuration': TfArg.literal(
                encryptionConfiguration.encode(),

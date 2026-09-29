@@ -67,7 +67,7 @@ final class ApiGatewayDomainNameEndpointConfiguration {
   final List<TfArg<ApiGatewayDomainNameEndpointConfigurationTypes>> types;
 
   Map<String, Object?> encode() => {
-    if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
+    'ip_address_type': ?ipAddressType?.toTfJson(),
     'types': [for (final e in types) e.toTfJson()],
   };
 }
@@ -111,8 +111,7 @@ final class ApiGatewayDomainNameMutualTlsAuthentication {
 
   Map<String, Object?> encode() => {
     'truststore_uri': truststoreUri.toTfJson(),
-    if (truststoreVersion != null)
-      'truststore_version': truststoreVersion!.toTfJson(),
+    'truststore_version': ?truststoreVersion?.toTfJson(),
   };
 }
 
@@ -146,27 +145,22 @@ final class AwsApiGatewayDomainName extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (certificateArn != null) 'certificate_arn': certificateArn,
-           if (certificateBody != null) 'certificate_body': certificateBody,
-           if (certificateChain != null) 'certificate_chain': certificateChain,
-           if (certificateName != null) 'certificate_name': certificateName,
-           if (certificatePrivateKey != null)
-             'certificate_private_key': certificatePrivateKey,
+           'certificate_arn': ?certificateArn,
+           'certificate_body': ?certificateBody,
+           'certificate_chain': ?certificateChain,
+           'certificate_name': ?certificateName,
+           'certificate_private_key': ?certificatePrivateKey,
            'domain_name': domainName,
-           if (endpointAccessMode != null)
-             'endpoint_access_mode': endpointAccessMode,
-           if (ownershipVerificationCertificateArn != null)
-             'ownership_verification_certificate_arn':
-                 ownershipVerificationCertificateArn,
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
-           if (regionalCertificateArn != null)
-             'regional_certificate_arn': regionalCertificateArn,
-           if (regionalCertificateName != null)
-             'regional_certificate_name': regionalCertificateName,
-           if (routingMode != null) 'routing_mode': routingMode,
-           if (securityPolicy != null) 'security_policy': securityPolicy,
-           if (tags != null) 'tags': tags,
+           'endpoint_access_mode': ?endpointAccessMode,
+           'ownership_verification_certificate_arn':
+               ?ownershipVerificationCertificateArn,
+           'policy': ?policy,
+           'region': ?region,
+           'regional_certificate_arn': ?regionalCertificateArn,
+           'regional_certificate_name': ?regionalCertificateName,
+           'routing_mode': ?routingMode,
+           'security_policy': ?securityPolicy,
+           'tags': ?tags,
            if (endpointConfiguration != null)
              'endpoint_configuration': TfArg.literal(
                endpointConfiguration.encode(),

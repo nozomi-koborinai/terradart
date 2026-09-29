@@ -24,9 +24,9 @@ final class DataCloudflareZeroTrustResourceLibraryCategories extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (limit != null) 'limit': limit,
-           if (maxItems != null) 'max_items': maxItems,
-           if (offset != null) 'offset': offset,
+           'limit': ?limit,
+           'max_items': ?maxItems,
+           'offset': ?offset,
          },
        );
 

@@ -32,7 +32,7 @@ final class GoogleHealthcareDicomStoreIamBinding extends Resource {
            'dicom_store_id': dicomStoreId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

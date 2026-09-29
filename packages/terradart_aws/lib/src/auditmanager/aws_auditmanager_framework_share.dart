@@ -24,11 +24,11 @@ final class AwsAuditmanagerFrameworkShare extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'destination_account': destinationAccount,
            'destination_region': destinationRegion,
            'framework_id': frameworkId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

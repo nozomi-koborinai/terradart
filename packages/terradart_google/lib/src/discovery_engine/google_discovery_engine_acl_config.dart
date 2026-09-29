@@ -21,9 +21,8 @@ final class DiscoveryEngineAclConfigIdpConfig {
   final DiscoveryEngineAclConfigIdpConfigExternalIdpConfig? externalIdpConfig;
 
   Map<String, Object?> encode() => {
-    if (idpType != null) 'idp_type': idpType!.toTfJson(),
-    if (externalIdpConfig != null)
-      'external_idp_config': externalIdpConfig!.encode(),
+    'idp_type': ?idpType?.toTfJson(),
+    'external_idp_config': ?externalIdpConfig?.encode(),
   };
 }
 
@@ -48,8 +47,7 @@ final class DiscoveryEngineAclConfigIdpConfigExternalIdpConfig {
   final TfArg<String>? workforcePoolName;
 
   Map<String, Object?> encode() => {
-    if (workforcePoolName != null)
-      'workforce_pool_name': workforcePoolName!.toTfJson(),
+    'workforce_pool_name': ?workforcePoolName?.toTfJson(),
   };
 }
 
@@ -85,7 +83,7 @@ final class GoogleDiscoveryEngineAclConfig extends Resource {
            'location': location,
            if (idpConfig != null)
              'idp_config': TfArg.literal(idpConfig.encode()),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

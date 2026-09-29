@@ -20,12 +20,7 @@ final class DataAwsServiceDiscoveryDnsNamespace extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           'type': type,
-         },
+         argMap: {'name': name, 'region': ?region, 'tags': ?tags, 'type': type},
        );
 
   @override

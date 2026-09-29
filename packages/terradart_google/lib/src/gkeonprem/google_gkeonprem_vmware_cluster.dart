@@ -94,11 +94,10 @@ final class GkeonpremVmwareClusterControlPlaneNode {
   autoResizeConfig;
 
   Map<String, Object?> encode() => {
-    if (cpus != null) 'cpus': cpus!.toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
-    if (replicas != null) 'replicas': replicas!.toTfJson(),
-    if (autoResizeConfig != null)
-      'auto_resize_config': autoResizeConfig!.encode(),
+    'cpus': ?cpus?.toTfJson(),
+    'memory': ?memory?.toTfJson(),
+    'replicas': ?replicas?.toTfJson(),
+    'auto_resize_config': ?autoResizeConfig?.encode(),
   };
 }
 
@@ -132,12 +131,9 @@ final class GkeonpremVmwareClusterDataplaneV2 {
   final TfArg<bool>? windowsDataplaneV2Enabled;
 
   Map<String, Object?> encode() => {
-    if (advancedNetworking != null)
-      'advanced_networking': advancedNetworking!.toTfJson(),
-    if (dataplaneV2Enabled != null)
-      'dataplane_v2_enabled': dataplaneV2Enabled!.toTfJson(),
-    if (windowsDataplaneV2Enabled != null)
-      'windows_dataplane_v2_enabled': windowsDataplaneV2Enabled!.toTfJson(),
+    'advanced_networking': ?advancedNetworking?.toTfJson(),
+    'dataplane_v2_enabled': ?dataplaneV2Enabled?.toTfJson(),
+    'windows_dataplane_v2_enabled': ?windowsDataplaneV2Enabled?.toTfJson(),
   };
 }
 
@@ -156,7 +152,7 @@ final class GkeonpremVmwareClusterLoadBalancer {
 
   Map<String, Object?> encode() => {
     ...lbConfig.encode(),
-    if (vipConfig != null) 'vip_config': vipConfig!.encode(),
+    'vip_config': ?vipConfig?.encode(),
   };
 }
 
@@ -253,9 +249,9 @@ final class GkeonpremVmwareClusterLoadBalancerF5Config {
   final TfArg<String>? snatPool;
 
   Map<String, Object?> encode() => {
-    if (address != null) 'address': address!.toTfJson(),
-    if (partition != null) 'partition': partition!.toTfJson(),
-    if (snatPool != null) 'snat_pool': snatPool!.toTfJson(),
+    'address': ?address?.toTfJson(),
+    'partition': ?partition?.toTfJson(),
+    'snat_pool': ?snatPool?.toTfJson(),
   };
 }
 
@@ -279,14 +275,10 @@ final class GkeonpremVmwareClusterLoadBalancerManualLbConfig {
   final TfArg<num>? konnectivityServerNodePort;
 
   Map<String, Object?> encode() => {
-    if (controlPlaneNodePort != null)
-      'control_plane_node_port': controlPlaneNodePort!.toTfJson(),
-    if (ingressHttpNodePort != null)
-      'ingress_http_node_port': ingressHttpNodePort!.toTfJson(),
-    if (ingressHttpsNodePort != null)
-      'ingress_https_node_port': ingressHttpsNodePort!.toTfJson(),
-    if (konnectivityServerNodePort != null)
-      'konnectivity_server_node_port': konnectivityServerNodePort!.toTfJson(),
+    'control_plane_node_port': ?controlPlaneNodePort?.toTfJson(),
+    'ingress_http_node_port': ?ingressHttpNodePort?.toTfJson(),
+    'ingress_https_node_port': ?ingressHttpsNodePort?.toTfJson(),
+    'konnectivity_server_node_port': ?konnectivityServerNodePort?.toTfJson(),
   };
 }
 
@@ -327,8 +319,8 @@ final class GkeonpremVmwareClusterLoadBalancerMetalLbConfigAddressPools {
 
   Map<String, Object?> encode() => {
     'addresses': addresses.toTfJson(),
-    if (avoidBuggyIps != null) 'avoid_buggy_ips': avoidBuggyIps!.toTfJson(),
-    if (manualAssign != null) 'manual_assign': manualAssign!.toTfJson(),
+    'avoid_buggy_ips': ?avoidBuggyIps?.toTfJson(),
+    'manual_assign': ?manualAssign?.toTfJson(),
     'pool': pool.toTfJson(),
   };
 }
@@ -347,9 +339,8 @@ final class GkeonpremVmwareClusterLoadBalancerVipConfig {
   final TfArg<String>? ingressVip;
 
   Map<String, Object?> encode() => {
-    if (controlPlaneVip != null)
-      'control_plane_vip': controlPlaneVip!.toTfJson(),
-    if (ingressVip != null) 'ingress_vip': ingressVip!.toTfJson(),
+    'control_plane_vip': ?controlPlaneVip?.toTfJson(),
+    'ingress_vip': ?ingressVip?.toTfJson(),
   };
 }
 
@@ -382,11 +373,10 @@ final class GkeonpremVmwareClusterNetworkConfig {
   Map<String, Object?> encode() => {
     'pod_address_cidr_blocks': podAddressCidrBlocks.toTfJson(),
     'service_address_cidr_blocks': serviceAddressCidrBlocks.toTfJson(),
-    if (vcenterNetwork != null) 'vcenter_network': vcenterNetwork!.toTfJson(),
-    if (controlPlaneV2Config != null)
-      'control_plane_v2_config': controlPlaneV2Config!.encode(),
+    'vcenter_network': ?vcenterNetwork?.toTfJson(),
+    'control_plane_v2_config': ?controlPlaneV2Config?.encode(),
     ...ipConfig.encode(),
-    if (hostConfig != null) 'host_config': hostConfig!.encode(),
+    'host_config': ?hostConfig?.encode(),
   };
 }
 
@@ -459,8 +449,7 @@ final class GkeonpremVmwareClusterNetworkConfigControlPlaneV2Config {
   controlPlaneIpBlock;
 
   Map<String, Object?> encode() => {
-    if (controlPlaneIpBlock != null)
-      'control_plane_ip_block': controlPlaneIpBlock!.encode(),
+    'control_plane_ip_block': ?controlPlaneIpBlock?.encode(),
   };
 }
 
@@ -484,8 +473,8 @@ final class GkeonpremVmwareClusterNetworkConfigControlPlaneV2ConfigControlPlaneI
   ips;
 
   Map<String, Object?> encode() => {
-    if (gateway != null) 'gateway': gateway!.toTfJson(),
-    if (netmask != null) 'netmask': netmask!.toTfJson(),
+    'gateway': ?gateway?.toTfJson(),
+    'netmask': ?netmask?.toTfJson(),
     if (ips != null) 'ips': [for (final e in ips!) e.encode()],
   };
 }
@@ -504,8 +493,8 @@ final class GkeonpremVmwareClusterNetworkConfigControlPlaneV2ConfigControlPlaneI
   final TfArg<String>? ip;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (ip != null) 'ip': ip!.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'ip': ?ip?.toTfJson(),
   };
 }
 
@@ -539,10 +528,9 @@ final class GkeonpremVmwareClusterNetworkConfigHostConfig {
   final TfArg<List<Object?>>? ntpServers;
 
   Map<String, Object?> encode() => {
-    if (dnsSearchDomains != null)
-      'dns_search_domains': dnsSearchDomains!.toTfJson(),
-    if (dnsServers != null) 'dns_servers': dnsServers!.toTfJson(),
-    if (ntpServers != null) 'ntp_servers': ntpServers!.toTfJson(),
+    'dns_search_domains': ?dnsSearchDomains?.toTfJson(),
+    'dns_servers': ?dnsServers?.toTfJson(),
+    'ntp_servers': ?ntpServers?.toTfJson(),
   };
 }
 
@@ -599,7 +587,7 @@ final class GkeonpremVmwareClusterNetworkConfigStaticIpConfigIpBlocksIps {
   final TfArg<String> ip;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
     'ip': ip.toTfJson(),
   };
 }
@@ -626,8 +614,7 @@ final class GkeonpremVmwareClusterUpgradePolicy {
   final TfArg<bool>? controlPlaneOnly;
 
   Map<String, Object?> encode() => {
-    if (controlPlaneOnly != null)
-      'control_plane_only': controlPlaneOnly!.toTfJson(),
+    'control_plane_only': ?controlPlaneOnly?.toTfJson(),
   };
 }
 
@@ -660,14 +647,13 @@ final class GkeonpremVmwareClusterVcenter {
   final TfArg<String>? storagePolicyName;
 
   Map<String, Object?> encode() => {
-    if (caCertData != null) 'ca_cert_data': caCertData!.toTfJson(),
-    if (cluster != null) 'cluster': cluster!.toTfJson(),
-    if (datacenter != null) 'datacenter': datacenter!.toTfJson(),
-    if (datastore != null) 'datastore': datastore!.toTfJson(),
-    if (folder != null) 'folder': folder!.toTfJson(),
-    if (resourcePool != null) 'resource_pool': resourcePool!.toTfJson(),
-    if (storagePolicyName != null)
-      'storage_policy_name': storagePolicyName!.toTfJson(),
+    'ca_cert_data': ?caCertData?.toTfJson(),
+    'cluster': ?cluster?.toTfJson(),
+    'datacenter': ?datacenter?.toTfJson(),
+    'datastore': ?datastore?.toTfJson(),
+    'folder': ?folder?.toTfJson(),
+    'resource_pool': ?resourcePool?.toTfJson(),
+    'storage_policy_name': ?storagePolicyName?.toTfJson(),
   };
 }
 
@@ -724,7 +710,7 @@ final class GoogleGkeonpremVmwareCluster extends Resource {
            'location': location,
            'on_prem_version': onPremVersion,
            'admin_cluster_membership': adminClusterMembership,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (networkConfig != null)
              'network_config': TfArg.literal(networkConfig.encode()),
            'control_plane_node': TfArg.literal(controlPlaneNode.encode()),
@@ -742,18 +728,14 @@ final class GoogleGkeonpremVmwareCluster extends Resource {
              'dataplane_v2': TfArg.literal(dataplaneV2.encode()),
            if (upgradePolicy != null)
              'upgrade_policy': TfArg.literal(upgradePolicy.encode()),
-           if (enableControlPlaneV2 != null)
-             'enable_control_plane_v2': enableControlPlaneV2,
-           if (enableAdvancedCluster != null)
-             'enable_advanced_cluster': enableAdvancedCluster,
-           if (disableBundledIngress != null)
-             'disable_bundled_ingress': disableBundledIngress,
-           if (vmTrackingEnabled != null)
-             'vm_tracking_enabled': vmTrackingEnabled,
-           if (skipValidations != null) 'skip_validations': skipValidations,
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'enable_control_plane_v2': ?enableControlPlaneV2,
+           'enable_advanced_cluster': ?enableAdvancedCluster,
+           'disable_bundled_ingress': ?disableBundledIngress,
+           'vm_tracking_enabled': ?vmTrackingEnabled,
+           'skip_validations': ?skipValidations,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

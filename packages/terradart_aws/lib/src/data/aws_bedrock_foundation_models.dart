@@ -22,12 +22,11 @@ final class DataAwsBedrockFoundationModels extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (byCustomizationType != null)
-             'by_customization_type': byCustomizationType,
-           if (byInferenceType != null) 'by_inference_type': byInferenceType,
-           if (byOutputModality != null) 'by_output_modality': byOutputModality,
-           if (byProvider != null) 'by_provider': byProvider,
-           if (region != null) 'region': region,
+           'by_customization_type': ?byCustomizationType,
+           'by_inference_type': ?byInferenceType,
+           'by_output_modality': ?byOutputModality,
+           'by_provider': ?byProvider,
+           'region': ?region,
          },
        );
 

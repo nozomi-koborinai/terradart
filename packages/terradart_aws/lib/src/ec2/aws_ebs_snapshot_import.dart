@@ -31,10 +31,10 @@ final class EbsSnapshotImportClientData {
   final TfArg<String>? uploadStart;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
-    if (uploadEnd != null) 'upload_end': uploadEnd!.toTfJson(),
-    if (uploadSize != null) 'upload_size': uploadSize!.toTfJson(),
-    if (uploadStart != null) 'upload_start': uploadStart!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
+    'upload_end': ?uploadEnd?.toTfJson(),
+    'upload_size': ?uploadSize?.toTfJson(),
+    'upload_start': ?uploadStart?.toTfJson(),
   };
 }
 
@@ -55,7 +55,7 @@ final class EbsSnapshotImportDiskContainer {
   final EbsSnapshotImportDiskContainerSource source;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'format': format.toTfJson(),
     ...source.encode(),
   };
@@ -165,16 +165,15 @@ final class AwsEbsSnapshotImport extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (encrypted != null) 'encrypted': encrypted,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (permanentRestore != null) 'permanent_restore': permanentRestore,
-           if (region != null) 'region': region,
-           if (roleName != null) 'role_name': roleName.encodeAs('name'),
-           if (storageTier != null) 'storage_tier': storageTier,
-           if (tags != null) 'tags': tags,
-           if (temporaryRestoreDays != null)
-             'temporary_restore_days': temporaryRestoreDays,
+           'description': ?description,
+           'encrypted': ?encrypted,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'permanent_restore': ?permanentRestore,
+           'region': ?region,
+           'role_name': ?roleName?.encodeAs('name'),
+           'storage_tier': ?storageTier,
+           'tags': ?tags,
+           'temporary_restore_days': ?temporaryRestoreDays,
            if (clientData != null)
              'client_data': TfArg.literal(clientData.encode()),
            'disk_container': TfArg.literal(diskContainer.encode()),

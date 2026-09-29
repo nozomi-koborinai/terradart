@@ -21,10 +21,9 @@ final class DataAwsAccountaccessApplication extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (identityCenterInstanceArn != null)
-             'identity_center_instance_arn': identityCenterInstanceArn,
-           if (region != null) 'region': region,
+           'arn': ?arn,
+           'identity_center_instance_arn': ?identityCenterInstanceArn,
+           'region': ?region,
          },
        );
 

@@ -37,9 +37,9 @@ final class GoogleIapAgentRegistryMcpServerIamMember extends Resource {
            'mcp_server_id': mcpServerId,
            'role': role,
            'member': member,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'location': ?location,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

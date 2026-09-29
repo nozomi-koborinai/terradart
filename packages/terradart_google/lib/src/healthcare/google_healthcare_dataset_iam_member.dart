@@ -26,7 +26,7 @@ final class GoogleHealthcareDatasetIamMember extends Resource {
            'dataset_id': datasetId,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

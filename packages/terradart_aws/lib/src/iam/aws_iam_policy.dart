@@ -82,13 +82,12 @@ final class AwsIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (delayAfterPolicyCreationInMs != null)
-             'delay_after_policy_creation_in_ms': delayAfterPolicyCreationInMs,
-           if (description != null) 'description': description,
+           'delay_after_policy_creation_in_ms': ?delayAfterPolicyCreationInMs,
+           'description': ?description,
            ...?name?.argMap,
-           if (path != null) 'path': path,
+           'path': ?path,
            'policy': policy,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

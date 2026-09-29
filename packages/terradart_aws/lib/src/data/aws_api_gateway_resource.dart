@@ -20,11 +20,7 @@ final class DataAwsApiGatewayResource extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'path': path,
-           if (region != null) 'region': region,
-           'rest_api_id': restApiId,
-         },
+         argMap: {'path': path, 'region': ?region, 'rest_api_id': restApiId},
        );
 
   @override

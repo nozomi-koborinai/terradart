@@ -66,12 +66,10 @@ final class SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConf
   final TfArg<String> targetRoleArn;
 
   Map<String, Object?> encode() => {
-    if (authorizationApiKeyName != null)
-      'authorization_api_key_name': authorizationApiKeyName!.toTfJson(),
-    if (authorizationApiKeyValue != null)
-      'authorization_api_key_value': authorizationApiKeyValue!.toTfJson(),
+    'authorization_api_key_name': ?authorizationApiKeyName?.toTfJson(),
+    'authorization_api_key_value': ?authorizationApiKeyValue?.toTfJson(),
     'endpoint': endpoint.toTfJson(),
-    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
+    'http_method': ?httpMethod?.toTfJson(),
     'target_role_arn': targetRoleArn.toTfJson(),
   };
 }
@@ -114,7 +112,7 @@ final class AwsSecuritylakeSubscriberNotification extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'subscriber_id': subscriberId,
            if (configuration != null)
              'configuration': TfArg.literal([

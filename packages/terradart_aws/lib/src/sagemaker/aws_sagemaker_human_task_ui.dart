@@ -15,9 +15,7 @@ final class SagemakerHumanTaskUiUiTemplate {
 
   final TfArg<String>? content;
 
-  Map<String, Object?> encode() => {
-    if (content != null) 'content': content!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'content': ?content?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_sagemaker_human_task_ui`.
@@ -38,8 +36,8 @@ final class AwsSagemakerHumanTaskUi extends Resource {
          terraformType: tfType,
          argMap: {
            'human_task_ui_name': humanTaskUiName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'ui_template': TfArg.literal(uiTemplate.encode()),
          },
        );

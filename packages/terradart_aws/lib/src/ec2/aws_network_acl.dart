@@ -28,11 +28,11 @@ final class AwsNetworkAcl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (egress != null) 'egress': egress,
-           if (ingress != null) 'ingress': ingress,
-           if (region != null) 'region': region,
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'egress': ?egress,
+           'ingress': ?ingress,
+           'region': ?region,
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

@@ -33,7 +33,7 @@ final class GoogleServiceDirectoryNamespaceIamBinding extends Resource {
            'name': name,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

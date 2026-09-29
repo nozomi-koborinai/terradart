@@ -136,15 +136,14 @@ final class GoogleBigqueryCapacityCommitment extends Resource {
          terraformType: tfType,
          argMap: {
            'capacity_commitment_id': capacityCommitmentId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'slot_count': slotCount,
            'plan': plan,
-           if (renewalPlan != null) 'renewal_plan': renewalPlan,
-           if (edition != null) 'edition': edition,
-           if (enforceSingleAdminProjectPerOrg != null)
-             'enforce_single_admin_project_per_org':
-                 enforceSingleAdminProjectPerOrg,
-           if (project != null) 'project': project,
+           'renewal_plan': ?renewalPlan,
+           'edition': ?edition,
+           'enforce_single_admin_project_per_org':
+               ?enforceSingleAdminProjectPerOrg,
+           'project': ?project,
          },
        );
 

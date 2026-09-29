@@ -40,12 +40,11 @@ final class GoogleTagsTagKey extends Resource {
          argMap: {
            'short_name': shortName,
            'parent': parent,
-           if (description != null) 'description': description,
-           if (purpose != null) 'purpose': purpose,
-           if (purposeData != null) 'purpose_data': purposeData,
-           if (allowedValuesRegex != null)
-             'allowed_values_regex': allowedValuesRegex,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'purpose': ?purpose,
+           'purpose_data': ?purposeData,
+           'allowed_values_regex': ?allowedValuesRegex,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

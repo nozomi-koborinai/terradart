@@ -24,10 +24,10 @@ final class AwsAthenaPreparedStatement extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
            'query_statement': queryStatement,
-           if (region != null) 'region': region,
+           'region': ?region,
            'workgroup': workgroup,
          },
        );

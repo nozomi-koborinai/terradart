@@ -69,12 +69,12 @@ final class GooglePubsubLiteSubscription extends Resource {
          argMap: {
            'name': name,
            'topic': topic,
-           if (region != null) 'region': region,
-           if (zone != null) 'zone': zone,
+           'region': ?region,
+           'zone': ?zone,
            if (deliveryConfig != null)
              'delivery_config': TfArg.literal(deliveryConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

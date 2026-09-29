@@ -28,10 +28,9 @@ final class MagicTransitConnectorDevice {
   final TfArg<String>? serialNumber;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (provisionLicense != null)
-      'provision_license': provisionLicense!.toTfJson(),
-    if (serialNumber != null) 'serial_number': serialNumber!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'provision_license': ?provisionLicense?.toTfJson(),
+    'serial_number': ?serialNumber?.toTfJson(),
   };
 }
 
@@ -56,13 +55,11 @@ final class CloudflareMagicTransitConnector extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (activated != null) 'activated': activated,
-           if (interruptWindowDurationHours != null)
-             'interrupt_window_duration_hours': interruptWindowDurationHours,
-           if (interruptWindowHourOfDay != null)
-             'interrupt_window_hour_of_day': interruptWindowHourOfDay,
-           if (notes != null) 'notes': notes,
-           if (timezone != null) 'timezone': timezone,
+           'activated': ?activated,
+           'interrupt_window_duration_hours': ?interruptWindowDurationHours,
+           'interrupt_window_hour_of_day': ?interruptWindowHourOfDay,
+           'notes': ?notes,
+           'timezone': ?timezone,
            'device': TfArg.literal(device.encode()),
          },
        );

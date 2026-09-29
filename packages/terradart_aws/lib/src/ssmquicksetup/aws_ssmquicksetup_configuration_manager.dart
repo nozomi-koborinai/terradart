@@ -30,15 +30,13 @@ final class SsmquicksetupConfigurationManagerConfigurationDefinition {
   final TfArg<String>? typeVersion;
 
   Map<String, Object?> encode() => {
-    if (localDeploymentAdministrationRoleArn != null)
-      'local_deployment_administration_role_arn':
-          localDeploymentAdministrationRoleArn!.toTfJson(),
-    if (localDeploymentExecutionRoleName != null)
-      'local_deployment_execution_role_name': localDeploymentExecutionRoleName!
-          .toTfJson(),
+    'local_deployment_administration_role_arn':
+        ?localDeploymentAdministrationRoleArn?.toTfJson(),
+    'local_deployment_execution_role_name': ?localDeploymentExecutionRoleName
+        ?.toTfJson(),
     'parameters': parameters.toTfJson(),
     'type': type.toTfJson(),
-    if (typeVersion != null) 'type_version': typeVersion!.toTfJson(),
+    'type_version': ?typeVersion?.toTfJson(),
   };
 }
 
@@ -61,10 +59,10 @@ final class AwsSsmquicksetupConfigurationManager extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (configurationDefinition != null)
              'configuration_definition': TfArg.literal([
                for (final e in configurationDefinition) e.encode(),

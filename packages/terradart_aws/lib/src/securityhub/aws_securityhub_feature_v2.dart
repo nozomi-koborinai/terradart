@@ -43,7 +43,7 @@ final class AwsSecurityhubFeatureV2 extends Resource {
          argMap: {
            'feature_name': featureName,
            'feature_status': featureStatus,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

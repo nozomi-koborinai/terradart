@@ -18,10 +18,7 @@ final class DataAwsSsoadminPermissionSets extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'instance_arn': instanceArn,
-           if (region != null) 'region': region,
-         },
+         argMap: {'instance_arn': instanceArn, 'region': ?region},
        );
 
   @override

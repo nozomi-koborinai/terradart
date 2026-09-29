@@ -43,10 +43,10 @@ final class CloudAssetFolderFeedCondition {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -107,11 +107,11 @@ final class GoogleCloudAssetFolderFeed extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (assetNames != null) 'asset_names': assetNames,
-           if (assetTypes != null) 'asset_types': assetTypes,
+           'asset_names': ?assetNames,
+           'asset_types': ?assetTypes,
            'billing_project': billingProject,
-           if (contentType != null) 'content_type': contentType,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'content_type': ?contentType,
+           'deletion_policy': ?deletionPolicy,
            'feed_id': feedId,
            'folder': folder,
            if (condition != null)

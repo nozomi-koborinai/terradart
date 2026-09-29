@@ -25,10 +25,7 @@ final class DataCloudflareByoIpPrefix extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'prefix_id': prefixId,
-         },
+         argMap: {'account_id': ?accountId, 'prefix_id': prefixId},
        );
 
   @override

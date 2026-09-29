@@ -25,13 +25,13 @@ final class DataAwsAcmCertificate extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (domain != null) 'domain': domain,
-           if (keyTypes != null) 'key_types': keyTypes,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (region != null) 'region': region,
-           if (statuses != null) 'statuses': statuses,
-           if (tags != null) 'tags': tags,
-           if (types != null) 'types': types,
+           'domain': ?domain,
+           'key_types': ?keyTypes,
+           'most_recent': ?mostRecent,
+           'region': ?region,
+           'statuses': ?statuses,
+           'tags': ?tags,
+           'types': ?types,
          },
        );
 

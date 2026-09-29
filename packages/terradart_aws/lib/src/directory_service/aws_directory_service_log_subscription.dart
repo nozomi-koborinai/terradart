@@ -26,7 +26,7 @@ final class AwsDirectoryServiceLogSubscription extends Resource {
          argMap: {
            'directory_id': directoryId,
            'log_group_name': logGroupName.encodeAs('name'),
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

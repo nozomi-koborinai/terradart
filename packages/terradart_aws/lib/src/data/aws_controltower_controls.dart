@@ -18,10 +18,7 @@ final class DataAwsControltowerControls extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'target_identifier': targetIdentifier,
-         },
+         argMap: {'region': ?region, 'target_identifier': targetIdentifier},
        );
 
   @override

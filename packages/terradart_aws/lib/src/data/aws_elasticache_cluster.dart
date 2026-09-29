@@ -20,11 +20,7 @@ final class DataAwsElasticacheCluster extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'cluster_id': clusterId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'cluster_id': clusterId, 'region': ?region, 'tags': ?tags},
        );
 
   @override

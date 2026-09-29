@@ -142,8 +142,8 @@ final class RedisClusterCrossClusterReplicationConfig {
   secondaryClusters;
 
   Map<String, Object?> encode() => {
-    if (clusterRole != null) 'cluster_role': clusterRole!.toTfJson(),
-    if (primaryCluster != null) 'primary_cluster': primaryCluster!.encode(),
+    'cluster_role': ?clusterRole?.toTfJson(),
+    'primary_cluster': ?primaryCluster?.encode(),
     if (secondaryClusters != null)
       'secondary_clusters': [for (final e in secondaryClusters!) e.encode()],
   };
@@ -172,9 +172,7 @@ final class RedisClusterCrossClusterReplicationConfigPrimaryCluster {
 
   final TfArg<String>? cluster;
 
-  Map<String, Object?> encode() => {
-    if (cluster != null) 'cluster': cluster!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cluster': ?cluster?.toTfJson()};
 }
 
 /// Typed helper for the `cross_cluster_replication_config.secondary_clusters` block of
@@ -187,9 +185,7 @@ final class RedisClusterCrossClusterReplicationConfigSecondaryClusters {
 
   final TfArg<String>? cluster;
 
-  Map<String, Object?> encode() => {
-    if (cluster != null) 'cluster': cluster!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cluster': ?cluster?.toTfJson()};
 }
 
 /// Typed helper for the `gcs_source` block of
@@ -278,10 +274,10 @@ final class RedisClusterMaintenancePolicyWeeklyMaintenanceWindowStartTime {
   final TfArg<num>? seconds;
 
   Map<String, Object?> encode() => {
-    if (hours != null) 'hours': hours!.toTfJson(),
-    if (minutes != null) 'minutes': minutes!.toTfJson(),
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    'hours': ?hours?.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -313,9 +309,9 @@ final class RedisClusterPersistenceConfig {
   final RedisClusterPersistenceConfigRdbConfig? rdbConfig;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (aofConfig != null) 'aof_config': aofConfig!.encode(),
-    if (rdbConfig != null) 'rdb_config': rdbConfig!.encode(),
+    'mode': ?mode?.toTfJson(),
+    'aof_config': ?aofConfig?.encode(),
+    'rdb_config': ?rdbConfig?.encode(),
   };
 }
 
@@ -339,9 +335,7 @@ final class RedisClusterPersistenceConfigAofConfig {
 
   final TfArg<RedisClusterPersistenceConfigAofConfigAppendFsync>? appendFsync;
 
-  Map<String, Object?> encode() => {
-    if (appendFsync != null) 'append_fsync': appendFsync!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'append_fsync': ?appendFsync?.toTfJson()};
 }
 
 /// `append_fsync` — derived from the provider schema description.
@@ -372,10 +366,8 @@ final class RedisClusterPersistenceConfigRdbConfig {
   final TfArg<String>? rdbSnapshotStartTime;
 
   Map<String, Object?> encode() => {
-    if (rdbSnapshotPeriod != null)
-      'rdb_snapshot_period': rdbSnapshotPeriod!.toTfJson(),
-    if (rdbSnapshotStartTime != null)
-      'rdb_snapshot_start_time': rdbSnapshotStartTime!.toTfJson(),
+    'rdb_snapshot_period': ?rdbSnapshotPeriod?.toTfJson(),
+    'rdb_snapshot_start_time': ?rdbSnapshotStartTime?.toTfJson(),
   };
 }
 
@@ -419,8 +411,8 @@ final class RedisClusterZoneDistributionConfig {
   final TfArg<String>? zone;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
   };
 }
 
@@ -496,20 +488,18 @@ final class GoogleRedisCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            'shard_count': shardCount,
-           if (replicaCount != null) 'replica_count': replicaCount,
-           if (nodeType != null) 'node_type': nodeType,
+           'replica_count': ?replicaCount,
+           'node_type': ?nodeType,
            if (pscConfigs != null)
              'psc_configs': TfArg.literal([
                for (final e in pscConfigs) e.encode(),
              ]),
-           if (authorizationMode != null)
-             'authorization_mode': authorizationMode,
-           if (transitEncryptionMode != null)
-             'transit_encryption_mode': transitEncryptionMode,
-           if (redisConfigs != null) 'redis_configs': redisConfigs,
+           'authorization_mode': ?authorizationMode,
+           'transit_encryption_mode': ?transitEncryptionMode,
+           'redis_configs': ?redisConfigs,
            if (persistenceConfig != null)
              'persistence_config': TfArg.literal(persistenceConfig.encode()),
            if (zoneDistributionConfig != null)
@@ -522,12 +512,11 @@ final class GoogleRedisCluster extends Resource {
              'automated_backup_config': TfArg.literal(
                automatedBackupConfig.encode(),
              ),
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
-           if (labels != null) 'labels': labels,
-           if (deletionProtectionEnabled != null)
-             'deletion_protection_enabled': deletionProtectionEnabled,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'kms_key': ?kmsKey?.encodeAs('id'),
+           'labels': ?labels,
+           'deletion_protection_enabled': ?deletionProtectionEnabled,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

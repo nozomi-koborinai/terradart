@@ -22,8 +22,7 @@ final class FolderAccessApprovalSettingsEnrolledServices {
 
   Map<String, Object?> encode() => {
     'cloud_product': cloudProduct.toTfJson(),
-    if (enrollmentLevel != null)
-      'enrollment_level': enrollmentLevel!.toTfJson(),
+    'enrollment_level': ?enrollmentLevel?.toTfJson(),
   };
 }
 
@@ -56,11 +55,10 @@ final class GoogleFolderAccessApprovalSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (activeKeyVersion != null) 'active_key_version': activeKeyVersion,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'active_key_version': ?activeKeyVersion,
+           'deletion_policy': ?deletionPolicy,
            'folder_id': folderId,
-           if (notificationEmails != null)
-             'notification_emails': notificationEmails,
+           'notification_emails': ?notificationEmails,
            'enrolled_services': TfArg.literal([
              for (final e in enrolledServices) e.encode(),
            ]),

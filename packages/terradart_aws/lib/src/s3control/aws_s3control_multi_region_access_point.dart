@@ -28,8 +28,7 @@ final class S3controlMultiRegionAccessPointDetails {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (publicAccessBlock != null)
-      'public_access_block': publicAccessBlock!.encode(),
+    'public_access_block': ?publicAccessBlock?.encode(),
     'region': [for (final e in region) e.encode()],
   };
 }
@@ -54,14 +53,10 @@ final class S3controlMultiRegionAccessPointDetailsPublicAccessBlock {
   final TfArg<bool>? restrictPublicBuckets;
 
   Map<String, Object?> encode() => {
-    if (blockPublicAcls != null)
-      'block_public_acls': blockPublicAcls!.toTfJson(),
-    if (blockPublicPolicy != null)
-      'block_public_policy': blockPublicPolicy!.toTfJson(),
-    if (ignorePublicAcls != null)
-      'ignore_public_acls': ignorePublicAcls!.toTfJson(),
-    if (restrictPublicBuckets != null)
-      'restrict_public_buckets': restrictPublicBuckets!.toTfJson(),
+    'block_public_acls': ?blockPublicAcls?.toTfJson(),
+    'block_public_policy': ?blockPublicPolicy?.toTfJson(),
+    'ignore_public_acls': ?ignorePublicAcls?.toTfJson(),
+    'restrict_public_buckets': ?restrictPublicBuckets?.toTfJson(),
   };
 }
 
@@ -80,8 +75,7 @@ final class S3controlMultiRegionAccessPointDetailsRegion {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (bucketAccountId != null)
-      'bucket_account_id': bucketAccountId!.toTfJson(),
+    'bucket_account_id': ?bucketAccountId?.toTfJson(),
   };
 }
 
@@ -101,8 +95,8 @@ final class AwsS3controlMultiRegionAccessPoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (region != null) 'region': region,
+           'account_id': ?accountId,
+           'region': ?region,
            'details': TfArg.literal(details.encode()),
          },
        );

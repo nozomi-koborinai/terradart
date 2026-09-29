@@ -33,11 +33,10 @@ final class GoogleDataplexDataProductDataAsset extends Resource {
            'data_asset_id': dataAssetId,
            'location': location,
            'resource': resource,
-           if (labels != null) 'labels': labels,
-           if (accessGroupConfigs != null)
-             'access_group_configs': accessGroupConfigs,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'access_group_configs': ?accessGroupConfigs,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

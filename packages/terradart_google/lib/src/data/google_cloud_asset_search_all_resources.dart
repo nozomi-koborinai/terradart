@@ -22,11 +22,7 @@ final class DataGoogleCloudAssetSearchAllResources extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (assetTypes != null) 'asset_types': assetTypes,
-           if (query != null) 'query': query,
-           'scope': scope,
-         },
+         argMap: {'asset_types': ?assetTypes, 'query': ?query, 'scope': scope},
        );
 
   @override

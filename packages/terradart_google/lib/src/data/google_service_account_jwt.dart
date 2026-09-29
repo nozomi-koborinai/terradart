@@ -24,8 +24,8 @@ final class DataGoogleServiceAccountJwt extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (delegates != null) 'delegates': delegates,
-           if (expiresIn != null) 'expires_in': expiresIn,
+           'delegates': ?delegates,
+           'expires_in': ?expiresIn,
            'payload': payload,
            'target_service_account': targetServiceAccount,
          },

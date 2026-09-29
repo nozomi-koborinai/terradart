@@ -25,7 +25,7 @@ final class AwsOpensearchAuthorizeVpcEndpointAccess extends Resource {
          argMap: {
            'account': account,
            'domain_name': domainName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

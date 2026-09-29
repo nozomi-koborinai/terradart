@@ -24,10 +24,10 @@ final class DataGoogleAgentRegistryAgent extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (agentId != null) 'agent_id': agentId,
-           if (filter != null) 'filter': filter,
+           'agent_id': ?agentId,
+           'filter': ?filter,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

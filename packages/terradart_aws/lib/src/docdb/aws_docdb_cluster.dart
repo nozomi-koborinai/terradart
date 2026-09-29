@@ -307,7 +307,7 @@ final class DocdbClusterRestoreToPointInTime {
 
   Map<String, Object?> encode() => {
     ...?time?.encode(),
-    if (restoreType != null) 'restore_type': restoreType!.toTfJson(),
+    'restore_type': ?restoreType?.toTfJson(),
     'source_cluster_identifier': sourceClusterIdentifier.toTfJson(),
   };
 }
@@ -444,51 +444,38 @@ final class AwsDocdbCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowMajorVersionUpgrade != null)
-             'allow_major_version_upgrade': allowMajorVersionUpgrade,
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (availabilityZones != null)
-             'availability_zones': availabilityZones,
-           if (backupRetentionPeriod != null)
-             'backup_retention_period': backupRetentionPeriod,
+           'allow_major_version_upgrade': ?allowMajorVersionUpgrade,
+           'apply_immediately': ?applyImmediately,
+           'availability_zones': ?availabilityZones,
+           'backup_retention_period': ?backupRetentionPeriod,
            ...?clusterIdentifier?.argMap,
-           if (clusterMembers != null) 'cluster_members': clusterMembers,
-           if (dbClusterParameterGroupName != null)
-             'db_cluster_parameter_group_name': dbClusterParameterGroupName,
-           if (dbSubnetGroupName != null)
-             'db_subnet_group_name': dbSubnetGroupName,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
+           'cluster_members': ?clusterMembers,
+           'db_cluster_parameter_group_name': ?dbClusterParameterGroupName,
+           'db_subnet_group_name': ?dbSubnetGroupName,
+           'deletion_protection': ?deletionProtection,
            if (enabledCloudwatchLogsExports != null)
              'enabled_cloudwatch_logs_exports': TfArg.literal([
                for (final e in enabledCloudwatchLogsExports) e.toTfJson(),
              ]),
-           if (engine != null) 'engine': engine,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (finalSnapshotIdentifier != null)
-             'final_snapshot_identifier': finalSnapshotIdentifier,
-           if (globalClusterIdentifier != null)
-             'global_cluster_identifier': globalClusterIdentifier,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'engine': ?engine,
+           'engine_version': ?engineVersion,
+           'final_snapshot_identifier': ?finalSnapshotIdentifier,
+           'global_cluster_identifier': ?globalClusterIdentifier,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            ...?masterPassword?.argMap,
-           if (masterPasswordWoVersion != null)
-             'master_password_wo_version': masterPasswordWoVersion,
-           if (masterUsername != null) 'master_username': masterUsername,
-           if (networkType != null) 'network_type': networkType,
-           if (port != null) 'port': port,
-           if (preferredBackupWindow != null)
-             'preferred_backup_window': preferredBackupWindow,
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (region != null) 'region': region,
-           if (skipFinalSnapshot != null)
-             'skip_final_snapshot': skipFinalSnapshot,
+           'master_password_wo_version': ?masterPasswordWoVersion,
+           'master_username': ?masterUsername,
+           'network_type': ?networkType,
+           'port': ?port,
+           'preferred_backup_window': ?preferredBackupWindow,
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'region': ?region,
+           'skip_final_snapshot': ?skipFinalSnapshot,
            ...?restoreSource?.argMap,
-           if (storageEncrypted != null) 'storage_encrypted': storageEncrypted,
-           if (storageType != null) 'storage_type': storageType,
-           if (tags != null) 'tags': tags,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'storage_encrypted': ?storageEncrypted,
+           'storage_type': ?storageType,
+           'tags': ?tags,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
            if (serverlessV2ScalingConfiguration != null)
              'serverless_v2_scaling_configuration': TfArg.literal(
                serverlessV2ScalingConfiguration.encode(),

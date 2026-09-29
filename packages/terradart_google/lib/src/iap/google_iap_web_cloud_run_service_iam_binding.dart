@@ -34,9 +34,9 @@ final class GoogleIapWebCloudRunServiceIamBinding extends Resource {
            'cloud_run_service_name': cloudRunServiceName,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

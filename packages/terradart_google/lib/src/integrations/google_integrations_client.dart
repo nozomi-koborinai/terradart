@@ -31,9 +31,9 @@ final class IntegrationsClientCloudKmsConfig {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (keyVersion != null) 'key_version': keyVersion!.toTfJson(),
+    'key_version': ?keyVersion?.toTfJson(),
     'kms_location': kmsLocation.toTfJson(),
-    if (kmsProjectId != null) 'kms_project_id': kmsProjectId!.toTfJson(),
+    'kms_project_id': ?kmsProjectId?.toTfJson(),
     'kms_ring': kmsRing.toTfJson(),
   };
 }
@@ -79,12 +79,11 @@ final class GoogleIntegrationsClient extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (createSampleIntegrations != null)
-             'create_sample_integrations': createSampleIntegrations,
+           'create_sample_integrations': ?createSampleIntegrations,
            if (cloudKmsConfig != null)
              'cloud_kms_config': TfArg.literal(cloudKmsConfig.encode()),
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

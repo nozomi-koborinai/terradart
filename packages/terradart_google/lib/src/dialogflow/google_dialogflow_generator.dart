@@ -92,15 +92,15 @@ final class GoogleDialogflowGenerator extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (generatorId != null) 'generator_id': generatorId,
-           if (description != null) 'description': description,
-           if (triggerEvent != null) 'trigger_event': triggerEvent,
+           'generator_id': ?generatorId,
+           'description': ?description,
+           'trigger_event': ?triggerEvent,
            'summarization_context': TfArg.literal([
              summarizationContext.encode(),
            ]),
-           if (publishedModel != null) 'published_model': publishedModel,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'published_model': ?publishedModel,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

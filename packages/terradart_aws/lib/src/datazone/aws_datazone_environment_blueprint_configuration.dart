@@ -32,14 +32,11 @@ final class AwsDatazoneEnvironmentBlueprintConfiguration extends Resource {
            'domain_id': domainId,
            'enabled_regions': enabledRegions,
            'environment_blueprint_id': environmentBlueprintId,
-           if (globalParameters != null) 'global_parameters': globalParameters,
-           if (manageAccessRoleArn != null)
-             'manage_access_role_arn': manageAccessRoleArn,
-           if (provisioningRoleArn != null)
-             'provisioning_role_arn': provisioningRoleArn,
-           if (region != null) 'region': region,
-           if (regionalParameters != null)
-             'regional_parameters': regionalParameters,
+           'global_parameters': ?globalParameters,
+           'manage_access_role_arn': ?manageAccessRoleArn,
+           'provisioning_role_arn': ?provisioningRoleArn,
+           'region': ?region,
+           'regional_parameters': ?regionalParameters,
          },
        );
 

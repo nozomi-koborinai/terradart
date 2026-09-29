@@ -23,7 +23,7 @@ final class DataAwsNetworkmanagerDevice extends Data {
          argMap: {
            'device_id': deviceId,
            'global_network_id': globalNetworkId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

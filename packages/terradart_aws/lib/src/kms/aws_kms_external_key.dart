@@ -68,22 +68,19 @@ final class AwsKmsExternalKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bypassPolicyLockoutSafetyCheck != null)
-             'bypass_policy_lockout_safety_check':
-                 bypassPolicyLockoutSafetyCheck,
-           if (deletionWindowInDays != null)
-             'deletion_window_in_days': deletionWindowInDays,
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
-           if (keyMaterialBase64 != null)
-             'key_material_base64': keyMaterialBase64,
-           if (keySpec != null) 'key_spec': keySpec,
-           if (keyUsage != null) 'key_usage': keyUsage,
-           if (multiRegion != null) 'multi_region': multiRegion,
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (validTo != null) 'valid_to': validTo,
+           'bypass_policy_lockout_safety_check':
+               ?bypassPolicyLockoutSafetyCheck,
+           'deletion_window_in_days': ?deletionWindowInDays,
+           'description': ?description,
+           'enabled': ?enabled,
+           'key_material_base64': ?keyMaterialBase64,
+           'key_spec': ?keySpec,
+           'key_usage': ?keyUsage,
+           'multi_region': ?multiRegion,
+           'policy': ?policy,
+           'region': ?region,
+           'tags': ?tags,
+           'valid_to': ?validTo,
          },
        );
 

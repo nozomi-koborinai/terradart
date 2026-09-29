@@ -41,45 +41,31 @@ final class DataAwsRdsOrderableDbInstance extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZoneGroup != null)
-             'availability_zone_group': availabilityZoneGroup,
+           'availability_zone_group': ?availabilityZoneGroup,
            'engine': engine,
-           if (engineLatestVersion != null)
-             'engine_latest_version': engineLatestVersion,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (instanceClass != null) 'instance_class': instanceClass,
-           if (licenseModel != null) 'license_model': licenseModel,
-           if (preferredEngineVersions != null)
-             'preferred_engine_versions': preferredEngineVersions,
-           if (preferredInstanceClasses != null)
-             'preferred_instance_classes': preferredInstanceClasses,
-           if (readReplicaCapable != null)
-             'read_replica_capable': readReplicaCapable,
-           if (region != null) 'region': region,
-           if (storageType != null) 'storage_type': storageType,
-           if (supportedEngineModes != null)
-             'supported_engine_modes': supportedEngineModes,
-           if (supportedNetworkTypes != null)
-             'supported_network_types': supportedNetworkTypes,
-           if (supportsClusters != null) 'supports_clusters': supportsClusters,
-           if (supportsEnhancedMonitoring != null)
-             'supports_enhanced_monitoring': supportsEnhancedMonitoring,
-           if (supportsGlobalDatabases != null)
-             'supports_global_databases': supportsGlobalDatabases,
-           if (supportsIamDatabaseAuthentication != null)
-             'supports_iam_database_authentication':
-                 supportsIamDatabaseAuthentication,
-           if (supportsIops != null) 'supports_iops': supportsIops,
-           if (supportsKerberosAuthentication != null)
-             'supports_kerberos_authentication': supportsKerberosAuthentication,
-           if (supportsMultiAz != null) 'supports_multi_az': supportsMultiAz,
-           if (supportsPerformanceInsights != null)
-             'supports_performance_insights': supportsPerformanceInsights,
-           if (supportsStorageAutoscaling != null)
-             'supports_storage_autoscaling': supportsStorageAutoscaling,
-           if (supportsStorageEncryption != null)
-             'supports_storage_encryption': supportsStorageEncryption,
-           if (vpc != null) 'vpc': vpc,
+           'engine_latest_version': ?engineLatestVersion,
+           'engine_version': ?engineVersion,
+           'instance_class': ?instanceClass,
+           'license_model': ?licenseModel,
+           'preferred_engine_versions': ?preferredEngineVersions,
+           'preferred_instance_classes': ?preferredInstanceClasses,
+           'read_replica_capable': ?readReplicaCapable,
+           'region': ?region,
+           'storage_type': ?storageType,
+           'supported_engine_modes': ?supportedEngineModes,
+           'supported_network_types': ?supportedNetworkTypes,
+           'supports_clusters': ?supportsClusters,
+           'supports_enhanced_monitoring': ?supportsEnhancedMonitoring,
+           'supports_global_databases': ?supportsGlobalDatabases,
+           'supports_iam_database_authentication':
+               ?supportsIamDatabaseAuthentication,
+           'supports_iops': ?supportsIops,
+           'supports_kerberos_authentication': ?supportsKerberosAuthentication,
+           'supports_multi_az': ?supportsMultiAz,
+           'supports_performance_insights': ?supportsPerformanceInsights,
+           'supports_storage_autoscaling': ?supportsStorageAutoscaling,
+           'supports_storage_encryption': ?supportsStorageEncryption,
+           'vpc': ?vpc,
          },
        );
 

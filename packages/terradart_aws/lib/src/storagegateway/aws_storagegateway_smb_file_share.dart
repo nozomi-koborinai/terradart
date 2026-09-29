@@ -68,8 +68,7 @@ final class StoragegatewaySmbFileShareCacheAttributes {
   final TfArg<num>? cacheStaleTimeoutInSeconds;
 
   Map<String, Object?> encode() => {
-    if (cacheStaleTimeoutInSeconds != null)
-      'cache_stale_timeout_in_seconds': cacheStaleTimeoutInSeconds!.toTfJson(),
+    'cache_stale_timeout_in_seconds': ?cacheStaleTimeoutInSeconds?.toTfJson(),
   };
 }
 
@@ -112,37 +111,31 @@ final class AwsStoragegatewaySmbFileShare extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessBasedEnumeration != null)
-             'access_based_enumeration': accessBasedEnumeration,
-           if (adminUserList != null) 'admin_user_list': adminUserList,
-           if (auditDestinationArn != null)
-             'audit_destination_arn': auditDestinationArn,
-           if (authentication != null) 'authentication': authentication,
-           if (bucketRegion != null) 'bucket_region': bucketRegion,
-           if (caseSensitivity != null) 'case_sensitivity': caseSensitivity,
-           if (defaultStorageClass != null)
-             'default_storage_class': defaultStorageClass,
-           if (fileShareName != null) 'file_share_name': fileShareName,
+           'access_based_enumeration': ?accessBasedEnumeration,
+           'admin_user_list': ?adminUserList,
+           'audit_destination_arn': ?auditDestinationArn,
+           'authentication': ?authentication,
+           'bucket_region': ?bucketRegion,
+           'case_sensitivity': ?caseSensitivity,
+           'default_storage_class': ?defaultStorageClass,
+           'file_share_name': ?fileShareName,
            'gateway_arn': gatewayArn,
-           if (guessMimeTypeEnabled != null)
-             'guess_mime_type_enabled': guessMimeTypeEnabled,
-           if (invalidUserList != null) 'invalid_user_list': invalidUserList,
-           if (kmsEncrypted != null) 'kms_encrypted': kmsEncrypted,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'guess_mime_type_enabled': ?guessMimeTypeEnabled,
+           'invalid_user_list': ?invalidUserList,
+           'kms_encrypted': ?kmsEncrypted,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'location_arn': locationArn,
-           if (notificationPolicy != null)
-             'notification_policy': notificationPolicy,
-           if (objectAcl != null) 'object_acl': objectAcl,
-           if (oplocksEnabled != null) 'oplocks_enabled': oplocksEnabled,
-           if (readOnly != null) 'read_only': readOnly,
-           if (region != null) 'region': region,
-           if (requesterPays != null) 'requester_pays': requesterPays,
+           'notification_policy': ?notificationPolicy,
+           'object_acl': ?objectAcl,
+           'oplocks_enabled': ?oplocksEnabled,
+           'read_only': ?readOnly,
+           'region': ?region,
+           'requester_pays': ?requesterPays,
            'role_arn': roleArn.encodeAs('arn'),
-           if (smbAclEnabled != null) 'smb_acl_enabled': smbAclEnabled,
-           if (tags != null) 'tags': tags,
-           if (validUserList != null) 'valid_user_list': validUserList,
-           if (vpcEndpointDnsName != null)
-             'vpc_endpoint_dns_name': vpcEndpointDnsName,
+           'smb_acl_enabled': ?smbAclEnabled,
+           'tags': ?tags,
+           'valid_user_list': ?validUserList,
+           'vpc_endpoint_dns_name': ?vpcEndpointDnsName,
            if (cacheAttributes != null)
              'cache_attributes': TfArg.literal(cacheAttributes.encode()),
          },

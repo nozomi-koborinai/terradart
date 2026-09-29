@@ -33,15 +33,11 @@ final class Ec2TransitGatewayPolicyTableEntryPolicyRule {
   final List<Ec2TransitGatewayPolicyTableEntryPolicyRuleMetadata>? metadata;
 
   Map<String, Object?> encode() => {
-    if (destinationCidrBlock != null)
-      'destination_cidr_block': destinationCidrBlock!.toTfJson(),
-    if (destinationPortRange != null)
-      'destination_port_range': destinationPortRange!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (sourceCidrBlock != null)
-      'source_cidr_block': sourceCidrBlock!.toTfJson(),
-    if (sourcePortRange != null)
-      'source_port_range': sourcePortRange!.toTfJson(),
+    'destination_cidr_block': ?destinationCidrBlock?.toTfJson(),
+    'destination_port_range': ?destinationPortRange?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'source_cidr_block': ?sourceCidrBlock?.toTfJson(),
+    'source_port_range': ?sourcePortRange?.toTfJson(),
     if (metadata != null) 'metadata': [for (final e in metadata!) e.encode()],
   };
 }
@@ -60,8 +56,8 @@ final class Ec2TransitGatewayPolicyTableEntryPolicyRuleMetadata {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -84,7 +80,7 @@ final class AwsEc2TransitGatewayPolicyTableEntry extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_rule_number': policyRuleNumber,
-           if (region != null) 'region': region,
+           'region': ?region,
            'target_route_table_id': targetRouteTableId,
            'transit_gateway_policy_table_id': transitGatewayPolicyTableId,
            if (policyRule != null)

@@ -19,10 +19,7 @@ final class DataAwsConnectUserHierarchyStructure extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'instance_id': instanceId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'instance_id': instanceId, 'region': ?region},
        );
 
   @override

@@ -56,7 +56,7 @@ final class TransferUserPosixProfile {
 
   Map<String, Object?> encode() => {
     'gid': gid.toTfJson(),
-    if (secondaryGids != null) 'secondary_gids': secondaryGids!.toTfJson(),
+    'secondary_gids': ?secondaryGids?.toTfJson(),
     'uid': uid.toTfJson(),
   };
 }
@@ -84,14 +84,13 @@ final class AwsTransferUser extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (homeDirectory != null) 'home_directory': homeDirectory,
-           if (homeDirectoryType != null)
-             'home_directory_type': homeDirectoryType,
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
+           'home_directory': ?homeDirectory,
+           'home_directory_type': ?homeDirectoryType,
+           'policy': ?policy,
+           'region': ?region,
            'role': role.encodeAs('arn'),
            'server_id': serverId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'user_name': userName,
            if (homeDirectoryMappings != null)
              'home_directory_mappings': TfArg.literal([

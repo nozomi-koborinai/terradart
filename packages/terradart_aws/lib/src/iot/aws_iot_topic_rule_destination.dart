@@ -33,8 +33,7 @@ final class IotTopicRuleDestinationVpcConfiguration {
 
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     'vpc_id': vpcId.encodeAs('id').toTfJson(),
   };
@@ -56,8 +55,8 @@ final class AwsIotTopicRuleDestination extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
-           if (region != null) 'region': region,
+           'enabled': ?enabled,
+           'region': ?region,
            'vpc_configuration': TfArg.literal(vpcConfiguration.encode()),
          },
        );

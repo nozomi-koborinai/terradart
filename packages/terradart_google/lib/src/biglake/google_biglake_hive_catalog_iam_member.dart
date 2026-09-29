@@ -26,9 +26,9 @@ final class GoogleBiglakeHiveCatalogIamMember extends Resource {
          argMap: {
            'member': member,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'role': role,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

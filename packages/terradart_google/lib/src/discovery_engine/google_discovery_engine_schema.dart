@@ -41,9 +41,9 @@ final class GoogleDiscoveryEngineSchema extends Resource {
            'location': location,
            'data_store_id': dataStoreId,
            'schema_id': schemaId,
-           if (jsonSchema != null) 'json_schema': jsonSchema,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'json_schema': ?jsonSchema,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

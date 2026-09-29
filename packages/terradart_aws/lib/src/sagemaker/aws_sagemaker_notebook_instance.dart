@@ -243,9 +243,8 @@ final class SagemakerNotebookInstanceInstanceMetadataServiceConfiguration {
   minimumInstanceMetadataServiceVersion;
 
   Map<String, Object?> encode() => {
-    if (minimumInstanceMetadataServiceVersion != null)
-      'minimum_instance_metadata_service_version':
-          minimumInstanceMetadataServiceVersion!.toTfJson(),
+    'minimum_instance_metadata_service_version':
+        ?minimumInstanceMetadataServiceVersion?.toTfJson(),
   };
 }
 
@@ -292,27 +291,21 @@ final class AwsSagemakerNotebookInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalCodeRepositories != null)
-             'additional_code_repositories': additionalCodeRepositories,
-           if (defaultCodeRepository != null)
-             'default_code_repository': defaultCodeRepository,
-           if (directInternetAccess != null)
-             'direct_internet_access': directInternetAccess,
+           'additional_code_repositories': ?additionalCodeRepositories,
+           'default_code_repository': ?defaultCodeRepository,
+           'direct_internet_access': ?directInternetAccess,
            'instance_type': instanceType,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (lifecycleConfigName != null)
-             'lifecycle_config_name': lifecycleConfigName,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'lifecycle_config_name': ?lifecycleConfigName,
            'name': name,
-           if (platformIdentifier != null)
-             'platform_identifier': platformIdentifier,
-           if (region != null) 'region': region,
+           'platform_identifier': ?platformIdentifier,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (rootAccess != null) 'root_access': rootAccess,
-           if (securityGroups != null)
-             'security_groups': securityGroups.encodeAs('id'),
-           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (volumeSize != null) 'volume_size': volumeSize,
+           'root_access': ?rootAccess,
+           'security_groups': ?securityGroups?.encodeAs('id'),
+           'subnet_id': ?subnetId?.encodeAs('id'),
+           'tags': ?tags,
+           'volume_size': ?volumeSize,
            if (instanceMetadataServiceConfiguration != null)
              'instance_metadata_service_configuration': TfArg.literal(
                instanceMetadataServiceConfiguration.encode(),

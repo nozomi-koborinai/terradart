@@ -25,8 +25,8 @@ final class AwsAmplifyWebhook extends Resource {
          argMap: {
            'app_id': appId,
            'branch_name': branchName,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'region': ?region,
          },
        );
 

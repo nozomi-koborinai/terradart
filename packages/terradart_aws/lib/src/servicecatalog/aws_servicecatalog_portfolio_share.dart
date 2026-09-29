@@ -50,15 +50,14 @@ final class AwsServicecatalogPortfolioShare extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
+           'accept_language': ?acceptLanguage,
            'portfolio_id': portfolioId,
            'principal_id': principalId,
-           if (region != null) 'region': region,
-           if (sharePrincipals != null) 'share_principals': sharePrincipals,
-           if (shareTagOptions != null) 'share_tag_options': shareTagOptions,
+           'region': ?region,
+           'share_principals': ?sharePrincipals,
+           'share_tag_options': ?shareTagOptions,
            'type': type,
-           if (waitForAcceptance != null)
-             'wait_for_acceptance': waitForAcceptance,
+           'wait_for_acceptance': ?waitForAcceptance,
          },
        );
 

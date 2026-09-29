@@ -40,12 +40,12 @@ final class GoogleSccV2FolderSccBigQueryExport extends Resource {
          terraformType: tfType,
          argMap: {
            'big_query_export_id': bigQueryExportId,
-           if (dataset != null) 'dataset': dataset,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (filter != null) 'filter': filter,
+           'dataset': ?dataset,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'filter': ?filter,
            'folder': folder,
-           if (location != null) 'location': location,
+           'location': ?location,
          },
        );
 

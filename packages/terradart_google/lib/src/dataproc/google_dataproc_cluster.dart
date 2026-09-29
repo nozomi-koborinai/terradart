@@ -80,36 +80,31 @@ final class DataprocClusterClusterConfig {
   final DataprocClusterClusterConfigWorkerConfig? workerConfig;
 
   Map<String, Object?> encode() => {
-    if (clusterTier != null) 'cluster_tier': clusterTier!.toTfJson(),
-    if (clusterType != null) 'cluster_type': clusterType!.toTfJson(),
-    if (engine != null) 'engine': engine!.toTfJson(),
-    if (stagingBucket != null) 'staging_bucket': stagingBucket!.toTfJson(),
-    if (tempBucket != null) 'temp_bucket': tempBucket!.toTfJson(),
-    if (autoscalingConfig != null)
-      'autoscaling_config': autoscalingConfig!.encode(),
+    'cluster_tier': ?clusterTier?.toTfJson(),
+    'cluster_type': ?clusterType?.toTfJson(),
+    'engine': ?engine?.toTfJson(),
+    'staging_bucket': ?stagingBucket?.toTfJson(),
+    'temp_bucket': ?tempBucket?.toTfJson(),
+    'autoscaling_config': ?autoscalingConfig?.encode(),
     if (auxiliaryNodeGroups != null)
       'auxiliary_node_groups': [
         for (final e in auxiliaryNodeGroups!) e.encode(),
       ],
-    if (dataprocMetricConfig != null)
-      'dataproc_metric_config': dataprocMetricConfig!.encode(),
-    if (encryptionConfig != null)
-      'encryption_config': encryptionConfig!.encode(),
-    if (endpointConfig != null) 'endpoint_config': endpointConfig!.encode(),
-    if (gceClusterConfig != null)
-      'gce_cluster_config': gceClusterConfig!.encode(),
+    'dataproc_metric_config': ?dataprocMetricConfig?.encode(),
+    'encryption_config': ?encryptionConfig?.encode(),
+    'endpoint_config': ?endpointConfig?.encode(),
+    'gce_cluster_config': ?gceClusterConfig?.encode(),
     if (initializationAction != null)
       'initialization_action': [
         for (final e in initializationAction!) e.encode(),
       ],
-    if (lifecycleConfig != null) 'lifecycle_config': lifecycleConfig!.encode(),
-    if (masterConfig != null) 'master_config': masterConfig!.encode(),
-    if (metastoreConfig != null) 'metastore_config': metastoreConfig!.encode(),
-    if (preemptibleWorkerConfig != null)
-      'preemptible_worker_config': preemptibleWorkerConfig!.encode(),
-    if (securityConfig != null) 'security_config': securityConfig!.encode(),
-    if (softwareConfig != null) 'software_config': softwareConfig!.encode(),
-    if (workerConfig != null) 'worker_config': workerConfig!.encode(),
+    'lifecycle_config': ?lifecycleConfig?.encode(),
+    'master_config': ?masterConfig?.encode(),
+    'metastore_config': ?metastoreConfig?.encode(),
+    'preemptible_worker_config': ?preemptibleWorkerConfig?.encode(),
+    'security_config': ?securityConfig?.encode(),
+    'software_config': ?softwareConfig?.encode(),
+    'worker_config': ?workerConfig?.encode(),
   };
 }
 
@@ -141,7 +136,7 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroups {
   nodeGroup;
 
   Map<String, Object?> encode() => {
-    if (nodeGroupId != null) 'node_group_id': nodeGroupId!.toTfJson(),
+    'node_group_id': ?nodeGroupId?.toTfJson(),
     'node_group': [for (final e in nodeGroup) e.encode()],
   };
 }
@@ -162,7 +157,7 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroup {
 
   Map<String, Object?> encode() => {
     'roles': roles.toTfJson(),
-    if (nodeGroupConfig != null) 'node_group_config': nodeGroupConfig!.encode(),
+    'node_group_config': ?nodeGroupConfig?.encode(),
   };
 }
 
@@ -193,12 +188,12 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupCon
   diskConfig;
 
   Map<String, Object?> encode() => {
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
-    if (numInstances != null) 'num_instances': numInstances!.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+    'disk_config': ?diskConfig?.encode(),
   };
 }
 
@@ -247,16 +242,13 @@ final class DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupCon
   final TfArg<num>? numLocalSsds;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
   };
 }
 
@@ -289,8 +281,7 @@ final class DataprocClusterClusterConfigDataprocMetricConfigMetrics {
   final TfArg<String> metricSource;
 
   Map<String, Object?> encode() => {
-    if (metricOverrides != null)
-      'metric_overrides': metricOverrides!.toTfJson(),
+    'metric_overrides': ?metricOverrides?.toTfJson(),
     'metric_source': metricSource.toTfJson(),
   };
 }
@@ -376,26 +367,19 @@ final class DataprocClusterClusterConfigGceClusterConfig {
   shieldedInstanceConfig;
 
   Map<String, Object?> encode() => {
-    if (internalIpOnly != null) 'internal_ip_only': internalIpOnly!.toTfJson(),
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
-    if (resourceManagerTags != null)
-      'resource_manager_tags': resourceManagerTags!.toTfJson(),
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
-    if (serviceAccountScopes != null)
-      'service_account_scopes': serviceAccountScopes!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
-    if (confidentialInstanceConfig != null)
-      'confidential_instance_config': confidentialInstanceConfig!.encode(),
-    if (nodeGroupAffinity != null)
-      'node_group_affinity': nodeGroupAffinity!.encode(),
-    if (reservationAffinity != null)
-      'reservation_affinity': reservationAffinity!.encode(),
-    if (shieldedInstanceConfig != null)
-      'shielded_instance_config': shieldedInstanceConfig!.encode(),
+    'internal_ip_only': ?internalIpOnly?.toTfJson(),
+    'metadata': ?metadata?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'service_account_scopes': ?serviceAccountScopes?.toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
+    'confidential_instance_config': ?confidentialInstanceConfig?.encode(),
+    'node_group_affinity': ?nodeGroupAffinity?.encode(),
+    'reservation_affinity': ?reservationAffinity?.encode(),
+    'shielded_instance_config': ?shieldedInstanceConfig?.encode(),
   };
 }
 
@@ -413,10 +397,8 @@ final class DataprocClusterClusterConfigGceClusterConfigConfidentialInstanceConf
   final TfArg<bool>? enableConfidentialCompute;
 
   Map<String, Object?> encode() => {
-    if (confidentialInstanceType != null)
-      'confidential_instance_type': confidentialInstanceType!.toTfJson(),
-    if (enableConfidentialCompute != null)
-      'enable_confidential_compute': enableConfidentialCompute!.toTfJson(),
+    'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
+    'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
 }
 
@@ -450,10 +432,9 @@ final class DataprocClusterClusterConfigGceClusterConfigReservationAffinity {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (consumeReservationType != null)
-      'consume_reservation_type': consumeReservationType!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'consume_reservation_type': ?consumeReservationType?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -474,11 +455,9 @@ final class DataprocClusterClusterConfigGceClusterConfigShieldedInstanceConfig {
   final TfArg<bool>? enableVtpm;
 
   Map<String, Object?> encode() => {
-    if (enableIntegrityMonitoring != null)
-      'enable_integrity_monitoring': enableIntegrityMonitoring!.toTfJson(),
-    if (enableSecureBoot != null)
-      'enable_secure_boot': enableSecureBoot!.toTfJson(),
-    if (enableVtpm != null) 'enable_vtpm': enableVtpm!.toTfJson(),
+    'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
+    'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
+    'enable_vtpm': ?enableVtpm?.toTfJson(),
   };
 }
 
@@ -497,7 +476,7 @@ final class DataprocClusterClusterConfigInitializationAction {
 
   Map<String, Object?> encode() => {
     'script': script.toTfJson(),
-    if (timeoutSec != null) 'timeout_sec': timeoutSec!.toTfJson(),
+    'timeout_sec': ?timeoutSec?.toTfJson(),
   };
 }
 
@@ -521,10 +500,10 @@ final class DataprocClusterClusterConfigLifecycleConfig {
   final TfArg<String>? idleStopTtl;
 
   Map<String, Object?> encode() => {
-    if (autoDeleteTime != null) 'auto_delete_time': autoDeleteTime!.toTfJson(),
-    if (autoStopTime != null) 'auto_stop_time': autoStopTime!.toTfJson(),
-    if (idleDeleteTtl != null) 'idle_delete_ttl': idleDeleteTtl!.toTfJson(),
-    if (idleStopTtl != null) 'idle_stop_ttl': idleStopTtl!.toTfJson(),
+    'auto_delete_time': ?autoDeleteTime?.toTfJson(),
+    'auto_stop_time': ?autoStopTime?.toTfJson(),
+    'idle_delete_ttl': ?idleDeleteTtl?.toTfJson(),
+    'idle_stop_ttl': ?idleStopTtl?.toTfJson(),
   };
 }
 
@@ -559,15 +538,14 @@ final class DataprocClusterClusterConfigMasterConfig {
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
-    if (imageUri != null) 'image_uri': imageUri!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
-    if (numInstances != null) 'num_instances': numInstances!.toTfJson(),
+    'image_uri': ?imageUri?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
-    if (instanceFlexibilityPolicy != null)
-      'instance_flexibility_policy': instanceFlexibilityPolicy!.encode(),
+    'disk_config': ?diskConfig?.encode(),
+    'instance_flexibility_policy': ?instanceFlexibilityPolicy?.encode(),
   };
 }
 
@@ -622,16 +600,13 @@ final class DataprocClusterClusterConfigMasterConfigDiskConfig {
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -657,12 +632,10 @@ final class DataprocClusterClusterConfigMasterConfigDiskConfigAttachedDiskConfig
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -705,9 +678,9 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyIns
   diskConfig;
 
   Map<String, Object?> encode() => {
-    if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
-    if (rank != null) 'rank': rank!.toTfJson(),
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+    'machine_types': ?machineTypes?.toTfJson(),
+    'rank': ?rank?.toTfJson(),
+    'disk_config': ?diskConfig?.encode(),
   };
 }
 
@@ -743,16 +716,13 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyIns
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -778,12 +748,10 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyIns
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -824,11 +792,10 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfig {
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
-    if (numInstances != null) 'num_instances': numInstances!.toTfJson(),
-    if (preemptibility != null) 'preemptibility': preemptibility!.toTfJson(),
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
-    if (instanceFlexibilityPolicy != null)
-      'instance_flexibility_policy': instanceFlexibilityPolicy!.encode(),
+    'num_instances': ?numInstances?.toTfJson(),
+    'preemptibility': ?preemptibility?.toTfJson(),
+    'disk_config': ?diskConfig?.encode(),
+    'instance_flexibility_policy': ?instanceFlexibilityPolicy?.encode(),
   };
 }
 
@@ -864,16 +831,13 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfig {
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -899,12 +863,10 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfigAttache
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -930,8 +892,7 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
       'instance_selection_list': [
         for (final e in instanceSelectionList!) e.encode(),
       ],
-    if (provisioningModelMix != null)
-      'provisioning_model_mix': provisioningModelMix!.encode(),
+    'provisioning_model_mix': ?provisioningModelMix?.encode(),
   };
 }
 
@@ -953,9 +914,9 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
   diskConfig;
 
   Map<String, Object?> encode() => {
-    if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
-    if (rank != null) 'rank': rank!.toTfJson(),
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+    'machine_types': ?machineTypes?.toTfJson(),
+    'rank': ?rank?.toTfJson(),
+    'disk_config': ?diskConfig?.encode(),
   };
 }
 
@@ -991,16 +952,13 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -1026,12 +984,10 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -1049,11 +1005,9 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
   final TfArg<num>? standardCapacityPercentAboveBase;
 
   Map<String, Object?> encode() => {
-    if (standardCapacityBase != null)
-      'standard_capacity_base': standardCapacityBase!.toTfJson(),
-    if (standardCapacityPercentAboveBase != null)
-      'standard_capacity_percent_above_base': standardCapacityPercentAboveBase!
-          .toTfJson(),
+    'standard_capacity_base': ?standardCapacityBase?.toTfJson(),
+    'standard_capacity_percent_above_base': ?standardCapacityPercentAboveBase
+        ?.toTfJson(),
   };
 }
 
@@ -1073,8 +1027,8 @@ final class DataprocClusterClusterConfigSecurityConfig {
   kerberosConfig;
 
   Map<String, Object?> encode() => {
-    if (identityConfig != null) 'identity_config': identityConfig!.encode(),
-    if (kerberosConfig != null) 'kerberos_config': kerberosConfig!.encode(),
+    'identity_config': ?identityConfig?.encode(),
+    'kerberos_config': ?kerberosConfig?.encode(),
   };
 }
 
@@ -1146,29 +1100,22 @@ final class DataprocClusterClusterConfigSecurityConfigKerberosConfig {
   final TfArg<String>? truststoreUri;
 
   Map<String, Object?> encode() => {
-    if (crossRealmTrustAdminServer != null)
-      'cross_realm_trust_admin_server': crossRealmTrustAdminServer!.toTfJson(),
-    if (crossRealmTrustKdc != null)
-      'cross_realm_trust_kdc': crossRealmTrustKdc!.toTfJson(),
-    if (crossRealmTrustRealm != null)
-      'cross_realm_trust_realm': crossRealmTrustRealm!.toTfJson(),
-    if (crossRealmTrustSharedPasswordUri != null)
-      'cross_realm_trust_shared_password_uri': crossRealmTrustSharedPasswordUri!
-          .toTfJson(),
-    if (enableKerberos != null) 'enable_kerberos': enableKerberos!.toTfJson(),
-    if (kdcDbKeyUri != null) 'kdc_db_key_uri': kdcDbKeyUri!.toTfJson(),
-    if (keyPasswordUri != null) 'key_password_uri': keyPasswordUri!.toTfJson(),
-    if (keystorePasswordUri != null)
-      'keystore_password_uri': keystorePasswordUri!.toTfJson(),
-    if (keystoreUri != null) 'keystore_uri': keystoreUri!.toTfJson(),
+    'cross_realm_trust_admin_server': ?crossRealmTrustAdminServer?.toTfJson(),
+    'cross_realm_trust_kdc': ?crossRealmTrustKdc?.toTfJson(),
+    'cross_realm_trust_realm': ?crossRealmTrustRealm?.toTfJson(),
+    'cross_realm_trust_shared_password_uri': ?crossRealmTrustSharedPasswordUri
+        ?.toTfJson(),
+    'enable_kerberos': ?enableKerberos?.toTfJson(),
+    'kdc_db_key_uri': ?kdcDbKeyUri?.toTfJson(),
+    'key_password_uri': ?keyPasswordUri?.toTfJson(),
+    'keystore_password_uri': ?keystorePasswordUri?.toTfJson(),
+    'keystore_uri': ?keystoreUri?.toTfJson(),
     'kms_key_uri': kmsKeyUri.toTfJson(),
-    if (realm != null) 'realm': realm!.toTfJson(),
+    'realm': ?realm?.toTfJson(),
     'root_principal_password_uri': rootPrincipalPasswordUri.toTfJson(),
-    if (tgtLifetimeHours != null)
-      'tgt_lifetime_hours': tgtLifetimeHours!.toTfJson(),
-    if (truststorePasswordUri != null)
-      'truststore_password_uri': truststorePasswordUri!.toTfJson(),
-    if (truststoreUri != null) 'truststore_uri': truststoreUri!.toTfJson(),
+    'tgt_lifetime_hours': ?tgtLifetimeHours?.toTfJson(),
+    'truststore_password_uri': ?truststorePasswordUri?.toTfJson(),
+    'truststore_uri': ?truststoreUri?.toTfJson(),
   };
 }
 
@@ -1189,11 +1136,9 @@ final class DataprocClusterClusterConfigSoftwareConfig {
   final TfArg<Map<String, String>>? overrideProperties;
 
   Map<String, Object?> encode() => {
-    if (imageVersion != null) 'image_version': imageVersion!.toTfJson(),
-    if (optionalComponents != null)
-      'optional_components': optionalComponents!.toTfJson(),
-    if (overrideProperties != null)
-      'override_properties': overrideProperties!.toTfJson(),
+    'image_version': ?imageVersion?.toTfJson(),
+    'optional_components': ?optionalComponents?.toTfJson(),
+    'override_properties': ?overrideProperties?.toTfJson(),
   };
 }
 
@@ -1231,17 +1176,15 @@ final class DataprocClusterClusterConfigWorkerConfig {
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
-    if (imageUri != null) 'image_uri': imageUri!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
-    if (minNumInstances != null)
-      'min_num_instances': minNumInstances!.toTfJson(),
-    if (numInstances != null) 'num_instances': numInstances!.toTfJson(),
+    'image_uri': ?imageUri?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
+    'min_num_instances': ?minNumInstances?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
-    if (instanceFlexibilityPolicy != null)
-      'instance_flexibility_policy': instanceFlexibilityPolicy!.encode(),
+    'disk_config': ?diskConfig?.encode(),
+    'instance_flexibility_policy': ?instanceFlexibilityPolicy?.encode(),
   };
 }
 
@@ -1296,16 +1239,13 @@ final class DataprocClusterClusterConfigWorkerConfigDiskConfig {
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -1331,12 +1271,10 @@ final class DataprocClusterClusterConfigWorkerConfigDiskConfigAttachedDiskConfig
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -1379,9 +1317,9 @@ final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyIns
   diskConfig;
 
   Map<String, Object?> encode() => {
-    if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
-    if (rank != null) 'rank': rank!.toTfJson(),
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+    'machine_types': ?machineTypes?.toTfJson(),
+    'rank': ?rank?.toTfJson(),
+    'disk_config': ?diskConfig?.encode(),
   };
 }
 
@@ -1417,16 +1355,13 @@ final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyIns
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -1452,12 +1387,10 @@ final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyIns
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -1480,11 +1413,9 @@ final class DataprocClusterVirtualClusterConfig {
   kubernetesClusterConfig;
 
   Map<String, Object?> encode() => {
-    if (stagingBucket != null) 'staging_bucket': stagingBucket!.toTfJson(),
-    if (auxiliaryServicesConfig != null)
-      'auxiliary_services_config': auxiliaryServicesConfig!.encode(),
-    if (kubernetesClusterConfig != null)
-      'kubernetes_cluster_config': kubernetesClusterConfig!.encode(),
+    'staging_bucket': ?stagingBucket?.toTfJson(),
+    'auxiliary_services_config': ?auxiliaryServicesConfig?.encode(),
+    'kubernetes_cluster_config': ?kubernetesClusterConfig?.encode(),
   };
 }
 
@@ -1504,9 +1435,8 @@ final class DataprocClusterVirtualClusterConfigAuxiliaryServicesConfig {
   sparkHistoryServerConfig;
 
   Map<String, Object?> encode() => {
-    if (metastoreConfig != null) 'metastore_config': metastoreConfig!.encode(),
-    if (sparkHistoryServerConfig != null)
-      'spark_history_server_config': sparkHistoryServerConfig!.encode(),
+    'metastore_config': ?metastoreConfig?.encode(),
+    'spark_history_server_config': ?sparkHistoryServerConfig?.encode(),
   };
 }
 
@@ -1521,8 +1451,7 @@ final class DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigMetastoreC
   final TfArg<String>? dataprocMetastoreService;
 
   Map<String, Object?> encode() => {
-    if (dataprocMetastoreService != null)
-      'dataproc_metastore_service': dataprocMetastoreService!.toTfJson(),
+    'dataproc_metastore_service': ?dataprocMetastoreService?.toTfJson(),
   };
 }
 
@@ -1537,8 +1466,7 @@ final class DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigSparkHisto
   final TfArg<String>? dataprocCluster;
 
   Map<String, Object?> encode() => {
-    if (dataprocCluster != null)
-      'dataproc_cluster': dataprocCluster!.toTfJson(),
+    'dataproc_cluster': ?dataprocCluster?.toTfJson(),
   };
 }
 
@@ -1561,8 +1489,7 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfig {
   kubernetesSoftwareConfig;
 
   Map<String, Object?> encode() => {
-    if (kubernetesNamespace != null)
-      'kubernetes_namespace': kubernetesNamespace!.toTfJson(),
+    'kubernetes_namespace': ?kubernetesNamespace?.toTfJson(),
     'gke_cluster_config': gkeClusterConfig.encode(),
     'kubernetes_software_config': kubernetesSoftwareConfig.encode(),
   };
@@ -1585,8 +1512,7 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
   nodePoolTarget;
 
   Map<String, Object?> encode() => {
-    if (gkeClusterTarget != null)
-      'gke_cluster_target': gkeClusterTarget!.toTfJson(),
+    'gke_cluster_target': ?gkeClusterTarget?.toTfJson(),
     if (nodePoolTarget != null)
       'node_pool_target': [for (final e in nodePoolTarget!) e.encode()],
   };
@@ -1612,7 +1538,7 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
   Map<String, Object?> encode() => {
     'node_pool': nodePool.toTfJson(),
     'roles': roles.toTfJson(),
-    if (nodePoolConfig != null) 'node_pool_config': nodePoolConfig!.encode(),
+    'node_pool_config': ?nodePoolConfig?.encode(),
   };
 }
 
@@ -1636,8 +1562,8 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
 
   Map<String, Object?> encode() => {
     'locations': locations.toTfJson(),
-    if (autoscaling != null) 'autoscaling': autoscaling!.encode(),
-    if (config != null) 'config': config!.encode(),
+    'autoscaling': ?autoscaling?.encode(),
+    'config': ?config?.encode(),
   };
 }
 
@@ -1655,8 +1581,8 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
   final TfArg<num>? minNodeCount;
 
   Map<String, Object?> encode() => {
-    if (maxNodeCount != null) 'max_node_count': maxNodeCount!.toTfJson(),
-    if (minNodeCount != null) 'min_node_count': minNodeCount!.toTfJson(),
+    'max_node_count': ?maxNodeCount?.toTfJson(),
+    'min_node_count': ?minNodeCount?.toTfJson(),
   };
 }
 
@@ -1683,11 +1609,11 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeCluster
   final TfArg<bool>? spot;
 
   Map<String, Object?> encode() => {
-    if (localSsdCount != null) 'local_ssd_count': localSsdCount!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
-    if (preemptible != null) 'preemptible': preemptible!.toTfJson(),
-    if (spot != null) 'spot': spot!.toTfJson(),
+    'local_ssd_count': ?localSsdCount?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
+    'preemptible': ?preemptible?.toTfJson(),
+    'spot': ?spot?.toTfJson(),
   };
 }
 
@@ -1706,7 +1632,7 @@ final class DataprocClusterVirtualClusterConfigKubernetesClusterConfigKubernetes
 
   Map<String, Object?> encode() => {
     'component_version': componentVersion.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
+    'properties': ?properties?.toTfJson(),
   };
 }
 
@@ -1767,18 +1693,17 @@ final class GoogleDataprocCluster extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (clusterConfig != null)
              'cluster_config': TfArg.literal(clusterConfig.encode()),
            if (virtualClusterConfig != null)
              'virtual_cluster_config': TfArg.literal(
                virtualClusterConfig.encode(),
              ),
-           if (labels != null) 'labels': labels,
-           if (gracefulDecommissionTimeout != null)
-             'graceful_decommission_timeout': gracefulDecommissionTimeout,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'graceful_decommission_timeout': ?gracefulDecommissionTimeout,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

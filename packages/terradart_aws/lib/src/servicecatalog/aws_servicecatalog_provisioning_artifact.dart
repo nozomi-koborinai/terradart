@@ -131,17 +131,16 @@ final class AwsServicecatalogProvisioningArtifact extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
-           if (active != null) 'active': active,
-           if (description != null) 'description': description,
-           if (disableTemplateValidation != null)
-             'disable_template_validation': disableTemplateValidation,
-           if (guidance != null) 'guidance': guidance,
-           if (name != null) 'name': name,
+           'accept_language': ?acceptLanguage,
+           'active': ?active,
+           'description': ?description,
+           'disable_template_validation': ?disableTemplateValidation,
+           'guidance': ?guidance,
+           'name': ?name,
            'product_id': productId,
-           if (region != null) 'region': region,
+           'region': ?region,
            ...template.argMap,
-           if (type != null) 'type': type,
+           'type': ?type,
          },
        );
 

@@ -26,11 +26,10 @@ final class DataCloudflareSchemaValidationSchemasList extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (maxItems != null) 'max_items': maxItems,
-           if (omitSource != null) 'omit_source': omitSource,
-           if (validationEnabled != null)
-             'validation_enabled': validationEnabled,
-           if (zoneId != null) 'zone_id': zoneId,
+           'max_items': ?maxItems,
+           'omit_source': ?omitSource,
+           'validation_enabled': ?validationEnabled,
+           'zone_id': ?zoneId,
          },
        );
 

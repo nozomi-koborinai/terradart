@@ -25,7 +25,7 @@ final class DataGoogleMonitoringMeshIstioService extends Data {
          terraformType: tfType,
          argMap: {
            'mesh_uid': meshUid,
-           if (project != null) 'project': project,
+           'project': ?project,
            'service_name': serviceName,
            'service_namespace': serviceNamespace,
          },

@@ -16,9 +16,7 @@ final class ApprunnerObservabilityConfigurationTraceConfiguration {
   final TfArg<ApprunnerObservabilityConfigurationTraceConfigurationVendor>?
   vendor;
 
-  Map<String, Object?> encode() => {
-    if (vendor != null) 'vendor': vendor!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'vendor': ?vendor?.toTfJson()};
 }
 
 /// `vendor` — derived from the provider schema description.
@@ -51,8 +49,8 @@ final class AwsApprunnerObservabilityConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'observability_configuration_name': observabilityConfigurationName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (traceConfiguration != null)
              'trace_configuration': TfArg.literal(traceConfiguration.encode()),
          },

@@ -24,7 +24,7 @@ final class ContainerAnalysisNoteIamMemberCondition {
   final TfArg<String> title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
     'title': title.toTfJson(),
   };
@@ -64,7 +64,7 @@ final class GoogleContainerAnalysisNoteIamMember extends Resource {
            'note': note,
            'role': role,
            'member': member,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

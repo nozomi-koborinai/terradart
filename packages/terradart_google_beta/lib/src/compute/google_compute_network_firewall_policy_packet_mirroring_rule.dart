@@ -39,8 +39,8 @@ final class ComputeNetworkFirewallPolicyPacketMirroringRuleMatch {
   layer4Configs;
 
   Map<String, Object?> encode() => {
-    if (destIpRanges != null) 'dest_ip_ranges': destIpRanges!.toTfJson(),
-    if (srcIpRanges != null) 'src_ip_ranges': srcIpRanges!.toTfJson(),
+    'dest_ip_ranges': ?destIpRanges?.toTfJson(),
+    'src_ip_ranges': ?srcIpRanges?.toTfJson(),
     'layer4_configs': [for (final e in layer4Configs) e.encode()],
   };
 }
@@ -60,7 +60,7 @@ final class ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs {
 
   Map<String, Object?> encode() => {
     'ip_protocol': ipProtocol.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
+    'ports': ?ports?.toTfJson(),
   };
 }
 
@@ -74,7 +74,7 @@ final class ComputeNetworkFirewallPolicyPacketMirroringRuleTargetSecureTags {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_network_firewall_policy_packet_mirroring_rule`.
@@ -113,17 +113,16 @@ final class GoogleComputeNetworkFirewallPolicyPacketMirroringRule
          provider: provider ?? 'google-beta',
          argMap: {
            'action': action,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'direction': direction,
-           if (disabled != null) 'disabled': disabled,
+           'disabled': ?disabled,
            'firewall_policy': firewallPolicy,
            'priority': priority,
-           if (project != null) 'project': project,
-           if (ruleName != null) 'rule_name': ruleName,
-           if (securityProfileGroup != null)
-             'security_profile_group': securityProfileGroup,
-           if (tlsInspect != null) 'tls_inspect': tlsInspect,
+           'project': ?project,
+           'rule_name': ?ruleName,
+           'security_profile_group': ?securityProfileGroup,
+           'tls_inspect': ?tlsInspect,
            'match': TfArg.literal(match.encode()),
            if (targetSecureTags != null)
              'target_secure_tags': TfArg.literal([

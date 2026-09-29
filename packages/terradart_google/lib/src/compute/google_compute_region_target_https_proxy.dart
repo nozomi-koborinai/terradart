@@ -188,12 +188,11 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
            'url_map': urlMap,
            'region': region,
            ...?certificates?.argMap,
-           if (sslPolicy != null) 'ssl_policy': sslPolicy,
-           if (serverTlsPolicy != null) 'server_tls_policy': serverTlsPolicy,
-           if (httpKeepAliveTimeoutSec != null)
-             'http_keep_alive_timeout_sec': httpKeepAliveTimeoutSec,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'ssl_policy': ?sslPolicy,
+           'server_tls_policy': ?serverTlsPolicy,
+           'http_keep_alive_timeout_sec': ?httpKeepAliveTimeoutSec,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

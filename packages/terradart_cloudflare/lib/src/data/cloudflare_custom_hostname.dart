@@ -49,18 +49,16 @@ final class DataCustomHostnameFilter {
   final DataCustomHostnameFilterHostname? hostname;
 
   Map<String, Object?> encode() => {
-    if (certificateAuthority != null)
-      'certificate_authority': certificateAuthority!.toTfJson(),
-    if (customOriginServer != null)
-      'custom_origin_server': customOriginServer!.toTfJson(),
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (hostnameStatus != null) 'hostname_status': hostnameStatus!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (ssl != null) 'ssl': ssl!.toTfJson(),
-    if (sslStatus != null) 'ssl_status': sslStatus!.toTfJson(),
-    if (wildcard != null) 'wildcard': wildcard!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.encode(),
+    'certificate_authority': ?certificateAuthority?.toTfJson(),
+    'custom_origin_server': ?customOriginServer?.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'hostname_status': ?hostnameStatus?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'ssl': ?ssl?.toTfJson(),
+    'ssl_status': ?sslStatus?.toTfJson(),
+    'wildcard': ?wildcard?.toTfJson(),
+    'hostname': ?hostname?.encode(),
   };
 }
 
@@ -165,9 +163,9 @@ final class DataCustomHostnameFilterHostname {
   final TfArg<String>? startsWith;
 
   Map<String, Object?> encode() => {
-    if (contain != null) 'contain': contain!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (startsWith != null) 'starts_with': startsWith!.toTfJson(),
+    'contain': ?contain?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'starts_with': ?startsWith?.toTfJson(),
   };
 }
 
@@ -189,8 +187,8 @@ final class DataCloudflareCustomHostname extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customHostnameId != null) 'custom_hostname_id': customHostnameId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'custom_hostname_id': ?customHostnameId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

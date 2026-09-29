@@ -31,7 +31,7 @@ final class GooglePrivatecaCaPoolIamBinding extends Resource {
            'ca_pool': caPool,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

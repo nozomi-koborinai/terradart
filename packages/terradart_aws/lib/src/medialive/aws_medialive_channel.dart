@@ -83,8 +83,7 @@ final class MedialiveChannelDestinations {
       'media_package_settings': [
         for (final e in mediaPackageSettings!) e.encode(),
       ],
-    if (multiplexSettings != null)
-      'multiplex_settings': multiplexSettings!.encode(),
+    'multiplex_settings': ?multiplexSettings?.encode(),
     if (settings != null) 'settings': [for (final e in settings!) e.encode()],
   };
 }
@@ -141,10 +140,10 @@ final class MedialiveChannelDestinationsSettings {
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (passwordParam != null) 'password_param': passwordParam!.toTfJson(),
-    if (streamName != null) 'stream_name': streamName!.toTfJson(),
-    if (url != null) 'url': url!.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'password_param': ?passwordParam?.toTfJson(),
+    'stream_name': ?streamName?.toTfJson(),
+    'url': ?url?.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -190,17 +189,14 @@ final class MedialiveChannelEncoderSettings {
   Map<String, Object?> encode() => {
     if (audioDescriptions != null)
       'audio_descriptions': [for (final e in audioDescriptions!) e.encode()],
-    if (availBlanking != null) 'avail_blanking': availBlanking!.encode(),
+    'avail_blanking': ?availBlanking?.encode(),
     if (captionDescriptions != null)
       'caption_descriptions': [
         for (final e in captionDescriptions!) e.encode(),
       ],
-    if (globalConfiguration != null)
-      'global_configuration': globalConfiguration!.encode(),
-    if (motionGraphicsConfiguration != null)
-      'motion_graphics_configuration': motionGraphicsConfiguration!.encode(),
-    if (nielsenConfiguration != null)
-      'nielsen_configuration': nielsenConfiguration!.encode(),
+    'global_configuration': ?globalConfiguration?.encode(),
+    'motion_graphics_configuration': ?motionGraphicsConfiguration?.encode(),
+    'nielsen_configuration': ?nielsenConfiguration?.encode(),
     'output_groups': [for (final e in outputGroups) e.encode()],
     'timecode_config': timecodeConfig.encode(),
     if (videoDescriptions != null)
@@ -254,20 +250,16 @@ final class MedialiveChannelEncoderSettingsAudioDescriptions {
 
   Map<String, Object?> encode() => {
     'audio_selector_name': audioSelectorName.toTfJson(),
-    if (audioType != null) 'audio_type': audioType!.toTfJson(),
-    if (audioTypeControl != null)
-      'audio_type_control': audioTypeControl!.toTfJson(),
-    if (languageCode != null) 'language_code': languageCode!.toTfJson(),
-    if (languageCodeControl != null)
-      'language_code_control': languageCodeControl!.toTfJson(),
+    'audio_type': ?audioType?.toTfJson(),
+    'audio_type_control': ?audioTypeControl?.toTfJson(),
+    'language_code': ?languageCode?.toTfJson(),
+    'language_code_control': ?languageCodeControl?.toTfJson(),
     'name': name.toTfJson(),
-    if (streamName != null) 'stream_name': streamName!.toTfJson(),
-    if (audioNormalizationSettings != null)
-      'audio_normalization_settings': audioNormalizationSettings!.encode(),
-    if (audioWatermarkSettings != null)
-      'audio_watermark_settings': audioWatermarkSettings!.encode(),
-    if (codecSettings != null) 'codec_settings': codecSettings!.encode(),
-    if (remixSettings != null) 'remix_settings': remixSettings!.encode(),
+    'stream_name': ?streamName?.toTfJson(),
+    'audio_normalization_settings': ?audioNormalizationSettings?.encode(),
+    'audio_watermark_settings': ?audioWatermarkSettings?.encode(),
+    'codec_settings': ?codecSettings?.encode(),
+    'remix_settings': ?remixSettings?.encode(),
   };
 }
 
@@ -288,10 +280,9 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioNormalizationSe
   final TfArg<num>? targetLkfs;
 
   Map<String, Object?> encode() => {
-    if (algorithm != null) 'algorithm': algorithm!.toTfJson(),
-    if (algorithmControl != null)
-      'algorithm_control': algorithmControl!.toTfJson(),
-    if (targetLkfs != null) 'target_lkfs': targetLkfs!.toTfJson(),
+    'algorithm': ?algorithm?.toTfJson(),
+    'algorithm_control': ?algorithmControl?.toTfJson(),
+    'target_lkfs': ?targetLkfs?.toTfJson(),
   };
 }
 
@@ -307,8 +298,7 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettin
   nielsenWatermarksSettings;
 
   Map<String, Object?> encode() => {
-    if (nielsenWatermarksSettings != null)
-      'nielsen_watermarks_settings': nielsenWatermarksSettings!.encode(),
+    'nielsen_watermarks_settings': ?nielsenWatermarksSettings?.encode(),
   };
 }
 
@@ -333,10 +323,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettin
   nielsenNaesIiNwSettings;
 
   Map<String, Object?> encode() => {
-    if (nielsenDistributionType != null)
-      'nielsen_distribution_type': nielsenDistributionType!.toTfJson(),
-    if (nielsenCbetSettings != null)
-      'nielsen_cbet_settings': nielsenCbetSettings!.encode(),
+    'nielsen_distribution_type': ?nielsenDistributionType?.toTfJson(),
+    'nielsen_cbet_settings': ?nielsenCbetSettings?.encode(),
     if (nielsenNaesIiNwSettings != null)
       'nielsen_naes_ii_nw_settings': [
         for (final e in nielsenNaesIiNwSettings!) e.encode(),
@@ -422,15 +410,13 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettings {
   wavSettings;
 
   Map<String, Object?> encode() => {
-    if (aacSettings != null) 'aac_settings': aacSettings!.encode(),
-    if (ac3Settings != null) 'ac3_settings': ac3Settings!.encode(),
-    if (eac3AtmosSettings != null)
-      'eac3_atmos_settings': eac3AtmosSettings!.encode(),
-    if (eac3Settings != null) 'eac3_settings': eac3Settings!.encode(),
-    if (mp2Settings != null) 'mp2_settings': mp2Settings!.encode(),
-    if (passThroughSettings != null)
-      'pass_through_settings': passThroughSettings!.encode(),
-    if (wavSettings != null) 'wav_settings': wavSettings!.encode(),
+    'aac_settings': ?aacSettings?.encode(),
+    'ac3_settings': ?ac3Settings?.encode(),
+    'eac3_atmos_settings': ?eac3AtmosSettings?.encode(),
+    'eac3_settings': ?eac3Settings?.encode(),
+    'mp2_settings': ?mp2Settings?.encode(),
+    'pass_through_settings': ?passThroughSettings?.encode(),
+    'wav_settings': ?wavSettings?.encode(),
   };
 }
 
@@ -469,16 +455,15 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsAacSett
   final TfArg<String>? vbrQuality;
 
   Map<String, Object?> encode() => {
-    if (bitrate != null) 'bitrate': bitrate!.toTfJson(),
-    if (codingMode != null) 'coding_mode': codingMode!.toTfJson(),
-    if (inputType != null) 'input_type': inputType!.toTfJson(),
-    if (profile != null) 'profile': profile!.toTfJson(),
-    if (rateControlMode != null)
-      'rate_control_mode': rateControlMode!.toTfJson(),
-    if (rawFormat != null) 'raw_format': rawFormat!.toTfJson(),
-    if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
-    if (spec != null) 'spec': spec!.toTfJson(),
-    if (vbrQuality != null) 'vbr_quality': vbrQuality!.toTfJson(),
+    'bitrate': ?bitrate?.toTfJson(),
+    'coding_mode': ?codingMode?.toTfJson(),
+    'input_type': ?inputType?.toTfJson(),
+    'profile': ?profile?.toTfJson(),
+    'rate_control_mode': ?rateControlMode?.toTfJson(),
+    'raw_format': ?rawFormat?.toTfJson(),
+    'sample_rate': ?sampleRate?.toTfJson(),
+    'spec': ?spec?.toTfJson(),
+    'vbr_quality': ?vbrQuality?.toTfJson(),
   };
 }
 
@@ -511,14 +496,13 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsAc3Sett
   final TfArg<String>? metadataControl;
 
   Map<String, Object?> encode() => {
-    if (bitrate != null) 'bitrate': bitrate!.toTfJson(),
-    if (bitstreamMode != null) 'bitstream_mode': bitstreamMode!.toTfJson(),
-    if (codingMode != null) 'coding_mode': codingMode!.toTfJson(),
-    if (dialnorm != null) 'dialnorm': dialnorm!.toTfJson(),
-    if (drcProfile != null) 'drc_profile': drcProfile!.toTfJson(),
-    if (lfeFilter != null) 'lfe_filter': lfeFilter!.toTfJson(),
-    if (metadataControl != null)
-      'metadata_control': metadataControl!.toTfJson(),
+    'bitrate': ?bitrate?.toTfJson(),
+    'bitstream_mode': ?bitstreamMode?.toTfJson(),
+    'coding_mode': ?codingMode?.toTfJson(),
+    'dialnorm': ?dialnorm?.toTfJson(),
+    'drc_profile': ?drcProfile?.toTfJson(),
+    'lfe_filter': ?lfeFilter?.toTfJson(),
+    'metadata_control': ?metadataControl?.toTfJson(),
   };
 }
 
@@ -551,13 +535,13 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsEac3Atm
   final TfArg<num>? surroundTrim;
 
   Map<String, Object?> encode() => {
-    if (bitrate != null) 'bitrate': bitrate!.toTfJson(),
-    if (codingMode != null) 'coding_mode': codingMode!.toTfJson(),
-    if (dialnorm != null) 'dialnorm': dialnorm!.toTfJson(),
-    if (drcLine != null) 'drc_line': drcLine!.toTfJson(),
-    if (drcRf != null) 'drc_rf': drcRf!.toTfJson(),
-    if (heightTrim != null) 'height_trim': heightTrim!.toTfJson(),
-    if (surroundTrim != null) 'surround_trim': surroundTrim!.toTfJson(),
+    'bitrate': ?bitrate?.toTfJson(),
+    'coding_mode': ?codingMode?.toTfJson(),
+    'dialnorm': ?dialnorm?.toTfJson(),
+    'drc_line': ?drcLine?.toTfJson(),
+    'drc_rf': ?drcRf?.toTfJson(),
+    'height_trim': ?heightTrim?.toTfJson(),
+    'surround_trim': ?surroundTrim?.toTfJson(),
   };
 }
 
@@ -629,33 +613,26 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsEac3Set
   final TfArg<String>? surroundMode;
 
   Map<String, Object?> encode() => {
-    if (attenuationControl != null)
-      'attenuation_control': attenuationControl!.toTfJson(),
-    if (bitrate != null) 'bitrate': bitrate!.toTfJson(),
-    if (bitstreamMode != null) 'bitstream_mode': bitstreamMode!.toTfJson(),
-    if (codingMode != null) 'coding_mode': codingMode!.toTfJson(),
-    if (dcFilter != null) 'dc_filter': dcFilter!.toTfJson(),
-    if (dialnorm != null) 'dialnorm': dialnorm!.toTfJson(),
-    if (drcLine != null) 'drc_line': drcLine!.toTfJson(),
-    if (drcRf != null) 'drc_rf': drcRf!.toTfJson(),
-    if (lfeControl != null) 'lfe_control': lfeControl!.toTfJson(),
-    if (lfeFilter != null) 'lfe_filter': lfeFilter!.toTfJson(),
-    if (loRoCenterMixLevel != null)
-      'lo_ro_center_mix_level': loRoCenterMixLevel!.toTfJson(),
-    if (loRoSurroundMixLevel != null)
-      'lo_ro_surround_mix_level': loRoSurroundMixLevel!.toTfJson(),
-    if (ltRtCenterMixLevel != null)
-      'lt_rt_center_mix_level': ltRtCenterMixLevel!.toTfJson(),
-    if (ltRtSurroundMixLevel != null)
-      'lt_rt_surround_mix_level': ltRtSurroundMixLevel!.toTfJson(),
-    if (metadataControl != null)
-      'metadata_control': metadataControl!.toTfJson(),
-    if (passthroughControl != null)
-      'passthrough_control': passthroughControl!.toTfJson(),
-    if (phaseControl != null) 'phase_control': phaseControl!.toTfJson(),
-    if (stereoDownmix != null) 'stereo_downmix': stereoDownmix!.toTfJson(),
-    if (surroundExMode != null) 'surround_ex_mode': surroundExMode!.toTfJson(),
-    if (surroundMode != null) 'surround_mode': surroundMode!.toTfJson(),
+    'attenuation_control': ?attenuationControl?.toTfJson(),
+    'bitrate': ?bitrate?.toTfJson(),
+    'bitstream_mode': ?bitstreamMode?.toTfJson(),
+    'coding_mode': ?codingMode?.toTfJson(),
+    'dc_filter': ?dcFilter?.toTfJson(),
+    'dialnorm': ?dialnorm?.toTfJson(),
+    'drc_line': ?drcLine?.toTfJson(),
+    'drc_rf': ?drcRf?.toTfJson(),
+    'lfe_control': ?lfeControl?.toTfJson(),
+    'lfe_filter': ?lfeFilter?.toTfJson(),
+    'lo_ro_center_mix_level': ?loRoCenterMixLevel?.toTfJson(),
+    'lo_ro_surround_mix_level': ?loRoSurroundMixLevel?.toTfJson(),
+    'lt_rt_center_mix_level': ?ltRtCenterMixLevel?.toTfJson(),
+    'lt_rt_surround_mix_level': ?ltRtSurroundMixLevel?.toTfJson(),
+    'metadata_control': ?metadataControl?.toTfJson(),
+    'passthrough_control': ?passthroughControl?.toTfJson(),
+    'phase_control': ?phaseControl?.toTfJson(),
+    'stereo_downmix': ?stereoDownmix?.toTfJson(),
+    'surround_ex_mode': ?surroundExMode?.toTfJson(),
+    'surround_mode': ?surroundMode?.toTfJson(),
   };
 }
 
@@ -676,9 +653,9 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsMp2Sett
   final TfArg<num>? sampleRate;
 
   Map<String, Object?> encode() => {
-    if (bitrate != null) 'bitrate': bitrate!.toTfJson(),
-    if (codingMode != null) 'coding_mode': codingMode!.toTfJson(),
-    if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
+    'bitrate': ?bitrate?.toTfJson(),
+    'coding_mode': ?codingMode?.toTfJson(),
+    'sample_rate': ?sampleRate?.toTfJson(),
   };
 }
 
@@ -708,9 +685,9 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsWavSett
   final TfArg<num>? sampleRate;
 
   Map<String, Object?> encode() => {
-    if (bitDepth != null) 'bit_depth': bitDepth!.toTfJson(),
-    if (codingMode != null) 'coding_mode': codingMode!.toTfJson(),
-    if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
+    'bit_depth': ?bitDepth?.toTfJson(),
+    'coding_mode': ?codingMode?.toTfJson(),
+    'sample_rate': ?sampleRate?.toTfJson(),
   };
 }
 
@@ -734,8 +711,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettings {
   channelMappings;
 
   Map<String, Object?> encode() => {
-    if (channelsIn != null) 'channels_in': channelsIn!.toTfJson(),
-    if (channelsOut != null) 'channels_out': channelsOut!.toTfJson(),
+    'channels_in': ?channelsIn?.toTfJson(),
+    'channels_out': ?channelsOut?.toTfJson(),
     'channel_mappings': [for (final e in channelMappings) e.encode()],
   };
 }
@@ -796,9 +773,8 @@ final class MedialiveChannelEncoderSettingsAvailBlanking {
   availBlankingImage;
 
   Map<String, Object?> encode() => {
-    if (state != null) 'state': state!.toTfJson(),
-    if (availBlankingImage != null)
-      'avail_blanking_image': availBlankingImage!.encode(),
+    'state': ?state?.toTfJson(),
+    'avail_blanking_image': ?availBlankingImage?.encode(),
   };
 }
 
@@ -819,9 +795,9 @@ final class MedialiveChannelEncoderSettingsAvailBlankingAvailBlankingImage {
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (passwordParam != null) 'password_param': passwordParam!.toTfJson(),
+    'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -852,14 +828,12 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptions {
   destinationSettings;
 
   Map<String, Object?> encode() => {
-    if (accessibility != null) 'accessibility': accessibility!.toTfJson(),
+    'accessibility': ?accessibility?.toTfJson(),
     'caption_selector_name': captionSelectorName.toTfJson(),
-    if (languageCode != null) 'language_code': languageCode!.toTfJson(),
-    if (languageDescription != null)
-      'language_description': languageDescription!.toTfJson(),
+    'language_code': ?languageCode?.toTfJson(),
+    'language_description': ?languageDescription?.toTfJson(),
     'name': name.toTfJson(),
-    if (destinationSettings != null)
-      'destination_settings': destinationSettings!.encode(),
+    'destination_settings': ?destinationSettings?.encode(),
   };
 }
 
@@ -923,35 +897,22 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
   webvttDestinationSettings;
 
   Map<String, Object?> encode() => {
-    if (aribDestinationSettings != null)
-      'arib_destination_settings': aribDestinationSettings!.encode(),
-    if (burnInDestinationSettings != null)
-      'burn_in_destination_settings': burnInDestinationSettings!.encode(),
-    if (dvbSubDestinationSettings != null)
-      'dvb_sub_destination_settings': dvbSubDestinationSettings!.encode(),
-    if (ebuTtDDestinationSettings != null)
-      'ebu_tt_d_destination_settings': ebuTtDDestinationSettings!.encode(),
-    if (embeddedDestinationSettings != null)
-      'embedded_destination_settings': embeddedDestinationSettings!.encode(),
-    if (embeddedPlusScte20DestinationSettings != null)
-      'embedded_plus_scte20_destination_settings':
-          embeddedPlusScte20DestinationSettings!.encode(),
-    if (rtmpCaptionInfoDestinationSettings != null)
-      'rtmp_caption_info_destination_settings':
-          rtmpCaptionInfoDestinationSettings!.encode(),
-    if (scte20PlusEmbeddedDestinationSettings != null)
-      'scte20_plus_embedded_destination_settings':
-          scte20PlusEmbeddedDestinationSettings!.encode(),
-    if (scte27DestinationSettings != null)
-      'scte27_destination_settings': scte27DestinationSettings!.encode(),
-    if (smpteTtDestinationSettings != null)
-      'smpte_tt_destination_settings': smpteTtDestinationSettings!.encode(),
-    if (teletextDestinationSettings != null)
-      'teletext_destination_settings': teletextDestinationSettings!.encode(),
-    if (ttmlDestinationSettings != null)
-      'ttml_destination_settings': ttmlDestinationSettings!.encode(),
-    if (webvttDestinationSettings != null)
-      'webvtt_destination_settings': webvttDestinationSettings!.encode(),
+    'arib_destination_settings': ?aribDestinationSettings?.encode(),
+    'burn_in_destination_settings': ?burnInDestinationSettings?.encode(),
+    'dvb_sub_destination_settings': ?dvbSubDestinationSettings?.encode(),
+    'ebu_tt_d_destination_settings': ?ebuTtDDestinationSettings?.encode(),
+    'embedded_destination_settings': ?embeddedDestinationSettings?.encode(),
+    'embedded_plus_scte20_destination_settings':
+        ?embeddedPlusScte20DestinationSettings?.encode(),
+    'rtmp_caption_info_destination_settings':
+        ?rtmpCaptionInfoDestinationSettings?.encode(),
+    'scte20_plus_embedded_destination_settings':
+        ?scte20PlusEmbeddedDestinationSettings?.encode(),
+    'scte27_destination_settings': ?scte27DestinationSettings?.encode(),
+    'smpte_tt_destination_settings': ?smpteTtDestinationSettings?.encode(),
+    'teletext_destination_settings': ?teletextDestinationSettings?.encode(),
+    'ttml_destination_settings': ?ttmlDestinationSettings?.encode(),
+    'webvtt_destination_settings': ?webvttDestinationSettings?.encode(),
   };
 }
 
@@ -1024,25 +985,23 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
   font;
 
   Map<String, Object?> encode() => {
-    if (alignment != null) 'alignment': alignment!.toTfJson(),
-    if (backgroundColor != null)
-      'background_color': backgroundColor!.toTfJson(),
-    if (backgroundOpacity != null)
-      'background_opacity': backgroundOpacity!.toTfJson(),
-    if (fontColor != null) 'font_color': fontColor!.toTfJson(),
-    if (fontOpacity != null) 'font_opacity': fontOpacity!.toTfJson(),
-    if (fontResolution != null) 'font_resolution': fontResolution!.toTfJson(),
-    if (fontSize != null) 'font_size': fontSize!.toTfJson(),
+    'alignment': ?alignment?.toTfJson(),
+    'background_color': ?backgroundColor?.toTfJson(),
+    'background_opacity': ?backgroundOpacity?.toTfJson(),
+    'font_color': ?fontColor?.toTfJson(),
+    'font_opacity': ?fontOpacity?.toTfJson(),
+    'font_resolution': ?fontResolution?.toTfJson(),
+    'font_size': ?fontSize?.toTfJson(),
     'outline_color': outlineColor.toTfJson(),
-    if (outlineSize != null) 'outline_size': outlineSize!.toTfJson(),
-    if (shadowColor != null) 'shadow_color': shadowColor!.toTfJson(),
-    if (shadowOpacity != null) 'shadow_opacity': shadowOpacity!.toTfJson(),
-    if (shadowXOffset != null) 'shadow_x_offset': shadowXOffset!.toTfJson(),
-    if (shadowYOffset != null) 'shadow_y_offset': shadowYOffset!.toTfJson(),
+    'outline_size': ?outlineSize?.toTfJson(),
+    'shadow_color': ?shadowColor?.toTfJson(),
+    'shadow_opacity': ?shadowOpacity?.toTfJson(),
+    'shadow_x_offset': ?shadowXOffset?.toTfJson(),
+    'shadow_y_offset': ?shadowYOffset?.toTfJson(),
     'teletext_grid_control': teletextGridControl.toTfJson(),
-    if (xPosition != null) 'x_position': xPosition!.toTfJson(),
-    if (yPosition != null) 'y_position': yPosition!.toTfJson(),
-    if (font != null) 'font': font!.encode(),
+    'x_position': ?xPosition?.toTfJson(),
+    'y_position': ?yPosition?.toTfJson(),
+    'font': ?font?.encode(),
   };
 }
 
@@ -1063,9 +1022,9 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (passwordParam != null) 'password_param': passwordParam!.toTfJson(),
+    'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -1129,26 +1088,23 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
   font;
 
   Map<String, Object?> encode() => {
-    if (alignment != null) 'alignment': alignment!.toTfJson(),
-    if (backgroundColor != null)
-      'background_color': backgroundColor!.toTfJson(),
-    if (backgroundOpacity != null)
-      'background_opacity': backgroundOpacity!.toTfJson(),
-    if (fontColor != null) 'font_color': fontColor!.toTfJson(),
-    if (fontOpacity != null) 'font_opacity': fontOpacity!.toTfJson(),
-    if (fontResolution != null) 'font_resolution': fontResolution!.toTfJson(),
-    if (fontSize != null) 'font_size': fontSize!.toTfJson(),
-    if (outlineColor != null) 'outline_color': outlineColor!.toTfJson(),
-    if (outlineSize != null) 'outline_size': outlineSize!.toTfJson(),
-    if (shadowColor != null) 'shadow_color': shadowColor!.toTfJson(),
-    if (shadowOpacity != null) 'shadow_opacity': shadowOpacity!.toTfJson(),
-    if (shadowXOffset != null) 'shadow_x_offset': shadowXOffset!.toTfJson(),
-    if (shadowYOffset != null) 'shadow_y_offset': shadowYOffset!.toTfJson(),
-    if (teletextGridControl != null)
-      'teletext_grid_control': teletextGridControl!.toTfJson(),
-    if (xPosition != null) 'x_position': xPosition!.toTfJson(),
-    if (yPosition != null) 'y_position': yPosition!.toTfJson(),
-    if (font != null) 'font': font!.encode(),
+    'alignment': ?alignment?.toTfJson(),
+    'background_color': ?backgroundColor?.toTfJson(),
+    'background_opacity': ?backgroundOpacity?.toTfJson(),
+    'font_color': ?fontColor?.toTfJson(),
+    'font_opacity': ?fontOpacity?.toTfJson(),
+    'font_resolution': ?fontResolution?.toTfJson(),
+    'font_size': ?fontSize?.toTfJson(),
+    'outline_color': ?outlineColor?.toTfJson(),
+    'outline_size': ?outlineSize?.toTfJson(),
+    'shadow_color': ?shadowColor?.toTfJson(),
+    'shadow_opacity': ?shadowOpacity?.toTfJson(),
+    'shadow_x_offset': ?shadowXOffset?.toTfJson(),
+    'shadow_y_offset': ?shadowYOffset?.toTfJson(),
+    'teletext_grid_control': ?teletextGridControl?.toTfJson(),
+    'x_position': ?xPosition?.toTfJson(),
+    'y_position': ?yPosition?.toTfJson(),
+    'font': ?font?.encode(),
   };
 }
 
@@ -1169,9 +1125,9 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (passwordParam != null) 'password_param': passwordParam!.toTfJson(),
+    'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -1195,11 +1151,10 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
   final TfArg<String>? styleControl;
 
   Map<String, Object?> encode() => {
-    if (copyrightHolder != null)
-      'copyright_holder': copyrightHolder!.toTfJson(),
-    if (fillLineGap != null) 'fill_line_gap': fillLineGap!.toTfJson(),
-    if (fontFamily != null) 'font_family': fontFamily!.toTfJson(),
-    if (styleControl != null) 'style_control': styleControl!.toTfJson(),
+    'copyright_holder': ?copyrightHolder?.toTfJson(),
+    'fill_line_gap': ?fillLineGap?.toTfJson(),
+    'font_family': ?fontFamily?.toTfJson(),
+    'style_control': ?styleControl?.toTfJson(),
   };
 }
 
@@ -1319,17 +1274,12 @@ final class MedialiveChannelEncoderSettingsGlobalConfiguration {
   inputLossBehavior;
 
   Map<String, Object?> encode() => {
-    if (initialAudioGain != null)
-      'initial_audio_gain': initialAudioGain!.toTfJson(),
-    if (inputEndAction != null) 'input_end_action': inputEndAction!.toTfJson(),
-    if (outputLockingMode != null)
-      'output_locking_mode': outputLockingMode!.toTfJson(),
-    if (outputTimingSource != null)
-      'output_timing_source': outputTimingSource!.toTfJson(),
-    if (supportLowFramerateInputs != null)
-      'support_low_framerate_inputs': supportLowFramerateInputs!.toTfJson(),
-    if (inputLossBehavior != null)
-      'input_loss_behavior': inputLossBehavior!.encode(),
+    'initial_audio_gain': ?initialAudioGain?.toTfJson(),
+    'input_end_action': ?inputEndAction?.toTfJson(),
+    'output_locking_mode': ?outputLockingMode?.toTfJson(),
+    'output_timing_source': ?outputTimingSource?.toTfJson(),
+    'support_low_framerate_inputs': ?supportLowFramerateInputs?.toTfJson(),
+    'input_loss_behavior': ?inputLossBehavior?.encode(),
   };
 }
 
@@ -1357,15 +1307,11 @@ final class MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehavior 
   inputLossImageSlate;
 
   Map<String, Object?> encode() => {
-    if (blackFrameMsec != null) 'black_frame_msec': blackFrameMsec!.toTfJson(),
-    if (inputLossImageColor != null)
-      'input_loss_image_color': inputLossImageColor!.toTfJson(),
-    if (inputLossImageType != null)
-      'input_loss_image_type': inputLossImageType!.toTfJson(),
-    if (repeatFrameMsec != null)
-      'repeat_frame_msec': repeatFrameMsec!.toTfJson(),
-    if (inputLossImageSlate != null)
-      'input_loss_image_slate': inputLossImageSlate!.encode(),
+    'black_frame_msec': ?blackFrameMsec?.toTfJson(),
+    'input_loss_image_color': ?inputLossImageColor?.toTfJson(),
+    'input_loss_image_type': ?inputLossImageType?.toTfJson(),
+    'repeat_frame_msec': ?repeatFrameMsec?.toTfJson(),
+    'input_loss_image_slate': ?inputLossImageSlate?.encode(),
   };
 }
 
@@ -1386,9 +1332,9 @@ final class MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehaviorI
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (passwordParam != null) 'password_param': passwordParam!.toTfJson(),
+    'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -1407,8 +1353,7 @@ final class MedialiveChannelEncoderSettingsMotionGraphicsConfiguration {
   motionGraphicsSettings;
 
   Map<String, Object?> encode() => {
-    if (motionGraphicsInsertion != null)
-      'motion_graphics_insertion': motionGraphicsInsertion!.toTfJson(),
+    'motion_graphics_insertion': ?motionGraphicsInsertion?.toTfJson(),
     'motion_graphics_settings': motionGraphicsSettings.encode(),
   };
 }
@@ -1425,8 +1370,7 @@ final class MedialiveChannelEncoderSettingsMotionGraphicsConfigurationMotionGrap
   htmlMotionGraphicsSettings;
 
   Map<String, Object?> encode() => {
-    if (htmlMotionGraphicsSettings != null)
-      'html_motion_graphics_settings': htmlMotionGraphicsSettings!.encode(),
+    'html_motion_graphics_settings': ?htmlMotionGraphicsSettings?.encode(),
   };
 }
 
@@ -1453,9 +1397,8 @@ final class MedialiveChannelEncoderSettingsNielsenConfiguration {
   final TfArg<String>? nielsenPcmToId3Tagging;
 
   Map<String, Object?> encode() => {
-    if (distributorId != null) 'distributor_id': distributorId!.toTfJson(),
-    if (nielsenPcmToId3Tagging != null)
-      'nielsen_pcm_to_id3_tagging': nielsenPcmToId3Tagging!.toTfJson(),
+    'distributor_id': ?distributorId?.toTfJson(),
+    'nielsen_pcm_to_id3_tagging': ?nielsenPcmToId3Tagging?.toTfJson(),
   };
 }
 
@@ -1477,7 +1420,7 @@ final class MedialiveChannelEncoderSettingsOutputGroups {
   final List<MedialiveChannelEncoderSettingsOutputGroupsOutputs> outputs;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     'output_group_settings': outputGroupSettings.encode(),
     'outputs': [for (final e in outputs) e.encode()],
   };
@@ -1529,20 +1472,13 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettings {
       'archive_group_settings': [
         for (final e in archiveGroupSettings!) e.encode(),
       ],
-    if (frameCaptureGroupSettings != null)
-      'frame_capture_group_settings': frameCaptureGroupSettings!.encode(),
-    if (hlsGroupSettings != null)
-      'hls_group_settings': hlsGroupSettings!.encode(),
-    if (mediaPackageGroupSettings != null)
-      'media_package_group_settings': mediaPackageGroupSettings!.encode(),
-    if (msSmoothGroupSettings != null)
-      'ms_smooth_group_settings': msSmoothGroupSettings!.encode(),
-    if (multiplexGroupSettings != null)
-      'multiplex_group_settings': multiplexGroupSettings!.encode(),
-    if (rtmpGroupSettings != null)
-      'rtmp_group_settings': rtmpGroupSettings!.encode(),
-    if (udpGroupSettings != null)
-      'udp_group_settings': udpGroupSettings!.encode(),
+    'frame_capture_group_settings': ?frameCaptureGroupSettings?.encode(),
+    'hls_group_settings': ?hlsGroupSettings?.encode(),
+    'media_package_group_settings': ?mediaPackageGroupSettings?.encode(),
+    'ms_smooth_group_settings': ?msSmoothGroupSettings?.encode(),
+    'multiplex_group_settings': ?multiplexGroupSettings?.encode(),
+    'rtmp_group_settings': ?rtmpGroupSettings?.encode(),
+    'udp_group_settings': ?udpGroupSettings?.encode(),
   };
 }
 
@@ -1565,10 +1501,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiv
   destination;
 
   Map<String, Object?> encode() => {
-    if (rolloverInterval != null)
-      'rollover_interval': rolloverInterval!.toTfJson(),
-    if (archiveCdnSettings != null)
-      'archive_cdn_settings': archiveCdnSettings!.encode(),
+    'rollover_interval': ?rolloverInterval?.toTfJson(),
+    'archive_cdn_settings': ?archiveCdnSettings?.encode(),
     'destination': destination.encode(),
   };
 }
@@ -1585,8 +1519,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiv
   archiveS3Settings;
 
   Map<String, Object?> encode() => {
-    if (archiveS3Settings != null)
-      'archive_s3_settings': archiveS3Settings!.encode(),
+    'archive_s3_settings': ?archiveS3Settings?.encode(),
   };
 }
 
@@ -1600,9 +1533,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiv
 
   final TfArg<String>? cannedAcl;
 
-  Map<String, Object?> encode() => {
-    if (cannedAcl != null) 'canned_acl': cannedAcl!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'canned_acl': ?cannedAcl?.toTfJson()};
 }
 
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.archive_group_settings.destination` block of
@@ -1637,8 +1568,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameC
 
   Map<String, Object?> encode() => {
     'destination': destination.encode(),
-    if (frameCaptureCdnSettings != null)
-      'frame_capture_cdn_settings': frameCaptureCdnSettings!.encode(),
+    'frame_capture_cdn_settings': ?frameCaptureCdnSettings?.encode(),
   };
 }
 
@@ -1669,8 +1599,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameC
   frameCaptureS3Settings;
 
   Map<String, Object?> encode() => {
-    if (frameCaptureS3Settings != null)
-      'frame_capture_s3_settings': frameCaptureS3Settings!.encode(),
+    'frame_capture_s3_settings': ?frameCaptureS3Settings?.encode(),
   };
 }
 
@@ -1684,9 +1613,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameC
 
   final TfArg<String>? cannedAcl;
 
-  Map<String, Object?> encode() => {
-    if (cannedAcl != null) 'canned_acl': cannedAcl!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'canned_acl': ?cannedAcl?.toTfJson()};
 }
 
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings` block of
@@ -1831,69 +1758,44 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
   keyProviderSettings;
 
   Map<String, Object?> encode() => {
-    if (adMarkers != null) 'ad_markers': adMarkers!.toTfJson(),
-    if (baseUrlContent != null) 'base_url_content': baseUrlContent!.toTfJson(),
-    if (baseUrlContent1 != null)
-      'base_url_content1': baseUrlContent1!.toTfJson(),
-    if (baseUrlManifest != null)
-      'base_url_manifest': baseUrlManifest!.toTfJson(),
-    if (baseUrlManifest1 != null)
-      'base_url_manifest1': baseUrlManifest1!.toTfJson(),
-    if (captionLanguageSetting != null)
-      'caption_language_setting': captionLanguageSetting!.toTfJson(),
-    if (clientCache != null) 'client_cache': clientCache!.toTfJson(),
-    if (codecSpecification != null)
-      'codec_specification': codecSpecification!.toTfJson(),
-    if (constantIv != null) 'constant_iv': constantIv!.toTfJson(),
-    if (directoryStructure != null)
-      'directory_structure': directoryStructure!.toTfJson(),
-    if (discontinuityTags != null)
-      'discontinuity_tags': discontinuityTags!.toTfJson(),
-    if (encryptionType != null) 'encryption_type': encryptionType!.toTfJson(),
-    if (hlsId3SegmentTagging != null)
-      'hls_id3_segment_tagging': hlsId3SegmentTagging!.toTfJson(),
-    if (iframeOnlyPlaylists != null)
-      'iframe_only_playlists': iframeOnlyPlaylists!.toTfJson(),
-    if (incompleteSegmentBehavior != null)
-      'incomplete_segment_behavior': incompleteSegmentBehavior!.toTfJson(),
-    if (indexNSegments != null) 'index_n_segments': indexNSegments!.toTfJson(),
-    if (inputLossAction != null)
-      'input_loss_action': inputLossAction!.toTfJson(),
-    if (ivInManifest != null) 'iv_in_manifest': ivInManifest!.toTfJson(),
-    if (ivSource != null) 'iv_source': ivSource!.toTfJson(),
-    if (keepSegments != null) 'keep_segments': keepSegments!.toTfJson(),
-    if (keyFormat != null) 'key_format': keyFormat!.toTfJson(),
-    if (keyFormatVersions != null)
-      'key_format_versions': keyFormatVersions!.toTfJson(),
-    if (manifestCompression != null)
-      'manifest_compression': manifestCompression!.toTfJson(),
-    if (manifestDurationFormat != null)
-      'manifest_duration_format': manifestDurationFormat!.toTfJson(),
-    if (minSegmentLength != null)
-      'min_segment_length': minSegmentLength!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (outputSelection != null)
-      'output_selection': outputSelection!.toTfJson(),
-    if (programDateTime != null)
-      'program_date_time': programDateTime!.toTfJson(),
-    if (programDateTimeClock != null)
-      'program_date_time_clock': programDateTimeClock!.toTfJson(),
-    if (programDateTimePeriod != null)
-      'program_date_time_period': programDateTimePeriod!.toTfJson(),
-    if (redundantManifest != null)
-      'redundant_manifest': redundantManifest!.toTfJson(),
-    if (segmentLength != null) 'segment_length': segmentLength!.toTfJson(),
-    if (segmentsPerSubdirectory != null)
-      'segments_per_subdirectory': segmentsPerSubdirectory!.toTfJson(),
-    if (streamInfResolution != null)
-      'stream_inf_resolution': streamInfResolution!.toTfJson(),
-    if (timedMetadataId3Frame != null)
-      'timed_metadata_id3_frame': timedMetadataId3Frame!.toTfJson(),
-    if (timedMetadataId3Period != null)
-      'timed_metadata_id3_period': timedMetadataId3Period!.toTfJson(),
-    if (timestampDeltaMilliseconds != null)
-      'timestamp_delta_milliseconds': timestampDeltaMilliseconds!.toTfJson(),
-    if (tsFileMode != null) 'ts_file_mode': tsFileMode!.toTfJson(),
+    'ad_markers': ?adMarkers?.toTfJson(),
+    'base_url_content': ?baseUrlContent?.toTfJson(),
+    'base_url_content1': ?baseUrlContent1?.toTfJson(),
+    'base_url_manifest': ?baseUrlManifest?.toTfJson(),
+    'base_url_manifest1': ?baseUrlManifest1?.toTfJson(),
+    'caption_language_setting': ?captionLanguageSetting?.toTfJson(),
+    'client_cache': ?clientCache?.toTfJson(),
+    'codec_specification': ?codecSpecification?.toTfJson(),
+    'constant_iv': ?constantIv?.toTfJson(),
+    'directory_structure': ?directoryStructure?.toTfJson(),
+    'discontinuity_tags': ?discontinuityTags?.toTfJson(),
+    'encryption_type': ?encryptionType?.toTfJson(),
+    'hls_id3_segment_tagging': ?hlsId3SegmentTagging?.toTfJson(),
+    'iframe_only_playlists': ?iframeOnlyPlaylists?.toTfJson(),
+    'incomplete_segment_behavior': ?incompleteSegmentBehavior?.toTfJson(),
+    'index_n_segments': ?indexNSegments?.toTfJson(),
+    'input_loss_action': ?inputLossAction?.toTfJson(),
+    'iv_in_manifest': ?ivInManifest?.toTfJson(),
+    'iv_source': ?ivSource?.toTfJson(),
+    'keep_segments': ?keepSegments?.toTfJson(),
+    'key_format': ?keyFormat?.toTfJson(),
+    'key_format_versions': ?keyFormatVersions?.toTfJson(),
+    'manifest_compression': ?manifestCompression?.toTfJson(),
+    'manifest_duration_format': ?manifestDurationFormat?.toTfJson(),
+    'min_segment_length': ?minSegmentLength?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'output_selection': ?outputSelection?.toTfJson(),
+    'program_date_time': ?programDateTime?.toTfJson(),
+    'program_date_time_clock': ?programDateTimeClock?.toTfJson(),
+    'program_date_time_period': ?programDateTimePeriod?.toTfJson(),
+    'redundant_manifest': ?redundantManifest?.toTfJson(),
+    'segment_length': ?segmentLength?.toTfJson(),
+    'segments_per_subdirectory': ?segmentsPerSubdirectory?.toTfJson(),
+    'stream_inf_resolution': ?streamInfResolution?.toTfJson(),
+    'timed_metadata_id3_frame': ?timedMetadataId3Frame?.toTfJson(),
+    'timed_metadata_id3_period': ?timedMetadataId3Period?.toTfJson(),
+    'timestamp_delta_milliseconds': ?timestampDeltaMilliseconds?.toTfJson(),
+    'ts_file_mode': ?tsFileMode?.toTfJson(),
     if (captionLanguageMappings != null)
       'caption_language_mappings': [
         for (final e in captionLanguageMappings!) e.encode(),
@@ -1901,8 +1803,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
     'destination': destination.encode(),
     if (hlsCdnSettings != null)
       'hls_cdn_settings': [for (final e in hlsCdnSettings!) e.encode()],
-    if (keyProviderSettings != null)
-      'key_provider_settings': keyProviderSettings!.encode(),
+    'key_provider_settings': ?keyProviderSettings?.encode(),
   };
 }
 
@@ -1972,15 +1873,11 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
   hlsWebdavSettings;
 
   Map<String, Object?> encode() => {
-    if (hlsAkamaiSettings != null)
-      'hls_akamai_settings': hlsAkamaiSettings!.encode(),
-    if (hlsBasicPutSettings != null)
-      'hls_basic_put_settings': hlsBasicPutSettings!.encode(),
-    if (hlsMediaStoreSettings != null)
-      'hls_media_store_settings': hlsMediaStoreSettings!.encode(),
-    if (hlsS3Settings != null) 'hls_s3_settings': hlsS3Settings!.encode(),
-    if (hlsWebdavSettings != null)
-      'hls_webdav_settings': hlsWebdavSettings!.encode(),
+    'hls_akamai_settings': ?hlsAkamaiSettings?.encode(),
+    'hls_basic_put_settings': ?hlsBasicPutSettings?.encode(),
+    'hls_media_store_settings': ?hlsMediaStoreSettings?.encode(),
+    'hls_s3_settings': ?hlsS3Settings?.encode(),
+    'hls_webdav_settings': ?hlsWebdavSettings?.encode(),
   };
 }
 
@@ -2013,16 +1910,13 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
   final TfArg<String>? token;
 
   Map<String, Object?> encode() => {
-    if (connectionRetryInterval != null)
-      'connection_retry_interval': connectionRetryInterval!.toTfJson(),
-    if (filecacheDuration != null)
-      'filecache_duration': filecacheDuration!.toTfJson(),
-    if (httpTransferMode != null)
-      'http_transfer_mode': httpTransferMode!.toTfJson(),
-    if (numRetries != null) 'num_retries': numRetries!.toTfJson(),
-    if (restartDelay != null) 'restart_delay': restartDelay!.toTfJson(),
-    if (salt != null) 'salt': salt!.toTfJson(),
-    if (token != null) 'token': token!.toTfJson(),
+    'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
+    'filecache_duration': ?filecacheDuration?.toTfJson(),
+    'http_transfer_mode': ?httpTransferMode?.toTfJson(),
+    'num_retries': ?numRetries?.toTfJson(),
+    'restart_delay': ?restartDelay?.toTfJson(),
+    'salt': ?salt?.toTfJson(),
+    'token': ?token?.toTfJson(),
   };
 }
 
@@ -2046,12 +1940,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
   final TfArg<num>? restartDelay;
 
   Map<String, Object?> encode() => {
-    if (connectionRetryInterval != null)
-      'connection_retry_interval': connectionRetryInterval!.toTfJson(),
-    if (filecacheDuration != null)
-      'filecache_duration': filecacheDuration!.toTfJson(),
-    if (numRetries != null) 'num_retries': numRetries!.toTfJson(),
-    if (restartDelay != null) 'restart_delay': restartDelay!.toTfJson(),
+    'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
+    'filecache_duration': ?filecacheDuration?.toTfJson(),
+    'num_retries': ?numRetries?.toTfJson(),
+    'restart_delay': ?restartDelay?.toTfJson(),
   };
 }
 
@@ -2078,14 +1970,11 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
   final TfArg<num>? restartDelay;
 
   Map<String, Object?> encode() => {
-    if (connectionRetryInterval != null)
-      'connection_retry_interval': connectionRetryInterval!.toTfJson(),
-    if (filecacheDuration != null)
-      'filecache_duration': filecacheDuration!.toTfJson(),
-    if (mediaStoreStorageClass != null)
-      'media_store_storage_class': mediaStoreStorageClass!.toTfJson(),
-    if (numRetries != null) 'num_retries': numRetries!.toTfJson(),
-    if (restartDelay != null) 'restart_delay': restartDelay!.toTfJson(),
+    'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
+    'filecache_duration': ?filecacheDuration?.toTfJson(),
+    'media_store_storage_class': ?mediaStoreStorageClass?.toTfJson(),
+    'num_retries': ?numRetries?.toTfJson(),
+    'restart_delay': ?restartDelay?.toTfJson(),
   };
 }
 
@@ -2099,9 +1988,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 
   final TfArg<String>? cannedAcl;
 
-  Map<String, Object?> encode() => {
-    if (cannedAcl != null) 'canned_acl': cannedAcl!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'canned_acl': ?cannedAcl?.toTfJson()};
 }
 
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.hls_cdn_settings.hls_webdav_settings` block of
@@ -2127,14 +2014,11 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
   final TfArg<num>? restartDelay;
 
   Map<String, Object?> encode() => {
-    if (connectionRetryInterval != null)
-      'connection_retry_interval': connectionRetryInterval!.toTfJson(),
-    if (filecacheDuration != null)
-      'filecache_duration': filecacheDuration!.toTfJson(),
-    if (httpTransferMode != null)
-      'http_transfer_mode': httpTransferMode!.toTfJson(),
-    if (numRetries != null) 'num_retries': numRetries!.toTfJson(),
-    if (restartDelay != null) 'restart_delay': restartDelay!.toTfJson(),
+    'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
+    'filecache_duration': ?filecacheDuration?.toTfJson(),
+    'http_transfer_mode': ?httpTransferMode?.toTfJson(),
+    'num_retries': ?numRetries?.toTfJson(),
+    'restart_delay': ?restartDelay?.toTfJson(),
   };
 }
 
@@ -2173,8 +2057,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 
   Map<String, Object?> encode() => {
     'static_key_value': staticKeyValue.toTfJson(),
-    if (keyProviderServer != null)
-      'key_provider_server': keyProviderServer!.encode(),
+    'key_provider_server': ?keyProviderServer?.encode(),
   };
 }
 
@@ -2195,9 +2078,9 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (passwordParam != null) 'password_param': passwordParam!.toTfJson(),
+    'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -2296,36 +2179,24 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMsSmoo
   destination;
 
   Map<String, Object?> encode() => {
-    if (acquisitionPointId != null)
-      'acquisition_point_id': acquisitionPointId!.toTfJson(),
-    if (audioOnlyTimecodeControl != null)
-      'audio_only_timecode_control': audioOnlyTimecodeControl!.toTfJson(),
-    if (certificateMode != null)
-      'certificate_mode': certificateMode!.toTfJson(),
-    if (connectionRetryInterval != null)
-      'connection_retry_interval': connectionRetryInterval!.toTfJson(),
-    if (eventId != null) 'event_id': eventId!.toTfJson(),
-    if (eventIdMode != null) 'event_id_mode': eventIdMode!.toTfJson(),
-    if (eventStopBehavior != null)
-      'event_stop_behavior': eventStopBehavior!.toTfJson(),
-    if (filecacheDuration != null)
-      'filecache_duration': filecacheDuration!.toTfJson(),
-    if (fragmentLength != null) 'fragment_length': fragmentLength!.toTfJson(),
-    if (inputLossAction != null)
-      'input_loss_action': inputLossAction!.toTfJson(),
-    if (numRetries != null) 'num_retries': numRetries!.toTfJson(),
-    if (restartDelay != null) 'restart_delay': restartDelay!.toTfJson(),
-    if (segmentationMode != null)
-      'segmentation_mode': segmentationMode!.toTfJson(),
-    if (sendDelayMs != null) 'send_delay_ms': sendDelayMs!.toTfJson(),
-    if (sparseTrackType != null)
-      'sparse_track_type': sparseTrackType!.toTfJson(),
-    if (streamManifestBehavior != null)
-      'stream_manifest_behavior': streamManifestBehavior!.toTfJson(),
-    if (timestampOffset != null)
-      'timestamp_offset': timestampOffset!.toTfJson(),
-    if (timestampOffsetMode != null)
-      'timestamp_offset_mode': timestampOffsetMode!.toTfJson(),
+    'acquisition_point_id': ?acquisitionPointId?.toTfJson(),
+    'audio_only_timecode_control': ?audioOnlyTimecodeControl?.toTfJson(),
+    'certificate_mode': ?certificateMode?.toTfJson(),
+    'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
+    'event_id': ?eventId?.toTfJson(),
+    'event_id_mode': ?eventIdMode?.toTfJson(),
+    'event_stop_behavior': ?eventStopBehavior?.toTfJson(),
+    'filecache_duration': ?filecacheDuration?.toTfJson(),
+    'fragment_length': ?fragmentLength?.toTfJson(),
+    'input_loss_action': ?inputLossAction?.toTfJson(),
+    'num_retries': ?numRetries?.toTfJson(),
+    'restart_delay': ?restartDelay?.toTfJson(),
+    'segmentation_mode': ?segmentationMode?.toTfJson(),
+    'send_delay_ms': ?sendDelayMs?.toTfJson(),
+    'sparse_track_type': ?sparseTrackType?.toTfJson(),
+    'stream_manifest_behavior': ?streamManifestBehavior?.toTfJson(),
+    'timestamp_offset': ?timestampOffset?.toTfJson(),
+    'timestamp_offset_mode': ?timestampOffsetMode?.toTfJson(),
     'destination': destination.encode(),
   };
 }
@@ -2383,16 +2254,13 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsRtmpGr
   final TfArg<num>? restartDelay;
 
   Map<String, Object?> encode() => {
-    if (adMarkers != null) 'ad_markers': adMarkers!.toTfJson(),
-    if (authenticationScheme != null)
-      'authentication_scheme': authenticationScheme!.toTfJson(),
-    if (cacheFullBehavior != null)
-      'cache_full_behavior': cacheFullBehavior!.toTfJson(),
-    if (cacheLength != null) 'cache_length': cacheLength!.toTfJson(),
-    if (captionData != null) 'caption_data': captionData!.toTfJson(),
-    if (inputLossAction != null)
-      'input_loss_action': inputLossAction!.toTfJson(),
-    if (restartDelay != null) 'restart_delay': restartDelay!.toTfJson(),
+    'ad_markers': ?adMarkers?.toTfJson(),
+    'authentication_scheme': ?authenticationScheme?.toTfJson(),
+    'cache_full_behavior': ?cacheFullBehavior?.toTfJson(),
+    'cache_length': ?cacheLength?.toTfJson(),
+    'caption_data': ?captionData?.toTfJson(),
+    'input_loss_action': ?inputLossAction?.toTfJson(),
+    'restart_delay': ?restartDelay?.toTfJson(),
   };
 }
 
@@ -2413,12 +2281,9 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsUdpGro
   final TfArg<num>? timedMetadataId3Period;
 
   Map<String, Object?> encode() => {
-    if (inputLossAction != null)
-      'input_loss_action': inputLossAction!.toTfJson(),
-    if (timedMetadataId3Frame != null)
-      'timed_metadata_id3_frame': timedMetadataId3Frame!.toTfJson(),
-    if (timedMetadataId3Period != null)
-      'timed_metadata_id3_period': timedMetadataId3Period!.toTfJson(),
+    'input_loss_action': ?inputLossAction?.toTfJson(),
+    'timed_metadata_id3_frame': ?timedMetadataId3Frame?.toTfJson(),
+    'timed_metadata_id3_period': ?timedMetadataId3Period?.toTfJson(),
   };
 }
 
@@ -2446,13 +2311,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputs {
   outputSettings;
 
   Map<String, Object?> encode() => {
-    if (audioDescriptionNames != null)
-      'audio_description_names': audioDescriptionNames!.toTfJson(),
-    if (captionDescriptionNames != null)
-      'caption_description_names': captionDescriptionNames!.toTfJson(),
-    if (outputName != null) 'output_name': outputName!.toTfJson(),
-    if (videoDescriptionName != null)
-      'video_description_name': videoDescriptionName!.toTfJson(),
+    'audio_description_names': ?audioDescriptionNames?.toTfJson(),
+    'caption_description_names': ?captionDescriptionNames?.toTfJson(),
+    'output_name': ?outputName?.toTfJson(),
+    'video_description_name': ?videoDescriptionName?.toTfJson(),
     'output_settings': outputSettings.encode(),
   };
 }
@@ -2497,22 +2359,14 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettings {
   udpOutputSettings;
 
   Map<String, Object?> encode() => {
-    if (archiveOutputSettings != null)
-      'archive_output_settings': archiveOutputSettings!.encode(),
-    if (frameCaptureOutputSettings != null)
-      'frame_capture_output_settings': frameCaptureOutputSettings!.encode(),
-    if (hlsOutputSettings != null)
-      'hls_output_settings': hlsOutputSettings!.encode(),
-    if (mediaPackageOutputSettings != null)
-      'media_package_output_settings': mediaPackageOutputSettings!.encode(),
-    if (msSmoothOutputSettings != null)
-      'ms_smooth_output_settings': msSmoothOutputSettings!.encode(),
-    if (multiplexOutputSettings != null)
-      'multiplex_output_settings': multiplexOutputSettings!.encode(),
-    if (rtmpOutputSettings != null)
-      'rtmp_output_settings': rtmpOutputSettings!.encode(),
-    if (udpOutputSettings != null)
-      'udp_output_settings': udpOutputSettings!.encode(),
+    'archive_output_settings': ?archiveOutputSettings?.encode(),
+    'frame_capture_output_settings': ?frameCaptureOutputSettings?.encode(),
+    'hls_output_settings': ?hlsOutputSettings?.encode(),
+    'media_package_output_settings': ?mediaPackageOutputSettings?.encode(),
+    'ms_smooth_output_settings': ?msSmoothOutputSettings?.encode(),
+    'multiplex_output_settings': ?multiplexOutputSettings?.encode(),
+    'rtmp_output_settings': ?rtmpOutputSettings?.encode(),
+    'udp_output_settings': ?udpOutputSettings?.encode(),
   };
 }
 
@@ -2534,10 +2388,9 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
   containerSettings;
 
   Map<String, Object?> encode() => {
-    if (extension != null) 'extension': extension!.toTfJson(),
-    if (nameModifier != null) 'name_modifier': nameModifier!.toTfJson(),
-    if (containerSettings != null)
-      'container_settings': containerSettings!.encode(),
+    'extension': ?extension?.toTfJson(),
+    'name_modifier': ?nameModifier?.toTfJson(),
+    'container_settings': ?containerSettings?.encode(),
   };
 }
 
@@ -2557,8 +2410,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
   rawSettings;
 
   Map<String, Object?> encode() => {
-    if (m2tsSettings != null) 'm2ts_settings': m2tsSettings!.encode(),
-    if (rawSettings != null) 'raw_settings': rawSettings!.encode(),
+    'm2ts_settings': ?m2tsSettings?.encode(),
+    'raw_settings': ?rawSettings?.encode(),
   };
 }
 
@@ -2714,68 +2567,53 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
   dvbTdtSettings;
 
   Map<String, Object?> encode() => {
-    if (absentInputAudioBehavior != null)
-      'absent_input_audio_behavior': absentInputAudioBehavior!.toTfJson(),
-    if (arib != null) 'arib': arib!.toTfJson(),
-    if (aribCaptionsPid != null)
-      'arib_captions_pid': aribCaptionsPid!.toTfJson(),
-    if (aribCaptionsPidControl != null)
-      'arib_captions_pid_control': aribCaptionsPidControl!.toTfJson(),
-    if (audioBufferModel != null)
-      'audio_buffer_model': audioBufferModel!.toTfJson(),
-    if (audioFramesPerPes != null)
-      'audio_frames_per_pes': audioFramesPerPes!.toTfJson(),
-    if (audioPids != null) 'audio_pids': audioPids!.toTfJson(),
-    if (audioStreamType != null)
-      'audio_stream_type': audioStreamType!.toTfJson(),
-    if (bitrate != null) 'bitrate': bitrate!.toTfJson(),
-    if (bufferModel != null) 'buffer_model': bufferModel!.toTfJson(),
-    if (ccDescriptor != null) 'cc_descriptor': ccDescriptor!.toTfJson(),
-    if (dvbSubPids != null) 'dvb_sub_pids': dvbSubPids!.toTfJson(),
-    if (dvbTeletextPid != null) 'dvb_teletext_pid': dvbTeletextPid!.toTfJson(),
-    if (ebif != null) 'ebif': ebif!.toTfJson(),
-    if (ebpAudioInterval != null)
-      'ebp_audio_interval': ebpAudioInterval!.toTfJson(),
-    if (ebpLookaheadMs != null) 'ebp_lookahead_ms': ebpLookaheadMs!.toTfJson(),
-    if (ebpPlacement != null) 'ebp_placement': ebpPlacement!.toTfJson(),
-    if (ecmPid != null) 'ecm_pid': ecmPid!.toTfJson(),
-    if (esRateInPes != null) 'es_rate_in_pes': esRateInPes!.toTfJson(),
-    if (etvPlatformPid != null) 'etv_platform_pid': etvPlatformPid!.toTfJson(),
-    if (etvSignalPid != null) 'etv_signal_pid': etvSignalPid!.toTfJson(),
-    if (fragmentTime != null) 'fragment_time': fragmentTime!.toTfJson(),
-    if (klv != null) 'klv': klv!.toTfJson(),
-    if (klvDataPids != null) 'klv_data_pids': klvDataPids!.toTfJson(),
-    if (nielsenId3Behavior != null)
-      'nielsen_id3_behavior': nielsenId3Behavior!.toTfJson(),
-    if (nullPacketBitrate != null)
-      'null_packet_bitrate': nullPacketBitrate!.toTfJson(),
-    if (patInterval != null) 'pat_interval': patInterval!.toTfJson(),
-    if (pcrControl != null) 'pcr_control': pcrControl!.toTfJson(),
-    if (pcrPeriod != null) 'pcr_period': pcrPeriod!.toTfJson(),
-    if (pcrPid != null) 'pcr_pid': pcrPid!.toTfJson(),
-    if (pmtInterval != null) 'pmt_interval': pmtInterval!.toTfJson(),
-    if (pmtPid != null) 'pmt_pid': pmtPid!.toTfJson(),
-    if (programNum != null) 'program_num': programNum!.toTfJson(),
-    if (rateMode != null) 'rate_mode': rateMode!.toTfJson(),
-    if (scte27Pids != null) 'scte27_pids': scte27Pids!.toTfJson(),
-    if (scte35Control != null) 'scte35_control': scte35Control!.toTfJson(),
-    if (scte35Pid != null) 'scte35_pid': scte35Pid!.toTfJson(),
-    if (segmentationMarkers != null)
-      'segmentation_markers': segmentationMarkers!.toTfJson(),
-    if (segmentationStyle != null)
-      'segmentation_style': segmentationStyle!.toTfJson(),
-    if (segmentationTime != null)
-      'segmentation_time': segmentationTime!.toTfJson(),
-    if (timedMetadataBehavior != null)
-      'timed_metadata_behavior': timedMetadataBehavior!.toTfJson(),
-    if (timedMetadataPid != null)
-      'timed_metadata_pid': timedMetadataPid!.toTfJson(),
-    if (transportStreamId != null)
-      'transport_stream_id': transportStreamId!.toTfJson(),
-    if (videoPid != null) 'video_pid': videoPid!.toTfJson(),
-    if (dvbNitSettings != null) 'dvb_nit_settings': dvbNitSettings!.encode(),
-    if (dvbSdtSettings != null) 'dvb_sdt_settings': dvbSdtSettings!.encode(),
-    if (dvbTdtSettings != null) 'dvb_tdt_settings': dvbTdtSettings!.encode(),
+    'absent_input_audio_behavior': ?absentInputAudioBehavior?.toTfJson(),
+    'arib': ?arib?.toTfJson(),
+    'arib_captions_pid': ?aribCaptionsPid?.toTfJson(),
+    'arib_captions_pid_control': ?aribCaptionsPidControl?.toTfJson(),
+    'audio_buffer_model': ?audioBufferModel?.toTfJson(),
+    'audio_frames_per_pes': ?audioFramesPerPes?.toTfJson(),
+    'audio_pids': ?audioPids?.toTfJson(),
+    'audio_stream_type': ?audioStreamType?.toTfJson(),
+    'bitrate': ?bitrate?.toTfJson(),
+    'buffer_model': ?bufferModel?.toTfJson(),
+    'cc_descriptor': ?ccDescriptor?.toTfJson(),
+    'dvb_sub_pids': ?dvbSubPids?.toTfJson(),
+    'dvb_teletext_pid': ?dvbTeletextPid?.toTfJson(),
+    'ebif': ?ebif?.toTfJson(),
+    'ebp_audio_interval': ?ebpAudioInterval?.toTfJson(),
+    'ebp_lookahead_ms': ?ebpLookaheadMs?.toTfJson(),
+    'ebp_placement': ?ebpPlacement?.toTfJson(),
+    'ecm_pid': ?ecmPid?.toTfJson(),
+    'es_rate_in_pes': ?esRateInPes?.toTfJson(),
+    'etv_platform_pid': ?etvPlatformPid?.toTfJson(),
+    'etv_signal_pid': ?etvSignalPid?.toTfJson(),
+    'fragment_time': ?fragmentTime?.toTfJson(),
+    'klv': ?klv?.toTfJson(),
+    'klv_data_pids': ?klvDataPids?.toTfJson(),
+    'nielsen_id3_behavior': ?nielsenId3Behavior?.toTfJson(),
+    'null_packet_bitrate': ?nullPacketBitrate?.toTfJson(),
+    'pat_interval': ?patInterval?.toTfJson(),
+    'pcr_control': ?pcrControl?.toTfJson(),
+    'pcr_period': ?pcrPeriod?.toTfJson(),
+    'pcr_pid': ?pcrPid?.toTfJson(),
+    'pmt_interval': ?pmtInterval?.toTfJson(),
+    'pmt_pid': ?pmtPid?.toTfJson(),
+    'program_num': ?programNum?.toTfJson(),
+    'rate_mode': ?rateMode?.toTfJson(),
+    'scte27_pids': ?scte27Pids?.toTfJson(),
+    'scte35_control': ?scte35Control?.toTfJson(),
+    'scte35_pid': ?scte35Pid?.toTfJson(),
+    'segmentation_markers': ?segmentationMarkers?.toTfJson(),
+    'segmentation_style': ?segmentationStyle?.toTfJson(),
+    'segmentation_time': ?segmentationTime?.toTfJson(),
+    'timed_metadata_behavior': ?timedMetadataBehavior?.toTfJson(),
+    'timed_metadata_pid': ?timedMetadataPid?.toTfJson(),
+    'transport_stream_id': ?transportStreamId?.toTfJson(),
+    'video_pid': ?videoPid?.toTfJson(),
+    'dvb_nit_settings': ?dvbNitSettings?.encode(),
+    'dvb_sdt_settings': ?dvbSdtSettings?.encode(),
+    'dvb_tdt_settings': ?dvbTdtSettings?.encode(),
   };
 }
 
@@ -2798,7 +2636,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
   Map<String, Object?> encode() => {
     'network_id': networkId.toTfJson(),
     'network_name': networkName.toTfJson(),
-    if (repInterval != null) 'rep_interval': repInterval!.toTfJson(),
+    'rep_interval': ?repInterval?.toTfJson(),
   };
 }
 
@@ -2822,11 +2660,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
   final TfArg<String>? serviceProviderName;
 
   Map<String, Object?> encode() => {
-    if (outputSdt != null) 'output_sdt': outputSdt!.toTfJson(),
-    if (repInterval != null) 'rep_interval': repInterval!.toTfJson(),
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
-    if (serviceProviderName != null)
-      'service_provider_name': serviceProviderName!.toTfJson(),
+    'output_sdt': ?outputSdt?.toTfJson(),
+    'rep_interval': ?repInterval?.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
+    'service_provider_name': ?serviceProviderName?.toTfJson(),
   };
 }
 
@@ -2840,9 +2677,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
 
   final TfArg<num>? repInterval;
 
-  Map<String, Object?> encode() => {
-    if (repInterval != null) 'rep_interval': repInterval!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'rep_interval': ?repInterval?.toTfJson()};
 }
 
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.archive_output_settings.container_settings.raw_settings` block of
@@ -2864,9 +2699,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsFram
 
   final TfArg<String>? nameModifier;
 
-  Map<String, Object?> encode() => {
-    if (nameModifier != null) 'name_modifier': nameModifier!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'name_modifier': ?nameModifier?.toTfJson()};
 }
 
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.hls_output_settings` block of
@@ -2890,11 +2723,9 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
   hlsSettings;
 
   Map<String, Object?> encode() => {
-    if (h265PackagingType != null)
-      'h265_packaging_type': h265PackagingType!.toTfJson(),
-    if (nameModifier != null) 'name_modifier': nameModifier!.toTfJson(),
-    if (segmentModifier != null)
-      'segment_modifier': segmentModifier!.toTfJson(),
+    'h265_packaging_type': ?h265PackagingType?.toTfJson(),
+    'name_modifier': ?nameModifier?.toTfJson(),
+    'segment_modifier': ?segmentModifier?.toTfJson(),
     'hls_settings': hlsSettings.encode(),
   };
 }
@@ -2923,13 +2754,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
   standardHlsSettings;
 
   Map<String, Object?> encode() => {
-    if (audioOnlyHlsSettings != null)
-      'audio_only_hls_settings': audioOnlyHlsSettings!.encode(),
-    if (fmp4HlsSettings != null) 'fmp4_hls_settings': fmp4HlsSettings!.encode(),
-    if (frameCaptureHlsSettings != null)
-      'frame_capture_hls_settings': frameCaptureHlsSettings!.encode(),
-    if (standardHlsSettings != null)
-      'standard_hls_settings': standardHlsSettings!.encode(),
+    'audio_only_hls_settings': ?audioOnlyHlsSettings?.encode(),
+    'fmp4_hls_settings': ?fmp4HlsSettings?.encode(),
+    'frame_capture_hls_settings': ?frameCaptureHlsSettings?.encode(),
+    'standard_hls_settings': ?standardHlsSettings?.encode(),
   };
 }
 
@@ -2954,10 +2782,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
   audioOnlyImage;
 
   Map<String, Object?> encode() => {
-    if (audioGroupId != null) 'audio_group_id': audioGroupId!.toTfJson(),
-    if (audioTrackType != null) 'audio_track_type': audioTrackType!.toTfJson(),
-    if (segmentType != null) 'segment_type': segmentType!.toTfJson(),
-    if (audioOnlyImage != null) 'audio_only_image': audioOnlyImage!.encode(),
+    'audio_group_id': ?audioGroupId?.toTfJson(),
+    'audio_track_type': ?audioTrackType?.toTfJson(),
+    'segment_type': ?segmentType?.toTfJson(),
+    'audio_only_image': ?audioOnlyImage?.encode(),
   };
 }
 
@@ -2978,9 +2806,9 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (passwordParam != null) 'password_param': passwordParam!.toTfJson(),
+    'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -3001,12 +2829,9 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
   final TfArg<String>? timedMetadataBehavior;
 
   Map<String, Object?> encode() => {
-    if (audioRenditionSets != null)
-      'audio_rendition_sets': audioRenditionSets!.toTfJson(),
-    if (nielsenId3Behavior != null)
-      'nielsen_id3_behavior': nielsenId3Behavior!.toTfJson(),
-    if (timedMetadataBehavior != null)
-      'timed_metadata_behavior': timedMetadataBehavior!.toTfJson(),
+    'audio_rendition_sets': ?audioRenditionSets?.toTfJson(),
+    'nielsen_id3_behavior': ?nielsenId3Behavior?.toTfJson(),
+    'timed_metadata_behavior': ?timedMetadataBehavior?.toTfJson(),
   };
 }
 
@@ -3034,8 +2859,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
   m3u8Settings;
 
   Map<String, Object?> encode() => {
-    if (audioRenditionSets != null)
-      'audio_rendition_sets': audioRenditionSets!.toTfJson(),
+    'audio_rendition_sets': ?audioRenditionSets?.toTfJson(),
     'm3u8_settings': m3u8Settings.encode(),
   };
 }
@@ -3099,28 +2923,23 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
   final TfArg<String>? videoPid;
 
   Map<String, Object?> encode() => {
-    if (audioFramesPerPes != null)
-      'audio_frames_per_pes': audioFramesPerPes!.toTfJson(),
-    if (audioPids != null) 'audio_pids': audioPids!.toTfJson(),
-    if (ecmPid != null) 'ecm_pid': ecmPid!.toTfJson(),
-    if (nielsenId3Behavior != null)
-      'nielsen_id3_behavior': nielsenId3Behavior!.toTfJson(),
-    if (patInterval != null) 'pat_interval': patInterval!.toTfJson(),
-    if (pcrControl != null) 'pcr_control': pcrControl!.toTfJson(),
-    if (pcrPeriod != null) 'pcr_period': pcrPeriod!.toTfJson(),
-    if (pcrPid != null) 'pcr_pid': pcrPid!.toTfJson(),
-    if (pmtInterval != null) 'pmt_interval': pmtInterval!.toTfJson(),
-    if (pmtPid != null) 'pmt_pid': pmtPid!.toTfJson(),
-    if (programNum != null) 'program_num': programNum!.toTfJson(),
-    if (scte35Behavior != null) 'scte35_behavior': scte35Behavior!.toTfJson(),
-    if (scte35Pid != null) 'scte35_pid': scte35Pid!.toTfJson(),
-    if (timedMetadataBehavior != null)
-      'timed_metadata_behavior': timedMetadataBehavior!.toTfJson(),
-    if (timedMetadataPid != null)
-      'timed_metadata_pid': timedMetadataPid!.toTfJson(),
-    if (transportStreamId != null)
-      'transport_stream_id': transportStreamId!.toTfJson(),
-    if (videoPid != null) 'video_pid': videoPid!.toTfJson(),
+    'audio_frames_per_pes': ?audioFramesPerPes?.toTfJson(),
+    'audio_pids': ?audioPids?.toTfJson(),
+    'ecm_pid': ?ecmPid?.toTfJson(),
+    'nielsen_id3_behavior': ?nielsenId3Behavior?.toTfJson(),
+    'pat_interval': ?patInterval?.toTfJson(),
+    'pcr_control': ?pcrControl?.toTfJson(),
+    'pcr_period': ?pcrPeriod?.toTfJson(),
+    'pcr_pid': ?pcrPid?.toTfJson(),
+    'pmt_interval': ?pmtInterval?.toTfJson(),
+    'pmt_pid': ?pmtPid?.toTfJson(),
+    'program_num': ?programNum?.toTfJson(),
+    'scte35_behavior': ?scte35Behavior?.toTfJson(),
+    'scte35_pid': ?scte35Pid?.toTfJson(),
+    'timed_metadata_behavior': ?timedMetadataBehavior?.toTfJson(),
+    'timed_metadata_pid': ?timedMetadataPid?.toTfJson(),
+    'transport_stream_id': ?transportStreamId?.toTfJson(),
+    'video_pid': ?videoPid?.toTfJson(),
   };
 }
 
@@ -3147,9 +2966,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMsSm
   final TfArg<String>? nameModifier;
 
   Map<String, Object?> encode() => {
-    if (h265PackagingType != null)
-      'h265_packaging_type': h265PackagingType!.toTfJson(),
-    if (nameModifier != null) 'name_modifier': nameModifier!.toTfJson(),
+    'h265_packaging_type': ?h265PackagingType?.toTfJson(),
+    'name_modifier': ?nameModifier?.toTfJson(),
   };
 }
 
@@ -3203,11 +3021,9 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsRtmp
   destination;
 
   Map<String, Object?> encode() => {
-    if (certificateMode != null)
-      'certificate_mode': certificateMode!.toTfJson(),
-    if (connectionRetryInterval != null)
-      'connection_retry_interval': connectionRetryInterval!.toTfJson(),
-    if (numRetries != null) 'num_retries': numRetries!.toTfJson(),
+    'certificate_mode': ?certificateMode?.toTfJson(),
+    'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
+    'num_retries': ?numRetries?.toTfJson(),
     'destination': destination.encode(),
   };
 }
@@ -3250,11 +3066,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpO
   fecOutputSettings;
 
   Map<String, Object?> encode() => {
-    if (bufferMsec != null) 'buffer_msec': bufferMsec!.toTfJson(),
+    'buffer_msec': ?bufferMsec?.toTfJson(),
     'container_settings': containerSettings.encode(),
     'destination': destination.encode(),
-    if (fecOutputSettings != null)
-      'fec_output_settings': fecOutputSettings!.encode(),
+    'fec_output_settings': ?fecOutputSettings?.encode(),
   };
 }
 
@@ -3269,9 +3084,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpO
   final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettings?
   m2tsSettings;
 
-  Map<String, Object?> encode() => {
-    if (m2tsSettings != null) 'm2ts_settings': m2tsSettings!.encode(),
-  };
+  Map<String, Object?> encode() => {'m2ts_settings': ?m2tsSettings?.encode()};
 }
 
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.udp_output_settings.container_settings.m2ts_settings` block of
@@ -3426,68 +3239,53 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpO
   dvbTdtSettings;
 
   Map<String, Object?> encode() => {
-    if (absentInputAudioBehavior != null)
-      'absent_input_audio_behavior': absentInputAudioBehavior!.toTfJson(),
-    if (arib != null) 'arib': arib!.toTfJson(),
-    if (aribCaptionsPid != null)
-      'arib_captions_pid': aribCaptionsPid!.toTfJson(),
-    if (aribCaptionsPidControl != null)
-      'arib_captions_pid_control': aribCaptionsPidControl!.toTfJson(),
-    if (audioBufferModel != null)
-      'audio_buffer_model': audioBufferModel!.toTfJson(),
-    if (audioFramesPerPes != null)
-      'audio_frames_per_pes': audioFramesPerPes!.toTfJson(),
-    if (audioPids != null) 'audio_pids': audioPids!.toTfJson(),
-    if (audioStreamType != null)
-      'audio_stream_type': audioStreamType!.toTfJson(),
-    if (bitrate != null) 'bitrate': bitrate!.toTfJson(),
-    if (bufferModel != null) 'buffer_model': bufferModel!.toTfJson(),
-    if (ccDescriptor != null) 'cc_descriptor': ccDescriptor!.toTfJson(),
-    if (dvbSubPids != null) 'dvb_sub_pids': dvbSubPids!.toTfJson(),
-    if (dvbTeletextPid != null) 'dvb_teletext_pid': dvbTeletextPid!.toTfJson(),
-    if (ebif != null) 'ebif': ebif!.toTfJson(),
-    if (ebpAudioInterval != null)
-      'ebp_audio_interval': ebpAudioInterval!.toTfJson(),
-    if (ebpLookaheadMs != null) 'ebp_lookahead_ms': ebpLookaheadMs!.toTfJson(),
-    if (ebpPlacement != null) 'ebp_placement': ebpPlacement!.toTfJson(),
-    if (ecmPid != null) 'ecm_pid': ecmPid!.toTfJson(),
-    if (esRateInPes != null) 'es_rate_in_pes': esRateInPes!.toTfJson(),
-    if (etvPlatformPid != null) 'etv_platform_pid': etvPlatformPid!.toTfJson(),
-    if (etvSignalPid != null) 'etv_signal_pid': etvSignalPid!.toTfJson(),
-    if (fragmentTime != null) 'fragment_time': fragmentTime!.toTfJson(),
-    if (klv != null) 'klv': klv!.toTfJson(),
-    if (klvDataPids != null) 'klv_data_pids': klvDataPids!.toTfJson(),
-    if (nielsenId3Behavior != null)
-      'nielsen_id3_behavior': nielsenId3Behavior!.toTfJson(),
-    if (nullPacketBitrate != null)
-      'null_packet_bitrate': nullPacketBitrate!.toTfJson(),
-    if (patInterval != null) 'pat_interval': patInterval!.toTfJson(),
-    if (pcrControl != null) 'pcr_control': pcrControl!.toTfJson(),
-    if (pcrPeriod != null) 'pcr_period': pcrPeriod!.toTfJson(),
-    if (pcrPid != null) 'pcr_pid': pcrPid!.toTfJson(),
-    if (pmtInterval != null) 'pmt_interval': pmtInterval!.toTfJson(),
-    if (pmtPid != null) 'pmt_pid': pmtPid!.toTfJson(),
-    if (programNum != null) 'program_num': programNum!.toTfJson(),
-    if (rateMode != null) 'rate_mode': rateMode!.toTfJson(),
-    if (scte27Pids != null) 'scte27_pids': scte27Pids!.toTfJson(),
-    if (scte35Control != null) 'scte35_control': scte35Control!.toTfJson(),
-    if (scte35Pid != null) 'scte35_pid': scte35Pid!.toTfJson(),
-    if (segmentationMarkers != null)
-      'segmentation_markers': segmentationMarkers!.toTfJson(),
-    if (segmentationStyle != null)
-      'segmentation_style': segmentationStyle!.toTfJson(),
-    if (segmentationTime != null)
-      'segmentation_time': segmentationTime!.toTfJson(),
-    if (timedMetadataBehavior != null)
-      'timed_metadata_behavior': timedMetadataBehavior!.toTfJson(),
-    if (timedMetadataPid != null)
-      'timed_metadata_pid': timedMetadataPid!.toTfJson(),
-    if (transportStreamId != null)
-      'transport_stream_id': transportStreamId!.toTfJson(),
-    if (videoPid != null) 'video_pid': videoPid!.toTfJson(),
-    if (dvbNitSettings != null) 'dvb_nit_settings': dvbNitSettings!.encode(),
-    if (dvbSdtSettings != null) 'dvb_sdt_settings': dvbSdtSettings!.encode(),
-    if (dvbTdtSettings != null) 'dvb_tdt_settings': dvbTdtSettings!.encode(),
+    'absent_input_audio_behavior': ?absentInputAudioBehavior?.toTfJson(),
+    'arib': ?arib?.toTfJson(),
+    'arib_captions_pid': ?aribCaptionsPid?.toTfJson(),
+    'arib_captions_pid_control': ?aribCaptionsPidControl?.toTfJson(),
+    'audio_buffer_model': ?audioBufferModel?.toTfJson(),
+    'audio_frames_per_pes': ?audioFramesPerPes?.toTfJson(),
+    'audio_pids': ?audioPids?.toTfJson(),
+    'audio_stream_type': ?audioStreamType?.toTfJson(),
+    'bitrate': ?bitrate?.toTfJson(),
+    'buffer_model': ?bufferModel?.toTfJson(),
+    'cc_descriptor': ?ccDescriptor?.toTfJson(),
+    'dvb_sub_pids': ?dvbSubPids?.toTfJson(),
+    'dvb_teletext_pid': ?dvbTeletextPid?.toTfJson(),
+    'ebif': ?ebif?.toTfJson(),
+    'ebp_audio_interval': ?ebpAudioInterval?.toTfJson(),
+    'ebp_lookahead_ms': ?ebpLookaheadMs?.toTfJson(),
+    'ebp_placement': ?ebpPlacement?.toTfJson(),
+    'ecm_pid': ?ecmPid?.toTfJson(),
+    'es_rate_in_pes': ?esRateInPes?.toTfJson(),
+    'etv_platform_pid': ?etvPlatformPid?.toTfJson(),
+    'etv_signal_pid': ?etvSignalPid?.toTfJson(),
+    'fragment_time': ?fragmentTime?.toTfJson(),
+    'klv': ?klv?.toTfJson(),
+    'klv_data_pids': ?klvDataPids?.toTfJson(),
+    'nielsen_id3_behavior': ?nielsenId3Behavior?.toTfJson(),
+    'null_packet_bitrate': ?nullPacketBitrate?.toTfJson(),
+    'pat_interval': ?patInterval?.toTfJson(),
+    'pcr_control': ?pcrControl?.toTfJson(),
+    'pcr_period': ?pcrPeriod?.toTfJson(),
+    'pcr_pid': ?pcrPid?.toTfJson(),
+    'pmt_interval': ?pmtInterval?.toTfJson(),
+    'pmt_pid': ?pmtPid?.toTfJson(),
+    'program_num': ?programNum?.toTfJson(),
+    'rate_mode': ?rateMode?.toTfJson(),
+    'scte27_pids': ?scte27Pids?.toTfJson(),
+    'scte35_control': ?scte35Control?.toTfJson(),
+    'scte35_pid': ?scte35Pid?.toTfJson(),
+    'segmentation_markers': ?segmentationMarkers?.toTfJson(),
+    'segmentation_style': ?segmentationStyle?.toTfJson(),
+    'segmentation_time': ?segmentationTime?.toTfJson(),
+    'timed_metadata_behavior': ?timedMetadataBehavior?.toTfJson(),
+    'timed_metadata_pid': ?timedMetadataPid?.toTfJson(),
+    'transport_stream_id': ?transportStreamId?.toTfJson(),
+    'video_pid': ?videoPid?.toTfJson(),
+    'dvb_nit_settings': ?dvbNitSettings?.encode(),
+    'dvb_sdt_settings': ?dvbSdtSettings?.encode(),
+    'dvb_tdt_settings': ?dvbTdtSettings?.encode(),
   };
 }
 
@@ -3510,7 +3308,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpO
   Map<String, Object?> encode() => {
     'network_id': networkId.toTfJson(),
     'network_name': networkName.toTfJson(),
-    if (repInterval != null) 'rep_interval': repInterval!.toTfJson(),
+    'rep_interval': ?repInterval?.toTfJson(),
   };
 }
 
@@ -3534,11 +3332,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpO
   final TfArg<String>? serviceProviderName;
 
   Map<String, Object?> encode() => {
-    if (outputSdt != null) 'output_sdt': outputSdt!.toTfJson(),
-    if (repInterval != null) 'rep_interval': repInterval!.toTfJson(),
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
-    if (serviceProviderName != null)
-      'service_provider_name': serviceProviderName!.toTfJson(),
+    'output_sdt': ?outputSdt?.toTfJson(),
+    'rep_interval': ?repInterval?.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
+    'service_provider_name': ?serviceProviderName?.toTfJson(),
   };
 }
 
@@ -3552,9 +3349,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpO
 
   final TfArg<num>? repInterval;
 
-  Map<String, Object?> encode() => {
-    if (repInterval != null) 'rep_interval': repInterval!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'rep_interval': ?repInterval?.toTfJson()};
 }
 
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.udp_output_settings.destination` block of
@@ -3589,9 +3384,9 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpO
   final TfArg<num>? rowLength;
 
   Map<String, Object?> encode() => {
-    if (columnDepth != null) 'column_depth': columnDepth!.toTfJson(),
-    if (includeFec != null) 'include_fec': includeFec!.toTfJson(),
-    if (rowLength != null) 'row_length': rowLength!.toTfJson(),
+    'column_depth': ?columnDepth?.toTfJson(),
+    'include_fec': ?includeFec?.toTfJson(),
+    'row_length': ?rowLength?.toTfJson(),
   };
 }
 
@@ -3610,7 +3405,7 @@ final class MedialiveChannelEncoderSettingsTimecodeConfig {
 
   Map<String, Object?> encode() => {
     'source': source.toTfJson(),
-    if (syncThreshold != null) 'sync_threshold': syncThreshold!.toTfJson(),
+    'sync_threshold': ?syncThreshold?.toTfJson(),
   };
 }
 
@@ -3644,14 +3439,13 @@ final class MedialiveChannelEncoderSettingsVideoDescriptions {
   codecSettings;
 
   Map<String, Object?> encode() => {
-    if (height != null) 'height': height!.toTfJson(),
+    'height': ?height?.toTfJson(),
     'name': name.toTfJson(),
-    if (respondToAfd != null) 'respond_to_afd': respondToAfd!.toTfJson(),
-    if (scalingBehavior != null)
-      'scaling_behavior': scalingBehavior!.toTfJson(),
-    if (sharpness != null) 'sharpness': sharpness!.toTfJson(),
-    if (width != null) 'width': width!.toTfJson(),
-    if (codecSettings != null) 'codec_settings': codecSettings!.encode(),
+    'respond_to_afd': ?respondToAfd?.toTfJson(),
+    'scaling_behavior': ?scalingBehavior?.toTfJson(),
+    'sharpness': ?sharpness?.toTfJson(),
+    'width': ?width?.toTfJson(),
+    'codec_settings': ?codecSettings?.encode(),
   };
 }
 
@@ -3675,10 +3469,9 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettings {
   h265Settings;
 
   Map<String, Object?> encode() => {
-    if (frameCaptureSettings != null)
-      'frame_capture_settings': frameCaptureSettings!.encode(),
-    if (h264Settings != null) 'h264_settings': h264Settings!.encode(),
-    if (h265Settings != null) 'h265_settings': h265Settings!.encode(),
+    'frame_capture_settings': ?frameCaptureSettings?.encode(),
+    'h264_settings': ?h264Settings?.encode(),
+    'h265_settings': ?h265Settings?.encode(),
   };
 }
 
@@ -3696,10 +3489,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsFrameCa
   final TfArg<String>? captureIntervalUnits;
 
   Map<String, Object?> encode() => {
-    if (captureInterval != null)
-      'capture_interval': captureInterval!.toTfJson(),
-    if (captureIntervalUnits != null)
-      'capture_interval_units': captureIntervalUnits!.toTfJson(),
+    'capture_interval': ?captureInterval?.toTfJson(),
+    'capture_interval_units': ?captureIntervalUnits?.toTfJson(),
   };
 }
 
@@ -3832,58 +3623,46 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264Set
   filterSettings;
 
   Map<String, Object?> encode() => {
-    if (adaptiveQuantization != null)
-      'adaptive_quantization': adaptiveQuantization!.toTfJson(),
-    if (afdSignaling != null) 'afd_signaling': afdSignaling!.toTfJson(),
-    if (bitrate != null) 'bitrate': bitrate!.toTfJson(),
-    if (bufFillPct != null) 'buf_fill_pct': bufFillPct!.toTfJson(),
-    if (bufSize != null) 'buf_size': bufSize!.toTfJson(),
-    if (colorMetadata != null) 'color_metadata': colorMetadata!.toTfJson(),
-    if (entropyEncoding != null)
-      'entropy_encoding': entropyEncoding!.toTfJson(),
-    if (fixedAfd != null) 'fixed_afd': fixedAfd!.toTfJson(),
-    if (flickerAq != null) 'flicker_aq': flickerAq!.toTfJson(),
-    if (forceFieldPictures != null)
-      'force_field_pictures': forceFieldPictures!.toTfJson(),
-    if (framerateControl != null)
-      'framerate_control': framerateControl!.toTfJson(),
-    if (framerateDenominator != null)
-      'framerate_denominator': framerateDenominator!.toTfJson(),
-    if (framerateNumerator != null)
-      'framerate_numerator': framerateNumerator!.toTfJson(),
-    if (gopBReference != null) 'gop_b_reference': gopBReference!.toTfJson(),
-    if (gopClosedCadence != null)
-      'gop_closed_cadence': gopClosedCadence!.toTfJson(),
-    if (gopNumBFrames != null) 'gop_num_b_frames': gopNumBFrames!.toTfJson(),
-    if (gopSize != null) 'gop_size': gopSize!.toTfJson(),
-    if (gopSizeUnits != null) 'gop_size_units': gopSizeUnits!.toTfJson(),
-    if (level != null) 'level': level!.toTfJson(),
-    if (lookAheadRateControl != null)
-      'look_ahead_rate_control': lookAheadRateControl!.toTfJson(),
-    if (maxBitrate != null) 'max_bitrate': maxBitrate!.toTfJson(),
-    if (minIInterval != null) 'min_i_interval': minIInterval!.toTfJson(),
-    if (numRefFrames != null) 'num_ref_frames': numRefFrames!.toTfJson(),
-    if (parControl != null) 'par_control': parControl!.toTfJson(),
-    if (parDenominator != null) 'par_denominator': parDenominator!.toTfJson(),
-    if (parNumerator != null) 'par_numerator': parNumerator!.toTfJson(),
-    if (profile != null) 'profile': profile!.toTfJson(),
-    if (qualityLevel != null) 'quality_level': qualityLevel!.toTfJson(),
-    if (qvbrQualityLevel != null)
-      'qvbr_quality_level': qvbrQualityLevel!.toTfJson(),
-    if (rateControlMode != null)
-      'rate_control_mode': rateControlMode!.toTfJson(),
-    if (scanType != null) 'scan_type': scanType!.toTfJson(),
-    if (sceneChangeDetect != null)
-      'scene_change_detect': sceneChangeDetect!.toTfJson(),
-    if (slices != null) 'slices': slices!.toTfJson(),
-    if (softness != null) 'softness': softness!.toTfJson(),
-    if (spatialAq != null) 'spatial_aq': spatialAq!.toTfJson(),
-    if (subgopLength != null) 'subgop_length': subgopLength!.toTfJson(),
-    if (syntax != null) 'syntax': syntax!.toTfJson(),
-    if (temporalAq != null) 'temporal_aq': temporalAq!.toTfJson(),
-    if (timecodeInsertion != null)
-      'timecode_insertion': timecodeInsertion!.toTfJson(),
-    if (filterSettings != null) 'filter_settings': filterSettings!.encode(),
+    'adaptive_quantization': ?adaptiveQuantization?.toTfJson(),
+    'afd_signaling': ?afdSignaling?.toTfJson(),
+    'bitrate': ?bitrate?.toTfJson(),
+    'buf_fill_pct': ?bufFillPct?.toTfJson(),
+    'buf_size': ?bufSize?.toTfJson(),
+    'color_metadata': ?colorMetadata?.toTfJson(),
+    'entropy_encoding': ?entropyEncoding?.toTfJson(),
+    'fixed_afd': ?fixedAfd?.toTfJson(),
+    'flicker_aq': ?flickerAq?.toTfJson(),
+    'force_field_pictures': ?forceFieldPictures?.toTfJson(),
+    'framerate_control': ?framerateControl?.toTfJson(),
+    'framerate_denominator': ?framerateDenominator?.toTfJson(),
+    'framerate_numerator': ?framerateNumerator?.toTfJson(),
+    'gop_b_reference': ?gopBReference?.toTfJson(),
+    'gop_closed_cadence': ?gopClosedCadence?.toTfJson(),
+    'gop_num_b_frames': ?gopNumBFrames?.toTfJson(),
+    'gop_size': ?gopSize?.toTfJson(),
+    'gop_size_units': ?gopSizeUnits?.toTfJson(),
+    'level': ?level?.toTfJson(),
+    'look_ahead_rate_control': ?lookAheadRateControl?.toTfJson(),
+    'max_bitrate': ?maxBitrate?.toTfJson(),
+    'min_i_interval': ?minIInterval?.toTfJson(),
+    'num_ref_frames': ?numRefFrames?.toTfJson(),
+    'par_control': ?parControl?.toTfJson(),
+    'par_denominator': ?parDenominator?.toTfJson(),
+    'par_numerator': ?parNumerator?.toTfJson(),
+    'profile': ?profile?.toTfJson(),
+    'quality_level': ?qualityLevel?.toTfJson(),
+    'qvbr_quality_level': ?qvbrQualityLevel?.toTfJson(),
+    'rate_control_mode': ?rateControlMode?.toTfJson(),
+    'scan_type': ?scanType?.toTfJson(),
+    'scene_change_detect': ?sceneChangeDetect?.toTfJson(),
+    'slices': ?slices?.toTfJson(),
+    'softness': ?softness?.toTfJson(),
+    'spatial_aq': ?spatialAq?.toTfJson(),
+    'subgop_length': ?subgopLength?.toTfJson(),
+    'syntax': ?syntax?.toTfJson(),
+    'temporal_aq': ?temporalAq?.toTfJson(),
+    'timecode_insertion': ?timecodeInsertion?.toTfJson(),
+    'filter_settings': ?filterSettings?.encode(),
   };
 }
 
@@ -3899,8 +3678,7 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264Set
   temporalFilterSettings;
 
   Map<String, Object?> encode() => {
-    if (temporalFilterSettings != null)
-      'temporal_filter_settings': temporalFilterSettings!.encode(),
+    'temporal_filter_settings': ?temporalFilterSettings?.encode(),
   };
 }
 
@@ -3918,9 +3696,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264Set
   final TfArg<String>? strength;
 
   Map<String, Object?> encode() => {
-    if (postFilterSharpening != null)
-      'post_filter_sharpening': postFilterSharpening!.toTfJson(),
-    if (strength != null) 'strength': strength!.toTfJson(),
+    'post_filter_sharpening': ?postFilterSharpening?.toTfJson(),
+    'strength': ?strength?.toTfJson(),
   };
 }
 
@@ -4046,55 +3823,43 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
   timecodeBurninSettings;
 
   Map<String, Object?> encode() => {
-    if (adaptiveQuantization != null)
-      'adaptive_quantization': adaptiveQuantization!.toTfJson(),
-    if (afdSignaling != null) 'afd_signaling': afdSignaling!.toTfJson(),
-    if (alternativeTransferFunction != null)
-      'alternative_transfer_function': alternativeTransferFunction!.toTfJson(),
+    'adaptive_quantization': ?adaptiveQuantization?.toTfJson(),
+    'afd_signaling': ?afdSignaling?.toTfJson(),
+    'alternative_transfer_function': ?alternativeTransferFunction?.toTfJson(),
     'bitrate': bitrate.toTfJson(),
-    if (bufSize != null) 'buf_size': bufSize!.toTfJson(),
-    if (colorMetadata != null) 'color_metadata': colorMetadata!.toTfJson(),
-    if (fixedAfd != null) 'fixed_afd': fixedAfd!.toTfJson(),
-    if (flickerAq != null) 'flicker_aq': flickerAq!.toTfJson(),
+    'buf_size': ?bufSize?.toTfJson(),
+    'color_metadata': ?colorMetadata?.toTfJson(),
+    'fixed_afd': ?fixedAfd?.toTfJson(),
+    'flicker_aq': ?flickerAq?.toTfJson(),
     'framerate_denominator': framerateDenominator.toTfJson(),
     'framerate_numerator': framerateNumerator.toTfJson(),
-    if (gopClosedCadence != null)
-      'gop_closed_cadence': gopClosedCadence!.toTfJson(),
-    if (gopSize != null) 'gop_size': gopSize!.toTfJson(),
-    if (gopSizeUnits != null) 'gop_size_units': gopSizeUnits!.toTfJson(),
-    if (level != null) 'level': level!.toTfJson(),
-    if (lookAheadRateControl != null)
-      'look_ahead_rate_control': lookAheadRateControl!.toTfJson(),
-    if (maxBitrate != null) 'max_bitrate': maxBitrate!.toTfJson(),
-    if (minIInterval != null) 'min_i_interval': minIInterval!.toTfJson(),
-    if (minQp != null) 'min_qp': minQp!.toTfJson(),
-    if (mvOverPictureBoundaries != null)
-      'mv_over_picture_boundaries': mvOverPictureBoundaries!.toTfJson(),
-    if (mvTemporalPredictor != null)
-      'mv_temporal_predictor': mvTemporalPredictor!.toTfJson(),
-    if (parDenominator != null) 'par_denominator': parDenominator!.toTfJson(),
-    if (parNumerator != null) 'par_numerator': parNumerator!.toTfJson(),
-    if (profile != null) 'profile': profile!.toTfJson(),
-    if (qvbrQualityLevel != null)
-      'qvbr_quality_level': qvbrQualityLevel!.toTfJson(),
-    if (rateControlMode != null)
-      'rate_control_mode': rateControlMode!.toTfJson(),
-    if (scanType != null) 'scan_type': scanType!.toTfJson(),
-    if (sceneChangeDetect != null)
-      'scene_change_detect': sceneChangeDetect!.toTfJson(),
-    if (slices != null) 'slices': slices!.toTfJson(),
-    if (tier != null) 'tier': tier!.toTfJson(),
-    if (tileHeight != null) 'tile_height': tileHeight!.toTfJson(),
-    if (tilePadding != null) 'tile_padding': tilePadding!.toTfJson(),
-    if (tileWidth != null) 'tile_width': tileWidth!.toTfJson(),
-    if (timecodeInsertion != null)
-      'timecode_insertion': timecodeInsertion!.toTfJson(),
-    if (treeblockSize != null) 'treeblock_size': treeblockSize!.toTfJson(),
-    if (colorSpaceSettings != null)
-      'color_space_settings': colorSpaceSettings!.encode(),
-    if (filterSettings != null) 'filter_settings': filterSettings!.encode(),
-    if (timecodeBurninSettings != null)
-      'timecode_burnin_settings': timecodeBurninSettings!.encode(),
+    'gop_closed_cadence': ?gopClosedCadence?.toTfJson(),
+    'gop_size': ?gopSize?.toTfJson(),
+    'gop_size_units': ?gopSizeUnits?.toTfJson(),
+    'level': ?level?.toTfJson(),
+    'look_ahead_rate_control': ?lookAheadRateControl?.toTfJson(),
+    'max_bitrate': ?maxBitrate?.toTfJson(),
+    'min_i_interval': ?minIInterval?.toTfJson(),
+    'min_qp': ?minQp?.toTfJson(),
+    'mv_over_picture_boundaries': ?mvOverPictureBoundaries?.toTfJson(),
+    'mv_temporal_predictor': ?mvTemporalPredictor?.toTfJson(),
+    'par_denominator': ?parDenominator?.toTfJson(),
+    'par_numerator': ?parNumerator?.toTfJson(),
+    'profile': ?profile?.toTfJson(),
+    'qvbr_quality_level': ?qvbrQualityLevel?.toTfJson(),
+    'rate_control_mode': ?rateControlMode?.toTfJson(),
+    'scan_type': ?scanType?.toTfJson(),
+    'scene_change_detect': ?sceneChangeDetect?.toTfJson(),
+    'slices': ?slices?.toTfJson(),
+    'tier': ?tier?.toTfJson(),
+    'tile_height': ?tileHeight?.toTfJson(),
+    'tile_padding': ?tilePadding?.toTfJson(),
+    'tile_width': ?tileWidth?.toTfJson(),
+    'timecode_insertion': ?timecodeInsertion?.toTfJson(),
+    'treeblock_size': ?treeblockSize?.toTfJson(),
+    'color_space_settings': ?colorSpaceSettings?.encode(),
+    'filter_settings': ?filterSettings?.encode(),
+    'timecode_burnin_settings': ?timecodeBurninSettings?.encode(),
   };
 }
 
@@ -4126,14 +3891,12 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
   rec709Settings;
 
   Map<String, Object?> encode() => {
-    if (colorSpacePassthroughSettings != null)
-      'color_space_passthrough_settings': colorSpacePassthroughSettings!
-          .encode(),
-    if (dolbyVision81Settings != null)
-      'dolby_vision81_settings': dolbyVision81Settings!.encode(),
-    if (hdr10Settings != null) 'hdr10_settings': hdr10Settings!.encode(),
-    if (rec601Settings != null) 'rec601_settings': rec601Settings!.encode(),
-    if (rec709Settings != null) 'rec709_settings': rec709Settings!.encode(),
+    'color_space_passthrough_settings': ?colorSpacePassthroughSettings
+        ?.encode(),
+    'dolby_vision81_settings': ?dolbyVision81Settings?.encode(),
+    'hdr10_settings': ?hdr10Settings?.encode(),
+    'rec601_settings': ?rec601Settings?.encode(),
+    'rec709_settings': ?rec709Settings?.encode(),
   };
 }
 
@@ -4169,8 +3932,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
   final TfArg<num>? maxFall;
 
   Map<String, Object?> encode() => {
-    if (maxCll != null) 'max_cll': maxCll!.toTfJson(),
-    if (maxFall != null) 'max_fall': maxFall!.toTfJson(),
+    'max_cll': ?maxCll?.toTfJson(),
+    'max_fall': ?maxFall?.toTfJson(),
   };
 }
 
@@ -4204,8 +3967,7 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
   temporalFilterSettings;
 
   Map<String, Object?> encode() => {
-    if (temporalFilterSettings != null)
-      'temporal_filter_settings': temporalFilterSettings!.encode(),
+    'temporal_filter_settings': ?temporalFilterSettings?.encode(),
   };
 }
 
@@ -4223,9 +3985,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
   final TfArg<String>? strength;
 
   Map<String, Object?> encode() => {
-    if (postFilterSharpening != null)
-      'post_filter_sharpening': postFilterSharpening!.toTfJson(),
-    if (strength != null) 'strength': strength!.toTfJson(),
+    'post_filter_sharpening': ?postFilterSharpening?.toTfJson(),
+    'strength': ?strength?.toTfJson(),
   };
 }
 
@@ -4246,11 +4007,9 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
   final TfArg<String>? timecodeBurninPosition;
 
   Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (timecodeBurninFontSize != null)
-      'timecode_burnin_font_size': timecodeBurninFontSize!.toTfJson(),
-    if (timecodeBurninPosition != null)
-      'timecode_burnin_position': timecodeBurninPosition!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'timecode_burnin_font_size': ?timecodeBurninFontSize?.toTfJson(),
+    'timecode_burnin_position': ?timecodeBurninPosition?.toTfJson(),
   };
 }
 
@@ -4277,10 +4036,9 @@ final class MedialiveChannelInputAttachments {
   Map<String, Object?> encode() => {
     'input_attachment_name': inputAttachmentName.toTfJson(),
     'input_id': inputId.toTfJson(),
-    if (automaticInputFailoverSettings != null)
-      'automatic_input_failover_settings': automaticInputFailoverSettings!
-          .encode(),
-    if (inputSettings != null) 'input_settings': inputSettings!.encode(),
+    'automatic_input_failover_settings': ?automaticInputFailoverSettings
+        ?.encode(),
+    'input_settings': ?inputSettings?.encode(),
   };
 }
 
@@ -4310,10 +4068,8 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettings {
   failoverCondition;
 
   Map<String, Object?> encode() => {
-    if (errorClearTimeMsec != null)
-      'error_clear_time_msec': errorClearTimeMsec!.toTfJson(),
-    if (inputPreference != null)
-      'input_preference': inputPreference!.toTfJson(),
+    'error_clear_time_msec': ?errorClearTimeMsec?.toTfJson(),
+    'input_preference': ?inputPreference?.toTfJson(),
     'secondary_input_id': secondaryInputId.toTfJson(),
     if (failoverCondition != null)
       'failover_condition': [for (final e in failoverCondition!) e.encode()],
@@ -4345,8 +4101,7 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailov
   failoverConditionSettings;
 
   Map<String, Object?> encode() => {
-    if (failoverConditionSettings != null)
-      'failover_condition_settings': failoverConditionSettings!.encode(),
+    'failover_condition_settings': ?failoverConditionSettings?.encode(),
   };
 }
 
@@ -4370,12 +4125,9 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailov
   videoBlackSettings;
 
   Map<String, Object?> encode() => {
-    if (audioSilenceSettings != null)
-      'audio_silence_settings': audioSilenceSettings!.encode(),
-    if (inputLossSettings != null)
-      'input_loss_settings': inputLossSettings!.encode(),
-    if (videoBlackSettings != null)
-      'video_black_settings': videoBlackSettings!.encode(),
+    'audio_silence_settings': ?audioSilenceSettings?.encode(),
+    'input_loss_settings': ?inputLossSettings?.encode(),
+    'video_black_settings': ?videoBlackSettings?.encode(),
   };
 }
 
@@ -4394,8 +4146,7 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailov
 
   Map<String, Object?> encode() => {
     'audio_selector_name': audioSelectorName.toTfJson(),
-    if (audioSilenceThresholdMsec != null)
-      'audio_silence_threshold_msec': audioSilenceThresholdMsec!.toTfJson(),
+    'audio_silence_threshold_msec': ?audioSilenceThresholdMsec?.toTfJson(),
   };
 }
 
@@ -4410,8 +4161,7 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailov
   final TfArg<num>? inputLossThresholdMsec;
 
   Map<String, Object?> encode() => {
-    if (inputLossThresholdMsec != null)
-      'input_loss_threshold_msec': inputLossThresholdMsec!.toTfJson(),
+    'input_loss_threshold_msec': ?inputLossThresholdMsec?.toTfJson(),
   };
 }
 
@@ -4429,10 +4179,8 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailov
   final TfArg<num>? videoBlackThresholdMsec;
 
   Map<String, Object?> encode() => {
-    if (blackDetectThreshold != null)
-      'black_detect_threshold': blackDetectThreshold!.toTfJson(),
-    if (videoBlackThresholdMsec != null)
-      'video_black_threshold_msec': videoBlackThresholdMsec!.toTfJson(),
+    'black_detect_threshold': ?blackDetectThreshold?.toTfJson(),
+    'video_black_threshold_msec': ?videoBlackThresholdMsec?.toTfJson(),
   };
 }
 
@@ -4488,22 +4236,19 @@ final class MedialiveChannelInputAttachmentsInputSettings {
   videoSelector;
 
   Map<String, Object?> encode() => {
-    if (deblockFilter != null) 'deblock_filter': deblockFilter!.toTfJson(),
-    if (denoiseFilter != null) 'denoise_filter': denoiseFilter!.toTfJson(),
-    if (filterStrength != null) 'filter_strength': filterStrength!.toTfJson(),
-    if (inputFilter != null) 'input_filter': inputFilter!.toTfJson(),
-    if (scte35Pid != null) 'scte35_pid': scte35Pid!.toTfJson(),
-    if (smpte2038DataPreference != null)
-      'smpte2038_data_preference': smpte2038DataPreference!.toTfJson(),
-    if (sourceEndBehavior != null)
-      'source_end_behavior': sourceEndBehavior!.toTfJson(),
+    'deblock_filter': ?deblockFilter?.toTfJson(),
+    'denoise_filter': ?denoiseFilter?.toTfJson(),
+    'filter_strength': ?filterStrength?.toTfJson(),
+    'input_filter': ?inputFilter?.toTfJson(),
+    'scte35_pid': ?scte35Pid?.toTfJson(),
+    'smpte2038_data_preference': ?smpte2038DataPreference?.toTfJson(),
+    'source_end_behavior': ?sourceEndBehavior?.toTfJson(),
     if (audioSelector != null)
       'audio_selector': [for (final e in audioSelector!) e.encode()],
     if (captionSelector != null)
       'caption_selector': [for (final e in captionSelector!) e.encode()],
-    if (networkInputSettings != null)
-      'network_input_settings': networkInputSettings!.encode(),
-    if (videoSelector != null) 'video_selector': videoSelector!.encode(),
+    'network_input_settings': ?networkInputSettings?.encode(),
+    'video_selector': ?videoSelector?.encode(),
   };
 }
 
@@ -4589,8 +4334,7 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelector {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (selectorSettings != null)
-      'selector_settings': selectorSettings!.encode(),
+    'selector_settings': ?selectorSettings?.encode(),
   };
 }
 
@@ -4618,14 +4362,10 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
   audioTrackSelection;
 
   Map<String, Object?> encode() => {
-    if (audioHlsRenditionSelection != null)
-      'audio_hls_rendition_selection': audioHlsRenditionSelection!.encode(),
-    if (audioLanguageSelection != null)
-      'audio_language_selection': audioLanguageSelection!.encode(),
-    if (audioPidSelection != null)
-      'audio_pid_selection': audioPidSelection!.encode(),
-    if (audioTrackSelection != null)
-      'audio_track_selection': audioTrackSelection!.encode(),
+    'audio_hls_rendition_selection': ?audioHlsRenditionSelection?.encode(),
+    'audio_language_selection': ?audioLanguageSelection?.encode(),
+    'audio_pid_selection': ?audioPidSelection?.encode(),
+    'audio_track_selection': ?audioTrackSelection?.encode(),
   };
 }
 
@@ -4666,8 +4406,7 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
 
   Map<String, Object?> encode() => {
     'language_code': languageCode.toTfJson(),
-    if (languageSelectionPolicy != null)
-      'language_selection_policy': languageSelectionPolicy!.toTfJson(),
+    'language_selection_policy': ?languageSelectionPolicy?.toTfJson(),
   };
 }
 
@@ -4715,7 +4454,7 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
   tracks;
 
   Map<String, Object?> encode() => {
-    if (dolbyEDecode != null) 'dolby_e_decode': dolbyEDecode!.encode(),
+    'dolby_e_decode': ?dolbyEDecode?.encode(),
     'tracks': [for (final e in tracks) e.encode()],
   };
 }
@@ -4789,10 +4528,9 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelector {
   selectorSettings;
 
   Map<String, Object?> encode() => {
-    if (languageCode != null) 'language_code': languageCode!.toTfJson(),
+    'language_code': ?languageCode?.toTfJson(),
     'name': name.toTfJson(),
-    if (selectorSettings != null)
-      'selector_settings': selectorSettings!.encode(),
+    'selector_settings': ?selectorSettings?.encode(),
   };
 }
 
@@ -4832,20 +4570,13 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   teletextSourceSettings;
 
   Map<String, Object?> encode() => {
-    if (ancillarySourceSettings != null)
-      'ancillary_source_settings': ancillarySourceSettings!.encode(),
-    if (aribSourceSettings != null)
-      'arib_source_settings': aribSourceSettings!.encode(),
-    if (dvbSubSourceSettings != null)
-      'dvb_sub_source_settings': dvbSubSourceSettings!.encode(),
-    if (embeddedSourceSettings != null)
-      'embedded_source_settings': embeddedSourceSettings!.encode(),
-    if (scte20SourceSettings != null)
-      'scte20_source_settings': scte20SourceSettings!.encode(),
-    if (scte27SourceSettings != null)
-      'scte27_source_settings': scte27SourceSettings!.encode(),
-    if (teletextSourceSettings != null)
-      'teletext_source_settings': teletextSourceSettings!.encode(),
+    'ancillary_source_settings': ?ancillarySourceSettings?.encode(),
+    'arib_source_settings': ?aribSourceSettings?.encode(),
+    'dvb_sub_source_settings': ?dvbSubSourceSettings?.encode(),
+    'embedded_source_settings': ?embeddedSourceSettings?.encode(),
+    'scte20_source_settings': ?scte20SourceSettings?.encode(),
+    'scte27_source_settings': ?scte27SourceSettings?.encode(),
+    'teletext_source_settings': ?teletextSourceSettings?.encode(),
   };
 }
 
@@ -4860,9 +4591,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   final TfArg<num>? sourceAncillaryChannelNumber;
 
   Map<String, Object?> encode() => {
-    if (sourceAncillaryChannelNumber != null)
-      'source_ancillary_channel_number': sourceAncillaryChannelNumber!
-          .toTfJson(),
+    'source_ancillary_channel_number': ?sourceAncillaryChannelNumber
+        ?.toTfJson(),
   };
 }
 
@@ -4892,8 +4622,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   final TfArg<num>? pid;
 
   Map<String, Object?> encode() => {
-    if (ocrLanguage != null) 'ocr_language': ocrLanguage!.toTfJson(),
-    if (pid != null) 'pid': pid!.toTfJson(),
+    'ocr_language': ?ocrLanguage?.toTfJson(),
+    'pid': ?pid?.toTfJson(),
   };
 }
 
@@ -4937,12 +4667,9 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   final TfArg<num>? source608ChannelNumber;
 
   Map<String, Object?> encode() => {
-    if (convert608To708 != null)
-      'convert_608_to_708': convert608To708!.toTfJson(),
-    if (scte20Detection != null)
-      'scte20_detection': scte20Detection!.toTfJson(),
-    if (source608ChannelNumber != null)
-      'source_608_channel_number': source608ChannelNumber!.toTfJson(),
+    'convert_608_to_708': ?convert608To708?.toTfJson(),
+    'scte20_detection': ?scte20Detection?.toTfJson(),
+    'source_608_channel_number': ?source608ChannelNumber?.toTfJson(),
   };
 }
 
@@ -4989,10 +4716,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   final TfArg<num>? source608ChannelNumber;
 
   Map<String, Object?> encode() => {
-    if (convert608To708 != null)
-      'convert_608_to_708': convert608To708!.toTfJson(),
-    if (source608ChannelNumber != null)
-      'source_608_channel_number': source608ChannelNumber!.toTfJson(),
+    'convert_608_to_708': ?convert608To708?.toTfJson(),
+    'source_608_channel_number': ?source608ChannelNumber?.toTfJson(),
   };
 }
 
@@ -5026,8 +4751,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   final TfArg<num>? pid;
 
   Map<String, Object?> encode() => {
-    if (ocrLanguage != null) 'ocr_language': ocrLanguage!.toTfJson(),
-    if (pid != null) 'pid': pid!.toTfJson(),
+    'ocr_language': ?ocrLanguage?.toTfJson(),
+    'pid': ?pid?.toTfJson(),
   };
 }
 
@@ -5063,8 +4788,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   outputRectangle;
 
   Map<String, Object?> encode() => {
-    if (pageNumber != null) 'page_number': pageNumber!.toTfJson(),
-    if (outputRectangle != null) 'output_rectangle': outputRectangle!.encode(),
+    'page_number': ?pageNumber?.toTfJson(),
+    'output_rectangle': ?outputRectangle?.encode(),
   };
 }
 
@@ -5113,10 +4838,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettings {
   hlsInputSettings;
 
   Map<String, Object?> encode() => {
-    if (serverValidation != null)
-      'server_validation': serverValidation!.toTfJson(),
-    if (hlsInputSettings != null)
-      'hls_input_settings': hlsInputSettings!.encode(),
+    'server_validation': ?serverValidation?.toTfJson(),
+    'hls_input_settings': ?hlsInputSettings?.encode(),
   };
 }
 
@@ -5159,11 +4882,11 @@ final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHls
   scte35Source;
 
   Map<String, Object?> encode() => {
-    if (bandwidth != null) 'bandwidth': bandwidth!.toTfJson(),
-    if (bufferSegments != null) 'buffer_segments': bufferSegments!.toTfJson(),
-    if (retries != null) 'retries': retries!.toTfJson(),
-    if (retryInterval != null) 'retry_interval': retryInterval!.toTfJson(),
-    if (scte35Source != null) 'scte35_source': scte35Source!.toTfJson(),
+    'bandwidth': ?bandwidth?.toTfJson(),
+    'buffer_segments': ?bufferSegments?.toTfJson(),
+    'retries': ?retries?.toTfJson(),
+    'retry_interval': ?retryInterval?.toTfJson(),
+    'scte35_source': ?scte35Source?.toTfJson(),
   };
 }
 
@@ -5200,9 +4923,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsVideoSelector {
   colorSpaceUsage;
 
   Map<String, Object?> encode() => {
-    if (colorSpace != null) 'color_space': colorSpace!.toTfJson(),
-    if (colorSpaceUsage != null)
-      'color_space_usage': colorSpaceUsage!.toTfJson(),
+    'color_space': ?colorSpace?.toTfJson(),
+    'color_space_usage': ?colorSpaceUsage?.toTfJson(),
   };
 }
 
@@ -5345,8 +5067,7 @@ final class MedialiveChannelVpc {
 
   Map<String, Object?> encode() => {
     'public_address_allocation_ids': publicAddressAllocationIds.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
@@ -5379,12 +5100,12 @@ final class AwsMedialiveChannel extends Resource {
          terraformType: tfType,
          argMap: {
            'channel_class': channelClass,
-           if (logLevel != null) 'log_level': logLevel,
+           'log_level': ?logLevel,
            'name': name,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
-           if (startChannel != null) 'start_channel': startChannel,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
+           'start_channel': ?startChannel,
+           'tags': ?tags,
            if (cdiInputSpecification != null)
              'cdi_input_specification': TfArg.literal(
                cdiInputSpecification.encode(),

@@ -31,8 +31,8 @@ final class GoogleIapWebIamBinding extends Resource {
          argMap: {
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

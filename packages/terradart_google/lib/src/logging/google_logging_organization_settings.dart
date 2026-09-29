@@ -37,11 +37,10 @@ final class GoogleLoggingOrganizationSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (disableDefaultSink != null)
-             'disable_default_sink': disableDefaultSink,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
+           'disable_default_sink': ?disableDefaultSink,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
            'organization': organization,
-           if (storageLocation != null) 'storage_location': storageLocation,
+           'storage_location': ?storageLocation,
          },
        );
 

@@ -32,12 +32,10 @@ final class DataAwsPollyVoices extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (engine != null) 'engine': engine,
-           if (includeAdditionalLanguageCodes != null)
-             'include_additional_language_codes':
-                 includeAdditionalLanguageCodes,
-           if (languageCode != null) 'language_code': languageCode,
-           if (region != null) 'region': region,
+           'engine': ?engine,
+           'include_additional_language_codes': ?includeAdditionalLanguageCodes,
+           'language_code': ?languageCode,
+           'region': ?region,
            if (voices != null)
              'voices': TfArg.literal([for (final e in voices) e.encode()]),
          },

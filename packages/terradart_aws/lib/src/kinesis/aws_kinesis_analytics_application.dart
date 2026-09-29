@@ -61,11 +61,10 @@ final class KinesisAnalyticsApplicationInputs {
 
   Map<String, Object?> encode() => {
     'name_prefix': namePrefix.toTfJson(),
-    if (kinesisFirehose != null) 'kinesis_firehose': kinesisFirehose!.encode(),
-    if (kinesisStream != null) 'kinesis_stream': kinesisStream!.encode(),
-    if (parallelism != null) 'parallelism': parallelism!.encode(),
-    if (processingConfiguration != null)
-      'processing_configuration': processingConfiguration!.encode(),
+    'kinesis_firehose': ?kinesisFirehose?.encode(),
+    'kinesis_stream': ?kinesisStream?.encode(),
+    'parallelism': ?parallelism?.encode(),
+    'processing_configuration': ?processingConfiguration?.encode(),
     'schema': schema.encode(),
     if (startingPositionConfiguration != null)
       'starting_position_configuration': [
@@ -120,9 +119,7 @@ final class KinesisAnalyticsApplicationInputsParallelism {
 
   final TfArg<num>? count;
 
-  Map<String, Object?> encode() => {
-    if (count != null) 'count': count!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'count': ?count?.toTfJson()};
 }
 
 /// Typed helper for the `inputs.processing_configuration` block of
@@ -175,7 +172,7 @@ final class KinesisAnalyticsApplicationInputsSchema {
   final KinesisAnalyticsApplicationInputsSchemaRecordFormat recordFormat;
 
   Map<String, Object?> encode() => {
-    if (recordEncoding != null) 'record_encoding': recordEncoding!.toTfJson(),
+    'record_encoding': ?recordEncoding?.toTfJson(),
     'record_columns': [for (final e in recordColumns) e.encode()],
     'record_format': recordFormat.encode(),
   };
@@ -198,7 +195,7 @@ final class KinesisAnalyticsApplicationInputsSchemaRecordColumns {
   final TfArg<String> sqlType;
 
   Map<String, Object?> encode() => {
-    if (mapping != null) 'mapping': mapping!.toTfJson(),
+    'mapping': ?mapping?.toTfJson(),
     'name': name.toTfJson(),
     'sql_type': sqlType.toTfJson(),
   };
@@ -216,8 +213,7 @@ final class KinesisAnalyticsApplicationInputsSchemaRecordFormat {
   mappingParameters;
 
   Map<String, Object?> encode() => {
-    if (mappingParameters != null)
-      'mapping_parameters': mappingParameters!.encode(),
+    'mapping_parameters': ?mappingParameters?.encode(),
   };
 }
 
@@ -343,8 +339,7 @@ final class KinesisAnalyticsApplicationInputsStartingPositionConfiguration {
   startingPosition;
 
   Map<String, Object?> encode() => {
-    if (startingPosition != null)
-      'starting_position': startingPosition!.toTfJson(),
+    'starting_position': ?startingPosition?.toTfJson(),
   };
 }
 
@@ -386,9 +381,9 @@ final class KinesisAnalyticsApplicationOutputs {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (kinesisFirehose != null) 'kinesis_firehose': kinesisFirehose!.encode(),
-    if (kinesisStream != null) 'kinesis_stream': kinesisStream!.encode(),
-    if (lambda != null) 'lambda': lambda!.encode(),
+    'kinesis_firehose': ?kinesisFirehose?.encode(),
+    'kinesis_stream': ?kinesisStream?.encode(),
+    'lambda': ?lambda?.encode(),
     'schema': schema.encode(),
   };
 }
@@ -544,7 +539,7 @@ final class KinesisAnalyticsApplicationReferenceDataSourcesSchema {
   recordFormat;
 
   Map<String, Object?> encode() => {
-    if (recordEncoding != null) 'record_encoding': recordEncoding!.toTfJson(),
+    'record_encoding': ?recordEncoding?.toTfJson(),
     'record_columns': [for (final e in recordColumns) e.encode()],
     'record_format': recordFormat.encode(),
   };
@@ -567,7 +562,7 @@ final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordColumns {
   final TfArg<String> sqlType;
 
   Map<String, Object?> encode() => {
-    if (mapping != null) 'mapping': mapping!.toTfJson(),
+    'mapping': ?mapping?.toTfJson(),
     'name': name.toTfJson(),
     'sql_type': sqlType.toTfJson(),
   };
@@ -585,8 +580,7 @@ final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormat {
   mappingParameters;
 
   Map<String, Object?> encode() => {
-    if (mappingParameters != null)
-      'mapping_parameters': mappingParameters!.encode(),
+    'mapping_parameters': ?mappingParameters?.encode(),
   };
 }
 
@@ -723,12 +717,12 @@ final class AwsKinesisAnalyticsApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (code != null) 'code': code,
-           if (description != null) 'description': description,
+           'code': ?code,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (startApplication != null) 'start_application': startApplication,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'start_application': ?startApplication,
+           'tags': ?tags,
            if (cloudwatchLoggingOptions != null)
              'cloudwatch_logging_options': TfArg.literal(
                cloudwatchLoggingOptions.encode(),

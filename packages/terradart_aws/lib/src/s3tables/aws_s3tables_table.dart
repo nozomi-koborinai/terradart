@@ -40,7 +40,7 @@ final class S3tablesTableMetadataIceberg {
   final List<S3tablesTableMetadataIcebergSchema>? schema;
 
   Map<String, Object?> encode() => {
-    if (properties != null) 'properties': properties!.toTfJson(),
+    'properties': ?properties?.toTfJson(),
     if (schema != null) 'schema': [for (final e in schema!) e.encode()],
   };
 }
@@ -76,7 +76,7 @@ final class S3tablesTableMetadataIcebergSchemaField {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -103,16 +103,14 @@ final class AwsS3tablesTable extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (encryptionConfiguration != null)
-             'encryption_configuration': encryptionConfiguration,
+           'encryption_configuration': ?encryptionConfiguration,
            'format': format,
-           if (maintenanceConfiguration != null)
-             'maintenance_configuration': maintenanceConfiguration,
+           'maintenance_configuration': ?maintenanceConfiguration,
            'name': name,
            'namespace': namespace,
-           if (region != null) 'region': region,
+           'region': ?region,
            'table_bucket_arn': tableBucketArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (metadata != null)
              'metadata': TfArg.literal([for (final e in metadata) e.encode()]),
          },

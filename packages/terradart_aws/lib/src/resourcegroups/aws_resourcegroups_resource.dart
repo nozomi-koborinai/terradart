@@ -23,7 +23,7 @@ final class AwsResourcegroupsResource extends Resource {
          terraformType: tfType,
          argMap: {
            'group_arn': groupArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
          },
        );

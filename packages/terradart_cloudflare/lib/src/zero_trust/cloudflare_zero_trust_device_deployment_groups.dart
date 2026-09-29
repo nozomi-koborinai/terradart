@@ -48,7 +48,7 @@ final class CloudflareZeroTrustDeviceDeploymentGroups extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'name': name,
-           if (policyIds != null) 'policy_ids': policyIds,
+           'policy_ids': ?policyIds,
            'version_config': TfArg.literal([
              for (final e in versionConfig) e.encode(),
            ]),

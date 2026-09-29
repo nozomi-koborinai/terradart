@@ -112,31 +112,24 @@ final class AwsNeptuneClusterInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (autoMinorVersionUpgrade != null)
-             'auto_minor_version_upgrade': autoMinorVersionUpgrade,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
+           'apply_immediately': ?applyImmediately,
+           'auto_minor_version_upgrade': ?autoMinorVersionUpgrade,
+           'availability_zone': ?availabilityZone,
            'cluster_identifier': clusterIdentifier,
-           if (engine != null) 'engine': engine,
-           if (engineVersion != null) 'engine_version': engineVersion,
+           'engine': ?engine,
+           'engine_version': ?engineVersion,
            ...?identifier?.argMap,
            'instance_class': instanceClass,
-           if (neptuneParameterGroupName != null)
-             'neptune_parameter_group_name': neptuneParameterGroupName,
-           if (neptuneSubnetGroupName != null)
-             'neptune_subnet_group_name': neptuneSubnetGroupName,
-           if (port != null) 'port': port,
-           if (preferredBackupWindow != null)
-             'preferred_backup_window': preferredBackupWindow,
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (promotionTier != null) 'promotion_tier': promotionTier,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
-           if (skipFinalSnapshot != null)
-             'skip_final_snapshot': skipFinalSnapshot,
-           if (tags != null) 'tags': tags,
+           'neptune_parameter_group_name': ?neptuneParameterGroupName,
+           'neptune_subnet_group_name': ?neptuneSubnetGroupName,
+           'port': ?port,
+           'preferred_backup_window': ?preferredBackupWindow,
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'promotion_tier': ?promotionTier,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
+           'skip_final_snapshot': ?skipFinalSnapshot,
+           'tags': ?tags,
          },
        );
 

@@ -83,18 +83,18 @@ final class GoogleComputeDisk extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (zone != null) 'zone': zone,
-           if (type != null) 'type': type,
-           if (size != null) 'size': size,
-           if (image != null) 'image': image,
-           if (snapshot != null) 'snapshot': snapshot,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'zone': ?zone,
+           'type': ?type,
+           'size': ?size,
+           'image': ?image,
+           'snapshot': ?snapshot,
+           'description': ?description,
+           'labels': ?labels,
            if (guestOsFeatures != null)
              'guest_os_features': TfArg.literal(
                guestOsFeatures.map((f) => f.toArgMap()).toList(),
              ),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -18,10 +18,7 @@ final class DataAwsMskBrokerNodes extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'cluster_arn': clusterArn,
-           if (region != null) 'region': region,
-         },
+         argMap: {'cluster_arn': clusterArn, 'region': ?region},
        );
 
   @override

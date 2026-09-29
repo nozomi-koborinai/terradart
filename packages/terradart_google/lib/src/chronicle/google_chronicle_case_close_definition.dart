@@ -42,10 +42,10 @@ final class GoogleChronicleCaseCloseDefinition extends Resource {
          terraformType: tfType,
          argMap: {
            'close_reason': closeReason,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'instance': instance,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'root_cause': rootCause,
          },
        );

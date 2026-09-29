@@ -22,7 +22,7 @@ final class AwsAccountRegion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'enabled': enabled,
            'region_name': regionName,
          },

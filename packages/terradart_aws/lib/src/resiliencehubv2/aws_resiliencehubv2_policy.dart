@@ -54,8 +54,8 @@ final class Resiliencehubv2PolicyMultiAz {
 
   Map<String, Object?> encode() => {
     'disaster_recovery_approach': disasterRecoveryApproach.toTfJson(),
-    if (rpoInMinutes != null) 'rpo_in_minutes': rpoInMinutes!.toTfJson(),
-    if (rtoInMinutes != null) 'rto_in_minutes': rtoInMinutes!.toTfJson(),
+    'rpo_in_minutes': ?rpoInMinutes?.toTfJson(),
+    'rto_in_minutes': ?rtoInMinutes?.toTfJson(),
   };
 }
 
@@ -94,8 +94,8 @@ final class Resiliencehubv2PolicyMultiRegion {
 
   Map<String, Object?> encode() => {
     'disaster_recovery_approach': disasterRecoveryApproach.toTfJson(),
-    if (rpoInMinutes != null) 'rpo_in_minutes': rpoInMinutes!.toTfJson(),
-    if (rtoInMinutes != null) 'rto_in_minutes': rtoInMinutes!.toTfJson(),
+    'rpo_in_minutes': ?rpoInMinutes?.toTfJson(),
+    'rto_in_minutes': ?rtoInMinutes?.toTfJson(),
   };
 }
 
@@ -137,11 +137,11 @@ final class AwsResiliencehubv2Policy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'description': ?description,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (availabilitySlo != null)
              'availability_slo': TfArg.literal([
                for (final e in availabilitySlo) e.encode(),

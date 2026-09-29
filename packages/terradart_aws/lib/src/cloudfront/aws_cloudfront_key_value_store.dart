@@ -21,11 +21,7 @@ final class AwsCloudfrontKeyValueStore extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (comment != null) 'comment': comment,
-           'name': name,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'comment': ?comment, 'name': name, 'tags': ?tags},
        );
 
   @override

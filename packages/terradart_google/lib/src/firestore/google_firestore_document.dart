@@ -74,8 +74,8 @@ final class GoogleFirestoreDocument extends Resource {
            'collection': collection,
            'document_id': documentId,
            'fields': fields,
-           if (database != null) 'database': database,
-           if (project != null) 'project': project,
+           'database': ?database,
+           'project': ?project,
          },
        );
 

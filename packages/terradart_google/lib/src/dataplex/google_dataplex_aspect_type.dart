@@ -43,15 +43,14 @@ final class GoogleDataplexAspectType extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (aspectTypeId != null) 'aspect_type_id': aspectTypeId,
-           if (location != null) 'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (metadataTemplate != null) 'metadata_template': metadataTemplate,
-           if (dataClassification != null)
-             'data_classification': dataClassification,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'aspect_type_id': ?aspectTypeId,
+           'location': ?location,
+           'display_name': ?displayName,
+           'description': ?description,
+           'metadata_template': ?metadataTemplate,
+           'data_classification': ?dataClassification,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

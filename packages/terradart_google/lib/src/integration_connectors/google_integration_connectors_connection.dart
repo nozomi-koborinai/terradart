@@ -59,17 +59,15 @@ final class IntegrationConnectorsConnectionAuthConfig {
   final IntegrationConnectorsConnectionAuthConfigUserPassword? userPassword;
 
   Map<String, Object?> encode() => {
-    if (authKey != null) 'auth_key': authKey!.toTfJson(),
+    'auth_key': ?authKey?.toTfJson(),
     'auth_type': authType.toTfJson(),
     if (additionalVariable != null)
       'additional_variable': [for (final e in additionalVariable!) e.encode()],
-    if (oauth2AuthCodeFlow != null)
-      'oauth2_auth_code_flow': oauth2AuthCodeFlow!.encode(),
-    if (oauth2ClientCredentials != null)
-      'oauth2_client_credentials': oauth2ClientCredentials!.encode(),
-    if (oauth2JwtBearer != null) 'oauth2_jwt_bearer': oauth2JwtBearer!.encode(),
-    if (sshPublicKey != null) 'ssh_public_key': sshPublicKey!.encode(),
-    if (userPassword != null) 'user_password': userPassword!.encode(),
+    'oauth2_auth_code_flow': ?oauth2AuthCodeFlow?.encode(),
+    'oauth2_client_credentials': ?oauth2ClientCredentials?.encode(),
+    'oauth2_jwt_bearer': ?oauth2JwtBearer?.encode(),
+    'ssh_public_key': ?sshPublicKey?.encode(),
+    'user_password': ?userPassword?.encode(),
   };
 }
 
@@ -116,13 +114,12 @@ final class IntegrationConnectorsConnectionAuthConfigAdditionalVariable {
   secretValue;
 
   Map<String, Object?> encode() => {
-    if (booleanValue != null) 'boolean_value': booleanValue!.toTfJson(),
-    if (integerValue != null) 'integer_value': integerValue!.toTfJson(),
+    'boolean_value': ?booleanValue?.toTfJson(),
+    'integer_value': ?integerValue?.toTfJson(),
     'key': key.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (encryptionKeyValue != null)
-      'encryption_key_value': encryptionKeyValue!.encode(),
-    if (secretValue != null) 'secret_value': secretValue!.encode(),
+    'string_value': ?stringValue?.toTfJson(),
+    'encryption_key_value': ?encryptionKeyValue?.encode(),
+    'secret_value': ?secretValue?.encode(),
   };
 }
 
@@ -143,8 +140,7 @@ final class IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptio
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -199,11 +195,11 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlow {
   clientSecret;
 
   Map<String, Object?> encode() => {
-    if (authUri != null) 'auth_uri': authUri!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (enablePkce != null) 'enable_pkce': enablePkce!.toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.encode(),
+    'auth_uri': ?authUri?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'enable_pkce': ?enablePkce?.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
+    'client_secret': ?clientSecret?.encode(),
   };
 }
 
@@ -236,7 +232,7 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2ClientCredentials {
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.encode(),
+    'client_secret': ?clientSecret?.encode(),
   };
 }
 
@@ -269,8 +265,8 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2JwtBearer {
   jwtClaims;
 
   Map<String, Object?> encode() => {
-    if (clientKey != null) 'client_key': clientKey!.encode(),
-    if (jwtClaims != null) 'jwt_claims': jwtClaims!.encode(),
+    'client_key': ?clientKey?.encode(),
+    'jwt_claims': ?jwtClaims?.encode(),
   };
 }
 
@@ -304,9 +300,9 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2JwtBearerJwtClaims {
   final TfArg<String>? subject;
 
   Map<String, Object?> encode() => {
-    if (audience != null) 'audience': audience!.toTfJson(),
-    if (issuer != null) 'issuer': issuer!.toTfJson(),
-    if (subject != null) 'subject': subject!.toTfJson(),
+    'audience': ?audience?.toTfJson(),
+    'issuer': ?issuer?.toTfJson(),
+    'subject': ?subject?.toTfJson(),
   };
 }
 
@@ -332,11 +328,10 @@ final class IntegrationConnectorsConnectionAuthConfigSshPublicKey {
   sshClientCertPass;
 
   Map<String, Object?> encode() => {
-    if (certType != null) 'cert_type': certType!.toTfJson(),
+    'cert_type': ?certType?.toTfJson(),
     'username': username.toTfJson(),
-    if (sshClientCert != null) 'ssh_client_cert': sshClientCert!.encode(),
-    if (sshClientCertPass != null)
-      'ssh_client_cert_pass': sshClientCertPass!.encode(),
+    'ssh_client_cert': ?sshClientCert?.encode(),
+    'ssh_client_cert_pass': ?sshClientCertPass?.encode(),
   };
 }
 
@@ -381,7 +376,7 @@ final class IntegrationConnectorsConnectionAuthConfigUserPassword {
 
   Map<String, Object?> encode() => {
     'username': username.toTfJson(),
-    if (password != null) 'password': password!.encode(),
+    'password': ?password?.encode(),
   };
 }
 
@@ -425,13 +420,12 @@ final class IntegrationConnectorsConnectionConfigVariable {
   final IntegrationConnectorsConnectionConfigVariableSecretValue? secretValue;
 
   Map<String, Object?> encode() => {
-    if (booleanValue != null) 'boolean_value': booleanValue!.toTfJson(),
-    if (integerValue != null) 'integer_value': integerValue!.toTfJson(),
+    'boolean_value': ?booleanValue?.toTfJson(),
+    'integer_value': ?integerValue?.toTfJson(),
     'key': key.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (encryptionKeyValue != null)
-      'encryption_key_value': encryptionKeyValue!.encode(),
-    if (secretValue != null) 'secret_value': secretValue!.encode(),
+    'string_value': ?stringValue?.toTfJson(),
+    'encryption_key_value': ?encryptionKeyValue?.encode(),
+    'secret_value': ?secretValue?.encode(),
   };
 }
 
@@ -452,8 +446,7 @@ final class IntegrationConnectorsConnectionConfigVariableEncryptionKeyValue {
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -522,10 +515,9 @@ final class IntegrationConnectorsConnectionDestinationConfigDestination {
   final TfArg<String>? serviceAttachment;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (serviceAttachment != null)
-      'service_attachment': serviceAttachment!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'service_attachment': ?serviceAttachment?.toTfJson(),
   };
 }
 
@@ -551,11 +543,10 @@ final class IntegrationConnectorsConnectionEventingConfig {
   registrationDestinationConfig;
 
   Map<String, Object?> encode() => {
-    if (enrichmentEnabled != null)
-      'enrichment_enabled': enrichmentEnabled!.toTfJson(),
+    'enrichment_enabled': ?enrichmentEnabled?.toTfJson(),
     if (additionalVariable != null)
       'additional_variable': [for (final e in additionalVariable!) e.encode()],
-    if (authConfig != null) 'auth_config': authConfig!.encode(),
+    'auth_config': ?authConfig?.encode(),
     'registration_destination_config': registrationDestinationConfig.encode(),
   };
 }
@@ -588,13 +579,12 @@ final class IntegrationConnectorsConnectionEventingConfigAdditionalVariable {
   secretValue;
 
   Map<String, Object?> encode() => {
-    if (booleanValue != null) 'boolean_value': booleanValue!.toTfJson(),
-    if (integerValue != null) 'integer_value': integerValue!.toTfJson(),
+    'boolean_value': ?booleanValue?.toTfJson(),
+    'integer_value': ?integerValue?.toTfJson(),
     'key': key.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (encryptionKeyValue != null)
-      'encryption_key_value': encryptionKeyValue!.encode(),
-    if (secretValue != null) 'secret_value': secretValue!.encode(),
+    'string_value': ?stringValue?.toTfJson(),
+    'encryption_key_value': ?encryptionKeyValue?.encode(),
+    'secret_value': ?secretValue?.encode(),
   };
 }
 
@@ -615,9 +605,8 @@ final class IntegrationConnectorsConnectionEventingConfigAdditionalVariableEncry
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -671,7 +660,7 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfig {
   userPassword;
 
   Map<String, Object?> encode() => {
-    if (authKey != null) 'auth_key': authKey!.toTfJson(),
+    'auth_key': ?authKey?.toTfJson(),
     'auth_type': authType.toTfJson(),
     if (additionalVariable != null)
       'additional_variable': [for (final e in additionalVariable!) e.encode()],
@@ -707,13 +696,12 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVar
   secretValue;
 
   Map<String, Object?> encode() => {
-    if (booleanValue != null) 'boolean_value': booleanValue!.toTfJson(),
-    if (integerValue != null) 'integer_value': integerValue!.toTfJson(),
+    'boolean_value': ?booleanValue?.toTfJson(),
+    'integer_value': ?integerValue?.toTfJson(),
     'key': key.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (encryptionKeyValue != null)
-      'encryption_key_value': encryptionKeyValue!.encode(),
-    if (secretValue != null) 'secret_value': secretValue!.encode(),
+    'string_value': ?stringValue?.toTfJson(),
+    'encryption_key_value': ?encryptionKeyValue?.encode(),
+    'secret_value': ?secretValue?.encode(),
   };
 }
 
@@ -734,9 +722,8 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVar
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -781,8 +768,8 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfigUserPassword 
   password;
 
   Map<String, Object?> encode() => {
-    if (username != null) 'username': username!.toTfJson(),
-    if (password != null) 'password': password!.encode(),
+    'username': ?username?.toTfJson(),
+    'password': ?password?.encode(),
   };
 }
 
@@ -816,7 +803,7 @@ final class IntegrationConnectorsConnectionEventingConfigRegistrationDestination
   destination;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
   };
@@ -839,10 +826,9 @@ final class IntegrationConnectorsConnectionEventingConfigRegistrationDestination
   final TfArg<String>? serviceAttachment;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (serviceAttachment != null)
-      'service_attachment': serviceAttachment!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'service_attachment': ?serviceAttachment?.toTfJson(),
   };
 }
 
@@ -861,7 +847,7 @@ final class IntegrationConnectorsConnectionLockConfig {
 
   Map<String, Object?> encode() => {
     'locked': locked.toTfJson(),
-    if (reason != null) 'reason': reason!.toTfJson(),
+    'reason': ?reason?.toTfJson(),
   };
 }
 
@@ -880,7 +866,7 @@ final class IntegrationConnectorsConnectionLogConfig {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (level != null) 'level': level!.toTfJson(),
+    'level': ?level?.toTfJson(),
   };
 }
 
@@ -910,8 +896,8 @@ final class IntegrationConnectorsConnectionNodeConfig {
   final TfArg<num>? minNodeCount;
 
   Map<String, Object?> encode() => {
-    if (maxNodeCount != null) 'max_node_count': maxNodeCount!.toTfJson(),
-    if (minNodeCount != null) 'min_node_count': minNodeCount!.toTfJson(),
+    'max_node_count': ?maxNodeCount?.toTfJson(),
+    'min_node_count': ?minNodeCount?.toTfJson(),
   };
 }
 
@@ -958,21 +944,17 @@ final class IntegrationConnectorsConnectionSslConfig {
   privateServerCertificate;
 
   Map<String, Object?> encode() => {
-    if (clientCertType != null) 'client_cert_type': clientCertType!.toTfJson(),
-    if (serverCertType != null) 'server_cert_type': serverCertType!.toTfJson(),
-    if (trustModel != null) 'trust_model': trustModel!.toTfJson(),
+    'client_cert_type': ?clientCertType?.toTfJson(),
+    'server_cert_type': ?serverCertType?.toTfJson(),
+    'trust_model': ?trustModel?.toTfJson(),
     'type': type.toTfJson(),
-    if (useSsl != null) 'use_ssl': useSsl!.toTfJson(),
+    'use_ssl': ?useSsl?.toTfJson(),
     if (additionalVariable != null)
       'additional_variable': [for (final e in additionalVariable!) e.encode()],
-    if (clientCertificate != null)
-      'client_certificate': clientCertificate!.encode(),
-    if (clientPrivateKey != null)
-      'client_private_key': clientPrivateKey!.encode(),
-    if (clientPrivateKeyPass != null)
-      'client_private_key_pass': clientPrivateKeyPass!.encode(),
-    if (privateServerCertificate != null)
-      'private_server_certificate': privateServerCertificate!.encode(),
+    'client_certificate': ?clientCertificate?.encode(),
+    'client_private_key': ?clientPrivateKey?.encode(),
+    'client_private_key_pass': ?clientPrivateKeyPass?.encode(),
+    'private_server_certificate': ?privateServerCertificate?.encode(),
   };
 }
 
@@ -1026,13 +1008,12 @@ final class IntegrationConnectorsConnectionSslConfigAdditionalVariable {
   secretValue;
 
   Map<String, Object?> encode() => {
-    if (booleanValue != null) 'boolean_value': booleanValue!.toTfJson(),
-    if (integerValue != null) 'integer_value': integerValue!.toTfJson(),
+    'boolean_value': ?booleanValue?.toTfJson(),
+    'integer_value': ?integerValue?.toTfJson(),
     'key': key.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (encryptionKeyValue != null)
-      'encryption_key_value': encryptionKeyValue!.encode(),
-    if (secretValue != null) 'secret_value': secretValue!.encode(),
+    'string_value': ?stringValue?.toTfJson(),
+    'encryption_key_value': ?encryptionKeyValue?.encode(),
+    'secret_value': ?secretValue?.encode(),
   };
 }
 
@@ -1053,9 +1034,8 @@ final class IntegrationConnectorsConnectionSslConfigAdditionalVariableEncryption
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -1190,12 +1170,10 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
            'name': name,
            'location': location,
            'connector_version': connectorVersion,
-           if (description != null) 'description': description,
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('email'),
-           if (eventingEnablementType != null)
-             'eventing_enablement_type': eventingEnablementType,
-           if (suspended != null) 'suspended': suspended,
+           'description': ?description,
+           'service_account': ?serviceAccount?.encodeAs('email'),
+           'eventing_enablement_type': ?eventingEnablementType,
+           'suspended': ?suspended,
            if (authConfig != null)
              'auth_config': TfArg.literal(authConfig.encode()),
            if (configVariable != null)
@@ -1216,9 +1194,9 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
              'node_config': TfArg.literal(nodeConfig.encode()),
            if (sslConfig != null)
              'ssl_config': TfArg.literal(sslConfig.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

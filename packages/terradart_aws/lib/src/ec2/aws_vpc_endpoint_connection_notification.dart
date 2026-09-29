@@ -96,7 +96,7 @@ final class AwsVpcEndpointConnectionNotification extends Resource {
          argMap: {
            'connection_events': connectionEvents,
            'connection_notification_arn': connectionNotificationArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            ...vpcEndpoint.argMap,
          },
        );

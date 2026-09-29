@@ -17,9 +17,7 @@ final class MagicTransitSiteLanNat {
 
   final TfArg<String>? staticPrefix;
 
-  Map<String, Object?> encode() => {
-    if (staticPrefix != null) 'static_prefix': staticPrefix!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'static_prefix': ?staticPrefix?.toTfJson()};
 }
 
 /// Typed helper for the `routed_subnets` block of
@@ -41,7 +39,7 @@ final class MagicTransitSiteLanRoutedSubnets {
   Map<String, Object?> encode() => {
     'next_hop': nextHop.toTfJson(),
     'prefix': prefix.toTfJson(),
-    if (nat != null) 'nat': nat!.encode(),
+    'nat': ?nat?.encode(),
   };
 }
 
@@ -53,9 +51,7 @@ final class MagicTransitSiteLanRoutedSubnetsNat {
 
   final TfArg<String>? staticPrefix;
 
-  Map<String, Object?> encode() => {
-    if (staticPrefix != null) 'static_prefix': staticPrefix!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'static_prefix': ?staticPrefix?.toTfJson()};
 }
 
 /// Typed helper for the `static_addressing` block of
@@ -82,11 +78,10 @@ final class MagicTransitSiteLanStaticAddressing {
 
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
-    if (secondaryAddress != null)
-      'secondary_address': secondaryAddress!.toTfJson(),
-    if (virtualAddress != null) 'virtual_address': virtualAddress!.toTfJson(),
-    if (dhcpRelay != null) 'dhcp_relay': dhcpRelay!.encode(),
-    if (dhcpServer != null) 'dhcp_server': dhcpServer!.encode(),
+    'secondary_address': ?secondaryAddress?.toTfJson(),
+    'virtual_address': ?virtualAddress?.toTfJson(),
+    'dhcp_relay': ?dhcpRelay?.encode(),
+    'dhcp_server': ?dhcpServer?.encode(),
   };
 }
 
@@ -99,8 +94,7 @@ final class MagicTransitSiteLanStaticAddressingDhcpRelay {
   final TfArg<List<Object?>>? serverAddresses;
 
   Map<String, Object?> encode() => {
-    if (serverAddresses != null)
-      'server_addresses': serverAddresses!.toTfJson(),
+    'server_addresses': ?serverAddresses?.toTfJson(),
   };
 }
 
@@ -131,11 +125,11 @@ final class MagicTransitSiteLanStaticAddressingDhcpServer {
   dhcpOptions;
 
   Map<String, Object?> encode() => {
-    if (dhcpPoolEnd != null) 'dhcp_pool_end': dhcpPoolEnd!.toTfJson(),
-    if (dhcpPoolStart != null) 'dhcp_pool_start': dhcpPoolStart!.toTfJson(),
-    if (dnsServer != null) 'dns_server': dnsServer!.toTfJson(),
-    if (dnsServers != null) 'dns_servers': dnsServers!.toTfJson(),
-    if (reservations != null) 'reservations': reservations!.toTfJson(),
+    'dhcp_pool_end': ?dhcpPoolEnd?.toTfJson(),
+    'dhcp_pool_start': ?dhcpPoolStart?.toTfJson(),
+    'dns_server': ?dnsServer?.toTfJson(),
+    'dns_servers': ?dnsServers?.toTfJson(),
+    'reservations': ?reservations?.toTfJson(),
     if (dhcpOptions != null)
       'dhcp_options': [for (final e in dhcpOptions!) e.encode()],
   };
@@ -213,14 +207,14 @@ final class CloudflareMagicTransitSiteLan extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (bondId != null) 'bond_id': bondId,
-           if (haLink != null) 'ha_link': haLink,
-           if (isBreakout != null) 'is_breakout': isBreakout,
-           if (isPrioritized != null) 'is_prioritized': isPrioritized,
-           if (name != null) 'name': name,
-           if (physport != null) 'physport': physport,
+           'bond_id': ?bondId,
+           'ha_link': ?haLink,
+           'is_breakout': ?isBreakout,
+           'is_prioritized': ?isPrioritized,
+           'name': ?name,
+           'physport': ?physport,
            'site_id': siteId,
-           if (vlanTag != null) 'vlan_tag': vlanTag,
+           'vlan_tag': ?vlanTag,
            if (nat != null) 'nat': TfArg.literal(nat.encode()),
            if (routedSubnets != null)
              'routed_subnets': TfArg.literal([

@@ -61,18 +61,17 @@ final class GoogleDnsPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (enableInboundForwarding != null)
-             'enable_inbound_forwarding': enableInboundForwarding,
-           if (enableLogging != null) 'enable_logging': enableLogging,
+           'description': ?description,
+           'enable_inbound_forwarding': ?enableInboundForwarding,
+           'enable_logging': ?enableLogging,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (alternativeNameServerConfig != null)
              'alternative_name_server_config': TfArg.literal([
                alternativeNameServerConfig.encode(),
              ]),
-           if (dns64Config != null) 'dns64_config': dns64Config,
-           if (networks != null) 'networks': networks,
+           'dns64_config': ?dns64Config,
+           'networks': ?networks,
          },
        );
 

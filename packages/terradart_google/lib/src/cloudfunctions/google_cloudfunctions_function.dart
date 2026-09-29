@@ -38,7 +38,7 @@ final class CloudfunctionsFunctionEventTrigger {
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     'resource': resource.toTfJson(),
-    if (failurePolicy != null) 'failure_policy': failurePolicy!.encode(),
+    'failure_policy': ?failurePolicy?.encode(),
   };
 }
 
@@ -83,7 +83,7 @@ final class CloudfunctionsFunctionSecretEnvironmentVariables {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
     'secret': secret.toTfJson(),
     'version': version.toTfJson(),
   };
@@ -110,7 +110,7 @@ final class CloudfunctionsFunctionSecretVolumes {
 
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
     'secret': secret.toTfJson(),
     if (versions != null) 'versions': [for (final e in versions!) e.encode()],
   };
@@ -203,43 +203,34 @@ final class GoogleCloudfunctionsFunction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availableMemoryMb != null)
-             'available_memory_mb': availableMemoryMb,
-           if (buildEnvironmentVariables != null)
-             'build_environment_variables': buildEnvironmentVariables,
-           if (buildServiceAccount != null)
-             'build_service_account': buildServiceAccount,
-           if (buildWorkerPool != null) 'build_worker_pool': buildWorkerPool,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (dockerRegistry != null) 'docker_registry': dockerRegistry,
-           if (dockerRepository != null) 'docker_repository': dockerRepository,
-           if (entryPoint != null) 'entry_point': entryPoint,
-           if (environmentVariables != null)
-             'environment_variables': environmentVariables,
-           if (httpsTriggerSecurityLevel != null)
-             'https_trigger_security_level': httpsTriggerSecurityLevel,
-           if (httpsTriggerUrl != null) 'https_trigger_url': httpsTriggerUrl,
-           if (ingressSettings != null) 'ingress_settings': ingressSettings,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
-           if (labels != null) 'labels': labels,
-           if (maxInstances != null) 'max_instances': maxInstances,
-           if (minInstances != null) 'min_instances': minInstances,
+           'available_memory_mb': ?availableMemoryMb,
+           'build_environment_variables': ?buildEnvironmentVariables,
+           'build_service_account': ?buildServiceAccount,
+           'build_worker_pool': ?buildWorkerPool,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'docker_registry': ?dockerRegistry,
+           'docker_repository': ?dockerRepository,
+           'entry_point': ?entryPoint,
+           'environment_variables': ?environmentVariables,
+           'https_trigger_security_level': ?httpsTriggerSecurityLevel,
+           'https_trigger_url': ?httpsTriggerUrl,
+           'ingress_settings': ?ingressSettings,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'labels': ?labels,
+           'max_instances': ?maxInstances,
+           'min_instances': ?minInstances,
            'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
            'runtime': runtime,
-           if (serviceAccountEmail != null)
-             'service_account_email': serviceAccountEmail.encodeAs('email'),
-           if (sourceArchiveBucket != null)
-             'source_archive_bucket': sourceArchiveBucket,
-           if (sourceArchiveObject != null)
-             'source_archive_object': sourceArchiveObject,
-           if (timeout != null) 'timeout': timeout,
-           if (triggerHttp != null) 'trigger_http': triggerHttp,
-           if (vpcConnector != null) 'vpc_connector': vpcConnector,
-           if (vpcConnectorEgressSettings != null)
-             'vpc_connector_egress_settings': vpcConnectorEgressSettings,
+           'service_account_email': ?serviceAccountEmail?.encodeAs('email'),
+           'source_archive_bucket': ?sourceArchiveBucket,
+           'source_archive_object': ?sourceArchiveObject,
+           'timeout': ?timeout,
+           'trigger_http': ?triggerHttp,
+           'vpc_connector': ?vpcConnector,
+           'vpc_connector_egress_settings': ?vpcConnectorEgressSettings,
            if (automaticUpdatePolicy != null)
              'automatic_update_policy': TfArg.literal(
                automaticUpdatePolicy.encode(),

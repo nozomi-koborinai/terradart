@@ -22,7 +22,7 @@ final class NetworkServicesMulticastDomainConnectionConfig {
 
   Map<String, Object?> encode() => {
     'connection_type': connectionType.toTfJson(),
-    if (nccHub != null) 'ncc_hub': nccHub!.toTfJson(),
+    'ncc_hub': ?nccHub?.toTfJson(),
   };
 }
 
@@ -37,8 +37,7 @@ final class NetworkServicesMulticastDomainUllMulticastDomain {
   final TfArg<String>? preconfiguredUllDomain;
 
   Map<String, Object?> encode() => {
-    if (preconfiguredUllDomain != null)
-      'preconfigured_ull_domain': preconfiguredUllDomain!.toTfJson(),
+    'preconfigured_ull_domain': ?preconfiguredUllDomain?.toTfJson(),
   };
 }
 
@@ -83,14 +82,13 @@ final class GoogleNetworkServicesMulticastDomain extends Resource {
            'multicast_domain_id': multicastDomainId,
            'admin_network': adminNetwork,
            'connection_config': TfArg.literal(connectionConfig.encode()),
-           if (multicastDomainGroup != null)
-             'multicast_domain_group': multicastDomainGroup,
+           'multicast_domain_group': ?multicastDomainGroup,
            if (ullMulticastDomain != null)
              'ull_multicast_domain': TfArg.literal(ullMulticastDomain.encode()),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

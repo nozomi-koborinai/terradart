@@ -30,14 +30,13 @@ final class AwsS3filesFileSystem extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptBucketWarning != null)
-             'accept_bucket_warning': acceptBucketWarning,
+           'accept_bucket_warning': ?acceptBucketWarning,
            'bucket': bucket.encodeAs('id'),
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (prefix != null) 'prefix': prefix,
-           if (region != null) 'region': region,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'prefix': ?prefix,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

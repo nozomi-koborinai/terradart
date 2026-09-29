@@ -23,10 +23,7 @@ final class DataAppwritePostgresqlDatabases extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (projectId != null) 'project_id': projectId,
-           if (queries != null) 'queries': queries,
-         },
+         argMap: {'project_id': ?projectId, 'queries': ?queries},
        );
 
   @override

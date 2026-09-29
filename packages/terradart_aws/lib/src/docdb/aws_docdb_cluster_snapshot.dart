@@ -24,7 +24,7 @@ final class AwsDocdbClusterSnapshot extends Resource {
          argMap: {
            'db_cluster_identifier': dbClusterIdentifier,
            'db_cluster_snapshot_identifier': dbClusterSnapshotIdentifier,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

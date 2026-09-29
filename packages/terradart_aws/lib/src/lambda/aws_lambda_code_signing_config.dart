@@ -70,9 +70,9 @@ final class AwsLambdaCodeSigningConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'region': ?region,
+           'tags': ?tags,
            'allowed_publishers': TfArg.literal(allowedPublishers.encode()),
            if (policies != null) 'policies': TfArg.literal(policies.encode()),
          },

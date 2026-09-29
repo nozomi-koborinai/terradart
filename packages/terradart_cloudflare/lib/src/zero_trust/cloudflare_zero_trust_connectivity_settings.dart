@@ -30,9 +30,8 @@ final class CloudflareZeroTrustConnectivitySettings extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (icmpProxyEnabled != null) 'icmp_proxy_enabled': icmpProxyEnabled,
-           if (offrampWarpEnabled != null)
-             'offramp_warp_enabled': offrampWarpEnabled,
+           'icmp_proxy_enabled': ?icmpProxyEnabled,
+           'offramp_warp_enabled': ?offrampWarpEnabled,
          },
        );
 

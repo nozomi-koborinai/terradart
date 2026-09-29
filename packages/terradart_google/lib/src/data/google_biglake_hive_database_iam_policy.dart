@@ -23,11 +23,7 @@ final class DataGoogleBiglakeHiveDatabaseIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'catalog': catalog,
-           'name': name,
-           if (project != null) 'project': project,
-         },
+         argMap: {'catalog': catalog, 'name': name, 'project': ?project},
        );
 
   @override

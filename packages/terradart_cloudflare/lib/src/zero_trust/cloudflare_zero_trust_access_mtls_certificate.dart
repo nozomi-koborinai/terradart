@@ -33,12 +33,11 @@ final class CloudflareZeroTrustAccessMtlsCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
-           if (associatedHostnames != null)
-             'associated_hostnames': associatedHostnames,
+           'account_id': ?accountId?.encodeAs('id'),
+           'associated_hostnames': ?associatedHostnames,
            'certificate': certificate,
            'name': name,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

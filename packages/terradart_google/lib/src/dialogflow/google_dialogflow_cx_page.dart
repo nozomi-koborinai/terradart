@@ -15,9 +15,7 @@ final class DialogflowCxPageAdvancedSettings {
 
   final DialogflowCxPageAdvancedSettingsDtmfSettings? dtmfSettings;
 
-  Map<String, Object?> encode() => {
-    if (dtmfSettings != null) 'dtmf_settings': dtmfSettings!.encode(),
-  };
+  Map<String, Object?> encode() => {'dtmf_settings': ?dtmfSettings?.encode()};
 }
 
 /// Typed helper for the `advanced_settings.dtmf_settings` block of
@@ -37,9 +35,9 @@ final class DialogflowCxPageAdvancedSettingsDtmfSettings {
   final TfArg<num>? maxDigits;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (finishDigit != null) 'finish_digit': finishDigit!.toTfJson(),
-    if (maxDigits != null) 'max_digits': maxDigits!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'finish_digit': ?finishDigit?.toTfJson(),
+    'max_digits': ?maxDigits?.toTfJson(),
   };
 }
 
@@ -71,10 +69,9 @@ final class DialogflowCxPageEntryFulfillment {
   setParameterActions;
 
   Map<String, Object?> encode() => {
-    if (returnPartialResponses != null)
-      'return_partial_responses': returnPartialResponses!.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
-    if (webhook != null) 'webhook': webhook!.toTfJson(),
+    'return_partial_responses': ?returnPartialResponses?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
+    'webhook': ?webhook?.toTfJson(),
     if (conditionalCases != null)
       'conditional_cases': [for (final e in conditionalCases!) e.encode()],
     if (messages != null) 'messages': [for (final e in messages!) e.encode()],
@@ -93,9 +90,7 @@ final class DialogflowCxPageEntryFulfillmentConditionalCases {
 
   final TfArg<String>? cases;
 
-  Map<String, Object?> encode() => {
-    if (cases != null) 'cases': cases!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
 }
 
 /// Typed helper for the `entry_fulfillment.messages` block of
@@ -134,17 +129,14 @@ final class DialogflowCxPageEntryFulfillmentMessages {
   final DialogflowCxPageEntryFulfillmentMessagesText? text;
 
   Map<String, Object?> encode() => {
-    if (channel != null) 'channel': channel!.toTfJson(),
-    if (payload != null) 'payload': payload!.toTfJson(),
-    if (conversationSuccess != null)
-      'conversation_success': conversationSuccess!.encode(),
-    if (liveAgentHandoff != null)
-      'live_agent_handoff': liveAgentHandoff!.encode(),
-    if (outputAudioText != null) 'output_audio_text': outputAudioText!.encode(),
-    if (playAudio != null) 'play_audio': playAudio!.encode(),
-    if (telephonyTransferCall != null)
-      'telephony_transfer_call': telephonyTransferCall!.encode(),
-    if (text != null) 'text': text!.encode(),
+    'channel': ?channel?.toTfJson(),
+    'payload': ?payload?.toTfJson(),
+    'conversation_success': ?conversationSuccess?.encode(),
+    'live_agent_handoff': ?liveAgentHandoff?.encode(),
+    'output_audio_text': ?outputAudioText?.encode(),
+    'play_audio': ?playAudio?.encode(),
+    'telephony_transfer_call': ?telephonyTransferCall?.encode(),
+    'text': ?text?.encode(),
   };
 }
 
@@ -158,9 +150,7 @@ final class DialogflowCxPageEntryFulfillmentMessagesConversationSuccess {
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `entry_fulfillment.messages.live_agent_handoff` block of
@@ -173,9 +163,7 @@ final class DialogflowCxPageEntryFulfillmentMessagesLiveAgentHandoff {
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `entry_fulfillment.messages.output_audio_text` block of
@@ -192,8 +180,8 @@ final class DialogflowCxPageEntryFulfillmentMessagesOutputAudioText {
   final TfArg<String>? text;
 
   Map<String, Object?> encode() => {
-    if (ssml != null) 'ssml': ssml!.toTfJson(),
-    if (text != null) 'text': text!.toTfJson(),
+    'ssml': ?ssml?.toTfJson(),
+    'text': ?text?.toTfJson(),
   };
 }
 
@@ -231,7 +219,7 @@ final class DialogflowCxPageEntryFulfillmentMessagesText {
 
   final TfArg<List<Object?>>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Typed helper for the `entry_fulfillment.set_parameter_actions` block of
@@ -248,8 +236,8 @@ final class DialogflowCxPageEntryFulfillmentSetParameterActions {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (parameter != null) 'parameter': parameter!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'parameter': ?parameter?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -273,11 +261,10 @@ final class DialogflowCxPageEventHandlers {
   final DialogflowCxPageEventHandlersTriggerFulfillment? triggerFulfillment;
 
   Map<String, Object?> encode() => {
-    if (event != null) 'event': event!.toTfJson(),
-    if (targetFlow != null) 'target_flow': targetFlow!.toTfJson(),
-    if (targetPage != null) 'target_page': targetPage!.toTfJson(),
-    if (triggerFulfillment != null)
-      'trigger_fulfillment': triggerFulfillment!.encode(),
+    'event': ?event?.toTfJson(),
+    'target_flow': ?targetFlow?.toTfJson(),
+    'target_page': ?targetPage?.toTfJson(),
+    'trigger_fulfillment': ?triggerFulfillment?.encode(),
   };
 }
 
@@ -311,10 +298,9 @@ final class DialogflowCxPageEventHandlersTriggerFulfillment {
   setParameterActions;
 
   Map<String, Object?> encode() => {
-    if (returnPartialResponses != null)
-      'return_partial_responses': returnPartialResponses!.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
-    if (webhook != null) 'webhook': webhook!.toTfJson(),
+    'return_partial_responses': ?returnPartialResponses?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
+    'webhook': ?webhook?.toTfJson(),
     if (conditionalCases != null)
       'conditional_cases': [for (final e in conditionalCases!) e.encode()],
     if (messages != null) 'messages': [for (final e in messages!) e.encode()],
@@ -335,9 +321,7 @@ final class DialogflowCxPageEventHandlersTriggerFulfillmentConditionalCases {
 
   final TfArg<String>? cases;
 
-  Map<String, Object?> encode() => {
-    if (cases != null) 'cases': cases!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
 }
 
 /// Typed helper for the `event_handlers.trigger_fulfillment.messages` block of
@@ -377,17 +361,14 @@ final class DialogflowCxPageEventHandlersTriggerFulfillmentMessages {
   final DialogflowCxPageEventHandlersTriggerFulfillmentMessagesText? text;
 
   Map<String, Object?> encode() => {
-    if (channel != null) 'channel': channel!.toTfJson(),
-    if (payload != null) 'payload': payload!.toTfJson(),
-    if (conversationSuccess != null)
-      'conversation_success': conversationSuccess!.encode(),
-    if (liveAgentHandoff != null)
-      'live_agent_handoff': liveAgentHandoff!.encode(),
-    if (outputAudioText != null) 'output_audio_text': outputAudioText!.encode(),
-    if (playAudio != null) 'play_audio': playAudio!.encode(),
-    if (telephonyTransferCall != null)
-      'telephony_transfer_call': telephonyTransferCall!.encode(),
-    if (text != null) 'text': text!.encode(),
+    'channel': ?channel?.toTfJson(),
+    'payload': ?payload?.toTfJson(),
+    'conversation_success': ?conversationSuccess?.encode(),
+    'live_agent_handoff': ?liveAgentHandoff?.encode(),
+    'output_audio_text': ?outputAudioText?.encode(),
+    'play_audio': ?playAudio?.encode(),
+    'telephony_transfer_call': ?telephonyTransferCall?.encode(),
+    'text': ?text?.encode(),
   };
 }
 
@@ -401,9 +382,7 @@ final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesConversationS
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `event_handlers.trigger_fulfillment.messages.live_agent_handoff` block of
@@ -416,9 +395,7 @@ final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesLiveAgentHand
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `event_handlers.trigger_fulfillment.messages.output_audio_text` block of
@@ -435,8 +412,8 @@ final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesOutputAudioTe
   final TfArg<String>? text;
 
   Map<String, Object?> encode() => {
-    if (ssml != null) 'ssml': ssml!.toTfJson(),
-    if (text != null) 'text': text!.toTfJson(),
+    'ssml': ?ssml?.toTfJson(),
+    'text': ?text?.toTfJson(),
   };
 }
 
@@ -476,7 +453,7 @@ final class DialogflowCxPageEventHandlersTriggerFulfillmentMessagesText {
 
   final TfArg<List<Object?>>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Typed helper for the `event_handlers.trigger_fulfillment.set_parameter_actions` block of
@@ -493,8 +470,8 @@ final class DialogflowCxPageEventHandlersTriggerFulfillmentSetParameterActions {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (parameter != null) 'parameter': parameter!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'parameter': ?parameter?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -544,15 +521,14 @@ final class DialogflowCxPageFormParameters {
   final DialogflowCxPageFormParametersFillBehavior? fillBehavior;
 
   Map<String, Object?> encode() => {
-    if (defaultValue != null) 'default_value': defaultValue!.toTfJson(),
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (entityType != null) 'entity_type': entityType!.toTfJson(),
-    if (isList != null) 'is_list': isList!.toTfJson(),
-    if (redact != null) 'redact': redact!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (advancedSettings != null)
-      'advanced_settings': advancedSettings!.encode(),
-    if (fillBehavior != null) 'fill_behavior': fillBehavior!.encode(),
+    'default_value': ?defaultValue?.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'entity_type': ?entityType?.toTfJson(),
+    'is_list': ?isList?.toTfJson(),
+    'redact': ?redact?.toTfJson(),
+    'required': ?required?.toTfJson(),
+    'advanced_settings': ?advancedSettings?.encode(),
+    'fill_behavior': ?fillBehavior?.encode(),
   };
 }
 
@@ -565,9 +541,7 @@ final class DialogflowCxPageFormParametersAdvancedSettings {
   final DialogflowCxPageFormParametersAdvancedSettingsDtmfSettings?
   dtmfSettings;
 
-  Map<String, Object?> encode() => {
-    if (dtmfSettings != null) 'dtmf_settings': dtmfSettings!.encode(),
-  };
+  Map<String, Object?> encode() => {'dtmf_settings': ?dtmfSettings?.encode()};
 }
 
 /// Typed helper for the `form.parameters.advanced_settings.dtmf_settings` block of
@@ -587,9 +561,9 @@ final class DialogflowCxPageFormParametersAdvancedSettingsDtmfSettings {
   final TfArg<num>? maxDigits;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (finishDigit != null) 'finish_digit': finishDigit!.toTfJson(),
-    if (maxDigits != null) 'max_digits': maxDigits!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'finish_digit': ?finishDigit?.toTfJson(),
+    'max_digits': ?maxDigits?.toTfJson(),
   };
 }
 
@@ -609,8 +583,7 @@ final class DialogflowCxPageFormParametersFillBehavior {
   repromptEventHandlers;
 
   Map<String, Object?> encode() => {
-    if (initialPromptFulfillment != null)
-      'initial_prompt_fulfillment': initialPromptFulfillment!.encode(),
+    'initial_prompt_fulfillment': ?initialPromptFulfillment?.encode(),
     if (repromptEventHandlers != null)
       'reprompt_event_handlers': [
         for (final e in repromptEventHandlers!) e.encode(),
@@ -653,10 +626,9 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillment {
   setParameterActions;
 
   Map<String, Object?> encode() => {
-    if (returnPartialResponses != null)
-      'return_partial_responses': returnPartialResponses!.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
-    if (webhook != null) 'webhook': webhook!.toTfJson(),
+    'return_partial_responses': ?returnPartialResponses?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
+    'webhook': ?webhook?.toTfJson(),
     if (conditionalCases != null)
       'conditional_cases': [for (final e in conditionalCases!) e.encode()],
     if (messages != null) 'messages': [for (final e in messages!) e.encode()],
@@ -677,9 +649,7 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentCo
 
   final TfArg<String>? cases;
 
-  Map<String, Object?> encode() => {
-    if (cases != null) 'cases': cases!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
 }
 
 /// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.messages` block of
@@ -720,17 +690,14 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMe
   text;
 
   Map<String, Object?> encode() => {
-    if (channel != null) 'channel': channel!.toTfJson(),
-    if (payload != null) 'payload': payload!.toTfJson(),
-    if (conversationSuccess != null)
-      'conversation_success': conversationSuccess!.encode(),
-    if (liveAgentHandoff != null)
-      'live_agent_handoff': liveAgentHandoff!.encode(),
-    if (outputAudioText != null) 'output_audio_text': outputAudioText!.encode(),
-    if (playAudio != null) 'play_audio': playAudio!.encode(),
-    if (telephonyTransferCall != null)
-      'telephony_transfer_call': telephonyTransferCall!.encode(),
-    if (text != null) 'text': text!.encode(),
+    'channel': ?channel?.toTfJson(),
+    'payload': ?payload?.toTfJson(),
+    'conversation_success': ?conversationSuccess?.encode(),
+    'live_agent_handoff': ?liveAgentHandoff?.encode(),
+    'output_audio_text': ?outputAudioText?.encode(),
+    'play_audio': ?playAudio?.encode(),
+    'telephony_transfer_call': ?telephonyTransferCall?.encode(),
+    'text': ?text?.encode(),
   };
 }
 
@@ -744,9 +711,7 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMe
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.messages.live_agent_handoff` block of
@@ -759,9 +724,7 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMe
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.messages.output_audio_text` block of
@@ -778,8 +741,8 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMe
   final TfArg<String>? text;
 
   Map<String, Object?> encode() => {
-    if (ssml != null) 'ssml': ssml!.toTfJson(),
-    if (text != null) 'text': text!.toTfJson(),
+    'ssml': ?ssml?.toTfJson(),
+    'text': ?text?.toTfJson(),
   };
 }
 
@@ -819,7 +782,7 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMe
 
   final TfArg<List<Object?>>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Typed helper for the `form.parameters.fill_behavior.initial_prompt_fulfillment.set_parameter_actions` block of
@@ -836,8 +799,8 @@ final class DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentSe
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (parameter != null) 'parameter': parameter!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'parameter': ?parameter?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -862,11 +825,10 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlers {
   triggerFulfillment;
 
   Map<String, Object?> encode() => {
-    if (event != null) 'event': event!.toTfJson(),
-    if (targetFlow != null) 'target_flow': targetFlow!.toTfJson(),
-    if (targetPage != null) 'target_page': targetPage!.toTfJson(),
-    if (triggerFulfillment != null)
-      'trigger_fulfillment': triggerFulfillment!.encode(),
+    'event': ?event?.toTfJson(),
+    'target_flow': ?targetFlow?.toTfJson(),
+    'target_page': ?targetPage?.toTfJson(),
+    'trigger_fulfillment': ?triggerFulfillment?.encode(),
   };
 }
 
@@ -905,10 +867,9 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTrigg
   setParameterActions;
 
   Map<String, Object?> encode() => {
-    if (returnPartialResponses != null)
-      'return_partial_responses': returnPartialResponses!.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
-    if (webhook != null) 'webhook': webhook!.toTfJson(),
+    'return_partial_responses': ?returnPartialResponses?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
+    'webhook': ?webhook?.toTfJson(),
     if (conditionalCases != null)
       'conditional_cases': [for (final e in conditionalCases!) e.encode()],
     if (messages != null) 'messages': [for (final e in messages!) e.encode()],
@@ -929,9 +890,7 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTrigg
 
   final TfArg<String>? cases;
 
-  Map<String, Object?> encode() => {
-    if (cases != null) 'cases': cases!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
 }
 
 /// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.messages` block of
@@ -972,17 +931,14 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTrigg
   text;
 
   Map<String, Object?> encode() => {
-    if (channel != null) 'channel': channel!.toTfJson(),
-    if (payload != null) 'payload': payload!.toTfJson(),
-    if (conversationSuccess != null)
-      'conversation_success': conversationSuccess!.encode(),
-    if (liveAgentHandoff != null)
-      'live_agent_handoff': liveAgentHandoff!.encode(),
-    if (outputAudioText != null) 'output_audio_text': outputAudioText!.encode(),
-    if (playAudio != null) 'play_audio': playAudio!.encode(),
-    if (telephonyTransferCall != null)
-      'telephony_transfer_call': telephonyTransferCall!.encode(),
-    if (text != null) 'text': text!.encode(),
+    'channel': ?channel?.toTfJson(),
+    'payload': ?payload?.toTfJson(),
+    'conversation_success': ?conversationSuccess?.encode(),
+    'live_agent_handoff': ?liveAgentHandoff?.encode(),
+    'output_audio_text': ?outputAudioText?.encode(),
+    'play_audio': ?playAudio?.encode(),
+    'telephony_transfer_call': ?telephonyTransferCall?.encode(),
+    'text': ?text?.encode(),
   };
 }
 
@@ -996,9 +952,7 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTrigg
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.messages.live_agent_handoff` block of
@@ -1011,9 +965,7 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTrigg
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.messages.output_audio_text` block of
@@ -1030,8 +982,8 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTrigg
   final TfArg<String>? text;
 
   Map<String, Object?> encode() => {
-    if (ssml != null) 'ssml': ssml!.toTfJson(),
-    if (text != null) 'text': text!.toTfJson(),
+    'ssml': ?ssml?.toTfJson(),
+    'text': ?text?.toTfJson(),
   };
 }
 
@@ -1071,7 +1023,7 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTrigg
 
   final TfArg<List<Object?>>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Typed helper for the `form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.set_parameter_actions` block of
@@ -1088,8 +1040,8 @@ final class DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTrigg
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (parameter != null) 'parameter': parameter!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'parameter': ?parameter?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -1118,15 +1070,14 @@ final class DialogflowCxPageKnowledgeConnectorSettings {
   triggerFulfillment;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (targetFlow != null) 'target_flow': targetFlow!.toTfJson(),
-    if (targetPage != null) 'target_page': targetPage!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'target_flow': ?targetFlow?.toTfJson(),
+    'target_page': ?targetPage?.toTfJson(),
     if (dataStoreConnections != null)
       'data_store_connections': [
         for (final e in dataStoreConnections!) e.encode(),
       ],
-    if (triggerFulfillment != null)
-      'trigger_fulfillment': triggerFulfillment!.encode(),
+    'trigger_fulfillment': ?triggerFulfillment?.encode(),
   };
 }
 
@@ -1153,10 +1104,9 @@ final class DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnections {
   documentProcessingMode;
 
   Map<String, Object?> encode() => {
-    if (dataStore != null) 'data_store': dataStore!.toTfJson(),
-    if (dataStoreType != null) 'data_store_type': dataStoreType!.toTfJson(),
-    if (documentProcessingMode != null)
-      'document_processing_mode': documentProcessingMode!.toTfJson(),
+    'data_store': ?dataStore?.toTfJson(),
+    'data_store_type': ?dataStoreType?.toTfJson(),
+    'document_processing_mode': ?documentProcessingMode?.toTfJson(),
   };
 }
 
@@ -1229,14 +1179,11 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillment {
   setParameterActions;
 
   Map<String, Object?> encode() => {
-    if (enableGenerativeFallback != null)
-      'enable_generative_fallback': enableGenerativeFallback!.toTfJson(),
-    if (returnPartialResponses != null)
-      'return_partial_responses': returnPartialResponses!.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
-    if (webhook != null) 'webhook': webhook!.toTfJson(),
-    if (advancedSettings != null)
-      'advanced_settings': advancedSettings!.encode(),
+    'enable_generative_fallback': ?enableGenerativeFallback?.toTfJson(),
+    'return_partial_responses': ?returnPartialResponses?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
+    'webhook': ?webhook?.toTfJson(),
+    'advanced_settings': ?advancedSettings?.encode(),
     if (conditionalCases != null)
       'conditional_cases': [for (final e in conditionalCases!) e.encode()],
     if (messages != null) 'messages': [for (final e in messages!) e.encode()],
@@ -1267,9 +1214,9 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvanced
   speechSettings;
 
   Map<String, Object?> encode() => {
-    if (dtmfSettings != null) 'dtmf_settings': dtmfSettings!.encode(),
-    if (loggingSettings != null) 'logging_settings': loggingSettings!.encode(),
-    if (speechSettings != null) 'speech_settings': speechSettings!.encode(),
+    'dtmf_settings': ?dtmfSettings?.encode(),
+    'logging_settings': ?loggingSettings?.encode(),
+    'speech_settings': ?speechSettings?.encode(),
   };
 }
 
@@ -1296,13 +1243,11 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvanced
   final TfArg<num>? maxDigits;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (endpointingTimeoutDuration != null)
-      'endpointing_timeout_duration': endpointingTimeoutDuration!.toTfJson(),
-    if (finishDigit != null) 'finish_digit': finishDigit!.toTfJson(),
-    if (interdigitTimeoutDuration != null)
-      'interdigit_timeout_duration': interdigitTimeoutDuration!.toTfJson(),
-    if (maxDigits != null) 'max_digits': maxDigits!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'endpointing_timeout_duration': ?endpointingTimeoutDuration?.toTfJson(),
+    'finish_digit': ?finishDigit?.toTfJson(),
+    'interdigit_timeout_duration': ?interdigitTimeoutDuration?.toTfJson(),
+    'max_digits': ?maxDigits?.toTfJson(),
   };
 }
 
@@ -1323,12 +1268,9 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvanced
   final TfArg<bool>? enableStackdriverLogging;
 
   Map<String, Object?> encode() => {
-    if (enableConsentBasedRedaction != null)
-      'enable_consent_based_redaction': enableConsentBasedRedaction!.toTfJson(),
-    if (enableInteractionLogging != null)
-      'enable_interaction_logging': enableInteractionLogging!.toTfJson(),
-    if (enableStackdriverLogging != null)
-      'enable_stackdriver_logging': enableStackdriverLogging!.toTfJson(),
+    'enable_consent_based_redaction': ?enableConsentBasedRedaction?.toTfJson(),
+    'enable_interaction_logging': ?enableInteractionLogging?.toTfJson(),
+    'enable_stackdriver_logging': ?enableStackdriverLogging?.toTfJson(),
   };
 }
 
@@ -1352,13 +1294,10 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvanced
   final TfArg<bool>? useTimeoutBasedEndpointing;
 
   Map<String, Object?> encode() => {
-    if (endpointerSensitivity != null)
-      'endpointer_sensitivity': endpointerSensitivity!.toTfJson(),
-    if (models != null) 'models': models!.toTfJson(),
-    if (noSpeechTimeout != null)
-      'no_speech_timeout': noSpeechTimeout!.toTfJson(),
-    if (useTimeoutBasedEndpointing != null)
-      'use_timeout_based_endpointing': useTimeoutBasedEndpointing!.toTfJson(),
+    'endpointer_sensitivity': ?endpointerSensitivity?.toTfJson(),
+    'models': ?models?.toTfJson(),
+    'no_speech_timeout': ?noSpeechTimeout?.toTfJson(),
+    'use_timeout_based_endpointing': ?useTimeoutBasedEndpointing?.toTfJson(),
   };
 }
 
@@ -1372,9 +1311,7 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentConditio
 
   final TfArg<String>? cases;
 
-  Map<String, Object?> encode() => {
-    if (cases != null) 'cases': cases!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
 }
 
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages` block of
@@ -1419,19 +1356,15 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages
   text;
 
   Map<String, Object?> encode() => {
-    if (channel != null) 'channel': channel!.toTfJson(),
-    if (payload != null) 'payload': payload!.toTfJson(),
-    if (conversationSuccess != null)
-      'conversation_success': conversationSuccess!.encode(),
-    if (knowledgeInfoCard != null)
-      'knowledge_info_card': knowledgeInfoCard!.encode(),
-    if (liveAgentHandoff != null)
-      'live_agent_handoff': liveAgentHandoff!.encode(),
-    if (outputAudioText != null) 'output_audio_text': outputAudioText!.encode(),
-    if (playAudio != null) 'play_audio': playAudio!.encode(),
-    if (telephonyTransferCall != null)
-      'telephony_transfer_call': telephonyTransferCall!.encode(),
-    if (text != null) 'text': text!.encode(),
+    'channel': ?channel?.toTfJson(),
+    'payload': ?payload?.toTfJson(),
+    'conversation_success': ?conversationSuccess?.encode(),
+    'knowledge_info_card': ?knowledgeInfoCard?.encode(),
+    'live_agent_handoff': ?liveAgentHandoff?.encode(),
+    'output_audio_text': ?outputAudioText?.encode(),
+    'play_audio': ?playAudio?.encode(),
+    'telephony_transfer_call': ?telephonyTransferCall?.encode(),
+    'text': ?text?.encode(),
   };
 }
 
@@ -1445,9 +1378,7 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages.knowledge_info_card` block of
@@ -1469,9 +1400,7 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.messages.output_audio_text` block of
@@ -1488,8 +1417,8 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages
   final TfArg<String>? text;
 
   Map<String, Object?> encode() => {
-    if (ssml != null) 'ssml': ssml!.toTfJson(),
-    if (text != null) 'text': text!.toTfJson(),
+    'ssml': ?ssml?.toTfJson(),
+    'text': ?text?.toTfJson(),
   };
 }
 
@@ -1529,7 +1458,7 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages
 
   final TfArg<List<Object?>>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment.set_parameter_actions` block of
@@ -1546,8 +1475,8 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentSetParam
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (parameter != null) 'parameter': parameter!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'parameter': ?parameter?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -1574,12 +1503,11 @@ final class DialogflowCxPageTransitionRoutes {
   final DialogflowCxPageTransitionRoutesTriggerFulfillment? triggerFulfillment;
 
   Map<String, Object?> encode() => {
-    if (condition != null) 'condition': condition!.toTfJson(),
-    if (intent != null) 'intent': intent!.toTfJson(),
-    if (targetFlow != null) 'target_flow': targetFlow!.toTfJson(),
-    if (targetPage != null) 'target_page': targetPage!.toTfJson(),
-    if (triggerFulfillment != null)
-      'trigger_fulfillment': triggerFulfillment!.encode(),
+    'condition': ?condition?.toTfJson(),
+    'intent': ?intent?.toTfJson(),
+    'target_flow': ?targetFlow?.toTfJson(),
+    'target_page': ?targetPage?.toTfJson(),
+    'trigger_fulfillment': ?triggerFulfillment?.encode(),
   };
 }
 
@@ -1616,10 +1544,9 @@ final class DialogflowCxPageTransitionRoutesTriggerFulfillment {
   setParameterActions;
 
   Map<String, Object?> encode() => {
-    if (returnPartialResponses != null)
-      'return_partial_responses': returnPartialResponses!.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
-    if (webhook != null) 'webhook': webhook!.toTfJson(),
+    'return_partial_responses': ?returnPartialResponses?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
+    'webhook': ?webhook?.toTfJson(),
     if (conditionalCases != null)
       'conditional_cases': [for (final e in conditionalCases!) e.encode()],
     if (messages != null) 'messages': [for (final e in messages!) e.encode()],
@@ -1640,9 +1567,7 @@ final class DialogflowCxPageTransitionRoutesTriggerFulfillmentConditionalCases {
 
   final TfArg<String>? cases;
 
-  Map<String, Object?> encode() => {
-    if (cases != null) 'cases': cases!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
 }
 
 /// Typed helper for the `transition_routes.trigger_fulfillment.messages` block of
@@ -1682,17 +1607,14 @@ final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessages {
   final DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesText? text;
 
   Map<String, Object?> encode() => {
-    if (channel != null) 'channel': channel!.toTfJson(),
-    if (payload != null) 'payload': payload!.toTfJson(),
-    if (conversationSuccess != null)
-      'conversation_success': conversationSuccess!.encode(),
-    if (liveAgentHandoff != null)
-      'live_agent_handoff': liveAgentHandoff!.encode(),
-    if (outputAudioText != null) 'output_audio_text': outputAudioText!.encode(),
-    if (playAudio != null) 'play_audio': playAudio!.encode(),
-    if (telephonyTransferCall != null)
-      'telephony_transfer_call': telephonyTransferCall!.encode(),
-    if (text != null) 'text': text!.encode(),
+    'channel': ?channel?.toTfJson(),
+    'payload': ?payload?.toTfJson(),
+    'conversation_success': ?conversationSuccess?.encode(),
+    'live_agent_handoff': ?liveAgentHandoff?.encode(),
+    'output_audio_text': ?outputAudioText?.encode(),
+    'play_audio': ?playAudio?.encode(),
+    'telephony_transfer_call': ?telephonyTransferCall?.encode(),
+    'text': ?text?.encode(),
   };
 }
 
@@ -1706,9 +1628,7 @@ final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesConversati
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `transition_routes.trigger_fulfillment.messages.live_agent_handoff` block of
@@ -1721,9 +1641,7 @@ final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesLiveAgentH
 
   final TfArg<String>? metadata;
 
-  Map<String, Object?> encode() => {
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
 /// Typed helper for the `transition_routes.trigger_fulfillment.messages.output_audio_text` block of
@@ -1740,8 +1658,8 @@ final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesOutputAudi
   final TfArg<String>? text;
 
   Map<String, Object?> encode() => {
-    if (ssml != null) 'ssml': ssml!.toTfJson(),
-    if (text != null) 'text': text!.toTfJson(),
+    'ssml': ?ssml?.toTfJson(),
+    'text': ?text?.toTfJson(),
   };
 }
 
@@ -1781,7 +1699,7 @@ final class DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesText {
 
   final TfArg<List<Object?>>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Typed helper for the `transition_routes.trigger_fulfillment.set_parameter_actions` block of
@@ -1798,8 +1716,8 @@ final class DialogflowCxPageTransitionRoutesTriggerFulfillmentSetParameterAction
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (parameter != null) 'parameter': parameter!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'parameter': ?parameter?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -1839,10 +1757,9 @@ final class GoogleDialogflowCxPage extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (parent != null) 'parent': parent,
-           if (languageCode != null) 'language_code': languageCode,
-           if (transitionRouteGroups != null)
-             'transition_route_groups': transitionRouteGroups,
+           'parent': ?parent,
+           'language_code': ?languageCode,
+           'transition_route_groups': ?transitionRouteGroups,
            if (entryFulfillment != null)
              'entry_fulfillment': TfArg.literal(entryFulfillment.encode()),
            if (form != null) 'form': TfArg.literal(form.encode()),
@@ -1860,7 +1777,7 @@ final class GoogleDialogflowCxPage extends Resource {
              'knowledge_connector_settings': TfArg.literal(
                knowledgeConnectorSettings.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -22,10 +22,9 @@ final class AwsBackupRegionSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (resourceTypeManagementPreference != null)
-             'resource_type_management_preference':
-                 resourceTypeManagementPreference,
+           'region': ?region,
+           'resource_type_management_preference':
+               ?resourceTypeManagementPreference,
            'resource_type_opt_in_preference': resourceTypeOptInPreference,
          },
        );

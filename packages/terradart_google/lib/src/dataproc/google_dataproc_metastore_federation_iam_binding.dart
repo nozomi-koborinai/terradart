@@ -36,9 +36,9 @@ final class GoogleDataprocMetastoreFederationIamBinding extends Resource {
            'federation_id': federationId,
            'role': role,
            'members': members,
-           if (location != null) 'location': location,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

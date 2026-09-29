@@ -33,12 +33,11 @@ final class CloudConnectorRulesRules {
   final CloudConnectorRulesRulesParameters? parameters;
 
   Map<String, Object?> encode() => {
-    if (cloudConnectorRulesProvider != null)
-      'cloud_connector_rules_provider': cloudConnectorRulesProvider!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.encode(),
+    'cloud_connector_rules_provider': ?cloudConnectorRulesProvider?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'expression': ?expression?.toTfJson(),
+    'parameters': ?parameters?.encode(),
   };
 }
 
@@ -66,7 +65,7 @@ final class CloudConnectorRulesRulesParameters {
 
   final TfArg<String>? host;
 
-  Map<String, Object?> encode() => {if (host != null) 'host': host!.toTfJson()};
+  Map<String, Object?> encode() => {'host': ?host?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_cloud_connector_rules`.

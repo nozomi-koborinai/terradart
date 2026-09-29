@@ -21,7 +21,7 @@ final class DataAwsEcsContainerDefinition extends Data {
          terraformType: tfType,
          argMap: {
            'container_name': containerName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'task_definition': taskDefinition,
          },
        );

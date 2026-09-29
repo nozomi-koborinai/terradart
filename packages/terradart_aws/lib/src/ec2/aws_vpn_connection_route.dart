@@ -23,7 +23,7 @@ final class AwsVpnConnectionRoute extends Resource {
          terraformType: tfType,
          argMap: {
            'destination_cidr_block': destinationCidrBlock,
-           if (region != null) 'region': region,
+           'region': ?region,
            'vpn_connection_id': vpnConnectionId,
          },
        );

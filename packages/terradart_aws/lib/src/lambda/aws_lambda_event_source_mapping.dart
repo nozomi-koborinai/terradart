@@ -200,10 +200,8 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfig {
   schemaRegistryConfig;
 
   Map<String, Object?> encode() => {
-    if (consumerGroupId != null)
-      'consumer_group_id': consumerGroupId!.toTfJson(),
-    if (schemaRegistryConfig != null)
-      'schema_registry_config': schemaRegistryConfig!.encode(),
+    'consumer_group_id': ?consumerGroupId?.toTfJson(),
+    'schema_registry_config': ?schemaRegistryConfig?.encode(),
   };
 }
 
@@ -236,10 +234,8 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaReg
   schemaValidationConfig;
 
   Map<String, Object?> encode() => {
-    if (eventRecordFormat != null)
-      'event_record_format': eventRecordFormat!.toTfJson(),
-    if (schemaRegistryUri != null)
-      'schema_registry_uri': schemaRegistryUri!.toTfJson(),
+    'event_record_format': ?eventRecordFormat?.toTfJson(),
+    'schema_registry_uri': ?schemaRegistryUri?.toTfJson(),
     if (accessConfig != null)
       'access_config': [for (final e in accessConfig!) e.encode()],
     if (schemaValidationConfig != null)
@@ -279,8 +275,8 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaReg
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -311,9 +307,7 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaReg
   >?
   attribute;
 
-  Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
 /// `attribute` — derived from the provider schema description.
@@ -337,9 +331,7 @@ final class LambdaEventSourceMappingDestinationConfig {
 
   final LambdaEventSourceMappingDestinationConfigOnFailure? onFailure;
 
-  Map<String, Object?> encode() => {
-    if (onFailure != null) 'on_failure': onFailure!.encode(),
-  };
+  Map<String, Object?> encode() => {'on_failure': ?onFailure?.encode()};
 }
 
 /// Typed helper for the `destination_config.on_failure` block of
@@ -375,9 +367,9 @@ final class LambdaEventSourceMappingDocumentDbEventSourceConfig {
   fullDocument;
 
   Map<String, Object?> encode() => {
-    if (collectionName != null) 'collection_name': collectionName!.toTfJson(),
+    'collection_name': ?collectionName?.toTfJson(),
     'database_name': databaseName.toTfJson(),
-    if (fullDocument != null) 'full_document': fullDocument!.toTfJson(),
+    'full_document': ?fullDocument?.toTfJson(),
   };
 }
 
@@ -415,9 +407,7 @@ final class LambdaEventSourceMappingFilterCriteriaFilter {
 
   final TfArg<String>? pattern;
 
-  Map<String, Object?> encode() => {
-    if (pattern != null) 'pattern': pattern!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'pattern': ?pattern?.toTfJson()};
 }
 
 /// Typed helper for the `metrics_config` block of
@@ -461,10 +451,9 @@ final class LambdaEventSourceMappingProvisionedPollerConfig {
   final TfArg<String>? pollerGroupName;
 
   Map<String, Object?> encode() => {
-    if (maximumPollers != null) 'maximum_pollers': maximumPollers!.toTfJson(),
-    if (minimumPollers != null) 'minimum_pollers': minimumPollers!.toTfJson(),
-    if (pollerGroupName != null)
-      'poller_group_name': pollerGroupName!.toTfJson(),
+    'maximum_pollers': ?maximumPollers?.toTfJson(),
+    'minimum_pollers': ?minimumPollers?.toTfJson(),
+    'poller_group_name': ?pollerGroupName?.toTfJson(),
   };
 }
 
@@ -477,8 +466,7 @@ final class LambdaEventSourceMappingScalingConfig {
   final TfArg<num>? maximumConcurrency;
 
   Map<String, Object?> encode() => {
-    if (maximumConcurrency != null)
-      'maximum_concurrency': maximumConcurrency!.toTfJson(),
+    'maximum_concurrency': ?maximumConcurrency?.toTfJson(),
   };
 }
 
@@ -510,10 +498,8 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfig {
   schemaRegistryConfig;
 
   Map<String, Object?> encode() => {
-    if (consumerGroupId != null)
-      'consumer_group_id': consumerGroupId!.toTfJson(),
-    if (schemaRegistryConfig != null)
-      'schema_registry_config': schemaRegistryConfig!.encode(),
+    'consumer_group_id': ?consumerGroupId?.toTfJson(),
+    'schema_registry_config': ?schemaRegistryConfig?.encode(),
   };
 }
 
@@ -546,10 +532,8 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegis
   schemaValidationConfig;
 
   Map<String, Object?> encode() => {
-    if (eventRecordFormat != null)
-      'event_record_format': eventRecordFormat!.toTfJson(),
-    if (schemaRegistryUri != null)
-      'schema_registry_uri': schemaRegistryUri!.toTfJson(),
+    'event_record_format': ?eventRecordFormat?.toTfJson(),
+    'schema_registry_uri': ?schemaRegistryUri?.toTfJson(),
     if (accessConfig != null)
       'access_config': [for (final e in accessConfig!) e.encode()],
     if (schemaValidationConfig != null)
@@ -589,8 +573,8 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegis
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -621,9 +605,7 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegis
   >?
   attribute;
 
-  Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
 /// `attribute` — derived from the provider schema description.
@@ -721,38 +703,30 @@ final class AwsLambdaEventSourceMapping extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (batchSize != null) 'batch_size': batchSize,
-           if (bisectBatchOnFunctionError != null)
-             'bisect_batch_on_function_error': bisectBatchOnFunctionError,
-           if (enabled != null) 'enabled': enabled,
+           'batch_size': ?batchSize,
+           'bisect_batch_on_function_error': ?bisectBatchOnFunctionError,
+           'enabled': ?enabled,
            ...eventSource.argMap,
            'function_name': functionName.encodeAs('function_name'),
            if (functionResponseTypes != null)
              'function_response_types': TfArg.literal([
                for (final e in functionResponseTypes) e.toTfJson(),
              ]),
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (maximumBatchingWindowInSeconds != null)
-             'maximum_batching_window_in_seconds':
-                 maximumBatchingWindowInSeconds,
-           if (maximumRecordAgeInSeconds != null)
-             'maximum_record_age_in_seconds': maximumRecordAgeInSeconds,
-           if (maximumRetryAttempts != null)
-             'maximum_retry_attempts': maximumRetryAttempts,
-           if (parallelizationFactor != null)
-             'parallelization_factor': parallelizationFactor,
-           if (queues != null) 'queues': queues,
-           if (region != null) 'region': region,
-           if (startingPosition != null) 'starting_position': startingPosition,
-           if (startingPositionTimestamp != null)
-             'starting_position_timestamp': startingPositionTimestamp,
-           if (tags != null) 'tags': tags,
-           if (topics != null) 'topics': topics,
-           if (tumblingWindowInSeconds != null)
-             'tumbling_window_in_seconds': tumblingWindowInSeconds,
-           if (useResourceTimeoutForPropagation != null)
-             'use_resource_timeout_for_propagation':
-                 useResourceTimeoutForPropagation,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
+           'maximum_batching_window_in_seconds':
+               ?maximumBatchingWindowInSeconds,
+           'maximum_record_age_in_seconds': ?maximumRecordAgeInSeconds,
+           'maximum_retry_attempts': ?maximumRetryAttempts,
+           'parallelization_factor': ?parallelizationFactor,
+           'queues': ?queues,
+           'region': ?region,
+           'starting_position': ?startingPosition,
+           'starting_position_timestamp': ?startingPositionTimestamp,
+           'tags': ?tags,
+           'topics': ?topics,
+           'tumbling_window_in_seconds': ?tumblingWindowInSeconds,
+           'use_resource_timeout_for_propagation':
+               ?useResourceTimeoutForPropagation,
            ...?managedKafkaEventSourceConfig?.argMap,
            if (destinationConfig != null)
              'destination_config': TfArg.literal(destinationConfig.encode()),

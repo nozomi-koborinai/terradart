@@ -199,11 +199,9 @@ final class FlowLogDestinationOptions {
   final TfArg<bool>? perHourPartition;
 
   Map<String, Object?> encode() => {
-    if (fileFormat != null) 'file_format': fileFormat!.toTfJson(),
-    if (hiveCompatiblePartitions != null)
-      'hive_compatible_partitions': hiveCompatiblePartitions!.toTfJson(),
-    if (perHourPartition != null)
-      'per_hour_partition': perHourPartition!.toTfJson(),
+    'file_format': ?fileFormat?.toTfJson(),
+    'hive_compatible_partitions': ?hiveCompatiblePartitions?.toTfJson(),
+    'per_hour_partition': ?perHourPartition?.toTfJson(),
   };
 }
 
@@ -272,19 +270,16 @@ final class AwsFlowLog extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deliverCrossAccountRole != null)
-             'deliver_cross_account_role': deliverCrossAccountRole,
+           'deliver_cross_account_role': ?deliverCrossAccountRole,
            ...source.argMap,
-           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn.encodeAs('arn'),
-           if (logDestination != null) 'log_destination': logDestination,
-           if (logDestinationType != null)
-             'log_destination_type': logDestinationType,
-           if (logFormat != null) 'log_format': logFormat,
-           if (maxAggregationInterval != null)
-             'max_aggregation_interval': maxAggregationInterval,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (trafficType != null) 'traffic_type': trafficType,
+           'iam_role_arn': ?iamRoleArn?.encodeAs('arn'),
+           'log_destination': ?logDestination,
+           'log_destination_type': ?logDestinationType,
+           'log_format': ?logFormat,
+           'max_aggregation_interval': ?maxAggregationInterval,
+           'region': ?region,
+           'tags': ?tags,
+           'traffic_type': ?trafficType,
            if (destinationOptions != null)
              'destination_options': TfArg.literal(destinationOptions.encode()),
            if (tagFieldSpecification != null)

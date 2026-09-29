@@ -71,11 +71,11 @@ final class GoogleFirebaseDataConnectService extends Resource {
          argMap: {
            'service_id': serviceId,
            'location': location,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (annotations != null) 'annotations': annotations,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'annotations': ?annotations,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

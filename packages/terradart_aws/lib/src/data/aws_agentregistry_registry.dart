@@ -19,10 +19,7 @@ final class DataAwsAgentregistryRegistry extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'registry_id': registryId,
-         },
+         argMap: {'region': ?region, 'registry_id': registryId},
        );
 
   @override

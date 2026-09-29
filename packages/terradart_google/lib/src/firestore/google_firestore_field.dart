@@ -179,12 +179,12 @@ final class GoogleFirestoreField extends Resource {
          argMap: {
            'collection': collection,
            'field': field,
-           if (database != null) 'database': database,
+           'database': ?database,
            if (indexConfig != null)
              'index_config': TfArg.literal([indexConfig.encode()]),
            if (ttlConfig != null)
              'ttl_config': TfArg.literal([ttlConfig.encode()]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

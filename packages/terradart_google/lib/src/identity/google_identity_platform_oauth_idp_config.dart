@@ -18,8 +18,8 @@ final class IdentityPlatformOauthIdpConfigResponseType {
   final TfArg<bool>? idToken;
 
   Map<String, Object?> encode() => {
-    if (code != null) 'code': code!.toTfJson(),
-    if (idToken != null) 'id_token': idToken!.toTfJson(),
+    'code': ?code?.toTfJson(),
+    'id_token': ?idToken?.toTfJson(),
   };
 }
 
@@ -80,15 +80,15 @@ final class GoogleIdentityPlatformOauthIdpConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (displayName != null) 'display_name': displayName,
+           'display_name': ?displayName,
            'issuer': issuer,
            'client_id': clientId,
-           if (enabled != null) 'enabled': enabled,
-           if (clientSecret != null) 'client_secret': clientSecret,
+           'enabled': ?enabled,
+           'client_secret': ?clientSecret,
            if (responseType != null)
              'response_type': TfArg.literal(responseType.encode()),
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

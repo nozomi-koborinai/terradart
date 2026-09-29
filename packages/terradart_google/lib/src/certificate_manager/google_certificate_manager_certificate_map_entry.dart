@@ -120,8 +120,8 @@ final class GoogleCertificateManagerCertificateMapEntry extends Resource {
            'name': name,
            'map': map,
            'certificates': certificates,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'labels': ?labels,
            match.blockKey: match.value,
          },
        );

@@ -24,7 +24,7 @@ final class AwsSyntheticsGroupAssociation extends Resource {
          argMap: {
            'canary_arn': canaryArn,
            'group_name': groupName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

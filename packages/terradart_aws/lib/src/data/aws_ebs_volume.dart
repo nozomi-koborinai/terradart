@@ -39,9 +39,9 @@ final class DataAwsEbsVolume extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'most_recent': ?mostRecent,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

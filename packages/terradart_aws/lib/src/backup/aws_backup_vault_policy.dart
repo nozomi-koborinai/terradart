@@ -24,7 +24,7 @@ final class AwsBackupVaultPolicy extends Resource {
          argMap: {
            'backup_vault_name': backupVaultName,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

@@ -25,11 +25,10 @@ final class AwsEc2ClientVpnRoute extends Resource {
          terraformType: tfType,
          argMap: {
            'client_vpn_endpoint_id': clientVpnEndpointId,
-           if (description != null) 'description': description,
+           'description': ?description,
            'destination_cidr_block': destinationCidrBlock,
-           if (region != null) 'region': region,
-           if (targetVpcSubnetId != null)
-             'target_vpc_subnet_id': targetVpcSubnetId,
+           'region': ?region,
+           'target_vpc_subnet_id': ?targetVpcSubnetId,
          },
        );
 

@@ -63,19 +63,17 @@ final class AwsConfigOrganizationCustomRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (excludedAccounts != null) 'excluded_accounts': excludedAccounts,
-           if (inputParameters != null) 'input_parameters': inputParameters,
+           'description': ?description,
+           'excluded_accounts': ?excludedAccounts,
+           'input_parameters': ?inputParameters,
            'lambda_function_arn': lambdaFunctionArn.encodeAs('arn'),
-           if (maximumExecutionFrequency != null)
-             'maximum_execution_frequency': maximumExecutionFrequency,
+           'maximum_execution_frequency': ?maximumExecutionFrequency,
            'name': name,
-           if (region != null) 'region': region,
-           if (resourceIdScope != null) 'resource_id_scope': resourceIdScope,
-           if (resourceTypesScope != null)
-             'resource_types_scope': resourceTypesScope,
-           if (tagKeyScope != null) 'tag_key_scope': tagKeyScope,
-           if (tagValueScope != null) 'tag_value_scope': tagValueScope,
+           'region': ?region,
+           'resource_id_scope': ?resourceIdScope,
+           'resource_types_scope': ?resourceTypesScope,
+           'tag_key_scope': ?tagKeyScope,
+           'tag_value_scope': ?tagValueScope,
            'trigger_types': TfArg.literal([
              for (final e in triggerTypes) e.toTfJson(),
            ]),

@@ -22,7 +22,7 @@ final class DialogflowCxGenerativeSettingsFallbackSettings {
   promptTemplates;
 
   Map<String, Object?> encode() => {
-    if (selectedPrompt != null) 'selected_prompt': selectedPrompt!.toTfJson(),
+    'selected_prompt': ?selectedPrompt?.toTfJson(),
     if (promptTemplates != null)
       'prompt_templates': [for (final e in promptTemplates!) e.encode()],
   };
@@ -45,9 +45,9 @@ final class DialogflowCxGenerativeSettingsFallbackSettingsPromptTemplates {
   final TfArg<String>? promptText;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (frozen != null) 'frozen': frozen!.toTfJson(),
-    if (promptText != null) 'prompt_text': promptText!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'frozen': ?frozen?.toTfJson(),
+    'prompt_text': ?promptText?.toTfJson(),
   };
 }
 
@@ -68,9 +68,8 @@ final class DialogflowCxGenerativeSettingsGenerativeSafetySettings {
   bannedPhrases;
 
   Map<String, Object?> encode() => {
-    if (defaultBannedPhraseMatchStrategy != null)
-      'default_banned_phrase_match_strategy': defaultBannedPhraseMatchStrategy!
-          .toTfJson(),
+    'default_banned_phrase_match_strategy': ?defaultBannedPhraseMatchStrategy
+        ?.toTfJson(),
     if (bannedPhrases != null)
       'banned_phrases': [for (final e in bannedPhrases!) e.encode()],
   };
@@ -121,14 +120,12 @@ final class DialogflowCxGenerativeSettingsKnowledgeConnectorSettings {
   final TfArg<bool>? disableDataStoreFallback;
 
   Map<String, Object?> encode() => {
-    if (agent != null) 'agent': agent!.toTfJson(),
-    if (agentIdentity != null) 'agent_identity': agentIdentity!.toTfJson(),
-    if (agentScope != null) 'agent_scope': agentScope!.toTfJson(),
-    if (business != null) 'business': business!.toTfJson(),
-    if (businessDescription != null)
-      'business_description': businessDescription!.toTfJson(),
-    if (disableDataStoreFallback != null)
-      'disable_data_store_fallback': disableDataStoreFallback!.toTfJson(),
+    'agent': ?agent?.toTfJson(),
+    'agent_identity': ?agentIdentity?.toTfJson(),
+    'agent_scope': ?agentScope?.toTfJson(),
+    'business': ?business?.toTfJson(),
+    'business_description': ?businessDescription?.toTfJson(),
+    'disable_data_store_fallback': ?disableDataStoreFallback?.toTfJson(),
   };
 }
 
@@ -146,8 +143,8 @@ final class DialogflowCxGenerativeSettingsLlmModelSettings {
   final TfArg<String>? promptText;
 
   Map<String, Object?> encode() => {
-    if (model != null) 'model': model!.toTfJson(),
-    if (promptText != null) 'prompt_text': promptText!.toTfJson(),
+    'model': ?model?.toTfJson(),
+    'prompt_text': ?promptText?.toTfJson(),
   };
 }
 
@@ -185,7 +182,7 @@ final class GoogleDialogflowCxGenerativeSettings extends Resource {
          terraformType: tfType,
          argMap: {
            'language_code': languageCode,
-           if (parent != null) 'parent': parent,
+           'parent': ?parent,
            if (fallbackSettings != null)
              'fallback_settings': TfArg.literal(fallbackSettings.encode()),
            if (generativeSafetySettings != null)

@@ -27,10 +27,10 @@ final class AwsSagemakerHubContentReference extends Resource {
          argMap: {
            'hub_content_name': hubContentName,
            'hub_name': hubName,
-           if (minVersion != null) 'min_version': minVersion,
-           if (region != null) 'region': region,
+           'min_version': ?minVersion,
+           'region': ?region,
            'sagemaker_public_hub_content_arn': sagemakerPublicHubContentArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

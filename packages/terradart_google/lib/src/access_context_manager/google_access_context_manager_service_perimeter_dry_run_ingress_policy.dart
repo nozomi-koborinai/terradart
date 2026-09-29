@@ -32,8 +32,8 @@ final class AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom {
   sources;
 
   Map<String, Object?> encode() => {
-    if (identities != null) 'identities': identities!.toTfJson(),
-    if (identityType != null) 'identity_type': identityType!.toTfJson(),
+    'identities': ?identities?.toTfJson(),
+    'identity_type': ?identityType?.toTfJson(),
     if (sources != null) 'sources': [for (final e in sources!) e.encode()],
   };
 }
@@ -70,9 +70,9 @@ final class AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFromSo
   pscEndpoint;
 
   Map<String, Object?> encode() => {
-    if (accessLevel != null) 'access_level': accessLevel!.toTfJson(),
-    if (resource != null) 'resource': resource!.toTfJson(),
-    if (pscEndpoint != null) 'psc_endpoint': pscEndpoint!.encode(),
+    'access_level': ?accessLevel?.toTfJson(),
+    'resource': ?resource?.toTfJson(),
+    'psc_endpoint': ?pscEndpoint?.encode(),
   };
 }
 
@@ -87,7 +87,7 @@ final class AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFromSo
   final TfArg<String>? forwardingRule;
 
   Map<String, Object?> encode() => {
-    if (forwardingRule != null) 'forwarding_rule': forwardingRule!.toTfJson(),
+    'forwarding_rule': ?forwardingRule?.toTfJson(),
   };
 }
 
@@ -111,8 +111,8 @@ final class AccessContextManagerServicePerimeterDryRunIngressPolicyIngressTo {
   operations;
 
   Map<String, Object?> encode() => {
-    if (resources != null) 'resources': resources!.toTfJson(),
-    if (roles != null) 'roles': roles!.toTfJson(),
+    'resources': ?resources?.toTfJson(),
+    'roles': ?roles?.toTfJson(),
     if (operations != null)
       'operations': [for (final e in operations!) e.encode()],
   };
@@ -135,7 +135,7 @@ final class AccessContextManagerServicePerimeterDryRunIngressPolicyIngressToOper
   methodSelectors;
 
   Map<String, Object?> encode() => {
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
     if (methodSelectors != null)
       'method_selectors': [for (final e in methodSelectors!) e.encode()],
   };
@@ -155,8 +155,8 @@ final class AccessContextManagerServicePerimeterDryRunIngressPolicyIngressToOper
   final TfArg<String>? permission;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
-    if (permission != null) 'permission': permission!.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'permission': ?permission?.toTfJson(),
   };
 }
 
@@ -205,9 +205,9 @@ final class GoogleAccessContextManagerServicePerimeterDryRunIngressPolicy
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'perimeter': perimeter,
-           if (title != null) 'title': title,
+           'title': ?title,
            if (ingressFrom != null)
              'ingress_from': TfArg.literal(ingressFrom.encode()),
            if (ingressTo != null)

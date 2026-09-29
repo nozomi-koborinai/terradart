@@ -181,11 +181,11 @@ final class S3BucketCorsRule {
   final TfArg<num>? maxAgeSeconds;
 
   Map<String, Object?> encode() => {
-    if (allowedHeaders != null) 'allowed_headers': allowedHeaders!.toTfJson(),
+    'allowed_headers': ?allowedHeaders?.toTfJson(),
     'allowed_methods': allowedMethods.toTfJson(),
     'allowed_origins': allowedOrigins.toTfJson(),
-    if (exposeHeaders != null) 'expose_headers': exposeHeaders!.toTfJson(),
-    if (maxAgeSeconds != null) 'max_age_seconds': maxAgeSeconds!.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
+    'max_age_seconds': ?maxAgeSeconds?.toTfJson(),
   };
 }
 
@@ -209,10 +209,10 @@ final class S3BucketGrant {
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
+    'id': ?id?.toTfJson(),
     'permissions': [for (final e in permissions) e.toTfJson()],
     'type': type.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -276,16 +276,14 @@ final class S3BucketLifecycleRule {
   final List<S3BucketLifecycleRuleTransition>? transition;
 
   Map<String, Object?> encode() => {
-    if (abortIncompleteMultipartUploadDays != null)
-      'abort_incomplete_multipart_upload_days':
-          abortIncompleteMultipartUploadDays!.toTfJson(),
+    'abort_incomplete_multipart_upload_days':
+        ?abortIncompleteMultipartUploadDays?.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (expiration != null) 'expiration': expiration!.encode(),
-    if (noncurrentVersionExpiration != null)
-      'noncurrent_version_expiration': noncurrentVersionExpiration!.encode(),
+    'id': ?id?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'expiration': ?expiration?.encode(),
+    'noncurrent_version_expiration': ?noncurrentVersionExpiration?.encode(),
     if (noncurrentVersionTransition != null)
       'noncurrent_version_transition': [
         for (final e in noncurrentVersionTransition!) e.encode(),
@@ -312,10 +310,9 @@ final class S3BucketLifecycleRuleExpiration {
   final TfArg<bool>? expiredObjectDeleteMarker;
 
   Map<String, Object?> encode() => {
-    if (date != null) 'date': date!.toTfJson(),
-    if (days != null) 'days': days!.toTfJson(),
-    if (expiredObjectDeleteMarker != null)
-      'expired_object_delete_marker': expiredObjectDeleteMarker!.toTfJson(),
+    'date': ?date?.toTfJson(),
+    'days': ?days?.toTfJson(),
+    'expired_object_delete_marker': ?expiredObjectDeleteMarker?.toTfJson(),
   };
 }
 
@@ -327,7 +324,7 @@ final class S3BucketLifecycleRuleNoncurrentVersionExpiration {
 
   final TfArg<num>? days;
 
-  Map<String, Object?> encode() => {if (days != null) 'days': days!.toTfJson()};
+  Map<String, Object?> encode() => {'days': ?days?.toTfJson()};
 }
 
 /// Typed helper for the `lifecycle_rule.noncurrent_version_transition` block of
@@ -345,7 +342,7 @@ final class S3BucketLifecycleRuleNoncurrentVersionTransition {
   storageClass;
 
   Map<String, Object?> encode() => {
-    if (days != null) 'days': days!.toTfJson(),
+    'days': ?days?.toTfJson(),
     'storage_class': storageClass.toTfJson(),
   };
 }
@@ -384,8 +381,8 @@ final class S3BucketLifecycleRuleTransition {
   final TfArg<S3BucketLifecycleRuleTransitionStorageClass> storageClass;
 
   Map<String, Object?> encode() => {
-    if (date != null) 'date': date!.toTfJson(),
-    if (days != null) 'days': days!.toTfJson(),
+    'date': ?date?.toTfJson(),
+    'days': ?days?.toTfJson(),
     'storage_class': storageClass.toTfJson(),
   };
 }
@@ -416,7 +413,7 @@ final class S3BucketLogging {
 
   Map<String, Object?> encode() => {
     'target_bucket': targetBucket.encodeAs('id').toTfJson(),
-    if (targetPrefix != null) 'target_prefix': targetPrefix!.toTfJson(),
+    'target_prefix': ?targetPrefix?.toTfJson(),
   };
 }
 
@@ -475,17 +472,15 @@ final class S3BucketReplicationConfigurationRules {
   sourceSelectionCriteria;
 
   Map<String, Object?> encode() => {
-    if (deleteMarkerReplicationStatus != null)
-      'delete_marker_replication_status': deleteMarkerReplicationStatus!
-          .toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (priority != null) 'priority': priority!.toTfJson(),
+    'delete_marker_replication_status': ?deleteMarkerReplicationStatus
+        ?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'priority': ?priority?.toTfJson(),
     'status': status.toTfJson(),
     'destination': destination.encode(),
-    if (filter != null) 'filter': filter!.encode(),
-    if (sourceSelectionCriteria != null)
-      'source_selection_criteria': sourceSelectionCriteria!.encode(),
+    'filter': ?filter?.encode(),
+    'source_selection_criteria': ?sourceSelectionCriteria?.encode(),
   };
 }
 
@@ -543,15 +538,13 @@ final class S3BucketReplicationConfigurationRulesDestination {
   replicationTime;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    'account_id': ?accountId?.toTfJson(),
     'bucket': bucket.encodeAs('arn').toTfJson(),
-    if (replicaKmsKeyId != null)
-      'replica_kms_key_id': replicaKmsKeyId!.toTfJson(),
-    if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
-    if (accessControlTranslation != null)
-      'access_control_translation': accessControlTranslation!.encode(),
-    if (metrics != null) 'metrics': metrics!.encode(),
-    if (replicationTime != null) 'replication_time': replicationTime!.encode(),
+    'replica_kms_key_id': ?replicaKmsKeyId?.toTfJson(),
+    'storage_class': ?storageClass?.toTfJson(),
+    'access_control_translation': ?accessControlTranslation?.encode(),
+    'metrics': ?metrics?.encode(),
+    'replication_time': ?replicationTime?.encode(),
   };
 }
 
@@ -624,8 +617,8 @@ final class S3BucketReplicationConfigurationRulesDestinationMetrics {
   status;
 
   Map<String, Object?> encode() => {
-    if (minutes != null) 'minutes': minutes!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -659,8 +652,8 @@ final class S3BucketReplicationConfigurationRulesDestinationReplicationTime {
   status;
 
   Map<String, Object?> encode() => {
-    if (minutes != null) 'minutes': minutes!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -688,8 +681,8 @@ final class S3BucketReplicationConfigurationRulesFilter {
   final TfArg<Map<String, String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -705,8 +698,7 @@ final class S3BucketReplicationConfigurationRulesSourceSelectionCriteria {
   sseKmsEncryptedObjects;
 
   Map<String, Object?> encode() => {
-    if (sseKmsEncryptedObjects != null)
-      'sse_kms_encrypted_objects': sseKmsEncryptedObjects!.encode(),
+    'sse_kms_encrypted_objects': ?sseKmsEncryptedObjects?.encode(),
   };
 }
 
@@ -734,8 +726,8 @@ final class S3BucketVersioning {
   final TfArg<bool>? mfaDelete;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (mfaDelete != null) 'mfa_delete': mfaDelete!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'mfa_delete': ?mfaDelete?.toTfJson(),
   };
 }
 
@@ -756,9 +748,9 @@ final class S3BucketWebsite {
   final TfArg<String>? routingRules;
 
   Map<String, Object?> encode() => {
-    if (errorDocument != null) 'error_document': errorDocument!.toTfJson(),
+    'error_document': ?errorDocument?.toTfJson(),
     ...mode.encode(),
-    if (routingRules != null) 'routing_rules': routingRules!.toTfJson(),
+    'routing_rules': ?routingRules?.toTfJson(),
   };
 }
 
@@ -844,18 +836,16 @@ final class AwsS3Bucket extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accelerationStatus != null)
-             'acceleration_status': accelerationStatus,
+           'acceleration_status': ?accelerationStatus,
            ...?access?.argMap,
            ...?bucket?.argMap,
-           if (bucketNamespace != null) 'bucket_namespace': bucketNamespace,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (objectLockEnabled != null)
-             'object_lock_enabled': objectLockEnabled,
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
-           if (requestPayer != null) 'request_payer': requestPayer,
-           if (tags != null) 'tags': tags,
+           'bucket_namespace': ?bucketNamespace,
+           'force_destroy': ?forceDestroy,
+           'object_lock_enabled': ?objectLockEnabled,
+           'policy': ?policy,
+           'region': ?region,
+           'request_payer': ?requestPayer,
+           'tags': ?tags,
            if (corsRule != null)
              'cors_rule': TfArg.literal([for (final e in corsRule) e.encode()]),
            if (lifecycleRule != null)
@@ -863,15 +853,13 @@ final class AwsS3Bucket extends Resource {
                for (final e in lifecycleRule) e.encode(),
              ]),
            if (logging != null) 'logging': TfArg.literal(logging.encode()),
-           if (objectLockConfiguration != null)
-             'object_lock_configuration': objectLockConfiguration,
+           'object_lock_configuration': ?objectLockConfiguration,
            if (replicationConfiguration != null)
              'replication_configuration': TfArg.literal(
                replicationConfiguration.encode(),
              ),
-           if (serverSideEncryptionConfiguration != null)
-             'server_side_encryption_configuration':
-                 serverSideEncryptionConfiguration,
+           'server_side_encryption_configuration':
+               ?serverSideEncryptionConfiguration,
            if (versioning != null)
              'versioning': TfArg.literal(versioning.encode()),
            if (website != null) 'website': TfArg.literal(website.encode()),

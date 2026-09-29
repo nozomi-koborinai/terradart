@@ -20,10 +20,7 @@ final class AwsEbsEncryptionByDefault extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (enabled != null) 'enabled': enabled,
-           if (region != null) 'region': region,
-         },
+         argMap: {'enabled': ?enabled, 'region': ?region},
        );
 
   @override

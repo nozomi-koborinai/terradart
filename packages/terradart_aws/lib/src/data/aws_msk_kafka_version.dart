@@ -20,10 +20,9 @@ final class DataAwsMskKafkaVersion extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (preferredVersions != null)
-             'preferred_versions': preferredVersions,
-           if (region != null) 'region': region,
-           if (version != null) 'version': version,
+           'preferred_versions': ?preferredVersions,
+           'region': ?region,
+           'version': ?version,
          },
        );
 

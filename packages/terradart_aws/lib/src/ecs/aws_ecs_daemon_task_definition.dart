@@ -113,25 +113,22 @@ final class EcsDaemonTaskDefinitionContainerDefinition {
   final List<EcsDaemonTaskDefinitionContainerDefinitionUlimit>? ulimit;
 
   Map<String, Object?> encode() => {
-    if (command != null) 'command': command!.toTfJson(),
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (entryPoint != null) 'entry_point': entryPoint!.toTfJson(),
-    if (essential != null) 'essential': essential!.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'entry_point': ?entryPoint?.toTfJson(),
+    'essential': ?essential?.toTfJson(),
     'image': image.toTfJson(),
-    if (interactive != null) 'interactive': interactive!.toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
-    if (memoryReservation != null)
-      'memory_reservation': memoryReservation!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (privileged != null) 'privileged': privileged!.toTfJson(),
-    if (pseudoTerminal != null) 'pseudo_terminal': pseudoTerminal!.toTfJson(),
-    if (readonlyRootFilesystem != null)
-      'readonly_root_filesystem': readonlyRootFilesystem!.toTfJson(),
-    if (startTimeout != null) 'start_timeout': startTimeout!.toTfJson(),
-    if (stopTimeout != null) 'stop_timeout': stopTimeout!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
-    if (workingDirectory != null)
-      'working_directory': workingDirectory!.toTfJson(),
+    'interactive': ?interactive?.toTfJson(),
+    'memory': ?memory?.toTfJson(),
+    'memory_reservation': ?memoryReservation?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'privileged': ?privileged?.toTfJson(),
+    'pseudo_terminal': ?pseudoTerminal?.toTfJson(),
+    'readonly_root_filesystem': ?readonlyRootFilesystem?.toTfJson(),
+    'start_timeout': ?startTimeout?.toTfJson(),
+    'stop_timeout': ?stopTimeout?.toTfJson(),
+    'user': ?user?.toTfJson(),
+    'working_directory': ?workingDirectory?.toTfJson(),
     if (dependsOn != null)
       'depends_on': [for (final e in dependsOn!) e.encode()],
     if (environment != null)
@@ -212,8 +209,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionEnvironment {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -266,7 +263,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionFirelensConfiguration {
   type;
 
   Map<String, Object?> encode() => {
-    if (options != null) 'options': options!.toTfJson(),
+    'options': ?options?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -308,10 +305,10 @@ final class EcsDaemonTaskDefinitionContainerDefinitionHealthCheck {
 
   Map<String, Object?> encode() => {
     'command': command.toTfJson(),
-    if (interval != null) 'interval': interval!.toTfJson(),
-    if (retries != null) 'retries': retries!.toTfJson(),
-    if (startPeriod != null) 'start_period': startPeriod!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
+    'interval': ?interval?.toTfJson(),
+    'retries': ?retries?.toTfJson(),
+    'start_period': ?startPeriod?.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
   };
 }
 
@@ -340,8 +337,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParameters {
   tmpfs;
 
   Map<String, Object?> encode() => {
-    if (initProcessEnabled != null)
-      'init_process_enabled': initProcessEnabled!.toTfJson(),
+    'init_process_enabled': ?initProcessEnabled?.toTfJson(),
     if (capabilities != null)
       'capabilities': [for (final e in capabilities!) e.encode()],
     if (device != null) 'device': [for (final e in device!) e.encode()],
@@ -363,8 +359,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersCapabilitie
   final TfArg<List<Object?>>? drop;
 
   Map<String, Object?> encode() => {
-    if (add != null) 'add': add!.toTfJson(),
-    if (drop != null) 'drop': drop!.toTfJson(),
+    'add': ?add?.toTfJson(),
+    'drop': ?drop?.toTfJson(),
   };
 }
 
@@ -390,7 +386,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevice {
   permissions;
 
   Map<String, Object?> encode() => {
-    if (containerPath != null) 'container_path': containerPath!.toTfJson(),
+    'container_path': ?containerPath?.toTfJson(),
     'host_path': hostPath.toTfJson(),
     if (permissions != null)
       'permissions': [for (final e in permissions!) e.toTfJson()],
@@ -429,7 +425,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersTmpfs {
 
   Map<String, Object?> encode() => {
     'container_path': containerPath.toTfJson(),
-    if (mountOptions != null) 'mount_options': mountOptions!.toTfJson(),
+    'mount_options': ?mountOptions?.toTfJson(),
     'size': size.toTfJson(),
   };
 }
@@ -458,7 +454,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLogConfiguration {
 
   Map<String, Object?> encode() => {
     'log_driver': logDriver.toTfJson(),
-    if (options != null) 'options': options!.toTfJson(),
+    'options': ?options?.toTfJson(),
     if (secretOption != null)
       'secret_option': [for (final e in secretOption!) e.encode()],
   };
@@ -519,9 +515,9 @@ final class EcsDaemonTaskDefinitionContainerDefinitionMountPoint {
   final TfArg<String>? sourceVolume;
 
   Map<String, Object?> encode() => {
-    if (containerPath != null) 'container_path': containerPath!.toTfJson(),
-    if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-    if (sourceVolume != null) 'source_volume': sourceVolume!.toTfJson(),
+    'container_path': ?containerPath?.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
+    'source_volume': ?sourceVolume?.toTfJson(),
   };
 }
 
@@ -558,10 +554,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionRestartPolicy {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (ignoredExitCodes != null)
-      'ignored_exit_codes': ignoredExitCodes!.toTfJson(),
-    if (restartAttemptPeriod != null)
-      'restart_attempt_period': restartAttemptPeriod!.toTfJson(),
+    'ignored_exit_codes': ?ignoredExitCodes?.toTfJson(),
+    'restart_attempt_period': ?restartAttemptPeriod?.toTfJson(),
   };
 }
 
@@ -598,8 +592,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionSystemControl {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -676,9 +670,7 @@ final class EcsDaemonTaskDefinitionVolumeHost {
 
   final TfArg<String>? sourcePath;
 
-  Map<String, Object?> encode() => {
-    if (sourcePath != null) 'source_path': sourcePath!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'source_path': ?sourcePath?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_ecs_daemon_task_definition`.
@@ -703,15 +695,13 @@ final class AwsEcsDaemonTaskDefinition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cpu != null) 'cpu': cpu,
-           if (executionRoleArn != null)
-             'execution_role_arn': executionRoleArn.encodeAs('arn'),
+           'cpu': ?cpu,
+           'execution_role_arn': ?executionRoleArn?.encodeAs('arn'),
            'family': family,
-           if (memory != null) 'memory': memory,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (taskRoleArn != null)
-             'task_role_arn': taskRoleArn.encodeAs('arn'),
+           'memory': ?memory,
+           'region': ?region,
+           'tags': ?tags,
+           'task_role_arn': ?taskRoleArn?.encodeAs('arn'),
            if (containerDefinition != null)
              'container_definition': TfArg.literal([
                for (final e in containerDefinition) e.encode(),

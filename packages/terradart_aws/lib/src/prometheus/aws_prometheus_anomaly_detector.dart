@@ -52,8 +52,8 @@ final class PrometheusAnomalyDetectorConfigurationRandomCutForest {
 
   Map<String, Object?> encode() => {
     'query': query.toTfJson(),
-    if (sampleSize != null) 'sample_size': sampleSize!.toTfJson(),
-    if (shingleSize != null) 'shingle_size': shingleSize!.toTfJson(),
+    'sample_size': ?sampleSize?.toTfJson(),
+    'shingle_size': ?shingleSize?.toTfJson(),
     if (ignoreNearExpectedFromAbove != null)
       'ignore_near_expected_from_above': [
         for (final e in ignoreNearExpectedFromAbove!) e.encode(),
@@ -300,11 +300,10 @@ final class AwsPrometheusAnomalyDetector extends Resource {
          terraformType: tfType,
          argMap: {
            'alias': alias,
-           if (evaluationIntervalInSeconds != null)
-             'evaluation_interval_in_seconds': evaluationIntervalInSeconds,
-           if (labels != null) 'labels': labels,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'evaluation_interval_in_seconds': ?evaluationIntervalInSeconds,
+           'labels': ?labels,
+           'region': ?region,
+           'tags': ?tags,
            'workspace_id': workspaceId,
            if (configuration != null)
              'configuration': TfArg.literal([

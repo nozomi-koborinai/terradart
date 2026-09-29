@@ -59,11 +59,10 @@ final class AwsCloudformationType extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (executionRoleArn != null)
-             'execution_role_arn': executionRoleArn.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'execution_role_arn': ?executionRoleArn?.encodeAs('arn'),
+           'region': ?region,
            'schema_handler_package': schemaHandlerPackage,
-           if (type != null) 'type': type,
+           'type': ?type,
            'type_name': typeName,
            if (loggingConfig != null)
              'logging_config': TfArg.literal(loggingConfig.encode()),

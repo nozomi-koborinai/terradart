@@ -43,13 +43,11 @@ final class StreamLiveInputRecording {
   final TfArg<num>? timeoutSeconds;
 
   Map<String, Object?> encode() => {
-    if (allowedOrigins != null) 'allowed_origins': allowedOrigins!.toTfJson(),
-    if (hideLiveViewerCount != null)
-      'hide_live_viewer_count': hideLiveViewerCount!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (requireSignedUrls != null)
-      'require_signed_urls': requireSignedUrls!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
+    'allowed_origins': ?allowedOrigins?.toTfJson(),
+    'hide_live_viewer_count': ?hideLiveViewerCount?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'require_signed_urls': ?requireSignedUrls?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
   };
 }
 
@@ -89,14 +87,12 @@ final class CloudflareStreamLiveInput extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (defaultCreator != null) 'default_creator': defaultCreator,
-           if (deleteRecordingAfterDays != null)
-             'delete_recording_after_days': deleteRecordingAfterDays,
-           if (enabled != null) 'enabled': enabled,
-           if (liveInputIdentifier != null)
-             'live_input_identifier': liveInputIdentifier,
-           if (meta != null) 'meta': meta,
-           if (preferLowLatency != null) 'prefer_low_latency': preferLowLatency,
+           'default_creator': ?defaultCreator,
+           'delete_recording_after_days': ?deleteRecordingAfterDays,
+           'enabled': ?enabled,
+           'live_input_identifier': ?liveInputIdentifier,
+           'meta': ?meta,
+           'prefer_low_latency': ?preferLowLatency,
            if (recording != null)
              'recording': TfArg.literal(recording.encode()),
          },

@@ -18,8 +18,8 @@ final class NetworkmanagerLinkBandwidth {
   final TfArg<num>? uploadSpeed;
 
   Map<String, Object?> encode() => {
-    if (downloadSpeed != null) 'download_speed': downloadSpeed!.toTfJson(),
-    if (uploadSpeed != null) 'upload_speed': uploadSpeed!.toTfJson(),
+    'download_speed': ?downloadSpeed?.toTfJson(),
+    'upload_speed': ?uploadSpeed?.toTfJson(),
   };
 }
 
@@ -43,12 +43,12 @@ final class AwsNetworkmanagerLink extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'global_network_id': globalNetworkId,
-           if (providerName != null) 'provider_name': providerName,
+           'provider_name': ?providerName,
            'site_id': siteId,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'tags': ?tags,
+           'type': ?type,
            'bandwidth': TfArg.literal(bandwidth.encode()),
          },
        );

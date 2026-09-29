@@ -24,8 +24,8 @@ final class CesAgentAfterAgentCallbacks {
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -47,8 +47,8 @@ final class CesAgentAfterModelCallbacks {
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -70,8 +70,8 @@ final class CesAgentAfterToolCallbacks {
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -93,8 +93,8 @@ final class CesAgentBeforeAgentCallbacks {
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -116,8 +116,8 @@ final class CesAgentBeforeModelCallbacks {
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -139,8 +139,8 @@ final class CesAgentBeforeToolCallbacks {
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -165,8 +165,8 @@ final class CesAgentModelSettings {
   final TfArg<num>? temperature;
 
   Map<String, Object?> encode() => {
-    if (model != null) 'model': model!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
+    'model': ?model?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
   };
 }
 
@@ -200,17 +200,13 @@ final class CesAgentRemoteDialogflowAgent {
 
   Map<String, Object?> encode() => {
     'agent': agent.toTfJson(),
-    if (environmentId != null) 'environment_id': environmentId!.toTfJson(),
+    'environment_id': ?environmentId?.toTfJson(),
     'flow_id': flowId.toTfJson(),
-    if (inputVariableMapping != null)
-      'input_variable_mapping': inputVariableMapping!.toTfJson(),
-    if (languageCodeVariable != null)
-      'language_code_variable': languageCodeVariable!.toTfJson(),
-    if (outputVariableMapping != null)
-      'output_variable_mapping': outputVariableMapping!.toTfJson(),
-    if (respectResponseInterruptionSettings != null)
-      'respect_response_interruption_settings':
-          respectResponseInterruptionSettings!.toTfJson(),
+    'input_variable_mapping': ?inputVariableMapping?.toTfJson(),
+    'language_code_variable': ?languageCodeVariable?.toTfJson(),
+    'output_variable_mapping': ?outputVariableMapping?.toTfJson(),
+    'respect_response_interruption_settings':
+        ?respectResponseInterruptionSettings?.toTfJson(),
   };
 }
 
@@ -225,7 +221,7 @@ final class CesAgentToolsets {
   final TfArg<String> toolset;
 
   Map<String, Object?> encode() => {
-    if (toolIds != null) 'tool_ids': toolIds!.toTfJson(),
+    'tool_ids': ?toolIds?.toTfJson(),
     'toolset': toolset.toTfJson(),
   };
 }
@@ -252,10 +248,8 @@ final class CesAgentTransferRules {
   Map<String, Object?> encode() => {
     'child_agent': childAgent.toTfJson(),
     'direction': direction.toTfJson(),
-    if (deterministicTransfer != null)
-      'deterministic_transfer': deterministicTransfer!.encode(),
-    if (disablePlannerTransfer != null)
-      'disable_planner_transfer': disablePlannerTransfer!.encode(),
+    'deterministic_transfer': ?deterministicTransfer?.encode(),
+    'disable_planner_transfer': ?disablePlannerTransfer?.encode(),
   };
 }
 
@@ -285,10 +279,8 @@ final class CesAgentTransferRulesDeterministicTransfer {
   pythonCodeCondition;
 
   Map<String, Object?> encode() => {
-    if (expressionCondition != null)
-      'expression_condition': expressionCondition!.encode(),
-    if (pythonCodeCondition != null)
-      'python_code_condition': pythonCodeCondition!.encode(),
+    'expression_condition': ?expressionCondition?.encode(),
+    'python_code_condition': ?pythonCodeCondition?.encode(),
   };
 }
 
@@ -411,9 +403,9 @@ final class GoogleCesAgent extends Resource {
            'location': location,
            'app': app,
            'display_name': displayName,
-           if (agentId != null) 'agent_id': agentId,
-           if (description != null) 'description': description,
-           if (instruction != null) 'instruction': instruction,
+           'agent_id': ?agentId,
+           'description': ?description,
+           'instruction': ?instruction,
            if (llmAgent != null) 'llm_agent': TfArg.literal(llmAgent.encode()),
            if (modelSettings != null)
              'model_settings': TfArg.literal(modelSettings.encode()),
@@ -421,11 +413,11 @@ final class GoogleCesAgent extends Resource {
              'remote_dialogflow_agent': TfArg.literal(
                remoteDialogflowAgent.encode(),
              ),
-           if (tools != null) 'tools': tools,
+           'tools': ?tools,
            if (toolsets != null)
              'toolsets': TfArg.literal([for (final e in toolsets) e.encode()]),
-           if (guardrails != null) 'guardrails': guardrails,
-           if (childAgents != null) 'child_agents': childAgents,
+           'guardrails': ?guardrails,
+           'child_agents': ?childAgents,
            if (beforeAgentCallbacks != null)
              'before_agent_callbacks': TfArg.literal([
                for (final e in beforeAgentCallbacks) e.encode(),
@@ -450,8 +442,8 @@ final class GoogleCesAgent extends Resource {
              'after_tool_callbacks': TfArg.literal([
                for (final e in afterToolCallbacks) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

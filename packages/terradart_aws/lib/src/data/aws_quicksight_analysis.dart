@@ -23,9 +23,9 @@ final class DataAwsQuicksightAnalysis extends Data {
          terraformType: tfType,
          argMap: {
            'analysis_id': analysisId,
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'aws_account_id': ?awsAccountId,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

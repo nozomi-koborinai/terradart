@@ -42,16 +42,14 @@ final class DataEmailSecurityDomainFilter {
   final TfArg<DataEmailSecurityDomainFilterStatus>? status;
 
   Map<String, Object?> encode() => {
-    if (activeDeliveryMode != null)
-      'active_delivery_mode': activeDeliveryMode!.toTfJson(),
-    if (allowedDeliveryMode != null)
-      'allowed_delivery_mode': allowedDeliveryMode!.toTfJson(),
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (domain != null) 'domain': domain!.toTfJson(),
-    if (integrationId != null) 'integration_id': integrationId!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'active_delivery_mode': ?activeDeliveryMode?.toTfJson(),
+    'allowed_delivery_mode': ?allowedDeliveryMode?.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'domain': ?domain?.toTfJson(),
+    'integration_id': ?integrationId?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'search': ?search?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -132,7 +130,7 @@ final class DataCloudflareEmailSecurityDomain extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (domainId != null) 'domain_id': domainId,
+           'domain_id': ?domainId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

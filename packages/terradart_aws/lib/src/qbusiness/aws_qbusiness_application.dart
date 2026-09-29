@@ -76,12 +76,12 @@ final class AwsQbusinessApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'display_name': displayName,
            'iam_service_role_arn': iamServiceRoleArn.encodeAs('arn'),
            'identity_center_instance_arn': identityCenterInstanceArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (attachmentsConfiguration != null)
              'attachments_configuration': TfArg.literal([
                for (final e in attachmentsConfiguration) e.encode(),

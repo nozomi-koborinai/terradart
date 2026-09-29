@@ -31,11 +31,11 @@ final class DataZeroTrustListFilter {
   final TfArg<DataZeroTrustListFilterType>? type;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
-    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'filter': ?filter?.toTfJson(),
+    'order_by': ?orderBy?.toTfJson(),
+    'search': ?search?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -92,8 +92,8 @@ final class DataCloudflareZeroTrustList extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (listId != null) 'list_id': listId,
+           'account_id': ?accountId,
+           'list_id': ?listId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

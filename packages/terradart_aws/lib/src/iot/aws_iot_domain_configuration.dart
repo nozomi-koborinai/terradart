@@ -67,10 +67,8 @@ final class IotDomainConfigurationAuthorizerConfig {
   final TfArg<String>? defaultAuthorizerName;
 
   Map<String, Object?> encode() => {
-    if (allowAuthorizerOverride != null)
-      'allow_authorizer_override': allowAuthorizerOverride!.toTfJson(),
-    if (defaultAuthorizerName != null)
-      'default_authorizer_name': defaultAuthorizerName!.toTfJson(),
+    'allow_authorizer_override': ?allowAuthorizerOverride?.toTfJson(),
+    'default_authorizer_name': ?defaultAuthorizerName?.toTfJson(),
   };
 }
 
@@ -83,7 +81,7 @@ final class IotDomainConfigurationTlsConfig {
   final TfArg<String>? securityPolicy;
 
   Map<String, Object?> encode() => {
-    if (securityPolicy != null) 'security_policy': securityPolicy!.toTfJson(),
+    'security_policy': ?securityPolicy?.toTfJson(),
   };
 }
 
@@ -112,20 +110,16 @@ final class AwsIotDomainConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applicationProtocol != null)
-             'application_protocol': applicationProtocol,
-           if (authenticationType != null)
-             'authentication_type': authenticationType,
-           if (domainName != null) 'domain_name': domainName,
+           'application_protocol': ?applicationProtocol,
+           'authentication_type': ?authenticationType,
+           'domain_name': ?domainName,
            'name': name,
-           if (region != null) 'region': region,
-           if (serverCertificateArns != null)
-             'server_certificate_arns': serverCertificateArns,
-           if (serviceType != null) 'service_type': serviceType,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
-           if (validationCertificateArn != null)
-             'validation_certificate_arn': validationCertificateArn,
+           'region': ?region,
+           'server_certificate_arns': ?serverCertificateArns,
+           'service_type': ?serviceType,
+           'status': ?status,
+           'tags': ?tags,
+           'validation_certificate_arn': ?validationCertificateArn,
            if (authorizerConfig != null)
              'authorizer_config': TfArg.literal(authorizerConfig.encode()),
            if (tlsConfig != null)

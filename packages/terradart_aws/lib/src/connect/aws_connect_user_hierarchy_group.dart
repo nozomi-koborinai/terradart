@@ -26,9 +26,9 @@ final class AwsConnectUserHierarchyGroup extends Resource {
          argMap: {
            'instance_id': instanceId,
            'name': name,
-           if (parentGroupId != null) 'parent_group_id': parentGroupId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'parent_group_id': ?parentGroupId,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

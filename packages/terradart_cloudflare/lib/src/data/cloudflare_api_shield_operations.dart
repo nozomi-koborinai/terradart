@@ -30,14 +30,14 @@ final class DataCloudflareApiShieldOperations extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (direction != null) 'direction': direction,
-           if (endpoint != null) 'endpoint': endpoint,
-           if (feature != null) 'feature': feature,
-           if (host != null) 'host': host,
-           if (maxItems != null) 'max_items': maxItems,
-           if (method != null) 'method': method,
-           if (order != null) 'order': order,
-           if (zoneId != null) 'zone_id': zoneId,
+           'direction': ?direction,
+           'endpoint': ?endpoint,
+           'feature': ?feature,
+           'host': ?host,
+           'max_items': ?maxItems,
+           'method': ?method,
+           'order': ?order,
+           'zone_id': ?zoneId,
          },
        );
 

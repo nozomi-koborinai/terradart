@@ -18,10 +18,7 @@ final class DataAwsEmrSupportedInstanceTypes extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'release_label': releaseLabel,
-         },
+         argMap: {'region': ?region, 'release_label': releaseLabel},
        );
 
   @override

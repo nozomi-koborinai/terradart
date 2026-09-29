@@ -518,14 +518,14 @@ final class GoogleChronicleDashboardChart extends Resource {
          argMap: {
            'location': location,
            'instance': instance,
-           if (nativeDashboard != null) 'native_dashboard': nativeDashboard,
+           'native_dashboard': ?nativeDashboard,
            if (chartLayout != null)
              'chart_layout': TfArg.literal([chartLayout.toArgMap()]),
            'dashboard_chart': TfArg.literal([dashboardChart.toArgMap()]),
            if (dashboardQuery != null)
              'dashboard_query': TfArg.literal([dashboardQuery.toArgMap()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

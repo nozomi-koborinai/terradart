@@ -22,8 +22,8 @@ final class DataAwsApiGatewaySdk extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (parameters != null) 'parameters': parameters,
-           if (region != null) 'region': region,
+           'parameters': ?parameters,
+           'region': ?region,
            'rest_api_id': restApiId,
            'sdk_type': sdkType,
            'stage_name': stageName,

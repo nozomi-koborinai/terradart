@@ -80,11 +80,10 @@ final class GoogleHealthcareHl7V2Store extends Resource {
          argMap: {
            'name': name,
            'dataset': dataset,
-           if (rejectDuplicateMessage != null)
-             'reject_duplicate_message': rejectDuplicateMessage,
+           'reject_duplicate_message': ?rejectDuplicateMessage,
            if (parserConfig != null)
              'parser_config': TfArg.literal(parserConfig.encode()),
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
          },
        );
 

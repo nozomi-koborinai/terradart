@@ -25,7 +25,7 @@ final class DataGoogleOracleDatabaseDbServers extends Data {
          argMap: {
            'cloud_exadata_infrastructure': cloudExadataInfrastructure,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

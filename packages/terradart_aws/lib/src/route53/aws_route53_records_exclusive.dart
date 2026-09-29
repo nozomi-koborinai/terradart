@@ -63,18 +63,16 @@ final class Route53RecordsExclusiveResourceRecordSet {
   resourceRecords;
 
   Map<String, Object?> encode() => {
-    if (failover != null) 'failover': failover!.toTfJson(),
-    if (healthCheckId != null) 'health_check_id': healthCheckId!.toTfJson(),
-    if (multiValueAnswer != null)
-      'multi_value_answer': multiValueAnswer!.toTfJson(),
+    'failover': ?failover?.toTfJson(),
+    'health_check_id': ?healthCheckId?.toTfJson(),
+    'multi_value_answer': ?multiValueAnswer?.toTfJson(),
     'name': name.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (setIdentifier != null) 'set_identifier': setIdentifier!.toTfJson(),
-    if (trafficPolicyInstanceId != null)
-      'traffic_policy_instance_id': trafficPolicyInstanceId!.toTfJson(),
-    if (ttl != null) 'ttl': ttl!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'set_identifier': ?setIdentifier?.toTfJson(),
+    'traffic_policy_instance_id': ?trafficPolicyInstanceId?.toTfJson(),
+    'ttl': ?ttl?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
     if (aliasTarget != null)
       'alias_target': [for (final e in aliasTarget!) e.encode()],
     if (cidrRoutingConfig != null)
@@ -231,10 +229,9 @@ final class Route53RecordsExclusiveResourceRecordSetGeolocation {
   final TfArg<String>? subdivisionCode;
 
   Map<String, Object?> encode() => {
-    if (continentCode != null) 'continent_code': continentCode!.toTfJson(),
-    if (countryCode != null) 'country_code': countryCode!.toTfJson(),
-    if (subdivisionCode != null)
-      'subdivision_code': subdivisionCode!.toTfJson(),
+    'continent_code': ?continentCode?.toTfJson(),
+    'country_code': ?countryCode?.toTfJson(),
+    'subdivision_code': ?subdivisionCode?.toTfJson(),
   };
 }
 
@@ -261,9 +258,9 @@ final class Route53RecordsExclusiveResourceRecordSetGeoproximityLocation {
   coordinates;
 
   Map<String, Object?> encode() => {
-    if (awsRegion != null) 'aws_region': awsRegion!.toTfJson(),
-    if (bias != null) 'bias': bias!.toTfJson(),
-    if (localZoneGroup != null) 'local_zone_group': localZoneGroup!.toTfJson(),
+    'aws_region': ?awsRegion?.toTfJson(),
+    'bias': ?bias?.toTfJson(),
+    'local_zone_group': ?localZoneGroup?.toTfJson(),
     if (coordinates != null)
       'coordinates': [for (final e in coordinates!) e.encode()],
   };

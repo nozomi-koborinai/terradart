@@ -23,13 +23,12 @@ final class DataAwsEksClusterVersions extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clusterType != null) 'cluster_type': clusterType,
-           if (clusterVersionsOnly != null)
-             'cluster_versions_only': clusterVersionsOnly,
-           if (defaultOnly != null) 'default_only': defaultOnly,
-           if (includeAll != null) 'include_all': includeAll,
-           if (region != null) 'region': region,
-           if (versionStatus != null) 'version_status': versionStatus,
+           'cluster_type': ?clusterType,
+           'cluster_versions_only': ?clusterVersionsOnly,
+           'default_only': ?defaultOnly,
+           'include_all': ?includeAll,
+           'region': ?region,
+           'version_status': ?versionStatus,
          },
        );
 

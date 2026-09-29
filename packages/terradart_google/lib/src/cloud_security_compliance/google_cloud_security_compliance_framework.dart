@@ -77,11 +77,11 @@ final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParamet
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -100,8 +100,8 @@ final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParamet
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -126,10 +126,10 @@ final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParamet
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -191,12 +191,12 @@ final class GoogleCloudSecurityComplianceFramework extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'display_name': ?displayName,
            'framework_id': frameworkId,
            'location': location,
-           if (parent != null) 'parent': parent,
+           'parent': ?parent,
            if (cloudControlDetails != null)
              'cloud_control_details': TfArg.literal([
                for (final e in cloudControlDetails) e.encode(),

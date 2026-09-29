@@ -29,7 +29,7 @@ final class GooglePubsubSubscriptionIamPolicy extends Resource {
          argMap: {
            'subscription': subscription,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

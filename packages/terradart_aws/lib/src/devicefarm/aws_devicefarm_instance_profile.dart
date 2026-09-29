@@ -26,14 +26,13 @@ final class AwsDevicefarmInstanceProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (excludeAppPackagesFromCleanup != null)
-             'exclude_app_packages_from_cleanup': excludeAppPackagesFromCleanup,
+           'description': ?description,
+           'exclude_app_packages_from_cleanup': ?excludeAppPackagesFromCleanup,
            'name': name,
-           if (packageCleanup != null) 'package_cleanup': packageCleanup,
-           if (rebootAfterUse != null) 'reboot_after_use': rebootAfterUse,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'package_cleanup': ?packageCleanup,
+           'reboot_after_use': ?rebootAfterUse,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

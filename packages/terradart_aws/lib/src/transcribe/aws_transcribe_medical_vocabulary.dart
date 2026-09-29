@@ -34,8 +34,8 @@ final class AwsTranscribeMedicalVocabulary extends Resource {
          terraformType: tfType,
          argMap: {
            'language_code': languageCode,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'vocabulary_file_uri': vocabularyFileUri,
            'vocabulary_name': vocabularyName,
          },

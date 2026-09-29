@@ -25,13 +25,12 @@ final class AwsCloudfrontConnectionGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (anycastIpListId != null) 'anycast_ip_list_id': anycastIpListId,
-           if (enabled != null) 'enabled': enabled,
-           if (ipv6Enabled != null) 'ipv6_enabled': ipv6Enabled,
+           'anycast_ip_list_id': ?anycastIpListId,
+           'enabled': ?enabled,
+           'ipv6_enabled': ?ipv6Enabled,
            'name': name,
-           if (tags != null) 'tags': tags,
-           if (waitForDeployment != null)
-             'wait_for_deployment': waitForDeployment,
+           'tags': ?tags,
+           'wait_for_deployment': ?waitForDeployment,
          },
        );
 

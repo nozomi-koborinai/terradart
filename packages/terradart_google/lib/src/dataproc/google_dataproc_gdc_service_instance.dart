@@ -65,14 +65,12 @@ final class GoogleDataprocGdcServiceInstance extends Resource {
            'service_instance_id': serviceInstanceId,
            if (gdceCluster != null)
              'gdce_cluster': TfArg.literal(gdceCluster.encode()),
-           if (displayName != null) 'display_name': displayName,
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('email'),
-           if (sparkServiceInstanceConfig != null)
-             'spark_service_instance_config': sparkServiceInstanceConfig,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'service_account': ?serviceAccount?.encodeAs('email'),
+           'spark_service_instance_config': ?sparkServiceInstanceConfig,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -23,11 +23,11 @@ final class DataAwsSsoadminPermissionSet extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
+           'arn': ?arn,
            'instance_arn': instanceArn,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

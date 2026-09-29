@@ -22,10 +22,7 @@ final class DataCloudflareRegionalHostnames extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (maxItems != null) 'max_items': maxItems,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'max_items': ?maxItems, 'zone_id': ?zoneId},
        );
 
   @override

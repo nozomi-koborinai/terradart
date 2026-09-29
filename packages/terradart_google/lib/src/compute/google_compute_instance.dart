@@ -839,25 +839,21 @@ final class GoogleComputeInstance extends Resource {
          argMap: {
            'name': name,
            'machine_type': machineType,
-           if (zone != null) 'zone': zone,
-           if (description != null) 'description': description,
-           if (hostname != null) 'hostname': hostname,
-           if (labels != null) 'labels': labels,
-           if (tags != null) 'tags': tags,
-           if (metadata != null) 'metadata': metadata,
-           if (metadataStartupScript != null)
-             'metadata_startup_script': metadataStartupScript,
-           if (canIpForward != null) 'can_ip_forward': canIpForward,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (allowStoppingForUpdate != null)
-             'allow_stopping_for_update': allowStoppingForUpdate,
-           if (desiredStatus != null) 'desired_status': desiredStatus,
-           if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform,
-           if (enableDisplay != null) 'enable_display': enableDisplay,
-           if (resourcePolicies != null) 'resource_policies': resourcePolicies,
-           if (keyRevocationActionType != null)
-             'key_revocation_action_type': keyRevocationActionType,
+           'zone': ?zone,
+           'description': ?description,
+           'hostname': ?hostname,
+           'labels': ?labels,
+           'tags': ?tags,
+           'metadata': ?metadata,
+           'metadata_startup_script': ?metadataStartupScript,
+           'can_ip_forward': ?canIpForward,
+           'deletion_protection': ?deletionProtection,
+           'allow_stopping_for_update': ?allowStoppingForUpdate,
+           'desired_status': ?desiredStatus,
+           'min_cpu_platform': ?minCpuPlatform,
+           'enable_display': ?enableDisplay,
+           'resource_policies': ?resourcePolicies,
+           'key_revocation_action_type': ?keyRevocationActionType,
            'boot_disk': TfArg.literal([bootDisk.toArgMap()]),
            'network_interface': TfArg.literal(
              networkInterface.map((n) => n.toArgMap()).toList(),
@@ -899,7 +895,7 @@ final class GoogleComputeInstance extends Resource {
              'network_performance_config': TfArg.literal([
                networkPerformanceConfig.toArgMap(),
              ]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

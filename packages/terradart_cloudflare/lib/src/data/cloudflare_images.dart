@@ -24,9 +24,9 @@ final class DataCloudflareImages extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (creator != null) 'creator': creator,
-           if (maxItems != null) 'max_items': maxItems,
+           'account_id': ?accountId,
+           'creator': ?creator,
+           'max_items': ?maxItems,
          },
        );
 

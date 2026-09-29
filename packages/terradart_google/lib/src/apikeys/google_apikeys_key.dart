@@ -39,10 +39,10 @@ final class GoogleApikeysKey extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (displayName != null) 'display_name': displayName,
-           if (restrictions != null) 'restrictions': restrictions,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'display_name': ?displayName,
+           'restrictions': ?restrictions,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

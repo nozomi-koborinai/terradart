@@ -25,7 +25,7 @@ final class AwsApiGatewayResource extends Resource {
          argMap: {
            'parent_id': parentId,
            'path_part': pathPart,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rest_api_id': restApiId,
          },
        );

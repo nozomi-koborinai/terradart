@@ -84,15 +84,14 @@ final class AwsLexv2modelsBot extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'idle_session_ttl_in_seconds': idleSessionTtlInSeconds,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
-           if (testBotAliasTags != null)
-             'test_bot_alias_tags': testBotAliasTags,
-           if (type != null) 'type': type,
+           'tags': ?tags,
+           'test_bot_alias_tags': ?testBotAliasTags,
+           'type': ?type,
            if (dataPrivacy != null)
              'data_privacy': TfArg.literal([
                for (final e in dataPrivacy) e.encode(),

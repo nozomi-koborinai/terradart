@@ -46,18 +46,16 @@ final class GoogleColabRuntimeTemplate extends Resource {
          argMap: {
            'location': location,
            'display_name': displayName,
-           if (name != null) 'name': name,
-           if (description != null) 'description': description,
-           if (machineSpec != null) 'machine_spec': machineSpec,
-           if (networkSpec != null) 'network_spec': networkSpec,
-           if (dataPersistentDiskSpec != null)
-             'data_persistent_disk_spec': dataPersistentDiskSpec,
-           if (idleShutdownConfig != null)
-             'idle_shutdown_config': idleShutdownConfig,
-           if (softwareConfig != null) 'software_config': softwareConfig,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'name': ?name,
+           'description': ?description,
+           'machine_spec': ?machineSpec,
+           'network_spec': ?networkSpec,
+           'data_persistent_disk_spec': ?dataPersistentDiskSpec,
+           'idle_shutdown_config': ?idleShutdownConfig,
+           'software_config': ?softwareConfig,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

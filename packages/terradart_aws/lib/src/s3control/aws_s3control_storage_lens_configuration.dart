@@ -47,15 +47,13 @@ final class S3controlStorageLensConfigurationStorageLensConfiguration {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (prefixDelimiter != null)
-      'prefix_delimiter': prefixDelimiter!.toTfJson(),
+    'prefix_delimiter': ?prefixDelimiter?.toTfJson(),
     'account_level': accountLevel.encode(),
-    if (awsOrg != null) 'aws_org': awsOrg!.encode(),
-    if (dataExport != null) 'data_export': dataExport!.encode(),
-    if (exclude != null) 'exclude': exclude!.encode(),
-    if (expandedPrefixesDataExport != null)
-      'expanded_prefixes_data_export': expandedPrefixesDataExport!.encode(),
-    if (include != null) 'include': include!.encode(),
+    'aws_org': ?awsOrg?.encode(),
+    'data_export': ?dataExport?.encode(),
+    'exclude': ?exclude?.encode(),
+    'expanded_prefixes_data_export': ?expandedPrefixesDataExport?.encode(),
+    'include': ?include?.encode(),
   };
 }
 
@@ -91,18 +89,14 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
   detailedStatusCodeMetrics;
 
   Map<String, Object?> encode() => {
-    if (activityMetrics != null) 'activity_metrics': activityMetrics!.encode(),
-    if (advancedCostOptimizationMetrics != null)
-      'advanced_cost_optimization_metrics': advancedCostOptimizationMetrics!
-          .encode(),
-    if (advancedDataProtectionMetrics != null)
-      'advanced_data_protection_metrics': advancedDataProtectionMetrics!
-          .encode(),
-    if (advancedPerformanceMetrics != null)
-      'advanced_performance_metrics': advancedPerformanceMetrics!.encode(),
+    'activity_metrics': ?activityMetrics?.encode(),
+    'advanced_cost_optimization_metrics': ?advancedCostOptimizationMetrics
+        ?.encode(),
+    'advanced_data_protection_metrics': ?advancedDataProtectionMetrics
+        ?.encode(),
+    'advanced_performance_metrics': ?advancedPerformanceMetrics?.encode(),
     'bucket_level': bucketLevel.encode(),
-    if (detailedStatusCodeMetrics != null)
-      'detailed_status_code_metrics': detailedStatusCodeMetrics!.encode(),
+    'detailed_status_code_metrics': ?detailedStatusCodeMetrics?.encode(),
   };
 }
 
@@ -116,9 +110,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.account_level.advanced_cost_optimization_metrics` block of
@@ -131,9 +123,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.account_level.advanced_data_protection_metrics` block of
@@ -146,9 +136,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.account_level.advanced_performance_metrics` block of
@@ -161,9 +149,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.account_level.bucket_level` block of
@@ -198,18 +184,14 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
   prefixLevel;
 
   Map<String, Object?> encode() => {
-    if (activityMetrics != null) 'activity_metrics': activityMetrics!.encode(),
-    if (advancedCostOptimizationMetrics != null)
-      'advanced_cost_optimization_metrics': advancedCostOptimizationMetrics!
-          .encode(),
-    if (advancedDataProtectionMetrics != null)
-      'advanced_data_protection_metrics': advancedDataProtectionMetrics!
-          .encode(),
-    if (advancedPerformanceMetrics != null)
-      'advanced_performance_metrics': advancedPerformanceMetrics!.encode(),
-    if (detailedStatusCodeMetrics != null)
-      'detailed_status_code_metrics': detailedStatusCodeMetrics!.encode(),
-    if (prefixLevel != null) 'prefix_level': prefixLevel!.encode(),
+    'activity_metrics': ?activityMetrics?.encode(),
+    'advanced_cost_optimization_metrics': ?advancedCostOptimizationMetrics
+        ?.encode(),
+    'advanced_data_protection_metrics': ?advancedDataProtectionMetrics
+        ?.encode(),
+    'advanced_performance_metrics': ?advancedPerformanceMetrics?.encode(),
+    'detailed_status_code_metrics': ?detailedStatusCodeMetrics?.encode(),
+    'prefix_level': ?prefixLevel?.encode(),
   };
 }
 
@@ -223,9 +205,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.account_level.bucket_level.advanced_cost_optimization_metrics` block of
@@ -238,9 +218,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.account_level.bucket_level.advanced_data_protection_metrics` block of
@@ -253,9 +231,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.account_level.bucket_level.advanced_performance_metrics` block of
@@ -268,9 +244,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.account_level.bucket_level.detailed_status_code_metrics` block of
@@ -283,9 +257,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.account_level.bucket_level.prefix_level` block of
@@ -317,9 +289,8 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
   selectionCriteria;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (selectionCriteria != null)
-      'selection_criteria': selectionCriteria!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'selection_criteria': ?selectionCriteria?.encode(),
   };
 }
 
@@ -340,10 +311,9 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
   final TfArg<num>? minStorageBytesPercentage;
 
   Map<String, Object?> encode() => {
-    if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
-    if (maxDepth != null) 'max_depth': maxDepth!.toTfJson(),
-    if (minStorageBytesPercentage != null)
-      'min_storage_bytes_percentage': minStorageBytesPercentage!.toTfJson(),
+    'delimiter': ?delimiter?.toTfJson(),
+    'max_depth': ?maxDepth?.toTfJson(),
+    'min_storage_bytes_percentage': ?minStorageBytesPercentage?.toTfJson(),
   };
 }
 
@@ -357,9 +327,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationAccountLeve
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.aws_org` block of
@@ -395,12 +363,9 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationDataExport 
   storageLensTableDestination;
 
   Map<String, Object?> encode() => {
-    if (cloudWatchMetrics != null)
-      'cloud_watch_metrics': cloudWatchMetrics!.encode(),
-    if (s3BucketDestination != null)
-      's3_bucket_destination': s3BucketDestination!.encode(),
-    if (storageLensTableDestination != null)
-      'storage_lens_table_destination': storageLensTableDestination!.encode(),
+    'cloud_watch_metrics': ?cloudWatchMetrics?.encode(),
+    's3_bucket_destination': ?s3BucketDestination?.encode(),
+    'storage_lens_table_destination': ?storageLensTableDestination?.encode(),
   };
 }
 
@@ -448,8 +413,8 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationDataExportS
     'arn': arn.toTfJson(),
     'format': format.toTfJson(),
     'output_schema_version': outputSchemaVersion.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (encryption != null) 'encryption': encryption!.encode(),
+    'prefix': ?prefix?.toTfJson(),
+    'encryption': ?encryption?.encode(),
   };
 }
 
@@ -471,7 +436,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationDataExportS
   sseS3;
 
   Map<String, Object?> encode() => {
-    if (sseKms != null) 'sse_kms': sseKms!.encode(),
+    'sse_kms': ?sseKms?.encode(),
     if (sseS3 != null) 'sse_s3': [for (final e in sseS3!) e.encode()],
   };
 }
@@ -514,7 +479,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationDataExportS
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (encryption != null) 'encryption': encryption!.encode(),
+    'encryption': ?encryption?.encode(),
   };
 }
 
@@ -536,7 +501,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationDataExportS
   sseS3;
 
   Map<String, Object?> encode() => {
-    if (sseKms != null) 'sse_kms': sseKms!.encode(),
+    'sse_kms': ?sseKms?.encode(),
     if (sseS3 != null) 'sse_s3': [for (final e in sseS3!) e.encode()],
   };
 }
@@ -577,8 +542,8 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationExclude {
   final TfArg<List<Object?>>? regions;
 
   Map<String, Object?> encode() => {
-    if (buckets != null) 'buckets': buckets!.toTfJson(),
-    if (regions != null) 'regions': regions!.toTfJson(),
+    'buckets': ?buckets?.toTfJson(),
+    'regions': ?regions?.toTfJson(),
   };
 }
 
@@ -598,10 +563,8 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationExpandedPre
   storageLensTableDestination;
 
   Map<String, Object?> encode() => {
-    if (s3BucketDestination != null)
-      's3_bucket_destination': s3BucketDestination!.encode(),
-    if (storageLensTableDestination != null)
-      'storage_lens_table_destination': storageLensTableDestination!.encode(),
+    's3_bucket_destination': ?s3BucketDestination?.encode(),
+    'storage_lens_table_destination': ?storageLensTableDestination?.encode(),
   };
 }
 
@@ -636,8 +599,8 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationExpandedPre
     'arn': arn.toTfJson(),
     'format': format.toTfJson(),
     'output_schema_version': outputSchemaVersion.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (encryption != null) 'encryption': encryption!.encode(),
+    'prefix': ?prefix?.toTfJson(),
+    'encryption': ?encryption?.encode(),
   };
 }
 
@@ -659,7 +622,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationExpandedPre
   sseS3;
 
   Map<String, Object?> encode() => {
-    if (sseKms != null) 'sse_kms': sseKms!.encode(),
+    'sse_kms': ?sseKms?.encode(),
     if (sseS3 != null) 'sse_s3': [for (final e in sseS3!) e.encode()],
   };
 }
@@ -702,7 +665,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationExpandedPre
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (encryption != null) 'encryption': encryption!.encode(),
+    'encryption': ?encryption?.encode(),
   };
 }
 
@@ -724,7 +687,7 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationExpandedPre
   sseS3;
 
   Map<String, Object?> encode() => {
-    if (sseKms != null) 'sse_kms': sseKms!.encode(),
+    'sse_kms': ?sseKms?.encode(),
     if (sseS3 != null) 'sse_s3': [for (final e in sseS3!) e.encode()],
   };
 }
@@ -765,8 +728,8 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationInclude {
   final TfArg<List<Object?>>? regions;
 
   Map<String, Object?> encode() => {
-    if (buckets != null) 'buckets': buckets!.toTfJson(),
-    if (regions != null) 'regions': regions!.toTfJson(),
+    'buckets': ?buckets?.toTfJson(),
+    'regions': ?regions?.toTfJson(),
   };
 }
 
@@ -789,10 +752,10 @@ final class AwsS3controlStorageLensConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'config_id': configId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'storage_lens_configuration': TfArg.literal(
              storageLensConfiguration.encode(),
            ),

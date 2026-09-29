@@ -36,7 +36,7 @@ final class GoogleStorageManagedFolder extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('name'),
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'force_destroy': ?forceDestroy,
            'name': name,
          },
        );

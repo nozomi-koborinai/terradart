@@ -34,7 +34,7 @@ final class GoogleHealthcareConsentStoreIamBinding extends Resource {
            'dataset': dataset,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

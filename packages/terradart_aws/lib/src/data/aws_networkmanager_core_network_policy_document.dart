@@ -35,8 +35,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies {
   conditions;
 
   Map<String, Object?> encode() => {
-    if (conditionLogic != null) 'condition_logic': conditionLogic!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'condition_logic': ?conditionLogic?.toTfJson(),
+    'description': ?description?.toTfJson(),
     'rule_number': ruleNumber.toTfJson(),
     'action': action.encode(),
     'conditions': [for (final e in conditions) e.encode()],
@@ -66,14 +66,11 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesAction 
   final TfArg<String>? tagValueOfKey;
 
   Map<String, Object?> encode() => {
-    if (addToNetworkFunctionGroup != null)
-      'add_to_network_function_group': addToNetworkFunctionGroup!.toTfJson(),
-    if (associationMethod != null)
-      'association_method': associationMethod!.toTfJson(),
-    if (requireAcceptance != null)
-      'require_acceptance': requireAcceptance!.toTfJson(),
-    if (segment != null) 'segment': segment!.toTfJson(),
-    if (tagValueOfKey != null) 'tag_value_of_key': tagValueOfKey!.toTfJson(),
+    'add_to_network_function_group': ?addToNetworkFunctionGroup?.toTfJson(),
+    'association_method': ?associationMethod?.toTfJson(),
+    'require_acceptance': ?requireAcceptance?.toTfJson(),
+    'segment': ?segment?.toTfJson(),
+    'tag_value_of_key': ?tagValueOfKey?.toTfJson(),
   };
 }
 
@@ -97,10 +94,10 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditi
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
     'type': type.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -131,8 +128,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRu
   conditions;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (edgeLocations != null) 'edge_locations': edgeLocations!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'edge_locations': ?edgeLocations?.toTfJson(),
     'rule_number': ruleNumber.toTfJson(),
     'action': action.encode(),
     'conditions': [for (final e in conditions) e.encode()],
@@ -203,13 +200,11 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration 
 
   Map<String, Object?> encode() => {
     'asn_ranges': asnRanges.toTfJson(),
-    if (dnsSupport != null) 'dns_support': dnsSupport!.toTfJson(),
-    if (insideCidrBlocks != null)
-      'inside_cidr_blocks': insideCidrBlocks!.toTfJson(),
-    if (securityGroupReferencingSupport != null)
-      'security_group_referencing_support': securityGroupReferencingSupport!
-          .toTfJson(),
-    if (vpnEcmpSupport != null) 'vpn_ecmp_support': vpnEcmpSupport!.toTfJson(),
+    'dns_support': ?dnsSupport?.toTfJson(),
+    'inside_cidr_blocks': ?insideCidrBlocks?.toTfJson(),
+    'security_group_referencing_support': ?securityGroupReferencingSupport
+        ?.toTfJson(),
+    'vpn_ecmp_support': ?vpnEcmpSupport?.toTfJson(),
     'edge_locations': [for (final e in edgeLocations) e.encode()],
   };
 }
@@ -231,9 +226,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationE
   final TfArg<String> location;
 
   Map<String, Object?> encode() => {
-    if (asn != null) 'asn': asn!.toTfJson(),
-    if (insideCidrBlocks != null)
-      'inside_cidr_blocks': insideCidrBlocks!.toTfJson(),
+    'asn': ?asn?.toTfJson(),
+    'inside_cidr_blocks': ?insideCidrBlocks?.toTfJson(),
     'location': location.toTfJson(),
   };
 }
@@ -255,7 +249,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroups {
   final TfArg<bool> requireAttachmentAcceptance;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
     'require_attachment_acceptance': requireAttachmentAcceptance.toTfJson(),
   };
@@ -287,8 +281,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicies {
   routingPolicyRules;
 
   Map<String, Object?> encode() => {
-    if (routingPolicyDescription != null)
-      'routing_policy_description': routingPolicyDescription!.toTfJson(),
+    'routing_policy_description': ?routingPolicyDescription?.toTfJson(),
     'routing_policy_direction': routingPolicyDirection.toTfJson(),
     'routing_policy_name': routingPolicyName.toTfJson(),
     'routing_policy_number': routingPolicyNumber.toTfJson(),
@@ -337,7 +330,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPol
   matchConditions;
 
   Map<String, Object?> encode() => {
-    if (conditionLogic != null) 'condition_logic': conditionLogic!.toTfJson(),
+    'condition_logic': ?conditionLogic?.toTfJson(),
     'action': action.encode(),
     if (matchConditions != null)
       'match_conditions': [for (final e in matchConditions!) e.encode()],
@@ -359,7 +352,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPol
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -429,21 +422,17 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActions {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (destinationCidrBlocks != null)
-      'destination_cidr_blocks': destinationCidrBlocks!.toTfJson(),
-    if (destinations != null) 'destinations': destinations!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (routingPolicyNames != null)
-      'routing_policy_names': routingPolicyNames!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'destination_cidr_blocks': ?destinationCidrBlocks?.toTfJson(),
+    'destinations': ?destinations?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'routing_policy_names': ?routingPolicyNames?.toTfJson(),
     'segment': segment.toTfJson(),
-    if (shareWith != null) 'share_with': shareWith!.toTfJson(),
-    if (shareWithExcept != null)
-      'share_with_except': shareWithExcept!.toTfJson(),
-    if (edgeLocationAssociation != null)
-      'edge_location_association': edgeLocationAssociation!.encode(),
-    if (via != null) 'via': via!.encode(),
-    if (whenSentTo != null) 'when_sent_to': whenSentTo!.encode(),
+    'share_with': ?shareWith?.toTfJson(),
+    'share_with_except': ?shareWithExcept?.toTfJson(),
+    'edge_location_association': ?edgeLocationAssociation?.encode(),
+    'via': ?via?.encode(),
+    'when_sent_to': ?whenSentTo?.encode(),
   };
 }
 
@@ -487,8 +476,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsVia {
   withEdgeOverride;
 
   Map<String, Object?> encode() => {
-    if (networkFunctionGroups != null)
-      'network_function_groups': networkFunctionGroups!.toTfJson(),
+    'network_function_groups': ?networkFunctionGroups?.toTfJson(),
     if (withEdgeOverride != null)
       'with_edge_override': [for (final e in withEdgeOverride!) e.encode()],
   };
@@ -511,10 +499,9 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsViaWithEdge
   final TfArg<String>? useEdgeLocation;
 
   Map<String, Object?> encode() => {
-    if (edgeSets != null) 'edge_sets': edgeSets!.toTfJson(),
-    if (useEdge != null) 'use_edge': useEdge!.toTfJson(),
-    if (useEdgeLocation != null)
-      'use_edge_location': useEdgeLocation!.toTfJson(),
+    'edge_sets': ?edgeSets?.toTfJson(),
+    'use_edge': ?useEdge?.toTfJson(),
+    'use_edge_location': ?useEdgeLocation?.toTfJson(),
   };
 }
 
@@ -528,9 +515,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsWhenSentTo 
 
   final TfArg<List<Object?>>? segments;
 
-  Map<String, Object?> encode() => {
-    if (segments != null) 'segments': segments!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'segments': ?segments?.toTfJson()};
 }
 
 /// Typed helper for the `segments` block of
@@ -562,15 +547,13 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegments {
   final TfArg<bool>? requireAttachmentAcceptance;
 
   Map<String, Object?> encode() => {
-    if (allowFilter != null) 'allow_filter': allowFilter!.toTfJson(),
-    if (denyFilter != null) 'deny_filter': denyFilter!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (edgeLocations != null) 'edge_locations': edgeLocations!.toTfJson(),
-    if (isolateAttachments != null)
-      'isolate_attachments': isolateAttachments!.toTfJson(),
+    'allow_filter': ?allowFilter?.toTfJson(),
+    'deny_filter': ?denyFilter?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'edge_locations': ?edgeLocations?.toTfJson(),
+    'isolate_attachments': ?isolateAttachments?.toTfJson(),
     'name': name.toTfJson(),
-    if (requireAttachmentAcceptance != null)
-      'require_attachment_acceptance': requireAttachmentAcceptance!.toTfJson(),
+    'require_attachment_acceptance': ?requireAttachmentAcceptance?.toTfJson(),
   };
 }
 
@@ -604,7 +587,7 @@ final class DataAwsNetworkmanagerCoreNetworkPolicyDocument extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (version != null) 'version': version,
+           'version': ?version,
            if (attachmentPolicies != null)
              'attachment_policies': TfArg.literal([
                for (final e in attachmentPolicies) e.encode(),

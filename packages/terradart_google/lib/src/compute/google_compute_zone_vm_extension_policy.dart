@@ -27,8 +27,8 @@ final class GoogleComputeZoneVmExtensionPolicy extends Resource {
            'name': name,
            'zone': zone,
            'extension_policies': extensionPolicies,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

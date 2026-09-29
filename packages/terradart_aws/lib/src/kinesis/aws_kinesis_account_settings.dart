@@ -50,7 +50,7 @@ final class AwsKinesisAccountSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (minimumThroughputBillingCommitment != null)
              'minimum_throughput_billing_commitment': TfArg.literal([
                for (final e in minimumThroughputBillingCommitment) e.encode(),

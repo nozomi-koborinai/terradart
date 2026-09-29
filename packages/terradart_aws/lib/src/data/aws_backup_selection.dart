@@ -22,7 +22,7 @@ final class DataAwsBackupSelection extends Data {
          terraformType: tfType,
          argMap: {
            'plan_id': planId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'selection_id': selectionId,
          },
        );

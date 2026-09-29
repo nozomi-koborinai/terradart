@@ -39,9 +39,9 @@ final class IotCaCertificateRegistrationConfig {
   final TfArg<String>? templateName;
 
   Map<String, Object?> encode() => {
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (templateBody != null) 'template_body': templateBody!.toTfJson(),
-    if (templateName != null) 'template_name': templateName!.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'template_body': ?templateBody?.toTfJson(),
+    'template_name': ?templateName?.toTfJson(),
   };
 }
 
@@ -69,11 +69,10 @@ final class AwsIotCaCertificate extends Resource {
            'active': active,
            'allow_auto_registration': allowAutoRegistration,
            'ca_certificate_pem': caCertificatePem,
-           if (certificateMode != null) 'certificate_mode': certificateMode,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (verificationCertificatePem != null)
-             'verification_certificate_pem': verificationCertificatePem,
+           'certificate_mode': ?certificateMode,
+           'region': ?region,
+           'tags': ?tags,
+           'verification_certificate_pem': ?verificationCertificatePem,
            if (registrationConfig != null)
              'registration_config': TfArg.literal(registrationConfig.encode()),
          },

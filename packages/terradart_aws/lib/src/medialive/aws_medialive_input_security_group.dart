@@ -34,8 +34,8 @@ final class AwsMedialiveInputSecurityGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'whitelist_rules': TfArg.literal([
              for (final e in whitelistRules) e.encode(),
            ]),

@@ -22,11 +22,7 @@ final class DataGoogleFolder extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'folder': folder,
-           if (lookupOrganization != null)
-             'lookup_organization': lookupOrganization,
-         },
+         argMap: {'folder': folder, 'lookup_organization': ?lookupOrganization},
        );
 
   @override

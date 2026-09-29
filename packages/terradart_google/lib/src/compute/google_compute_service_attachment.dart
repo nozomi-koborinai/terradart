@@ -47,26 +47,21 @@ final class GoogleComputeServiceAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'connection_preference': connectionPreference,
-           if (consumerRejectLists != null)
-             'consumer_reject_lists': consumerRejectLists,
-           if (description != null) 'description': description,
-           if (domainNames != null) 'domain_names': domainNames,
+           'consumer_reject_lists': ?consumerRejectLists,
+           'description': ?description,
+           'domain_names': ?domainNames,
            'enable_proxy_protocol': enableProxyProtocol,
            'name': name,
            'nat_subnets': natSubnets,
-           if (project != null) 'project': project,
-           if (propagatedConnectionLimit != null)
-             'propagated_connection_limit': propagatedConnectionLimit,
-           if (reconcileConnections != null)
-             'reconcile_connections': reconcileConnections,
-           if (region != null) 'region': region,
-           if (sendPropagatedConnectionLimitIfZero != null)
-             'send_propagated_connection_limit_if_zero':
-                 sendPropagatedConnectionLimitIfZero,
-           if (showNatIps != null) 'show_nat_ips': showNatIps,
+           'project': ?project,
+           'propagated_connection_limit': ?propagatedConnectionLimit,
+           'reconcile_connections': ?reconcileConnections,
+           'region': ?region,
+           'send_propagated_connection_limit_if_zero':
+               ?sendPropagatedConnectionLimitIfZero,
+           'show_nat_ips': ?showNatIps,
            'target_service': targetService,
-           if (consumerAcceptLists != null)
-             'consumer_accept_lists': consumerAcceptLists,
+           'consumer_accept_lists': ?consumerAcceptLists,
          },
        );
 

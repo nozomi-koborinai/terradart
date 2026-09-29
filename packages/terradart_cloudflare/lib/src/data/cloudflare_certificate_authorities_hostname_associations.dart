@@ -27,9 +27,8 @@ final class DataCloudflareCertificateAuthoritiesHostnameAssociations
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (mtlsCertificateId != null)
-             'mtls_certificate_id': mtlsCertificateId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'mtls_certificate_id': ?mtlsCertificateId,
+           'zone_id': ?zoneId,
          },
        );
 

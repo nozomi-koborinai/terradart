@@ -72,8 +72,8 @@ final class GoogleDiscoveryEngineSearchEngine extends Resource {
            'search_engine_config': TfArg.literal([
              searchEngineConfig.toArgMap(),
            ]),
-           if (industryVertical != null) 'industry_vertical': industryVertical,
-           if (project != null) 'project': project,
+           'industry_vertical': ?industryVertical,
+           'project': ?project,
          },
        );
 

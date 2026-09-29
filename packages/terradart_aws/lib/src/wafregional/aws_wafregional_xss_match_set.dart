@@ -58,7 +58,7 @@ final class WafregionalXssMatchSetXssMatchTupleFieldToMatch {
   final TfArg<WafregionalXssMatchSetXssMatchTupleFieldToMatchType> type;
 
   Map<String, Object?> encode() => {
-    if (data != null) 'data': data!.toTfJson(),
+    'data': ?data?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -98,7 +98,7 @@ final class AwsWafregionalXssMatchSet extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (xssMatchTuple != null)
              'xss_match_tuple': TfArg.literal([
                for (final e in xssMatchTuple) e.encode(),

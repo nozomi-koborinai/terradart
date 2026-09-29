@@ -20,7 +20,7 @@ final class SsmincidentsReplicationSetRegion {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -36,7 +36,7 @@ final class SsmincidentsReplicationSetRegions {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -57,7 +57,7 @@ final class AwsSsmincidentsReplicationSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (region != null)
              'region': TfArg.literal([for (final e in region) e.encode()]),
            if (regions != null)

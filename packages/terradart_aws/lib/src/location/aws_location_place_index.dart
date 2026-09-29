@@ -16,9 +16,7 @@ final class LocationPlaceIndexDataSourceConfiguration {
   final TfArg<LocationPlaceIndexDataSourceConfigurationIntendedUse>?
   intendedUse;
 
-  Map<String, Object?> encode() => {
-    if (intendedUse != null) 'intended_use': intendedUse!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'intended_use': ?intendedUse?.toTfJson()};
 }
 
 /// `intended_use` — derived from the provider schema description.
@@ -54,10 +52,10 @@ final class AwsLocationPlaceIndex extends Resource {
          terraformType: tfType,
          argMap: {
            'data_source': dataSource,
-           if (description != null) 'description': description,
+           'description': ?description,
            'index_name': indexName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (dataSourceConfiguration != null)
              'data_source_configuration': TfArg.literal(
                dataSourceConfiguration.encode(),

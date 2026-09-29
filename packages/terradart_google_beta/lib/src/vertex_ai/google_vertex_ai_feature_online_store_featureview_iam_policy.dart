@@ -36,8 +36,8 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureviewIamPolicy
            'feature_online_store': featureOnlineStore,
            'feature_view': featureView,
            'policy_data': policyData,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

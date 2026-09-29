@@ -34,7 +34,7 @@ final class GoogleServiceAccountIamBinding extends Resource {
            'service_account_id': serviceAccountId.encodeAs('name'),
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

@@ -48,12 +48,11 @@ final class GoogleComputeRegionHealthSource extends Resource {
            'name': name,
            'region': region,
            'source_type': sourceType,
-           if (healthAggregationPolicy != null)
-             'health_aggregation_policy': healthAggregationPolicy,
-           if (sources != null) 'sources': sources,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'health_aggregation_policy': ?healthAggregationPolicy,
+           'sources': ?sources,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

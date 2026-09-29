@@ -26,12 +26,12 @@ final class DataGoogleSqlDatabaseInstances extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (databaseVersion != null) 'database_version': databaseVersion,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (state != null) 'state': state,
-           if (tier != null) 'tier': tier,
-           if (zone != null) 'zone': zone,
+           'database_version': ?databaseVersion,
+           'project': ?project,
+           'region': ?region,
+           'state': ?state,
+           'tier': ?tier,
+           'zone': ?zone,
          },
        );
 

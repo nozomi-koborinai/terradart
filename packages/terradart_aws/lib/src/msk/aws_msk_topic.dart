@@ -26,10 +26,10 @@ final class AwsMskTopic extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_arn': clusterArn,
-           if (configs != null) 'configs': configs,
+           'configs': ?configs,
            'name': name,
            'partition_count': partitionCount,
-           if (region != null) 'region': region,
+           'region': ?region,
            'replication_factor': replicationFactor,
          },
        );

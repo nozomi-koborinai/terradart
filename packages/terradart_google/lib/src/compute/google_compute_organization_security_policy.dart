@@ -36,14 +36,13 @@ final class GoogleComputeOrganizationSecurityPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'display_name': ?displayName,
            'parent': parent,
-           if (shortName != null) 'short_name': shortName,
-           if (type != null) 'type': type,
-           if (advancedOptionsConfig != null)
-             'advanced_options_config': advancedOptionsConfig,
+           'short_name': ?shortName,
+           'type': ?type,
+           'advanced_options_config': ?advancedOptionsConfig,
          },
        );
 

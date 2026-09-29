@@ -26,7 +26,7 @@ final class GoogleKmsCryptoKeyIamMember extends Resource {
            'crypto_key_id': cryptoKeyId,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

@@ -24,10 +24,10 @@ final class AwsCodecatalystSourceRepository extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
            'project_name': projectName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'space_name': spaceName,
          },
        );

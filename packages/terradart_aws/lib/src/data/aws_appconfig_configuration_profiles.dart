@@ -18,10 +18,7 @@ final class DataAwsAppconfigConfigurationProfiles extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'application_id': applicationId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'application_id': applicationId, 'region': ?region},
        );
 
   @override

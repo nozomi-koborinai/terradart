@@ -24,7 +24,7 @@ final class AwsCognitoUserInGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'group_name': groupName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'user_pool_id': userPoolId,
            'username': username,
          },

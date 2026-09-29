@@ -31,7 +31,7 @@ final class ChimeVoiceConnectorOriginationRoute {
 
   Map<String, Object?> encode() => {
     'host': host.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'priority': priority.toTfJson(),
     'protocol': protocol.toTfJson(),
     'weight': weight.toTfJson(),
@@ -65,8 +65,8 @@ final class AwsChimeVoiceConnectorOrigination extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (disabled != null) 'disabled': disabled,
-           if (region != null) 'region': region,
+           'disabled': ?disabled,
+           'region': ?region,
            'voice_connector_id': voiceConnectorId,
            'route': TfArg.literal([for (final e in route) e.encode()]),
          },

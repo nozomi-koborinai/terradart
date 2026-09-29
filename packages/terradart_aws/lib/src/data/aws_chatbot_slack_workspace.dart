@@ -18,10 +18,7 @@ final class DataAwsChatbotSlackWorkspace extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'slack_team_name': slackTeamName,
-         },
+         argMap: {'region': ?region, 'slack_team_name': slackTeamName},
        );
 
   @override

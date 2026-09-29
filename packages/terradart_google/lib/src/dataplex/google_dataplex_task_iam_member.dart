@@ -30,9 +30,9 @@ final class GoogleDataplexTaskIamMember extends Resource {
            'lake': lake,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

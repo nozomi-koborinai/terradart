@@ -42,12 +42,12 @@ final class DataAwsVpnGateway extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (amazonSideAsn != null) 'amazon_side_asn': amazonSideAsn,
-           if (attachedVpcId != null) 'attached_vpc_id': attachedVpcId,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (region != null) 'region': region,
-           if (state != null) 'state': state,
-           if (tags != null) 'tags': tags,
+           'amazon_side_asn': ?amazonSideAsn,
+           'attached_vpc_id': ?attachedVpcId,
+           'availability_zone': ?availabilityZone,
+           'region': ?region,
+           'state': ?state,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

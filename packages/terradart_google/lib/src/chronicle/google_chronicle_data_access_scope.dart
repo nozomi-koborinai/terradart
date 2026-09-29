@@ -28,11 +28,10 @@ final class ChronicleDataAccessScopeAllowedDataAccessLabels {
   ingestionLabel;
 
   Map<String, Object?> encode() => {
-    if (assetNamespace != null) 'asset_namespace': assetNamespace!.toTfJson(),
-    if (dataAccessLabel != null)
-      'data_access_label': dataAccessLabel!.toTfJson(),
-    if (logType != null) 'log_type': logType!.toTfJson(),
-    if (ingestionLabel != null) 'ingestion_label': ingestionLabel!.encode(),
+    'asset_namespace': ?assetNamespace?.toTfJson(),
+    'data_access_label': ?dataAccessLabel?.toTfJson(),
+    'log_type': ?logType?.toTfJson(),
+    'ingestion_label': ?ingestionLabel?.encode(),
   };
 }
 
@@ -51,8 +50,7 @@ final class ChronicleDataAccessScopeAllowedDataAccessLabelsIngestionLabel {
 
   Map<String, Object?> encode() => {
     'ingestion_label_key': ingestionLabelKey.toTfJson(),
-    if (ingestionLabelValue != null)
-      'ingestion_label_value': ingestionLabelValue!.toTfJson(),
+    'ingestion_label_value': ?ingestionLabelValue?.toTfJson(),
   };
 }
 
@@ -77,11 +75,10 @@ final class ChronicleDataAccessScopeDeniedDataAccessLabels {
   ingestionLabel;
 
   Map<String, Object?> encode() => {
-    if (assetNamespace != null) 'asset_namespace': assetNamespace!.toTfJson(),
-    if (dataAccessLabel != null)
-      'data_access_label': dataAccessLabel!.toTfJson(),
-    if (logType != null) 'log_type': logType!.toTfJson(),
-    if (ingestionLabel != null) 'ingestion_label': ingestionLabel!.encode(),
+    'asset_namespace': ?assetNamespace?.toTfJson(),
+    'data_access_label': ?dataAccessLabel?.toTfJson(),
+    'log_type': ?logType?.toTfJson(),
+    'ingestion_label': ?ingestionLabel?.encode(),
   };
 }
 
@@ -100,8 +97,7 @@ final class ChronicleDataAccessScopeDeniedDataAccessLabelsIngestionLabel {
 
   Map<String, Object?> encode() => {
     'ingestion_label_key': ingestionLabelKey.toTfJson(),
-    if (ingestionLabelValue != null)
-      'ingestion_label_value': ingestionLabelValue!.toTfJson(),
+    'ingestion_label_value': ?ingestionLabelValue?.toTfJson(),
   };
 }
 
@@ -148,8 +144,8 @@ final class GoogleChronicleDataAccessScope extends Resource {
            'data_access_scope_id': dataAccessScopeId,
            'location': location,
            'instance': instance,
-           if (description != null) 'description': description,
-           if (allowAll != null) 'allow_all': allowAll,
+           'description': ?description,
+           'allow_all': ?allowAll,
            if (allowedDataAccessLabels != null)
              'allowed_data_access_labels': TfArg.literal([
                for (final e in allowedDataAccessLabels) e.encode(),
@@ -158,8 +154,8 @@ final class GoogleChronicleDataAccessScope extends Resource {
              'denied_data_access_labels': TfArg.literal([
                for (final e in deniedDataAccessLabels) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -21,9 +21,9 @@ final class DataCloudflareRuleset extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (rulesetId != null) 'ruleset_id': rulesetId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'ruleset_id': ?rulesetId,
+           'zone_id': ?zoneId,
          },
        );
 

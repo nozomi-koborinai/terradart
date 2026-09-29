@@ -54,12 +54,10 @@ final class SecureSourceManagerInstancePrivateConfig {
   customHostConfig;
 
   Map<String, Object?> encode() => {
-    if (caPool != null) 'ca_pool': caPool!.toTfJson(),
+    'ca_pool': ?caPool?.toTfJson(),
     'is_private': isPrivate.toTfJson(),
-    if (pscAllowedProjects != null)
-      'psc_allowed_projects': pscAllowedProjects!.toTfJson(),
-    if (customHostConfig != null)
-      'custom_host_config': customHostConfig!.encode(),
+    'psc_allowed_projects': ?pscAllowedProjects?.toTfJson(),
+    'custom_host_config': ?customHostConfig?.encode(),
   };
 }
 
@@ -151,16 +149,16 @@ final class GoogleSecureSourceManagerInstance extends Resource {
          argMap: {
            'location': location,
            'instance_id': instanceId,
-           if (labels != null) 'labels': labels,
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
+           'labels': ?labels,
+           'kms_key': ?kmsKey?.encodeAs('id'),
            if (privateConfig != null)
              'private_config': TfArg.literal(privateConfig.encode()),
            if (workforceIdentityFederationConfig != null)
              'workforce_identity_federation_config': TfArg.literal(
                workforceIdentityFederationConfig.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

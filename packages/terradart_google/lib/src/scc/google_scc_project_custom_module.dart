@@ -43,10 +43,10 @@ final class SccProjectCustomModuleCustomConfig {
   final SccProjectCustomModuleCustomConfigResourceSelector resourceSelector;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'recommendation': recommendation.toTfJson(),
     'severity': severity.toTfJson(),
-    if (customOutput != null) 'custom_output': customOutput!.encode(),
+    'custom_output': ?customOutput?.encode(),
     'predicate': predicate.encode(),
     'resource_selector': resourceSelector.encode(),
   };
@@ -94,8 +94,8 @@ final class SccProjectCustomModuleCustomConfigCustomOutputProperties {
   valueExpression;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (valueExpression != null) 'value_expression': valueExpression!.encode(),
+    'name': ?name?.toTfJson(),
+    'value_expression': ?valueExpression?.encode(),
   };
 }
 
@@ -119,10 +119,10 @@ final class SccProjectCustomModuleCustomConfigCustomOutputPropertiesValueExpress
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -146,10 +146,10 @@ final class SccProjectCustomModuleCustomConfigPredicate {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -196,10 +196,10 @@ final class GoogleSccProjectCustomModule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
            'enablement_state': enablementState,
-           if (project != null) 'project': project,
+           'project': ?project,
            'custom_config': TfArg.literal(customConfig.encode()),
          },
        );

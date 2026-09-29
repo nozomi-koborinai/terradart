@@ -26,7 +26,7 @@ final class AwsConnectLambdaFunctionAssociation extends Resource {
          argMap: {
            'function_arn': functionArn.encodeAs('arn'),
            'instance_id': instanceId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

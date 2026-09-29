@@ -52,11 +52,11 @@ final class GoogleGeminiCodeToolsSettingBinding extends Resource {
            'code_tools_setting_id': codeToolsSettingId,
            'setting_binding_id': settingBindingId,
            'target': target,
-           if (location != null) 'location': location,
-           if (product != null) 'product': product,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'product': ?product,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

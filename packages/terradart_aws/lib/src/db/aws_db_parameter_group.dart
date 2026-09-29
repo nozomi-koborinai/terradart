@@ -82,7 +82,7 @@ final class DbParameterGroupParameter {
   final TfArg<String> value;
 
   Map<String, Object?> encode() => {
-    if (applyMethod != null) 'apply_method': applyMethod!.toTfJson(),
+    'apply_method': ?applyMethod?.toTfJson(),
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
@@ -118,12 +118,12 @@ final class AwsDbParameterGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'family': family,
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'skip_destroy': ?skipDestroy,
+           'tags': ?tags,
            if (parameter != null)
              'parameter': TfArg.literal([
                for (final e in parameter) e.encode(),

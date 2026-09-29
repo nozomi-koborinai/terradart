@@ -27,11 +27,11 @@ final class AwsCognitoUserGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (precedence != null) 'precedence': precedence,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
+           'precedence': ?precedence,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
            'user_pool_id': userPoolId,
          },
        );

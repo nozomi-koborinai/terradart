@@ -108,8 +108,8 @@ final class AwsSignerSigningProfilePermission extends Resource {
            'action': action,
            'principal': principal,
            'profile_name': profileName,
-           if (profileVersion != null) 'profile_version': profileVersion,
-           if (region != null) 'region': region,
+           'profile_version': ?profileVersion,
+           'region': ?region,
            ...?statementId?.argMap,
          },
        );

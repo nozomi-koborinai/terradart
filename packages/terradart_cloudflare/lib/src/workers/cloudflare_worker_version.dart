@@ -45,8 +45,8 @@ final class WorkerVersionAnnotations {
   final TfArg<String>? workersTag;
 
   Map<String, Object?> encode() => {
-    if (workersMessage != null) 'workers_message': workersMessage!.toTfJson(),
-    if (workersTag != null) 'workers_tag': workersTag!.toTfJson(),
+    'workers_message': ?workersMessage?.toTfJson(),
+    'workers_tag': ?workersTag?.toTfJson(),
   };
 }
 
@@ -62,7 +62,7 @@ final class WorkerVersionAssets {
 
   Map<String, Object?> encode() => {
     ...?source?.encode(),
-    if (config != null) 'config': config!.encode(),
+    'config': ?config?.encode(),
   };
 }
 
@@ -135,11 +135,10 @@ final class WorkerVersionAssetsConfig {
   final TfArg<Object?>? runWorkerFirst;
 
   Map<String, Object?> encode() => {
-    if (basePath != null) 'base_path': basePath!.toTfJson(),
-    if (htmlHandling != null) 'html_handling': htmlHandling!.toTfJson(),
-    if (notFoundHandling != null)
-      'not_found_handling': notFoundHandling!.toTfJson(),
-    if (runWorkerFirst != null) 'run_worker_first': runWorkerFirst!.toTfJson(),
+    'base_path': ?basePath?.toTfJson(),
+    'html_handling': ?htmlHandling?.toTfJson(),
+    'not_found_handling': ?notFoundHandling?.toTfJson(),
+    'run_worker_first': ?runWorkerFirst?.toTfJson(),
   };
 }
 
@@ -306,54 +305,50 @@ final class WorkerVersionBindings {
   final WorkerVersionBindingsSimple? simple;
 
   Map<String, Object?> encode() => {
-    if (algorithm != null) 'algorithm': algorithm!.toTfJson(),
-    if (allowedDestinationAddresses != null)
-      'allowed_destination_addresses': allowedDestinationAddresses!.toTfJson(),
-    if (allowedSenderAddresses != null)
-      'allowed_sender_addresses': allowedSenderAddresses!.toTfJson(),
-    if (appId != null) 'app_id': appId!.toTfJson(),
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
-    if (certificateId != null) 'certificate_id': certificateId!.toTfJson(),
-    if (className != null) 'class_name': className!.toTfJson(),
-    if (databaseId != null) 'database_id': databaseId!.toTfJson(),
-    if (dataset != null) 'dataset': dataset!.toTfJson(),
-    if (destinationAddress != null)
-      'destination_address': destinationAddress!.toTfJson(),
-    if (dispatchNamespace != null)
-      'dispatch_namespace': dispatchNamespace!.toTfJson(),
-    if (entrypoint != null) 'entrypoint': entrypoint!.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (format != null) 'format': format!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (identity != null) 'identity': identity!.toTfJson(),
-    if (indexName != null) 'index_name': indexName!.toTfJson(),
-    if (instanceName != null) 'instance_name': instanceName!.toTfJson(),
-    if (json != null) 'json': json!.toTfJson(),
-    if (jurisdiction != null) 'jurisdiction': jurisdiction!.toTfJson(),
-    if (keyBase64 != null) 'key_base64': keyBase64!.toTfJson(),
-    if (keyJwk != null) 'key_jwk': keyJwk!.toTfJson(),
+    'algorithm': ?algorithm?.toTfJson(),
+    'allowed_destination_addresses': ?allowedDestinationAddresses?.toTfJson(),
+    'allowed_sender_addresses': ?allowedSenderAddresses?.toTfJson(),
+    'app_id': ?appId?.toTfJson(),
+    'bucket_name': ?bucketName?.toTfJson(),
+    'certificate_id': ?certificateId?.toTfJson(),
+    'class_name': ?className?.toTfJson(),
+    'database_id': ?databaseId?.toTfJson(),
+    'dataset': ?dataset?.toTfJson(),
+    'destination_address': ?destinationAddress?.toTfJson(),
+    'dispatch_namespace': ?dispatchNamespace?.toTfJson(),
+    'entrypoint': ?entrypoint?.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'format': ?format?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'identity': ?identity?.toTfJson(),
+    'index_name': ?indexName?.toTfJson(),
+    'instance_name': ?instanceName?.toTfJson(),
+    'json': ?json?.toTfJson(),
+    'jurisdiction': ?jurisdiction?.toTfJson(),
+    'key_base64': ?keyBase64?.toTfJson(),
+    'key_jwk': ?keyJwk?.toTfJson(),
     'name': name.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-    if (namespaceId != null) 'namespace_id': namespaceId!.toTfJson(),
-    if (networkId != null) 'network_id': networkId!.toTfJson(),
-    if (oldName != null) 'old_name': oldName!.toTfJson(),
-    if (part != null) 'part': part!.toTfJson(),
-    if (pipeline != null) 'pipeline': pipeline!.toTfJson(),
-    if (queueName != null) 'queue_name': queueName!.toTfJson(),
-    if (scriptName != null) 'script_name': scriptName!.toTfJson(),
-    if (secretName != null) 'secret_name': secretName!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
-    if (serviceId != null) 'service_id': serviceId!.toTfJson(),
-    if (storeId != null) 'store_id': storeId!.toTfJson(),
-    if (stream != null) 'stream': stream!.toTfJson(),
-    if (text != null) 'text': text!.toTfJson(),
-    if (tunnelId != null) 'tunnel_id': tunnelId!.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
+    'namespace_id': ?namespaceId?.toTfJson(),
+    'network_id': ?networkId?.toTfJson(),
+    'old_name': ?oldName?.toTfJson(),
+    'part': ?part?.toTfJson(),
+    'pipeline': ?pipeline?.toTfJson(),
+    'queue_name': ?queueName?.toTfJson(),
+    'script_name': ?scriptName?.toTfJson(),
+    'secret_name': ?secretName?.toTfJson(),
+    'service': ?service?.toTfJson(),
+    'service_id': ?serviceId?.toTfJson(),
+    'store_id': ?storeId?.toTfJson(),
+    'stream': ?stream?.toTfJson(),
+    'text': ?text?.toTfJson(),
+    'tunnel_id': ?tunnelId?.toTfJson(),
     'type': type.toTfJson(),
-    if (usages != null) 'usages': usages!.toTfJson(),
-    if (versionId != null) 'version_id': versionId!.toTfJson(),
-    if (workflowName != null) 'workflow_name': workflowName!.toTfJson(),
-    if (outbound != null) 'outbound': outbound!.encode(),
-    if (simple != null) 'simple': simple!.encode(),
+    'usages': ?usages?.toTfJson(),
+    'version_id': ?versionId?.toTfJson(),
+    'workflow_name': ?workflowName?.toTfJson(),
+    'outbound': ?outbound?.encode(),
+    'simple': ?simple?.encode(),
   };
 }
 
@@ -447,7 +442,7 @@ final class WorkerVersionBindingsOutbound {
 
   Map<String, Object?> encode() => {
     if (params != null) 'params': [for (final e in params!) e.encode()],
-    if (worker != null) 'worker': worker!.encode(),
+    'worker': ?worker?.encode(),
   };
 }
 
@@ -479,9 +474,9 @@ final class WorkerVersionBindingsOutboundWorker {
   final TfArg<String>? service;
 
   Map<String, Object?> encode() => {
-    if (entrypoint != null) 'entrypoint': entrypoint!.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
+    'entrypoint': ?entrypoint?.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'service': ?service?.toTfJson(),
   };
 }
 
@@ -503,8 +498,7 @@ final class WorkerVersionBindingsSimple {
 
   Map<String, Object?> encode() => {
     'limit': limit.toTfJson(),
-    if (mitigationTimeout != null)
-      'mitigation_timeout': mitigationTimeout!.toTfJson(),
+    'mitigation_timeout': ?mitigationTimeout?.toTfJson(),
     'period': period.toTfJson(),
   };
 }
@@ -520,9 +514,8 @@ final class WorkerVersionCacheOptions {
   final TfArg<bool>? enabled;
 
   Map<String, Object?> encode() => {
-    if (crossVersionCache != null)
-      'cross_version_cache': crossVersionCache!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'cross_version_cache': ?crossVersionCache?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
   };
 }
 
@@ -566,13 +559,13 @@ final class WorkerVersionExports {
   final WorkerVersionExportsCache? cache;
 
   Map<String, Object?> encode() => {
-    if (renamedTo != null) 'renamed_to': renamedTo!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
-    if (storage != null) 'storage': storage!.toTfJson(),
-    if (transferFrom != null) 'transfer_from': transferFrom!.toTfJson(),
-    if (transferredTo != null) 'transferred_to': transferredTo!.toTfJson(),
+    'renamed_to': ?renamedTo?.toTfJson(),
+    'state': ?state?.toTfJson(),
+    'storage': ?storage?.toTfJson(),
+    'transfer_from': ?transferFrom?.toTfJson(),
+    'transferred_to': ?transferredTo?.toTfJson(),
     'type': type.toTfJson(),
-    if (cache != null) 'cache': cache!.encode(),
+    'cache': ?cache?.encode(),
   };
 }
 
@@ -631,8 +624,8 @@ final class WorkerVersionLimits {
   final TfArg<num>? subrequests;
 
   Map<String, Object?> encode() => {
-    if (cpuMs != null) 'cpu_ms': cpuMs!.toTfJson(),
-    if (subrequests != null) 'subrequests': subrequests!.toTfJson(),
+    'cpu_ms': ?cpuMs?.toTfJson(),
+    'subrequests': ?subrequests?.toTfJson(),
   };
 }
 
@@ -668,12 +661,11 @@ final class WorkerVersionMigrations {
   final List<WorkerVersionMigrationsTransferredClasses>? transferredClasses;
 
   Map<String, Object?> encode() => {
-    if (deletedClasses != null) 'deleted_classes': deletedClasses!.toTfJson(),
-    if (newClasses != null) 'new_classes': newClasses!.toTfJson(),
-    if (newSqliteClasses != null)
-      'new_sqlite_classes': newSqliteClasses!.toTfJson(),
-    if (newTag != null) 'new_tag': newTag!.toTfJson(),
-    if (oldTag != null) 'old_tag': oldTag!.toTfJson(),
+    'deleted_classes': ?deletedClasses?.toTfJson(),
+    'new_classes': ?newClasses?.toTfJson(),
+    'new_sqlite_classes': ?newSqliteClasses?.toTfJson(),
+    'new_tag': ?newTag?.toTfJson(),
+    'old_tag': ?oldTag?.toTfJson(),
     if (renamedClasses != null)
       'renamed_classes': [for (final e in renamedClasses!) e.encode()],
     if (steps != null) 'steps': [for (final e in steps!) e.encode()],
@@ -693,8 +685,8 @@ final class WorkerVersionMigrationsRenamedClasses {
   final TfArg<String>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -722,10 +714,9 @@ final class WorkerVersionMigrationsSteps {
   transferredClasses;
 
   Map<String, Object?> encode() => {
-    if (deletedClasses != null) 'deleted_classes': deletedClasses!.toTfJson(),
-    if (newClasses != null) 'new_classes': newClasses!.toTfJson(),
-    if (newSqliteClasses != null)
-      'new_sqlite_classes': newSqliteClasses!.toTfJson(),
+    'deleted_classes': ?deletedClasses?.toTfJson(),
+    'new_classes': ?newClasses?.toTfJson(),
+    'new_sqlite_classes': ?newSqliteClasses?.toTfJson(),
     if (renamedClasses != null)
       'renamed_classes': [for (final e in renamedClasses!) e.encode()],
     if (transferredClasses != null)
@@ -744,8 +735,8 @@ final class WorkerVersionMigrationsStepsRenamedClasses {
   final TfArg<String>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -766,9 +757,9 @@ final class WorkerVersionMigrationsStepsTransferredClasses {
   final TfArg<String>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (fromScript != null) 'from_script': fromScript!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'from_script': ?fromScript?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -789,9 +780,9 @@ final class WorkerVersionMigrationsTransferredClasses {
   final TfArg<String>? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.toTfJson(),
-    if (fromScript != null) 'from_script': fromScript!.toTfJson(),
-    if (to != null) 'to': to!.toTfJson(),
+    'from': ?from?.toTfJson(),
+    'from_script': ?fromScript?.toTfJson(),
+    'to': ?to?.toTfJson(),
   };
 }
 
@@ -915,10 +906,10 @@ final class WorkerVersionPlacement {
   final List<WorkerVersionPlacementTarget>? target;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'region': ?region?.toTfJson(),
     if (target != null) 'target': [for (final e in target!) e.encode()],
   };
 }
@@ -946,9 +937,9 @@ final class WorkerVersionPlacementTarget {
   final TfArg<String>? region;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'region': ?region?.toTfJson(),
   };
 }
 
@@ -989,14 +980,12 @@ final class CloudflareWorkerVersion extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (compatibilityDate != null)
-             'compatibility_date': compatibilityDate,
-           if (compatibilityFlags != null)
-             'compatibility_flags': compatibilityFlags,
-           if (deploy != null) 'deploy': deploy,
-           if (include != null) 'include': include,
-           if (mainModule != null) 'main_module': mainModule,
-           if (usageModel != null) 'usage_model': usageModel,
+           'compatibility_date': ?compatibilityDate,
+           'compatibility_flags': ?compatibilityFlags,
+           'deploy': ?deploy,
+           'include': ?include,
+           'main_module': ?mainModule,
+           'usage_model': ?usageModel,
            'worker_id': workerId,
            if (annotations != null)
              'annotations': TfArg.literal(annotations.encode()),

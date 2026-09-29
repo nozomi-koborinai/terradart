@@ -22,13 +22,11 @@ final class DataAwsDynamodbBackups extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (backupType != null) 'backup_type': backupType,
-           if (region != null) 'region': region,
-           if (tableName != null) 'table_name': tableName,
-           if (timeRangeLowerBound != null)
-             'time_range_lower_bound': timeRangeLowerBound,
-           if (timeRangeUpperBound != null)
-             'time_range_upper_bound': timeRangeUpperBound,
+           'backup_type': ?backupType,
+           'region': ?region,
+           'table_name': ?tableName,
+           'time_range_lower_bound': ?timeRangeLowerBound,
+           'time_range_upper_bound': ?timeRangeUpperBound,
          },
        );
 

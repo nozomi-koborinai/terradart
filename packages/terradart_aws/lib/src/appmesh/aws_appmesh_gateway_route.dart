@@ -18,7 +18,7 @@ final class AppmeshGatewayRouteSpec {
   final AppmeshGatewayRouteSpecRoute route;
 
   Map<String, Object?> encode() => {
-    if (priority != null) 'priority': priority!.toTfJson(),
+    'priority': ?priority?.toTfJson(),
     ...route.encode(),
   };
 }
@@ -138,7 +138,7 @@ final class AppmeshGatewayRouteSpecGrpcRouteActionTarget {
   virtualService;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'virtual_service': virtualService.encode(),
   };
 }
@@ -172,7 +172,7 @@ final class AppmeshGatewayRouteSpecGrpcRouteMatch {
   final TfArg<String> serviceName;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'service_name': serviceName.toTfJson(),
   };
 }
@@ -210,7 +210,7 @@ final class AppmeshGatewayRouteSpecHttp2RouteAction {
   final AppmeshGatewayRouteSpecHttp2RouteActionTarget target;
 
   Map<String, Object?> encode() => {
-    if (rewrite != null) 'rewrite': rewrite!.encode(),
+    'rewrite': ?rewrite?.encode(),
     'target': target.encode(),
   };
 }
@@ -232,9 +232,9 @@ final class AppmeshGatewayRouteSpecHttp2RouteActionRewrite {
   final AppmeshGatewayRouteSpecHttp2RouteActionRewritePrefix? prefix;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.encode(),
-    if (path != null) 'path': path!.encode(),
-    if (prefix != null) 'prefix': prefix!.encode(),
+    'hostname': ?hostname?.encode(),
+    'path': ?path?.encode(),
+    'prefix': ?prefix?.encode(),
   };
 }
 
@@ -280,8 +280,8 @@ final class AppmeshGatewayRouteSpecHttp2RouteActionRewritePrefix {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (defaultPrefix != null) 'default_prefix': defaultPrefix!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'default_prefix': ?defaultPrefix?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -300,7 +300,7 @@ final class AppmeshGatewayRouteSpecHttp2RouteActionTarget {
   virtualService;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'virtual_service': virtualService.encode(),
   };
 }
@@ -347,11 +347,11 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatch {
   queryParameter;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     if (header != null) 'header': [for (final e in header!) e.encode()],
-    if (hostname != null) 'hostname': hostname!.encode(),
-    if (path != null) 'path': path!.encode(),
+    'hostname': ?hostname?.encode(),
+    'path': ?path?.encode(),
     if (queryParameter != null)
       'query_parameter': [for (final e in queryParameter!) e.encode()],
   };
@@ -374,9 +374,9 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchHeader {
   final AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatch? match;
 
   Map<String, Object?> encode() => {
-    if (invert != null) 'invert': invert!.toTfJson(),
+    'invert': ?invert?.toTfJson(),
     'name': name.toTfJson(),
-    if (match != null) 'match': match!.encode(),
+    'match': ?match?.encode(),
   };
 }
 
@@ -403,11 +403,11 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatch {
   final AppmeshGatewayRouteSpecHttp2RouteMatchHeaderMatchRange? range;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
-    if (range != null) 'range': range!.encode(),
+    'exact': ?exact?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'regex': ?regex?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
+    'range': ?range?.encode(),
   };
 }
 
@@ -444,8 +444,8 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchHostname {
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -460,8 +460,8 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchPath {
   final TfArg<String>? regex;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'regex': ?regex?.toTfJson(),
   };
 }
 
@@ -480,7 +480,7 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchQueryParameter {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (match != null) 'match': match!.encode(),
+    'match': ?match?.encode(),
   };
 }
 
@@ -492,9 +492,7 @@ final class AppmeshGatewayRouteSpecHttp2RouteMatchQueryParameterMatch {
 
   final TfArg<String>? exact;
 
-  Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
 /// Typed helper for the `spec.http_route` block of
@@ -530,7 +528,7 @@ final class AppmeshGatewayRouteSpecHttpRouteAction {
   final AppmeshGatewayRouteSpecHttpRouteActionTarget target;
 
   Map<String, Object?> encode() => {
-    if (rewrite != null) 'rewrite': rewrite!.encode(),
+    'rewrite': ?rewrite?.encode(),
     'target': target.encode(),
   };
 }
@@ -552,9 +550,9 @@ final class AppmeshGatewayRouteSpecHttpRouteActionRewrite {
   final AppmeshGatewayRouteSpecHttpRouteActionRewritePrefix? prefix;
 
   Map<String, Object?> encode() => {
-    if (hostname != null) 'hostname': hostname!.encode(),
-    if (path != null) 'path': path!.encode(),
-    if (prefix != null) 'prefix': prefix!.encode(),
+    'hostname': ?hostname?.encode(),
+    'path': ?path?.encode(),
+    'prefix': ?prefix?.encode(),
   };
 }
 
@@ -600,8 +598,8 @@ final class AppmeshGatewayRouteSpecHttpRouteActionRewritePrefix {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (defaultPrefix != null) 'default_prefix': defaultPrefix!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'default_prefix': ?defaultPrefix?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -620,7 +618,7 @@ final class AppmeshGatewayRouteSpecHttpRouteActionTarget {
   virtualService;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'virtual_service': virtualService.encode(),
   };
 }
@@ -667,11 +665,11 @@ final class AppmeshGatewayRouteSpecHttpRouteMatch {
   queryParameter;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     if (header != null) 'header': [for (final e in header!) e.encode()],
-    if (hostname != null) 'hostname': hostname!.encode(),
-    if (path != null) 'path': path!.encode(),
+    'hostname': ?hostname?.encode(),
+    'path': ?path?.encode(),
     if (queryParameter != null)
       'query_parameter': [for (final e in queryParameter!) e.encode()],
   };
@@ -694,9 +692,9 @@ final class AppmeshGatewayRouteSpecHttpRouteMatchHeader {
   final AppmeshGatewayRouteSpecHttpRouteMatchHeaderMatch? match;
 
   Map<String, Object?> encode() => {
-    if (invert != null) 'invert': invert!.toTfJson(),
+    'invert': ?invert?.toTfJson(),
     'name': name.toTfJson(),
-    if (match != null) 'match': match!.encode(),
+    'match': ?match?.encode(),
   };
 }
 
@@ -723,11 +721,11 @@ final class AppmeshGatewayRouteSpecHttpRouteMatchHeaderMatch {
   final AppmeshGatewayRouteSpecHttpRouteMatchHeaderMatchRange? range;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
-    if (range != null) 'range': range!.encode(),
+    'exact': ?exact?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'regex': ?regex?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
+    'range': ?range?.encode(),
   };
 }
 
@@ -764,8 +762,8 @@ final class AppmeshGatewayRouteSpecHttpRouteMatchHostname {
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -780,8 +778,8 @@ final class AppmeshGatewayRouteSpecHttpRouteMatchPath {
   final TfArg<String>? regex;
 
   Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'regex': ?regex?.toTfJson(),
   };
 }
 
@@ -800,7 +798,7 @@ final class AppmeshGatewayRouteSpecHttpRouteMatchQueryParameter {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (match != null) 'match': match!.encode(),
+    'match': ?match?.encode(),
   };
 }
 
@@ -812,9 +810,7 @@ final class AppmeshGatewayRouteSpecHttpRouteMatchQueryParameterMatch {
 
   final TfArg<String>? exact;
 
-  Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_appmesh_gateway_route`.
@@ -838,10 +834,10 @@ final class AwsAppmeshGatewayRoute extends Resource {
          terraformType: tfType,
          argMap: {
            'mesh_name': meshName,
-           if (meshOwner != null) 'mesh_owner': meshOwner,
+           'mesh_owner': ?meshOwner,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'virtual_gateway_name': virtualGatewayName,
            'spec': TfArg.literal(spec.encode()),
          },

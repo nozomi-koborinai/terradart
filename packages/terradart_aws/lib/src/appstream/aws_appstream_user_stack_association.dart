@@ -38,9 +38,8 @@ final class AwsAppstreamUserStackAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'authentication_type': authenticationType,
-           if (region != null) 'region': region,
-           if (sendEmailNotification != null)
-             'send_email_notification': sendEmailNotification,
+           'region': ?region,
+           'send_email_notification': ?sendEmailNotification,
            'stack_name': stackName,
            'user_name': userName,
          },

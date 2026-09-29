@@ -36,10 +36,7 @@ final class CloudflareZoneCacheReserve extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (value != null) 'value': value,
-           'zone_id': zoneId.encodeAs('id'),
-         },
+         argMap: {'value': ?value, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

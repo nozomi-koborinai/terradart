@@ -25,12 +25,10 @@ final class AwsAuditmanagerAccountRegistration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (delegatedAdminAccount != null)
-             'delegated_admin_account': delegatedAdminAccount,
-           if (deregisterOnDestroy != null)
-             'deregister_on_destroy': deregisterOnDestroy,
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'delegated_admin_account': ?delegatedAdminAccount,
+           'deregister_on_destroy': ?deregisterOnDestroy,
+           'kms_key': ?kmsKey?.encodeAs('arn'),
+           'region': ?region,
          },
        );
 

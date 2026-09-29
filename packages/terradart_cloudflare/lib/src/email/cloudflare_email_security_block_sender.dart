@@ -43,7 +43,7 @@ final class CloudflareEmailSecurityBlockSender extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (comments != null) 'comments': comments,
+           'comments': ?comments,
            'is_regex': isRegex,
            'pattern': pattern,
            'pattern_type': patternType,

@@ -22,7 +22,7 @@ final class DataGoogleContainerAnalysisNoteIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'note': note, if (project != null) 'project': project},
+         argMap: {'note': note, 'project': ?project},
        );
 
   @override

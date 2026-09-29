@@ -35,8 +35,8 @@ final class GoogleComputeNetworkFirewallPolicyAssociation extends Resource {
            'name': name,
            'firewall_policy': firewallPolicy,
            'attachment_target': attachmentTarget,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

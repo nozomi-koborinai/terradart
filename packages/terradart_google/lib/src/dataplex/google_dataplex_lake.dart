@@ -30,11 +30,11 @@ final class GoogleDataplexLake extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -17,9 +17,7 @@ final class DataZeroTrustAccessAiControlsMcpServerFilter {
 
   final TfArg<String>? search;
 
-  Map<String, Object?> encode() => {
-    if (search != null) 'search': search!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'search': ?search?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_ai_controls_mcp_server`.
@@ -40,7 +38,7 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpServer extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

@@ -178,13 +178,13 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureview extends Resource {
          terraformType: tfType,
          argMap: {
            'feature_online_store': featureOnlineStore,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            if (syncConfig != null)
              'sync_config': TfArg.literal(syncConfig.encode()),
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
            source.blockKey: TfArg.literal(source.encode()),
          },
        );

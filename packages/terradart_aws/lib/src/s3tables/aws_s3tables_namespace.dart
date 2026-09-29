@@ -23,7 +23,7 @@ final class AwsS3tablesNamespace extends Resource {
          terraformType: tfType,
          argMap: {
            'namespace': namespace,
-           if (region != null) 'region': region,
+           'region': ?region,
            'table_bucket_arn': tableBucketArn,
          },
        );

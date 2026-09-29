@@ -100,16 +100,16 @@ final class AwsNetworkAclRule extends Resource {
          terraformType: tfType,
          argMap: {
            ...cidr.argMap,
-           if (egress != null) 'egress': egress,
-           if (fromPort != null) 'from_port': fromPort,
-           if (icmpCode != null) 'icmp_code': icmpCode,
-           if (icmpType != null) 'icmp_type': icmpType,
+           'egress': ?egress,
+           'from_port': ?fromPort,
+           'icmp_code': ?icmpCode,
+           'icmp_type': ?icmpType,
            'network_acl_id': networkAclId,
            'protocol': protocol,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rule_action': ruleAction,
            'rule_number': ruleNumber,
-           if (toPort != null) 'to_port': toPort,
+           'to_port': ?toPort,
          },
        );
 

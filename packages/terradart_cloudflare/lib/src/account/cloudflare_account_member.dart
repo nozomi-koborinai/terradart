@@ -160,7 +160,7 @@ final class CloudflareAccountMember extends Resource {
            'account_id': accountId.encodeAs('id'),
            'email': email,
            ...access.argMap,
-           if (status != null) 'status': status,
+           'status': ?status,
          },
        );
 

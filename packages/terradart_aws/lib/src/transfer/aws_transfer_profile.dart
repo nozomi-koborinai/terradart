@@ -35,10 +35,10 @@ final class AwsTransferProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'as2_id': as2Id,
-           if (certificateIds != null) 'certificate_ids': certificateIds,
+           'certificate_ids': ?certificateIds,
            'profile_type': profileType,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

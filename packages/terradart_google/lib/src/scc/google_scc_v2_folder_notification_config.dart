@@ -49,10 +49,10 @@ final class GoogleSccV2FolderNotificationConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'config_id': configId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'folder': folder,
-           if (location != null) 'location': location,
+           'location': ?location,
            'pubsub_topic': pubsubTopic.encodeAs('id'),
            'streaming_config': TfArg.literal(streamingConfig.encode()),
          },

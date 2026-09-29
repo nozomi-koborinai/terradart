@@ -32,7 +32,7 @@ final class GoogleApigeeEnvgroupAttachment extends Resource {
          argMap: {
            'envgroup_id': envgroupId,
            'environment': environment,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

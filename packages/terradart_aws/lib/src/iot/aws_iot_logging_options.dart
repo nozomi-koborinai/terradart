@@ -39,8 +39,8 @@ final class AwsIotLoggingOptions extends Resource {
          terraformType: tfType,
          argMap: {
            'default_log_level': defaultLogLevel,
-           if (disableAllLogs != null) 'disable_all_logs': disableAllLogs,
-           if (region != null) 'region': region,
+           'disable_all_logs': ?disableAllLogs,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
          },
        );

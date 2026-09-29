@@ -22,9 +22,9 @@ final class FirewallRuleAction {
   final FirewallRuleActionResponse? response;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
-    if (response != null) 'response': response!.encode(),
+    'mode': ?mode?.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
+    'response': ?response?.encode(),
   };
 }
 
@@ -52,8 +52,8 @@ final class FirewallRuleActionResponse {
   final TfArg<String>? contentType;
 
   Map<String, Object?> encode() => {
-    if (body != null) 'body': body!.toTfJson(),
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
+    'body': ?body?.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
   };
 }
 
@@ -77,10 +77,10 @@ final class FirewallRuleFilter {
   final TfArg<String>? ref;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (paused != null) 'paused': paused!.toTfJson(),
-    if (ref != null) 'ref': ref!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'expression': ?expression?.toTfJson(),
+    'paused': ?paused?.toTfJson(),
+    'ref': ?ref?.toTfJson(),
   };
 }
 

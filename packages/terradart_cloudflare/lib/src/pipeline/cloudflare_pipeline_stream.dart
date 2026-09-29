@@ -35,14 +35,12 @@ final class PipelineStreamFormat {
   final TfArg<bool>? unstructured;
 
   Map<String, Object?> encode() => {
-    if (compression != null) 'compression': compression!.toTfJson(),
-    if (decimalEncoding != null)
-      'decimal_encoding': decimalEncoding!.toTfJson(),
-    if (rowGroupBytes != null) 'row_group_bytes': rowGroupBytes!.toTfJson(),
-    if (timestampFormat != null)
-      'timestamp_format': timestampFormat!.toTfJson(),
+    'compression': ?compression?.toTfJson(),
+    'decimal_encoding': ?decimalEncoding?.toTfJson(),
+    'row_group_bytes': ?rowGroupBytes?.toTfJson(),
+    'timestamp_format': ?timestampFormat?.toTfJson(),
     'type': type.toTfJson(),
-    if (unstructured != null) 'unstructured': unstructured!.toTfJson(),
+    'unstructured': ?unstructured?.toTfJson(),
   };
 }
 
@@ -109,7 +107,7 @@ final class PipelineStreamHttp {
   Map<String, Object?> encode() => {
     'authentication': authentication.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (cors != null) 'cors': cors!.encode(),
+    'cors': ?cors?.encode(),
   };
 }
 
@@ -121,9 +119,7 @@ final class PipelineStreamHttpCors {
 
   final TfArg<List<Object?>>? origins;
 
-  Map<String, Object?> encode() => {
-    if (origins != null) 'origins': origins!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'origins': ?origins?.toTfJson()};
 }
 
 /// Typed helper for the `schema` block of
@@ -137,7 +133,7 @@ final class PipelineStreamSchema {
   final List<PipelineStreamSchemaFields>? fields;
 
   Map<String, Object?> encode() => {
-    if (inferred != null) 'inferred': inferred!.toTfJson(),
+    'inferred': ?inferred?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
   };
 }
@@ -168,12 +164,12 @@ final class PipelineStreamSchemaFields {
   final TfArg<PipelineStreamSchemaFieldsUnit>? unit;
 
   Map<String, Object?> encode() => {
-    if (metadataKey != null) 'metadata_key': metadataKey!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (sqlName != null) 'sql_name': sqlName!.toTfJson(),
+    'metadata_key': ?metadataKey?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'required': ?required?.toTfJson(),
+    'sql_name': ?sqlName?.toTfJson(),
     'type': type.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
   };
 }
 

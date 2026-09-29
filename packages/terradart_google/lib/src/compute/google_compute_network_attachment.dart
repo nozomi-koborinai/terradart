@@ -50,16 +50,14 @@ final class GoogleComputeNetworkAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'connection_preference': connectionPreference,
            'subnetworks': subnetworks,
-           if (description != null) 'description': description,
-           if (producerAcceptLists != null)
-             'producer_accept_lists': producerAcceptLists,
-           if (producerRejectLists != null)
-             'producer_reject_lists': producerRejectLists,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'producer_accept_lists': ?producerAcceptLists,
+           'producer_reject_lists': ?producerRejectLists,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

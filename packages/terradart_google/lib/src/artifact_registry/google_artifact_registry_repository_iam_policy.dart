@@ -31,8 +31,8 @@ final class GoogleArtifactRegistryRepositoryIamPolicy extends Resource {
          argMap: {
            'repository': repository,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

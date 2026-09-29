@@ -38,9 +38,9 @@ final class DataAwsEc2SpotPrice extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (instanceType != null) 'instance_type': instanceType,
-           if (region != null) 'region': region,
+           'availability_zone': ?availabilityZone,
+           'instance_type': ?instanceType,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

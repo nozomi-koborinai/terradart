@@ -24,10 +24,7 @@ final class DataCloudflareMagicWanStaticRoute extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'route_id': routeId,
-         },
+         argMap: {'account_id': ?accountId, 'route_id': routeId},
        );
 
   @override

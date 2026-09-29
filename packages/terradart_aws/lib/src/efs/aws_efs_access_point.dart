@@ -25,7 +25,7 @@ final class EfsAccessPointPosixUser {
 
   Map<String, Object?> encode() => {
     'gid': gid.toTfJson(),
-    if (secondaryGids != null) 'secondary_gids': secondaryGids!.toTfJson(),
+    'secondary_gids': ?secondaryGids?.toTfJson(),
     'uid': uid.toTfJson(),
   };
 }
@@ -41,8 +41,8 @@ final class EfsAccessPointRootDirectory {
   final EfsAccessPointRootDirectoryCreationInfo? creationInfo;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
-    if (creationInfo != null) 'creation_info': creationInfo!.encode(),
+    'path': ?path?.toTfJson(),
+    'creation_info': ?creationInfo?.encode(),
   };
 }
 
@@ -88,8 +88,8 @@ final class AwsEfsAccessPoint extends Resource {
          terraformType: tfType,
          argMap: {
            'file_system_id': fileSystemId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (posixUser != null)
              'posix_user': TfArg.literal(posixUser.encode()),
            if (rootDirectory != null)

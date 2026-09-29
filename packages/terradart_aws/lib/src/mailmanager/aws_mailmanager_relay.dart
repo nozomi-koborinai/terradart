@@ -102,10 +102,10 @@ final class AwsMailmanagerRelay extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'server_name': serverName,
            'server_port': serverPort,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (authentication != null)
              'authentication': TfArg.literal([
                for (final e in authentication) e.encode(),

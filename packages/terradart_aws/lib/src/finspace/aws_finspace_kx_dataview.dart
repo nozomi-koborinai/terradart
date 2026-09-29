@@ -35,7 +35,7 @@ final class FinspaceKxDataviewSegmentConfigurations {
 
   Map<String, Object?> encode() => {
     'db_paths': dbPaths.toTfJson(),
-    if (onDemand != null) 'on_demand': onDemand!.toTfJson(),
+    'on_demand': ?onDemand?.toTfJson(),
     'volume_name': volumeName.toTfJson(),
   };
 }
@@ -66,17 +66,16 @@ final class AwsFinspaceKxDataview extends Resource {
          terraformType: tfType,
          argMap: {
            'auto_update': autoUpdate,
-           if (availabilityZoneId != null)
-             'availability_zone_id': availabilityZoneId,
+           'availability_zone_id': ?availabilityZoneId,
            'az_mode': azMode,
-           if (changesetId != null) 'changeset_id': changesetId,
+           'changeset_id': ?changesetId,
            'database_name': databaseName,
-           if (description != null) 'description': description,
+           'description': ?description,
            'environment_id': environmentId,
            'name': name,
-           if (readWrite != null) 'read_write': readWrite,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'read_write': ?readWrite,
+           'region': ?region,
+           'tags': ?tags,
            if (segmentConfigurations != null)
              'segment_configurations': TfArg.literal([
                for (final e in segmentConfigurations) e.encode(),

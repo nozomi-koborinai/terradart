@@ -18,8 +18,8 @@ final class LoadBalancerPolicyPolicyAttribute {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -44,7 +44,7 @@ final class AwsLoadBalancerPolicy extends Resource {
            'load_balancer_name': loadBalancerName,
            'policy_name': policyName,
            'policy_type_name': policyTypeName,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (policyAttribute != null)
              'policy_attribute': TfArg.literal([
                for (final e in policyAttribute) e.encode(),

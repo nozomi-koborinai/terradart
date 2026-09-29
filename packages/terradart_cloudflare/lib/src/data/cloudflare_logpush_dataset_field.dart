@@ -24,9 +24,9 @@ final class DataCloudflareLogpushDatasetField extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (datasetId != null) 'dataset_id': datasetId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'dataset_id': ?datasetId,
+           'zone_id': ?zoneId,
          },
        );
 

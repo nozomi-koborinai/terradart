@@ -23,10 +23,10 @@ final class AwsBedrockGuardrailVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'guardrail_arn': guardrailArn,
-           if (region != null) 'region': region,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
+           'region': ?region,
+           'skip_destroy': ?skipDestroy,
          },
        );
 

@@ -151,9 +151,7 @@ final class SpannerBackupScheduleSpec {
 
   final SpannerBackupScheduleSpecCronSpec? cronSpec;
 
-  Map<String, Object?> encode() => {
-    if (cronSpec != null) 'cron_spec': cronSpec!.encode(),
-  };
+  Map<String, Object?> encode() => {'cron_spec': ?cronSpec?.encode()};
 }
 
 /// Typed helper for the `spec.cron_spec` block of
@@ -164,7 +162,7 @@ final class SpannerBackupScheduleSpecCronSpec {
 
   final TfArg<String>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Factory wrapper for `google_spanner_backup_schedule`.
@@ -214,9 +212,9 @@ final class GoogleSpannerBackupSchedule extends Resource {
            if (spec != null) 'spec': TfArg.literal(spec.encode()),
            if (encryptionConfig != null)
              'encryption_config': TfArg.literal(encryptionConfig.encode()),
-           if (name != null) 'name': name,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'name': ?name,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            backupSpec.blockKey: TfArg.literal(backupSpec.encode()),
          },
        );

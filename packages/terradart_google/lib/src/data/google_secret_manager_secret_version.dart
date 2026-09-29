@@ -28,12 +28,11 @@ final class DataGoogleSecretManagerSecretVersion extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (fetchSecretData != null) 'fetch_secret_data': fetchSecretData,
-           if (isSecretDataBase64 != null)
-             'is_secret_data_base64': isSecretDataBase64,
-           if (project != null) 'project': project,
+           'fetch_secret_data': ?fetchSecretData,
+           'is_secret_data_base64': ?isSecretDataBase64,
+           'project': ?project,
            'secret': secret,
-           if (version != null) 'version': version,
+           'version': ?version,
          },
        );
 

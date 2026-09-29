@@ -24,9 +24,8 @@ final class AwsSsoadminApplicationAccessScope extends Resource {
          terraformType: tfType,
          argMap: {
            'application_arn': applicationArn,
-           if (authorizedTargets != null)
-             'authorized_targets': authorizedTargets,
-           if (region != null) 'region': region,
+           'authorized_targets': ?authorizedTargets,
+           'region': ?region,
            'scope': scope,
          },
        );

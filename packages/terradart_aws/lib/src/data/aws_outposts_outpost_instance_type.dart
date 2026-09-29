@@ -22,10 +22,9 @@ final class DataAwsOutpostsOutpostInstanceType extends Data {
          terraformType: tfType,
          argMap: {
            'arn': arn,
-           if (instanceType != null) 'instance_type': instanceType,
-           if (preferredInstanceTypes != null)
-             'preferred_instance_types': preferredInstanceTypes,
-           if (region != null) 'region': region,
+           'instance_type': ?instanceType,
+           'preferred_instance_types': ?preferredInstanceTypes,
+           'region': ?region,
          },
        );
 

@@ -32,8 +32,8 @@ final class GoogleDataprocMetastoreFederationIamPolicy extends Resource {
          argMap: {
            'federation_id': federationId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

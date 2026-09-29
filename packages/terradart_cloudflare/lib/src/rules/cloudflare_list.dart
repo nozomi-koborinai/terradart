@@ -33,7 +33,7 @@ final class ListItems {
 
   Map<String, Object?> encode() => {
     ...?value?.encode(),
-    if (comment != null) 'comment': comment!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
   };
 }
 
@@ -131,8 +131,7 @@ final class ListItemsHostname {
   final TfArg<String> urlHostname;
 
   Map<String, Object?> encode() => {
-    if (excludeExactHostname != null)
-      'exclude_exact_hostname': excludeExactHostname!.toTfJson(),
+    'exclude_exact_hostname': ?excludeExactHostname?.toTfJson(),
     'url_hostname': urlHostname.toTfJson(),
   };
 }
@@ -166,16 +165,12 @@ final class ListItemsRedirect {
   final TfArg<String> targetUrl;
 
   Map<String, Object?> encode() => {
-    if (includeSubdomains != null)
-      'include_subdomains': includeSubdomains!.toTfJson(),
-    if (preservePathSuffix != null)
-      'preserve_path_suffix': preservePathSuffix!.toTfJson(),
-    if (preserveQueryString != null)
-      'preserve_query_string': preserveQueryString!.toTfJson(),
+    'include_subdomains': ?includeSubdomains?.toTfJson(),
+    'preserve_path_suffix': ?preservePathSuffix?.toTfJson(),
+    'preserve_query_string': ?preserveQueryString?.toTfJson(),
     'source_url': sourceUrl.toTfJson(),
-    if (statusCode != null) 'status_code': statusCode!.toTfJson(),
-    if (subpathMatching != null)
-      'subpath_matching': subpathMatching!.toTfJson(),
+    'status_code': ?statusCode?.toTfJson(),
+    'subpath_matching': ?subpathMatching?.toTfJson(),
     'target_url': targetUrl.toTfJson(),
   };
 }
@@ -203,7 +198,7 @@ final class CloudflareList extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
+           'description': ?description,
            'kind': kind,
            'name': name,
            if (items != null)

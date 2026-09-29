@@ -44,11 +44,11 @@ final class AwsRekognitionProject extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoUpdate != null) 'auto_update': autoUpdate,
-           if (feature != null) 'feature': feature,
+           'auto_update': ?autoUpdate,
+           'feature': ?feature,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -39,14 +39,14 @@ final class IdentitystoreUserAddresses {
   final TfArg<String>? type;
 
   Map<String, Object?> encode() => {
-    if (country != null) 'country': country!.toTfJson(),
-    if (formatted != null) 'formatted': formatted!.toTfJson(),
-    if (locality != null) 'locality': locality!.toTfJson(),
-    if (postalCode != null) 'postal_code': postalCode!.toTfJson(),
-    if (primary != null) 'primary': primary!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (streetAddress != null) 'street_address': streetAddress!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'country': ?country?.toTfJson(),
+    'formatted': ?formatted?.toTfJson(),
+    'locality': ?locality?.toTfJson(),
+    'postal_code': ?postalCode?.toTfJson(),
+    'primary': ?primary?.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'street_address': ?streetAddress?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -63,9 +63,9 @@ final class IdentitystoreUserEmails {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (primary != null) 'primary': primary!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'primary': ?primary?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -96,13 +96,11 @@ final class IdentitystoreUserName {
 
   Map<String, Object?> encode() => {
     'family_name': familyName.toTfJson(),
-    if (formatted != null) 'formatted': formatted!.toTfJson(),
+    'formatted': ?formatted?.toTfJson(),
     'given_name': givenName.toTfJson(),
-    if (honorificPrefix != null)
-      'honorific_prefix': honorificPrefix!.toTfJson(),
-    if (honorificSuffix != null)
-      'honorific_suffix': honorificSuffix!.toTfJson(),
-    if (middleName != null) 'middle_name': middleName!.toTfJson(),
+    'honorific_prefix': ?honorificPrefix?.toTfJson(),
+    'honorific_suffix': ?honorificSuffix?.toTfJson(),
+    'middle_name': ?middleName?.toTfJson(),
   };
 }
 
@@ -119,9 +117,9 @@ final class IdentitystoreUserPhoneNumbers {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (primary != null) 'primary': primary!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'primary': ?primary?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -155,16 +153,15 @@ final class AwsIdentitystoreUser extends Resource {
          argMap: {
            'display_name': displayName,
            'identity_store_id': identityStoreId,
-           if (locale != null) 'locale': locale,
-           if (nickname != null) 'nickname': nickname,
-           if (preferredLanguage != null)
-             'preferred_language': preferredLanguage,
-           if (profileUrl != null) 'profile_url': profileUrl,
-           if (region != null) 'region': region,
-           if (timezone != null) 'timezone': timezone,
-           if (title != null) 'title': title,
+           'locale': ?locale,
+           'nickname': ?nickname,
+           'preferred_language': ?preferredLanguage,
+           'profile_url': ?profileUrl,
+           'region': ?region,
+           'timezone': ?timezone,
+           'title': ?title,
            'user_name': userName,
-           if (userType != null) 'user_type': userType,
+           'user_type': ?userType,
            if (addresses != null)
              'addresses': TfArg.literal(addresses.encode()),
            if (emails != null) 'emails': TfArg.literal(emails.encode()),

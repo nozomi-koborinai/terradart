@@ -50,10 +50,10 @@ final class GoogleNetworkServicesMulticastGroupProducerActivation
                multicastGroupProducerActivationId,
            'multicast_producer_association': multicastProducerAssociation,
            'multicast_group_range_activation': multicastGroupRangeActivation,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

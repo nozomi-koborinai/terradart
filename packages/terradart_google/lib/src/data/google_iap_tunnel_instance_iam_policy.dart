@@ -23,11 +23,7 @@ final class DataGoogleIapTunnelInstanceIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'instance': instance,
-           if (project != null) 'project': project,
-           if (zone != null) 'zone': zone,
-         },
+         argMap: {'instance': instance, 'project': ?project, 'zone': ?zone},
        );
 
   @override

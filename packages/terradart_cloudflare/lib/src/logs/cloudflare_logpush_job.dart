@@ -125,22 +125,19 @@ final class LogpushJobOutputOptions {
   final TfArg<LogpushJobOutputOptionsTimestampFormat>? timestampFormat;
 
   Map<String, Object?> encode() => {
-    if (batchPrefix != null) 'batch_prefix': batchPrefix!.toTfJson(),
-    if (batchSuffix != null) 'batch_suffix': batchSuffix!.toTfJson(),
-    if (cve202144228 != null) 'cve_2021_44228': cve202144228!.toTfJson(),
-    if (fieldDelimiter != null) 'field_delimiter': fieldDelimiter!.toTfJson(),
-    if (fieldNames != null) 'field_names': fieldNames!.toTfJson(),
-    if (mergeSubrequests != null)
-      'merge_subrequests': mergeSubrequests!.toTfJson(),
-    if (outputType != null) 'output_type': outputType!.toTfJson(),
-    if (recordDelimiter != null)
-      'record_delimiter': recordDelimiter!.toTfJson(),
-    if (recordPrefix != null) 'record_prefix': recordPrefix!.toTfJson(),
-    if (recordSuffix != null) 'record_suffix': recordSuffix!.toTfJson(),
-    if (recordTemplate != null) 'record_template': recordTemplate!.toTfJson(),
-    if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
-    if (timestampFormat != null)
-      'timestamp_format': timestampFormat!.toTfJson(),
+    'batch_prefix': ?batchPrefix?.toTfJson(),
+    'batch_suffix': ?batchSuffix?.toTfJson(),
+    'cve_2021_44228': ?cve202144228?.toTfJson(),
+    'field_delimiter': ?fieldDelimiter?.toTfJson(),
+    'field_names': ?fieldNames?.toTfJson(),
+    'merge_subrequests': ?mergeSubrequests?.toTfJson(),
+    'output_type': ?outputType?.toTfJson(),
+    'record_delimiter': ?recordDelimiter?.toTfJson(),
+    'record_prefix': ?recordPrefix?.toTfJson(),
+    'record_suffix': ?recordSuffix?.toTfJson(),
+    'record_template': ?recordTemplate?.toTfJson(),
+    'sample_rate': ?sampleRate?.toTfJson(),
+    'timestamp_format': ?timestampFormat?.toTfJson(),
   };
 }
 
@@ -200,24 +197,21 @@ final class CloudflareLogpushJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
-           if (dataset != null) 'dataset': dataset,
+           'account_id': ?accountId?.encodeAs('id'),
+           'dataset': ?dataset,
            'destination_conf': destinationConf,
-           if (enabled != null) 'enabled': enabled,
-           if (filter != null) 'filter': filter,
-           if (filterAttackTraffic != null)
-             'filter_attack_traffic': filterAttackTraffic,
-           if (frequency != null) 'frequency': frequency,
-           if (kind != null) 'kind': kind,
-           if (logpullOptions != null) 'logpull_options': logpullOptions,
-           if (maxUploadBytes != null) 'max_upload_bytes': maxUploadBytes,
-           if (maxUploadIntervalSeconds != null)
-             'max_upload_interval_seconds': maxUploadIntervalSeconds,
-           if (maxUploadRecords != null) 'max_upload_records': maxUploadRecords,
-           if (name != null) 'name': name,
-           if (ownershipChallenge != null)
-             'ownership_challenge': ownershipChallenge,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'enabled': ?enabled,
+           'filter': ?filter,
+           'filter_attack_traffic': ?filterAttackTraffic,
+           'frequency': ?frequency,
+           'kind': ?kind,
+           'logpull_options': ?logpullOptions,
+           'max_upload_bytes': ?maxUploadBytes,
+           'max_upload_interval_seconds': ?maxUploadIntervalSeconds,
+           'max_upload_records': ?maxUploadRecords,
+           'name': ?name,
+           'ownership_challenge': ?ownershipChallenge,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (outputOptions != null)
              'output_options': TfArg.literal(outputOptions.encode()),
          },

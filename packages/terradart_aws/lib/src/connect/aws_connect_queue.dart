@@ -34,11 +34,9 @@ final class ConnectQueueOutboundCallerConfig {
   final TfArg<String>? outboundFlowId;
 
   Map<String, Object?> encode() => {
-    if (outboundCallerIdName != null)
-      'outbound_caller_id_name': outboundCallerIdName!.toTfJson(),
-    if (outboundCallerIdNumberId != null)
-      'outbound_caller_id_number_id': outboundCallerIdNumberId!.toTfJson(),
-    if (outboundFlowId != null) 'outbound_flow_id': outboundFlowId!.toTfJson(),
+    'outbound_caller_id_name': ?outboundCallerIdName?.toTfJson(),
+    'outbound_caller_id_number_id': ?outboundCallerIdNumberId?.toTfJson(),
+    'outbound_flow_id': ?outboundFlowId?.toTfJson(),
   };
 }
 
@@ -65,15 +63,15 @@ final class AwsConnectQueue extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'hours_of_operation_id': hoursOfOperationId,
            'instance_id': instanceId,
-           if (maxContacts != null) 'max_contacts': maxContacts,
+           'max_contacts': ?maxContacts,
            'name': name,
-           if (quickConnectIds != null) 'quick_connect_ids': quickConnectIds,
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
+           'quick_connect_ids': ?quickConnectIds,
+           'region': ?region,
+           'status': ?status,
+           'tags': ?tags,
            if (outboundCallerConfig != null)
              'outbound_caller_config': TfArg.literal(
                outboundCallerConfig.encode(),

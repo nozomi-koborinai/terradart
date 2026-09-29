@@ -32,7 +32,7 @@ final class GoogleApiGatewayApiConfigIamPolicy extends Resource {
            'api': api,
            'api_config': apiConfig,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

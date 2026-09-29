@@ -243,7 +243,7 @@ final class GoogleStorageControlFolderIntelligenceConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (editionConfig != null) 'edition_config': editionConfig,
+           'edition_config': ?editionConfig,
            'name': name,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

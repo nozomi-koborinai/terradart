@@ -40,8 +40,8 @@ final class DataAwsEc2InstanceTypeOfferings extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (locationType != null) 'location_type': locationType,
-           if (region != null) 'region': region,
+           'location_type': ?locationType,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

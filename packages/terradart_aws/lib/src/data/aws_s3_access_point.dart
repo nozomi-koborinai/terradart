@@ -20,11 +20,7 @@ final class DataAwsS3AccessPoint extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'name': name,
-           if (region != null) 'region': region,
-         },
+         argMap: {'account_id': ?accountId, 'name': name, 'region': ?region},
        );
 
   @override

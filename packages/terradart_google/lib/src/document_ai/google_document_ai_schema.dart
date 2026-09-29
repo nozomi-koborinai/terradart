@@ -45,10 +45,10 @@ final class GoogleDocumentAiSchema extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

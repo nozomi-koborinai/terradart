@@ -25,10 +25,10 @@ final class DataCloudflareSpectrumApplications extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (direction != null) 'direction': direction,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
-           if (zoneId != null) 'zone_id': zoneId,
+           'direction': ?direction,
+           'max_items': ?maxItems,
+           'order': ?order,
+           'zone_id': ?zoneId,
          },
        );
 

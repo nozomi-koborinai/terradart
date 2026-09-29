@@ -22,11 +22,7 @@ final class DataGoogleComputeZones extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
-         },
+         argMap: {'project': ?project, 'region': ?region, 'status': ?status},
        );
 
   @override

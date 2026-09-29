@@ -36,8 +36,7 @@ final class ComputeStoragePoolParams {
   final TfArg<Map<String, String>>? resourceManagerTags;
 
   Map<String, Object?> encode() => {
-    if (resourceManagerTags != null)
-      'resource_manager_tags': resourceManagerTags!.toTfJson(),
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
 }
 
@@ -89,22 +88,18 @@ final class GoogleComputeStoragePool extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (zone != null) 'zone': zone,
+           'zone': ?zone,
            'storage_pool_type': storagePoolType,
            'pool_provisioned_capacity_gb': poolProvisionedCapacityGb,
            'pool_provisioned_throughput': poolProvisionedThroughput,
-           if (poolProvisionedIops != null)
-             'pool_provisioned_iops': poolProvisionedIops,
-           if (capacityProvisioningType != null)
-             'capacity_provisioning_type': capacityProvisioningType,
-           if (performanceProvisioningType != null)
-             'performance_provisioning_type': performanceProvisioningType,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'pool_provisioned_iops': ?poolProvisionedIops,
+           'capacity_provisioning_type': ?capacityProvisioningType,
+           'performance_provisioning_type': ?performanceProvisioningType,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_protection': ?deletionProtection,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

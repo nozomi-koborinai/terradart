@@ -23,7 +23,7 @@ final class CloudfrontOriginRequestPolicyCookiesConfig {
 
   Map<String, Object?> encode() => {
     'cookie_behavior': cookieBehavior.toTfJson(),
-    if (cookies != null) 'cookies': cookies!.encode(),
+    'cookies': ?cookies?.encode(),
   };
 }
 
@@ -50,9 +50,7 @@ final class CloudfrontOriginRequestPolicyCookiesConfigCookies {
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Typed helper for the `headers_config` block of
@@ -70,8 +68,8 @@ final class CloudfrontOriginRequestPolicyHeadersConfig {
   final CloudfrontOriginRequestPolicyHeadersConfigHeaders? headers;
 
   Map<String, Object?> encode() => {
-    if (headerBehavior != null) 'header_behavior': headerBehavior!.toTfJson(),
-    if (headers != null) 'headers': headers!.encode(),
+    'header_behavior': ?headerBehavior?.toTfJson(),
+    'headers': ?headers?.encode(),
   };
 }
 
@@ -99,9 +97,7 @@ final class CloudfrontOriginRequestPolicyHeadersConfigHeaders {
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Typed helper for the `query_strings_config` block of
@@ -123,7 +119,7 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfig {
 
   Map<String, Object?> encode() => {
     'query_string_behavior': queryStringBehavior.toTfJson(),
-    if (queryStrings != null) 'query_strings': queryStrings!.encode(),
+    'query_strings': ?queryStrings?.encode(),
   };
 }
 
@@ -152,9 +148,7 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfigQueryStrings {
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_cloudfront_origin_request_policy`.
@@ -175,7 +169,7 @@ final class AwsCloudfrontOriginRequestPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'name': name,
            'cookies_config': TfArg.literal(cookiesConfig.encode()),
            'headers_config': TfArg.literal(headersConfig.encode()),

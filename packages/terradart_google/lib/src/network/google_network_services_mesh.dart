@@ -48,12 +48,12 @@ final class GoogleNetworkServicesMesh extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (interceptionPort != null) 'interception_port': interceptionPort,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'description': ?description,
+           'interception_port': ?interceptionPort,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

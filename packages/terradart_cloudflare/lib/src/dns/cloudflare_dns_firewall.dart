@@ -23,9 +23,8 @@ final class DnsFirewallAttackMitigation {
   final TfArg<bool>? onlyWhenUpstreamUnhealthy;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (onlyWhenUpstreamUnhealthy != null)
-      'only_when_upstream_unhealthy': onlyWhenUpstreamUnhealthy!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'only_when_upstream_unhealthy': ?onlyWhenUpstreamUnhealthy?.toTfJson(),
   };
 }
 
@@ -59,17 +58,15 @@ final class CloudflareDnsFirewall extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (deprecateAnyRequests != null)
-             'deprecate_any_requests': deprecateAnyRequests,
-           if (dnsFirewallIpCount != null)
-             'dns_firewall_ip_count': dnsFirewallIpCount,
-           if (ecsFallback != null) 'ecs_fallback': ecsFallback,
-           if (maximumCacheTtl != null) 'maximum_cache_ttl': maximumCacheTtl,
-           if (minimumCacheTtl != null) 'minimum_cache_ttl': minimumCacheTtl,
+           'deprecate_any_requests': ?deprecateAnyRequests,
+           'dns_firewall_ip_count': ?dnsFirewallIpCount,
+           'ecs_fallback': ?ecsFallback,
+           'maximum_cache_ttl': ?maximumCacheTtl,
+           'minimum_cache_ttl': ?minimumCacheTtl,
            'name': name,
-           if (negativeCacheTtl != null) 'negative_cache_ttl': negativeCacheTtl,
-           if (ratelimit != null) 'ratelimit': ratelimit,
-           if (retries != null) 'retries': retries,
+           'negative_cache_ttl': ?negativeCacheTtl,
+           'ratelimit': ?ratelimit,
+           'retries': ?retries,
            'upstream_ips': upstreamIps,
            if (attackMitigation != null)
              'attack_mitigation': TfArg.literal(attackMitigation.encode()),

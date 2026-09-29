@@ -21,9 +21,7 @@ final class SyntheticsCanaryArtifactConfig {
 
   final SyntheticsCanaryArtifactConfigS3Encryption? s3Encryption;
 
-  Map<String, Object?> encode() => {
-    if (s3Encryption != null) 's3_encryption': s3Encryption!.encode(),
-  };
+  Map<String, Object?> encode() => {'s3_encryption': ?s3Encryption?.encode()};
 }
 
 /// Typed helper for the `artifact_config.s3_encryption` block of
@@ -41,8 +39,8 @@ final class SyntheticsCanaryArtifactConfigS3Encryption {
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (encryptionMode != null) 'encryption_mode': encryptionMode!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'encryption_mode': ?encryptionMode?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -82,14 +80,11 @@ final class SyntheticsCanaryRunConfig {
   final TfArg<num>? timeoutInSeconds;
 
   Map<String, Object?> encode() => {
-    if (activeTracing != null) 'active_tracing': activeTracing!.toTfJson(),
-    if (environmentVariables != null)
-      'environment_variables': environmentVariables!.toTfJson(),
-    if (ephemeralStorage != null)
-      'ephemeral_storage': ephemeralStorage!.toTfJson(),
-    if (memoryInMb != null) 'memory_in_mb': memoryInMb!.toTfJson(),
-    if (timeoutInSeconds != null)
-      'timeout_in_seconds': timeoutInSeconds!.toTfJson(),
+    'active_tracing': ?activeTracing?.toTfJson(),
+    'environment_variables': ?environmentVariables?.toTfJson(),
+    'ephemeral_storage': ?ephemeralStorage?.toTfJson(),
+    'memory_in_mb': ?memoryInMb?.toTfJson(),
+    'timeout_in_seconds': ?timeoutInSeconds?.toTfJson(),
   };
 }
 
@@ -110,10 +105,9 @@ final class SyntheticsCanarySchedule {
   final SyntheticsCanaryScheduleRetryConfig? retryConfig;
 
   Map<String, Object?> encode() => {
-    if (durationInSeconds != null)
-      'duration_in_seconds': durationInSeconds!.toTfJson(),
+    'duration_in_seconds': ?durationInSeconds?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (retryConfig != null) 'retry_config': retryConfig!.encode(),
+    'retry_config': ?retryConfig?.encode(),
   };
 }
 
@@ -145,11 +139,9 @@ final class SyntheticsCanaryVpcConfig {
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
-    if (ipv6AllowedForDualStack != null)
-      'ipv6_allowed_for_dual_stack': ipv6AllowedForDualStack!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
+    'ipv6_allowed_for_dual_stack': ?ipv6AllowedForDualStack?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
+    'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -187,23 +179,21 @@ final class AwsSyntheticsCanary extends Resource {
          terraformType: tfType,
          argMap: {
            'artifact_s3_location': artifactS3Location,
-           if (deleteLambda != null) 'delete_lambda': deleteLambda,
+           'delete_lambda': ?deleteLambda,
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
-           if (failureRetentionPeriod != null)
-             'failure_retention_period': failureRetentionPeriod,
+           'failure_retention_period': ?failureRetentionPeriod,
            'handler': handler,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'runtime_version': runtimeVersion,
-           if (s3Bucket != null) 's3_bucket': s3Bucket.encodeAs('id'),
-           if (s3Key != null) 's3_key': s3Key,
-           if (s3Version != null) 's3_version': s3Version,
-           if (startCanary != null) 'start_canary': startCanary,
-           if (successRetentionPeriod != null)
-             'success_retention_period': successRetentionPeriod,
-           if (tags != null) 'tags': tags,
-           if (zipFile != null) 'zip_file': zipFile,
+           's3_bucket': ?s3Bucket?.encodeAs('id'),
+           's3_key': ?s3Key,
+           's3_version': ?s3Version,
+           'start_canary': ?startCanary,
+           'success_retention_period': ?successRetentionPeriod,
+           'tags': ?tags,
+           'zip_file': ?zipFile,
            if (artifactConfig != null)
              'artifact_config': TfArg.literal(artifactConfig.encode()),
            if (runConfig != null)

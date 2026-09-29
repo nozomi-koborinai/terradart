@@ -27,7 +27,7 @@ final class AwsEc2TransitGatewayMulticastDomainAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'subnet_id': subnetId.encodeAs('id'),
            'transit_gateway_attachment_id': transitGatewayAttachmentId,
            'transit_gateway_multicast_domain_id':

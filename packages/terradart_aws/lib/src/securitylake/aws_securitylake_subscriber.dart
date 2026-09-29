@@ -60,7 +60,7 @@ final class SecuritylakeSubscriberSourceAwsLogSourceResource {
 
   Map<String, Object?> encode() => {
     'source_name': sourceName.toTfJson(),
-    if (sourceVersion != null) 'source_version': sourceVersion!.toTfJson(),
+    'source_version': ?sourceVersion?.toTfJson(),
   };
 }
 
@@ -98,7 +98,7 @@ final class SecuritylakeSubscriberSourceCustomLogSourceResource {
 
   Map<String, Object?> encode() => {
     'source_name': sourceName.toTfJson(),
-    if (sourceVersion != null) 'source_version': sourceVersion!.toTfJson(),
+    'source_version': ?sourceVersion?.toTfJson(),
   };
 }
 
@@ -141,12 +141,11 @@ final class AwsSecuritylakeSubscriber extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessType != null) 'access_type': accessType,
-           if (region != null) 'region': region,
-           if (subscriberDescription != null)
-             'subscriber_description': subscriberDescription,
-           if (subscriberName != null) 'subscriber_name': subscriberName,
-           if (tags != null) 'tags': tags,
+           'access_type': ?accessType,
+           'region': ?region,
+           'subscriber_description': ?subscriberDescription,
+           'subscriber_name': ?subscriberName,
+           'tags': ?tags,
            if (source != null)
              'source': TfArg.literal([for (final e in source) e.encode()]),
            if (subscriberIdentity != null)

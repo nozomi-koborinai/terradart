@@ -224,29 +224,22 @@ final class SpotFleetRequestLaunchSpecification {
 
   Map<String, Object?> encode() => {
     'ami': ami.toTfJson(),
-    if (associatePublicIpAddress != null)
-      'associate_public_ip_address': associatePublicIpAddress!.toTfJson(),
-    if (availabilityZone != null)
-      'availability_zone': availabilityZone!.toTfJson(),
-    if (ebsOptimized != null) 'ebs_optimized': ebsOptimized!.toTfJson(),
-    if (iamInstanceProfile != null)
-      'iam_instance_profile': iamInstanceProfile!.toTfJson(),
-    if (iamInstanceProfileArn != null)
-      'iam_instance_profile_arn': iamInstanceProfileArn!.toTfJson(),
+    'associate_public_ip_address': ?associatePublicIpAddress?.toTfJson(),
+    'availability_zone': ?availabilityZone?.toTfJson(),
+    'ebs_optimized': ?ebsOptimized?.toTfJson(),
+    'iam_instance_profile': ?iamInstanceProfile?.toTfJson(),
+    'iam_instance_profile_arn': ?iamInstanceProfileArn?.toTfJson(),
     'instance_type': instanceType.toTfJson(),
-    if (keyName != null) 'key_name': keyName!.toTfJson(),
-    if (monitoring != null) 'monitoring': monitoring!.toTfJson(),
-    if (placementGroup != null) 'placement_group': placementGroup!.toTfJson(),
-    if (placementTenancy != null)
-      'placement_tenancy': placementTenancy!.toTfJson(),
-    if (spotPrice != null) 'spot_price': spotPrice!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (userData != null) 'user_data': userData!.toTfJson(),
-    if (vpcSecurityGroupIds != null)
-      'vpc_security_group_ids': vpcSecurityGroupIds!.encodeAs('id').toTfJson(),
-    if (weightedCapacity != null)
-      'weighted_capacity': weightedCapacity!.toTfJson(),
+    'key_name': ?keyName?.toTfJson(),
+    'monitoring': ?monitoring?.toTfJson(),
+    'placement_group': ?placementGroup?.toTfJson(),
+    'placement_tenancy': ?placementTenancy?.toTfJson(),
+    'spot_price': ?spotPrice?.toTfJson(),
+    'subnet_id': ?subnetId?.encodeAs('id').toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'user_data': ?userData?.toTfJson(),
+    'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id').toTfJson(),
+    'weighted_capacity': ?weightedCapacity?.toTfJson(),
     if (ebsBlockDevice != null)
       'ebs_block_device': [for (final e in ebsBlockDevice!) e.encode()],
     if (ephemeralBlockDevice != null)
@@ -308,16 +301,15 @@ final class SpotFleetRequestLaunchSpecificationEbsBlockDevice {
   volumeType;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_name': deviceName.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'snapshot_id': ?snapshotId?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -388,14 +380,13 @@ final class SpotFleetRequestLaunchSpecificationRootBlockDevice {
   volumeType;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -455,9 +446,9 @@ final class SpotFleetRequestLaunchTemplateConfigLaunchTemplateSpecification {
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -491,16 +482,13 @@ final class SpotFleetRequestLaunchTemplateConfigOverrides {
   instanceRequirements;
 
   Map<String, Object?> encode() => {
-    if (availabilityZone != null)
-      'availability_zone': availabilityZone!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (priority != null) 'priority': priority!.toTfJson(),
-    if (spotPrice != null) 'spot_price': spotPrice!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
-    if (weightedCapacity != null)
-      'weighted_capacity': weightedCapacity!.toTfJson(),
-    if (instanceRequirements != null)
-      'instance_requirements': instanceRequirements!.encode(),
+    'availability_zone': ?availabilityZone?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'priority': ?priority?.toTfJson(),
+    'spot_price': ?spotPrice?.toTfJson(),
+    'subnet_id': ?subnetId?.encodeAs('id').toTfJson(),
+    'weighted_capacity': ?weightedCapacity?.toTfJson(),
+    'instance_requirements': ?instanceRequirements?.encode(),
   };
 }
 
@@ -637,46 +625,33 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements {
       'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
     if (acceleratorTypes != null)
       'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
-    if (allowedInstanceTypes != null)
-      'allowed_instance_types': allowedInstanceTypes!.toTfJson(),
-    if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
-    if (burstablePerformance != null)
-      'burstable_performance': burstablePerformance!.toTfJson(),
+    'allowed_instance_types': ?allowedInstanceTypes?.toTfJson(),
+    'bare_metal': ?bareMetal?.toTfJson(),
+    'burstable_performance': ?burstablePerformance?.toTfJson(),
     if (cpuManufacturers != null)
       'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
-    if (excludedInstanceTypes != null)
-      'excluded_instance_types': excludedInstanceTypes!.toTfJson(),
+    'excluded_instance_types': ?excludedInstanceTypes?.toTfJson(),
     if (instanceGenerations != null)
       'instance_generations': [
         for (final e in instanceGenerations!) e.toTfJson(),
       ],
-    if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
+    'local_storage': ?localStorage?.toTfJson(),
     if (localStorageTypes != null)
       'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
-    if (onDemandMaxPricePercentageOverLowestPrice != null)
-      'on_demand_max_price_percentage_over_lowest_price':
-          onDemandMaxPricePercentageOverLowestPrice!.toTfJson(),
-    if (requireHibernateSupport != null)
-      'require_hibernate_support': requireHibernateSupport!.toTfJson(),
-    if (spotMaxPricePercentageOverLowestPrice != null)
-      'spot_max_price_percentage_over_lowest_price':
-          spotMaxPricePercentageOverLowestPrice!.toTfJson(),
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.encode(),
-    if (acceleratorTotalMemoryMib != null)
-      'accelerator_total_memory_mib': acceleratorTotalMemoryMib!.encode(),
-    if (baselineEbsBandwidthMbps != null)
-      'baseline_ebs_bandwidth_mbps': baselineEbsBandwidthMbps!.encode(),
-    if (memoryGibPerVcpu != null)
-      'memory_gib_per_vcpu': memoryGibPerVcpu!.encode(),
-    if (memoryMib != null) 'memory_mib': memoryMib!.encode(),
-    if (networkBandwidthGbps != null)
-      'network_bandwidth_gbps': networkBandwidthGbps!.encode(),
-    if (networkInterfaceCount != null)
-      'network_interface_count': networkInterfaceCount!.encode(),
-    if (totalLocalStorageGb != null)
-      'total_local_storage_gb': totalLocalStorageGb!.encode(),
-    if (vcpuCount != null) 'vcpu_count': vcpuCount!.encode(),
+    'on_demand_max_price_percentage_over_lowest_price':
+        ?onDemandMaxPricePercentageOverLowestPrice?.toTfJson(),
+    'require_hibernate_support': ?requireHibernateSupport?.toTfJson(),
+    'spot_max_price_percentage_over_lowest_price':
+        ?spotMaxPricePercentageOverLowestPrice?.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.encode(),
+    'accelerator_total_memory_mib': ?acceleratorTotalMemoryMib?.encode(),
+    'baseline_ebs_bandwidth_mbps': ?baselineEbsBandwidthMbps?.encode(),
+    'memory_gib_per_vcpu': ?memoryGibPerVcpu?.encode(),
+    'memory_mib': ?memoryMib?.encode(),
+    'network_bandwidth_gbps': ?networkBandwidthGbps?.encode(),
+    'network_interface_count': ?networkInterfaceCount?.encode(),
+    'total_local_storage_gb': ?totalLocalStorageGb?.encode(),
+    'vcpu_count': ?vcpuCount?.encode(),
   };
 }
 
@@ -838,8 +813,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcc
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -857,8 +832,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcc
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -876,8 +851,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBas
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -895,8 +870,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMem
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -914,8 +889,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMem
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -933,8 +908,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNet
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -952,8 +927,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNet
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -971,8 +946,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsTot
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -990,8 +965,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsVcp
   final TfArg<num>? min;
 
   Map<String, Object?> encode() => {
-    if (max != null) 'max': max!.toTfJson(),
-    if (min != null) 'min': min!.toTfJson(),
+    'max': ?max?.toTfJson(),
+    'min': ?min?.toTfJson(),
   };
 }
 
@@ -1005,8 +980,7 @@ final class SpotFleetRequestSpotMaintenanceStrategies {
   capacityRebalance;
 
   Map<String, Object?> encode() => {
-    if (capacityRebalance != null)
-      'capacity_rebalance': capacityRebalance!.encode(),
+    'capacity_rebalance': ?capacityRebalance?.encode(),
   };
 }
 
@@ -1024,8 +998,7 @@ final class SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalance {
   replacementStrategy;
 
   Map<String, Object?> encode() => {
-    if (replacementStrategy != null)
-      'replacement_strategy': replacementStrategy!.toTfJson(),
+    'replacement_strategy': ?replacementStrategy?.toTfJson(),
   };
 }
 
@@ -1083,43 +1056,31 @@ final class AwsSpotFleetRequest extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allocationStrategy != null)
-             'allocation_strategy': allocationStrategy,
-           if (context != null) 'context': context,
-           if (excessCapacityTerminationPolicy != null)
-             'excess_capacity_termination_policy':
-                 excessCapacityTerminationPolicy,
-           if (fleetType != null) 'fleet_type': fleetType,
+           'allocation_strategy': ?allocationStrategy,
+           'context': ?context,
+           'excess_capacity_termination_policy':
+               ?excessCapacityTerminationPolicy,
+           'fleet_type': ?fleetType,
            'iam_fleet_role': iamFleetRole,
-           if (instanceInterruptionBehaviour != null)
-             'instance_interruption_behaviour': instanceInterruptionBehaviour,
-           if (instancePoolsToUseCount != null)
-             'instance_pools_to_use_count': instancePoolsToUseCount,
-           if (loadBalancers != null) 'load_balancers': loadBalancers,
-           if (onDemandAllocationStrategy != null)
-             'on_demand_allocation_strategy': onDemandAllocationStrategy,
-           if (onDemandMaxTotalPrice != null)
-             'on_demand_max_total_price': onDemandMaxTotalPrice,
-           if (onDemandTargetCapacity != null)
-             'on_demand_target_capacity': onDemandTargetCapacity,
-           if (region != null) 'region': region,
-           if (replaceUnhealthyInstances != null)
-             'replace_unhealthy_instances': replaceUnhealthyInstances,
-           if (spotPrice != null) 'spot_price': spotPrice,
-           if (tags != null) 'tags': tags,
+           'instance_interruption_behaviour': ?instanceInterruptionBehaviour,
+           'instance_pools_to_use_count': ?instancePoolsToUseCount,
+           'load_balancers': ?loadBalancers,
+           'on_demand_allocation_strategy': ?onDemandAllocationStrategy,
+           'on_demand_max_total_price': ?onDemandMaxTotalPrice,
+           'on_demand_target_capacity': ?onDemandTargetCapacity,
+           'region': ?region,
+           'replace_unhealthy_instances': ?replaceUnhealthyInstances,
+           'spot_price': ?spotPrice,
+           'tags': ?tags,
            'target_capacity': targetCapacity,
-           if (targetCapacityUnitType != null)
-             'target_capacity_unit_type': targetCapacityUnitType,
-           if (targetGroupArns != null) 'target_group_arns': targetGroupArns,
-           if (terminateInstancesOnDelete != null)
-             'terminate_instances_on_delete': terminateInstancesOnDelete,
-           if (terminateInstancesWithExpiration != null)
-             'terminate_instances_with_expiration':
-                 terminateInstancesWithExpiration,
-           if (validFrom != null) 'valid_from': validFrom,
-           if (validUntil != null) 'valid_until': validUntil,
-           if (waitForFulfillment != null)
-             'wait_for_fulfillment': waitForFulfillment,
+           'target_capacity_unit_type': ?targetCapacityUnitType,
+           'target_group_arns': ?targetGroupArns,
+           'terminate_instances_on_delete': ?terminateInstancesOnDelete,
+           'terminate_instances_with_expiration':
+               ?terminateInstancesWithExpiration,
+           'valid_from': ?validFrom,
+           'valid_until': ?validUntil,
+           'wait_for_fulfillment': ?waitForFulfillment,
            ...launch.argMap,
            if (spotMaintenanceStrategies != null)
              'spot_maintenance_strategies': TfArg.literal(

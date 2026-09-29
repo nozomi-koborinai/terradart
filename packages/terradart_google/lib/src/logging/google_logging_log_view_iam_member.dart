@@ -27,12 +27,12 @@ final class GoogleLoggingLogViewIamMember extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (location != null) 'location': location,
+           'location': ?location,
            'name': name,
            'parent': parent,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

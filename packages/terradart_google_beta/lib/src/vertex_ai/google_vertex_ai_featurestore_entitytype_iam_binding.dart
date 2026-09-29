@@ -25,7 +25,7 @@ final class VertexAiFeaturestoreEntitytypeIamBindingCondition {
   final TfArg<String> title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
     'title': title.toTfJson(),
   };

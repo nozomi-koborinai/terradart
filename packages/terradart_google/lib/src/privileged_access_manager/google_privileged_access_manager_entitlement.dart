@@ -22,10 +22,8 @@ final class PrivilegedAccessManagerEntitlementAdditionalNotificationTargets {
   final TfArg<List<Object?>>? requesterEmailRecipients;
 
   Map<String, Object?> encode() => {
-    if (adminEmailRecipients != null)
-      'admin_email_recipients': adminEmailRecipients!.toTfJson(),
-    if (requesterEmailRecipients != null)
-      'requester_email_recipients': requesterEmailRecipients!.toTfJson(),
+    'admin_email_recipients': ?adminEmailRecipients?.toTfJson(),
+    'requester_email_recipients': ?requesterEmailRecipients?.toTfJson(),
   };
 }
 
@@ -62,9 +60,7 @@ final class PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovals {
   steps;
 
   Map<String, Object?> encode() => {
-    if (requireApproverJustification != null)
-      'require_approver_justification': requireApproverJustification!
-          .toTfJson(),
+    'require_approver_justification': ?requireApproverJustification?.toTfJson(),
     'steps': [for (final e in steps) e.encode()],
   };
 }
@@ -87,10 +83,8 @@ final class PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsSte
   approvers;
 
   Map<String, Object?> encode() => {
-    if (approvalsNeeded != null)
-      'approvals_needed': approvalsNeeded!.toTfJson(),
-    if (approverEmailRecipients != null)
-      'approver_email_recipients': approverEmailRecipients!.toTfJson(),
+    'approvals_needed': ?approvalsNeeded?.toTfJson(),
+    'approver_email_recipients': ?approverEmailRecipients?.toTfJson(),
     'approvers': approvers.encode(),
   };
 }
@@ -175,8 +169,7 @@ final class PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBi
   final TfArg<String> role;
 
   Map<String, Object?> encode() => {
-    if (conditionExpression != null)
-      'condition_expression': conditionExpression!.toTfJson(),
+    'condition_expression': ?conditionExpression?.toTfJson(),
     'role': role.toTfJson(),
   };
 }
@@ -378,7 +371,7 @@ final class GooglePrivilegedAccessManagerEntitlement extends Resource {
              'additional_notification_targets': TfArg.literal(
                additionalNotificationTargets.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

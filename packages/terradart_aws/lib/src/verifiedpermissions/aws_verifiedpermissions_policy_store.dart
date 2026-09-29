@@ -59,11 +59,10 @@ final class AwsVerifiedpermissionsPolicyStore extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'deletion_protection': ?deletionProtection,
+           'description': ?description,
+           'region': ?region,
+           'tags': ?tags,
            if (validationSettings != null)
              'validation_settings': TfArg.literal([
                for (final e in validationSettings) e.encode(),

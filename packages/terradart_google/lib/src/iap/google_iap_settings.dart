@@ -40,16 +40,13 @@ final class IapSettingsAccessSettings {
   workforceIdentitySettings;
 
   Map<String, Object?> encode() => {
-    if (identitySources != null)
-      'identity_sources': identitySources!.toTfJson(),
-    if (allowedDomainsSettings != null)
-      'allowed_domains_settings': allowedDomainsSettings!.encode(),
-    if (corsSettings != null) 'cors_settings': corsSettings!.encode(),
-    if (gcipSettings != null) 'gcip_settings': gcipSettings!.encode(),
-    if (oauthSettings != null) 'oauth_settings': oauthSettings!.encode(),
-    if (reauthSettings != null) 'reauth_settings': reauthSettings!.encode(),
-    if (workforceIdentitySettings != null)
-      'workforce_identity_settings': workforceIdentitySettings!.encode(),
+    'identity_sources': ?identitySources?.toTfJson(),
+    'allowed_domains_settings': ?allowedDomainsSettings?.encode(),
+    'cors_settings': ?corsSettings?.encode(),
+    'gcip_settings': ?gcipSettings?.encode(),
+    'oauth_settings': ?oauthSettings?.encode(),
+    'reauth_settings': ?reauthSettings?.encode(),
+    'workforce_identity_settings': ?workforceIdentitySettings?.encode(),
   };
 }
 
@@ -67,8 +64,8 @@ final class IapSettingsAccessSettingsAllowedDomainsSettings {
   final TfArg<bool>? enable;
 
   Map<String, Object?> encode() => {
-    if (domains != null) 'domains': domains!.toTfJson(),
-    if (enable != null) 'enable': enable!.toTfJson(),
+    'domains': ?domains?.toTfJson(),
+    'enable': ?enable?.toTfJson(),
   };
 }
 
@@ -81,8 +78,7 @@ final class IapSettingsAccessSettingsCorsSettings {
   final TfArg<bool>? allowHttpOptions;
 
   Map<String, Object?> encode() => {
-    if (allowHttpOptions != null)
-      'allow_http_options': allowHttpOptions!.toTfJson(),
+    'allow_http_options': ?allowHttpOptions?.toTfJson(),
   };
 }
 
@@ -100,8 +96,8 @@ final class IapSettingsAccessSettingsGcipSettings {
   final TfArg<List<Object?>>? tenantIds;
 
   Map<String, Object?> encode() => {
-    if (loginPageUri != null) 'login_page_uri': loginPageUri!.toTfJson(),
-    if (tenantIds != null) 'tenant_ids': tenantIds!.toTfJson(),
+    'login_page_uri': ?loginPageUri?.toTfJson(),
+    'tenant_ids': ?tenantIds?.toTfJson(),
   };
 }
 
@@ -125,11 +121,10 @@ final class IapSettingsAccessSettingsOauthSettings {
   final TfArg<List<Object?>>? programmaticClients;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (loginHint != null) 'login_hint': loginHint!.toTfJson(),
-    if (programmaticClients != null)
-      'programmatic_clients': programmaticClients!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'login_hint': ?loginHint?.toTfJson(),
+    'programmatic_clients': ?programmaticClients?.toTfJson(),
   };
 }
 
@@ -192,8 +187,8 @@ final class IapSettingsAccessSettingsWorkforceIdentitySettings {
   final IapSettingsAccessSettingsWorkforceIdentitySettingsOauth2? oauth2;
 
   Map<String, Object?> encode() => {
-    if (workforcePools != null) 'workforce_pools': workforcePools!.toTfJson(),
-    if (oauth2 != null) 'oauth2': oauth2!.encode(),
+    'workforce_pools': ?workforcePools?.toTfJson(),
+    'oauth2': ?oauth2?.encode(),
   };
 }
 
@@ -211,8 +206,8 @@ final class IapSettingsAccessSettingsWorkforceIdentitySettingsOauth2 {
   final TfArg<String>? clientSecret;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
   };
 }
 
@@ -238,12 +233,10 @@ final class IapSettingsApplicationSettings {
   final IapSettingsApplicationSettingsCsmSettings? csmSettings;
 
   Map<String, Object?> encode() => {
-    if (cookieDomain != null) 'cookie_domain': cookieDomain!.toTfJson(),
-    if (accessDeniedPageSettings != null)
-      'access_denied_page_settings': accessDeniedPageSettings!.encode(),
-    if (attributePropagationSettings != null)
-      'attribute_propagation_settings': attributePropagationSettings!.encode(),
-    if (csmSettings != null) 'csm_settings': csmSettings!.encode(),
+    'cookie_domain': ?cookieDomain?.toTfJson(),
+    'access_denied_page_settings': ?accessDeniedPageSettings?.encode(),
+    'attribute_propagation_settings': ?attributePropagationSettings?.encode(),
+    'csm_settings': ?csmSettings?.encode(),
   };
 }
 
@@ -264,13 +257,10 @@ final class IapSettingsApplicationSettingsAccessDeniedPageSettings {
   final TfArg<bool>? remediationTokenGenerationEnabled;
 
   Map<String, Object?> encode() => {
-    if (accessDeniedPageUri != null)
-      'access_denied_page_uri': accessDeniedPageUri!.toTfJson(),
-    if (generateTroubleshootingUri != null)
-      'generate_troubleshooting_uri': generateTroubleshootingUri!.toTfJson(),
-    if (remediationTokenGenerationEnabled != null)
-      'remediation_token_generation_enabled': remediationTokenGenerationEnabled!
-          .toTfJson(),
+    'access_denied_page_uri': ?accessDeniedPageUri?.toTfJson(),
+    'generate_troubleshooting_uri': ?generateTroubleshootingUri?.toTfJson(),
+    'remediation_token_generation_enabled': ?remediationTokenGenerationEnabled
+        ?.toTfJson(),
   };
 }
 
@@ -296,8 +286,8 @@ final class IapSettingsApplicationSettingsAttributePropagationSettings {
   outputCredentials;
 
   Map<String, Object?> encode() => {
-    if (enable != null) 'enable': enable!.toTfJson(),
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'enable': ?enable?.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     if (outputCredentials != null)
       'output_credentials': [for (final e in outputCredentials!) e.toTfJson()],
   };
@@ -325,9 +315,7 @@ final class IapSettingsApplicationSettingsCsmSettings {
 
   final TfArg<String>? rctokenAud;
 
-  Map<String, Object?> encode() => {
-    if (rctokenAud != null) 'rctoken_aud': rctokenAud!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'rctoken_aud': ?rctokenAud?.toTfJson()};
 }
 
 /// Factory wrapper for `google_iap_settings`.
@@ -377,7 +365,7 @@ final class GoogleIapSettings extends Resource {
              'application_settings': TfArg.literal(
                applicationSettings.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

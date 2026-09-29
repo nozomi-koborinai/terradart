@@ -24,13 +24,13 @@ final class DataAwsRdsEvents extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (duration != null) 'duration': duration,
-           if (endTime != null) 'end_time': endTime,
-           if (eventCategories != null) 'event_categories': eventCategories,
-           if (region != null) 'region': region,
-           if (sourceIdentifier != null) 'source_identifier': sourceIdentifier,
-           if (sourceType != null) 'source_type': sourceType,
-           if (startTime != null) 'start_time': startTime,
+           'duration': ?duration,
+           'end_time': ?endTime,
+           'event_categories': ?eventCategories,
+           'region': ?region,
+           'source_identifier': ?sourceIdentifier,
+           'source_type': ?sourceType,
+           'start_time': ?startTime,
          },
        );
 

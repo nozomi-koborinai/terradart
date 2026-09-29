@@ -58,9 +58,9 @@ final class CloudflareMagicNetworkMonitoringConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (defaultSampling != null) 'default_sampling': defaultSampling,
+           'default_sampling': ?defaultSampling,
            'name': name,
-           if (routerIps != null) 'router_ips': routerIps,
+           'router_ips': ?routerIps,
            if (warpDevices != null)
              'warp_devices': TfArg.literal([
                for (final e in warpDevices) e.encode(),

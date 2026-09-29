@@ -26,11 +26,11 @@ final class GoogleDataCatalogTagTemplateIamMember extends Resource {
          terraformType: tfType,
          argMap: {
            'tag_template': tagTemplate,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role': role,
            'member': member,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

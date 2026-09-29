@@ -49,12 +49,10 @@ final class EfsFileSystemLifecyclePolicy {
   transitionToPrimaryStorageClass;
 
   Map<String, Object?> encode() => {
-    if (transitionToArchive != null)
-      'transition_to_archive': transitionToArchive!.toTfJson(),
-    if (transitionToIa != null) 'transition_to_ia': transitionToIa!.toTfJson(),
-    if (transitionToPrimaryStorageClass != null)
-      'transition_to_primary_storage_class': transitionToPrimaryStorageClass!
-          .toTfJson(),
+    'transition_to_archive': ?transitionToArchive?.toTfJson(),
+    'transition_to_ia': ?transitionToIa?.toTfJson(),
+    'transition_to_primary_storage_class': ?transitionToPrimaryStorageClass
+        ?.toTfJson(),
   };
 }
 
@@ -114,8 +112,7 @@ final class EfsFileSystemProtection {
   replicationOverwrite;
 
   Map<String, Object?> encode() => {
-    if (replicationOverwrite != null)
-      'replication_overwrite': replicationOverwrite!.toTfJson(),
+    'replication_overwrite': ?replicationOverwrite?.toTfJson(),
   };
 }
 
@@ -153,17 +150,15 @@ final class AwsEfsFileSystem extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZoneName != null)
-             'availability_zone_name': availabilityZoneName,
-           if (creationToken != null) 'creation_token': creationToken,
-           if (encrypted != null) 'encrypted': encrypted,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (performanceMode != null) 'performance_mode': performanceMode,
-           if (provisionedThroughputInMibps != null)
-             'provisioned_throughput_in_mibps': provisionedThroughputInMibps,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (throughputMode != null) 'throughput_mode': throughputMode,
+           'availability_zone_name': ?availabilityZoneName,
+           'creation_token': ?creationToken,
+           'encrypted': ?encrypted,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'performance_mode': ?performanceMode,
+           'provisioned_throughput_in_mibps': ?provisionedThroughputInMibps,
+           'region': ?region,
+           'tags': ?tags,
+           'throughput_mode': ?throughputMode,
            if (lifecyclePolicy != null)
              'lifecycle_policy': TfArg.literal([
                for (final e in lifecyclePolicy) e.encode(),

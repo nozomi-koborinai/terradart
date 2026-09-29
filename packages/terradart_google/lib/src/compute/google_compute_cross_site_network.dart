@@ -38,9 +38,9 @@ final class GoogleComputeCrossSiteNetwork extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

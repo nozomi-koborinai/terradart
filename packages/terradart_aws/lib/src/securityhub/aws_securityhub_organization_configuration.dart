@@ -72,9 +72,8 @@ final class AwsSecurityhubOrganizationConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'auto_enable': autoEnable,
-           if (autoEnableStandards != null)
-             'auto_enable_standards': autoEnableStandards,
-           if (region != null) 'region': region,
+           'auto_enable_standards': ?autoEnableStandards,
+           'region': ?region,
            if (organizationConfiguration != null)
              'organization_configuration': TfArg.literal(
                organizationConfiguration.encode(),

@@ -36,14 +36,11 @@ final class TransferWorkflowOnExceptionSteps {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (copyStepDetails != null) 'copy_step_details': copyStepDetails!.encode(),
-    if (customStepDetails != null)
-      'custom_step_details': customStepDetails!.encode(),
-    if (decryptStepDetails != null)
-      'decrypt_step_details': decryptStepDetails!.encode(),
-    if (deleteStepDetails != null)
-      'delete_step_details': deleteStepDetails!.encode(),
-    if (tagStepDetails != null) 'tag_step_details': tagStepDetails!.encode(),
+    'copy_step_details': ?copyStepDetails?.encode(),
+    'custom_step_details': ?customStepDetails?.encode(),
+    'decrypt_step_details': ?decryptStepDetails?.encode(),
+    'delete_step_details': ?deleteStepDetails?.encode(),
+    'tag_step_details': ?tagStepDetails?.encode(),
   };
 }
 
@@ -82,13 +79,10 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetails {
   destinationFileLocation;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (overwriteExisting != null)
-      'overwrite_existing': overwriteExisting!.toTfJson(),
-    if (sourceFileLocation != null)
-      'source_file_location': sourceFileLocation!.toTfJson(),
-    if (destinationFileLocation != null)
-      'destination_file_location': destinationFileLocation!.encode(),
+    'name': ?name?.toTfJson(),
+    'overwrite_existing': ?overwriteExisting?.toTfJson(),
+    'source_file_location': ?sourceFileLocation?.toTfJson(),
+    'destination_file_location': ?destinationFileLocation?.encode(),
   };
 }
 
@@ -121,8 +115,8 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocati
   s3FileLocation;
 
   Map<String, Object?> encode() => {
-    if (efsFileLocation != null) 'efs_file_location': efsFileLocation!.encode(),
-    if (s3FileLocation != null) 's3_file_location': s3FileLocation!.encode(),
+    'efs_file_location': ?efsFileLocation?.encode(),
+    's3_file_location': ?s3FileLocation?.encode(),
   };
 }
 
@@ -140,8 +134,8 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocati
   final TfArg<String>? path;
 
   Map<String, Object?> encode() => {
-    if (fileSystemId != null) 'file_system_id': fileSystemId!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'file_system_id': ?fileSystemId?.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -159,8 +153,8 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocati
   final TfArg<String>? key;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
+    'key': ?key?.toTfJson(),
   };
 }
 
@@ -184,11 +178,10 @@ final class TransferWorkflowOnExceptionStepsCustomStepDetails {
   final TfArg<num>? timeoutSeconds;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (sourceFileLocation != null)
-      'source_file_location': sourceFileLocation!.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'source_file_location': ?sourceFileLocation?.toTfJson(),
+    'target': ?target?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
   };
 }
 
@@ -219,14 +212,11 @@ final class TransferWorkflowOnExceptionStepsDecryptStepDetails {
   destinationFileLocation;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (overwriteExisting != null)
-      'overwrite_existing': overwriteExisting!.toTfJson(),
-    if (sourceFileLocation != null)
-      'source_file_location': sourceFileLocation!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'overwrite_existing': ?overwriteExisting?.toTfJson(),
+    'source_file_location': ?sourceFileLocation?.toTfJson(),
     'type': type.toTfJson(),
-    if (destinationFileLocation != null)
-      'destination_file_location': destinationFileLocation!.encode(),
+    'destination_file_location': ?destinationFileLocation?.encode(),
   };
 }
 
@@ -271,8 +261,8 @@ final class TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLoc
   s3FileLocation;
 
   Map<String, Object?> encode() => {
-    if (efsFileLocation != null) 'efs_file_location': efsFileLocation!.encode(),
-    if (s3FileLocation != null) 's3_file_location': s3FileLocation!.encode(),
+    'efs_file_location': ?efsFileLocation?.encode(),
+    's3_file_location': ?s3FileLocation?.encode(),
   };
 }
 
@@ -290,8 +280,8 @@ final class TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLoc
   final TfArg<String>? path;
 
   Map<String, Object?> encode() => {
-    if (fileSystemId != null) 'file_system_id': fileSystemId!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'file_system_id': ?fileSystemId?.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -309,8 +299,8 @@ final class TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLoc
   final TfArg<String>? key;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
+    'key': ?key?.toTfJson(),
   };
 }
 
@@ -328,9 +318,8 @@ final class TransferWorkflowOnExceptionStepsDeleteStepDetails {
   final TfArg<String>? sourceFileLocation;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (sourceFileLocation != null)
-      'source_file_location': sourceFileLocation!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'source_file_location': ?sourceFileLocation?.toTfJson(),
   };
 }
 
@@ -351,9 +340,8 @@ final class TransferWorkflowOnExceptionStepsTagStepDetails {
   final List<TransferWorkflowOnExceptionStepsTagStepDetailsTags>? tags;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (sourceFileLocation != null)
-      'source_file_location': sourceFileLocation!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'source_file_location': ?sourceFileLocation?.toTfJson(),
     if (tags != null) 'tags': [for (final e in tags!) e.encode()],
   };
 }
@@ -404,14 +392,11 @@ final class TransferWorkflowSteps {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (copyStepDetails != null) 'copy_step_details': copyStepDetails!.encode(),
-    if (customStepDetails != null)
-      'custom_step_details': customStepDetails!.encode(),
-    if (decryptStepDetails != null)
-      'decrypt_step_details': decryptStepDetails!.encode(),
-    if (deleteStepDetails != null)
-      'delete_step_details': deleteStepDetails!.encode(),
-    if (tagStepDetails != null) 'tag_step_details': tagStepDetails!.encode(),
+    'copy_step_details': ?copyStepDetails?.encode(),
+    'custom_step_details': ?customStepDetails?.encode(),
+    'decrypt_step_details': ?decryptStepDetails?.encode(),
+    'delete_step_details': ?deleteStepDetails?.encode(),
+    'tag_step_details': ?tagStepDetails?.encode(),
   };
 }
 
@@ -450,13 +435,10 @@ final class TransferWorkflowStepsCopyStepDetails {
   destinationFileLocation;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (overwriteExisting != null)
-      'overwrite_existing': overwriteExisting!.toTfJson(),
-    if (sourceFileLocation != null)
-      'source_file_location': sourceFileLocation!.toTfJson(),
-    if (destinationFileLocation != null)
-      'destination_file_location': destinationFileLocation!.encode(),
+    'name': ?name?.toTfJson(),
+    'overwrite_existing': ?overwriteExisting?.toTfJson(),
+    'source_file_location': ?sourceFileLocation?.toTfJson(),
+    'destination_file_location': ?destinationFileLocation?.encode(),
   };
 }
 
@@ -489,8 +471,8 @@ final class TransferWorkflowStepsCopyStepDetailsDestinationFileLocation {
   s3FileLocation;
 
   Map<String, Object?> encode() => {
-    if (efsFileLocation != null) 'efs_file_location': efsFileLocation!.encode(),
-    if (s3FileLocation != null) 's3_file_location': s3FileLocation!.encode(),
+    'efs_file_location': ?efsFileLocation?.encode(),
+    's3_file_location': ?s3FileLocation?.encode(),
   };
 }
 
@@ -508,8 +490,8 @@ final class TransferWorkflowStepsCopyStepDetailsDestinationFileLocationEfsFileLo
   final TfArg<String>? path;
 
   Map<String, Object?> encode() => {
-    if (fileSystemId != null) 'file_system_id': fileSystemId!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'file_system_id': ?fileSystemId?.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -527,8 +509,8 @@ final class TransferWorkflowStepsCopyStepDetailsDestinationFileLocationS3FileLoc
   final TfArg<String>? key;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
+    'key': ?key?.toTfJson(),
   };
 }
 
@@ -552,11 +534,10 @@ final class TransferWorkflowStepsCustomStepDetails {
   final TfArg<num>? timeoutSeconds;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (sourceFileLocation != null)
-      'source_file_location': sourceFileLocation!.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'source_file_location': ?sourceFileLocation?.toTfJson(),
+    'target': ?target?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
   };
 }
 
@@ -585,14 +566,11 @@ final class TransferWorkflowStepsDecryptStepDetails {
   destinationFileLocation;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (overwriteExisting != null)
-      'overwrite_existing': overwriteExisting!.toTfJson(),
-    if (sourceFileLocation != null)
-      'source_file_location': sourceFileLocation!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'overwrite_existing': ?overwriteExisting?.toTfJson(),
+    'source_file_location': ?sourceFileLocation?.toTfJson(),
     'type': type.toTfJson(),
-    if (destinationFileLocation != null)
-      'destination_file_location': destinationFileLocation!.encode(),
+    'destination_file_location': ?destinationFileLocation?.encode(),
   };
 }
 
@@ -634,8 +612,8 @@ final class TransferWorkflowStepsDecryptStepDetailsDestinationFileLocation {
   s3FileLocation;
 
   Map<String, Object?> encode() => {
-    if (efsFileLocation != null) 'efs_file_location': efsFileLocation!.encode(),
-    if (s3FileLocation != null) 's3_file_location': s3FileLocation!.encode(),
+    'efs_file_location': ?efsFileLocation?.encode(),
+    's3_file_location': ?s3FileLocation?.encode(),
   };
 }
 
@@ -653,8 +631,8 @@ final class TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationEfsFil
   final TfArg<String>? path;
 
   Map<String, Object?> encode() => {
-    if (fileSystemId != null) 'file_system_id': fileSystemId!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'file_system_id': ?fileSystemId?.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -672,8 +650,8 @@ final class TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationS3File
   final TfArg<String>? key;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
+    'key': ?key?.toTfJson(),
   };
 }
 
@@ -691,9 +669,8 @@ final class TransferWorkflowStepsDeleteStepDetails {
   final TfArg<String>? sourceFileLocation;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (sourceFileLocation != null)
-      'source_file_location': sourceFileLocation!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'source_file_location': ?sourceFileLocation?.toTfJson(),
   };
 }
 
@@ -714,9 +691,8 @@ final class TransferWorkflowStepsTagStepDetails {
   final List<TransferWorkflowStepsTagStepDetailsTags>? tags;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (sourceFileLocation != null)
-      'source_file_location': sourceFileLocation!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'source_file_location': ?sourceFileLocation?.toTfJson(),
     if (tags != null) 'tags': [for (final e in tags!) e.encode()],
   };
 }
@@ -758,9 +734,9 @@ final class AwsTransferWorkflow extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'region': ?region,
+           'tags': ?tags,
            if (onExceptionSteps != null)
              'on_exception_steps': TfArg.literal([
                for (final e in onExceptionSteps) e.encode(),

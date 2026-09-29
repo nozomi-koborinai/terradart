@@ -26,7 +26,7 @@ final class DataGoogleGkeHubMembership extends Data {
          argMap: {
            'location': location,
            'membership_id': membershipId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

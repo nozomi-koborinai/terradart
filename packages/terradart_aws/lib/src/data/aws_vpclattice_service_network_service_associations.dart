@@ -22,11 +22,9 @@ final class DataAwsVpclatticeServiceNetworkServiceAssociations extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (serviceIdentifier != null)
-             'service_identifier': serviceIdentifier,
-           if (serviceNetworkIdentifier != null)
-             'service_network_identifier': serviceNetworkIdentifier,
+           'region': ?region,
+           'service_identifier': ?serviceIdentifier,
+           'service_network_identifier': ?serviceNetworkIdentifier,
          },
        );
 

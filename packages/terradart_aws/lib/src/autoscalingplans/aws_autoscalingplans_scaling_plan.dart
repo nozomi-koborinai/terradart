@@ -94,7 +94,7 @@ final class AutoscalingplansScalingPlanApplicationSourceTagFilter {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -164,31 +164,23 @@ final class AutoscalingplansScalingPlanScalingInstruction {
   targetTrackingConfiguration;
 
   Map<String, Object?> encode() => {
-    if (disableDynamicScaling != null)
-      'disable_dynamic_scaling': disableDynamicScaling!.toTfJson(),
+    'disable_dynamic_scaling': ?disableDynamicScaling?.toTfJson(),
     'max_capacity': maxCapacity.toTfJson(),
     'min_capacity': minCapacity.toTfJson(),
-    if (predictiveScalingMaxCapacityBehavior != null)
-      'predictive_scaling_max_capacity_behavior':
-          predictiveScalingMaxCapacityBehavior!.toTfJson(),
-    if (predictiveScalingMaxCapacityBuffer != null)
-      'predictive_scaling_max_capacity_buffer':
-          predictiveScalingMaxCapacityBuffer!.toTfJson(),
-    if (predictiveScalingMode != null)
-      'predictive_scaling_mode': predictiveScalingMode!.toTfJson(),
+    'predictive_scaling_max_capacity_behavior':
+        ?predictiveScalingMaxCapacityBehavior?.toTfJson(),
+    'predictive_scaling_max_capacity_buffer':
+        ?predictiveScalingMaxCapacityBuffer?.toTfJson(),
+    'predictive_scaling_mode': ?predictiveScalingMode?.toTfJson(),
     'resource_id': resourceId.toTfJson(),
     'scalable_dimension': scalableDimension.toTfJson(),
-    if (scalingPolicyUpdateBehavior != null)
-      'scaling_policy_update_behavior': scalingPolicyUpdateBehavior!.toTfJson(),
-    if (scheduledActionBufferTime != null)
-      'scheduled_action_buffer_time': scheduledActionBufferTime!.toTfJson(),
+    'scaling_policy_update_behavior': ?scalingPolicyUpdateBehavior?.toTfJson(),
+    'scheduled_action_buffer_time': ?scheduledActionBufferTime?.toTfJson(),
     'service_namespace': serviceNamespace.toTfJson(),
-    if (customizedLoadMetricSpecification != null)
-      'customized_load_metric_specification': customizedLoadMetricSpecification!
-          .encode(),
-    if (predefinedLoadMetricSpecification != null)
-      'predefined_load_metric_specification': predefinedLoadMetricSpecification!
-          .encode(),
+    'customized_load_metric_specification': ?customizedLoadMetricSpecification
+        ?.encode(),
+    'predefined_load_metric_specification': ?predefinedLoadMetricSpecification
+        ?.encode(),
     'target_tracking_configuration': [
       for (final e in targetTrackingConfiguration) e.encode(),
     ],
@@ -298,11 +290,11 @@ final class AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpe
   final TfArg<String>? unit;
 
   Map<String, Object?> encode() => {
-    if (dimensions != null) 'dimensions': dimensions!.toTfJson(),
+    'dimensions': ?dimensions?.toTfJson(),
     'metric_name': metricName.toTfJson(),
     'namespace': namespace.toTfJson(),
     'statistic': statistic.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
   };
 }
 
@@ -336,7 +328,7 @@ final class AutoscalingplansScalingPlanScalingInstructionPredefinedLoadMetricSpe
 
   Map<String, Object?> encode() => {
     'predefined_load_metric_type': predefinedLoadMetricType.toTfJson(),
-    if (resourceLabel != null) 'resource_label': resourceLabel!.toTfJson(),
+    'resource_label': ?resourceLabel?.toTfJson(),
   };
 }
 
@@ -386,20 +378,15 @@ final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigura
   predefinedScalingMetricSpecification;
 
   Map<String, Object?> encode() => {
-    if (disableScaleIn != null) 'disable_scale_in': disableScaleIn!.toTfJson(),
-    if (estimatedInstanceWarmup != null)
-      'estimated_instance_warmup': estimatedInstanceWarmup!.toTfJson(),
-    if (scaleInCooldown != null)
-      'scale_in_cooldown': scaleInCooldown!.toTfJson(),
-    if (scaleOutCooldown != null)
-      'scale_out_cooldown': scaleOutCooldown!.toTfJson(),
+    'disable_scale_in': ?disableScaleIn?.toTfJson(),
+    'estimated_instance_warmup': ?estimatedInstanceWarmup?.toTfJson(),
+    'scale_in_cooldown': ?scaleInCooldown?.toTfJson(),
+    'scale_out_cooldown': ?scaleOutCooldown?.toTfJson(),
     'target_value': targetValue.toTfJson(),
-    if (customizedScalingMetricSpecification != null)
-      'customized_scaling_metric_specification':
-          customizedScalingMetricSpecification!.encode(),
-    if (predefinedScalingMetricSpecification != null)
-      'predefined_scaling_metric_specification':
-          predefinedScalingMetricSpecification!.encode(),
+    'customized_scaling_metric_specification':
+        ?customizedScalingMetricSpecification?.encode(),
+    'predefined_scaling_metric_specification':
+        ?predefinedScalingMetricSpecification?.encode(),
   };
 }
 
@@ -429,11 +416,11 @@ final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigura
   final TfArg<String>? unit;
 
   Map<String, Object?> encode() => {
-    if (dimensions != null) 'dimensions': dimensions!.toTfJson(),
+    'dimensions': ?dimensions?.toTfJson(),
     'metric_name': metricName.toTfJson(),
     'namespace': namespace.toTfJson(),
     'statistic': statistic.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
   };
 }
 
@@ -471,7 +458,7 @@ final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigura
 
   Map<String, Object?> encode() => {
     'predefined_scaling_metric_type': predefinedScalingMetricType.toTfJson(),
-    if (resourceLabel != null) 'resource_label': resourceLabel!.toTfJson(),
+    'resource_label': ?resourceLabel?.toTfJson(),
   };
 }
 
@@ -520,7 +507,7 @@ final class AwsAutoscalingplansScalingPlan extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'application_source': TfArg.literal(applicationSource.encode()),
            'scaling_instruction': TfArg.literal([
              for (final e in scalingInstruction) e.encode(),

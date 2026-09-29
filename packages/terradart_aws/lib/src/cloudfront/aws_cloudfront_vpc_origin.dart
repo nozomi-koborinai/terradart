@@ -93,7 +93,7 @@ final class AwsCloudfrontVpcOrigin extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (vpcOriginEndpointConfig != null)
              'vpc_origin_endpoint_config': TfArg.literal([
                for (final e in vpcOriginEndpointConfig) e.encode(),

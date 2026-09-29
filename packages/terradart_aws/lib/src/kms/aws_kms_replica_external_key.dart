@@ -31,20 +31,17 @@ final class AwsKmsReplicaExternalKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bypassPolicyLockoutSafetyCheck != null)
-             'bypass_policy_lockout_safety_check':
-                 bypassPolicyLockoutSafetyCheck,
-           if (deletionWindowInDays != null)
-             'deletion_window_in_days': deletionWindowInDays,
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
-           if (keyMaterialBase64 != null)
-             'key_material_base64': keyMaterialBase64,
-           if (policy != null) 'policy': policy,
+           'bypass_policy_lockout_safety_check':
+               ?bypassPolicyLockoutSafetyCheck,
+           'deletion_window_in_days': ?deletionWindowInDays,
+           'description': ?description,
+           'enabled': ?enabled,
+           'key_material_base64': ?keyMaterialBase64,
+           'policy': ?policy,
            'primary_key_arn': primaryKeyArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (validTo != null) 'valid_to': validTo,
+           'region': ?region,
+           'tags': ?tags,
+           'valid_to': ?validTo,
          },
        );
 

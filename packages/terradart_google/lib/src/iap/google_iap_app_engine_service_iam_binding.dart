@@ -35,8 +35,8 @@ final class GoogleIapAppEngineServiceIamBinding extends Resource {
            'service': service,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

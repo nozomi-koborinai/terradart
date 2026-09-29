@@ -231,8 +231,7 @@ final class VpnConnectionTunnel1LogOptions {
   cloudwatchLogOptions;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLogOptions != null)
-      'cloudwatch_log_options': cloudwatchLogOptions!.encode(),
+    'cloudwatch_log_options': ?cloudwatchLogOptions?.encode(),
   };
 }
 
@@ -262,15 +261,12 @@ final class VpnConnectionTunnel1LogOptionsCloudwatchLogOptions {
   final TfArg<String>? logOutputFormat;
 
   Map<String, Object?> encode() => {
-    if (bgpLogEnabled != null) 'bgp_log_enabled': bgpLogEnabled!.toTfJson(),
-    if (bgpLogGroupArn != null) 'bgp_log_group_arn': bgpLogGroupArn!.toTfJson(),
-    if (bgpLogOutputFormat != null)
-      'bgp_log_output_format': bgpLogOutputFormat!.toTfJson(),
-    if (logEnabled != null) 'log_enabled': logEnabled!.toTfJson(),
-    if (logGroupArn != null)
-      'log_group_arn': logGroupArn!.encodeAs('arn').toTfJson(),
-    if (logOutputFormat != null)
-      'log_output_format': logOutputFormat!.toTfJson(),
+    'bgp_log_enabled': ?bgpLogEnabled?.toTfJson(),
+    'bgp_log_group_arn': ?bgpLogGroupArn?.toTfJson(),
+    'bgp_log_output_format': ?bgpLogOutputFormat?.toTfJson(),
+    'log_enabled': ?logEnabled?.toTfJson(),
+    'log_group_arn': ?logGroupArn?.encodeAs('arn').toTfJson(),
+    'log_output_format': ?logOutputFormat?.toTfJson(),
   };
 }
 
@@ -284,8 +280,7 @@ final class VpnConnectionTunnel2LogOptions {
   cloudwatchLogOptions;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLogOptions != null)
-      'cloudwatch_log_options': cloudwatchLogOptions!.encode(),
+    'cloudwatch_log_options': ?cloudwatchLogOptions?.encode(),
   };
 }
 
@@ -315,15 +310,12 @@ final class VpnConnectionTunnel2LogOptionsCloudwatchLogOptions {
   final TfArg<String>? logOutputFormat;
 
   Map<String, Object?> encode() => {
-    if (bgpLogEnabled != null) 'bgp_log_enabled': bgpLogEnabled!.toTfJson(),
-    if (bgpLogGroupArn != null) 'bgp_log_group_arn': bgpLogGroupArn!.toTfJson(),
-    if (bgpLogOutputFormat != null)
-      'bgp_log_output_format': bgpLogOutputFormat!.toTfJson(),
-    if (logEnabled != null) 'log_enabled': logEnabled!.toTfJson(),
-    if (logGroupArn != null)
-      'log_group_arn': logGroupArn!.encodeAs('arn').toTfJson(),
-    if (logOutputFormat != null)
-      'log_output_format': logOutputFormat!.toTfJson(),
+    'bgp_log_enabled': ?bgpLogEnabled?.toTfJson(),
+    'bgp_log_group_arn': ?bgpLogGroupArn?.toTfJson(),
+    'bgp_log_output_format': ?bgpLogOutputFormat?.toTfJson(),
+    'log_enabled': ?logEnabled?.toTfJson(),
+    'log_group_arn': ?logGroupArn?.encodeAs('arn').toTfJson(),
+    'log_output_format': ?logOutputFormat?.toTfJson(),
   };
 }
 
@@ -407,44 +399,30 @@ final class AwsVpnConnection extends Resource {
          terraformType: tfType,
          argMap: {
            'customer_gateway_id': customerGatewayId,
-           if (enableAcceleration != null)
-             'enable_acceleration': enableAcceleration,
-           if (localIpv4NetworkCidr != null)
-             'local_ipv4_network_cidr': localIpv4NetworkCidr,
-           if (localIpv6NetworkCidr != null)
-             'local_ipv6_network_cidr': localIpv6NetworkCidr,
-           if (outsideIpAddressType != null)
-             'outside_ip_address_type': outsideIpAddressType,
-           if (presharedKeyStorage != null)
-             'preshared_key_storage': presharedKeyStorage,
-           if (region != null) 'region': region,
-           if (remoteIpv4NetworkCidr != null)
-             'remote_ipv4_network_cidr': remoteIpv4NetworkCidr,
-           if (remoteIpv6NetworkCidr != null)
-             'remote_ipv6_network_cidr': remoteIpv6NetworkCidr,
-           if (staticRoutesOnly != null) 'static_routes_only': staticRoutesOnly,
-           if (tags != null) 'tags': tags,
-           if (transitGatewayId != null) 'transit_gateway_id': transitGatewayId,
-           if (transportTransitGatewayAttachmentId != null)
-             'transport_transit_gateway_attachment_id':
-                 transportTransitGatewayAttachmentId,
-           if (tunnel1DpdTimeoutAction != null)
-             'tunnel1_dpd_timeout_action': tunnel1DpdTimeoutAction,
-           if (tunnel1DpdTimeoutSeconds != null)
-             'tunnel1_dpd_timeout_seconds': tunnel1DpdTimeoutSeconds,
-           if (tunnel1EnableTunnelLifecycleControl != null)
-             'tunnel1_enable_tunnel_lifecycle_control':
-                 tunnel1EnableTunnelLifecycleControl,
+           'enable_acceleration': ?enableAcceleration,
+           'local_ipv4_network_cidr': ?localIpv4NetworkCidr,
+           'local_ipv6_network_cidr': ?localIpv6NetworkCidr,
+           'outside_ip_address_type': ?outsideIpAddressType,
+           'preshared_key_storage': ?presharedKeyStorage,
+           'region': ?region,
+           'remote_ipv4_network_cidr': ?remoteIpv4NetworkCidr,
+           'remote_ipv6_network_cidr': ?remoteIpv6NetworkCidr,
+           'static_routes_only': ?staticRoutesOnly,
+           'tags': ?tags,
+           'transit_gateway_id': ?transitGatewayId,
+           'transport_transit_gateway_attachment_id':
+               ?transportTransitGatewayAttachmentId,
+           'tunnel1_dpd_timeout_action': ?tunnel1DpdTimeoutAction,
+           'tunnel1_dpd_timeout_seconds': ?tunnel1DpdTimeoutSeconds,
+           'tunnel1_enable_tunnel_lifecycle_control':
+               ?tunnel1EnableTunnelLifecycleControl,
            if (tunnel1IkeVersions != null)
              'tunnel1_ike_versions': TfArg.literal([
                for (final e in tunnel1IkeVersions) e.toTfJson(),
              ]),
-           if (tunnel1InsideCidr != null)
-             'tunnel1_inside_cidr': tunnel1InsideCidr,
-           if (tunnel1InsideIpv6Cidr != null)
-             'tunnel1_inside_ipv6_cidr': tunnel1InsideIpv6Cidr,
-           if (tunnel1Phase1DhGroupNumbers != null)
-             'tunnel1_phase1_dh_group_numbers': tunnel1Phase1DhGroupNumbers,
+           'tunnel1_inside_cidr': ?tunnel1InsideCidr,
+           'tunnel1_inside_ipv6_cidr': ?tunnel1InsideIpv6Cidr,
+           'tunnel1_phase1_dh_group_numbers': ?tunnel1Phase1DhGroupNumbers,
            if (tunnel1Phase1EncryptionAlgorithms != null)
              'tunnel1_phase1_encryption_algorithms': TfArg.literal([
                for (final e in tunnel1Phase1EncryptionAlgorithms) e.toTfJson(),
@@ -453,10 +431,8 @@ final class AwsVpnConnection extends Resource {
              'tunnel1_phase1_integrity_algorithms': TfArg.literal([
                for (final e in tunnel1Phase1IntegrityAlgorithms) e.toTfJson(),
              ]),
-           if (tunnel1Phase1LifetimeSeconds != null)
-             'tunnel1_phase1_lifetime_seconds': tunnel1Phase1LifetimeSeconds,
-           if (tunnel1Phase2DhGroupNumbers != null)
-             'tunnel1_phase2_dh_group_numbers': tunnel1Phase2DhGroupNumbers,
+           'tunnel1_phase1_lifetime_seconds': ?tunnel1Phase1LifetimeSeconds,
+           'tunnel1_phase2_dh_group_numbers': ?tunnel1Phase2DhGroupNumbers,
            if (tunnel1Phase2EncryptionAlgorithms != null)
              'tunnel1_phase2_encryption_algorithms': TfArg.literal([
                for (final e in tunnel1Phase2EncryptionAlgorithms) e.toTfJson(),
@@ -465,35 +441,23 @@ final class AwsVpnConnection extends Resource {
              'tunnel1_phase2_integrity_algorithms': TfArg.literal([
                for (final e in tunnel1Phase2IntegrityAlgorithms) e.toTfJson(),
              ]),
-           if (tunnel1Phase2LifetimeSeconds != null)
-             'tunnel1_phase2_lifetime_seconds': tunnel1Phase2LifetimeSeconds,
-           if (tunnel1PresharedKey != null)
-             'tunnel1_preshared_key': tunnel1PresharedKey,
-           if (tunnel1RekeyFuzzPercentage != null)
-             'tunnel1_rekey_fuzz_percentage': tunnel1RekeyFuzzPercentage,
-           if (tunnel1RekeyMarginTimeSeconds != null)
-             'tunnel1_rekey_margin_time_seconds': tunnel1RekeyMarginTimeSeconds,
-           if (tunnel1ReplayWindowSize != null)
-             'tunnel1_replay_window_size': tunnel1ReplayWindowSize,
-           if (tunnel1StartupAction != null)
-             'tunnel1_startup_action': tunnel1StartupAction,
-           if (tunnel2DpdTimeoutAction != null)
-             'tunnel2_dpd_timeout_action': tunnel2DpdTimeoutAction,
-           if (tunnel2DpdTimeoutSeconds != null)
-             'tunnel2_dpd_timeout_seconds': tunnel2DpdTimeoutSeconds,
-           if (tunnel2EnableTunnelLifecycleControl != null)
-             'tunnel2_enable_tunnel_lifecycle_control':
-                 tunnel2EnableTunnelLifecycleControl,
+           'tunnel1_phase2_lifetime_seconds': ?tunnel1Phase2LifetimeSeconds,
+           'tunnel1_preshared_key': ?tunnel1PresharedKey,
+           'tunnel1_rekey_fuzz_percentage': ?tunnel1RekeyFuzzPercentage,
+           'tunnel1_rekey_margin_time_seconds': ?tunnel1RekeyMarginTimeSeconds,
+           'tunnel1_replay_window_size': ?tunnel1ReplayWindowSize,
+           'tunnel1_startup_action': ?tunnel1StartupAction,
+           'tunnel2_dpd_timeout_action': ?tunnel2DpdTimeoutAction,
+           'tunnel2_dpd_timeout_seconds': ?tunnel2DpdTimeoutSeconds,
+           'tunnel2_enable_tunnel_lifecycle_control':
+               ?tunnel2EnableTunnelLifecycleControl,
            if (tunnel2IkeVersions != null)
              'tunnel2_ike_versions': TfArg.literal([
                for (final e in tunnel2IkeVersions) e.toTfJson(),
              ]),
-           if (tunnel2InsideCidr != null)
-             'tunnel2_inside_cidr': tunnel2InsideCidr,
-           if (tunnel2InsideIpv6Cidr != null)
-             'tunnel2_inside_ipv6_cidr': tunnel2InsideIpv6Cidr,
-           if (tunnel2Phase1DhGroupNumbers != null)
-             'tunnel2_phase1_dh_group_numbers': tunnel2Phase1DhGroupNumbers,
+           'tunnel2_inside_cidr': ?tunnel2InsideCidr,
+           'tunnel2_inside_ipv6_cidr': ?tunnel2InsideIpv6Cidr,
+           'tunnel2_phase1_dh_group_numbers': ?tunnel2Phase1DhGroupNumbers,
            if (tunnel2Phase1EncryptionAlgorithms != null)
              'tunnel2_phase1_encryption_algorithms': TfArg.literal([
                for (final e in tunnel2Phase1EncryptionAlgorithms) e.toTfJson(),
@@ -502,10 +466,8 @@ final class AwsVpnConnection extends Resource {
              'tunnel2_phase1_integrity_algorithms': TfArg.literal([
                for (final e in tunnel2Phase1IntegrityAlgorithms) e.toTfJson(),
              ]),
-           if (tunnel2Phase1LifetimeSeconds != null)
-             'tunnel2_phase1_lifetime_seconds': tunnel2Phase1LifetimeSeconds,
-           if (tunnel2Phase2DhGroupNumbers != null)
-             'tunnel2_phase2_dh_group_numbers': tunnel2Phase2DhGroupNumbers,
+           'tunnel2_phase1_lifetime_seconds': ?tunnel2Phase1LifetimeSeconds,
+           'tunnel2_phase2_dh_group_numbers': ?tunnel2Phase2DhGroupNumbers,
            if (tunnel2Phase2EncryptionAlgorithms != null)
              'tunnel2_phase2_encryption_algorithms': TfArg.literal([
                for (final e in tunnel2Phase2EncryptionAlgorithms) e.toTfJson(),
@@ -514,25 +476,17 @@ final class AwsVpnConnection extends Resource {
              'tunnel2_phase2_integrity_algorithms': TfArg.literal([
                for (final e in tunnel2Phase2IntegrityAlgorithms) e.toTfJson(),
              ]),
-           if (tunnel2Phase2LifetimeSeconds != null)
-             'tunnel2_phase2_lifetime_seconds': tunnel2Phase2LifetimeSeconds,
-           if (tunnel2PresharedKey != null)
-             'tunnel2_preshared_key': tunnel2PresharedKey,
-           if (tunnel2RekeyFuzzPercentage != null)
-             'tunnel2_rekey_fuzz_percentage': tunnel2RekeyFuzzPercentage,
-           if (tunnel2RekeyMarginTimeSeconds != null)
-             'tunnel2_rekey_margin_time_seconds': tunnel2RekeyMarginTimeSeconds,
-           if (tunnel2ReplayWindowSize != null)
-             'tunnel2_replay_window_size': tunnel2ReplayWindowSize,
-           if (tunnel2StartupAction != null)
-             'tunnel2_startup_action': tunnel2StartupAction,
-           if (tunnelBandwidth != null) 'tunnel_bandwidth': tunnelBandwidth,
-           if (tunnelInsideIpVersion != null)
-             'tunnel_inside_ip_version': tunnelInsideIpVersion,
+           'tunnel2_phase2_lifetime_seconds': ?tunnel2Phase2LifetimeSeconds,
+           'tunnel2_preshared_key': ?tunnel2PresharedKey,
+           'tunnel2_rekey_fuzz_percentage': ?tunnel2RekeyFuzzPercentage,
+           'tunnel2_rekey_margin_time_seconds': ?tunnel2RekeyMarginTimeSeconds,
+           'tunnel2_replay_window_size': ?tunnel2ReplayWindowSize,
+           'tunnel2_startup_action': ?tunnel2StartupAction,
+           'tunnel_bandwidth': ?tunnelBandwidth,
+           'tunnel_inside_ip_version': ?tunnelInsideIpVersion,
            'type': type,
-           if (vpnConcentratorId != null)
-             'vpn_concentrator_id': vpnConcentratorId,
-           if (vpnGatewayId != null) 'vpn_gateway_id': vpnGatewayId,
+           'vpn_concentrator_id': ?vpnConcentratorId,
+           'vpn_gateway_id': ?vpnGatewayId,
            if (tunnel1LogOptions != null)
              'tunnel1_log_options': TfArg.literal(tunnel1LogOptions.encode()),
            if (tunnel2LogOptions != null)

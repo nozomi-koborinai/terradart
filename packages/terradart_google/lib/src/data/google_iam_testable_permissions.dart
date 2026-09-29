@@ -23,10 +23,9 @@ final class DataGoogleIamTestablePermissions extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customSupportLevel != null)
-             'custom_support_level': customSupportLevel,
+           'custom_support_level': ?customSupportLevel,
            'full_resource_name': fullResourceName,
-           if (stages != null) 'stages': stages,
+           'stages': ?stages,
          },
        );
 

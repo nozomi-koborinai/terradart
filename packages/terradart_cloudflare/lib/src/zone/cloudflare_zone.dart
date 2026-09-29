@@ -27,7 +27,7 @@ final class ZoneAccount {
 
   final TfArg<String>? id;
 
-  Map<String, Object?> encode() => {if (id != null) 'id': id!.toTfJson()};
+  Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_zone`.
@@ -74,10 +74,9 @@ final class CloudflareZone extends Resource {
          argMap: {
            'name': name,
            'account': TfArg.literal(account.encode()),
-           if (type != null) 'type': type,
-           if (paused != null) 'paused': paused,
-           if (vanityNameServers != null)
-             'vanity_name_servers': vanityNameServers,
+           'type': ?type,
+           'paused': ?paused,
+           'vanity_name_servers': ?vanityNameServers,
          },
        );
 

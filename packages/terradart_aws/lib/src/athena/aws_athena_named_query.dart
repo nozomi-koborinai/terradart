@@ -26,11 +26,11 @@ final class AwsAthenaNamedQuery extends Resource {
          terraformType: tfType,
          argMap: {
            'database': database,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
            'query': query,
-           if (region != null) 'region': region,
-           if (workgroup != null) 'workgroup': workgroup,
+           'region': ?region,
+           'workgroup': ?workgroup,
          },
        );
 

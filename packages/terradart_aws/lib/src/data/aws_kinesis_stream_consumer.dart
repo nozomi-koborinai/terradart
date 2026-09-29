@@ -23,11 +23,11 @@ final class DataAwsKinesisStreamConsumer extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'arn': ?arn,
+           'name': ?name,
+           'region': ?region,
            'stream_arn': streamArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

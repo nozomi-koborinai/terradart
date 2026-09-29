@@ -24,7 +24,7 @@ final class AwsLightsailLbCertificateAttachment extends Resource {
          argMap: {
            'certificate_name': certificateName,
            'lb_name': lbName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

@@ -30,8 +30,8 @@ final class GoogleComputeInstanceIamPolicy extends Resource {
          argMap: {
            'instance_name': instanceName,
            'policy_data': policyData,
-           if (zone != null) 'zone': zone,
-           if (project != null) 'project': project,
+           'zone': ?zone,
+           'project': ?project,
          },
        );
 

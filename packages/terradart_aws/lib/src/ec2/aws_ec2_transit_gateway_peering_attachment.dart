@@ -17,7 +17,7 @@ final class Ec2TransitGatewayPeeringAttachmentOptions {
   dynamicRouting;
 
   Map<String, Object?> encode() => {
-    if (dynamicRouting != null) 'dynamic_routing': dynamicRouting!.toTfJson(),
+    'dynamic_routing': ?dynamicRouting?.toTfJson(),
   };
 }
 
@@ -54,11 +54,11 @@ final class AwsEc2TransitGatewayPeeringAttachment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (peerAccountId != null) 'peer_account_id': peerAccountId,
+           'peer_account_id': ?peerAccountId,
            'peer_region': peerRegion,
            'peer_transit_gateway_id': peerTransitGatewayId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'transit_gateway_id': transitGatewayId,
            if (options != null) 'options': TfArg.literal(options.encode()),
          },

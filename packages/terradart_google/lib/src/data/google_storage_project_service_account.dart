@@ -21,10 +21,7 @@ final class DataGoogleStorageProjectServiceAccount extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (project != null) 'project': project,
-           if (userProject != null) 'user_project': userProject,
-         },
+         argMap: {'project': ?project, 'user_project': ?userProject},
        );
 
   @override

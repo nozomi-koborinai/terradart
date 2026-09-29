@@ -18,8 +18,8 @@ final class ChronicleParserLowCode {
   final ChronicleParserLowCodeFieldExtractors? fieldExtractors;
 
   Map<String, Object?> encode() => {
-    if (log != null) 'log': log!.toTfJson(),
-    if (fieldExtractors != null) 'field_extractors': fieldExtractors!.encode(),
+    'log': ?log?.toTfJson(),
+    'field_extractors': ?fieldExtractors?.encode(),
   };
 }
 
@@ -43,13 +43,11 @@ final class ChronicleParserLowCodeFieldExtractors {
   final ChronicleParserLowCodeFieldExtractorsPreprocessConfig? preprocessConfig;
 
   Map<String, Object?> encode() => {
-    if (appendRepeatedFields != null)
-      'append_repeated_fields': appendRepeatedFields!.toTfJson(),
-    if (logFormat != null) 'log_format': logFormat!.toTfJson(),
+    'append_repeated_fields': ?appendRepeatedFields?.toTfJson(),
+    'log_format': ?logFormat?.toTfJson(),
     if (extractors != null)
       'extractors': [for (final e in extractors!) e.encode()],
-    if (preprocessConfig != null)
-      'preprocess_config': preprocessConfig!.encode(),
+    'preprocess_config': ?preprocessConfig?.encode(),
   };
 }
 
@@ -79,15 +77,12 @@ final class ChronicleParserLowCodeFieldExtractorsExtractors {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (destinationPath != null)
-      'destination_path': destinationPath!.toTfJson(),
-    if (fieldPath != null) 'field_path': fieldPath!.toTfJson(),
-    if (preconditionOp != null) 'precondition_op': preconditionOp!.toTfJson(),
-    if (preconditionPath != null)
-      'precondition_path': preconditionPath!.toTfJson(),
-    if (preconditionValue != null)
-      'precondition_value': preconditionValue!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'destination_path': ?destinationPath?.toTfJson(),
+    'field_path': ?fieldPath?.toTfJson(),
+    'precondition_op': ?preconditionOp?.toTfJson(),
+    'precondition_path': ?preconditionPath?.toTfJson(),
+    'precondition_value': ?preconditionValue?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -105,8 +100,8 @@ final class ChronicleParserLowCodeFieldExtractorsPreprocessConfig {
   final TfArg<String>? target;
 
   Map<String, Object?> encode() => {
-    if (grokRegex != null) 'grok_regex': grokRegex!.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
+    'grok_regex': ?grokRegex?.toTfJson(),
+    'target': ?target?.toTfJson(),
   };
 }
 
@@ -165,16 +160,14 @@ final class GoogleChronicleParser extends Resource {
            'logtype': logtype,
            'location': location,
            'instance': instance,
-           if (cbn != null) 'cbn': cbn,
+           'cbn': ?cbn,
            if (lowCode != null) 'low_code': TfArg.literal(lowCode.encode()),
            if (versionInfo != null)
              'version_info': TfArg.literal(versionInfo.encode()),
-           if (validatedOnEmptyLogs != null)
-             'validated_on_empty_logs': validatedOnEmptyLogs,
-           if (validationSkipped != null)
-             'validation_skipped': validationSkipped,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'validated_on_empty_logs': ?validatedOnEmptyLogs,
+           'validation_skipped': ?validationSkipped,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -40,13 +40,12 @@ final class AwsInvoicingInvoiceUnit extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'invoice_receiver': invoiceReceiver,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (taxInheritanceDisabled != null)
-             'tax_inheritance_disabled': taxInheritanceDisabled,
+           'region': ?region,
+           'tags': ?tags,
+           'tax_inheritance_disabled': ?taxInheritanceDisabled,
            if (rule != null)
              'rule': TfArg.literal([for (final e in rule) e.encode()]),
          },

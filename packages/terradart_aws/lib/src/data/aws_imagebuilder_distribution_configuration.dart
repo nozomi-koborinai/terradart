@@ -21,11 +21,7 @@ final class DataAwsImagebuilderDistributionConfiguration extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'arn': arn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'arn': arn, 'region': ?region, 'tags': ?tags},
        );
 
   @override

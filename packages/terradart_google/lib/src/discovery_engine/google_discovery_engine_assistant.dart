@@ -25,8 +25,7 @@ final class DiscoveryEngineAssistantCustomerPolicy {
   Map<String, Object?> encode() => {
     if (bannedPhrases != null)
       'banned_phrases': [for (final e in bannedPhrases!) e.encode()],
-    if (modelArmorConfig != null)
-      'model_armor_config': modelArmorConfig!.encode(),
+    'model_armor_config': ?modelArmorConfig?.encode(),
   };
 }
 
@@ -47,9 +46,8 @@ final class DiscoveryEngineAssistantCustomerPolicyBannedPhrases {
   final TfArg<String> phrase;
 
   Map<String, Object?> encode() => {
-    if (ignoreDiacritics != null)
-      'ignore_diacritics': ignoreDiacritics!.toTfJson(),
-    if (matchType != null) 'match_type': matchType!.toTfJson(),
+    'ignore_diacritics': ?ignoreDiacritics?.toTfJson(),
+    'match_type': ?matchType?.toTfJson(),
     'phrase': phrase.toTfJson(),
   };
 }
@@ -71,7 +69,7 @@ final class DiscoveryEngineAssistantCustomerPolicyModelArmorConfig {
   final TfArg<String> userPromptTemplate;
 
   Map<String, Object?> encode() => {
-    if (failureMode != null) 'failure_mode': failureMode!.toTfJson(),
+    'failure_mode': ?failureMode?.toTfJson(),
     'response_template': responseTemplate.toTfJson(),
     'user_prompt_template': userPromptTemplate.toTfJson(),
   };
@@ -92,10 +90,8 @@ final class DiscoveryEngineAssistantGenerationConfig {
   systemInstruction;
 
   Map<String, Object?> encode() => {
-    if (defaultLanguage != null)
-      'default_language': defaultLanguage!.toTfJson(),
-    if (systemInstruction != null)
-      'system_instruction': systemInstruction!.encode(),
+    'default_language': ?defaultLanguage?.toTfJson(),
+    'system_instruction': ?systemInstruction?.encode(),
   };
 }
 
@@ -110,8 +106,7 @@ final class DiscoveryEngineAssistantGenerationConfigSystemInstruction {
   final TfArg<String>? additionalSystemInstruction;
 
   Map<String, Object?> encode() => {
-    if (additionalSystemInstruction != null)
-      'additional_system_instruction': additionalSystemInstruction!.toTfJson(),
+    'additional_system_instruction': ?additionalSystemInstruction?.toTfJson(),
   };
 }
 
@@ -156,14 +151,14 @@ final class GoogleDiscoveryEngineAssistant extends Resource {
            'engine_id': engineId,
            'assistant_id': assistantId,
            'display_name': displayName,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (generationConfig != null)
              'generation_config': TfArg.literal(generationConfig.encode()),
            if (customerPolicy != null)
              'customer_policy': TfArg.literal(customerPolicy.encode()),
-           if (webGroundingType != null) 'web_grounding_type': webGroundingType,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'web_grounding_type': ?webGroundingType,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

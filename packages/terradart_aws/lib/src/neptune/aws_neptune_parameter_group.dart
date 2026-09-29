@@ -83,7 +83,7 @@ final class NeptuneParameterGroupParameter {
   final TfArg<String> value;
 
   Map<String, Object?> encode() => {
-    if (applyMethod != null) 'apply_method': applyMethod!.toTfJson(),
+    'apply_method': ?applyMethod?.toTfJson(),
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
@@ -118,11 +118,11 @@ final class AwsNeptuneParameterGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'family': family,
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (parameter != null)
              'parameter': TfArg.literal([
                for (final e in parameter) e.encode(),

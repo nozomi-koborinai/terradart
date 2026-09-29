@@ -24,7 +24,7 @@ final class GlueCatalogDatabaseCreateTableDefaultPermission {
   Map<String, Object?> encode() => {
     if (permissions != null)
       'permissions': [for (final e in permissions!) e.toTfJson()],
-    if (principal != null) 'principal': principal!.encode(),
+    'principal': ?principal?.encode(),
   };
 }
 
@@ -59,8 +59,7 @@ final class GlueCatalogDatabaseCreateTableDefaultPermissionPrincipal {
   final TfArg<String>? dataLakePrincipalIdentifier;
 
   Map<String, Object?> encode() => {
-    if (dataLakePrincipalIdentifier != null)
-      'data_lake_principal_identifier': dataLakePrincipalIdentifier!.toTfJson(),
+    'data_lake_principal_identifier': ?dataLakePrincipalIdentifier?.toTfJson(),
   };
 }
 
@@ -78,8 +77,8 @@ final class GlueCatalogDatabaseFederatedDatabase {
   final TfArg<String>? identifier;
 
   Map<String, Object?> encode() => {
-    if (connectionName != null) 'connection_name': connectionName!.toTfJson(),
-    if (identifier != null) 'identifier': identifier!.toTfJson(),
+    'connection_name': ?connectionName?.toTfJson(),
+    'identifier': ?identifier?.toTfJson(),
   };
 }
 
@@ -102,7 +101,7 @@ final class GlueCatalogDatabaseTargetDatabase {
   Map<String, Object?> encode() => {
     'catalog_id': catalogId.toTfJson(),
     'database_name': databaseName.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'region': ?region?.toTfJson(),
   };
 }
 
@@ -130,13 +129,13 @@ final class AwsGlueCatalogDatabase extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
-           if (description != null) 'description': description,
-           if (locationUri != null) 'location_uri': locationUri,
+           'catalog_id': ?catalogId,
+           'description': ?description,
+           'location_uri': ?locationUri,
            'name': name,
-           if (parameters != null) 'parameters': parameters,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'parameters': ?parameters,
+           'region': ?region,
+           'tags': ?tags,
            if (createTableDefaultPermission != null)
              'create_table_default_permission': TfArg.literal([
                for (final e in createTableDefaultPermission) e.encode(),

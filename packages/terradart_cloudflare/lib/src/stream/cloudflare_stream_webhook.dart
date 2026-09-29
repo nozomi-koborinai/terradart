@@ -28,7 +28,7 @@ final class CloudflareStreamWebhook extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (notificationUrl != null) 'notification_url': notificationUrl,
+           'notification_url': ?notificationUrl,
          },
        );
 

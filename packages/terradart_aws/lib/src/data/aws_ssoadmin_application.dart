@@ -19,10 +19,7 @@ final class DataAwsSsoadminApplication extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'application_arn': applicationArn,
-           if (region != null) 'region': region,
-         },
+         argMap: {'application_arn': applicationArn, 'region': ?region},
        );
 
   @override

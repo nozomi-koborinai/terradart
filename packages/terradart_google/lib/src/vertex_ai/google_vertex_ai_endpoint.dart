@@ -41,10 +41,9 @@ final class VertexAiEndpointPredictRequestResponseLoggingConfig {
   bigqueryDestination;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (samplingRate != null) 'sampling_rate': samplingRate!.toTfJson(),
-    if (bigqueryDestination != null)
-      'bigquery_destination': bigqueryDestination!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'sampling_rate': ?samplingRate?.toTfJson(),
+    'bigquery_destination': ?bigqueryDestination?.encode(),
   };
 }
 
@@ -58,9 +57,7 @@ final class VertexAiEndpointPredictRequestResponseLoggingConfigBigqueryDestinati
 
   final TfArg<String>? outputUri;
 
-  Map<String, Object?> encode() => {
-    if (outputUri != null) 'output_uri': outputUri!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'output_uri': ?outputUri?.toTfJson()};
 }
 
 /// Typed helper for the `private_service_connect_config` block of
@@ -82,8 +79,7 @@ final class VertexAiEndpointPrivateServiceConnectConfig {
 
   Map<String, Object?> encode() => {
     'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),
-    if (projectAllowlist != null)
-      'project_allowlist': projectAllowlist!.toTfJson(),
+    'project_allowlist': ?projectAllowlist?.toTfJson(),
     if (pscAutomationConfigs != null)
       'psc_automation_configs': [
         for (final e in pscAutomationConfigs!) e.encode(),
@@ -169,12 +165,11 @@ final class GoogleVertexAiEndpoint extends Resource {
            'name': name,
            'display_name': displayName,
            'location': location,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
-           if (network != null) 'network': network.encodeAs('id'),
-           if (dedicatedEndpointEnabled != null)
-             'dedicated_endpoint_enabled': dedicatedEndpointEnabled,
-           if (trafficSplit != null) 'traffic_split': trafficSplit,
+           'region': ?region,
+           'description': ?description,
+           'network': ?network?.encodeAs('id'),
+           'dedicated_endpoint_enabled': ?dedicatedEndpointEnabled,
+           'traffic_split': ?trafficSplit,
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),
            if (privateServiceConnectConfig != null)
@@ -185,9 +180,9 @@ final class GoogleVertexAiEndpoint extends Resource {
              'predict_request_response_logging_config': TfArg.literal(
                predictRequestResponseLoggingConfig.encode(),
              ),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

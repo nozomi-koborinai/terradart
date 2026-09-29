@@ -35,17 +35,17 @@ final class DataCloudflareZeroTrustTunnelCloudflaredRoutes extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (comment != null) 'comment': comment,
-           if (existedAt != null) 'existed_at': existedAt,
-           if (isDeleted != null) 'is_deleted': isDeleted,
-           if (maxItems != null) 'max_items': maxItems,
-           if (networkSubset != null) 'network_subset': networkSubset,
-           if (networkSuperset != null) 'network_superset': networkSuperset,
-           if (routeId != null) 'route_id': routeId,
-           if (tunTypes != null) 'tun_types': tunTypes,
-           if (tunnelId != null) 'tunnel_id': tunnelId,
-           if (virtualNetworkId != null) 'virtual_network_id': virtualNetworkId,
+           'account_id': ?accountId,
+           'comment': ?comment,
+           'existed_at': ?existedAt,
+           'is_deleted': ?isDeleted,
+           'max_items': ?maxItems,
+           'network_subset': ?networkSubset,
+           'network_superset': ?networkSuperset,
+           'route_id': ?routeId,
+           'tun_types': ?tunTypes,
+           'tunnel_id': ?tunnelId,
+           'virtual_network_id': ?virtualNetworkId,
          },
        );
 

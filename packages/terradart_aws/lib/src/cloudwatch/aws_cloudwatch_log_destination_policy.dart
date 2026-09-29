@@ -25,8 +25,8 @@ final class AwsCloudwatchLogDestinationPolicy extends Resource {
          argMap: {
            'access_policy': accessPolicy,
            'destination_name': destinationName,
-           if (forceUpdate != null) 'force_update': forceUpdate,
-           if (region != null) 'region': region,
+           'force_update': ?forceUpdate,
+           'region': ?region,
          },
        );
 

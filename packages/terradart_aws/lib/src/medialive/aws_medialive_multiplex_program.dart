@@ -76,8 +76,7 @@ final class MedialiveMultiplexProgramMultiplexProgramSettingsVideoSettings {
   statmuxSettings;
 
   Map<String, Object?> encode() => {
-    if (constantBitrate != null)
-      'constant_bitrate': constantBitrate!.toTfJson(),
+    'constant_bitrate': ?constantBitrate?.toTfJson(),
     if (statmuxSettings != null)
       'statmux_settings': [for (final e in statmuxSettings!) e.encode()],
   };
@@ -100,9 +99,9 @@ final class MedialiveMultiplexProgramMultiplexProgramSettingsVideoSettingsStatmu
   final TfArg<num>? priority;
 
   Map<String, Object?> encode() => {
-    if (maximumBitrate != null) 'maximum_bitrate': maximumBitrate!.toTfJson(),
-    if (minimumBitrate != null) 'minimum_bitrate': minimumBitrate!.toTfJson(),
-    if (priority != null) 'priority': priority!.toTfJson(),
+    'maximum_bitrate': ?maximumBitrate?.toTfJson(),
+    'minimum_bitrate': ?minimumBitrate?.toTfJson(),
+    'priority': ?priority?.toTfJson(),
   };
 }
 
@@ -126,7 +125,7 @@ final class AwsMedialiveMultiplexProgram extends Resource {
          argMap: {
            'multiplex_id': multiplexId,
            'program_name': programName,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (multiplexProgramSettings != null)
              'multiplex_program_settings': TfArg.literal([
                for (final e in multiplexProgramSettings) e.encode(),

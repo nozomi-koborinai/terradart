@@ -27,8 +27,8 @@ final class DataGoogleAlloydbInstance extends Data {
          argMap: {
            'cluster_id': clusterId,
            'instance_id': instanceId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

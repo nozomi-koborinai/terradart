@@ -33,7 +33,7 @@ final class GoogleBigqueryRoutineIamPolicy extends Resource {
            'dataset_id': datasetId.encodeAs('dataset_id'),
            'routine_id': routineId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

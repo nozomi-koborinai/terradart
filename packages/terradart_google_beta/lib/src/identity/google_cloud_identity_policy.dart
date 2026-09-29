@@ -24,9 +24,9 @@ final class CloudIdentityPolicyPolicyQuery {
   final TfArg<String>? query;
 
   Map<String, Object?> encode() => {
-    if (group != null) 'group': group!.toTfJson(),
+    'group': ?group?.toTfJson(),
     'org_unit': orgUnit.toTfJson(),
-    if (query != null) 'query': query!.toTfJson(),
+    'query': ?query?.toTfJson(),
   };
 }
 
@@ -71,7 +71,7 @@ final class GoogleCloudIdentityPolicy extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'customer': customer,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'policy_query': TfArg.literal(policyQuery.encode()),
            'setting': TfArg.literal(setting.encode()),
          },

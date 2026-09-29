@@ -74,17 +74,15 @@ final class LbListenerDefaultAction {
   final LbListenerDefaultActionRedirect? redirect;
 
   Map<String, Object?> encode() => {
-    if (order != null) 'order': order!.toTfJson(),
-    if (targetGroupArn != null) 'target_group_arn': targetGroupArn!.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'target_group_arn': ?targetGroupArn?.toTfJson(),
     'type': type.toTfJson(),
-    if (authenticateCognito != null)
-      'authenticate_cognito': authenticateCognito!.encode(),
-    if (authenticateOidc != null)
-      'authenticate_oidc': authenticateOidc!.encode(),
-    if (fixedResponse != null) 'fixed_response': fixedResponse!.encode(),
-    if (forward != null) 'forward': forward!.encode(),
-    if (jwtValidation != null) 'jwt_validation': jwtValidation!.encode(),
-    if (redirect != null) 'redirect': redirect!.encode(),
+    'authenticate_cognito': ?authenticateCognito?.encode(),
+    'authenticate_oidc': ?authenticateOidc?.encode(),
+    'fixed_response': ?fixedResponse?.encode(),
+    'forward': ?forward?.encode(),
+    'jwt_validation': ?jwtValidation?.encode(),
+    'redirect': ?redirect?.encode(),
   };
 }
 
@@ -137,15 +135,12 @@ final class LbListenerDefaultActionAuthenticateCognito {
   final TfArg<String> userPoolDomain;
 
   Map<String, Object?> encode() => {
-    if (authenticationRequestExtraParams != null)
-      'authentication_request_extra_params': authenticationRequestExtraParams!
-          .toTfJson(),
-    if (onUnauthenticatedRequest != null)
-      'on_unauthenticated_request': onUnauthenticatedRequest!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (sessionCookieName != null)
-      'session_cookie_name': sessionCookieName!.toTfJson(),
-    if (sessionTimeout != null) 'session_timeout': sessionTimeout!.toTfJson(),
+    'authentication_request_extra_params': ?authenticationRequestExtraParams
+        ?.toTfJson(),
+    'on_unauthenticated_request': ?onUnauthenticatedRequest?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'session_cookie_name': ?sessionCookieName?.toTfJson(),
+    'session_timeout': ?sessionTimeout?.toTfJson(),
     'user_pool_arn': userPoolArn.toTfJson(),
     'user_pool_client_id': userPoolClientId.toTfJson(),
     'user_pool_domain': userPoolDomain.toTfJson(),
@@ -208,19 +203,16 @@ final class LbListenerDefaultActionAuthenticateOidc {
   final TfArg<String> userInfoEndpoint;
 
   Map<String, Object?> encode() => {
-    if (authenticationRequestExtraParams != null)
-      'authentication_request_extra_params': authenticationRequestExtraParams!
-          .toTfJson(),
+    'authentication_request_extra_params': ?authenticationRequestExtraParams
+        ?.toTfJson(),
     'authorization_endpoint': authorizationEndpoint.toTfJson(),
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
     'issuer': issuer.toTfJson(),
-    if (onUnauthenticatedRequest != null)
-      'on_unauthenticated_request': onUnauthenticatedRequest!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (sessionCookieName != null)
-      'session_cookie_name': sessionCookieName!.toTfJson(),
-    if (sessionTimeout != null) 'session_timeout': sessionTimeout!.toTfJson(),
+    'on_unauthenticated_request': ?onUnauthenticatedRequest?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'session_cookie_name': ?sessionCookieName?.toTfJson(),
+    'session_timeout': ?sessionTimeout?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
     'user_info_endpoint': userInfoEndpoint.toTfJson(),
   };
@@ -258,8 +250,8 @@ final class LbListenerDefaultActionFixedResponse {
 
   Map<String, Object?> encode() => {
     'content_type': contentType.toTfJson(),
-    if (messageBody != null) 'message_body': messageBody!.toTfJson(),
-    if (statusCode != null) 'status_code': statusCode!.toTfJson(),
+    'message_body': ?messageBody?.toTfJson(),
+    'status_code': ?statusCode?.toTfJson(),
   };
 }
 
@@ -290,7 +282,7 @@ final class LbListenerDefaultActionForward {
   final List<LbListenerDefaultActionForwardTargetGroup> targetGroup;
 
   Map<String, Object?> encode() => {
-    if (stickiness != null) 'stickiness': stickiness!.encode(),
+    'stickiness': ?stickiness?.encode(),
     'target_group': [for (final e in targetGroup) e.encode()],
   };
 }
@@ -310,7 +302,7 @@ final class LbListenerDefaultActionForwardStickiness {
 
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
   };
 }
 
@@ -329,7 +321,7 @@ final class LbListenerDefaultActionForwardTargetGroup {
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -421,11 +413,11 @@ final class LbListenerDefaultActionRedirect {
   final TfArg<LbListenerDefaultActionRedirectStatusCode> statusCode;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (query != null) 'query': query!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'query': ?query?.toTfJson(),
     'status_code': statusCode.toTfJson(),
   };
 }
@@ -472,13 +464,11 @@ final class LbListenerMutualAuthentication {
   final TfArg<String>? trustStoreArn;
 
   Map<String, Object?> encode() => {
-    if (advertiseTrustStoreCaNames != null)
-      'advertise_trust_store_ca_names': advertiseTrustStoreCaNames!.toTfJson(),
-    if (ignoreClientCertificateExpiry != null)
-      'ignore_client_certificate_expiry': ignoreClientCertificateExpiry!
-          .toTfJson(),
+    'advertise_trust_store_ca_names': ?advertiseTrustStoreCaNames?.toTfJson(),
+    'ignore_client_certificate_expiry': ?ignoreClientCertificateExpiry
+        ?.toTfJson(),
     'mode': mode.toTfJson(),
-    if (trustStoreArn != null) 'trust_store_arn': trustStoreArn!.toTfJson(),
+    'trust_store_arn': ?trustStoreArn?.toTfJson(),
   };
 }
 
@@ -549,75 +539,53 @@ final class AwsLbListener extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (alpnPolicy != null) 'alpn_policy': alpnPolicy,
-           if (certificateArn != null) 'certificate_arn': certificateArn,
+           'alpn_policy': ?alpnPolicy,
+           'certificate_arn': ?certificateArn,
            'load_balancer_arn': loadBalancerArn,
-           if (port != null) 'port': port,
-           if (protocol != null) 'protocol': protocol,
-           if (region != null) 'region': region,
-           if (routingHttpRequestXAmznMtlsClientcertHeaderName != null)
-             'routing_http_request_x_amzn_mtls_clientcert_header_name':
-                 routingHttpRequestXAmznMtlsClientcertHeaderName,
-           if (routingHttpRequestXAmznMtlsClientcertIssuerHeaderName != null)
-             'routing_http_request_x_amzn_mtls_clientcert_issuer_header_name':
-                 routingHttpRequestXAmznMtlsClientcertIssuerHeaderName,
-           if (routingHttpRequestXAmznMtlsClientcertLeafHeaderName != null)
-             'routing_http_request_x_amzn_mtls_clientcert_leaf_header_name':
-                 routingHttpRequestXAmznMtlsClientcertLeafHeaderName,
-           if (routingHttpRequestXAmznMtlsClientcertSerialNumberHeaderName !=
-               null)
-             'routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name':
-                 routingHttpRequestXAmznMtlsClientcertSerialNumberHeaderName,
-           if (routingHttpRequestXAmznMtlsClientcertSubjectHeaderName != null)
-             'routing_http_request_x_amzn_mtls_clientcert_subject_header_name':
-                 routingHttpRequestXAmznMtlsClientcertSubjectHeaderName,
-           if (routingHttpRequestXAmznMtlsClientcertValidityHeaderName != null)
-             'routing_http_request_x_amzn_mtls_clientcert_validity_header_name':
-                 routingHttpRequestXAmznMtlsClientcertValidityHeaderName,
-           if (routingHttpRequestXAmznTlsCipherSuiteHeaderName != null)
-             'routing_http_request_x_amzn_tls_cipher_suite_header_name':
-                 routingHttpRequestXAmznTlsCipherSuiteHeaderName,
-           if (routingHttpRequestXAmznTlsVersionHeaderName != null)
-             'routing_http_request_x_amzn_tls_version_header_name':
-                 routingHttpRequestXAmznTlsVersionHeaderName,
-           if (routingHttpResponseAccessControlAllowCredentialsHeaderValue !=
-               null)
-             'routing_http_response_access_control_allow_credentials_header_value':
-                 routingHttpResponseAccessControlAllowCredentialsHeaderValue,
-           if (routingHttpResponseAccessControlAllowHeadersHeaderValue != null)
-             'routing_http_response_access_control_allow_headers_header_value':
-                 routingHttpResponseAccessControlAllowHeadersHeaderValue,
-           if (routingHttpResponseAccessControlAllowMethodsHeaderValue != null)
-             'routing_http_response_access_control_allow_methods_header_value':
-                 routingHttpResponseAccessControlAllowMethodsHeaderValue,
-           if (routingHttpResponseAccessControlAllowOriginHeaderValue != null)
-             'routing_http_response_access_control_allow_origin_header_value':
-                 routingHttpResponseAccessControlAllowOriginHeaderValue,
-           if (routingHttpResponseAccessControlExposeHeadersHeaderValue != null)
-             'routing_http_response_access_control_expose_headers_header_value':
-                 routingHttpResponseAccessControlExposeHeadersHeaderValue,
-           if (routingHttpResponseAccessControlMaxAgeHeaderValue != null)
-             'routing_http_response_access_control_max_age_header_value':
-                 routingHttpResponseAccessControlMaxAgeHeaderValue,
-           if (routingHttpResponseContentSecurityPolicyHeaderValue != null)
-             'routing_http_response_content_security_policy_header_value':
-                 routingHttpResponseContentSecurityPolicyHeaderValue,
-           if (routingHttpResponseServerEnabled != null)
-             'routing_http_response_server_enabled':
-                 routingHttpResponseServerEnabled,
-           if (routingHttpResponseStrictTransportSecurityHeaderValue != null)
-             'routing_http_response_strict_transport_security_header_value':
-                 routingHttpResponseStrictTransportSecurityHeaderValue,
-           if (routingHttpResponseXContentTypeOptionsHeaderValue != null)
-             'routing_http_response_x_content_type_options_header_value':
-                 routingHttpResponseXContentTypeOptionsHeaderValue,
-           if (routingHttpResponseXFrameOptionsHeaderValue != null)
-             'routing_http_response_x_frame_options_header_value':
-                 routingHttpResponseXFrameOptionsHeaderValue,
-           if (sslPolicy != null) 'ssl_policy': sslPolicy,
-           if (tags != null) 'tags': tags,
-           if (tcpIdleTimeoutSeconds != null)
-             'tcp_idle_timeout_seconds': tcpIdleTimeoutSeconds,
+           'port': ?port,
+           'protocol': ?protocol,
+           'region': ?region,
+           'routing_http_request_x_amzn_mtls_clientcert_header_name':
+               ?routingHttpRequestXAmznMtlsClientcertHeaderName,
+           'routing_http_request_x_amzn_mtls_clientcert_issuer_header_name':
+               ?routingHttpRequestXAmznMtlsClientcertIssuerHeaderName,
+           'routing_http_request_x_amzn_mtls_clientcert_leaf_header_name':
+               ?routingHttpRequestXAmznMtlsClientcertLeafHeaderName,
+           'routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name':
+               ?routingHttpRequestXAmznMtlsClientcertSerialNumberHeaderName,
+           'routing_http_request_x_amzn_mtls_clientcert_subject_header_name':
+               ?routingHttpRequestXAmznMtlsClientcertSubjectHeaderName,
+           'routing_http_request_x_amzn_mtls_clientcert_validity_header_name':
+               ?routingHttpRequestXAmznMtlsClientcertValidityHeaderName,
+           'routing_http_request_x_amzn_tls_cipher_suite_header_name':
+               ?routingHttpRequestXAmznTlsCipherSuiteHeaderName,
+           'routing_http_request_x_amzn_tls_version_header_name':
+               ?routingHttpRequestXAmznTlsVersionHeaderName,
+           'routing_http_response_access_control_allow_credentials_header_value':
+               ?routingHttpResponseAccessControlAllowCredentialsHeaderValue,
+           'routing_http_response_access_control_allow_headers_header_value':
+               ?routingHttpResponseAccessControlAllowHeadersHeaderValue,
+           'routing_http_response_access_control_allow_methods_header_value':
+               ?routingHttpResponseAccessControlAllowMethodsHeaderValue,
+           'routing_http_response_access_control_allow_origin_header_value':
+               ?routingHttpResponseAccessControlAllowOriginHeaderValue,
+           'routing_http_response_access_control_expose_headers_header_value':
+               ?routingHttpResponseAccessControlExposeHeadersHeaderValue,
+           'routing_http_response_access_control_max_age_header_value':
+               ?routingHttpResponseAccessControlMaxAgeHeaderValue,
+           'routing_http_response_content_security_policy_header_value':
+               ?routingHttpResponseContentSecurityPolicyHeaderValue,
+           'routing_http_response_server_enabled':
+               ?routingHttpResponseServerEnabled,
+           'routing_http_response_strict_transport_security_header_value':
+               ?routingHttpResponseStrictTransportSecurityHeaderValue,
+           'routing_http_response_x_content_type_options_header_value':
+               ?routingHttpResponseXContentTypeOptionsHeaderValue,
+           'routing_http_response_x_frame_options_header_value':
+               ?routingHttpResponseXFrameOptionsHeaderValue,
+           'ssl_policy': ?sslPolicy,
+           'tags': ?tags,
+           'tcp_idle_timeout_seconds': ?tcpIdleTimeoutSeconds,
            'default_action': TfArg.literal([
              for (final e in defaultAction) e.encode(),
            ]),

@@ -16,7 +16,7 @@ final class DataAwsSsmincidentsReplicationSet extends Data {
     TfArg<Map<String, String>>? tags,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {if (tags != null) 'tags': tags});
+  }) : super(terraformType: tfType, argMap: {'tags': ?tags});
 
   @override
   Set<String> get sensitiveFields => _awsSsmincidentsReplicationSetSensitive;

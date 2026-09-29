@@ -39,14 +39,14 @@ final class DataprocJobHadoopConfig {
   final DataprocJobHadoopConfigLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (mainClass != null) 'main_class': mainClass!.toTfJson(),
-    if (mainJarFileUri != null) 'main_jar_file_uri': mainJarFileUri!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'main_class': ?mainClass?.toTfJson(),
+    'main_jar_file_uri': ?mainJarFileUri?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
   };
 }
 
@@ -89,14 +89,12 @@ final class DataprocJobHiveConfig {
   final TfArg<Map<String, String>>? scriptVariables;
 
   Map<String, Object?> encode() => {
-    if (continueOnFailure != null)
-      'continue_on_failure': continueOnFailure!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (queryFileUri != null) 'query_file_uri': queryFileUri!.toTfJson(),
-    if (queryList != null) 'query_list': queryList!.toTfJson(),
-    if (scriptVariables != null)
-      'script_variables': scriptVariables!.toTfJson(),
+    'continue_on_failure': ?continueOnFailure?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'query_file_uri': ?queryFileUri?.toTfJson(),
+    'query_list': ?queryList?.toTfJson(),
+    'script_variables': ?scriptVariables?.toTfJson(),
   };
 }
 
@@ -129,15 +127,13 @@ final class DataprocJobPigConfig {
   final DataprocJobPigConfigLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
-    if (continueOnFailure != null)
-      'continue_on_failure': continueOnFailure!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (queryFileUri != null) 'query_file_uri': queryFileUri!.toTfJson(),
-    if (queryList != null) 'query_list': queryList!.toTfJson(),
-    if (scriptVariables != null)
-      'script_variables': scriptVariables!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
+    'continue_on_failure': ?continueOnFailure?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'query_file_uri': ?queryFileUri?.toTfJson(),
+    'query_list': ?queryList?.toTfJson(),
+    'script_variables': ?scriptVariables?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
   };
 }
 
@@ -194,14 +190,13 @@ final class DataprocJobPrestoConfig {
   final DataprocJobPrestoConfigLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
-    if (clientTags != null) 'client_tags': clientTags!.toTfJson(),
-    if (continueOnFailure != null)
-      'continue_on_failure': continueOnFailure!.toTfJson(),
-    if (outputFormat != null) 'output_format': outputFormat!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (queryFileUri != null) 'query_file_uri': queryFileUri!.toTfJson(),
-    if (queryList != null) 'query_list': queryList!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
+    'client_tags': ?clientTags?.toTfJson(),
+    'continue_on_failure': ?continueOnFailure?.toTfJson(),
+    'output_format': ?outputFormat?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'query_file_uri': ?queryFileUri?.toTfJson(),
+    'query_list': ?queryList?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
   };
 }
 
@@ -250,14 +245,14 @@ final class DataprocJobPysparkConfig {
   final DataprocJobPysparkConfigLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
     'main_python_file_uri': mainPythonFileUri.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (pythonFileUris != null) 'python_file_uris': pythonFileUris!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
+    'properties': ?properties?.toTfJson(),
+    'python_file_uris': ?pythonFileUris?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
   };
 }
 
@@ -282,9 +277,7 @@ final class DataprocJobReference {
 
   final TfArg<String>? jobId;
 
-  Map<String, Object?> encode() => {
-    if (jobId != null) 'job_id': jobId!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'job_id': ?jobId?.toTfJson()};
 }
 
 /// Typed helper for the `scheduling` block of
@@ -338,14 +331,14 @@ final class DataprocJobSparkConfig {
   final DataprocJobSparkConfigLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (mainClass != null) 'main_class': mainClass!.toTfJson(),
-    if (mainJarFileUri != null) 'main_jar_file_uri': mainJarFileUri!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'main_class': ?mainClass?.toTfJson(),
+    'main_jar_file_uri': ?mainJarFileUri?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
   };
 }
 
@@ -388,13 +381,12 @@ final class DataprocJobSparksqlConfig {
   final DataprocJobSparksqlConfigLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (queryFileUri != null) 'query_file_uri': queryFileUri!.toTfJson(),
-    if (queryList != null) 'query_list': queryList!.toTfJson(),
-    if (scriptVariables != null)
-      'script_variables': scriptVariables!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'query_file_uri': ?queryFileUri?.toTfJson(),
+    'query_list': ?queryList?.toTfJson(),
+    'script_variables': ?scriptVariables?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
   };
 }
 
@@ -458,7 +450,7 @@ final class GoogleDataprocJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'placement': TfArg.literal(placement.encode()),
            if (reference != null)
              'reference': TfArg.literal(reference.encode()),
@@ -478,12 +470,11 @@ final class GoogleDataprocJob extends Resource {
              'spark_config': TfArg.literal(sparkConfig.encode()),
            if (sparksqlConfig != null)
              'sparksql_config': TfArg.literal(sparksqlConfig.encode()),
-           if (forceDelete != null) 'force_delete': forceDelete,
-           if (waitForCompletion != null)
-             'wait_for_completion': waitForCompletion,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'force_delete': ?forceDelete,
+           'wait_for_completion': ?waitForCompletion,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

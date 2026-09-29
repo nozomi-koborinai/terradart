@@ -55,7 +55,7 @@ final class WafXssMatchSetXssMatchTuplesFieldToMatch {
   final TfArg<WafXssMatchSetXssMatchTuplesFieldToMatchType> type;
 
   Map<String, Object?> encode() => {
-    if (data != null) 'data': data!.toTfJson(),
+    'data': ?data?.toTfJson(),
     'type': type.toTfJson(),
   };
 }

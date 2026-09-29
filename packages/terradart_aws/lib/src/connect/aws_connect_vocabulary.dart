@@ -70,8 +70,8 @@ final class AwsConnectVocabulary extends Resource {
            'instance_id': instanceId,
            'language_code': languageCode,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

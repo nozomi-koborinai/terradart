@@ -30,12 +30,12 @@ final class AwsOdbNetworkPeeringConnection extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (odbNetworkArn != null) 'odb_network_arn': odbNetworkArn,
-           if (odbNetworkId != null) 'odb_network_id': odbNetworkId,
-           if (peerNetworkCidrs != null) 'peer_network_cidrs': peerNetworkCidrs,
+           'odb_network_arn': ?odbNetworkArn,
+           'odb_network_id': ?odbNetworkId,
+           'peer_network_cidrs': ?peerNetworkCidrs,
            'peer_network_id': peerNetworkId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

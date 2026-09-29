@@ -28,7 +28,7 @@ final class LexSlotTypeEnumerationValue {
   final TfArg<String> value;
 
   Map<String, Object?> encode() => {
-    if (synonyms != null) 'synonyms': synonyms!.toTfJson(),
+    'synonyms': ?synonyms?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -52,12 +52,11 @@ final class AwsLexSlotType extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (createVersion != null) 'create_version': createVersion,
-           if (description != null) 'description': description,
+           'create_version': ?createVersion,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (valueSelectionStrategy != null)
-             'value_selection_strategy': valueSelectionStrategy,
+           'region': ?region,
+           'value_selection_strategy': ?valueSelectionStrategy,
            'enumeration_value': TfArg.literal([
              for (final e in enumerationValue) e.encode(),
            ]),

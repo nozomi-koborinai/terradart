@@ -25,10 +25,8 @@ final class KendraExperienceConfiguration {
   userIdentityConfiguration;
 
   Map<String, Object?> encode() => {
-    if (contentSourceConfiguration != null)
-      'content_source_configuration': contentSourceConfiguration!.encode(),
-    if (userIdentityConfiguration != null)
-      'user_identity_configuration': userIdentityConfiguration!.encode(),
+    'content_source_configuration': ?contentSourceConfiguration?.encode(),
+    'user_identity_configuration': ?userIdentityConfiguration?.encode(),
   };
 }
 
@@ -49,10 +47,9 @@ final class KendraExperienceConfigurationContentSourceConfiguration {
   final TfArg<List<Object?>>? faqIds;
 
   Map<String, Object?> encode() => {
-    if (dataSourceIds != null) 'data_source_ids': dataSourceIds!.toTfJson(),
-    if (directPutContent != null)
-      'direct_put_content': directPutContent!.toTfJson(),
-    if (faqIds != null) 'faq_ids': faqIds!.toTfJson(),
+    'data_source_ids': ?dataSourceIds?.toTfJson(),
+    'direct_put_content': ?directPutContent?.toTfJson(),
+    'faq_ids': ?faqIds?.toTfJson(),
   };
 }
 
@@ -90,10 +87,10 @@ final class AwsKendraExperience extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'index_id': indexId,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),

@@ -122,14 +122,14 @@ final class Macie2FindingsFilterFindingCriteriaCriterion {
   final TfArg<List<Object?>>? neq;
 
   Map<String, Object?> encode() => {
-    if (eq != null) 'eq': eq!.toTfJson(),
-    if (eqExactMatch != null) 'eq_exact_match': eqExactMatch!.toTfJson(),
+    'eq': ?eq?.toTfJson(),
+    'eq_exact_match': ?eqExactMatch?.toTfJson(),
     'field': field.toTfJson(),
-    if (gt != null) 'gt': gt!.toTfJson(),
-    if (gte != null) 'gte': gte!.toTfJson(),
-    if (lt != null) 'lt': lt!.toTfJson(),
-    if (lte != null) 'lte': lte!.toTfJson(),
-    if (neq != null) 'neq': neq!.toTfJson(),
+    'gt': ?gt?.toTfJson(),
+    'gte': ?gte?.toTfJson(),
+    'lt': ?lt?.toTfJson(),
+    'lte': ?lte?.toTfJson(),
+    'neq': ?neq?.toTfJson(),
   };
 }
 
@@ -154,11 +154,11 @@ final class AwsMacie2FindingsFilter extends Resource {
          terraformType: tfType,
          argMap: {
            'action': action,
-           if (description != null) 'description': description,
+           'description': ?description,
            ...?name?.argMap,
-           if (position != null) 'position': position,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'position': ?position,
+           'region': ?region,
+           'tags': ?tags,
            'finding_criteria': TfArg.literal(findingCriteria.encode()),
          },
        );

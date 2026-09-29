@@ -41,23 +41,18 @@ final class AwsPinpointsmsvoicev2Pool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionProtectionEnabled != null)
-             'deletion_protection_enabled': deletionProtectionEnabled,
-           if (isoCountryCode != null) 'iso_country_code': isoCountryCode,
+           'deletion_protection_enabled': ?deletionProtectionEnabled,
+           'iso_country_code': ?isoCountryCode,
            'message_type': messageType,
-           if (optOutListName != null) 'opt_out_list_name': optOutListName,
+           'opt_out_list_name': ?optOutListName,
            'origination_identities': originationIdentities,
-           if (region != null) 'region': region,
-           if (selfManagedOptOutsEnabled != null)
-             'self_managed_opt_outs_enabled': selfManagedOptOutsEnabled,
-           if (sharedRoutesEnabled != null)
-             'shared_routes_enabled': sharedRoutesEnabled,
-           if (tags != null) 'tags': tags,
-           if (twoWayChannelArn != null)
-             'two_way_channel_arn': twoWayChannelArn,
-           if (twoWayChannelRole != null)
-             'two_way_channel_role': twoWayChannelRole,
-           if (twoWayEnabled != null) 'two_way_enabled': twoWayEnabled,
+           'region': ?region,
+           'self_managed_opt_outs_enabled': ?selfManagedOptOutsEnabled,
+           'shared_routes_enabled': ?sharedRoutesEnabled,
+           'tags': ?tags,
+           'two_way_channel_arn': ?twoWayChannelArn,
+           'two_way_channel_role': ?twoWayChannelRole,
+           'two_way_enabled': ?twoWayEnabled,
          },
        );
 

@@ -30,9 +30,9 @@ final class CustomerprofilesDomainMatching {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (autoMerging != null) 'auto_merging': autoMerging!.encode(),
-    if (exportingConfig != null) 'exporting_config': exportingConfig!.encode(),
-    if (jobSchedule != null) 'job_schedule': jobSchedule!.encode(),
+    'auto_merging': ?autoMerging?.encode(),
+    'exporting_config': ?exportingConfig?.encode(),
+    'job_schedule': ?jobSchedule?.encode(),
   };
 }
 
@@ -58,12 +58,10 @@ final class CustomerprofilesDomainMatchingAutoMerging {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (minAllowedConfidenceScoreForMerging != null)
-      'min_allowed_confidence_score_for_merging':
-          minAllowedConfidenceScoreForMerging!.toTfJson(),
-    if (conflictResolution != null)
-      'conflict_resolution': conflictResolution!.encode(),
-    if (consolidation != null) 'consolidation': consolidation!.encode(),
+    'min_allowed_confidence_score_for_merging':
+        ?minAllowedConfidenceScoreForMerging?.toTfJson(),
+    'conflict_resolution': ?conflictResolution?.encode(),
+    'consolidation': ?consolidation?.encode(),
   };
 }
 
@@ -85,7 +83,7 @@ final class CustomerprofilesDomainMatchingAutoMergingConflictResolution {
 
   Map<String, Object?> encode() => {
     'conflict_resolving_model': conflictResolvingModel.toTfJson(),
-    if (sourceName != null) 'source_name': sourceName!.toTfJson(),
+    'source_name': ?sourceName?.toTfJson(),
   };
 }
 
@@ -125,9 +123,7 @@ final class CustomerprofilesDomainMatchingExportingConfig {
 
   final CustomerprofilesDomainMatchingExportingConfigS3Exporting? s3Exporting;
 
-  Map<String, Object?> encode() => {
-    if (s3Exporting != null) 's3_exporting': s3Exporting!.encode(),
-  };
+  Map<String, Object?> encode() => {'s3_exporting': ?s3Exporting?.encode()};
 }
 
 /// Typed helper for the `matching.exporting_config.s3_exporting` block of
@@ -145,7 +141,7 @@ final class CustomerprofilesDomainMatchingExportingConfigS3Exporting {
 
   Map<String, Object?> encode() => {
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
-    if (s3KeyName != null) 's3_key_name': s3KeyName!.toTfJson(),
+    's3_key_name': ?s3KeyName?.toTfJson(),
   };
 }
 
@@ -223,18 +219,14 @@ final class CustomerprofilesDomainRuleBasedMatching {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (maxAllowedRuleLevelForMatching != null)
-      'max_allowed_rule_level_for_matching': maxAllowedRuleLevelForMatching!
-          .toTfJson(),
-    if (maxAllowedRuleLevelForMerging != null)
-      'max_allowed_rule_level_for_merging': maxAllowedRuleLevelForMerging!
-          .toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
-    if (attributeTypesSelector != null)
-      'attribute_types_selector': attributeTypesSelector!.encode(),
-    if (conflictResolution != null)
-      'conflict_resolution': conflictResolution!.encode(),
-    if (exportingConfig != null) 'exporting_config': exportingConfig!.encode(),
+    'max_allowed_rule_level_for_matching': ?maxAllowedRuleLevelForMatching
+        ?.toTfJson(),
+    'max_allowed_rule_level_for_merging': ?maxAllowedRuleLevelForMerging
+        ?.toTfJson(),
+    'status': ?status?.toTfJson(),
+    'attribute_types_selector': ?attributeTypesSelector?.encode(),
+    'conflict_resolution': ?conflictResolution?.encode(),
+    'exporting_config': ?exportingConfig?.encode(),
     if (matchingRules != null)
       'matching_rules': [for (final e in matchingRules!) e.encode()],
   };
@@ -274,10 +266,10 @@ final class CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector {
   final TfArg<List<Object?>>? phoneNumber;
 
   Map<String, Object?> encode() => {
-    if (address != null) 'address': address!.toTfJson(),
+    'address': ?address?.toTfJson(),
     'attribute_matching_model': attributeMatchingModel.toTfJson(),
-    if (emailAddress != null) 'email_address': emailAddress!.toTfJson(),
-    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
+    'email_address': ?emailAddress?.toTfJson(),
+    'phone_number': ?phoneNumber?.toTfJson(),
   };
 }
 
@@ -312,7 +304,7 @@ final class CustomerprofilesDomainRuleBasedMatchingConflictResolution {
 
   Map<String, Object?> encode() => {
     'conflict_resolving_model': conflictResolvingModel.toTfJson(),
-    if (sourceName != null) 'source_name': sourceName!.toTfJson(),
+    'source_name': ?sourceName?.toTfJson(),
   };
 }
 
@@ -340,9 +332,7 @@ final class CustomerprofilesDomainRuleBasedMatchingExportingConfig {
   final CustomerprofilesDomainRuleBasedMatchingExportingConfigS3Exporting?
   s3Exporting;
 
-  Map<String, Object?> encode() => {
-    if (s3Exporting != null) 's3_exporting': s3Exporting!.encode(),
-  };
+  Map<String, Object?> encode() => {'s3_exporting': ?s3Exporting?.encode()};
 }
 
 /// Typed helper for the `rule_based_matching.exporting_config.s3_exporting` block of
@@ -360,7 +350,7 @@ final class CustomerprofilesDomainRuleBasedMatchingExportingConfigS3Exporting {
 
   Map<String, Object?> encode() => {
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
-    if (s3KeyName != null) 's3_key_name': s3KeyName!.toTfJson(),
+    's3_key_name': ?s3KeyName?.toTfJson(),
   };
 }
 
@@ -398,14 +388,12 @@ final class AwsCustomerprofilesDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deadLetterQueueUrl != null)
-             'dead_letter_queue_url': deadLetterQueueUrl,
-           if (defaultEncryptionKey != null)
-             'default_encryption_key': defaultEncryptionKey,
+           'dead_letter_queue_url': ?deadLetterQueueUrl,
+           'default_encryption_key': ?defaultEncryptionKey,
            'default_expiration_days': defaultExpirationDays,
            'domain_name': domainName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (matching != null) 'matching': TfArg.literal(matching.encode()),
            if (ruleBasedMatching != null)
              'rule_based_matching': TfArg.literal(ruleBasedMatching.encode()),

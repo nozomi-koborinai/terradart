@@ -47,9 +47,9 @@ final class GoogleNetworkSecurityUllMirroringEngine extends Resource {
          argMap: {
            'location': location,
            'ull_mirroring_engine_id': ullMirroringEngineId,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

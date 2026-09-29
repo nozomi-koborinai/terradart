@@ -56,12 +56,11 @@ final class GoogleVertexAiFeatureGroupFeature extends Resource {
            'feature_group': featureGroup,
            'name': name,
            'region': region,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (versionColumnName != null)
-             'version_column_name': versionColumnName,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'version_column_name': ?versionColumnName,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

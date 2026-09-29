@@ -52,11 +52,11 @@ final class ContainerAzureNodePoolConfig {
   final ContainerAzureNodePoolConfigSshConfig sshConfig;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (vmSize != null) 'vm_size': vmSize!.toTfJson(),
-    if (proxyConfig != null) 'proxy_config': proxyConfig!.encode(),
-    if (rootVolume != null) 'root_volume': rootVolume!.encode(),
+    'labels': ?labels?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'vm_size': ?vmSize?.toTfJson(),
+    'proxy_config': ?proxyConfig?.encode(),
+    'root_volume': ?rootVolume?.encode(),
     'ssh_config': sshConfig.encode(),
   };
 }
@@ -88,9 +88,7 @@ final class ContainerAzureNodePoolConfigRootVolume {
 
   final TfArg<num>? sizeGib;
 
-  Map<String, Object?> encode() => {
-    if (sizeGib != null) 'size_gib': sizeGib!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'size_gib': ?sizeGib?.toTfJson()};
 }
 
 /// Typed helper for the `config.ssh_config` block of
@@ -112,9 +110,7 @@ final class ContainerAzureNodePoolManagement {
 
   final TfArg<bool>? autoRepair;
 
-  Map<String, Object?> encode() => {
-    if (autoRepair != null) 'auto_repair': autoRepair!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'auto_repair': ?autoRepair?.toTfJson()};
 }
 
 /// Typed helper for the `max_pods_constraint` block of
@@ -172,8 +168,8 @@ final class GoogleContainerAzureNodePool extends Resource {
            'max_pods_constraint': TfArg.literal(maxPodsConstraint.encode()),
            if (management != null)
              'management': TfArg.literal(management.encode()),
-           if (annotations != null) 'annotations': annotations,
-           if (project != null) 'project': project,
+           'annotations': ?annotations,
+           'project': ?project,
          },
        );
 

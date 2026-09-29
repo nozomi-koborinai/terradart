@@ -41,16 +41,14 @@ final class DataZeroTrustTunnelCloudflaredRouteFilter {
   final TfArg<String>? virtualNetworkId;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
-    if (existedAt != null) 'existed_at': existedAt!.toTfJson(),
-    if (isDeleted != null) 'is_deleted': isDeleted!.toTfJson(),
-    if (networkSubset != null) 'network_subset': networkSubset!.toTfJson(),
-    if (networkSuperset != null)
-      'network_superset': networkSuperset!.toTfJson(),
-    if (tunTypes != null) 'tun_types': tunTypes!.toTfJson(),
-    if (tunnelId != null) 'tunnel_id': tunnelId!.toTfJson(),
-    if (virtualNetworkId != null)
-      'virtual_network_id': virtualNetworkId!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
+    'existed_at': ?existedAt?.toTfJson(),
+    'is_deleted': ?isDeleted?.toTfJson(),
+    'network_subset': ?networkSubset?.toTfJson(),
+    'network_superset': ?networkSuperset?.toTfJson(),
+    'tun_types': ?tunTypes?.toTfJson(),
+    'tunnel_id': ?tunnelId?.toTfJson(),
+    'virtual_network_id': ?virtualNetworkId?.toTfJson(),
   };
 }
 
@@ -73,8 +71,8 @@ final class DataCloudflareZeroTrustTunnelCloudflaredRoute extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (routeId != null) 'route_id': routeId,
+           'account_id': ?accountId,
+           'route_id': ?routeId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

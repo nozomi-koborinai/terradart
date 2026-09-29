@@ -26,7 +26,7 @@ final class DataCloudflareWorkersForPlatformsDispatchNamespace extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'dispatch_namespace': dispatchNamespace,
          },
        );

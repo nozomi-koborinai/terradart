@@ -24,7 +24,7 @@ final class GlueDataQualityRulesetTargetTable {
   final TfArg<String> tableName;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
     'table_name': tableName.toTfJson(),
   };
@@ -49,11 +49,11 @@ final class AwsGlueDataQualityRuleset extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'ruleset': ruleset,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (targetTable != null)
              'target_table': TfArg.literal(targetTable.encode()),
          },

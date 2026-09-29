@@ -19,8 +19,8 @@ final class DataApiTokenFilter {
   final TfArg<bool>? includeExpired;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (includeExpired != null) 'include_expired': includeExpired!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'include_expired': ?includeExpired?.toTfJson(),
   };
 }
 
@@ -51,7 +51,7 @@ final class DataCloudflareApiToken extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (tokenId != null) 'token_id': tokenId,
+           'token_id': ?tokenId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

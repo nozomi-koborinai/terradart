@@ -27,14 +27,14 @@ final class DataAwsS3Objects extends Data {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (delimiter != null) 'delimiter': delimiter,
-           if (encodingType != null) 'encoding_type': encodingType,
-           if (fetchOwner != null) 'fetch_owner': fetchOwner,
-           if (maxKeys != null) 'max_keys': maxKeys,
-           if (prefix != null) 'prefix': prefix,
-           if (region != null) 'region': region,
-           if (requestPayer != null) 'request_payer': requestPayer,
-           if (startAfter != null) 'start_after': startAfter,
+           'delimiter': ?delimiter,
+           'encoding_type': ?encodingType,
+           'fetch_owner': ?fetchOwner,
+           'max_keys': ?maxKeys,
+           'prefix': ?prefix,
+           'region': ?region,
+           'request_payer': ?requestPayer,
+           'start_after': ?startAfter,
          },
        );
 

@@ -20,10 +20,7 @@ final class AwsMacie2OrganizationConfiguration extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'auto_enable': autoEnable,
-           if (region != null) 'region': region,
-         },
+         argMap: {'auto_enable': autoEnable, 'region': ?region},
        );
 
   @override

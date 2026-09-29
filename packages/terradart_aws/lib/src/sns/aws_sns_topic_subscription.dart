@@ -34,23 +34,18 @@ final class AwsSnsTopicSubscription extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (confirmationTimeoutInMinutes != null)
-             'confirmation_timeout_in_minutes': confirmationTimeoutInMinutes,
-           if (deliveryPolicy != null) 'delivery_policy': deliveryPolicy,
+           'confirmation_timeout_in_minutes': ?confirmationTimeoutInMinutes,
+           'delivery_policy': ?deliveryPolicy,
            'endpoint': endpoint,
-           if (endpointAutoConfirms != null)
-             'endpoint_auto_confirms': endpointAutoConfirms,
-           if (filterPolicy != null) 'filter_policy': filterPolicy,
-           if (filterPolicyScope != null)
-             'filter_policy_scope': filterPolicyScope,
+           'endpoint_auto_confirms': ?endpointAutoConfirms,
+           'filter_policy': ?filterPolicy,
+           'filter_policy_scope': ?filterPolicyScope,
            'protocol': protocol,
-           if (rawMessageDelivery != null)
-             'raw_message_delivery': rawMessageDelivery,
-           if (redrivePolicy != null) 'redrive_policy': redrivePolicy,
-           if (region != null) 'region': region,
-           if (replayPolicy != null) 'replay_policy': replayPolicy,
-           if (subscriptionRoleArn != null)
-             'subscription_role_arn': subscriptionRoleArn,
+           'raw_message_delivery': ?rawMessageDelivery,
+           'redrive_policy': ?redrivePolicy,
+           'region': ?region,
+           'replay_policy': ?replayPolicy,
+           'subscription_role_arn': ?subscriptionRoleArn,
            'topic_arn': topicArn.encodeAs('arn'),
          },
        );

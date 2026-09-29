@@ -44,8 +44,8 @@ final class GoogleApigeeKeystoresAliasesPkcs12 extends Resource {
            'keystore': keystore,
            'file': file,
            'filehash': filehash,
-           if (password != null) 'password': password,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'password': ?password,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

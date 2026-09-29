@@ -111,13 +111,11 @@ final class GoogleAccessContextManagerAuthorizedOrgsDesc extends Resource {
          argMap: {
            'parent': parent,
            'name': name,
-           if (orgs != null) 'orgs': orgs,
-           if (authorizationType != null)
-             'authorization_type': authorizationType,
-           if (assetType != null) 'asset_type': assetType,
-           if (authorizationDirection != null)
-             'authorization_direction': authorizationDirection,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'orgs': ?orgs,
+           'authorization_type': ?authorizationType,
+           'asset_type': ?assetType,
+           'authorization_direction': ?authorizationDirection,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

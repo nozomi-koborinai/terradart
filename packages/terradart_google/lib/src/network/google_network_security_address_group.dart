@@ -41,13 +41,13 @@ final class GoogleNetworkSecurityAddressGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (parent != null) 'parent': parent,
+           'parent': ?parent,
            'location': location,
            'type': type,
            'capacity': capacity,
-           if (items != null) 'items': items,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'items': ?items,
+           'description': ?description,
+           'labels': ?labels,
          },
        );
 

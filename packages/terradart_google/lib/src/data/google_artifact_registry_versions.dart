@@ -26,12 +26,12 @@ final class DataGoogleArtifactRegistryVersions extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (filter != null) 'filter': filter,
+           'filter': ?filter,
            'location': location,
            'package_name': packageName,
-           if (project != null) 'project': project,
+           'project': ?project,
            'repository_id': repositoryId,
-           if (view != null) 'view': view,
+           'view': ?view,
          },
        );
 

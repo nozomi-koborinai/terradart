@@ -29,11 +29,10 @@ final class EfsReplicationConfigurationDestination {
   final TfArg<String>? region;
 
   Map<String, Object?> encode() => {
-    if (availabilityZoneName != null)
-      'availability_zone_name': availabilityZoneName!.toTfJson(),
-    if (fileSystemId != null) 'file_system_id': fileSystemId!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'availability_zone_name': ?availabilityZoneName?.toTfJson(),
+    'file_system_id': ?fileSystemId?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'region': ?region?.toTfJson(),
   };
 }
 
@@ -53,7 +52,7 @@ final class AwsEfsReplicationConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'source_file_system_id': sourceFileSystemId,
            'destination': TfArg.literal(destination.encode()),
          },

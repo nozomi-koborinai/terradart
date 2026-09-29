@@ -27,7 +27,7 @@ final class DataEcrLifecyclePolicyDocumentRule {
   final List<DataEcrLifecyclePolicyDocumentRuleSelection>? selection;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'priority': priority.toTfJson(),
     if (action != null) 'action': [for (final e in action!) e.encode()],
     if (selection != null)
@@ -49,8 +49,7 @@ final class DataEcrLifecyclePolicyDocumentRuleAction {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (targetStorageClass != null)
-      'target_storage_class': targetStorageClass!.toTfJson(),
+    'target_storage_class': ?targetStorageClass?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -86,10 +85,10 @@ final class DataEcrLifecyclePolicyDocumentRuleSelection {
   Map<String, Object?> encode() => {
     'count_number': countNumber.toTfJson(),
     'count_type': countType.toTfJson(),
-    if (countUnit != null) 'count_unit': countUnit!.toTfJson(),
-    if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
-    if (tagPatternList != null) 'tag_pattern_list': tagPatternList!.toTfJson(),
-    if (tagPrefixList != null) 'tag_prefix_list': tagPrefixList!.toTfJson(),
+    'count_unit': ?countUnit?.toTfJson(),
+    'storage_class': ?storageClass?.toTfJson(),
+    'tag_pattern_list': ?tagPatternList?.toTfJson(),
+    'tag_prefix_list': ?tagPrefixList?.toTfJson(),
     'tag_status': tagStatus.toTfJson(),
   };
 }

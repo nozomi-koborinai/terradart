@@ -23,9 +23,9 @@ final class DataAwsRedshiftserverlessCredentials extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dbName != null) 'db_name': dbName,
-           if (durationSeconds != null) 'duration_seconds': durationSeconds,
-           if (region != null) 'region': region,
+           'db_name': ?dbName,
+           'duration_seconds': ?durationSeconds,
+           'region': ?region,
            'workgroup_name': workgroupName,
          },
        );

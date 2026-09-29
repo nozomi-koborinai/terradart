@@ -83,12 +83,11 @@ final class GoogleLoggingFolderSink extends Resource {
            'name': name,
            'folder': folder,
            'destination': destination,
-           if (filter != null) 'filter': filter,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (includeChildren != null) 'include_children': includeChildren,
-           if (interceptChildren != null)
-             'intercept_children': interceptChildren,
+           'filter': ?filter,
+           'description': ?description,
+           'disabled': ?disabled,
+           'include_children': ?includeChildren,
+           'intercept_children': ?interceptChildren,
            if (bigqueryOptions != null)
              'bigquery_options': TfArg.literal([bigqueryOptions.toArgMap()]),
            if (exclusions != null)

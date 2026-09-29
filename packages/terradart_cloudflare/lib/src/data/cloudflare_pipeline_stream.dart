@@ -19,8 +19,8 @@ final class DataPipelineStreamFilter {
   final TfArg<String>? pipelineId;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (pipelineId != null) 'pipeline_id': pipelineId!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'pipeline_id': ?pipelineId?.toTfJson(),
   };
 }
 
@@ -42,8 +42,8 @@ final class DataCloudflarePipelineStream extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (streamId != null) 'stream_id': streamId,
+           'account_id': ?accountId,
+           'stream_id': ?streamId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

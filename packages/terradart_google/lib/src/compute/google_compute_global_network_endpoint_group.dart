@@ -94,9 +94,9 @@ final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
          argMap: {
            'name': name,
            'network_endpoint_type': networkEndpointType,
-           if (defaultPort != null) 'default_port': defaultPort,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'default_port': ?defaultPort,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

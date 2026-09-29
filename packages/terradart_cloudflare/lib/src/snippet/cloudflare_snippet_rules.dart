@@ -29,8 +29,8 @@ final class SnippetRulesRules {
   final TfArg<String> snippetName;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'expression': expression.toTfJson(),
     'snippet_name': snippetName.toTfJson(),
   };

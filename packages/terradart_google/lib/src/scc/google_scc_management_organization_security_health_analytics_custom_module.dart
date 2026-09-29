@@ -54,10 +54,10 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
   resourceSelector;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'recommendation': recommendation.toTfJson(),
     'severity': severity.toTfJson(),
-    if (customOutput != null) 'custom_output': customOutput!.encode(),
+    'custom_output': ?customOutput?.encode(),
     'predicate': predicate.encode(),
     'resource_selector': resourceSelector.encode(),
   };
@@ -112,8 +112,8 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
   valueExpression;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (valueExpression != null) 'value_expression': valueExpression!.encode(),
+    'name': ?name?.toTfJson(),
+    'value_expression': ?valueExpression?.encode(),
   };
 }
 
@@ -137,10 +137,10 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -164,10 +164,10 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -221,10 +221,10 @@ final class GoogleSccManagementOrganizationSecurityHealthAnalyticsCustomModule
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (enablementState != null) 'enablement_state': enablementState,
-           if (location != null) 'location': location,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'enablement_state': ?enablementState,
+           'location': ?location,
            'organization': organization,
            if (customConfig != null)
              'custom_config': TfArg.literal(customConfig.encode()),

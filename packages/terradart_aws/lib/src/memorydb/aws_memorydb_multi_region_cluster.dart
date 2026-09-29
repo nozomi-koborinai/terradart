@@ -50,18 +50,17 @@ final class AwsMemorydbMultiRegionCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (engine != null) 'engine': engine,
-           if (engineVersion != null) 'engine_version': engineVersion,
+           'description': ?description,
+           'engine': ?engine,
+           'engine_version': ?engineVersion,
            'multi_region_cluster_name_suffix': multiRegionClusterNameSuffix,
-           if (multiRegionParameterGroupName != null)
-             'multi_region_parameter_group_name': multiRegionParameterGroupName,
+           'multi_region_parameter_group_name': ?multiRegionParameterGroupName,
            'node_type': nodeType,
-           if (numShards != null) 'num_shards': numShards,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (tlsEnabled != null) 'tls_enabled': tlsEnabled,
-           if (updateStrategy != null) 'update_strategy': updateStrategy,
+           'num_shards': ?numShards,
+           'region': ?region,
+           'tags': ?tags,
+           'tls_enabled': ?tlsEnabled,
+           'update_strategy': ?updateStrategy,
          },
        );
 

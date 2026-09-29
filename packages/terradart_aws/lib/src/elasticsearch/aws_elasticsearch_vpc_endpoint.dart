@@ -24,8 +24,7 @@ final class ElasticsearchVpcEndpointVpcOptions {
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
@@ -47,7 +46,7 @@ final class AwsElasticsearchVpcEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'domain_arn': domainArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'vpc_options': TfArg.literal(vpcOptions.encode()),
          },
        );

@@ -98,9 +98,7 @@ final class AppsyncChannelNamespaceHandlerConfigsOnPublishIntegrationLambdaConfi
   >?
   invokeType;
 
-  Map<String, Object?> encode() => {
-    if (invokeType != null) 'invoke_type': invokeType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'invoke_type': ?invokeType?.toTfJson()};
 }
 
 /// `invoke_type` — derived from the provider schema description.
@@ -187,9 +185,7 @@ final class AppsyncChannelNamespaceHandlerConfigsOnSubscribeIntegrationLambdaCon
   >?
   invokeType;
 
-  Map<String, Object?> encode() => {
-    if (invokeType != null) 'invoke_type': invokeType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'invoke_type': ?invokeType?.toTfJson()};
 }
 
 /// `invoke_type` — derived from the provider schema description.
@@ -275,10 +271,10 @@ final class AwsAppsyncChannelNamespace extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (codeHandlers != null) 'code_handlers': codeHandlers,
+           'code_handlers': ?codeHandlers,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (handlerConfigs != null)
              'handler_configs': TfArg.literal([
                for (final e in handlerConfigs) e.encode(),

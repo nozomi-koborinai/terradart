@@ -24,7 +24,7 @@ final class DataGoogleKmsSecretAsymmetric extends Data {
          terraformType: tfType,
          argMap: {
            'ciphertext': ciphertext,
-           if (crc32 != null) 'crc32': crc32,
+           'crc32': ?crc32,
            'crypto_key_version': cryptoKeyVersion,
          },
        );

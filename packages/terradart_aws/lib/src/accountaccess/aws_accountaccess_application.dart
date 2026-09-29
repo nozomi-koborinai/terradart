@@ -51,8 +51,8 @@ final class AwsAccountaccessApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (identitySource != null)
              'identity_source': TfArg.literal([
                for (final e in identitySource) e.encode(),

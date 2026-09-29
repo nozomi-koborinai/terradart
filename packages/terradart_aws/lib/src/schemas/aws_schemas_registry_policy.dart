@@ -23,7 +23,7 @@ final class AwsSchemasRegistryPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
            'registry_name': registryName,
          },
        );

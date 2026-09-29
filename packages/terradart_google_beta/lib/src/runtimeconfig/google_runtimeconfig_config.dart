@@ -24,10 +24,10 @@ final class GoogleRuntimeconfigConfig extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

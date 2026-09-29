@@ -18,10 +18,7 @@ final class DataAwsSqsQueues extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (queueNamePrefix != null) 'queue_name_prefix': queueNamePrefix,
-           if (region != null) 'region': region,
-         },
+         argMap: {'queue_name_prefix': ?queueNamePrefix, 'region': ?region},
        );
 
   @override

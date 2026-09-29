@@ -28,7 +28,7 @@ final class DatazoneAssetTypeFormsInput {
 
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'required': ?required?.toTfJson(),
     'type_identifier': typeIdentifier.toTfJson(),
     'type_revision': typeRevision.toTfJson(),
   };
@@ -53,11 +53,11 @@ final class AwsDatazoneAssetType extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'domain_identifier': domainIdentifier,
            'name': name,
            'owning_project_identifier': owningProjectIdentifier,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (formsInput != null)
              'forms_input': TfArg.literal([
                for (final e in formsInput) e.encode(),

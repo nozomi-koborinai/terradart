@@ -60,10 +60,7 @@ final class GoogleCloudQuotasQuotaAdjusterSettings extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'enablement': enablement,
-           if (parent != null) 'parent': parent,
-         },
+         argMap: {'enablement': enablement, 'parent': ?parent},
        );
 
   @override

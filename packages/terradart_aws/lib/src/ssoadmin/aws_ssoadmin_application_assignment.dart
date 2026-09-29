@@ -36,7 +36,7 @@ final class AwsSsoadminApplicationAssignment extends Resource {
            'application_arn': applicationArn,
            'principal_id': principalId,
            'principal_type': principalType,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

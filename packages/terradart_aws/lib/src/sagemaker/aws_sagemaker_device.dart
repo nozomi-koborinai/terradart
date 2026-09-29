@@ -24,9 +24,9 @@ final class SagemakerDeviceDevice {
   final TfArg<String>? iotThingName;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'device_name': deviceName.toTfJson(),
-    if (iotThingName != null) 'iot_thing_name': iotThingName!.toTfJson(),
+    'iot_thing_name': ?iotThingName?.toTfJson(),
   };
 }
 
@@ -47,7 +47,7 @@ final class AwsSagemakerDevice extends Resource {
          terraformType: tfType,
          argMap: {
            'device_fleet_name': deviceFleetName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'device': TfArg.literal(device.encode()),
          },
        );

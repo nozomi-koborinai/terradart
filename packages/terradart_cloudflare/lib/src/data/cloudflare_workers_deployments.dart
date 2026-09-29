@@ -27,10 +27,10 @@ final class DataCloudflareWorkersDeployments extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
+           'max_items': ?maxItems,
            'script_name': scriptName,
-           if (since != null) 'since': since,
-           if (until != null) 'until': until,
+           'since': ?since,
+           'until': ?until,
          },
        );
 

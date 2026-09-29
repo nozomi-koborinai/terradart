@@ -56,12 +56,10 @@ final class GoogleSpannerDatabase extends Resource {
          argMap: {
            'instance': instance,
            'name': name,
-           if (databaseDialect != null) 'database_dialect': databaseDialect,
-           if (versionRetentionPeriod != null)
-             'version_retention_period': versionRetentionPeriod,
-           if (ddl != null) 'ddl': ddl,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
+           'database_dialect': ?databaseDialect,
+           'version_retention_period': ?versionRetentionPeriod,
+           'ddl': ?ddl,
+           'deletion_protection': ?deletionProtection,
          },
        );
 

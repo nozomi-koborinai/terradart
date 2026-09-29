@@ -26,13 +26,13 @@ final class AwsApiGatewayApiKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customerId != null) 'customer_id': customerId,
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
+           'customer_id': ?customerId,
+           'description': ?description,
+           'enabled': ?enabled,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (value != null) 'value': value,
+           'region': ?region,
+           'tags': ?tags,
+           'value': ?value,
          },
        );
 

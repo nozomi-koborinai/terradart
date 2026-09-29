@@ -26,7 +26,7 @@ final class GoogleDataCatalogPolicyTagIamMember extends Resource {
            'policy_tag': policyTag,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

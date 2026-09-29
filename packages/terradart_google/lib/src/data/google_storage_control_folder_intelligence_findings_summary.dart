@@ -27,10 +27,10 @@ final class DataGoogleStorageControlFolderIntelligenceFindingsSummary
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (filter != null) 'filter': filter,
+           'filter': ?filter,
            'folder': folder,
-           if (location != null) 'location': location,
-           if (resourceScope != null) 'resource_scope': resourceScope,
+           'location': ?location,
+           'resource_scope': ?resourceScope,
          },
        );
 

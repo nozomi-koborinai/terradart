@@ -50,9 +50,9 @@ final class GoogleChronicleSoarNetwork extends Resource {
            'environments_json': environmentsJson,
            'location': location,
            'instance': instance,
-           if (priority != null) 'priority': priority,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'priority': ?priority,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

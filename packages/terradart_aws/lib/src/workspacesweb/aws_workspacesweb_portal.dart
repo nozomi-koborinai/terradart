@@ -49,20 +49,15 @@ final class AwsWorkspaceswebPortal extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalEncryptionContext != null)
-             'additional_encryption_context': additionalEncryptionContext,
-           if (authenticationType != null)
-             'authentication_type': authenticationType,
-           if (browserSettingsArn != null)
-             'browser_settings_arn': browserSettingsArn,
-           if (customerManagedKey != null)
-             'customer_managed_key': customerManagedKey,
-           if (displayName != null) 'display_name': displayName,
-           if (instanceType != null) 'instance_type': instanceType,
-           if (maxConcurrentSessions != null)
-             'max_concurrent_sessions': maxConcurrentSessions,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'additional_encryption_context': ?additionalEncryptionContext,
+           'authentication_type': ?authenticationType,
+           'browser_settings_arn': ?browserSettingsArn,
+           'customer_managed_key': ?customerManagedKey,
+           'display_name': ?displayName,
+           'instance_type': ?instanceType,
+           'max_concurrent_sessions': ?maxConcurrentSessions,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -27,10 +27,9 @@ final class GoogleObservabilityFolderSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultStorageLocation != null)
-             'default_storage_location': defaultStorageLocation,
+           'default_storage_location': ?defaultStorageLocation,
            'folder': folder,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
            'location': location,
          },
        );

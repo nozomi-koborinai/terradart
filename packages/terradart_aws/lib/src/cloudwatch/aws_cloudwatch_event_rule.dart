@@ -162,17 +162,16 @@ final class AwsCloudwatchEventRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (eventBusName != null) 'event_bus_name': eventBusName,
-           if (eventPattern != null) 'event_pattern': eventPattern,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'description': ?description,
+           'event_bus_name': ?eventBusName,
+           'event_pattern': ?eventPattern,
+           'force_destroy': ?forceDestroy,
            ...?status?.argMap,
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
-           if (scheduleExpression != null)
-             'schedule_expression': scheduleExpression,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
+           'schedule_expression': ?scheduleExpression,
+           'tags': ?tags,
          },
        );
 

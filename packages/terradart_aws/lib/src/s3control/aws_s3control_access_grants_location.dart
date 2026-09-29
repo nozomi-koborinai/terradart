@@ -26,11 +26,11 @@ final class AwsS3controlAccessGrantsLocation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'iam_role_arn': iamRoleArn.encodeAs('arn'),
            'location_scope': locationScope,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

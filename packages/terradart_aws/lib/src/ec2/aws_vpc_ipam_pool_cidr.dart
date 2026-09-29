@@ -76,8 +76,8 @@ final class VpcIpamPoolCidrCidrAuthorizationContext {
   final TfArg<String>? signature;
 
   Map<String, Object?> encode() => {
-    if (message != null) 'message': message!.toTfJson(),
-    if (signature != null) 'signature': signature!.toTfJson(),
+    'message': ?message?.toTfJson(),
+    'signature': ?signature?.toTfJson(),
   };
 }
 
@@ -100,7 +100,7 @@ final class AwsVpcIpamPoolCidr extends Resource {
          argMap: {
            ...?cidr?.argMap,
            'ipam_pool_id': ipamPoolId,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (cidrAuthorizationContext != null)
              'cidr_authorization_context': TfArg.literal(
                cidrAuthorizationContext.encode(),

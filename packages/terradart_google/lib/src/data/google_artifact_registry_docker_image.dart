@@ -26,7 +26,7 @@ final class DataGoogleArtifactRegistryDockerImage extends Data {
          argMap: {
            'image_name': imageName,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'repository_id': repositoryId,
          },
        );

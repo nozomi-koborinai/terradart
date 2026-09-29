@@ -65,33 +65,27 @@ final class AwsOdbCloudVmCluster extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cloudExadataInfrastructureArn != null)
-             'cloud_exadata_infrastructure_arn': cloudExadataInfrastructureArn,
-           if (cloudExadataInfrastructureId != null)
-             'cloud_exadata_infrastructure_id': cloudExadataInfrastructureId,
-           if (clusterName != null) 'cluster_name': clusterName,
+           'cloud_exadata_infrastructure_arn': ?cloudExadataInfrastructureArn,
+           'cloud_exadata_infrastructure_id': ?cloudExadataInfrastructureId,
+           'cluster_name': ?clusterName,
            'cpu_core_count': cpuCoreCount,
            'data_storage_size_in_tbs': dataStorageSizeInTbs,
-           if (dbNodeStorageSizeInGbs != null)
-             'db_node_storage_size_in_gbs': dbNodeStorageSizeInGbs,
+           'db_node_storage_size_in_gbs': ?dbNodeStorageSizeInGbs,
            'db_servers': dbServers,
            'display_name': displayName,
            'gi_version': giVersion,
            'hostname_prefix': hostnamePrefix,
-           if (isLocalBackupEnabled != null)
-             'is_local_backup_enabled': isLocalBackupEnabled,
-           if (isSparseDiskgroupEnabled != null)
-             'is_sparse_diskgroup_enabled': isSparseDiskgroupEnabled,
-           if (licenseModel != null) 'license_model': licenseModel,
-           if (memorySizeInGbs != null) 'memory_size_in_gbs': memorySizeInGbs,
-           if (odbNetworkArn != null) 'odb_network_arn': odbNetworkArn,
-           if (odbNetworkId != null) 'odb_network_id': odbNetworkId,
-           if (region != null) 'region': region,
-           if (scanListenerPortTcp != null)
-             'scan_listener_port_tcp': scanListenerPortTcp,
+           'is_local_backup_enabled': ?isLocalBackupEnabled,
+           'is_sparse_diskgroup_enabled': ?isSparseDiskgroupEnabled,
+           'license_model': ?licenseModel,
+           'memory_size_in_gbs': ?memorySizeInGbs,
+           'odb_network_arn': ?odbNetworkArn,
+           'odb_network_id': ?odbNetworkId,
+           'region': ?region,
+           'scan_listener_port_tcp': ?scanListenerPortTcp,
            'ssh_public_keys': sshPublicKeys,
-           if (tags != null) 'tags': tags,
-           if (timezone != null) 'timezone': timezone,
+           'tags': ?tags,
+           'timezone': ?timezone,
            if (dataCollectionOptions != null)
              'data_collection_options': TfArg.literal([
                for (final e in dataCollectionOptions) e.encode(),

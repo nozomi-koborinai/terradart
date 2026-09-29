@@ -22,8 +22,8 @@ final class AwsVpcEndpointPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
+           'policy': ?policy,
+           'region': ?region,
            'vpc_endpoint_id': vpcEndpointId,
          },
        );

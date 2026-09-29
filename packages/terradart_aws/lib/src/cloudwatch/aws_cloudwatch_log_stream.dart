@@ -26,7 +26,7 @@ final class AwsCloudwatchLogStream extends Resource {
          argMap: {
            'log_group_name': logGroupName.encodeAs('name'),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

@@ -62,7 +62,7 @@ final class GoogleProjectIamMember extends Resource {
            'project': project,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

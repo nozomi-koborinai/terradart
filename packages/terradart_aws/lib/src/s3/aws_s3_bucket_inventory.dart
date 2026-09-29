@@ -80,11 +80,11 @@ final class S3BucketInventoryDestinationBucket {
   final S3BucketInventoryDestinationBucketEncryption? encryption;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    'account_id': ?accountId?.toTfJson(),
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'format': format.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (encryption != null) 'encryption': encryption!.encode(),
+    'prefix': ?prefix?.toTfJson(),
+    'encryption': ?encryption?.encode(),
   };
 }
 
@@ -192,9 +192,7 @@ final class S3BucketInventoryFilter {
 
   final TfArg<String>? prefix;
 
-  Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'prefix': ?prefix?.toTfJson()};
 }
 
 /// Typed helper for the `schedule` block of
@@ -242,14 +240,14 @@ final class AwsS3BucketInventory extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            'included_object_versions': includedObjectVersions,
            'name': name,
            if (optionalFields != null)
              'optional_fields': TfArg.literal([
                for (final e in optionalFields) e.toTfJson(),
              ]),
-           if (region != null) 'region': region,
+           'region': ?region,
            'destination': TfArg.literal(destination.encode()),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
            'schedule': TfArg.literal(schedule.encode()),

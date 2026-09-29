@@ -213,12 +213,10 @@ final class LambdaFunctionCapacityProviderConfigLambdaManagedInstancesCapacityPr
 
   Map<String, Object?> encode() => {
     'capacity_provider_arn': capacityProviderArn.toTfJson(),
-    if (executionEnvironmentMemoryGibPerVcpu != null)
-      'execution_environment_memory_gib_per_vcpu':
-          executionEnvironmentMemoryGibPerVcpu!.toTfJson(),
-    if (perExecutionEnvironmentMaxConcurrency != null)
-      'per_execution_environment_max_concurrency':
-          perExecutionEnvironmentMaxConcurrency!.toTfJson(),
+    'execution_environment_memory_gib_per_vcpu':
+        ?executionEnvironmentMemoryGibPerVcpu?.toTfJson(),
+    'per_execution_environment_max_concurrency':
+        ?perExecutionEnvironmentMaxConcurrency?.toTfJson(),
   };
 }
 
@@ -248,8 +246,7 @@ final class LambdaFunctionDurableConfig {
 
   Map<String, Object?> encode() => {
     'execution_timeout': executionTimeout.toTfJson(),
-    if (retentionPeriod != null)
-      'retention_period': retentionPeriod!.toTfJson(),
+    'retention_period': ?retentionPeriod?.toTfJson(),
   };
 }
 
@@ -261,9 +258,7 @@ final class LambdaFunctionEnvironment {
 
   final TfArg<Map<String, String>>? variables;
 
-  Map<String, Object?> encode() => {
-    if (variables != null) 'variables': variables!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'variables': ?variables?.toTfJson()};
 }
 
 /// Typed helper for the `ephemeral_storage` block of
@@ -274,7 +269,7 @@ final class LambdaFunctionEphemeralStorage {
 
   final TfArg<num>? size;
 
-  Map<String, Object?> encode() => {if (size != null) 'size': size!.toTfJson()};
+  Map<String, Object?> encode() => {'size': ?size?.toTfJson()};
 }
 
 /// Typed helper for the `file_system_config` block of
@@ -313,10 +308,9 @@ final class LambdaFunctionImageConfig {
   final TfArg<String>? workingDirectory;
 
   Map<String, Object?> encode() => {
-    if (command != null) 'command': command!.toTfJson(),
-    if (entryPoint != null) 'entry_point': entryPoint!.toTfJson(),
-    if (workingDirectory != null)
-      'working_directory': workingDirectory!.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'entry_point': ?entryPoint?.toTfJson(),
+    'working_directory': ?workingDirectory?.toTfJson(),
   };
 }
 
@@ -341,11 +335,10 @@ final class LambdaFunctionLoggingConfig {
   final TfArg<LambdaFunctionLoggingConfigSystemLogLevel>? systemLogLevel;
 
   Map<String, Object?> encode() => {
-    if (applicationLogLevel != null)
-      'application_log_level': applicationLogLevel!.toTfJson(),
+    'application_log_level': ?applicationLogLevel?.toTfJson(),
     'log_format': logFormat.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
-    if (systemLogLevel != null) 'system_log_level': systemLogLevel!.toTfJson(),
+    'log_group': ?logGroup?.encodeAs('name').toTfJson(),
+    'system_log_level': ?systemLogLevel?.toTfJson(),
   };
 }
 
@@ -466,8 +459,7 @@ final class LambdaFunctionVpcConfig {
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    if (ipv6AllowedForDualStack != null)
-      'ipv6_allowed_for_dual_stack': ipv6AllowedForDualStack!.toTfJson(),
+    'ipv6_allowed_for_dual_stack': ?ipv6AllowedForDualStack?.toTfJson(),
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
@@ -539,39 +531,34 @@ final class AwsLambdaFunction extends Resource {
              'architectures': TfArg.literal([
                for (final e in architectures) e.toTfJson(),
              ]),
-           if (codeSha256 != null) 'code_sha256': codeSha256,
-           if (codeSigningConfigArn != null)
-             'code_signing_config_arn': codeSigningConfigArn,
-           if (description != null) 'description': description,
+           'code_sha256': ?codeSha256,
+           'code_signing_config_arn': ?codeSigningConfigArn,
+           'description': ?description,
            ...code.argMap,
            'function_name': functionName,
-           if (handler != null) 'handler': handler,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (layers != null) 'layers': layers,
-           if (memorySize != null) 'memory_size': memorySize,
-           if (packageType != null) 'package_type': packageType,
-           if (publish != null) 'publish': publish,
-           if (publishTo != null) 'publish_to': publishTo,
-           if (region != null) 'region': region,
-           if (replaceSecurityGroupsOnDestroy != null)
-             'replace_security_groups_on_destroy':
-                 replaceSecurityGroupsOnDestroy,
-           if (replacementSecurityGroupIds != null)
-             'replacement_security_group_ids': replacementSecurityGroupIds,
-           if (reservedConcurrentExecutions != null)
-             'reserved_concurrent_executions': reservedConcurrentExecutions,
+           'handler': ?handler,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
+           'layers': ?layers,
+           'memory_size': ?memorySize,
+           'package_type': ?packageType,
+           'publish': ?publish,
+           'publish_to': ?publishTo,
+           'region': ?region,
+           'replace_security_groups_on_destroy':
+               ?replaceSecurityGroupsOnDestroy,
+           'replacement_security_group_ids': ?replacementSecurityGroupIds,
+           'reserved_concurrent_executions': ?reservedConcurrentExecutions,
            'role': role.encodeAs('arn'),
-           if (runtime != null) 'runtime': runtime,
-           if (s3Key != null) 's3_key': s3Key,
-           if (s3ObjectVersion != null) 's3_object_version': s3ObjectVersion,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (sourceCodeHash != null) 'source_code_hash': sourceCodeHash,
-           if (sourceKmsKeyArn != null) 'source_kms_key_arn': sourceKmsKeyArn,
-           if (tags != null) 'tags': tags,
-           if (timeout != null) 'timeout': timeout,
-           if (useResourceTimeoutForPropagation != null)
-             'use_resource_timeout_for_propagation':
-                 useResourceTimeoutForPropagation,
+           'runtime': ?runtime,
+           's3_key': ?s3Key,
+           's3_object_version': ?s3ObjectVersion,
+           'skip_destroy': ?skipDestroy,
+           'source_code_hash': ?sourceCodeHash,
+           'source_kms_key_arn': ?sourceKmsKeyArn,
+           'tags': ?tags,
+           'timeout': ?timeout,
+           'use_resource_timeout_for_propagation':
+               ?useResourceTimeoutForPropagation,
            if (capacityProviderConfig != null)
              'capacity_provider_config': TfArg.literal(
                capacityProviderConfig.encode(),

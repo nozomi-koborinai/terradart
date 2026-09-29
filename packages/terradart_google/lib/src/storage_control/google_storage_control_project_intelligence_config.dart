@@ -279,7 +279,7 @@ final class GoogleStorageControlProjectIntelligenceConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (editionConfig != null) 'edition_config': editionConfig,
+           'edition_config': ?editionConfig,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

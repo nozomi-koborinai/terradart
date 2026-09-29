@@ -24,9 +24,7 @@ final class ConfigRemediationConfigurationExecutionControls {
 
   final ConfigRemediationConfigurationExecutionControlsSsmControls? ssmControls;
 
-  Map<String, Object?> encode() => {
-    if (ssmControls != null) 'ssm_controls': ssmControls!.encode(),
-  };
+  Map<String, Object?> encode() => {'ssm_controls': ?ssmControls?.encode()};
 }
 
 /// Typed helper for the `execution_controls.ssm_controls` block of
@@ -43,11 +41,9 @@ final class ConfigRemediationConfigurationExecutionControlsSsmControls {
   final TfArg<num>? errorPercentage;
 
   Map<String, Object?> encode() => {
-    if (concurrentExecutionRatePercentage != null)
-      'concurrent_execution_rate_percentage': concurrentExecutionRatePercentage!
-          .toTfJson(),
-    if (errorPercentage != null)
-      'error_percentage': errorPercentage!.toTfJson(),
+    'concurrent_execution_rate_percentage': ?concurrentExecutionRatePercentage
+        ?.toTfJson(),
+    'error_percentage': ?errorPercentage?.toTfJson(),
   };
 }
 
@@ -72,9 +68,9 @@ final class ConfigRemediationConfigurationParameter {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (resourceValue != null) 'resource_value': resourceValue!.toTfJson(),
-    if (staticValue != null) 'static_value': staticValue!.toTfJson(),
-    if (staticValues != null) 'static_values': staticValues!.toTfJson(),
+    'resource_value': ?resourceValue?.toTfJson(),
+    'static_value': ?staticValue?.toTfJson(),
+    'static_values': ?staticValues?.toTfJson(),
   };
 }
 
@@ -102,17 +98,15 @@ final class AwsConfigRemediationConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (automatic != null) 'automatic': automatic,
+           'automatic': ?automatic,
            'config_rule_name': configRuleName,
-           if (maximumAutomaticAttempts != null)
-             'maximum_automatic_attempts': maximumAutomaticAttempts,
-           if (region != null) 'region': region,
-           if (resourceType != null) 'resource_type': resourceType,
-           if (retryAttemptSeconds != null)
-             'retry_attempt_seconds': retryAttemptSeconds,
+           'maximum_automatic_attempts': ?maximumAutomaticAttempts,
+           'region': ?region,
+           'resource_type': ?resourceType,
+           'retry_attempt_seconds': ?retryAttemptSeconds,
            'target_id': targetId,
            'target_type': targetType,
-           if (targetVersion != null) 'target_version': targetVersion,
+           'target_version': ?targetVersion,
            if (executionControls != null)
              'execution_controls': TfArg.literal(executionControls.encode()),
            if (parameter != null)

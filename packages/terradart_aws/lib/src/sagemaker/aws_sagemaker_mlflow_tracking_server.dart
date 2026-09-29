@@ -42,17 +42,14 @@ final class AwsSagemakerMlflowTrackingServer extends Resource {
          terraformType: tfType,
          argMap: {
            'artifact_store_uri': artifactStoreUri,
-           if (automaticModelRegistration != null)
-             'automatic_model_registration': automaticModelRegistration,
-           if (mlflowVersion != null) 'mlflow_version': mlflowVersion,
-           if (region != null) 'region': region,
+           'automatic_model_registration': ?automaticModelRegistration,
+           'mlflow_version': ?mlflowVersion,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'tracking_server_name': trackingServerName,
-           if (trackingServerSize != null)
-             'tracking_server_size': trackingServerSize,
-           if (weeklyMaintenanceWindowStart != null)
-             'weekly_maintenance_window_start': weeklyMaintenanceWindowStart,
+           'tracking_server_size': ?trackingServerSize,
+           'weekly_maintenance_window_start': ?weeklyMaintenanceWindowStart,
          },
        );
 

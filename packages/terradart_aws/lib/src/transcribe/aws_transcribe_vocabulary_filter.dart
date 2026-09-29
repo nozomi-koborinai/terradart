@@ -92,8 +92,8 @@ final class AwsTranscribeVocabularyFilter extends Resource {
          terraformType: tfType,
          argMap: {
            'language_code': languageCode,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            ...terms.argMap,
            'vocabulary_filter_name': vocabularyFilterName,
          },

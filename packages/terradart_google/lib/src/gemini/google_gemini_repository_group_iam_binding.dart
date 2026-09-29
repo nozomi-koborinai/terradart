@@ -35,9 +35,9 @@ final class GoogleGeminiRepositoryGroupIamBinding extends Resource {
            'code_repository_index': codeRepositoryIndex,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

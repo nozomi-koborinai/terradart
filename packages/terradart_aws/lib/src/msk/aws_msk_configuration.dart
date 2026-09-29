@@ -24,10 +24,10 @@ final class AwsMskConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (kafkaVersions != null) 'kafka_versions': kafkaVersions,
+           'description': ?description,
+           'kafka_versions': ?kafkaVersions,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'server_properties': serverProperties,
          },
        );

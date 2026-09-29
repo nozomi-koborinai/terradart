@@ -19,11 +19,7 @@ final class DataAwsRegion extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (endpoint != null) 'endpoint': endpoint,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-         },
+         argMap: {'endpoint': ?endpoint, 'name': ?name, 'region': ?region},
        );
 
   @override

@@ -31,8 +31,8 @@ final class DatazoneDomainSingleSignOn {
   final TfArg<DatazoneDomainSingleSignOnUserAssignment>? userAssignment;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (userAssignment != null) 'user_assignment': userAssignment!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'user_assignment': ?userAssignment?.toTfJson(),
   };
 }
 
@@ -69,17 +69,15 @@ final class AwsDatazoneDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'domain_execution_role': domainExecutionRole,
-           if (domainVersion != null) 'domain_version': domainVersion,
-           if (kmsKeyIdentifier != null)
-             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
+           'domain_version': ?domainVersion,
+           'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (serviceRole != null) 'service_role': serviceRole.encodeAs('arn'),
-           if (skipDeletionCheck != null)
-             'skip_deletion_check': skipDeletionCheck,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'service_role': ?serviceRole?.encodeAs('arn'),
+           'skip_deletion_check': ?skipDeletionCheck,
+           'tags': ?tags,
            if (singleSignOn != null)
              'single_sign_on': TfArg.literal([
                for (final e in singleSignOn) e.encode(),

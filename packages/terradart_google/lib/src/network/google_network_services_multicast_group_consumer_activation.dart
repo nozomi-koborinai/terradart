@@ -18,9 +18,7 @@ final class NetworkServicesMulticastGroupConsumerActivationLogConfig {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `google_network_services_multicast_group_consumer_activation`.
@@ -69,10 +67,10 @@ final class GoogleNetworkServicesMulticastGroupConsumerActivation
            'multicast_group_range_activation': multicastGroupRangeActivation,
            if (logConfig != null)
              'log_config': TfArg.literal(logConfig.encode()),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

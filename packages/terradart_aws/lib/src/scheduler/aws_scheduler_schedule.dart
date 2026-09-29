@@ -104,8 +104,7 @@ final class SchedulerScheduleFlexibleTimeWindow {
   final TfArg<SchedulerScheduleFlexibleTimeWindowMode> mode;
 
   Map<String, Object?> encode() => {
-    if (maximumWindowInMinutes != null)
-      'maximum_window_in_minutes': maximumWindowInMinutes!.toTfJson(),
+    'maximum_window_in_minutes': ?maximumWindowInMinutes?.toTfJson(),
     'mode': mode.toTfJson(),
   };
 }
@@ -160,19 +159,15 @@ final class SchedulerScheduleTarget {
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (input != null) 'input': input!.toTfJson(),
+    'input': ?input?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (deadLetterConfig != null)
-      'dead_letter_config': deadLetterConfig!.encode(),
-    if (ecsParameters != null) 'ecs_parameters': ecsParameters!.encode(),
-    if (eventbridgeParameters != null)
-      'eventbridge_parameters': eventbridgeParameters!.encode(),
-    if (kinesisParameters != null)
-      'kinesis_parameters': kinesisParameters!.encode(),
-    if (retryPolicy != null) 'retry_policy': retryPolicy!.encode(),
-    if (sagemakerPipelineParameters != null)
-      'sagemaker_pipeline_parameters': sagemakerPipelineParameters!.encode(),
-    if (sqsParameters != null) 'sqs_parameters': sqsParameters!.encode(),
+    'dead_letter_config': ?deadLetterConfig?.encode(),
+    'ecs_parameters': ?ecsParameters?.encode(),
+    'eventbridge_parameters': ?eventbridgeParameters?.encode(),
+    'kinesis_parameters': ?kinesisParameters?.encode(),
+    'retry_policy': ?retryPolicy?.encode(),
+    'sagemaker_pipeline_parameters': ?sagemakerPipelineParameters?.encode(),
+    'sqs_parameters': ?sqsParameters?.encode(),
   };
 }
 
@@ -241,25 +236,21 @@ final class SchedulerScheduleTargetEcsParameters {
   placementStrategy;
 
   Map<String, Object?> encode() => {
-    if (enableEcsManagedTags != null)
-      'enable_ecs_managed_tags': enableEcsManagedTags!.toTfJson(),
-    if (enableExecuteCommand != null)
-      'enable_execute_command': enableExecuteCommand!.toTfJson(),
-    if (group != null) 'group': group!.toTfJson(),
-    if (launchType != null) 'launch_type': launchType!.toTfJson(),
-    if (platformVersion != null)
-      'platform_version': platformVersion!.toTfJson(),
-    if (propagateTags != null) 'propagate_tags': propagateTags!.toTfJson(),
-    if (referenceId != null) 'reference_id': referenceId!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (taskCount != null) 'task_count': taskCount!.toTfJson(),
+    'enable_ecs_managed_tags': ?enableEcsManagedTags?.toTfJson(),
+    'enable_execute_command': ?enableExecuteCommand?.toTfJson(),
+    'group': ?group?.toTfJson(),
+    'launch_type': ?launchType?.toTfJson(),
+    'platform_version': ?platformVersion?.toTfJson(),
+    'propagate_tags': ?propagateTags?.toTfJson(),
+    'reference_id': ?referenceId?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'task_count': ?taskCount?.toTfJson(),
     'task_definition_arn': taskDefinitionArn.toTfJson(),
     if (capacityProviderStrategy != null)
       'capacity_provider_strategy': [
         for (final e in capacityProviderStrategy!) e.encode(),
       ],
-    if (networkConfiguration != null)
-      'network_configuration': networkConfiguration!.encode(),
+    'network_configuration': ?networkConfiguration?.encode(),
     if (placementConstraints != null)
       'placement_constraints': [
         for (final e in placementConstraints!) e.encode(),
@@ -307,9 +298,9 @@ final class SchedulerScheduleTargetEcsParametersCapacityProviderStrategy {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (base != null) 'base': base!.toTfJson(),
+    'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -330,9 +321,8 @@ final class SchedulerScheduleTargetEcsParametersNetworkConfiguration {
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    if (assignPublicIp != null) 'assign_public_ip': assignPublicIp!.toTfJson(),
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    'assign_public_ip': ?assignPublicIp?.toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
@@ -352,7 +342,7 @@ final class SchedulerScheduleTargetEcsParametersPlacementConstraints {
   type;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -384,7 +374,7 @@ final class SchedulerScheduleTargetEcsParametersPlacementStrategy {
   final TfArg<SchedulerScheduleTargetEcsParametersPlacementStrategyType> type;
 
   Map<String, Object?> encode() => {
-    if (field != null) 'field': field!.toTfJson(),
+    'field': ?field?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -447,10 +437,8 @@ final class SchedulerScheduleTargetRetryPolicy {
   final TfArg<num>? maximumRetryAttempts;
 
   Map<String, Object?> encode() => {
-    if (maximumEventAgeInSeconds != null)
-      'maximum_event_age_in_seconds': maximumEventAgeInSeconds!.toTfJson(),
-    if (maximumRetryAttempts != null)
-      'maximum_retry_attempts': maximumRetryAttempts!.toTfJson(),
+    'maximum_event_age_in_seconds': ?maximumEventAgeInSeconds?.toTfJson(),
+    'maximum_retry_attempts': ?maximumRetryAttempts?.toTfJson(),
   };
 }
 
@@ -501,7 +489,7 @@ final class SchedulerScheduleTargetSqsParameters {
   final TfArg<String>? messageGroupId;
 
   Map<String, Object?> encode() => {
-    if (messageGroupId != null) 'message_group_id': messageGroupId!.toTfJson(),
+    'message_group_id': ?messageGroupId?.toTfJson(),
   };
 }
 
@@ -531,19 +519,17 @@ final class AwsSchedulerSchedule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (actionAfterCompletion != null)
-             'action_after_completion': actionAfterCompletion,
-           if (description != null) 'description': description,
-           if (endDate != null) 'end_date': endDate,
-           if (groupName != null) 'group_name': groupName,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'action_after_completion': ?actionAfterCompletion,
+           'description': ?description,
+           'end_date': ?endDate,
+           'group_name': ?groupName,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            ...?name?.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            'schedule_expression': scheduleExpression,
-           if (scheduleExpressionTimezone != null)
-             'schedule_expression_timezone': scheduleExpressionTimezone,
-           if (startDate != null) 'start_date': startDate,
-           if (state != null) 'state': state,
+           'schedule_expression_timezone': ?scheduleExpressionTimezone,
+           'start_date': ?startDate,
+           'state': ?state,
            'flexible_time_window': TfArg.literal(flexibleTimeWindow.encode()),
            'target': TfArg.literal(target.encode()),
          },

@@ -32,9 +32,9 @@ final class CloudflareZeroTrustNetworkHostnameRoute extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (comment != null) 'comment': comment,
-           if (hostname != null) 'hostname': hostname,
-           if (tunnelId != null) 'tunnel_id': tunnelId,
+           'comment': ?comment,
+           'hostname': ?hostname,
+           'tunnel_id': ?tunnelId,
          },
        );
 

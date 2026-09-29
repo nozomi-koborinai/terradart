@@ -25,7 +25,7 @@ final class AwsNetworkInterfaceSgAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'network_interface_id': networkInterfaceId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'security_group_id': securityGroupId.encodeAs('id'),
          },
        );

@@ -27,13 +27,11 @@ final class NetworkmanagerVpcAttachmentOptions {
   final TfArg<bool>? securityGroupReferencingSupport;
 
   Map<String, Object?> encode() => {
-    if (applianceModeSupport != null)
-      'appliance_mode_support': applianceModeSupport!.toTfJson(),
-    if (dnsSupport != null) 'dns_support': dnsSupport!.toTfJson(),
-    if (ipv6Support != null) 'ipv6_support': ipv6Support!.toTfJson(),
-    if (securityGroupReferencingSupport != null)
-      'security_group_referencing_support': securityGroupReferencingSupport!
-          .toTfJson(),
+    'appliance_mode_support': ?applianceModeSupport?.toTfJson(),
+    'dns_support': ?dnsSupport?.toTfJson(),
+    'ipv6_support': ?ipv6Support?.toTfJson(),
+    'security_group_referencing_support': ?securityGroupReferencingSupport
+        ?.toTfJson(),
   };
 }
 
@@ -57,10 +55,9 @@ final class AwsNetworkmanagerVpcAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'core_network_id': coreNetworkId,
-           if (routingPolicyLabel != null)
-             'routing_policy_label': routingPolicyLabel,
+           'routing_policy_label': ?routingPolicyLabel,
            'subnet_arns': subnetArns,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'vpc_arn': vpcArn,
            if (options != null) 'options': TfArg.literal(options.encode()),
          },

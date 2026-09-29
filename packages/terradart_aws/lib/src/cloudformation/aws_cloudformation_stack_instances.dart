@@ -105,12 +105,10 @@ final class CloudformationStackInstancesDeploymentTargets {
   final TfArg<List<Object?>>? organizationalUnitIds;
 
   Map<String, Object?> encode() => {
-    if (accountFilterType != null)
-      'account_filter_type': accountFilterType!.toTfJson(),
-    if (accounts != null) 'accounts': accounts!.toTfJson(),
-    if (accountsUrl != null) 'accounts_url': accountsUrl!.toTfJson(),
-    if (organizationalUnitIds != null)
-      'organizational_unit_ids': organizationalUnitIds!.toTfJson(),
+    'account_filter_type': ?accountFilterType?.toTfJson(),
+    'accounts': ?accounts?.toTfJson(),
+    'accounts_url': ?accountsUrl?.toTfJson(),
+    'organizational_unit_ids': ?organizationalUnitIds?.toTfJson(),
   };
 }
 
@@ -143,13 +141,11 @@ final class CloudformationStackInstancesOperationPreferences {
   final TfArg<List<Object?>>? regionOrder;
 
   Map<String, Object?> encode() => {
-    if (concurrencyMode != null)
-      'concurrency_mode': concurrencyMode!.toTfJson(),
+    'concurrency_mode': ?concurrencyMode?.toTfJson(),
     ...?failureTolerance?.encode(),
     ...?maxConcurrent?.encode(),
-    if (regionConcurrencyType != null)
-      'region_concurrency_type': regionConcurrencyType!.toTfJson(),
-    if (regionOrder != null) 'region_order': regionOrder!.toTfJson(),
+    'region_concurrency_type': ?regionConcurrencyType?.toTfJson(),
+    'region_order': ?regionOrder?.toTfJson(),
   };
 }
 
@@ -321,12 +317,11 @@ final class AwsCloudformationStackInstances extends Resource {
          terraformType: tfType,
          argMap: {
            ...?targets?.argMap,
-           if (callAs != null) 'call_as': callAs,
-           if (parameterOverrides != null)
-             'parameter_overrides': parameterOverrides,
-           if (region != null) 'region': region,
-           if (regions != null) 'regions': regions,
-           if (retainStacks != null) 'retain_stacks': retainStacks,
+           'call_as': ?callAs,
+           'parameter_overrides': ?parameterOverrides,
+           'region': ?region,
+           'regions': ?regions,
+           'retain_stacks': ?retainStacks,
            'stack_set_name': stackSetName,
            if (operationPreferences != null)
              'operation_preferences': TfArg.literal(

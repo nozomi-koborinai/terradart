@@ -71,14 +71,14 @@ final class AwsDatasyncLocationAzureBlob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessTier != null) 'access_tier': accessTier,
+           'access_tier': ?accessTier,
            'agent_arns': agentArns,
            'authentication_type': authenticationType,
-           if (blobType != null) 'blob_type': blobType,
+           'blob_type': ?blobType,
            'container_url': containerUrl,
-           if (region != null) 'region': region,
-           if (subdirectory != null) 'subdirectory': subdirectory,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'subdirectory': ?subdirectory,
+           'tags': ?tags,
            if (sasConfiguration != null)
              'sas_configuration': TfArg.literal(sasConfiguration.encode()),
          },

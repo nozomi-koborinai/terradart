@@ -28,9 +28,9 @@ final class GoogleComputeInstantSnapshotIamMember extends Resource {
            'name': name,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
-           if (zone != null) 'zone': zone,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'zone': ?zone,
+           'project': ?project,
          },
        );
 

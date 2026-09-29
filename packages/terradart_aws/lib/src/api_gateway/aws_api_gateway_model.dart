@@ -26,11 +26,11 @@ final class AwsApiGatewayModel extends Resource {
          terraformType: tfType,
          argMap: {
            'content_type': contentType,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'rest_api_id': restApiId,
-           if (schema != null) 'schema': schema,
+           'schema': ?schema,
          },
        );
 

@@ -31,9 +31,8 @@ final class VmwareengineExternalAccessRuleDestinationIpRanges {
   final TfArg<String>? ipAddressRange;
 
   Map<String, Object?> encode() => {
-    if (externalAddress != null)
-      'external_address': externalAddress!.toTfJson(),
-    if (ipAddressRange != null) 'ip_address_range': ipAddressRange!.toTfJson(),
+    'external_address': ?externalAddress?.toTfJson(),
+    'ip_address_range': ?ipAddressRange?.toTfJson(),
   };
 }
 
@@ -51,8 +50,8 @@ final class VmwareengineExternalAccessRuleSourceIpRanges {
   final TfArg<String>? ipAddressRange;
 
   Map<String, Object?> encode() => {
-    if (ipAddress != null) 'ip_address': ipAddress!.toTfJson(),
-    if (ipAddressRange != null) 'ip_address_range': ipAddressRange!.toTfJson(),
+    'ip_address': ?ipAddress?.toTfJson(),
+    'ip_address_range': ?ipAddressRange?.toTfJson(),
   };
 }
 
@@ -107,7 +106,7 @@ final class GoogleVmwareengineExternalAccessRule extends Resource {
            'destination_ip_ranges': TfArg.literal([
              for (final e in destinationIpRanges) e.encode(),
            ]),
-           if (description != null) 'description': description,
+           'description': ?description,
          },
        );
 

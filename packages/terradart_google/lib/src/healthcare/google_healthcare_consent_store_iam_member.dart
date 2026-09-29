@@ -28,7 +28,7 @@ final class GoogleHealthcareConsentStoreIamMember extends Resource {
            'dataset': dataset,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

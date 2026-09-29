@@ -43,11 +43,10 @@ final class DataAwsRoute53ResolverQueryLogConfig extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (resolverQueryLogConfigId != null)
-             'resolver_query_log_config_id': resolverQueryLogConfigId,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'resolver_query_log_config_id': ?resolverQueryLogConfigId,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

@@ -29,7 +29,7 @@ final class DialogflowCxPlaybookInstruction {
   final List<DialogflowCxPlaybookInstructionSteps>? steps;
 
   Map<String, Object?> encode() => {
-    if (guidelines != null) 'guidelines': guidelines!.toTfJson(),
+    'guidelines': ?guidelines?.toTfJson(),
     if (steps != null) 'steps': [for (final e in steps!) e.encode()],
   };
 }
@@ -45,8 +45,8 @@ final class DialogflowCxPlaybookInstructionSteps {
   final TfArg<String>? text;
 
   Map<String, Object?> encode() => {
-    if (steps != null) 'steps': steps!.toTfJson(),
-    if (text != null) 'text': text!.toTfJson(),
+    'steps': ?steps?.toTfJson(),
+    'text': ?text?.toTfJson(),
   };
 }
 
@@ -61,8 +61,8 @@ final class DialogflowCxPlaybookLlmModelSettings {
   final TfArg<String>? promptText;
 
   Map<String, Object?> encode() => {
-    if (model != null) 'model': model!.toTfJson(),
-    if (promptText != null) 'prompt_text': promptText!.toTfJson(),
+    'model': ?model?.toTfJson(),
+    'prompt_text': ?promptText?.toTfJson(),
   };
 }
 
@@ -101,14 +101,14 @@ final class GoogleDialogflowCxPlaybook extends Resource {
          argMap: {
            'display_name': displayName,
            'goal': goal,
-           if (parent != null) 'parent': parent,
-           if (playbookType != null) 'playbook_type': playbookType,
-           if (referencedTools != null) 'referenced_tools': referencedTools,
+           'parent': ?parent,
+           'playbook_type': ?playbookType,
+           'referenced_tools': ?referencedTools,
            if (instruction != null)
              'instruction': TfArg.literal(instruction.encode()),
            if (llmModelSettings != null)
              'llm_model_settings': TfArg.literal(llmModelSettings.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

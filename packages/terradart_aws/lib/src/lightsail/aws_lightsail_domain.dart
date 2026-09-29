@@ -20,10 +20,7 @@ final class AwsLightsailDomain extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'domain_name': domainName,
-           if (region != null) 'region': region,
-         },
+         argMap: {'domain_name': domainName, 'region': ?region},
        );
 
   @override

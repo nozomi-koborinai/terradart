@@ -29,7 +29,7 @@ final class GoogleComputeImageIamPolicy extends Resource {
          argMap: {
            'image': image,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

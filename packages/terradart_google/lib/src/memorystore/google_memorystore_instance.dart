@@ -169,8 +169,8 @@ final class MemorystoreInstanceCrossInstanceReplicationConfig {
   secondaryInstances;
 
   Map<String, Object?> encode() => {
-    if (instanceRole != null) 'instance_role': instanceRole!.toTfJson(),
-    if (primaryInstance != null) 'primary_instance': primaryInstance!.encode(),
+    'instance_role': ?instanceRole?.toTfJson(),
+    'primary_instance': ?primaryInstance?.encode(),
     if (secondaryInstances != null)
       'secondary_instances': [for (final e in secondaryInstances!) e.encode()],
   };
@@ -201,9 +201,7 @@ final class MemorystoreInstanceCrossInstanceReplicationConfigPrimaryInstance {
 
   final TfArg<String>? instance;
 
-  Map<String, Object?> encode() => {
-    if (instance != null) 'instance': instance!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'instance': ?instance?.toTfJson()};
 }
 
 /// Typed helper for the `cross_instance_replication_config.secondary_instances` block of
@@ -216,9 +214,7 @@ final class MemorystoreInstanceCrossInstanceReplicationConfigSecondaryInstances 
 
   final TfArg<String>? instance;
 
-  Map<String, Object?> encode() => {
-    if (instance != null) 'instance': instance!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'instance': ?instance?.toTfJson()};
 }
 
 /// Typed helper for the `desired_auto_created_endpoints` block of
@@ -347,10 +343,10 @@ final class MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindowStartTime
   final TfArg<num>? seconds;
 
   Map<String, Object?> encode() => {
-    if (hours != null) 'hours': hours!.toTfJson(),
-    if (minutes != null) 'minutes': minutes!.toTfJson(),
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
-    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    'hours': ?hours?.toTfJson(),
+    'minutes': ?minutes?.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
   };
 }
 
@@ -382,9 +378,9 @@ final class MemorystoreInstancePersistenceConfig {
   final MemorystoreInstancePersistenceConfigRdbConfig? rdbConfig;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (aofConfig != null) 'aof_config': aofConfig!.encode(),
-    if (rdbConfig != null) 'rdb_config': rdbConfig!.encode(),
+    'mode': ?mode?.toTfJson(),
+    'aof_config': ?aofConfig?.encode(),
+    'rdb_config': ?rdbConfig?.encode(),
   };
 }
 
@@ -407,9 +403,7 @@ final class MemorystoreInstancePersistenceConfigAofConfig {
 
   final TfArg<String>? appendFsync;
 
-  Map<String, Object?> encode() => {
-    if (appendFsync != null) 'append_fsync': appendFsync!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'append_fsync': ?appendFsync?.toTfJson()};
 }
 
 /// Typed helper for the `persistence_config.rdb_config` block of
@@ -426,10 +420,8 @@ final class MemorystoreInstancePersistenceConfigRdbConfig {
   final TfArg<String>? rdbSnapshotStartTime;
 
   Map<String, Object?> encode() => {
-    if (rdbSnapshotPeriod != null)
-      'rdb_snapshot_period': rdbSnapshotPeriod!.toTfJson(),
-    if (rdbSnapshotStartTime != null)
-      'rdb_snapshot_start_time': rdbSnapshotStartTime!.toTfJson(),
+    'rdb_snapshot_period': ?rdbSnapshotPeriod?.toTfJson(),
+    'rdb_snapshot_start_time': ?rdbSnapshotStartTime?.toTfJson(),
   };
 }
 
@@ -444,8 +436,8 @@ final class MemorystoreInstanceZoneDistributionConfig {
   final TfArg<String>? zone;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
   };
 }
 
@@ -537,14 +529,12 @@ final class GoogleMemorystoreInstance extends Resource {
            'instance_id': instanceId,
            'location': location,
            'shard_count': shardCount,
-           if (replicaCount != null) 'replica_count': replicaCount,
-           if (nodeType != null) 'node_type': nodeType,
-           if (mode != null) 'mode': mode,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (authorizationMode != null)
-             'authorization_mode': authorizationMode,
-           if (transitEncryptionMode != null)
-             'transit_encryption_mode': transitEncryptionMode,
+           'replica_count': ?replicaCount,
+           'node_type': ?nodeType,
+           'mode': ?mode,
+           'engine_version': ?engineVersion,
+           'authorization_mode': ?authorizationMode,
+           'transit_encryption_mode': ?transitEncryptionMode,
            if (desiredAutoCreatedEndpoints != null)
              'desired_auto_created_endpoints': TfArg.literal([
                for (final e in desiredAutoCreatedEndpoints) e.encode(),
@@ -570,12 +560,11 @@ final class GoogleMemorystoreInstance extends Resource {
                crossInstanceReplicationConfig.encode(),
              ),
            ...?source?.argMap,
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
-           if (labels != null) 'labels': labels,
-           if (deletionProtectionEnabled != null)
-             'deletion_protection_enabled': deletionProtectionEnabled,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'kms_key': ?kmsKey?.encodeAs('id'),
+           'labels': ?labels,
+           'deletion_protection_enabled': ?deletionProtectionEnabled,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

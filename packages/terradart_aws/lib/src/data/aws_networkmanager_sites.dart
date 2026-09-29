@@ -18,10 +18,7 @@ final class DataAwsNetworkmanagerSites extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'global_network_id': globalNetworkId,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'global_network_id': globalNetworkId, 'tags': ?tags},
        );
 
   @override

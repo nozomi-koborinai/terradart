@@ -35,11 +35,11 @@ final class CloudwatchLogMetricFilterMetricTransformation {
   final TfArg<String> value;
 
   Map<String, Object?> encode() => {
-    if (defaultValue != null) 'default_value': defaultValue!.toTfJson(),
-    if (dimensions != null) 'dimensions': dimensions!.toTfJson(),
+    'default_value': ?defaultValue?.toTfJson(),
+    'dimensions': ?dimensions?.toTfJson(),
     'name': name.toTfJson(),
     'namespace': namespace.toTfJson(),
-    if (unit != null) 'unit': unit!.toTfJson(),
+    'unit': ?unit?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -99,12 +99,11 @@ final class AwsCloudwatchLogMetricFilter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyOnTransformedLogs != null)
-             'apply_on_transformed_logs': applyOnTransformedLogs,
+           'apply_on_transformed_logs': ?applyOnTransformedLogs,
            'log_group_name': logGroupName.encodeAs('name'),
            'name': name,
            'pattern': pattern,
-           if (region != null) 'region': region,
+           'region': ?region,
            'metric_transformation': TfArg.literal(
              metricTransformation.encode(),
            ),

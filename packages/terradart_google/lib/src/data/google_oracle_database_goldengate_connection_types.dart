@@ -23,10 +23,7 @@ final class DataGoogleOracleDatabaseGoldengateConnectionTypes extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'location': location,
-           if (project != null) 'project': project,
-         },
+         argMap: {'location': location, 'project': ?project},
        );
 
   @override

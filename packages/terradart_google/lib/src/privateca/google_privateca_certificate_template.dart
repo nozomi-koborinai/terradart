@@ -106,9 +106,9 @@ final class GooglePrivatecaCertificateTemplate extends Resource {
            'identity_constraints': TfArg.literal([
              identityConstraints.encode(),
            ]),
-           if (description != null) 'description': description,
-           if (maximumLifetime != null) 'maximum_lifetime': maximumLifetime,
-           if (labels != null) 'labels': labels,
+           'description': ?description,
+           'maximum_lifetime': ?maximumLifetime,
+           'labels': ?labels,
          },
        );
 

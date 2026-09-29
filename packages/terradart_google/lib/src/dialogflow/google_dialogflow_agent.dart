@@ -86,17 +86,15 @@ final class GoogleDialogflowAgent extends Resource {
            'display_name': displayName,
            'default_language_code': defaultLanguageCode,
            'time_zone': timeZone,
-           if (description != null) 'description': description,
-           if (avatarUri != null) 'avatar_uri': avatarUri,
-           if (enableLogging != null) 'enable_logging': enableLogging,
-           if (matchMode != null) 'match_mode': matchMode,
-           if (classificationThreshold != null)
-             'classification_threshold': classificationThreshold,
-           if (apiVersion != null) 'api_version': apiVersion,
-           if (tier != null) 'tier': tier,
-           if (supportedLanguageCodes != null)
-             'supported_language_codes': supportedLanguageCodes,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'avatar_uri': ?avatarUri,
+           'enable_logging': ?enableLogging,
+           'match_mode': ?matchMode,
+           'classification_threshold': ?classificationThreshold,
+           'api_version': ?apiVersion,
+           'tier': ?tier,
+           'supported_language_codes': ?supportedLanguageCodes,
+           'project': ?project,
          },
        );
 

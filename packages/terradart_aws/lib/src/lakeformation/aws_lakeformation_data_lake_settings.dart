@@ -28,7 +28,7 @@ final class LakeformationDataLakeSettingsCreateDatabaseDefaultPermissions {
   Map<String, Object?> encode() => {
     if (permissions != null)
       'permissions': [for (final e in permissions!) e.toTfJson()],
-    if (principal != null) 'principal': principal!.toTfJson(),
+    'principal': ?principal?.toTfJson(),
   };
 }
 
@@ -78,7 +78,7 @@ final class LakeformationDataLakeSettingsCreateTableDefaultPermissions {
   Map<String, Object?> encode() => {
     if (permissions != null)
       'permissions': [for (final e in permissions!) e.toTfJson()],
-    if (principal != null) 'principal': principal!.toTfJson(),
+    'principal': ?principal?.toTfJson(),
   };
 }
 
@@ -136,23 +136,18 @@ final class AwsLakeformationDataLakeSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (admins != null) 'admins': admins,
-           if (allowExternalDataFiltering != null)
-             'allow_external_data_filtering': allowExternalDataFiltering,
-           if (allowFullTableExternalDataAccess != null)
-             'allow_full_table_external_data_access':
-                 allowFullTableExternalDataAccess,
-           if (authorizedSessionTagValueList != null)
-             'authorized_session_tag_value_list': authorizedSessionTagValueList,
-           if (catalogId != null) 'catalog_id': catalogId,
-           if (externalDataFilteringAllowList != null)
-             'external_data_filtering_allow_list':
-                 externalDataFilteringAllowList,
-           if (parameters != null) 'parameters': parameters,
-           if (readOnlyAdmins != null) 'read_only_admins': readOnlyAdmins,
-           if (region != null) 'region': region,
-           if (trustedResourceOwners != null)
-             'trusted_resource_owners': trustedResourceOwners,
+           'admins': ?admins,
+           'allow_external_data_filtering': ?allowExternalDataFiltering,
+           'allow_full_table_external_data_access':
+               ?allowFullTableExternalDataAccess,
+           'authorized_session_tag_value_list': ?authorizedSessionTagValueList,
+           'catalog_id': ?catalogId,
+           'external_data_filtering_allow_list':
+               ?externalDataFilteringAllowList,
+           'parameters': ?parameters,
+           'read_only_admins': ?readOnlyAdmins,
+           'region': ?region,
+           'trusted_resource_owners': ?trustedResourceOwners,
            if (createDatabaseDefaultPermissions != null)
              'create_database_default_permissions': TfArg.literal([
                for (final e in createDatabaseDefaultPermissions) e.encode(),

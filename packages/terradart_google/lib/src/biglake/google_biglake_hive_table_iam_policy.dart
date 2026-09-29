@@ -33,7 +33,7 @@ final class GoogleBiglakeHiveTableIamPolicy extends Resource {
            'database': database,
            'name': name,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

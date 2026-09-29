@@ -46,13 +46,12 @@ final class AwsConfigConformancePack extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deliveryS3Bucket != null) 'delivery_s3_bucket': deliveryS3Bucket,
-           if (deliveryS3KeyPrefix != null)
-             'delivery_s3_key_prefix': deliveryS3KeyPrefix,
+           'delivery_s3_bucket': ?deliveryS3Bucket,
+           'delivery_s3_key_prefix': ?deliveryS3KeyPrefix,
            'name': name,
-           if (region != null) 'region': region,
-           if (templateBody != null) 'template_body': templateBody,
-           if (templateS3Uri != null) 'template_s3_uri': templateS3Uri,
+           'region': ?region,
+           'template_body': ?templateBody,
+           'template_s3_uri': ?templateS3Uri,
            if (inputParameter != null)
              'input_parameter': TfArg.literal([
                for (final e in inputParameter) e.encode(),

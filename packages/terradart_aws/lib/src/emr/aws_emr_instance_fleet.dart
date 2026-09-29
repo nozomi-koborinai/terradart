@@ -33,13 +33,11 @@ final class EmrInstanceFleetInstanceTypeConfigs {
   final List<EmrInstanceFleetInstanceTypeConfigsEbsConfig>? ebsConfig;
 
   Map<String, Object?> encode() => {
-    if (bidPrice != null) 'bid_price': bidPrice!.toTfJson(),
-    if (bidPriceAsPercentageOfOnDemandPrice != null)
-      'bid_price_as_percentage_of_on_demand_price':
-          bidPriceAsPercentageOfOnDemandPrice!.toTfJson(),
+    'bid_price': ?bidPrice?.toTfJson(),
+    'bid_price_as_percentage_of_on_demand_price':
+        ?bidPriceAsPercentageOfOnDemandPrice?.toTfJson(),
     'instance_type': instanceType.toTfJson(),
-    if (weightedCapacity != null)
-      'weighted_capacity': weightedCapacity!.toTfJson(),
+    'weighted_capacity': ?weightedCapacity?.toTfJson(),
     if (configurations != null)
       'configurations': [for (final e in configurations!) e.encode()],
     if (ebsConfig != null)
@@ -61,8 +59,8 @@ final class EmrInstanceFleetInstanceTypeConfigsConfigurations {
   final TfArg<Map<String, String>>? properties;
 
   Map<String, Object?> encode() => {
-    if (classification != null) 'classification': classification!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
+    'classification': ?classification?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
   };
 }
 
@@ -86,11 +84,10 @@ final class EmrInstanceFleetInstanceTypeConfigsEbsConfig {
   final TfArg<num>? volumesPerInstance;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
     'size': size.toTfJson(),
     'type': type.toTfJson(),
-    if (volumesPerInstance != null)
-      'volumes_per_instance': volumesPerInstance!.toTfJson(),
+    'volumes_per_instance': ?volumesPerInstance?.toTfJson(),
   };
 }
 
@@ -177,8 +174,7 @@ final class EmrInstanceFleetLaunchSpecificationsSpotSpecification {
 
   Map<String, Object?> encode() => {
     'allocation_strategy': allocationStrategy.toTfJson(),
-    if (blockDurationMinutes != null)
-      'block_duration_minutes': blockDurationMinutes!.toTfJson(),
+    'block_duration_minutes': ?blockDurationMinutes?.toTfJson(),
     'timeout_action': timeoutAction.toTfJson(),
     'timeout_duration_minutes': timeoutDurationMinutes.toTfJson(),
   };
@@ -234,12 +230,10 @@ final class AwsEmrInstanceFleet extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_id': clusterId,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (targetOnDemandCapacity != null)
-             'target_on_demand_capacity': targetOnDemandCapacity,
-           if (targetSpotCapacity != null)
-             'target_spot_capacity': targetSpotCapacity,
+           'name': ?name,
+           'region': ?region,
+           'target_on_demand_capacity': ?targetOnDemandCapacity,
+           'target_spot_capacity': ?targetSpotCapacity,
            if (instanceTypeConfigs != null)
              'instance_type_configs': TfArg.literal([
                for (final e in instanceTypeConfigs) e.encode(),

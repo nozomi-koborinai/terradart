@@ -25,9 +25,8 @@ final class AwsVpcEndpointSecurityGroupAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (replaceDefaultAssociation != null)
-             'replace_default_association': replaceDefaultAssociation,
+           'region': ?region,
+           'replace_default_association': ?replaceDefaultAssociation,
            'security_group_id': securityGroupId.encodeAs('id'),
            'vpc_endpoint_id': vpcEndpointId,
          },

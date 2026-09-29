@@ -31,11 +31,7 @@ final class AwsResourceexplorer2Index extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           'type': type,
-         },
+         argMap: {'region': ?region, 'tags': ?tags, 'type': type},
        );
 
   @override

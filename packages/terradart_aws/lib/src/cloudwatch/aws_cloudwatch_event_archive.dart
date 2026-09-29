@@ -28,14 +28,13 @@ final class AwsCloudwatchEventArchive extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (eventPattern != null) 'event_pattern': eventPattern,
+           'description': ?description,
+           'event_pattern': ?eventPattern,
            'event_source_arn': eventSourceArn,
-           if (kmsKeyIdentifier != null)
-             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
+           'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (retentionDays != null) 'retention_days': retentionDays,
+           'region': ?region,
+           'retention_days': ?retentionDays,
          },
        );
 

@@ -23,11 +23,7 @@ final class DataGoogleSpannerDatabase extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'instance': instance,
-           'name': name,
-           if (project != null) 'project': project,
-         },
+         argMap: {'instance': instance, 'name': name, 'project': ?project},
        );
 
   @override

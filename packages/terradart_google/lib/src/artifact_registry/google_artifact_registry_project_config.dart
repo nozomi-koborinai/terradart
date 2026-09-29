@@ -75,12 +75,12 @@ final class GoogleArtifactRegistryProjectConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
+           'location': ?location,
            if (platformLogsConfig != null)
              'platform_logs_config': TfArg.literal([
                platformLogsConfig.toArgMap(),
              ]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

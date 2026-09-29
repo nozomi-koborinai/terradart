@@ -208,14 +208,14 @@ final class GoogleVpcAccessConnector extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange,
-           if (network != null) 'network': network.encodeAs('id'),
+           'region': ?region,
+           'ip_cidr_range': ?ipCidrRange,
+           'network': ?network?.encodeAs('id'),
            if (subnet != null) 'subnet': TfArg.literal([subnet.encode()]),
-           if (machineType != null) 'machine_type': machineType,
+           'machine_type': ?machineType,
            ...?minCapacity?.argMap,
            ...?maxCapacity?.argMap,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

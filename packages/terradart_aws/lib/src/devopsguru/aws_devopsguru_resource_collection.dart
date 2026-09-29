@@ -65,7 +65,7 @@ final class AwsDevopsguruResourceCollection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'type': type,
            if (cloudformation != null)
              'cloudformation': TfArg.literal([

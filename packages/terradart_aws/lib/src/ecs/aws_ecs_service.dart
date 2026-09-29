@@ -95,9 +95,9 @@ final class EcsServiceCapacityProviderStrategy {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (base != null) 'base': base!.toTfJson(),
+    'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -145,15 +145,12 @@ final class EcsServiceDeploymentConfiguration {
   linearConfiguration;
 
   Map<String, Object?> encode() => {
-    if (bakeTimeInMinutes != null)
-      'bake_time_in_minutes': bakeTimeInMinutes!.toTfJson(),
-    if (strategy != null) 'strategy': strategy!.toTfJson(),
-    if (canaryConfiguration != null)
-      'canary_configuration': canaryConfiguration!.encode(),
+    'bake_time_in_minutes': ?bakeTimeInMinutes?.toTfJson(),
+    'strategy': ?strategy?.toTfJson(),
+    'canary_configuration': ?canaryConfiguration?.encode(),
     if (lifecycleHook != null)
       'lifecycle_hook': [for (final e in lifecycleHook!) e.encode()],
-    if (linearConfiguration != null)
-      'linear_configuration': linearConfiguration!.encode(),
+    'linear_configuration': ?linearConfiguration?.encode(),
   };
 }
 
@@ -183,9 +180,8 @@ final class EcsServiceDeploymentConfigurationCanaryConfiguration {
   final TfArg<num>? canaryPercent;
 
   Map<String, Object?> encode() => {
-    if (canaryBakeTimeInMinutes != null)
-      'canary_bake_time_in_minutes': canaryBakeTimeInMinutes!.toTfJson(),
-    if (canaryPercent != null) 'canary_percent': canaryPercent!.toTfJson(),
+    'canary_bake_time_in_minutes': ?canaryBakeTimeInMinutes?.toTfJson(),
+    'canary_percent': ?canaryPercent?.toTfJson(),
   };
 }
 
@@ -220,13 +216,12 @@ final class EcsServiceDeploymentConfigurationLifecycleHook {
   timeoutConfiguration;
 
   Map<String, Object?> encode() => {
-    if (hookDetails != null) 'hook_details': hookDetails!.toTfJson(),
-    if (hookTargetArn != null) 'hook_target_arn': hookTargetArn!.toTfJson(),
+    'hook_details': ?hookDetails?.toTfJson(),
+    'hook_target_arn': ?hookTargetArn?.toTfJson(),
     'lifecycle_stages': [for (final e in lifecycleStages) e.toTfJson()],
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (targetType != null) 'target_type': targetType!.toTfJson(),
-    if (timeoutConfiguration != null)
-      'timeout_configuration': timeoutConfiguration!.encode(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'target_type': ?targetType?.toTfJson(),
+    'timeout_configuration': ?timeoutConfiguration?.encode(),
   };
 }
 
@@ -279,9 +274,8 @@ final class EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfiguration {
   final TfArg<String>? timeoutInMinutes;
 
   Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
-    if (timeoutInMinutes != null)
-      'timeout_in_minutes': timeoutInMinutes!.toTfJson(),
+    'action': ?action?.toTfJson(),
+    'timeout_in_minutes': ?timeoutInMinutes?.toTfJson(),
   };
 }
 
@@ -312,9 +306,8 @@ final class EcsServiceDeploymentConfigurationLinearConfiguration {
   final TfArg<num>? stepPercent;
 
   Map<String, Object?> encode() => {
-    if (stepBakeTimeInMinutes != null)
-      'step_bake_time_in_minutes': stepBakeTimeInMinutes!.toTfJson(),
-    if (stepPercent != null) 'step_percent': stepPercent!.toTfJson(),
+    'step_bake_time_in_minutes': ?stepBakeTimeInMinutes?.toTfJson(),
+    'step_percent': ?stepPercent?.toTfJson(),
   };
 }
 
@@ -326,7 +319,7 @@ final class EcsServiceDeploymentController {
 
   final TfArg<EcsServiceDeploymentControllerType>? type;
 
-  Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
@@ -365,10 +358,9 @@ final class EcsServiceLoadBalancer {
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
     'container_port': containerPort.toTfJson(),
-    if (elbName != null) 'elb_name': elbName!.toTfJson(),
-    if (targetGroupArn != null) 'target_group_arn': targetGroupArn!.toTfJson(),
-    if (advancedConfiguration != null)
-      'advanced_configuration': advancedConfiguration!.encode(),
+    'elb_name': ?elbName?.toTfJson(),
+    'target_group_arn': ?targetGroupArn?.toTfJson(),
+    'advanced_configuration': ?advancedConfiguration?.encode(),
   };
 }
 
@@ -395,8 +387,7 @@ final class EcsServiceLoadBalancerAdvancedConfiguration {
     'alternate_target_group_arn': alternateTargetGroupArn.toTfJson(),
     'production_listener_rule': productionListenerRule.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (testListenerRule != null)
-      'test_listener_rule': testListenerRule!.toTfJson(),
+    'test_listener_rule': ?testListenerRule?.toTfJson(),
   };
 }
 
@@ -417,9 +408,8 @@ final class EcsServiceNetworkConfiguration {
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    if (assignPublicIp != null) 'assign_public_ip': assignPublicIp!.toTfJson(),
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    'assign_public_ip': ?assignPublicIp?.toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
@@ -435,7 +425,7 @@ final class EcsServiceOrderedPlacementStrategy {
   final TfArg<EcsServiceOrderedPlacementStrategyType> type;
 
   Map<String, Object?> encode() => {
-    if (field != null) 'field': field!.toTfJson(),
+    'field': ?field?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -462,7 +452,7 @@ final class EcsServicePlacementConstraints {
   final TfArg<EcsServicePlacementConstraintsType> type;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -502,11 +492,9 @@ final class EcsServiceServiceConnectConfiguration {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-    if (accessLogConfiguration != null)
-      'access_log_configuration': accessLogConfiguration!.encode(),
-    if (logConfiguration != null)
-      'log_configuration': logConfiguration!.encode(),
+    'namespace': ?namespace?.toTfJson(),
+    'access_log_configuration': ?accessLogConfiguration?.encode(),
+    'log_configuration': ?logConfiguration?.encode(),
     if (service != null) 'service': [for (final e in service!) e.encode()],
   };
 }
@@ -530,8 +518,7 @@ final class EcsServiceServiceConnectConfigurationAccessLogConfiguration {
 
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
-    if (includeQueryParameters != null)
-      'include_query_parameters': includeQueryParameters!.toTfJson(),
+    'include_query_parameters': ?includeQueryParameters?.toTfJson(),
   };
 }
 
@@ -581,7 +568,7 @@ final class EcsServiceServiceConnectConfigurationLogConfiguration {
 
   Map<String, Object?> encode() => {
     'log_driver': logDriver.toTfJson(),
-    if (options != null) 'options': options!.toTfJson(),
+    'options': ?options?.toTfJson(),
     if (secretOption != null)
       'secret_option': [for (final e in secretOption!) e.encode()],
   };
@@ -651,13 +638,12 @@ final class EcsServiceServiceConnectConfigurationService {
   final EcsServiceServiceConnectConfigurationServiceTls? tls;
 
   Map<String, Object?> encode() => {
-    if (discoveryName != null) 'discovery_name': discoveryName!.toTfJson(),
-    if (ingressPortOverride != null)
-      'ingress_port_override': ingressPortOverride!.toTfJson(),
+    'discovery_name': ?discoveryName?.toTfJson(),
+    'ingress_port_override': ?ingressPortOverride?.toTfJson(),
     'port_name': portName.toTfJson(),
-    if (clientAlias != null) 'client_alias': clientAlias!.encode(),
-    if (timeout != null) 'timeout': timeout!.encode(),
-    if (tls != null) 'tls': tls!.encode(),
+    'client_alias': ?clientAlias?.encode(),
+    'timeout': ?timeout?.encode(),
+    'tls': ?tls?.encode(),
   };
 }
 
@@ -681,7 +667,7 @@ final class EcsServiceServiceConnectConfigurationServiceClientAlias {
   testTrafficRules;
 
   Map<String, Object?> encode() => {
-    if (dnsName != null) 'dns_name': dnsName!.toTfJson(),
+    'dns_name': ?dnsName?.toTfJson(),
     'port': port.toTfJson(),
     if (testTrafficRules != null)
       'test_traffic_rules': [for (final e in testTrafficRules!) e.encode()],
@@ -699,9 +685,7 @@ final class EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRu
   final EcsServiceServiceConnectConfigurationServiceClientAliasTestTrafficRulesHeader?
   header;
 
-  Map<String, Object?> encode() => {
-    if (header != null) 'header': header!.encode(),
-  };
+  Map<String, Object?> encode() => {'header': ?header?.encode()};
 }
 
 /// Typed helper for the `service_connect_configuration.service.client_alias.test_traffic_rules.header` block of
@@ -751,10 +735,8 @@ final class EcsServiceServiceConnectConfigurationServiceTimeout {
   final TfArg<num>? perRequestTimeoutSeconds;
 
   Map<String, Object?> encode() => {
-    if (idleTimeoutSeconds != null)
-      'idle_timeout_seconds': idleTimeoutSeconds!.toTfJson(),
-    if (perRequestTimeoutSeconds != null)
-      'per_request_timeout_seconds': perRequestTimeoutSeconds!.toTfJson(),
+    'idle_timeout_seconds': ?idleTimeoutSeconds?.toTfJson(),
+    'per_request_timeout_seconds': ?perRequestTimeoutSeconds?.toTfJson(),
   };
 }
 
@@ -776,8 +758,8 @@ final class EcsServiceServiceConnectConfigurationServiceTls {
   issuerCertAuthority;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     'issuer_cert_authority': issuerCertAuthority.encode(),
   };
 }
@@ -817,9 +799,9 @@ final class EcsServiceServiceRegistries {
   final TfArg<String> registryArn;
 
   Map<String, Object?> encode() => {
-    if (containerName != null) 'container_name': containerName!.toTfJson(),
-    if (containerPort != null) 'container_port': containerPort!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'container_name': ?containerName?.toTfJson(),
+    'container_port': ?containerPort?.toTfJson(),
+    'port': ?port?.toTfJson(),
     'registry_arn': registryArn.toTfJson(),
   };
 }
@@ -886,17 +868,16 @@ final class EcsServiceVolumeConfigurationManagedEbsVolume {
   tagSpecifications;
 
   Map<String, Object?> encode() => {
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (fileSystemType != null) 'file_system_type': fileSystemType!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'file_system_type': ?fileSystemType?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    if (sizeInGb != null) 'size_in_gb': sizeInGb!.toTfJson(),
-    if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeInitializationRate != null)
-      'volume_initialization_rate': volumeInitializationRate!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'size_in_gb': ?sizeInGb?.toTfJson(),
+    'snapshot_id': ?snapshotId?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_initialization_rate': ?volumeInitializationRate?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
     if (tagSpecifications != null)
       'tag_specifications': [for (final e in tagSpecifications!) e.encode()],
   };
@@ -940,9 +921,9 @@ final class EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecifications {
   final TfArg<Map<String, String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (propagateTags != null) 'propagate_tags': propagateTags!.toTfJson(),
+    'propagate_tags': ?propagateTags?.toTfJson(),
     'resource_type': resourceType.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -1043,38 +1024,29 @@ final class AwsEcsService extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZoneRebalancing != null)
-             'availability_zone_rebalancing': availabilityZoneRebalancing,
-           if (cluster != null) 'cluster': cluster,
-           if (deploymentMaximumPercent != null)
-             'deployment_maximum_percent': deploymentMaximumPercent,
-           if (deploymentMinimumHealthyPercent != null)
-             'deployment_minimum_healthy_percent':
-                 deploymentMinimumHealthyPercent,
-           if (desiredCount != null) 'desired_count': desiredCount,
-           if (enableEcsManagedTags != null)
-             'enable_ecs_managed_tags': enableEcsManagedTags,
-           if (enableExecuteCommand != null)
-             'enable_execute_command': enableExecuteCommand,
-           if (forceDelete != null) 'force_delete': forceDelete,
-           if (forceNewDeployment != null)
-             'force_new_deployment': forceNewDeployment,
-           if (healthCheckGracePeriodSeconds != null)
-             'health_check_grace_period_seconds': healthCheckGracePeriodSeconds,
-           if (iamRole != null) 'iam_role': iamRole,
-           if (launchType != null) 'launch_type': launchType,
+           'availability_zone_rebalancing': ?availabilityZoneRebalancing,
+           'cluster': ?cluster,
+           'deployment_maximum_percent': ?deploymentMaximumPercent,
+           'deployment_minimum_healthy_percent':
+               ?deploymentMinimumHealthyPercent,
+           'desired_count': ?desiredCount,
+           'enable_ecs_managed_tags': ?enableEcsManagedTags,
+           'enable_execute_command': ?enableExecuteCommand,
+           'force_delete': ?forceDelete,
+           'force_new_deployment': ?forceNewDeployment,
+           'health_check_grace_period_seconds': ?healthCheckGracePeriodSeconds,
+           'iam_role': ?iamRole,
+           'launch_type': ?launchType,
            'name': name,
-           if (platformVersion != null) 'platform_version': platformVersion,
-           if (propagateTags != null) 'propagate_tags': propagateTags,
-           if (region != null) 'region': region,
-           if (schedulingStrategy != null)
-             'scheduling_strategy': schedulingStrategy,
-           if (sigintRollback != null) 'sigint_rollback': sigintRollback,
-           if (tags != null) 'tags': tags,
-           if (taskDefinition != null) 'task_definition': taskDefinition,
-           if (triggers != null) 'triggers': triggers,
-           if (waitForSteadyState != null)
-             'wait_for_steady_state': waitForSteadyState,
+           'platform_version': ?platformVersion,
+           'propagate_tags': ?propagateTags,
+           'region': ?region,
+           'scheduling_strategy': ?schedulingStrategy,
+           'sigint_rollback': ?sigintRollback,
+           'tags': ?tags,
+           'task_definition': ?taskDefinition,
+           'triggers': ?triggers,
+           'wait_for_steady_state': ?waitForSteadyState,
            if (alarms != null) 'alarms': TfArg.literal(alarms.encode()),
            if (capacityProviderStrategy != null)
              'capacity_provider_strategy': TfArg.literal([

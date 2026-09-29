@@ -26,7 +26,7 @@ final class AwsWorkspaceswebDataProtectionSettingsAssociation extends Resource {
          argMap: {
            'data_protection_settings_arn': dataProtectionSettingsArn,
            'portal_arn': portalArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

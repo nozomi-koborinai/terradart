@@ -35,9 +35,8 @@ final class ChimeVoiceConnectorStreamingMediaInsightsConfiguration {
   final TfArg<bool>? disabled;
 
   Map<String, Object?> encode() => {
-    if (configurationArn != null)
-      'configuration_arn': configurationArn!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'configuration_arn': ?configurationArn?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
   };
 }
 
@@ -63,8 +62,8 @@ final class AwsChimeVoiceConnectorStreaming extends Resource {
          terraformType: tfType,
          argMap: {
            'data_retention': dataRetention,
-           if (disabled != null) 'disabled': disabled,
-           if (region != null) 'region': region,
+           'disabled': ?disabled,
+           'region': ?region,
            if (streamingNotificationTargets != null)
              'streaming_notification_targets': TfArg.literal([
                for (final e in streamingNotificationTargets) e.toTfJson(),

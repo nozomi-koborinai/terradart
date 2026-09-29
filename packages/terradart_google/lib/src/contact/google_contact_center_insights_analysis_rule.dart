@@ -41,14 +41,12 @@ final class GoogleContactCenterInsightsAnalysisRule extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (active != null) 'active': active,
-           if (analysisPercentage != null)
-             'analysis_percentage': analysisPercentage,
-           if (conversationFilter != null)
-             'conversation_filter': conversationFilter,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'display_name': ?displayName,
+           'active': ?active,
+           'analysis_percentage': ?analysisPercentage,
+           'conversation_filter': ?conversationFilter,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -24,7 +24,7 @@ final class AwsAlbListenerCertificate extends Resource {
          argMap: {
            'certificate_arn': certificateArn,
            'listener_arn': listenerArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

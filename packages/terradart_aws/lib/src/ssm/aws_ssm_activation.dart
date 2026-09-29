@@ -26,14 +26,13 @@ final class AwsSsmActivation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (expirationDate != null) 'expiration_date': expirationDate,
+           'description': ?description,
+           'expiration_date': ?expirationDate,
            'iam_role': iamRole,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (registrationLimit != null)
-             'registration_limit': registrationLimit,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'registration_limit': ?registrationLimit,
+           'tags': ?tags,
          },
        );
 

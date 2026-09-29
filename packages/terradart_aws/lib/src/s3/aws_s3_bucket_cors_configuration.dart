@@ -35,12 +35,12 @@ final class S3BucketCorsConfigurationCorsRule {
   final TfArg<num>? maxAgeSeconds;
 
   Map<String, Object?> encode() => {
-    if (allowedHeaders != null) 'allowed_headers': allowedHeaders!.toTfJson(),
+    'allowed_headers': ?allowedHeaders?.toTfJson(),
     'allowed_methods': allowedMethods.toTfJson(),
     'allowed_origins': allowedOrigins.toTfJson(),
-    if (exposeHeaders != null) 'expose_headers': exposeHeaders!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (maxAgeSeconds != null) 'max_age_seconds': maxAgeSeconds!.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'max_age_seconds': ?maxAgeSeconds?.toTfJson(),
   };
 }
 
@@ -62,9 +62,8 @@ final class AwsS3BucketCorsConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (region != null) 'region': region,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'region': ?region,
            'cors_rule': TfArg.literal([for (final e in corsRule) e.encode()]),
          },
        );

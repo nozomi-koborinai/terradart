@@ -32,7 +32,7 @@ final class DataAwsDatapipelinePipelineDefinition extends Data {
          terraformType: tfType,
          argMap: {
            'pipeline_id': pipelineId,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (parameterValue != null)
              'parameter_value': TfArg.literal([
                for (final e in parameterValue) e.encode(),

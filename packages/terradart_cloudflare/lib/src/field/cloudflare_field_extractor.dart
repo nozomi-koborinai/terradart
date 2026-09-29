@@ -26,7 +26,7 @@ final class FieldExtractorRules {
   final List<FieldExtractorRulesFields> fields;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'ref': ref.toTfJson(),
     'fields': [for (final e in fields) e.encode()],
   };

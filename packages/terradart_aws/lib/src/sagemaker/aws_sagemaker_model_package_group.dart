@@ -23,11 +23,10 @@ final class AwsSagemakerModelPackageGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (modelPackageGroupDescription != null)
-             'model_package_group_description': modelPackageGroupDescription,
+           'model_package_group_description': ?modelPackageGroupDescription,
            'model_package_group_name': modelPackageGroupName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

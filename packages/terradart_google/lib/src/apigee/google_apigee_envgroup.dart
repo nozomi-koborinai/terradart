@@ -35,8 +35,8 @@ final class GoogleApigeeEnvgroup extends Resource {
          argMap: {
            'name': name,
            'org_id': orgId,
-           if (hostnames != null) 'hostnames': hostnames,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'hostnames': ?hostnames,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

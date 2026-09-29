@@ -38,16 +38,13 @@ final class AuditmanagerControlControlMappingSources {
   final TfArg<String>? troubleshootingText;
 
   Map<String, Object?> encode() => {
-    if (sourceDescription != null)
-      'source_description': sourceDescription!.toTfJson(),
-    if (sourceFrequency != null)
-      'source_frequency': sourceFrequency!.toTfJson(),
-    if (sourceKeyword != null) 'source_keyword': sourceKeyword!.toTfJson(),
+    'source_description': ?sourceDescription?.toTfJson(),
+    'source_frequency': ?sourceFrequency?.toTfJson(),
+    'source_keyword': ?sourceKeyword?.toTfJson(),
     'source_name': sourceName.toTfJson(),
     'source_set_up_option': sourceSetUpOption.toTfJson(),
     'source_type': sourceType.toTfJson(),
-    if (troubleshootingText != null)
-      'troubleshooting_text': troubleshootingText!.toTfJson(),
+    'troubleshooting_text': ?troubleshootingText?.toTfJson(),
   };
 }
 
@@ -115,15 +112,13 @@ final class AwsAuditmanagerControl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (actionPlanInstructions != null)
-             'action_plan_instructions': actionPlanInstructions,
-           if (actionPlanTitle != null) 'action_plan_title': actionPlanTitle,
-           if (description != null) 'description': description,
+           'action_plan_instructions': ?actionPlanInstructions,
+           'action_plan_title': ?actionPlanTitle,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (testingInformation != null)
-             'testing_information': testingInformation,
+           'region': ?region,
+           'tags': ?tags,
+           'testing_information': ?testingInformation,
            if (controlMappingSources != null)
              'control_mapping_sources': TfArg.literal([
                for (final e in controlMappingSources) e.encode(),

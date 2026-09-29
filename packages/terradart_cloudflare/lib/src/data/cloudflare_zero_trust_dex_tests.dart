@@ -26,10 +26,10 @@ final class DataCloudflareZeroTrustDexTests extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (kind != null) 'kind': kind,
-           if (maxItems != null) 'max_items': maxItems,
-           if (testName != null) 'test_name': testName,
+           'account_id': ?accountId,
+           'kind': ?kind,
+           'max_items': ?maxItems,
+           'test_name': ?testName,
          },
        );
 

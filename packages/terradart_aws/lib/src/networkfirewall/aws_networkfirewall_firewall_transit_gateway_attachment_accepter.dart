@@ -25,7 +25,7 @@ final class AwsNetworkfirewallFirewallTransitGatewayAttachmentAccepter
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'transit_gateway_attachment_id': transitGatewayAttachmentId,
          },
        );

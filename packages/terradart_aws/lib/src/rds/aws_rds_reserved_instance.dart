@@ -24,11 +24,11 @@ final class AwsRdsReservedInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (instanceCount != null) 'instance_count': instanceCount,
+           'instance_count': ?instanceCount,
            'offering_id': offeringId,
-           if (region != null) 'region': region,
-           if (reservationId != null) 'reservation_id': reservationId,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'reservation_id': ?reservationId,
+           'tags': ?tags,
          },
        );
 

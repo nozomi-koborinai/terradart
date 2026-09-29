@@ -63,10 +63,9 @@ final class GoogleKmsAutokeyConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'folder': folder,
-           if (keyProject != null) 'key_project': keyProject,
-           if (keyProjectResolutionMode != null)
-             'key_project_resolution_mode': keyProjectResolutionMode,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'key_project': ?keyProject,
+           'key_project_resolution_mode': ?keyProjectResolutionMode,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -27,11 +27,11 @@ final class DataCloudflareZeroTrustDexRules extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
-           if (sortBy != null) 'sort_by': sortBy,
-           if (sortOrder != null) 'sort_order': sortOrder,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'name': ?name,
+           'sort_by': ?sortBy,
+           'sort_order': ?sortOrder,
          },
        );
 

@@ -25,11 +25,10 @@ final class AwsSavingsplansSavingsPlan extends Resource {
          terraformType: tfType,
          argMap: {
            'commitment': commitment,
-           if (purchaseTime != null) 'purchase_time': purchaseTime,
+           'purchase_time': ?purchaseTime,
            'savings_plan_offering_id': savingsPlanOfferingId,
-           if (tags != null) 'tags': tags,
-           if (upfrontPaymentAmount != null)
-             'upfront_payment_amount': upfrontPaymentAmount,
+           'tags': ?tags,
+           'upfront_payment_amount': ?upfrontPaymentAmount,
          },
        );
 

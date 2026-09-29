@@ -23,7 +23,7 @@ final class AwsRedshiftSnapshotScheduleAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_identifier': clusterIdentifier,
-           if (region != null) 'region': region,
+           'region': ?region,
            'schedule_identifier': scheduleIdentifier,
          },
        );

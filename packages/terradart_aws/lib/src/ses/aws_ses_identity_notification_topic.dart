@@ -39,11 +39,10 @@ final class AwsSesIdentityNotificationTopic extends Resource {
          terraformType: tfType,
          argMap: {
            'identity': identity,
-           if (includeOriginalHeaders != null)
-             'include_original_headers': includeOriginalHeaders,
+           'include_original_headers': ?includeOriginalHeaders,
            'notification_type': notificationType,
-           if (region != null) 'region': region,
-           if (topicArn != null) 'topic_arn': topicArn.encodeAs('arn'),
+           'region': ?region,
+           'topic_arn': ?topicArn?.encodeAs('arn'),
          },
        );
 

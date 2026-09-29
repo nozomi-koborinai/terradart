@@ -44,9 +44,9 @@ final class CloudflareZeroTrustTunnelCloudflared extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (configSrc != null) 'config_src': configSrc,
+           'config_src': ?configSrc,
            'name': name,
-           if (tunnelSecret != null) 'tunnel_secret': tunnelSecret,
+           'tunnel_secret': ?tunnelSecret,
          },
        );
 

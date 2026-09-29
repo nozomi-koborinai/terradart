@@ -15,9 +15,7 @@ final class DatasyncLocationNfsMountOptions {
 
   final TfArg<DatasyncLocationNfsMountOptionsVersion>? version;
 
-  Map<String, Object?> encode() => {
-    if (version != null) 'version': version!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
@@ -62,10 +60,10 @@ final class AwsDatasyncLocationNfs extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'server_hostname': serverHostname,
            'subdirectory': subdirectory,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (mountOptions != null)
              'mount_options': TfArg.literal(mountOptions.encode()),
            'on_prem_config': TfArg.literal(onPremConfig.encode()),

@@ -24,8 +24,8 @@ final class DataAwsEksAddon extends Data {
          argMap: {
            'addon_name': addonName,
            'cluster_name': clusterName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

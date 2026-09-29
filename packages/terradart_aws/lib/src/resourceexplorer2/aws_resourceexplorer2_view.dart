@@ -49,11 +49,11 @@ final class AwsResourceexplorer2View extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultView != null) 'default_view': defaultView,
+           'default_view': ?defaultView,
            'name': name,
-           if (region != null) 'region': region,
-           if (scope != null) 'scope': scope,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'scope': ?scope,
+           'tags': ?tags,
            if (filters != null)
              'filters': TfArg.literal([for (final e in filters) e.encode()]),
            if (includedProperty != null)

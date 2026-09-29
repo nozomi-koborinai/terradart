@@ -203,16 +203,16 @@ final class GoogleMonitoringNotificationChannel extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (displayName != null) 'display_name': displayName,
+           'display_name': ?displayName,
            'type': type,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            if (sensitiveLabels != null)
              'sensitive_labels': TfArg.literal([sensitiveLabels.toArgMap()]),
-           if (userLabels != null) 'user_labels': userLabels,
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
-           if (forceDelete != null) 'force_delete': forceDelete,
-           if (project != null) 'project': project,
+           'user_labels': ?userLabels,
+           'description': ?description,
+           'enabled': ?enabled,
+           'force_delete': ?forceDelete,
+           'project': ?project,
          },
        );
 

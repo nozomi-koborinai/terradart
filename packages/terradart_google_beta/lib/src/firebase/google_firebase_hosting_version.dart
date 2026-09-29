@@ -48,9 +48,9 @@ final class FirebaseHostingVersionConfigHeaders {
   final TfArg<String>? regex;
 
   Map<String, Object?> encode() => {
-    if (glob != null) 'glob': glob!.toTfJson(),
+    'glob': ?glob?.toTfJson(),
     'headers': headers.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
+    'regex': ?regex?.toTfJson(),
   };
 }
 
@@ -74,9 +74,9 @@ final class FirebaseHostingVersionConfigRedirects {
   final TfArg<num> statusCode;
 
   Map<String, Object?> encode() => {
-    if (glob != null) 'glob': glob!.toTfJson(),
+    'glob': ?glob?.toTfJson(),
     'location': location.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
+    'regex': ?regex?.toTfJson(),
     'status_code': statusCode.toTfJson(),
   };
 }
@@ -104,11 +104,11 @@ final class FirebaseHostingVersionConfigRewrites {
   final FirebaseHostingVersionConfigRewritesRun? run;
 
   Map<String, Object?> encode() => {
-    if (function != null) 'function': function!.toTfJson(),
-    if (glob != null) 'glob': glob!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (regex != null) 'regex': regex!.toTfJson(),
-    if (run != null) 'run': run!.encode(),
+    'function': ?function?.toTfJson(),
+    'glob': ?glob?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'regex': ?regex?.toTfJson(),
+    'run': ?run?.encode(),
   };
 }
 
@@ -126,7 +126,7 @@ final class FirebaseHostingVersionConfigRewritesRun {
   final TfArg<String> serviceId;
 
   Map<String, Object?> encode() => {
-    if (region != null) 'region': region!.toTfJson(),
+    'region': ?region?.toTfJson(),
     'service_id': serviceId.toTfJson(),
   };
 }

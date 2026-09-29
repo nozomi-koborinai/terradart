@@ -41,7 +41,7 @@ final class AwsControltowerControl extends Resource {
          terraformType: tfType,
          argMap: {
            'control_identifier': controlIdentifier,
-           if (region != null) 'region': region,
+           'region': ?region,
            'target_identifier': targetIdentifier,
            if (parameters != null)
              'parameters': TfArg.literal([

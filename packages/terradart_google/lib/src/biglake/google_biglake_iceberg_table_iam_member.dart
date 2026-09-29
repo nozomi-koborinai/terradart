@@ -31,8 +31,8 @@ final class GoogleBiglakeIcebergTableIamMember extends Resource {
            'name': name,
            'role': role,
            'member': member,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

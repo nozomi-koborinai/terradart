@@ -59,17 +59,14 @@ final class SagemakerLabelingJobHumanTaskConfig {
   final List<SagemakerLabelingJobHumanTaskConfigUiConfig>? uiConfig;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentTaskCount != null)
-      'max_concurrent_task_count': maxConcurrentTaskCount!.toTfJson(),
+    'max_concurrent_task_count': ?maxConcurrentTaskCount?.toTfJson(),
     'number_of_human_workers_per_data_object': numberOfHumanWorkersPerDataObject
         .toTfJson(),
-    if (preHumanTaskLambdaArn != null)
-      'pre_human_task_lambda_arn': preHumanTaskLambdaArn!.toTfJson(),
-    if (taskAvailabilityLifetimeInSeconds != null)
-      'task_availability_lifetime_in_seconds':
-          taskAvailabilityLifetimeInSeconds!.toTfJson(),
+    'pre_human_task_lambda_arn': ?preHumanTaskLambdaArn?.toTfJson(),
+    'task_availability_lifetime_in_seconds': ?taskAvailabilityLifetimeInSeconds
+        ?.toTfJson(),
     'task_description': taskDescription.toTfJson(),
-    if (taskKeywords != null) 'task_keywords': taskKeywords!.toTfJson(),
+    'task_keywords': ?taskKeywords?.toTfJson(),
     'task_time_limit_in_seconds': taskTimeLimitInSeconds.toTfJson(),
     'task_title': taskTitle.toTfJson(),
     'workteam_arn': workteamArn.toTfJson(),
@@ -137,10 +134,9 @@ final class SagemakerLabelingJobHumanTaskConfigPublicWorkforceTaskPriceAmountInU
   final TfArg<num>? tenthFractionsOfACent;
 
   Map<String, Object?> encode() => {
-    if (cents != null) 'cents': cents!.toTfJson(),
-    if (dollars != null) 'dollars': dollars!.toTfJson(),
-    if (tenthFractionsOfACent != null)
-      'tenth_fractions_of_a_cent': tenthFractionsOfACent!.toTfJson(),
+    'cents': ?cents?.toTfJson(),
+    'dollars': ?dollars?.toTfJson(),
+    'tenth_fractions_of_a_cent': ?tenthFractionsOfACent?.toTfJson(),
   };
 }
 
@@ -158,9 +154,8 @@ final class SagemakerLabelingJobHumanTaskConfigUiConfig {
   final TfArg<String>? uiTemplateS3Uri;
 
   Map<String, Object?> encode() => {
-    if (humanTaskUiArn != null) 'human_task_ui_arn': humanTaskUiArn!.toTfJson(),
-    if (uiTemplateS3Uri != null)
-      'ui_template_s3_uri': uiTemplateS3Uri!.toTfJson(),
+    'human_task_ui_arn': ?humanTaskUiArn?.toTfJson(),
+    'ui_template_s3_uri': ?uiTemplateS3Uri?.toTfJson(),
   };
 }
 
@@ -291,9 +286,8 @@ final class SagemakerLabelingJobLabelingJobAlgorithmsConfig {
   labelingJobResourceConfig;
 
   Map<String, Object?> encode() => {
-    if (initialActiveLearningModelArn != null)
-      'initial_active_learning_model_arn': initialActiveLearningModelArn!
-          .toTfJson(),
+    'initial_active_learning_model_arn': ?initialActiveLearningModelArn
+        ?.toTfJson(),
     'labeling_job_algorithm_specification_arn':
         labelingJobAlgorithmSpecificationArn.toTfJson(),
     if (labelingJobResourceConfig != null)
@@ -320,7 +314,7 @@ final class SagemakerLabelingJobLabelingJobAlgorithmsConfigLabelingJobResourceCo
   vpcConfig;
 
   Map<String, Object?> encode() => {
-    if (volumeKmsKeyId != null) 'volume_kms_key_id': volumeKmsKeyId!.toTfJson(),
+    'volume_kms_key_id': ?volumeKmsKeyId?.toTfJson(),
     if (vpcConfig != null)
       'vpc_config': [for (final e in vpcConfig!) e.encode()],
   };
@@ -362,10 +356,9 @@ final class SagemakerLabelingJobOutputConfig {
   final RefTo<AwsSnsTopic>? snsTopicArn;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
-    if (snsTopicArn != null)
-      'sns_topic_arn': snsTopicArn!.encodeAs('arn').toTfJson(),
+    'sns_topic_arn': ?snsTopicArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -395,14 +388,12 @@ final class AwsSagemakerLabelingJob extends Resource {
          terraformType: tfType,
          argMap: {
            'label_attribute_name': labelAttributeName,
-           if (labelCategoryConfigS3Uri != null)
-             'label_category_config_s3_uri': labelCategoryConfigS3Uri,
+           'label_category_config_s3_uri': ?labelCategoryConfigS3Uri,
            'labeling_job_name': labelingJobName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (stoppingConditions != null)
-             'stopping_conditions': stoppingConditions,
-           if (tags != null) 'tags': tags,
+           'stopping_conditions': ?stoppingConditions,
+           'tags': ?tags,
            if (humanTaskConfig != null)
              'human_task_config': TfArg.literal([
                for (final e in humanTaskConfig) e.encode(),

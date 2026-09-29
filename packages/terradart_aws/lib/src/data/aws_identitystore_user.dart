@@ -23,8 +23,8 @@ final class DataIdentitystoreUserAlternateIdentifier {
   uniqueAttribute;
 
   Map<String, Object?> encode() => {
-    if (externalId != null) 'external_id': externalId!.encode(),
-    if (uniqueAttribute != null) 'unique_attribute': uniqueAttribute!.encode(),
+    'external_id': ?externalId?.encode(),
+    'unique_attribute': ?uniqueAttribute?.encode(),
   };
 }
 
@@ -82,8 +82,8 @@ final class DataAwsIdentitystoreUser extends Data {
          terraformType: tfType,
          argMap: {
            'identity_store_id': identityStoreId,
-           if (region != null) 'region': region,
-           if (userId != null) 'user_id': userId,
+           'region': ?region,
+           'user_id': ?userId,
            if (alternateIdentifier != null)
              'alternate_identifier': TfArg.literal(
                alternateIdentifier.encode(),

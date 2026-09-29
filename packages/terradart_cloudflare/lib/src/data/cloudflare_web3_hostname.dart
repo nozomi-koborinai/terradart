@@ -23,10 +23,7 @@ final class DataCloudflareWeb3Hostname extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'identifier': identifier,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'identifier': identifier, 'zone_id': ?zoneId},
        );
 
   @override

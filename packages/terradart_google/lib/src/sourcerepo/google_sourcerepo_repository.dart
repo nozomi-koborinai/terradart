@@ -28,10 +28,7 @@ final class SourcerepoRepositoryPubsubConfigs {
 
   Map<String, Object?> encode() => {
     'message_format': messageFormat.toTfJson(),
-    if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!
-          .encodeAs('email')
-          .toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
     'topic': topic.encodeAs('id').toTfJson(),
   };
 }
@@ -73,14 +70,13 @@ final class GoogleSourcerepoRepository extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (createIgnoreAlreadyExists != null)
-             'create_ignore_already_exists': createIgnoreAlreadyExists,
+           'create_ignore_already_exists': ?createIgnoreAlreadyExists,
            if (pubsubConfigs != null)
              'pubsub_configs': TfArg.literal([
                for (final e in pubsubConfigs) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -24,12 +24,11 @@ final class AwsLightsailCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (domainName != null) 'domain_name': domainName,
+           'domain_name': ?domainName,
            'name': name,
-           if (region != null) 'region': region,
-           if (subjectAlternativeNames != null)
-             'subject_alternative_names': subjectAlternativeNames,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'subject_alternative_names': ?subjectAlternativeNames,
+           'tags': ?tags,
          },
        );
 

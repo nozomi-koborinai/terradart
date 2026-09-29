@@ -25,8 +25,8 @@ final class DataGoogleDataprocMetastoreServiceIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
            'service_id': serviceId,
          },
        );

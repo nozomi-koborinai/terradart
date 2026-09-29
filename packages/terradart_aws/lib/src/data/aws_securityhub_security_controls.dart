@@ -18,10 +18,7 @@ final class DataAwsSecurityhubSecurityControls extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (standardsArn != null) 'standards_arn': standardsArn,
-         },
+         argMap: {'region': ?region, 'standards_arn': ?standardsArn},
        );
 
   @override

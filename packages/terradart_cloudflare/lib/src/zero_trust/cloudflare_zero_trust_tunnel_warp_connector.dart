@@ -34,9 +34,9 @@ final class CloudflareZeroTrustTunnelWarpConnector extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (ha != null) 'ha': ha,
+           'ha': ?ha,
            'name': name,
-           if (tunnelSecret != null) 'tunnel_secret': tunnelSecret,
+           'tunnel_secret': ?tunnelSecret,
          },
        );
 

@@ -22,8 +22,8 @@ final class DataAwsBedrockFoundationModelAgreementOffers extends Data {
          terraformType: tfType,
          argMap: {
            'model_id': modelId,
-           if (offerType != null) 'offer_type': offerType,
-           if (region != null) 'region': region,
+           'offer_type': ?offerType,
+           'region': ?region,
          },
        );
 

@@ -25,10 +25,10 @@ final class AwsDefaultRouteTable extends Resource {
          terraformType: tfType,
          argMap: {
            'default_route_table_id': defaultRouteTableId,
-           if (propagatingVgws != null) 'propagating_vgws': propagatingVgws,
-           if (region != null) 'region': region,
-           if (route != null) 'route': route,
-           if (tags != null) 'tags': tags,
+           'propagating_vgws': ?propagatingVgws,
+           'region': ?region,
+           'route': ?route,
+           'tags': ?tags,
          },
        );
 

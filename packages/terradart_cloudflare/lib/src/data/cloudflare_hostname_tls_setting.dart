@@ -23,7 +23,7 @@ final class DataCloudflareHostnameTlsSetting extends Data {
          argMap: {
            'hostname': hostname,
            'setting_id': settingId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'zone_id': ?zoneId,
          },
        );
 

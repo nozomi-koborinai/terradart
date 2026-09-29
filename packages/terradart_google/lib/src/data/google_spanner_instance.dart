@@ -25,10 +25,10 @@ final class DataGoogleSpannerInstance extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (config != null) 'config': config,
-           if (displayName != null) 'display_name': displayName,
+           'config': ?config,
+           'display_name': ?displayName,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

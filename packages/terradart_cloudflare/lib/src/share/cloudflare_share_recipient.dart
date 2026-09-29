@@ -27,10 +27,9 @@ final class CloudflareShareRecipient extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (includeResources != null) 'include_resources': includeResources,
-           if (organizationId != null) 'organization_id': organizationId,
-           if (recipientAccountId != null)
-             'recipient_account_id': recipientAccountId,
+           'include_resources': ?includeResources,
+           'organization_id': ?organizationId,
+           'recipient_account_id': ?recipientAccountId,
            'share_id': shareId,
          },
        );

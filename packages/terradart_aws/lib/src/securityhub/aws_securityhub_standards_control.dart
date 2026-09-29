@@ -34,8 +34,8 @@ final class AwsSecurityhubStandardsControl extends Resource {
          terraformType: tfType,
          argMap: {
            'control_status': controlStatus,
-           if (disabledReason != null) 'disabled_reason': disabledReason,
-           if (region != null) 'region': region,
+           'disabled_reason': ?disabledReason,
+           'region': ?region,
            'standards_control_arn': standardsControlArn,
          },
        );

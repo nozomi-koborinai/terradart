@@ -21,8 +21,8 @@ final class NetworkServicesEdgeCacheServiceLogConfig {
   final TfArg<num>? sampleRate;
 
   Map<String, Object?> encode() => {
-    if (enable != null) 'enable': enable!.toTfJson(),
-    if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
+    'enable': ?enable?.toTfJson(),
+    'sample_rate': ?sampleRate?.toTfJson(),
   };
 }
 
@@ -62,7 +62,7 @@ final class NetworkServicesEdgeCacheServiceRoutingHostRule {
   final TfArg<String> pathMatcher;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'hosts': hosts.toTfJson(),
     'path_matcher': pathMatcher.toTfJson(),
   };
@@ -86,7 +86,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcher {
   routeRule;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
     'route_rule': [for (final e in routeRule) e.encode()],
   };
@@ -131,14 +131,14 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRule {
   urlRedirect;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (origin != null) 'origin': origin!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'origin': ?origin?.toTfJson(),
     'priority': priority.toTfJson(),
-    if (headerAction != null) 'header_action': headerAction!.encode(),
+    'header_action': ?headerAction?.encode(),
     'match_rule': [for (final e in matchRule) e.encode()],
-    if (routeAction != null) 'route_action': routeAction!.encode(),
-    if (routeMethods != null) 'route_methods': routeMethods!.encode(),
-    if (urlRedirect != null) 'url_redirect': urlRedirect!.encode(),
+    'route_action': ?routeAction?.encode(),
+    'route_methods': ?routeMethods?.encode(),
+    'url_redirect': ?urlRedirect?.encode(),
   };
 }
 
@@ -212,7 +212,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActi
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
-    if (replace != null) 'replace': replace!.toTfJson(),
+    'replace': ?replace?.toTfJson(),
   };
 }
 
@@ -248,7 +248,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActi
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
-    if (replace != null) 'replace': replace!.toTfJson(),
+    'replace': ?replace?.toTfJson(),
   };
 }
 
@@ -297,11 +297,10 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRule 
   queryParameterMatch;
 
   Map<String, Object?> encode() => {
-    if (fullPathMatch != null) 'full_path_match': fullPathMatch!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (pathTemplateMatch != null)
-      'path_template_match': pathTemplateMatch!.toTfJson(),
-    if (prefixMatch != null) 'prefix_match': prefixMatch!.toTfJson(),
+    'full_path_match': ?fullPathMatch?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'path_template_match': ?pathTemplateMatch?.toTfJson(),
+    'prefix_match': ?prefixMatch?.toTfJson(),
     if (headerMatch != null)
       'header_match': [for (final e in headerMatch!) e.encode()],
     if (queryParameterMatch != null)
@@ -337,12 +336,12 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleH
   final TfArg<String>? suffixMatch;
 
   Map<String, Object?> encode() => {
-    if (exactMatch != null) 'exact_match': exactMatch!.toTfJson(),
+    'exact_match': ?exactMatch?.toTfJson(),
     'header_name': headerName.toTfJson(),
-    if (invertMatch != null) 'invert_match': invertMatch!.toTfJson(),
-    if (prefixMatch != null) 'prefix_match': prefixMatch!.toTfJson(),
-    if (presentMatch != null) 'present_match': presentMatch!.toTfJson(),
-    if (suffixMatch != null) 'suffix_match': suffixMatch!.toTfJson(),
+    'invert_match': ?invertMatch?.toTfJson(),
+    'prefix_match': ?prefixMatch?.toTfJson(),
+    'present_match': ?presentMatch?.toTfJson(),
+    'suffix_match': ?suffixMatch?.toTfJson(),
   };
 }
 
@@ -363,9 +362,9 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleQ
   final TfArg<bool>? presentMatch;
 
   Map<String, Object?> encode() => {
-    if (exactMatch != null) 'exact_match': exactMatch!.toTfJson(),
+    'exact_match': ?exactMatch?.toTfJson(),
     'name': name.toTfJson(),
-    if (presentMatch != null) 'present_match': presentMatch!.toTfJson(),
+    'present_match': ?presentMatch?.toTfJson(),
   };
 }
 
@@ -395,11 +394,10 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
   urlRewrite;
 
   Map<String, Object?> encode() => {
-    if (compressionMode != null)
-      'compression_mode': compressionMode!.toTfJson(),
-    if (cdnPolicy != null) 'cdn_policy': cdnPolicy!.encode(),
-    if (corsPolicy != null) 'cors_policy': corsPolicy!.encode(),
-    if (urlRewrite != null) 'url_rewrite': urlRewrite!.encode(),
+    'compression_mode': ?compressionMode?.toTfJson(),
+    'cdn_policy': ?cdnPolicy?.encode(),
+    'cors_policy': ?corsPolicy?.encode(),
+    'url_rewrite': ?urlRewrite?.encode(),
   };
 }
 
@@ -469,25 +467,19 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
   signedTokenOptions;
 
   Map<String, Object?> encode() => {
-    if (cacheMode != null) 'cache_mode': cacheMode!.toTfJson(),
-    if (clientTtl != null) 'client_ttl': clientTtl!.toTfJson(),
-    if (defaultTtl != null) 'default_ttl': defaultTtl!.toTfJson(),
-    if (maxTtl != null) 'max_ttl': maxTtl!.toTfJson(),
-    if (negativeCaching != null)
-      'negative_caching': negativeCaching!.toTfJson(),
-    if (negativeCachingPolicy != null)
-      'negative_caching_policy': negativeCachingPolicy!.toTfJson(),
-    if (signedRequestKeyset != null)
-      'signed_request_keyset': signedRequestKeyset!.toTfJson(),
-    if (signedRequestMaximumExpirationTtl != null)
-      'signed_request_maximum_expiration_ttl':
-          signedRequestMaximumExpirationTtl!.toTfJson(),
-    if (signedRequestMode != null)
-      'signed_request_mode': signedRequestMode!.toTfJson(),
-    if (addSignatures != null) 'add_signatures': addSignatures!.encode(),
-    if (cacheKeyPolicy != null) 'cache_key_policy': cacheKeyPolicy!.encode(),
-    if (signedTokenOptions != null)
-      'signed_token_options': signedTokenOptions!.encode(),
+    'cache_mode': ?cacheMode?.toTfJson(),
+    'client_ttl': ?clientTtl?.toTfJson(),
+    'default_ttl': ?defaultTtl?.toTfJson(),
+    'max_ttl': ?maxTtl?.toTfJson(),
+    'negative_caching': ?negativeCaching?.toTfJson(),
+    'negative_caching_policy': ?negativeCachingPolicy?.toTfJson(),
+    'signed_request_keyset': ?signedRequestKeyset?.toTfJson(),
+    'signed_request_maximum_expiration_ttl': ?signedRequestMaximumExpirationTtl
+        ?.toTfJson(),
+    'signed_request_mode': ?signedRequestMode?.toTfJson(),
+    'add_signatures': ?addSignatures?.encode(),
+    'cache_key_policy': ?cacheKeyPolicy?.encode(),
+    'signed_token_options': ?signedTokenOptions?.encode(),
   };
 }
 
@@ -549,12 +541,10 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 
   Map<String, Object?> encode() => {
     'actions': [for (final e in actions) e.toTfJson()],
-    if (copiedParameters != null)
-      'copied_parameters': copiedParameters!.toTfJson(),
-    if (keyset != null) 'keyset': keyset!.toTfJson(),
-    if (tokenQueryParameter != null)
-      'token_query_parameter': tokenQueryParameter!.toTfJson(),
-    if (tokenTtl != null) 'token_ttl': tokenTtl!.toTfJson(),
+    'copied_parameters': ?copiedParameters?.toTfJson(),
+    'keyset': ?keyset?.toTfJson(),
+    'token_query_parameter': ?tokenQueryParameter?.toTfJson(),
+    'token_ttl': ?tokenTtl?.toTfJson(),
   };
 }
 
@@ -601,19 +591,13 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
   final TfArg<List<Object?>>? includedQueryParameters;
 
   Map<String, Object?> encode() => {
-    if (excludeHost != null) 'exclude_host': excludeHost!.toTfJson(),
-    if (excludeQueryString != null)
-      'exclude_query_string': excludeQueryString!.toTfJson(),
-    if (excludedQueryParameters != null)
-      'excluded_query_parameters': excludedQueryParameters!.toTfJson(),
-    if (includeProtocol != null)
-      'include_protocol': includeProtocol!.toTfJson(),
-    if (includedCookieNames != null)
-      'included_cookie_names': includedCookieNames!.toTfJson(),
-    if (includedHeaderNames != null)
-      'included_header_names': includedHeaderNames!.toTfJson(),
-    if (includedQueryParameters != null)
-      'included_query_parameters': includedQueryParameters!.toTfJson(),
+    'exclude_host': ?excludeHost?.toTfJson(),
+    'exclude_query_string': ?excludeQueryString?.toTfJson(),
+    'excluded_query_parameters': ?excludedQueryParameters?.toTfJson(),
+    'include_protocol': ?includeProtocol?.toTfJson(),
+    'included_cookie_names': ?includedCookieNames?.toTfJson(),
+    'included_header_names': ?includedHeaderNames?.toTfJson(),
+    'included_query_parameters': ?includedQueryParameters?.toTfJson(),
   };
 }
 
@@ -640,8 +624,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
       'allowed_signature_algorithms': [
         for (final e in allowedSignatureAlgorithms!) e.toTfJson(),
       ],
-    if (tokenQueryParameter != null)
-      'token_query_parameter': tokenQueryParameter!.toTfJson(),
+    'token_query_parameter': ?tokenQueryParameter?.toTfJson(),
   };
 }
 
@@ -688,13 +671,12 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
   final TfArg<String> maxAge;
 
   Map<String, Object?> encode() => {
-    if (allowCredentials != null)
-      'allow_credentials': allowCredentials!.toTfJson(),
-    if (allowHeaders != null) 'allow_headers': allowHeaders!.toTfJson(),
-    if (allowMethods != null) 'allow_methods': allowMethods!.toTfJson(),
-    if (allowOrigins != null) 'allow_origins': allowOrigins!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (exposeHeaders != null) 'expose_headers': exposeHeaders!.toTfJson(),
+    'allow_credentials': ?allowCredentials?.toTfJson(),
+    'allow_headers': ?allowHeaders?.toTfJson(),
+    'allow_methods': ?allowMethods?.toTfJson(),
+    'allow_origins': ?allowOrigins?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
     'max_age': maxAge.toTfJson(),
   };
 }
@@ -716,11 +698,9 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
   final TfArg<String>? pathTemplateRewrite;
 
   Map<String, Object?> encode() => {
-    if (hostRewrite != null) 'host_rewrite': hostRewrite!.toTfJson(),
-    if (pathPrefixRewrite != null)
-      'path_prefix_rewrite': pathPrefixRewrite!.toTfJson(),
-    if (pathTemplateRewrite != null)
-      'path_template_rewrite': pathTemplateRewrite!.toTfJson(),
+    'host_rewrite': ?hostRewrite?.toTfJson(),
+    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
+    'path_template_rewrite': ?pathTemplateRewrite?.toTfJson(),
   };
 }
 
@@ -735,7 +715,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteMetho
   final TfArg<List<Object?>>? allowedMethods;
 
   Map<String, Object?> encode() => {
-    if (allowedMethods != null) 'allowed_methods': allowedMethods!.toTfJson(),
+    'allowed_methods': ?allowedMethods?.toTfJson(),
   };
 }
 
@@ -768,13 +748,12 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirec
   final TfArg<bool>? stripQuery;
 
   Map<String, Object?> encode() => {
-    if (hostRedirect != null) 'host_redirect': hostRedirect!.toTfJson(),
-    if (httpsRedirect != null) 'https_redirect': httpsRedirect!.toTfJson(),
-    if (pathRedirect != null) 'path_redirect': pathRedirect!.toTfJson(),
-    if (prefixRedirect != null) 'prefix_redirect': prefixRedirect!.toTfJson(),
-    if (redirectResponseCode != null)
-      'redirect_response_code': redirectResponseCode!.toTfJson(),
-    if (stripQuery != null) 'strip_query': stripQuery!.toTfJson(),
+    'host_redirect': ?hostRedirect?.toTfJson(),
+    'https_redirect': ?httpsRedirect?.toTfJson(),
+    'path_redirect': ?pathRedirect?.toTfJson(),
+    'prefix_redirect': ?prefixRedirect?.toTfJson(),
+    'redirect_response_code': ?redirectResponseCode?.toTfJson(),
+    'strip_query': ?stripQuery?.toTfJson(),
   };
 }
 
@@ -839,20 +818,18 @@ final class GoogleNetworkServicesEdgeCacheService extends Resource {
          argMap: {
            'name': name,
            'routing': TfArg.literal(routing.encode()),
-           if (description != null) 'description': description,
-           if (edgeSslCertificates != null)
-             'edge_ssl_certificates': edgeSslCertificates,
-           if (sslPolicy != null) 'ssl_policy': sslPolicy,
-           if (edgeSecurityPolicy != null)
-             'edge_security_policy': edgeSecurityPolicy,
-           if (requireTls != null) 'require_tls': requireTls,
-           if (disableHttp2 != null) 'disable_http2': disableHttp2,
-           if (disableQuic != null) 'disable_quic': disableQuic,
+           'description': ?description,
+           'edge_ssl_certificates': ?edgeSslCertificates,
+           'ssl_policy': ?sslPolicy,
+           'edge_security_policy': ?edgeSecurityPolicy,
+           'require_tls': ?requireTls,
+           'disable_http2': ?disableHttp2,
+           'disable_quic': ?disableQuic,
            if (logConfig != null)
              'log_config': TfArg.literal(logConfig.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

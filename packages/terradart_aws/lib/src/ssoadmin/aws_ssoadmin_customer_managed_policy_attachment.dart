@@ -23,7 +23,7 @@ final class SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenc
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -48,7 +48,7 @@ final class AwsSsoadminCustomerManagedPolicyAttachment extends Resource {
          argMap: {
            'instance_arn': instanceArn,
            'permission_set_arn': permissionSetArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'customer_managed_policy_reference': TfArg.literal(
              customerManagedPolicyReference.encode(),
            ),

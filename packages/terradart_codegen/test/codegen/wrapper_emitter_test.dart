@@ -331,21 +331,16 @@ void main() {
       // value identifier.
       expect(out, contains("'name': name,"));
 
-      // Optional scalar attributes are guarded with `if (X != null)` so the
-      // synth pass can distinguish "unset" from "explicit null".
+      // Optional scalar attributes are null-aware map elements (`'k': ?x`)
+      // so the synth pass can distinguish "unset" from "explicit null".
+      expect(out, contains("'kms_key_name': ?kmsKeyName,"));
+      expect(out, contains("'labels': ?labels,"));
       expect(
         out,
-        contains("if (kmsKeyName != null) 'kms_key_name': kmsKeyName,"),
+        contains("'message_retention_duration': ?messageRetentionDuration,"),
       );
-      expect(out, contains("if (labels != null) 'labels': labels,"));
-      expect(
-        out,
-        contains(
-          "if (messageRetentionDuration != null) 'message_retention_duration': messageRetentionDuration,",
-        ),
-      );
-      expect(out, contains("if (project != null) 'project': project,"));
-      expect(out, contains("if (tags != null) 'tags': tags,"));
+      expect(out, contains("'project': ?project,"));
+      expect(out, contains("'tags': ?tags,"));
 
       // Optional nested blocks: customSlot helpers wrap with TfArg.literal.
       expect(
@@ -354,18 +349,8 @@ void main() {
           "if (ingestionDataSourceSettings != null) 'ingestion_data_source_settings': TfArg.literal([",
         ),
       );
-      expect(
-        out,
-        contains(
-          "if (messageStoragePolicy != null) 'message_storage_policy': messageStoragePolicy,",
-        ),
-      );
-      expect(
-        out,
-        contains(
-          "if (messageTransforms != null) 'message_transforms': messageTransforms,",
-        ),
-      );
+      expect(out, contains("'message_storage_policy': ?messageStoragePolicy,"));
+      expect(out, contains("'message_transforms': ?messageTransforms,"));
       expect(
         out,
         contains(

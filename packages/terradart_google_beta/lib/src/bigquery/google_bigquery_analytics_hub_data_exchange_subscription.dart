@@ -46,9 +46,9 @@ final class BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDataset {
   datasetReference;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (friendlyName != null) 'friendly_name': friendlyName!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'friendly_name': ?friendlyName?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
     'location': location.toTfJson(),
     'dataset_reference': datasetReference.encode(),
   };
@@ -106,12 +106,11 @@ final class GoogleBigqueryAnalyticsHubDataExchangeSubscription
            'data_exchange_id': dataExchangeId,
            'data_exchange_location': dataExchangeLocation,
            'data_exchange_project': dataExchangeProject,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'location': location,
-           if (project != null) 'project': project,
-           if (refreshPolicy != null) 'refresh_policy': refreshPolicy,
-           if (subscriberContact != null)
-             'subscriber_contact': subscriberContact,
+           'project': ?project,
+           'refresh_policy': ?refreshPolicy,
+           'subscriber_contact': ?subscriberContact,
            'subscription_id': subscriptionId,
            if (destinationDataset != null)
              'destination_dataset': TfArg.literal(destinationDataset.encode()),
