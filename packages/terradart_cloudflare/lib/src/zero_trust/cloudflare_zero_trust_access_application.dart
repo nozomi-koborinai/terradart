@@ -39,18 +39,18 @@ enum ZeroTrustAccessApplicationType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.selfHostedDomains(...)`.
-sealed class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
-  const ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations();
+sealed class ZeroTrustAccessApplicationTargets {
+  const ZeroTrustAccessApplicationTargets();
 
   /// Sets `self_hosted_domains`.
-  const factory ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations.selfHostedDomains(
+  const factory ZeroTrustAccessApplicationTargets.selfHostedDomains(
     TfArg<List<String>> selfHostedDomains,
-  ) = ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsSelfHostedDomains;
+  ) = ZeroTrustAccessApplicationTargetsSelfHostedDomains;
 
   /// Sets `destinations`.
-  const factory ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations.destinations(
+  const factory ZeroTrustAccessApplicationTargets.destinations(
     List<ZeroTrustAccessApplicationDestinations> destinations,
-  ) = ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsDestinations;
+  ) = ZeroTrustAccessApplicationTargetsDestinations;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -62,10 +62,10 @@ sealed class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations.selfHostedDomains] choice: sets `self_hosted_domains`.
-final class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsSelfHostedDomains
-    extends ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
-  const ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsSelfHostedDomains(
+/// The [ZeroTrustAccessApplicationTargets.selfHostedDomains] choice: sets `self_hosted_domains`.
+final class ZeroTrustAccessApplicationTargetsSelfHostedDomains
+    extends ZeroTrustAccessApplicationTargets {
+  const ZeroTrustAccessApplicationTargetsSelfHostedDomains(
     this.selfHostedDomains,
   );
 
@@ -85,12 +85,10 @@ final class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsSelfHostedD
   };
 }
 
-/// The [ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations.destinations] choice: sets `destinations`.
-final class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsDestinations
-    extends ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
-  const ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsDestinations(
-    this.destinations,
-  );
+/// The [ZeroTrustAccessApplicationTargets.destinations] choice: sets `destinations`.
+final class ZeroTrustAccessApplicationTargetsDestinations
+    extends ZeroTrustAccessApplicationTargets {
+  const ZeroTrustAccessApplicationTargetsDestinations(this.destinations);
 
   final List<ZeroTrustAccessApplicationDestinations> destinations;
 
@@ -586,7 +584,7 @@ final class ZeroTrustAccessApplicationOauthConfigurationGrant {
 final class ZeroTrustAccessApplicationPolicies {
   const ZeroTrustAccessApplicationPolicies({
     this.decision,
-    required this.idOrInclude,
+    required this.policy,
     this.name,
     this.precedence,
     this.connectionRules,
@@ -597,7 +595,7 @@ final class ZeroTrustAccessApplicationPolicies {
 
   final TfArg<ZeroTrustAccessApplicationPoliciesDecision>? decision;
 
-  final ZeroTrustAccessApplicationPoliciesIdOrInclude idOrInclude;
+  final ZeroTrustAccessApplicationPoliciesPolicy policy;
 
   final TfArg<String>? name;
 
@@ -613,7 +611,7 @@ final class ZeroTrustAccessApplicationPolicies {
 
   Map<String, Object?> encode() => {
     if (decision != null) 'decision': decision!.toTfJson(),
-    ...idOrInclude.encode(),
+    ...policy.encode(),
     if (name != null) 'name': name!.toTfJson(),
     if (precedence != null) 'precedence': precedence!.toTfJson(),
     if (connectionRules != null) 'connection_rules': connectionRules!.encode(),
@@ -627,18 +625,17 @@ final class ZeroTrustAccessApplicationPolicies {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.id(...)`.
-sealed class ZeroTrustAccessApplicationPoliciesIdOrInclude {
-  const ZeroTrustAccessApplicationPoliciesIdOrInclude();
+sealed class ZeroTrustAccessApplicationPoliciesPolicy {
+  const ZeroTrustAccessApplicationPoliciesPolicy();
 
   /// Sets `id`.
-  const factory ZeroTrustAccessApplicationPoliciesIdOrInclude.id(
-    TfArg<String> id,
-  ) = ZeroTrustAccessApplicationPoliciesIdOrIncludeId;
+  const factory ZeroTrustAccessApplicationPoliciesPolicy.id(TfArg<String> id) =
+      ZeroTrustAccessApplicationPoliciesPolicyId;
 
   /// Sets `include`.
-  const factory ZeroTrustAccessApplicationPoliciesIdOrInclude.include(
+  const factory ZeroTrustAccessApplicationPoliciesPolicy.include(
     List<ZeroTrustAccessApplicationPoliciesInclude> include,
-  ) = ZeroTrustAccessApplicationPoliciesIdOrIncludeInclude;
+  ) = ZeroTrustAccessApplicationPoliciesPolicyInclude;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -646,10 +643,10 @@ sealed class ZeroTrustAccessApplicationPoliciesIdOrInclude {
   Map<String, Object?> encode();
 }
 
-/// The [ZeroTrustAccessApplicationPoliciesIdOrInclude.id] choice: sets `id`.
-final class ZeroTrustAccessApplicationPoliciesIdOrIncludeId
-    extends ZeroTrustAccessApplicationPoliciesIdOrInclude {
-  const ZeroTrustAccessApplicationPoliciesIdOrIncludeId(this.id);
+/// The [ZeroTrustAccessApplicationPoliciesPolicy.id] choice: sets `id`.
+final class ZeroTrustAccessApplicationPoliciesPolicyId
+    extends ZeroTrustAccessApplicationPoliciesPolicy {
+  const ZeroTrustAccessApplicationPoliciesPolicyId(this.id);
 
   final TfArg<String> id;
 
@@ -660,10 +657,10 @@ final class ZeroTrustAccessApplicationPoliciesIdOrIncludeId
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// The [ZeroTrustAccessApplicationPoliciesIdOrInclude.include] choice: sets `include`.
-final class ZeroTrustAccessApplicationPoliciesIdOrIncludeInclude
-    extends ZeroTrustAccessApplicationPoliciesIdOrInclude {
-  const ZeroTrustAccessApplicationPoliciesIdOrIncludeInclude(this.include);
+/// The [ZeroTrustAccessApplicationPoliciesPolicy.include] choice: sets `include`.
+final class ZeroTrustAccessApplicationPoliciesPolicyInclude
+    extends ZeroTrustAccessApplicationPoliciesPolicy {
+  const ZeroTrustAccessApplicationPoliciesPolicyInclude(this.include);
 
   final List<ZeroTrustAccessApplicationPoliciesInclude> include;
 
@@ -2810,8 +2807,7 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
     TfArg<bool>? pathCookieAttribute,
     TfArg<String>? readServiceTokensFromHeader,
     TfArg<String>? sameSiteCookieAttribute,
-    ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations?
-    selfHostedDomainsOrDestinations,
+    ZeroTrustAccessApplicationTargets? targets,
     TfArg<bool>? serviceAuth401Redirect,
     TfArg<String>? sessionDuration,
     TfArg<bool>? skipAppLauncherLoginPage,
@@ -2869,7 +2865,7 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
              'read_service_tokens_from_header': readServiceTokensFromHeader,
            if (sameSiteCookieAttribute != null)
              'same_site_cookie_attribute': sameSiteCookieAttribute,
-           ...?selfHostedDomainsOrDestinations?.argMap,
+           ...?targets?.argMap,
            if (serviceAuth401Redirect != null)
              'service_auth_401_redirect': serviceAuth401Redirect,
            if (sessionDuration != null) 'session_duration': sessionDuration,

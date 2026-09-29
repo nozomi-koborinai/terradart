@@ -349,7 +349,7 @@ class _Extra {
 
 /// The member a sealed exactly-one slot sets, where the first variant is
 /// not the one the dummy configuration needs.
-const _sealedMember = <String, String>{'RulesetAccountIdOrZoneId': 'zoneId'};
+const _sealedMember = <String, String>{'RulesetScope': 'zoneId'};
 
 /// The variant of sealed type [sealed] to construct: the one setting its
 /// `_sealedMember` entry, else the first.

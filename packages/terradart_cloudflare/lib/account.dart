@@ -23,13 +23,13 @@ export 'src/account/cloudflare_account_dns_settings_internal_view.dart'
     show CloudflareAccountDnsSettingsInternalView;
 export 'src/account/cloudflare_account_member.dart'
     show
+        AccountMemberAccess,
+        AccountMemberAccessPolicies,
+        AccountMemberAccessRoles,
         AccountMemberPolicies,
         AccountMemberPoliciesAccess,
         AccountMemberPoliciesPermissionGroups,
         AccountMemberPoliciesResourceGroups,
-        AccountMemberRolesOrPolicies,
-        AccountMemberRolesOrPoliciesPolicies,
-        AccountMemberRolesOrPoliciesRoles,
         AccountMemberStatus,
         CloudflareAccountMember;
 export 'src/account/cloudflare_account_subscription.dart'

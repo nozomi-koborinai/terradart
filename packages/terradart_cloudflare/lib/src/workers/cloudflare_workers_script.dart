@@ -114,14 +114,14 @@ final class WorkersScriptAnnotations {
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
 final class WorkersScriptAssets {
-  const WorkersScriptAssets({this.directoryOrJwt, this.config});
+  const WorkersScriptAssets({this.source, this.config});
 
-  final WorkersScriptAssetsDirectoryOrJwt? directoryOrJwt;
+  final WorkersScriptAssetsSource? source;
 
   final WorkersScriptAssetsConfig? config;
 
   Map<String, Object?> encode() => {
-    ...?directoryOrJwt?.encode(),
+    ...?source?.encode(),
     if (config != null) 'config': config!.encode(),
   };
 }
@@ -131,17 +131,16 @@ final class WorkersScriptAssets {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.directory(...)`.
-sealed class WorkersScriptAssetsDirectoryOrJwt {
-  const WorkersScriptAssetsDirectoryOrJwt();
+sealed class WorkersScriptAssetsSource {
+  const WorkersScriptAssetsSource();
 
   /// Sets `directory`.
-  const factory WorkersScriptAssetsDirectoryOrJwt.directory(
-    TfArg<String> directory,
-  ) = WorkersScriptAssetsDirectoryOrJwtDirectory;
+  const factory WorkersScriptAssetsSource.directory(TfArg<String> directory) =
+      WorkersScriptAssetsSourceDirectory;
 
   /// Sets `jwt`.
-  const factory WorkersScriptAssetsDirectoryOrJwt.jwt(TfArg<String> jwt) =
-      WorkersScriptAssetsDirectoryOrJwtJwt;
+  const factory WorkersScriptAssetsSource.jwt(TfArg<String> jwt) =
+      WorkersScriptAssetsSourceJwt;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -149,10 +148,10 @@ sealed class WorkersScriptAssetsDirectoryOrJwt {
   Map<String, Object?> encode();
 }
 
-/// The [WorkersScriptAssetsDirectoryOrJwt.directory] choice: sets `directory`.
-final class WorkersScriptAssetsDirectoryOrJwtDirectory
-    extends WorkersScriptAssetsDirectoryOrJwt {
-  const WorkersScriptAssetsDirectoryOrJwtDirectory(this.directory);
+/// The [WorkersScriptAssetsSource.directory] choice: sets `directory`.
+final class WorkersScriptAssetsSourceDirectory
+    extends WorkersScriptAssetsSource {
+  const WorkersScriptAssetsSourceDirectory(this.directory);
 
   final TfArg<String> directory;
 
@@ -163,10 +162,9 @@ final class WorkersScriptAssetsDirectoryOrJwtDirectory
   Map<String, Object?> encode() => {'directory': directory.toTfJson()};
 }
 
-/// The [WorkersScriptAssetsDirectoryOrJwt.jwt] choice: sets `jwt`.
-final class WorkersScriptAssetsDirectoryOrJwtJwt
-    extends WorkersScriptAssetsDirectoryOrJwt {
-  const WorkersScriptAssetsDirectoryOrJwtJwt(this.jwt);
+/// The [WorkersScriptAssetsSource.jwt] choice: sets `jwt`.
+final class WorkersScriptAssetsSourceJwt extends WorkersScriptAssetsSource {
+  const WorkersScriptAssetsSourceJwt(this.jwt);
 
   final TfArg<String> jwt;
 
