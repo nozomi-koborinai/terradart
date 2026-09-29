@@ -900,14 +900,17 @@ String? _pubspecName(String output) {
 
 /// Terraform type → directory under [output] of every generated resource
 /// wrapper on disk, for the reference targets a `--only` run did not load.
+/// Data-source wrappers live under `data/` with the same file names, so that
+/// directory is skipped.
 Map<String, String> _generatedResourceDirs(String output) {
   final root = Directory(output);
   if (!root.existsSync()) return const {};
   return {
     for (final dir in root.listSync().whereType<Directory>())
-      for (final file in dir.listSync().whereType<File>())
-        if (file.path.endsWith('.dart'))
-          p.basenameWithoutExtension(file.path): p.basename(dir.path),
+      if (p.basename(dir.path) != 'data')
+        for (final file in dir.listSync().whereType<File>())
+          if (file.path.endsWith('.dart'))
+            p.basenameWithoutExtension(file.path): p.basename(dir.path),
   };
 }
 

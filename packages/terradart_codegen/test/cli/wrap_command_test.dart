@@ -375,6 +375,45 @@ void main() {
         await tmpOut.delete(recursive: true);
       }
     });
+
+    test(
+      '--only never takes a reference target from a data-source wrapper',
+      () async {
+        final tmpOut = await Directory.systemTemp.createTemp('refs_only_');
+        try {
+          File(p.join(_libSrcOut(tmpOut), 'data', 'google_pubsub_topic.dart'))
+            ..createSync(recursive: true)
+            ..writeAsStringSync(generatedOrphan);
+          final ledger = File(p.join(tmpOut.path, 'refs.yaml'))
+            ..writeAsStringSync('''
+hashicorp/google:
+  - target: google_pubsub_topic
+    attribute: id
+    slots: '^topic\$'
+''');
+          final err = StringBuffer();
+          final code = await IOOverrides.runZoned(
+            () => buildCliRunner().run(
+              wrapArgs(tmpOut, [
+                '--only',
+                'google_pubsub_subscription',
+                '--reference-targets',
+                ledger.path,
+                '--typed-references',
+              ]),
+            ),
+            stderr: () => _BufferSink(err),
+          );
+          expect(code, CliExitCodes.dataError);
+          expect(
+            err.toString(),
+            contains('google_pubsub_topic: target is not a curated resource'),
+          );
+        } finally {
+          await tmpOut.delete(recursive: true);
+        }
+      },
+    );
   });
 
   group('WrapCommand --force', () {
