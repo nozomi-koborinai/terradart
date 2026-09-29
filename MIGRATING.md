@@ -66,12 +66,12 @@ argument out when none is set.
 
 ### `terradart_aws` at-most-one inputs are nullable sealed types
 
-**Breaking (`terradart_aws`)** — 228 input groups across 159 resources whose
+**Breaking (`terradart_aws`)** — 229 input groups across 160 resources whose
 members conflict with each other, with no rule requiring one of them, take
 one optional sealed-type argument (or helper field) instead of several
 optional ones: the provider's SDKv2 `ConflictsWith` lists and framework
 `ConflictsWith` / `Conflicting` validators at the pinned version that no
-exactly-one group covers. 168 are on resource arguments and 60 inside nested
+exactly-one group covers. 169 are on resource arguments and 60 inside nested
 blocks; 59 are `name` / `name_prefix`. Naming follows the exactly-one groups:
 the argument joins its members with `Or`, and each member is a
 `<Prefix><Member>Option` variant. Leave the argument out to set none of them
@@ -85,10 +85,13 @@ output is unchanged.
 | `AwsS3Bucket(bucketPrefix: TfArg.literal('site-'), ...)` | `AwsS3Bucket(bucketOrBucketPrefix: S3BucketBucketPrefixOption(bucketPrefix: TfArg.literal('site-')), ...)` |
 | `AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration(predefinedMetricSpecification: spec, ...)` | `...(customizedMetricSpecificationOrPredefinedMetricSpecification: AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificationOption(predefinedMetricSpecification: spec), ...)` |
 
-`AwsDocdbGlobalCluster` also gains a required sealed argument: the provider
-requires at least one of `engine` / `source_db_cluster_identifier` and they
-conflict, so exactly one is set —
+Three exactly-one groups are new too. `AwsDocdbGlobalCluster` gains a
+required sealed argument: the provider requires at least one of `engine` /
+`source_db_cluster_identifier`, and they conflict, so exactly one is set:
 `AwsDocdbGlobalCluster(engineOrSourceDbClusterIdentifier: DocdbGlobalClusterEngineOption(engine: TfArg.literal(DocdbGlobalClusterEngine.docdb)), ...)`.
+`AwsPrometheusAnomalyDetector`'s `ignore_near_expected_from_above` and
+`ignore_near_expected_from_below` blocks take a required `amountOrRatio`
+(a `float64validator.ExactlyOneOf` the extractor used to skip).
 
 Setting two members used to fail at `terraform validate`; now it doesn't
 compile. Two groups stay as separate arguments because one member has no

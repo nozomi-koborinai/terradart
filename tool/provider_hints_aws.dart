@@ -434,15 +434,6 @@ const _frameworkRelations = {
   'Conflicting',
 };
 
-const _exactlyOneValidators = {
-  'boolvalidator',
-  'int64validator',
-  'listvalidator',
-  'objectvalidator',
-  'setvalidator',
-  'stringvalidator',
-};
-
 /// Scans one function body: value sets under attribute keys and calls to
 /// package helpers.
 _FuncScan _scanFunc(
@@ -585,7 +576,7 @@ _FuncScan _scanFunc(
     // a member.
     if (tok.kind == GoTok.ident &&
         (tok.text == 'resourcevalidator' ||
-            _exactlyOneValidators.contains(tok.text)) &&
+            attributeValidatorKinds.contains(tok.text)) &&
         _isPunct(t, i + 1, '.') &&
         _isIdent(t, i + 2) &&
         _frameworkRelations.contains(t[i + 2].text) &&
@@ -682,10 +673,11 @@ _FuncScan _scanFunc(
 }
 
 /// The comma-separated path expressions from [i] up to [close], optionally
-/// wrapped in `path.Expressions{...}`: `path.MatchRoot(k)` (from the
-/// resource root) or `path.MatchRelative()` (from [here], the attribute the
-/// validator sits on), each followed by `.AtParent()` / `.AtName(k)` /
-/// list-index steps. Null when any part is something else.
+/// wrapped in `path.Expressions{...}` (and spread with `...`):
+/// `path.MatchRoot(k)` (from the resource root) or `path.MatchRelative()`
+/// (from [here], the attribute the validator sits on), each followed by
+/// `.AtParent()` / `.AtName(k)` / list-index steps. Null when any part is
+/// something else.
 List<_Member>? _pathExprs(
   List<GoToken> t,
   int i,
@@ -698,10 +690,14 @@ List<_Member>? _pathExprs(
       _isIdent(t, i + 2, 'Expressions') &&
       _isPunct(t, i + 3, '{')) {
     final inner = _matching(t, i + 3);
-    if (inner + 1 != close &&
-        !(inner + 2 == close && _isPunct(t, inner + 1, ','))) {
-      return null;
+    var k = inner + 1;
+    if (_isPunct(t, k, '.') &&
+        _isPunct(t, k + 1, '.') &&
+        _isPunct(t, k + 2, '.')) {
+      k += 3;
     }
+    if (_isPunct(t, k, ',')) k++;
+    if (k != close) return null;
     return _pathExprs(t, i + 4, inner, here, names);
   }
   final out = <_Member>[];

@@ -198,10 +198,15 @@ const _relationValidators = {
   'ConflictsWith',
   'Conflicting',
 };
-const _attributeValidatorKinds = {
+
+/// The plugin-framework `<kind>validator` packages whose relation
+/// validators sit on an attribute (and count it as a member).
+const attributeValidatorKinds = {
   'boolvalidator',
   'dynamicvalidator',
+  'float32validator',
   'float64validator',
+  'int32validator',
   'int64validator',
   'listvalidator',
   'mapvalidator',
@@ -256,7 +261,7 @@ FrameworkSchemaScan scanFrameworkSchema(String src) {
     final t = toks[i];
     if (t.kind == GoTok.ident &&
         (t.text == 'resourcevalidator' ||
-            _attributeValidatorKinds.contains(t.text)) &&
+            attributeValidatorKinds.contains(t.text)) &&
         punct(i + 1, '.') &&
         ident(i + 2) &&
         _relationValidators.contains(toks[i + 2].text) &&

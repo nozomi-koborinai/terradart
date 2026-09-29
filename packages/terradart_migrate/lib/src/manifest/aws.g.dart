@@ -29810,11 +29810,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'host_arn',
-          dartName: 'hostArn',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'hostArnOrProviderType',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'host_arn': 'CodeconnectionsConnectionHostArnOption',
+            'provider_type': 'CodeconnectionsConnectionProviderTypeOption',
+          },
         ),
         MigrateSlot(
           tfName: 'name',
@@ -29822,13 +29827,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'provider_type',
-          dartName: 'providerType',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'CodeconnectionsConnectionProviderType',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -214876,6 +214874,30 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'CodeconnectionsConnectionHostArnOption': MigrateHelper(
+      className: 'CodeconnectionsConnectionHostArnOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'host_arn',
+          dartName: 'hostArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'CodeconnectionsConnectionProviderTypeOption': MigrateHelper(
+      className: 'CodeconnectionsConnectionProviderTypeOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'provider_type',
+          dartName: 'providerType',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'CodeconnectionsConnectionProviderType',
+        ),
+      ],
+    ),
     'CodeconnectionsHostVpcConfiguration': MigrateHelper(
       className: 'CodeconnectionsHostVpcConfiguration',
       slots: <MigrateSlot>[
@@ -316319,17 +316341,45 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
               'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAbove',
           slots: <MigrateSlot>[
             MigrateSlot(
+              tfName: '',
+              dartName: 'amountOrRatio',
+              kind: MigrateSlotKind.sealed,
+              required: true,
+              wrapped: false,
+              merged: true,
+              variants: <String, String>{
+                'amount':
+                    'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOption',
+                'ratio':
+                    'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveRatioOption',
+              },
+            ),
+          ],
+        ),
+    'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOption':
+        MigrateHelper(
+          className:
+              'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
               tfName: 'amount',
               dartName: 'amount',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
               dartType: 'num',
             ),
+          ],
+        ),
+    'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveRatioOption':
+        MigrateHelper(
+          className:
+              'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveRatioOption',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'ratio',
               dartName: 'ratio',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
               dartType: 'num',
             ),
           ],
@@ -316340,17 +316390,45 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
               'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelow',
           slots: <MigrateSlot>[
             MigrateSlot(
+              tfName: '',
+              dartName: 'amountOrRatio',
+              kind: MigrateSlotKind.sealed,
+              required: true,
+              wrapped: false,
+              merged: true,
+              variants: <String, String>{
+                'amount':
+                    'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOption',
+                'ratio':
+                    'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowRatioOption',
+              },
+            ),
+          ],
+        ),
+    'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOption':
+        MigrateHelper(
+          className:
+              'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
               tfName: 'amount',
               dartName: 'amount',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
               dartType: 'num',
             ),
+          ],
+        ),
+    'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowRatioOption':
+        MigrateHelper(
+          className:
+              'PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowRatioOption',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'ratio',
               dartName: 'ratio',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
               dartType: 'num',
             ),
           ],

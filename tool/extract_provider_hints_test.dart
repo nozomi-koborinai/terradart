@@ -380,6 +380,13 @@ func (r *gadgetResource) Schema(ctx context.Context, req resource.SchemaRequest,
 					stringvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("mode")),
 				},
 			},
+			"weight": schema.Float64Attribute{
+				Validators: []validator.Float64{
+					float64validator.ConflictsWith(path.Expressions{
+						path.MatchRoot("ratio"),
+					}...),
+				},
+			},
 		},
 	}
 }
@@ -472,7 +479,7 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
               g.map((m) => m.join('.')).join(','),
           };
       expect(atMostOne('aws_widget'), {'name,name_prefix'});
-      expect(atMostOne('aws_widget_gadget'), {'down,up'});
+      expect(atMostOne('aws_widget_gadget'), {'down,up', 'ratio,weight'});
       expect(scan.unsealed, isEmpty);
       expect(scan.groupValidators, 6);
       expect(
