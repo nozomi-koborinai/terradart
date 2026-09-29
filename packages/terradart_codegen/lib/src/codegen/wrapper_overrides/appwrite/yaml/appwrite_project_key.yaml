@@ -2,6 +2,7 @@ outputDir: project
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Appwrite **project API key**.
