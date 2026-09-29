@@ -106,8 +106,10 @@ deriveExactlyOneSlots(
       human.remove(n.key);
       if (n.error case final e?) nameErrors.add('$type [${n.key}]: $e');
     }
-    for (final k in human.values) {
-      nameErrors.add('$type sealedNames "$k" matches no sealed group');
+    if (providerEnums.hasGroupSource) {
+      for (final k in human.values) {
+        nameErrors.add('$type sealedNames "$k" matches no sealed group');
+      }
     }
     skipped.addAll([
       for (final s in unsealedNestedGroups(specs, nested)) '$type $s',
@@ -123,7 +125,8 @@ deriveExactlyOneSlots(
   }
   // An override without groups can still carry stale names.
   for (final MapEntry(key: type, value: o) in overrides.entries) {
-    if (out[type] == o &&
+    if (providerEnums.hasGroupSource &&
+        out[type] == o &&
         o.sealedNames != null &&
         !names.any((n) => n.type == type)) {
       for (final k in o.sealedNames!.keys) {
