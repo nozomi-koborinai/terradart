@@ -43,6 +43,7 @@ hashicorp/google:
       google_data_pipeline_pipeline.workload.dataflow_flex_template_request.launch_parameter.environment.network: name
       google_data_pipeline_pipeline.workload.dataflow_launch_template_request.launch_parameters.environment.network: name
       google_dataflow_job.network: name
+      google_filestore_instance.file_shares.nfs_export_options.network: name
       google_filestore_instance.networks.network: name
       google_service_networking_peered_dns_domain.network: name
       google_service_networking_vpc_service_controls.network: name

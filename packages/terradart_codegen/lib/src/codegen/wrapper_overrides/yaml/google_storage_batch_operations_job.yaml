@@ -17,20 +17,22 @@ curatedDoc: |-
   /// ```dart
   /// GoogleStorageBatchOperationsJob(
   ///   localName: 'stamp_meta',
-  ///   jobId: TfArg.literal('stamp-meta'),
-  ///   deleteProtection: TfArg.literal(false),
+  ///   jobId: .literal('stamp-meta'),
+  ///   deleteProtection: .literal(false),
   ///   bucketList: StorageBatchOperationsJobBucketList(
-  ///     buckets: [
-  ///       StorageBatchOperationsJobBuckets(
-  ///         bucket: TfArg.ref(assets.nameRef),
-  ///         prefixList: StorageBatchOperationsJobPrefixList(
-  ///           includedObjectPrefixes: TfArg.literal(['config/']),
+  ///     buckets: StorageBatchOperationsJobBucketListBuckets(
+  ///       bucket: assets.ref,
+  ///       objects: .prefixList(
+  ///         StorageBatchOperationsJobBucketListBucketsPrefixList(
+  ///           includedObjectPrefixes: .literal(['config/']),
   ///         ),
   ///       ),
-  ///     ],
+  ///     ),
   ///   ),
-  ///   operation: StorageBatchOperationsJobPutMetadata(
-  ///     customMetadata: TfArg.literal({'managed-by': 'terradart'}),
+  ///   operation: .putMetadata(
+  ///     StorageBatchOperationsJobPutMetadata(
+  ///       customMetadata: .literal({'managed-by': 'terradart'}),
+  ///     ),
   ///   ),
   /// );
   /// ```

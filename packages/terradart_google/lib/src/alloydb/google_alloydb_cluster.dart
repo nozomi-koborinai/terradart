@@ -654,16 +654,16 @@ final class AlloydbClusterSecondaryConfig {
 /// ```dart
 /// GoogleAlloydbCluster(
 ///   localName: 'app',
-///   clusterId: TfArg.literal('app-cluster'),
-///   location: TfArg.literal('asia-northeast1'),
+///   clusterId: .literal('app-cluster'),
+///   location: .literal('asia-northeast1'),
 ///   networkConfig: AlloydbClusterNetworkConfig(
-///     network: TfArg.ref(vpc.selfLink),
-///     allocatedIpRange: TfArg.ref(psaRange.nameRef),
+///     network: vpc.ref,
+///     allocatedIpRange: .ref(psaRange.nameRef),
 ///   ),
 ///   initialUser: AlloydbClusterInitialUser(
-///     user: TfArg.literal('postgres'),
-///     passwordWo: TfArg.literal(dbPassword),
-///     passwordWoVersion: TfArg.literal(1),
+///     user: .literal('postgres'),
+///     passwordWo: .literal(dbPassword),
+///     passwordWoVersion: .literal('1'),
 ///   ),
 ///   dependsOn: [ResourceDependency(psaConnection)],
 /// );

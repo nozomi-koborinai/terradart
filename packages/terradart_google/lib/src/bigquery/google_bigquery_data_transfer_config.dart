@@ -11,92 +11,6 @@ const Set<String> _googleBigqueryDataTransferConfigSensitive = <String>{
   'sensitive_params.secret_access_key',
 };
 
-// ===========================================================================
-// schedule_options nested block (max=1)
-// ===========================================================================
-
-// ===========================================================================
-// email_preferences nested block (max=1)
-// ===========================================================================
-
-// ===========================================================================
-// sensitive_params nested block (max=1)
-// ===========================================================================
-
-/// `sensitive_params.secret_access_key` / `secret_access_key_wo`. Sealed
-/// so the provider's ExactlyOneOf holds at compile time.
-sealed class BigqueryDataTransferConfigSecretAccessKey {
-  const BigqueryDataTransferConfigSecretAccessKey();
-
-  /// Write-only secret access key (Terraform 1.11+): the provider sends [secretAccessKeyWo] but never stores it in Terraform state.
-  const factory BigqueryDataTransferConfigSecretAccessKey.writeOnly({
-    required TfArg<String> secretAccessKeyWo,
-    TfArg<String>? secretAccessKeyWoVersion,
-  }) = BigqueryDataTransferConfigWriteOnlySecretAccessKey;
-
-  /// Plaintext secret access key.
-  const factory BigqueryDataTransferConfigSecretAccessKey.plaintext({
-    required TfArg<String> secretAccessKey,
-  }) = BigqueryDataTransferConfigPlaintextSecretAccessKey;
-
-  /// The key that tells the variants apart.
-  String get blockKey;
-
-  Map<String, Object?> encode();
-}
-
-/// Write-only secret access key (Terraform 1.11+): the provider sends
-/// [secretAccessKeyWo] but never stores it in Terraform state. Change
-/// [secretAccessKeyWoVersion] (`'1'` → `'2'`) to rotate.
-@immutable
-final class BigqueryDataTransferConfigWriteOnlySecretAccessKey
-    extends BigqueryDataTransferConfigSecretAccessKey {
-  const BigqueryDataTransferConfigWriteOnlySecretAccessKey({
-    required this.secretAccessKeyWo,
-    this.secretAccessKeyWoVersion,
-  });
-
-  final TfArg<String> secretAccessKeyWo;
-
-  /// Version tag of [secretAccessKeyWo]; changing it triggers a rotation.
-  final TfArg<String>? secretAccessKeyWoVersion;
-
-  @override
-  String get blockKey => 'secret_access_key_wo';
-
-  @override
-  Map<String, Object?> encode() => {
-    'secret_access_key_wo': secretAccessKeyWo.toTfJson(),
-    if (secretAccessKeyWoVersion != null)
-      'secret_access_key_wo_version': secretAccessKeyWoVersion!.toTfJson(),
-  };
-}
-
-/// Plaintext secret access key. Schema-flagged sensitive (masked in plan
-/// output and synth) but stored in Terraform state — prefer
-/// [BigqueryDataTransferConfigWriteOnlySecretAccessKey].
-@immutable
-final class BigqueryDataTransferConfigPlaintextSecretAccessKey
-    extends BigqueryDataTransferConfigSecretAccessKey {
-  const BigqueryDataTransferConfigPlaintextSecretAccessKey({
-    required this.secretAccessKey,
-  });
-
-  final TfArg<String> secretAccessKey;
-
-  @override
-  String get blockKey => 'secret_access_key';
-
-  @override
-  Map<String, Object?> encode() => {
-    'secret_access_key': secretAccessKey.toTfJson(),
-  };
-}
-
-// ===========================================================================
-// encryption_configuration nested block (max=1)
-// ===========================================================================
-
 /// Typed helper for the `email_preferences` block of
 /// `google_bigquery_data_transfer_config` (derived from provider schema).
 @immutable
@@ -241,10 +155,8 @@ final class BigqueryDataTransferConfigSensitiveParams {
 ///   'file_format': 'CSV',
 /// }),
 /// sensitiveParams: BigqueryDataTransferConfigSensitiveParams(
-///   secretAccessKey: BigqueryDataTransferConfigWriteOnlySecretAccessKey(
-///     secretAccessKeyWo: TfArg.literal(awsSecretAccessKey),
-///     secretAccessKeyWoVersion: TfArg.literal('1'),
-///   ),
+///   secretAccessKeyWo: .literal(awsSecretAccessKey),
+///   secretAccessKeyWoVersion: .literal('1'),
 /// ),
 /// ```
 ///
@@ -257,17 +169,15 @@ final class BigqueryDataTransferConfigSensitiveParams {
 /// - `""` (empty) — fall back to the data source's default cadence.
 ///
 /// Manual-only mode: set [scheduleOptions]
-/// `.disableAutoScheduling = TfArg.literal(true)` to suppress the cron
+/// `disableAutoScheduling: .literal(true)` to suppress the cron
 /// entirely; runs must then be triggered via
 /// `transferConfigs.startManualRuns`.
 ///
 /// Credentials handling: the S3 secret access key MUST be placed in
 /// [sensitiveParams] rather than [params], as exactly one of
-/// [BigqueryDataTransferConfigWriteOnlySecretAccessKey] (Terraform 1.11+;
-/// keeps the key out of Terraform state, bump `secretAccessKeyWoVersion`
-/// to rotate) or [BigqueryDataTransferConfigPlaintextSecretAccessKey]
-/// (schema-flagged sensitive and also enumerated in
-/// [extraSensitiveFields], but stored in state).
+/// `secretAccessKeyWo` (Terraform 1.11+; keeps the key out of Terraform
+/// state, bump `secretAccessKeyWoVersion` to rotate) or `secretAccessKey`
+/// (schema-flagged sensitive, but stored in state).
 ///
 /// Example (daily GCS → BigQuery import):
 /// ```dart
