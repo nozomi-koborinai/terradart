@@ -73159,9 +73159,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'desired_replica_state',
           dartName: 'desiredReplicaState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'FilestoreInstanceDesiredReplicaState',
         ),
         MigrateSlot(
           tfName: 'kms_key_name',
@@ -73181,9 +73181,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'FilestoreInstanceProtocol',
         ),
         MigrateSlot(
           tfName: 'tags',
@@ -264428,13 +264428,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PRIVATE_SERVICE_CONNECT': 'privateServiceConnect',
       },
     ),
-    'FilestoreInstanceNetworkMode': MigrateEnum(
-      name: 'FilestoreInstanceNetworkMode',
-      members: <String, String>{
-        'ADDRESS_MODE_UNSPECIFIED': 'addressModeUnspecified',
-        'MODE_IPV4': 'modeIpv4',
-        'MODE_IPV6': 'modeIpv6',
-      },
+    'FilestoreInstanceDesiredReplicaState': MigrateEnum(
+      name: 'FilestoreInstanceDesiredReplicaState',
+      members: <String, String>{'PAUSED': 'paused', 'READY': 'ready'},
     ),
     'FilestoreInstanceNetworksModes': MigrateEnum(
       name: 'FilestoreInstanceNetworksModes',
@@ -264457,6 +264453,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NO_ROOT_SQUASH': 'noRootSquash',
         'ROOT_SQUASH': 'rootSquash',
       },
+    ),
+    'FilestoreInstanceProtocol': MigrateEnum(
+      name: 'FilestoreInstanceProtocol',
+      members: <String, String>{'NFS_V3': 'nfsV3', 'NFS_V4_1': 'nfsV41'},
     ),
     'FilestoreInstanceReplicationRole': MigrateEnum(
       name: 'FilestoreInstanceReplicationRole',
