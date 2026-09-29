@@ -11,18 +11,18 @@ const Set<String> _googleApiGatewayApiConfigSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.openapiDocuments(...)`.
-sealed class ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices {
-  const ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices();
+sealed class ApiGatewayApiConfigSpec {
+  const ApiGatewayApiConfigSpec();
 
   /// Sets `openapi_documents`.
-  const factory ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices.openapiDocuments(
+  const factory ApiGatewayApiConfigSpec.openapiDocuments(
     List<ApiGatewayApiConfigOpenapiDocuments> openapiDocuments,
-  ) = ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments;
+  ) = ApiGatewayApiConfigSpecOpenapiDocuments;
 
   /// Sets `grpc_services`.
-  const factory ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices.grpcServices(
+  const factory ApiGatewayApiConfigSpec.grpcServices(
     List<ApiGatewayApiConfigGrpcServices> grpcServices,
-  ) = ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices;
+  ) = ApiGatewayApiConfigSpecGrpcServices;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,12 +34,10 @@ sealed class ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices.openapiDocuments] choice: sets `openapi_documents`.
-final class ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments
-    extends ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices {
-  const ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments(
-    this.openapiDocuments,
-  );
+/// The [ApiGatewayApiConfigSpec.openapiDocuments] choice: sets `openapi_documents`.
+final class ApiGatewayApiConfigSpecOpenapiDocuments
+    extends ApiGatewayApiConfigSpec {
+  const ApiGatewayApiConfigSpecOpenapiDocuments(this.openapiDocuments);
 
   final List<ApiGatewayApiConfigOpenapiDocuments> openapiDocuments;
 
@@ -59,12 +57,10 @@ final class ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments
   };
 }
 
-/// The [ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices.grpcServices] choice: sets `grpc_services`.
-final class ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices
-    extends ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices {
-  const ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices(
-    this.grpcServices,
-  );
+/// The [ApiGatewayApiConfigSpec.grpcServices] choice: sets `grpc_services`.
+final class ApiGatewayApiConfigSpecGrpcServices
+    extends ApiGatewayApiConfigSpec {
+  const ApiGatewayApiConfigSpecGrpcServices(this.grpcServices);
 
   final List<ApiGatewayApiConfigGrpcServices> grpcServices;
 
@@ -231,8 +227,7 @@ final class GoogleApiGatewayApiConfig extends Resource {
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
     ApiGatewayApiConfigGatewayConfig? gatewayConfig,
-    required ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices
-    openapiDocumentsOrGrpcServices,
+    required ApiGatewayApiConfigSpec spec,
     List<ApiGatewayApiConfigManagedServiceConfigs>? managedServiceConfigs,
     super.lifecycle,
     super.dependsOn,
@@ -252,7 +247,7 @@ final class GoogleApiGatewayApiConfig extends Resource {
            if (project != null) 'project': project,
            if (gatewayConfig != null)
              'gateway_config': TfArg.literal(gatewayConfig.encode()),
-           ...openapiDocumentsOrGrpcServices.argMap,
+           ...spec.argMap,
            if (managedServiceConfigs != null)
              'managed_service_configs': TfArg.literal([
                for (final e in managedServiceConfigs) e.encode(),

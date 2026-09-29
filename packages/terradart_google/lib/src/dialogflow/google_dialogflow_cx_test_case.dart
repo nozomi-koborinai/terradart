@@ -207,17 +207,14 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTrigg
 /// `google_dialogflow_cx_test_case` (derived from provider schema).
 @immutable
 final class DialogflowCxTestCaseTestConfig {
-  const DialogflowCxTestCaseTestConfig({
-    this.flowOrPage,
-    this.trackingParameters,
-  });
+  const DialogflowCxTestCaseTestConfig({this.start, this.trackingParameters});
 
-  final DialogflowCxTestCaseTestConfigFlowOrPage? flowOrPage;
+  final DialogflowCxTestCaseTestConfigStart? start;
 
   final TfArg<List<Object?>>? trackingParameters;
 
   Map<String, Object?> encode() => {
-    ...?flowOrPage?.encode(),
+    ...?start?.encode(),
     if (trackingParameters != null)
       'tracking_parameters': trackingParameters!.toTfJson(),
   };
@@ -228,18 +225,16 @@ final class DialogflowCxTestCaseTestConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.flow(...)`.
-sealed class DialogflowCxTestCaseTestConfigFlowOrPage {
-  const DialogflowCxTestCaseTestConfigFlowOrPage();
+sealed class DialogflowCxTestCaseTestConfigStart {
+  const DialogflowCxTestCaseTestConfigStart();
 
   /// Sets `flow`.
-  const factory DialogflowCxTestCaseTestConfigFlowOrPage.flow(
-    TfArg<String> flow,
-  ) = DialogflowCxTestCaseTestConfigFlowOrPageFlow;
+  const factory DialogflowCxTestCaseTestConfigStart.flow(TfArg<String> flow) =
+      DialogflowCxTestCaseTestConfigStartFlow;
 
   /// Sets `page`.
-  const factory DialogflowCxTestCaseTestConfigFlowOrPage.page(
-    TfArg<String> page,
-  ) = DialogflowCxTestCaseTestConfigFlowOrPagePage;
+  const factory DialogflowCxTestCaseTestConfigStart.page(TfArg<String> page) =
+      DialogflowCxTestCaseTestConfigStartPage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -247,10 +242,10 @@ sealed class DialogflowCxTestCaseTestConfigFlowOrPage {
   Map<String, Object?> encode();
 }
 
-/// The [DialogflowCxTestCaseTestConfigFlowOrPage.flow] choice: sets `flow`.
-final class DialogflowCxTestCaseTestConfigFlowOrPageFlow
-    extends DialogflowCxTestCaseTestConfigFlowOrPage {
-  const DialogflowCxTestCaseTestConfigFlowOrPageFlow(this.flow);
+/// The [DialogflowCxTestCaseTestConfigStart.flow] choice: sets `flow`.
+final class DialogflowCxTestCaseTestConfigStartFlow
+    extends DialogflowCxTestCaseTestConfigStart {
+  const DialogflowCxTestCaseTestConfigStartFlow(this.flow);
 
   final TfArg<String> flow;
 
@@ -261,10 +256,10 @@ final class DialogflowCxTestCaseTestConfigFlowOrPageFlow
   Map<String, Object?> encode() => {'flow': flow.toTfJson()};
 }
 
-/// The [DialogflowCxTestCaseTestConfigFlowOrPage.page] choice: sets `page`.
-final class DialogflowCxTestCaseTestConfigFlowOrPagePage
-    extends DialogflowCxTestCaseTestConfigFlowOrPage {
-  const DialogflowCxTestCaseTestConfigFlowOrPagePage(this.page);
+/// The [DialogflowCxTestCaseTestConfigStart.page] choice: sets `page`.
+final class DialogflowCxTestCaseTestConfigStartPage
+    extends DialogflowCxTestCaseTestConfigStart {
+  const DialogflowCxTestCaseTestConfigStartPage(this.page);
 
   final TfArg<String> page;
 

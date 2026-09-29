@@ -12,19 +12,19 @@ const Set<String> _googleVertexAiIndexEndpointSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.network(...)`.
-sealed class VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
-  const VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig();
+sealed class VertexAiIndexEndpointConnectivity {
+  const VertexAiIndexEndpointConnectivity();
 
   /// Sets `network`.
-  const factory VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig.network(
+  const factory VertexAiIndexEndpointConnectivity.network(
     TfArg<String> network,
-  ) = VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork;
+  ) = VertexAiIndexEndpointConnectivityNetwork;
 
   /// Sets `private_service_connect_config`.
-  const factory VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig.privateServiceConnectConfig(
+  const factory VertexAiIndexEndpointConnectivity.privateServiceConnectConfig(
     VertexAiIndexEndpointPrivateServiceConnectConfig
     privateServiceConnectConfig,
-  ) = VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigPrivateServiceConnectConfig;
+  ) = VertexAiIndexEndpointConnectivityPrivateServiceConnectConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,12 +36,10 @@ sealed class VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig.network] choice: sets `network`.
-final class VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork
-    extends VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
-  const VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork(
-    this.network,
-  );
+/// The [VertexAiIndexEndpointConnectivity.network] choice: sets `network`.
+final class VertexAiIndexEndpointConnectivityNetwork
+    extends VertexAiIndexEndpointConnectivity {
+  const VertexAiIndexEndpointConnectivityNetwork(this.network);
 
   final TfArg<String> network;
 
@@ -55,10 +53,10 @@ final class VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork
   Map<String, TfArg<Object?>> get argMap => {'network': network};
 }
 
-/// The [VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig.privateServiceConnectConfig] choice: sets `private_service_connect_config`.
-final class VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigPrivateServiceConnectConfig
-    extends VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
-  const VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigPrivateServiceConnectConfig(
+/// The [VertexAiIndexEndpointConnectivity.privateServiceConnectConfig] choice: sets `private_service_connect_config`.
+final class VertexAiIndexEndpointConnectivityPrivateServiceConnectConfig
+    extends VertexAiIndexEndpointConnectivity {
+  const VertexAiIndexEndpointConnectivityPrivateServiceConnectConfig(
     this.privateServiceConnectConfig,
   );
 
@@ -177,8 +175,7 @@ final class GoogleVertexAiIndexEndpoint extends Resource {
     required TfArg<String> displayName,
     TfArg<String>? region,
     TfArg<String>? description,
-    VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig?
-    networkOrPrivateServiceConnectConfig,
+    VertexAiIndexEndpointConnectivity? connectivity,
     TfArg<bool>? publicEndpointEnabled,
     VertexAiIndexEndpointEncryptionSpec? encryptionSpec,
     TfArg<Map<String, String>>? labels,
@@ -194,7 +191,7 @@ final class GoogleVertexAiIndexEndpoint extends Resource {
            'display_name': displayName,
            if (region != null) 'region': region,
            if (description != null) 'description': description,
-           ...?networkOrPrivateServiceConnectConfig?.argMap,
+           ...?connectivity?.argMap,
            if (publicEndpointEnabled != null)
              'public_endpoint_enabled': publicEndpointEnabled,
            if (encryptionSpec != null)

@@ -712,15 +712,15 @@ final class DatastreamStreamDestinationConfigDestinationConfigBigqueryDestinatio
 final class DatastreamStreamDestinationConfigBigqueryDestinationConfig {
   const DatastreamStreamDestinationConfigBigqueryDestinationConfig({
     this.dataFreshness,
-    this.mergeOrAppendOnly,
+    this.writeMode,
     this.blmtConfig,
     required this.dataset,
   });
 
   final TfArg<String>? dataFreshness;
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly?
-  mergeOrAppendOnly;
+  final DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode?
+  writeMode;
 
   final DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig?
   blmtConfig;
@@ -730,7 +730,7 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfig {
 
   Map<String, Object?> encode() => {
     if (dataFreshness != null) 'data_freshness': dataFreshness!.toTfJson(),
-    ...?mergeOrAppendOnly?.encode(),
+    ...?writeMode?.encode(),
     if (blmtConfig != null) 'blmt_config': blmtConfig!.encode(),
     ...dataset.encode(),
   };
@@ -804,19 +804,19 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigDatasetSou
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.merge(...)`.
-sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly();
+sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode {
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode();
 
   /// Sets `merge`.
-  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly.merge(
+  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode.merge(
     DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge merge,
-  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyMerge;
+  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeMerge;
 
   /// Sets `append_only`.
-  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly.appendOnly(
+  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode.appendOnly(
     DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly
     appendOnly,
-  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyAppendOnly;
+  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeAppendOnly;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -824,11 +824,11 @@ sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAp
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly.merge] choice: sets `merge`.
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyMerge
+/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode.merge] choice: sets `merge`.
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeMerge
     extends
-        DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyMerge(
+        DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode {
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeMerge(
     this.merge,
   );
 
@@ -841,11 +841,11 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrApp
   Map<String, Object?> encode() => {'merge': merge.encode()};
 }
 
-/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly.appendOnly] choice: sets `append_only`.
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyAppendOnly
+/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode.appendOnly] choice: sets `append_only`.
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeAppendOnly
     extends
-        DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyAppendOnly(
+        DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode {
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeAppendOnly(
     this.appendOnly,
   );
 
@@ -1892,7 +1892,7 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
   const DatastreamStreamSourceConfigMysqlSourceConfig({
     this.maxConcurrentBackfillTasks,
     this.maxConcurrentCdcTasks,
-    this.binaryLogPositionOrGtid,
+    this.cdcMethod,
     this.excludeObjects,
     this.includeObjects,
   });
@@ -1901,8 +1901,7 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
 
   final TfArg<num>? maxConcurrentCdcTasks;
 
-  final DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid?
-  binaryLogPositionOrGtid;
+  final DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod? cdcMethod;
 
   final DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjects?
   excludeObjects;
@@ -1915,7 +1914,7 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
       'max_concurrent_backfill_tasks': maxConcurrentBackfillTasks!.toTfJson(),
     if (maxConcurrentCdcTasks != null)
       'max_concurrent_cdc_tasks': maxConcurrentCdcTasks!.toTfJson(),
-    ...?binaryLogPositionOrGtid?.encode(),
+    ...?cdcMethod?.encode(),
     if (excludeObjects != null) 'exclude_objects': excludeObjects!.encode(),
     if (includeObjects != null) 'include_objects': includeObjects!.encode(),
   };
@@ -1926,19 +1925,19 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.binaryLogPosition(...)`.
-sealed class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid {
-  const DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid();
+sealed class DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod {
+  const DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod();
 
   /// Sets `binary_log_position`.
-  const factory DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid.binaryLogPosition(
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod.binaryLogPosition(
     DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition
     binaryLogPosition,
-  ) = DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidBinaryLogPosition;
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodBinaryLogPosition;
 
   /// Sets `gtid`.
-  const factory DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid.gtid(
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod.gtid(
     DatastreamStreamSourceConfigMysqlSourceConfigGtid gtid,
-  ) = DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidGtid;
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodGtid;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1946,11 +1945,10 @@ sealed class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGti
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid.binaryLogPosition] choice: sets `binary_log_position`.
-final class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidBinaryLogPosition
-    extends
-        DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid {
-  const DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidBinaryLogPosition(
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod.binaryLogPosition] choice: sets `binary_log_position`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodBinaryLogPosition
+    extends DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod {
+  const DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodBinaryLogPosition(
     this.binaryLogPosition,
   );
 
@@ -1966,13 +1964,10 @@ final class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid
   };
 }
 
-/// The [DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid.gtid] choice: sets `gtid`.
-final class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidGtid
-    extends
-        DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid {
-  const DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidGtid(
-    this.gtid,
-  );
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod.gtid] choice: sets `gtid`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodGtid
+    extends DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod {
+  const DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodGtid(this.gtid);
 
   final DatastreamStreamSourceConfigMysqlSourceConfigGtid gtid;
 

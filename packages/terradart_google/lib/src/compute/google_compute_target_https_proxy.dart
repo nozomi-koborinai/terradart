@@ -158,7 +158,7 @@ final class ComputeTargetHttpsProxyCertificatesSslCertificates
 ///   `//certificatemanager.googleapis.com/projects/{p}/locations/{l}/certificates/{r}`
 ///   form, or the bare `projects/.../certificates/{r}` self-link).
 ///   Only valid when the load-balancing scheme is INTERNAL_MANAGED.
-///   The other choice of [certificateManagerCertificatesOrSslCertificates].
+///   The other choice of [certificates].
 ///
 /// Example (classic SSL certificate, external HTTPS LB):
 /// ```dart
@@ -166,12 +166,9 @@ final class ComputeTargetHttpsProxyCertificatesSslCertificates
 ///   localName: 'lb_https',
 ///   name: TfArg.literal('lb-https-proxy'),
 ///   urlMap: TfArg.ref(urlMap.selfLink),
-///   certificateManagerCertificatesOrSslCertificates:
-///       ComputeTargetHttpsProxySslCertificatesOption(
-///         sslCertificates: TfArg.literal(const [
-///           'projects/my-proj/global/sslCertificates/my-cert',
-///         ]),
-///       ),
+///   certificates: .sslCertificates(
+///     TfArg.literal(const ['projects/my-proj/global/sslCertificates/my-cert']),
+///   ),
 ///   sslPolicy: TfArg.ref(var.ssl_policy_id),
 ///   quicOverride: TfArg.literal(QuicOverride.enable),
 /// );

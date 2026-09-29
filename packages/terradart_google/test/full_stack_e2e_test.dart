@@ -40,7 +40,7 @@ void main() {
           localName: 'orders_push',
           name: TfArg.literal('orders-push'),
           topic: TfArg.ref(ordersTopic.id),
-          bigqueryConfigOrPushConfigOrCloudStorageConfig: const .pushConfig(
+          delivery: const .pushConfig(
             PubsubSubscriptionPushConfig(
               pushEndpoint: TfArgLiteral<String>(
                 'https://app.example.com/push',

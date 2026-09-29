@@ -117,17 +117,16 @@ final class ComputeReservationShareSettingsProjectMap {
 final class ComputeReservationSpecificReservation {
   const ComputeReservationSpecificReservation({
     required this.count,
-    required this.instancePropertiesOrSourceInstanceTemplate,
+    required this.instanceSpec,
   });
 
   final TfArg<num> count;
 
-  final ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate
-  instancePropertiesOrSourceInstanceTemplate;
+  final ComputeReservationSpecificReservationInstanceSpec instanceSpec;
 
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
-    ...instancePropertiesOrSourceInstanceTemplate.encode(),
+    ...instanceSpec.encode(),
   };
 }
 
@@ -135,18 +134,18 @@ final class ComputeReservationSpecificReservation {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.instanceProperties(...)`.
-sealed class ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate {
-  const ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate();
+sealed class ComputeReservationSpecificReservationInstanceSpec {
+  const ComputeReservationSpecificReservationInstanceSpec();
 
   /// Sets `instance_properties`.
-  const factory ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate.instanceProperties(
+  const factory ComputeReservationSpecificReservationInstanceSpec.instanceProperties(
     ComputeReservationSpecificReservationInstanceProperties instanceProperties,
-  ) = ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties;
+  ) = ComputeReservationSpecificReservationInstanceSpecInstanceProperties;
 
   /// Sets `source_instance_template`.
-  const factory ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate.sourceInstanceTemplate(
+  const factory ComputeReservationSpecificReservationInstanceSpec.sourceInstanceTemplate(
     TfArg<String> sourceInstanceTemplate,
-  ) = ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate;
+  ) = ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -154,11 +153,10 @@ sealed class ComputeReservationSpecificReservationInstancePropertiesOrSourceInst
   Map<String, Object?> encode();
 }
 
-/// The [ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate.instanceProperties] choice: sets `instance_properties`.
-final class ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties
-    extends
-        ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate {
-  const ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties(
+/// The [ComputeReservationSpecificReservationInstanceSpec.instanceProperties] choice: sets `instance_properties`.
+final class ComputeReservationSpecificReservationInstanceSpecInstanceProperties
+    extends ComputeReservationSpecificReservationInstanceSpec {
+  const ComputeReservationSpecificReservationInstanceSpecInstanceProperties(
     this.instanceProperties,
   );
 
@@ -174,11 +172,10 @@ final class ComputeReservationSpecificReservationInstancePropertiesOrSourceInsta
   };
 }
 
-/// The [ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate.sourceInstanceTemplate] choice: sets `source_instance_template`.
-final class ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate
-    extends
-        ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate {
-  const ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate(
+/// The [ComputeReservationSpecificReservationInstanceSpec.sourceInstanceTemplate] choice: sets `source_instance_template`.
+final class ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate
+    extends ComputeReservationSpecificReservationInstanceSpec {
+  const ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate(
     this.sourceInstanceTemplate,
   );
 

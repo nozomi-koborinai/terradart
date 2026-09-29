@@ -174,7 +174,7 @@ final class GkeQuickstartStack extends Stack {
         // the API rejects creation with INVALID_BACKUP_SCOPE. Back up every
         // namespace (plus secrets + volume data) — the canonical basic scope.
         backupConfig: GkeBackupBackupPlanBackupConfig(
-          allNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels:
+          scope:
               .allNamespaces(TfArg.literal(true)),
           includeSecrets: TfArg.literal(true),
           includeVolumeData: TfArg.literal(true),

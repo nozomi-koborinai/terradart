@@ -187,16 +187,16 @@ final class ColabNotebookExecutionWorkbenchRuntime {
 @immutable
 final class ColabNotebookExecutionWorkbenchRuntimeVmImage {
   const ColabNotebookExecutionWorkbenchRuntimeVmImage({
-    required this.familyOrName,
+    required this.image,
     this.project,
   });
 
-  final ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName familyOrName;
+  final ColabNotebookExecutionWorkbenchRuntimeVmImageImage image;
 
   final TfArg<String>? project;
 
   Map<String, Object?> encode() => {
-    ...familyOrName.encode(),
+    ...image.encode(),
     if (project != null) 'project': project!.toTfJson(),
   };
 }
@@ -205,18 +205,18 @@ final class ColabNotebookExecutionWorkbenchRuntimeVmImage {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.family(...)`.
-sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName();
+sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageImage {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageImage();
 
   /// Sets `family`.
-  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName.family(
+  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageImage.family(
     TfArg<String> family,
-  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily;
+  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily;
 
   /// Sets `name`.
-  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName.name(
+  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageImage.name(
     TfArg<String> name,
-  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameName;
+  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageImageName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -224,12 +224,10 @@ sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
   Map<String, Object?> encode();
 }
 
-/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName.family] choice: sets `family`.
-final class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily
-    extends ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily(
-    this.family,
-  );
+/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageImage.family] choice: sets `family`.
+final class ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily
+    extends ColabNotebookExecutionWorkbenchRuntimeVmImageImage {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily(this.family);
 
   final TfArg<String> family;
 
@@ -240,12 +238,10 @@ final class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily
   Map<String, Object?> encode() => {'family': family.toTfJson()};
 }
 
-/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName.name] choice: sets `name`.
-final class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameName
-    extends ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameName(
-    this.name,
-  );
+/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageImage.name] choice: sets `name`.
+final class ColabNotebookExecutionWorkbenchRuntimeVmImageImageName
+    extends ColabNotebookExecutionWorkbenchRuntimeVmImageImage {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageImageName(this.name);
 
   final TfArg<String> name;
 

@@ -89,7 +89,7 @@ final class AppHostingStack extends Stack {
         localName: 'live_traffic',
         backend: TfArg.ref(backend.backendIdRef),
         location: TfArg.literal('us-central1'),
-        rolloutPolicyOrTarget: .target(
+        routing: .target(
           FirebaseAppHostingTrafficAppHostingTrafficTarget(
             splits: [
               FirebaseAppHostingTrafficAppHostingTrafficSplit(
