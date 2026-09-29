@@ -8,11 +8,6 @@ deriveNestedTypes: true
 dartTypeOverrides:
   status: DataLossPreventionJobTriggerStatus
 
-# Deep inspect_job / triggers trees stay Map for this thin Wave.
-nestedTypeExcludes:
-  - inspect_job
-  - triggers
-
 curatedDoc: |-
   /// DLP job trigger — scheduled (or event-driven) inspect jobs.
   ///
@@ -20,6 +15,9 @@ curatedDoc: |-
   /// Prefer [status] `PAUSED` in examples so apply does not start scans.
   /// [parent] is `projects/{project}` or
   /// `projects/{project}/locations/{location}`.
+
+sealedNames:
+  "inspect_job.storage_config.timespan_config.enable_auto_population_of_timespan_config, inspect_job.storage_config.timespan_config.start_time": start
 
 paramOrder:
   - parent

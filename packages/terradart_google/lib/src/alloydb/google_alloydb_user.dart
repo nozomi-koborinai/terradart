@@ -16,6 +16,64 @@ enum AlloydbUserType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `password`, `password_wo` on `google_alloydb_user`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.password(...)`.
+sealed class AlloydbUserPassword {
+  const AlloydbUserPassword();
+
+  /// Sets `password`.
+  const factory AlloydbUserPassword.password(TfArg<String> password) =
+      AlloydbUserPasswordChoice;
+
+  /// Sets `password_wo`.
+  const factory AlloydbUserPassword.passwordWo(TfArg<String> passwordWo) =
+      AlloydbUserPasswordWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [AlloydbUserPassword.password] choice: sets `password`.
+final class AlloydbUserPasswordChoice extends AlloydbUserPassword {
+  const AlloydbUserPasswordChoice(this.password);
+
+  final TfArg<String> password;
+
+  @override
+  String get blockKey => 'password';
+
+  @override
+  Map<String, Object?> encode() => {'password': password.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'password': password};
+}
+
+/// The [AlloydbUserPassword.passwordWo] choice: sets `password_wo`.
+final class AlloydbUserPasswordWo extends AlloydbUserPassword {
+  const AlloydbUserPasswordWo(this.passwordWo);
+
+  final TfArg<String> passwordWo;
+
+  @override
+  String get blockKey => 'password_wo';
+
+  @override
+  Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'password_wo': passwordWo};
+}
+
 /// Factory wrapper for `google_alloydb_user`.
 ///
 /// A database user in an AlloyDB cluster.
@@ -35,7 +93,7 @@ enum AlloydbUserType implements TerraformEnum {
 ///   cluster: TfArg.ref(cluster.id),
 ///   userId: TfArg.literal('app'),
 ///   userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),
-///   passwordWo: TfArg.literal(dbPassword),
+///   password: .passwordWo(.literal(dbPassword)),
 ///   passwordWoVersion: TfArg.literal('1'),
 /// );
 /// ```
@@ -47,8 +105,7 @@ final class GoogleAlloydbUser extends Resource {
     required TfArg<String> cluster,
     required TfArg<String> userId,
     required TfArg<AlloydbUserType> userType,
-    TfArg<String>? password,
-    TfArg<String>? passwordWo,
+    AlloydbUserPassword? password,
     TfArg<String>? passwordWoVersion,
     super.lifecycle,
     super.dependsOn,
@@ -60,8 +117,7 @@ final class GoogleAlloydbUser extends Resource {
            'cluster': cluster,
            'user_id': userId,
            'user_type': userType,
-           'password': ?password,
-           'password_wo': ?passwordWo,
+           ...?password?.argMap,
            'password_wo_version': ?passwordWoVersion,
          },
        );

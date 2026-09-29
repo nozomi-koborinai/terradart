@@ -33,6 +33,10 @@ paramOrder:
   - deletion_protection
   - deletion_policy
   - project
+  - base64_image
+  - instance_uri
+  - weight
+  - dynamic_parameters
 
 extraGetters: |2
     /// Reference to `id` attribute.

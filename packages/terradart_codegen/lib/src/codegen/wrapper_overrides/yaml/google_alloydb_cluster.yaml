@@ -59,13 +59,13 @@ curatedDoc: |-
   ///   clusterId: TfArg.literal('app-cluster'),
   ///   location: TfArg.literal('asia-northeast1'),
   ///   networkConfig: AlloydbClusterNetworkConfig(
-  ///     network: TfArg.ref(vpc.selfLink),
+  ///     network: .of(vpc),
   ///     allocatedIpRange: TfArg.ref(psaRange.nameRef),
   ///   ),
   ///   initialUser: AlloydbClusterInitialUser(
   ///     user: TfArg.literal('postgres'),
-  ///     passwordWo: TfArg.literal(dbPassword),
-  ///     passwordWoVersion: TfArg.literal(1),
+  ///     password: .passwordWo(.literal(dbPassword)),
+  ///     passwordWoVersion: .literal('1'),
   ///   ),
   ///   dependsOn: [ResourceDependency(psaConnection)],
   /// );

@@ -182,7 +182,7 @@ final class CloudSqlStack extends Stack {
         ),
         initialUser: AlloydbClusterInitialUser(
           user: .literal('postgres'),
-          passwordWo: .literal(dbPassword),
+          password: .passwordWo(.literal(dbPassword)),
           passwordWoVersion: .literal('1'),
         ),
         dependsOn: [ResourceDependency(psaConnection)],
@@ -205,7 +205,7 @@ final class CloudSqlStack extends Stack {
         cluster: .ref(alloyCluster.id),
         userId: .literal('app'),
         userType: .literal(.alloydbBuiltIn),
-        passwordWo: .literal(dbPassword),
+        password: .passwordWo(.literal(dbPassword)),
         passwordWoVersion: .literal('1'),
       ),
     );

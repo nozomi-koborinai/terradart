@@ -1,10 +1,187 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_network_security_client_tls_policy`.
 const Set<String> _googleNetworkSecurityClientTlsPolicySensitive = <String>{};
+
+/// Exactly one of `grpc_endpoint`, `certificate_provider_instance` on the `client_certificate` block of `google_network_security_client_tls_policy`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.grpcEndpoint(...)`.
+sealed class NetworkSecurityClientTlsPolicyClientCertificate {
+  const NetworkSecurityClientTlsPolicyClientCertificate();
+
+  /// Sets `grpc_endpoint`.
+  const factory NetworkSecurityClientTlsPolicyClientCertificate.grpcEndpoint(
+    NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint grpcEndpoint,
+  ) = NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpointChoice;
+
+  /// Sets `certificate_provider_instance`.
+  const factory NetworkSecurityClientTlsPolicyClientCertificate.certificateProviderInstance(
+    NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderInstance
+    certificateProviderInstance,
+  ) = NetworkSecurityClientTlsPolicyClientCertificateProviderInstance;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [NetworkSecurityClientTlsPolicyClientCertificate.grpcEndpoint] choice: sets `grpc_endpoint`.
+final class NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpointChoice
+    extends NetworkSecurityClientTlsPolicyClientCertificate {
+  const NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpointChoice(
+    this.grpcEndpoint,
+  );
+
+  final NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint
+  grpcEndpoint;
+
+  @override
+  String get blockKey => 'grpc_endpoint';
+
+  @override
+  Map<String, Object?> encode() => {'grpc_endpoint': grpcEndpoint.encode()};
+}
+
+/// The [NetworkSecurityClientTlsPolicyClientCertificate.certificateProviderInstance] choice: sets `certificate_provider_instance`.
+final class NetworkSecurityClientTlsPolicyClientCertificateProviderInstance
+    extends NetworkSecurityClientTlsPolicyClientCertificate {
+  const NetworkSecurityClientTlsPolicyClientCertificateProviderInstance(
+    this.certificateProviderInstance,
+  );
+
+  final NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderInstance
+  certificateProviderInstance;
+
+  @override
+  String get blockKey => 'certificate_provider_instance';
+
+  @override
+  Map<String, Object?> encode() => {
+    'certificate_provider_instance': certificateProviderInstance.encode(),
+  };
+}
+
+/// Typed helper for the `client_certificate.certificate_provider_instance` block of
+/// `google_network_security_client_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderInstance {
+  const NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderInstance({
+    required this.pluginInstance,
+  });
+
+  final TfArg<String> pluginInstance;
+
+  Map<String, Object?> encode() => {
+    'plugin_instance': pluginInstance.toTfJson(),
+  };
+}
+
+/// Typed helper for the `client_certificate.grpc_endpoint` block of
+/// `google_network_security_client_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint {
+  const NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint({
+    required this.targetUri,
+  });
+
+  final TfArg<String> targetUri;
+
+  Map<String, Object?> encode() => {'target_uri': targetUri.toTfJson()};
+}
+
+/// Exactly one of `grpc_endpoint`, `certificate_provider_instance` on the `server_validation_ca` block of `google_network_security_client_tls_policy`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.grpcEndpoint(...)`.
+sealed class NetworkSecurityClientTlsPolicyServerValidationCa {
+  const NetworkSecurityClientTlsPolicyServerValidationCa();
+
+  /// Sets `grpc_endpoint`.
+  const factory NetworkSecurityClientTlsPolicyServerValidationCa.grpcEndpoint(
+    NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint grpcEndpoint,
+  ) = NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpointChoice;
+
+  /// Sets `certificate_provider_instance`.
+  const factory NetworkSecurityClientTlsPolicyServerValidationCa.certificateProviderInstance(
+    NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance
+    certificateProviderInstance,
+  ) = NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstanceChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [NetworkSecurityClientTlsPolicyServerValidationCa.grpcEndpoint] choice: sets `grpc_endpoint`.
+final class NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpointChoice
+    extends NetworkSecurityClientTlsPolicyServerValidationCa {
+  const NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpointChoice(
+    this.grpcEndpoint,
+  );
+
+  final NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint
+  grpcEndpoint;
+
+  @override
+  String get blockKey => 'grpc_endpoint';
+
+  @override
+  Map<String, Object?> encode() => {'grpc_endpoint': grpcEndpoint.encode()};
+}
+
+/// The [NetworkSecurityClientTlsPolicyServerValidationCa.certificateProviderInstance] choice: sets `certificate_provider_instance`.
+final class NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstanceChoice
+    extends NetworkSecurityClientTlsPolicyServerValidationCa {
+  const NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstanceChoice(
+    this.certificateProviderInstance,
+  );
+
+  final NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance
+  certificateProviderInstance;
+
+  @override
+  String get blockKey => 'certificate_provider_instance';
+
+  @override
+  Map<String, Object?> encode() => {
+    'certificate_provider_instance': certificateProviderInstance.encode(),
+  };
+}
+
+/// Typed helper for the `server_validation_ca.certificate_provider_instance` block of
+/// `google_network_security_client_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance {
+  const NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance({
+    required this.pluginInstance,
+  });
+
+  final TfArg<String> pluginInstance;
+
+  Map<String, Object?> encode() => {
+    'plugin_instance': pluginInstance.toTfJson(),
+  };
+}
+
+/// Typed helper for the `server_validation_ca.grpc_endpoint` block of
+/// `google_network_security_client_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint {
+  const NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint({
+    required this.targetUri,
+  });
+
+  final TfArg<String> targetUri;
+
+  Map<String, Object?> encode() => {'target_uri': targetUri.toTfJson()};
+}
 
 /// Factory wrapper for `google_network_security_client_tls_policy`.
 ///
@@ -41,8 +218,8 @@ final class GoogleNetworkSecurityClientTlsPolicy extends Resource {
     TfArg<String>? location,
     TfArg<String>? description,
     TfArg<String>? sni,
-    TfArg<Map<String, dynamic>>? clientCertificate,
-    TfArg<List<Map<String, dynamic>>>? serverValidationCa,
+    NetworkSecurityClientTlsPolicyClientCertificate? clientCertificate,
+    List<NetworkSecurityClientTlsPolicyServerValidationCa>? serverValidationCa,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -57,8 +234,12 @@ final class GoogleNetworkSecurityClientTlsPolicy extends Resource {
            'location': ?location,
            'description': ?description,
            'sni': ?sni,
-           'client_certificate': ?clientCertificate,
-           'server_validation_ca': ?serverValidationCa,
+           if (clientCertificate != null)
+             'client_certificate': TfArg.literal(clientCertificate.encode()),
+           if (serverValidationCa != null)
+             'server_validation_ca': TfArg.literal([
+               for (final e in serverValidationCa) e.encode(),
+             ]),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

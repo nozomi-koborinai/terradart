@@ -119,21 +119,18 @@ final class VmComplianceStack extends Stack {
             mode: .literal(.validation),
             resourceGroups: [
               OsConfigOsPolicyAssignmentOsPoliciesResourceGroups(
-                // `resources` stays an opaque literal — deliberately excluded
-                // from typed derivation (see the override's
-                // `nestedTypeExcludes`); the field is still required +
-                // repeated, matching the real schema.
-                resources: .literal([
-                  {
-                    'id': 'hello-script',
-                    'exec': {
-                      'validate': {
-                        'interpreter': 'SHELL',
-                        'script': 'echo hello-from-os-config',
-                      },
-                    },
-                  },
-                ]),
+                resources: [
+                  OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResources(
+                    id: .literal('hello-script'),
+                    exec: OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesExec(
+                      validate:
+                          OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesExecValidate(
+                            interpreter: .literal(.shell),
+                            script: .literal('echo hello-from-os-config'),
+                          ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -161,7 +158,11 @@ final class VmComplianceStack extends Stack {
           migInstancesAllowed: .literal(true),
           rebootConfig: .literal(.defaultCase),
         ),
-        schedule: .oneTime(executeTime: .literal('2030-01-01T02:00:00Z')),
+        schedule: .oneTimeSchedule(
+          OsConfigPatchDeploymentOneTimeSchedule(
+            executeTime: .literal('2030-01-01T02:00:00Z'),
+          ),
+        ),
         dependsOn: apiDeps,
       ),
     );
@@ -175,45 +176,45 @@ final class VmComplianceStack extends Stack {
         action: .literal('UPSERT'),
         state: .literal('STOPPED'),
         orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
-          osPolicyAssignmentV1Payload:
-              OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload(
-                osPolicies: [
-                  OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(
-                    id: .literal('test-os-policy'),
-                    mode: .literal('VALIDATION'),
-                    resourceGroups: [
-                      OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
-                        resources: .literal([
-                          {
-                            'id': 'resource-tf',
-                            'file': {
-                              'content': 'file-content-tf',
-                              'path': 'file-path-tf-1',
-                              'state': 'PRESENT',
-                            },
-                          },
-                        ]),
+          osPolicyAssignmentV1Payload: OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload(
+            osPolicies: [
+              OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(
+                id: .literal('test-os-policy'),
+                mode: .literal('VALIDATION'),
+                resourceGroups: [
+                  OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
+                    resources: [
+                      OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResources(
+                        id: .literal('resource-tf'),
+                        file:
+                            OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFile(
+                              content: .literal('file-content-tf'),
+                              path: .literal('file-path-tf-1'),
+                              state: .literal('PRESENT'),
+                            ),
                       ),
                     ],
                   ),
                 ],
-                instanceFilter:
-                    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(
-                      inventories: [
-                        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(
-                          osShortName: .literal('windows-10'),
-                        ),
-                      ],
-                    ),
-                rollout:
-                    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(
-                      disruptionBudget:
-                          OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(
-                            percent: .literal(100),
-                          ),
-                      minWaitDuration: .literal('60s'),
-                    ),
               ),
+            ],
+            instanceFilter:
+                OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(
+                  inventories: [
+                    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(
+                      osShortName: .literal('windows-10'),
+                    ),
+                  ],
+                ),
+            rollout:
+                OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(
+                  disruptionBudget:
+                      OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(
+                        percent: .literal(100),
+                      ),
+                  minWaitDuration: .literal('60s'),
+                ),
+          ),
         ),
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,

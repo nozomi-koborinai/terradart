@@ -183,7 +183,18 @@ export 'src/network/google_network_security_backend_authentication_config.dart'
         GoogleNetworkSecurityBackendAuthenticationConfig,
         NetworkSecurityBackendAuthenticationConfigWellKnownRoots;
 export 'src/network/google_network_security_client_tls_policy.dart'
-    show GoogleNetworkSecurityClientTlsPolicy;
+    show
+        GoogleNetworkSecurityClientTlsPolicy,
+        NetworkSecurityClientTlsPolicyClientCertificate,
+        NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderInstance,
+        NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint,
+        NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpointChoice,
+        NetworkSecurityClientTlsPolicyClientCertificateProviderInstance,
+        NetworkSecurityClientTlsPolicyServerValidationCa,
+        NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance,
+        NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstanceChoice,
+        NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint,
+        NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpointChoice;
 export 'src/network/google_network_security_dns_threat_detector.dart'
     show
         GoogleNetworkSecurityDnsThreatDetector,
@@ -250,7 +261,20 @@ export 'src/network/google_network_security_security_profile.dart'
 export 'src/network/google_network_security_security_profile_group.dart'
     show GoogleNetworkSecuritySecurityProfileGroup;
 export 'src/network/google_network_security_server_tls_policy.dart'
-    show GoogleNetworkSecurityServerTlsPolicy;
+    show
+        GoogleNetworkSecurityServerTlsPolicy,
+        NetworkSecurityServerTlsPolicyMtlsPolicy,
+        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa,
+        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstance,
+        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstanceChoice,
+        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpoint,
+        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpointChoice,
+        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationMode,
+        NetworkSecurityServerTlsPolicyServerCertificate,
+        NetworkSecurityServerTlsPolicyServerCertificateCertificateProviderInstance,
+        NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpoint,
+        NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpointChoice,
+        NetworkSecurityServerTlsPolicyServerCertificateProviderInstance;
 export 'src/network/google_network_security_tls_inspection_policy.dart'
     show
         GoogleNetworkSecurityTlsInspectionPolicy,

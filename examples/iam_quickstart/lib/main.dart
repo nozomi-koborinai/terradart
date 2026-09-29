@@ -76,8 +76,10 @@ final class IamShowcaseStack extends Stack {
           'attribute.repository_owner': 'assertion.repository_owner',
         }),
         trustSource: .oidc(
-          allowedAudiences: [.literal('https://github.com/my-org')],
-          issuerUri: .literal('https://token.actions.githubusercontent.com'),
+          IamWorkloadIdentityPoolProviderOidc(
+            allowedAudiences: .literal(['https://github.com/my-org']),
+            issuerUri: .literal('https://token.actions.githubusercontent.com'),
+          ),
         ),
         dependsOn: [ResourceDependency(wifPool)],
       ),
@@ -173,7 +175,7 @@ final class IamShowcaseStack extends Stack {
       GoogleSecretManagerSecret(
         localName: 'demo_secret',
         secretId: .literal('demo-secret'),
-        replication: SecretManagerSecretReplication.auto(),
+        replication: const .auto(SecretManagerSecretReplicationAuto()),
         dependsOn: [ResourceDependency(apiSecretManager)],
       ),
     );
@@ -490,8 +492,10 @@ final class IamShowcaseStack extends Stack {
         workforcePoolId: .literal('terradart-wf'),
         providerId: .literal('terradart-oidc'),
         trustSource: .oidc(
-          issuerUri: .literal('https://accounts.google.com'),
-          clientId: .literal('client.apps.googleusercontent.com'),
+          IamWorkforcePoolProviderOidc(
+            issuerUri: .literal('https://accounts.google.com'),
+            clientId: .literal('client.apps.googleusercontent.com'),
+          ),
         ),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(workforce)],

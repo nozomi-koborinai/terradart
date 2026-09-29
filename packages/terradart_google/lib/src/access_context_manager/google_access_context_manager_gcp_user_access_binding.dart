@@ -10,6 +10,72 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 const Set<String> _googleAccessContextManagerGcpUserAccessBindingSensitive =
     <String>{};
 
+/// At most one of `group_key`, `principal` on `google_access_context_manager_gcp_user_access_binding`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.groupKey(...)`.
+sealed class AccessContextManagerGcpUserAccessBindingSubject {
+  const AccessContextManagerGcpUserAccessBindingSubject();
+
+  /// Sets `group_key`.
+  const factory AccessContextManagerGcpUserAccessBindingSubject.groupKey(
+    TfArg<String> groupKey,
+  ) = AccessContextManagerGcpUserAccessBindingSubjectGroupKey;
+
+  /// Sets `principal`.
+  const factory AccessContextManagerGcpUserAccessBindingSubject.principal(
+    AccessContextManagerGcpUserAccessBindingPrincipal principal,
+  ) = AccessContextManagerGcpUserAccessBindingSubjectPrincipal;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [AccessContextManagerGcpUserAccessBindingSubject.groupKey] choice: sets `group_key`.
+final class AccessContextManagerGcpUserAccessBindingSubjectGroupKey
+    extends AccessContextManagerGcpUserAccessBindingSubject {
+  const AccessContextManagerGcpUserAccessBindingSubjectGroupKey(this.groupKey);
+
+  final TfArg<String> groupKey;
+
+  @override
+  String get blockKey => 'group_key';
+
+  @override
+  Map<String, Object?> encode() => {'group_key': groupKey.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'group_key': groupKey};
+}
+
+/// The [AccessContextManagerGcpUserAccessBindingSubject.principal] choice: sets `principal`.
+final class AccessContextManagerGcpUserAccessBindingSubjectPrincipal
+    extends AccessContextManagerGcpUserAccessBindingSubject {
+  const AccessContextManagerGcpUserAccessBindingSubjectPrincipal(
+    this.principal,
+  );
+
+  final AccessContextManagerGcpUserAccessBindingPrincipal principal;
+
+  @override
+  String get blockKey => 'principal';
+
+  @override
+  Map<String, Object?> encode() => {'principal': principal.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'principal': TfArg.literal(principal.encode()),
+  };
+}
+
 /// Typed helper for the `principal` block of
 /// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
 @immutable
@@ -251,11 +317,12 @@ final class GoogleAccessContextManagerGcpUserAccessBinding extends Resource {
     required super.localName,
     TfArg<List<String>>? accessLevels,
     TfArg<String>? deletionPolicy,
-    TfArg<String>? groupKey,
+    AccessContextManagerGcpUserAccessBindingSubject? subject,
     required TfArg<String> organizationId,
     List<AccessContextManagerGcpUserAccessBindingScopedAccessSettings>?
     scopedAccessSettings,
     AccessContextManagerGcpUserAccessBindingSessionSettings? sessionSettings,
+    TfArg<List<String>>? dryRunAccessLevels,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -265,7 +332,7 @@ final class GoogleAccessContextManagerGcpUserAccessBinding extends Resource {
          argMap: {
            'access_levels': ?accessLevels,
            'deletion_policy': ?deletionPolicy,
-           'group_key': ?groupKey,
+           ...?subject?.argMap,
            'organization_id': organizationId,
            if (scopedAccessSettings != null)
              'scoped_access_settings': TfArg.literal([
@@ -273,6 +340,7 @@ final class GoogleAccessContextManagerGcpUserAccessBinding extends Resource {
              ]),
            if (sessionSettings != null)
              'session_settings': TfArg.literal(sessionSettings.encode()),
+           'dry_run_access_levels': ?dryRunAccessLevels,
          },
        );
 

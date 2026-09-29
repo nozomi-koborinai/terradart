@@ -75,7 +75,10 @@ export 'src/logging/google_logging_organization_sink.dart'
         LoggingOrganizationSinkBigqueryOptions,
         LoggingOrganizationSinkExclusion;
 export 'src/logging/google_logging_project_bucket_config.dart'
-    show GoogleLoggingProjectBucketConfig;
+    show
+        GoogleLoggingProjectBucketConfig,
+        LoggingProjectBucketConfigCmekSettings,
+        LoggingProjectBucketConfigIndexConfigs;
 export 'src/logging/google_logging_project_exclusion.dart'
     show GoogleLoggingProjectExclusion;
 export 'src/logging/google_logging_project_sink.dart'
@@ -90,5 +93,9 @@ export 'src/logging/google_logging_saved_query.dart'
         LoggingSavedQueryDefinitionLoggingQuery,
         LoggingSavedQueryDefinitionOpsAnalyticsQuery,
         LoggingSavedQueryLoggingQuery,
+        LoggingSavedQueryLoggingQuerySummaryField,
+        LoggingSavedQueryLoggingQuerySummaryFieldEnd,
+        LoggingSavedQueryLoggingQuerySummaryFieldStart,
+        LoggingSavedQueryLoggingQuerySummaryFields,
         LoggingSavedQueryOpsAnalyticsQuery,
         LoggingSavedQueryVisibility;

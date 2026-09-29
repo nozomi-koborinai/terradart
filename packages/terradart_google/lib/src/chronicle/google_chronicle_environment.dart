@@ -64,6 +64,10 @@ final class GoogleChronicleEnvironment extends Resource {
     TfArg<bool>? deletionProtection,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    TfArg<String>? base64Image,
+    TfArg<String>? instanceUri,
+    TfArg<num>? weight,
+    List<ChronicleEnvironmentDynamicParameters>? dynamicParameters,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -84,6 +88,13 @@ final class GoogleChronicleEnvironment extends Resource {
            'deletion_protection': ?deletionProtection,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           'base64_image': ?base64Image,
+           'instance_uri': ?instanceUri,
+           'weight': ?weight,
+           if (dynamicParameters != null)
+             'dynamic_parameters': TfArg.literal([
+               for (final e in dynamicParameters) e.encode(),
+             ]),
          },
        );
 

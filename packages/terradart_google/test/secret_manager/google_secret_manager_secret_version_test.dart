@@ -18,7 +18,7 @@ void main() {
     final secret = GoogleSecretManagerSecret(
       localName: 'api_key',
       secretId: TfArg.literal('api'),
-      replication: SecretManagerSecretReplication.auto(),
+      replication: const .auto(SecretManagerSecretReplicationAuto()),
     );
     final v = GoogleSecretManagerSecretVersion(
       localName: 'api_key_v1',

@@ -62,11 +62,31 @@ export 'src/iam/google_iam_workforce_pool_provider.dart'
         IamWorkforcePoolProviderExtendedAttributesOauth2Client,
         IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret,
         IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue,
+        IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainText,
+        IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainTextChoice,
+        IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValuePlainTextWo,
         IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameters,
-        IamWorkforcePoolProviderOidcTrust,
+        IamWorkforcePoolProviderExtraAttributesOauth2Client,
+        IamWorkforcePoolProviderExtraAttributesOauth2ClientAttributesType,
+        IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecret,
+        IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValue,
+        IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainText,
+        IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainTextChoice,
+        IamWorkforcePoolProviderExtraAttributesOauth2ClientClientSecretValuePlainTextWo,
+        IamWorkforcePoolProviderExtraAttributesOauth2ClientQueryParameters,
+        IamWorkforcePoolProviderOidc,
+        IamWorkforcePoolProviderOidcClientSecret,
+        IamWorkforcePoolProviderOidcClientSecretValue,
+        IamWorkforcePoolProviderOidcClientSecretValuePlainText,
+        IamWorkforcePoolProviderOidcClientSecretValuePlainTextChoice,
+        IamWorkforcePoolProviderOidcClientSecretValuePlainTextWo,
+        IamWorkforcePoolProviderOidcWebSsoConfig,
+        IamWorkforcePoolProviderOidcWebSsoConfigAssertionClaimsBehavior,
+        IamWorkforcePoolProviderOidcWebSsoConfigResponseType,
         IamWorkforcePoolProviderSaml,
-        IamWorkforcePoolProviderSamlTrust,
-        IamWorkforcePoolProviderTrustSource;
+        IamWorkforcePoolProviderTrustSource,
+        IamWorkforcePoolProviderTrustSourceOidc,
+        IamWorkforcePoolProviderTrustSourceSaml;
 export 'src/iam/google_iam_workforce_pool_provider_key.dart'
     show
         GoogleIamWorkforcePoolProviderKey,
@@ -77,7 +97,18 @@ export 'src/iam/google_iam_workforce_pool_provider_scim_tenant.dart'
 export 'src/iam/google_iam_workforce_pool_provider_scim_token.dart'
     show GoogleIamWorkforcePoolProviderScimToken;
 export 'src/iam/google_iam_workload_identity_pool.dart'
-    show GoogleIamWorkloadIdentityPool, WorkloadIdentityPoolMode;
+    show
+        GoogleIamWorkloadIdentityPool,
+        IamWorkloadIdentityPoolAttestationRules,
+        IamWorkloadIdentityPoolInlineCertificateIssuanceConfig,
+        IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa,
+        IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCaPools,
+        IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCaUseDefaultSharedCa,
+        IamWorkloadIdentityPoolInlineCertificateIssuanceConfigKeyAlgorithm,
+        IamWorkloadIdentityPoolInlineTrustConfig,
+        IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundles,
+        IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundlesTrustAnchors,
+        WorkloadIdentityPoolMode;
 export 'src/iam/google_iam_workload_identity_pool_iam_binding.dart'
     show GoogleIamWorkloadIdentityPoolIamBinding;
 export 'src/iam/google_iam_workload_identity_pool_iam_member.dart'
@@ -91,13 +122,18 @@ export 'src/iam/google_iam_workload_identity_pool_namespace.dart'
 export 'src/iam/google_iam_workload_identity_pool_provider.dart'
     show
         GoogleIamWorkloadIdentityPoolProvider,
-        IamWorkloadIdentityPoolProviderAwsTrust,
-        IamWorkloadIdentityPoolProviderOidcTrust,
-        IamWorkloadIdentityPoolProviderSamlTrust,
+        IamWorkloadIdentityPoolProviderAws,
+        IamWorkloadIdentityPoolProviderOidc,
+        IamWorkloadIdentityPoolProviderSaml,
         IamWorkloadIdentityPoolProviderTrustSource,
-        IamWorkloadIdentityPoolProviderX509PemCertificate,
-        IamWorkloadIdentityPoolProviderX509Trust,
-        IamWorkloadIdentityPoolProviderX509TrustStore;
+        IamWorkloadIdentityPoolProviderTrustSourceAws,
+        IamWorkloadIdentityPoolProviderTrustSourceOidc,
+        IamWorkloadIdentityPoolProviderTrustSourceSaml,
+        IamWorkloadIdentityPoolProviderTrustSourceX509,
+        IamWorkloadIdentityPoolProviderX509,
+        IamWorkloadIdentityPoolProviderX509TrustStore,
+        IamWorkloadIdentityPoolProviderX509TrustStoreIntermediateCas,
+        IamWorkloadIdentityPoolProviderX509TrustStoreTrustAnchors;
 export 'src/iam/google_os_login_ssh_public_key.dart'
     show GoogleOsLoginSshPublicKey;
 export 'src/iam/google_project_iam_audit_config.dart'

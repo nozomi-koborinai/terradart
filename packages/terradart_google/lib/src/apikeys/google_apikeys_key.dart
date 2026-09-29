@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_apikeys_key`.
 const Set<String> _googleApikeysKeySensitive = <String>{'key_string'};
 
@@ -31,6 +33,8 @@ final class GoogleApikeysKey extends Resource {
     TfArg<Map<String, dynamic>>? restrictions,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
+    RefTo<GoogleServiceAccount>? serviceAccountEmail,
+    TfArg<String>? checkExistingUsage,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -43,6 +47,8 @@ final class GoogleApikeysKey extends Resource {
            'restrictions': ?restrictions,
            'project': ?project,
            'deletion_policy': ?deletionPolicy,
+           'service_account_email': ?serviceAccountEmail?.encodeAs('email'),
+           'check_existing_usage': ?checkExistingUsage,
          },
        );
 

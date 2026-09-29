@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_certificate_manager_certificate`.
@@ -23,82 +24,255 @@ enum CertificateManagerCertificateScope implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Provisioning mode for [GoogleCertificateManagerCertificate]. Sealed so
-/// the API `managed` / `self_managed` exactly-one constraint is enforced
-/// at compile time.
-sealed class CertificateManagerCertificateProvisioningSource {
-  const CertificateManagerCertificateProvisioningSource();
+/// Exactly one of `self_managed`, `managed` on `google_certificate_manager_certificate`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.selfManaged(...)`.
+sealed class CertificateManagerCertificateProvisioning {
+  const CertificateManagerCertificateProvisioning();
 
-  /// Google-managed certificate — auto-provisioned and renewed while DNS authorization remains valid.
-  const factory CertificateManagerCertificateProvisioningSource.managed({
-    List<String>? domains,
-    List<TfArg<String>>? dnsAuthorizations,
-    TfArg<String>? issuanceConfig,
-  }) = CertificateManagerCertificateManagedProvisioning;
+  /// Sets `self_managed`.
+  const factory CertificateManagerCertificateProvisioning.selfManaged(
+    CertificateManagerCertificateSelfManaged selfManaged,
+  ) = CertificateManagerCertificateProvisioningSelfManaged;
 
-  /// User-uploaded PEM certificate + private key.
-  const factory CertificateManagerCertificateProvisioningSource.selfManaged({
-    TfArg<String>? pemCertificate,
-    TfArg<String>? pemPrivateKey,
-  }) = CertificateManagerCertificateSelfManagedProvisioning;
+  /// Sets `managed`.
+  const factory CertificateManagerCertificateProvisioning.managed(
+    CertificateManagerCertificateManaged managed,
+  ) = CertificateManagerCertificateProvisioningManaged;
 
+  /// The Terraform argument this choice sets.
   String get blockKey;
+
   Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Google-managed certificate — auto-provisioned and renewed while
-/// DNS authorization remains valid.
-final class CertificateManagerCertificateManagedProvisioning
-    extends CertificateManagerCertificateProvisioningSource {
-  const CertificateManagerCertificateManagedProvisioning({
-    this.domains,
-    this.dnsAuthorizations,
-    this.issuanceConfig,
-  });
+/// The [CertificateManagerCertificateProvisioning.selfManaged] choice: sets `self_managed`.
+final class CertificateManagerCertificateProvisioningSelfManaged
+    extends CertificateManagerCertificateProvisioning {
+  const CertificateManagerCertificateProvisioningSelfManaged(this.selfManaged);
 
-  @override
-  String get blockKey => 'managed';
-
-  /// Domains on the certificate. Wildcards require DNS authorization.
-  final List<String>? domains;
-
-  /// Full resource names of [GoogleCertificateManagerDnsAuthorization]
-  /// resources. Mutually exclusive with [issuanceConfig].
-  final List<TfArg<String>>? dnsAuthorizations;
-
-  /// Private PKI issuance config resource name. Mutually exclusive with
-  /// [dnsAuthorizations].
-  final TfArg<String>? issuanceConfig;
-
-  @override
-  Map<String, Object?> encode() => {
-    if (domains != null) 'domains': domains,
-    if (dnsAuthorizations != null)
-      'dns_authorizations': dnsAuthorizations!
-          .map((a) => a.toTfJson())
-          .toList(),
-    if (issuanceConfig != null) 'issuance_config': issuanceConfig!.toTfJson(),
-  };
-}
-
-/// User-uploaded PEM certificate + private key.
-final class CertificateManagerCertificateSelfManagedProvisioning
-    extends CertificateManagerCertificateProvisioningSource {
-  const CertificateManagerCertificateSelfManagedProvisioning({
-    this.pemCertificate,
-    this.pemPrivateKey,
-  });
+  final CertificateManagerCertificateSelfManaged selfManaged;
 
   @override
   String get blockKey => 'self_managed';
 
-  final TfArg<String>? pemCertificate;
-  final TfArg<String>? pemPrivateKey;
+  @override
+  Map<String, Object?> encode() => {'self_managed': selfManaged.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'self_managed': TfArg.literal(selfManaged.encode()),
+  };
+}
+
+/// The [CertificateManagerCertificateProvisioning.managed] choice: sets `managed`.
+final class CertificateManagerCertificateProvisioningManaged
+    extends CertificateManagerCertificateProvisioning {
+  const CertificateManagerCertificateProvisioningManaged(this.managed);
+
+  final CertificateManagerCertificateManaged managed;
+
+  @override
+  String get blockKey => 'managed';
+
+  @override
+  Map<String, Object?> encode() => {'managed': managed.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'managed': TfArg.literal(managed.encode()),
+  };
+}
+
+/// Typed helper for the `managed` block of
+/// `google_certificate_manager_certificate` (derived from provider schema).
+@immutable
+final class CertificateManagerCertificateManaged {
+  const CertificateManagerCertificateManaged({
+    this.dnsAuthorizations,
+    this.domains,
+    this.issuanceConfig,
+  });
+
+  final TfArg<List<Object?>>? dnsAuthorizations;
+
+  final TfArg<List<Object?>>? domains;
+
+  final TfArg<String>? issuanceConfig;
+
+  Map<String, Object?> encode() => {
+    'dns_authorizations': ?dnsAuthorizations?.toTfJson(),
+    'domains': ?domains?.toTfJson(),
+    'issuance_config': ?issuanceConfig?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `self_managed` block of
+/// `google_certificate_manager_certificate` (derived from provider schema).
+@immutable
+final class CertificateManagerCertificateSelfManaged {
+  const CertificateManagerCertificateSelfManaged({
+    required this.certificate,
+    required this.privateKey,
+    this.pemPrivateKeyWoVersion,
+  });
+
+  final CertificateManagerCertificateSelfManagedCertificate certificate;
+
+  final CertificateManagerCertificateSelfManagedPrivateKey privateKey;
+
+  final TfArg<String>? pemPrivateKeyWoVersion;
+
+  Map<String, Object?> encode() => {
+    ...certificate.encode(),
+    ...privateKey.encode(),
+    'pem_private_key_wo_version': ?pemPrivateKeyWoVersion?.toTfJson(),
+  };
+}
+
+/// Exactly one of `certificate_pem`, `pem_certificate` on the `self_managed` block of `google_certificate_manager_certificate`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.certificatePem(...)`.
+sealed class CertificateManagerCertificateSelfManagedCertificate {
+  const CertificateManagerCertificateSelfManagedCertificate();
+
+  /// Sets `certificate_pem`.
+  const factory CertificateManagerCertificateSelfManagedCertificate.certificatePem(
+    TfArg<String> certificatePem,
+  ) = CertificateManagerCertificateSelfManagedCertificatePem;
+
+  /// Sets `pem_certificate`.
+  const factory CertificateManagerCertificateSelfManagedCertificate.pemCertificate(
+    TfArg<String> pemCertificate,
+  ) = CertificateManagerCertificateSelfManagedCertificatePemCertificate;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [CertificateManagerCertificateSelfManagedCertificate.certificatePem] choice: sets `certificate_pem`.
+final class CertificateManagerCertificateSelfManagedCertificatePem
+    extends CertificateManagerCertificateSelfManagedCertificate {
+  const CertificateManagerCertificateSelfManagedCertificatePem(
+    this.certificatePem,
+  );
+
+  final TfArg<String> certificatePem;
+
+  @override
+  String get blockKey => 'certificate_pem';
 
   @override
   Map<String, Object?> encode() => {
-    if (pemCertificate != null) 'pem_certificate': pemCertificate!.toTfJson(),
-    if (pemPrivateKey != null) 'pem_private_key': pemPrivateKey!.toTfJson(),
+    'certificate_pem': certificatePem.toTfJson(),
+  };
+}
+
+/// The [CertificateManagerCertificateSelfManagedCertificate.pemCertificate] choice: sets `pem_certificate`.
+final class CertificateManagerCertificateSelfManagedCertificatePemCertificate
+    extends CertificateManagerCertificateSelfManagedCertificate {
+  const CertificateManagerCertificateSelfManagedCertificatePemCertificate(
+    this.pemCertificate,
+  );
+
+  final TfArg<String> pemCertificate;
+
+  @override
+  String get blockKey => 'pem_certificate';
+
+  @override
+  Map<String, Object?> encode() => {
+    'pem_certificate': pemCertificate.toTfJson(),
+  };
+}
+
+/// Exactly one of `private_key_pem`, `pem_private_key`, `pem_private_key_wo` on the `self_managed` block of `google_certificate_manager_certificate`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.privateKeyPem(...)`.
+sealed class CertificateManagerCertificateSelfManagedPrivateKey {
+  const CertificateManagerCertificateSelfManagedPrivateKey();
+
+  /// Sets `private_key_pem`.
+  const factory CertificateManagerCertificateSelfManagedPrivateKey.privateKeyPem(
+    TfArg<String> privateKeyPem,
+  ) = CertificateManagerCertificateSelfManagedPrivateKeyPem;
+
+  /// Sets `pem_private_key`.
+  const factory CertificateManagerCertificateSelfManagedPrivateKey.pemPrivateKey(
+    TfArg<String> pemPrivateKey,
+  ) = CertificateManagerCertificateSelfManagedPrivateKeyPemPrivateKey;
+
+  /// Sets `pem_private_key_wo`.
+  const factory CertificateManagerCertificateSelfManagedPrivateKey.pemPrivateKeyWo(
+    TfArg<String> pemPrivateKeyWo,
+  ) = CertificateManagerCertificateSelfManagedPrivateKeyPemPrivateKeyWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [CertificateManagerCertificateSelfManagedPrivateKey.privateKeyPem] choice: sets `private_key_pem`.
+final class CertificateManagerCertificateSelfManagedPrivateKeyPem
+    extends CertificateManagerCertificateSelfManagedPrivateKey {
+  const CertificateManagerCertificateSelfManagedPrivateKeyPem(
+    this.privateKeyPem,
+  );
+
+  final TfArg<String> privateKeyPem;
+
+  @override
+  String get blockKey => 'private_key_pem';
+
+  @override
+  Map<String, Object?> encode() => {
+    'private_key_pem': privateKeyPem.toTfJson(),
+  };
+}
+
+/// The [CertificateManagerCertificateSelfManagedPrivateKey.pemPrivateKey] choice: sets `pem_private_key`.
+final class CertificateManagerCertificateSelfManagedPrivateKeyPemPrivateKey
+    extends CertificateManagerCertificateSelfManagedPrivateKey {
+  const CertificateManagerCertificateSelfManagedPrivateKeyPemPrivateKey(
+    this.pemPrivateKey,
+  );
+
+  final TfArg<String> pemPrivateKey;
+
+  @override
+  String get blockKey => 'pem_private_key';
+
+  @override
+  Map<String, Object?> encode() => {
+    'pem_private_key': pemPrivateKey.toTfJson(),
+  };
+}
+
+/// The [CertificateManagerCertificateSelfManagedPrivateKey.pemPrivateKeyWo] choice: sets `pem_private_key_wo`.
+final class CertificateManagerCertificateSelfManagedPrivateKeyPemPrivateKeyWo
+    extends CertificateManagerCertificateSelfManagedPrivateKey {
+  const CertificateManagerCertificateSelfManagedPrivateKeyPemPrivateKeyWo(
+    this.pemPrivateKeyWo,
+  );
+
+  final TfArg<String> pemPrivateKeyWo;
+
+  @override
+  String get blockKey => 'pem_private_key_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'pem_private_key_wo': pemPrivateKeyWo.toTfJson(),
   };
 }
 
@@ -110,7 +284,7 @@ final class CertificateManagerCertificateSelfManagedProvisioning
 /// self-managed (user-uploaded PEM).
 ///
 /// The managed path pairs with [GoogleCertificateManagerDnsAuthorization]
-/// via [CertificateManagerCertificateManagedProvisioning.dnsAuthorizations].
+/// via [CertificateManagerCertificateManaged.dnsAuthorizations].
 /// Attach issued certs to a load balancer either directly
 /// (`certificate_manager_certificates` on internal HTTPS proxies) or via a
 /// [GoogleCertificateManagerCertificateMap] + map entry on external HTTPS
@@ -119,17 +293,19 @@ final class CertificateManagerCertificateSelfManagedProvisioning
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [name]: certificate ID.
-/// - [provisioning]: sealed [CertificateManagerCertificateProvisioningSource]
-///   — exactly one of managed or self-managed.
+/// - `provisioning`: sealed [CertificateManagerCertificateProvisioning]
+///   — exactly one of `.managed(...)` or `.selfManaged(...)`.
 ///
 /// Example (managed + DNS authorization):
 /// ```dart
 /// GoogleCertificateManagerCertificate(
 ///   localName: 'app_cert',
-///   name: TfArg.literal('app-cert'),
-///   provisioning: CertificateManagerCertificateManagedProvisioning(
-///     domains: ['app.example.com'],
-///     dnsAuthorizations: [TfArg.ref(dnsAuth.id)],
+///   name: .literal('app-cert'),
+///   provisioning: .managed(
+///     CertificateManagerCertificateManaged(
+///       domains: .literal(['app.example.com']),
+///       dnsAuthorizations: .literal([dnsAuth.id.interpolation]),
+///     ),
 ///   ),
 /// );
 /// ```
@@ -139,11 +315,12 @@ final class GoogleCertificateManagerCertificate extends Resource {
   GoogleCertificateManagerCertificate({
     required super.localName,
     required TfArg<String> name,
-    required CertificateManagerCertificateProvisioningSource provisioning,
+    required CertificateManagerCertificateProvisioning provisioning,
     TfArg<String>? description,
     TfArg<String>? location,
     TfArg<CertificateManagerCertificateScope>? scope,
     TfArg<Map<String, String>>? labels,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -152,11 +329,12 @@ final class GoogleCertificateManagerCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           provisioning.blockKey: TfArg.literal([provisioning.encode()]),
+           ...provisioning.argMap,
            'description': ?description,
            'location': ?location,
            'scope': ?scope,
            'labels': ?labels,
+           'project': ?project,
          },
        );
 

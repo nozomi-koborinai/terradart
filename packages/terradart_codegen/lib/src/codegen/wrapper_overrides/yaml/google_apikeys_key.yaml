@@ -25,6 +25,8 @@ paramOrder:
   - restrictions
   - project
   - deletion_policy
+  - service_account_email
+  - check_existing_usage
 
 extraGetters: |2
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');

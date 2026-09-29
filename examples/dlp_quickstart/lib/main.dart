@@ -66,20 +66,23 @@ final class DlpStack extends Stack {
         templateId: .literal('terradart-email-redact'),
         displayName: .literal('terradart-email-redact'),
         description: .literal('Quickstart de-identify template'),
-        deidentifyConfig: .literal({
-          'info_type_transformations': {
-            'transformations': [
-              {
-                'info_types': [
-                  {'name': 'EMAIL_ADDRESS'},
+        deidentifyConfig: .infoTypeTransformations(
+          DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations(
+            transformations: [
+              DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformations(
+                infoTypes: [
+                  DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypes(
+                    name: .literal('EMAIL_ADDRESS'),
+                  ),
                 ],
-                'primitive_transformation': {
-                  'replace_with_info_type_config': true,
-                },
-              },
+                primitiveTransformation:
+                    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformation(
+                      replaceWithInfoTypeConfig: .literal(true),
+                    ),
+              ),
             ],
-          },
-        }),
+          ),
+        ),
         dependsOn: [ResourceDependency(apiDlp)],
       ),
     );
@@ -91,7 +94,11 @@ final class DlpStack extends Stack {
         storedInfoTypeId: .literal('terradart-patient-id'),
         displayName: .literal('terradart-patient-id'),
         description: .literal('Quickstart regex stored info type'),
-        definition: .regex(pattern: .literal(r'patient-\d{4}')),
+        definition: .regex(
+          DataLossPreventionStoredInfoTypeRegex(
+            pattern: .literal(r'patient-\d{4}'),
+          ),
+        ),
         dependsOn: [ResourceDependency(apiDlp)],
       ),
     );
@@ -117,23 +124,31 @@ final class DlpStack extends Stack {
         displayName: .literal('terradart-paused-gcs'),
         description: .literal('Paused quickstart GCS inspect trigger'),
         status: .literal(.paused),
-        triggers: .literal([
-          {
-            'schedule': {'recurrence_period_duration': '86400s'},
-          },
-        ]),
-        inspectJob: .literal({
-          'inspect_template_name': inspect.nameRef.interpolation,
-          'storage_config': {
-            'cloud_storage_options': {
-              'file_set': {'url': 'gs://${scanBucket.nameRef.interpolation}/'},
-            },
-          },
+        triggers: [
+          DataLossPreventionJobTriggerTriggers(
+            schedule: DataLossPreventionJobTriggerTriggersSchedule(
+              recurrencePeriodDuration: .literal('86400s'),
+            ),
+          ),
+        ],
+        inspectJob: DataLossPreventionJobTriggerInspectJob(
+          inspectTemplateName: .ref(inspect.nameRef),
+          storageConfig: DataLossPreventionJobTriggerInspectJobStorageConfig(
+            cloudStorageOptions:
+                DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptions(
+                  fileSet: .url(
+                    .literal('gs://${scanBucket.nameRef.interpolation}/'),
+                  ),
+                ),
+          ),
           // Empty notification action — avoids BigQuery save_findings deps.
-          'actions': [
-            {'job_notification_emails': {}},
+          actions: [
+            DataLossPreventionJobTriggerInspectJobActions(
+              jobNotificationEmails:
+                  DataLossPreventionJobTriggerInspectJobActionsJobNotificationEmails(),
+            ),
           ],
-        }),
+        ),
         dependsOn: [
           ResourceDependency(inspect),
           ResourceDependency(scanBucket),

@@ -23,6 +23,9 @@ export 'src/alloydb/google_alloydb_cluster.dart'
         AlloydbClusterDayOfWeek,
         AlloydbClusterEncryptionConfig,
         AlloydbClusterInitialUser,
+        AlloydbClusterInitialUserPassword,
+        AlloydbClusterInitialUserPasswordChoice,
+        AlloydbClusterInitialUserPasswordWo,
         AlloydbClusterMaintenanceUpdatePolicy,
         AlloydbClusterMaintenanceUpdatePolicyMaintenanceWindows,
         AlloydbClusterMaintenanceUpdatePolicyMaintenanceWindowsStartTime,
@@ -57,4 +60,9 @@ export 'src/alloydb/google_alloydb_instance.dart'
         AlloydbInstanceType,
         GoogleAlloydbInstance;
 export 'src/alloydb/google_alloydb_user.dart'
-    show AlloydbUserType, GoogleAlloydbUser;
+    show
+        AlloydbUserPassword,
+        AlloydbUserPasswordChoice,
+        AlloydbUserPasswordWo,
+        AlloydbUserType,
+        GoogleAlloydbUser;

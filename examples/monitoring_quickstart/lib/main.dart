@@ -78,11 +78,16 @@ final class LatencyAlertStack extends Stack {
           port: .literal(443),
           useSsl: .literal(true),
           validateSsl: .literal(true),
-          requestMethod: MonitoringUptimeCheckHttpMethod.get,
+          requestMethod: .literal(.get),
         ),
         target: .monitoredResource(
-          type: .literal('uptime_url'),
-          labels: {'host': 'api.example.com', 'project_id': projectId},
+          MonitoringUptimeCheckConfigMonitoredResource(
+            type: .literal('uptime_url'),
+            labels: .literal({
+              'host': 'api.example.com',
+              'project_id': projectId,
+            }),
+          ),
         ),
         selectedRegions: const [
           MonitoringUptimeCheckRegion.usa,
@@ -135,15 +140,17 @@ final class LatencyAlertStack extends Stack {
         displayName: .literal('API availability'),
         period: .rollingPeriodDays(.literal(30)),
         sli: .requestBasedSli(
-          goodTotalRatio: MonitoringSloGoodTotalRatio(
-            goodServiceFilter: .literal(
-              'metric.type="run.googleapis.com/request_count" '
-              'AND resource.type="cloud_run_revision" '
-              'AND metric.label.response_code_class="2xx"',
-            ),
-            totalServiceFilter: .literal(
-              'metric.type="run.googleapis.com/request_count" '
-              'AND resource.type="cloud_run_revision"',
+          .goodTotalRatio(
+            MonitoringSloRequestBasedSliGoodTotalRatio(
+              goodServiceFilter: .literal(
+                'metric.type="run.googleapis.com/request_count" '
+                'AND resource.type="cloud_run_revision" '
+                'AND metric.label.response_code_class="2xx"',
+              ),
+              totalServiceFilter: .literal(
+                'metric.type="run.googleapis.com/request_count" '
+                'AND resource.type="cloud_run_revision"',
+              ),
             ),
           ),
         ),
@@ -176,9 +183,9 @@ final class LatencyAlertStack extends Stack {
         // instead of a hardcoded `.../oncall-email` (404 at apply).
         notificationChannels: .literal([oncallEmail.id.interpolation]),
         conditions: [
-          MonitoringAlertPolicyAlertCondition(
+          MonitoringAlertPolicyConditions(
             displayName: .literal('p95 > 1500ms for 5m'),
-            conditionThreshold: MonitoringAlertPolicyConditionThreshold(
+            conditionThreshold: MonitoringAlertPolicyConditionsConditionThreshold(
               filter: .literal(
                 'metric.type="run.googleapis.com/request_latencies" '
                 'AND resource.type="cloud_run_revision" '
@@ -189,10 +196,10 @@ final class LatencyAlertStack extends Stack {
               thresholdValue: .literal(1500),
               evaluationMissingData: .literal(.noOp),
               aggregations: [
-                MonitoringAlertPolicyAggregation(
+                MonitoringAlertPolicyConditionsConditionThresholdAggregations(
                   alignmentPeriod: .literal('60s'),
-                  perSeriesAligner: Aligner.percentile95,
-                  crossSeriesReducer: Reducer.percentile95,
+                  perSeriesAligner: .literal(.percentile95),
+                  crossSeriesReducer: .literal(.percentile95),
                   groupByFields: .literal(const [
                     'resource.label.revision_name',
                   ]),
