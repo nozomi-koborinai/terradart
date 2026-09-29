@@ -1,5 +1,6 @@
 import 'package:yaml/yaml.dart';
 
+import '../codegen/exclusive_groups.dart';
 import '../ir/constraints.dart';
 
 /// Output of the Magic Modules YAML parser.
@@ -34,8 +35,14 @@ class MmResourceOverrides {
   /// list-index segments (`a.0.b`) dropped, camelCase names snake_cased, a
   /// nested property's bare sibling names resolved against its parent.
   /// Deduplicated (every member repeats its group); a group whose members
-  /// do not share one parent block is dropped.
+  /// do not share one parent block is dropped. An `at_least_one_of` set
+  /// whose members all pairwise `conflicts` counts too ([exclusiveGroups]).
   final List<List<String>> exactlyOneOfPaths;
+
+  /// The `conflicts` sets no `exactly_one_of` covers, in the shape of
+  /// [exactlyOneOfPaths]: inputs of one block that pairwise conflict, which
+  /// the provider also accepts none of (`at_most_one_of_groups`).
+  final List<List<String>> atMostOneOfPaths;
 
   /// `enum_values` by dotted Terraform path, including the properties of
   /// an `Array` of `NestedObject` (`item_type.properties`), which
@@ -48,6 +55,7 @@ class MmResourceOverrides {
     this.product,
     this.exactlyOneOfGroups = const [],
     this.exactlyOneOfPaths = const [],
+    this.atMostOneOfPaths = const [],
     this.enumValuesByPath = const {},
   });
 }
@@ -63,13 +71,13 @@ class MmYamlParser {
     }
     final overrides = <String, Constraints>{};
     final groups = <List<String>>[];
-    final paths = <String, List<String>>{};
+    final paths = _Relations();
     final enums = <String, List<String>>{};
 
     // Top-level exactly_one_of (applies to direct children).
     final topGroup = _readExactlyOneOf(doc, prefix: '');
     if (topGroup != null) groups.add(topGroup);
-    _addExactlyOnePaths(doc, '', paths);
+    _addRelations(doc, '', null, paths);
 
     final props = doc['properties'];
     if (props is YamlList) {
@@ -77,44 +85,63 @@ class MmYamlParser {
         _walkProperty(p as YamlMap, '', overrides, groups, paths, enums);
       }
     }
+    final combined = exclusiveGroups(
+      exactlyOne: paths.exactlyOne,
+      atLeastOne: paths.atLeastOne,
+      conflicts: paths.conflicts,
+    );
     return MmResourceOverrides(
       fieldOverrides: overrides,
       description: doc['description'] as String?,
       product: doc['product'] as String?,
       exactlyOneOfGroups: groups,
-      exactlyOneOfPaths: paths.values.toList(),
+      exactlyOneOfPaths: combined.exactlyOne,
+      atMostOneOfPaths: combined.atMostOne,
       enumValuesByPath: enums,
     );
   }
 
-  /// Adds [node]'s `exactly_one_of`, normalized, to [sink] (keyed by the
-  /// sorted members). [parent] is the dotted path of [node]'s parent block.
-  void _addExactlyOnePaths(
+  /// Adds [node]'s `exactly_one_of`, `at_least_one_of` and `conflicts`,
+  /// normalized, to [sink]. [parent] is the dotted path of [node]'s parent
+  /// block and [self] the path of [node] (null for the resource root).
+  void _addRelations(
     YamlMap node,
     String parent,
-    Map<String, List<String>> sink,
+    String? self,
+    _Relations sink,
   ) {
-    final raw = node['exactly_one_of'];
-    if (raw is! YamlList) return;
-    final members = <String>[
-      for (final v in raw)
-        () {
-          final segments = [
-            for (final s in v.toString().split('.'))
-              if (int.tryParse(s) == null) _toSnakeCase(s),
-          ];
-          return segments.length == 1 && parent.isNotEmpty
-              ? '$parent.${segments.single}'
-              : segments.join('.');
-        }(),
-    ];
+    List<String>? members(String key) {
+      final raw = node[key];
+      if (raw is! YamlList) return null;
+      return [
+        for (final v in raw)
+          () {
+            final segments = [
+              for (final s in v.toString().split('.'))
+                if (int.tryParse(s) == null) _toSnakeCase(s),
+            ];
+            return segments.length == 1 && parent.isNotEmpty
+                ? '$parent.${segments.single}'
+                : segments.join('.');
+          }(),
+      ];
+    }
+
     String parentOf(String m) =>
         m.contains('.') ? m.substring(0, m.lastIndexOf('.')) : '';
-    if (members.toSet().length < 2 ||
-        members.map(parentOf).toSet().length != 1) {
-      return;
+    bool siblings(List<String> ms) =>
+        ms.toSet().length >= 2 && ms.map(parentOf).toSet().length == 1;
+    if (members('exactly_one_of') case final ms? when siblings(ms)) {
+      sink.exactlyOne.add(ms);
     }
-    sink.putIfAbsent((List.of(members)..sort()).join(','), () => members);
+    if (members('at_least_one_of') case final ms? when siblings(ms)) {
+      sink.atLeastOne.add(ms);
+    }
+    if (self != null) {
+      for (final m in members('conflicts') ?? const <String>[]) {
+        sink.conflicts.add((self, m));
+      }
+    }
   }
 
   /// [sink] and [groupSink] are null below an `item_type`: they keep
@@ -125,7 +152,7 @@ class MmYamlParser {
     String prefix,
     Map<String, Constraints>? sink,
     List<List<String>>? groupSink,
-    Map<String, List<String>> pathSink,
+    _Relations pathSink,
     Map<String, List<String>> enumSink,
   ) {
     final apiName =
@@ -148,7 +175,7 @@ class MmYamlParser {
     // Per-property exactly_one_of (siblings of this property's nested kids).
     final propGroup = _readExactlyOneOf(prop, prefix: fullKey);
     if (propGroup != null) groupSink?.add(propGroup);
-    _addExactlyOnePaths(prop, prefix, pathSink);
+    _addRelations(prop, prefix, fullKey, pathSink);
 
     final nested = prop['properties'];
     if (nested is YamlList) {
@@ -209,4 +236,11 @@ class MmYamlParser {
     }
     return buf.toString();
   }
+}
+
+/// The relation rules of one resource, as dotted Terraform paths.
+final class _Relations {
+  final exactlyOne = <List<String>>[];
+  final atLeastOne = <List<String>>[];
+  final conflicts = <(String, String)>[];
 }

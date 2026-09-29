@@ -30,7 +30,11 @@ export 'src/firebase/google_firebase_extensions_instance.dart'
         FirebaseExtensionsInstanceState,
         GoogleFirebaseExtensionsInstance;
 export 'src/firebase/google_firebase_hosting_channel.dart'
-    show GoogleFirebaseHostingChannel;
+    show
+        FirebaseHostingChannelExpireTimeOption,
+        FirebaseHostingChannelExpireTimeOrTtl,
+        FirebaseHostingChannelTtlOption,
+        GoogleFirebaseHostingChannel;
 export 'src/firebase/google_firebase_hosting_custom_domain.dart'
     show
         FirebaseHostingCustomDomainCertPreference,

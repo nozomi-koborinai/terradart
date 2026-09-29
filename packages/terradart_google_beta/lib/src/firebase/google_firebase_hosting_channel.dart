@@ -6,6 +6,56 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_firebase_hosting_channel`.
 const Set<String> _googleFirebaseHostingChannelSensitive = <String>{};
 
+/// At most one of `expire_time`, `ttl` on `google_firebase_hosting_channel`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class FirebaseHostingChannelExpireTimeOrTtl {
+  const FirebaseHostingChannelExpireTimeOrTtl();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `expire_time` (one of the [FirebaseHostingChannelExpireTimeOrTtl] choices).
+final class FirebaseHostingChannelExpireTimeOption
+    extends FirebaseHostingChannelExpireTimeOrTtl {
+  const FirebaseHostingChannelExpireTimeOption({required this.expireTime});
+
+  final TfArg<String> expireTime;
+
+  @override
+  String get blockKey => 'expire_time';
+
+  @override
+  Map<String, Object?> encode() => {'expire_time': expireTime.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'expire_time': expireTime};
+}
+
+/// Sets `ttl` (one of the [FirebaseHostingChannelExpireTimeOrTtl] choices).
+final class FirebaseHostingChannelTtlOption
+    extends FirebaseHostingChannelExpireTimeOrTtl {
+  const FirebaseHostingChannelTtlOption({required this.ttl});
+
+  final TfArg<String> ttl;
+
+  @override
+  String get blockKey => 'ttl';
+
+  @override
+  Map<String, Object?> encode() => {'ttl': ttl.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'ttl': ttl};
+}
+
 /// Factory wrapper for `google_firebase_hosting_channel`.
 ///
 /// A `Channel` represents a stream of releases for a site. All sites have a
@@ -18,11 +68,10 @@ final class GoogleFirebaseHostingChannel extends Resource {
     required super.localName,
     required TfArg<String> channelId,
     TfArg<String>? deletionPolicy,
-    TfArg<String>? expireTime,
+    FirebaseHostingChannelExpireTimeOrTtl? expireTimeOrTtl,
     TfArg<Map<String, String>>? labels,
     TfArg<num>? retainedReleaseCount,
     required TfArg<String> siteId,
-    TfArg<String>? ttl,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -33,12 +82,11 @@ final class GoogleFirebaseHostingChannel extends Resource {
          argMap: {
            'channel_id': channelId,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (expireTime != null) 'expire_time': expireTime,
+           ...?expireTimeOrTtl?.argMap,
            if (labels != null) 'labels': labels,
            if (retainedReleaseCount != null)
              'retained_release_count': retainedReleaseCount,
            'site_id': siteId,
-           if (ttl != null) 'ttl': ttl,
          },
        );
 
