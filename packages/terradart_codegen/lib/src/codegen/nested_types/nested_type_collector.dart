@@ -557,7 +557,13 @@ List<NestedAttrSpec> _collectAttrs(
 
     final override = typeOverrides[[...path, tfName].join('.')];
     final typeInfo = override != null
-        ? (dartType: override, repeated: false, enumValues: null)
+        ? (
+            dartType: override,
+            repeated:
+                body['type'] is List &&
+                const {'list', 'set'}.contains((body['type'] as List).first),
+            enumValues: null,
+          )
         : _attrTypeInfo(
             rawType: body['type'],
             enumValues: enumValues([
