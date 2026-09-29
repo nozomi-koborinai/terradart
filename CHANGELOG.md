@@ -94,6 +94,17 @@ Per-package changelogs live alongside each package and are the system of record 
   ledger rule takes an optional `types:` regex for a path that names a
   different target per product family. Synth output is unchanged. See
   `MIGRATING.md`.
+- **google-beta arguments take GA `RefTo<R>`** (**breaking**;
+  `terradart_google_beta`, `terradart_codegen`) — a beta-only resource input
+  that names a GA resource takes the `terradart_google` type:
+  `GoogleDataflowFlexTemplateJob(network: vpc.ref, subnetwork: subnet.ref)`,
+  plus KMS keys, service accounts, buckets and a BigQuery dataset (22
+  inputs).
+  `terradart_google_beta` now depends on `terradart_google`. The ledger's
+  `- inherit: hashicorp/google` entry reuses the GA rules, and
+  `referencesFrom: google` in `tool/providers.yaml` points `wrap
+  --reference-lane` at the GA schema and package. Synth output is unchanged.
+  See `MIGRATING.md`.
 
 - **Sealed variants are factory constructors** (**breaking**;
   `terradart_codegen`, `terradart_migrate`, every provider package) — a
