@@ -55,6 +55,10 @@ void main() {
       });
 
       test('every helper, enum and sealed variant reference resolves', () {
+        final resourceClasses = {
+          for (final e in manifest.entries)
+            if (e.kind == CatalogKind.resource) e.className,
+        };
         void checkSlots(List<MigrateSlot> slots, String where) {
           for (final s in slots) {
             switch (s.kind) {
@@ -79,6 +83,13 @@ void main() {
                     reason: '$where.${s.dartName} → $v',
                   );
                 }
+              case MigrateSlotKind.reference:
+                expect(
+                  resourceClasses,
+                  contains(s.dartType),
+                  reason: '$where.${s.dartName}',
+                );
+                expect(s.attribute, isNotEmpty, reason: '$where.${s.dartName}');
               case MigrateSlotKind.manual:
                 expect(s.reason, isNotEmpty, reason: '$where.${s.dartName}');
               case MigrateSlotKind.scalar || MigrateSlotKind.passthrough:

@@ -204,6 +204,7 @@ final class ValueEmitter {
           );
         case MigrateSlotKind.scalar ||
             MigrateSlotKind.enumValue ||
+            MigrateSlotKind.reference ||
             MigrateSlotKind.passthrough:
           throw MigrateBlocker(
             'argument "${level.path}${slot.dartName}": merged '
@@ -251,6 +252,7 @@ final class ValueEmitter {
     return switch (slot.kind) {
       MigrateSlotKind.scalar => _scalar(slot, value, path: path),
       MigrateSlotKind.enumValue => _enum(slot, value, path: path),
+      MigrateSlotKind.reference => _reference(slot, value, path: path),
       MigrateSlotKind.helper =>
         slot.repeated
             ? _helperList(slot.helper!, value, path: path)
@@ -590,6 +592,111 @@ final class ValueEmitter {
     }
     return 'TfRef.attribute<String>(${target.dartName}, '
         '${dartString(c.attribute)}).interpolation';
+  }
+
+  // ---------------------------------------------------------------------
+  // Typed references
+  // ---------------------------------------------------------------------
+
+  /// A `RefTo<C>` argument, or a `TfArg<List<RefTo<C>>>` when [slot] is
+  /// repeated: a literal list holds one reference per element, anything
+  /// else is the whole list (`var.subnet_ids`, a splat).
+  String _reference(MigrateSlot slot, Expr value, {required String path}) {
+    if (!slot.repeated) return _referenceValue(slot, value, path: path);
+    if (value is TupleExpr) {
+      final items = [
+        for (final e in value.elements) _referenceValue(slot, e, path: path),
+      ];
+      return 'TfArg.literal([${items.join(', ')}])';
+    }
+    if (value is LiteralExpr || value.constantString != null) {
+      throw MigrateBlocker(
+        'argument "$path" expects a list of references but is a '
+        '${_describe(value)}',
+      );
+    }
+    if (value is ObjectExpr) {
+      throw MigrateBlocker(
+        'argument "$path" expects a list of references but is an object',
+      );
+    }
+    if (singleReference(value) case final ref?) {
+      if (classifyTraversal(ref) case VariableReference(:final name)) {
+        usedVariables.add(name);
+        return 'TfArg.variable(${dartString(name)})';
+      }
+    }
+    return _expression(value);
+  }
+
+  /// One `RefTo<C>`: the block's `ref` when [value] reads a migrated block
+  /// of `C` (pinned when it reads another attribute than the argument
+  /// emits), else the value wrapped as it is — the migrated Stack
+  /// synthesizes what the source said either way.
+  String _referenceValue(MigrateSlot slot, Expr value, {required String path}) {
+    final className = slot.dartType!;
+    final ref = singleReference(value);
+    if (ref != null) {
+      final c = classifyTraversal(ref);
+      if (c is BlockReference && c.attribute.isNotEmpty) {
+        final target = ctx.targets[c.address];
+        if (target != null && _reads(target, className)) {
+          usedTargets.add(c.address);
+          final attribute = c.attribute;
+          return attribute == slot.attribute
+              ? '${target.dartName}.ref'
+              : '${target.dartName}.ref.pinned(${dartString(attribute)})';
+        }
+        if (target != null) {
+          ctx.warnings.add(
+            'argument "$path" names a $className but reads ${c.address}, '
+            'a ${target.entry.className}; it stays an unchecked RefTo.arg',
+          );
+        }
+      }
+      final arg = _refArg(ref, type: 'String');
+      if (arg != null) {
+        return arg.startsWith('TfArg.variable(')
+            ? 'RefTo.${arg.substring('TfArg.'.length)}'
+            : 'RefTo.arg($arg)';
+      }
+    }
+    final text = constantText(value);
+    if (text != null) {
+      if (sensitivePaths.contains(path)) {
+        throw MigrateBlocker(
+          'argument "$path" is sensitive: its value is not copied into Dart '
+          '(pass it as a variable)',
+        );
+      }
+      final envExpr = envValues[path];
+      if (envExpr != null) {
+        envSlotTypes[envExpr] = 'String';
+        return 'RefTo.literal($envExpr)';
+      }
+      return 'RefTo.literal(${dartString(text)})';
+    }
+    if (value is LiteralExpr || value is TupleExpr || value is ObjectExpr) {
+      throw MigrateBlocker(
+        'argument "$path" expects a reference to a $className but is a '
+        '${_describe(value)}',
+      );
+    }
+    final expr = _expression(value);
+    return expr.startsWith('TfArg.expression(')
+        ? 'RefTo.${expr.substring('TfArg.'.length)}'
+        : 'RefTo.arg($expr)';
+  }
+
+  /// Whether [target]'s `ref` is a `RefTo<className>`: the resource itself,
+  /// or a data source reading that resource type.
+  static bool _reads(EmitTarget target, String className) {
+    if (!target.isData) return target.entry.className == className;
+    final resource = target.manifest.entryFor(
+      target.entry.tfType,
+      CatalogKind.resource,
+    );
+    return resource?.className == className;
   }
 
   // ---------------------------------------------------------------------

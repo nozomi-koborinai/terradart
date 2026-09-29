@@ -3,6 +3,7 @@ import 'dart:convert';
 import '../enum_value_parser.dart';
 import '../exactly_one_types.dart';
 import '../naming.dart';
+import '../references/reference_targets.dart';
 
 /// One attribute surfaced on a derived nested-type helper class.
 ///
@@ -26,6 +27,10 @@ final class NestedAttrSpec {
   /// to an opaque [dartType] instead (see `_scalarDartType`).
   final bool repeated;
 
+  /// The resource this input names, when it is typed `RefTo<...>`; its
+  /// [dartType] stays the schema's.
+  final ResolvedReference? reference;
+
   const NestedAttrSpec({
     required this.tfName,
     required this.dartName,
@@ -33,6 +38,7 @@ final class NestedAttrSpec {
     required this.required,
     this.enumValues,
     this.repeated = false,
+    this.reference,
   });
 }
 
@@ -115,6 +121,12 @@ final class ExcludedNestedBlock {
 typedef EnumValuesResolver =
     List<String>? Function(List<String> path, String? description);
 
+/// The resource a leaf input at [path] references, or null for a plain
+/// string.
+typedef ReferenceResolver = ResolvedReference? Function(List<String> path);
+
+ResolvedReference? _noReferences(List<String> path) => null;
+
 /// The default [EnumValuesResolver]: the description dialects every lane
 /// reads.
 List<String>? descriptionEnumValues(List<String> path, String? description) =>
@@ -167,6 +179,10 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 /// ([NestedBlockSpec.atMostOne]). [sealedNames] is the override's
 /// `sealedNames` axis; each block keeps the entries whose members it holds
 /// ([NestedBlockSpec.sealedNames]).
+///
+/// [references] types a string input as a reference, unless it is an enum
+/// or a member of one of the block's groups (a sealed variant keeps the
+/// schema type).
 List<NestedBlockSpec> collectNestedTypes({
   required Map<String, dynamic> resourceBlock,
   required String resourcePrefix,
@@ -177,6 +193,7 @@ List<NestedBlockSpec> collectNestedTypes({
   Map<String, List<List<String>>> exactlyOneGroups = const {},
   Map<String, List<List<String>>> atMostOneGroups = const {},
   Map<String, String>? sealedNames,
+  ReferenceResolver references = _noReferences,
 }) {
   final rootKeys = {
     ..._optionalMap(resourceBlock['attributes'], context: 'attributes').keys,
@@ -192,6 +209,7 @@ List<NestedBlockSpec> collectNestedTypes({
     exactlyOneGroups: exactlyOneGroups,
     atMostOneGroups: atMostOneGroups,
     sealedNames: _sealedNamesByBlock(sealedNames),
+    references: references,
   );
   return shareIdenticalShapes
       ? _shareIdenticalShapes(scan.children)
@@ -215,6 +233,7 @@ List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
               : 'enum:${jsonEncode(a.enumValues)}',
           a.required,
           a.repeated,
+          if (a.reference case final r?) 'ref:${r.target}:${r.attribute}',
         ].join('|'),
     ]..sort();
     final childKeys = [
@@ -296,6 +315,7 @@ _ChildScan _scanChildren(
   required Map<String, List<List<String>>> exactlyOneGroups,
   required Map<String, List<List<String>>> atMostOneGroups,
   required Map<String, Map<String, String>> sealedNames,
+  required ReferenceResolver references,
 }) {
   final children = <NestedBlockSpec>[];
   final excludedChildren = <ExcludedNestedBlock>[];
@@ -332,6 +352,7 @@ _ChildScan _scanChildren(
         exactlyOneGroups: exactlyOneGroups,
         atMostOneGroups: atMostOneGroups,
         sealedNames: sealedNames,
+        references: references,
       ),
     );
   }
@@ -430,6 +451,7 @@ NestedBlockSpec _buildSpec(
   required Map<String, List<List<String>>> exactlyOneGroups,
   required Map<String, List<List<String>>> atMostOneGroups,
   required Map<String, Map<String, String>> sealedNames,
+  required ReferenceResolver references,
 }) {
   final cardinality = _blockCardinality(nestedBlockBody, tfName: tfName);
   final className = resourcePrefix + path.map(snakeToPascal).join();
@@ -448,7 +470,13 @@ NestedBlockSpec _buildSpec(
     exactlyOneGroups: exactlyOneGroups,
     atMostOneGroups: atMostOneGroups,
     sealedNames: sealedNames,
+    references: references,
   );
+  final exactlyOne = exactlyOneGroups[path.join('.')] ?? const [];
+  final atMostOne = atMostOneGroups[path.join('.')] ?? const [];
+  final grouped = {
+    for (final g in [...exactlyOne, ...atMostOne]) ...g,
+  };
 
   return NestedBlockSpec(
     tfName: tfName,
@@ -462,11 +490,12 @@ NestedBlockSpec _buildSpec(
       path: path,
       className: className,
       enumValues: enumValues,
+      references: (p) => grouped.contains(p.last) ? null : references(p),
     ),
     children: scan.children,
     excludedChildren: scan.excludedChildren,
-    exactlyOne: exactlyOneGroups[path.join('.')] ?? const [],
-    atMostOne: atMostOneGroups[path.join('.')] ?? const [],
+    exactlyOne: exactlyOne,
+    atMostOne: atMostOne,
     sealedNames: sealedNames[path.join('.')] ?? const {},
   );
 }
@@ -498,6 +527,7 @@ List<NestedAttrSpec> _collectAttrs(
   required List<String> path,
   required String className,
   required EnumValuesResolver enumValues,
+  required ReferenceResolver references,
 }) {
   final attributes = _optionalMap(block['attributes'], context: 'attributes');
   final out = <NestedAttrSpec>[];
@@ -528,6 +558,9 @@ List<NestedAttrSpec> _collectAttrs(
         required: isRequired,
         enumValues: typeInfo.enumValues,
         repeated: typeInfo.repeated,
+        reference: typeInfo.enumValues == null
+            ? references([...path, tfName])
+            : null,
       ),
     );
   }

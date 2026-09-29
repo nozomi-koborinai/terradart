@@ -8,6 +8,17 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Added
 
+- **Typed resource references, part 2** (`terradart_codegen`,
+  `terradart_migrate`, `tool/`) — `tool/reference_targets.yaml` lists which
+  string inputs name another resource: name patterns per referenced type
+  (7 google, 9 aws, 2 cloudflare), with the attribute each input emits and
+  reviewed exceptions. `terradart wrap --reference-targets` validates it
+  against the lane's schema on every run (E406 on a stale entry), so the
+  weekly bump keeps it current; `--typed-references` types what it
+  matches. The migration manifest gains a `reference` slot kind, and the
+  migrator writes `x.ref`, `x.ref.pinned('id')`, `RefTo.literal(...)` or
+  `RefTo.variable(...)` for it. No lane types references yet, so generated
+  output is unchanged.
 - **Typed resource references, part 1** (`terradart_core`, `terradart_codegen`,
   every provider package) — `RefTo<R>`, a compile-time-only reference to a
   resource of type `R`. Every generated resource has a `ref` getter

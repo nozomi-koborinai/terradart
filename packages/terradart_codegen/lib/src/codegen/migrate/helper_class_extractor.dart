@@ -40,6 +40,8 @@
 /// a migrator keeps such blocks in Terraform.
 library;
 
+import 'migrate_shape_analyzer.dart' show encodedAttribute;
+
 /// One constructor parameter of a helper class.
 final class ExtractedField {
   const ExtractedField({
@@ -50,6 +52,7 @@ final class ExtractedField {
     this.tfKey,
     this.merged = false,
     this.keyedEncoding = false,
+    this.encodedAttribute,
   });
 
   /// Dart constructor parameter name.
@@ -76,6 +79,10 @@ final class ExtractedField {
   /// ([isKeyedHelperEncoding]) — the only encoding a `Map<String, Helper>`
   /// field's manifest slot can describe.
   final bool keyedEncoding;
+
+  /// The attribute a reference field's entry encodes
+  /// (`network!.encodeAs('id')` → `id`).
+  final String? encodedAttribute;
 }
 
 /// Whether [expr] is the keyed-map encoding of a `Map<String, Helper>`:
@@ -377,6 +384,7 @@ class HelperClassExtractor {
           tfKey: key,
           merged: merged,
           keyedEncoding: keyedEncoding,
+          encodedAttribute: encoding.attributes[p.field],
         ),
       );
     }
@@ -583,6 +591,7 @@ class HelperClassExtractor {
     final keys = <String, String>{};
     final merged = <String>{};
     final keyedFields = <String>{};
+    final attributes = <String, String>{};
     final topLevelKeys = <String>[];
     for (final raw in _splitTopLevel(literal, ',')) {
       if (raw.trim().isEmpty) continue;
@@ -644,6 +653,7 @@ class HelperClassExtractor {
           _recordKey(keys, e.key, e.value, reasons);
         }
         keyedFields.addAll(innerKeys.keyed);
+        attributes.addAll(innerKeys.attributes);
         continue;
       }
 
@@ -655,11 +665,13 @@ class HelperClassExtractor {
       }
       _recordKey(keys, refs.single, path, reasons);
       if (isKeyedHelperEncoding(value)) keyedFields.add(refs.single);
+      if (encodedAttribute(value) case final a?) attributes[refs.single] = a;
     }
     return _Encoding(
       keys: keys,
       merged: merged,
       keyed: keyedFields,
+      attributes: attributes,
       topLevelKeys: topLevelKeys,
     );
   }
@@ -750,12 +762,14 @@ class HelperClassExtractor {
   }
 
   /// Field names referenced in [expr] as bare identifiers (a `.member`
-  /// access does not count).
+  /// access or the text of a plain string literal, `encodeAs('arn')`, does
+  /// not count).
   static List<String> _fieldRefs(String expr, Set<String> fieldNames) {
+    final code = expr.replaceAll(RegExp(r"'[^'$\\]*'"), "''");
     final seen = <String>{};
     for (final m in RegExp(
       r'(?<![.\w$])([a-z_][A-Za-z0-9_]*)\b',
-    ).allMatches(expr)) {
+    ).allMatches(code)) {
       final id = m.group(1)!;
       if (fieldNames.contains(id)) seen.add(id);
     }
@@ -892,6 +906,7 @@ final class _Encoding {
     required this.keys,
     required this.merged,
     this.keyed = const {},
+    this.attributes = const {},
     this.topLevelKeys = const [],
   });
 
@@ -899,6 +914,7 @@ final class _Encoding {
     : keys = const {},
       merged = const {},
       keyed = const {},
+      attributes = const {},
       topLevelKeys = const [];
 
   /// Field → Terraform key path.
@@ -909,6 +925,9 @@ final class _Encoding {
 
   /// Fields encoded as a keyed helper map ([isKeyedHelperEncoding]).
   final Set<String> keyed;
+
+  /// Reference field → the attribute its entry encodes.
+  final Map<String, String> attributes;
 
   /// Every resolved key of the outermost map literal, constant entries
   /// included, in source order.

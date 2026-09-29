@@ -36,6 +36,19 @@ final class _FakeSubnet extends Resource {
   Set<String> get sensitiveFields => const {};
 }
 
+final class _FakeInstance extends Resource {
+  _FakeInstance({
+    required super.localName,
+    required TfArg<List<RefTo<_FakeNetwork>>> networks,
+  }) : super(
+         terraformType: 'fake_instance',
+         argMap: {'networks': networks.encodeAs('id')},
+       );
+
+  @override
+  Set<String> get sensitiveFields => const {};
+}
+
 void main() {
   final vpc = _FakeNetwork(localName: 'main');
 
@@ -108,5 +121,47 @@ void main() {
       r'${fake_network.main.self_link}',
     );
     expect((subnets['other']! as Map)['network'], 'legacy');
+  });
+
+  test('a list of references encodes each element', () {
+    final literal = TfArg.literal<List<RefTo<_FakeNetwork>>>([
+      vpc.ref,
+      vpc.ref.pinned('name'),
+      .literal('n'),
+    ]).encodeAs('id');
+    expect(TfJsonEncoder.encodeArg(literal), [
+      r'${fake_network.main.id}',
+      r'${fake_network.main.name}',
+      'n',
+    ]);
+    expect(
+      TfArg.variable<List<RefTo<_FakeNetwork>>>(
+        'networks',
+      ).encodeAs('id').toTfJson(),
+      r'${var.networks}',
+    );
+  });
+
+  test('a list argument synthesizes to its references', () {
+    final stack = TestStack(
+      providers: const [
+        FakeStackProvider(
+          providerName: 'fake',
+          source: 'example/fake',
+          versionConstraint: '~> 1.0',
+        ),
+      ],
+    );
+    stack
+      ..add(vpc)
+      ..add(
+        _FakeInstance(
+          localName: 'vm',
+          networks: .literal([vpc.ref, .literal('n')]),
+        ),
+      );
+    final resources = stack.synth().tfJson['resource'] as Map<String, Object?>;
+    final vm = (resources['fake_instance']! as Map)['vm'] as Map;
+    expect(vm['networks'], [r'${fake_network.main.id}', 'n']);
   });
 }
