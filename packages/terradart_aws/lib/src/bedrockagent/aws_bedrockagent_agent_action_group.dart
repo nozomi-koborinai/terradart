@@ -137,34 +137,23 @@ enum BedrockagentAgentActionGroupActionGroupExecutorCustomControl
   final String terraformValue;
 }
 
-/// Typed helper for the `api_schema` block of
-/// `aws_bedrockagent_agent_action_group` (derived from provider schema).
-@immutable
-final class BedrockagentAgentActionGroupApiSchema {
-  const BedrockagentAgentActionGroupApiSchema({this.apiSchema});
-
-  final BedrockagentAgentActionGroupApiSchemaApiSchema? apiSchema;
-
-  Map<String, Object?> encode() => {...?apiSchema?.encode()};
-}
-
 /// At most one of `payload`, `s3` on the `api_schema` block of `aws_bedrockagent_agent_action_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.payload(...)`.
-sealed class BedrockagentAgentActionGroupApiSchemaApiSchema {
-  const BedrockagentAgentActionGroupApiSchemaApiSchema();
+sealed class BedrockagentAgentActionGroupApiSchema {
+  const BedrockagentAgentActionGroupApiSchema();
 
   /// Sets `payload`.
-  const factory BedrockagentAgentActionGroupApiSchemaApiSchema.payload(
+  const factory BedrockagentAgentActionGroupApiSchema.payload(
     TfArg<String> payload,
-  ) = BedrockagentAgentActionGroupApiSchemaApiSchemaPayload;
+  ) = BedrockagentAgentActionGroupApiSchemaPayload;
 
   /// Sets `s3`.
-  const factory BedrockagentAgentActionGroupApiSchemaApiSchema.s3(
+  const factory BedrockagentAgentActionGroupApiSchema.s3(
     List<BedrockagentAgentActionGroupApiSchemaS3> s3,
-  ) = BedrockagentAgentActionGroupApiSchemaApiSchemaS3;
+  ) = BedrockagentAgentActionGroupApiSchemaS3Choice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -172,10 +161,10 @@ sealed class BedrockagentAgentActionGroupApiSchemaApiSchema {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentAgentActionGroupApiSchemaApiSchema.payload] choice: sets `payload`.
-final class BedrockagentAgentActionGroupApiSchemaApiSchemaPayload
-    extends BedrockagentAgentActionGroupApiSchemaApiSchema {
-  const BedrockagentAgentActionGroupApiSchemaApiSchemaPayload(this.payload);
+/// The [BedrockagentAgentActionGroupApiSchema.payload] choice: sets `payload`.
+final class BedrockagentAgentActionGroupApiSchemaPayload
+    extends BedrockagentAgentActionGroupApiSchema {
+  const BedrockagentAgentActionGroupApiSchemaPayload(this.payload);
 
   final TfArg<String> payload;
 
@@ -186,10 +175,10 @@ final class BedrockagentAgentActionGroupApiSchemaApiSchemaPayload
   Map<String, Object?> encode() => {'payload': payload.toTfJson()};
 }
 
-/// The [BedrockagentAgentActionGroupApiSchemaApiSchema.s3] choice: sets `s3`.
-final class BedrockagentAgentActionGroupApiSchemaApiSchemaS3
-    extends BedrockagentAgentActionGroupApiSchemaApiSchema {
-  const BedrockagentAgentActionGroupApiSchemaApiSchemaS3(this.s3);
+/// The [BedrockagentAgentActionGroupApiSchema.s3] choice: sets `s3`.
+final class BedrockagentAgentActionGroupApiSchemaS3Choice
+    extends BedrockagentAgentActionGroupApiSchema {
+  const BedrockagentAgentActionGroupApiSchemaS3Choice(this.s3);
 
   final List<BedrockagentAgentActionGroupApiSchemaS3> s3;
 

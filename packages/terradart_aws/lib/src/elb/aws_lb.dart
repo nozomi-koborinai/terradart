@@ -98,10 +98,11 @@ sealed class LbSubnet {
 
   /// Sets `subnet_mapping`.
   const factory LbSubnet.subnetMapping(List<LbSubnetMapping> subnetMapping) =
-      LbSubnetSubnetMapping;
+      LbSubnetMappingChoice;
 
   /// Sets `subnets`.
-  const factory LbSubnet.subnets(TfArg<List<String>> subnets) = LbSubnetSubnets;
+  const factory LbSubnet.subnets(TfArg<List<RefTo<AwsSubnet>>> subnets) =
+      LbSubnetSubnets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -114,8 +115,8 @@ sealed class LbSubnet {
 }
 
 /// The [LbSubnet.subnetMapping] choice: sets `subnet_mapping`.
-final class LbSubnetSubnetMapping extends LbSubnet {
-  const LbSubnetSubnetMapping(this.subnetMapping);
+final class LbSubnetMappingChoice extends LbSubnet {
+  const LbSubnetMappingChoice(this.subnetMapping);
 
   final List<LbSubnetMapping> subnetMapping;
 
@@ -139,16 +140,18 @@ final class LbSubnetSubnetMapping extends LbSubnet {
 final class LbSubnetSubnets extends LbSubnet {
   const LbSubnetSubnets(this.subnets);
 
-  final TfArg<List<String>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   @override
   String get blockKey => 'subnets';
 
   @override
-  Map<String, Object?> encode() => {'subnets': subnets.toTfJson()};
+  Map<String, Object?> encode() => {
+    'subnets': subnets.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'subnets': subnets};
+  Map<String, TfArg<Object?>> get argMap => {'subnets': subnets.encodeAs('id')};
 }
 
 /// At most one of `name`, `name_prefix` on `aws_lb`: the provider rejects
@@ -160,10 +163,10 @@ sealed class LbName {
   const LbName();
 
   /// Sets `name`.
-  const factory LbName.name(TfArg<String> name) = LbNameName;
+  const factory LbName.name(TfArg<String> name) = LbNameChoice;
 
   /// Sets `name_prefix`.
-  const factory LbName.namePrefix(TfArg<String> namePrefix) = LbNameNamePrefix;
+  const factory LbName.namePrefix(TfArg<String> namePrefix) = LbNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -176,8 +179,8 @@ sealed class LbName {
 }
 
 /// The [LbName.name] choice: sets `name`.
-final class LbNameName extends LbName {
-  const LbNameName(this.name);
+final class LbNameChoice extends LbName {
+  const LbNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -192,8 +195,8 @@ final class LbNameName extends LbName {
 }
 
 /// The [LbName.namePrefix] choice: sets `name_prefix`.
-final class LbNameNamePrefix extends LbName {
-  const LbNameNamePrefix(this.namePrefix);
+final class LbNamePrefix extends LbName {
+  const LbNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

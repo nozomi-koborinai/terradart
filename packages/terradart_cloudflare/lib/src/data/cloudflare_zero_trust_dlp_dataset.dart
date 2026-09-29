@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_dlp_dataset.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_dataset`.
 const Set<String> _cloudflareZeroTrustDlpDatasetSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareZeroTrustDlpDataset extends Data {
 
   DataCloudflareZeroTrustDlpDataset({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> datasetId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'dataset_id': datasetId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'dataset_id': datasetId,
+         },
        );
 
   @override

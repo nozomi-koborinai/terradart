@@ -53,33 +53,22 @@ final class BillingBudgetAllUpdatesRule {
   };
 }
 
-/// Typed helper for the `amount` block of
-/// `google_billing_budget` (derived from provider schema).
-@immutable
-final class BillingBudgetAmount {
-  const BillingBudgetAmount({required this.amount});
-
-  final BillingBudgetAmountAmount amount;
-
-  Map<String, Object?> encode() => {...amount.encode()};
-}
-
 /// Exactly one of `specified_amount`, `last_period_amount` on the `amount` block of `google_billing_budget`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.specifiedAmount(...)`.
-sealed class BillingBudgetAmountAmount {
-  const BillingBudgetAmountAmount();
+sealed class BillingBudgetAmount {
+  const BillingBudgetAmount();
 
   /// Sets `specified_amount`.
-  const factory BillingBudgetAmountAmount.specifiedAmount(
+  const factory BillingBudgetAmount.specifiedAmount(
     BillingBudgetAmountSpecifiedAmount specifiedAmount,
-  ) = BillingBudgetAmountAmountSpecifiedAmount;
+  ) = BillingBudgetAmountSpecifiedAmountChoice;
 
   /// Sets `last_period_amount`.
-  const factory BillingBudgetAmountAmount.lastPeriodAmount(
+  const factory BillingBudgetAmount.lastPeriodAmount(
     TfArg<bool> lastPeriodAmount,
-  ) = BillingBudgetAmountAmountLastPeriodAmount;
+  ) = BillingBudgetAmountLastPeriodAmount;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -87,10 +76,10 @@ sealed class BillingBudgetAmountAmount {
   Map<String, Object?> encode();
 }
 
-/// The [BillingBudgetAmountAmount.specifiedAmount] choice: sets `specified_amount`.
-final class BillingBudgetAmountAmountSpecifiedAmount
-    extends BillingBudgetAmountAmount {
-  const BillingBudgetAmountAmountSpecifiedAmount(this.specifiedAmount);
+/// The [BillingBudgetAmount.specifiedAmount] choice: sets `specified_amount`.
+final class BillingBudgetAmountSpecifiedAmountChoice
+    extends BillingBudgetAmount {
+  const BillingBudgetAmountSpecifiedAmountChoice(this.specifiedAmount);
 
   final BillingBudgetAmountSpecifiedAmount specifiedAmount;
 
@@ -103,10 +92,9 @@ final class BillingBudgetAmountAmountSpecifiedAmount
   };
 }
 
-/// The [BillingBudgetAmountAmount.lastPeriodAmount] choice: sets `last_period_amount`.
-final class BillingBudgetAmountAmountLastPeriodAmount
-    extends BillingBudgetAmountAmount {
-  const BillingBudgetAmountAmountLastPeriodAmount(this.lastPeriodAmount);
+/// The [BillingBudgetAmount.lastPeriodAmount] choice: sets `last_period_amount`.
+final class BillingBudgetAmountLastPeriodAmount extends BillingBudgetAmount {
+  const BillingBudgetAmountLastPeriodAmount(this.lastPeriodAmount);
 
   final TfArg<bool> lastPeriodAmount;
 

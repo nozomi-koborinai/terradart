@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../dns/cloudflare_dns_firewall.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_dns_firewall`.
 const Set<String> _cloudflareDnsFirewallSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareDnsFirewall extends Data {
 
   DataCloudflareDnsFirewall({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> dnsFirewallId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'dns_firewall_id': dnsFirewallId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'dns_firewall_id': dnsFirewallId,
+         },
        );
 
   @override

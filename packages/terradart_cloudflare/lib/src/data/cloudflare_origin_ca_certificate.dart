@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ssl/cloudflare_origin_ca_certificate.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_origin_ca_certificate`.
 const Set<String> _cloudflareOriginCaCertificateSensitive = <String>{};
@@ -22,12 +23,12 @@ final class DataOriginCaCertificateFilter {
 
   final TfArg<num>? offset;
 
-  final TfArg<String> zoneId;
+  final RefTo<CloudflareZone> zoneId;
 
   Map<String, Object?> encode() => {
     'limit': ?limit?.toTfJson(),
     'offset': ?offset?.toTfJson(),
-    'zone_id': zoneId.toTfJson(),
+    'zone_id': zoneId.encodeAs('id').toTfJson(),
   };
 }
 

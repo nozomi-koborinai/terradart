@@ -35,11 +35,11 @@ sealed class Wafv2IpSetName {
   const Wafv2IpSetName();
 
   /// Sets `name`.
-  const factory Wafv2IpSetName.name(TfArg<String> name) = Wafv2IpSetNameName;
+  const factory Wafv2IpSetName.name(TfArg<String> name) = Wafv2IpSetNameChoice;
 
   /// Sets `name_prefix`.
   const factory Wafv2IpSetName.namePrefix(TfArg<String> namePrefix) =
-      Wafv2IpSetNameNamePrefix;
+      Wafv2IpSetNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,8 +52,8 @@ sealed class Wafv2IpSetName {
 }
 
 /// The [Wafv2IpSetName.name] choice: sets `name`.
-final class Wafv2IpSetNameName extends Wafv2IpSetName {
-  const Wafv2IpSetNameName(this.name);
+final class Wafv2IpSetNameChoice extends Wafv2IpSetName {
+  const Wafv2IpSetNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -68,8 +68,8 @@ final class Wafv2IpSetNameName extends Wafv2IpSetName {
 }
 
 /// The [Wafv2IpSetName.namePrefix] choice: sets `name_prefix`.
-final class Wafv2IpSetNameNamePrefix extends Wafv2IpSetName {
-  const Wafv2IpSetNameNamePrefix(this.namePrefix);
+final class Wafv2IpSetNamePrefix extends Wafv2IpSetName {
+  const Wafv2IpSetNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

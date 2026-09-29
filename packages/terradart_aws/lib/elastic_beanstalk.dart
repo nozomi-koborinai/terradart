@@ -17,7 +17,7 @@ export 'src/elastic_beanstalk/aws_elastic_beanstalk_environment.dart'
     show
         AwsElasticBeanstalkEnvironment,
         ElasticBeanstalkEnvironmentPlatform,
-        ElasticBeanstalkEnvironmentPlatformPlatformArn,
+        ElasticBeanstalkEnvironmentPlatformArn,
         ElasticBeanstalkEnvironmentPlatformSolutionStackName,
         ElasticBeanstalkEnvironmentPlatformTemplateName,
         ElasticBeanstalkEnvironmentSetting,

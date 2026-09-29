@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "compute_resources.launch_template.launch_template_id, compute_resources.launch_template.launch_template_name": identifier

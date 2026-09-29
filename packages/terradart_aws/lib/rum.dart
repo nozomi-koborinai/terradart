@@ -11,7 +11,7 @@ export 'src/rum/aws_rum_app_monitor.dart'
         RumAppMonitorCustomEvents,
         RumAppMonitorCustomEventsStatus,
         RumAppMonitorDomain,
-        RumAppMonitorDomainDomain,
-        RumAppMonitorDomainDomainList;
+        RumAppMonitorDomainChoice,
+        RumAppMonitorDomainList;
 export 'src/rum/aws_rum_metrics_destination.dart'
     show AwsRumMetricsDestination, RumMetricsDestinationDestination;

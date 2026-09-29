@@ -1,39 +1,27 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
-import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_gke_hub_scope_rbac_role_binding`.
 const Set<String> _googleGkeHubScopeRbacRoleBindingSensitive = <String>{};
 
-/// Typed helper for the `role` block of
-/// `google_gke_hub_scope_rbac_role_binding` (derived from provider schema).
-@immutable
-final class GkeHubScopeRbacRoleBindingRole {
-  const GkeHubScopeRbacRoleBindingRole({required this.role});
-
-  final GkeHubScopeRbacRoleBindingRoleRole role;
-
-  Map<String, Object?> encode() => {...role.encode()};
-}
-
 /// Exactly one of `predefined_role`, `custom_role` on the `role` block of `google_gke_hub_scope_rbac_role_binding`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.predefinedRole(...)`.
-sealed class GkeHubScopeRbacRoleBindingRoleRole {
-  const GkeHubScopeRbacRoleBindingRoleRole();
+sealed class GkeHubScopeRbacRoleBindingRole {
+  const GkeHubScopeRbacRoleBindingRole();
 
   /// Sets `predefined_role`.
-  const factory GkeHubScopeRbacRoleBindingRoleRole.predefinedRole(
+  const factory GkeHubScopeRbacRoleBindingRole.predefinedRole(
     TfArg<GkeHubScopeRbacRoleBindingRolePredefinedRole> predefinedRole,
-  ) = GkeHubScopeRbacRoleBindingRoleRolePredefinedRole;
+  ) = GkeHubScopeRbacRoleBindingRolePredefinedRoleChoice;
 
   /// Sets `custom_role`.
-  const factory GkeHubScopeRbacRoleBindingRoleRole.customRole(
+  const factory GkeHubScopeRbacRoleBindingRole.customRole(
     TfArg<String> customRole,
-  ) = GkeHubScopeRbacRoleBindingRoleRoleCustomRole;
+  ) = GkeHubScopeRbacRoleBindingRoleCustomRole;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -41,10 +29,10 @@ sealed class GkeHubScopeRbacRoleBindingRoleRole {
   Map<String, Object?> encode();
 }
 
-/// The [GkeHubScopeRbacRoleBindingRoleRole.predefinedRole] choice: sets `predefined_role`.
-final class GkeHubScopeRbacRoleBindingRoleRolePredefinedRole
-    extends GkeHubScopeRbacRoleBindingRoleRole {
-  const GkeHubScopeRbacRoleBindingRoleRolePredefinedRole(this.predefinedRole);
+/// The [GkeHubScopeRbacRoleBindingRole.predefinedRole] choice: sets `predefined_role`.
+final class GkeHubScopeRbacRoleBindingRolePredefinedRoleChoice
+    extends GkeHubScopeRbacRoleBindingRole {
+  const GkeHubScopeRbacRoleBindingRolePredefinedRoleChoice(this.predefinedRole);
 
   final TfArg<GkeHubScopeRbacRoleBindingRolePredefinedRole> predefinedRole;
 
@@ -57,10 +45,10 @@ final class GkeHubScopeRbacRoleBindingRoleRolePredefinedRole
   };
 }
 
-/// The [GkeHubScopeRbacRoleBindingRoleRole.customRole] choice: sets `custom_role`.
-final class GkeHubScopeRbacRoleBindingRoleRoleCustomRole
-    extends GkeHubScopeRbacRoleBindingRoleRole {
-  const GkeHubScopeRbacRoleBindingRoleRoleCustomRole(this.customRole);
+/// The [GkeHubScopeRbacRoleBindingRole.customRole] choice: sets `custom_role`.
+final class GkeHubScopeRbacRoleBindingRoleCustomRole
+    extends GkeHubScopeRbacRoleBindingRole {
+  const GkeHubScopeRbacRoleBindingRoleCustomRole(this.customRole);
 
   final TfArg<String> customRole;
 

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../api_shield/cloudflare_api_shield.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_api_shield`.
 const Set<String> _cloudflareApiShieldSensitive = <String>{};
@@ -19,12 +20,12 @@ final class DataCloudflareApiShield extends Data {
   DataCloudflareApiShield({
     required super.localName,
     TfArg<bool>? normalize,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'normalize': ?normalize, 'zone_id': ?zoneId},
+         argMap: {'normalize': ?normalize, 'zone_id': ?zoneId?.encodeAs('id')},
        );
 
   @override

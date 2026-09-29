@@ -16,11 +16,11 @@ sealed class LightsailKeyPairName {
 
   /// Sets `name`.
   const factory LightsailKeyPairName.name(TfArg<String> name) =
-      LightsailKeyPairNameName;
+      LightsailKeyPairNameChoice;
 
   /// Sets `name_prefix`.
   const factory LightsailKeyPairName.namePrefix(TfArg<String> namePrefix) =
-      LightsailKeyPairNameNamePrefix;
+      LightsailKeyPairNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class LightsailKeyPairName {
 }
 
 /// The [LightsailKeyPairName.name] choice: sets `name`.
-final class LightsailKeyPairNameName extends LightsailKeyPairName {
-  const LightsailKeyPairNameName(this.name);
+final class LightsailKeyPairNameChoice extends LightsailKeyPairName {
+  const LightsailKeyPairNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class LightsailKeyPairNameName extends LightsailKeyPairName {
 }
 
 /// The [LightsailKeyPairName.namePrefix] choice: sets `name_prefix`.
-final class LightsailKeyPairNameNamePrefix extends LightsailKeyPairName {
-  const LightsailKeyPairNameNamePrefix(this.namePrefix);
+final class LightsailKeyPairNamePrefix extends LightsailKeyPairName {
+  const LightsailKeyPairNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

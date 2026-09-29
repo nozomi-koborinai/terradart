@@ -17,12 +17,12 @@ sealed class MemorydbParameterGroupName {
 
   /// Sets `name`.
   const factory MemorydbParameterGroupName.name(TfArg<String> name) =
-      MemorydbParameterGroupNameName;
+      MemorydbParameterGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory MemorydbParameterGroupName.namePrefix(
     TfArg<String> namePrefix,
-  ) = MemorydbParameterGroupNameNamePrefix;
+  ) = MemorydbParameterGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,8 +35,9 @@ sealed class MemorydbParameterGroupName {
 }
 
 /// The [MemorydbParameterGroupName.name] choice: sets `name`.
-final class MemorydbParameterGroupNameName extends MemorydbParameterGroupName {
-  const MemorydbParameterGroupNameName(this.name);
+final class MemorydbParameterGroupNameChoice
+    extends MemorydbParameterGroupName {
+  const MemorydbParameterGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -51,9 +52,9 @@ final class MemorydbParameterGroupNameName extends MemorydbParameterGroupName {
 }
 
 /// The [MemorydbParameterGroupName.namePrefix] choice: sets `name_prefix`.
-final class MemorydbParameterGroupNameNamePrefix
+final class MemorydbParameterGroupNamePrefix
     extends MemorydbParameterGroupName {
-  const MemorydbParameterGroupNameNamePrefix(this.namePrefix);
+  const MemorydbParameterGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

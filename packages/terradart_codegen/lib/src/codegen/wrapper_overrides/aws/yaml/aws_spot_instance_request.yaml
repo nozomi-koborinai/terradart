@@ -7,4 +7,4 @@ deriveExactlyOne: true
 
 sealedNames:
   "host_resource_group_arn, placement_group, placement_group_id": placement
-  "launch_template.id, launch_template.name": template
+  "launch_template.id, launch_template.name": identifier

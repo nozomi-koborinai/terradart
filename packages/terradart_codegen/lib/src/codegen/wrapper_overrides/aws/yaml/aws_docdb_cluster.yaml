@@ -6,5 +6,6 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
+  "restore_to_point_in_time.restore_to_time, restore_to_point_in_time.use_latest_restorable_time": target
   "manage_master_user_password, master_password, master_password_wo": master_password
   "restore_to_point_in_time, snapshot_identifier": restore_source

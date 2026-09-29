@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_custom_prompt_topic`.
 const Set<String> _cloudflareZeroTrustDlpCustomPromptTopicSensitive =
@@ -17,13 +18,13 @@ final class DataCloudflareZeroTrustDlpCustomPromptTopic extends Data {
 
   DataCloudflareZeroTrustDlpCustomPromptTopic({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> entryId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'entry_id': entryId},
+         argMap: {'account_id': accountId.encodeAs('id'), 'entry_id': entryId},
        );
 
   @override

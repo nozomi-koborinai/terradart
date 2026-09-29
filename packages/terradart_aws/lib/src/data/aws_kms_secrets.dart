@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
 
 /// Sensitive field paths for `aws_kms_secrets`.
 const Set<String> _awsKmsSecretsSensitive = <String>{'plaintext'};
@@ -26,7 +27,7 @@ final class DataKmsSecretsSecret {
 
   final TfArg<List<Object?>>? grantTokens;
 
-  final TfArg<String>? keyId;
+  final RefTo<AwsKmsKey>? keyId;
 
   final TfArg<String> name;
 
@@ -36,7 +37,7 @@ final class DataKmsSecretsSecret {
     'context': ?context?.toTfJson(),
     'encryption_algorithm': ?encryptionAlgorithm?.toTfJson(),
     'grant_tokens': ?grantTokens?.toTfJson(),
-    'key_id': ?keyId?.toTfJson(),
+    'key_id': ?keyId?.encodeAs('arn').toTfJson(),
     'name': name.toTfJson(),
     'payload': payload.toTfJson(),
   };

@@ -39,12 +39,12 @@ sealed class RedshiftClusterMasterPassword {
   /// Sets `master_password`.
   const factory RedshiftClusterMasterPassword.masterPassword(
     TfArg<String> masterPassword,
-  ) = RedshiftClusterMasterPasswordMasterPassword;
+  ) = RedshiftClusterMasterPasswordChoice;
 
   /// Sets `master_password_wo`.
   const factory RedshiftClusterMasterPassword.masterPasswordWo(
     TfArg<String> masterPasswordWo,
-  ) = RedshiftClusterMasterPasswordMasterPasswordWo;
+  ) = RedshiftClusterMasterPasswordWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -80,9 +80,9 @@ final class RedshiftClusterMasterPasswordManageMasterPassword
 }
 
 /// The [RedshiftClusterMasterPassword.masterPassword] choice: sets `master_password`.
-final class RedshiftClusterMasterPasswordMasterPassword
+final class RedshiftClusterMasterPasswordChoice
     extends RedshiftClusterMasterPassword {
-  const RedshiftClusterMasterPasswordMasterPassword(this.masterPassword);
+  const RedshiftClusterMasterPasswordChoice(this.masterPassword);
 
   final TfArg<String> masterPassword;
 
@@ -99,9 +99,9 @@ final class RedshiftClusterMasterPasswordMasterPassword
 }
 
 /// The [RedshiftClusterMasterPassword.masterPasswordWo] choice: sets `master_password_wo`.
-final class RedshiftClusterMasterPasswordMasterPasswordWo
+final class RedshiftClusterMasterPasswordWo
     extends RedshiftClusterMasterPassword {
-  const RedshiftClusterMasterPasswordMasterPasswordWo(this.masterPasswordWo);
+  const RedshiftClusterMasterPasswordWo(this.masterPasswordWo);
 
   final TfArg<String> masterPasswordWo;
 
@@ -129,12 +129,12 @@ sealed class RedshiftClusterSnapshot {
 
   /// Sets `snapshot_arn`.
   const factory RedshiftClusterSnapshot.snapshotArn(TfArg<String> snapshotArn) =
-      RedshiftClusterSnapshotSnapshotArn;
+      RedshiftClusterSnapshotArn;
 
   /// Sets `snapshot_identifier`.
   const factory RedshiftClusterSnapshot.snapshotIdentifier(
     TfArg<String> snapshotIdentifier,
-  ) = RedshiftClusterSnapshotSnapshotIdentifier;
+  ) = RedshiftClusterSnapshotIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -147,8 +147,8 @@ sealed class RedshiftClusterSnapshot {
 }
 
 /// The [RedshiftClusterSnapshot.snapshotArn] choice: sets `snapshot_arn`.
-final class RedshiftClusterSnapshotSnapshotArn extends RedshiftClusterSnapshot {
-  const RedshiftClusterSnapshotSnapshotArn(this.snapshotArn);
+final class RedshiftClusterSnapshotArn extends RedshiftClusterSnapshot {
+  const RedshiftClusterSnapshotArn(this.snapshotArn);
 
   final TfArg<String> snapshotArn;
 
@@ -163,9 +163,8 @@ final class RedshiftClusterSnapshotSnapshotArn extends RedshiftClusterSnapshot {
 }
 
 /// The [RedshiftClusterSnapshot.snapshotIdentifier] choice: sets `snapshot_identifier`.
-final class RedshiftClusterSnapshotSnapshotIdentifier
-    extends RedshiftClusterSnapshot {
-  const RedshiftClusterSnapshotSnapshotIdentifier(this.snapshotIdentifier);
+final class RedshiftClusterSnapshotIdentifier extends RedshiftClusterSnapshot {
+  const RedshiftClusterSnapshotIdentifier(this.snapshotIdentifier);
 
   final TfArg<String> snapshotIdentifier;
 

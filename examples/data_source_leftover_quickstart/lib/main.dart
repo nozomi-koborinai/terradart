@@ -503,7 +503,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleBigqueryDatasetIamPolicy(
         localName: 'bigquery_dataset_iam_policy',
-        datasetId: TfArg.literal(leftover),
+        datasetId: RefTo.literal(leftover),
       ),
     );
 
@@ -518,7 +518,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleBigqueryRoutineIamPolicy(
         localName: 'bigquery_routine_iam_policy',
-        datasetId: TfArg.literal(leftover),
+        datasetId: RefTo.literal(leftover),
         routineId: TfArg.literal(leftover),
       ),
     );
@@ -526,7 +526,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleBigqueryTable(
         localName: 'bigquery_table',
-        datasetId: TfArg.literal(leftover),
+        datasetId: RefTo.literal(leftover),
         tableId: TfArg.literal(leftover),
       ),
     );
@@ -534,7 +534,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleBigqueryTableIamPolicy(
         localName: 'bigquery_table_iam_policy',
-        datasetId: TfArg.literal(leftover),
+        datasetId: RefTo.literal(leftover),
         tableId: TfArg.literal(leftover),
       ),
     );
@@ -542,7 +542,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleBigqueryTables(
         localName: 'bigquery_tables',
-        datasetId: TfArg.literal(leftover),
+        datasetId: RefTo.literal(leftover),
       ),
     );
 
@@ -1046,7 +1046,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleComputeNetworkPeering(
         localName: 'compute_network_peering',
         name: TfArg.literal(leftover),
-        network: TfArg.literal('projects/$projectId/global/networks/terradart'),
+        network: RefTo.literal('projects/$projectId/global/networks/terradart'),
       ),
     );
 
@@ -1187,7 +1187,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleComputeRouter(
         localName: 'compute_router',
         name: TfArg.literal(leftover),
-        network: TfArg.literal('projects/$projectId/global/networks/terradart'),
+        network: RefTo.literal('projects/$projectId/global/networks/terradart'),
       ),
     );
 
@@ -1275,7 +1275,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleComputeSubnetworkIamPolicy(
         localName: 'compute_subnetwork_iam_policy',
-        subnetwork: TfArg.literal(leftover),
+        subnetwork: RefTo.literal(leftover),
       ),
     );
 
@@ -1966,21 +1966,21 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleKmsCryptoKeyLatestVersion(
         localName: 'kms_crypto_key_latest_version',
-        cryptoKey: TfArg.literal(leftover),
+        cryptoKey: RefTo.literal(leftover),
       ),
     );
 
     addData(
       DataGoogleKmsCryptoKeyVersion(
         localName: 'kms_crypto_key_version',
-        cryptoKey: TfArg.literal(leftover),
+        cryptoKey: RefTo.literal(leftover),
       ),
     );
 
     addData(
       DataGoogleKmsCryptoKeyVersions(
         localName: 'kms_crypto_key_versions',
-        cryptoKey: TfArg.literal(leftover),
+        cryptoKey: RefTo.literal(leftover),
       ),
     );
 
@@ -2040,7 +2040,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleKmsSecret(
         localName: 'kms_secret',
         ciphertext: TfArg.literal('dGVycmFkYXJ0'),
-        cryptoKey: TfArg.literal(leftover),
+        cryptoKey: RefTo.literal(leftover),
       ),
     );
 
@@ -2055,7 +2055,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleKmsSecretCiphertext(
         localName: 'kms_secret_ciphertext',
-        cryptoKey: TfArg.literal(leftover),
+        cryptoKey: RefTo.literal(leftover),
         plaintext: TfArg.literal(leftover),
       ),
     );
@@ -2525,7 +2525,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGooglePubsubTopicIamPolicy(
         localName: 'pubsub_topic_iam_policy',
-        topic: TfArg.literal(leftover),
+        topic: RefTo.literal(leftover),
       ),
     );
 
@@ -2659,7 +2659,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleServiceAccountIamPolicy(
         localName: 'service_account_iam_policy',
-        serviceAccountId: TfArg.literal(saId),
+        serviceAccountId: RefTo.literal(saId),
       ),
     );
 
@@ -2705,7 +2705,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleServiceNetworkingPeeredDnsDomain(
         localName: 'service_networking_peered_dns_domain',
         name: TfArg.literal(leftover),
-        network: TfArg.literal('projects/$projectId/global/networks/terradart'),
+        network: RefTo.literal('projects/$projectId/global/networks/terradart'),
         project: TfArg.literal(projectId),
         service: TfArg.literal(leftover),
       ),
@@ -2823,7 +2823,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleStorageBucketIamPolicy(
         localName: 'storage_bucket_iam_policy',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
       ),
     );
 
@@ -2832,7 +2832,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleStorageBucketObjectContent(
         localName: 'storage_bucket_object_content',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
         name: TfArg.literal(leftover),
       ),
     );
@@ -2840,14 +2840,14 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleStorageBucketObjectContents(
         localName: 'storage_bucket_object_contents',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
       ),
     );
 
     addData(
       DataGoogleStorageBucketObjects(
         localName: 'storage_bucket_objects',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
       ),
     );
 
@@ -2933,7 +2933,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleStorageManagedFolderIamPolicy(
         localName: 'storage_managed_folder_iam_policy',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
         managedFolder: TfArg.literal('terradart-leftover/'),
       ),
     );
@@ -2941,7 +2941,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleStorageObjectSignedUrl(
         localName: 'storage_object_signed_url',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
         path: TfArg.literal(leftover),
       ),
     );

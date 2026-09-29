@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../r2/cloudflare_r2_custom_domain.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_r2_custom_domain`.
 const Set<String> _cloudflareR2CustomDomainSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataCloudflareR2CustomDomain extends Data {
 
   DataCloudflareR2CustomDomain({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     required TfArg<String> domain,
     super.provider,
@@ -25,7 +26,7 @@ final class DataCloudflareR2CustomDomain extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
            'domain': domain,
          },

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_list_items`.
 const Set<String> _cloudflareListItemsSensitive = <String>{};
@@ -16,7 +17,7 @@ final class DataCloudflareListItems extends Data {
 
   DataCloudflareListItems({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> listId,
     TfArg<num>? maxItems,
     TfArg<num>? perPage,
@@ -26,7 +27,7 @@ final class DataCloudflareListItems extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'list_id': listId,
            'max_items': ?maxItems,
            'per_page': ?perPage,

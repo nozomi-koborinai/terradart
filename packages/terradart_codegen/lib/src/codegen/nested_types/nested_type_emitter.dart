@@ -1,6 +1,7 @@
 import '../exactly_one_types.dart';
 import '../naming.dart';
 import '../references/reference_slots.dart';
+import '../references/reference_targets.dart';
 import 'nested_type_collector.dart';
 
 /// Renders the Dart source for a resource's derived nested-block helper
@@ -103,8 +104,23 @@ String _renderBlockTree(
 ) {
   if (!rendered.add(spec.className)) return '';
   final layout = layouts[spec.className]!;
-  final buf = StringBuffer()
-    ..write(_renderClass(spec, resourceTerraformType, layout.plans));
+  final where =
+      'the `${spec.path.join('.')}` block of `$resourceTerraformType`';
+  final buf = StringBuffer();
+  if (layout.whole case final whole?) {
+    buf.write(
+      renderExactlyOneTypes(
+        sealed: spec.className,
+        members: whole.members,
+        where: where,
+        variants: whole.variants,
+        variantClasses: whole.classes,
+        optional: whole.atMostOne,
+      ),
+    );
+  } else {
+    buf.write(_renderClass(spec, resourceTerraformType, layout.plans));
+  }
   for (final group in layout.sealed) {
     buf
       ..writeln()
@@ -112,9 +128,9 @@ String _renderBlockTree(
         renderExactlyOneTypes(
           sealed: group.type,
           members: group.members,
-          where:
-              'the `${spec.path.join('.')}` block of `$resourceTerraformType`',
+          where: where,
           variants: group.variants,
+          variantClasses: group.classes,
           optional: group.optional,
         ),
       );
@@ -259,13 +275,16 @@ List<_Member> _members(NestedBlockSpec spec) {
         required: attr.required,
         keyed: false,
         plan: _planAttr(attr),
-        variant: _variant(
-          tfName: attr.tfName,
-          ident: safeDartIdentifier(attr.dartName),
-          elementType: attr.dartType,
-          repeated: attr.repeated,
-          wrapInTfArg: true,
-        ),
+        variant: switch (attr.reference) {
+          final reference? => _referenceVariant(attr, reference),
+          null => _variant(
+            tfName: attr.tfName,
+            ident: safeDartIdentifier(attr.dartName),
+            elementType: attr.dartType,
+            repeated: attr.repeated,
+            wrapInTfArg: true,
+          ),
+        },
       ),
   ];
 
@@ -310,14 +329,28 @@ typedef _SealedGroup = ({
 
   /// The sealed type's name.
   String type,
+
+  /// Each member's variant class, in [members] order.
+  List<String> classes,
   SealedGroupName name,
 });
 
 typedef _Layout = ({
   List<_FieldPlan> plans,
   List<_SealedGroup> sealed,
+
+  /// The exactly-one group that is every input of the block, when there is
+  /// one: the block's own class is then its sealed type.
+  _WholeBlockGroup? whole,
   List<String> skipped,
   List<String> skippedAtMostOne,
+});
+
+typedef _WholeBlockGroup = ({
+  List<String> members,
+  List<ExactlyOneVariant> variants,
+  List<String> classes,
+  bool atMostOne,
 });
 
 /// Every block's [_layout] by class name, laid out in render order
@@ -331,10 +364,11 @@ Map<String, _Layout> _layouts(List<NestedBlockSpec> specs) {
     if (out.containsKey(spec.className)) return;
     final layout = _layout(spec, taken);
     out[spec.className] = layout;
+    if (layout.whole case final whole?) taken.addAll(whole.classes);
     for (final g in layout.sealed) {
       taken
         ..add(g.type)
-        ..addAll([for (final m in g.members) exactlyOneVariantName(g.type, m)]);
+        ..addAll(g.classes);
     }
     for (final c in _byTfName(spec.children, (NestedBlockSpec s) => s.tfName)) {
       walk(c);
@@ -370,15 +404,59 @@ Set<String> nestedTypeNames(List<NestedBlockSpec> specs) {
 /// optional typed input of this block, not a keyed block, and no earlier
 /// group (exactly-one groups come first) took one of them.
 ///
+/// An exactly-one group that is every input of a (non-keyed) block — or an
+/// at-most-one group, when the block is optional — needs no field: the
+/// block's own class becomes the sealed type, so its parent writes
+/// `block: .member(...)`.
+///
 /// Each sealed field is named by [resolveSealedName]: the block's
-/// [NestedBlockSpec.sealedNames] entry, else [deriveSealedConcept] (the
-/// block's own name when the group is all of its inputs). A name clashes
-/// when its field shadows another input of the block or its type or a
-/// variant takes a name in [taken] (every class the resource declares) or
-/// one an earlier group chose.
+/// [NestedBlockSpec.sealedNames] entry, else [deriveSealedConcept]. A name
+/// clashes when its field shadows another input of the block, its type
+/// only repeats the block's class name, or its type or a variant takes a
+/// name in [taken] (every class the resource declares) or one an earlier
+/// group chose.
 _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
   final members = _members(spec);
   final byName = {for (final m in members) m.tfName: m};
+  if (!spec.keyed) {
+    for (final group in [
+      ...spec.exactlyOne,
+      // A null optional block already means "none of them".
+      if (!spec.required) ...spec.atMostOne,
+    ]) {
+      if (group.length != members.length) continue;
+      final ms = [for (final name in group) byName[name]];
+      if (ms.any(
+        (m) => m == null || m.required || m.keyed || m.variant == null,
+      )) {
+        continue;
+      }
+      final classes = exactlyOneVariantNames(spec.className, group, taken);
+      if (classes == null) continue;
+      return (
+        plans: const [],
+        sealed: const [],
+        whole: (
+          members: group,
+          variants: [for (final m in ms) m!.variant!],
+          classes: classes,
+          atMostOne: !spec.exactlyOne.any((g) => identical(g, group)),
+        ),
+        skipped: [
+          for (final g in spec.exactlyOne)
+            if (!identical(g, group))
+              '${spec.path.join('.')} [${g.join(', ')}]: '
+                  '${g.first} is in an earlier group',
+        ],
+        skippedAtMostOne: [
+          for (final g in spec.atMostOne)
+            if (!identical(g, group))
+              '${spec.path.join('.')} [${g.join(', ')}]: '
+                  '${g.first} is in an earlier group',
+        ],
+      );
+    }
+  }
   final claimed = <String>{};
   final chosenTypes = <String>{};
   final chosenIdents = <String>{};
@@ -418,29 +496,22 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
       for (final m in members)
         if (!group.contains(m.tfName)) m.plan.fieldDecl.split(' ').last,
     };
-    String typeOf(String concept) => spec.className + snakeToPascal(concept);
+    String typeOf(String concept) =>
+        sealedTypeName(spec.className, concept) ??
+        spec.className + snakeToPascal(concept);
     String? clashes(String concept) {
       final ident = safeDartIdentifier(snakeToCamel(concept));
       if ('$ident;' case final decl
           when otherIdents.contains(decl) || chosenIdents.contains(ident)) {
         return 'the field $ident is taken';
       }
-      final type = typeOf(concept);
-      for (final name in [
-        type,
-        for (final m in group) exactlyOneVariantName(type, m),
-      ]) {
-        if (taken.contains(name) || chosenTypes.contains(name)) {
-          return 'the class $name is taken';
-        }
-      }
-      return null;
+      return sealedNameClash(spec.className, concept, group, {
+        ...taken,
+        ...chosenTypes,
+      });
     }
 
-    final derived = deriveSealedConcept(
-      group,
-      wholeBlockName: group.length == members.length ? spec.tfName : null,
-    );
+    final derived = deriveSealedConcept(group);
     final resolved = resolveSealedName(
       members: group,
       human: spec.sealedNames[sealedGroupKeyOf(const [], group)],
@@ -448,17 +519,23 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
       clashes: clashes,
     );
     final ident = safeDartIdentifier(snakeToCamel(resolved.concept));
+    // Only a group whose name reports an error (which fails `wrap`) reaches
+    // the plain concatenations: `clashes` vetted every name it resolves to.
     final type = typeOf(resolved.concept);
+    final classes =
+        exactlyOneVariantNames(type, group, {...taken, ...chosenTypes}) ??
+        [for (final m in group) exactlyOneVariantName(type, m)];
     chosenIdents.add(ident);
     chosenTypes
       ..add(type)
-      ..addAll([for (final m in group) exactlyOneVariantName(type, m)]);
+      ..addAll(classes);
     final g = (
       members: group,
       variants: [for (final m in ms) m!.variant!],
       optional: optional,
       ident: ident,
       type: type,
+      classes: classes,
       name: (
         key: sealedGroupKeyOf(spec.path, group),
         concept: resolved.concept,
@@ -496,6 +573,7 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
   return (
     plans: plans,
     sealed: sealed,
+    whole: null,
     skipped: skipped,
     skippedAtMostOne: skippedAtMostOne,
   );
@@ -598,6 +676,22 @@ ExactlyOneVariant _variant({
     encodeExpr: repeated
         ? '[for (final e in $ident) e$accessor]'
         : '$ident$accessor',
+    argMapExpr: null,
+    deprecation: null,
+  );
+}
+
+/// The sealed-variant shape of a reference-typed member.
+ExactlyOneVariant _referenceVariant(
+  NestedAttrSpec attr,
+  ResolvedReference reference,
+) {
+  final ident = safeDartIdentifier(attr.dartName);
+  return (
+    tfName: attr.tfName,
+    ident: ident,
+    fieldType: reference.dartType,
+    encodeExpr: "$ident.encodeAs('${reference.attribute}').toTfJson()",
     argMapExpr: null,
     deprecation: null,
   );

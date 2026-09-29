@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_kms_secret`.
 const Set<String> _googleKmsSecretSensitive = <String>{'plaintext'};
@@ -17,7 +18,7 @@ final class DataGoogleKmsSecret extends Data {
     required super.localName,
     TfArg<String>? additionalAuthenticatedData,
     required TfArg<String> ciphertext,
-    required TfArg<String> cryptoKey,
+    required RefTo<GoogleKmsCryptoKey> cryptoKey,
     super.provider,
     super.timeouts,
   }) : super(
@@ -25,7 +26,7 @@ final class DataGoogleKmsSecret extends Data {
          argMap: {
            'additional_authenticated_data': ?additionalAuthenticatedData,
            'ciphertext': ciphertext,
-           'crypto_key': cryptoKey,
+           'crypto_key': cryptoKey.encodeAs('id'),
          },
        );
 

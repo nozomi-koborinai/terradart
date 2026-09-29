@@ -52,8 +52,8 @@ export 'src/lightsail/aws_lightsail_key_pair.dart'
     show
         AwsLightsailKeyPair,
         LightsailKeyPairName,
-        LightsailKeyPairNameName,
-        LightsailKeyPairNameNamePrefix;
+        LightsailKeyPairNameChoice,
+        LightsailKeyPairNamePrefix;
 export 'src/lightsail/aws_lightsail_lb.dart'
     show AwsLightsailLb, LightsailLbIpAddressType;
 export 'src/lightsail/aws_lightsail_lb_attachment.dart'

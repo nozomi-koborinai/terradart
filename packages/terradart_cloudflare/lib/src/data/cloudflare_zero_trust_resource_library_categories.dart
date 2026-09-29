@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_resource_library_categories`.
 const Set<String> _cloudflareZeroTrustResourceLibraryCategoriesSensitive =
@@ -14,7 +15,7 @@ final class DataCloudflareZeroTrustResourceLibraryCategories extends Data {
 
   DataCloudflareZeroTrustResourceLibraryCategories({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<num>? limit,
     TfArg<num>? maxItems,
     TfArg<num>? offset,
@@ -23,7 +24,7 @@ final class DataCloudflareZeroTrustResourceLibraryCategories extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'limit': ?limit,
            'max_items': ?maxItems,
            'offset': ?offset,

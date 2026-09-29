@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../account/cloudflare_account_dns_settings.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_account_dns_settings`.
 const Set<String> _cloudflareAccountDnsSettingsSensitive = <String>{};
@@ -17,10 +18,13 @@ final class DataCloudflareAccountDnsSettings extends Data {
 
   DataCloudflareAccountDnsSettings({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'account_id': ?accountId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'account_id': ?accountId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareAccountDnsSettingsSensitive;

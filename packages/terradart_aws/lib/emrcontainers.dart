@@ -15,11 +15,10 @@ export 'src/emrcontainers/aws_emrcontainers_job_template.dart'
         EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationPersistentAppUi,
         EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationS3MonitoringConfiguration,
         EmrcontainersJobTemplateJobTemplateDataJobDriver,
-        EmrcontainersJobTemplateJobTemplateDataJobDriverSpark,
-        EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSparkSqlJobDriver,
-        EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSparkSubmitJobDriver,
         EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver,
-        EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver;
+        EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverChoice,
+        EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver,
+        EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriverChoice;
 export 'src/emrcontainers/aws_emrcontainers_virtual_cluster.dart'
     show
         AwsEmrcontainersVirtualCluster,

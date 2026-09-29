@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_device_custom_profiles`.
 const Set<String> _cloudflareZeroTrustDeviceCustomProfilesSensitive =
@@ -13,7 +14,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfiles extends Data {
 
   DataCloudflareZeroTrustDeviceCustomProfiles({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? profileType,
     super.provider,
@@ -21,7 +22,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfiles extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'max_items': ?maxItems,
            'profile_type': ?profileType,
          },

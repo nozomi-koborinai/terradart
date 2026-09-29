@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../account/cloudflare_sso_connector.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_sso_connector`.
 const Set<String> _cloudflareSsoConnectorSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareSsoConnector extends Data {
 
   DataCloudflareSsoConnector({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> ssoConnectorId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'sso_connector_id': ssoConnectorId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'sso_connector_id': ssoConnectorId,
+         },
        );
 
   @override

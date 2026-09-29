@@ -14,8 +14,8 @@ export 'src/signer/aws_signer_signing_profile.dart'
     show
         AwsSignerSigningProfile,
         SignerSigningProfileName,
-        SignerSigningProfileNameName,
-        SignerSigningProfileNameNamePrefix,
+        SignerSigningProfileNameChoice,
+        SignerSigningProfileNamePrefix,
         SignerSigningProfilePlatformId,
         SignerSigningProfileSignatureValidityPeriod,
         SignerSigningProfileSignatureValidityPeriodType,
@@ -25,5 +25,5 @@ export 'src/signer/aws_signer_signing_profile_permission.dart'
         AwsSignerSigningProfilePermission,
         SignerSigningProfilePermissionAction,
         SignerSigningProfilePermissionStatementId,
-        SignerSigningProfilePermissionStatementIdStatementId,
-        SignerSigningProfilePermissionStatementIdStatementIdPrefix;
+        SignerSigningProfilePermissionStatementIdChoice,
+        SignerSigningProfilePermissionStatementIdPrefix;

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_custom_hostnames`.
 const Set<String> _cloudflareCustomHostnamesSensitive = <String>{
@@ -51,7 +52,7 @@ final class DataCloudflareCustomHostnames extends Data {
     TfArg<num>? ssl,
     TfArg<String>? sslStatus,
     TfArg<bool>? wildcard,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataCustomHostnamesHostname? hostname,
     super.provider,
     super.timeouts,
@@ -67,7 +68,7 @@ final class DataCloudflareCustomHostnames extends Data {
            'ssl': ?ssl,
            'ssl_status': ?sslStatus,
            'wildcard': ?wildcard,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (hostname != null) 'hostname': TfArg.literal(hostname.encode()),
          },
        );

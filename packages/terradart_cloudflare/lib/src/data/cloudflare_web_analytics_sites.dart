@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_web_analytics_sites`.
 const Set<String> _cloudflareWebAnalyticsSitesSensitive = <String>{};
@@ -16,7 +17,7 @@ final class DataCloudflareWebAnalyticsSites extends Data {
 
   DataCloudflareWebAnalyticsSites({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? orderBy,
     super.provider,
@@ -24,7 +25,7 @@ final class DataCloudflareWebAnalyticsSites extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'max_items': ?maxItems,
            'order_by': ?orderBy,
          },

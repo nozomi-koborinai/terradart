@@ -8,7 +8,7 @@ export 'src/config/aws_config_aggregate_authorization.dart'
         AwsConfigAggregateAuthorization,
         ConfigAggregateAuthorizationRegion,
         ConfigAggregateAuthorizationRegionAuthorizedAwsRegion,
-        ConfigAggregateAuthorizationRegionRegion;
+        ConfigAggregateAuthorizationRegionChoice;
 export 'src/config/aws_config_config_rule.dart'
     show
         AwsConfigConfigRule,
@@ -56,8 +56,8 @@ export 'src/config/aws_config_organization_conformance_pack.dart'
         AwsConfigOrganizationConformancePack,
         ConfigOrganizationConformancePackInputParameter,
         ConfigOrganizationConformancePackTemplate,
-        ConfigOrganizationConformancePackTemplateTemplateBody,
-        ConfigOrganizationConformancePackTemplateTemplateS3Uri;
+        ConfigOrganizationConformancePackTemplateBody,
+        ConfigOrganizationConformancePackTemplateS3Uri;
 export 'src/config/aws_config_organization_custom_policy_rule.dart'
     show
         AwsConfigOrganizationCustomPolicyRule,

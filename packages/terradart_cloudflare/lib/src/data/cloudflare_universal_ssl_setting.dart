@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../ssl/cloudflare_universal_ssl_setting.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_universal_ssl_setting`.
 const Set<String> _cloudflareUniversalSslSettingSensitive = <String>{};
@@ -17,10 +18,13 @@ final class DataCloudflareUniversalSslSetting extends Data {
 
   DataCloudflareUniversalSslSetting({
     required super.localName,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'zone_id': ?zoneId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'zone_id': ?zoneId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareUniversalSslSettingSensitive;

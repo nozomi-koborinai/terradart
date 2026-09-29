@@ -228,6 +228,42 @@ void main() {
     expect(off.skipped, isEmpty);
   });
 
+  test('a block that is one exactly-one group is itself the sealed type', () {
+    Map<String, dynamic> optional() => {'type': 'string', 'optional': true};
+    final specs = collectNestedTypes(
+      resourceBlock: {
+        'block_types': {
+          'settings': {
+            'nesting_mode': 'list',
+            'max_items': 1,
+            'block': {
+              'attributes': {'x': optional(), 'y': optional()},
+            },
+          },
+        },
+      },
+      resourcePrefix: 'Thing',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      exactlyOneGroups: const {
+        'settings': [
+          ['x', 'y'],
+        ],
+      },
+    );
+    final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+    expect(src, contains('sealed class ThingSettings {'));
+    expect(
+      src,
+      contains(
+        'const factory ThingSettings.x(TfArg<String> x) = ThingSettingsX;',
+      ),
+    );
+    expect(src, contains('final class ThingSettingsY extends ThingSettings {'));
+    expect(src, isNot(contains('@immutable')));
+    expect(src, isNot(contains('XOrY')));
+  });
+
   test('a nested exactly-one group becomes a sealed helper field', () {
     Map<String, dynamic> optional() => {'type': 'string', 'optional': true};
     final specs = collectNestedTypes(
@@ -256,12 +292,12 @@ void main() {
     expect(src, contains('required this.xOrY'));
     expect(src, contains('final ThingSettingsXOrY xOrY;'));
     expect(src, contains('...xOrY.encode(),'));
-    expect(src, contains('final class ThingSettingsXOrYY'));
+    expect(src, contains('final class ThingSettingsXOrYChoice'));
     expect(
       src,
       contains(
         'const factory ThingSettingsXOrY.y(TfArg<String> y) = '
-        'ThingSettingsXOrYY;',
+        'ThingSettingsXOrYChoice;',
       ),
     );
     expect(src, isNot(contains('this.x,')));
@@ -342,7 +378,56 @@ void main() {
   });
 
   group('sealed concept names', () {
-    test('derive from a shared prefix, suffix, or the whole block', () {
+    test('join a segment without repeating the prefix', () {
+      expect(
+        joinTypeName('RdsCluster', 'cluster_identifier'),
+        'RdsClusterIdentifier',
+      );
+      expect(joinTypeName('Foo', 'bar_baz'), 'FooBarBaz');
+      expect(joinTypeName('RagConfig', 'rag_config'), 'RagConfig');
+      expect(repeatsAcrossJoin('AssessmentRuleSampleRule', 'Sample'), isTrue);
+      expect(repeatsAcrossJoin('TtlConfig', 'TtlConfigTtl'), isTrue);
+      expect(repeatsAcrossJoin('BackupBackupPlan', 'Retention'), isFalse);
+      expect(repeatsAcrossJoin('Budget', 'Amount'), isFalse);
+    });
+
+    test('a sealed name that repeats a segment is not derived', () {
+      expect(sealedTypeName('BudgetAmount', 'spend'), 'BudgetAmountSpend');
+      expect(sealedTypeName('BudgetAmount', 'amount'), isNull);
+      expect(sealedTypeName('AssessmentRuleSampleRule', 'sample'), isNull);
+      expect(
+        sealedNameClash('AssessmentRuleSampleRule', 'sample', [
+          'a',
+          'b',
+        ], const {}),
+        contains('repeats a segment'),
+      );
+      expect(sealedNameClash('Rule', 'amount', ['a', 'b'], const {}), isNull);
+      expect(
+        sealedNameClash('Rule', 'amount', ['a', 'b'], const {'RuleAmount'}),
+        contains('is taken'),
+      );
+    });
+
+    test('variant names skip taken and repeating candidates', () {
+      expect(exactlyOneVariantNames('Source', ['s3', 'gcs'], const {}), [
+        'SourceS3',
+        'SourceGcs',
+      ]);
+      expect(
+        exactlyOneVariantNames(
+          'Launch',
+          ['launch_template'],
+          const {'LaunchTemplate'},
+        ),
+        ['LaunchTemplateChoice'],
+      );
+      expect(exactlyOneVariantNames('ToolChoice', ['choice'], const {}), [
+        'ToolChoiceOption',
+      ]);
+    });
+
+    test('derive from a shared prefix or suffix', () {
       expect(deriveSealedConcept(['name', 'name_prefix']), 'name');
       expect(
         deriveSealedConcept(['content_base64', 'content_file']),
@@ -364,11 +449,19 @@ void main() {
       expect(deriveSealedConcept(['enable_x', 'enable_y']), isNull);
       expect(deriveSealedConcept(['role_arn', 'user_arn']), isNull);
       expect(deriveSealedConcept(['region', 'aws_region']), isNull);
-      expect(
-        deriveSealedConcept(['s3', 'gcs'], wholeBlockName: 'source'),
-        'source',
-      );
       expect(deriveSealedConcept(['s3', 'gcs']), isNull);
+    });
+
+    test('a fallback that clashes is an error, not a repeating name', () {
+      final resolved = resolveSealedName(
+        members: ['a', 'b'],
+        human: null,
+        derived: null,
+        clashes: (c) => 'the sealed type name repeats a segment of X',
+      );
+      expect(resolved.concept, 'a_or_b');
+      expect(resolved.error, contains('name it in sealedNames'));
+      expect(resolved.error, contains('repeats a segment'));
     });
 
     test('a human name wins; a clash or a repeat is an error', () {
@@ -481,6 +574,7 @@ void main() {
                       'attributes': {
                         'r': {'type': 'string', 'optional': true},
                         's': {'type': 'string', 'optional': true},
+                        't': {'type': 'string', 'optional': true},
                       },
                     },
                   },
@@ -709,7 +803,10 @@ void main() {
     expect(o.paramOrder, ['a_or_b', 'c_or_d']);
     expect(o.prelude, contains('/// At most one of `c`, `d` on `aws_thing`'));
     expect(o.prelude, contains('sealed class ThingCOrD {'));
-    expect(o.prelude, contains('final class ThingCOrDD extends ThingCOrD {'));
+    expect(
+      o.prelude,
+      contains('final class ThingCOrDChoice extends ThingCOrD {'),
+    );
   });
 
   test('a hand helper custom slot becomes a variant of its group', () {
@@ -773,7 +870,7 @@ void main() {
     expect(o.customSlots!.keys, unorderedEquals(['a_or_b', 'c']));
     expect(o.paramOrder, ['d', 'a_or_b', 'c']);
     expect(o.argMapOrder, ['a_or_b', 'd', 'c']);
-    expect(o.prelude, contains('const ThingAOrBB(this.bee);'));
+    expect(o.prelude, contains('const ThingAOrBChoice(this.bee);'));
     expect(o.prelude, contains('final ThingBHelper bee;'));
     expect(o.prelude, contains("{'b': [bee.encode()]};"));
     expect(o.prelude, contains("{'b': TfArg.literal([bee.encode()])};"));

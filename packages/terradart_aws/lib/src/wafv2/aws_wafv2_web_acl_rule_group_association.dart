@@ -21,18 +21,18 @@ enum Wafv2WebAclRuleGroupAssociationOverrideAction implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.managedRuleGroup(...)`.
-sealed class Wafv2WebAclRuleGroupAssociationRuleGroup {
-  const Wafv2WebAclRuleGroupAssociationRuleGroup();
+sealed class Wafv2WebAclRuleGroupAssociationSource {
+  const Wafv2WebAclRuleGroupAssociationSource();
 
   /// Sets `managed_rule_group`.
-  const factory Wafv2WebAclRuleGroupAssociationRuleGroup.managedRuleGroup(
+  const factory Wafv2WebAclRuleGroupAssociationSource.managedRuleGroup(
     List<Wafv2WebAclRuleGroupAssociationManagedRuleGroup> managedRuleGroup,
-  ) = Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup;
+  ) = Wafv2WebAclRuleGroupAssociationSourceManagedRuleGroup;
 
   /// Sets `rule_group_reference`.
-  const factory Wafv2WebAclRuleGroupAssociationRuleGroup.ruleGroupReference(
+  const factory Wafv2WebAclRuleGroupAssociationSource.ruleGroupReference(
     List<Wafv2WebAclRuleGroupAssociationRuleGroupReference> ruleGroupReference,
-  ) = Wafv2WebAclRuleGroupAssociationRuleGroupRuleGroupReference;
+  ) = Wafv2WebAclRuleGroupAssociationSourceRuleGroupReference;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +44,10 @@ sealed class Wafv2WebAclRuleGroupAssociationRuleGroup {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Wafv2WebAclRuleGroupAssociationRuleGroup.managedRuleGroup] choice: sets `managed_rule_group`.
-final class Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup
-    extends Wafv2WebAclRuleGroupAssociationRuleGroup {
-  const Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup(
+/// The [Wafv2WebAclRuleGroupAssociationSource.managedRuleGroup] choice: sets `managed_rule_group`.
+final class Wafv2WebAclRuleGroupAssociationSourceManagedRuleGroup
+    extends Wafv2WebAclRuleGroupAssociationSource {
+  const Wafv2WebAclRuleGroupAssociationSourceManagedRuleGroup(
     this.managedRuleGroup,
   );
 
@@ -69,10 +69,10 @@ final class Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup
   };
 }
 
-/// The [Wafv2WebAclRuleGroupAssociationRuleGroup.ruleGroupReference] choice: sets `rule_group_reference`.
-final class Wafv2WebAclRuleGroupAssociationRuleGroupRuleGroupReference
-    extends Wafv2WebAclRuleGroupAssociationRuleGroup {
-  const Wafv2WebAclRuleGroupAssociationRuleGroupRuleGroupReference(
+/// The [Wafv2WebAclRuleGroupAssociationSource.ruleGroupReference] choice: sets `rule_group_reference`.
+final class Wafv2WebAclRuleGroupAssociationSourceRuleGroupReference
+    extends Wafv2WebAclRuleGroupAssociationSource {
+  const Wafv2WebAclRuleGroupAssociationSourceRuleGroupReference(
     this.ruleGroupReference,
   );
 
@@ -1593,7 +1593,7 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     required TfArg<String> webAclArn,
-    required Wafv2WebAclRuleGroupAssociationRuleGroup ruleGroup,
+    required Wafv2WebAclRuleGroupAssociationSource source,
     List<Wafv2WebAclRuleGroupAssociationVisibilityConfig>? visibilityConfig,
     super.lifecycle,
     super.dependsOn,
@@ -1607,7 +1607,7 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
            'region': ?region,
            'rule_name': ruleName,
            'web_acl_arn': webAclArn,
-           ...ruleGroup.argMap,
+           ...source.argMap,
            if (visibilityConfig != null)
              'visibility_config': TfArg.literal([
                for (final e in visibilityConfig) e.encode(),

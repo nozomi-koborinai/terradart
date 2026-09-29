@@ -117,7 +117,7 @@ final class ContactCenterInsightsStack extends Stack {
         displayName: .literal('terradart-draft-assessment'),
         active: .literal(false),
         sampleRule: ContactCenterInsightsAssessmentRuleSampleRule(
-          sample: .samplePercentage(.literal(0)),
+          amount: .samplePercentage(.literal(0)),
         ),
         scheduleInfo: ContactCenterInsightsAssessmentRuleScheduleInfo(
           schedule: .literal('every 1 hours'),

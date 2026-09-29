@@ -51,12 +51,12 @@ sealed class ServicecatalogProvisioningArtifactTemplate {
   /// Sets `template_physical_id`.
   const factory ServicecatalogProvisioningArtifactTemplate.templatePhysicalId(
     TfArg<String> templatePhysicalId,
-  ) = ServicecatalogProvisioningArtifactTemplateTemplatePhysicalId;
+  ) = ServicecatalogProvisioningArtifactTemplatePhysicalId;
 
   /// Sets `template_url`.
   const factory ServicecatalogProvisioningArtifactTemplate.templateUrl(
     TfArg<String> templateUrl,
-  ) = ServicecatalogProvisioningArtifactTemplateTemplateUrl;
+  ) = ServicecatalogProvisioningArtifactTemplateUrl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -69,9 +69,9 @@ sealed class ServicecatalogProvisioningArtifactTemplate {
 }
 
 /// The [ServicecatalogProvisioningArtifactTemplate.templatePhysicalId] choice: sets `template_physical_id`.
-final class ServicecatalogProvisioningArtifactTemplateTemplatePhysicalId
+final class ServicecatalogProvisioningArtifactTemplatePhysicalId
     extends ServicecatalogProvisioningArtifactTemplate {
-  const ServicecatalogProvisioningArtifactTemplateTemplatePhysicalId(
+  const ServicecatalogProvisioningArtifactTemplatePhysicalId(
     this.templatePhysicalId,
   );
 
@@ -92,9 +92,9 @@ final class ServicecatalogProvisioningArtifactTemplateTemplatePhysicalId
 }
 
 /// The [ServicecatalogProvisioningArtifactTemplate.templateUrl] choice: sets `template_url`.
-final class ServicecatalogProvisioningArtifactTemplateTemplateUrl
+final class ServicecatalogProvisioningArtifactTemplateUrl
     extends ServicecatalogProvisioningArtifactTemplate {
-  const ServicecatalogProvisioningArtifactTemplateTemplateUrl(this.templateUrl);
+  const ServicecatalogProvisioningArtifactTemplateUrl(this.templateUrl);
 
   final TfArg<String> templateUrl;
 

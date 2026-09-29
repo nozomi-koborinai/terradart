@@ -17,12 +17,12 @@ sealed class ComputeVpnTunnelPeer {
   /// Sets `peer_external_gateway`.
   const factory ComputeVpnTunnelPeer.peerExternalGateway(
     TfArg<String> peerExternalGateway,
-  ) = ComputeVpnTunnelPeerPeerExternalGateway;
+  ) = ComputeVpnTunnelPeerExternalGateway;
 
   /// Sets `peer_gcp_gateway`.
   const factory ComputeVpnTunnelPeer.peerGcpGateway(
     TfArg<String> peerGcpGateway,
-  ) = ComputeVpnTunnelPeerPeerGcpGateway;
+  ) = ComputeVpnTunnelPeerGcpGateway;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,9 +35,8 @@ sealed class ComputeVpnTunnelPeer {
 }
 
 /// The [ComputeVpnTunnelPeer.peerExternalGateway] choice: sets `peer_external_gateway`.
-final class ComputeVpnTunnelPeerPeerExternalGateway
-    extends ComputeVpnTunnelPeer {
-  const ComputeVpnTunnelPeerPeerExternalGateway(this.peerExternalGateway);
+final class ComputeVpnTunnelPeerExternalGateway extends ComputeVpnTunnelPeer {
+  const ComputeVpnTunnelPeerExternalGateway(this.peerExternalGateway);
 
   final TfArg<String> peerExternalGateway;
 
@@ -56,8 +55,8 @@ final class ComputeVpnTunnelPeerPeerExternalGateway
 }
 
 /// The [ComputeVpnTunnelPeer.peerGcpGateway] choice: sets `peer_gcp_gateway`.
-final class ComputeVpnTunnelPeerPeerGcpGateway extends ComputeVpnTunnelPeer {
-  const ComputeVpnTunnelPeerPeerGcpGateway(this.peerGcpGateway);
+final class ComputeVpnTunnelPeerGcpGateway extends ComputeVpnTunnelPeer {
+  const ComputeVpnTunnelPeerGcpGateway(this.peerGcpGateway);
 
   final TfArg<String> peerGcpGateway;
 

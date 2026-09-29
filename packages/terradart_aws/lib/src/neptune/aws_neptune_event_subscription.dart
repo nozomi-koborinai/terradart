@@ -18,12 +18,12 @@ sealed class NeptuneEventSubscriptionName {
 
   /// Sets `name`.
   const factory NeptuneEventSubscriptionName.name(TfArg<String> name) =
-      NeptuneEventSubscriptionNameName;
+      NeptuneEventSubscriptionNameChoice;
 
   /// Sets `name_prefix`.
   const factory NeptuneEventSubscriptionName.namePrefix(
     TfArg<String> namePrefix,
-  ) = NeptuneEventSubscriptionNameNamePrefix;
+  ) = NeptuneEventSubscriptionNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,9 +36,9 @@ sealed class NeptuneEventSubscriptionName {
 }
 
 /// The [NeptuneEventSubscriptionName.name] choice: sets `name`.
-final class NeptuneEventSubscriptionNameName
+final class NeptuneEventSubscriptionNameChoice
     extends NeptuneEventSubscriptionName {
-  const NeptuneEventSubscriptionNameName(this.name);
+  const NeptuneEventSubscriptionNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -53,9 +53,9 @@ final class NeptuneEventSubscriptionNameName
 }
 
 /// The [NeptuneEventSubscriptionName.namePrefix] choice: sets `name_prefix`.
-final class NeptuneEventSubscriptionNameNamePrefix
+final class NeptuneEventSubscriptionNamePrefix
     extends NeptuneEventSubscriptionName {
-  const NeptuneEventSubscriptionNameNamePrefix(this.namePrefix);
+  const NeptuneEventSubscriptionNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_custom_ssls`.
 const Set<String> _cloudflareCustomSslsSensitive = <String>{};
@@ -20,7 +21,7 @@ final class DataCloudflareCustomSsls extends Data {
     TfArg<String>? match,
     TfArg<num>? maxItems,
     TfArg<String>? status,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -29,7 +30,7 @@ final class DataCloudflareCustomSsls extends Data {
            'match': ?match,
            'max_items': ?maxItems,
            'status': ?status,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

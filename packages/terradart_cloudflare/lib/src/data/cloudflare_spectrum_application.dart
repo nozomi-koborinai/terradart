@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../spectrum/cloudflare_spectrum_application.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_spectrum_application`.
 const Set<String> _cloudflareSpectrumApplicationSensitive = <String>{};
@@ -58,7 +59,7 @@ final class DataCloudflareSpectrumApplication extends Data {
   DataCloudflareSpectrumApplication({
     required super.localName,
     TfArg<String>? appId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataSpectrumApplicationFilter? filter,
     super.provider,
     super.timeouts,
@@ -66,7 +67,7 @@ final class DataCloudflareSpectrumApplication extends Data {
          terraformType: tfType,
          argMap: {
            'app_id': ?appId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

@@ -216,8 +216,14 @@ class WrapperEmitter {
     // `package:terradart_annotations` import (package deleted). Only
     // `package:terradart_core` + override-supplied `extraImports`.
     final extraImports = override?.extraImports ?? const <String>[];
+    final nestedTypes = nestedTypeSpecs.isEmpty
+        ? ''
+        : renderNestedTypes(
+            nestedTypeSpecs,
+            resourceTerraformType: def.terraformType,
+          );
     final needsMeta =
-        nestedTypeSpecs.isNotEmpty &&
+        nestedTypes.contains('@immutable') &&
         !extraImports.any((i) => i.contains('package:meta/meta.dart'));
     if (needsMeta) {
       buf.writeln("import 'package:meta/meta.dart';");
@@ -226,8 +232,19 @@ class WrapperEmitter {
       buf.writeln(imp);
     }
     buf.writeln("import 'package:terradart_core/terradart_core.dart';");
+    // A top-level sealed group's variants live in the prelude
+    // (`deriveExactlyOneSlots`), so its members are in neither map.
+    final preludeRefs = [
+      for (final ref in refs.values)
+        if (override?.prelude?.contains('RefTo<${ref.className}>') ?? false)
+          ref,
+    ];
     final refImports = {
-      for (final ref in [...topLevelRefs.values, ...nestedRefs.values])
+      for (final ref in [
+        ...topLevelRefs.values,
+        ...nestedRefs.values,
+        ...preludeRefs,
+      ])
         if (ref.target != def.terraformType) ref.import,
     }.toList()..sort();
     if (refImports.isNotEmpty) {
@@ -293,13 +310,8 @@ class WrapperEmitter {
       buf.writeln();
     }
 
-    if (nestedTypeSpecs.isNotEmpty) {
-      buf.write(
-        renderNestedTypes(
-          nestedTypeSpecs,
-          resourceTerraformType: def.terraformType,
-        ),
-      );
+    if (nestedTypes.isNotEmpty) {
+      buf.write(nestedTypes);
       buf.writeln();
     }
 

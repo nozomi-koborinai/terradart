@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zone/cloudflare_zone_setting.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_zone_setting`.
 const Set<String> _cloudflareZoneSettingSensitive = <String>{};
@@ -18,12 +19,12 @@ final class DataCloudflareZoneSetting extends Data {
   DataCloudflareZoneSetting({
     required super.localName,
     required TfArg<String> settingId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'setting_id': settingId, 'zone_id': ?zoneId},
+         argMap: {'setting_id': settingId, 'zone_id': ?zoneId?.encodeAs('id')},
        );
 
   @override

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../waiting_room/cloudflare_waiting_room.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_waiting_room`.
 const Set<String> _cloudflareWaitingRoomSensitive = <String>{};
@@ -18,12 +19,15 @@ final class DataCloudflareWaitingRoom extends Data {
   DataCloudflareWaitingRoom({
     required super.localName,
     required TfArg<String> waitingRoomId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'waiting_room_id': waitingRoomId, 'zone_id': ?zoneId},
+         argMap: {
+           'waiting_room_id': waitingRoomId,
+           'zone_id': ?zoneId?.encodeAs('id'),
+         },
        );
 
   @override

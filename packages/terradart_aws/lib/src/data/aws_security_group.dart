@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ec2/aws_security_group.dart';
+import '../ec2/aws_vpc.dart' show AwsVpc;
 
 /// Sensitive field paths for `aws_security_group`.
 const Set<String> _awsSecurityGroupSensitive = <String>{};
@@ -33,7 +34,7 @@ final class DataAwsSecurityGroup extends Data {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     List<DataSecurityGroupFilter>? filter,
     super.provider,
     super.timeouts,
@@ -43,7 +44,7 @@ final class DataAwsSecurityGroup extends Data {
            'name': ?name,
            'region': ?region,
            'tags': ?tags,
-           'vpc_id': ?vpcId,
+           'vpc_id': ?vpcId?.encodeAs('id'),
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

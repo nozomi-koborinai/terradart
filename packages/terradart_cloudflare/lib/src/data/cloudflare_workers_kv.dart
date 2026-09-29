@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../workers/cloudflare_workers_kv.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_workers_kv`.
 const Set<String> _cloudflareWorkersKvSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataCloudflareWorkersKv extends Data {
 
   DataCloudflareWorkersKv({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> keyName,
     required TfArg<String> namespaceId,
     super.provider,
@@ -25,7 +26,7 @@ final class DataCloudflareWorkersKv extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'key_name': keyName,
            'namespace_id': namespaceId,
          },

@@ -21,7 +21,7 @@ sealed class ConfigAggregateAuthorizationRegion {
   /// Sets `region`.
   const factory ConfigAggregateAuthorizationRegion.region(
     TfArg<String> region,
-  ) = ConfigAggregateAuthorizationRegionRegion;
+  ) = ConfigAggregateAuthorizationRegionChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -57,9 +57,9 @@ final class ConfigAggregateAuthorizationRegionAuthorizedAwsRegion
 }
 
 /// The [ConfigAggregateAuthorizationRegion.region] choice: sets `region`.
-final class ConfigAggregateAuthorizationRegionRegion
+final class ConfigAggregateAuthorizationRegionChoice
     extends ConfigAggregateAuthorizationRegion {
-  const ConfigAggregateAuthorizationRegionRegion(this.region);
+  const ConfigAggregateAuthorizationRegionChoice(this.region);
 
   final TfArg<String> region;
 

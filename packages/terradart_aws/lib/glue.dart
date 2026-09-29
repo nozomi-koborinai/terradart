@@ -48,11 +48,11 @@ export 'src/glue/aws_glue_catalog_table.dart'
         GlueCatalogTableStorageDescriptorSchemaReference,
         GlueCatalogTableStorageDescriptorSchemaReferenceSchema,
         GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId,
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdChoice,
         GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaSchemaArn,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaSchemaName,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaSchemaId,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaSchemaVersionId,
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArn,
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaName,
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionId,
         GlueCatalogTableStorageDescriptorSerDeInfo,
         GlueCatalogTableStorageDescriptorSkewedInfo,
         GlueCatalogTableStorageDescriptorSortColumns,
@@ -76,15 +76,15 @@ export 'src/glue/aws_glue_catalog_table_optimizer.dart'
 export 'src/glue/aws_glue_classifier.dart'
     show
         AwsGlueClassifier,
-        GlueClassifierClassifier,
-        GlueClassifierClassifierCsvClassifier,
-        GlueClassifierClassifierGrokClassifier,
-        GlueClassifierClassifierJsonClassifier,
-        GlueClassifierClassifierXmlClassifier,
         GlueClassifierCsvClassifier,
         GlueClassifierCsvClassifierContainsHeader,
         GlueClassifierCsvClassifierCustomDatatypes,
         GlueClassifierCsvClassifierSerde,
+        GlueClassifierFormat,
+        GlueClassifierFormatCsvClassifier,
+        GlueClassifierFormatGrokClassifier,
+        GlueClassifierFormatJsonClassifier,
+        GlueClassifierFormatXmlClassifier,
         GlueClassifierGrokClassifier,
         GlueClassifierJsonClassifier,
         GlueClassifierXmlClassifier;
@@ -131,7 +131,7 @@ export 'src/glue/aws_glue_dev_endpoint.dart'
     show
         AwsGlueDevEndpoint,
         GlueDevEndpointPublicKey,
-        GlueDevEndpointPublicKeyPublicKey,
+        GlueDevEndpointPublicKeyChoice,
         GlueDevEndpointPublicKeyPublicKeys,
         GlueDevEndpointWorkerType;
 export 'src/glue/aws_glue_job.dart'

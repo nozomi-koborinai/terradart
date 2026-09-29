@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../route53/aws_route53_zone.dart';
+import '../ec2/aws_vpc.dart' show AwsVpc;
 
 /// Sensitive field paths for `aws_route53_zone`.
 const Set<String> _awsRoute53ZoneSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataAwsRoute53Zone extends Data {
     TfArg<String>? name,
     TfArg<bool>? privateZone,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     TfArg<String>? zoneId,
     super.provider,
     super.timeouts,
@@ -28,7 +29,7 @@ final class DataAwsRoute53Zone extends Data {
            'name': ?name,
            'private_zone': ?privateZone,
            'tags': ?tags,
-           'vpc_id': ?vpcId,
+           'vpc_id': ?vpcId?.encodeAs('id'),
            'zone_id': ?zoneId,
          },
        );

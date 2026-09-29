@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../email/cloudflare_email_routing_rule.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_email_routing_rule`.
 const Set<String> _cloudflareEmailRoutingRuleSensitive = <String>{};
@@ -30,7 +31,7 @@ final class DataCloudflareEmailRoutingRule extends Data {
   DataCloudflareEmailRoutingRule({
     required super.localName,
     TfArg<String>? ruleIdentifier,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataEmailRoutingRuleFilter? filter,
     super.provider,
     super.timeouts,
@@ -38,7 +39,7 @@ final class DataCloudflareEmailRoutingRule extends Data {
          terraformType: tfType,
          argMap: {
            'rule_identifier': ?ruleIdentifier,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

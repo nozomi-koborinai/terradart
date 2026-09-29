@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../cloudforce_one/cloudflare_cloudforce_one_request.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_cloudforce_one_request`.
 const Set<String> _cloudflareCloudforceOneRequestSensitive = <String>{};
@@ -93,7 +94,7 @@ final class DataCloudflareCloudforceOneRequest extends Data {
 
   DataCloudflareCloudforceOneRequest({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? requestId,
     DataCloudforceOneRequestFilter? filter,
     super.provider,
@@ -101,7 +102,7 @@ final class DataCloudflareCloudforceOneRequest extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'request_id': ?requestId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

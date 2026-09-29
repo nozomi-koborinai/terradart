@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_casb_webhook.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_casb_webhook`.
 const Set<String> _cloudflareZeroTrustCasbWebhookSensitive = <String>{
@@ -19,13 +20,16 @@ final class DataCloudflareZeroTrustCasbWebhook extends Data {
 
   DataCloudflareZeroTrustCasbWebhook({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> webhookId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'webhook_id': webhookId},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'webhook_id': webhookId,
+         },
        );
 
   @override

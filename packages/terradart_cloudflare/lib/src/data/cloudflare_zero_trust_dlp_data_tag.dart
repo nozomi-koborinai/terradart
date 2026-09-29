@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_dlp_data_tag.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_data_tag`.
 const Set<String> _cloudflareZeroTrustDlpDataTagSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataCloudflareZeroTrustDlpDataTag extends Data {
 
   DataCloudflareZeroTrustDlpDataTag({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> categoryId,
     required TfArg<String> tagId,
     super.provider,
@@ -25,7 +26,7 @@ final class DataCloudflareZeroTrustDlpDataTag extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'category_id': categoryId,
            'tag_id': tagId,
          },

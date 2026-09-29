@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../email/cloudflare_email_security_domain.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_email_security_domain`.
 const Set<String> _cloudflareEmailSecurityDomainSensitive = <String>{};
@@ -121,7 +122,7 @@ final class DataCloudflareEmailSecurityDomain extends Data {
 
   DataCloudflareEmailSecurityDomain({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? domainId,
     DataEmailSecurityDomainFilter? filter,
     super.provider,
@@ -129,7 +130,7 @@ final class DataCloudflareEmailSecurityDomain extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'domain_id': ?domainId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

@@ -7,34 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrockagentcore_gateway_rule`.
 const Set<String> _awsBedrockagentcoreGatewayRuleSensitive = <String>{};
 
-/// Typed helper for the `action` block of
-/// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
-@immutable
-final class BedrockagentcoreGatewayRuleAction {
-  const BedrockagentcoreGatewayRuleAction({required this.action});
-
-  final BedrockagentcoreGatewayRuleActionAction action;
-
-  Map<String, Object?> encode() => {...action.encode()};
-}
-
 /// Exactly one of `configuration_bundle`, `route_to_target` on the `action` block of `aws_bedrockagentcore_gateway_rule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.configurationBundle(...)`.
-sealed class BedrockagentcoreGatewayRuleActionAction {
-  const BedrockagentcoreGatewayRuleActionAction();
+sealed class BedrockagentcoreGatewayRuleAction {
+  const BedrockagentcoreGatewayRuleAction();
 
   /// Sets `configuration_bundle`.
-  const factory BedrockagentcoreGatewayRuleActionAction.configurationBundle(
+  const factory BedrockagentcoreGatewayRuleAction.configurationBundle(
     List<BedrockagentcoreGatewayRuleActionConfigurationBundle>
     configurationBundle,
-  ) = BedrockagentcoreGatewayRuleActionActionConfigurationBundle;
+  ) = BedrockagentcoreGatewayRuleActionConfigurationBundleChoice;
 
   /// Sets `route_to_target`.
-  const factory BedrockagentcoreGatewayRuleActionAction.routeToTarget(
+  const factory BedrockagentcoreGatewayRuleAction.routeToTarget(
     List<BedrockagentcoreGatewayRuleActionRouteToTarget> routeToTarget,
-  ) = BedrockagentcoreGatewayRuleActionActionRouteToTarget;
+  ) = BedrockagentcoreGatewayRuleActionRouteToTargetChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,10 +31,10 @@ sealed class BedrockagentcoreGatewayRuleActionAction {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentcoreGatewayRuleActionAction.configurationBundle] choice: sets `configuration_bundle`.
-final class BedrockagentcoreGatewayRuleActionActionConfigurationBundle
-    extends BedrockagentcoreGatewayRuleActionAction {
-  const BedrockagentcoreGatewayRuleActionActionConfigurationBundle(
+/// The [BedrockagentcoreGatewayRuleAction.configurationBundle] choice: sets `configuration_bundle`.
+final class BedrockagentcoreGatewayRuleActionConfigurationBundleChoice
+    extends BedrockagentcoreGatewayRuleAction {
+  const BedrockagentcoreGatewayRuleActionConfigurationBundleChoice(
     this.configurationBundle,
   );
 
@@ -61,10 +50,10 @@ final class BedrockagentcoreGatewayRuleActionActionConfigurationBundle
   };
 }
 
-/// The [BedrockagentcoreGatewayRuleActionAction.routeToTarget] choice: sets `route_to_target`.
-final class BedrockagentcoreGatewayRuleActionActionRouteToTarget
-    extends BedrockagentcoreGatewayRuleActionAction {
-  const BedrockagentcoreGatewayRuleActionActionRouteToTarget(
+/// The [BedrockagentcoreGatewayRuleAction.routeToTarget] choice: sets `route_to_target`.
+final class BedrockagentcoreGatewayRuleActionRouteToTargetChoice
+    extends BedrockagentcoreGatewayRuleAction {
+  const BedrockagentcoreGatewayRuleActionRouteToTargetChoice(
     this.routeToTarget,
   );
 
@@ -79,37 +68,24 @@ final class BedrockagentcoreGatewayRuleActionActionRouteToTarget
   };
 }
 
-/// Typed helper for the `action.configuration_bundle` block of
-/// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
-@immutable
-final class BedrockagentcoreGatewayRuleActionConfigurationBundle {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundle({
-    required this.override,
-  });
-
-  final BedrockagentcoreGatewayRuleActionConfigurationBundleOverride override;
-
-  Map<String, Object?> encode() => {...override.encode()};
-}
-
 /// Exactly one of `static_override`, `weighted_override` on the `action.configuration_bundle` block of `aws_bedrockagentcore_gateway_rule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.staticOverride(...)`.
-sealed class BedrockagentcoreGatewayRuleActionConfigurationBundleOverride {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundleOverride();
+sealed class BedrockagentcoreGatewayRuleActionConfigurationBundle {
+  const BedrockagentcoreGatewayRuleActionConfigurationBundle();
 
   /// Sets `static_override`.
-  const factory BedrockagentcoreGatewayRuleActionConfigurationBundleOverride.staticOverride(
+  const factory BedrockagentcoreGatewayRuleActionConfigurationBundle.staticOverride(
     List<BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverride>
     staticOverride,
-  ) = BedrockagentcoreGatewayRuleActionConfigurationBundleOverrideStaticOverride;
+  ) = BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverrideChoice;
 
   /// Sets `weighted_override`.
-  const factory BedrockagentcoreGatewayRuleActionConfigurationBundleOverride.weightedOverride(
+  const factory BedrockagentcoreGatewayRuleActionConfigurationBundle.weightedOverride(
     List<BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride>
     weightedOverride,
-  ) = BedrockagentcoreGatewayRuleActionConfigurationBundleOverrideWeightedOverride;
+  ) = BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -117,10 +93,10 @@ sealed class BedrockagentcoreGatewayRuleActionConfigurationBundleOverride {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentcoreGatewayRuleActionConfigurationBundleOverride.staticOverride] choice: sets `static_override`.
-final class BedrockagentcoreGatewayRuleActionConfigurationBundleOverrideStaticOverride
-    extends BedrockagentcoreGatewayRuleActionConfigurationBundleOverride {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundleOverrideStaticOverride(
+/// The [BedrockagentcoreGatewayRuleActionConfigurationBundle.staticOverride] choice: sets `static_override`.
+final class BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverrideChoice
+    extends BedrockagentcoreGatewayRuleActionConfigurationBundle {
+  const BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverrideChoice(
     this.staticOverride,
   );
 
@@ -136,10 +112,10 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleOverrideStaticOv
   };
 }
 
-/// The [BedrockagentcoreGatewayRuleActionConfigurationBundleOverride.weightedOverride] choice: sets `weighted_override`.
-final class BedrockagentcoreGatewayRuleActionConfigurationBundleOverrideWeightedOverride
-    extends BedrockagentcoreGatewayRuleActionConfigurationBundleOverride {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundleOverrideWeightedOverride(
+/// The [BedrockagentcoreGatewayRuleActionConfigurationBundle.weightedOverride] choice: sets `weighted_override`.
+final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideChoice
+    extends BedrockagentcoreGatewayRuleActionConfigurationBundle {
+  const BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideChoice(
     this.weightedOverride,
   );
 
@@ -251,34 +227,23 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride
   };
 }
 
-/// Typed helper for the `action.route_to_target` block of
-/// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
-@immutable
-final class BedrockagentcoreGatewayRuleActionRouteToTarget {
-  const BedrockagentcoreGatewayRuleActionRouteToTarget({required this.route});
-
-  final BedrockagentcoreGatewayRuleActionRouteToTargetRoute route;
-
-  Map<String, Object?> encode() => {...route.encode()};
-}
-
 /// Exactly one of `static_route`, `weighted_route` on the `action.route_to_target` block of `aws_bedrockagentcore_gateway_rule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.staticRoute(...)`.
-sealed class BedrockagentcoreGatewayRuleActionRouteToTargetRoute {
-  const BedrockagentcoreGatewayRuleActionRouteToTargetRoute();
+sealed class BedrockagentcoreGatewayRuleActionRouteToTarget {
+  const BedrockagentcoreGatewayRuleActionRouteToTarget();
 
   /// Sets `static_route`.
-  const factory BedrockagentcoreGatewayRuleActionRouteToTargetRoute.staticRoute(
+  const factory BedrockagentcoreGatewayRuleActionRouteToTarget.staticRoute(
     List<BedrockagentcoreGatewayRuleActionRouteToTargetStaticRoute> staticRoute,
-  ) = BedrockagentcoreGatewayRuleActionRouteToTargetRouteStaticRoute;
+  ) = BedrockagentcoreGatewayRuleActionRouteToTargetStaticRouteChoice;
 
   /// Sets `weighted_route`.
-  const factory BedrockagentcoreGatewayRuleActionRouteToTargetRoute.weightedRoute(
+  const factory BedrockagentcoreGatewayRuleActionRouteToTarget.weightedRoute(
     List<BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRoute>
     weightedRoute,
-  ) = BedrockagentcoreGatewayRuleActionRouteToTargetRouteWeightedRoute;
+  ) = BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -286,10 +251,10 @@ sealed class BedrockagentcoreGatewayRuleActionRouteToTargetRoute {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentcoreGatewayRuleActionRouteToTargetRoute.staticRoute] choice: sets `static_route`.
-final class BedrockagentcoreGatewayRuleActionRouteToTargetRouteStaticRoute
-    extends BedrockagentcoreGatewayRuleActionRouteToTargetRoute {
-  const BedrockagentcoreGatewayRuleActionRouteToTargetRouteStaticRoute(
+/// The [BedrockagentcoreGatewayRuleActionRouteToTarget.staticRoute] choice: sets `static_route`.
+final class BedrockagentcoreGatewayRuleActionRouteToTargetStaticRouteChoice
+    extends BedrockagentcoreGatewayRuleActionRouteToTarget {
+  const BedrockagentcoreGatewayRuleActionRouteToTargetStaticRouteChoice(
     this.staticRoute,
   );
 
@@ -305,10 +270,10 @@ final class BedrockagentcoreGatewayRuleActionRouteToTargetRouteStaticRoute
   };
 }
 
-/// The [BedrockagentcoreGatewayRuleActionRouteToTargetRoute.weightedRoute] choice: sets `weighted_route`.
-final class BedrockagentcoreGatewayRuleActionRouteToTargetRouteWeightedRoute
-    extends BedrockagentcoreGatewayRuleActionRouteToTargetRoute {
-  const BedrockagentcoreGatewayRuleActionRouteToTargetRouteWeightedRoute(
+/// The [BedrockagentcoreGatewayRuleActionRouteToTarget.weightedRoute] choice: sets `weighted_route`.
+final class BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteChoice
+    extends BedrockagentcoreGatewayRuleActionRouteToTarget {
+  const BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteChoice(
     this.weightedRoute,
   );
 
@@ -387,33 +352,22 @@ final class BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteTrafficSp
   };
 }
 
-/// Typed helper for the `condition` block of
-/// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
-@immutable
-final class BedrockagentcoreGatewayRuleCondition {
-  const BedrockagentcoreGatewayRuleCondition({required this.match});
-
-  final BedrockagentcoreGatewayRuleConditionMatch match;
-
-  Map<String, Object?> encode() => {...match.encode()};
-}
-
 /// Exactly one of `match_paths`, `match_principals` on the `condition` block of `aws_bedrockagentcore_gateway_rule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.matchPaths(...)`.
-sealed class BedrockagentcoreGatewayRuleConditionMatch {
-  const BedrockagentcoreGatewayRuleConditionMatch();
+sealed class BedrockagentcoreGatewayRuleCondition {
+  const BedrockagentcoreGatewayRuleCondition();
 
   /// Sets `match_paths`.
-  const factory BedrockagentcoreGatewayRuleConditionMatch.matchPaths(
+  const factory BedrockagentcoreGatewayRuleCondition.matchPaths(
     List<BedrockagentcoreGatewayRuleConditionMatchPaths> matchPaths,
-  ) = BedrockagentcoreGatewayRuleConditionMatchMatchPaths;
+  ) = BedrockagentcoreGatewayRuleConditionMatchPathsChoice;
 
   /// Sets `match_principals`.
-  const factory BedrockagentcoreGatewayRuleConditionMatch.matchPrincipals(
+  const factory BedrockagentcoreGatewayRuleCondition.matchPrincipals(
     List<BedrockagentcoreGatewayRuleConditionMatchPrincipals> matchPrincipals,
-  ) = BedrockagentcoreGatewayRuleConditionMatchMatchPrincipals;
+  ) = BedrockagentcoreGatewayRuleConditionMatchPrincipalsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -421,10 +375,10 @@ sealed class BedrockagentcoreGatewayRuleConditionMatch {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentcoreGatewayRuleConditionMatch.matchPaths] choice: sets `match_paths`.
-final class BedrockagentcoreGatewayRuleConditionMatchMatchPaths
-    extends BedrockagentcoreGatewayRuleConditionMatch {
-  const BedrockagentcoreGatewayRuleConditionMatchMatchPaths(this.matchPaths);
+/// The [BedrockagentcoreGatewayRuleCondition.matchPaths] choice: sets `match_paths`.
+final class BedrockagentcoreGatewayRuleConditionMatchPathsChoice
+    extends BedrockagentcoreGatewayRuleCondition {
+  const BedrockagentcoreGatewayRuleConditionMatchPathsChoice(this.matchPaths);
 
   final List<BedrockagentcoreGatewayRuleConditionMatchPaths> matchPaths;
 
@@ -437,10 +391,10 @@ final class BedrockagentcoreGatewayRuleConditionMatchMatchPaths
   };
 }
 
-/// The [BedrockagentcoreGatewayRuleConditionMatch.matchPrincipals] choice: sets `match_principals`.
-final class BedrockagentcoreGatewayRuleConditionMatchMatchPrincipals
-    extends BedrockagentcoreGatewayRuleConditionMatch {
-  const BedrockagentcoreGatewayRuleConditionMatchMatchPrincipals(
+/// The [BedrockagentcoreGatewayRuleCondition.matchPrincipals] choice: sets `match_principals`.
+final class BedrockagentcoreGatewayRuleConditionMatchPrincipalsChoice
+    extends BedrockagentcoreGatewayRuleCondition {
+  const BedrockagentcoreGatewayRuleConditionMatchPrincipalsChoice(
     this.matchPrincipals,
   );
 

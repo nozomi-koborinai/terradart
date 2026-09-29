@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_device_default_profile.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_device_default_profile`.
 const Set<String> _cloudflareZeroTrustDeviceDefaultProfileSensitive =
@@ -14,10 +15,13 @@ final class DataCloudflareZeroTrustDeviceDefaultProfile extends Data {
 
   DataCloudflareZeroTrustDeviceDefaultProfile({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'account_id': ?accountId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'account_id': ?accountId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields =>

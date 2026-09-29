@@ -141,6 +141,6 @@ export 'src/compute/google_compute_region_network_policy_traffic_classification_
         ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs,
         ComputeRegionNetworkPolicyTrafficClassificationRuleTarget,
         ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags,
-        ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags,
-        ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts,
+        ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTagsChoice,
+        ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccounts,
         GoogleComputeRegionNetworkPolicyTrafficClassificationRule;

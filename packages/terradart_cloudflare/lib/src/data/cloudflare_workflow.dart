@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../workflow/cloudflare_workflow.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_workflow`.
 const Set<String> _cloudflareWorkflowSensitive = <String>{};
@@ -29,7 +30,7 @@ final class DataCloudflareWorkflow extends Data {
 
   DataCloudflareWorkflow({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? workflowName,
     DataWorkflowFilter? filter,
     super.provider,
@@ -37,7 +38,7 @@ final class DataCloudflareWorkflow extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'workflow_name': ?workflowName,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

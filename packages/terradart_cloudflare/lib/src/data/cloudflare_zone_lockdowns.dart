@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_zone_lockdowns`.
 const Set<String> _cloudflareZoneLockdownsSensitive = <String>{};
@@ -26,7 +27,7 @@ final class DataCloudflareZoneLockdowns extends Data {
     TfArg<String>? modifiedOn,
     TfArg<num>? priority,
     TfArg<String>? uriSearch,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -42,7 +43,7 @@ final class DataCloudflareZoneLockdowns extends Data {
            'modified_on': ?modifiedOn,
            'priority': ?priority,
            'uri_search': ?uriSearch,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

@@ -35,7 +35,7 @@ sealed class RdsCustomDbEngineVersionManifest {
   /// Sets `manifest`.
   const factory RdsCustomDbEngineVersionManifest.manifest(
     TfArg<String> manifest,
-  ) = RdsCustomDbEngineVersionManifestManifest;
+  ) = RdsCustomDbEngineVersionManifestChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -65,9 +65,9 @@ final class RdsCustomDbEngineVersionManifestFilename
 }
 
 /// The [RdsCustomDbEngineVersionManifest.manifest] choice: sets `manifest`.
-final class RdsCustomDbEngineVersionManifestManifest
+final class RdsCustomDbEngineVersionManifestChoice
     extends RdsCustomDbEngineVersionManifest {
-  const RdsCustomDbEngineVersionManifestManifest(this.manifest);
+  const RdsCustomDbEngineVersionManifestChoice(this.manifest);
 
   final TfArg<String> manifest;
 
