@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../project/appwrite_project.dart' show AppwriteProject;
 
 /// Sensitive field paths for `appwrite_mysql_databases`.
 const Set<String> _appwriteMysqlDatabasesSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataAppwriteMysqlDatabases extends Data {
 
   DataAppwriteMysqlDatabases({
     required super.localName,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? queries,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'project_id': ?projectId, 'queries': ?queries},
+         argMap: {
+           'project_id': ?projectId?.encodeAs('id'),
+           'queries': ?queries,
+         },
        );
 
   @override

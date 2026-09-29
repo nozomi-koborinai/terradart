@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../postgresql/appwrite_postgresql_database.dart'
+    show AppwritePostgresqlDatabase;
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_postgresql_extension`.
 const Set<String> _appwritePostgresqlExtensionSensitive = <String>{};
 
@@ -16,9 +20,9 @@ final class AppwritePostgresqlExtension extends Resource {
 
   AppwritePostgresqlExtension({
     required super.localName,
-    required TfArg<String> databaseId,
+    required RefTo<AppwritePostgresqlDatabase> databaseId,
     required TfArg<String> name,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,9 +30,9 @@ final class AppwritePostgresqlExtension extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'database_id': databaseId,
+           'database_id': databaseId.encodeAs('id'),
            'name': name,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
          },
        );
 

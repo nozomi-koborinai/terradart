@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+import '../sites/appwrite_site.dart' show AppwriteSite;
+
 /// Sensitive field paths for `appwrite_site_variable`.
 const Set<String> _appwriteSiteVariableSensitive = <String>{'value'};
 
@@ -18,9 +21,9 @@ final class AppwriteSiteVariable extends Resource {
   AppwriteSiteVariable({
     required super.localName,
     required TfArg<String> key,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<bool>? secret,
-    required TfArg<String> siteId,
+    required RefTo<AppwriteSite> siteId,
     required TfArg<String> value,
     super.lifecycle,
     super.dependsOn,
@@ -30,9 +33,9 @@ final class AppwriteSiteVariable extends Resource {
          terraformType: tfType,
          argMap: {
            'key': key,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'secret': ?secret,
-           'site_id': siteId,
+           'site_id': siteId.encodeAs('id'),
            'value': value,
          },
        );

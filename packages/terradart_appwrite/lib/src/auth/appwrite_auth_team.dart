@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_auth_team`.
 const Set<String> _appwriteAuthTeamSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AppwriteAuthTeam extends Resource {
   AppwriteAuthTeam({
     required super.localName,
     required TfArg<String> name,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? roles,
     super.lifecycle,
     super.dependsOn,
@@ -23,7 +25,11 @@ final class AppwriteAuthTeam extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'project_id': ?projectId, 'roles': ?roles},
+         argMap: {
+           'name': name,
+           'project_id': ?projectId?.encodeAs('id'),
+           'roles': ?roles,
+         },
        );
 
   @override

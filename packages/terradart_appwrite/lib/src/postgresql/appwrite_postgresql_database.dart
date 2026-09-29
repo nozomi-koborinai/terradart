@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_postgresql_database`.
 const Set<String> _appwritePostgresqlDatabaseSensitive = <String>{
   'connection_password',
@@ -68,7 +70,7 @@ final class AppwritePostgresqlDatabase extends Resource {
     TfArg<List<String>>? networkIpAllowlist,
     TfArg<bool>? pitr,
     TfArg<num>? pitrRetentionDays,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<num>? replicas,
     TfArg<String>? specification,
     TfArg<List<String>>? sqlApiAllowedStatements,
@@ -97,7 +99,7 @@ final class AppwritePostgresqlDatabase extends Resource {
            'network_ip_allowlist': ?networkIpAllowlist,
            'pitr': ?pitr,
            'pitr_retention_days': ?pitrRetentionDays,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'replicas': ?replicas,
            'specification': ?specification,
            'sql_api_allowed_statements': ?sqlApiAllowedStatements,
