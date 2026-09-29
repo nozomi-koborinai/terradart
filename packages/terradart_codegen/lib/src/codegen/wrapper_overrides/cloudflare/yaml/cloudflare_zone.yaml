@@ -3,6 +3,7 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Cloudflare **zone** — a domain under Cloudflare management, the

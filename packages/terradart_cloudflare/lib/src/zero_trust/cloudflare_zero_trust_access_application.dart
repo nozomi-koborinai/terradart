@@ -40,46 +40,135 @@ enum ZeroTrustAccessApplicationType implements TerraformEnum {
 final class ZeroTrustAccessApplicationCorsHeaders {
   const ZeroTrustAccessApplicationCorsHeaders({
     this.allowAllHeaders,
-    this.allowAllMethods,
-    this.allowAllOrigins,
+    required this.allowAllMethodsOrAllowedMethods,
+    required this.allowAllOriginsOrAllowedOrigins,
     this.allowCredentials,
     this.allowedHeaders,
-    this.allowedMethods,
-    this.allowedOrigins,
     this.maxAge,
   });
 
   final TfArg<bool>? allowAllHeaders;
 
-  final TfArg<bool>? allowAllMethods;
+  final ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods
+  allowAllMethodsOrAllowedMethods;
 
-  final TfArg<bool>? allowAllOrigins;
+  final ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins
+  allowAllOriginsOrAllowedOrigins;
 
   final TfArg<bool>? allowCredentials;
 
   final TfArg<List<Object?>>? allowedHeaders;
-
-  final List<TfArg<ZeroTrustAccessApplicationCorsHeadersAllowedMethods>>?
-  allowedMethods;
-
-  final TfArg<List<Object?>>? allowedOrigins;
 
   final TfArg<num>? maxAge;
 
   Map<String, Object?> encode() => {
     if (allowAllHeaders != null)
       'allow_all_headers': allowAllHeaders!.toTfJson(),
-    if (allowAllMethods != null)
-      'allow_all_methods': allowAllMethods!.toTfJson(),
-    if (allowAllOrigins != null)
-      'allow_all_origins': allowAllOrigins!.toTfJson(),
+    ...allowAllMethodsOrAllowedMethods.encode(),
+    ...allowAllOriginsOrAllowedOrigins.encode(),
     if (allowCredentials != null)
       'allow_credentials': allowCredentials!.toTfJson(),
     if (allowedHeaders != null) 'allowed_headers': allowedHeaders!.toTfJson(),
-    if (allowedMethods != null)
-      'allowed_methods': [for (final e in allowedMethods!) e.toTfJson()],
-    if (allowedOrigins != null) 'allowed_origins': allowedOrigins!.toTfJson(),
     if (maxAge != null) 'max_age': maxAge!.toTfJson(),
+  };
+}
+
+/// Exactly one of `allow_all_methods`, `allowed_methods` on the `cors_headers` block of `cloudflare_zero_trust_access_application`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods {
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `allow_all_methods` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods] choices).
+final class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOption
+    extends
+        ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods {
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOption({
+    required this.allowAllMethods,
+  });
+
+  final TfArg<bool> allowAllMethods;
+
+  @override
+  String get blockKey => 'allow_all_methods';
+
+  @override
+  Map<String, Object?> encode() => {
+    'allow_all_methods': allowAllMethods.toTfJson(),
+  };
+}
+
+/// Sets `allowed_methods` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods] choices).
+final class ZeroTrustAccessApplicationCorsHeadersAllowedMethodsOption
+    extends
+        ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods {
+  const ZeroTrustAccessApplicationCorsHeadersAllowedMethodsOption({
+    required this.allowedMethods,
+  });
+
+  final List<TfArg<ZeroTrustAccessApplicationCorsHeadersAllowedMethods>>
+  allowedMethods;
+
+  @override
+  String get blockKey => 'allowed_methods';
+
+  @override
+  Map<String, Object?> encode() => {
+    'allowed_methods': [for (final e in allowedMethods) e.toTfJson()],
+  };
+}
+
+/// Exactly one of `allow_all_origins`, `allowed_origins` on the `cors_headers` block of `cloudflare_zero_trust_access_application`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins {
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `allow_all_origins` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins] choices).
+final class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOption
+    extends
+        ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins {
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOption({
+    required this.allowAllOrigins,
+  });
+
+  final TfArg<bool> allowAllOrigins;
+
+  @override
+  String get blockKey => 'allow_all_origins';
+
+  @override
+  Map<String, Object?> encode() => {
+    'allow_all_origins': allowAllOrigins.toTfJson(),
+  };
+}
+
+/// Sets `allowed_origins` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins] choices).
+final class ZeroTrustAccessApplicationCorsHeadersAllowedOriginsOption
+    extends
+        ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins {
+  const ZeroTrustAccessApplicationCorsHeadersAllowedOriginsOption({
+    required this.allowedOrigins,
+  });
+
+  final TfArg<List<Object?>> allowedOrigins;
+
+  @override
+  String get blockKey => 'allowed_origins';
+
+  @override
+  Map<String, Object?> encode() => {
+    'allowed_origins': allowedOrigins.toTfJson(),
   };
 }
 
@@ -349,19 +438,18 @@ final class ZeroTrustAccessApplicationOauthConfigurationGrant {
 final class ZeroTrustAccessApplicationPolicies {
   const ZeroTrustAccessApplicationPolicies({
     this.decision,
-    this.id,
+    required this.idOrInclude,
     this.name,
     this.precedence,
     this.connectionRules,
     this.exclude,
-    this.include,
     this.mfaConfig,
     this.require,
   });
 
   final TfArg<ZeroTrustAccessApplicationPoliciesDecision>? decision;
 
-  final TfArg<String>? id;
+  final ZeroTrustAccessApplicationPoliciesIdOrInclude idOrInclude;
 
   final TfArg<String>? name;
 
@@ -371,22 +459,62 @@ final class ZeroTrustAccessApplicationPolicies {
 
   final List<ZeroTrustAccessApplicationPoliciesExclude>? exclude;
 
-  final List<ZeroTrustAccessApplicationPoliciesInclude>? include;
-
   final ZeroTrustAccessApplicationPoliciesMfaConfig? mfaConfig;
 
   final List<ZeroTrustAccessApplicationPoliciesRequire>? require;
 
   Map<String, Object?> encode() => {
     if (decision != null) 'decision': decision!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
+    ...idOrInclude.encode(),
     if (name != null) 'name': name!.toTfJson(),
     if (precedence != null) 'precedence': precedence!.toTfJson(),
     if (connectionRules != null) 'connection_rules': connectionRules!.encode(),
     if (exclude != null) 'exclude': [for (final e in exclude!) e.encode()],
-    if (include != null) 'include': [for (final e in include!) e.encode()],
     if (mfaConfig != null) 'mfa_config': mfaConfig!.encode(),
     if (require != null) 'require': [for (final e in require!) e.encode()],
+  };
+}
+
+/// Exactly one of `id`, `include` on the `policies` block of `cloudflare_zero_trust_access_application`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ZeroTrustAccessApplicationPoliciesIdOrInclude {
+  const ZeroTrustAccessApplicationPoliciesIdOrInclude();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `id` (one of the [ZeroTrustAccessApplicationPoliciesIdOrInclude] choices).
+final class ZeroTrustAccessApplicationPoliciesIdOption
+    extends ZeroTrustAccessApplicationPoliciesIdOrInclude {
+  const ZeroTrustAccessApplicationPoliciesIdOption({required this.id});
+
+  final TfArg<String> id;
+
+  @override
+  String get blockKey => 'id';
+
+  @override
+  Map<String, Object?> encode() => {'id': id.toTfJson()};
+}
+
+/// Sets `include` (one of the [ZeroTrustAccessApplicationPoliciesIdOrInclude] choices).
+final class ZeroTrustAccessApplicationPoliciesIncludeOption
+    extends ZeroTrustAccessApplicationPoliciesIdOrInclude {
+  const ZeroTrustAccessApplicationPoliciesIncludeOption({
+    required this.include,
+  });
+
+  final List<ZeroTrustAccessApplicationPoliciesInclude> include;
+
+  @override
+  String get blockKey => 'include';
+
+  @override
+  Map<String, Object?> encode() => {
+    'include': [for (final e in include) e.encode()],
   };
 }
 

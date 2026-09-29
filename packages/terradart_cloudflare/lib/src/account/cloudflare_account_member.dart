@@ -17,6 +17,57 @@ enum AccountMemberStatus implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `roles`, `policies` on `cloudflare_account_member`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class AccountMemberRolesOrPolicies {
+  const AccountMemberRolesOrPolicies();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `roles` (one of the [AccountMemberRolesOrPolicies] choices).
+final class AccountMemberRolesOption extends AccountMemberRolesOrPolicies {
+  const AccountMemberRolesOption({required this.roles});
+
+  final TfArg<List<String>> roles;
+
+  @override
+  String get blockKey => 'roles';
+
+  @override
+  Map<String, Object?> encode() => {'roles': roles.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'roles': roles};
+}
+
+/// Sets `policies` (one of the [AccountMemberRolesOrPolicies] choices).
+final class AccountMemberPoliciesOption extends AccountMemberRolesOrPolicies {
+  const AccountMemberPoliciesOption({required this.policies});
+
+  final List<AccountMemberPolicies> policies;
+
+  @override
+  String get blockKey => 'policies';
+
+  @override
+  Map<String, Object?> encode() => {
+    'policies': [for (final e in policies) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'policies': TfArg.literal([for (final e in policies) e.encode()]),
+  };
+}
+
 /// Typed helper for the `policies` block of
 /// `cloudflare_account_member` (derived from provider schema).
 @immutable
@@ -84,9 +135,8 @@ final class CloudflareAccountMember extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> email,
-    TfArg<List<String>>? roles,
+    required AccountMemberRolesOrPolicies rolesOrPolicies,
     TfArg<AccountMemberStatus>? status,
-    List<AccountMemberPolicies>? policies,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -96,10 +146,8 @@ final class CloudflareAccountMember extends Resource {
          argMap: {
            'account_id': accountId,
            'email': email,
-           if (roles != null) 'roles': roles,
+           ...rolesOrPolicies.argMap,
            if (status != null) 'status': status,
-           if (policies != null)
-             'policies': TfArg.literal([for (final e in policies) e.encode()]),
          },
        );
 

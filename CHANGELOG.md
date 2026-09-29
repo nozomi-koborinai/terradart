@@ -4,10 +4,27 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
-## [Unreleased]
+## Unreleased
 
 ### Changed
 
+- **`terradart_cloudflare` exactly-one groups are sealed types**
+  (**breaking**) — 13 groups on 5 resources (2 on resource arguments, 11 in
+  nested blocks) take one required sealed argument whose variants each set
+  one member, e.g. `CloudflareRuleset(accountIdOrZoneId:
+  RulesetZoneIdOption(zoneId: ...))`. `tool/extract_provider_hints.dart`
+  now reads the plugin-framework relation validators too and writes
+  `exactly_one_of_groups` into `source_cloudflare/hints/`: every
+  `ExactlyOneOf` set (attribute validators and `resourcevalidator` in
+  `ConfigValidators`), and every `AtLeastOneOf` set whose members all
+  pairwise `ConflictsWith`. A `ConflictsWith` set nothing requires one of
+  (for example `cloudflare_dns_record` `content` / `data`) accepts none, so
+  it stays as optional arguments and the tool only lists it. Every
+  cloudflare resource override sets `deriveExactlyOne: true` (and the lane
+  scaffold fills it for new types), so a re-extraction at a later pin seals
+  new groups in the same bump. The migration manifest derives the sealed
+  shapes; the round-trip gate stays green. Synth output is unchanged. See
+  `MIGRATING.md`.
 - **`terradart_google_beta` reaches the GA package's type safety**
   (breaking) — the beta lane now reads Magic Modules YAML: every beta
   resource is resolved to its `mmv1` file through the generated Go source of

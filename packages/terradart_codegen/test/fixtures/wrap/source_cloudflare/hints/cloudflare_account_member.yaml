@@ -13,3 +13,5 @@ properties:
     enum_values:
       - "accepted"
       - "pending"
+exactly_one_of_groups:
+  - ["roles", "policies"]
