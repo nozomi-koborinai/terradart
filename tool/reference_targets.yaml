@@ -20,8 +20,10 @@
 # wrap fails on an entry the schema no longer supports: a rule that matches
 # no input, an `attributes` or `exclude` entry the rule does not match, an
 # attribute the target (or its data source) does not export, or an input two
-# rules match. Enum-typed inputs, inputs an override types by hand and
-# members of a sealed group stay as they are.
+# rules match. Enum-typed inputs and inputs an override types by hand stay
+# as they are; a member of a sealed group is typed inside its variant.
+# `terradart wrap` lists every matched input that stays a string
+# (`reference input not typed:`).
 
 hashicorp/google:
   - target: google_compute_network
